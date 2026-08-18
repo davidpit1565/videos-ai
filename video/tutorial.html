@@ -1,0 +1,901 @@
+<title>Universal AI Engine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Assistant:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ink:#0E1116;        /* deep blue-biased near-black: player chrome */
+  --ink-2:#151A22;
+  --surface:#1B2029;
+  --line:#2A313D;
+  --paper:#E8C86A;      /* the standing order / sticky note */
+  --paper-dim:#8A7434;
+  --steel:#6FA8CF;      /* the machine layer */
+  --clay:#C96A4E;       /* limitations */
+  --text:#EEF0F3;
+  --muted:#8C97A8;
+  --ok:#69B98B;
+  --f-display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --f-body:'Assistant','Segoe UI',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --f-ui:'Inter','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--ink);color:var(--text);
+  font-family:var(--f-body);font-weight:400;font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:34px 20px 90px}
+
+/* ── masthead ─────────────────────────────────────────── */
+.masthead{display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px;margin-bottom:20px}
+.masthead h1{
+  font-family:var(--f-display);font-weight:700;font-size:clamp(30px,4.4vw,50px);
+  letter-spacing:-.025em;margin:0;line-height:1;text-wrap:balance;
+}
+.masthead h1 em{font-style:normal;color:var(--paper)}
+.masthead p{margin:0;color:var(--muted);max-width:46ch;font-size:15.5px}
+.kicker{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--paper-dim);margin:0 0 10px
+}
+
+/* ── player ───────────────────────────────────────────── */
+.player{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#000}
+.stage{
+  position:relative;aspect-ratio:16/9;width:100%;overflow:hidden;
+  container-type:inline-size;
+  background:radial-gradient(120% 90% at 50% 0%,#141A24 0%,#0B0E13 62%,#080A0E 100%);
+}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .45s ease}
+.scene.active{opacity:1;visibility:visible}
+.pad{position:absolute;inset:0;padding:5cqw 7cqw 11cqw;display:flex;flex-direction:column;justify-content:center;gap:2.4cqw}
+
+/* motion primitive */
+.b{opacity:0;transform:translateY(2.2cqw);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.75,.3,1)}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){
+  .b,.scene,.orbit i,.growbar,.wrapbox{transition-duration:1ms!important;animation:none!important}
+}
+
+/* stage typography */
+.eyebrow{
+  font-family:var(--f-mono);font-size:1.25cqw;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--paper);display:flex;align-items:center;gap:1cqw
+}
+.eyebrow::before{content:"";width:3.4cqw;height:1px;background:var(--paper);opacity:.6}
+.idx{position:absolute;right:5cqw;top:4.4cqw;font-family:var(--f-mono);font-size:1.2cqw;letter-spacing:.16em;color:var(--muted);z-index:6}
+.wipe{position:absolute;left:0;right:0;top:50%;height:.35cqw;background:var(--paper);z-index:9;transform:scaleX(0);transform-origin:left}
+.wipe.go{animation:swipe .38s ease-in-out}
+@keyframes swipe{0%{transform:scaleX(0);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}51%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+h2.big{
+  font-family:var(--f-display);font-weight:700;font-size:5.4cqw;line-height:1.03;
+  letter-spacing:-.03em;margin:0;text-wrap:balance;max-width:24ch
+}
+h2.mid{font-family:var(--f-display);font-weight:600;font-size:3.6cqw;line-height:1.12;letter-spacing:-.02em;margin:0;max-width:26ch}
+p.lede{font-size:2.05cqw;line-height:1.45;color:var(--muted);margin:0;max-width:44ch}
+p.lede strong{color:var(--text);font-weight:600}
+.tiny{font-family:var(--f-mono);font-size:1.15cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* chips + cards */
+.row{display:flex;flex-wrap:wrap;gap:1.2cqw;align-items:center}
+.chip{
+  font-family:var(--f-mono);font-size:1.25cqw;letter-spacing:.08em;padding:.75cqw 1.4cqw;
+  border:1px solid var(--line);border-radius:2px;color:var(--muted);white-space:nowrap
+}
+.chip.hot{border-color:var(--paper);color:var(--paper)}
+.chip.cool{border-color:#33607D;color:var(--steel)}
+.chip.warn{border-color:#7A422F;color:var(--clay)}
+.card{
+  border:1px solid var(--line);background:var(--ink-2);border-radius:3px;padding:1.8cqw 2cqw;
+  display:flex;gap:1.2cqw;align-items:flex-start
+}
+.card .n{font-family:var(--f-mono);color:var(--paper);font-size:1.5cqw;flex:0 0 auto}
+.card .t{font-size:1.85cqw;line-height:1.35}
+.card.struck .t{color:var(--muted)}
+.card.struck .t s{text-decoration-color:var(--clay);text-decoration-thickness:.22cqw}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+
+/* the three-layer stack */
+.stack{display:flex;flex-direction:column;gap:1cqw;max-width:64cqw}
+.layer{border:1px solid var(--line);border-radius:3px;padding:1.6cqw 2cqw;background:var(--ink-2);display:flex;justify-content:space-between;align-items:center;gap:2cqw}
+.layer .lt{font-family:var(--f-display);font-weight:600;font-size:2.1cqw}
+.layer .ls{font-size:1.4cqw;color:var(--muted)}
+.layer.locked{opacity:.55}
+.layer.you{border-color:var(--paper);background:linear-gradient(90deg,rgba(232,200,106,.11),rgba(232,200,106,.03));box-shadow:0 0 0 1px rgba(232,200,106,.25)}
+.layer.you .lt{color:var(--paper)}
+.layer.msg{border-color:#3B4553;background:#222834}
+
+/* wrap animation */
+.wrapbox{position:relative;border:.35cqw solid var(--paper);border-radius:3px;padding:2.6cqw;transition:padding .8s cubic-bezier(.3,.8,.3,1)}
+.wrapbox:not(.on){padding:.35cqw;border-color:transparent}
+.wrapbox .instr{font-family:var(--f-mono);font-size:1.15cqw;color:var(--paper);line-height:1.7;opacity:0;transition:opacity .6s ease .25s}
+.wrapbox.on .instr{opacity:.85}
+.wrapbox .usermsg{background:#EEF0F3;color:#0E1116;border-radius:3px;padding:1.4cqw 1.8cqw;font-size:2cqw;font-weight:600;margin:1.2cqw 0;display:inline-block}
+
+/* pipeline */
+.pipe{display:flex;flex-wrap:wrap;gap:.9cqw;align-items:center}
+.pipe .step{
+  font-family:var(--f-mono);font-size:1.25cqw;padding:.8cqw 1.2cqw;border:1px solid var(--line);
+  border-radius:2px;color:var(--muted);opacity:.35;transition:all .4s ease
+}
+.pipe .step.on{opacity:1;color:var(--paper);border-color:var(--paper-dim);background:rgba(232,200,106,.07)}
+.pipe .arw{color:var(--line);font-size:1.3cqw}
+
+/* orbiting menu */
+.orbit{position:relative;flex:0 0 auto;width:52cqw;height:24cqw;margin:0 auto}
+.orbit .core{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  border:1px solid var(--paper);border-radius:3px;padding:1.5cqw 2.4cqw;background:var(--ink-2);
+  font-family:var(--f-display);font-weight:600;font-size:2cqw;color:var(--paper);text-align:center;z-index:3
+}
+.orbit i{
+  position:absolute;font-family:var(--f-mono);font-style:normal;font-size:1.02cqw;color:var(--muted);
+  border:1px solid var(--line);border-radius:2px;padding:.42cqw .8cqw;background:rgba(14,17,22,.8);
+  transform:translate(-50%,-50%);transition:color .5s,border-color .5s,opacity .5s
+}
+.orbit i.lit{color:var(--paper);border-color:var(--paper);opacity:1}
+
+/* mock chatgpt ui */
+.mock{
+  font-family:var(--f-ui);border:1px solid #333;border-radius:5px;background:#212121;overflow:hidden;
+  display:flex;flex-direction:column;min-height:0
+}
+.mock .bar{display:flex;align-items:center;gap:.7cqw;padding:1.1cqw 1.4cqw;border-bottom:1px solid #303030;color:#ECECEC}
+.mock .bar b{width:.7cqw;height:.7cqw;border-radius:50%;background:#3A3A3A;display:block}
+.mock .bar span{font-size:1.15cqw;color:#8E8E8E;margin-inline-start:.9cqw}
+.mock .body{padding:1.6cqw;display:flex;flex-direction:column;gap:1.4cqw;overflow:hidden}
+.msg-u{align-self:flex-end;background:#303030;color:#ECECEC;border-radius:2.4cqw;padding:1.1cqw 1.7cqw;font-size:1.5cqw;line-height:1.4;max-width:80%}
+.msg-a{font-size:1.45cqw;line-height:1.6;color:#ECECEC;max-width:94%}
+.msg-a .lbl{font-size:1.1cqw;font-weight:600;color:var(--paper);display:block;margin-bottom:.25cqw}
+.msg-a.flat{color:#B4B4B4}
+.field{font-family:var(--f-ui);border:1px solid #444;border-radius:4px;background:#212121;padding:1.2cqw 1.4cqw;font-size:1.4cqw;color:#ECECEC}
+.field.focus{border-color:var(--paper);box-shadow:0 0 0 .25cqw rgba(232,200,106,.16)}
+.field .flabel{font-size:1.05cqw;color:#B4B4B4;display:block;margin-bottom:.5cqw}
+.toggle{font-family:var(--f-ui);display:inline-flex;align-items:center;gap:.9cqw;font-size:1.35cqw;color:#ECECEC}
+.toggle .sw{width:3.4cqw;height:1.8cqw;border-radius:1cqw;background:#2E3743;position:relative;transition:background .4s}
+.toggle .sw::after{content:"";position:absolute;top:.25cqw;left:.25cqw;width:1.3cqw;height:1.3cqw;border-radius:50%;background:#8C97A8;transition:transform .4s,background .4s}
+.toggle.on .sw{background:var(--paper-dim)}
+.toggle.on .sw::after{transform:translateX(1.6cqw);background:var(--paper)}
+.btn-save{font-family:var(--f-ui);font-weight:600;font-size:1.4cqw;padding:.9cqw 2.6cqw;border-radius:2cqw;background:#ECECEC;color:#1A1A1A;display:inline-block}
+.ring{position:relative}
+.ring::after{
+  content:"";position:absolute;inset:-1cqw;border:.3cqw solid var(--clay);border-radius:5px;
+  opacity:0;transform:scale(1.06);transition:opacity .4s,transform .4s
+}
+.ring.on::after{opacity:1;transform:scale(1)}
+
+/* comparison table */
+.tbl{width:100%;border-collapse:collapse;font-size:1.5cqw}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:1cqw 1.2cqw;text-align:left}
+.tbl th{font-family:var(--f-mono);font-size:1.1cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.tbl td.a{color:var(--paper)}
+.tbl td.c{color:var(--steel)}
+.tbl tr.b{opacity:0;transform:translateY(1cqw)}
+.tbl tr.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+
+/* checklist */
+.check{display:flex;flex-direction:column;gap:1cqw}
+.check div{display:flex;gap:1.1cqw;align-items:baseline;font-size:1.85cqw}
+.check div .mk{color:var(--ok);font-family:var(--f-mono);font-size:1.6cqw}
+
+/* balance / guarantee */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:2cqw}
+.split section{border:1px solid var(--line);border-radius:3px;padding:1.8cqw}
+.split section.sure{border-color:#2F5C45;background:rgba(105,185,139,.05)}
+.split section.unsure{border-color:#6B4230;background:rgba(201,106,78,.05)}
+.split h4{font-family:var(--f-mono);font-size:1.2cqw;letter-spacing:.16em;text-transform:uppercase;margin:0 0 1.1cqw;font-weight:500}
+.split.b .sure h4{color:var(--ok)} .split.b .unsure h4{color:var(--clay)}
+.split ul{margin:0;padding-inline-start:1.5cqw;font-size:1.45cqw;line-height:1.7;color:#C6CCD6}
+
+/* two-lane */
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:2cqw}
+.lane{border:1px solid var(--line);border-radius:3px;padding:1.8cqw;display:flex;flex-direction:column;gap:1.1cqw}
+.lane.manual{background:#14181F}
+.lane.engine{background:rgba(232,200,106,.05);border-color:var(--paper-dim)}
+.lane h4{font-family:var(--f-mono);font-size:1.2cqw;letter-spacing:.18em;text-transform:uppercase;margin:0;color:var(--muted)}
+.lane.engine h4{color:var(--paper)}
+.cmdline{font-family:var(--f-mono);font-size:1.4cqw;background:#0F1319;border:1px solid var(--line);border-radius:2px;padding:.9cqw 1.1cqw}
+.friction{font-size:1.35cqw;color:var(--clay)}
+
+/* agent walk */
+.walk{display:flex;align-items:center;gap:1.4cqw;font-family:var(--f-mono);font-size:1.3cqw;color:var(--muted);flex-wrap:wrap}
+.walk .tool{border:1px dashed var(--line);border-radius:2px;padding:.7cqw 1.1cqw;transition:.4s}
+.walk .tool.on{border-color:var(--steel);color:var(--steel);border-style:solid}
+
+/* progress strip for recap */
+.strip{display:flex;gap:.8cqw;flex-wrap:wrap;align-items:center}
+.strip .s{border:1px solid var(--line);border-radius:2px;padding:1cqw 1.4cqw;font-family:var(--f-mono);font-size:1.3cqw;color:var(--muted)}
+.strip .s.on{border-color:var(--paper);color:var(--paper)}
+
+/* mock disclosure */
+.mocknote{
+  position:absolute;right:1.6cqw;bottom:1.4cqw;font-family:var(--f-mono);font-size:.95cqw;
+  letter-spacing:.1em;text-transform:uppercase;color:#5C6675
+}
+
+/* ── subtitles ────────────────────────────────────────── */
+.subs{
+  position:absolute;left:6%;right:6%;bottom:4.5%;text-align:center;pointer-events:none;
+  font-size:2.05cqw;line-height:1.35;font-weight:600;
+  text-shadow:0 .15cqw .6cqw rgba(0,0,0,.95),0 0 1.4cqw rgba(0,0,0,.8);
+  white-space:pre-line
+}
+.subs.off{display:none}
+
+/* ── controls ─────────────────────────────────────────── */
+.chrome{background:var(--ink-2);border-top:1px solid var(--line);padding:12px 14px 14px}
+.scrub{position:relative;height:22px;display:flex;align-items:center;cursor:pointer}
+.scrub input{width:100%;margin:0;-webkit-appearance:none;appearance:none;background:transparent;height:22px;cursor:pointer}
+.scrub input::-webkit-slider-runnable-track{height:4px;background:#2E3743;border-radius:2px}
+.scrub input::-moz-range-track{height:4px;background:#2E3743;border-radius:2px}
+.scrub input::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:var(--paper);margin-top:-4.5px}
+.scrub input::-moz-range-thumb{width:13px;height:13px;border:0;border-radius:50%;background:var(--paper)}
+.scrub input:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+.fill{position:absolute;left:0;top:9px;height:4px;background:var(--paper);border-radius:2px;pointer-events:none}
+.ticks{position:absolute;left:0;right:0;top:9px;height:4px;pointer-events:none}
+.ticks b{position:absolute;width:2px;height:4px;background:#0E1116;display:block}
+.ctrls{display:flex;align-items:center;gap:14px;margin-top:8px;flex-wrap:wrap}
+button{font-family:var(--f-body);cursor:pointer}
+.pp{
+  background:var(--paper);color:#141014;border:0;border-radius:3px;width:44px;height:34px;
+  font-size:14px;font-weight:700;display:grid;place-items:center
+}
+.pp:focus-visible,.tg:focus-visible,.chapters button:focus-visible{outline:2px solid var(--paper);outline-offset:2px}
+.time{font-family:var(--f-mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.now{color:var(--text);font-family:var(--f-display);font-weight:600;font-size:14px;flex:1;min-width:130px}
+.tg{
+  background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:3px;
+  padding:7px 11px;font-size:12px;font-family:var(--f-mono);letter-spacing:.1em;text-transform:uppercase
+}
+.tg[aria-pressed="true"]{border-color:var(--paper);color:var(--paper)}
+
+/* play overlay */
+.overlay{
+  position:absolute;inset:0;display:grid;place-items:center;background:rgba(8,10,14,.72);
+  backdrop-filter:blur(3px);z-index:20;border:0;width:100%;color:var(--text);gap:0
+}
+.overlay.hide{display:none}
+.overlay .inner{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.6cqw}
+.overlay .disc{width:9cqw;height:9cqw;border-radius:50%;border:.25cqw solid var(--paper);display:grid;place-items:center}
+.overlay .disc::after{content:"";border-left:2.4cqw solid var(--paper);border-top:1.5cqw solid transparent;border-bottom:1.5cqw solid transparent;margin-inline-start:.8cqw}
+.overlay .ttl{font-family:var(--f-display);font-weight:700;font-size:3.4cqw;letter-spacing:-.02em}
+.overlay .sub{font-family:var(--f-mono);font-size:1.3cqw;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+/* ── below the player ─────────────────────────────────── */
+.cols{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;margin-top:34px}
+@media (max-width:860px){.cols{grid-template-columns:1fr}}
+h3.sec{font-family:var(--f-display);font-weight:600;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-dim);margin:0 0 14px}
+.chapters{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.chapters button{
+  display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:baseline;text-align:left;
+  background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--text);
+  padding:11px 4px;font-size:15px
+}
+.chapters button:hover{background:#161B22}
+.chapters button[aria-current="true"]{color:var(--paper)}
+.chapters .tc{font-family:var(--f-mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.chapters .du{font-family:var(--f-mono);font-size:11px;color:#5C6675}
+pre.instr{
+  font-family:var(--f-mono);font-size:12.5px;line-height:1.65;background:var(--ink-2);
+  border:1px solid var(--line);border-left:3px solid var(--paper);border-radius:3px;
+  padding:16px 18px;overflow-x:auto;white-space:pre-wrap;color:#C6CCD6;margin:0
+}
+.note{color:var(--muted);font-size:14.5px;max-width:62ch}
+.note strong{color:var(--text)}
+ul.pk{margin:0;padding-inline-start:18px;color:var(--muted);font-size:14.5px;line-height:1.9}
+ul.pk b{color:var(--text);font-weight:600;font-family:var(--f-mono);font-size:13px}
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .wrap{padding:0;max-width:none}
+body.render .masthead,body.render .cols,body.render .foot,body.render .chrome,body.render .overlay{display:none!important}
+body.render .player{border:0;border-radius:0}
+body.render .stage{width:100vw;height:100vh;aspect-ratio:auto}
+.foot{margin-top:44px;border-top:1px solid var(--line);padding-top:18px;color:#5C6675;font-size:13px;font-family:var(--f-mono)}
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <div style="flex:1 1 380px">
+    <p class="kicker">Custom Instructions · animated tutorial</p>
+    <h1>The <em>Universal AI&nbsp;Engine</em></h1>
+  </div>
+  <p>One block of text, pasted once into ChatGPT's settings, that makes it choose its own reasoning methods for every question you ask. 13 minutes, 13 chapters, no shortcuts to memorise.</p>
+</header>
+
+<div class="player">
+<div class="stage" id="stage">
+
+<!-- ══ S1 · HOOK ══ 0–30 -->
+<section class="scene" data-in="0" data-out="30">
+  <div class="pad">
+    <div class="grid2" style="align-items:stretch">
+      <div class="mock b" data-at="1">
+        <div class="bar"><b></b><b></b><b></b><span>BEFORE — no instructions</span></div>
+        <div class="body">
+          <div class="msg-u">how do I grow my business?</div>
+          <div class="msg-a flat">There are several ways to grow a business:<br>• Improve your marketing<br>• Expand your product line<br>• Build customer loyalty<br>• Consider new markets<br>• Optimise your pricing</div>
+        </div>
+      </div>
+      <div class="mock b" data-at="12" style="border-color:var(--paper-dim)">
+        <div class="bar"><b></b><b></b><b></b><span>AFTER — engine installed</span></div>
+        <div class="body">
+          <div class="msg-u">how do I grow my business?</div>
+          <div class="msg-a"><span class="lbl">Assumptions</span>You're small, self-funded, and growth means revenue — not headcount.</div>
+          <div class="msg-a"><span class="lbl">The real constraint</span>Almost certainly not ideas. It's that one channel carries all your customers.</div>
+          <div class="msg-a"><span class="lbl">Decision</span>Fix retention before spending on acquisition. This week: call your last 10 churned customers.</div>
+        </div>
+      </div>
+    </div>
+    <h2 class="mid b" data-at="6" data-en="This is 10% of what it can already do."></h2>
+    <div class="row b" data-at="22">
+      <span class="chip hot">No software</span><span class="chip hot">No plugins</span><span class="chip hot">No commands</span>
+    </div>
+  </div>
+  <span class="mocknote">Illustrative mock — your screen will differ</span>
+</section>
+
+<!-- ══ S2 · WHAT IT IS ══ 30–95 -->
+<section class="scene" data-in="30" data-out="95">
+  <div class="pad">
+    <p class="eyebrow b" data-at="30">01 · What this actually is</p>
+    <div class="grid3">
+      <div class="card struck b" data-at="32" data-until="70"><span class="n">✗</span><span class="t"><s>A new AI model</s></span></div>
+      <div class="card struck b" data-at="35" data-until="70"><span class="n">✗</span><span class="t"><s>Software to install</s></span></div>
+      <div class="card struck b" data-at="38" data-until="70"><span class="n">✗</span><span class="t"><s>A secret hidden mode</s></span></div>
+    </div>
+    <h2 class="mid b" data-at="43" data-until="70" data-en="It's a note you pin to a brilliant assistant's desk. Once."></h2>
+    <p class="lede b" data-at="58" data-until="70">They read it before every conversation, forever — so you never repeat <strong>“think this through properly, show me the risks, tell me what you're assuming.”</strong></p>
+    <div class="orbit b" data-at="72" id="orbit">
+      <div class="core">~40 thinking<br>methods</div>
+    </div>
+    <p class="tiny b" data-at="86" style="text-align:center">ChatGPT picks. You don't.</p>
+  </div>
+</section>
+
+<!-- ══ S3 · SHORTCUTS VS AUTO ══ 95–170 -->
+<section class="scene" data-in="95" data-out="170">
+  <div class="pad">
+    <p class="eyebrow b" data-at="95">02 · Shortcuts vs. automatic</p>
+    <div class="lanes">
+      <div class="lane manual b" data-at="98" data-until="154">
+        <h4>Manual mode</h4>
+        <p class="lede" style="font-size:1.5cqw">First you decide which method your question needs…</p>
+        <div class="row">
+          <span class="chip">/deep</span><span class="chip">/godmode</span><span class="chip">/critic</span>
+          <span class="chip">/eli5</span><span class="chip">/redteam</span><span class="chip">/swot</span>
+        </div>
+        <div class="cmdline b" data-at="112">/deep should I build this app?</div>
+        <div class="friction b" data-at="135">✗ you must memorise</div>
+        <div class="friction b" data-at="139">✗ you must self-diagnose</div>
+        <div class="friction b" data-at="143">✗ you must already be the expert</div>
+      </div>
+      <div class="lane engine b" data-at="120" data-until="154">
+        <h4>Engine mode</h4>
+        <p class="lede" style="font-size:1.5cqw">You just ask. It works out what the question deserves.</p>
+        <div class="cmdline" style="border-color:var(--paper-dim)">should I build this app?</div>
+        <div class="row">
+          <span class="chip hot b" data-at="126">assumptions</span>
+          <span class="chip hot b" data-at="129">risks</span>
+          <span class="chip hot b" data-at="132">alternatives</span>
+          <span class="chip hot b" data-at="135">decision</span>
+        </div>
+        <div class="friction b" data-at="143" style="color:var(--ok)">✓ nothing to remember</div>
+      </div>
+    </div>
+    <h2 class="mid b" data-at="155" data-en="You ask normally. It decides how to think."></h2>
+  </div>
+</section>
+
+<!-- ══ S4 · HOW IT WORKS ══ 170–245 -->
+<section class="scene" data-in="170" data-out="245">
+  <div class="pad">
+    <p class="eyebrow b" data-at="170">03 · What's happening underneath</p>
+    <div class="stack">
+      <div class="layer msg b" data-at="186" data-until="196"><span class="lt">3 · The message you just typed</span><span class="ls">changes every time</span></div>
+      <div class="layer you b" data-at="180" data-until="196"><span class="lt">2 · Your Custom Instructions</span><span class="ls">the only layer we touch</span></div>
+      <div class="layer locked b" data-at="174" data-until="196"><span class="lt">1 · OpenAI's own rules</span><span class="ls">🔒 you can't change this</span></div>
+    </div>
+    <div class="wrapbox b" data-at="194" data-until="216" id="wrapbox">
+      <p class="instr">You are my Universal AI Engine. Automatically choose the best methods for every request. Select only what is useful. Challenge assumptions. Name risks. End with a decision and one actionable next step…</p>
+      <span class="usermsg">should I build this app?</span>
+      <p class="instr">…never invent facts, distinguish facts from assumptions, do not reveal hidden chain-of-thought. The goal is the best possible answer, not showing the methods.</p>
+    </div>
+    <h2 class="mid b" data-at="205" data-until="216" data-en="Your question didn't change. Its instructions did."></h2>
+    <div class="pipe b" data-at="217" id="pipe">
+      <span class="step" data-at="218">understand</span><span class="arw">→</span>
+      <span class="step" data-at="220">decompose</span><span class="arw">→</span>
+      <span class="step" data-at="222">assumptions</span><span class="arw">→</span>
+      <span class="step" data-at="224">challenge</span><span class="arw">→</span>
+      <span class="step" data-at="226">alternatives</span><span class="arw">→</span>
+      <span class="step" data-at="228">risks</span><span class="arw">→</span>
+      <span class="step" data-at="230">improve</span><span class="arw">→</span>
+      <span class="step" data-at="232">decide</span><span class="arw">→</span>
+      <span class="step" data-at="234">next step</span>
+    </div>
+    <p class="tiny b" data-at="238">It runs this quietly. You just get the result.</p>
+  </div>
+</section>
+
+<!-- ══ S5 · WHERE ══ 245–305 -->
+<section class="scene" data-in="245" data-out="305">
+  <div class="pad">
+    <p class="eyebrow b" data-at="245">04 · Where it goes</p>
+    <div class="grid2">
+      <div class="card b" data-at="247" style="border-color:#6B4230;flex-direction:column;gap:.8cqw">
+        <span class="t" style="color:var(--clay)">✗ Not in a chat message</span>
+        <span class="ls tiny">Works in one conversation. Gone tomorrow.</span>
+      </div>
+      <div class="card b" data-at="252" style="border-color:#2F5C45;flex-direction:column;gap:.8cqw">
+        <span class="t" style="color:var(--ok)">✓ In Settings</span>
+        <span class="ls tiny">Works in every new chat. Permanently.</span>
+      </div>
+    </div>
+    <div class="strip" data-at="258">
+      <span class="s" data-at="258">Your profile picture</span><span class="arw" style="color:var(--line)">→</span>
+      <span class="s" data-at="264">Settings</span><span class="arw" style="color:var(--line)">→</span>
+      <span class="s" data-at="270">Personalization</span><span class="arw" style="color:var(--line)">→</span>
+      <span class="s" data-at="276">Custom instructions</span>
+    </div>
+    <div class="card b" data-at="288" style="border-color:var(--paper-dim);flex-direction:column;gap:.9cqw">
+      <span class="t" style="color:var(--paper)">OpenAI redesigns this screen often.</span>
+      <span class="lede" style="font-size:1.55cqw">It may say <strong>Personalization</strong>. It may say <strong>Customize ChatGPT</strong>. Look for the screen with empty boxes asking what ChatGPT should know about you — that's always the right place.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ S6 · SETUP ══ 305–400 -->
+<section class="scene" data-in="305" data-out="400">
+  <div class="pad">
+    <p class="eyebrow b" data-at="305">05 · The exact setup</p>
+    <div class="grid2" style="align-items:start">
+      <div class="mock b" data-at="307">
+        <div class="bar"><b></b><b></b><b></b><span>Settings › Personalization › Custom instructions</span></div>
+        <div class="body">
+          <div class="field b" data-at="309" data-until="358"><span class="flabel">What should ChatGPT call you?</span>David</div>
+          <div class="field b" data-at="311" data-until="358"><span class="flabel">What do you do?</span>Software, side projects</div>
+          <div class="field focus b" data-at="316" id="pastefield"><span class="flabel">Anything else ChatGPT should know? ← paste here</span><span id="typed" data-type data-t0="320" data-t1="336" data-text="You are my Universal AI Engine. Automatically choose the best methods for every request. I should NOT need to use shortcuts…"></span></div>
+          <div class="toggle b" data-at="360" id="tog"><span class="sw"></span> Enable for new chats</div>
+          <div class="ring b" data-at="372" id="savering" style="align-self:flex-start"><span class="btn-save">Save</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1cqw">
+        <div class="card b" data-at="322" data-until="342"><span class="n">01</span><span class="t">ROLE — <em style="color:var(--muted);font-style:normal">“You are my Universal AI Engine.”</em></span></div>
+        <div class="card b" data-at="326" data-until="346"><span class="n">02</span><span class="t">THE CORE RULE — <em style="color:var(--muted);font-style:normal">“I should NOT need to use shortcuts.”</em></span></div>
+        <div class="card b" data-at="330" data-until="350"><span class="n">03</span><span class="t">THE MENU — 40 capabilities</span></div>
+        <div class="card b" data-at="338" data-until="358"><span class="n">04</span><span class="t">THE GUARDRAIL — <em style="color:var(--paper);font-style:normal">“Do not overthink simple requests.”</em></span></div>
+        <div class="card b" data-at="346" data-until="364"><span class="n">05</span><span class="t">THE RECIPE — the 9 steps</span></div>
+        <div class="card b" data-at="350" data-until="368"><span class="n">06</span><span class="t">HONESTY — never invent facts</span></div>
+        <div class="card b" data-at="354" data-until="372"><span class="n">07</span><span class="t">LANGUAGE — always reply in my language</span></div>
+      </div>
+    </div>
+    <h2 class="mid b" data-at="384" data-en="No Save = nothing happened."></h2>
+  </div>
+  <span class="mocknote">Illustrative mock — field names vary by version</span>
+</section>
+
+<!-- ══ S7 · TEST ══ 400–450 -->
+<section class="scene" data-in="400" data-out="450">
+  <div class="pad">
+    <p class="eyebrow b" data-at="400">06 · Proving it works</p>
+    <div class="grid2" style="align-items:start">
+      <div class="mock b" data-at="402">
+        <div class="bar"><b></b><b></b><b></b><span>New chat</span></div>
+        <div class="body">
+          <div class="msg-u"><span data-type data-t0="406" data-t1="414" data-text="Should I quit my job to work on my side project full time?"></span></div>
+          <div class="msg-a b" data-at="418" data-until="434"><span class="lbl">Assumptions</span>I don't know your runway, your dependants, or whether the project earns anything yet.</div>
+          <div class="msg-a b" data-at="424" data-until="441"><span class="lbl">Both sides</span>The case for leaving — and the honest case for staying.</div>
+          <div class="msg-a b" data-at="430"><span class="lbl">Risk you didn't ask about</span>Your motivation may be reacting to your job, not to the project.</div>
+          <div class="msg-a b" data-at="436"><span class="lbl">Decision</span>Don't quit yet. Set one revenue threshold that would make quitting rational.</div>
+        </div>
+      </div>
+      <div>
+        <p class="tiny b" data-at="404" style="margin-bottom:1.4cqw">The 4-point test</p>
+        <div class="check">
+          <div class="b" data-at="418"><span class="mk">☑</span><span>States its assumptions</span></div>
+          <div class="b" data-at="424"><span class="mk">☑</span><span>Argues both sides</span></div>
+          <div class="b" data-at="430"><span class="mk">☑</span><span>Raises risks you didn't ask about</span></div>
+          <div class="b" data-at="436"><span class="mk">☑</span><span>Ends with a decision + next step</span></div>
+        </div>
+        <div class="card b" data-at="442" style="margin-top:1.6cqw;border-color:#6B4230;flex-direction:column;gap:.6cqw">
+          <span class="t" style="color:var(--clay);font-size:1.6cqw">Flat, generic answer instead?</span>
+          <span class="lede" style="font-size:1.45cqw">The toggle is off — or you never pressed Save.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="mocknote">Illustrative mock — real answers vary</span>
+</section>
+
+<!-- ══ S8 · EXAMPLE 1 ══ 450–525 -->
+<section class="scene" data-in="450" data-out="525">
+  <div class="pad">
+    <p class="eyebrow b" data-at="450">07 · Example 1 of 3 — evaluating an idea</p>
+    <div class="grid2" style="align-items:start">
+      <div class="mock b" data-at="452">
+        <div class="bar"><b></b><b></b><b></b><span>New chat</span></div>
+        <div class="body">
+          <div class="msg-u"><span data-type data-t0="455" data-t1="464" data-text="I want to build an app that reminds people to drink water. Is it a good idea?"></span></div>
+          <div class="msg-a b" data-at="470" data-until="496"><span class="lbl">Assumptions</span>I don't know your budget, your audience, or whether you can build it yourself.</div>
+          <div class="msg-a b" data-at="480" data-until="504"><span class="lbl">Comparison</span>Phones already ship reminders. This category is extremely crowded.</div>
+          <div class="msg-a b" data-at="490" data-until="512"><span class="lbl">Risks</span>Retention. Most people delete this kind of app within a week.</div>
+          <div class="msg-a b" data-at="498" data-until="517"><span class="lbl">Reframe</span>The opportunity may not be reminders — it's people with a medical reason to track intake.</div>
+          <div class="msg-a b" data-at="506"><span class="lbl">Decision + next step</span>Talk to ten of those people before writing a line of code.</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1.2cqw">
+        <div class="row"><span class="chip cool b" data-at="466">11 words</span><span class="chip cool b" data-at="466">zero commands</span></div>
+        <span class="chip hot b" data-at="470">ASSUMPTIONS</span>
+        <span class="chip hot b" data-at="480">COMPARISON</span>
+        <span class="chip hot b" data-at="490">RISKS</span>
+        <span class="chip hot b" data-at="498">REFRAME</span>
+        <span class="chip hot b" data-at="506">DECISION</span>
+        <p class="lede b" data-at="512" style="font-size:1.6cqw;margin-top:.8cqw">One question. Five methods. And it never announced a single one of them.</p>
+      </div>
+    </div>
+    <h2 class="mid b" data-at="518" style="font-size:3cqw" data-en="The goal is the answer — not the performance."></h2>
+  </div>
+  <span class="mocknote">Illustrative mock — real answers vary</span>
+</section>
+
+<!-- ══ S9 · EXAMPLE 2 ══ 525–600 -->
+<section class="scene" data-in="525" data-out="600">
+  <div class="pad">
+    <p class="eyebrow b" data-at="525">08 · Example 2 of 3 — a real trade-off</p>
+    <div class="grid2" style="align-items:start">
+      <div style="display:flex;flex-direction:column;gap:1.2cqw">
+        <div class="cmdline b" data-at="527" style="font-size:1.7cqw"><span data-type data-t0="528" data-t1="534" data-text="Should I build a SaaS or a mobile app?"></span></div>
+        <div class="card b" data-at="538" style="flex-direction:column;gap:.7cqw">
+          <span class="tiny">Missing info — named, not demanded</span>
+          <span class="t" style="font-size:1.5cqw">Who pays? · Does it work offline? · Businesses or individuals?</span>
+        </div>
+        <h2 class="mid b" data-at="546" style="font-size:2.6cqw" data-en="It assumes — and answers anyway."></h2>
+        <p class="lede b" data-at="552" style="font-size:1.5cqw">A useful advisor doesn't interrogate you before helping.</p>
+        <div class="card b" data-at="578" style="border-color:var(--paper-dim);flex-direction:column;gap:.7cqw">
+          <span class="tiny" style="color:var(--paper)">Second-order effects</span>
+          <span class="t" style="font-size:1.5cqw">Choose mobile → app-store fees → forced update cycles → three years of overhead.</span>
+        </div>
+      </div>
+      <div>
+        <table class="tbl">
+          <tr class="b" data-at="558"><th></th><th>SaaS (web)</th><th>Mobile app</th></tr>
+          <tr class="b" data-at="561"><td>Build cost</td><td class="a">Lower</td><td class="c">Higher</td></tr>
+          <tr class="b" data-at="564"><td>Time to first paying customer</td><td class="a">Faster</td><td class="c">Slower</td></tr>
+          <tr class="b" data-at="567"><td>Approval gate</td><td class="a">None</td><td class="c">App store — days, can reject</td></tr>
+          <tr class="b" data-at="570"><td>Ongoing maintenance</td><td class="a">One website</td><td class="c">Two phone platforms</td></tr>
+        </table>
+        <div class="card b" data-at="588" style="margin-top:1.6cqw;border-color:#2F5C45;flex-direction:column;gap:.7cqw">
+          <span class="tiny" style="color:var(--ok)">Decision</span>
+          <span class="t" style="font-size:1.55cqw">Go SaaS — <strong style="color:var(--paper)">unless</strong> you genuinely need the camera, GPS or push notifications.</span>
+          <span class="tiny">It tells you when to change your mind.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ S10 · EXAMPLE 3 ══ 600–660 -->
+<section class="scene" data-in="600" data-out="660">
+  <div class="pad">
+    <p class="eyebrow b" data-at="600">09 · Example 3 of 3 — learning something</p>
+    <div class="cmdline b" data-at="602" data-until="646" style="font-size:1.9cqw;max-width:40cqw"><span data-type data-t0="603" data-t1="607" data-text="What is an AI Agent?"></span></div>
+    <div class="row">
+      <span class="chip b" data-at="610" data-until="646" style="text-decoration:line-through;opacity:.5">9-step decision process</span>
+      <span class="chip warn b" data-at="612" data-until="646">correctly skipped</span>
+    </div>
+    <p class="lede b" data-at="616" data-until="646">No decision to make, no risk to weigh — so the guardrail keeps it light. It switches to teaching instead.</p>
+    <div class="grid2">
+      <div class="card b" data-at="624" style="flex-direction:column;gap:.8cqw">
+        <span class="tiny">Chatbot</span>
+        <span class="t">Answers you. One question in, one answer out.</span>
+      </div>
+      <div class="card b" data-at="628" style="flex-direction:column;gap:.8cqw;border-color:#33607D">
+        <span class="tiny" style="color:var(--steel)">Agent</span>
+        <span class="t">Goes and does things — several steps, in order, using tools.</span>
+        <div class="walk" id="walk">
+          <span class="tool" data-at="632">search</span>→<span class="tool" data-at="635">browser</span>→<span class="tool" data-at="638">calendar</span>→<span class="tool" data-at="641">done ✓</span>
+        </div>
+      </div>
+    </div>
+    <div class="card b" data-at="645" style="border-color:#6B4230">
+      <span class="n" style="color:var(--clay)">!</span>
+      <span class="t" style="font-size:1.6cqw">One wrong step early ruins every step after it. That's why agents break in ways chatbots don't.</span>
+    </div>
+    <h2 class="mid b" data-at="652" style="font-size:2.8cqw" data-en="Same instructions. Different thinking. Automatically."></h2>
+  </div>
+</section>
+
+<!-- ══ S11 · BEST PRACTICES ══ 660–715 -->
+<section class="scene" data-in="660" data-out="715">
+  <div class="pad">
+    <p class="eyebrow b" data-at="660">10 · Getting more out of it</p>
+    <div class="grid2">
+      <div class="card b" data-at="662"><span class="n">①</span><span class="t">Write like you talk.<br><span class="tiny">Stop engineering prompts — the instruction does that now.</span></span></div>
+      <div class="card b" data-at="675"><span class="n">②</span><span class="t">New topic = new chat.<br><span class="tiny">The instruction loads at the start.</span></span></div>
+      <div class="card b" data-at="688"><span class="n">③</span><span class="t">You can still override it.<br><span class="tiny">Say “shorter”. Say “challenge that harder”. It's a default, not a cage.</span></span></div>
+      <div class="card b" data-at="701"><span class="n">④</span><span class="t">Tell it who you are.<br><span class="tiny">“Should I build this?” is a different question for a student and for a team of ten.</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ S12 · LIMITATIONS ══ 715–775 -->
+<section class="scene" data-in="715" data-out="775">
+  <div class="pad">
+    <p class="eyebrow b" data-at="715" style="color:var(--clay)">11 · Limitations — the honest part</p>
+    <div class="grid3">
+      <div class="card struck b" data-at="717" data-until="738"><span class="n" style="color:var(--clay)">✗</span><span class="t"><s>A new AI model</s></span></div>
+      <div class="card struck b" data-at="720" data-until="738"><span class="n" style="color:var(--clay)">✗</span><span class="t"><s>Software</s></span></div>
+      <div class="card struck b" data-at="723" data-until="738"><span class="n" style="color:var(--clay)">✗</span><span class="t"><s>A correctness guarantee</s></span></div>
+    </div>
+    <p class="lede b" data-at="728" data-until="760">It makes ChatGPT think more carefully. A careful thinker can still be confidently wrong. <strong>Verify anything that matters.</strong></p>
+    <div class="split b" data-at="740">
+      <section class="sure">
+        <h4 style="color:var(--ok)">✅ Guaranteed — mechanical</h4>
+        <ul>
+          <li>Your text is saved</li>
+          <li>It's delivered in every new chat</li>
+          <li>It applies on web, phone and desktop</li>
+          <li>It persists until you change it</li>
+        </ul>
+      </section>
+      <section class="unsure">
+        <h4 style="color:var(--clay)">⚠️ Not guaranteed — model behaviour</h4>
+        <ul>
+          <li>That every line is followed every time</li>
+          <li>That the 9 steps always run</li>
+          <li>That depth and tone stay consistent</li>
+          <li>That it never drifts in a long chat</li>
+        </ul>
+      </section>
+    </div>
+    <h2 class="mid b" data-at="762" style="font-size:2.7cqw" data-en="Delivery: guaranteed. Obedience: very likely — not certain."></h2>
+  </div>
+</section>
+
+<!-- ══ S13 · RECAP ══ 775–820 -->
+<section class="scene" data-in="775" data-out="820">
+  <div class="pad">
+    <p class="eyebrow b" data-at="775">12 · Recap</p>
+    <div class="strip">
+      <span class="s" data-at="777">Settings</span><span class="arw" style="color:var(--line)">→</span>
+      <span class="s" data-at="780">Personalization</span><span class="arw" style="color:var(--line)">→</span>
+      <span class="s" data-at="783">Custom instructions</span><span class="arw" style="color:var(--line)">→</span>
+      <span class="s" data-at="786">Paste</span><span class="arw" style="color:var(--line)">→</span>
+      <span class="s" data-at="789">Toggle + Save</span>
+    </div>
+    <p class="lede b" data-at="793">About ninety seconds of work, once. From then on, every new chat starts by reading a note that says: <strong>here are forty ways of thinking — you work out which ones this question deserves.</strong></p>
+    <h2 class="big b" data-at="803" data-en="No shortcuts. No commands. Just ask like a human."></h2>
+    <p class="tiny b" data-at="813">Full instruction below ↓</p>
+  </div>
+</section>
+
+<div class="wipe" id="wipe"></div>
+<div class="subs" id="subs" aria-live="off"></div>
+<button class="overlay" id="overlay" aria-label="Play the tutorial">
+  <span class="inner">
+    <span class="disc"></span>
+    <span class="ttl">Universal AI Engine</span>
+    <span class="sub">13 chapters · 13:40 · captions on</span>
+  </span>
+</button>
+</div><!-- /stage -->
+
+<div class="chrome">
+  <div class="scrub">
+    <div class="fill" id="fill"></div>
+    <div class="ticks" id="ticks"></div>
+    <input id="seek" type="range" min="0" max="820" step="0.1" value="0" aria-label="Seek">
+  </div>
+  <div class="ctrls">
+    <button class="pp" id="pp" aria-label="Play">▶</button>
+    <span class="time"><span id="cur">0:00</span> / 13:40</span>
+    <span class="now" id="now">Hook</span>
+    <button class="tg" id="cc" aria-pressed="true">CC on</button>
+  </div>
+</div>
+</div><!-- /player -->
+
+<div class="cols">
+  <div>
+    <h3 class="sec">Chapters</h3>
+    <div class="chapters" id="chapters"></div>
+
+    <h3 class="sec" style="margin-top:34px">Paste this into Custom instructions</h3>
+    <pre class="instr" id="instr">You are my Universal AI Engine.
+
+Automatically choose the best methods for every request. I should NOT need to use shortcuts.
+
+Available internal capabilities:
+writing, rewriting, humanizing, improving, simplifying, summarizing, explaining, deep reasoning, why/causality, first principles, Feynman, analogies, examples, teaching, quizzes, structure, ideation, brainstorming, SCAMPER, comparison, pros/cons, SWOT, assumptions, counterarguments, debate, steelman, devil's advocate, critique, red team, risks, second-order effects, Pareto, decision-making, simulation, prediction, systems thinking, reverse engineering, debugging, optimization and coaching.
+
+Select only what is useful. Combine methods when appropriate. Do not overthink simple requests.
+
+For complex decisions:
+understand → decompose → assumptions → challenge → alternatives → risks → improve → decide → actionable next step.
+
+For writing: preserve meaning and improve clarity, flow, tone and naturalness.
+
+Never invent facts. Distinguish facts, assumptions and uncertainty. Do not reveal hidden chain-of-thought.
+
+Respond in my language. If I write my language using Latin characters, understand it and reply naturally in that language.
+
+The goal is the best possible answer, not showing the methods.</pre>
+    <p class="note" style="margin-top:12px">Add two or three lines about yourself underneath — role, language, what you're working on. It improves answers more than any rewording of the instruction itself, because it turns generic advice into advice about your situation.</p>
+  </div>
+
+  <aside>
+    <h3 class="sec">Where it goes</h3>
+    <p class="note"><strong>Settings → Personalization → Custom instructions</strong>, then the large free-text box, then make sure the “enable for new chats” toggle is on, then press <strong>Save</strong>. Open a brand-new chat to test it.</p>
+    <p class="note" style="margin-top:14px">If your build says <strong>Customize ChatGPT</strong> rather than Personalization, you're in the right place — OpenAI renames this screen periodically. Look for the empty boxes asking what ChatGPT should know about you.</p>
+
+    <h3 class="sec" style="margin-top:32px">Guaranteed vs. likely</h3>
+    <p class="note">Delivery is mechanical: your text is stored and put in front of the model at the start of every new chat, on every device signed into your account. <strong>That part you can count on.</strong></p>
+    <p class="note" style="margin-top:12px">Whether the model follows every line every time is not a guarantee — it's a language model complying with instructions. It follows the spirit almost always and occasionally drifts, especially deep into a long conversation. <strong>Nothing here forces or unlocks anything.</strong></p>
+
+    <h3 class="sec" style="margin-top:32px">Production package</h3>
+    <ul class="pk">
+      <li><b>script/</b> — full narration, English and Hebrew, with pause marks and voice direction</li>
+      <li><b>storyboard/</b> — 13 scenes: visual beats, on-screen text, motion briefs, vertical cut-downs</li>
+      <li><b>storyboard/screen-recording-guide.md</b> — exact shot list, capture settings, privacy pass</li>
+      <li><b>storyboard/visual-prompts.md</b> — image, motion and voice generation prompts</li>
+      <li><b>captions/</b> — timed .srt subtitle files, EN and HE</li>
+      <li><b>assets/</b> — the instruction block in English and Hebrew, plus an optional v2</li>
+    </ul>
+  </aside>
+</div>
+
+<p class="foot">Mock interfaces on this page are illustrations, not screen recordings — ChatGPT's real screens differ and change. Example answers are written to show the shape of a good response, not transcribed from a specific session.</p>
+</div><!-- /wrap -->
+
+<script>
+(function(){
+  var DUR=820, t=0, playing=false, last=0, cc=true, lastScene=null;
+  var stage=document.getElementById('stage');
+  var scenes=[].slice.call(stage.querySelectorAll('.scene'));
+  var beats=[].slice.call(stage.querySelectorAll('[data-at]'));
+  var typers=[].slice.call(stage.querySelectorAll('[data-type]'));
+  var subs=document.getElementById('subs'), seek=document.getElementById('seek');
+  var fill=document.getElementById('fill'), cur=document.getElementById('cur');
+  var now=document.getElementById('now'), pp=document.getElementById('pp');
+  var overlay=document.getElementById('overlay'), wipe=document.getElementById('wipe');
+  scenes.forEach(function(sc,i){ if(!sc.querySelector('.eyebrow')) return; var c=document.createElement('span');c.className='idx';c.textContent=('0'+(i+1)).slice(-2)+' / '+scenes.length;sc.appendChild(c);});
+
+  var CH=[["Hook",0],["What this actually is",30],["Shortcuts vs. automatic",95],
+    ["What's happening underneath",170],["Where it goes",245],["The exact setup",305],
+    ["Proving it works",400],["Example 1 — an app idea",450],["Example 2 — SaaS or mobile",525],
+    ["Example 3 — what is an agent",600],["Getting more out of it",660],["Limitations",715],["Recap",775]];
+
+  var CUES=[[0.0,1.92,"Most people use ChatGPT like a search box."],[1.92,4.24,"They type a question, they get an answer,\nand it's…"],[4.24,5.44,"fine."],[5.44,6.64,"But here's the thing."],[6.64,8.74,"ChatGPT already knows dozens of ways to\nthink."],[8.74,9.94,"It can compare."],[9.94,11.21,"It can argue against itself."],[11.21,12.99,"It can find risks you didn't ask about."],[12.99,15.18,"It can break a problem down to first\nprinciples."],[15.18,16.64,"It just doesn't do any of that —"],[16.64,17.84,"unless you ask."],[17.84,21.62,"In the next thirteen minutes I'm going to\nshow you a single block of text you paste"],[21.62,22.82,"into ChatGPT one time."],[22.82,26.65,"After that, ChatGPT decides on its own\nwhich of those thinking methods your question"],[26.65,27.85,"needs."],[27.85,29.05,"No shortcuts."],[29.05,30.0,"No slash commands."],[30.25,30.0,"No memorising anything."],[31.45,30.0,"You just talk normally —"],[32.65,30.0,"and the answers get sharper."],[33.93,30.0,"Let's build it."],[30.0,35.68,"First, let's be honest about what we're\nbuilding, because there's a lot of nonsense"],[35.68,36.88,"online."],[36.88,39.0,"We are not installing software."],[39.0,40.85,"We are not buying a new AI."],[40.85,43.24,"We are not unlocking a hidden mode."],[43.24,46.53,"What we're doing is called a Custom\nInstruction."],[46.53,48.03,"Think of it like this."],[48.03,50.7,"Imagine you hire a brilliant assistant."],[50.7,52.14,"Genuinely brilliant —"],[52.14,53.34,"knows everything."],[53.34,57.1,"But on day one, they have no idea how you\nlike to work."],[57.1,62.71,"So every single morning you'd have to\nrepeat: \"when I ask you something big, think"],[62.71,68.32,"it through properly, show me the risks,\ntell me what you're assuming.\" Exhausting,"],[68.32,69.52,"right?"],[69.52,73.9,"A Custom Instruction is a note you pin to\nthat assistant's desk."],[73.9,75.1,"Once."],[75.1,78.38,"They read it before every conversation,\nforever."],[78.38,79.58,"That's it."],[79.58,81.16,"That's the whole trick."],[81.16,83.48,"We are writing one very good note."],[83.48,87.11,"I call this particular note the Universal\nAI Engine —"],[87.11,92.72,"because instead of giving ChatGPT one\ninstruction, we're giving it a menu of about"],[92.72,95.0,"forty ways of thinking, plus the judgement\nto pick the right ones by itself."],[95.0,99.61,"Now, you may have seen the popular version\nof this idea online."],[99.61,101.58,"It usually looks like this."],[101.58,104.29,"Someone gives you a list of commands."],[104.29,105.49,"Slash-deep."],[105.49,106.69,"Slash-godmode."],[106.69,107.89,"Slash-critic."],[107.89,109.09,"Slash-simplify."],[109.09,115.02,"And the deal is: if you remember to type\nthe magic word, you get a better answer."],[115.02,118.17,"I want you to notice the problem with\nthat."],[118.17,119.7,"You have to remember."],[119.7,123.36,"You have to know which method your\nquestion needs."],[123.36,128.56,"Which means you have to already understand\ndeep reasoning, red-teaming,"],[128.56,132.43,"first-principles thinking, and\nsecond-order effects —"],[132.43,134.78,"just to pick the right shortcut."],[134.78,136.02,"That's backwards."],[136.02,138.36,"You came here for help thinking."],[138.36,142.24,"Now you need expertise just to ask for\nhelp thinking."],[142.24,144.0,"So this system flips it."],[144.0,150.14,"Instead of \"here are the commands you can\ntype\", we tell ChatGPT: here is everything"],[150.14,151.6,"you know how to do —"],[151.6,152.81,"you choose."],[152.81,155.59,"You type: \"should I build this app?\" —"],[155.59,157.56,"in completely normal words."],[157.56,163.41,"And ChatGPT works out on its own that this\nquestion deserves assumptions, risks,"],[163.41,165.9,"alternatives and a recommendation."],[165.9,167.1,"Same question."],[167.1,168.3,"No shortcut."],[168.3,169.69,"Much better answer."],[169.69,170.0,"That's the entire difference."],[170.0,173.7,"Let me show you what's happening\nunderneath, in plain language."],[173.7,177.82,"Every time you send a message, ChatGPT\ndoesn't just read your message."],[177.82,180.81,"It reads three things stacked on top of\neach other."],[180.81,182.01,"Layer one —"],[182.01,183.22,"OpenAI's own rules."],[183.22,184.98,"Safety, behaviour, the basics."],[184.98,187.56,"You can't touch that, and you don't want\nto."],[187.56,188.76,"Layer two —"],[188.76,190.23,"your Custom Instructions."],[190.23,192.47,"This is the layer we're editing today."],[192.47,194.0,"It's your standing orders."],[194.0,198.17,"It gets read before your message, every\nsingle time, in every new chat."],[198.17,199.37,"Layer three —"],[199.37,200.96,"the message you just typed."],[200.96,205.78,"So when you write \"should I build this\napp?\", ChatGPT is really seeing: \"Reminder:"],[205.78,210.42,"you are a Universal AI Engine, here are\nforty thinking methods, pick the useful"],[210.42,214.18,"ones, challenge assumptions, name risks,\nend with a decision.\" —"],[214.18,215.53,"and then your question."],[215.53,217.24,"Your question hasn't changed."],[217.24,219.59,"The instructions wrapped around it have."],[219.59,222.29,"And that's why this feels like a different\nAI."],[222.29,223.49,"It isn't."],[223.49,227.37,"It's the same model, finally being told\nwhat good work looks like."],[227.37,232.19,"One more thing, and this is important for\nlater: our instruction includes a recipe"],[232.19,233.39,"for hard questions."],[233.39,234.59,"Understand —"],[234.59,235.79,"break it down —"],[235.79,236.99,"state assumptions —"],[236.99,238.19,"challenge them —"],[238.19,239.48,"look at alternatives —"],[239.48,240.68,"find risks —"],[240.68,241.88,"improve —"],[241.88,243.08,"decide —"],[243.08,244.28,"give one next step."],[244.28,245.0,"Nine steps."],[245.48,245.0,"ChatGPT runs them quietly, in the\nbackground, and hands you the finished thinking."],[250.3,245.0,"Not the mess."],[245.0,246.2,"Okay."],[246.2,247.95,"Let's find the right screen."],[247.95,251.46,"This is the part people get wrong, so go\nslowly with me."],[251.46,253.65,"We are not typing this into a chat."],[253.65,258.85,"If you paste it into a normal\nconversation, it only works in that one conversation,"],[258.85,260.29,"and it's gone tomorrow."],[260.29,263.92,"We want it in Settings, so it applies\neverywhere, forever."],[263.92,265.12,"Here's the path."],[265.12,266.32,"Open ChatGPT —"],[266.32,268.77,"the website or the app, either is fine."],[268.77,271.71,"Look for your profile picture or your\ninitials."],[271.71,274.78,"On desktop it's usually bottom-left or\ntop-right."],[274.78,278.16,"On mobile, tap the menu, then your name at\nthe bottom."],[278.16,280.04,"Click it, and choose Settings."],[280.04,281.67,"Then find Personalization."],[281.67,285.55,"Inside Personalization you're looking for\nCustom instructions."],[285.55,286.75,"Tap it."],[286.75,287.95,"Now —"],[287.95,289.15,"one honest note."],[289.15,291.78,"OpenAI redesigns this screen fairly often."],[291.78,295.85,"The words might be slightly different by\nthe time you watch this."],[295.85,299.67,"It may say \"Personalization\", it may say\n\"Customize ChatGPT\"."],[299.67,300.87,"Don't panic."],[300.87,305.0,"You are looking for the screen with the\nempty boxes that ask what ChatGPT should"],[305.88,305.0,"know about you."],[307.08,305.0,"That's always the right place."],[305.0,306.2,"You'll see a few boxes."],[306.2,310.51,"Typically: a nickname, what you do for\nwork, what traits ChatGPT should have, and a"],[310.51,312.02,"bigger one for anything else."],[312.02,313.22,"Here's what matters."],[313.22,315.56,"The box you want is the large free-text\none —"],[315.56,319.87,"usually the last one, labelled something\nlike \"Anything else ChatGPT should know?\","],[319.87,321.74,"or on some versions, the traits box."],[321.74,322.94,"Honestly?"],[322.94,324.14,"If you're unsure —"],[324.14,325.96,"the big empty box is the right box."],[325.96,327.26,"Both feed the same layer."],[327.26,328.61,"Now paste the instruction."],[328.61,332.82,"It's on screen, and it's in the\ndescription below the video, so you never need to"],[332.82,334.02,"type it by hand."],[334.02,338.08,"Let's read the key parts as it goes in, so\nyou actually understand what you're"],[338.08,339.28,"installing."],[339.28,341.62,"Line one: \"You are my Universal AI\nEngine.\" —"],[341.62,342.81,"that sets the role."],[342.81,346.09,"Then: \"Automatically choose the best\nmethods for every request."],[346.09,348.06,"I should not need to use shortcuts.\" —"],[348.06,350.87,"that's the whole point of the system,\nstated up front."],[350.87,352.07,"Then the long list —"],[352.07,356.18,"writing, simplifying, first principles,\nFeynman, analogies, SWOT, steelman, red"],[356.18,360.12,"team, second-order effects, Pareto,\nsystems thinking, and about thirty more."],[360.12,361.32,"This is the menu."],[361.32,362.52,"Then the guardrail —"],[362.52,366.32,"and this one matters more than people\nthink: \"Select only what is useful."],[366.32,370.68,"Do not overthink simple requests.\" Without\nthat line, you ask \"what's the capital of"],[370.68,373.13,"France\" and get a four-page strategic\nanalysis."],[373.13,375.1,"With it, simple questions stay simple."],[375.1,377.6,"Then the nine-step recipe for complex\ndecisions."],[377.6,378.8,"Then the writing rule."],[378.8,380.0,"Then the honesty rule —"],[380.0,382.7,"never invent facts, separate facts from\nassumptions."],[382.7,386.54,"And finally the language rule, which tells\nit to answer in your language —"],[386.54,389.3,"even if you type that language using\nEnglish letters."],[389.3,390.5,"Now —"],[390.5,392.01,"the two things people forget."],[392.01,393.67,"One: make sure the toggle is on."],[393.67,397.2,"Depending on your version it says \"Enable\nfor new chats\" or similar."],[397.2,398.92,"If that's off, none of this runs."],[398.92,400.0,"Two: press Save."],[400.12,400.0,"Not back."],[401.32,400.0,"Not escape."],[402.52,400.0,"Save."],[403.72,400.0,"If you navigate away without saving,\nyou've done nothing."],[400.0,401.47,"Now let's prove it's live."],[401.47,402.67,"Two rules first."],[402.67,404.48,"Rule one: open a brand new chat."],[404.48,408.16,"Old conversations that were already\nrunning may not pick this up."],[408.16,409.36,"New chat."],[409.36,410.56,"Always."],[410.56,413.21,"Rule two: don't test it with something\ntrivial."],[413.21,414.46,"Here's the test I use."],[414.46,415.76,"In a fresh chat, type —"],[415.76,420.51,"normally, no shortcuts: \"Should I quit my\njob to work on my side project full time?\""],[420.51,421.76,"Watch what comes back."],[421.76,423.85,"You're looking for four fingerprints."],[423.85,425.05,"One —"],[425.05,429.74,"it names the assumptions it's making,\ninstead of pretending to know your situation."],[429.74,430.94,"Two —"],[430.94,433.6,"it gives you the case for and the case\nagainst."],[433.6,434.8,"Three —"],[434.8,436.95,"it raises risks you did not ask about."],[436.95,438.15,"Four —"],[438.15,441.71,"it ends with an actual recommendation and\na concrete next step."],[441.71,443.07,"Not \"it depends on you\"."],[443.07,445.5,"If you see those four things, it's\nworking."],[445.5,449.63,"If you see a flat, generic, five-bullet\nanswer with no assumptions and no"],[449.63,450.0,"recommendation —"],[450.83,450.0,"go back to Settings."],[452.03,450.0,"Nine times out of ten, the toggle is off,\nor you never hit Save."],[450.0,452.22,"Let's watch it work on real questions."],[452.22,453.42,"Three examples."],[453.42,454.62,"Watch what I type —"],[454.62,457.67,"because I'm going to type like a normal\nhuman being."],[457.67,458.87,"Example one."],[458.87,462.79,"I type: \"I want to build an app that\nreminds people to drink water."],[462.79,464.54,"Is it a good idea?\" That's it."],[464.54,465.74,"Eleven words."],[465.74,467.9,"No commands, no formatting, no magic."],[467.9,469.43,"Now watch what comes back."],[469.43,471.18,"It doesn't just say yes or no."],[471.18,474.57,"First it separates what it knows from what\nit's assuming —"],[474.57,479.19,"it flags that it doesn't know my budget,\nmy audience, or whether I can build it"],[479.19,480.39,"myself."],[480.39,485.31,"Then it does something I never asked for:\nit compares my idea to what already exists"],[485.31,486.51,"—"],[486.51,491.31,"and points out that phones already have\nreminders built in, and that this category"],[491.31,492.54,"is extremely crowded."],[492.54,493.74,"Then risks."],[493.74,494.94,"Retention."],[494.94,496.98,"People delete these apps in a week."],[496.98,499.62,"That's the killer, and I didn't ask about\nit."],[499.62,500.82,"Then it reframes —"],[500.82,505.61,"it suggests the real opportunity might not\nbe reminders at all, but a narrow group"],[505.61,507.84,"with a medical reason to track intake."],[507.84,509.04,"And then it decides."],[509.04,513.95,"A recommendation, and one next step: talk\nto ten people in that group before writing"],[513.95,515.15,"a line of code."],[515.15,516.35,"Now —"],[516.35,517.87,"notice what it did not do."],[517.87,521.85,"It never said \"I'm now applying\ncomparison, then risk analysis, then"],[521.85,523.37,"decision-making.\" It just…"],[523.37,524.57,"thought properly."],[524.57,525.0,"That's deliberate."],[525.77,525.0,"The last line of our instruction says the\ngoal is the best answer, not showing off"],[530.57,525.0,"the method."],[525.0,526.2,"Example two."],[526.2,528.27,"A real decision with real trade-offs."],[528.27,531.62,"I type: \"Should I build a SaaS or a mobile\napp?\" Nine words."],[531.62,532.83,"Deliberately vague —"],[532.83,535.01,"because that's how people actually ask."],[535.01,536.68,"Watch the shape of the answer."],[536.68,541.27,"First it does the thing almost nobody\ndoes: it says the question can't be answered"],[541.27,545.41,"as asked, and tells you exactly which\nthree facts would change the answer."],[545.41,546.61,"Who's paying."],[546.61,548.46,"Whether it needs to work offline."],[548.46,551.75,"And whether you're selling to businesses\nor to individuals."],[551.75,552.95,"But —"],[552.95,554.15,"and this is the key —"],[554.15,556.22,"it does not stop and interrogate you."],[556.22,559.24,"It states its assumptions out loud and\nanswers anyway."],[559.24,562.99,"That's the difference between a useful\nadvisor and an annoying one."],[562.99,564.45,"Then a genuine comparison."],[564.45,565.64,"Cost to build."],[565.64,567.32,"Time to first paying customer."],[567.32,568.52,"App-store approval —"],[568.52,570.7,"which can take days and can reject you."],[570.7,574.62,"Ongoing maintenance across two phone\nplatforms instead of one website."],[574.62,576.35,"Then the second-order effects —"],[576.35,578.42,"the consequences of the consequences."],[578.42,583.06,"Choose mobile, and you've signed up for\napp-store fees and update cycles for years."],[583.06,586.14,"That's not a launch problem, it's a\nthree-year problem."],[586.14,587.99,"Most people don't think that far."],[587.99,592.68,"Then a clear recommendation, with the\nexact condition that would flip it: \"go SaaS —"],[592.68,597.21,"unless your product genuinely needs the\ncamera, GPS, or push notifications.\" That"],[597.21,599.12,"last part is what makes it usable."],[599.12,600.0,"It doesn't just decide."],[600.4,600.0,"It tells you when to change your mind."],[600.0,601.2,"Third example —"],[601.2,603.56,"and this one shows the system going the\nother way."],[603.56,607.21,"I type: \"What is an AI Agent?\" Now,\nremember the rule: don't overthink simple"],[607.21,608.4,"requests."],[608.4,609.78,"This is a knowledge question."],[609.78,611.95,"There's no decision to make, no risk to\nweigh."],[611.95,615.17,"So a good engine should not run the\nnine-step decision process here."],[615.17,616.37,"And it doesn't."],[616.37,618.21,"Instead it switches into teaching mode."],[618.21,619.41,"Watch."],[619.41,623.0,"It starts with the plainest possible\nsentence: a normal chatbot answers you."],[623.0,624.89,"An agent actually goes and does things —"],[624.89,627.73,"several steps, in order, using tools,\nuntil the job is done."],[627.73,628.93,"Then an analogy —"],[628.93,631.53,"that's the Feynman method, explaining like\nyou're five."],[631.53,633.94,"A chatbot is a colleague who answers your\nquestion."],[633.94,637.73,"An agent is a colleague who takes the\ntask, disappears, and comes back when it's"],[637.73,638.93,"finished."],[638.93,640.13,"Then a concrete example."],[640.13,644.0,"\"Find me a flight\" versus \"book me a\nflight, compare four sites, pick the cheapest"],[644.0,647.31,"with legroom, and put it in my calendar.\"\nThen the honest limitation —"],[647.31,651.19,"agents break in ways chatbots don't,\nbecause one wrong step early ruins every step"],[651.19,652.39,"after it."],[652.39,654.42,"And it ends by checking your\nunderstanding."],[654.42,655.62,"Same instruction block."],[655.62,657.09,"Completely different behaviour."],[657.09,660.0,"Because the engine read the question and\npicked teaching, analogies and examples —"],[660.97,660.0,"instead of risks and decisions."],[662.43,660.0,"That is the whole promise of this system,\nworking."],[660.0,662.95,"Four things that make this dramatically\nbetter."],[662.95,664.15,"One —"],[664.15,665.41,"write like you talk."],[665.41,668.05,"Don't try to write clever prompts anymore."],[668.05,670.44,"The instruction is doing that job now."],[670.44,675.72,"Messy, honest, human questions actually\nwork best, because the more context you give"],[675.72,677.35,"it, the better it reasons."],[677.35,678.55,"Two —"],[678.55,681.07,"always start a new chat for a new topic."],[681.07,683.27,"The instruction loads at the start."],[683.27,686.98,"Don't drag a two-week-old conversation\ninto a new decision."],[686.98,688.18,"Three —"],[688.18,689.81,"you can still override it."],[689.81,692.39,"The instruction is a default, not a cage."],[692.39,694.9,"If it goes too deep, just say \"shorter\"."],[694.9,698.17,"If it goes too shallow, say \"challenge\nthat harder\"."],[698.17,701.88,"It obeys the message in front of it over\nthe standing note."],[701.88,703.08,"Four —"],[703.08,704.9,"add two lines about yourself."],[704.9,707.92,"Your job, your language, what you're\nworking on."],[707.92,713.14,"Because \"should I build this app?\" is a\ncompletely different question for a student"],[713.14,715.0,"and for someone with a team of ten."],[715.34,715.0,"Give it that, and the quality jumps\nimmediately."],[715.0,716.54,"Now the part most tutorials skip."],[716.54,718.13,"Let's be straight with each other."],[718.13,719.39,"This is not a new AI model."],[719.39,720.59,"It's the same ChatGPT."],[720.59,722.03,"You have not upgraded anything."],[722.03,723.57,"You've given better instructions."],[723.57,724.77,"This is not software."],[724.77,725.97,"Nothing was installed."],[725.97,727.75,"There's no app, no plugin, no account."],[727.75,729.05,"It's text in a settings box."],[729.05,730.54,"It doesn't make ChatGPT correct."],[730.54,732.13,"It makes it think more carefully —"],[732.13,734.6,"and a careful thinker can still be\nconfidently wrong."],[734.6,738.01,"Our instruction tells it never to invent\nfacts and to separate facts from"],[738.01,739.78,"assumptions, and that genuinely helps."],[739.78,741.27,"It does not make it a guarantee."],[741.27,742.58,"Check anything that matters."],[742.58,745.47,"And here's the most important distinction\nin this whole video."],[745.47,747.85,"Custom Instructions are guaranteed to be\ndelivered."],[747.85,749.05,"That part is mechanical —"],[749.05,752.41,"OpenAI reliably puts your text in front of\nthe model, in every new chat."],[752.41,753.95,"That's the part you can count on."],[753.95,756.28,"Whether the model follows every line,\nevery time —"],[756.28,757.49,"that's not a guarantee."],[757.49,759.77,"That's a language model doing its best to\ncomply."],[759.77,763.55,"It'll follow the spirit almost always, and\noccasionally drift on a specific rule."],[763.55,764.75,"So: delivery, guaranteed."],[764.75,765.95,"Obedience, very likely."],[765.95,767.15,"Not certain."],[767.15,769.48,"Anyone telling you otherwise is selling\nsomething."],[769.48,771.72,"Last one: it applies to new chats, not old\nones."],[771.72,775.0,"And if you use ChatGPT on your phone and\nyour laptop, it follows your account —"],[775.41,775.0,"so it's already on both."],[775.0,776.5,"Let's put it together."],[776.5,782.23,"You opened Settings, went to\nPersonalization, opened Custom instructions, pasted one"],[782.23,786.39,"block of text, made sure the toggle was\non, and pressed Save."],[786.39,788.5,"That's the entire installation."],[788.5,790.48,"Maybe ninety seconds of work."],[790.48,796.07,"And from now on, in every new chat,\nChatGPT reads a note that says: here are forty"],[796.07,797.29,"ways of thinking —"],[797.29,800.5,"you work out which ones this question\ndeserves."],[800.5,802.21,"You don't type shortcuts."],[802.21,804.11,"You don't memorise commands."],[804.11,805.54,"You ask like a human."],[805.54,808.14,"The instruction is in the description."],[808.14,813.86,"Paste it, change the language line to your\nown language, and go and ask it something"],[813.86,815.64,"you're genuinely stuck on."],[815.64,818.36,"That's where you'll feel the difference."],[818.36,820.0,"See you in the next one."]];
+
+  /* orbiting capability pills */
+  var CAPS=["writing","rewriting","humanizing","simplifying","summarizing","explaining","deep reasoning",
+    "why/causality","first principles","Feynman","analogies","examples","teaching","quizzes","structure",
+    "ideation","brainstorming","SCAMPER","comparison","pros/cons","SWOT","assumptions","counterarguments",
+    "debate","steelman","devil's advocate","critique","red team","risks","second-order effects","Pareto",
+    "decision-making","simulation","prediction","systems thinking","reverse engineering","debugging",
+    "optimization","coaching","improving"];
+  var orbit=document.getElementById('orbit'), pills=[];
+  CAPS.forEach(function(c,i){
+    var e=document.createElement('i'); e.textContent=c;
+    var ring=i%3, ang=(i/CAPS.length)*Math.PI*2*3;
+    e.dataset.ring=ring; e.dataset.ang=ang;
+    e.style.opacity=(ring===0?.75:ring===1?.5:.32);
+    orbit.appendChild(e); pills.push(e);
+  });
+  var LIT=[21,28,31]; /* assumptions, red team, decision-making */
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  /* chapters + ticks */
+  var chWrap=document.getElementById('chapters'), ticks=document.getElementById('ticks');
+  CH.forEach(function(c,i){
+    var b=document.createElement('button');
+    var end=(i+1<CH.length)?CH[i+1][1]:DUR;
+    b.innerHTML='<span class="tc">'+fmt(c[1])+'</span><span>'+c[0]+'</span><span class="du">'+fmt(end-c[1])+'</span>';
+    b.onclick=function(){ setT(c[1]+0.05); if(!playing) play(); };
+    chWrap.appendChild(b);
+    if(i>0){var k=document.createElement('b');k.style.left=(c[1]/DUR*100)+'%';ticks.appendChild(k);}
+  });
+  var chBtns=[].slice.call(chWrap.children);
+
+  function applyText(){
+    beats.forEach(function(e){ if(e.dataset.en) e.textContent=e.dataset.en; });
+  }
+
+  function subAt(time){
+    var list=CUES; if(!list||!list.length) return '';
+    var lo=0,hi=list.length-1,r='';
+    while(lo<=hi){var m=(lo+hi)>>1;var c=list[m];
+      if(time<c[0])hi=m-1; else if(time>c[1])lo=m+1; else {r=c[2];break;}}
+    return r;
+  }
+
+  function render(){
+    var i,e;
+    var active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i], on = t>=+s.dataset.in && t<+s.dataset.out;
+      s.classList.toggle('active',on); if(on) active=s;
+    }
+    if(active&&active!==lastScene){
+      if(lastScene&&playing){ wipe.classList.remove('go'); void wipe.offsetWidth; wipe.classList.add('go'); }
+      lastScene=active;
+    }
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene');
+      var until = e.dataset.until? +e.dataset.until : Infinity;
+      var vis = sc && t>=+sc.dataset.in && t<+sc.dataset.out && t>=+e.dataset.at && t<until;
+      if(vis){
+        if(e.classList.contains('gone')){ e.classList.remove('gone'); void e.offsetWidth; }
+        e.classList.add('on');
+      } else {
+        e.classList.remove('on'); e.classList.add('gone');
+      }
+    }
+    for(i=0;i<typers.length;i++){
+      e=typers[i];
+      var a=+e.dataset.t0,b=+e.dataset.t1,txt=e.dataset.text;
+      var f = t<=a?0 : t>=b?1 : (t-a)/(b-a);
+      e.textContent = txt.slice(0,Math.round(f*txt.length));
+    }
+    /* orbit motion */
+    if(orbit.parentElement.classList.contains('on')||true){
+      for(i=0;i<pills.length;i++){
+        var p=pills[i], ring=+p.dataset.ring, ang=+p.dataset.ang + t*(0.10-ring*0.022);
+        var rx=[46,33,20][ring], ry=[45,31,17][ring];
+        p.style.left=(50+Math.cos(ang)*rx)+'%';
+        p.style.top=(50+Math.sin(ang)*ry)+'%';
+        p.classList.toggle('lit', LIT.indexOf(i)>=0 && t>78 && t<95);
+      }
+    }
+    /* toggle + save rings */
+    var tog=document.getElementById('tog'); if(tog) tog.classList.toggle('on', t>364);
+    var sr=document.getElementById('savering'); if(sr) sr.classList.toggle('on', t>376&&t<392);
+    var pf=document.getElementById('pastefield'); if(pf) pf.classList.toggle('focus', t>314);
+
+    subs.textContent = cc? subAt(t) : '';
+    subs.classList.toggle('off',!cc);
+    seek.value=t; fill.style.width=(t/DUR*100)+'%'; cur.textContent=fmt(t);
+    var ci=0; for(i=0;i<CH.length;i++) if(t>=CH[i][1]) ci=i;
+    now.textContent=CH[ci][0];
+    for(i=0;i<chBtns.length;i++) chBtns[i].setAttribute('aria-current', i===ci);
+  }
+
+  function frame(ts){
+    if(!playing) return;
+    if(!last) last=ts;
+    t += (ts-last)/1000; last=ts;
+    if(t>=DUR){ t=DUR; pause(); render(); return; }
+    render(); requestAnimationFrame(frame);
+  }
+  function play(){ if(t>=DUR) t=0; playing=true; last=0; pp.textContent='❚❚'; pp.setAttribute('aria-label','Pause'); overlay.classList.add('hide'); requestAnimationFrame(frame); }
+  function pause(){ playing=false; pp.textContent='▶'; pp.setAttribute('aria-label','Play'); }
+  function setT(v){ t=Math.min(DUR,Math.max(0,v)); last=0; render(); }
+
+  pp.onclick=function(){ playing?pause():play(); };
+  overlay.onclick=play;
+  seek.oninput=function(){ setT(+seek.value); overlay.classList.add('hide'); };
+  document.getElementById('cc').onclick=function(){ cc=!cc; this.textContent='CC '+(cc?'on':'off'); this.setAttribute('aria-pressed',cc); render(); };
+  document.addEventListener('keydown',function(ev){
+    if(ev.target.tagName==='INPUT'||ev.target.tagName==='BUTTON'&&ev.key!==' ') return;
+    if(ev.key===' '){ev.preventDefault(); playing?pause():play();}
+    if(ev.key==='ArrowRight'){ev.preventDefault(); setT(t+5);}
+    if(ev.key==='ArrowLeft'){ev.preventDefault(); setT(t-5);}
+  });
+
+  beats.forEach(function(e){e.classList.add('gone')});
+  applyText(); render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:play,pause:pause,seek:setT,duration:DUR};
+})();
+</script>
