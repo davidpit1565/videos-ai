@@ -51,8 +51,8 @@ def speak(text, ls, path):
     with wave.open(path) as w:
         return np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16)
 
-def main(html, out):
-    cues = merge_sentences(cues_from(html))
+def main(html, out, rate=1.0):
+    cues = [(s*rate, e*rate, t) for s, e, t in merge_sentences(cues_from(html))]
     total = max(c[1] for c in cues) + 1.5
     track = np.zeros(int(total * SR), dtype=np.float32)
     tmp = tempfile.mkdtemp()
@@ -86,4 +86,4 @@ def main(html, out):
             print("  cue %d  %.2fs in a %.2fs slot  %s…" % (i, got, slot, t))
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], float(sys.argv[3]) if len(sys.argv) > 3 else 1.0)

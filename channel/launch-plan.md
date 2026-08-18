@@ -27,7 +27,24 @@ the one thing the hype accounts can't copy without losing their whole business m
 
 ---
 
-## 2. Names and handles
+## 2. The name — decided
+
+**`Actually Works` · `@actuallyworks.ai`** on both platforms.
+
+It aims straight at the positioning: in a feed full of accounts promising secret prompts, the
+name is a claim about the *outcome*, and every video either backs it up or doesn't. That's a
+high bar — which is exactly why it works as a filter on what you publish. If a setup doesn't
+actually work when a stranger copies it, it doesn't go out.
+
+It also gives you the best possible last line for every video: *"That one actually works."*
+
+**Two things to handle up front.** First, check the handle on Instagram, YouTube, TikTok and X
+before you commit to any of them — take all four even if you only use two. Second, the name
+invites "prove it" comments. Lean into that: pin a comment on every video with the one thing
+that *didn't* work when you tested it. That turns your riskiest angle into your most-engaged one.
+
+### The alternatives, for the record
+
 
 Check availability on both platforms before committing — same handle on both, always.
 
@@ -38,10 +55,8 @@ Check availability on both platforms before committing — same handle on both, 
 | **Brass Tacks AI** | `@brasstacks.ai` | "Get down to brass tacks" = cut to what matters. Matches your palette exactly, which is a rare and good kind of coherence. | English idiom — lands with native speakers, less so elsewhere |
 | **Actually Works** | `@actuallyworks.ai` | Straight at the honesty positioning. Great comment-bait in a feed full of hype. | Sets a bar you have to keep clearing |
 
-**My pick: `Paste This`.** It's the only one that's already proven — you built a video around it,
-the phrase is the call to action *and* the brand, and "Paste this" as a series title gives you an
-obvious episode template forever. The narrow-scope worry is smaller than it looks: an n8n
-workflow, a Claude project, a custom GPT and an agent prompt are all things you paste.
+`Paste This` remains the strongest fallback if `@actuallyworks.ai` is taken — it's already
+proven by the first video and gives an obvious episode template.
 
 ---
 
@@ -49,17 +64,17 @@ workflow, a Claude project, a custom GPT and an agent prompt are all things you 
 
 **Instagram** (150 characters max — this fits):
 ```
-Real AI setups you can copy in 2 minutes.
-Including what breaks.
-New setup every Tue + Fri ↓
+AI setups that actually work.
+The exact screen, the exact paste — and what breaks.
+New setup Tue + Fri ↓
 ```
 
 **YouTube** (first 2 lines show before "more" — make them count):
 ```
-Real AI setups you can copy in under two minutes — the exact screen, the exact
-paste, the exact toggle. Plus the honest part: what each one can't do.
+AI setups that actually work — the exact screen, the exact paste, the exact
+toggle. Plus the part nobody else shows you: what each one can't do.
 
-Long walkthroughs here. 60-second versions on Instagram @pastethis.ai
+Long walkthroughs here. 60-second versions on Instagram @actuallyworks.ai
 New video every Tuesday.
 ```
 
@@ -75,7 +90,8 @@ New video every Tuesday.
 | Instagram grid post | 1080×1350 (4:5) | 4:5 takes more vertical space in feed than 1:1. Always use it |
 | Reel cover | 1080×1920, but design for the 1080×1350 crop | The grid shows a centre crop. Keep the title inside it |
 
-I can produce all of these in the house style once you've picked the name.
+**All four are built and in `channel/assets/`** — avatar, banner, thumbnail template and grid post,
+in the house style, ready to upload.
 
 ---
 
@@ -133,7 +149,7 @@ you're establishing; agents come in once people trust you.
 | 6 | **Your first n8n automation: email → summary → Telegram** | Full | n8n is the most-searched no-code agent tool; a concrete end-to-end build |
 | 7 | **Zapier vs Make vs n8n — pick one in 3 minutes** | Both | Comparison videos are the highest-converting format in this niche |
 | 8 | **Lindy / ChatGPT Agent: I gave an agent my inbox for a week** | Full | Personal-experiment format. Highest watch time of any type |
-| 9 | **The 5 things agents still can't do (and why yours broke)** | Both | Your honesty positioning as a whole episode. This is your signature video |
+| 9 | **The 5 things agents still can't do (and why yours broke)** | Both | Your honesty positioning as a whole episode. On a channel called Actually Works, this is the signature video |
 | 10 | **Claude Code for people who don't code** | Full | Big search volume, almost no beginner-level coverage |
 | 11 | **Build a research agent with no code — Perplexity + n8n** | Full | Practical, shareable, evergreen |
 | 12 | **I automated my week with 4 agents. Here's what survived.** | Both | Results episode. Best possible video to end a season on |

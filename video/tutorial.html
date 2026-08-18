@@ -680,7 +680,7 @@ body.render .stage{width:100vw;height:100vh;aspect-ratio:auto}
   <span class="inner">
     <span class="disc"></span>
     <span class="ttl">Universal AI Engine</span>
-    <span class="sub">13 chapters · 13:40 · captions on</span>
+    <span class="sub">13 chapters · 17:46 · captions on</span>
   </span>
 </button>
 </div><!-- /stage -->
@@ -693,7 +693,7 @@ body.render .stage{width:100vw;height:100vh;aspect-ratio:auto}
   </div>
   <div class="ctrls">
     <button class="pp" id="pp" aria-label="Play">▶</button>
-    <span class="time"><span id="cur">0:00</span> / 13:40</span>
+    <span class="time"><span id="cur">0:00</span> / 17:46</span>
     <span class="now" id="now">Hook</span>
     <button class="tg" id="cc" aria-pressed="true">CC on</button>
   </div>
@@ -754,7 +754,7 @@ The goal is the best possible answer, not showing the methods.</pre>
 
 <script>
 (function(){
-  var DUR=820, t=0, playing=false, last=0, cc=true, lastScene=null;
+  var DUR=820, RATE=1/1.30, t=0, playing=false, last=0, cc=true, lastScene=null;
   var stage=document.getElementById('stage');
   var scenes=[].slice.call(stage.querySelectorAll('.scene'));
   var beats=[].slice.call(stage.querySelectorAll('[data-at]'));
@@ -870,7 +870,7 @@ The goal is the best possible answer, not showing the methods.</pre>
   function frame(ts){
     if(!playing) return;
     if(!last) last=ts;
-    t += (ts-last)/1000; last=ts;
+    t += (ts-last)/1000*RATE; last=ts;
     if(t>=DUR){ t=DUR; pause(); render(); return; }
     render(); requestAnimationFrame(frame);
   }
