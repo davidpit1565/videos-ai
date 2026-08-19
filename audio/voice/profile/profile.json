@@ -1,9 +1,10 @@
 {
- "source": "38989033-New_Recording.m4a (take 1), 60 Hz rumble cut only",
- "why": "Measured, not judged: the voice encoder that does the cloning scores take 1 against itself at 1.00, take 2 at 0.846, and the take-2 clone he rejected at 0.817 \u2014 his ear and the number agree. Denoising cost identity (0.987) so it was dropped.",
+ "source": "New_Recording.m4a (take 1) — the 18.4s excerpt, chosen by his ear",
+ "why": "His ear picked versions 2 and 5 of the five-way test, and both are built on this excerpt. The measured alternative — a 28.8s reference whose opening ten seconds score 0.982 against his real voice versus 0.951 for this one — lost. The proxy measured proximity to the recording; he was judging accent and naturalness, which it does not capture. Kept as reference-measured.wav rather than deleted.",
  "construction": "Chatterbox conditions on the reference's first 6-10 seconds, so the 10-second window scoring highest against his real voice opens the file; the rest is the next-highest utterances, for the speaker embedding.",
  "opening_window_start_s": 38.35,
  "opening_window_similarity": 0.9821,
  "whole_file_similarity": 0.9813,
- "duration_s": 28.8
+ "duration_s": 28.8,
+ "chosen_by": "listening test, 5 variants, 2026-08-19"
 }
