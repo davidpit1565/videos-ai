@@ -1,4 +1,15 @@
-const {chromium}=require('playwright-core');
+// Playwright may be installed globally rather than beside this file, and this script
+// runs from wherever the repo happens to be — so resolve it either way instead of
+// depending on the working directory.
+function load(){
+  for (const id of ['playwright-core','playwright',
+                    '/opt/node22/lib/node_modules/playwright-core',
+                    '/opt/node22/lib/node_modules/playwright']) {
+    try { return require(id); } catch {}
+  }
+  throw new Error('playwright not found: install it, or set NODE_PATH to its parent');
+}
+const {chromium}=load();
 (async()=>{
   const [file,w,h,dur,out]=process.argv.slice(2);
   const W=+w,H=+h,D=+dur;
