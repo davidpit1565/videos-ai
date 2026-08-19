@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PROMPTS } from "@/lib/prompts";
+import { PROMPTS, bySlug } from "@/lib/prompts";
 
 export const metadata = {
   title: "Actually Works — get the setups",
@@ -9,8 +9,14 @@ export const metadata = {
 /** The gate. The DM sends people here; Beehiiv redirects them to the prompt page after
  *  they subscribe, which is configured in Beehiiv itself — nothing here stores an email,
  *  because nothing here should. */
-export default function Join() {
+export default async function Join({
+  searchParams,
+}: {
+  searchParams: Promise<{ p?: string }>;
+}) {
   const form = process.env.NEXT_PUBLIC_BEEHIIV_FORM || "";
+  // the DM links here with ?p=<slug>, so the page can name what they came to claim
+  const claimed = bySlug((await searchParams).p ?? "");
   return (
     <div className="shell pub" dir="ltr">
       <div className="top">
@@ -20,13 +26,27 @@ export default function Join() {
         </Link>
       </div>
 
-      <h1>
-        The setup, and <em>what breaks</em>.
-      </h1>
-      <p className="sub" style={{ fontSize: 18 }}>
-        Put your email in and the setup you asked for opens straight away. One email a week
-        after that: one AI setup, the exact screen, and the part that doesn&apos;t work.
-      </p>
+      {claimed ? (
+        <>
+          <h1>
+            You asked for <em>{claimed.title}</em>.
+          </h1>
+          <p className="sub" style={{ fontSize: 18 }}>
+            {claimed.blurb} Put your email in and it opens straight away. One email a week
+            after that: one AI setup, the exact screen, and the part that doesn&apos;t work.
+          </p>
+        </>
+      ) : (
+        <>
+          <h1>
+            The setup, and <em>what breaks</em>.
+          </h1>
+          <p className="sub" style={{ fontSize: 18 }}>
+            Put your email in and the setup you asked for opens straight away. One email a week
+            after that: one AI setup, the exact screen, and the part that doesn&apos;t work.
+          </p>
+        </>
+      )}
 
       {form ? (
         <iframe
