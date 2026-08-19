@@ -34,3 +34,6 @@ export/voice-*.m4a
 # generated listening tests and their manifests
 export/line-*.m4a
 audio/voice/profile/line-candidates.json
+
+# the losing reference candidate — regenerable with audio/build_reference.py
+audio/voice/profile/reference-measured.wav
