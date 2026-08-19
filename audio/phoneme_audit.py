@@ -80,7 +80,7 @@ def main():
     import sys as _sys
     _sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from line_doctor import tail_energy
-    torch.set_num_threads(os.cpu_count() or 4)
+    torch.set_num_threads(int(os.environ.get("VOICE_THREADS", os.cpu_count() or 4)))
     if a.lang:
         from chatterbox.mtl_tts import ChatterboxMultilingualTTS as TTS
         m = TTS.from_pretrained(device="cpu")
