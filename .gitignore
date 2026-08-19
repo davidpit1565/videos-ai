@@ -26,3 +26,7 @@ audio/voice/*-cues.json
 export/voice-AB*.m4a
 audio/voice/test/
 export/voice-test-*.m4a
+
+audio/voice/lang/
+audio/voice/test/
+export/voice-*.m4a
