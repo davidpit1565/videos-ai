@@ -18,3 +18,8 @@ export/*INSTAGRAM*.mp4
 # Next.js build output (studio)
 .next/
 *.tsbuildinfo
+
+# voice work files and caches
+audio/__pycache__/
+audio/voice/work/
+audio/voice/*-cues.json
