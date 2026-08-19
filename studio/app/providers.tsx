@@ -12,8 +12,15 @@ type Ctx = {
   state: State | null;
   mode: Mode;
   saving: boolean;
+  /** which environment variable the database was found under, for diagnosis */
+  dbVar: string | null;
+  /** what the server said when there is no database, or when connecting failed */
+  hint: string | null;
   /** Mutate a copy of the state; the copy is what gets saved. */
   update: (fn: (s: State) => void) => void;
+  /** Pull Instagram and Beehiiv now and take whatever changed. */
+  refresh: () => Promise<{ ok: boolean; reason?: string; newEvents?: number }>;
+  refreshing: boolean;
 };
 
 const C = createContext<Ctx | null>(null);
@@ -28,6 +35,9 @@ export function Provider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<State | null>(null);
   const [mode, setMode] = useState<Mode>("loading");
   const [saving, setSaving] = useState(false);
+  const [dbVar, setDbVar] = useState<string | null>(null);
+  const [hint, setHint] = useState<string | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
   const ref = useRef<State | null>(null);
   const modeRef = useRef<Mode>("loading");
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -50,8 +60,12 @@ export function Provider({ children }: { children: React.ReactNode }) {
       }
       try {
         const r = await fetch("/api/state", { cache: "no-store" });
-        const j = (await r.json()) as { mode: Mode; state: State | null };
+        const j = (await r.json()) as {
+          mode: Mode; state: State | null; dbVar?: string | null; hint?: string; error?: string;
+        };
         if (!live) return;
+        setDbVar(j.dbVar ?? null);
+        setHint(j.error ? `${j.hint ?? ""} ${j.error}`.trim() : j.hint ?? null);
         if (j.mode === "cloud") {
           modeRef.current = "cloud";
           setMode("cloud");
@@ -105,5 +119,31 @@ export function Provider({ children }: { children: React.ReactNode }) {
     [persist],
   );
 
-  return <C.Provider value={{ state, mode, saving, update }}>{children}</C.Provider>;
+  const refresh = useCallback(async () => {
+    setRefreshing(true);
+    try {
+      const r = await fetch("/api/track", { cache: "no-store" });
+      const j = (await r.json()) as { ok: boolean; reason?: string; newEvents?: number };
+      if (j.ok) {
+        // the tracker writes to the database, so take the saved copy back rather than
+        // guessing locally what it changed
+        const s = await fetch("/api/state", { cache: "no-store" }).then((x) => x.json());
+        if (s.mode === "cloud" && s.state) {
+          ref.current = s.state as State;
+          setState(s.state as State);
+        }
+      }
+      return j;
+    } catch (e) {
+      return { ok: false, reason: (e as Error).message };
+    } finally {
+      setRefreshing(false);
+    }
+  }, []);
+
+  return (
+    <C.Provider value={{ state, mode, saving, dbVar, hint, update, refresh, refreshing }}>
+      {children}
+    </C.Provider>
+  );
 }

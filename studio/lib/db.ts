@@ -2,17 +2,42 @@ import { Pool } from "pg";
 import { State } from "./types";
 import { seed } from "./seed";
 
-const url = process.env.DATABASE_URL || process.env.POSTGRES_URL || "";
+/** Every provider names it differently — Supabase's Vercel integration sets POSTGRES_URL
+ *  and friends, Neon sets DATABASE_URL. Take the first one that exists and remember which,
+ *  so the app can say what it found instead of just failing quietly. */
+const CANDIDATES = [
+  "DATABASE_URL",
+  "POSTGRES_URL",
+  "POSTGRES_URL_NON_POOLING",
+  "POSTGRES_PRISMA_URL",
+  "SUPABASE_DB_URL",
+] as const;
 
-/** Reused across invocations — a new pool per request exhausts Postgres connections. */
+function pick(): { name: string; url: string } | null {
+  for (const n of CANDIDATES) {
+    const v = process.env[n];
+    if (v && v.startsWith("postgres")) return { name: n, url: v };
+  }
+  return null;
+}
+
 let pool: Pool | null = null;
+let poolFor = "";
+
 function db(): Pool | null {
-  if (!url) return null;
-  if (!pool) pool = new Pool({ connectionString: url, max: 3, ssl: { rejectUnauthorized: false } });
+  const found = pick();
+  if (!found) return null;
+  // Reused across invocations — a new pool per request exhausts Postgres connections.
+  if (!pool || poolFor !== found.url) {
+    pool = new Pool({ connectionString: found.url, max: 3, ssl: { rejectUnauthorized: false } });
+    poolFor = found.url;
+  }
   return pool;
 }
 
-export const hasDb = () => Boolean(url);
+export const hasDb = () => pick() !== null;
+/** The variable name only — never the value, which holds the password. */
+export const dbVar = () => pick()?.name ?? null;
 
 async function ensure(p: Pool) {
   await p.query(`CREATE TABLE IF NOT EXISTS studio_state (

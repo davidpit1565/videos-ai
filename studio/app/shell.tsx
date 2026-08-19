@@ -11,9 +11,15 @@ const TABS = [
   { href: "/agent", label: "סוכן" },
 ];
 
+/** The funnel pages are public, English and LTR — they must not inherit the studio's
+ *  Hebrew chrome, its tab bar or its save badge. */
+const PUBLIC = ["/join", "/p/", "/unlock"];
+
 export default function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   const { mode, saving } = useStudio();
+
+  if (PUBLIC.some((p) => path.startsWith(p))) return <>{children}</>;
 
   const badge =
     mode === "loading"

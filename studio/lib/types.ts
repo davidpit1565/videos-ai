@@ -48,6 +48,16 @@ export type RevenueLine = {
   nextStep: string;
 };
 
+/** Something that changed, recorded automatically so he never has to notice it himself. */
+export type ActivityEvent = {
+  id: string;
+  at: string;
+  source: "instagram" | "beehiiv" | "youtube" | "studio";
+  label: string;
+  value: number | null;
+  delta: number | null;
+};
+
 export type Task = { id: string; text: string; note: string; done: boolean };
 export type Idea = { id: string; text: string };
 
@@ -58,6 +68,8 @@ export type State = {
   revenue: RevenueLine[];
   tasks: Task[];
   ideas: Idea[];
+  /** optional so states saved before the feed existed still load */
+  activity?: ActivityEvent[];
   updatedAt: string;
 };
 

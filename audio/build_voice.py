@@ -121,18 +121,21 @@ def wer(said, want):
 
 def polish(src, dst):
     """Same chain every episode, so every video sounds like the same person.
-    Light on the de-esser — over-de-essing is what makes an S sound lisped."""
+
+    Measured, not guessed: the voice encoder that does the cloning scores each chain
+    against his real recording. The heavy presence and clarity boosts here were tuned
+    for the second take, where he sat further off the mic and lost 25 dB of consonant
+    energy. On the first take — the one he says sounds like him — those same boosts cost
+    identity for nothing, because that recording is already bright. What is left is a
+    rumble cut, a nudge in the S band, a light de-esser and gentle levelling."""
     subprocess.run([
         "ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", src,
-        "-af", ("highpass=f=80,"
-                "equalizer=f=240:t=q:w=1.2:g=-2,"
-                "equalizer=f=2600:t=q:w=1.3:g=2.5,"
-                "equalizer=f=4200:t=q:w=1.4:g=2.5,"
-                "equalizer=f=5000:t=q:w=1.4:g=3,"
-                "equalizer=f=7200:t=q:w=1.6:g=4.5,"      # this band is the S
-                "treble=g=2.5:f=10000,"
-                "deesser=i=0.18:m=0.5:f=0.35,"
-                "acompressor=threshold=-20dB:ratio=2.6:attack=8:release=180:makeup=2,"
+        "-af", ("highpass=f=75,"
+                "equalizer=f=240:t=q:w=1.2:g=-1.5,"
+                "equalizer=f=4200:t=q:w=1.4:g=1.5,"
+                "equalizer=f=7200:t=q:w=1.6:g=2,"        # this band is the S
+                "deesser=i=0.14:m=0.5:f=0.35,"
+                "acompressor=threshold=-20dB:ratio=2.2:attack=10:release=200:makeup=1.5,"
                 "alimiter=limit=0.95,"
                 "loudnorm=I=-17:TP=-1.5:LRA=10"),
         "-ar", str(SR_MIX), "-ac", "1", dst,
@@ -144,9 +147,9 @@ def main():
     ap.add_argument("--fit", help="same build, but place each line in its exact cue slot,\n                          time-stretching within +/-12%% so the cut does not move")
     ap.add_argument("--lines", help="a plain text file, one spoken line per line")
     ap.add_argument("--out", required=True)
-    ap.add_argument("--exaggeration", type=float, default=0.45,
+    ap.add_argument("--exaggeration", type=float, default=0.40,
                     help="0.3 flat · 0.5 conversational · 0.7 animated")
-    ap.add_argument("--cfg", type=float, default=0.45,
+    ap.add_argument("--cfg", type=float, default=0.60,
                     help="lower = looser, more natural rhythm")
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--retries", type=int, default=3,

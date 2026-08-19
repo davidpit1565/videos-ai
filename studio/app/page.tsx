@@ -10,7 +10,8 @@ type Bee = { connected: boolean; reason?: string; activeSubscribers?: number | n
 type Ig = { connected: boolean; reason?: string; followers?: number | null; username?: string | null };
 
 export default function Dashboard() {
-  const { state, update } = useStudio();
+  const { state, update, mode, dbVar, hint, refresh, refreshing } = useStudio();
+  const [pull, setPull] = useState<string | null>(null);
   const [bee, setBee] = useState<Bee | null>(null);
   const [ig, setIg] = useState<Ig | null>(null);
 
@@ -84,12 +85,69 @@ export default function Dashboard() {
         </div>
       )}
 
+      <h2>מה קרה</h2>
+      <div className="actions" style={{ margin: "0 0 14px" }}>
+        <button
+          className="btn"
+          disabled={refreshing}
+          onClick={async () => {
+            const r = await refresh();
+            setPull(
+              r.ok
+                ? r.reason ?? (r.newEvents ? `${r.newEvents} עדכונים חדשים` : "אין שינוי מאז הפעם הקודמת")
+                : r.reason ?? "המשיכה נכשלה",
+            );
+          }}
+        >
+          {refreshing ? <span className="spin" /> : "למשוך עכשיו"}
+        </button>
+        <span style={{ alignSelf: "center", color: "var(--faint)", fontSize: 14.5 }}>
+          נמשך לבד כל בוקר ב-9:10 שעון ישראל
+        </span>
+      </div>
+      {pull && <div className="note ok"><div className="t">משיכה</div>{pull}</div>}
+      {(state.activity ?? []).length === 0 ? (
+        <div className="note">
+          <div className="t">עדיין ריק</div>
+          כאן יופיע כל שינוי שקורה מעצמו — עוקב חדש, נרשם חדש, צפיות ושמירות שעלו בכל פרק,
+          ופוסט באינסטגרם שעוד לא קושר לפרק. <b>אתה לא צריך להזין כלום.</b> זה מתחיל לעבוד
+          ברגע שיש מסד נתונים ומפתחות.
+        </div>
+      ) : (
+        <ul className="feed">
+          {(state.activity ?? []).slice(0, 25).map((a) => (
+            <li key={a.id}>
+              <span className="dt">{a.at.slice(5, 16).replace("T", " ")}</span>
+              <span className="what">{a.label}</span>
+              <span className={"d " + (a.delta == null ? "flat" : a.delta > 0 ? "up" : "down")}>
+                {a.delta == null ? n(a.value) : (a.delta > 0 ? "+" : "") + n(a.delta)}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+
       <h2>חיבורים</h2>
       <ul className="list">
         <Conn ok={!!bee?.connected} name="Beehiiv" reason={bee?.reason} detail="מספר הנרשמים" />
         <Conn ok={!!ig?.connected} name="Instagram" reason={ig?.reason} detail={ig?.username ? `@${ig.username}` : "צפיות, שמירות, שיתופים לכל פרק"} />
         <Conn ok={false} name="YouTube" reason="לא מחובר — נוסיף כשיהיה ערוץ עם פרק אחד באוויר" detail="צפיות ומנויים" />
       </ul>
+      <div className={"note " + (mode === "cloud" ? "ok" : "warn")}>
+        <div className="t">{mode === "cloud" ? "מסד נתונים מחובר" : "מסד נתונים לא מחובר"}</div>
+        {mode === "cloud" ? (
+          <>
+            נמצא במשתנה <b>{dbVar}</b>. מהרגע הזה כל עריכה נשמרת בשרת, ואותו מצב בדיוק מופיע
+            במק ובטלפון.
+          </>
+        ) : (
+          <>
+            {hint ?? "אין כתובת Postgres בסביבה."}
+            <br />
+            עד אז הכל נשמר בדפדפן הזה — אמיתי, אבל לא מסתנכרן בין מכשירים.
+          </>
+        )}
+      </div>
       <p className="sub" style={{ marginTop: 10 }}>
         חיבור שלא עובד מציג בדיוק איזה מפתח חסר. המפתחות נכנסים ב-Vercel → Settings → Environment
         Variables, לא לכאן ולא לגיטהאב.
