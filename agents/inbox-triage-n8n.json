@@ -1,0 +1,98 @@
+{
+  "name": "Inbox triage — summary to Telegram",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [ { "field": "hours", "hoursInterval": 3 } ] }
+      },
+      "id": "trigger",
+      "name": "Every 3 hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [ -320, 0 ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "getAll",
+        "returnAll": false,
+        "limit": 20,
+        "simple": false,
+        "filters": { "q": "is:unread newer_than:1d -category:promotions -category:social" }
+      },
+      "id": "gmail",
+      "name": "Unread from the last day",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [ -100, 0 ],
+      "credentials": { "gmailOAuth2": { "id": "REPLACE", "name": "Gmail account" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "// One compact digest instead of one API call per message: cheaper, and the model\n// can rank the whole inbox against itself rather than judging each mail alone.\nconst lines = [];\nfor (const item of $input.all()) {\n  const m = item.json;\n  const headers = m.payload?.headers || [];\n  const get = (n) => (headers.find(h => h.name.toLowerCase() === n) || {}).value || '';\n  const body = (m.snippet || '').replace(/\\s+/g, ' ').slice(0, 400);\n  lines.push([\n    `ID: ${m.id}`,\n    `FROM: ${get('from')}`,\n    `SUBJECT: ${get('subject')}`,\n    `SNIPPET: ${body}`\n  ].join('\\n'));\n}\nreturn [{ json: { count: lines.length, digest: lines.join('\\n---\\n') } }];"
+      },
+      "id": "digest",
+      "name": "Build one digest",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [ 120, 0 ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"claude-opus-5\",\n  \"max_tokens\": 4000,\n  \"system\": \"You triage an inbox. Reply with JSON only — no prose, no code fences.\\n\\nShape: {\\\"urgent\\\":[{\\\"id\\\":\\\"\\\",\\\"from\\\":\\\"\\\",\\\"why\\\":\\\"\\\",\\\"draft\\\":\\\"\\\"}],\\\"later\\\":[{\\\"id\\\":\\\"\\\",\\\"from\\\":\\\"\\\",\\\"why\\\":\\\"\\\"}],\\\"ignore_count\\\":0,\\\"summary\\\":\\\"\\\"}\\n\\nRules: urgent means a person is blocked on an answer, money is involved, or a deadline passes within 48 hours — newsletters and automated notices are never urgent. Write each draft as the account owner, two sentences at most, no greeting padding. If nothing is urgent, urgent is an empty array and you say so in summary. Never invent a fact that is not in the mail.\",\n  \"messages\": [\n    { \"role\": \"user\", \"content\": {{ JSON.stringify($json.digest) }} }\n  ]\n}",
+        "options": { "timeout": 120000 }
+      },
+      "id": "claude",
+      "name": "Claude triages it",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [ 340, 0 ],
+      "credentials": { "httpHeaderAuth": { "id": "REPLACE", "name": "Anthropic x-api-key" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "// The model was told to answer with JSON only, but a wrapper still shows up now and\n// then — so parse defensively and fail loudly rather than sending an empty message.\nconst text = ($json.content || []).filter(b => b.type === 'text').map(b => b.text).join('');\nlet data;\ntry {\n  data = JSON.parse(text.trim().replace(/^```(json)?/i, '').replace(/```$/, '').trim());\n} catch (e) {\n  throw new Error('Claude did not return JSON. First 200 characters: ' + text.slice(0, 200));\n}\nconst urgent = data.urgent || [];\nconst later = data.later || [];\nconst lines = [`*Inbox* — ${urgent.length} urgent, ${later.length} later, ${data.ignore_count || 0} ignored`, '', data.summary || ''];\nfor (const u of urgent) {\n  lines.push('', `*${u.from}*`, u.why, '', `_draft:_ ${u.draft}`);\n}\nif (later.length) {\n  lines.push('', '*Later*');\n  for (const l of later) lines.push(`• ${l.from} — ${l.why}`);\n}\nreturn [{ json: { text: lines.join('\\n'), urgent } }];"
+      },
+      "id": "format",
+      "name": "Turn it into a message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [ 560, 0 ]
+    },
+    {
+      "parameters": {
+        "chatId": "REPLACE_WITH_YOUR_CHAT_ID",
+        "text": "={{ $json.text }}",
+        "additionalFields": { "parse_mode": "Markdown" }
+      },
+      "id": "telegram",
+      "name": "Send to Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [ 780, 0 ],
+      "credentials": { "telegramApi": { "id": "REPLACE", "name": "Telegram bot" } }
+    }
+  ],
+  "connections": {
+    "Every 3 hours": { "main": [ [ { "node": "Unread from the last day", "type": "main", "index": 0 } ] ] },
+    "Unread from the last day": { "main": [ [ { "node": "Build one digest", "type": "main", "index": 0 } ] ] },
+    "Build one digest": { "main": [ [ { "node": "Claude triages it", "type": "main", "index": 0 } ] ] },
+    "Claude triages it": { "main": [ [ { "node": "Turn it into a message", "type": "main", "index": 0 } ] ] },
+    "Turn it into a message": { "main": [ [ { "node": "Send to Telegram", "type": "main", "index": 0 } ] ] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {}
+}
