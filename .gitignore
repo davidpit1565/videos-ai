@@ -12,3 +12,7 @@ export/*MYVOICE*.mp4
 audio/voice/*.wav
 audio/voice/profile/reference-raw.wav
 export/*CLONED*.mp4
+
+# Next.js build output (studio)
+.next/
+*.tsbuildinfo

@@ -1,0 +1,172 @@
+:root{
+  --ink:#0A0D12;--panel:#121821;--panel-2:#18202B;--raise:#1F2836;
+  --line:#273140;--line-2:#36424F;
+  --brass:#F0CB66;--brass-hot:#FFDF95;--brass-dim:#8E7739;
+  --ok:#6FBF95;--clay:#E37A56;--steel:#7BB0D6;--violet:#9B8BD6;
+  --text:#F4F6F9;--muted:#98A4B5;--faint:#606B7C;
+  --d:'Frank Ruhl Libre',Georgia,serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--ink);color:var(--text);font-family:var(--b);font-size:16px;
+  line-height:1.6;direction:rtl;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent}
+.num{font-family:var(--m);direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+
+.shell{max-width:1180px;margin:0 auto;padding:0 18px 120px}
+
+/* ── top bar ─────────────────────────────────── */
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:20px 0 16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .tick{width:20px;height:11px;border-left:4px solid var(--brass);
+  border-bottom:4px solid var(--brass);transform:rotate(-45deg) translate(1px,-2px);flex:0 0 auto}
+.brand b{font-family:var(--d);font-weight:800;font-size:19px;letter-spacing:-.01em}
+.mode{font-family:var(--m);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:2px;padding:5px 9px;color:var(--faint);white-space:nowrap}
+.mode.cloud{color:var(--ok);border-color:#2F5C45}
+.mode.local{color:var(--brass);border-color:var(--brass-dim)}
+
+/* ── nav ─────────────────────────────────────── */
+nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:14px;
+  border-bottom:1px solid var(--line);margin-bottom:26px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{font-family:var(--m);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:2px;padding:9px 14px;color:var(--muted);
+  white-space:nowrap;transition:.15s}
+nav a:hover{border-color:var(--brass-dim);color:var(--brass)}
+nav a[aria-current=page]{background:var(--brass);color:#141014;border-color:var(--brass);font-weight:600}
+
+/* ── headings ────────────────────────────────── */
+h1{font-family:var(--d);font-weight:800;font-size:clamp(25px,4vw,36px);letter-spacing:-.01em;
+  margin:0 0 4px;line-height:1.1}
+h1 em{font-style:normal;color:var(--brass)}
+.eyebrow{font-family:var(--m);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--brass);margin:0 0 9px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--brass);opacity:.7}
+h2{font-family:var(--d);font-weight:700;font-size:20px;margin:34px 0 12px;letter-spacing:-.005em}
+p.sub{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:74ch}
+p.sub b{color:var(--text)}
+
+/* ── stat tiles ──────────────────────────────── */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:8px}
+.tile{background:var(--panel);padding:15px 16px}
+.tile .k{font-family:var(--m);font-size:9px;letter-spacing:.14em;color:var(--faint);
+  text-transform:uppercase;margin-bottom:6px}
+.tile .v{font-family:var(--d);font-weight:800;font-size:25px;line-height:1;color:var(--brass)}
+.tile .s{font-size:11.5px;color:var(--muted);margin-top:5px;line-height:1.4}
+
+/* ── tables ──────────────────────────────────── */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:9px 11px;text-align:right;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-family:var(--m);font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);
+  font-weight:500;background:var(--panel-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:rgba(255,255,255,.02)}
+td.name{font-weight:700;min-width:200px}
+input.cell,textarea.cell{width:100%;background:transparent;border:1px solid transparent;
+  border-radius:2px;padding:4px 6px;min-width:60px}
+input.cell:focus,textarea.cell:focus{background:rgba(240,203,102,.08);border-color:var(--brass-dim);outline:none}
+input.n{width:82px;font-family:var(--m);direction:ltr;text-align:right}
+select.cell{background:var(--panel-2);border:1px solid var(--line);border-radius:2px;padding:4px 6px}
+
+/* ── chips ───────────────────────────────────── */
+.chip{display:inline-flex;align-items:center;gap:5px;font-family:var(--m);font-size:9.5px;
+  letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:2px;border:1px solid;
+  white-space:nowrap;background:none}
+.chip::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.s-idea{color:var(--muted);border-color:var(--line-2)}
+.s-script{color:var(--violet);border-color:#4E4472}
+.s-voice{color:var(--steel);border-color:#33607D}
+.s-render{color:var(--brass);border-color:var(--brass-dim)}
+.s-testing{color:var(--clay);border-color:#6B4230}
+.s-live{color:var(--ok);border-color:#2F5C45}
+
+/* ── buttons ─────────────────────────────────── */
+.btn{background:var(--brass);color:#141014;border:0;border-radius:3px;font-weight:700;
+  font-size:14px;padding:10px 17px}
+.btn:hover{background:var(--brass-hot)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line-2)}
+.btn.ghost:hover{border-color:var(--brass);color:var(--brass)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.del{background:none;border:0;color:var(--faint);font-size:15px;padding:2px 5px;border-radius:3px;line-height:1}
+.del:hover{color:var(--clay);background:rgba(227,122,86,.1)}
+
+/* ── cards & notes ───────────────────────────── */
+.note{border:1px solid var(--line);border-inline-start:3px solid var(--brass);background:var(--panel);
+  border-radius:4px;padding:15px 17px;margin:16px 0;font-size:14px;color:var(--muted)}
+.note.warn{border-inline-start-color:var(--clay)}
+.note.ok{border-inline-start-color:var(--ok)}
+.note b{color:var(--text)}
+.note .t{font-family:var(--m);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brass);margin-bottom:7px}
+.note.warn .t{color:var(--clay)} .note.ok .t{color:var(--ok)}
+
+ul.list{list-style:none;padding:0;margin:0;border:1px solid var(--line);border-radius:4px;background:var(--panel)}
+ul.list li{display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:start;
+  padding:10px 13px;border-bottom:1px solid var(--line)}
+ul.list li:last-child{border-bottom:0}
+ul.list .lbl{font-size:14px}
+ul.list .lbl small{display:block;color:var(--faint);font-size:11.5px;margin-top:2px}
+ul.list input[type=checkbox]{width:16px;height:16px;accent-color:var(--brass);margin-top:3px}
+ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
+
+/* ── agent ───────────────────────────────────── */
+.ask{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}
+.ask input{flex:1 1 260px;background:var(--panel-2);border:1px solid var(--line);border-radius:3px;padding:12px 14px}
+.ask input:focus{border-color:var(--brass);outline:none}
+.presets{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px}
+.presets button{background:transparent;border:1px solid var(--line);border-radius:2px;
+  padding:7px 11px;font-size:13px;color:var(--muted)}
+.presets button:hover{border-color:var(--brass);color:var(--brass)}
+.answer{border:1px solid var(--brass-dim);border-radius:4px;
+  background:linear-gradient(180deg,rgba(240,203,102,.05),transparent 55%),var(--panel);
+  padding:20px 22px;white-space:pre-wrap;font-size:15px;line-height:1.7}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid var(--brass-dim);
+  border-top-color:var(--brass);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+.foot{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);
+  color:var(--faint);font-family:var(--m);font-size:11.5px;line-height:1.85}
+
+@media(max-width:600px){
+  .shell{padding:0 13px 110px}
+  th,td{padding:8px 9px;font-size:12.5px}
+  td.name{min-width:150px}
+}
+
+/* ── phone cards ─────────────────────────────── */
+/* A sixteen-column table is unusable on a phone, so the same episodes render
+   as cards below 700px and the table is hidden. */
+.cards{display:none;flex-direction:column;gap:10px}
+.card{border:1px solid var(--line);border-radius:4px;background:var(--panel);padding:12px 13px}
+.card .hd{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.card .hd .no{font-family:var(--m);font-size:12px;color:var(--faint);flex:0 0 auto}
+.card .hd input{flex:1 1 auto;font-weight:700;font-size:15px}
+.card .row{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.card .row label{font-size:11.5px;color:var(--faint);display:flex;align-items:center;gap:5px}
+.card .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.card .g{background:var(--panel-2);padding:7px 9px}
+.card .g .k{font-family:var(--m);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:3px}
+.card .g input{width:100%;background:transparent;border:1px solid transparent;border-radius:2px;
+  padding:1px 3px;font-family:var(--m);direction:ltr;text-align:right;font-size:14px}
+.card .g input:focus{background:rgba(240,203,102,.08);border-color:var(--brass-dim);outline:none}
+.card .g .ro{font-family:var(--m);font-size:14px;direction:ltr;text-align:right;color:var(--brass)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--faint);display:inline-block;margin-top:6px}
+.dot.on{background:var(--ok)}
+
+@media(max-width:700px){
+  .cards{display:flex}
+  .tw.eps{display:none}
+}
