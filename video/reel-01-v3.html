@@ -201,7 +201,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <section class="scene" data-in="15" data-out="23.6">
   <span class="clock" id="clock">0:40</span>
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
-    <div class="modal b" data-at="15.05" data-until="20.4">
+    <div class="modal b" data-at="15.05" data-until="20.84">
       <div class="mh">Settings <span>✕</span></div>
       <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="5.8"/></svg>General</span><span class="ch">›</span></div>
       <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M4.2 11h7.6M6 11V7a2 2 0 0 1 4 0v4M6.9 13.2h2.2"/></svg>Notifications</span><span class="ch">›</span></div>
@@ -210,7 +210,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       <div class="r" id="rowCI"><span><svg class="ic" viewBox="0 0 16 16"><path d="M3.2 12.8l.9-2.9 6.4-6.4 2 2-6.4 6.4z"/></svg>Custom instructions</span><span class="ch">›</span></div>
       <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M8 2.4l4.8 1.9v3.6c0 2.9-2.1 4.9-4.8 5.7-2.7-.8-4.8-2.8-4.8-5.7V4.3z"/></svg>Data controls</span><span class="ch">›</span></div>
     </div>
-    <div class="ci b" data-at="20.42">
+    <div class="ci b" data-at="20.86">
       <span class="lbl">Anything else ChatGPT should know about you?</span>
       <div class="in" id="ciBig"><span id="typed"></span><span class="caret"></span></div>
       <div class="foot"><span class="sw" id="ciSw"><i></i> Enable for new chats</span><span class="savebtn" id="ciSave">Save</span></div>
@@ -313,9 +313,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [7.62,10.66,"One block of text.<br><em>Pasted once</em>."],
     [10.92,14.46,"Then it picks its own reasoning — every chat."],
     [14.98,16.22,"Open <em>Settings</em>."],
-    [16.48,18.38,"Go to <em>Personalization</em>."],
-    [18.64,20.18,"<em>Custom instructions</em>."],
-    [20.44,23.08,"Paste. Toggle on. <em>Save</em>."],
+    [16.42,18.86,"Go to <em>Personalization</em>."],
+    [19.06,20.66,"<em>Custom instructions</em>."],
+    [20.88,23.42,"Paste. Toggle on. <em>Save</em>."],
     [23.60,27.02,"Now ask the same question. Normal words."],
     [27.28,29.16,"It states what it's <em>assuming</em>."],
     [29.42,32.32,"It finds the risk you didn't ask about."],
@@ -363,12 +363,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     b3.style.transform='translate('+(14+28*Math.sin(t*0.11+2.1))+'cqw,'+(66+16*Math.cos(t*0.15+1.1))+'cqw)';
 
     var rp=document.getElementById('rowPers'),rc=document.getElementById('rowCI'),c=document.getElementById('cur');
-    if(rp){ rp.classList.toggle('hi',t>=16.48&&t<18.6); rc.classList.toggle('hi',t>=18.6&&t<20.35); }
+    if(rp){ rp.classList.toggle('hi',t>=16.42&&t<19.02); rc.classList.toggle('hi',t>=19.02&&t<20.8); }
     var ck=document.getElementById('clock');
     if(ck){ var left=Math.max(0,Math.round(40-(t-15)*4.7)); ck.textContent='0:'+('0'+left).slice(-2); }
     if(c){
-      var tgt=t<18.6?'rowPers':t<20.42?'rowCI':t<21.9?'ciBig':t<22.5?'ciSw':'ciSave';
-      var el=document.getElementById(tgt),show=t>=15.6&&t<23.3;
+      var tgt=t<19.02?'rowPers':t<20.86?'rowCI':t<22.2?'ciBig':t<22.8?'ciSw':'ciSave';
+      var el=document.getElementById(tgt),show=t>=15.6&&t<23.5;
       c.style.opacity=show?1:0;
       if(show&&el){
         var fr=frame.getBoundingClientRect(),r=el.getBoundingClientRect();
@@ -379,10 +379,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       }
     }
     var ty=document.getElementById('typed');
-    if(ty){ var g=t<=20.6?0:t>=21.9?1:(t-20.6)/1.3; ty.textContent=INSTR.slice(0,Math.round(g*INSTR.length)); }
-    var big=document.getElementById('ciBig'); if(big) big.classList.toggle('hot',t>20.5&&t<22.2);
-    var sw=document.getElementById('ciSw'); if(sw) sw.classList.toggle('on',t>22.1);
-    var sv=document.getElementById('ciSave'); if(sv) sv.classList.toggle('hit',t>22.6);
+    if(ty){ var g=t<=21.0?0:t>=22.2?1:(t-21.0)/1.2; ty.textContent=INSTR.slice(0,Math.round(g*INSTR.length)); }
+    var big=document.getElementById('ciBig'); if(big) big.classList.toggle('hot',t>20.94&&t<22.5);
+    var sw=document.getElementById('ciSw'); if(sw) sw.classList.toggle('on',t>22.45);
+    var sv=document.getElementById('ciSave'); if(sv) sv.classList.toggle('hit',t>22.95);
 
     var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
     subs.innerHTML=txt;

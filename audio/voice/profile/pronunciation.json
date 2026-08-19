@@ -1,0 +1,19 @@
+{
+  "_readme": [
+    "Respellings applied to the text the voice model SPEAKS. Captions and on-screen",
+    "text are untouched, so the viewer always sees correct spelling.",
+    "Add an entry whenever a word comes out unclear. Fixed once, fixed everywhere.",
+    "A leading comma buys the word breathing room; a dense word swallows consonants."
+  ],
+  "words": {
+    "Personalization": "Personalisation",
+    "Personalisation": "Personalisation"
+  },
+  "phrases": {
+    "Go to Personalization": "Go to, Personalisation",
+    "Go to Personalisation": "Go to, Personalisation"
+  },
+  "notes": {
+    "Personalization": "Six syllables landed in 0.86s and the L disappeared. British spelling scores higher and the comma slows it to 5 syllables/sec."
+  }
+}

@@ -3,19 +3,19 @@
   "n": 1,
   "line": "Your ChatGPT gives you generic answers.",
   "start": 0.3,
-  "end": 3.69
+  "end": 3.31
  },
  {
   "n": 2,
   "line": "Not because it's dumb. Nobody told it how to think .",
   "start": 3.52,
-  "end": 7.28
+  "end": 7.36
  },
  {
   "n": 3,
   "line": "One block of text. Pasted once .",
   "start": 7.62,
-  "end": 10.66
+  "end": 10.36
  },
  {
   "n": 4,
@@ -27,31 +27,31 @@
   "n": 5,
   "line": "Open Settings .",
   "start": 14.98,
-  "end": 16.21
+  "end": 16.22
  },
  {
   "n": 6,
   "line": "Go to Personalization .",
-  "start": 16.48,
-  "end": 18.38
+  "start": 16.42,
+  "end": 18.86
  },
  {
   "n": 7,
   "line": "Custom instructions .",
-  "start": 18.64,
-  "end": 20.09
+  "start": 19.06,
+  "end": 20.66
  },
  {
   "n": 8,
   "line": "Paste. Toggle on. Save .",
-  "start": 20.44,
-  "end": 23.08
+  "start": 20.88,
+  "end": 23.42
  },
  {
   "n": 9,
   "line": "Now ask the same question. Normal words.",
   "start": 23.6,
-  "end": 26.99
+  "end": 26.96
  },
  {
   "n": 10,
@@ -69,25 +69,25 @@
   "n": 12,
   "line": "It ends with a decision . Not a list.",
   "start": 32.58,
-  "end": 35.36
+  "end": 35.76
  },
  {
   "n": 13,
   "line": "You typed zero commands.",
   "start": 35.62,
-  "end": 37.44
+  "end": 37.66
  },
  {
   "n": 14,
   "line": "The honest part: this isn't a new model.",
   "start": 37.96,
-  "end": 40.89
+  "end": 40.92
  },
  {
   "n": 15,
   "line": "It makes ChatGPT think harder \u2014 not be right more often.",
   "start": 41.18,
-  "end": 45.79
+  "end": 46.02
  },
  {
   "n": 16,
@@ -99,6 +99,6 @@
   "n": 17,
   "line": "Follow for setups that actually work .",
   "start": 48.86,
-  "end": 51.3
+  "end": 51.56
  }
 ]

@@ -12,6 +12,7 @@ import argparse, json, os, re, subprocess, sys, tempfile, wave
 import numpy as np
 
 REF   = "audio/voice/profile/reference.wav"
+PRON  = "audio/voice/profile/pronunciation.json"
 SR_MIX = 48000
 GAP, LONG = 0.26, 0.52          # pause after a line, and after a section
 SECTION_END = {4, 8, 13, 15}
@@ -37,6 +38,26 @@ def cues_from_html(path):
         if t:
             out.append(t)
     return out
+
+def load_pron():
+    if not os.path.exists(PRON):
+        return {}, {}
+    d = json.load(open(PRON, encoding="utf-8"))
+    return d.get("phrases", {}), d.get("words", {})
+
+def respell(text, phrases, words):
+    """What the model speaks, not what the viewer reads. A word the model
+    mangles gets respelled here; the caption keeps its real spelling."""
+    out = text
+    for src, dst in phrases.items():                  # phrases first — more specific
+        out = re.sub(re.escape(src), dst, out, flags=re.I)
+    for src, dst in words.items():
+        out = re.sub(r"\b" + re.escape(src) + r"\b", dst, out, flags=re.I)
+    return out
+
+def syllables(text):
+    """Rough vowel-group count — enough to spot a line that is too dense to be clear."""
+    return max(1, len(re.findall(r"[aeiouy]+", text.lower())))
 
 def _norm(t):
     """Compare meaning, not spelling. The transcriber writes "chat GPT" and drops
@@ -89,6 +110,8 @@ def main():
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--retries", type=int, default=3,
                     help="regenerate a line this many times if it is misheard")
+    ap.add_argument("--max-rate", type=float, default=6.5,
+                    help="syllables per second above which a line is judged too dense")
     ap.add_argument("--no-verify", action="store_true",
                     help="skip the transcription check (faster, unverified)")
     a = ap.parse_args()
@@ -114,12 +137,19 @@ def main():
         from faster_whisper import WhisperModel
         asr = WhisperModel("small", device="cpu", compute_type="int8")
 
+    phrases, words = load_pron()
+
     def say(text, idx):
+        spoken = respell(text, phrases, words)
+        if spoken != text:
+            print(f"      respelled for clarity: \"{spoken}\"", flush=True)
+        syl = syllables(spoken)
         best = None
         for attempt in range(a.retries + 1):
             torch.manual_seed(a.seed + attempt * 1000 + idx)
-            wav = m.generate(text, audio_prompt_path=REF, exaggeration=a.exaggeration,
+            wav = m.generate(spoken, audio_prompt_path=REF, exaggeration=a.exaggeration,
                              cfg_weight=a.cfg, temperature=0.75)
+            rate = syl / max(0.3, wav.shape[-1] / m.sr)
             if asr is None:
                 return wav, 0.0
             probe = os.path.join(tmp, "probe.wav")
@@ -129,11 +159,16 @@ def main():
             segs, _ = asr.transcribe(probe + "16.wav", language="en")
             heard = " ".join(sg.text for sg in segs)
             e = wer(heard, text)
-            if best is None or e < best[1]:
-                best = (wav, e, heard)
-            if e <= 0.001:
+            # a line crammed past ~6.5 syllables a second loses its consonants even
+            # when the transcriber still guesses the words right
+            penalty = max(0.0, (rate - a.max_rate) * 0.08)
+            score = e + penalty
+            if best is None or score < best[1]:
+                best = (wav, score, heard, e, rate)
+            if e <= 0.001 and rate <= a.max_rate:
                 return best[0], 0.0
-            print(f"      retry {attempt+1}: heard \"{heard.strip()[:52]}\" (wer {e:.2f})", flush=True)
+            why = f"wer {e:.2f}" if e > 0.001 else f"{rate:.1f} syl/s, too dense"
+            print(f"      retry {attempt+1}: heard \"{heard.strip()[:46]}\" ({why})", flush=True)
         return best[0], best[1]
 
     tmp = tempfile.mkdtemp()
@@ -142,7 +177,7 @@ def main():
     for i, text in enumerate(lines, 1):
         wav, err = say(text, i)
         if err > 0.001:
-            print(f"      ! line {i} still off after {a.retries} retries (wer {err:.2f})", flush=True)
+            print(f"      ! line {i} best available after {a.retries} retries (score {err:.2f})", flush=True)
         raw = os.path.join(tmp, f"{i:02d}.wav")
         torchaudio.save(raw, wav, m.sr)
         pol = os.path.join(tmp, f"{i:02d}p.wav")
