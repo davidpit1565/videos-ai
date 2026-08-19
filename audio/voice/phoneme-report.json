@@ -1,0 +1,212 @@
+[
+ {
+  "word": "harder",
+  "sound": "post-vocalic R + flapped D",
+  "ok": true,
+  "heard": "It makes Chagipiti think harder, not better.",
+  "respell": null
+ },
+ {
+  "word": "think",
+  "sound": "voiceless TH",
+  "ok": true,
+  "heard": "Nobody told it how to think",
+  "respell": null
+ },
+ {
+  "word": "that",
+  "sound": "voiced TH",
+  "ok": true,
+  "heard": "That is the whole job.",
+  "respell": null
+ },
+ {
+  "word": "three",
+  "sound": "THR cluster",
+  "ok": false,
+  "heard": "3 things break first",
+  "respell": null
+ },
+ {
+  "word": "really",
+  "sound": "initial R",
+  "ok": true,
+  "heard": "It really does work.",
+  "respell": null
+ },
+ {
+  "word": "answers",
+  "sound": "NS cluster",
+  "ok": true,
+  "heard": "Your charge gpt gives you generic answers.",
+  "respell": null
+ },
+ {
+  "word": "world",
+  "sound": "dark L + RLD",
+  "ok": true,
+  "heard": "The world runs on bees.",
+  "respell": null
+ },
+ {
+  "word": "little",
+  "sound": "flapped T",
+  "ok": true,
+  "heard": "One little block of text.",
+  "respell": null
+ },
+ {
+  "word": "water",
+  "sound": "flapped T",
+  "ok": true,
+  "heard": "It is like water through a pipe.",
+  "respell": null
+ },
+ {
+  "word": "video",
+  "sound": "V versus W",
+  "ok": true,
+  "heard": "This video shows the setup.",
+  "respell": null
+ },
+ {
+  "word": "worse",
+  "sound": "W + RS",
+  "ok": true,
+  "heard": "It gets worse before it works.",
+  "respell": null
+ },
+ {
+  "word": "visible",
+  "sound": "V + B",
+  "ok": true,
+  "heard": "Nothing is visible until you save.",
+  "respell": null
+ },
+ {
+  "word": "saves",
+  "sound": "final Z",
+  "ok": true,
+  "heard": "Saves Per View is the signal.",
+  "respell": null
+ },
+ {
+  "word": "sixth",
+  "sound": "KSTH cluster",
+  "ok": true,
+  "heard": "The sixth thing agents cannot do.",
+  "respell": null
+ },
+ {
+  "word": "strong",
+  "sound": "STR cluster",
+  "ok": true,
+  "heard": "A strong hook earns the view.",
+  "respell": null
+ },
+ {
+  "word": "agent",
+  "sound": "soft G",
+  "ok": true,
+  "heard": "an agent acts on its own.",
+  "respell": null
+ },
+ {
+  "word": "engine",
+  "sound": "NJ",
+  "ok": true,
+  "heard": "You are my universal AI engine.",
+  "respell": null
+ },
+ {
+  "word": "settings",
+  "sound": "double T + NGS",
+  "ok": true,
+  "heard": "Open settings and paste it in.",
+  "respell": null
+ },
+ {
+  "word": "bit",
+  "sound": "short I",
+  "ok": true,
+  "heard": "Wait a bit and check again.",
+  "respell": null
+ },
+ {
+  "word": "beat",
+  "sound": "long E",
+  "ok": true,
+  "heard": "It cannot beat a tested setup.",
+  "respell": null
+ },
+ {
+  "word": "full",
+  "sound": "OO + dark L",
+  "ok": true,
+  "heard": "The full text is in the caption.",
+  "respell": null
+ },
+ {
+  "word": "fool",
+  "sound": "long OO",
+  "ok": true,
+  "heard": "It will fool you once.",
+  "respell": null
+ },
+ {
+  "word": "about",
+  "sound": "OW diphthong",
+  "ok": true,
+  "heard": "Ask about the risk.",
+  "respell": null
+ },
+ {
+  "word": "first",
+  "sound": "IR + ST",
+  "ok": true,
+  "heard": "Your first agent should be reversible.",
+  "respell": null
+ },
+ {
+  "word": "hour",
+  "sound": "silent H + OW",
+  "ok": true,
+  "heard": "It took an hour to break.",
+  "respell": null
+ },
+ {
+  "word": "results",
+  "sound": "LTS cluster",
+  "ok": true,
+  "heard": "The results are in the caption.",
+  "respell": null
+ },
+ {
+  "word": "model",
+  "sound": "D + dark L",
+  "ok": true,
+  "heard": "This is not a new model.",
+  "respell": null
+ },
+ {
+  "word": "reasoning",
+  "sound": "Z + NG",
+  "ok": true,
+  "heard": "It picks its own reasoning.",
+  "respell": null
+ },
+ {
+  "word": "clearly",
+  "sound": "KL + R",
+  "ok": true,
+  "heard": "State it clearly then decide.",
+  "respell": null
+ },
+ {
+  "word": "prompt",
+  "sound": "PR + MPT",
+  "ok": true,
+  "heard": "Comment prompt and it is yours.",
+  "respell": null
+ }
+]
