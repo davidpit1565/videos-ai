@@ -1,12 +1,9 @@
 {
- "source": "New_Recording.m4a",
- "lines_used": [
-  4,
-  8,
-  9,
-  10,
-  12,
-  17
- ],
- "duration_s": 18.4
+ "source": "38989033-New_Recording.m4a (take 1), 60 Hz rumble cut only",
+ "why": "Measured, not judged: the voice encoder that does the cloning scores take 1 against itself at 1.00, take 2 at 0.846, and the take-2 clone he rejected at 0.817 \u2014 his ear and the number agree. Denoising cost identity (0.987) so it was dropped.",
+ "construction": "Chatterbox conditions on the reference's first 6-10 seconds, so the 10-second window scoring highest against his real voice opens the file; the rest is the next-highest utterances, for the speaker embedding.",
+ "opening_window_start_s": 38.35,
+ "opening_window_similarity": 0.9821,
+ "whole_file_similarity": 0.9813,
+ "duration_s": 28.8
 }

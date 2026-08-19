@@ -1,0 +1,443 @@
+<title>Actually Works Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;800&family=Assistant:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ink:#0A0D12;--panel:#121821;--panel-2:#18202B;--raise:#1F2836;
+  --line:#273140;--line-2:#36424F;
+  --brass:#F0CB66;--brass-dim:#8E7739;--ok:#6FBF95;--clay:#E37A56;--steel:#7BB0D6;--violet:#9B8BD6;
+  --text:#F4F6F9;--muted:#98A4B5;--faint:#606B7C;
+  --d:'Frank Ruhl Libre',Georgia,serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--b);font-size:16px;
+  line-height:1.6;direction:rtl;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:34px 20px 120px}
+.num{font-family:var(--m);direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap}
+
+/* header */
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;
+  padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.kick{font-family:var(--m);font-size:11px;letter-spacing:.22em;color:var(--brass);margin:0 0 10px;direction:ltr;text-align:right}
+h1{font-family:var(--d);font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-.01em;margin:0;line-height:1.05}
+h1 em{font-style:normal;color:var(--brass)}
+.savechip{font-family:var(--m);font-size:11px;letter-spacing:.1em;color:var(--faint);
+  border:1px solid var(--line);border-radius:2px;padding:6px 10px;white-space:nowrap}
+
+/* stat row — derived, never saved */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:34px}
+.stat{background:var(--panel);padding:16px 18px}
+.stat .k{font-family:var(--m);font-size:9.5px;letter-spacing:.15em;color:var(--faint);text-transform:uppercase;margin-bottom:7px;direction:ltr;text-align:right}
+.stat .v{font-family:var(--d);font-weight:800;font-size:27px;line-height:1;color:var(--brass)}
+.stat .s{font-size:12px;color:var(--muted);margin-top:5px}
+
+section{margin-bottom:44px}
+h2{font-family:var(--d);font-weight:700;font-size:23px;margin:0 0 3px;letter-spacing:-.005em}
+h2 .n{font-family:var(--m);font-size:11px;color:var(--brass-dim);letter-spacing:.16em;display:block;margin-bottom:8px;direction:ltr;text-align:right}
+.sub{color:var(--muted);font-size:14px;margin:0 0 16px;max-width:76ch}
+.rule{height:1px;background:linear-gradient(270deg,var(--brass),transparent 55%);margin:10px 0 18px}
+
+/* tables */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:840px;font-size:14px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-family:var(--m);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  font-weight:500;background:var(--panel-2);white-space:nowrap;direction:ltr;text-align:right;position:sticky;top:0}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:rgba(255,255,255,.022)}
+td[contenteditable]{outline:none;min-width:70px;border-radius:2px}
+td[contenteditable]:focus{background:rgba(240,203,102,.09);box-shadow:inset 0 0 0 1px var(--brass-dim)}
+td[contenteditable]:empty::before{content:"—";color:var(--faint)}
+.ttl{font-weight:700;min-width:230px}
+.mono{font-family:var(--m);font-size:13px;direction:ltr;text-align:right}
+
+/* status chip — click to cycle */
+.chip{display:inline-block;font-family:var(--m);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  padding:4px 9px;border-radius:2px;border:1px solid;cursor:pointer;user-select:none;white-space:nowrap;
+  direction:ltr;transition:.15s}
+.chip:hover{filter:brightness(1.25)}
+.st-idea{color:var(--muted);border-color:var(--line-2);background:rgba(255,255,255,.03)}
+.st-script{color:var(--violet);border-color:#4E4472;background:rgba(155,139,214,.1)}
+.st-voice{color:var(--steel);border-color:#33607D;background:rgba(123,176,214,.1)}
+.st-render{color:var(--brass);border-color:var(--brass-dim);background:rgba(240,203,102,.1)}
+.st-test{color:var(--clay);border-color:#6B4230;background:rgba(227,122,86,.12)}
+.st-live{color:var(--ok);border-color:#2F5C45;background:rgba(111,191,149,.12)}
+.fmt{font-family:var(--m);font-size:10px;color:var(--faint);letter-spacing:.06em;direction:ltr}
+input[type=checkbox]{width:17px;height:17px;accent-color:var(--brass);cursor:pointer;margin:0}
+input.n{width:96px;background:var(--panel-2);border:1px solid var(--line);border-radius:3px;
+  color:var(--text);font-family:var(--m);font-size:13px;padding:6px 8px;direction:ltr;text-align:right}
+input.n:focus{outline:none;border-color:var(--brass)}
+.del{background:none;border:0;color:var(--faint);cursor:pointer;font-size:16px;padding:2px 6px;border-radius:3px;line-height:1}
+.del:hover{color:var(--clay);background:rgba(227,122,86,.1)}
+
+/* buttons */
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+button.add{background:var(--brass);color:#141014;border:0;border-radius:3px;font-family:var(--b);
+  font-weight:700;font-size:14px;padding:10px 18px;cursor:pointer}
+button.add:hover{background:#FFDF95}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line-2);border-radius:3px;
+  font-family:var(--b);font-size:14px;padding:10px 16px;cursor:pointer}
+button.ghost:hover{border-color:var(--brass);color:var(--brass)}
+button:focus-visible,td[contenteditable]:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+
+/* checklist */
+ul.check{list-style:none;padding:0;margin:0;border:1px solid var(--line);border-radius:4px;background:var(--panel)}
+ul.check li{display:grid;grid-template-columns:22px 1fr auto;gap:11px;align-items:start;
+  padding:11px 14px;border-bottom:1px solid var(--line)}
+ul.check li:last-child{border-bottom:0}
+ul.check .lbl{font-size:14.5px}
+ul.check .lbl small{display:block;color:var(--faint);font-size:12px;margin-top:2px;font-family:var(--m);direction:ltr;text-align:right}
+ul.check input:checked ~ .lbl{color:var(--faint);text-decoration:line-through}
+
+/* ideas list */
+ul.ideas{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
+ul.ideas li{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;
+  border:1px solid var(--line);border-radius:3px;background:var(--panel);padding:10px 13px}
+ul.ideas .txt{outline:none;font-size:14.5px}
+ul.ideas .txt:focus{background:rgba(240,203,102,.08)}
+
+/* reference cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:13px}
+.card{border:1px solid var(--line);border-radius:4px;background:var(--panel);padding:16px 18px}
+.card h4{font-family:var(--d);font-size:16px;margin:0 0 6px;font-weight:700}
+.card p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
+.card code{font-family:var(--m);font-size:12px;color:var(--brass);background:rgba(240,203,102,.08);
+  padding:2px 5px;border-radius:2px;direction:ltr;display:inline-block}
+.card.hot{border-color:var(--brass-dim)}
+
+.note{border:1px solid var(--line);border-inline-start:3px solid var(--brass);background:var(--panel);
+  border-radius:4px;padding:16px 18px;margin-top:16px;font-size:14px;color:var(--muted)}
+.note b{color:var(--text)}
+[artifact-sync-state=off]{outline:2px dashed var(--clay);outline-offset:3px}
+.foot{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);color:var(--faint);font-size:12.5px;font-family:var(--m);line-height:1.9}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div>
+    <p class="kick">ACTUALLY WORKS · STUDIO</p>
+    <h1>מרכז <em>הבקרה</em></h1>
+  </div>
+  <span class="savechip" id="savechip">נשמר אוטומטית · כל שינוי חוזר גם אליי</span>
+</header>
+
+<div class="stats" id="stats">
+  <div class="stat"><div class="k">EPISODES LIVE</div><div class="v" id="s-live">0</div><div class="s">פורסמו</div></div>
+  <div class="stat"><div class="k">IN PRODUCTION</div><div class="v" id="s-prod">0</div><div class="s">בעבודה עכשיו</div></div>
+  <div class="stat"><div class="k">BACKLOG</div><div class="v" id="s-idea">0</div><div class="s">רעיונות ממתינים</div></div>
+  <div class="stat"><div class="k">SUBSCRIBERS</div><div class="v" id="s-subs">0</div><div class="s">המדד שקובע</div></div>
+  <div class="stat"><div class="k">MRR</div><div class="v" id="s-mrr">€0</div><div class="s">הכנסה חודשית</div></div>
+  <div class="stat"><div class="k">THIS WEEK</div><div class="v" id="s-week">0/0</div><div class="s">משימות שהושלמו</div></div>
+</div>
+
+<!-- ══ PIPELINE ══ -->
+<section>
+  <h2><span class="n">01 · PIPELINE</span>קו הייצור</h2>
+  <div class="rule"></div>
+  <p class="sub">כל פרק, מרעיון עד פרסום. <b>לחיצה על הסטטוס מקדמת אותו</b> בשלב. כל שדה ניתן לעריכה — פשוט תלחץ וכתוב.</p>
+  <div class="tw"><table>
+    <thead><tr>
+      <th style="width:34px"></th><th>פרק</th><th style="width:96px">פורמט</th><th style="width:118px">סטטוס</th>
+      <th style="width:150px">כלי / נושא</th><th style="width:60px">נבדק</th><th style="width:110px">תאריך</th><th>הערות</th>
+    </tr></thead>
+    <tbody artifact-sync id="pipeline">
+      <tr><td><button class="del" aria-label="מחק">✕</button></td>
+        <td class="ttl" contenteditable>01 · Paste this once — the Universal AI Engine</td>
+        <td class="fmt" contenteditable>Reel</td>
+        <td><span class="chip st-test">TESTING</span></td>
+        <td contenteditable>ChatGPT · Custom Instructions</td>
+        <td><input type="checkbox"></td>
+        <td class="mono" contenteditable></td>
+        <td contenteditable>קול משוכפל מוכן · מחכה לאישור סופי</td></tr>
+      <tr><td><button class="del" aria-label="מחק">✕</button></td>
+        <td class="ttl" contenteditable>02 · What an AI agent actually is</td>
+        <td class="fmt" contenteditable>Reel + Long</td>
+        <td><span class="chip st-idea">IDEA</span></td>
+        <td contenteditable>Agents · יסודות</td>
+        <td><input type="checkbox"></td>
+        <td class="mono" contenteditable></td>
+        <td contenteditable>שער הכניסה לכל סדרת הסוכנים</td></tr>
+      <tr><td><button class="del" aria-label="מחק">✕</button></td>
+        <td class="ttl" contenteditable>03 · I gave an agent my inbox for a week</td>
+        <td class="fmt" contenteditable>Reel + Long</td>
+        <td><span class="chip st-idea">IDEA</span></td>
+        <td contenteditable>Lindy / ChatGPT Agent</td>
+        <td><input type="checkbox"></td>
+        <td class="mono" contenteditable></td>
+        <td contenteditable>פורמט תוצאות — הצפייה הארוכה ביותר</td></tr>
+      <tr><td><button class="del" aria-label="מחק">✕</button></td>
+        <td class="ttl" contenteditable>04 · Your first n8n agent: email → summary → Telegram</td>
+        <td class="fmt" contenteditable>Long</td>
+        <td><span class="chip st-idea">IDEA</span></td>
+        <td contenteditable>n8n</td>
+        <td><input type="checkbox"></td>
+        <td class="mono" contenteditable></td>
+        <td contenteditable>הכלי המבוקש ביותר · בנייה מקצה לקצה</td></tr>
+      <tr><td><button class="del" aria-label="מחק">✕</button></td>
+        <td class="ttl" contenteditable>05 · The 5 things agents still can't do</td>
+        <td class="fmt" contenteditable>Reel + Long</td>
+        <td><span class="chip st-idea">IDEA</span></td>
+        <td contenteditable>Agents · מגבלות</td>
+        <td><input type="checkbox"></td>
+        <td class="mono" contenteditable></td>
+        <td contenteditable>סרטון החתימה · אף מתחרה לא יעתיק</td></tr>
+    </tbody>
+  </table></div>
+  <div class="actions">
+    <button class="add" id="addEp">+ פרק חדש</button>
+    <button class="ghost" id="addFive">+ חמישה שורות ריקות</button>
+  </div>
+</section>
+
+<!-- ══ IDEAS ══ -->
+<section>
+  <h2><span class="n">02 · BACKLOG</span>מחסן הרעיונות</h2>
+  <div class="rule"></div>
+  <p class="sub">כל דבר שעולה. תגובות והודעות של עוקבים הן המקור הטוב ביותר — מי שכתב "זה עובד גם ל...?" בעצם הזמין פרק.</p>
+  <ul class="ideas" artifact-sync id="ideas">
+    <li><span class="txt" contenteditable>Zapier מול Make מול n8n — לבחור אחד בשלוש דקות</span><button class="del" aria-label="מחק">✕</button></li>
+    <li><span class="txt" contenteditable>Claude Code למי שלא מתכנת</span><button class="del" aria-label="מחק">✕</button></li>
+    <li><span class="txt" contenteditable>סוכן מחקר בלי קוד — Perplexity + n8n</span><button class="del" aria-label="מחק">✕</button></li>
+    <li><span class="txt" contenteditable>אוטומטתי שבוע עם 4 סוכנים — מה שרד</span><button class="del" aria-label="מחק">✕</button></li>
+    <li><span class="txt" contenteditable>ההוראה שמונעת מ-ChatGPT לשאול 3 שאלות לפני שהוא עונה</span><button class="del" aria-label="מחק">✕</button></li>
+  </ul>
+  <div class="actions"><button class="add" id="addIdea">+ רעיון</button></div>
+</section>
+
+<!-- ══ GROWTH ══ -->
+<section>
+  <h2><span class="n">03 · GROWTH</span>מה שבאמת נמדד</h2>
+  <div class="rule"></div>
+  <p class="sub"><b>נרשמים כל שבוע. עוקבים כל חודש. אף פעם לא הפוך.</b> נרשמים הם הנכס; עוקבים הם השכירות.</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:34px"></th><th style="width:120px">שבוע</th><th style="width:120px">נרשמים</th>
+      <th style="width:120px">עוקבים IG</th><th style="width:120px">מנויי YT</th><th style="width:110px">פורסמו</th><th>מה עבד / מה לא</th></tr></thead>
+    <tbody artifact-sync id="growth">
+      <tr><td><button class="del" aria-label="מחק">✕</button></td>
+        <td class="mono" contenteditable>שבוע 1</td>
+        <td><input class="n g-subs" type="number" min="0" value="0"></td>
+        <td><input class="n g-ig" type="number" min="0" value="86"></td>
+        <td><input class="n g-yt" type="number" min="0" value="0"></td>
+        <td class="mono" contenteditable>0</td>
+        <td contenteditable>נקודת ההתחלה</td></tr>
+    </tbody>
+  </table></div>
+  <div class="actions"><button class="add" id="addWeek">+ שבוע</button></div>
+</section>
+
+<!-- ══ REVENUE ══ -->
+<section>
+  <h2><span class="n">04 · REVENUE</span>מסלולי ההכנסה</h2>
+  <div class="rule"></div>
+  <p class="sub">שבעת המסלולים מהתוכנית. עדכן את ה-MRR כשמשהו מתחיל להיכנס — הכרטיס למעלה מתעדכן לבד.</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:34px"></th><th>מסלול</th><th style="width:118px">סטטוס</th>
+      <th style="width:120px">MRR €</th><th style="width:130px">צריך קהל?</th><th>הצעד הבא</th></tr></thead>
+    <tbody artifact-sync id="revenue">
+      <tr><td><button class="del" aria-label="מחק">✕</button></td>
+        <td class="ttl" contenteditable>שירות — בניית מערכות AI לעסקים</td>
+        <td><span class="chip st-idea">IDEA</span></td>
+        <td><input class="n r-mrr" type="number" min="0" value="0"></td>
+        <td contenteditable>לא</td>
+        <td contenteditable>שורה בביו + קישור ליומן</td></tr>
+      <tr><td><button class="del" aria-label="מחק">✕</button></td>
+        <td class="ttl" contenteditable>ניוזלטר — ספונסרים</td>
+        <td><span class="chip st-idea">IDEA</span></td>
+        <td><input class="n r-mrr" type="number" min="0" value="0"></td>
+        <td contenteditable>~5,000 נרשמים</td>
+        <td contenteditable>לפתוח את הרשימה ב-Beehiiv</td></tr>
+      <tr><td><button class="del" aria-label="מחק">✕</button></td>
+        <td class="ttl" contenteditable>אפיליאייט — כלי AI</td>
+        <td><span class="chip st-idea">IDEA</span></td>
+        <td><input class="n r-mrr" type="number" min="0" value="0"></td>
+        <td contenteditable>קטן</td>
+        <td contenteditable>להירשם ל-n8n ו-Make</td></tr>
+      <tr><td><button class="del" aria-label="מחק">✕</button></td>
+        <td class="ttl" contenteditable>מוצר דיגיטלי — חבילת workflows</td>
+        <td><span class="chip st-idea">IDEA</span></td>
+        <td><input class="n r-mrr" type="number" min="0" value="0"></td>
+        <td contenteditable>~3,000</td>
+        <td contenteditable>לבנות מעשרת הסרטונים הנשמרים ביותר</td></tr>
+      <tr><td><button class="del" aria-label="מחק">✕</button></td>
+        <td class="ttl" contenteditable>סרטונים ממומנים</td>
+        <td><span class="chip st-idea">IDEA</span></td>
+        <td><input class="n r-mrr" type="number" min="0" value="0"></td>
+        <td contenteditable>20,000+</td>
+        <td contenteditable>לא לפני שיש קהל</td></tr>
+    </tbody>
+  </table></div>
+  <div class="actions"><button class="add" id="addRev">+ מסלול</button></div>
+</section>
+
+<!-- ══ WEEKLY ══ -->
+<section>
+  <h2><span class="n">05 · THIS WEEK</span>השבוע הזה</h2>
+  <div class="rule"></div>
+  <p class="sub">אפס בכל יום ראשון. אם שורה נשארת מסומנת שבועיים — היא לא באמת משימה, היא רעיון.</p>
+  <ul class="check" artifact-sync id="weekly">
+    <li><input type="checkbox"><span class="lbl">להסב את חשבון האינסטגרם ל-Creator ולשנות הנדל<small>~15 דקות · חוסם הכל</small></span><button class="del" aria-label="מחק">✕</button></li>
+    <li><input type="checkbox"><span class="lbl">לפתוח רשימת תפוצה ב-Beehiiv<small>~15 דקות · הפער העסקי הגדול</small></span><button class="del" aria-label="מחק">✕</button></li>
+    <li><input type="checkbox"><span class="lbl">לאשר את פרק 01 ולפרסם<small>הצעד היחיד שבאמת קובע</small></span><button class="del" aria-label="מחק">✕</button></li>
+    <li><input type="checkbox"><span class="lbl">להזמין מיקרופון USB<small>~300 ₪ · משדרג כל פרק עתידי בבת אחת</small></span><button class="del" aria-label="מחק">✕</button></li>
+    <li><input type="checkbox"><span class="lbl">לבדוק בעצמי את הסטאפ של פרק 02<small>~1 שעה · זה המוצר</small></span><button class="del" aria-label="מחק">✕</button></li>
+    <li><input type="checkbox"><span class="lbl">לענות על כל תגובה והודעה<small>יומי · משם מגיעים הלקוחות</small></span><button class="del" aria-label="מחק">✕</button></li>
+  </ul>
+  <div class="actions"><button class="add" id="addTask">+ משימה</button><button class="ghost" id="clearDone">נקה מה שהושלם</button></div>
+</section>
+
+<!-- ══ ASSETS ══ -->
+<section>
+  <h2><span class="n">06 · ASSETS</span>מה כבר קיים</h2>
+  <div class="rule"></div>
+  <p class="sub">המערכת עצמה. אין מה לערוך כאן — זו התזכורת מה יש ואיך מפעילים.</p>
+  <div class="grid">
+    <div class="card hot"><h4>פרופיל הקול</h4><p>32 שניות מההקלטה שלך, 10 השורות הנקיות ביותר. מדבר כל תסריט.<br><code>audio/build_voice.py --fit</code></p></div>
+    <div class="card hot"><h4>מילון הגייה</h4><p>מילה שיוצאת לא ברורה = שורה אחת, מתוקנת לתמיד. מה שנאמר ומה שנראה נפרדים.<br><code>profile/pronunciation.json</code></p></div>
+    <div class="card"><h4>נשימות וטון-חדר</h4><p>נשימות אמיתיות שלך והחדר שלך, מתחת לכל שורה. זה מה שהופך מסונתז למוקלט.</p></div>
+    <div class="card"><h4>רנדר לסרטון</h4><p>HTML → MP4 עם קריינות ומוזיקה, פקודה אחת.<br><code>export/render.sh</code></p></div>
+    <div class="card"><h4>מוזיקה</h4><p>מסונתזת לכל סרטון באורך מדויק. אין חשיפה לקופירייט.<br><code>audio/build_music.py</code></p></div>
+    <div class="card"><h4>פרסום לאינסטגרם</h4><p>Graph API. הגדרה חד-פעמית של 20 דקות, אחר כך פקודה אחת.<br><code>publish/instagram_publish.py</code></p></div>
+    <div class="card"><h4>ערכת מותג</h4><p>אווטאר, באנר יוטיוב, תבנית תמבנייל, פוסט 4:5. בסטייל הבית.</p></div>
+    <div class="card"><h4>סטייל הבית</h4><p>Brass on Ink. שני חומרים, ארבעה מנגנוני חתימה.<br><code>brand/house-style.md</code></p></div>
+  </div>
+  <div class="note"><b>הטוקן של אינסטגרם פג כל 60 יום.</b> תוסיף שורה ל"השבוע הזה" ביום 55 — זו הסיבה הכי נפוצה שמערכות כאלה מפסיקות לעבוד בשקט, חודשיים אחרי שהוקמו והכל נראה תקין.</div>
+</section>
+
+<p class="foot">
+המערכת נשמרת אצלך בעמוד עצמו — בלי שרת, בלי GitHub, בלי Vercel. כל שינוי מגיע גם לסשן שלי, אז אני רואה את קו הייצור בלי שתצטרך לספר לי.<br>
+הכרטיסים למעלה מחושבים מהטבלאות בכל טעינה. אל תערוך אותם — הם תוצאה, לא נתון.
+</p>
+
+</div>
+
+<script>
+(function(){
+  var STATES=[["st-idea","IDEA"],["st-script","SCRIPT"],["st-voice","VOICE"],
+              ["st-render","RENDER"],["st-test","TESTING"],["st-live","LIVE"]];
+
+  /* Rows are built here and appended during the click that asks for them —
+     that is what gets them saved. Nothing is rendered from state on load. */
+  function epRow(){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td><button class="del" aria-label="מחק">✕</button></td>'+
+      '<td class="ttl" contenteditable></td><td class="fmt" contenteditable>Reel</td>'+
+      '<td><span class="chip st-idea">IDEA</span></td><td contenteditable></td>'+
+      '<td><input type="checkbox"></td><td class="mono" contenteditable></td><td contenteditable></td>';
+    return tr;
+  }
+  function weekRow(){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td><button class="del" aria-label="מחק">✕</button></td>'+
+      '<td class="mono" contenteditable></td>'+
+      '<td><input class="n g-subs" type="number" min="0" value="0"></td>'+
+      '<td><input class="n g-ig" type="number" min="0" value="0"></td>'+
+      '<td><input class="n g-yt" type="number" min="0" value="0"></td>'+
+      '<td class="mono" contenteditable></td><td contenteditable></td>';
+    return tr;
+  }
+  function revRow(){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td><button class="del" aria-label="מחק">✕</button></td>'+
+      '<td class="ttl" contenteditable></td><td><span class="chip st-idea">IDEA</span></td>'+
+      '<td><input class="n r-mrr" type="number" min="0" value="0"></td>'+
+      '<td contenteditable></td><td contenteditable></td>';
+    return tr;
+  }
+  function ideaLi(){
+    var li=document.createElement('li');
+    li.innerHTML='<span class="txt" contenteditable></span><button class="del" aria-label="מחק">✕</button>';
+    return li;
+  }
+  function taskLi(){
+    var li=document.createElement('li');
+    li.innerHTML='<input type="checkbox"><span class="lbl"></span><button class="del" aria-label="מחק">✕</button>';
+    return li;
+  }
+
+  function add(hostId, make, focusSel){
+    var host=document.getElementById(hostId), el=make();
+    host.appendChild(el);
+    var f=el.querySelector(focusSel); if(f) f.focus();
+    stats();
+  }
+  document.getElementById('addEp').onclick   =function(){add('pipeline',epRow,'.ttl')};
+  document.getElementById('addFive').onclick =function(){
+    var host=document.getElementById('pipeline');
+    for(var i=0;i<5;i++) host.appendChild(epRow());
+    stats();
+  };
+  document.getElementById('addWeek').onclick =function(){add('growth',weekRow,'.mono')};
+  document.getElementById('addRev').onclick  =function(){add('revenue',revRow,'.ttl')};
+  document.getElementById('addIdea').onclick =function(){add('ideas',ideaLi,'.txt')};
+  document.getElementById('addTask').onclick =function(){add('weekly',taskLi,'.lbl')};
+  document.getElementById('clearDone').onclick=function(){
+    var done=document.querySelectorAll('#weekly li input:checked');
+    for(var i=0;i<done.length;i++) done[i].closest('li').remove();
+    stats();
+  };
+
+  /* one delegated handler: delete rows, cycle status chips */
+  document.addEventListener('click',function(e){
+    var del=e.target.closest('.del');
+    if(del){ var row=del.closest('tr')||del.closest('li'); if(row){ row.remove(); stats(); } return; }
+    var chip=e.target.closest('.chip');
+    if(chip){
+      var cur=0;
+      for(var i=0;i<STATES.length;i++) if(chip.classList.contains(STATES[i][0])) cur=i;
+      var nxt=(cur+1)%STATES.length;
+      chip.classList.remove(STATES[cur][0]);
+      chip.classList.add(STATES[nxt][0]);
+      chip.textContent=STATES[nxt][1];
+      stats();
+    }
+  });
+  document.addEventListener('input',function(e){ if(e.target.matches('input.n')) stats(); });
+  document.addEventListener('change',function(e){ if(e.target.type==='checkbox') stats(); });
+
+  /* Derived, and deliberately outside every sync region — a computed number is
+     a result, not a record, and saving it would fight the real data. */
+  function stats(){
+    var chips=document.querySelectorAll('#pipeline .chip');
+    var live=0,prod=0,idea=0;
+    for(var i=0;i<chips.length;i++){
+      if(chips[i].classList.contains('st-live')) live++;
+      else if(chips[i].classList.contains('st-idea')) idea++;
+      else prod++;
+    }
+    document.getElementById('s-live').textContent=live;
+    document.getElementById('s-prod').textContent=prod;
+    document.getElementById('s-idea').textContent=idea+document.querySelectorAll('#ideas li').length;
+
+    var subs=0, rows=document.querySelectorAll('#growth tr');
+    if(rows.length){
+      var last=rows[rows.length-1].querySelector('.g-subs');
+      subs=last?(+last.value||0):0;
+    }
+    document.getElementById('s-subs').textContent=subs.toLocaleString('en-US');
+
+    var mrr=0, m=document.querySelectorAll('.r-mrr');
+    for(var j=0;j<m.length;j++) mrr+=(+m[j].value||0);
+    document.getElementById('s-mrr').textContent='€'+mrr.toLocaleString('en-US');
+
+    var boxes=document.querySelectorAll('#weekly li input[type=checkbox]'), done=0;
+    for(var k=0;k<boxes.length;k++) if(boxes[k].checked) done++;
+    document.getElementById('s-week').textContent=done+'/'+boxes.length;
+  }
+  stats();
+
+  /* tell him plainly if his edits are not being kept */
+  document.addEventListener('claude:sync-off',function(){
+    var c=document.getElementById('savechip');
+    c.textContent='לא נשמר — פתח את העמוד מהקישור המקורי';
+    c.style.color='var(--clay)'; c.style.borderColor='#6B4230';
+  },true);
+  document.addEventListener('claude:sync-lost',function(){
+    document.getElementById('savechip').textContent='מנסה לשמור שוב…';
+  },true);
+})();
+</script>

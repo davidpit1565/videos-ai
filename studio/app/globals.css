@@ -1,0 +1,208 @@
+/* Comfort first. The previous pass put a Latin monospace with wide letter-spacing on
+   Hebrew labels — Hebrew has no uppercase, so the tracking bought nothing and the font
+   fell back to something different from the rest of the page. Mono is now for digits
+   only, type is bigger, and every row is thumb-sized. */
+:root{
+  --ink:#0B0F16;--panel:#141B25;--panel-2:#1B2430;--raise:#222D3B;
+  --line:#2B3644;--line-2:#3C4959;
+  --brass:#F3D07A;--brass-hot:#FFE7A8;--brass-dim:#8A7434;
+  --ok:#74C79C;--clay:#E88462;--steel:#86B8DC;--violet:#A497DD;
+  --text:#F6F8FB;--muted:#A7B3C3;--faint:#778393;
+  --d:'Frank Ruhl Libre',Georgia,serif;
+  --b:'Assistant','Segoe UI',system-ui,-apple-system,sans-serif;
+  --m:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --r:10px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--ink);color:var(--text);font-family:var(--b);font-size:17px;
+  line-height:1.65;direction:rtl;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent}
+/* digits only — never Hebrew */
+.num{font-family:var(--m);direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+
+.shell{max-width:1120px;margin:0 auto;padding:0 20px 40px}
+
+/* ── top bar ─────────────────────────────────── */
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px 0 14px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .tick{width:20px;height:11px;border-left:4px solid var(--brass);
+  border-bottom:4px solid var(--brass);transform:rotate(-45deg) translate(1px,-2px);flex:0 0 auto}
+.brand b{font-family:var(--d);font-weight:800;font-size:20px}
+.mode{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;
+  color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
+.mode::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.mode.cloud{color:var(--ok);border-color:#37674E}
+.mode.local{color:var(--brass);border-color:var(--brass-dim)}
+
+/* ── nav: tabs on desktop, a thumb bar on a phone ─ */
+nav{display:flex;gap:8px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:24px}
+nav a{font-size:16px;font-weight:600;border:1px solid var(--line);border-radius:999px;
+  padding:10px 18px;color:var(--muted);transition:.15s;white-space:nowrap}
+nav a:hover{border-color:var(--brass-dim);color:var(--brass)}
+nav a[aria-current=page]{background:var(--brass);color:#141014;border-color:var(--brass);font-weight:700}
+
+/* ── headings ────────────────────────────────── */
+h1{font-family:var(--d);font-weight:800;font-size:clamp(28px,4.4vw,38px);margin:0 0 6px;line-height:1.14}
+h1 em{font-style:normal;color:var(--brass)}
+.eyebrow{font-size:14px;font-weight:700;color:var(--brass);margin:0 0 8px;
+  display:flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--brass);border-radius:2px}
+h2{font-family:var(--b);font-weight:800;font-size:21px;margin:38px 0 14px}
+p.sub{color:var(--muted);font-size:16px;margin:0 0 20px;max-width:70ch}
+p.sub b{color:var(--text)}
+
+/* ── stat tiles ──────────────────────────────── */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:10px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+.tile .k{font-size:14px;color:var(--muted);margin-bottom:8px}
+.tile .v{font-family:var(--d);font-weight:800;font-size:30px;line-height:1;color:var(--brass)}
+.tile .s{font-size:13.5px;color:var(--faint);margin-top:8px;line-height:1.45}
+
+/* ── tables ──────────────────────────────────── */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:15.5px}
+th,td{padding:12px 14px;text-align:right;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:13.5px;color:var(--muted);font-weight:700;background:var(--panel-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:rgba(255,255,255,.025)}
+td.name{font-weight:700;min-width:210px}
+/* an editable cell has to look editable — he could not tell before */
+input.cell,textarea.cell,select.cell{width:100%;background:var(--panel-2);
+  border:1px solid var(--line);border-radius:7px;padding:9px 11px;min-width:64px;min-height:40px}
+input.cell:hover,select.cell:hover{border-color:var(--line-2)}
+input.cell:focus,textarea.cell:focus,select.cell:focus{background:rgba(243,208,122,.10);
+  border-color:var(--brass);outline:none}
+input.n{width:96px;font-family:var(--m);direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ── chips ───────────────────────────────────── */
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;
+  padding:5px 11px;border-radius:999px;border:1px solid;white-space:nowrap;background:none}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:0 0 auto}
+.s-idea{color:var(--muted);border-color:var(--line-2)}
+.s-script{color:var(--violet);border-color:#574C80}
+.s-voice{color:var(--steel);border-color:#3A6B8B}
+.s-render{color:var(--brass);border-color:var(--brass-dim)}
+.s-testing{color:var(--clay);border-color:#794B36}
+.s-live{color:var(--ok);border-color:#37674E}
+
+/* ── buttons ─────────────────────────────────── */
+.btn{background:var(--brass);color:#141014;border:0;border-radius:8px;font-weight:800;
+  font-size:16px;padding:12px 20px;min-height:46px}
+.btn:hover{background:var(--brass-hot)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line-2)}
+.btn.ghost:hover{border-color:var(--brass);color:var(--brass)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.del{background:none;border:0;color:var(--faint);font-size:20px;padding:6px 10px;border-radius:8px;
+  line-height:1;min-width:40px;min-height:40px}
+.del:hover{color:var(--clay);background:rgba(232,132,98,.12)}
+
+/* ── cards & notes ───────────────────────────── */
+.note{border:1px solid var(--line);border-inline-start:4px solid var(--brass);background:var(--panel);
+  border-radius:var(--r);padding:16px 18px;margin:18px 0;font-size:16px;color:var(--muted)}
+.note.warn{border-inline-start-color:var(--clay)}
+.note.ok{border-inline-start-color:var(--ok)}
+.note b{color:var(--text)}
+.note .t{font-size:14px;font-weight:800;color:var(--brass);margin-bottom:7px}
+.note.warn .t{color:var(--clay)} .note.ok .t{color:var(--ok)}
+
+ul.list{list-style:none;padding:0;margin:0;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--panel);overflow:hidden}
+ul.list li{display:grid;grid-template-columns:24px 1fr auto;gap:13px;align-items:start;
+  padding:14px 16px;border-bottom:1px solid var(--line);min-height:56px}
+ul.list li:last-child{border-bottom:0}
+ul.list .lbl{font-size:16px;line-height:1.45}
+ul.list .lbl small{display:block;color:var(--faint);font-size:14px;margin-top:3px}
+ul.list input[type=checkbox]{width:22px;height:22px;accent-color:var(--brass);margin-top:2px}
+ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
+
+/* ── activity feed ───────────────────────────── */
+.feed{list-style:none;padding:0;margin:0}
+.feed li{display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:baseline;
+  padding:13px 2px;border-bottom:1px solid var(--line)}
+.feed li:last-child{border-bottom:0}
+.feed .dt{font-family:var(--m);font-size:13px;color:var(--faint);direction:ltr}
+.feed .what{font-size:16px}
+.feed .d{font-family:var(--m);font-size:15px;font-weight:600;direction:ltr}
+.feed .d.up{color:var(--ok)} .feed .d.down{color:var(--clay)} .feed .d.flat{color:var(--faint)}
+
+/* ── agent ───────────────────────────────────── */
+.ask{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.ask input{flex:1 1 260px;background:var(--panel-2);border:1px solid var(--line);border-radius:8px;
+  padding:14px 16px;font-size:16px}
+.ask input:focus{border-color:var(--brass);outline:none}
+.presets{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}
+.presets button{background:transparent;border:1px solid var(--line);border-radius:999px;
+  padding:10px 15px;font-size:15px;color:var(--muted)}
+.presets button:hover{border-color:var(--brass);color:var(--brass)}
+.answer{border:1px solid var(--brass-dim);border-radius:var(--r);
+  background:linear-gradient(180deg,rgba(243,208,122,.06),transparent 55%),var(--panel);
+  padding:22px 24px;white-space:pre-wrap;font-size:17px;line-height:1.75}
+.spin{display:inline-block;width:15px;height:15px;border:2px solid var(--brass-dim);
+  border-top-color:var(--brass);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-3px}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+.foot{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--faint);font-size:14px;line-height:1.8}
+
+/* ── phone cards ─────────────────────────────── */
+.cards{display:none;flex-direction:column;gap:12px}
+.card{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:15px 16px}
+.card .hd{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.card .hd .no{font-family:var(--m);font-size:15px;color:var(--faint);flex:0 0 auto}
+.card .hd input{flex:1 1 auto;font-weight:700;font-size:16px}
+.card .row{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.card .row label{font-size:15px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.card .row input[type=checkbox]{width:22px;height:22px;accent-color:var(--brass)}
+.card .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.card .g{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
+.card .g .k{font-size:13px;color:var(--muted);margin-bottom:5px}
+.card .g input{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-2);
+  border-radius:0;padding:2px 0;font-family:var(--m);direction:ltr;text-align:right;font-size:17px}
+.card .g input:focus{border-bottom-color:var(--brass);outline:none}
+.card .g .ro{font-family:var(--m);font-size:17px;direction:ltr;text-align:right;color:var(--brass)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--faint);display:inline-block;margin-top:8px}
+.dot.on{background:var(--ok)}
+
+@media(max-width:760px){
+  .cards{display:flex}
+  .tw.eps{display:none}
+}
+@media(max-width:600px){
+  body{font-size:17px}
+  .shell{padding:0 14px 96px}
+  h2{font-size:19px;margin:30px 0 12px}
+  /* the tab bar sits where the thumb is, not at the top of a scroll */
+  nav{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;padding:8px 10px;
+    background:rgba(11,15,22,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);
+    border-bottom:0;justify-content:space-around;gap:4px}
+  nav a{flex:1 1 0;text-align:center;padding:11px 6px;border:0;font-size:15px;border-radius:8px}
+  nav a[aria-current=page]{background:rgba(243,208,122,.14);color:var(--brass)}
+  th,td{padding:11px 12px;font-size:15px}
+  td.name{min-width:160px}
+}
+
+/* ── public funnel pages (English, LTR) ───────── */
+.pub{direction:ltr;text-align:left;max-width:760px}
+.pub h1{font-size:clamp(30px,5vw,44px)}
+.pub h1 em{font-style:normal;color:var(--brass)}
+.pub .sub{max-width:60ch}
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 8px;
+  border:1px solid var(--line);border-radius:var(--r);background:var(--panel);overflow:hidden}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:38px 1fr;gap:12px;
+  padding:14px 16px;border-bottom:1px solid var(--line);font-size:16.5px}
+ol.steps li:last-child{border-bottom:0}
+ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m);font-size:14px;
+  color:var(--brass)}
+.promptbox{white-space:pre-wrap;word-break:break-word;font-family:var(--m);font-size:14px;
+  line-height:1.7;background:var(--panel);border:1px solid var(--line);
+  border-left:4px solid var(--brass);border-radius:var(--r);padding:18px 20px;margin:0;
+  overflow-x:auto}
+.beehiiv{width:100%;height:270px;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--panel);margin:0 0 8px}

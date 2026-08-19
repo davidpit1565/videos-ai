@@ -12,3 +12,15 @@ export/*MYVOICE*.mp4
 audio/voice/*.wav
 audio/voice/profile/reference-raw.wav
 export/*CLONED*.mp4
+# delivery remux of a render that is already reproducible from render.sh
+export/*INSTAGRAM*.mp4
+
+# Next.js build output (studio)
+.next/
+*.tsbuildinfo
+
+# voice work files and caches
+audio/__pycache__/
+audio/voice/work/
+audio/voice/*-cues.json
+export/voice-AB*.m4a
