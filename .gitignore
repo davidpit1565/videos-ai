@@ -39,3 +39,8 @@ audio/voice/profile/line-candidates.json
 
 # the losing reference candidate — regenerable with audio/build_reference.py
 audio/voice/profile/reference-measured.wav
+
+# paced render and the Flemish listening options — both regenerable, and too large
+# for history: the retimed build, the reference windows and the scripts are all tracked
+export/*PACED*.mp4
+export/flemish-option-*.m4a
