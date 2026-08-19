@@ -22,7 +22,7 @@ def cues_from(path):
     raw = json.loads(m.group(1))
     out = []
     for c in raw:
-        txt = re.sub(r'<[^>]+>', '', c[2]).replace('\n', ' ').strip()
+        txt = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', c[2]).replace('\n', ' ')).strip()
         if txt:
             out.append((float(c[0]), float(c[1]), txt))
     return out

@@ -789,7 +789,7 @@ The goal is the best possible answer, not showing the methods.</pre>
   });
   var LIT=[21,28,31]; /* assumptions, red team, decision-making */
 
-  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+  function fmt(s){s=Math.max(0,Math.floor(s/RATE));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
 
   /* chapters + ticks */
   var chWrap=document.getElementById('chapters'), ticks=document.getElementById('ticks');
