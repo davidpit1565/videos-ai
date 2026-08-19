@@ -206,3 +206,30 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   overflow-x:auto}
 .beehiiv{width:100%;height:270px;border:1px solid var(--line);border-radius:var(--r);
   background:var(--panel);margin:0 0 8px}
+
+/* ── the week ────────────────────────────────── */
+.week{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:14px 0 8px}
+.day{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:10px 10px 12px;min-height:132px}
+.day.has{border-color:var(--brass-dim)}
+.day .dh{display:flex;align-items:baseline;justify-content:space-between;gap:6px;
+  padding-bottom:8px;margin-bottom:9px;border-bottom:1px solid var(--line)}
+.day .dh b{font-size:14.5px}
+.day .dh .num{font-size:13px;color:var(--faint)}
+.day .empty{color:var(--faint);text-align:center;padding:18px 0;font-size:20px}
+.wcard{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;
+  padding:9px 10px;margin-bottom:8px}
+.wcard .t{font-size:14px;font-weight:700;line-height:1.35;margin-bottom:8px}
+.wcard .t .num{color:var(--brass);margin-inline-end:4px}
+.chs{display:flex;flex-wrap:wrap;gap:5px}
+.ch{background:transparent;border:1px solid var(--line-2);border-radius:999px;
+  padding:5px 10px;font-size:13px;color:var(--muted)}
+.ch.on{background:var(--brass);border-color:var(--brass);color:#141014;font-weight:700}
+.wcard .mini{margin-top:8px;font-size:13px;color:var(--faint)}
+@media(max-width:900px){
+  .week{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .week{grid-template-columns:1fr}
+  .day{min-height:0}
+}

@@ -1,3 +1,9 @@
+export type Channel = "ig" | "tiktok" | "yt" | "ytlong";
+export const CHANNELS: Channel[] = ["ig", "tiktok", "yt", "ytlong"];
+export const CHANNEL_HE: Record<Channel, string> = {
+  ig: "אינסטגרם", tiktok: "טיקטוק", yt: "Shorts", ytlong: "יוטיוב ארוך",
+};
+
 export type Status = "idea" | "script" | "voice" | "render" | "testing" | "live";
 export type Format = "reel" | "long" | "both";
 
@@ -28,6 +34,10 @@ export type Episode = {
   shares: number | null;
   /** how many subscribers this episode brought — entered by hand, since no API attributes it */
   subsAttributed: number | null;
+  /** planned publish date, YYYY-MM-DD. The week view is built from this. */
+  publishOn?: string | null;
+  /** where it goes out. One build, several platforms, no extra work. */
+  channels?: Channel[];
 };
 
 export type Snapshot = {
@@ -88,3 +98,18 @@ export function saveRate(e: Episode): number | null {
   if (!e.views || e.saves == null) return null;
   return e.saves / e.views;
 }
+
+/** Sunday to Friday. Saturday is off — his rule, and the schedule respects it. */
+export function weekDays(from: Date): string[] {
+  const d = new Date(from);
+  d.setDate(d.getDate() - ((d.getDay() + 7) % 7));   // back to Sunday
+  const out: string[] = [];
+  for (let i = 0; i < 6; i++) {
+    const x = new Date(d);
+    x.setDate(d.getDate() + i);
+    out.push(x.toISOString().slice(0, 10));
+  }
+  return out;
+}
+
+export const DAY_HE = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי"];
