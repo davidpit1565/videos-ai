@@ -8,3 +8,5 @@ node_modules/
 # secrets — never commit
 .env
 *.token
+export/*MYVOICE*.mp4
+audio/voice/*.wav
