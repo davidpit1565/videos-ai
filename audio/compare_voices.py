@@ -1,9 +1,10 @@
-Usage: python3 audio/compare_voices.py
-Writes audio/voice/test/v*.wav and export/voice-test-5-versions.m4a.
-
 """One labelled listening test that separates the three things that changed between the
 version he liked and the one he rejected: which reference, which generation parameters,
-and how hard the polish chain pushes. Same three sentences in every variant."""
+and how hard the polish chain pushes. Same three sentences in every variant.
+
+Usage: python3 audio/compare_voices.py
+Writes audio/voice/test/v*.wav and export/voice-test-5-versions.m4a.
+"""
 import os, subprocess, tempfile, numpy as np, librosa, torch, torchaudio, warnings
 warnings.filterwarnings("ignore")
 from safetensors.torch import load_file
