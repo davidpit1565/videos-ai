@@ -1,0 +1,6 @@
+# Rendered long-form video — too large for git. Rebuild with export/render.sh
+export/tutorial-1920x1080.mp4
+export/*.webm
+audio/tutorial-narration.wav
+node_modules/
+.DS_Store

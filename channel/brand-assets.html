@@ -1,0 +1,88 @@
+<title>Actually Works — Brand Assets</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Assistant:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--ink:#0E1116;--ink-2:#151A22;--line:#2A313D;--brass:#E8C86A;--brass-dim:#8A7434;
+--clay:#C96A4E;--text:#EEF0F3;--muted:#8C97A8;
+--f-d:'Archivo',Arial,sans-serif;--f-b:'Assistant',system-ui,sans-serif;--f-m:'IBM Plex Mono',monospace}
+*{box-sizing:border-box}
+body{margin:0;background:#07090C;color:var(--text);font-family:var(--f-b);padding:28px}
+h3{font-family:var(--f-d);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-dim);margin:30px 0 10px}
+.note{color:var(--muted);font-size:14px;margin:0 0 14px;max-width:70ch}
+
+/* ── avatar 400×400 ─────────────────────────── */
+#avatar{width:400px;height:400px;background:var(--ink);display:grid;place-items:center;position:relative;overflow:hidden}
+#avatar .mark{position:relative;display:grid;place-items:center;width:250px;height:250px}
+#avatar .tick{
+  width:126px;height:64px;border-left:24px solid var(--brass);border-bottom:24px solid var(--brass);
+  transform:rotate(-45deg) translate(4px,-10px)
+}
+#avatar .ring{position:absolute;inset:0;border:3px solid var(--brass-dim);border-radius:50%;opacity:.45}
+
+/* ── youtube banner 2560×1440 ───────────────── */
+#banner{width:2560px;height:1440px;background:var(--ink);position:relative;overflow:hidden}
+#banner .safe{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:1546px;height:423px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:26px
+}
+#banner .eyebrow{font-family:var(--f-m);font-size:26px;letter-spacing:.32em;text-transform:uppercase;color:var(--brass);display:flex;align-items:center;justify-content:center;gap:22px}
+#banner .eyebrow::before{content:"";width:70px;height:2px;background:var(--brass);opacity:.7}
+#banner h1{font-family:var(--f-d);font-weight:700;font-size:132px;line-height:.98;letter-spacing:-.035em;margin:0}
+#banner h1 em{font-style:normal;color:var(--brass)}
+#banner p{font-size:34px;color:var(--muted);margin:0}
+#banner .glow{position:absolute;right:-260px;bottom:-380px;width:1100px;height:1100px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,200,106,.16),transparent 62%)}
+#banner .rule{position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,var(--brass),transparent 62%)}
+
+/* ── thumbnail 1280×720 ─────────────────────── */
+#thumb{width:1280px;height:720px;background:var(--ink);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 88px;gap:30px}
+#thumb .eyebrow{font-family:var(--f-m);font-size:22px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);display:flex;align-items:center;gap:18px}
+#thumb .eyebrow::before{content:"";width:56px;height:2px;background:var(--brass);opacity:.7}
+#thumb h2{font-family:var(--f-d);font-weight:700;font-size:132px;line-height:.94;letter-spacing:-.035em;margin:0;max-width:15ch}
+#thumb h2 em{font-style:normal;color:var(--brass)}
+#thumb .foot{position:absolute;left:88px;bottom:52px;font-family:var(--f-m);font-size:22px;letter-spacing:.24em;text-transform:uppercase;color:#4A5462}
+#thumb .glow{position:absolute;right:-220px;top:-220px;width:820px;height:820px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,200,106,.14),transparent 62%)}
+
+/* ── 4:5 grid post 1080×1350 ────────────────── */
+#grid{width:1080px;height:1350px;background:var(--ink);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 84px;gap:40px}
+#grid .eyebrow{font-family:var(--f-m);font-size:24px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);display:flex;align-items:center;gap:18px}
+#grid .eyebrow::before{content:"";width:56px;height:2px;background:var(--brass);opacity:.7}
+#grid h2{font-family:var(--f-d);font-weight:700;font-size:104px;line-height:1;letter-spacing:-.035em;margin:0}
+#grid h2 em{font-style:normal;color:var(--brass)}
+#grid p{font-size:38px;line-height:1.4;color:var(--muted);margin:0}
+#grid .foot{position:absolute;left:84px;bottom:64px;font-family:var(--f-m);font-size:24px;letter-spacing:.26em;text-transform:uppercase;color:#4A5462}
+.shot{transform-origin:top left}
+</style>
+
+<h3>Avatar · 400×400 · #avatar</h3>
+<p class="note">A brass check mark — “actually works”, confirmed — inside a faint ring. Readable down to 32px because it's one shape, no text.</p>
+<div id="avatar"><div class="mark"><div class="ring"></div><div class="tick"></div></div></div>
+
+<h3>YouTube banner · 2560×1440, safe area 1546×423 · #banner</h3>
+<p class="note">Everything sits inside the safe area, so nothing important is cropped on phones.</p>
+<div id="banner" class="shot" style="transform:scale(.34)"><div class="glow"></div>
+  <div class="safe">
+    <span class="eyebrow">AI setups you can copy</span>
+    <h1>Actually <em>Works</em></h1>
+    <p>The exact screen, the exact paste — and the honest part. New video Tuesdays.</p>
+  </div><div class="rule"></div></div>
+<div style="height:430px"></div>
+
+<h3>Video thumbnail · 1280×720 · #thumb</h3>
+<p class="note">Template for episode 1. Three to five words, ≥120px type, one brass element.</p>
+<div id="thumb" class="shot" style="transform:scale(.55)"><div class="glow"></div>
+  <span class="eyebrow">01 · ChatGPT</span>
+  <h2>Paste this <em>once</em>.</h2>
+  <span class="foot">actually works</span>
+</div>
+<div style="height:340px"></div>
+
+<h3>Grid post · 1080×1350 (4:5) · #grid</h3>
+<p class="note">The Sunday post: one line pulled from the week's video.</p>
+<div id="grid" class="shot" style="transform:scale(.42)">
+  <span class="eyebrow">The honest part</span>
+  <h2>Delivered: <em>guaranteed</em>.<br>Obeyed: <em>likely</em>.</h2>
+  <p>Custom Instructions always reach the model. Whether it follows every line, every time, is a different word.</p>
+  <span class="foot">@actuallyworks.ai</span>
+</div>
+<div style="height:520px"></div>

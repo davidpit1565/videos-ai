@@ -1,0 +1,438 @@
+<title>Paste This Once</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Assistant:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ink:#0E1116;--ink-2:#151A22;--surface:#1B2029;--line:#2A313D;
+  --brass:#E8C86A;--brass-dim:#8A7434;--steel:#6FA8CF;--clay:#C96A4E;--ok:#69B98B;
+  --text:#EEF0F3;--muted:#8C97A8;
+  --f-display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --f-body:'Assistant','Segoe UI',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --f-ui:'Inter','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#07090C;color:var(--text);font-family:var(--f-body);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:38px;align-items:flex-start;justify-content:center;padding:30px 20px 70px;flex-wrap:wrap}
+
+/* ── the 9:16 frame ─────────────────────────────── */
+.reel{width:min(430px,92vw);flex:0 0 auto}
+.frame{
+  position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)
+}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .3s ease}
+.scene.active{opacity:1;visibility:visible}
+.pad{position:absolute;inset:0;padding:14cqw 7cqw 52cqw;display:flex;flex-direction:column;justify-content:center;gap:4cqw}
+.b{opacity:0;transform:translateY(3cqw);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.75,.3,1)}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.scene{transition-duration:1ms!important}}
+
+/* persistent chrome */
+.eyebrow{
+  position:absolute;left:7cqw;top:6cqw;font-family:var(--f-mono);font-size:2.6cqw;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--brass);display:flex;align-items:center;gap:2cqw;z-index:5
+}
+.eyebrow::before{content:"";width:6cqw;height:1px;background:var(--brass);opacity:.6}
+.idx{
+  position:absolute;right:7cqw;top:6cqw;font-family:var(--f-mono);font-size:2.6cqw;
+  letter-spacing:.16em;color:var(--muted);z-index:5
+}
+.wipe{position:absolute;left:0;right:0;height:.6cqw;background:var(--brass);top:50%;z-index:9;transform:scaleX(0);transform-origin:left}
+.wipe.go{animation:swipe .38s ease-in-out}
+@keyframes swipe{0%{transform:scaleX(0);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}51%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+
+/* type */
+h2{font-family:var(--f-display);font-weight:700;font-size:9cqw;line-height:1.04;letter-spacing:-.03em;margin:0;text-wrap:balance}
+h2.sm{font-size:7cqw}
+p.lede{font-size:4.4cqw;line-height:1.4;color:var(--muted);margin:0}
+p.lede strong{color:var(--text);font-weight:700}
+.tiny{font-family:var(--f-mono);font-size:2.6cqw;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.brasstext{color:var(--brass)}
+
+.card{border:1px solid var(--line);background:var(--ink-2);border-radius:4px;padding:3.4cqw 3.8cqw;font-size:4.2cqw;line-height:1.3}
+.card.strike{color:var(--muted)}
+.card.strike s{text-decoration-color:var(--clay);text-decoration-thickness:.5cqw}
+.pill{
+  display:inline-block;font-family:var(--f-mono);font-size:3cqw;letter-spacing:.1em;
+  border:1px solid var(--brass);color:var(--brass);border-radius:3px;padding:1.6cqw 3cqw
+}
+.stack{display:flex;flex-direction:column;gap:2.2cqw}
+.instrblock{
+  font-family:var(--f-mono);font-size:2.75cqw;line-height:1.75;color:#C6CCD6;
+  background:var(--ink-2);border:1px solid var(--line);border-left:.8cqw solid var(--brass);
+  border-radius:3px;padding:3.4cqw
+}
+
+/* ── realistic ChatGPT mock ─────────────────────── */
+.gpt{
+  font-family:var(--f-ui);background:#212121;border-radius:5px;overflow:hidden;
+  border:1px solid #333;display:flex;flex-direction:column
+}
+.gpt .top{display:flex;align-items:center;justify-content:space-between;padding:3cqw 3.4cqw;color:#ECECEC;font-size:3.4cqw;font-weight:500}
+.gpt .top .ham{display:flex;flex-direction:column;gap:.7cqw}
+.gpt .top .ham i{display:block;width:4cqw;height:.45cqw;background:#9B9B9B;border-radius:1px}
+.gpt .top .av{width:5.4cqw;height:5.4cqw;border-radius:50%;background:#5B6B7F;display:grid;place-items:center;font-size:2.6cqw;color:#fff}
+.gpt .thread{padding:1cqw 3.4cqw 3cqw;display:flex;flex-direction:column;gap:3cqw}
+.gpt .u{align-self:flex-end;max-width:82%;background:#303030;color:#ECECEC;border-radius:5cqw;padding:2.6cqw 3.6cqw;font-size:3.5cqw;line-height:1.35}
+.gpt .a{color:#ECECEC;font-size:3.4cqw;line-height:1.55;max-width:96%}
+.gpt .a.dull{color:#B4B4B4}
+.gpt .a b{color:var(--brass);font-weight:600;display:block;font-size:2.9cqw;margin-bottom:.4cqw;font-family:var(--f-ui)}
+.gpt .comp{margin:1cqw 3.4cqw 3.4cqw;background:#303030;border-radius:6cqw;padding:2.8cqw 3.4cqw;display:flex;align-items:center;justify-content:space-between;color:#8E8E8E;font-size:3.3cqw}
+.gpt .comp .send{width:6cqw;height:6cqw;border-radius:50%;background:#676767;display:grid;place-items:center;color:#212121;font-size:3cqw}
+.caret{display:inline-block;width:.4cqw;height:3.4cqw;background:#ECECEC;vertical-align:-.5cqw;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+
+/* settings modal */
+.modal{font-family:var(--f-ui);background:#2A2A2A;border:1px solid #3C3C3C;border-radius:5px;overflow:hidden}
+.modal .mh{padding:3cqw 3.6cqw;border-bottom:1px solid #3C3C3C;color:#ECECEC;font-size:3.8cqw;font-weight:600;display:flex;justify-content:space-between}
+.modal .mh span{color:#8E8E8E;font-weight:400}
+.modal .rows{display:flex;flex-direction:column}
+.modal .r{display:flex;align-items:center;justify-content:space-between;padding:2.9cqw 3.6cqw;color:#ECECEC;font-size:3.4cqw;border-bottom:1px solid #333}
+.modal .r span{display:flex;align-items:center}
+.modal .r .ic{width:3.6cqw;height:3.6cqw;margin-inline-end:2.6cqw;stroke:#8E8E8E;fill:none;stroke-width:1.3;flex:0 0 auto}
+.modal .r.hi .ic{stroke:var(--brass)}
+.modal .r .ch{color:#8E8E8E}
+.modal .r.hi{background:#3A3A3A}
+
+.ci{font-family:var(--f-ui);background:#2A2A2A;border:1px solid #3C3C3C;border-radius:5px;padding:3.4cqw;display:flex;flex-direction:column;gap:2.6cqw}
+.ci .lbl{color:#B4B4B4;font-size:2.9cqw}
+.ci .in{background:#212121;border:1px solid #444;border-radius:4px;padding:2.6cqw 3cqw;color:#ECECEC;font-size:3.2cqw;line-height:1.45;min-height:6cqw}
+.ci .in.big{min-height:22cqw}
+.ci .in.hot{border-color:var(--brass);box-shadow:0 0 0 .5cqw rgba(232,200,106,.16)}
+.ci .foot{display:flex;align-items:center;justify-content:space-between;gap:2cqw}
+.sw{display:inline-flex;align-items:center;gap:2cqw;color:#ECECEC;font-size:3cqw}
+.sw i{width:8cqw;height:4.4cqw;border-radius:3cqw;background:#5A5A5A;position:relative;transition:background .35s;display:block}
+.sw i::after{content:"";position:absolute;top:.6cqw;left:.6cqw;width:3.2cqw;height:3.2cqw;border-radius:50%;background:#ECECEC;transition:transform .35s}
+.sw.on i{background:var(--brass-dim)}
+.sw.on i::after{transform:translateX(3.6cqw);background:var(--brass)}
+.savebtn{background:#ECECEC;color:#1A1A1A;border-radius:4cqw;padding:2cqw 5cqw;font-size:3.2cqw;font-weight:600}
+.savebtn.hit{background:var(--brass)}
+.cursor{
+  position:absolute;width:5cqw;height:5cqw;border-radius:50%;transform:translate(-50%,-50%);
+  box-shadow:0 0 0 .5cqw rgba(232,200,106,.55),0 0 4cqw rgba(232,200,106,.5);
+  background:rgba(232,200,106,.18);z-index:8;transition:left .5s ease,top .5s ease,opacity .3s
+}
+
+/* burned-in captions — middle third, clear of Instagram UI */
+.subs{
+  position:absolute;left:6cqw;right:6cqw;bottom:34cqw;text-align:center;z-index:6;
+  font-family:var(--f-body);font-weight:700;font-size:5.4cqw;line-height:1.28;
+  text-shadow:0 .4cqw 1.4cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.85);white-space:pre-line
+}
+.subs em{font-style:normal;color:var(--brass)}
+.brandmark{
+  position:absolute;left:0;right:0;bottom:22cqw;text-align:center;z-index:6;
+  font-family:var(--f-mono);font-size:2.4cqw;letter-spacing:.3em;text-transform:uppercase;color:#4A5462
+}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(8,10,14,.7);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:18cqw;height:18cqw;border-radius:50%;border:.6cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:5cqw solid var(--brass);border-top:3cqw solid transparent;border-bottom:3cqw solid transparent;margin-inline-start:1.6cqw}
+
+/* controls */
+.ctl{display:flex;align-items:center;gap:12px;margin-top:12px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#2E3743;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#2E3743;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#141014;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--f-mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+/* headless render mode: ?render=1 — the frame becomes the whole viewport */
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .side,body.render .ctl,body.render .tapover{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+
+/* side notes */
+.side{flex:1 1 340px;max-width:520px}
+.side h1{font-family:var(--f-display);font-weight:700;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.025em;margin:0 0 6px;line-height:1.05}
+.side h1 em{font-style:normal;color:var(--brass)}
+.side .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-dim);margin:0 0 10px}
+.side h3{font-family:var(--f-display);font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-dim);margin:26px 0 10px}
+.side p,.side li{color:var(--muted);font-size:15px;line-height:1.65}
+.side strong{color:var(--text)}
+.side ul{margin:0;padding-inline-start:18px}
+.side pre{
+  font-family:var(--f-mono);font-size:12px;line-height:1.6;background:var(--ink-2);border:1px solid var(--line);
+  border-left:3px solid var(--brass);border-radius:3px;padding:14px;overflow-x:auto;white-space:pre-wrap;color:#C6CCD6;margin:0
+}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+
+<!-- S1 · HOOK 0–5.5 -->
+<section class="scene" data-in="0" data-out="5.5">
+  <span class="eyebrow">The problem</span><span class="idx">01 / 07</span>
+  <div class="pad">
+    <div class="gpt b" data-at="0.2">
+      <div class="top"><span class="ham"><i></i><i></i><i></i></span><span>ChatGPT ⌄</span><span class="av">D</span></div>
+      <div class="thread">
+        <div class="u">how do I grow my business?</div>
+        <div class="a dull">There are several ways to grow a business: improve your marketing, expand your product line, build customer loyalty, and consider new markets.</div>
+      </div>
+      <div class="comp"><span>Ask anything</span><span class="send">↑</span></div>
+    </div>
+    <h2 class="b" data-at="2.6">You're using about <span class="brasstext">10%</span> of it.</h2>
+  </div>
+</section>
+
+<!-- S2 · THE FIX 5.5–12 -->
+<section class="scene" data-in="5.5" data-out="12">
+  <span class="eyebrow">The fix</span><span class="idx">02 / 07</span>
+  <div class="pad">
+    <h2 class="b" data-at="5.6">One block of text. Pasted once.</h2>
+    <div class="instrblock b" data-at="7">You are my Universal AI Engine.<br><br>Automatically choose the best methods for every request. I should NOT need to use shortcuts.<br><br>Select only what is useful. Do not overthink simple requests.</div>
+    <p class="lede b" data-at="9.4">After that it decides <strong>how to think</strong> — on its own.</p>
+  </div>
+</section>
+
+<!-- S3 · WHAT IT IS 12–20 -->
+<section class="scene" data-in="12" data-out="20">
+  <span class="eyebrow">What it is</span><span class="idx">03 / 07</span>
+  <div class="pad">
+    <h2 class="sm b" data-at="12.1">It's called a <span class="brasstext">Custom Instruction</span>.</h2>
+    <div class="stack">
+      <div class="card b" data-at="14.4" style="border-color:var(--brass-dim)">A note pinned to ChatGPT's desk.</div>
+      <div class="card b" data-at="16" style="border-color:var(--brass-dim)">Read before <strong>every new chat</strong>.</div>
+      <div class="card b" data-at="17.6" style="border-color:var(--brass-dim)">You never type it again.</div>
+    </div>
+  </div>
+</section>
+
+<!-- S4 · SETUP 20–36 -->
+<section class="scene" data-in="20" data-out="36">
+  <span class="eyebrow">Setup · 40 seconds</span><span class="idx">04 / 07</span>
+  <div class="pad">
+    <div class="modal b" data-at="20.1" data-until="29">
+      <div class="mh">Settings <span>✕</span></div>
+      <div class="rows">
+        <div class="r"><span><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="5.8"/></svg>General</span><span class="ch">›</span></div>
+        <div class="r"><span><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.2 11h7.6M6 11V7a2 2 0 0 1 4 0v4M6.9 13.2h2.2"/></svg>Notifications</span><span class="ch">›</span></div>
+        <div class="r" id="rowPers"><span><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2l1.35 4.45L13.8 8l-4.45 1.35L8 13.8l-1.35-4.45L2.2 8l4.45-1.35z"/></svg>Personalization</span><span class="ch">›</span></div>
+        <div class="r"><span><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3.2a1.55 1.55 0 0 1 1.55 1.55v3.1a1.55 1.55 0 0 1-3.1 0v-3.1A1.55 1.55 0 0 1 8 3.2zM4.9 8a3.1 3.1 0 0 0 6.2 0M8 11.1v2"/></svg>Speech</span><span class="ch">›</span></div>
+        <div class="r" id="rowCI"><span><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 12.8l.9-2.9 6.4-6.4 2 2-6.4 6.4z"/></svg>Custom instructions</span><span class="ch">›</span></div>
+        <div class="r"><span><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.4l4.8 1.9v3.6c0 2.9-2.1 4.9-4.8 5.7-2.7-.8-4.8-2.8-4.8-5.7V4.3z"/></svg>Data controls</span><span class="ch">›</span></div>
+      </div>
+    </div>
+    <div class="ci b" data-at="29">
+      <span class="lbl">What traits should ChatGPT have?</span>
+      <div class="in">Direct, practical</div>
+      <span class="lbl">Anything else ChatGPT should know about you?</span>
+      <div class="in big" id="ciBig"><span id="typed"></span><span class="caret"></span></div>
+      <div class="foot">
+        <span class="sw" id="ciSw"><i></i> Enable for new chats</span>
+        <span class="savebtn" id="ciSave">Save</span>
+      </div>
+    </div>
+    <div class="cursor" id="cur" style="opacity:0"></div>
+  </div>
+</section>
+
+<!-- S5 · RESULT 36–49 -->
+<section class="scene" data-in="36" data-out="49">
+  <span class="eyebrow">The result</span><span class="idx">05 / 07</span>
+  <div class="pad">
+    <div class="gpt b" data-at="36.1">
+      <div class="top"><span class="ham"><i></i><i></i><i></i></span><span>ChatGPT ⌄</span><span class="av">D</span></div>
+      <div class="thread">
+        <div class="u">how do I grow my business?</div>
+        <div class="a b" data-at="40"><b>Assumptions</b>You're small, self-funded, and growth means revenue — not headcount.</div>
+        <div class="a b" data-at="43"><b>Risk you didn't ask about</b>One channel carries all your customers.</div>
+        <div class="a b" data-at="45.6"><b>Decision</b>Fix retention first. Call your last 10 churned customers this week.</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:2cqw;flex-wrap:wrap">
+      <span class="pill b" data-at="40">assumptions</span>
+      <span class="pill b" data-at="43">risks</span>
+      <span class="pill b" data-at="45.6">decision</span>
+    </div>
+    <p class="lede b" data-at="47.4"><strong>Zero commands typed.</strong></p>
+  </div>
+</section>
+
+<!-- S6 · LIMITS 49–56 -->
+<section class="scene" data-in="49" data-out="56">
+  <span class="eyebrow">Straight talk</span><span class="idx">06 / 07</span>
+  <div class="pad">
+    <h2 class="sm b" data-at="49.1">What it isn't.</h2>
+    <div class="stack">
+      <div class="card strike b" data-at="51"><s>A new AI model</s></div>
+      <div class="card strike b" data-at="52.4"><s>Software you install</s></div>
+      <div class="card strike b" data-at="53.8"><s>A guarantee it's correct</s></div>
+    </div>
+  </div>
+</section>
+
+<!-- S7 · CTA 56–62 -->
+<section class="scene" data-in="56" data-out="62">
+  <span class="eyebrow">Take it</span><span class="idx">07 / 07</span>
+  <div class="pad">
+    <h2 class="b" data-at="56.1">Full instruction in the caption.</h2>
+    <p class="lede b" data-at="58.6">Long walkthrough on YouTube — where it goes, how to test it, and where it breaks.</p>
+    <div class="b" data-at="60.4"><span class="pill">save this for later ↓</span></div>
+  </div>
+</section>
+
+<div class="wipe" id="wipe"></div>
+<div class="subs" id="subs"></div>
+<div class="brandmark">@actuallyworks.ai</div>
+<button class="tapover" id="tap" aria-label="Play"><span class="d"></span></button>
+</div><!-- /frame -->
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="62" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div><!-- /reel -->
+
+<div class="side">
+  <p class="k">Instagram Reel · 9:16 · 62 seconds</p>
+  <h1>Paste This <em>Once</em></h1>
+  <p>The short cut of the Universal AI Engine tutorial, built in the channel's house style. Play it in the frame — it runs on a real timeline with burned-in captions sized for muted, one-handed viewing.</p>
+
+  <h3>How to export it</h3>
+  <ul>
+    <li>Screen-record the frame at <strong>1080×1920</strong>, 30fps. Zoom the browser until the frame fills that height exactly.</li>
+    <li>Or rebuild it in your editor from <code>script/short-instagram-EN.md</code> — same beats, same timings.</li>
+    <li>Captions are burned in on purpose and sit clear of Instagram's bottom UI. Don't move them down.</li>
+    <li>Replace <strong>@actuallyworks.ai</strong> with your handle, and swap the mock panels for real screen captures if you want maximum credibility.</li>
+  </ul>
+
+  <h3>Caption to post with it</h3>
+  <pre>ChatGPT already knows ~40 ways to think.
+It just doesn't use them unless you ask.
+
+Paste this into Settings → Personalization →
+Custom instructions, turn the toggle on, hit Save:
+
+"You are my Universal AI Engine. Automatically
+choose the best methods for every request.
+I should NOT need to use shortcuts…"
+
+Full text + the 13-minute walkthrough → link in bio.
+
+Honest bit: this isn't a new model and it isn't
+software. It's an instruction layer. It makes
+ChatGPT think harder, not be right more often.</pre>
+
+  <h3>What's deliberate here</h3>
+  <ul>
+    <li><strong>One idea per frame.</strong> Vertical is not a crop — every beat is stacked and oversized.</li>
+    <li><strong>The interface uses Inter, the graphics use Archivo.</strong> That split is what makes a mock read as a real screen instead of a diagram.</li>
+    <li><strong>Brass marks the takeaway only.</strong> One brass element per frame, never two.</li>
+    <li><strong>The honesty beat stays in.</strong> Section 06 is part of the format, not a disclaimer.</li>
+  </ul>
+</div>
+</div>
+
+<script>
+(function(){
+  var DUR=62,t=0,playing=false,last=0,lastScene=null;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),wipe=document.getElementById('wipe');
+
+  var CUES=[
+    [0.2,2.9,"Most people use ChatGPT like a search box."],
+    [3.0,5.4,"Type a question, get a flat answer, move on."],
+    [5.6,8.4,"This is one block of text you paste in <em>once</em>."],
+    [8.5,11.9,"After that, it decides how to think — on its own."],
+    [12.1,15.4,"It's called a Custom Instruction."],
+    [15.5,19.9,"ChatGPT reads it before every new chat. Forever."],
+    [20.1,23.4,"Open Settings."],
+    [23.5,26.4,"Go to Personalization."],
+    [26.5,29.4,"Custom instructions."],
+    [29.5,32.4,"Paste it into the big box."],
+    [32.5,34.4,"Toggle it on."],
+    [34.5,35.9,"Hit Save. Done."],
+    [36.1,39.9,"Now ask the same question — in totally normal words."],
+    [40,42.9,"It states its assumptions."],
+    [43,45.5,"It raises risks you didn't ask about."],
+    [45.6,48.9,"And it ends with an actual decision."],
+    [49.1,51.9,"Now the straight talk."],
+    [52,55.9,"Not a new model. Not software. It won't make it correct."],
+    [56.1,58.5,"Full instruction's in the caption."],
+    [58.6,62,"Long walkthrough on YouTube."]
+  ];
+
+  var INSTR="You are my Universal AI Engine. Automatically choose the best methods for every request. I should NOT need to use shortcuts…";
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      s.classList.toggle('active',on); if(on) active=s;
+    }
+    if(active&&active!==lastScene){
+      if(lastScene&&playing){ wipe.classList.remove('go'); void wipe.offsetWidth; wipe.classList.add('go'); }
+      lastScene=active;
+    }
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    /* setup scene choreography */
+    var rp=document.getElementById('rowPers'),rc=document.getElementById('rowCI'),c=document.getElementById('cur');
+    if(rp){ rp.classList.toggle('hi',t>=23.5&&t<26.5); rc.classList.toggle('hi',t>=26.5&&t<29); }
+    if(c){
+      var tgt = t<26.5? 'rowPers' : t<29? 'rowCI' : t<33? 'ciBig' : t<34.5? 'ciSw' : 'ciSave';
+      var el=document.getElementById(tgt), show=t>=21&&t<35.6;
+      c.style.opacity=show?1:0;
+      if(show&&el){
+        var fr=frame.getBoundingClientRect(), r=el.getBoundingClientRect();
+        var nudge = (tgt==='ciBig')? 0.28 : 0.5;
+        c.style.left=(((r.left-fr.left)+r.width*nudge)/fr.width*100)+'%';
+        c.style.top=(((r.top-fr.top)+r.height*0.55)/fr.height*100)+'%';
+      }
+    }
+    var ty=document.getElementById('typed');
+    if(ty){ var f=t<=29.6?0:t>=32.4?1:(t-29.6)/2.8; ty.textContent=INSTR.slice(0,Math.round(f*INSTR.length)); }
+    var big=document.getElementById('ciBig'); if(big) big.classList.toggle('hot',t>29.4&&t<33);
+    var sw=document.getElementById('ciSw'); if(sw) sw.classList.toggle('on',t>33.2);
+    var sv=document.getElementById('ciSave'); if(sv) sv.classList.toggle('hit',t>34.6);
+
+    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
+    subs.innerHTML=txt;
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function frameLoop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(frameLoop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(frameLoop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;tap.classList.add('hide');render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+
+  /* headless render hook — used to export the MP4 */
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:play,pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>

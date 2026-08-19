@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Render a playable video build to a finished MP4 with narration and (optionally) music.
+#   ./render.sh <html> <width> <height> <seconds> <narration.wav> <out.mp4> [music.wav]
+set -euo pipefail
+HTML="$1"; W="$2"; H="$3"; DUR="$4"; VO="$5"; OUT="$6"; MUS="${7:-}"
+TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
+
+node /tmp/record.js "$(realpath "$HTML")" "$W" "$H" "$DUR" "$TMP"
+RAW="$(ls "$TMP"/*.webm)"
+
+# the page holds a black frame until playback starts — find where that ends
+START="$(ffmpeg -hide_banner -i "$RAW" -vf blackdetect=d=0.2:pix_th=0.02 -f null - 2>&1 \
+  | grep -o 'black_end:[0-9.]*' | head -1 | cut -d: -f2)"
+START="${START:-0}"
+echo "trimming ${START}s of pre-roll"
+
+VCHAIN="[0:v]fps=30,scale=${W}:${H}:flags=lanczos,setpts=PTS-STARTPTS[v]"
+VOCHAIN="[1:a]aresample=48000,highpass=f=85,acompressor=threshold=-18dB:ratio=3:attack=8:release=180[vo]"
+
+if [ -n "$MUS" ]; then
+  # music ducks under the voice rather than sitting at a fixed level, so the bed
+  # is audible in the gaps and never fights the narration
+  ffmpeg -hide_banner -loglevel error -y -ss "$START" -i "$RAW" -i "$VO" -i "$MUS" \
+    -filter_complex "$VCHAIN;$VOCHAIN;\
+[2:a]aresample=48000,volume=0.34[mus];\
+[vo]asplit=2[vo1][key];\
+[mus][key]sidechaincompress=threshold=0.05:ratio=9:attack=12:release=420[duck];\
+[vo1][duck]amix=inputs=2:duration=first:dropout_transition=0:normalize=0,\
+loudnorm=I=-14:TP=-1.5:LRA=11,apad[a]" \
+    -map "[v]" -map "[a]" -t "$DUR" \
+    -c:v libx264 -preset slow -crf 19 -profile:v high -pix_fmt yuv420p -movflags +faststart \
+    -c:a aac -b:a 192k "$OUT"
+else
+  ffmpeg -hide_banner -loglevel error -y -ss "$START" -i "$RAW" -i "$VO" \
+    -filter_complex "$VCHAIN;$VOCHAIN;[vo]loudnorm=I=-14:TP=-1.5:LRA=11,apad[a]" \
+    -map "[v]" -map "[a]" -t "$DUR" \
+    -c:v libx264 -preset slow -crf 19 -profile:v high -pix_fmt yuv420p -movflags +faststart \
+    -c:a aac -b:a 192k "$OUT"
+fi
+
+ffprobe -hide_banner -v error -show_entries format=duration,size -of default=nw=1 "$OUT"

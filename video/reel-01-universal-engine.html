@@ -1,0 +1,407 @@
+<title>Reel 01 — Universal Engine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Assistant:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#0B0E13;--ink-2:#141922;--line:#2A313D;
+  --brass:#F2CE63;--brass-hot:#FFD97A;--brass-dim:#8A7434;
+  --steel:#6FA8CF;--clay:#E0714E;--ok:#69B98B;
+  --text:#F2F4F7;--muted:#96A1B2;
+  --f-d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --f-b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --f-m:'IBM Plex Mono',ui-monospace,monospace;
+  --f-ui:'Inter','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#06080B;color:var(--text);font-family:var(--f-b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:36px;justify-content:center;padding:26px 18px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(420px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+/* ── living background ───────────────────────── */
+.bg{position:absolute;inset:-20%;z-index:0;filter:blur(14cqw);opacity:.85}
+.bg i{position:absolute;display:block;border-radius:50%}
+.bg .b1{width:70cqw;height:70cqw;background:rgba(242,206,99,.20)}
+.bg .b2{width:80cqw;height:80cqw;background:rgba(60,120,180,.20)}
+.bg .b3{width:55cqw;height:55cqw;background:rgba(224,113,78,.13)}
+.grain{position:absolute;inset:0;z-index:1;opacity:.035;pointer-events:none;
+  background-image:radial-gradient(#fff 1px,transparent 1px);background-size:3px 3px}
+
+/* ── retention bar ───────────────────────────── */
+.prog{position:absolute;left:0;top:0;height:.7cqw;background:var(--brass);z-index:12;width:0}
+
+.scene{position:absolute;inset:0;z-index:2;opacity:0;visibility:hidden;transition:opacity .22s ease}
+.scene.active{opacity:1;visibility:visible}
+.pad{position:absolute;inset:0;padding:12cqw 7cqw 39cqw;display:flex;flex-direction:column;
+  justify-content:center;gap:3.4cqw}
+.kb{will-change:transform}                        /* slow push, set from JS */
+
+.b{opacity:0;transform:translateY(2.6cqw) scale(.985);transition:opacity .34s ease,transform .38s cubic-bezier(.2,.8,.3,1)}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+.pop{transition:opacity .22s ease,transform .32s cubic-bezier(.2,1.5,.4,1)}
+.pop:not(.on){transform:scale(.86)}
+@media (prefers-reduced-motion:reduce){.b,.scene,.kb{transition-duration:1ms!important;animation:none!important}}
+
+/* ── chrome ──────────────────────────────────── */
+.eyebrow{position:absolute;left:7cqw;top:5.4cqw;z-index:6;font-family:var(--f-m);font-size:2.5cqw;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--brass);display:flex;align-items:center;gap:2cqw}
+.eyebrow::before{content:"";width:5cqw;height:1px;background:var(--brass);opacity:.7}
+.idx{position:absolute;right:7cqw;top:5.4cqw;z-index:6;font-family:var(--f-m);font-size:2.5cqw;
+  letter-spacing:.14em;color:var(--muted)}
+
+/* ── type ────────────────────────────────────── */
+h2{font-family:var(--f-d);font-weight:800;font-size:10cqw;line-height:.98;letter-spacing:-.035em;margin:0;text-wrap:balance}
+h2.sm{font-size:7.6cqw}
+h2 em{font-style:normal;color:var(--brass)}
+p.lede{font-size:4.3cqw;line-height:1.35;color:var(--muted);margin:0}
+p.lede strong{color:var(--text);font-weight:700}
+.big-num{font-family:var(--f-d);font-weight:800;font-size:26cqw;line-height:.85;letter-spacing:-.05em;color:var(--brass)}
+.pill{display:inline-block;font-family:var(--f-m);font-size:3cqw;letter-spacing:.08em;
+  border:1px solid var(--brass);color:var(--brass);border-radius:2px;padding:1.5cqw 2.8cqw;
+  background:rgba(242,206,99,.07)}
+.pill.ghost{border-color:var(--line);color:var(--muted);background:none}
+.card{border:1px solid var(--line);background:rgba(20,25,34,.82);backdrop-filter:blur(2px);
+  border-radius:4px;padding:3.2cqw 3.6cqw;font-size:4.1cqw;line-height:1.28}
+.card.strike{color:var(--muted)}
+.card.strike s{text-decoration-color:var(--clay);text-decoration-thickness:.5cqw}
+.stack{display:flex;flex-direction:column;gap:2cqw}
+.instrblock{font-family:var(--f-m);font-size:2.7cqw;line-height:1.7;color:#CFD6E0;
+  background:rgba(20,25,34,.9);border:1px solid var(--line);border-left:.8cqw solid var(--brass);
+  border-radius:3px;padding:3.2cqw}
+.step-row{display:flex;gap:2cqw;align-items:center;flex-wrap:wrap}
+
+/* ── ChatGPT mock ────────────────────────────── */
+.gpt{font-family:var(--f-ui);background:#212121;border-radius:5px;overflow:hidden;border:1px solid #333;
+  display:flex;flex-direction:column;box-shadow:0 3cqw 8cqw rgba(0,0,0,.55)}
+.gpt .top{display:flex;align-items:center;justify-content:space-between;padding:2.8cqw 3.2cqw;color:#ECECEC;font-size:3.3cqw;font-weight:500}
+.gpt .ham{display:flex;flex-direction:column;gap:.65cqw}
+.gpt .ham i{display:block;width:3.8cqw;height:.42cqw;background:#9B9B9B;border-radius:1px}
+.gpt .av{width:5.2cqw;height:5.2cqw;border-radius:50%;background:#5B6B7F;display:grid;place-items:center;font-size:2.5cqw;color:#fff}
+.gpt .thread{padding:1cqw 3.2cqw 3cqw;display:flex;flex-direction:column;gap:2.6cqw}
+.gpt .u{align-self:flex-end;max-width:84%;background:#303030;color:#ECECEC;border-radius:5cqw;padding:2.5cqw 3.4cqw;font-size:3.4cqw;line-height:1.35}
+.gpt .a{color:#ECECEC;font-size:3.3cqw;line-height:1.5;max-width:96%}
+.gpt .a.dull{color:#A8A8A8}
+.gpt .a b{color:var(--brass);font-weight:600;display:block;font-size:2.8cqw;margin-bottom:.3cqw}
+.gpt .comp{margin:0 3.2cqw 3.2cqw;background:#303030;border-radius:6cqw;padding:2.6cqw 3.2cqw;
+  display:flex;align-items:center;justify-content:space-between;color:#8E8E8E;font-size:3.2cqw}
+.gpt .comp .send{width:5.6cqw;height:5.6cqw;border-radius:50%;background:#676767;display:grid;place-items:center;color:#212121;font-size:2.8cqw}
+.caret{display:inline-block;width:.38cqw;height:3.2cqw;background:#ECECEC;vertical-align:-.5cqw;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+.modal{font-family:var(--f-ui);background:#2A2A2A;border:1px solid #3C3C3C;border-radius:5px;overflow:hidden;box-shadow:0 3cqw 8cqw rgba(0,0,0,.55)}
+.modal .mh{padding:2.8cqw 3.4cqw;border-bottom:1px solid #3C3C3C;color:#ECECEC;font-size:3.7cqw;font-weight:600;display:flex;justify-content:space-between}
+.modal .mh span{color:#8E8E8E;font-weight:400}
+.modal .r{display:flex;align-items:center;justify-content:space-between;padding:2.8cqw 3.4cqw;color:#ECECEC;font-size:3.3cqw;border-bottom:1px solid #333;transition:background .25s}
+.modal .r span{display:flex;align-items:center}
+.modal .r .ic{width:3.5cqw;height:3.5cqw;margin-inline-end:2.5cqw;stroke:#8E8E8E;fill:none;stroke-width:1.3;flex:0 0 auto;transition:stroke .25s}
+.modal .r .ch{color:#8E8E8E}
+.modal .r.hi{background:#3E3E3E}
+.modal .r.hi .ic{stroke:var(--brass)}
+.ci{font-family:var(--f-ui);background:#2A2A2A;border:1px solid #3C3C3C;border-radius:5px;padding:3.2cqw;
+  display:flex;flex-direction:column;gap:2.4cqw;box-shadow:0 3cqw 8cqw rgba(0,0,0,.55)}
+.ci .lbl{color:#B4B4B4;font-size:2.8cqw}
+.ci .in{background:#212121;border:1px solid #444;border-radius:4px;padding:2.5cqw 2.9cqw;color:#ECECEC;font-size:3.1cqw;line-height:1.45;min-height:6cqw;transition:border-color .3s,box-shadow .3s}
+.ci .in.big{min-height:20cqw}
+.ci .in.hot{border-color:var(--brass);box-shadow:0 0 0 .5cqw rgba(242,206,99,.18)}
+.ci .foot{display:flex;align-items:center;justify-content:space-between;gap:2cqw}
+.sw{display:inline-flex;align-items:center;gap:1.8cqw;color:#ECECEC;font-size:2.9cqw}
+.sw i{width:7.6cqw;height:4.2cqw;border-radius:3cqw;background:#5A5A5A;position:relative;transition:background .3s;display:block}
+.sw i::after{content:"";position:absolute;top:.55cqw;left:.55cqw;width:3.1cqw;height:3.1cqw;border-radius:50%;background:#ECECEC;transition:transform .3s,background .3s}
+.sw.on i{background:var(--brass-dim)}
+.sw.on i::after{transform:translateX(3.5cqw);background:var(--brass)}
+.savebtn{background:#ECECEC;color:#1A1A1A;border-radius:4cqw;padding:1.9cqw 4.6cqw;font-size:3.1cqw;font-weight:600;transition:background .25s,transform .25s}
+.savebtn.hit{background:var(--brass);transform:scale(1.06)}
+.cursor{position:absolute;width:4.6cqw;height:4.6cqw;border-radius:50%;transform:translate(-50%,-50%);z-index:8;
+  box-shadow:0 0 0 .5cqw rgba(242,206,99,.6),0 0 4cqw rgba(242,206,99,.55);background:rgba(242,206,99,.2);
+  transition:left .42s cubic-bezier(.4,0,.2,1),top .42s cubic-bezier(.4,0,.2,1),opacity .25s}
+.cursor.click{animation:ring .45s ease-out}
+@keyframes ring{0%{box-shadow:0 0 0 .5cqw rgba(242,206,99,.6)}100%{box-shadow:0 0 0 5cqw rgba(242,206,99,0)}}
+
+/* ── captions ────────────────────────────────── */
+.subs{position:absolute;left:5cqw;right:5cqw;bottom:26cqw;text-align:center;z-index:10;
+  font-family:var(--f-b);font-weight:800;font-size:5.9cqw;line-height:1.22;letter-spacing:-.015em;
+  text-shadow:0 .4cqw 1.6cqw rgba(0,0,0,.98),0 0 3.4cqw rgba(0,0,0,.9)}
+.subs em{font-style:normal;color:var(--brass-hot)}
+.handle{position:absolute;left:0;right:0;bottom:17cqw;text-align:center;z-index:10;
+  font-family:var(--f-m);font-size:2.3cqw;letter-spacing:.3em;text-transform:uppercase;color:#5A6472}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(6,8,11,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.6cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#2E3743;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#2E3743;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#141014;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--f-m);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+.side{flex:1 1 330px;max-width:500px}
+.side .k{font-family:var(--f-m);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-dim);margin:0 0 8px}
+.side h1{font-family:var(--f-d);font-weight:800;font-size:clamp(25px,3.2vw,36px);letter-spacing:-.03em;margin:0 0 12px;line-height:1.04}
+.side h1 em{font-style:normal;color:var(--brass)}
+.side h3{font-family:var(--f-d);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-dim);margin:24px 0 9px}
+.side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.6}
+.side strong{color:var(--text)}
+.side ul{margin:0;padding-inline-start:17px}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .side,body.render .ctl,body.render .tapover{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
+<div class="grain"></div>
+<div class="prog" id="prog"></div>
+
+<!-- S1 · PROBLEM 0–5.3 -->
+<section class="scene" data-in="0" data-out="5.3">
+  <span class="eyebrow">The problem</span><span class="idx">01/06</span>
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.4cqw">
+    <div class="gpt b" data-at="0.1">
+      <div class="top"><span class="ham"><i></i><i></i><i></i></span><span>ChatGPT ⌄</span><span class="av">D</span></div>
+      <div class="thread">
+        <div class="u">how do I grow my business?</div>
+        <div class="a dull">There are several ways to grow a business: improve your marketing, expand your product line, build customer loyalty, and consider new markets.</div>
+      </div>
+      <div class="comp"><span>Ask anything</span><span class="send">↑</span></div>
+    </div>
+    <div class="step-row b pop" data-at="2.7">
+      <span class="pill ghost">generic</span><span class="pill ghost">obvious</span><span class="pill ghost">useless</span>
+    </div>
+  </div></div>
+</section>
+
+<!-- S2 · THE FIX 5.4–11.5 -->
+<section class="scene" data-in="5.4" data-out="11.5">
+  <span class="eyebrow">The fix</span><span class="idx">02/06</span>
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.4cqw">
+    <h2 class="b" data-at="5.5">One block of text.<br><em>Pasted once.</em></h2>
+    <div class="instrblock b" data-at="7.2">You are my Universal AI Engine.<br><br>Automatically choose the best methods for every request. I should NOT need to use shortcuts.<br><br>Select only what is useful. Do not overthink simple requests.</div>
+    <p class="lede b" data-at="9.4">Then it picks its own reasoning — <strong>every single chat</strong>.</p>
+  </div></div>
+</section>
+
+<!-- S3 · SETUP 11.6–24.5 -->
+<section class="scene" data-in="11.6" data-out="24.5">
+  <span class="eyebrow">40 seconds, once</span><span class="idx">03/06</span>
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.4cqw">
+    <div class="modal b" data-at="11.7" data-until="20.3">
+      <div class="mh">Settings <span>✕</span></div>
+      <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="5.8"/></svg>General</span><span class="ch">›</span></div>
+      <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M4.2 11h7.6M6 11V7a2 2 0 0 1 4 0v4M6.9 13.2h2.2"/></svg>Notifications</span><span class="ch">›</span></div>
+      <div class="r" id="rowPers"><span><svg class="ic" viewBox="0 0 16 16"><path d="M8 2.2l1.35 4.45L13.8 8l-4.45 1.35L8 13.8l-1.35-4.45L2.2 8l4.45-1.35z"/></svg>Personalization</span><span class="ch">›</span></div>
+      <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M8 3.2a1.55 1.55 0 0 1 1.55 1.55v3.1a1.55 1.55 0 0 1-3.1 0v-3.1A1.55 1.55 0 0 1 8 3.2zM4.9 8a3.1 3.1 0 0 0 6.2 0M8 11.1v2"/></svg>Speech</span><span class="ch">›</span></div>
+      <div class="r" id="rowCI"><span><svg class="ic" viewBox="0 0 16 16"><path d="M3.2 12.8l.9-2.9 6.4-6.4 2 2-6.4 6.4z"/></svg>Custom instructions</span><span class="ch">›</span></div>
+      <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M8 2.4l4.8 1.9v3.6c0 2.9-2.1 4.9-4.8 5.7-2.7-.8-4.8-2.8-4.8-5.7V4.3z"/></svg>Data controls</span><span class="ch">›</span></div>
+    </div>
+    <div class="ci b" data-at="20.3">
+      <span class="lbl">Anything else ChatGPT should know about you?</span>
+      <div class="in big" id="ciBig"><span id="typed"></span><span class="caret"></span></div>
+      <div class="foot">
+        <span class="sw" id="ciSw"><i></i> Enable for new chats</span>
+        <span class="savebtn" id="ciSave">Save</span>
+      </div>
+    </div>
+  </div>
+  <div class="cursor" id="cur" style="opacity:0"></div>
+  </div>
+</section>
+
+<!-- S4 · RESULT 24.6–41.5 -->
+<section class="scene" data-in="24.6" data-out="41.5">
+  <span class="eyebrow">Same question</span><span class="idx">04/06</span>
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
+    <div class="gpt b" data-at="24.7">
+      <div class="top"><span class="ham"><i></i><i></i><i></i></span><span>ChatGPT ⌄</span><span class="av">D</span></div>
+      <div class="thread">
+        <div class="u">how do I grow my business?</div>
+        <div class="a b" data-at="28.5" data-until="34.4"><b>Assumptions</b>You're small, self-funded, and growth means revenue — not headcount.</div>
+        <div class="a b" data-at="31.5" data-until="37.4"><b>Risk you didn't ask about</b>One channel carries all your customers.</div>
+        <div class="a b" data-at="34.5"><b>Decision</b>Fix retention first. Call your last 10 churned customers this week.</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <span class="pill b pop" data-at="28.5">assumptions</span>
+      <span class="pill b pop" data-at="31.5">risks</span>
+      <span class="pill b pop" data-at="34.5">decision</span>
+    </div>
+    <h2 class="sm b" data-at="38.1"><em>Zero</em> commands typed.</h2>
+  </div></div>
+</section>
+
+<!-- S5 · HONEST 41.6–49 -->
+<section class="scene" data-in="41.6" data-out="49">
+  <span class="eyebrow">The honest part</span><span class="idx">05/06</span>
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
+    <div class="stack">
+      <div class="card strike b" data-at="41.7"><s>A new AI model</s></div>
+      <div class="card strike b" data-at="42.9"><s>Software you install</s></div>
+      <div class="card strike b" data-at="44.1"><s>A guarantee it's right</s></div>
+    </div>
+    <h2 class="sm b" data-at="45.6">It thinks <em>harder</em>.<br>Not <em>righter</em>.</h2>
+  </div></div>
+</section>
+
+<!-- S6 · CTA 49.1–55 -->
+<section class="scene" data-in="49.1" data-out="55">
+  <span class="eyebrow">Take it</span><span class="idx">06/06</span>
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.4cqw;align-items:flex-start">
+    <span class="big-num b pop" data-at="49.2">↓</span>
+    <h2 class="b" data-at="49.9">Full text in the caption.</h2>
+    <p class="lede b" data-at="52.5">Follow for AI setups that <strong>actually work</strong> — including what breaks.</p>
+  </div></div>
+</section>
+
+<div class="subs" id="subs"></div>
+<div class="handle">@actuallyworks.ai</div>
+<button class="tapover" id="tap" aria-label="Play"><span class="d"></span></button>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="55" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+
+<div class="side">
+  <p class="k">Reel 01 · 9:16 · 55 seconds</p>
+  <h1>Actually <em>Works</em> — Episode 01</h1>
+  <p>Rebuilt after the first cut ran flat. Same information, different physics.</p>
+
+  <h3>What changed and why</h3>
+  <ul>
+    <li><strong>Nothing is ever still.</strong> A drifting colour field behind everything, and every scene slowly pushes in. A static frame reads as a slideshow, and people swipe past slideshows.</li>
+    <li><strong>Twice the beat rate.</strong> Something enters, changes or leaves roughly every 1.2 seconds. 62s → 55s with more in it.</li>
+    <li><strong>Captions carry the emphasis.</strong> One word per line goes brass. On mute — which is most viewers — that word is the whole message.</li>
+    <li><strong>A progress bar.</strong> Visible progress measurably reduces mid-video drop-off.</li>
+    <li><strong>Answers now expire.</strong> Old blocks leave as new ones arrive, so the frame never turns into a wall of text.</li>
+    <li><strong>Music.</strong> Synthesised per video, exactly the right length, and impossible to copyright-claim.</li>
+  </ul>
+
+  <h3>Still the weak link</h3>
+  <p>The voice. It's a local neural TTS and it sounds like one. Two fixes, in order of how much they'd help: <strong>record it yourself</strong> — your voice, no camera, free, and instantly better than any synthetic option — or <strong>ElevenLabs</strong> at a few dollars a month. Everything else in the pipeline stays identical; only the WAV changes.</p>
+</div>
+</div>
+
+<script>
+(function(){
+  var DUR=55,t=0,playing=false,last=0,lastScene=null;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+  var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+
+  var CUES=[
+    [0.25,2.7,"Your ChatGPT gives you <em>generic</em> answers."],
+    [2.8,5.3,"Not because it's dumb.<br>Nobody told it <em>how to think</em>."],
+    [5.5,8.4,"One block of text.<br>Pasted <em>once</em>."],
+    [8.5,11.4,"Then it picks its own reasoning — every chat."],
+    [11.7,14.4,"Open <em>Settings</em>."],
+    [14.5,17.4,"Go to <em>Personalization</em>."],
+    [17.5,20.2,"<em>Custom instructions</em>."],
+    [20.4,24.4,"Paste. Toggle on. <em>Save</em>."],
+    [24.7,28.4,"Now ask the same question. Normal words."],
+    [28.5,31.4,"It states what it's <em>assuming</em>."],
+    [31.5,34.4,"It finds the risk you didn't ask about."],
+    [34.5,37.9,"It ends with a <em>decision</em>. Not a list."],
+    [38.1,41.4,"You typed <em>zero</em> commands."],
+    [41.7,45.4,"The honest part: this isn't a new model."],
+    [45.6,48.9,"It makes ChatGPT think <em>harder</em> — not be right more often."],
+    [49.2,52.4,"Full instruction's in the caption."],
+    [52.5,55,"Follow for setups that <em>actually work</em>."]
+  ];
+  var INSTR="You are my Universal AI Engine. Automatically choose the best methods for every request. I should NOT need to use shortcuts…";
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      s.classList.toggle('active',on); if(on) active=s;
+    }
+    if(active&&active!==lastScene) lastScene=active;
+
+    /* slow push-in, restarted for each scene */
+    if(active){
+      var f=(t-+active.dataset.in)/((+active.dataset.out)-(+active.dataset.in));
+      var kbs=active.querySelectorAll('.kb');
+      for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.055*f).toFixed(4)+') translateY('+(-1.2*f).toFixed(2)+'cqw)';
+    }
+
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    /* drifting colour field */
+    b1.style.left=(18+16*Math.sin(t*0.19))+'%';   b1.style.top=(10+20*Math.cos(t*0.14))+'%';
+    b2.style.left=(52+20*Math.cos(t*0.11+1.4))+'%'; b2.style.top=(48+22*Math.sin(t*0.16+.6))+'%';
+    b3.style.left=(30+26*Math.sin(t*0.09+2.1))+'%'; b3.style.top=(70+14*Math.cos(t*0.13+1.1))+'%';
+
+    /* setup choreography */
+    var rp=document.getElementById('rowPers'),rc=document.getElementById('rowCI'),c=document.getElementById('cur');
+    if(rp){ rp.classList.toggle('hi',t>=14.5&&t<17.5); rc.classList.toggle('hi',t>=17.5&&t<20.2); }
+    if(c){
+      var tgt=t<17.5?'rowPers':t<20.3?'rowCI':t<22.6?'ciBig':t<23.6?'ciSw':'ciSave';
+      var el=document.getElementById(tgt),show=t>=12.4&&t<24.3;
+      c.style.opacity=show?1:0;
+      if(show&&el){
+        var fr=frame.getBoundingClientRect(),r=el.getBoundingClientRect();
+        if(r.width){
+          c.style.left=(((r.left-fr.left)+r.width*(tgt==='ciBig'?0.3:0.5))/fr.width*100)+'%';
+          c.style.top=(((r.top-fr.top)+r.height*0.55)/fr.height*100)+'%';
+        }
+      }
+      var clickAt=[14.5,17.5,20.4,23.0,23.9];
+      var near=clickAt.some(function(x){return Math.abs(t-x)<0.12;});
+      c.classList.toggle('click',near);
+    }
+    var ty=document.getElementById('typed');
+    if(ty){ var g=t<=20.6?0:t>=22.6?1:(t-20.6)/2.0; ty.textContent=INSTR.slice(0,Math.round(g*INSTR.length)); }
+    var big=document.getElementById('ciBig'); if(big) big.classList.toggle('hot',t>20.4&&t<23.2);
+    var sw=document.getElementById('ciSw'); if(sw) sw.classList.toggle('on',t>23.1);
+    var sv=document.getElementById('ciSave'); if(sv) sv.classList.toggle('hit',t>23.9);
+
+    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
+    subs.innerHTML=txt;
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;tap.classList.add('hide');render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>
