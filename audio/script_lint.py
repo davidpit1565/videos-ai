@@ -51,7 +51,7 @@ SWAP = {
 RULES = [
     # (name, pattern, why)
     ("unstressed -ER", re.compile(r"^[a-z]{3,}er$"), "the R after a vowel drops"),
-    ("-LE / -BLE", re.compile(r"^[a-z]{3,}[bpdtgkfv]?le$"), "the final syllable disappears"),
+    ("-LE / -BLE", re.compile(r"^[a-z]{2,}[^aeiou]le$"), "the final syllable disappears"),
     ("-IBLE / -ABLE", re.compile(r"^[a-z]{3,}[ia]ble$"), "two unstressed syllables, both soft"),
     ("-LY", re.compile(r"^[a-z]{4,}ly$"), "the L is dark and the Y trails off"),
     ("R + cluster", re.compile(r"^[a-z]{2,}(rld|rs|rse|rce|rst|rth|rn)e?$"),
@@ -71,11 +71,14 @@ def cues_from_html(path):
 
 BRAND = re.compile(r"actually\s+works", re.I)
 
+STOP = {"with", "both", "this", "that", "they", "than", "then", "there", "these", "those",
+        "their", "other", "over", "after", "under", "ever", "never"}
+
 def check(line):
     hits = []
     for raw in line.split():
         w = re.sub(r"[^A-Za-z'-]", "", raw).lower()
-        if len(w) < 3:
+        if len(w) < 3 or w in STOP:
             continue
         for name, pat, why in RULES:
             if pat.match(w):
