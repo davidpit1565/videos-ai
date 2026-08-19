@@ -76,7 +76,10 @@ def main():
         want = {w.strip().lower() for w in a.words.split(",")}
         cases = [c for c in CASES if c[0] in want]
 
-    import torch, torchaudio
+    import librosa, torch, torchaudio
+    import sys as _sys
+    _sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from line_doctor import tail_energy
     torch.set_num_threads(os.cpu_count() or 4)
     if a.lang:
         from chatterbox.mtl_tts import ChatterboxMultilingualTTS as TTS
@@ -88,7 +91,7 @@ def main():
     asr = WhisperModel("small", device="cpu", compute_type="int8")
     tmp = tempfile.mkdtemp()
 
-    def say(text, seed):
+    def say(text, seed, target=None):
         torch.manual_seed(seed)
         kw = dict(audio_prompt_path=a.ref, exaggeration=a.exaggeration,
                   cfg_weight=a.cfg, temperature=0.75)
@@ -99,8 +102,20 @@ def main():
         torchaudio.save(p, wav, m.sr)
         subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-i",p,
                         "-ar","16000","-ac","1",p+"16.wav"], check=True)
-        segs, _ = asr.transcribe(p+"16.wav", language=a.lang or "en")
-        return " ".join(s.text for s in segs).strip(), p
+        segs, _ = asr.transcribe(p + "16.wav", language=a.lang or "en", word_timestamps=True)
+        segs = list(segs)
+        heard = " ".join(s.text for s in segs).strip()
+        tail = None
+        if target:
+            words = [(w.word.strip(" ,.!?—").lower(), w.start, w.end)
+                     for s in segs for w in (s.words or [])]
+            hit = next((w for w in words if w[0] == target.lower()), None)
+            if hit:
+                y, sr = librosa.load(p, sr=None, mono=True)
+                tail = tail_energy(y, sr, hit[1], hit[2])
+                if tail is not None:
+                    tail = round(float(tail), 1)
+        return heard, tail
 
     # respelling candidates, tried in order until the transcriber hears the real word
     RESPELL = {
@@ -117,26 +132,41 @@ def main():
         "water":  ["wauter", "wah-ter"],
     }
 
+    # a tail this weak is what he hears as a swallowed letter; measured on his chosen settings
+    WEAK = -18.0
+
     rows = []
     for word, sentence, sound in cases:
-        heard, _ = say(sentence, 7)
+        heard, tail = say(sentence, 7, word)
         ok = word.lower() in norm(heard).split()
+        soft = ok and tail is not None and tail < WEAK
         fix = None
-        if not ok:
+        if not ok or soft:
             for cand in RESPELL.get(word, [])[: a.tries]:
-                h2, _ = say(sentence.replace(word, cand), 7)
-                if word.lower() in norm(h2).split():
-                    fix, heard = cand, h2
-                    ok = True
+                h2, t2 = say(sentence.replace(word, cand), 7, word)
+                heard_ok = word.lower() in norm(h2).split()
+                # only accept a respelling that keeps the word AND lands the ending harder
+                if heard_ok and (not ok or (t2 is not None and tail is not None and t2 > tail + 1.0)):
+                    fix, heard, tail, ok = cand, h2, t2, True
+                    soft = t2 is not None and t2 < WEAK
                     break
-        rows.append({"word": word, "sound": sound, "ok": ok, "heard": heard, "respell": fix})
-        mark = "ok  " if ok and not fix else ("fix " if ok else "FAIL")
-        print(f"{mark} {word:10} {sound:26} heard: {heard[:60]}", flush=True)
+        rows.append({"word": word, "sound": sound, "ok": ok, "soft": bool(soft),
+                     "tail_db": tail, "heard": heard, "respell": fix})
+        mark = "FAIL" if not ok else ("soft" if soft else ("fix " if fix else "ok  "))
+        print(f"{mark} {word:10} {sound:26} tail {str(tail):>6}  heard: {heard[:46]}", flush=True)
 
     bad = [r for r in rows if not r["ok"]]
+    soft = [r for r in rows if r.get("soft")]
     fixed = [r for r in rows if r["respell"]]
-    print(f"\n{len(rows)-len(bad)}/{len(rows)} correct · {len(fixed)} needed a respelling · "
-          f"{len(bad)} still wrong", flush=True)
+    tails = [r["tail_db"] for r in rows if r["tail_db"] is not None]
+    print(f"\n{len(rows)-len(bad)}/{len(rows)} intelligible · {len(soft)} still soft at the end · "
+          f"{len(fixed)} improved by a respelling", flush=True)
+    if tails:
+        import statistics
+        print(f"word-final energy: median {statistics.median(tails):.1f} dB, "
+              f"worst {min(tails):.1f} dB", flush=True)
+    for r in sorted(soft, key=lambda x: x["tail_db"] or 0)[:10]:
+        print(f"  soft: {r['word']:10} {r['tail_db']} dB — {r['sound']}", flush=True)
     json.dump(rows, open(a.out, "w"), ensure_ascii=False, indent=1)
 
     if fixed:

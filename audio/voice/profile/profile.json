@@ -6,5 +6,12 @@
  "opening_window_similarity": 0.9821,
  "whole_file_similarity": 0.9813,
  "duration_s": 28.8,
- "chosen_by": "listening test, 5 variants, 2026-08-19"
+ "chosen_by": "listening test, 5 variants, 2026-08-19",
+ "generation": {
+  "exaggeration": 0.5,
+  "cfg_weight": 0.3,
+  "temperature": 0.75,
+  "chosen": "Option 2 of the ranked candidates, picked by ear on 2026-08-19",
+  "trade": "cfg 0.30 makes the model follow the melody of his recording more closely, which is why it sounds natural — and costs about 1.1 dB of word-final consonant energy against the crispest candidate (-14.1 vs -13.0 dB). Naturalness is what a viewer hears; the soft endings are fixed per word instead."
+ }
 }

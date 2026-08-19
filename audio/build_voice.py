@@ -147,9 +147,9 @@ def main():
     ap.add_argument("--fit", help="same build, but place each line in its exact cue slot,\n                          time-stretching within +/-12%% so the cut does not move")
     ap.add_argument("--lines", help="a plain text file, one spoken line per line")
     ap.add_argument("--out", required=True)
-    ap.add_argument("--exaggeration", type=float, default=0.40,
+    ap.add_argument("--exaggeration", type=float, default=0.50,
                     help="0.3 flat · 0.5 conversational · 0.7 animated")
-    ap.add_argument("--cfg", type=float, default=0.60,
+    ap.add_argument("--cfg", type=float, default=0.30,
                     help="lower = looser, more natural rhythm")
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--retries", type=int, default=3,
