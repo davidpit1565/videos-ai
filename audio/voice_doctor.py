@@ -29,7 +29,13 @@ import numpy as np
 
 MIN_GAP = 0.30          # measured: below this the lines read as one run-on
 MAX_RATE = 6.5          # the rate above which build_voice already re-rolls a line
+# Deadbands, so the tool cannot chase its own tail: once a repair pass tightens the
+# spread, a purely relative fence starts flagging half-decibel differences nobody can
+# hear. Below these numbers a line is left alone no matter what the statistics say.
+DEAD_LVL = 1.5          # dB of level difference that is audible at all
+DEAD_SIB = 5.0          # dB of sibilance residual worth touching
 VOWELS = re.compile(r"[aeiouy]+", re.I)
+SIBILANT = re.compile(r"sh|ch|ss|s|z|x|c[ei]", re.I)
 
 
 def load(path):
@@ -58,6 +64,25 @@ def syllables(text):
         c = len(VOWELS.findall(w))
         n += max(1, c - (1 if re.search(r"[^aeiou]e$", w, re.I) else 0))
     return n
+
+
+def sib_density(text):
+    """How much S the line is even supposed to have. A line with two sibilants
+    measures darker than a line with nine, and that is the text's doing, not a
+    defect — so the S score has to be read against this before anything is judged."""
+    syl = max(1, syllables(text))
+    return len(SIBILANT.findall(text)) / syl
+
+
+def expected(xs, ys):
+    """Least-squares line through (density, sibilance). Returns a predictor; with
+    too few points or no spread it falls back to the plain median."""
+    x = np.array(xs, dtype=float); y = np.array(ys, dtype=float)
+    if len(x) < 6 or x.std() < 1e-6:
+        m = float(np.median(y))
+        return (lambda _: m), 0.0
+    b, a = np.polyfit(x, y, 1)
+    return (lambda t: a + b * t), float(b)
 
 
 def mad_floor(vals, k=2.5):
@@ -94,6 +119,7 @@ def measure(y, sr, cues):
             gap=(round(float(cues[i + 1]["start"]) - float(c["end"]), 2)
                  if i + 1 < len(cues) else None),
             rate=round(syllables(c["line"]) / dur, 2),
+            dens=round(sib_density(c["line"]), 3),
             rms=round(20 * np.log10(max(float(np.sqrt((seg ** 2).mean())), 1e-9)), 1),
             sib=round(sib, 1), tail=round(tl, 1), skip=False))
     return rows
@@ -101,7 +127,10 @@ def measure(y, sr, cues):
 
 def verdict(rows):
     live = [r for r in rows if not r["skip"]]
-    sib_med, sib_floor = mad_floor([r["sib"] for r in live])
+    pred, slope = expected([r["dens"] for r in live], [r["sib"] for r in live])
+    for r in live:
+        r["sib_res"] = round(r["sib"] - pred(r["dens"]), 1)
+    sib_med, sib_floor = mad_floor([r["sib_res"] for r in live])
     tail_med, tail_floor = mad_floor([r["tail"] for r in live])
     rms_med, rms_floor = mad_floor([r["rms"] for r in live])
     issues = []
@@ -120,16 +149,19 @@ def verdict(rows):
             issues.append((2, r["n"], f"weak ending ({r['tail']} dB vs median {tail_med:.1f})",
                            "script_lint.py the line and swap the final word, "
                            "or re-roll it with line_doctor.py"))
-        if sib_floor is not None and r["sib"] < sib_floor:
-            issues.append((1, r["n"], f"dull S ({r['sib']} dB vs median {sib_med:.1f})",
+        if (sib_floor is not None and r["sib_res"] < sib_floor
+                and abs(r["sib_res"] - sib_med) >= DEAD_SIB):
+            issues.append((1, r["n"], f"dull S ({r['sib']} dB, {r['sib_res']:+.1f} against "
+                           f"what this line's own sibilants predict)",
                            "lift 6-8 kHz on this line, or re-roll it"))
-        if sib_med is not None and r["sib"] > sib_med + 6:
-            issues.append((1, r["n"], f"harsh S ({r['sib']} dB vs median {sib_med:.1f})",
-                           "de-esser is under-doing this line"))
-        if rms_floor is not None and r["rms"] < rms_floor:
+        if sib_med is not None and r["sib_res"] > sib_med + max(6, DEAD_SIB):
+            issues.append((1, r["n"], f"harsh S ({r['sib']} dB, {r['sib_res']:+.1f} against "
+                           f"prediction)", "de-esser is under-doing this line"))
+        if (rms_floor is not None and r["rms"] < rms_floor
+                and rms_med - r["rms"] >= DEAD_LVL):
             issues.append((1, r["n"], f"quiet ({r['rms']} dBFS vs median {rms_med:.1f})",
                            "level this line before the mix"))
-    return issues, dict(sib=sib_med, tail=tail_med, rms=rms_med,
+    return issues, dict(sib=sib_med, tail=tail_med, rms=rms_med, sib_slope=slope,
                         sib_floor=sib_floor, tail_floor=tail_floor)
 
 
@@ -155,12 +187,70 @@ def deep(path, rows):
     return out
 
 
+def shelf(seg, sr, lo, hi, gain_db):
+    """Linear-phase band gain, done in the FFT domain with a smooth edge so the
+    correction cannot ring. Used to pull one line's S back toward the others."""
+    n = len(seg)
+    S = np.fft.rfft(seg)
+    f = np.fft.rfftfreq(n, 1 / sr)
+    g = np.ones(len(f))
+    edge = 800.0
+    ramp = np.clip((f - (lo - edge)) / edge, 0, 1) * np.clip(((hi + edge) - f) / edge, 0, 1)
+    g = 1 + (10 ** (gain_db / 20) - 1) * ramp
+    return np.fft.irfft(S * g, n)
+
+
+def repair(y, sr, cues, rows, med, out):
+    """Level every line onto the median and pull the sibilance outliers in. Both
+    corrections are capped, because a big correction means the line should be
+    re-generated rather than patched."""
+    z = y.copy()
+    fixed = []
+    for r, c in zip(rows, cues):
+        if r["skip"]:
+            continue
+        a, b = int(float(c["start"]) * sr), int(float(c["end"]) * sr)
+        seg = z[a:b].copy()
+        notes = []
+        d = med["rms"] - r["rms"]
+        if abs(d) >= DEAD_LVL:
+            d = float(np.clip(d, -4, 4))
+            seg *= 10 ** (d / 20)
+            notes.append(f"level {d:+.1f} dB")
+        # correct exactly what verdict() flags — no wider, no narrower. An earlier
+        # version used its own fence here and left a line flagged that it refused to
+        # touch, which is the worst of both.
+        res = r.get("sib_res", 0.0)
+        dull = (med.get("sib_floor") is not None and res < med["sib_floor"]
+                and abs(res - med["sib"]) >= DEAD_SIB)
+        harsh = res > med["sib"] + max(6, DEAD_SIB)
+        ds = med["sib"] - res if (dull or harsh) else 0.0
+        if ds:
+            ds = float(np.clip(ds, -5, 5))
+            seg = shelf(seg, sr, 4000, 9000, ds)
+            notes.append(f"S {ds:+.1f} dB")
+        if not notes:
+            continue
+        k = int(0.02 * sr)
+        if len(seg) > 2 * k:            # ramp the edges so the step lands in silence
+            m = np.ones(len(seg)); m[:k] = np.linspace(0, 1, k); m[-k:] = np.linspace(1, 0, k)
+            seg = z[a:b] * (1 - m) + seg * m
+        z[a:b] = seg
+        fixed.append((r["n"], ", ".join(notes)))
+    z = np.clip(z, -1, 1)
+    with wave.open(out, "w") as o:
+        o.setnchannels(1); o.setsampwidth(2); o.setframerate(sr)
+        o.writeframes((z * 32767).astype(np.int16).tobytes())
+    return fixed
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("wav")
     ap.add_argument("--cues", help="defaults to <wav>-cues.json")
     ap.add_argument("--deep", action="store_true", help="per-word pass (needs whisper)")
     ap.add_argument("--json", help="write the full measurement here")
+    ap.add_argument("--repair", help="write a corrected wav here: level and sibilance only")
     a = ap.parse_args()
 
     cues_path = a.cues or os.path.splitext(a.wav)[0] + "-cues.json"
@@ -174,10 +264,10 @@ def main():
     issues, med = verdict(rows)
 
     print(f"{a.wav}  {len(y)/sr:.1f}s  {len(cues)} lines")
-    print(f"  medians: sibilance {med['sib']:.1f} dB · ending {med['tail']:.1f} dB · "
-          f"level {med['rms']:.1f} dBFS")
+    print(f"  medians: ending {med['tail']:.1f} dB · level {med['rms']:.1f} dBFS · "
+          f"S residual {med['sib']:+.1f} dB (slope {med['sib_slope']:+.1f} dB per sibilant/syllable)")
     print(f"  flagged below: ending {med['tail_floor']:.1f} dB · "
-          f"sibilance {med['sib_floor']:.1f} dB  (median - 2.5 robust sd)")
+          f"S residual {med['sib_floor']:+.1f} dB  (median - 2.5 robust sd)")
     print(f"  {'ln':>3} {'dur':>5} {'gap':>6} {'rate':>5} {'sib':>6} {'end':>6} {'lvl':>6}  line")
     for r in rows:
         if r["skip"]:
@@ -194,6 +284,24 @@ def main():
         sev = {3: "BAD", 2: "fix", 1: "note"}
         for s, n, what, how in sorted(issues, key=lambda x: (-x[0], x[1])):
             print(f"  [{sev[s]}] line {n:>2}: {what}\n         -> {how}")
+
+    if a.repair:
+        # levelling one line moves the median, which can push a second line over the
+        # fence — so repair until a pass finds nothing left, rather than once
+        print(f"\n  repaired -> {a.repair}")
+        cur_y, cur_sr, cur_rows, cur_med, total = y, sr, rows, med, 0
+        for it in range(1, 4):
+            fixed = repair(cur_y, cur_sr, cues, cur_rows, cur_med, a.repair)
+            for n, what in fixed:
+                print(f"    pass {it}, line {n:>2}: {what}")
+            total += len(fixed)
+            if not fixed:
+                break
+            cur_y, cur_sr = load(a.repair)
+            cur_rows = measure(cur_y, cur_sr, cues)
+            _, cur_med = verdict(cur_rows)
+        if not total:
+            print("    nothing needed correcting")
 
     words = deep(a.wav, rows) if a.deep else None
     if words:

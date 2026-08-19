@@ -1,0 +1,409 @@
+<title>Reel 01 v3 — Actually Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#080B10;--ink-2:#111823;--line:#2C3745;
+  --brass:#FFCF4A;--brass-hot:#FFE188;--ember:#FF6B3D;
+  --ok:#5BD6A0;--steel:#7EC4F5;
+  --text:#FFFFFF;--muted:#9AA7B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;--ui:'Inter','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#05070A;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+/* ── background: brighter, always moving ──────── */
+.bg{position:absolute;inset:-30%;z-index:0}
+.bg i{position:absolute;display:block;border-radius:50%;will-change:transform;left:0;top:0}
+.bg .b1{width:96cqw;height:96cqw;background:radial-gradient(circle closest-side,rgba(255,207,74,.40),rgba(255,207,74,0) 72%)}
+.bg .b2{width:108cqw;height:108cqw;background:radial-gradient(circle closest-side,rgba(40,110,190,.42),rgba(40,110,190,0) 72%)}
+.bg .b3{width:80cqw;height:80cqw;background:radial-gradient(circle closest-side,rgba(255,107,61,.30),rgba(255,107,61,0) 72%)}
+.vig{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 78% at 50% 42%,transparent 32%,rgba(5,7,10,.82) 100%)}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--brass);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(255,207,74,.7)}
+
+.scene{position:absolute;inset:0;z-index:2;opacity:0;visibility:hidden}
+.scene.active{opacity:1;visibility:visible}
+.pad{position:absolute;inset:0;padding:12cqw 6cqw 40cqw;display:flex;flex-direction:column;
+  justify-content:center;gap:3.2cqw}
+.kb{will-change:transform}
+
+.b{opacity:0;transform:translateY(2.4cqw) scale(.97);transition:opacity .26s ease,transform .3s cubic-bezier(.2,.9,.3,1)}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+.punch:not(.on){transform:scale(.7)}
+.punch{transition:opacity .18s ease,transform .3s cubic-bezier(.2,1.7,.4,1)}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+/* ── section flash: the pattern interrupt ─────── */
+.flash{position:absolute;inset:0;z-index:12;background:var(--brass);display:grid;place-items:center;
+  opacity:0;visibility:hidden}
+.flash.on{opacity:1;visibility:visible}
+.flash span{font-family:var(--d);font-weight:900;font-size:15cqw;color:#0A0A0A;letter-spacing:-.045em;
+  text-transform:uppercase;transform:scale(.9);transition:transform .22s cubic-bezier(.2,1.6,.4,1)}
+.flash.on span{transform:scale(1)}
+.flash.ember{background:var(--ember)}
+.flash.ember span{color:#170703}
+
+/* ── type: much bigger than v2 ────────────────── */
+h2{font-family:var(--d);font-weight:900;font-size:13cqw;line-height:.94;letter-spacing:-.045em;
+  margin:0;text-wrap:balance}
+h2.sm{font-size:10cqw}
+h2 em{font-style:normal;color:var(--brass)}
+h2 .box{background:var(--brass);color:#0A0A0A;padding:0 1.6cqw;border-radius:1cqw;
+  display:inline-block;transform:rotate(-1.2deg)}
+h2 .ebox{background:var(--ember);color:#fff;padding:0 1.6cqw;border-radius:1cqw;display:inline-block}
+p.lede{font-size:5cqw;line-height:1.28;color:#D5DCE6;margin:0;font-weight:600}
+p.lede strong{color:var(--brass)}
+.tag{display:inline-block;font-family:var(--m);font-size:3cqw;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--brass);color:#0A0A0A;padding:1.3cqw 2.6cqw;border-radius:.8cqw;font-weight:500}
+.tag.ghost{background:none;color:var(--muted);border:1px solid var(--line)}
+.tag.ember{background:var(--ember);color:#fff}
+.strike{font-size:5.4cqw;font-weight:700;color:#7C8798;line-height:1.3}
+.strike s{text-decoration-color:var(--ember);text-decoration-thickness:.55cqw}
+.stack{display:flex;flex-direction:column;gap:2.2cqw}
+.row{display:flex;gap:2cqw;flex-wrap:wrap;align-items:center}
+.instr{font-family:var(--m);font-size:2.9cqw;line-height:1.65;color:#E3E8EF;
+  background:rgba(10,14,20,.92);border:1px solid var(--line);border-left:1cqw solid var(--brass);
+  border-radius:1cqw;padding:3.2cqw}
+
+/* ── ChatGPT mock — bigger, lifted ────────────── */
+.gpt{font-family:var(--ui);background:#212121;border-radius:2cqw;overflow:hidden;border:1px solid #3A3A3A;
+  box-shadow:0 4cqw 12cqw rgba(0,0,0,.72)}
+.gpt .top{display:flex;align-items:center;justify-content:space-between;padding:2.9cqw 3.2cqw;color:#ECECEC;font-size:3.5cqw;font-weight:500}
+.gpt .ham{display:flex;flex-direction:column;gap:.7cqw}
+.gpt .ham i{display:block;width:4cqw;height:.45cqw;background:#9B9B9B;border-radius:1px}
+.gpt .av{width:5.4cqw;height:5.4cqw;border-radius:50%;background:#5B6B7F;display:grid;place-items:center;font-size:2.6cqw;color:#fff}
+.gpt .thread{padding:1cqw 3.2cqw 3.4cqw;display:flex;flex-direction:column;gap:2.6cqw}
+.gpt .u{align-self:flex-end;max-width:86%;background:#303030;color:#ECECEC;border-radius:5cqw;padding:2.6cqw 3.6cqw;font-size:3.7cqw;line-height:1.32}
+.gpt .a{color:#ECECEC;font-size:3.6cqw;line-height:1.48}
+.gpt .a.dull{color:#9E9E9E}
+.gpt .a b{color:var(--brass);font-weight:700;display:block;font-size:3cqw;margin-bottom:.4cqw}
+.gpt .comp{margin:0 3.2cqw 3.2cqw;background:#303030;border-radius:6cqw;padding:2.7cqw 3.4cqw;
+  display:flex;align-items:center;justify-content:space-between;color:#8E8E8E;font-size:3.4cqw}
+.gpt .comp .send{width:5.8cqw;height:5.8cqw;border-radius:50%;background:#676767;display:grid;place-items:center;color:#212121;font-size:2.9cqw}
+.caret{display:inline-block;width:.4cqw;height:3.4cqw;background:#ECECEC;vertical-align:-.5cqw;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+.modal{font-family:var(--ui);background:#2A2A2A;border:1px solid #444;border-radius:2cqw;overflow:hidden;
+  box-shadow:0 4cqw 12cqw rgba(0,0,0,.72)}
+.modal .mh{padding:2.9cqw 3.4cqw;border-bottom:1px solid #444;color:#ECECEC;font-size:4cqw;font-weight:600;display:flex;justify-content:space-between}
+.modal .mh span{color:#8E8E8E;font-weight:400}
+.modal .r{display:flex;align-items:center;justify-content:space-between;padding:2.9cqw 3.4cqw;color:#ECECEC;font-size:3.5cqw;border-bottom:1px solid #383838;transition:background .18s}
+.modal .r span{display:flex;align-items:center}
+.modal .r .ic{width:3.6cqw;height:3.6cqw;margin-inline-end:2.5cqw;stroke:#8E8E8E;fill:none;stroke-width:1.35;flex:0 0 auto;transition:stroke .18s}
+.modal .r .ch{color:#8E8E8E}
+.modal .r.hi{background:var(--brass)}
+.modal .r.hi span,.modal .r.hi .ch{color:#0A0A0A;font-weight:600}
+.modal .r.hi .ic{stroke:#0A0A0A}
+.ci{font-family:var(--ui);background:#2A2A2A;border:1px solid #444;border-radius:2cqw;padding:3.2cqw;
+  display:flex;flex-direction:column;gap:2.4cqw;box-shadow:0 4cqw 12cqw rgba(0,0,0,.72)}
+.ci .lbl{color:#B4B4B4;font-size:3cqw}
+.ci .in{background:#1B1B1B;border:1px solid #4A4A4A;border-radius:1cqw;padding:2.6cqw 3cqw;color:#ECECEC;font-size:3.3cqw;line-height:1.45;min-height:19cqw;transition:border-color .2s,box-shadow .2s}
+.ci .in.hot{border-color:var(--brass);box-shadow:0 0 0 .6cqw rgba(255,207,74,.25)}
+.ci .foot{display:flex;align-items:center;justify-content:space-between;gap:2cqw}
+.sw{display:inline-flex;align-items:center;gap:1.8cqw;color:#ECECEC;font-size:3cqw}
+.sw i{width:8cqw;height:4.4cqw;border-radius:3cqw;background:#5A5A5A;position:relative;transition:background .25s;display:block}
+.sw i::after{content:"";position:absolute;top:.6cqw;left:.6cqw;width:3.2cqw;height:3.2cqw;border-radius:50%;background:#ECECEC;transition:transform .25s,background .25s}
+.sw.on i{background:#8A6E1F}
+.sw.on i::after{transform:translateX(3.6cqw);background:var(--brass)}
+.savebtn{background:#ECECEC;color:#1A1A1A;border-radius:4cqw;padding:2cqw 5cqw;font-size:3.3cqw;font-weight:700;transition:.2s}
+.savebtn.hit{background:var(--brass);transform:scale(1.1)}
+.cursor{position:absolute;width:5cqw;height:5cqw;border-radius:50%;transform:translate(-50%,-50%);z-index:9;
+  box-shadow:0 0 0 .6cqw rgba(255,207,74,.75),0 0 5cqw rgba(255,207,74,.6);background:rgba(255,207,74,.28);
+  transition:left .3s cubic-bezier(.4,0,.2,1),top .3s cubic-bezier(.4,0,.2,1),opacity .2s}
+
+/* countdown during setup */
+.clock{position:absolute;right:6cqw;top:11cqw;z-index:8;font-family:var(--m);font-size:4.4cqw;
+  color:var(--brass);background:rgba(8,11,16,.8);border:1px solid var(--brass);border-radius:1cqw;padding:1cqw 2.2cqw}
+
+/* ── captions: big, boxed, unmissable ─────────── */
+.subs{position:absolute;left:4.5cqw;right:4.5cqw;bottom:24cqw;text-align:center;z-index:11;
+  font-family:var(--b);font-weight:800;font-size:7.2cqw;line-height:1.16;letter-spacing:-.02em;
+  text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
+.subs em{font-style:normal;background:var(--brass);color:#0A0A0A;padding:0 1.4cqw;border-radius:.9cqw;
+  display:inline-block;text-shadow:none}
+.handle{position:absolute;left:0;right:0;bottom:16cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#6C7889}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,10,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#2E3743;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#2E3743;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#141014;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+.side{flex:1 1 320px;max-width:470px}
+.side .k{font-family:var(--m);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8A7434;margin:0 0 8px}
+.side h1{font-family:var(--d);font-weight:900;font-size:clamp(24px,3vw,34px);letter-spacing:-.035em;margin:0 0 12px;line-height:1.03}
+.side h1 em{font-style:normal;color:var(--brass)}
+.side h3{font-family:var(--d);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#8A7434;margin:24px 0 9px}
+.side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.62}
+.side strong{color:var(--text)}
+.side ul{margin:0;padding-inline-start:17px}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .side,body.render .ctl,body.render .tapover{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
+<div class="vig"></div>
+<div class="prog" id="prog"></div>
+
+<!-- S1 · PROBLEM 0–7.6 -->
+<section class="scene" data-in="0" data-out="7.108">
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
+    <h2 class="b punch" data-at="0.15" data-until="3.5">Your ChatGPT keeps giving you the <span class="box">obvious</span>.</h2>
+    <div class="gpt b" data-at="3.555">
+      <div class="top"><span class="ham"><i></i><i></i><i></i></span><span>ChatGPT ⌄</span><span class="av">D</span></div>
+      <div class="thread">
+        <div class="u">how do I grow my business?</div>
+        <div class="a dull">There are several ways to grow a business: improve your marketing, expand your product line, build customer loyalty, and consider new markets.</div>
+      </div>
+      <div class="comp"><span>Ask anything</span><span class="send">↑</span></div>
+    </div>
+    <div class="row b punch" data-at="5.092"><span class="tag ember">not its fault</span><span class="tag ghost">nobody told it how</span></div>
+  </div></div>
+</section>
+
+<!-- S2 · FIX 7.6–15.0 -->
+<section class="scene" data-in="7.108" data-out="15.418">
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
+    <h2 class="b punch" data-at="7.221" data-until="10.9">One block of text.<br><span class="box">Pasted once.</span></h2>
+    <div class="instr b" data-at="8.437" data-until="10.9">You are my Universal AI Engine.<br><br>Automatically choose the best methods for every request. I should NOT need to use shortcuts.</div>
+    <h2 class="sm b punch" data-at="10.673">Then it picks its <em>own reasoning</em>.</h2>
+    <p class="lede b" data-at="12.275">Every chat. Forever. <strong>You do nothing.</strong></p>
+  </div></div>
+</section>
+
+<!-- S3 · SETUP 15.0–23.6 -->
+<section class="scene" data-in="15.418" data-out="25.27">
+  <span class="clock" id="clock">0:40</span>
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
+    <div class="modal b" data-at="15.462" data-until="20.84">
+      <div class="mh">Settings <span>✕</span></div>
+      <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="5.8"/></svg>General</span><span class="ch">›</span></div>
+      <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M4.2 11h7.6M6 11V7a2 2 0 0 1 4 0v4M6.9 13.2h2.2"/></svg>Notifications</span><span class="ch">›</span></div>
+      <div class="r" id="rowPers"><span><svg class="ic" viewBox="0 0 16 16"><path d="M8 2.2l1.35 4.45L13.8 8l-4.45 1.35L8 13.8l-1.35-4.45L2.2 8l4.45-1.35z"/></svg>Personalization</span><span class="ch">›</span></div>
+      <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M8 3.2a1.55 1.55 0 0 1 1.55 1.55v3.1a1.55 1.55 0 0 1-3.1 0v-3.1A1.55 1.55 0 0 1 8 3.2zM4.9 8a3.1 3.1 0 0 0 6.2 0M8 11.1v2"/></svg>Speech</span><span class="ch">›</span></div>
+      <div class="r" id="rowCI"><span><svg class="ic" viewBox="0 0 16 16"><path d="M3.2 12.8l.9-2.9 6.4-6.4 2 2-6.4 6.4z"/></svg>Custom instructions</span><span class="ch">›</span></div>
+      <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M8 2.4l4.8 1.9v3.6c0 2.9-2.1 4.9-4.8 5.7-2.7-.8-4.8-2.8-4.8-5.7V4.3z"/></svg>Data controls</span><span class="ch">›</span></div>
+    </div>
+    <div class="ci b" data-at="21.562">
+      <span class="lbl">Anything else ChatGPT should know about you?</span>
+      <div class="in" id="ciBig"><span id="typed"></span><span class="caret"></span></div>
+      <div class="foot"><span class="sw" id="ciSw"><i></i> Enable for new chats</span><span class="savebtn" id="ciSave">Save</span></div>
+    </div>
+  </div>
+  <div class="cursor" id="cur" style="opacity:0"></div>
+  </div>
+</section>
+
+<!-- S4 · RESULT 23.6–37.9 -->
+<section class="scene" data-in="25.27" data-out="41.082">
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:2.8cqw">
+    <h2 class="sm b punch" data-at="25.323" data-until="27.2">Same question.<br><span class="box">Normal words.</span></h2>
+    <div class="gpt b" data-at="29.282">
+      <div class="top"><span class="ham"><i></i><i></i><i></i></span><span>ChatGPT ⌄</span><span class="av">D</span></div>
+      <div class="thread">
+        <div class="u">how do I grow my business?</div>
+        <div class="a b" data-at="29.349" data-until="32.5"><b>Assumptions</b>You're small, self-funded, and growth means revenue — not headcount.</div>
+        <div class="a b" data-at="31.539" data-until="35.4"><b>Risk you didn't ask about</b>One channel carries all your customers.</div>
+        <div class="a b" data-at="34.722"><b>Decision</b>Fix retention first. Call your last 10 churned customers this week.</div>
+      </div>
+    </div>
+    <div class="row">
+      <span class="tag b punch" data-at="29.349">assumptions</span>
+      <span class="tag b punch" data-at="31.539">risks</span>
+      <span class="tag b punch" data-at="34.722">decision</span>
+    </div>
+    <h2 class="sm b punch" data-at="38.147"><span class="box">Zero</span> commands typed.</h2>
+  </div></div>
+</section>
+
+<!-- S5 · HONEST 37.9–46.5 -->
+<section class="scene" data-in="41.082" data-out="50.265">
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
+    <h2 class="sm b punch" data-at="41.164" data-until="41.1">The honest part.</h2>
+    <div class="stack">
+      <div class="strike b" data-at="42.048" data-until="41.1"><s>A new AI model</s></div>
+      <div class="strike b" data-at="42.772" data-until="41.1"><s>Software you install</s></div>
+      <div class="strike b" data-at="43.496" data-until="41.1"><s>A guarantee it's right</s></div>
+    </div>
+    <h2 class="b punch" data-at="44.68">It thinks <span class="box">hard</span>.<br>Not <span class="ebox">right</span>.</h2>
+  </div></div>
+</section>
+
+<!-- S6 · CTA 46.5–52 -->
+<section class="scene" data-in="50.265" data-out="56.25">
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw;align-items:flex-start">
+    <h2 class="b punch" data-at="50.34">Full text in the <span class="box">caption</span>.</h2>
+    <p class="lede b" data-at="52.904" style="font-size:5.6cqw">Follow for AI setups that <strong>actually work</strong> — including what breaks.</p>
+    <div class="b punch" data-at="54.543"><span class="tag">save this ↓</span></div>
+  </div></div>
+</section>
+
+<div class="flash" id="flash"><span id="flashTxt"></span></div>
+<div class="subs" id="subs"></div>
+<div class="handle">@actuallyworks.ai</div>
+<button class="tapover" id="tap" aria-label="Play"><span class="d"></span></button>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="52" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+
+<div class="side">
+  <p class="k">Reel 01 · v3 · 52s · his voice</p>
+  <h1>Built to <em>stop the scroll</em></h1>
+  <p>v2 was elegant. Elegant doesn't stop a thumb. This version is designed for a phone held at arm's length, in daylight, with the sound off.</p>
+  <h3>What changed</h3>
+  <ul>
+    <li><strong>It opens on words, not a screenshot.</strong> Frame one is a full-bleed sentence at 13cqw — readable in the 0.4s someone gives you before deciding.</li>
+    <li><strong>Emphasis is a filled block, not coloured text.</strong> A brass box around the key word survives a small, bright screen; coloured text doesn't.</li>
+    <li><strong>Captions are ~30% bigger</strong> and sit higher, clear of the Instagram UI.</li>
+    <li><strong>Section flashes.</strong> A 0.35s full-frame colour card between sections — a hard pattern interrupt that resets attention five times in 52 seconds.</li>
+    <li><strong>Brighter, higher contrast.</strong> The palette was raised and a second accent added, so the frame has heat instead of only mood.</li>
+    <li><strong>A countdown during setup.</strong> Visible urgency while the least dramatic part of the video plays.</li>
+    <li><strong>Cut to his voice, not the other way round.</strong> Every beat is aligned to the actual recording.</li>
+  </ul>
+</div>
+</div>
+
+<script>
+(function(){
+  var DUR=56.31,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+  var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+  var flash=document.getElementById('flash'),flashTxt=document.getElementById('flashTxt');
+
+  /* cues follow the tightened recording exactly */
+  var CUES=[
+    [0.30,3.11,"Your ChatGPT keeps giving you the <em>obvious</em>."],
+    [3.53,6.72,"Not because it's dumb.<br>Nobody told it <em>how to think</em>."],
+    [7.14,10.22,"One block of text.<br><em>Pasted once</em>."],
+    [10.64,14.55,"Then it picks its own reasoning — every chat."],
+    [15.40,16.50,"Open <em>Settings</em>."],
+    [16.92,19.26,"Go to <em>Personalization</em>."],
+    [19.68,21.18,"<em>Custom instructions</em>."],
+    [21.60,24.42,"Paste. Switch it on. <em>Save</em>."],
+    [25.27,28.91,"Now ask the same question. Normal words."],
+    [29.33,31.09,"It states what it's <em>assuming</em>."],
+    [31.51,34.28,"It finds the risk you didn't ask about."],
+    [34.70,37.69,"It ends with a <em>decision</em>. Not a list."],
+    [38.11,40.33,"You typed <em>zero</em> commands."],
+    [41.18,44.24,"The honest part: this isn't a new model."],
+    [44.66,49.48,"It makes ChatGPT think <em>hard</em> — not be right more often."],
+    [50.33,52.44,"Full instruction's in the <em>caption</em>."],
+    [52.86,55.81,"Follow for setups that <em>actually work</em>."]
+  ];
+  /* [at, label, ember?] — 0.34s hard cuts between sections */
+  var FLASH=[[6.69,"the fix",0],[14.97,"40 seconds",0],[24.33,"the result",0],[40.72,"honest",1],[49.91,"take it",0]];
+  var FDUR=0.34;
+  var INSTR="You are my Universal AI Engine. Automatically choose the best methods for every request. I should NOT need to use shortcuts…";
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      s.classList.toggle('active',on); if(on) active=s;
+    }
+    if(active){
+      var f=(t-+active.dataset.in)/((+active.dataset.out)-(+active.dataset.in));
+      var kbs=active.querySelectorAll('.kb');
+      for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.07*f).toFixed(4)+') translateY('+(-1.6*f).toFixed(2)+'cqw)';
+    }
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    var fl=null;
+    for(i=0;i<FLASH.length;i++) if(t>=FLASH[i][0]&&t<FLASH[i][0]+FDUR) fl=FLASH[i];
+    flash.classList.toggle('on',!!fl);
+    flash.classList.toggle('ember',!!(fl&&fl[2]));
+    if(fl&&flashTxt.textContent!==fl[1]) flashTxt.textContent=fl[1];
+
+    b1.style.transform='translate('+(2+18*Math.sin(t*0.24))+'cqw,'+(-6+22*Math.cos(t*0.17))+'cqw)';
+    b2.style.transform='translate('+(30+22*Math.cos(t*0.13+1.4))+'cqw,'+(34+24*Math.sin(t*0.19+.6))+'cqw)';
+    b3.style.transform='translate('+(14+28*Math.sin(t*0.11+2.1))+'cqw,'+(66+16*Math.cos(t*0.15+1.1))+'cqw)';
+
+    var rp=document.getElementById('rowPers'),rc=document.getElementById('rowCI'),c=document.getElementById('cur');
+    if(rp){ rp.classList.toggle('hi',t>=16.42&&t<19.02); rc.classList.toggle('hi',t>=19.02&&t<20.8); }
+    var ck=document.getElementById('clock');
+    if(ck){ var left=Math.max(0,Math.round(40-(t-15)*4.7)); ck.textContent='0:'+('0'+left).slice(-2); }
+    if(c){
+      var tgt=t<19.02?'rowPers':t<20.86?'rowCI':t<22.2?'ciBig':t<22.8?'ciSw':'ciSave';
+      var el=document.getElementById(tgt),show=t>=15.6&&t<23.5;
+      c.style.opacity=show?1:0;
+      if(show&&el){
+        var fr=frame.getBoundingClientRect(),r=el.getBoundingClientRect();
+        if(r.width){
+          c.style.left=(((r.left-fr.left)+r.width*(tgt==='ciBig'?0.3:0.5))/fr.width*100)+'%';
+          c.style.top=(((r.top-fr.top)+r.height*0.55)/fr.height*100)+'%';
+        }
+      }
+    }
+    var ty=document.getElementById('typed');
+    if(ty){ var g=t<=21.0?0:t>=22.2?1:(t-21.0)/1.2; ty.textContent=INSTR.slice(0,Math.round(g*INSTR.length)); }
+    var big=document.getElementById('ciBig'); if(big) big.classList.toggle('hot',t>20.94&&t<22.5);
+    var sw=document.getElementById('ciSw'); if(sw) sw.classList.toggle('on',t>22.45);
+    var sv=document.getElementById('ciSave'); if(sv) sv.classList.toggle('hit',t>22.95);
+
+    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
+    subs.innerHTML=txt;
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;tap.classList.add('hide');render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>
