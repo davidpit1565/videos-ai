@@ -1,7 +1,10 @@
-# Universal AI Engine — video tutorial production package
+# videos-ai — the Actually Works video studio
 
-A complete, beginner-oriented tutorial explaining how to install and use the Universal AI
-Engine Custom Instruction in ChatGPT. Target runtime **~14:00**, 13 chapters.
+The production system behind the channel: a house style, an automated
+script → narration → music → render pipeline, and the business plan that decides
+what gets made.
+
+**Start here:** `plan/operating-plan.html` (why) and `brand/house-style.md` (how it looks).
 
 ## What's here
 
