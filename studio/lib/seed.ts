@@ -15,8 +15,8 @@ export function seed(): State {
     episodes: [
       ep(1, "Paste this once — the Universal AI Engine", "both", "testing",
          "ChatGPT · Custom Instructions", "בנוי ומוכן · ביקוש נמוך במדידה — מפרסמים בשביל הנרשמים"),
-      ep(2, "What an AI agent actually is", "both", "idea",
-         "Agents · יסודות", "ביקוש: חציון 125 אלף · שער הכניסה לסדרה"),
+      ep(2, "What an AI agent actually is", "both", "voice",
+         "Agents · יסודות", "ביקוש: חציון 125 אלף · הריל בנוי, הקריינות בתור"),
       ep(3, "Your first n8n agent: email → summary → Telegram", "long", "idea",
          "n8n", "ביקוש: חציון 233 אלף — הגבוה במדידה · הפרק הארוך והמלא"),
       ep(4, "The AI setup I'd sell to a business", "both", "idea",

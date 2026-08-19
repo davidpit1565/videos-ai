@@ -5,7 +5,7 @@ set -euo pipefail
 HTML="$1"; W="$2"; H="$3"; DUR="$4"; VO="$5"; OUT="$6"; MUS="${7:-}"
 TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
 
-node /tmp/record.js "$(realpath "$HTML")" "$W" "$H" "$DUR" "$TMP"
+node "$(dirname "$0")/record.js" "$(realpath "$HTML")" "$W" "$H" "$DUR" "$TMP"
 RAW="$(ls "$TMP"/*.webm)"
 
 # the page holds a black frame until playback starts — find where that ends
@@ -26,16 +26,16 @@ if [ -n "$MUS" ]; then
 [vo]asplit=2[vo1][key];\
 [mus][key]sidechaincompress=threshold=0.05:ratio=9:attack=12:release=420[duck];\
 [vo1][duck]amix=inputs=2:duration=first:dropout_transition=0:normalize=0,\
-loudnorm=I=-14:TP=-1.5:LRA=11,apad[a]" \
+loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000,apad[a]" \
     -map "[v]" -map "[a]" -t "$DUR" \
     -c:v libx264 -preset slow -crf 19 -profile:v high -pix_fmt yuv420p -movflags +faststart \
-    -c:a aac -b:a 192k "$OUT"
+    -c:a aac -b:a 192k -ar 48000 -ac 2 "$OUT"
 else
   ffmpeg -hide_banner -loglevel error -y -ss "$START" -i "$RAW" -i "$VO" \
-    -filter_complex "$VCHAIN;$VOCHAIN;[vo]loudnorm=I=-14:TP=-1.5:LRA=11,apad[a]" \
+    -filter_complex "$VCHAIN;$VOCHAIN;[vo]loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000,apad[a]" \
     -map "[v]" -map "[a]" -t "$DUR" \
     -c:v libx264 -preset slow -crf 19 -profile:v high -pix_fmt yuv420p -movflags +faststart \
-    -c:a aac -b:a 192k "$OUT"
+    -c:a aac -b:a 192k -ar 48000 -ac 2 "$OUT"
 fi
 
 ffprobe -hide_banner -v error -show_entries format=duration,size -of default=nw=1 "$OUT"
