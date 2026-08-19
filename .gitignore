@@ -4,3 +4,7 @@ export/*.webm
 audio/tutorial-narration.wav
 node_modules/
 .DS_Store
+
+# secrets — never commit
+.env
+*.token

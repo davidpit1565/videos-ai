@@ -1,505 +1,678 @@
-<title>Actually Works Operating Plan</title>
+<title>תוכנית ההפעלה של Actually Works</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Assistant:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;800&family=Assistant:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  --ink:#0B0E13;--ink-2:#141922;--surface:#1A202A;--line:#28303C;--line-2:#39434F;
-  --brass:#F2CE63;--brass-dim:#8A7434;--steel:#6FA8CF;--clay:#E0714E;--ok:#69B98B;
-  --text:#F2F4F7;--muted:#95A0B1;--faint:#5C6675;
-  --f-d:'Archivo','Helvetica Neue',Arial,sans-serif;
-  --f-b:'Assistant','Segoe UI',system-ui,sans-serif;
-  --f-m:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --ink:#0A0D12;--panel:#121821;--panel-2:#18202B;--raise:#1E2734;
+  --line:#273140;--line-2:#36424F;
+  --brass:#F0CB66;--brass-2:#FFDF95;--brass-dim:#8E7739;
+  --ok:#6FBF95;--clay:#E37A56;--steel:#7BB0D6;
+  --text:#F4F6F9;--muted:#98A4B5;--faint:#606B7C;
+  --d:'Frank Ruhl Libre',Georgia,serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--ink);color:var(--text);font-family:var(--f-b);
-  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1080px;margin:0 auto;padding:44px 22px 120px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--b);
+  font-size:17px;line-height:1.75;direction:rtl;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px 130px}
+.ltr{direction:ltr;display:inline-block;unicode-bidi:isolate}
+.num{font-family:var(--m);direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap}
 
-.eyebrow{font-family:var(--f-m);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--brass);display:flex;align-items:center;gap:12px;margin:0 0 14px}
-.eyebrow::before{content:"";width:34px;height:1px;background:var(--brass);opacity:.7}
-h1{font-family:var(--f-d);font-weight:800;font-size:clamp(34px,5.2vw,60px);line-height:1;
-  letter-spacing:-.035em;margin:0 0 18px;text-wrap:balance}
+/* ── hero ─────────────────────────────────────── */
+.hero{padding:70px 0 38px;border-bottom:1px solid var(--line);margin-bottom:8px;position:relative}
+.hero::after{content:"";position:absolute;inset-inline-start:0;bottom:-1px;width:180px;height:2px;background:var(--brass)}
+.kick{font-family:var(--m);font-size:11.5px;letter-spacing:.22em;color:var(--brass);margin:0 0 18px;direction:ltr;text-align:right}
+h1{font-family:var(--d);font-weight:800;font-size:clamp(36px,6vw,66px);line-height:1.08;
+  letter-spacing:-.01em;margin:0 0 22px;text-wrap:balance}
 h1 em{font-style:normal;color:var(--brass)}
-.deck{font-size:19px;color:var(--muted);max-width:64ch;margin:0}
-.deck strong{color:var(--text);font-weight:700}
+.thesis{font-size:21px;line-height:1.65;color:var(--muted);max-width:60ch;margin:0}
+.thesis strong{color:var(--text);font-weight:700}
 
-h2{font-family:var(--f-d);font-weight:700;font-size:clamp(23px,3vw,31px);letter-spacing:-.025em;
-  margin:64px 0 6px;text-wrap:balance;scroll-margin-top:20px}
-h2 .n{font-family:var(--f-m);font-size:13px;color:var(--brass-dim);letter-spacing:.16em;
-  display:block;margin-bottom:9px;font-weight:500}
-h3{font-family:var(--f-d);font-weight:700;font-size:19px;letter-spacing:-.015em;margin:32px 0 8px}
-p{margin:0 0 14px;max-width:72ch}
-p.lead{font-size:17.5px}
-ul,ol{margin:0 0 14px;padding-inline-start:20px;max-width:72ch}
-li{margin-bottom:7px}
-strong{color:var(--text);font-weight:700}
-em.h{font-style:normal;color:var(--brass);font-weight:700}
-a{color:var(--steel)}
-hr{border:0;border-top:1px solid var(--line);margin:52px 0 0}
+/* stat tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin:38px 0 0}
+.tile{background:var(--panel);padding:20px 22px}
+.tile .k{font-family:var(--m);font-size:10.5px;letter-spacing:.16em;color:var(--faint);
+  text-transform:uppercase;margin-bottom:9px;direction:ltr;text-align:right}
+.tile .v{font-family:var(--d);font-weight:800;font-size:30px;line-height:1;color:var(--brass);letter-spacing:-.01em}
+.tile .s{font-size:13.5px;color:var(--muted);margin-top:7px;line-height:1.5}
 
-.rule{height:1px;background:linear-gradient(90deg,var(--brass),transparent 55%);margin:10px 0 26px}
+/* ── nav ──────────────────────────────────────── */
+.nav{display:flex;flex-wrap:wrap;gap:7px;margin:34px 0 0;padding-bottom:4px}
+.nav a{font-family:var(--m);font-size:11.5px;letter-spacing:.05em;color:var(--muted);
+  border:1px solid var(--line);border-radius:2px;padding:7px 11px;text-decoration:none;transition:.2s}
+.nav a:hover{border-color:var(--brass);color:var(--brass);background:rgba(240,203,102,.06)}
 
-/* callouts */
-.call{border:1px solid var(--line);border-left:3px solid var(--brass);background:var(--ink-2);
-  border-radius:3px;padding:18px 20px;margin:22px 0;max-width:74ch}
-.call.warn{border-left-color:var(--clay)}
-.call.good{border-left-color:var(--ok)}
-.call .t{font-family:var(--f-m);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--brass);margin-bottom:8px}
-.call.warn .t{color:var(--clay)} .call.good .t{color:var(--ok)}
+/* ── sections ─────────────────────────────────── */
+section{margin-top:78px;scroll-margin-top:16px}
+h2{font-family:var(--d);font-weight:700;font-size:clamp(26px,3.6vw,38px);letter-spacing:-.01em;
+  margin:0 0 4px;line-height:1.2;text-wrap:balance}
+h2 .n{font-family:var(--m);font-size:12px;color:var(--brass-dim);letter-spacing:.18em;
+  display:block;margin-bottom:12px;direction:ltr;text-align:right;font-weight:500}
+.hr{height:1px;background:linear-gradient(270deg,var(--brass),transparent 58%);margin:16px 0 30px}
+h3{font-family:var(--d);font-weight:700;font-size:22px;margin:38px 0 10px;letter-spacing:-.005em}
+p{margin:0 0 16px;max-width:70ch}
+p.big{font-size:19px;line-height:1.7}
+ul,ol{margin:0 0 16px;padding-inline-start:22px;max-width:70ch}
+li{margin-bottom:9px}
+strong{font-weight:700;color:var(--text)}
+mark{background:none;color:var(--brass);font-weight:700}
+
+/* ── callouts ─────────────────────────────────── */
+.call{border:1px solid var(--line);border-inline-start:3px solid var(--brass);
+  background:var(--panel);border-radius:4px;padding:22px 24px;margin:26px 0;max-width:74ch}
+.call.warn{border-inline-start-color:var(--clay)}
+.call.good{border-inline-start-color:var(--ok)}
+.call .t{font-family:var(--m);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--brass);margin-bottom:11px;direction:ltr;text-align:right}
+.call.warn .t{color:var(--clay)}.call.good .t{color:var(--ok)}
 .call p:last-child{margin-bottom:0}
+.call h4{font-family:var(--d);font-size:21px;margin:0 0 10px;font-weight:700}
 
-/* tables */
-.tw{overflow-x:auto;margin:20px 0;border:1px solid var(--line);border-radius:3px}
-table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
-th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-family:var(--f-m);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--muted);font-weight:500;background:var(--ink-2);white-space:nowrap}
+/* ── tables ───────────────────────────────────── */
+.tw{overflow-x:auto;margin:24px 0;border:1px solid var(--line);border-radius:4px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{padding:13px 16px;text-align:right;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--m);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;background:var(--panel-2);white-space:nowrap;direction:ltr;text-align:right}
 tbody tr:last-child td{border-bottom:0}
-tbody tr:hover{background:rgba(255,255,255,.017)}
-td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
-td.name{font-weight:700;color:var(--text)}
+tbody tr:nth-child(odd){background:rgba(255,255,255,.014)}
+td.name{font-weight:700}
+td .num,th .num{font-variant-numeric:tabular-nums}
 
-/* chips */
-.chip{display:inline-block;font-family:var(--f-m);font-size:10.5px;letter-spacing:.09em;
-  text-transform:uppercase;padding:3px 8px;border-radius:2px;border:1px solid;white-space:nowrap}
-.c-hi{color:var(--ok);border-color:#2F5C45;background:rgba(105,185,139,.09)}
-.c-md{color:var(--brass);border-color:var(--brass-dim);background:rgba(242,206,99,.08)}
-.c-lo{color:var(--muted);border-color:var(--line-2)}
-.c-risk{color:var(--clay);border-color:#6B4230;background:rgba(224,113,78,.09)}
+/* ── chips ────────────────────────────────────── */
+.chip{display:inline-flex;align-items:center;gap:5px;font-family:var(--m);font-size:10.5px;
+  letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:2px;border:1px solid;
+  white-space:nowrap;direction:ltr}
+.chip::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.c-ok{color:var(--ok);border-color:#2F5C45;background:rgba(111,191,149,.09)}
+.c-mid{color:var(--brass);border-color:var(--brass-dim);background:rgba(240,203,102,.08)}
+.c-bad{color:var(--clay);border-color:#6B4230;background:rgba(227,122,86,.09)}
+.c-off{color:var(--muted);border-color:var(--line-2)}
 
-/* stage cards */
-.stages{display:flex;flex-direction:column;gap:0;margin:24px 0;border:1px solid var(--line);border-radius:3px;overflow:hidden}
-.stage{display:grid;grid-template-columns:78px 1fr;border-bottom:1px solid var(--line)}
-.stage:last-child{border-bottom:0}
-.stage .sn{background:var(--ink-2);border-inline-end:1px solid var(--line);padding:18px 10px;
-  font-family:var(--f-d);font-weight:800;font-size:26px;color:var(--brass-dim);text-align:center;letter-spacing:-.03em}
-.stage.now .sn{color:var(--brass);background:rgba(242,206,99,.07)}
-.stage .sb{padding:18px 20px}
-.stage h4{font-family:var(--f-d);font-weight:700;font-size:17px;margin:0 0 4px;display:flex;
-  flex-wrap:wrap;gap:10px;align-items:center}
-.stage .meta{font-family:var(--f-m);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:9px}
-.stage ul{margin:0;font-size:14.5px}
-.gate{margin-top:10px;font-size:13.5px;color:var(--brass);font-weight:600}
+/* ── pipeline diagram ─────────────────────────── */
+.pipe{border:1px solid var(--line);border-radius:4px;background:var(--panel);padding:30px 26px;margin:26px 0}
+.pipe-row{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px}
+.pnode{flex:1 1 120px;min-width:118px;background:var(--panel-2);border:1px solid var(--line);
+  border-radius:3px;padding:15px 13px;position:relative}
+.pnode .pi{font-family:var(--m);font-size:10px;letter-spacing:.14em;color:var(--faint);direction:ltr;text-align:right;margin-bottom:7px}
+.pnode .pt{font-weight:700;font-size:15.5px;line-height:1.3}
+.pnode .ps{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.45}
+.pnode.money{border-color:var(--ok);background:rgba(111,191,149,.07)}
+.pnode.money .pt{color:var(--ok)}
+.pnode.auto{border-color:var(--brass-dim)}
+.pnode.auto::after{content:"אוטומטי";position:absolute;top:-9px;inset-inline-start:11px;
+  background:var(--brass);color:#141014;font-family:var(--b);font-weight:700;font-size:10px;
+  padding:1px 7px;border-radius:2px;letter-spacing:.02em}
+.pnode.you::after{content:"אתה";position:absolute;top:-9px;inset-inline-start:11px;
+  background:var(--clay);color:#180d08;font-family:var(--b);font-weight:700;font-size:10px;
+  padding:1px 7px;border-radius:2px}
+.pnode.you{border-color:#6B4230}
+.parr{align-self:center;color:var(--line-2);font-size:19px;flex:0 0 auto}
 
-/* revenue cards */
-.rev{border:1px solid var(--line);border-radius:3px;background:var(--ink-2);padding:20px 22px;margin:14px 0}
-.rev .head{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:4px}
-.rev h4{font-family:var(--f-d);font-weight:700;font-size:19px;margin:0}
-.rev .rank{font-family:var(--f-m);font-size:12px;color:var(--brass-dim);margin-inline-end:2px}
-.rev .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:12px;margin:14px 0 12px;
-  padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.rev .grid div span{display:block;font-family:var(--f-m);font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--faint);margin-bottom:3px}
-.rev .grid div b{font-family:var(--f-d);font-size:15px;font-weight:700}
+/* ── calculator ───────────────────────────────── */
+.calc{border:1px solid var(--brass-dim);border-radius:4px;background:linear-gradient(180deg,rgba(240,203,102,.055),transparent 60%),var(--panel);padding:28px;margin:28px 0}
+.calc h4{font-family:var(--d);font-size:23px;margin:0 0 6px;font-weight:700}
+.calc .sub{color:var(--muted);font-size:14.5px;margin:0 0 24px}
+.ctrl{margin-bottom:20px}
+.ctrl label{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px;
+  color:var(--muted);margin-bottom:9px;gap:12px}
+.ctrl label b{font-family:var(--m);font-size:16px;color:var(--brass);font-weight:500}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;background:transparent;height:22px;cursor:pointer;margin:0;direction:ltr}
+input[type=range]::-webkit-slider-runnable-track{height:4px;background:var(--line-2);border-radius:2px}
+input[type=range]::-moz-range-track{height:4px;background:var(--line-2);border-radius:2px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--brass);margin-top:-6px;border:0}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border:0;border-radius:50%;background:var(--brass)}
+input[type=range]:focus-visible{outline:2px solid var(--brass);outline-offset:4px}
+.result{border-top:1px solid var(--line);margin-top:26px;padding-top:22px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px}
+.result div .rk{font-family:var(--m);font-size:10.5px;letter-spacing:.14em;color:var(--faint);
+  text-transform:uppercase;margin-bottom:7px;direction:ltr;text-align:right}
+.result div .rv{font-family:var(--d);font-weight:800;font-size:32px;line-height:1;letter-spacing:-.01em}
+.result div .rv.hi{color:var(--ok)}
+.assum{font-size:13px;color:var(--faint);margin-top:20px;line-height:1.6}
+
+/* ── revenue bars (single-hue magnitude) ──────── */
+.bars{border:1px solid var(--line);border-radius:4px;background:var(--panel);padding:26px;margin:26px 0}
+.bars .bt{font-family:var(--d);font-size:20px;font-weight:700;margin:0 0 4px}
+.bars .bs{font-size:13.5px;color:var(--muted);margin:0 0 22px}
+.bar{display:grid;grid-template-columns:minmax(110px,1.05fr) 1fr 86px;gap:14px;align-items:center;
+  padding:9px 0;border-bottom:1px solid rgba(255,255,255,.045)}
+.bar:last-child{border-bottom:0}
+.bar .bl{font-size:14.5px;font-weight:600}
+.bar .bwrap{height:11px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden}
+.bar .bfill{display:block;height:100%;background:var(--brass);border-start-start-radius:2px;border-end-start-radius:2px;
+  border-start-end-radius:4px;border-end-end-radius:4px}
+.bar .bv{font-family:var(--m);font-size:13px;color:var(--brass);white-space:nowrap;direction:ltr;text-align:left}
+
+/* ── revenue cards ────────────────────────────── */
+.rev{border:1px solid var(--line);border-radius:4px;background:var(--panel);padding:26px 28px;margin:18px 0}
+.rev.top{border-color:var(--brass-dim);background:linear-gradient(180deg,rgba(240,203,102,.05),transparent 55%),var(--panel)}
+.rev .rh{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-bottom:6px}
+.rev .rn{font-family:var(--m);font-size:13px;color:var(--brass-dim);direction:ltr}
+.rev h4{font-family:var(--d);font-weight:700;font-size:24px;margin:0;letter-spacing:-.005em}
+.rev .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:14px;
+  margin:18px 0;padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rev .meta div .mk{font-family:var(--m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:5px;direction:ltr;text-align:right}
+.rev .meta div .mv{font-family:var(--d);font-size:17px;font-weight:700}
 .rev p:last-child{margin-bottom:0}
-.rev .math{font-family:var(--f-m);font-size:13px;color:var(--brass);background:rgba(242,206,99,.06);
-  border:1px solid var(--brass-dim);border-radius:2px;padding:10px 13px;margin:12px 0 0;overflow-x:auto}
+.math{font-family:var(--m);font-size:13.5px;color:var(--brass);background:rgba(240,203,102,.06);
+  border:1px solid var(--brass-dim);border-radius:3px;padding:14px 16px;margin:16px 0 0;
+  overflow-x:auto;direction:ltr;text-align:left;line-height:1.9}
 
-/* checklist */
-.todo{list-style:none;padding:0;max-width:74ch}
-.todo li{display:grid;grid-template-columns:26px 1fr;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);margin:0}
+/* ── stages ───────────────────────────────────── */
+.stages{border:1px solid var(--line);border-radius:4px;overflow:hidden;margin:26px 0}
+.stage{display:grid;grid-template-columns:82px 1fr;border-bottom:1px solid var(--line)}
+.stage:last-child{border-bottom:0}
+.sn{background:var(--panel-2);border-inline-start:1px solid var(--line);padding:22px 10px;text-align:center;
+  font-family:var(--d);font-weight:800;font-size:32px;color:var(--brass-dim);line-height:1}
+.stage.now .sn{color:var(--brass);background:rgba(240,203,102,.08)}
+.sb{padding:22px 24px;background:var(--panel)}
+.sb h4{font-family:var(--d);font-weight:700;font-size:20px;margin:0 0 5px;display:flex;flex-wrap:wrap;gap:11px;align-items:center}
+.sb .sm{font-family:var(--m);font-size:11px;letter-spacing:.1em;color:var(--faint);margin-bottom:12px;direction:ltr;text-align:right}
+.sb ul{margin:0;font-size:15px}
+.gate{margin-top:13px;font-size:14.5px;color:var(--brass);font-weight:700;
+  border-top:1px dashed var(--line-2);padding-top:11px}
+
+/* ── checklist ────────────────────────────────── */
+.todo{list-style:none;padding:0;max-width:74ch;margin:22px 0}
+.todo li{display:grid;grid-template-columns:1fr 22px;gap:12px;padding:13px 0;
+  border-bottom:1px solid var(--line);margin:0;align-items:start}
 .todo li:last-child{border-bottom:0}
-.todo .box{width:15px;height:15px;border:1.5px solid var(--brass-dim);border-radius:2px;margin-top:5px}
-.todo .who{font-family:var(--f-m);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);display:block;margin-top:2px}
+.todo .box{width:16px;height:16px;border:1.5px solid var(--brass-dim);border-radius:3px;margin-top:6px}
+.todo .who{font-family:var(--m);font-size:10.5px;letter-spacing:.08em;color:var(--faint);
+  display:block;margin-top:4px;direction:rtl}
+.todo b{font-size:16px}
 
-.foot{margin-top:70px;padding-top:20px;border-top:1px solid var(--line);color:var(--faint);
-  font-family:var(--f-m);font-size:12px;line-height:1.8}
-.toc{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
-.toc a{font-family:var(--f-m);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--muted);border:1px solid var(--line);border-radius:2px;padding:6px 10px;text-decoration:none}
-.toc a:hover{border-color:var(--brass);color:var(--brass)}
+.foot{margin-top:82px;padding-top:24px;border-top:1px solid var(--line);color:var(--faint);
+  font-size:13px;line-height:1.9}
+.foot a{color:var(--faint)}
 </style>
 
 <div class="wrap">
 
-<p class="eyebrow">Operating plan · v1 · August 2026</p>
-<h1>How this becomes <em>a business</em>, not a hobby</h1>
-<p class="deck">Everything below is built on one finding: the account you're modelling this on doesn't make its money from followers. <strong>It makes it from an email list.</strong> That single fact changes the target, the schedule, and what you personally have to do.</p>
+<div class="hero">
+  <p class="kick">OPERATING PLAN · v2 · AUGUST 2026</p>
+  <h1>איך זה הופך <em>לעסק</em>,<br>ולא לתחביב</h1>
+  <p class="thesis">כל מה שכאן נשען על ממצא אחד: החשבון שאתה מנסה לשחזר <strong>לא מרוויח מעוקבים</strong>. הוא מרוויח מרשימת תפוצה. העובדה הזאת משנה את היעד, את לוח הזמנים, ואת מה שאתה אישית חייב לעשות.</p>
 
-<div class="toc">
-  <a href="#state">Where we are</a><a href="#model">The model decoded</a><a href="#missing">What you're missing</a>
-  <a href="#face">The face question</a><a href="#money">7 ways to earn</a><a href="#stages">Stages</a>
-  <a href="#hours">Hours</a><a href="#you">What only you can do</a><a href="#risk">Risks</a><a href="#auto">Automation limits</a><a href="#next">Next 14 days</a>
+  <div class="tiles">
+    <div class="tile"><div class="k">THE REAL TARGET</div><div class="v"><span class="num">10,000</span></div><div class="s">נרשמים למייל — שווים יותר ממיליון עוקבים</div></div>
+    <div class="tile"><div class="k">FIRST MONEY FROM</div><div class="v">שירות</div><div class="s">בניית מערכות AI לעסקים · עובד ב־0 עוקבים</div></div>
+    <div class="tile"><div class="k">HOURS / WEEK</div><div class="v"><span class="num">13–21</span></div><div class="s">לפני לקוחות · בערך 2–3 שעות ביום</div></div>
+    <div class="tile"><div class="k">BIGGEST RISK</div><div class="v">נטישה</div><div class="s">רוב האנשים עוזבים בחודשים 2–4</div></div>
+  </div>
+
+  <nav class="nav">
+    <a href="#pipe">המערכת</a><a href="#state">איפה אנחנו</a><a href="#model">המודל</a>
+    <a href="#calc">מחשבון</a><a href="#money">7 מסלולי הכנסה</a><a href="#stages">שלבים</a>
+    <a href="#hours">שעות</a><a href="#you">רק אתה</a><a href="#risk">סיכונים</a><a href="#next">14 יום</a>
+  </nav>
 </div>
 
-<h2 id="state"><span class="n">01</span>Where we actually are</h2>
-<div class="rule"></div>
+<!-- ══════════ 01 · THE MACHINE ══════════ -->
+<section id="pipe">
+<h2><span class="n">01 · THE MACHINE</span>המערכת, מקצה לקצה</h2>
+<div class="hr"></div>
+<p class="big">ביקשת להבין בדיוק מה קורה מרגע הרעיון ועד שנכנס כסף. זה כל המסלול. שים לב איפה הכסף באמת נכנס — <mark>לא איפה שרוב האנשים חושבים</mark>.</p>
 
+<div class="pipe">
+  <div class="pipe-row">
+    <div class="pnode you"><div class="pi">01</div><div class="pt">בדיקה</div><div class="ps">אתה מריץ את הסטאפ בעצמך ומוודא שהוא עובד</div></div>
+    <span class="parr">←</span>
+    <div class="pnode auto"><div class="pi">02</div><div class="pt">תסריט</div><div class="ps">אני כותב · אתה מאשר</div></div>
+    <span class="parr">←</span>
+    <div class="pnode you"><div class="pi">03</div><div class="pt">קריינות</div><div class="ps">אתה מקליט · 20 דקות</div></div>
+    <span class="parr">←</span>
+    <div class="pnode auto"><div class="pi">04</div><div class="pt">רנדר</div><div class="ps">מוזיקה, כתוביות, MP4 — פקודה אחת</div></div>
+  </div>
+  <div class="pipe-row" style="margin-top:22px">
+    <div class="pnode auto"><div class="pi">05</div><div class="pt">פרסום</div><div class="ps">סקריפט Graph API · רץ מהמחשב שלך</div></div>
+    <span class="parr">←</span>
+    <div class="pnode"><div class="pi">06</div><div class="pt">חשיפה</div><div class="ps">אינסטגרם + יוטיוב · לא מייצר כסף בעצמו</div></div>
+    <span class="parr">←</span>
+    <div class="pnode money"><div class="pi">07</div><div class="pt">רשימת תפוצה</div><div class="ps">כאן נלכד הקהל — וזה מה שנמכר</div></div>
+    <span class="parr">←</span>
+    <div class="pnode money"><div class="pi">08</div><div class="pt">כסף</div><div class="ps">לקוחות שירות · ספונסרים · אפיליאייט</div></div>
+  </div>
+</div>
+
+<div class="call warn">
+<div class="t">CRITICAL</div>
+<h4>שלב 07 לא קיים אצלך היום</h4>
+<p>אין לך רשימת תפוצה, אין דף הרשמה, ואין מה לקנות. כלומר <strong>אם סרטון היה מתפוצץ מחר — לא היית לוכד ממנו כלום.</strong> החשיפה הייתה מתפוגגת תוך שבוע ולא היה נשאר ממנה דבר.</p>
+<p>שלבים 01–06 בנויים ועובדים. שלב 07 לוקח 15 דקות להקים. תעשה את זה לפני הפוסט הראשון, לא אחרי.</p>
+</div>
+
+<h3>מה אוטומטי ומה לא — בכנות</h3>
 <div class="tw"><table>
-<thead><tr><th>Piece</th><th>State</th><th>Honest assessment</th></tr></thead>
+<thead><tr><th>שלב</th><th>מצב</th><th>פירוט</th></tr></thead>
 <tbody>
-<tr><td class="name">Visual identity</td><td><span class="chip c-hi">Done</span></td><td>Brass on Ink. Distinctive, consistent, cheap to reproduce. This is genuinely solved.</td></tr>
-<tr><td class="name">Video production pipeline</td><td><span class="chip c-hi">Done</span></td><td>Script → narration → render → MP4, one command. Marginal cost of video #50 is the same as video #2. This is the real asset.</td></tr>
-<tr><td class="name">Episode 1 (Reel + long)</td><td><span class="chip c-md">v2 shipped</span></td><td>Motion, music, pacing fixed. Good enough to publish. Not good enough to be the thing people remember yet.</td></tr>
-<tr><td class="name">Voice</td><td><span class="chip c-risk">Weak link</span></td><td>Local neural TTS. It sounds synthetic and it will cap your ceiling. Fixable in one afternoon.</td></tr>
-<tr><td class="name">Brand kit</td><td><span class="chip c-hi">Done</span></td><td>Avatar, banner, thumbnail template, grid post.</td></tr>
-<tr><td class="name">Accounts</td><td><span class="chip c-risk">Not started</span></td><td>Nothing exists yet. Zero followers, zero subscribers, zero revenue.</td></tr>
-<tr><td class="name">Email list</td><td><span class="chip c-risk">Not started</span></td><td>The actual business. See section 03.</td></tr>
-<tr><td class="name">Offer</td><td><span class="chip c-risk">Not started</span></td><td>There is currently nothing to buy. Nothing.</td></tr>
+<tr><td class="name">בדיקת הסטאפ</td><td><span class="chip c-bad">אתה בלבד</span></td><td>4–6 שעות בשבוע. זה המוצר עצמו — ערוץ שנקרא Actually Works שמפרסם משהו לא בדוק, מת בפעם הראשונה שתופסים אותו.</td></tr>
+<tr><td class="name">תסריט + סטוריבורד</td><td><span class="chip c-ok">אני</span></td><td>אתה מאשר ומתקן. 15 דקות שלך.</td></tr>
+<tr><td class="name">קריינות</td><td><span class="chip c-bad">אתה בלבד</span></td><td>הקול שלך. 20 דקות לסרטון.</td></tr>
+<tr><td class="name">מוזיקה</td><td><span class="chip c-ok">אוטומטי</span></td><td>מסונתז לכל סרטון באורך מדויק. בלי חשיפה לקופירייט.</td></tr>
+<tr><td class="name">עריכה ורנדר</td><td><span class="chip c-ok">אוטומטי</span></td><td>פקודה אחת. עלות שולית של סרטון מס' 50 זהה לסרטון מס' 2.</td></tr>
+<tr><td class="name">כיתוב + האשטגים</td><td><span class="chip c-mid">אני מנסח</span></td><td>אתה מאשר.</td></tr>
+<tr><td class="name">העלאה לאינסטגרם</td><td><span class="chip c-mid">סקריפט אצלך</span></td><td>Graph API. הגדרה חד־פעמית של 20 דקות, אחר כך פקודה אחת. <strong>לא אני</strong> — ראה למטה.</td></tr>
+<tr><td class="name">תגובות והודעות</td><td><span class="chip c-bad">אתה בלבד</span></td><td>3–5 שעות בשבוע. משם מגיעים הלקוחות.</td></tr>
+<tr><td class="name">ניוזלטר</td><td><span class="chip c-ok">אני כותב</span></td><td>אתה עורך ושולח.</td></tr>
 </tbody>
 </table></div>
 
 <div class="call">
-<div class="t">The blunt summary</div>
-<p>You have solved <strong>production</strong> — the part most people quit over. You have not started <strong>distribution</strong> or <strong>monetisation</strong>, which is where the money and the difficulty actually live. That's a good position to be in, but don't mistake it for being close.</p>
+<div class="t">INSTAGRAM</div>
+<h4>לא, אי אפשר לחבר אותי לאינסטגרם — והנה מה כן</h4>
+<p>בדקתי גם את הקונקטורים שמחוברים לחשבון שלך וגם את הרישום הציבורי המלא. <strong>לא קיים קונקטור לאינסטגרם.</strong> אף אחד לא יכול לחבר אותי בלחיצה, ומי שמבטיח אחרת מתאר תוכנה שתגרום לחסימת החשבון.</p>
+<p>מה שכן קיים זה <strong>Instagram Graph API</strong> — הדרך הרשמית של מטא, בדיוק מה ש־Later ו־Buffer משתמשים בו מתחת למכסה. כתבתי לך את הסקריפט המלא: <span class="ltr">publish/instagram_publish.py</span>, עם מדריך הגדרה מלא בעברית ב־<span class="ltr">publish/SETUP.md</span>.</p>
+<p>ההגדרה: חשבון Creator מחובר לדף פייסבוק, אפליקציית מטא, טוקן ארוך־טווח. בערך 20 דקות פעם אחת. אחרי זה כל פרסום הוא שורה אחת. הטוקן חי 60 יום — שים תזכורת ליום 55, זו הסיבה הכי נפוצה שמערכות כאלה נשברות בשקט.</p>
 </div>
+</section>
 
-<h2 id="model"><span class="n">02</span>The model you're copying, decoded</h2>
-<div class="rule"></div>
-
-<p class="lead">I read the reference site. Here's what it actually is, stripped of the branding:</p>
-
+<!-- ══════════ 02 · STATE ══════════ -->
+<section id="state">
+<h2><span class="n">02 · WHERE WE ARE</span>איפה אנחנו באמת</h2>
+<div class="hr"></div>
 <div class="tw"><table>
-<thead><tr><th>Layer</th><th>What it is</th><th>What it's for</th></tr></thead>
+<thead><tr><th>רכיב</th><th>מצב</th><th>הערכה כנה</th></tr></thead>
 <tbody>
-<tr><td class="name">Social content</td><td>Short videos on Instagram, TikTok, YouTube, LinkedIn</td><td>Reach. Costs money, earns almost none directly.</td></tr>
-<tr><td class="name">Free resource library</td><td>~102 prompts, guides and workflows. No paywall anywhere.</td><td>Converts a viewer into an email address. This is the hinge.</td></tr>
-<tr><td class="name">Newsletter</td><td>Twice weekly, Wednesday and Sunday. 200,000+ readers.</td><td><em class="h">This is the product.</em></td></tr>
-<tr><td class="name">Brand partnerships</td><td>100+ deals, with a media kit ready to send</td><td>The revenue. Sponsors buy access to the list.</td></tr>
+<tr><td class="name">זהות ויזואלית</td><td><span class="chip c-ok">מוכן</span></td><td>Brass on Ink. ייחודי, עקבי, זול לשכפל. זה באמת פתור.</td></tr>
+<tr><td class="name">פייפליין הפקה</td><td><span class="chip c-ok">מוכן</span></td><td>הנכס האמיתי. זה החלק שרוב האנשים נשברים עליו.</td></tr>
+<tr><td class="name">פרק 1</td><td><span class="chip c-mid">v2</span></td><td>תנועה, מוזיקה וקצב תוקנו. מספיק טוב לפרסם.</td></tr>
+<tr><td class="name">קול</td><td><span class="chip c-mid">בהחלטה שלך</span></td><td>החלטת להקליט בעצמך. זו ההחלטה הנכונה — ראה למטה.</td></tr>
+<tr><td class="name">ערכת מותג</td><td><span class="chip c-ok">מוכן</span></td><td>אווטאר, באנר, תמבנייל, פוסט 4:5.</td></tr>
+<tr><td class="name">סקריפט פרסום</td><td><span class="chip c-ok">מוכן</span></td><td>נכתב היום. מחכה לטוקן שלך.</td></tr>
+<tr><td class="name">רשימת תפוצה</td><td><span class="chip c-bad">לא קיים</span></td><td>העסק עצמו. 15 דקות להקים.</td></tr>
+<tr><td class="name">מוצר / הצעה</td><td><span class="chip c-bad">לא קיים</span></td><td>אין כרגע שום דבר לקנות. כלום.</td></tr>
 </tbody>
 </table></div>
-
-<p>Notice what is <strong>not</strong> there: no course, no paid community, no coaching, no agency. The entire machine exists to grow one number — subscribers — and then rent access to them.</p>
-
-<p>Also notice the giveaway: <strong>everything is free.</strong> That isn't generosity, it's the business model. Free removes every reason not to hand over an email address, and the email address is what gets sold.</p>
-
-<h2 id="missing"><span class="n">03</span>The thing you're missing</h2>
-<div class="rule"></div>
-
-<p class="lead">You said the goal is <strong>1,000,000 followers</strong>. Based on the model you're copying, that's the wrong target — and it's roughly twenty times harder than the right one.</p>
-
-<p>Here are the current market rates for newsletter sponsorship. AI is the premium category right now because sponsor demand is high and there isn't enough inventory:</p>
-
-<div class="tw"><table>
-<thead><tr><th>Niche</th><th>CPM (per 1,000 subscribers, per send)</th></tr></thead>
-<tbody>
-<tr><td class="name">General newsletters</td><td class="num">$7 – $50</td></tr>
-<tr><td class="name">Technology &amp; dev tools</td><td class="num">$60 – $150</td></tr>
-<tr><td class="name">Marketing &amp; B2B SaaS</td><td class="num">$80 – $200</td></tr>
-<tr><td class="name">AI-focused, 30k+ subscribers</td><td class="num">$140 – $220</td></tr>
-</tbody>
-</table></div>
-
-<div class="rev">
-<div class="head"><h4>The arithmetic that should change your plan</h4></div>
-<p class="math">10,000 AI-niche subscribers × $100 CPM = <strong>$1,000 per sponsored send</strong><br>
-2 sends per week × 4 slots sold per month ≈ <strong>$4,000 / month</strong><br><br>
-30,000 subscribers × $150 CPM = <strong>$4,500 per send</strong> → <strong>$18,000+ / month</strong></p>
-<p style="margin-top:14px">Now compare: <strong>1,000,000 Instagram followers</strong> earns roughly $0 directly. Instagram's creator payouts are small, inconsistent, and repeatedly discontinued. A million followers is worth something only when it feeds somewhere that <em class="h">does</em> convert.</p>
-</div>
 
 <div class="call good">
-<div class="t">Change the target</div>
-<p><strong>10,000 email subscribers beats 1,000,000 followers</strong> — for revenue, for stability, and for how hard it is to get there. Followers are rented from a platform that can change the rules tomorrow. A list is owned. If Instagram deleted your account tonight, the list survives and the revenue survives with it.</p>
-<p>Keep the 1M number as a vanity milestone if you like. Don't run the business on it.</p>
+<div class="t">86 FOLLOWERS</div>
+<h4>תשתמש בחשבון הקיים. אל תפתח חדש.</h4>
+<p><span class="num">86</span> עוקבים זה לא הרבה, אבל זה לא אפס — וההבדל בין <span class="num">86</span> ל־<span class="num">0</span> גדול יותר משנדמה. חשבון עם היסטוריה, עם עוקבים אמיתיים ועם קצת אמון מהאלגוריתם מתחיל מנקודה טובה יותר מחשבון בן יומו, שאינסטגרם מתייחסת אליו בחשדנות בשבועות הראשונים.</p>
+<p><strong>מה כן לעשות:</strong> להסב אותו. שנה שם משתמש ל־<span class="ltr">@actuallyworks.ai</span>, החלף תמונה וביו, עבור לחשבון Creator, ומחק או ארכב פוסטים אישיים שלא קשורים. תפרסם פוסט אחד שמסביר את השינוי — מי שלא רלוונטי יעזוב וזה בסדר גמור.</p>
+<p><strong>חריג יחיד:</strong> אם החשבון הקיים מלא בתוכן אישי שאתה לא רוצה שיהיה מקושר לעסק — אז כן, פתח חדש. זו החלטה אישית, לא אלגוריתמית.</p>
+</div>
+</section>
+
+<!-- ══════════ 03 · MODEL ══════════ -->
+<section id="model">
+<h2><span class="n">03 · THE MODEL</span>המודל שאתה מעתיק, מפורק</h2>
+<div class="hr"></div>
+<p class="big">קראתי את <span class="ltr">mavgpt.ai</span>. זה מה שזה באמת, בלי המיתוג:</p>
+<div class="tw"><table>
+<thead><tr><th>שכבה</th><th>מה זה</th><th>בשביל מה</th></tr></thead>
+<tbody>
+<tr><td class="name">תוכן חברתי</td><td>סרטונים קצרים באינסטגרם, טיקטוק, יוטיוב, לינקדאין</td><td>חשיפה. עולה כסף, מרוויח כמעט אפס ישירות.</td></tr>
+<tr><td class="name">ספריית משאבים</td><td>כ־<span class="num">102</span> פרומפטים, מדריכים וזרימות עבודה. בלי שום תשלום.</td><td>הופך צופה לכתובת מייל. זה הציר.</td></tr>
+<tr><td class="name">ניוזלטר</td><td>פעמיים בשבוע · רביעי וראשון · <span class="num">200,000+</span> קוראים</td><td><mark>זה המוצר.</mark></td></tr>
+<tr><td class="name">שיתופי מותגים</td><td><span class="num">100+</span> עסקאות, עם מדיה־קיט מוכן</td><td>ההכנסה. מפרסמים קונים גישה לרשימה.</td></tr>
+</tbody>
+</table></div>
+<p>שים לב מה <strong>אין</strong> שם: אין קורס, אין קהילה בתשלום, אין ליווי, אין סוכנות. כל המכונה קיימת כדי להגדיל מספר אחד — נרשמים — ואז להשכיר גישה אליהם.</p>
+<p>ושים לב לרמז הכי גדול: <strong>הכל חינם.</strong> זו לא נדיבות, זה המודל. חינם מוריד כל סיבה לא למסור מייל, והמייל הוא מה שנמכר.</p>
+</section>
+
+<!-- ══════════ 04 · CALCULATOR ══════════ -->
+<section id="calc">
+<h2><span class="n">04 · THE ARITHMETIC</span>המספרים, שתוכל לשחק איתם</h2>
+<div class="hr"></div>
+<p class="big">ניוזלטרים בנישת AI הם הקטגוריה היקרה ביותר בשוק כרגע — ביקוש גבוה ממפרסמים, ואין מספיק מלאי. תזיז את הסליידרים ותראה מה זה אומר.</p>
+
+<div class="calc">
+  <h4>מחשבון הכנסה מניוזלטר</h4>
+  <p class="sub">כמה שווה רשימת תפוצה בגודל נתון, לפי תעריפי השוק של <span class="num">2026</span>.</p>
+
+  <div class="ctrl">
+    <label><span>נרשמים לרשימה</span><b id="subsV">10,000</b></label>
+    <input type="range" id="subs" min="500" max="60000" step="500" value="10000">
+  </div>
+  <div class="ctrl">
+    <label><span>CPM — מחיר לכל אלף נרשמים, לשליחה</span><b id="cpmV">$100</b></label>
+    <input type="range" id="cpm" min="20" max="220" step="5" value="100">
+  </div>
+  <div class="ctrl">
+    <label><span>שליחות ממומנות בחודש</span><b id="slotsV">4</b></label>
+    <input type="range" id="slots" min="1" max="8" step="1" value="4">
+  </div>
+
+  <div class="result">
+    <div><div class="rk">PER SEND</div><div class="rv" id="perSend">$1,000</div></div>
+    <div><div class="rk">PER MONTH</div><div class="rv hi" id="perMonth">$4,000</div></div>
+    <div><div class="rk">PER YEAR</div><div class="rv" id="perYear">$48,000</div></div>
+  </div>
+  <p class="assum" id="assum"></p>
 </div>
 
-<p><strong>The other four things you're missing</strong>, in order of how much they'll cost you:</p>
-
-<ol>
-<li><strong>There is nothing to buy and nowhere to sign up.</strong> If a video went viral tomorrow you'd capture nothing from it. Fix this before you post, not after.</li>
-<li><strong>Production was never the bottleneck.</strong> You automated the cheap part. Distribution and offer are the expensive parts and no tool solves them.</li>
-<li><strong>"Actually works" means you have to actually test.</strong> Every setup you publish must be one you personally ran. That's the real recurring time cost, and it can't be automated — it's also the entire reason anyone would follow you rather than the fifty accounts reposting the same tips.</li>
-<li><strong>You haven't decided Hebrew or English.</strong> English gives 20× the market and pays 5–10× the CPM. Hebrew gives a small market with almost no competition and much warmer service leads. Both are valid. Doing both badly is not.</li>
-</ol>
-
-<h2 id="face"><span class="n">04</span>The face question — you don't need one</h2>
-<div class="rule"></div>
-
-<p class="lead">You said you don't want to be in front of the camera. Good news: for this format it's genuinely not required, and an AI avatar is probably the <em class="h">worst</em> of the three options.</p>
-
 <div class="tw"><table>
-<thead><tr><th>Option</th><th>Cost</th><th>Reality</th><th>Verdict</th></tr></thead>
+<thead><tr><th>נישה</th><th>CPM מקובל <span class="num">2026</span></th></tr></thead>
 <tbody>
-<tr><td class="name">Screen + voice<br>(what we built)</td><td class="num">$0</td><td>Nobody expects a face on a tutorial. The screen <em>is</em> the content. This is how most high-performing AI accounts already work.</td><td><span class="chip c-hi">Do this</span></td></tr>
-<tr><td class="name">AI avatar<br>(HeyGen, Synthesia)</td><td class="num">$25–90/mo</td><td>A synthetic presenter reads as synthetic, and platforms increasingly down-rank content flagged as AI-generated. You'd pay money to look less trustworthy on a channel whose entire promise is trust.</td><td><span class="chip c-risk">Skip</span></td></tr>
-<tr><td class="name">Stylised brand character</td><td class="num">low</td><td>An illustrated mascot, never pretending to be human. Honest, memorable, cheap. Worth considering later as a signature — not as a presenter.</td><td><span class="chip c-md">Maybe, later</span></td></tr>
+<tr><td class="name">ניוזלטר כללי</td><td><span class="num">$7 – $50</span></td></tr>
+<tr><td class="name">טכנולוגיה וכלי פיתוח</td><td><span class="num">$60 – $150</span></td></tr>
+<tr><td class="name">שיווק ו־B2B SaaS</td><td><span class="num">$80 – $200</span></td></tr>
+<tr><td class="name">AI, מעל <span class="num">30,000</span> נרשמים</td><td><span class="num">$140 – $220</span></td></tr>
 </tbody>
 </table></div>
 
-<div class="call warn">
-<div class="t">Your voice is not your face</div>
-<p>You can stay completely anonymous and still narrate. Recording your own voice costs nothing, takes about 20 minutes per video, and is the single largest quality jump available to you right now — bigger than any visual change I can make. A phone in a quiet room beats every TTS engine on the market.</p>
-<p>If you truly won't record: <strong>ElevenLabs</strong>, roughly $5–22/month, is the fallback. It's clearly better than what we're using. Everything else in the pipeline stays identical — only the audio file changes.</p>
+<div class="call good">
+<div class="t">CHANGE THE TARGET</div>
+<h4><span class="num">10,000</span> מיילים מנצחים <span class="num">1,000,000</span> עוקבים</h4>
+<p>מיליון עוקבים באינסטגרם מייצרים בערך <mark>0$</mark> ישירות. תשלומי היוצרים של הפלטפורמות קטנים, לא עקביים, ונסגרים שוב ושוב. מיליון עוקבים שווים משהו רק כשהם מזינים משהו אחר שכן ממיר.</p>
+<p>ומעבר לכסף: עוקבים <strong>שכורים</strong> מפלטפורמה שיכולה לשנות את הכללים מחר. רשימה היא <strong>בבעלותך</strong>. אם אינסטגרם תמחק לך את החשבון הלילה — הרשימה שורדת וההכנסה שורדת איתה.</p>
+<p>תשמור את המיליון כיעד יוקרה אם בא לך. אל תנהל לפיו את העסק.</p>
+</div>
+</section>
+
+<!-- ══════════ 05 · MONEY ══════════ -->
+<section id="money">
+<h2><span class="n">05 · REVENUE</span>שבע דרכים להרוויח, מדורגות</h2>
+<div class="hr"></div>
+<p class="big">הדירוג הוא לפי <strong>כסף לשעת עבודה בשנה הראשונה</strong> — לא לפי תקרה תיאורטית. כל המספרים הם טווחים מקובלים בשוק, לא הבטחות.</p>
+
+<div class="bars">
+  <p class="bt">הכנסה חודשית ריאלית · שנה ראשונה</p>
+  <p class="bs">קצה הטווח העליון של כל מסלול. שים לב שהשניים הראשונים לא דורשים קהל גדול.</p>
+  <div class="bar"><span class="bl">שירות לעסקים</span><span class="bwrap"><span class="bfill" style="width:100%"></span></span><span class="bv">$2k–15k</span></div>
+  <div class="bar"><span class="bl">ספונסרים בניוזלטר</span><span class="bwrap"><span class="bfill" style="width:27%"></span></span><span class="bv">$0–4k</span></div>
+  <div class="bar"><span class="bl">מוצרים דיגיטליים</span><span class="bwrap"><span class="bfill" style="width:27%"></span></span><span class="bv">$300–4k</span></div>
+  <div class="bar"><span class="bl">אפיליאייט</span><span class="bwrap"><span class="bfill" style="width:20%"></span></span><span class="bv">$200–3k</span></div>
+  <div class="bar"><span class="bl">סרטונים ממומנים</span><span class="bwrap"><span class="bfill" style="width:20%"></span></span><span class="bv">$0–3k</span></div>
+  <div class="bar"><span class="bl">קהילה / קורס</span><span class="bwrap"><span class="bfill" style="width:13%"></span></span><span class="bv">$0–2k</span></div>
+  <div class="bar"><span class="bl">תשלומי פלטפורמה</span><span class="bwrap"><span class="bfill" style="width:5%"></span></span><span class="bv">$50–800</span></div>
 </div>
 
-<p><strong>On your "diversify by personas" idea</strong> — the instinct is right but the axis is wrong. Don't diversify by inventing fake humans; that multiplies your workload and divides your trust. Diversify by <strong>format</strong> instead, under one identity:</p>
-<ul>
-<li><strong>The Setup</strong> — screen recording, 45–75s. Your bread and butter.</li>
-<li><strong>The Teardown</strong> — "I gave this agent my inbox for a week, here's what broke." Results, not tutorials.</li>
-<li><strong>The Comparison</strong> — two tools, one decision, three minutes. Highest-converting format in this niche.</li>
-<li><strong>The Honest One</strong> — what doesn't work. Your signature, and the reason people trust the other three.</li>
-</ul>
-
-<h2 id="money"><span class="n">05</span>Seven ways this makes money, ranked</h2>
-<div class="rule"></div>
-
-<p class="lead">Ranked by realistic money per hour of your time in the first year. All figures are industry-typical ranges, not promises — treat them as arithmetic to check, not income to expect.</p>
-
-<div class="rev">
-<div class="head"><span class="rank">01</span><h4>Done-for-you AI systems for businesses</h4><span class="chip c-hi">Opportunity: high</span><span class="chip c-lo">Risk: low</span></div>
-<div class="grid">
-<div><span>Time to first $</span><b>2–6 weeks</b></div>
-<div><span>Realistic Y1</span><b>$2k–15k/mo</b></div>
-<div><span>Needs audience?</span><b>No</b></div>
-<div><span>Ceiling</span><b>Your hours</b></div>
+<div class="rev top">
+<div class="rh"><span class="rn">01</span><h4>בניית מערכות AI לעסקים</h4><span class="chip c-ok">סיכוי גבוה</span><span class="chip c-off">סיכון נמוך</span></div>
+<div class="meta">
+<div><div class="mk">TIME TO FIRST $</div><div class="mv"><span class="num">2–6</span> שבועות</div></div>
+<div><div class="mk">YEAR 1</div><div class="mv"><span class="num">$2k–15k</span>/ח׳</div></div>
+<div><div class="mk">צריך קהל?</div><div class="mv">לא</div></div>
+<div><div class="mk">תקרה</div><div class="mv">השעות שלך</div></div>
 </div>
-<p>You already build AI systems — that's how this whole project started. Small businesses will pay $1,500–8,000 for one working automation. The content isn't the product here; it's proof you can do it. Two clients pay more than 100,000 followers will for a long time.</p>
-<p><strong>How exactly:</strong> put one line in your bio — "I build these for businesses" — and a booking link. Every video is a portfolio piece. Answer every DM. That's the entire funnel.</p>
-<p><strong>Why it's first:</strong> it works at zero followers, it funds everything else, and it makes your content better because you're solving real problems instead of guessing at them.</p>
-</div>
-
-<div class="rev">
-<div class="head"><span class="rank">02</span><h4>Newsletter sponsorships</h4><span class="chip c-hi">Opportunity: high</span><span class="chip c-md">Risk: medium</span></div>
-<div class="grid">
-<div><span>Time to first $</span><b>4–8 months</b></div>
-<div><span>Realistic Y1</span><b>$0–4k/mo</b></div>
-<div><span>Needs audience?</span><b>~5k subs</b></div>
-<div><span>Ceiling</span><b>Very high</b></div>
-</div>
-<p>The model you're copying, and the reason section 03 exists. Sponsors pay per send, so revenue scales with list size and doesn't require you to sell anything to your readers.</p>
-<p class="math">5,000 subs × $80 CPM = $400/send · 8 sends/month, 2 sold = $800/mo<br>
-20,000 subs × $140 CPM = $2,800/send · 4 sold/month = $11,200/mo</p>
-<p><strong>How exactly:</strong> start the list on day one — Beehiiv or Kit, free tier. Every video ends with "full instruction in the newsletter". At ~2,000 subscribers, list yourself on Paved and Sponsorgap and make a one-page media kit. Sponsors come to you in this niche; you rarely have to chase.</p>
+<p>אתה כבר בונה מערכות AI — ככה כל הפרויקט הזה התחיל. עסקים קטנים משלמים <span class="num">1,500–8,000$</span> על אוטומציה אחת שעובדת. התוכן הוא לא המוצר כאן, הוא ההוכחה שאתה יודע לעשות את זה. <strong>שני לקוחות מכניסים יותר ממאה אלף עוקבים.</strong></p>
+<p><strong>איך בדיוק:</strong> שורה אחת בביו — "אני בונה את זה לעסקים" — וקישור ליומן. כל סרטון הוא פריט תיק עבודות. עונים על כל הודעה. זה כל המשפך.</p>
+<p><strong>למה זה ראשון:</strong> עובד ב־<span class="num">0</span> עוקבים, מממן את כל השאר, ומשפר את התוכן — כי אתה פותר בעיות אמיתיות במקום לנחש.</p>
 </div>
 
 <div class="rev">
-<div class="head"><span class="rank">03</span><h4>Affiliate revenue from AI tools</h4><span class="chip c-md">Opportunity: medium</span><span class="chip c-md">Risk: medium</span></div>
-<div class="grid">
-<div><span>Time to first $</span><b>1–3 months</b></div>
-<div><span>Realistic Y1</span><b>$200–3k/mo</b></div>
-<div><span>Needs audience?</span><b>Small</b></div>
-<div><span>Ceiling</span><b>Medium</b></div>
+<div class="rh"><span class="rn">02</span><h4>ספונסרים בניוזלטר</h4><span class="chip c-ok">סיכוי גבוה</span><span class="chip c-mid">סיכון בינוני</span></div>
+<div class="meta">
+<div><div class="mk">TIME TO FIRST $</div><div class="mv"><span class="num">4–8</span> חודשים</div></div>
+<div><div class="mk">YEAR 1</div><div class="mv"><span class="num">$0–4k</span>/ח׳</div></div>
+<div><div class="mk">צריך קהל?</div><div class="mv">~<span class="num">5k</span> נרשמים</div></div>
+<div><div class="mk">תקרה</div><div class="mv">גבוהה מאוד</div></div>
 </div>
-<p>n8n, Make, Zapier, Lindy, Notion and most AI tools pay 20–30% recurring. Your content is already tool-led, so this costs you nothing extra.</p>
-<p><strong>How exactly:</strong> only ever link tools you genuinely use in a video. Disclose every time — it's legally required in most markets and it's also the reason people believe you.</p>
-<div class="call warn" style="margin:14px 0 0">
-<div class="t">The trap</div>
-<p>Affiliate money quietly rewrites what you cover. The moment you're choosing episodes by commission instead of usefulness, the "actually works" promise is dead and so is the channel. Cap it: never more than one affiliate link per video, and never recommend a tool you'd not use unpaid.</p>
+<p>המודל שאתה מעתיק. מפרסמים משלמים לפי שליחה, אז ההכנסה גדלה עם הרשימה בלי שתצטרך למכור שום דבר לקוראים שלך.</p>
+<p class="math">5,000 subs × $80 CPM = $400 / send · 2 sold per month = $800 / mo<br>20,000 subs × $140 CPM = $2,800 / send · 4 sold = $11,200 / mo</p>
+<p style="margin-top:16px"><strong>איך בדיוק:</strong> פותחים את הרשימה ביום הראשון — <span class="ltr">Beehiiv</span> או <span class="ltr">Kit</span>, מסלול חינם. כל סרטון נגמר ב"הטקסט המלא בניוזלטר". בסביבות <span class="num">2,000</span> נרשמים נרשמים ל־<span class="ltr">Paved</span> ו־<span class="ltr">Sponsorgap</span> ומכינים מדיה־קיט של עמוד אחד. בנישה הזאת המפרסמים מגיעים אליך.</p>
+</div>
+
+<div class="rev">
+<div class="rh"><span class="rn">03</span><h4>אפיליאייט על כלי AI</h4><span class="chip c-mid">סיכוי בינוני</span><span class="chip c-mid">סיכון בינוני</span></div>
+<div class="meta">
+<div><div class="mk">TIME TO FIRST $</div><div class="mv"><span class="num">1–3</span> חודשים</div></div>
+<div><div class="mk">YEAR 1</div><div class="mv"><span class="num">$200–3k</span>/ח׳</div></div>
+<div><div class="mk">צריך קהל?</div><div class="mv">קטן</div></div>
+<div><div class="mk">תקרה</div><div class="mv">בינונית</div></div>
+</div>
+<p><span class="ltr">n8n</span>, <span class="ltr">Make</span>, <span class="ltr">Zapier</span>, <span class="ltr">Lindy</span> ורוב כלי ה־AI משלמים <span class="num">20–30%</span> חוזר. התוכן שלך ממילא מבוסס כלים, אז זה לא עולה לך שום עבודה נוספת.</p>
+<div class="call warn" style="margin:16px 0 0;max-width:none">
+<div class="t">THE TRAP</div>
+<p>כסף אפיליאייט משכתב בשקט את מה שאתה מסקר. ברגע שאתה בוחר פרקים לפי עמלה במקום לפי תועלת — ההבטחה של "actually works" מתה, ואיתה הערוץ. תקרה: קישור אחד לסרטון, תמיד עם גילוי נאות, ורק כלים שהיית משתמש בהם גם בלי תשלום.</p>
 </div>
 </div>
 
 <div class="rev">
-<div class="head"><span class="rank">04</span><h4>Digital products — templates, packs, systems</h4><span class="chip c-md">Opportunity: medium</span><span class="chip c-lo">Risk: low</span></div>
-<div class="grid">
-<div><span>Time to first $</span><b>2–4 months</b></div>
-<div><span>Realistic Y1</span><b>$300–4k/mo</b></div>
-<div><span>Needs audience?</span><b>~3k</b></div>
-<div><span>Ceiling</span><b>Medium-high</b></div>
+<div class="rh"><span class="rn">04</span><h4>מוצרים דיגיטליים</h4><span class="chip c-mid">סיכוי בינוני</span><span class="chip c-off">סיכון נמוך</span></div>
+<div class="meta">
+<div><div class="mk">TIME TO FIRST $</div><div class="mv"><span class="num">2–4</span> חודשים</div></div>
+<div><div class="mk">YEAR 1</div><div class="mv"><span class="num">$300–4k</span>/ח׳</div></div>
+<div><div class="mk">צריך קהל?</div><div class="mv">~<span class="num">3k</span></div></div>
+<div><div class="mk">תקרה</div><div class="mv">בינונית־גבוהה</div></div>
 </div>
-<p>A $29–79 pack of the workflows you've already built and tested. Sells while you sleep, no delivery cost, no support burden if scoped tightly.</p>
-<p><strong>How exactly:</strong> Gumroad or Lemon Squeezy, one page, one product. Build it from your ten most-saved videos — let the audience tell you what to make rather than guessing.</p>
-</div>
-
-<div class="rev">
-<div class="head"><span class="rank">05</span><h4>Sponsored videos (brand deals)</h4><span class="chip c-md">Opportunity: medium</span><span class="chip c-risk">Risk: high</span></div>
-<div class="grid">
-<div><span>Time to first $</span><b>6–12 months</b></div>
-<div><span>Realistic Y1</span><b>$0–3k/mo</b></div>
-<div><span>Needs audience?</span><b>20k+</b></div>
-<div><span>Ceiling</span><b>High</b></div>
-</div>
-<p>AI tools pay $500–5,000 per integrated video at moderate scale. The risk isn't the money, it's the positioning: a channel called Actually Works that starts praising whoever paid loses the only thing that made it different.</p>
-<p><strong>The rule that protects you:</strong> you'll say what's wrong with the product too, in the video, and that's non-negotiable in the contract. You'll lose some deals. The ones you keep are worth more, and your audience stays.</p>
+<p>חבילה ב־<span class="num">29–79$</span> של זרימות העבודה שכבר בנית ובדקת. נמכרת בזמן שאתה ישן, בלי עלות אספקה. תבנה אותה מעשרת הסרטונים שהכי נשמרו — תן לקהל להגיד לך מה לייצר במקום לנחש.</p>
 </div>
 
 <div class="rev">
-<div class="head"><span class="rank">06</span><h4>Paid community or cohort course</h4><span class="chip c-md">Opportunity: medium</span><span class="chip c-risk">Risk: high</span></div>
-<div class="grid">
-<div><span>Time to first $</span><b>9–18 months</b></div>
-<div><span>Realistic Y1</span><b>$0–2k/mo</b></div>
-<div><span>Needs audience?</span><b>10k+ engaged</b></div>
-<div><span>Ceiling</span><b>High</b></div>
+<div class="rh"><span class="rn">05</span><h4>סרטונים ממומנים</h4><span class="chip c-mid">סיכוי בינוני</span><span class="chip c-bad">סיכון גבוה</span></div>
+<div class="meta">
+<div><div class="mk">TIME TO FIRST $</div><div class="mv"><span class="num">6–12</span> חודשים</div></div>
+<div><div class="mk">YEAR 1</div><div class="mv"><span class="num">$0–3k</span>/ח׳</div></div>
+<div><div class="mk">צריך קהל?</div><div class="mv"><span class="num">20k+</span></div></div>
+<div><div class="mk">תקרה</div><div class="mv">גבוהה</div></div>
 </div>
-<p>High revenue per customer, but it converts a passive audience into an ongoing obligation. A community you stop showing up in is worse than no community. Don't start this until the other lines are stable.</p>
+<p>כלי AI משלמים <span class="num">500–5,000$</span> לסרטון משולב. הסיכון הוא לא הכסף אלא המיצוב: ערוץ בשם Actually Works שמתחיל לשבח את מי ששילם, מאבד את הדבר היחיד שהבדיל אותו.</p>
+<p><strong>הכלל שמגן עליך:</strong> אתה תגיד גם מה לא טוב במוצר, בתוך הסרטון, וזה לא נתון למשא ומתן בחוזה. תפסיד חלק מהעסקאות. אלה שתשמור שוות יותר, והקהל נשאר.</p>
 </div>
 
 <div class="rev">
-<div class="head"><span class="rank">07</span><h4>Platform payouts (AdSense, Reels bonuses)</h4><span class="chip c-lo">Opportunity: low</span><span class="chip c-lo">Risk: low</span></div>
-<div class="grid">
-<div><span>Time to first $</span><b>6–12 months</b></div>
-<div><span>Realistic Y1</span><b>$50–800/mo</b></div>
-<div><span>Needs audience?</span><b>Large</b></div>
-<div><span>Ceiling</span><b>Low per view</b></div>
+<div class="rh"><span class="rn">06</span><h4>קהילה בתשלום או קורס</h4><span class="chip c-mid">סיכוי בינוני</span><span class="chip c-bad">סיכון גבוה</span></div>
+<div class="meta">
+<div><div class="mk">TIME TO FIRST $</div><div class="mv"><span class="num">9–18</span> חודשים</div></div>
+<div><div class="mk">YEAR 1</div><div class="mv"><span class="num">$0–2k</span>/ח׳</div></div>
+<div><div class="mk">צריך קהל?</div><div class="mv"><span class="num">10k+</span> פעילים</div></div>
+<div><div class="mk">תקרה</div><div class="mv">גבוהה</div></div>
 </div>
-<p>YouTube pays reasonable CPMs on long-form in the tech/AI niche; Shorts and Reels pay very little. Treat this as a bonus that arrives on its own, never as a plan. Enable it and forget about it.</p>
+<p>הכנסה גבוהה ללקוח, אבל הופך קהל פסיבי למחויבות מתמשכת. קהילה שאתה מפסיק להופיע בה גרועה מאין קהילה. אל תתחיל את זה לפני ששאר הקווים יציבים.</p>
 </div>
 
-<h2 id="stages"><span class="n">06</span>The stages</h2>
-<div class="rule"></div>
-<p class="lead">Each stage has a <strong>gate</strong>. Don't start the next one until the gate is passed — that's the discipline that stops this becoming six half-built things.</p>
+<div class="rev">
+<div class="rh"><span class="rn">07</span><h4>תשלומי פלטפורמה</h4><span class="chip c-off">סיכוי נמוך</span><span class="chip c-off">סיכון נמוך</span></div>
+<div class="meta">
+<div><div class="mk">TIME TO FIRST $</div><div class="mv"><span class="num">6–12</span> חודשים</div></div>
+<div><div class="mk">YEAR 1</div><div class="mv"><span class="num">$50–800</span>/ח׳</div></div>
+<div><div class="mk">צריך קהל?</div><div class="mv">גדול</div></div>
+<div><div class="mk">תקרה</div><div class="mv">נמוכה לצפייה</div></div>
+</div>
+<p>יוטיוב משלם סביר על תוכן ארוך בנישת AI; Shorts ו־Reels משלמים מעט מאוד. תפעיל ותשכח מזה. בונוס שמגיע לבד, אף פעם לא תוכנית.</p>
+</div>
+</section>
+
+<!-- ══════════ 06 · STAGES ══════════ -->
+<section id="stages">
+<h2><span class="n">06 · STAGES</span>השלבים</h2>
+<div class="hr"></div>
+<p class="big">לכל שלב יש <strong>שער מעבר</strong>. לא מתחילים את הבא לפני שעברו אותו — זו המשמעת שמונעת מזה להפוך לשישה דברים חצי־בנויים.</p>
 
 <div class="stages">
-
 <div class="stage now"><div class="sn">0</div><div class="sb">
-<h4>Foundation <span class="chip c-md">now · 1 week</span></h4>
-<div class="meta">~2 hours/day · mostly decisions, not work</div>
+<h4>יסודות <span class="chip c-mid">עכשיו · שבוע</span></h4>
+<div class="sm">~2 שעות ביום · בעיקר החלטות, לא עבודה</div>
 <ul>
-<li>Decide: English only (my recommendation) or Hebrew</li>
-<li>Create Instagram (Creator account) + YouTube (Brand account) with the same handle</li>
-<li>Create the email list — Beehiiv free tier — and a one-page signup</li>
-<li>Fix the voice: record yourself, or subscribe to ElevenLabs</li>
-<li>Upload the brand kit</li>
+<li>להחליט: אנגלית בלבד (ההמלצה שלי) או עברית</li>
+<li>להסב את החשבון הקיים ל־Creator ולשנות שם משתמש</li>
+<li>לפתוח יוטיוב (Brand account) עם אותו הנדל</li>
+<li>לפתוח רשימת תפוצה — Beehiiv, חינם — ודף הרשמה</li>
+<li>להקליט את הקול לפרק <span class="num">1</span></li>
+<li>להעלות את ערכת המותג</li>
 </ul>
-<div class="gate">Gate → accounts live, list exists, one video published.</div>
+<div class="gate">שער ← חשבונות חיים, רשימה קיימת, סרטון אחד פורסם.</div>
 </div></div>
 
 <div class="stage"><div class="sn">1</div><div class="sb">
-<h4>Proof of rhythm <span class="chip c-lo">weeks 2–8</span></h4>
-<div class="meta">~3 hours/day · this is the hard one</div>
+<h4>הוכחת קצב <span class="chip c-off">שבועות 2–8</span></h4>
+<div class="sm">~3 שעות ביום · זה השלב הקשה</div>
 <ul>
-<li>2 Reels per week, 1 long-form per week. Never miss. Consistency beats quality here.</li>
-<li>Every video ends with the newsletter call to action</li>
-<li>Reply to every single comment and DM personally</li>
-<li>Add "I build these for businesses" to the bio + a booking link</li>
+<li><span class="num">2</span> ריאלים בשבוע, <span class="num">1</span> ארוך. בלי לפספס. עקביות מנצחת איכות כאן.</li>
+<li>כל סרטון נגמר בקריאה להרשמה לניוזלטר</li>
+<li>לענות אישית על כל תגובה וכל הודעה</li>
+<li>"אני בונה את זה לעסקים" בביו + קישור ליומן</li>
 </ul>
-<div class="gate">Gate → 16 videos published, 500+ subscribers, or one paying client.</div>
+<div class="gate">שער ← <span class="num">16</span> סרטונים, <span class="num">500+</span> נרשמים, או לקוח משלם אחד.</div>
 </div></div>
 
 <div class="stage"><div class="sn">2</div><div class="sb">
-<h4>First revenue <span class="chip c-lo">months 3–5</span></h4>
-<div class="meta">~3–4 hours/day</div>
+<h4>הכנסה ראשונה <span class="chip c-off">חודשים 3–5</span></h4>
+<div class="sm">~3–4 שעות ביום</div>
 <ul>
-<li>Land 1–2 done-for-you clients from DMs. This is your first real money.</li>
-<li>Add affiliate links to tools you already use</li>
-<li>Build the free resource library — the thing that converts viewers into subscribers</li>
-<li>Study which videos drive subscribers, not which get views</li>
+<li><span class="num">1–2</span> לקוחות שירות מההודעות. זה הכסף האמיתי הראשון.</li>
+<li>קישורי אפיליאייט לכלים שאתה כבר משתמש בהם</li>
+<li>לבנות את ספריית המשאבים החינמית</li>
+<li>לבדוק אילו סרטונים מביאים נרשמים — לא אילו מביאים צפיות</li>
 </ul>
-<div class="gate">Gate → first $1,000 earned, 2,000+ subscribers.</div>
+<div class="gate">שער ← <span class="num">$1,000</span> ראשונים, <span class="num">2,000+</span> נרשמים.</div>
 </div></div>
 
 <div class="stage"><div class="sn">3</div><div class="sb">
-<h4>The list becomes the business <span class="chip c-lo">months 6–10</span></h4>
-<div class="meta">~4 hours/day</div>
+<h4>הרשימה הופכת לעסק <span class="chip c-off">חודשים 6–10</span></h4>
+<div class="sm">~4 שעות ביום</div>
 <ul>
-<li>Newsletter goes twice weekly, reliably</li>
-<li>Media kit; list on Paved and Sponsorgap</li>
-<li>First sponsored send</li>
-<li>Ship the first digital product from your most-saved content</li>
+<li>ניוזלטר פעמיים בשבוע, בלי לפספס</li>
+<li>מדיה־קיט; רישום ב־Paved וב־Sponsorgap</li>
+<li>שליחה ממומנת ראשונה</li>
+<li>מוצר דיגיטלי ראשון מהתוכן הכי נשמר</li>
 </ul>
-<div class="gate">Gate → first sponsorship paid, $3k+/month total.</div>
+<div class="gate">שער ← ספונסר ראשון שילם, <span class="num">$3k+</span> לחודש.</div>
 </div></div>
 
 <div class="stage"><div class="sn">4</div><div class="sb">
-<h4>Leverage <span class="chip c-lo">months 10–18</span></h4>
-<div class="meta">~4 hours/day, less of it production</div>
+<h4>מינוף <span class="chip c-off">חודשים 10–18</span></h4>
+<div class="sm">~4 שעות ביום, פחות מהן בהפקה</div>
 <ul>
-<li>Hire an editor or VA for publishing and comment triage</li>
-<li>Raise sponsorship rates as the list grows</li>
-<li>Decide: scale the service business, or go audience-only</li>
+<li>עורך או VA לפרסום ולסינון תגובות</li>
+<li>העלאת תעריפי ספונסרשיפ ככל שהרשימה גדלה</li>
+<li>החלטה: להרחיב את עסק השירות, או ללכת על קהל בלבד</li>
 </ul>
-<div class="gate">Gate → $8k+/month, and you're no longer the bottleneck.</div>
+<div class="gate">שער ← <span class="num">$8k+</span> לחודש, ואתה כבר לא צוואר הבקבוק.</div>
 </div></div>
-
 </div>
+</section>
 
-<h2 id="hours"><span class="n">07</span>Hours per day, honestly</h2>
-<div class="rule"></div>
-
+<!-- ══════════ 07 · HOURS ══════════ -->
+<section id="hours">
+<h2><span class="n">07 · TIME</span>שעות ביום, בכנות</h2>
+<div class="hr"></div>
 <div class="tw"><table>
-<thead><tr><th>Activity</th><th>Per week</th><th>Can I do it?</th></tr></thead>
+<thead><tr><th>פעילות</th><th>לשבוע</th><th>מי עושה</th></tr></thead>
 <tbody>
-<tr><td class="name">Testing the setups you'll publish</td><td class="num">4–6 h</td><td><span class="chip c-risk">You only</span></td></tr>
-<tr><td class="name">Scripting + storyboarding</td><td class="num">2–3 h</td><td><span class="chip c-hi">Me, you approve</span></td></tr>
-<tr><td class="name">Recording voice</td><td class="num">1–2 h</td><td><span class="chip c-risk">You only</span></td></tr>
-<tr><td class="name">Rendering + export</td><td class="num">0 h</td><td><span class="chip c-hi">Automated</span></td></tr>
-<tr><td class="name">Publishing + captions + hashtags</td><td class="num">1–2 h</td><td><span class="chip c-md">Me drafts, you post</span></td></tr>
-<tr><td class="name">Comments + DMs</td><td class="num">3–5 h</td><td><span class="chip c-risk">You only</span></td></tr>
-<tr><td class="name">Newsletter writing</td><td class="num">2–3 h</td><td><span class="chip c-hi">Me, you edit</span></td></tr>
-<tr><td class="name">Client work (once it starts)</td><td class="num">5–15 h</td><td><span class="chip c-md">Me + you</span></td></tr>
+<tr><td class="name">בדיקת הסטאפים שתפרסם</td><td><span class="num">4–6</span> ש׳</td><td><span class="chip c-bad">אתה בלבד</span></td></tr>
+<tr><td class="name">תסריט וסטוריבורד</td><td><span class="num">2–3</span> ש׳</td><td><span class="chip c-ok">אני, אתה מאשר</span></td></tr>
+<tr><td class="name">הקלטת קול</td><td><span class="num">1–2</span> ש׳</td><td><span class="chip c-bad">אתה בלבד</span></td></tr>
+<tr><td class="name">רנדר וייצוא</td><td><span class="num">0</span> ש׳</td><td><span class="chip c-ok">אוטומטי</span></td></tr>
+<tr><td class="name">פרסום, כיתובים, האשטגים</td><td><span class="num">1–2</span> ש׳</td><td><span class="chip c-mid">אני מנסח, אתה מפרסם</span></td></tr>
+<tr><td class="name">תגובות והודעות</td><td><span class="num">3–5</span> ש׳</td><td><span class="chip c-bad">אתה בלבד</span></td></tr>
+<tr><td class="name">כתיבת ניוזלטר</td><td><span class="num">2–3</span> ש׳</td><td><span class="chip c-ok">אני, אתה עורך</span></td></tr>
+<tr><td class="name">עבודת לקוחות (כשתתחיל)</td><td><span class="num">5–15</span> ש׳</td><td><span class="chip c-mid">אני + אתה</span></td></tr>
 </tbody>
 </table></div>
-
-<p><strong>Realistic total: 13–21 hours per week before clients — roughly 2–3 hours a day.</strong> With clients, 25–35 hours. Anyone telling you this is a two-hour-a-week passive business is selling a course.</p>
+<p class="big"><strong>סה״כ ריאלי: <span class="num">13–21</span> שעות בשבוע לפני לקוחות — בערך <span class="num">2–3</span> שעות ביום.</strong> עם לקוחות, <span class="num">25–35</span>. מי שמספר לך שזה עסק פסיבי של שעתיים בשבוע — מוכר לך קורס.</p>
 
 <div class="call warn">
-<div class="t">Where the hours really go</div>
-<p>Not production — I removed most of that. They go into <strong>testing</strong> and <strong>replying</strong>. Those two are also exactly what makes the channel work, so resist the urge to automate them. An account that stops answering DMs stops converting, and a channel called Actually Works that publishes something untested dies the first time it's caught.</p>
+<div class="t">WHERE THE HOURS GO</div>
+<h4>לא בהפקה — את זה כבר הסרתי</h4>
+<p>השעות הולכות ל<strong>בדיקה</strong> ול<strong>מענה</strong>. שתיהן גם בדיוק מה שגורם לערוץ לעבוד, אז אל תנסה לאטמט אותן. חשבון שמפסיק לענות בהודעות מפסיק להמיר לקוחות, וערוץ בשם Actually Works שמפרסם משהו לא בדוק — מת בפעם הראשונה שתופסים אותו.</p>
 </div>
+</section>
 
-<h2 id="you"><span class="n">08</span>What only you can do</h2>
-<div class="rule"></div>
-<p class="lead">The non-delegatable list. Everything else, I can carry.</p>
-
+<!-- ══════════ 08 · YOU ══════════ -->
+<section id="you">
+<h2><span class="n">08 · ONLY YOU</span>מה רק אתה יכול לעשות</h2>
+<div class="hr"></div>
+<p class="big">הרשימה שאי אפשר להאציל. כל השאר — אני נושא.</p>
 <ul class="todo">
-<li><span class="box"></span><span><strong>Create the accounts.</strong><span class="who">Phone + identity verification — no tool can do this</span></span></li>
-<li><span class="box"></span><span><strong>Be the voice</strong> — literally, or pay for one.<span class="who">20 min per video · the biggest quality lever you have</span></span></li>
-<li><span class="box"></span><span><strong>Test every setup before it's published.</strong><span class="who">4–6 h/week · this is the product</span></span></li>
-<li><span class="box"></span><span><strong>Reply to comments and DMs as a human.</strong><span class="who">3–5 h/week · this is where clients come from</span></span></li>
-<li><span class="box"></span><span><strong>Decide the language, and stick to it.</strong><span class="who">One decision, this week</span></span></li>
-<li><span class="box"></span><span><strong>Take the sales calls.</strong><span class="who">People buy services from people</span></span></li>
-<li><span class="box"></span><span><strong>Publish, every week, when it isn't working yet.</strong><span class="who">Months 1–4 are the filter. Most people quit here.</span></span></li>
-</ul>
-
-<h2 id="risk"><span class="n">09</span>Risks, ranked by what they'd actually cost you</h2>
-<div class="rule"></div>
-
-<div class="tw"><table>
-<thead><tr><th>Risk</th><th>Likelihood</th><th>Damage</th><th>What reduces it</th></tr></thead>
-<tbody>
-<tr><td class="name">You quit in months 2–4</td><td><span class="chip c-risk">High</span></td><td>Total</td><td>By far the biggest risk. Cut the schedule to something survivable and never miss it. Two videos a week for a year beats seven a week for a month.</td></tr>
-<tr><td class="name">Platform demotes AI-made content</td><td><span class="chip c-md">Medium</span></td><td>Severe</td><td>Real voice, real screen recordings, real tests. Own the email list so a demotion is a setback, not an ending.</td></tr>
-<tr><td class="name">Account banned or hacked</td><td><span class="chip c-lo">Low</span></td><td>Severe</td><td>2FA everywhere. The list is the insurance policy.</td></tr>
-<tr><td class="name">Niche saturation</td><td><span class="chip c-risk">High</span></td><td>Moderate</td><td>Everyone posts tips; almost nobody posts what failed. The honesty angle is the moat — protect it.</td></tr>
-<tr><td class="name">Publishing something that doesn't work</td><td><span class="chip c-md">Medium</span></td><td>Severe</td><td>Test everything. On this channel, one caught mistake costs more than ten good videos earn.</td></tr>
-<tr><td class="name">Tools change under you</td><td><span class="chip c-risk">High</span></td><td>Minor</td><td>Guaranteed to happen. Re-check the UI the week you film. Date every video.</td></tr>
-<tr><td class="name">Affiliate money bends your judgement</td><td><span class="chip c-md">Medium</span></td><td>Severe</td><td>One link per video, disclosed, only tools you use unpaid.</td></tr>
-<tr><td class="name">Chasing followers instead of subscribers</td><td><span class="chip c-risk">High</span></td><td>Moderate</td><td>Track subscribers weekly. Track followers monthly. Never the other way round.</td></tr>
-</tbody>
-</table></div>
-
-<h2 id="auto"><span class="n">10</span>What I can automate — and what I can't</h2>
-<div class="rule"></div>
-
-<p class="lead">You asked me to use every connector and plugin available. I checked what's actually connected to this account rather than guessing.</p>
-
-<div class="tw"><table>
-<thead><tr><th>Capability</th><th>Status</th><th>Detail</th></tr></thead>
-<tbody>
-<tr><td class="name">Instagram posting</td><td><span class="chip c-risk">Not possible here</span></td><td>No Instagram connector exists for this account. Automated posting is possible via the Instagram Graph API, but it needs a Facebook Business app and your own token, and it runs from your machine or a server — not from this session.</td></tr>
-<tr><td class="name">YouTube upload</td><td><span class="chip c-risk">Not possible here</span></td><td>Same story — YouTube Data API, your credentials, your machine. I can write the uploader script for you to run.</td></tr>
-<tr><td class="name">Video production</td><td><span class="chip c-hi">Fully automated</span></td><td>Script → narration → music → render → MP4. One command, already working.</td></tr>
-<tr><td class="name">Brand assets</td><td><span class="chip c-hi">Automated</span></td><td>Thumbnails, banners, grid posts generated in the house style on demand.</td></tr>
-<tr><td class="name">Google Drive</td><td><span class="chip c-hi">Connected</span></td><td>I can put finished videos and assets straight into a Drive folder you publish from.</td></tr>
-<tr><td class="name">Gmail + Calendar</td><td><span class="chip c-hi">Connected</span></td><td>Sponsor and client email drafting, and a real content calendar with filming and publishing slots.</td></tr>
-<tr><td class="name">Canva</td><td><span class="chip c-md">Installed, off</span></td><td>Connected at account level but not enabled in this chat. Turn it on in the chat's connector settings if you want designs pushed there.</td></tr>
-<tr><td class="name">Web research</td><td><span class="chip c-hi">Connected</span></td><td>Exa + search — I can verify a tool's current pricing and UI the week you film it.</td></tr>
-<tr><td class="name">Landing page + signup</td><td><span class="chip c-hi">Can build</span></td><td>Vercel and Lovable are both connected. I can build and deploy the resource library and newsletter signup page.</td></tr>
-</tbody>
-</table></div>
-
-<div class="call">
-<div class="t">The honest boundary</div>
-<p>I can build everything up to the moment of publishing, and I can build the tools that publish. I cannot press <em>post</em> on Instagram from here, and I can't create your accounts. Anyone claiming otherwise is describing software that would get your account banned.</p>
-</div>
-
-<h2 id="next"><span class="n">11</span>The next 14 days</h2>
-<div class="rule"></div>
-<p class="lead">Small enough to actually finish. Nothing here depends on an audience you don't have yet.</p>
-
-<ul class="todo">
-<li><span class="box"></span><span><strong>Pick the voice</strong> — listen to the four options I sent, or record a test of your own.<span class="who">You · 10 minutes · unblocks every video</span></span></li>
-<li><span class="box"></span><span><strong>Decide English or Hebrew.</strong><span class="who">You · one decision</span></span></li>
-<li><span class="box"></span><span><strong>Create Instagram + YouTube + Beehiiv</strong>, same handle on all three.<span class="who">You · 30 minutes</span></span></li>
-<li><span class="box"></span><span><strong>I build the landing page</strong> — free resource library + newsletter signup, deployed on Vercel.<span class="who">Me · say go</span></span></li>
-<li><span class="box"></span><span><strong>I write episodes 2–5</strong> and render them, so you launch with a backlog instead of a single post.<span class="who">Me · say go</span></span></li>
-<li><span class="box"></span><span><strong>You test episodes 2–5</strong> before they go out.<span class="who">You · ~4 hours</span></span></li>
-<li><span class="box"></span><span><strong>I set up the content calendar</strong> in your Google Calendar — filming, publishing, newsletter slots.<span class="who">Me · connected already</span></span></li>
-<li><span class="box"></span><span><strong>Publish episode 1. Then episode 2 three days later.</strong><span class="who">You · the only step that matters</span></span></li>
+<li><span><b>לפתוח ולהסב את החשבונות</b><span class="who">אימות טלפון וזהות · שום כלי לא עוקף את זה</span></span><span class="box"></span></li>
+<li><span><b>להיות הקול — פשוטו כמשמעו</b><span class="who">20 דקות לסרטון · המנוף הכי גדול שיש לך</span></span><span class="box"></span></li>
+<li><span><b>לבדוק כל סטאפ לפני פרסום</b><span class="who">4–6 שעות בשבוע · זה המוצר</span></span><span class="box"></span></li>
+<li><span><b>לענות בתגובות ובהודעות כבן אדם</b><span class="who">3–5 שעות בשבוע · משם מגיעים הלקוחות</span></span><span class="box"></span></li>
+<li><span><b>להחליט שפה — ולהיצמד</b><span class="who">החלטה אחת, השבוע</span></span><span class="box"></span></li>
+<li><span><b>לקחת את שיחות המכירה</b><span class="who">אנשים קונים שירות מאנשים</span></span><span class="box"></span></li>
+<li><span><b>לפרסם כל שבוע גם כשזה עוד לא עובד</b><span class="who">חודשים 1–4 הם המסננת. שם רוב האנשים עוזבים.</span></span><span class="box"></span></li>
 </ul>
 
 <div class="call good">
-<div class="t">If you do only one thing this week</div>
-<p>Create the email list and put a signup link in a bio that doesn't exist yet. It takes fifteen minutes, it costs nothing, and it's the difference between a viral video being a nice moment and a viral video being a business.</p>
+<div class="t">VOICE — YOUR DECISION WAS RIGHT</div>
+<h4>כן, הקול שלך הכי טוב. והנה איך להקליט אותו נכון.</h4>
+<p>קול הוא לא פנים — אתה נשאר אנונימי לגמרי. וכן, קול אנושי נשמע חי ואמין באופן שאף מנוע סינתטי לא מגיע אליו היום.</p>
+<ul>
+<li><strong>חדר:</strong> הכי קטן ומרוהט שיש לך. ארון בגדים פתוח זה באמת אולפן טוב. תברח מחדרים ריקים עם הד.</li>
+<li><strong>מיקרופון:</strong> האוזניות עם החוט של הטלפון מספיקות להתחלה. שדרוג אמיתי: מיקרופון USB ב־<span class="num">60–100$</span>.</li>
+<li><strong>מרחק:</strong> כשתי אגרופים מהפה, קצת מהצד — לא ישירות מול, זה מה שיוצר את הפצוצים ב־פ׳ וב־ב׳.</li>
+<li><strong>קריאה:</strong> משפט־משפט. טעית? עצור, נשום, וקרא את המשפט מחדש. אני חותך בעריכה. אל תנסה טייק מושלם ברצף.</li>
+<li><strong>טון:</strong> תדבר כאילו אתה מסביר לחבר, לא כאילו אתה מקריא. התסריט כתוב לדיבור — תקרא אותו כמו שהוא ואל "תתקן" אותו לעברית ספרותית.</li>
+<li><strong>מה לשלוח לי:</strong> קובץ אחד לכל סרטון, WAV או M4A. אני מסנכרן לכתוביות, מנקה, מוסיף מוזיקה ומרנדר.</li>
+</ul>
+<p>הקלטה של פרק שלם: בערך <span class="num">20</span> דקות אחרי שתתרגל.</p>
 </div>
+</section>
+
+<!-- ══════════ 09 · RISK ══════════ -->
+<section id="risk">
+<h2><span class="n">09 · RISK</span>סיכונים, לפי מה שבאמת יעלה לך</h2>
+<div class="hr"></div>
+<div class="tw"><table>
+<thead><tr><th>סיכון</th><th>סבירות</th><th>נזק</th><th>מה מקטין אותו</th></tr></thead>
+<tbody>
+<tr><td class="name">שתעזוב בחודשים 2–4</td><td><span class="chip c-bad">גבוהה</span></td><td>מוחלט</td><td>הסיכון הגדול ביותר, בהפרש. תוריד את הקצב למשהו שאפשר לשרוד ואל תפספס. שניים בשבוע במשך שנה מנצח שבעה בשבוע במשך חודש.</td></tr>
+<tr><td class="name">הפלטפורמה מורידה חשיפה לתוכן AI</td><td><span class="chip c-mid">בינונית</span></td><td>חמור</td><td>קול אמיתי, הקלטות מסך אמיתיות, בדיקות אמיתיות. ובעלות על הרשימה — כדי שהורדת חשיפה תהיה מכשול ולא סוף.</td></tr>
+<tr><td class="name">רוויה בנישה</td><td><span class="chip c-bad">גבוהה</span></td><td>בינוני</td><td>כולם מפרסמים טיפים; כמעט אף אחד לא מפרסם מה נכשל. זו החפירה סביב הטירה — תשמור עליה.</td></tr>
+<tr><td class="name">תפרסם משהו שלא עובד</td><td><span class="chip c-mid">בינונית</span></td><td>חמור</td><td>לבדוק הכל. בערוץ הזה טעות אחת שנתפסת עולה יותר מעשרה סרטונים טובים.</td></tr>
+<tr><td class="name">חסימה או פריצה לחשבון</td><td><span class="chip c-off">נמוכה</span></td><td>חמור</td><td>אימות דו־שלבי בכל מקום. הרשימה היא פוליסת הביטוח.</td></tr>
+<tr><td class="name">כלים משתנים מתחתיך</td><td><span class="chip c-bad">גבוהה</span></td><td>קל</td><td>מובטח שיקרה. לבדוק את הממשק בשבוע הצילום. לתארך כל סרטון.</td></tr>
+<tr><td class="name">הטוקן של אינסטגרם פג</td><td><span class="chip c-bad">גבוהה</span></td><td>קל</td><td>פג כל <span class="num">60</span> יום. תזכורת ביומן ליום <span class="num">55</span>. זו הסיבה הכי נפוצה שמערכות כאלה נשברות בשקט.</td></tr>
+<tr><td class="name">כסף אפיליאייט מעקם את השיפוט</td><td><span class="chip c-mid">בינונית</span></td><td>חמור</td><td>קישור אחד לסרטון, עם גילוי נאות, רק כלים שהיית ממליץ עליהם בחינם.</td></tr>
+<tr><td class="name">מרדף אחרי עוקבים במקום נרשמים</td><td><span class="chip c-bad">גבוהה</span></td><td>בינוני</td><td>לעקוב אחרי נרשמים כל שבוע. אחרי עוקבים כל חודש. אף פעם לא הפוך.</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<!-- ══════════ 10 · NEXT ══════════ -->
+<section id="next">
+<h2><span class="n">10 · NEXT 14 DAYS</span>ארבעה־עשר הימים הבאים</h2>
+<div class="hr"></div>
+<p class="big">קטן מספיק כדי באמת לסיים. שום דבר כאן לא תלוי בקהל שעוד אין לך.</p>
+<ul class="todo">
+<li><span><b>להחליט: אנגלית או עברית</b><span class="who">אתה · החלטה אחת · חוסם הכל</span></span><span class="box"></span></li>
+<li><span><b>להסב את החשבון ל־Creator ולשנות הנדל</b><span class="who">אתה · 15 דקות</span></span><span class="box"></span></li>
+<li><span><b>לפתוח רשימת תפוצה ב־Beehiiv</b><span class="who">אתה · 15 דקות · הדבר הכי חשוב ברשימה הזאת</span></span><span class="box"></span></li>
+<li><span><b>להקליט קריינות לפרק 1</b><span class="who">אתה · 20 דקות · לפי המדריך למעלה</span></span><span class="box"></span></li>
+<li><span><b>אני מרנדר מחדש עם הקול שלך</b><span class="who">אני · תשלח קובץ ואני מחזיר MP4</span></span><span class="box"></span></li>
+<li><span><b>אני בונה את דף הנחיתה וספריית המשאבים</b><span class="who">אני · בלי Vercel — נעשה את זה אחרת</span></span><span class="box"></span></li>
+<li><span><b>אני כותב ומרנדר פרקים 2–5</b><span class="who">אני · שתשיק עם מלאי ולא עם פוסט בודד</span></span><span class="box"></span></li>
+<li><span><b>אתה בודק שפרקים 2–5 באמת עובדים</b><span class="who">אתה · ~4 שעות</span></span><span class="box"></span></li>
+<li><span><b>להגדיר את הטוקן של אינסטגרם</b><span class="who">אתה · 20 דקות · לפי publish/SETUP.md</span></span><span class="box"></span></li>
+<li><span><b>לפרסם פרק 1. שלושה ימים אחר כך פרק 2.</b><span class="who">אתה · השלב היחיד שבאמת קובע</span></span><span class="box"></span></li>
+</ul>
+
+<div class="call good">
+<div class="t">IF YOU DO ONE THING</div>
+<h4>תפתח את רשימת התפוצה השבוע</h4>
+<p>חמש־עשרה דקות, אפס עלות. זה ההבדל בין סרטון ויראלי שהוא רגע נחמד, לבין סרטון ויראלי שהוא עסק.</p>
+</div>
+</section>
 
 <p class="foot">
-Figures are industry-typical ranges from published 2026 benchmarks, shown so you can check the arithmetic — not forecasts, and not promises.<br>
-Newsletter CPM sources: Dupple · Admailr · Paved · Sponsorgap benchmarks, August 2026.<br>
-Reference-model analysis based on the public mavgpt.ai resources page, read August 2026.
+המספרים הם טווחים מקובלים מתוך בנצ׳מרקים פומביים של <span class="num">2026</span>, מוצגים כדי שתוכל לבדוק את החשבון — לא תחזיות ולא הבטחות.<br>
+מקורות תמחור ניוזלטרים: Dupple · Admailr · Paved · Sponsorgap, אוגוסט <span class="num">2026</span>.<br>
+ניתוח המודל מבוסס על עמוד המשאבים הפומבי של <span class="ltr">mavgpt.ai</span>, נקרא באוגוסט <span class="num">2026</span>.
 </p>
 
 </div>
+
+<script>
+(function(){
+  var subs=document.getElementById('subs'),cpm=document.getElementById('cpm'),slots=document.getElementById('slots');
+  var subsV=document.getElementById('subsV'),cpmV=document.getElementById('cpmV'),slotsV=document.getElementById('slotsV');
+  var perSend=document.getElementById('perSend'),perMonth=document.getElementById('perMonth'),
+      perYear=document.getElementById('perYear'),assum=document.getElementById('assum');
+  function money(n){return '$'+Math.round(n).toLocaleString('en-US');}
+  function calc(){
+    var s=+subs.value,c=+cpm.value,k=+slots.value;
+    var send=s/1000*c, month=send*k;
+    subsV.textContent=s.toLocaleString('en-US');
+    cpmV.textContent='$'+c;
+    slotsV.textContent=k;
+    perSend.textContent=money(send);
+    perMonth.textContent=money(month);
+    perYear.textContent=money(month*12);
+    var band = c<=50?'תעריף של ניוזלטר כללי':c<=80?'מתחת לטווח של נישת AI':c<=150?'בתוך הטווח המקובל לנישת AI':'קצה עליון — ריאלי מעל 30,000 נרשמים';
+    assum.textContent='הנחות: '+k+' שליחות ממומנות בחודש · '+band+'. שים לב שרשימה קטנה ומעורבת מקבלת לרוב CPM גבוה יותר מרשימה גדולה ורדומה.';
+  }
+  [subs,cpm,slots].forEach(function(e){e.addEventListener('input',calc)});
+  calc();
+})();
+</script>
