@@ -1,12 +1,16 @@
 {
- "source": "New_Recording.m4a",
+ "source": "a83f59f2-New_Recording.m4a (take 2, quiet room)",
  "lines_used": [
+  2,
+  3,
   4,
+  6,
   8,
-  9,
-  10,
+  11,
   12,
+  14,
   17
  ],
- "duration_s": 18.4
+ "duration_s": 30.5,
+ "why": "Take 2 has a 45dB SNR against take 1's 31dB and no 100Hz room mode. It is duller \u2014 he was further off the mic \u2014 but noise in a reference gets learned by the clone while dullness can be corrected with EQ."
 }

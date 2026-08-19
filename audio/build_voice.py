@@ -13,6 +13,8 @@ import numpy as np
 
 REF   = "audio/voice/profile/reference.wav"
 PRON  = "audio/voice/profile/pronunciation.json"
+TONE  = "audio/voice/profile/room-tone.wav"
+BREATH= "audio/voice/profile/breaths.wav"
 SR_MIX = 48000
 GAP, LONG = 0.26, 0.52          # pause after a line, and after a section
 SECTION_END = {4, 8, 13, 15}
@@ -38,6 +40,44 @@ def cues_from_html(path):
         if t:
             out.append(t)
     return out
+
+def load_wav(path):
+    if not os.path.exists(path):
+        return None
+    with wave.open(path) as w:
+        if w.getframerate() != SR_MIX:
+            return None
+        return np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
+
+def breath_bank():
+    """His own intakes of air, lifted from the gaps in the original recording.
+    Generated speech is unnaturally clean; a real breath before a line is the
+    cheapest thing that makes it sound recorded rather than produced."""
+    a = load_wav(BREATH)
+    if a is None:
+        return []
+    fr = int(0.02 * SR_MIX)
+    n = len(a) // fr
+    e = np.array([np.sqrt((a[i*fr:(i+1)*fr]**2).mean()) for i in range(n)])
+    on = e > (e.max() * 0.12)
+    out, run = [], []
+    for i, v in enumerate(on):
+        if v: run.append(i)
+        elif run:
+            if len(run) >= 4: out.append(a[run[0]*fr:(run[-1]+1)*fr].copy())
+            run = []
+    if len(run) >= 4: out.append(a[run[0]*fr:(run[-1]+1)*fr].copy())
+    return out
+
+def bed(track, tone, level_db=-42):
+    """A whisper of his real room under everything. Silence between lines is the
+    tell that gives synthetic speech away — rooms are never actually silent."""
+    if tone is None or len(tone) < SR_MIX:
+        return track
+    reps = int(np.ceil(len(track) / len(tone)))
+    t = np.tile(tone, reps)[:len(track)]
+    t = t / (t.std() + 1e-9) * (10 ** (level_db / 20))
+    return track + t
 
 def load_pron():
     if not os.path.exists(PRON):
@@ -87,8 +127,9 @@ def polish(src, dst):
         "-af", ("highpass=f=80,"
                 "equalizer=f=240:t=q:w=1.2:g=-2,"
                 "equalizer=f=2600:t=q:w=1.3:g=2.5,"
+                "equalizer=f=4200:t=q:w=1.4:g=2.5,"
                 "equalizer=f=5000:t=q:w=1.4:g=3,"
-                "equalizer=f=7200:t=q:w=1.6:g=3.5,"      # this band is the S
+                "equalizer=f=7200:t=q:w=1.6:g=4.5,"      # this band is the S
                 "treble=g=2.5:f=10000,"
                 "deesser=i=0.18:m=0.5:f=0.35,"
                 "acompressor=threshold=-20dB:ratio=2.6:attack=8:release=180:makeup=2,"
@@ -112,6 +153,10 @@ def main():
                     help="regenerate a line this many times if it is misheard")
     ap.add_argument("--max-rate", type=float, default=6.5,
                     help="syllables per second above which a line is judged too dense")
+    ap.add_argument("--room-db", type=float, default=-55,
+                    help="level of the room-tone bed; -55 matches his real room")
+    ap.add_argument("--dry", action="store_true",
+                    help="skip breaths and room tone (clinical, for debugging)")
     ap.add_argument("--no-verify", action="store_true",
                     help="skip the transcription check (faster, unverified)")
     a = ap.parse_args()
@@ -224,10 +269,29 @@ def main():
             print(f"  {i:02d}/{len(lines)}  {len(s)/SR_MIX:5.2f}s  {text[:52]}", flush=True)
 
     if slots:
-        track = np.clip(timeline, -1, 1); t = len(track) / SR_MIX
+        track = timeline; t = len(track) / SR_MIX
     else:
         segs.append(np.zeros(int(0.45 * SR_MIX), dtype=np.float32)); t += 0.45
-        track = np.clip(np.concatenate(segs), -1, 1)
+        track = np.concatenate(segs)
+
+    if not a.dry:
+        breaths = breath_bank()
+        if breaths:
+            rng = np.random.default_rng(a.seed)
+            placed = 0
+            for c in cues[1:]:                      # never before the first line
+                br = breaths[rng.integers(len(breaths))] * rng.uniform(0.42, 0.62)
+                pos = int(c["start"] * SR_MIX) - len(br) - int(0.05 * SR_MIX)
+                if pos < 0 or pos + len(br) > len(track):
+                    continue
+                if np.abs(track[pos:pos+len(br)]).max() > 0.02:
+                    continue                        # the gap is not actually empty
+                track[pos:pos+len(br)] += br
+                placed += 1
+            print(f"  placed {placed} breaths from his own recording")
+        track = bed(track, load_wav(TONE), a.room_db)
+        print(f"  room tone bed at {a.room_db} dBFS")
+    track = np.clip(track, -1, 1)
     with wave.open(a.out, "w") as o:
         o.setnchannels(1); o.setsampwidth(2); o.setframerate(SR_MIX)
         o.writeframes((track * 32767).astype(np.int16).tobytes())
