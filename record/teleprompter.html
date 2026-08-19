@@ -1,0 +1,214 @@
+<title>Actually Works Teleprompter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Assistant:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ink:#0A0D12;--panel:#131A24;--line:#26303D;--line-2:#38424F;
+  --brass:#F0CB66;--ok:#6FBF95;--clay:#E37A56;
+  --text:#F5F7FA;--muted:#98A4B5;--faint:#5E6979;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--b);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ── prompter ─────────────────────────────────── */
+.stage{min-height:82vh;display:flex;flex-direction:column;position:relative;
+  padding:0 4vw;max-width:1250px;margin:0 auto}
+.bar{position:fixed;left:0;top:0;height:4px;background:var(--brass);z-index:20;transition:width .25s ease}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:22px 0 0;font-family:var(--m);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--faint);flex-wrap:wrap}
+.top .ep{color:var(--brass)}
+.top .cnt{color:var(--muted)}
+
+.line{flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:5vh 0 3vh;min-height:52vh}
+.line .txt{font-family:var(--d);font-weight:700;font-size:clamp(30px,5.4vw,68px);
+  line-height:1.16;letter-spacing:-.02em;text-wrap:balance;margin:0}
+.line .txt em{font-style:normal;color:var(--brass)}
+.line .line .note{margin-top:26px;font-size:16px;color:var(--muted);max-width:60ch;text-align:right}
+.line .note b{color:var(--clay);font-weight:700}
+
+.next{margin-top:auto;padding:0 0 26px;border-top:1px solid var(--line);padding-top:20px}
+.next .nl{font-family:var(--m);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:8px}
+.next .nt{font-size:19px;color:var(--muted);line-height:1.4}
+
+/* ── controls ─────────────────────────────────── */
+.ctl{position:sticky;bottom:0;background:linear-gradient(0deg,var(--ink) 62%,transparent);
+  padding:16px 4vw 24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  max-width:1250px;margin:0 auto;z-index:10}
+button{font-family:var(--b);font-weight:700;cursor:pointer;border:0;border-radius:4px;
+  font-size:16px;padding:14px 26px;transition:.15s}
+.primary{background:var(--brass);color:#141014;flex:1 1 200px}
+.primary:hover{background:#FFDF95}
+.ghost{background:transparent;color:var(--muted);border:1px solid var(--line-2);padding:14px 20px}
+.ghost:hover{border-color:var(--brass);color:var(--brass)}
+button:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.timer{font-family:var(--m);font-size:15px;color:var(--muted);padding:0 6px;white-space:nowrap}
+.timer b{color:var(--brass);font-weight:500}
+.timer.over b{color:var(--clay)}
+
+/* ── guide ────────────────────────────────────── */
+.guide{border-top:1px solid var(--line);background:var(--panel);padding:52px 4vw 90px}
+.guide .in{max-width:1250px;margin:0 auto}
+.guide h2{font-family:var(--d);font-weight:800;font-size:clamp(24px,3.4vw,34px);
+  letter-spacing:-.025em;margin:0 0 6px}
+.guide .rule{height:1px;background:linear-gradient(90deg,var(--brass),transparent 55%);margin:14px 0 30px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:30px}
+.guide h3{font-family:var(--d);font-weight:700;font-size:17px;margin:0 0 12px;color:var(--brass)}
+.guide ol,.guide ul{margin:0;padding-inline-start:22px;color:var(--muted);font-size:15.5px;line-height:1.75}
+.guide li{margin-bottom:10px}
+.guide li b,.guide li strong{color:var(--text)}
+.warn{border:1px solid var(--line);border-inline-start:3px solid var(--clay);background:var(--ink);
+  border-radius:4px;padding:18px 20px;margin-top:26px;color:var(--muted);font-size:15.5px;line-height:1.7}
+.warn b{color:var(--text)}
+.full{margin-top:44px;border-top:1px solid var(--line);padding-top:30px}
+.full pre{font-family:var(--m);font-size:13px;line-height:1.95;color:#C6CDD8;background:var(--ink);
+  border:1px solid var(--line);border-radius:4px;padding:20px;overflow-x:auto;white-space:pre-wrap;margin:0}
+.kbd{font-family:var(--m);font-size:12px;background:var(--ink);border:1px solid var(--line-2);
+  border-radius:3px;padding:2px 7px;color:var(--muted)}
+</style>
+
+<div class="bar" id="bar"></div>
+
+<div class="stage">
+  <div class="top">
+    <span class="ep">EPISODE 01 · UNIVERSAL AI ENGINE</span>
+    <span class="cnt"><span id="idx">1</span> / <span id="tot">17</span></span>
+  </div>
+
+  <div class="line">
+    <p class="txt" id="txt"></p>
+    <p class="note" id="note" dir="rtl"></p>
+  </div>
+
+  <div class="next">
+    <div class="nl">Coming up</div>
+    <div class="nt" id="nextTxt"></div>
+  </div>
+</div>
+
+<div class="ctl">
+  <button class="primary" id="nextBtn">הבא ←</button>
+  <button class="ghost" id="prevBtn">→ הקודם</button>
+  <button class="ghost" id="resetBtn">מהתחלה</button>
+  <span class="timer" id="timer"><b>0.0s</b> / <span id="target">2.5s</span></span>
+</div>
+
+<div class="guide" dir="rtl"><div class="in">
+  <h2>איך מקליטים — כל מה שצריך</h2>
+  <div class="rule"></div>
+
+  <div class="cols">
+    <div>
+      <h3>לפני שמתחילים</h3>
+      <ol>
+        <li><b>חדר קטן ומרוהט.</b> ארון בגדים פתוח הוא באמת אולפן טוב. תברח מחדרים ריקים עם הד ומחדרי אמבטיה.</li>
+        <li><b>מקליטים בטלפון</b> — אפליקציית ההקלטות הרגילה מספיקה. מצב טיסה, שלא תיכנס שיחה באמצע.</li>
+        <li><b>מרחק:</b> כשתי אגרופים מהפה, והטלפון קצת <b>מהצד</b> ולא ישירות מול — ככה נמנעים מהפיצוצים ב-P וב-B.</li>
+        <li><b>תשתה מים</b> ותקרא את כל הטקסט פעם אחת בקול לפני שאתה מקליט.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>תוך כדי</h3>
+      <ol>
+        <li><b>שורה אחת בכל פעם.</b> קרא, עצור שנייה, לחץ הבא.</li>
+        <li><b>טעית? אל תעצור את ההקלטה.</b> עצור, נשום שתי שניות, וקרא את אותה שורה מחדש. אני חותך את הטייק הפסול.</li>
+        <li><b>תדבר כמו שאתה מדבר לחבר</b>, לא כמו שקורא מדריך. אל תנסה להישמע "מקצועי" — זה נשמע מת.</li>
+        <li>המילים <em style="color:var(--brass);font-style:normal">בזהב</em> הן הדגש של המשפט. תן להן קצת יותר משקל.</li>
+        <li>הטיימר הוא הכוונה, לא מבחן. חריגה של חצי שנייה בסדר גמור.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>אחרי</h3>
+      <ol>
+        <li><b>קובץ אחד</b> לכל הפרק, לא 17 קבצים.</li>
+        <li><b>M4A או WAV.</b> אם אפשר לבחור איכות — הכי גבוהה.</li>
+        <li>תשלח לי אותו כאן. אני מסנכרן לכתוביות, מנקה רעש, מוסיף מוזיקה ומרנדר.</li>
+        <li>מחזיר לך MP4 מוכן להעלאה.</li>
+      </ol>
+      <p style="color:var(--faint);font-size:14.5px;margin-top:14px">
+        <span class="kbd">רווח</span> או <span class="kbd">←</span> הבא · <span class="kbd">→</span> הקודם
+      </p>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>המבטא שלך הוא נכס, לא בעיה.</b> מבטא ישראלי באנגלית הוא בדיוק ההוכחה שיש כאן בן אדם אמיתי ולא קול מסונתז — וזה בדיוק מה שהערוץ הזה מוכר. מה שחשוב זה בהירות, לא ניטרליות. אל תנסה להישמע אמריקאי; תנסה להישמע ברור.
+  </div>
+
+  <div class="full">
+    <h3>הטקסט המלא — להעתקה</h3>
+    <pre id="fullText" dir="ltr"></pre>
+  </div>
+</div></div>
+
+<script>
+(function(){
+  var LINES=[
+    {t:"Your ChatGPT gives you <em>generic</em> answers.",s:2.4,n:""},
+    {t:"Not because it's dumb. Nobody told it <em>how to think</em>.",s:2.5,n:"עצירה קצרה אחרי “dumb” — זה מה שנותן למשפט השני לנחות."},
+    {t:"One block of text. Pasted <em>once</em>.",s:2.7,n:"לאט. זו ההבטחה של כל הסרטון."},
+    {t:"Then it picks its own reasoning — every chat.",s:2.9,n:""},
+    {t:"Open <em>Settings</em>.",s:2.5,n:"שלוש השורות הבאות הן הוראות. טון יבש ומהיר, כמו שמראים למישהו משהו."},
+    {t:"Go to <em>Personalization</em>.",s:2.7,n:""},
+    {t:"<em>Custom instructions</em>.",s:2.4,n:""},
+    {t:"Paste. Toggle on. <em>Save</em>.",s:3.2,n:"שלוש מילים נפרדות, עם פסיק־נשימה בין כל אחת."},
+    {t:"Now ask the same question. Normal words.",s:3.4,n:""},
+    {t:"It states what it's <em>assuming</em>.",s:2.6,n:"מכאן שלוש שורות שבונות מתח — כל אחת קצת יותר חזקה."},
+    {t:"It finds the risk you didn't ask about.",s:2.7,n:""},
+    {t:"It ends with a <em>decision</em>. Not a list.",s:3.1,n:"“Not a list” — נמוך ובטוח. זו הנקודה."},
+    {t:"You typed <em>zero</em> commands.",s:2.9,n:""},
+    {t:"The honest part: this isn't a new model.",s:3.4,n:"שינוי טון. יותר רגוע, יותר ישיר. אתה מדבר איתם בכנות."},
+    {t:"It makes ChatGPT think <em>harder</em> — not be right more often.",s:3.2,n:"הקו המפריד הוא עצירה אמיתית. אל תבלע אותו."},
+    {t:"Full instruction's in the caption.",s:2.9,n:""},
+    {t:"Follow for setups that <em>actually work</em>.",s:2.4,n:"חם, לא צעקני. סוגרים בחיוך."}
+  ];
+
+  var i=0,t0=null,raf=null;
+  var $=function(id){return document.getElementById(id);};
+  var strip=function(s){return s.replace(/<[^>]+>/g,'');};
+
+  $('tot').textContent=LINES.length;
+  $('fullText').textContent=LINES.map(function(l,k){
+    return String(k+1).padStart(2,'0')+'.  '+strip(l.t);
+  }).join('\n');
+
+  function draw(){
+    var l=LINES[i];
+    $('txt').innerHTML=l.t;
+    $('note').innerHTML=l.n?'<b>הנחיה:</b> '+l.n:'';
+    $('idx').textContent=i+1;
+    $('nextTxt').textContent=i+1<LINES.length?strip(LINES[i+1].t):'— סוף. תודה, זהו.';
+    $('bar').style.width=((i+1)/LINES.length*100)+'%';
+    $('nextBtn').textContent=i+1<LINES.length?'הבא ←':'סיימת ✓';
+    t0=performance.now(); tick();
+  }
+  function tick(){
+    cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(function step(){
+      var el=(performance.now()-t0)/1000, tgt=LINES[i].s;
+      $('timer').innerHTML='<b>'+el.toFixed(1)+'s</b> / '+tgt.toFixed(1)+'s';
+      $('timer').classList.toggle('over', el>tgt+0.8);
+      raf=requestAnimationFrame(step);
+    });
+  }
+  function go(d){ i=Math.max(0,Math.min(LINES.length-1,i+d)); draw(); }
+
+  $('nextBtn').onclick=function(){go(1)};
+  $('prevBtn').onclick=function(){go(-1)};
+  $('resetBtn').onclick=function(){i=0;draw()};
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='BUTTON'&&e.key===' ')return;
+    if(e.key===' '||e.key==='ArrowLeft'){e.preventDefault();go(1);}
+    if(e.key==='ArrowRight'){e.preventDefault();go(-1);}
+  });
+  draw();
+})();
+</script>

@@ -22,6 +22,9 @@ assets/custom-instruction-EN.txt      ← the paste-ready instruction
 assets/custom-instruction-EN-optional-v2.txt  ← optional hardened variant
 assets/README-instruction-variants.md ← what v2 changes and why
 assets/guaranteed-vs-model-behaviour.md ← the accuracy guardrail for the limitations section
+publish/instagram_publish.py ← posts a finished Reel via the Instagram Graph API
+publish/SETUP.md             ← the one-time token setup, in Hebrew
+plan/operating-plan.html     ← the business plan: revenue paths, stages, hours, risks
 ```
 
 Everything is **English only**.
