@@ -50,8 +50,15 @@ CASES = [
     ("prompt",  "Comment prompt and it is yours.",                   "PR + MPT"),
 ]
 
+NUMERALS = {"1": "one", "2": "two", "3": "three", "4": "four", "5": "five",
+            "6": "six", "7": "seven", "8": "eight", "9": "nine", "10": "ten"}
+
 def norm(s):
-    return "".join(c for c in s.lower() if c.isalpha() or c == " ").strip()
+    out = []
+    for w in s.lower().split():
+        w = "".join(c for c in w if c.isalnum())
+        out.append(NUMERALS.get(w, w))
+    return " ".join(out).strip()
 
 def main():
     ap = argparse.ArgumentParser()
