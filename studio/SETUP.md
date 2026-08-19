@@ -9,11 +9,15 @@
 שממנו עבדת — זה אמיתי ולא נעלם, אבל זה לא מסתנכרן בין המק לטלפון. הכיתוב בפינה
 העליונה אומר בדיוק במה אתה נמצא: **נשמר בדפדפן** או **מסד נתונים**.
 
-## פריסה ב-Vercel
+## הכתובת החיה
 
-1. Vercel → Add New → Project → הרפו `videos-ai`.
-2. **Root Directory: `studio`** — זה החלק היחיד שקל לפספס.
-3. Framework: Next.js (מזוהה לבד). Deploy.
+הפרויקט ב-Vercel כבר קיים ופרוס: **actually-works-studio** (Root Directory: `studio`).
+
+    https://actually-works-studio-git-claude-universa-610c01-dp1565-project.vercel.app
+
+זו כתובת התצוגה של הענף. אחרי מיזוג ל-main היא תיפרס גם לכתובת הראשית של הפרויקט.
+אפשר להוסיף אותה למסך הבית באייפון (Share → Add to Home Screen) והיא נפתחת כמו
+אפליקציה, בלי שורת כתובת.
 
 ## משתני סביבה
 
