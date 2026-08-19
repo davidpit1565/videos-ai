@@ -24,3 +24,5 @@ audio/__pycache__/
 audio/voice/work/
 audio/voice/*-cues.json
 export/voice-AB*.m4a
+audio/voice/test/
+export/voice-test-*.m4a
