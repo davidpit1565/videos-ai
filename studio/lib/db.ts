@@ -29,7 +29,19 @@ function db(): Pool | null {
   if (!found) return null;
   // Reused across invocations — a new pool per request exhausts Postgres connections.
   if (!pool || poolFor !== found.url) {
-    pool = new Pool({ connectionString: found.url, max: 3, ssl: { rejectUnauthorized: false } });
+    // Supabase's pooler presents a certificate signed by its own root, which Node does
+    // not carry, and pg lets `sslmode=require` in the URL turn verification back on even
+    // when ssl options say otherwise — that is the "self-signed certificate in
+    // certificate chain" error. Strip the parameter and state the setting explicitly.
+    let conn = found.url;
+    try {
+      const u = new URL(found.url);
+      u.searchParams.delete("sslmode");
+      conn = u.toString();
+    } catch {
+      /* an unparseable URL is the driver's problem to report, not ours to hide */
+    }
+    pool = new Pool({ connectionString: conn, max: 3, ssl: { rejectUnauthorized: false } });
     poolFor = found.url;
   }
   return pool;
