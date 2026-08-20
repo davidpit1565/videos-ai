@@ -121,10 +121,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("wav"); ap.add_argument("--words", required=True)
     ap.add_argument("--label", default="")
+    # One recording holds both languages, and the English part contains "go", "good",
+    # "gone" — /g/ *stops*, not the Dutch fricative. Measuring the whole file counted
+    # them and dragged the median down.
+    ap.add_argument("--from", dest="t0", type=float, default=0.0)
+    ap.add_argument("--to", dest="t1", type=float, default=1e9)
     a = ap.parse_args()
     y = load(a.wav); per = periodicity(y)
     rows = []
-    for w, kind, frac in g_words(json.load(open(a.words))["words"]):
+    ws = [w for w in json.load(open(a.words))["words"]
+          if a.t0 <= float(w["at"]) <= a.t1]
+    for w, kind, frac in g_words(ws):
         m = measure(y, float(w["at"]), float(w["dur"]), per, frac)
         if m:
             m.update(word=w["word"], kind=kind, at=round(float(w["at"]), 2))
