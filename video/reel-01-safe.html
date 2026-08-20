@@ -198,8 +198,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
     <h2 class="b punch" data-at="7.14" data-until="10.9">One block of text.<br><span class="box">Pasted once.</span></h2>
     <div class="instr b" data-at="8.817" data-until="10.9">You are my Universal AI Engine.<br><br>Automatically choose the best methods for every request. I should NOT need to use shortcuts.</div>
-    <h2 class="sm b punch" data-at="11.053">Then it picks its <em>own reasoning</em>.</h2>
-    <p class="lede b" data-at="12.655">Every chat. Forever. <strong>You do nothing.</strong></p>
+        <h2 class="sm b punch" data-at="11.053">Every chat.<br><em>Forever</em>.</h2>
+    <p class="lede b" data-at="12.655">You never touch it again.</p>
   </div></div>
 </section>
 
@@ -248,7 +248,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- S5 · HONEST 37.9–46.5 -->
-<section class="scene" data-in="41" data-out="50.1">
+<section class="scene" data-in="41" data-out="49.58">
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
     <h2 class="sm b punch" data-at="41.03" data-until="41.1">The honest part.</h2>
     <div class="stack">
@@ -256,16 +256,16 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       <div class="strike b" data-at="43.002" data-until="41.1"><s>Software you install</s></div>
       <div class="strike b" data-at="43.726" data-until="41.1"><s>A guarantee it's right</s></div>
     </div>
-    <h2 class="b punch" data-at="44.91">It thinks <span class="box">hard</span>.<br>Not <span class="ebox">right</span>.</h2>
+    <h2 class="b punch" data-at="44.908">Same <span class="ebox">model</span>.</h2>
+    <h2 class="b punch" data-at="47.307">Different <span class="box">method</span>.</h2>
   </div></div>
 </section>
 
 <!-- S6 · CTA 46.5–52 -->
-<section class="scene" data-in="50.1" data-out="56.43">
+<section class="scene" data-in="49.58" data-out="57.63">
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw;align-items:flex-start">
-    <h2 class="b punch" data-at="50.13">Full text in the <span class="box">caption</span>.</h2>
-    <p class="lede b" data-at="53.084" style="font-size:5.6cqw">Follow for AI setups that <strong>actually work</strong> — including what breaks.</p>
-    <div class="b punch" data-at="54.723"><span class="tag">save this ↓</span></div>
+    <h2 class="b punch" data-at="49.61">Write <span class="box">ENGINE</span><br>below.</h2>
+    <p class="lede b" data-at="54.284" style="font-size:5.6cqw">I send you the prompt. Then follow for setups that <strong>actually work</strong>.</p>
   </div></div>
 </section>
 
@@ -301,7 +301,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=56.49,t=0,playing=false,last=0;
+  var DUR=57.69,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -327,12 +327,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [34.98,37.97,"It ends with a <em>decision</em>. Not a list."],
     [38.39,40.61,"You typed <em>zero</em> commands."],
     [41.41,44.47,"The honest part: this isn't a new model."],
-    [44.89,49.71,"It makes ChatGPT think <em>hard</em> — not be right more often."],
-    [50.51,52.62,"Full instruction's in the <em>caption</em>."],
-    [53.04,55.99,"Follow for setups that <em>actually work</em>."]
+    [44.89,49.19,"It changes how ChatGPT <em>reasons</em> — not how often it's right."],
+    [49.99,53.82,"Write <em>ENGINE</em> below and I'll send you the prompt."],
+    [54.24,57.19,"Follow for setups that <em>actually work</em>."]
   ];
   /* [at, label, ember?] — 0.34s hard cuts between sections */
-  var FLASH=[[6.78,"the fix",0],[14.99,"40 seconds",0],[24.81,"the result",0],[40.67,"honest",1],[49.77,"take it",0]];
+  var FLASH=[[6.78,"the fix",0],[14.99,"40 seconds",0],[24.81,"the result",0],[40.67,"honest",1],[49.25,"take it",0]];
   var FDUR=0.66;
   var INSTR="You are my Universal AI Engine. Automatically choose the best methods for every request. I should NOT need to use shortcuts…";
 

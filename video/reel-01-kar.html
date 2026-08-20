@@ -198,8 +198,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
     <h2 class="b punch" data-at="7.14" data-until="10.9">One block of text.<br><span class="box">Pasted once.</span></h2>
     <div class="instr b" data-at="8.817" data-until="10.9">You are my Universal AI Engine.<br><br>Automatically choose the best methods for every request. I should NOT need to use shortcuts.</div>
-    <h2 class="sm b punch" data-at="11.053">Then it picks its <em>own reasoning</em>.</h2>
-    <p class="lede b" data-at="12.655">Every chat. Forever. <strong>You do nothing.</strong></p>
+        <h2 class="sm b punch" data-at="11.053">Every chat.<br><em>Forever</em>.</h2>
+    <p class="lede b" data-at="12.655">You never touch it again.</p>
   </div></div>
 </section>
 
@@ -248,7 +248,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- S5 · HONEST 37.9–46.5 -->
-<section class="scene" data-in="41" data-out="50.1">
+<section class="scene" data-in="41" data-out="49.58">
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
     <h2 class="sm b punch" data-at="41.03" data-until="41.1">The honest part.</h2>
     <div class="stack">
@@ -256,16 +256,16 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       <div class="strike b" data-at="43.002" data-until="41.1"><s>Software you install</s></div>
       <div class="strike b" data-at="43.726" data-until="41.1"><s>A guarantee it's right</s></div>
     </div>
-    <h2 class="b punch" data-at="44.91">It thinks <span class="box">hard</span>.<br>Not <span class="ebox">right</span>.</h2>
+    <h2 class="b punch" data-at="44.908">Same <span class="ebox">model</span>.</h2>
+    <h2 class="b punch" data-at="47.307">Different <span class="box">method</span>.</h2>
   </div></div>
 </section>
 
 <!-- S6 · CTA 46.5–52 -->
-<section class="scene" data-in="50.1" data-out="56.43">
+<section class="scene" data-in="49.58" data-out="57.63">
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw;align-items:flex-start">
-    <h2 class="b punch" data-at="50.13">Full text in the <span class="box">caption</span>.</h2>
-    <p class="lede b" data-at="53.084" style="font-size:5.6cqw">Follow for AI setups that <strong>actually work</strong> — including what breaks.</p>
-    <div class="b punch" data-at="54.723"><span class="tag">save this ↓</span></div>
+    <h2 class="b punch" data-at="49.61">Write <span class="box">ENGINE</span><br>below.</h2>
+    <p class="lede b" data-at="54.284" style="font-size:5.6cqw">I send you the prompt. Then follow for setups that <strong>actually work</strong>.</p>
   </div></div>
 </section>
 
@@ -301,7 +301,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=56.49,t=0,playing=false,last=0;
+  var DUR=57.69,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -327,23 +327,23 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [34.98,37.97,"It ends with a <em>decision</em>. Not a list."],
     [38.39,40.61,"You typed <em>zero</em> commands."],
     [41.41,44.47,"The honest part: this isn't a new model."],
-    [44.89,49.71,"It makes ChatGPT think <em>hard</em> — not be right more often."],
-    [50.51,52.62,"Full instruction's in the <em>caption</em>."],
-    [53.04,55.99,"Follow for setups that <em>actually work</em>."]
+    [44.89,49.19,"It changes how ChatGPT <em>reasons</em> — not how often it's right."],
+    [49.99,53.82,"Write <em>ENGINE</em> below and I'll send you the prompt."],
+    [54.24,57.19,"Follow for setups that <em>actually work</em>."]
   ];
   var WORDS=[
     [0.3,0.42,"Your",0],
-    [0.16,0.96,"ChatGPT",0],
+    [0.14,0.96,"ChatGPT",0],
     [0.96,1.44,"keeps",0],
     [1.44,1.74,"giving",1],
     [1.74,1.9,"you",1],
-    [1.9,2.06,"the",1],
-    [2.06,2.54,"obvious",2],
+    [1.9,2.08,"the",1],
+    [2.08,2.54,"obvious",2],
     [3.53,3.65,"Not",3],
     [3.42,3.68,"because",3],
-    [3.68,4.0,"it's",3],
-    [4.0,4.22,"dumb.",4],
-    [4.68,4.96,"Nobody",4],
+    [3.68,4.02,"it's",3],
+    [4.02,4.22,"dumb.",4],
+    [4.7,4.96,"Nobody",4],
     [4.96,5.3,"told",4],
     [5.3,5.5,"it",5],
     [5.5,5.7,"how",5],
@@ -358,33 +358,33 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [11.02,11.14,"Then",9],
     [11.12,11.66,"it",9],
     [11.66,11.9,"picks",9],
-    [11.9,12.22,"its",10],
-    [12.22,12.44,"own",10],
+    [11.9,12.2,"its",10],
+    [12.2,12.44,"own",10],
     [12.44,12.88,"reasoning",10],
-    [13.7,13.96,"every",11],
-    [13.96,14.36,"chat.",11],
+    [13.72,13.96,"every",11],
+    [13.96,14.44,"chat.",11],
     [15.73,15.85,"Open",12],
-    [15.73,16.15,"Settings",12],
+    [15.73,16.17,"Settings",12],
     [17.25,17.37,"Go",13],
-    [17.19,17.59,"to",13],
-    [17.59,19.07,"Personalization",13],
+    [17.17,17.61,"to",13],
+    [17.61,19.07,"Personalization",13],
     [20.01,20.13,"Custom",14],
-    [20.11,20.89,"instructions",14],
+    [20.13,20.81,"instructions",14],
     [21.93,22.05,"Paste.",15],
-    [22.39,22.69,"Switch",15],
+    [22.51,22.69,"Switch",15],
     [22.69,22.85,"it",15],
     [22.85,23.03,"on.",16],
-    [23.57,23.89,"Save",16],
+    [23.53,23.89,"Save",16],
     [25.55,25.76,"Now",17],
     [25.76,26.24,"ask",17],
     [26.24,26.46,"the",17],
     [26.46,26.66,"same",18],
     [26.66,27.2,"question.",18],
-    [27.7,28.06,"Normal",18],
-    [28.06,28.6,"words.",19],
+    [27.2,28.0,"Normal",18],
+    [28.0,28.62,"words.",19],
     [29.61,29.73,"It",20],
-    [29.44,29.74,"states",20],
-    [29.74,30.26,"what",20],
+    [29.44,29.76,"states",20],
+    [29.76,30.26,"what",20],
     [30.26,30.46,"it's",21],
     [30.46,30.78,"assuming",21],
     [31.79,31.91,"It",22],
@@ -392,53 +392,57 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [32.08,32.34,"the",22],
     [32.34,32.7,"risk",23],
     [32.7,33.02,"you",23],
-    [33.02,33.46,"didn't",23],
-    [33.46,33.78,"ask",24],
-    [33.78,34.1,"about.",24],
+    [33.02,33.48,"didn't",23],
+    [33.48,33.8,"ask",24],
+    [33.8,34.1,"about.",24],
     [34.98,35.1,"It",25],
-    [34.84,35.28,"ends",25],
-    [35.28,35.58,"with",25],
+    [34.84,35.3,"ends",25],
+    [35.3,35.58,"with",25],
     [35.58,35.7,"a",26],
-    [35.7,36.12,"decision",26],
+    [35.7,36.14,"decision",26],
     [36.68,36.98,"Not",26],
     [36.98,37.12,"a",27],
     [37.12,37.46,"list.",27],
     [38.39,38.51,"You",28],
     [38.26,38.76,"typed",28],
-    [38.76,39.42,"zero",28],
-    [39.42,39.92,"commands.",29],
+    [38.76,39.44,"zero",28],
+    [39.44,39.92,"commands.",29],
     [41.41,41.53,"The",30],
     [41.25,41.57,"honest",30],
     [41.57,41.97,"part:",30],
-    [42.27,42.63,"this",31],
+    [42.29,42.63,"this",31],
     [42.63,43.07,"isn't",31],
     [43.07,43.19,"a",31],
     [43.19,43.41,"new",32],
     [43.41,43.77,"model.",32],
-    [44.89,45.01,"It",33],
-    [44.73,45.01,"makes",33],
-    [45.01,45.95,"ChatGPT",33],
-    [45.95,46.57,"think",34],
-    [46.57,46.93,"hard",34],
-    [47.43,47.69,"not",34],
-    [47.69,47.89,"be",35],
-    [47.89,48.19,"right",35],
-    [48.19,48.59,"more",35],
-    [48.59,49.09,"often.",36],
-    [50.51,50.63,"Full",37],
-    [50.5,51.18,"instruction's",37],
-    [51.18,51.6,"in",37],
-    [51.6,51.72,"the",38],
-    [51.7,52.02,"caption",38],
-    [53.04,53.16,"Follow",39],
-    [53.12,53.42,"for",39],
-    [53.42,53.88,"setups",39],
-    [53.88,54.3,"that",40],
-    [54.3,54.86,"actually",40],
-    [54.86,55.36,"work",40]
+    [44.89,45.09,"It",33],
+    [45.09,45.47,"changes",33],
+    [45.47,45.73,"how",33],
+    [45.73,46.43,"ChatGPT",34],
+    [46.43,46.83,"reasons",34],
+    [47.39,47.51,"not",34],
+    [47.51,47.81,"how",35],
+    [47.81,48.23,"often",35],
+    [48.23,48.57,"it's",35],
+    [48.57,48.73,"right.",36],
+    [49.99,50.11,"Write",37],
+    [49.96,50.7,"ENGINE",37],
+    [50.7,51.18,"below",37],
+    [51.9,52.16,"and",38],
+    [52.16,52.38,"I'll",38],
+    [52.38,52.56,"send",38],
+    [52.56,52.74,"you",39],
+    [52.74,52.86,"the",39],
+    [52.86,53.26,"prompt.",39],
+    [54.3,54.42,"Follow",40],
+    [54.3,54.62,"for",40],
+    [54.62,55.08,"setups",40],
+    [55.08,55.5,"that",41],
+    [55.5,56.08,"actually",41],
+    [56.08,56.56,"work",41]
   ];
   /* [at, label, ember?] — 0.34s hard cuts between sections */
-  var FLASH=[[6.78,"the fix",0],[14.99,"40 seconds",0],[24.81,"the result",0],[40.67,"honest",1],[49.77,"take it",0]];
+  var FLASH=[[6.78,"the fix",0],[14.99,"40 seconds",0],[24.81,"the result",0],[40.67,"honest",1],[49.25,"take it",0]];
   var FDUR=0.66;
   var INSTR="You are my Universal AI Engine. Automatically choose the best methods for every request. I should NOT need to use shortcuts…";
 
