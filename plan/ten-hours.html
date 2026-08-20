@@ -1,0 +1,218 @@
+<title>עשר שעות בשבוע</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Assistant:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --paper:#F6F4EF; --raise:#FFFFFF; --ink:#15181D; --soft:#5F5B52; --faint:#8B8579;
+  --rule:#DFDACF; --brass:#9B7A22; --brass-ink:#6E5615; --wash:#F0EADA;
+  --hard:#8C3A2B; --good:#3F6B4A;
+  --serif:"Frank Ruhl Libre",Georgia,serif; --sans:"Assistant","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#101317; --raise:#171B21; --ink:#EAE6DC; --soft:#A9A398; --faint:#7C766B;
+  --rule:#2A2F37; --brass:#E5BE63; --brass-ink:#F0CB66; --wash:#1D2128;
+  --hard:#E08774; --good:#7FB98C;
+}}
+:root[data-theme="dark"]{
+  --paper:#101317; --raise:#171B21; --ink:#EAE6DC; --soft:#A9A398; --faint:#7C766B;
+  --rule:#2A2F37; --brass:#E5BE63; --brass-ink:#F0CB66; --wash:#1D2128;
+  --hard:#E08774; --good:#7FB98C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:17.5px;line-height:1.62;direction:rtl}
+.wrap{max-width:47rem;margin:0 auto;padding:clamp(1.5rem,4vw,3.5rem) clamp(1.1rem,4vw,2rem) 5rem}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+  text-transform:uppercase;margin:0 0 .6rem}
+h1{font-family:var(--serif);font-weight:900;font-size:clamp(2.1rem,6vw,3.1rem);line-height:1.08;
+  margin:0 0 .7rem;text-wrap:balance;letter-spacing:-.01em}
+.lede{font-size:1.13rem;color:var(--soft);margin:0 0 .5rem;max-width:36rem}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.4rem,3.4vw,1.85rem);
+  margin:3.2rem 0 .2rem;text-wrap:balance;line-height:1.2}
+h2 .n{font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--brass);
+  display:block;letter-spacing:.1em;margin-bottom:.35rem}
+h3{font-family:var(--sans);font-weight:700;font-size:1.02rem;margin:1.7rem 0 .3rem}
+p{margin:.75rem 0}
+strong{font-weight:700}
+em{font-style:normal;background:var(--wash);padding:.05em .3em;border-radius:.2em}
+hr{border:0;border-top:1px solid var(--rule);margin:3rem 0 0}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
+.big{background:var(--raise);border:1px solid var(--rule);border-radius:.6rem;
+  padding:1.3rem 1.4rem;margin:1.4rem 0}
+.big .k{font-family:var(--mono);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:600;
+  color:var(--brass);font-variant-numeric:tabular-nums;line-height:1.1;display:block}
+.big .v{color:var(--soft);font-size:.96rem;margin-top:.35rem}
+.tw{overflow-x:auto;margin:1.3rem 0;border:1px solid var(--rule);border-radius:.6rem;
+  background:var(--raise)}
+table{border-collapse:collapse;width:100%;font-size:.95rem;min-width:29rem}
+th,td{padding:.62rem .85rem;text-align:right;border-bottom:1px solid var(--rule)}
+thead th{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);font-weight:600;background:var(--wash);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.no{color:var(--hard);font-weight:600}
+.yes{color:var(--good);font-weight:600}
+ul,ol{padding-inline-start:1.3rem;margin:.75rem 0}
+li{margin:.4rem 0}
+.flag{border-inline-start:3px solid var(--brass);background:var(--wash);
+  padding:.85rem 1.1rem;margin:1.3rem 0;border-radius:0 .4rem .4rem 0}
+.flag .t{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--brass-ink);display:block;margin-bottom:.3rem;font-weight:600}
+.week{display:grid;gap:.5rem;margin:1.3rem 0}
+.week div{display:grid;grid-template-columns:5.2rem 1fr auto;gap:.7rem;align-items:baseline;
+  padding:.55rem .8rem;background:var(--raise);border:1px solid var(--rule);border-radius:.4rem}
+.week .h{font-family:var(--mono);font-weight:600;color:var(--brass);font-variant-numeric:tabular-nums}
+.week .w{color:var(--faint);font-family:var(--mono);font-size:.82rem}
+.foot{margin-top:3.5rem;padding-top:1.3rem;border-top:1px solid var(--rule);
+  color:var(--faint);font-size:.87rem}
+</style>
+
+<div class="wrap">
+
+<p class="eyebrow">Actually Works · תוכנית עסקית</p>
+<h1>עשר שעות בשבוע</h1>
+<p class="lede">אפס יורו תקציב. שעתיים ביום, ראשון עד חמישי. עסק צדדי, לא ראשי.
+זו התוכנית שנגזרת מהאילוצים האלה — לא זו שהתעלמה מהם.</p>
+
+<hr>
+
+<h2><span class="n">01</span>המספר שקובע הכל</h2>
+
+<p>ביקשת מיליון יורו בשנה תוך חמישה חודשים. לפני כל דבר אחר, זה מה שהמספר הזה דורש
+בפועל. אלה לא הערכות — זו חילוק פשוט של היעד שלך בתעריפי השוק.</p>
+
+<div class="big">
+  <span class="k">83,333 €</span>
+  <div class="v">בחודש. זה מיליון בשנה.</div>
+</div>
+
+<div class="tw"><table>
+<thead><tr><th>מסלול</th><th>תעריף שוק</th><th>מה צריך לחודש</th><th>יש לך היום</th></tr></thead>
+<tbody>
+<tr><td>ניוזלטר בחסות</td><td class="n">165 € / 1,000 נרשמים לשליחה</td>
+    <td class="n">126,000 נרשמים</td><td class="n no">0</td></tr>
+<tr><td>פרויקטים ללקוחות</td><td class="n">2,500 € לפרויקט</td>
+    <td class="n">33 פרויקטים</td><td class="n no">0</td></tr>
+<tr><td>מוצר דיגיטלי</td><td class="n">149 € ליחידה</td>
+    <td class="n">559 מכירות</td><td class="n no">0</td></tr>
+</tbody></table></div>
+
+<p><strong>אף אחד מהשלושה לא קורה בחמישה חודשים.</strong> 126,000 נרשמים זה
+פי <span class="num">1,470</span> מ־86 העוקבים שיש לך. 33 פרויקטים בחודש זה
+פרויקט וחצי בכל יום עבודה — בשעתיים ביום. mavgpt, החשבון שאתה רוצה להיות,
+בנה 200,000 נרשמים במשך שנים, לא חודשים.</p>
+
+<p>אני אומר לך את זה פעם אחת ואז ממשיך לעבוד: <strong>היעד הזה לא ריאלי, והאילוץ
+שהורג אותו הוא לא היכולת — הוא עשר השעות.</strong> וזה אילוץ שאתה בחרת בו במודע,
+כי יש לך עבודה. זו בחירה נכונה, ואי אפשר לקבל אותה ואת מיליון היורו יחד.</p>
+
+<h3>מה כן ריאלי, באותם אילוצים</h3>
+
+<div class="tw"><table>
+<thead><tr><th>מתי</th><th>מה</th><th>הכנסה</th></tr></thead>
+<tbody>
+<tr><td class="n">חודש 1</td><td>הערוץ מפרסם. האתר חי. הרשימה מתחילה.</td><td class="n">0 €</td></tr>
+<tr><td class="n">חודש 2</td><td>לקוח משלם ראשון — מהמכרים שלך, לא מהקהל.</td><td class="n yes">1,000–2,500 €</td></tr>
+<tr><td class="n">חודש 3–4</td><td>פרויקט בחודש, מחיר עולה כי יש מה להראות.</td><td class="n">1,500–3,000 € לחודש</td></tr>
+<tr><td class="n">חודש 5</td><td>אותו קצב, ואולי חסות ראשונה קטנה.</td><td class="n yes">1,500–3,500 € לחודש</td></tr>
+</tbody></table></div>
+
+<p>זה בין <span class="num">18,000</span> ל־<span class="num">42,000</span> יורו בשנה.
+פי <span class="num">24</span> פחות מהיעד — <strong>ופי אין־סוף יותר מאפס.</strong>
+בגילך, בעסק צדדי, בעשר שעות שבועיות, זה תוצאה טובה מאוד.</p>
+
+<div class="flag"><span class="t">ולמה בכל זאת שווה לבנות את הערוץ</span>
+הערוץ לא מייצר את הכסף בחמישה חודשים. הוא מייצר את הדבר שמאפשר להפסיק למכור שעות:
+קהל. פרויקטים תקועים בתקרה של הזמן שלך; מוצר לא. אבל מוצר בלי קהל לא נמכר — ולכן
+הסדר הוא קהל, אחר כך מוצר, ולא להיפך.</div>
+
+<h2><span class="n">02</span>מה אנחנו מוכרים, בשתי שורות</h2>
+
+<p><strong>בחינם:</strong> סרטון שמראה הקמה אחת של AI שעובדת — המסך המדויק, ההדבקה
+המדויקת, ומה נשבר. אנגלית, 4–5 בשבוע. הפרומפט המלא ב־caption, גלוי, בלי מילת מתיחה.</p>
+
+<p><strong>בכסף:</strong> אותו דבר, מותאם לעסק אחד, ומורכב עבורו. פלמית, לבעלי עסקים
+קטנים בפלנדריה. זה מה שמשלמים עליו.</p>
+
+<p>למה יקנו מאיתנו: כי <strong>הם כבר ראו שזה עובד</strong> לפני שדיברו איתנו. זה
+היתרון היחיד שיש לנו על סוכנות — ולא צריך ניסיון בשבילו, צריך להראות את המסך.</p>
+
+<h2><span class="n">03</span>עשר השעות, מחולקות</h2>
+
+<div class="week">
+  <div><span class="h">1 ש׳</span><span>העלאת 5 סרטונים + caption. הצינור בונה אותם, אתה מעלה.</span><span class="w">שבועי</span></div>
+  <div><span class="h">1 ש׳</span><span>האתר והרשימה — פרומפט חדש אחד בשבוע.</span><span class="w">שבועי</span></div>
+  <div><span class="h">8 ש׳</span><span>לקוחות: פנייה, שיחה, בנייה, מסירה.</span><span class="w">שבועי</span></div>
+</div>
+
+<p>שמונה שעות בשבוע הן <strong>32 בחודש</strong>. פרויקט של 2,500 יורו לוקח 20–30 שעות.
+לכן <em>פרויקט אחד בחודש הוא התקרה</em>, וזה לא בעיה שאפשר לעבוד יותר חכם כדי לפתור —
+זו אריתמטיקה.</p>
+
+<h2><span class="n">04</span>אפס יורו — הפירוט המדויק</h2>
+
+<div class="tw"><table>
+<thead><tr><th>כלי</th><th>בשביל מה</th><th>עלות</th></tr></thead>
+<tbody>
+<tr><td>Vercel Hobby</td><td>האתר, ה־CRM, ה־cron היומי</td><td class="n yes">0 €</td></tr>
+<tr><td>Supabase</td><td>מסד הנתונים</td><td class="n yes">0 €</td></tr>
+<tr><td>GitHub</td><td>הקוד</td><td class="n yes">0 €</td></tr>
+<tr><td>Chatterbox TTS</td><td>הקול שלך — רץ מקומית</td><td class="n yes">0 €</td></tr>
+<tr><td>Beehiiv</td><td>הניוזלטר, עד 2,500 נרשמים</td><td class="n yes">0 €</td></tr>
+<tr><td>Instagram Graph API</td><td>העלאה אוטומטית ומשיכת מספרים</td><td class="n yes">0 €</td></tr>
+<tr><td>כתובת vercel.app</td><td>האתר, בלי דומיין</td><td class="n yes">0 €</td></tr>
+<tr><td><strong>Anthropic API</strong></td><td>הכתיבה והסוכנים</td><td class="n no">לא נמדד</td></tr>
+</tbody></table></div>
+
+<div class="flag"><span class="t">הדבר היחיד שאני לא יכול להגיד לך</span>
+<strong>עלות ה־API היא הסעיף היחיד שאינו אפס, ואני לא יודע כמה הוא.</strong> לא מדדנו
+את השימוש בפועל, ולא אמציא לך מספר. זה נמדד בשבוע הראשון ואז יש תשובה. כל השאר
+בטבלה — אפס אמיתי, לא אפס בהנחה.</div>
+
+<p>מה שוויתרנו עליו כשירדנו מ־14 יורו לחודש (ManyChat): שליחת DM אוטומטית בתגובה
+למילה. <strong>ההפסד האסטרטגי אפסי</strong> — הפרומפט עובר ל־caption, גלוי לכולם,
+בלי חסם. זה גם מוריד חיכוך: אף אחד לא צריך לכתוב כלום כדי לקבל את הדבר.</p>
+
+<h2><span class="n">05</span>מאיפה בא הלקוח הראשון</h2>
+
+<p>לא מהקהל. <strong>ממך.</strong> ב־86 עוקבים אין ממי למכור, ובחודשיים לא יהיה.</p>
+
+<p>הלקוח הראשון בא מרשימה של חמישה עסקים שאתה יכול לדבר איתם מחר בלי הקדמות —
+מכרים, משפחה, אנשים מהעבודה. אחד מהם יגיד כן. זה החודש הראשון והשני, וזה כל
+מה שצריך כדי שיהיה מקרה מבחן אמיתי.</p>
+
+<p>ורוני ומיקי מ־Videya.be הם <strong>הנכס החזק ביותר בתוכנית הזאת</strong>, וגם
+לא בנינו אותם. הם עושים ברנדינג לעסקים בפלנדריה למחייתם — כלומר יש להם בדיוק את
+הלקוחות שאנחנו רוצים, והם חברים שלך. אחד מהשלושה: הם מפנים אליך עבודה שהם לא
+עושים, אתה עושה חלק AI בפרויקט שלהם, או הם רק אומרים לך אם המחיר שלך הגיוני.
+כל אחד מהשלושה שווה יותר מחודש של סרטונים.</p>
+
+<h2><span class="n">06</span>שלושה דברים ממך, ואני ממשיך לבד</h2>
+
+<ol>
+<li><strong>הטוקן של אינסטגרם ל־Vercel.</strong> בדקתי עכשיו: <em>IG_ACCESS_TOKEN לא מוגדר</em>.
+בלעדיו אין העלאה אוטומטית ואין מספרים ב־CRM — כלומר אין איך לדעת מה עבד.</li>
+<li><strong>לפרסם את הפרק הראשון.</strong> הוא עבר את השער. סרטון שלא עלה שווה אפס,
+וכל יום שהוא יושב אצלנו הוא יום שבו אנחנו לא לומדים כלום.</li>
+<li><strong>חמישה שמות.</strong> עסקים שאתה יכול לפנות אליהם השבוע. זה הפריט שמייצר
+את ההכנסה הראשונה, וזה הפריט היחיד שאני לא יכול לעשות במקומך.</li>
+</ol>
+
+<h2><span class="n">07</span>מה לא מאומת</h2>
+
+<ul>
+<li><strong>165 € לאלף נרשמים</strong> — תעריף שוק מדוחות בתחום, לא נמדד על ידינו.</li>
+<li><strong>2,500 € לפרויקט</strong> — מבוסס על ספק פלמי אחד שמפרסם מחיר (Codelines,
+אנטוורפן, "מ־2,500 €"). מתוך עשרה ספקים שבדקנו, <strong>שניים בלבד מפרסמים מחיר בכלל</strong> —
+ובזה עצמו יש הזדמנות: להיות היחיד עם מחיר על הדף.</li>
+<li><strong>האם מפרסמים קונים חסות מתחת ל־5,000 נרשמים</strong> — לא ידוע. הנחתי שלא.</li>
+<li><strong>KMO-portefeuille</strong> (מסובסד ייעוץ בפלנדריה) — היה שינוי בתנאים,
+ולא אימתנו את התאריך והתחולה. לפני שמבטיחים ללקוח סבסוד, זה נבדק.</li>
+</ul>
+
+<p class="foot">כל מספר בדף הזה הוא או חילוק של יעד שנתת, או מדידה שעשינו, או תעריף
+שוק מסומן כלא־מאומת. אין פה מספר שהמצאתי כדי שהתוכנית תיראה טוב יותר.</p>
+
+</div>
