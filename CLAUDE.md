@@ -67,6 +67,30 @@ backwards).
 - After any render, verify sync by finding the brass flash cards and comparing them to the
   times the build declares.
 
+## Frame layout — measured, not taste
+
+Meta publishes the numbers for 9:16: keep text and key elements out of the **top 14%
+(269px), bottom 35% (672px) and 6% of each side (65px)** on 1080x1920. The usable box
+is x 65-1015, y 269-1248. The bottom third is where Instagram draws the username,
+caption, audio label and buttons — a subtitle there is behind the interface, and ours
+sat 413px inside it until it was measured.
+
+- `node export/safe_check.js <build> [--tiktok] [--tol 10]` walks the real DOM at
+  sample times, flags any visible text box outside the safe area, and flags two text
+  boxes landing on each other. It waits 340ms after each seek because the build's
+  reveals are 0.26-0.3s transitions. Run it before every render.
+- Mark a purely decorative element `data-decor` and the checker leaves it alone — the
+  watermark is meant to be lost to the platform UI.
+- Captions are word-by-word: `export/karaoke.py <build> <deep.json>` aligns Whisper's
+  word stamps onto the script (so "ChatGPT" stays one word) and emits 2-3 word chunks
+  with the spoken word lit in brass. 80.2% of 13.5M short clips carry captions and
+  78.6% animate them; a full sentence at the bottom of frame is the format's most
+  common mistake, and ours repeated the scene's own headline word for word.
+- Master to -14 LUFS, true peak -1 dBTP (YouTube turns anything louder down and never
+  turns quiet content up). Music sits 18-20 dB under the narration and ducks.
+- Length: 45-75s. Do not go under 30s. Buffer's 1.1M-video study and Socialinsider's
+  11M-post set both put longer above shorter for this kind of content.
+
 ## The studio app
 
 - `studio/` — Next.js on Vercel, root directory `studio`, Supabase over `POSTGRES_URL`.
