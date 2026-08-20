@@ -46,3 +46,9 @@ export/*PACED*.mp4
 export/flemish-option-*.m4a
 export/*SAFE*.mp4
 export/*CHECKED*.mp4
+export/flemish-1*.m4a
+export/reel-01-v6.mp4
+# generated music beds — build_music.py is seeded, so any length is reproducible from it
+audio/reel01-music-paced.wav
+audio/reel01-music-v2.wav
+audio/reel01-music-v3.wav
