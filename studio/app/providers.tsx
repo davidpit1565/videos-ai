@@ -61,6 +61,16 @@ export function Provider({ children }: { children: React.ReactNode }) {
       }
       try {
         const r = await fetch("/api/state", { cache: "no-store" });
+        if (r.status === 401) {
+          // Locked out, not offline. Falling through to the browser copy silently is
+          // what made a stale studio look like a working one — say it instead.
+          if (!live) return;
+          modeRef.current = "local";
+          setMode("local");
+          setHint("הקוד פג. הנתונים כאן מהדפדפן ולא מהמסד — צריך להזין קוד מחדש.");
+          setState(whole(local ?? seed()));
+          return;
+        }
         const j = (await r.json()) as {
           mode: Mode; state: State | null; dbVar?: string | null; hint?: string; error?: string;
         };
@@ -130,8 +140,13 @@ export function Provider({ children }: { children: React.ReactNode }) {
         // guessing locally what it changed
         const s = await fetch("/api/state", { cache: "no-store" }).then((x) => x.json());
         if (s.mode === "cloud" && s.state) {
-          ref.current = s.state as State;
-          setState(s.state as State);
+          // through whole() like every other entry point. This one was missed, and it
+          // is the reachable one: /api/track returns early without saving when a pull
+          // ran in the last 20 minutes, so the full path repairs the row as a side
+          // effect and hides the bug, while the skipped path hands back the raw row.
+          const fixed = whole(s.state as State);
+          ref.current = fixed;
+          setState(fixed);
         }
       }
       return j;

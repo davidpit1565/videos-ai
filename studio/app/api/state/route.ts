@@ -1,3 +1,4 @@
+import { whole } from "@/lib/whole";
 import { NextResponse } from "next/server";
 import { dbVar, hasDb, loadState, saveState } from "@/lib/db";
 import { State } from "@/lib/types";
@@ -17,7 +18,12 @@ export async function GET() {
     });
   }
   try {
-    return NextResponse.json({ mode: "cloud", state: await loadState(), dbVar: dbVar() });
+    // repaired here as well as in the client: a caller that forgets is the bug that
+    // took the studio down twice
+    const raw = await loadState();
+    return NextResponse.json({
+      mode: "cloud", state: raw ? whole(raw) : null, dbVar: dbVar(),
+    });
   } catch (e) {
     // The variable exists but the connection failed — that is a different problem
     // from having no database, and it deserves a different message.

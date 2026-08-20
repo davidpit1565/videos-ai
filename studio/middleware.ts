@@ -20,6 +20,13 @@ export function middleware(req: NextRequest) {
 
   if (req.cookies.get("studio")?.value === pin) return NextResponse.next();
 
+  // A gated API answers with JSON and a status, never with a login page. Redirecting
+  // /api/state to /unlock made every caller's r.json() throw on HTML, and the catch
+  // that swallowed it dropped the studio to stale local data without saying so.
+  if (pathname.startsWith("/api/")) {
+    return NextResponse.json({ error: "locked" }, { status: 401 });
+  }
+
   const url = req.nextUrl.clone();
   url.pathname = "/unlock";
   url.search = `?to=${encodeURIComponent(pathname)}`;
