@@ -44,3 +44,4 @@ audio/voice/profile/reference-measured.wav
 # for history: the retimed build, the reference windows and the scripts are all tracked
 export/*PACED*.mp4
 export/flemish-option-*.m4a
+export/*SAFE*.mp4
