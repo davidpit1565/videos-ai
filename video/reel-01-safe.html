@@ -354,7 +354,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
        in this format. This gives a visual event roughly every three seconds without
        adding a cut. */
     var pu=0;
-    for(i=0;i<CUES.length;i++){ var pd=t-CUES[i][0]; if(pd>=0&&pd<0.22){ pu=1-pd/0.22; break; } }
+    for(i=0;i<CUES.length;i++){
+      var pd=t-CUES[i][0]; if(pd>=0&&pd<0.22){ pu=1-pd/0.22; break; }
+      /* a long line needs a beat of its own: line 15 runs 4.8s, and between its start
+         and the next card the picture had nothing new for 4.5s — over the 4.0s ceiling */
+      if(CUES[i][1]-CUES[i][0]>3.5){
+        var pm=t-(CUES[i][0]+(CUES[i][1]-CUES[i][0])/2);
+        if(pm>=0&&pm<0.22){ pu=1-pm/0.22; break; }
+      }
+    }
     for(i=0;i<scenes.length;i++)
       scenes[i].style.transform = (scenes[i]===active&&pu) ? 'scale('+(1+0.02*pu).toFixed(4)+')' : '';
 

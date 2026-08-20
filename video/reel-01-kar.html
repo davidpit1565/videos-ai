@@ -460,7 +460,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
        in this format. This gives a visual event roughly every three seconds without
        adding a cut. */
     var pu=0;
-    for(i=0;i<CUES.length;i++){ var pd=t-CUES[i][0]; if(pd>=0&&pd<0.22){ pu=1-pd/0.22; break; } }
+    for(i=0;i<CUES.length;i++){
+      var pd=t-CUES[i][0]; if(pd>=0&&pd<0.22){ pu=1-pd/0.22; break; }
+      /* a long line needs a beat of its own: line 15 runs 4.8s, and between its start
+         and the next card the picture had nothing new for 4.5s — over the 4.0s ceiling */
+      if(CUES[i][1]-CUES[i][0]>3.5){
+        var pm=t-(CUES[i][0]+(CUES[i][1]-CUES[i][0])/2);
+        if(pm>=0&&pm<0.22){ pu=1-pm/0.22; break; }
+      }
+    }
     for(i=0;i<scenes.length;i++)
       scenes[i].style.transform = (scenes[i]===active&&pu) ? 'scale('+(1+0.02*pu).toFixed(4)+')' : '';
 
@@ -511,8 +519,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
        until the next chunk's first word — otherwise the caption blanks for a third of
        a second between chunks while the voice is still going. It clears only between
        lines, where the silence is real. */
+    /* The window has to close the ordinary gaps. The scene's own headline is written to
+       disappear before the next one arrives, so a caption that blanks in a 0.42s gap
+       leaves the whole screen textless — measured at eleven places, 0.13s each. Reaching
+       0.32s back and 0.15s forward covers those, and the only remaining blanks fall
+       inside the 0.80s section gaps, where the colour card fills the frame anyway. After
+       the last line the caption holds to the end rather than leaving a blank tail. */
     var inLine=false;
-    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.10&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.32&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    if(t>CUES[CUES.length-1][1]) inLine=true;
     var here=-1, cur=-1;
     /* the lit word is the last one that started, not only the one still sounding:
        Whisper's word boundaries are tight, so gating on the word's own end left the

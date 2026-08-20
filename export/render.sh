@@ -3,10 +3,11 @@
 #   ./render.sh <html> <width> <height> <seconds> <narration.wav> <out.mp4> [music.wav]
 set -euo pipefail
 HTML="$1"; W="$2"; H="$3"; DUR="$4"; VO="$5"; OUT="$6"; MUS="${7:-}"
-# Measured on the first mixes: at 0.34 the bed came back 0.5 dB LOUDER than the
-# narration in the gaps, because loudnorm lifts the whole mix afterwards. The bed
-# belongs 15-20 dB under the voice, which is this.
-MUSIC_VOL="${MUSIC_VOL:-0.06}"
+# Decomposing the mix against both stems: at 0.34 the bed sat 11.2 dB under the voice
+# during speech and rose to about voice level in the gaps. The target is 18-20 dB under,
+# so the bed comes down ~8 dB. (Comparing gap level to speech level directly is
+# misleading here — the gaps are louder than the ducked bed under the voice.)
+MUSIC_VOL="${MUSIC_VOL:-0.135}"
 # FRAMES=1 captures frame by frame instead of recording playback: slower, but the
 # timeline cannot drift, which matters when narration is cut to authored times.
 FRAMES="${FRAMES:-0}"
