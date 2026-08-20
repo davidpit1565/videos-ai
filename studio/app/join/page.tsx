@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PROMPTS, bySlug } from "@/lib/prompts";
+import Signup from "../signup";
 
 export const metadata = {
   title: "Actually Works — get the setups",
@@ -14,7 +15,6 @@ export default async function Join({
 }: {
   searchParams: Promise<{ p?: string }>;
 }) {
-  const form = process.env.NEXT_PUBLIC_BEEHIIV_FORM || "";
   // the DM links here with ?p=<slug>, so the page can name what they came to claim
   const claimed = bySlug((await searchParams).p ?? "");
   return (
@@ -48,22 +48,10 @@ export default async function Join({
         </>
       )}
 
-      {form ? (
-        <iframe
-          src={form}
-          title="Subscribe"
-          className="beehiiv"
-          scrolling="no"
-          loading="lazy"
-        />
-      ) : (
-        <div className="note warn">
-          <div className="t">Form not connected yet</div>
-          Set <b>NEXT_PUBLIC_BEEHIIV_FORM</b> to the Beehiiv embed URL and this page starts
-          collecting. Beehiiv → Grow → Subscribe Forms → Embed, then set the post-subscribe
-          redirect to the prompt page.
-        </div>
-      )}
+      {/* Our own form, not an embed. The address is stored in our database before
+          Beehiiv is called, so the list exists whether or not a provider is wired up —
+          and this page stopped telling visitors to go set an environment variable. */}
+      <Signup source="join" />
 
       <h2>What&apos;s in the library</h2>
       <ul className="list">
