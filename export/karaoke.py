@@ -61,6 +61,9 @@ def main():
     ap.add_argument("words", help="the --json written by voice_doctor --deep")
     ap.add_argument("--out", required=True)
     ap.add_argument("--chunk", type=int, default=3, help="words on screen at once")
+    ap.add_argument("--words-cues", help="the cue file the word stamps were measured "
+                    "against; word times are shifted per line onto the build's cues, "
+                    "which is exact because regap moves a line without stretching it")
     a = ap.parse_args()
 
     src = open(a.html, encoding="utf-8").read()
@@ -72,6 +75,25 @@ def main():
     heard = heard["words"] if isinstance(heard, dict) else heard
     if not heard:
         sys.exit("no word timings in " + a.words)
+
+    shifts = None
+    if a.words_cues:
+        old = json.load(open(a.words_cues))
+        old = old if isinstance(old, list) else old["cues"]
+        if len(old) != len(cues):
+            sys.exit(f"{len(old)} cues in the word reference, {len(cues)} in the build")
+        # each line's audio is untouched by a re-gap, so one rigid shift per line is exact
+        shifts = [(float(o["start"]), float(o["end"]), float(c[0]) - float(o["start"]))
+                  for o, c in zip(old, cues)]
+        moved = []
+        for h in heard:
+            t0 = float(h["at"])
+            d = min(shifts, key=lambda s: 0 if s[0] <= t0 <= s[1]
+                    else min(abs(t0 - s[0]), abs(t0 - s[1])))
+            moved.append(dict(h, at=round(t0 + d[2], 3)))
+        heard = moved
+        print(f"  word stamps shifted per line: "
+              f"{min(s[2] for s in shifts):+.2f}s to {max(s[2] for s in shifts):+.2f}s")
 
     words, chunk_id = [], 0
     for li, c in enumerate(cues):
@@ -86,6 +108,11 @@ def main():
         if not window:
             continue
         spans = align(toks, window)
+        # a caption may never appear before the voice: the transcriber's first word can
+        # start ahead of the cue, and the wide search window lets that leak through
+        if spans:
+            s0 = max(float(c[0]), spans[0][0])
+            spans[0] = (s0, max(spans[0][1], s0 + 0.12))
         for k, ((w, _), (s, e)) in enumerate(zip(toks, spans)):
             if k and k % a.chunk == 0:
                 chunk_id += 1
@@ -101,16 +128,19 @@ def main():
     # gaps instead of holding a finished sentence on screen
     src = src.replace("""    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
     subs.innerHTML=txt;""",
-"""    var here=-1, cur=-1;
-    for(i=0;i<WORDS.length;i++){
-      if(t>=WORDS[i][0]-0.08&&t<WORDS[i][1]+0.12){cur=i;here=WORDS[i][3];break;}
-      if(WORDS[i][0]>t) break;
-      here=WORDS[i][3];
-    }
-    var gap=true;
-    for(i=0;i<WORDS.length;i++) if(WORDS[i][3]===here&&t>=WORDS[i][0]-0.25&&t<=WORDS[i][1]+0.30){gap=false;break;}
+"""    /* The chunk on screen is the one the last spoken word belongs to, and it holds
+       until the next chunk's first word — otherwise the caption blanks for a third of
+       a second between chunks while the voice is still going. It clears only between
+       lines, where the silence is real. */
+    var inLine=false;
+    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.10&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    var here=-1, cur=-1;
+    /* the lit word is the last one that started, not only the one still sounding:
+       Whisper's word boundaries are tight, so gating on the word's own end left the
+       highlight off for 13.4s of the reel */
+    for(i=0;i<WORDS.length;i++) if(WORDS[i][0]<=t+0.08){ here=WORDS[i][3]; cur=i; }
     var txt='';
-    if(!gap&&here>=0){
+    if(inLine&&here>=0){
       for(i=0;i<WORDS.length;i++) if(WORDS[i][3]===here)
         txt+=(i===cur?'<b class="on">':'<b>')+WORDS[i][2]+'</b> ';
     }

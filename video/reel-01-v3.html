@@ -37,6 +37,7 @@ body{margin:0;background:#05070A;color:var(--text);font-family:var(--b);-webkit-
 .kb{will-change:transform}
 
 .b{opacity:0;transform:translateY(2.4cqw) scale(.97);transition:opacity .26s ease,transform .3s cubic-bezier(.2,.9,.3,1)}
+.b.snap{transition:none}
 .b.on{opacity:1;transform:none}
 .b.gone{display:none!important}
 .punch:not(.on){transform:scale(.7)}
@@ -47,8 +48,9 @@ body{margin:0;background:#05070A;color:var(--text);font-family:var(--b);-webkit-
 .flash{position:absolute;inset:0;z-index:12;background:var(--brass);display:grid;place-items:center;
   opacity:0;visibility:hidden}
 .flash.on{opacity:1;visibility:visible}
-.flash span{font-family:var(--d);font-weight:900;font-size:15cqw;color:#0A0A0A;letter-spacing:-.045em;
-  text-transform:uppercase;transform:scale(.9);transition:transform .22s cubic-bezier(.2,1.6,.4,1)}
+.flash span{font-family:var(--d);font-weight:900;font-size:13.4cqw;color:#0A0A0A;letter-spacing:-.045em;
+  text-transform:uppercase;max-width:86cqw;text-align:center;line-height:1.02;
+  transform:scale(.9);transition:transform .22s cubic-bezier(.2,1.6,.4,1)}
 .flash.on span{transform:scale(1)}
 .flash.ember{background:var(--ember)}
 .flash.ember span{color:#170703}
@@ -331,7 +333,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   ];
   /* [at, label, ember?] — 0.34s hard cuts between sections */
   var FLASH=[[7.32,"the fix",0],[14.72,"40 seconds",0],[23.34,"the result",0],[37.68,"honest",1],[46.28,"take it",0]];
-  var FDUR=0.34;
+  var FDUR=0.66;
   var INSTR="You are my Universal AI Engine. Automatically choose the best methods for every request. I should NOT need to use shortcuts…";
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
@@ -347,10 +349,22 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       var kbs=active.querySelectorAll('.kb');
       for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.07*f).toFixed(4)+') translateY('+(-1.6*f).toFixed(2)+'cqw)';
     }
+    /* A punch on every line start. The Ken Burns drift is under 1% a second, which
+       reads as a still frame — and a still frame is the most-cited retention failure
+       in this format. This gives a visual event roughly every three seconds without
+       adding a cut. */
+    var pu=0;
+    for(i=0;i<CUES.length;i++){ var pd=t-CUES[i][0]; if(pd>=0&&pd<0.22){ pu=1-pd/0.22; break; } }
+    for(i=0;i<scenes.length;i++)
+      scenes[i].style.transform = (scenes[i]===active&&pu) ? 'scale('+(1+0.02*pu).toFixed(4)+')' : '';
+
     for(i=0;i<beats.length;i++){
       e=beats[i];
       var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
       var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      /* the hook cannot fade in: at t=0 a 0.26s transition means the first frame is
+         empty, which is the one frame that decides whether the reel is watched */
+      e.classList.toggle('snap',t<0.40);
       if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
       else { e.classList.remove('on'); e.classList.add('gone'); }
     }

@@ -134,8 +134,10 @@ def main():
         first = re.search(r'data-at="([0-9.]+)"', m.group(2))
         if not first or float(first.group(1)) - start <= 0.1:
             continue
+        # the opening frame of the whole reel gets its text at exactly 0: research puts
+        # first text inside 100ms, and a hook that fades in has already lost the scroll
         edits.append((m.start(2) + first.start(1), m.start(2) + first.end(1),
-                      f"{start + 0.03:g}"))
+                      f"{start + (0.03 if start > 0.01 else 0):g}"))
     # apply back to front, or every offset after the first edit is stale
     for i, j, rep in reversed(edits):
         src = src[:i] + rep + src[j:]
