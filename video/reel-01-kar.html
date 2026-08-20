@@ -32,7 +32,7 @@ body{margin:0;background:#05070A;color:var(--text);font-family:var(--b);-webkit-
 
 .scene{position:absolute;inset:0;z-index:2;opacity:0;visibility:hidden}
 .scene.active{opacity:1;visibility:visible}
-.pad{position:absolute;inset:0;padding:34cqw 9.5cqw 86cqw;display:flex;flex-direction:column;
+.pad{position:absolute;inset:0;padding:26cqw 9.5cqw 64cqw;display:flex;flex-direction:column;
   justify-content:center;gap:3.2cqw}
 .kb{will-change:transform}
 
@@ -168,45 +168,75 @@ body.render .page{padding:0;gap:0;display:block}
 body.render .side,body.render .ctl,body.render .tapover{display:none!important}
 body.render .reel{width:100vw;max-width:none}
 body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+
+/* A real phone in light mode. The dark mock measured 1.11:1 against the background —
+   the panel was invisible on a phone, and the one thing the video had to show was the
+   screen. mavgpt's tutorials sit at 216-219 luminance across two thirds of the frame. */
+.modal.light{background:#FFFFFF;border-color:#E3E3E6}
+.modal.light .mh{color:#0D0D0D;border-bottom-color:#E3E3E6}
+.modal.light .r{color:#1F1F22;border-bottom-color:#EDEDF0}
+.modal.light .r .ch{color:#8E8E93}
+.modal.light .r .ic{stroke:#3A3A3C}
+.modal.light .r.hi{background:#EFEFF3}
+.ci.light{background:#FFFFFF;border-color:#E3E3E6}
+.ci.light .lbl{color:#6E6E73}
+.ci.light .in{background:#F7F7F8;border-color:#DEDEE2;color:#0D0D0D}
+.ci.light .in.hot{border-color:var(--brass);box-shadow:0 0 0 .5cqw rgba(240,203,102,.28)}
+.ci.light .foot{color:#6E6E73}
+.ci.light .savebtn{background:#0D0D0D;color:#fff}
+.ci.light .savebtn.hit{background:var(--brass);color:#0A0A0A;transform:scale(1.18)}
+.ci.light .sw i{background:#C7C7CC}
+.ci.light .sw.on i{background:var(--brass)}
+
+/* The prompt is the product of the episode. It gets the frame to itself and eight
+   seconds, typed at the pace it is spoken — the old build showed it for two. */
+.promptcard{background:#FFFFFF;border:1px solid #E3E3E6;border-radius:2.4cqw;overflow:hidden;
+  box-shadow:0 2cqw 6cqw rgba(0,0,0,.5)}
+.promptcard .pc-h{font-family:var(--m);font-size:2.9cqw;letter-spacing:.12em;text-transform:uppercase;
+  color:#6E6E73;padding:3cqw 3.6cqw 0}
+.promptcard .pc-b{font-family:var(--ui);font-size:4.6cqw;line-height:1.42;color:#0D0D0D;
+  padding:2cqw 3.6cqw 3.6cqw;min-height:34cqw}
+.promptcard .caret{display:inline-block;width:.42cqw;height:4.4cqw;background:#0D0D0D;
+  vertical-align:-.7cqw;margin-inline-start:.5cqw;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
 </style>
 
 <div class="page">
 <div class="reel">
 <div class="frame" id="frame">
 <div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
-<div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<!-- S1 · PROBLEM 0–7.6 -->
-<section class="scene" data-in="0" data-out="7.11">
-  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
-    <h2 class="b punch" data-at="0" data-until="3.5">Your ChatGPT keeps giving you the <span class="box">obvious</span>.</h2>
-    <div class="gpt b" data-at="3.555">
+<!-- S1 · THE PROBLEM 0–7.58 -->
+<section class="scene" data-in="0" data-out="7.24">
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
+    <h2 class="b punch" data-at="0" data-until="3.042">Your ChatGPT keeps giving you the <span class="box">obvious</span>.</h2>
+    <div class="gpt b" data-at="3.304">
       <div class="top"><span class="ham"><i></i><i></i><i></i></span><span>ChatGPT ⌄</span><span class="av">D</span></div>
       <div class="thread">
         <div class="u">how do I grow my business?</div>
-        <div class="a dull">There are several ways to grow a business: improve your marketing, expand your product line, build customer loyalty, and consider new markets.</div>
+        <div class="comp">There are several ways to grow a business: improve your marketing, expand your product line, and build customer loyalty.</div>
       </div>
-      <div class="comp"><span>Ask anything</span><span class="send">↑</span></div>
+      <div class="ask"><span>Ask anything</span><span class="up">↑</span></div>
     </div>
-    <div class="row b punch" data-at="5.092"><span class="tag ember">not its fault</span><span class="tag ghost">nobody told it how</span></div>
   </div></div>
 </section>
 
-<!-- S2 · FIX 7.6–15.0 -->
-<section class="scene" data-in="7.11" data-out="15.32">
-  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
-    <h2 class="b punch" data-at="7.14" data-until="10.9">One block of text.<br><span class="box">Pasted once.</span></h2>
-    <div class="instr b" data-at="8.817" data-until="10.9">You are my Universal AI Engine.<br><br>Automatically choose the best methods for every request. I should NOT need to use shortcuts.</div>
-    <h2 class="sm b punch" data-at="11.053">Then it picks its <em>own reasoning</em>.</h2>
-    <p class="lede b" data-at="12.655">Every chat. Forever. <strong>You do nothing.</strong></p>
+<!-- S2 · THE PROMPT 7.58–18.80 — the payload, read aloud while it types -->
+<section class="scene" data-in="7.24" data-out="19.47">
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.4cqw">
+    <h2 class="sm b punch" data-at="6.854" data-until="10.58">One block of text.<br><span class="box">This is it.</span></h2>
+    <div class="promptcard b" data-at="10.6">
+      <div class="pc-h">Custom instructions</div>
+      <div class="pc-b"><span id="promptType"></span><span class="caret"></span></div>
+    </div>
   </div></div>
 </section>
 
-<!-- S3 · SETUP 15.0–23.6 -->
-<section class="scene" data-in="15.32" data-out="25.14">
+<!-- S3 · FORTY SECONDS 18.80–31.98 — light screen, one step at a time -->
+<section class="scene" data-in="19.47" data-out="32.23">
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
-    <div class="modal b" data-at="15.35" data-until="20.84">
+    <div class="modal light b" data-at="19.084" data-until="26.64">
       <div class="mh">Settings <span>✕</span></div>
       <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="5.8"/></svg>General</span><span class="ch">›</span></div>
       <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M4.2 11h7.6M6 11V7a2 2 0 0 1 4 0v4M6.9 13.2h2.2"/></svg>Notifications</span><span class="ch">›</span></div>
@@ -215,7 +245,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       <div class="r" id="rowCI"><span><svg class="ic" viewBox="0 0 16 16"><path d="M3.2 12.8l.9-2.9 6.4-6.4 2 2-6.4 6.4z"/></svg>Custom instructions</span><span class="ch">›</span></div>
       <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M8 2.4l4.8 1.9v3.6c0 2.9-2.1 4.9-4.8 5.7-2.7-.8-4.8-2.8-4.8-5.7V4.3z"/></svg>Data controls</span><span class="ch">›</span></div>
     </div>
-    <div class="ci b" data-at="21.892">
+    <div class="ci light b" data-at="26.69">
       <span class="lbl">Anything else ChatGPT should know about you?</span>
       <div class="in" id="ciBig"><span id="typed"></span><span class="caret"></span></div>
       <div class="foot"><span class="sw" id="ciSw"><i></i> Enable for new chats</span><span class="savebtn" id="ciSave">Save</span></div>
@@ -225,83 +255,65 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div>
 </section>
 
-<!-- S4 · RESULT 23.6–37.9 -->
-<section class="scene" data-in="25.14" data-out="41">
+<!-- S4 · THE RESULT 31.98–44.42 -->
+<section class="scene" data-in="32.23" data-out="43.67">
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:2.8cqw">
-    <h2 class="sm b punch" data-at="25.17" data-until="27.2">Same question.<br><span class="box">Normal words.</span></h2>
-    <div class="gpt b" data-at="29.562">
+    <h2 class="sm b punch" data-at="31.844" data-until="35.82">Same question.<br><span class="box">Normal words.</span></h2>
+    <div class="gpt b" data-at="35.87">
       <div class="top"><span class="ham"><i></i><i></i><i></i></span><span>ChatGPT ⌄</span><span class="av">D</span></div>
       <div class="thread">
         <div class="u">how do I grow my business?</div>
-        <div class="a b" data-at="29.629" data-until="32.5"><b>Assumptions</b>You're small, self-funded, and growth means revenue — not headcount.</div>
-        <div class="a b" data-at="31.819" data-until="35.4"><b>Risk you didn't ask about</b>One channel carries all your customers.</div>
-        <div class="a b" data-at="35.002"><b>Decision</b>Fix retention first. Call your last 10 churned customers this week.</div>
+        <div class="a b" data-at="36.109" data-until="40.51"><b>Assumptions</b>You're small, self-funded, and growth means revenue — not headcount.</div>
+        <div class="a b" data-at="37.909" data-until="40.51"><b>Risk you didn't ask about</b>One channel carries all your customers.</div>
+        <div class="a b" data-at="40.607"><b>Decision</b>Fix retention first. Call your last 10 churned customers this week.</div>
       </div>
     </div>
     <div class="row">
-      <span class="tag b punch" data-at="29.629">assumptions</span>
-      <span class="tag b punch" data-at="31.819">risks</span>
-      <span class="tag b punch" data-at="35.002">decision</span>
+      <span class="tag b punch" data-at="36.109">assumptions</span>
+      <span class="tag b punch" data-at="37.909">risks</span>
+      <span class="tag b punch" data-at="40.607">decision</span>
     </div>
-    <h2 class="sm b punch" data-at="38.427"><span class="box">Zero</span> commands typed.</h2>
   </div></div>
 </section>
 
-<!-- S5 · HONEST 37.9–46.5 -->
-<section class="scene" data-in="41" data-out="50.1">
+<!-- S5 · HONEST 44.42–48.72 -->
+<section class="scene" data-in="43.67" data-out="47.93">
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
-    <h2 class="sm b punch" data-at="41.03" data-until="41.1">The honest part.</h2>
+    <h2 class="sm b punch" data-at="43.284" data-until="45.56"><span class="box">Zero</span> commands typed.</h2>
     <div class="stack">
-      <div class="strike b" data-at="42.278" data-until="41.1"><s>A new AI model</s></div>
-      <div class="strike b" data-at="43.002" data-until="41.1"><s>Software you install</s></div>
-      <div class="strike b" data-at="43.726" data-until="41.1"><s>A guarantee it's right</s></div>
+      <div class="strike b" data-at="44.04" data-until="45.56"><s>A new AI model</s></div>
+      <div class="strike b" data-at="44.567" data-until="45.56"><s>Software you install</s></div>
     </div>
-    <h2 class="b punch" data-at="44.91">It thinks <span class="box">hard</span>.<br>Not <span class="ebox">right</span>.</h2>
+    <h2 class="b punch" data-at="45.605">Same <span class="ebox">model</span>.<br>New <span class="box">method</span>.</h2>
   </div></div>
 </section>
 
-<!-- S6 · CTA 46.5–52 -->
-<section class="scene" data-in="50.1" data-out="56.43">
-  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw;align-items:flex-start">
-    <h2 class="b punch" data-at="50.13">Full text in the <span class="box">caption</span>.</h2>
-    <p class="lede b" data-at="53.084" style="font-size:5.6cqw">Follow for AI setups that <strong>actually work</strong> — including what breaks.</p>
-    <div class="b punch" data-at="54.723"><span class="tag">save this ↓</span></div>
+<!-- S6 · TAKE IT 48.72–56.1 -->
+<section class="scene" data-in="47.93" data-out="53.9">
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
+    <h2 class="b punch" data-at="47.544">The prompt is in<br>the <span class="box">caption</span>.</h2>
+    <p class="lede b" data-at="51.405" style="font-size:5.6cqw">Copy it. No email, no DM, no catch.</p>
   </div></div>
 </section>
 
 <div class="flash" id="flash"><span id="flashTxt"></span></div>
 <div class="subs" id="subs"></div>
 <div class="handle" data-decor>@actuallyworks.ai</div>
-<button class="tapover" id="tap" aria-label="Play"><span class="d"></span></button>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+
 </div>
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="52" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="57" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
-</div>
-</div>
-
-<div class="side">
-  <p class="k">Reel 01 · v3 · 52s · his voice</p>
-  <h1>Built to <em>stop the scroll</em></h1>
-  <p>v2 was elegant. Elegant doesn't stop a thumb. This version is designed for a phone held at arm's length, in daylight, with the sound off.</p>
-  <h3>What changed</h3>
-  <ul>
-    <li><strong>It opens on words, not a screenshot.</strong> Frame one is a full-bleed sentence at 13cqw — readable in the 0.4s someone gives you before deciding.</li>
-    <li><strong>Emphasis is a filled block, not coloured text.</strong> A brass box around the key word survives a small, bright screen; coloured text doesn't.</li>
-    <li><strong>Captions are ~30% bigger</strong> and sit higher, clear of the Instagram UI.</li>
-    <li><strong>Section flashes.</strong> A 0.35s full-frame colour card between sections — a hard pattern interrupt that resets attention five times in 52 seconds.</li>
-    <li><strong>Brighter, higher contrast.</strong> The palette was raised and a second accent added, so the frame has heat instead of only mood.</li>
-    <li><strong>A countdown during setup.</strong> Visible urgency while the least dramatic part of the video plays.</li>
-    <li><strong>Cut to his voice, not the other way round.</strong> Every beat is aligned to the actual recording.</li>
-  </ul>
 </div>
 </div>
 
 <script>
 (function(){
-  var DUR=56.49,t=0,playing=false,last=0;
+  var DUR=53.88,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -313,133 +325,142 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
   /* cues follow the tightened recording exactly */
   var CUES=[
-    [0.30,3.11,"Your ChatGPT keeps giving you the <em>obvious</em>."],
-    [3.53,6.72,"Not because it's dumb.<br>Nobody told it <em>how to think</em>."],
-    [7.52,10.60,"One block of text.<br><em>Pasted once</em>."],
-    [11.02,14.93,"Then it picks its own reasoning — every chat."],
-    [15.73,16.83,"Open <em>Settings</em>."],
-    [17.25,19.59,"Go to <em>Personalization</em>."],
-    [20.01,21.51,"<em>Custom instructions</em>."],
-    [21.93,24.75,"Paste. Switch it on. <em>Save</em>."],
-    [25.55,29.19,"Now ask the same question. Normal words."],
-    [29.61,31.37,"It states what it's <em>assuming</em>."],
-    [31.79,34.56,"It finds the risk you didn't ask about."],
-    [34.98,37.97,"It ends with a <em>decision</em>. Not a list."],
-    [38.39,40.61,"You typed <em>zero</em> commands."],
-    [41.41,44.47,"The honest part: this isn't a new model."],
-    [44.89,49.71,"It makes ChatGPT think <em>hard</em> — not be right more often."],
-    [50.51,52.62,"Full instruction's in the <em>caption</em>."],
-    [53.04,55.99,"Follow for setups that <em>actually work</em>."]
+    [0.30,2.78,"Your ChatGPT keeps giving you the <em>obvious</em>."],
+    [3.88,6.73,"Not because it's dumb.<br>Nobody told it <em>how to think</em>."],
+    [7.83,10.30,"One block of text. <em>This is it</em>."],
+    [10.72,18.96,"You are my Universal AI Engine. Automatically choose the best methods for every request. I should not need to use shortcuts."],
+    [20.06,21.61,"One — open <em>Settings</em>."],
+    [22.03,23.86,"Two — <em>Personalization</em>."],
+    [24.28,26.32,"Three — <em>Custom instructions</em>."],
+    [26.74,28.93,"Four — paste it in the box."],
+    [29.35,31.72,"Five — switch it on, and <em>Save</em>."],
+    [32.82,35.64,"Now ask anything, in normal words."],
+    [36.06,40.15,"It says what it's <em>assuming</em>. It finds the risk you didn't ask about."],
+    [40.57,43.16,"It ends with a <em>decision</em>. Not a list."],
+    [44.26,47.42,"You typed zero commands. Same model — <em>new method</em>."],
+    [48.52,50.97,"The whole prompt is in the <em>caption</em>. Copy it."],
+    [51.39,53.38,"Follow for setups that <em>actually work</em>."]
   ];
   var WORDS=[
-    [0.3,0.42,"Your",0],
-    [0.16,0.96,"ChatGPT",0],
-    [0.96,1.44,"keeps",0],
-    [1.44,1.74,"giving",1],
-    [1.74,1.9,"you",1],
-    [1.9,2.06,"the",1],
-    [2.06,2.54,"obvious",2],
-    [3.53,3.65,"Not",3],
-    [3.42,3.68,"because",3],
-    [3.68,4.0,"it's",3],
-    [4.0,4.22,"dumb.",4],
-    [4.68,4.96,"Nobody",4],
-    [4.96,5.3,"told",4],
-    [5.3,5.5,"it",5],
-    [5.5,5.7,"how",5],
-    [5.7,5.88,"to",5],
-    [5.88,6.26,"think",6],
-    [7.52,7.64,"One",7],
-    [7.52,7.88,"block",7],
-    [7.88,8.1,"of",7],
-    [8.1,8.6,"text.",8],
-    [8.6,9.56,"Pasted",8],
-    [9.56,9.86,"once",8],
-    [11.02,11.14,"Then",9],
-    [11.12,11.66,"it",9],
-    [11.66,11.9,"picks",9],
-    [11.9,12.22,"its",10],
-    [12.22,12.44,"own",10],
-    [12.44,12.88,"reasoning",10],
-    [13.7,13.96,"every",11],
-    [13.96,14.36,"chat.",11],
-    [15.73,15.85,"Open",12],
-    [15.73,16.15,"Settings",12],
-    [17.25,17.37,"Go",13],
-    [17.19,17.59,"to",13],
-    [17.59,19.07,"Personalization",13],
-    [20.01,20.13,"Custom",14],
-    [20.11,20.89,"instructions",14],
-    [21.93,22.05,"Paste.",15],
-    [22.39,22.69,"Switch",15],
-    [22.69,22.85,"it",15],
-    [22.85,23.03,"on.",16],
-    [23.57,23.89,"Save",16],
-    [25.55,25.76,"Now",17],
-    [25.76,26.24,"ask",17],
-    [26.24,26.46,"the",17],
-    [26.46,26.66,"same",18],
-    [26.66,27.2,"question.",18],
-    [27.7,28.06,"Normal",18],
-    [28.06,28.6,"words.",19],
-    [29.61,29.73,"It",20],
-    [29.44,29.74,"states",20],
-    [29.74,30.26,"what",20],
-    [30.26,30.46,"it's",21],
-    [30.46,30.78,"assuming",21],
-    [31.79,31.91,"It",22],
-    [31.64,32.08,"finds",22],
-    [32.08,32.34,"the",22],
-    [32.34,32.7,"risk",23],
-    [32.7,33.02,"you",23],
-    [33.02,33.46,"didn't",23],
-    [33.46,33.78,"ask",24],
-    [33.78,34.1,"about.",24],
-    [34.98,35.1,"It",25],
-    [34.84,35.28,"ends",25],
-    [35.28,35.58,"with",25],
-    [35.58,35.7,"a",26],
-    [35.7,36.12,"decision",26],
-    [36.68,36.98,"Not",26],
-    [36.98,37.12,"a",27],
-    [37.12,37.46,"list.",27],
-    [38.39,38.51,"You",28],
-    [38.26,38.76,"typed",28],
-    [38.76,39.42,"zero",28],
-    [39.42,39.92,"commands.",29],
-    [41.41,41.53,"The",30],
-    [41.25,41.57,"honest",30],
-    [41.57,41.97,"part:",30],
-    [42.27,42.63,"this",31],
-    [42.63,43.07,"isn't",31],
-    [43.07,43.19,"a",31],
-    [43.19,43.41,"new",32],
-    [43.41,43.77,"model.",32],
-    [44.89,45.01,"It",33],
-    [44.73,45.01,"makes",33],
-    [45.01,45.95,"ChatGPT",33],
-    [45.95,46.57,"think",34],
-    [46.57,46.93,"hard",34],
-    [47.43,47.69,"not",34],
-    [47.69,47.89,"be",35],
-    [47.89,48.19,"right",35],
-    [48.19,48.59,"more",35],
-    [48.59,49.09,"often.",36],
-    [50.51,50.63,"Full",37],
-    [50.5,51.18,"instruction's",37],
-    [51.18,51.6,"in",37],
-    [51.6,51.72,"the",38],
-    [51.7,52.02,"caption",38],
-    [53.04,53.16,"Follow",39],
-    [53.12,53.42,"for",39],
-    [53.42,53.88,"setups",39],
-    [53.88,54.3,"that",40],
-    [54.3,54.86,"actually",40],
-    [54.86,55.36,"work",40]
+    [0.3,0.5,"Your",0],
+    [0.5,1.08,"ChatGPT",0],
+    [1.08,1.5,"keeps",0],
+    [1.5,1.74,"giving",1],
+    [1.74,1.88,"you",1],
+    [1.88,2.02,"the",1],
+    [2.02,2.44,"obvious.",2],
+    [4.1,4.22,"Not",3],
+    [4.1,4.36,"because",3],
+    [4.36,4.64,"it's",3],
+    [4.64,4.76,"dumb.",4],
+    [5.24,5.42,"Nobody",5],
+    [5.42,5.68,"told",5],
+    [5.68,5.88,"it",5],
+    [5.88,6.0,"how",6],
+    [6.0,6.12,"to",6],
+    [6.1,6.36,"think.",6],
+    [7.92,8.04,"One",7],
+    [8.04,8.3,"block",7],
+    [8.3,8.48,"of",7],
+    [8.48,8.86,"text.",8],
+    [9.28,9.5,"This",9],
+    [9.5,9.9,"is",9],
+    [9.9,10.22,"it.",9],
+    [10.72,10.92,"You",10],
+    [10.92,11.04,"are",10],
+    [11.02,11.18,"my",10],
+    [11.18,11.8,"Universal",11],
+    [11.8,12.2,"AI",11],
+    [12.2,12.66,"Engine.",11],
+    [13.28,13.8,"Automatically",12],
+    [13.8,14.18,"choose",12],
+    [14.18,14.42,"the",12],
+    [14.42,14.68,"best",13],
+    [14.68,15.08,"methods",13],
+    [15.08,15.62,"for",13],
+    [15.62,15.96,"every",14],
+    [15.96,16.4,"request.",14],
+    [17.06,17.28,"I",15],
+    [17.28,17.42,"should",15],
+    [17.42,17.6,"not",15],
+    [17.6,17.82,"need",16],
+    [17.82,18.0,"to",16],
+    [18.0,18.18,"use",16],
+    [18.18,18.6,"shortcuts.",17],
+    [20.06,20.3,"One",18],
+    [20.74,20.92,"open",19],
+    [20.92,21.3,"Settings.",19],
+    [22.03,22.26,"Two",20],
+    [22.94,23.54,"Personalization.",21],
+    [24.88,25.0,"Three",22],
+    [24.88,25.38,"Custom",23],
+    [25.38,25.96,"instructions.",23],
+    [26.74,27.04,"Four",24],
+    [27.56,27.68,"paste",25],
+    [27.68,27.9,"it",25],
+    [27.9,28.18,"in",25],
+    [28.18,28.34,"the",26],
+    [28.34,28.62,"box.",26],
+    [29.42,29.66,"Five",27],
+    [30.22,30.34,"switch",28],
+    [30.32,30.46,"it",28],
+    [30.46,30.62,"on,",28],
+    [30.62,31.18,"and",29],
+    [31.18,31.52,"Save.",29],
+    [33.5,33.62,"Now",30],
+    [33.5,33.76,"ask",30],
+    [33.76,34.16,"anything,",30],
+    [34.16,34.68,"in",31],
+    [34.68,34.92,"normal",31],
+    [34.92,35.34,"words.",31],
+    [36.06,36.2,"It",32],
+    [36.2,36.48,"says",32],
+    [36.48,37.06,"what",32],
+    [37.06,37.3,"it's",33],
+    [37.3,37.64,"assuming.",33],
+    [38.04,38.16,"It",34],
+    [38.12,38.36,"finds",34],
+    [38.36,38.54,"the",34],
+    [38.54,38.78,"risk",35],
+    [38.78,39.14,"you",35],
+    [39.14,39.42,"didn't",35],
+    [39.42,39.66,"ask",36],
+    [39.66,39.86,"about.",36],
+    [40.57,40.7,"It",37],
+    [40.7,41.06,"ends",37],
+    [41.06,41.36,"with",37],
+    [41.36,41.48,"a",38],
+    [41.48,41.82,"decision.",38],
+    [42.14,42.42,"Not",39],
+    [42.42,42.66,"a",39],
+    [42.66,42.96,"list.",39],
+    [44.3,44.42,"You",40],
+    [44.42,44.76,"typed",40],
+    [44.76,45.22,"zero",40],
+    [45.22,45.54,"commands.",41],
+    [46.02,46.16,"Same",42],
+    [46.16,46.46,"model",42],
+    [46.84,46.96,"new",43],
+    [46.92,47.22,"method.",43],
+    [48.52,48.64,"The",44],
+    [48.62,48.8,"whole",44],
+    [48.8,49.06,"prompt",44],
+    [49.06,49.48,"is",45],
+    [49.48,49.6,"in",45],
+    [49.6,49.72,"the",45],
+    [49.68,49.96,"caption.",46],
+    [50.46,50.66,"Copy",47],
+    [50.66,51.06,"it.",47],
+    [51.39,51.64,"Follow",48],
+    [51.64,51.84,"for",48],
+    [51.84,52.1,"setups",48],
+    [52.1,52.3,"that",49],
+    [52.3,52.66,"actually",49],
+    [52.66,53.0,"work.",49]
   ];
   /* [at, label, ember?] — 0.34s hard cuts between sections */
-  var FLASH=[[6.78,"the fix",0],[14.99,"40 seconds",0],[24.81,"the result",0],[40.67,"honest",1],[49.77,"take it",0]];
-  var FDUR=0.66;
+  var FLASH=[[6.79,"the fix",0],[19.02,"40 seconds",0],[31.78,"the result",0],[43.22,"honest",1],[47.48,"take it",0]];
+  var FDUR=0.90;
   var INSTR="You are my Universal AI Engine. Automatically choose the best methods for every request. I should NOT need to use shortcuts…";
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
@@ -460,7 +481,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
        in this format. This gives a visual event roughly every three seconds without
        adding a cut. */
     var pu=0;
-    for(i=0;i<CUES.length;i++){ var pd=t-CUES[i][0]; if(pd>=0&&pd<0.22){ pu=1-pd/0.22; break; } }
+    for(i=0;i<CUES.length;i++){
+      var pd=t-CUES[i][0]; if(pd>=0&&pd<0.22){ pu=1-pd/0.22; break; }
+      /* a long line needs a beat of its own: line 15 runs 4.8s, and between its start
+         and the next card the picture had nothing new for 4.5s — over the 4.0s ceiling */
+      if(CUES[i][1]-CUES[i][0]>3.5){
+        var pm=t-(CUES[i][0]+(CUES[i][1]-CUES[i][0])/2);
+        if(pm>=0&&pm<0.22){ pu=1-pm/0.22; break; }
+      }
+    }
     for(i=0;i<scenes.length;i++)
       scenes[i].style.transform = (scenes[i]===active&&pu) ? 'scale('+(1+0.02*pu).toFixed(4)+')' : '';
 
@@ -485,13 +514,27 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     b2.style.transform='translate('+(30+22*Math.cos(t*0.13+1.4))+'cqw,'+(34+24*Math.sin(t*0.19+.6))+'cqw)';
     b3.style.transform='translate('+(14+28*Math.sin(t*0.11+2.1))+'cqw,'+(66+16*Math.cos(t*0.15+1.1))+'cqw)';
 
+    /* Every time below is derived from the narration's own cue times, never written as
+       a constant. The old build had the cursor moving at 19.02 and the prompt typing at
+       21.0 — absolute seconds that retime.py does not touch, so after the timeline moved
+       the screen was doing one thing while the voice said another. cue(n) is the start
+       of spoken line n. */
+    function cue(n){ return CUES[n-1] ? CUES[n-1][0] : 0; }
+    function cueEnd(n){ return CUES[n-1] ? CUES[n-1][1] : 0; }
+
+    /* line 4 IS the prompt: it is read aloud, and it types at the pace it is read */
+    var pt=document.getElementById('promptType');
+    if(pt){
+      var p0=cue(4),p1=cueEnd(4)-0.35;
+      var pg=t<=p0?0:t>=p1?1:(t-p0)/(p1-p0);
+      pt.textContent=INSTR.slice(0,Math.round(pg*INSTR.length));
+    }
+
     var rp=document.getElementById('rowPers'),rc=document.getElementById('rowCI'),c=document.getElementById('cur');
-    if(rp){ rp.classList.toggle('hi',t>=16.42&&t<19.02); rc.classList.toggle('hi',t>=19.02&&t<20.8); }
-    var ck=document.getElementById('clock');
-    if(ck){ var left=Math.max(0,Math.round(40-(t-15)*4.7)); ck.textContent='0:'+('0'+left).slice(-2); }
+    if(rp){ rp.classList.toggle('hi',t>=cue(6)&&t<cue(7)); rc.classList.toggle('hi',t>=cue(7)&&t<cue(8)); }
     if(c){
-      var tgt=t<19.02?'rowPers':t<20.86?'rowCI':t<22.2?'ciBig':t<22.8?'ciSw':'ciSave';
-      var el=document.getElementById(tgt),show=t>=15.6&&t<23.5;
+      var tgt=t<cue(6)?'rowPers':t<cue(7)?'rowPers':t<cue(8)?'rowCI':t<cue(9)?'ciBig':t<cue(9)+1.0?'ciSw':'ciSave';
+      var el=document.getElementById(tgt),show=t>=cue(5)+0.2&&t<cueEnd(9);
       c.style.opacity=show?1:0;
       if(show&&el){
         var fr=frame.getBoundingClientRect(),r=el.getBoundingClientRect();
@@ -502,17 +545,25 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       }
     }
     var ty=document.getElementById('typed');
-    if(ty){ var g=t<=21.0?0:t>=22.2?1:(t-21.0)/1.2; ty.textContent=INSTR.slice(0,Math.round(g*INSTR.length)); }
-    var big=document.getElementById('ciBig'); if(big) big.classList.toggle('hot',t>20.94&&t<22.5);
-    var sw=document.getElementById('ciSw'); if(sw) sw.classList.toggle('on',t>22.45);
-    var sv=document.getElementById('ciSave'); if(sv) sv.classList.toggle('hit',t>22.95);
+    if(ty){ var g0=cue(8),g1=cue(8)+1.5;
+      var g=t<=g0?0:t>=g1?1:(t-g0)/(g1-g0); ty.textContent=INSTR.slice(0,Math.round(g*INSTR.length)); }
+    var big=document.getElementById('ciBig'); if(big) big.classList.toggle('hot',t>cue(8)-0.1&&t<cue(9)+0.6);
+    var sw=document.getElementById('ciSw'); if(sw) sw.classList.toggle('on',t>cue(9)+0.35);
+    var sv=document.getElementById('ciSave'); if(sv) sv.classList.toggle('hit',t>cue(9)+1.25);
 
     /* The chunk on screen is the one the last spoken word belongs to, and it holds
        until the next chunk's first word — otherwise the caption blanks for a third of
        a second between chunks while the voice is still going. It clears only between
        lines, where the silence is real. */
+    /* The window has to close the ordinary gaps. The scene's own headline is written to
+       disappear before the next one arrives, so a caption that blanks in a 0.42s gap
+       leaves the whole screen textless — measured at eleven places, 0.13s each. Reaching
+       0.32s back and 0.15s forward covers those, and the only remaining blanks fall
+       inside the 0.80s section gaps, where the colour card fills the frame anyway. After
+       the last line the caption holds to the end rather than leaving a blank tail. */
     var inLine=false;
-    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.10&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.32&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    if(t>CUES[CUES.length-1][1]) inLine=true;
     var here=-1, cur=-1;
     /* the lit word is the last one that started, not only the one still sounding:
        Whisper's word boundaries are tight, so gating on the word's own end left the

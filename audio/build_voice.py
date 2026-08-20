@@ -119,6 +119,29 @@ def wer(said, want):
             d[i,j] = min(d[i-1,j]+1, d[i,j-1]+1, d[i-1,j-1]+(a[i-1] != b[j-1]))
     return d[len(a), len(b)] / len(b)
 
+def dup_tail(words, want):
+    """Chatterbox sometimes says the end of a line twice. Line 13 of episode 01 came
+    out as "...same model, new method. New method." — he heard it immediately.
+
+    The transcript check scored it 0.25 and accepted it as "best available", because
+    word error rate treats a duplicated phrase as a handful of insertions. A repetition
+    is not a mispronunciation, it is the wrong content, so it gets its own test.
+
+    Returns the time the repeat starts, so the take can be cut instead of thrown away.
+    """
+    h = [(n[0], w.start) for w in words for n in [_norm(w.word)] if n]
+    t = _norm(want)
+    if len(h) < len(t) + 2 or len(t) < 2:
+        return None
+    # the longest tail of the target that is spoken twice in a row at the end
+    for k in range(min(len(t), (len(h)) // 2), 1, -1):
+        a1 = [x[0] for x in h[-k:]]
+        a2 = [x[0] for x in h[-2 * k:-k]]
+        if a1 == a2 == t[-k:]:
+            return h[-k][1]
+    return None
+
+
 def polish(src, dst):
     """Same chain every episode, so every video sounds like the same person.
 
@@ -154,6 +177,12 @@ def main():
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--retries", type=int, default=3,
                     help="regenerate a line this many times if it is misheard")
+    ap.add_argument("--min-rate", type=float, default=4.6,
+                    help="syllables a second below which a line is dragging. Measured on "
+                         "nineteen reels, the accounts we are chasing run 231-313 words a "
+                         "minute (about 5.4-7.3 syl/s) where ours ran 150 (3.5).")
+    ap.add_argument("--max-speedup", type=float, default=1.20,
+                    help="most a dragging line may be sped up; pitch is preserved")
     ap.add_argument("--max-rate", type=float, default=6.5,
                     help="syllables per second above which a line is judged too dense")
     ap.add_argument("--gap", type=float, default=GAP,
@@ -164,6 +193,16 @@ def main():
                     help="level of the room-tone bed; -55 matches his real room")
     ap.add_argument("--dry", action="store_true",
                     help="skip breaths and room tone (clinical, for debugging)")
+    ap.add_argument("--prosody-rolls", type=int, default=3,
+                    help="extra takes allowed to make a statement's pitch land")
+    ap.add_argument("--fall", type=float, default=-1.5,
+                    help="semitones a statement ending must sit below the line's median")
+    ap.add_argument("--no-prosody", action="store_true",
+                    help="skip the intonation gate")
+    ap.add_argument("--closes", default="",
+                    help="line numbers that close a section. Only those, and the last "
+                         "line, must land — English rises on the non-final items of a "
+                         "list, so a rising \"Open Settings.\" mid-list is correct.")
     ap.add_argument("--no-verify", action="store_true",
                     help="skip the transcription check (faster, unverified)")
     a = ap.parse_args()
@@ -190,6 +229,15 @@ def main():
         asr = WhisperModel("small", device="cpu", compute_type="int8")
 
     phrases, words = load_pron()
+    from prosody import final_drop, ends_sentence
+
+    def lands(wav):
+        """How far the ending sits under the line's own median pitch, in semitones.
+        A statement that ends flat or rising reads as unfinished — he heard exactly
+        that on "every chat" before any measurement did."""
+        a1 = wav.squeeze().cpu().numpy().astype(np.float32)
+        st, _, _ = final_drop(a1, m.sr)
+        return st
 
     def say(text, idx):
         spoken = respell(text, phrases, words)
@@ -208,9 +256,30 @@ def main():
             torchaudio.save(probe, wav, m.sr)
             subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-i",probe,
                             "-ar","16000","-ac","1", probe + "16.wav"], check=True)
-            segs, _ = asr.transcribe(probe + "16.wav", language="en")
+            segs, _ = asr.transcribe(probe + "16.wav", language="en",
+                                     word_timestamps=True)
+            segs = list(segs)
             heard = " ".join(sg.text for sg in segs)
+            allw = [w for sg in segs for w in (sg.words or [])]
+            cut = dup_tail(allw, text)
+            if cut is not None and cut > 0.25:
+                # cut the second copy off rather than gamble on another roll
+                keep = int(cut * m.sr)
+                if keep < wav.shape[-1] - int(0.05 * m.sr):
+                    wav = wav[..., :keep]
+                    print(f"      said the tail twice — cut the repeat at "
+                          f"{cut:.2f}s", flush=True)
+                    torchaudio.save(probe, wav, m.sr)
+                    subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y",
+                                    "-i",probe,"-ar","16000","-ac","1",probe+"16.wav"],
+                                   check=True)
+                    segs2, _ = asr.transcribe(probe + "16.wav", language="en")
+                    heard = " ".join(sg.text for sg in segs2)
+                    cut = None
+            rate = syl / max(0.3, wav.shape[-1] / m.sr)
             e = wer(heard, text)
+            if cut is not None:
+                e += 1.0        # an uncuttable repetition must never win on score
             # a line crammed past ~6.5 syllables a second loses its consonants even
             # when the transcriber still guesses the words right
             penalty = max(0.0, (rate - a.max_rate) * 0.08)
@@ -218,13 +287,50 @@ def main():
             if best is None or score < best[1]:
                 best = (wav, score, heard, e, rate)
             if e <= 0.001 and rate <= a.max_rate:
-                return best[0], 0.0
+                best = (wav, score, heard, e, rate)
+                break
             why = f"wer {e:.2f}" if e > 0.001 else f"{rate:.1f} syl/s, too dense"
             print(f"      retry {attempt+1}: heard \"{heard.strip()[:46]}\" ({why})", flush=True)
-        return best[0], best[1]
+
+        # Second gate: the melody. Only for lines that end a sentence, and only after
+        # the words are right — an unfinished-sounding ending is worth another take,
+        # but not at the cost of a misheard word.
+        closes = {int(x) for x in a.closes.split(",") if x.strip()}
+        closes.add(len(lines))
+        if a.no_prosody or not ends_sentence(text) or (a.closes and idx not in closes):
+            return best[0], best[1]
+        pick, pick_st = best[0], lands(best[0])
+        if pick_st is not None and pick_st <= a.fall:
+            return pick, best[1]
+        for roll in range(a.prosody_rolls):
+            torch.manual_seed(a.seed + 7777 + roll * 131 + idx)
+            cand = m.generate(spoken, audio_prompt_path=REF, exaggeration=a.exaggeration,
+                              cfg_weight=a.cfg, temperature=0.75)
+            st = lands(cand)
+            if st is None:
+                continue
+            if asr is not None:                      # never trade a word for a melody
+                probe = os.path.join(tmp, "pros.wav")
+                torchaudio.save(probe, cand, m.sr)
+                subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-i",probe,
+                                "-ar","16000","-ac","1", probe + "16.wav"], check=True)
+                sgs, _ = asr.transcribe(probe + "16.wav", language="en")
+                if wer(" ".join(x.text for x in sgs), text) > 0.001:
+                    continue
+            if pick_st is None or st < pick_st:
+                pick, pick_st = cand, st
+            if pick_st <= a.fall:
+                break
+        if pick_st is not None:
+            mark = "lands" if pick_st <= a.fall else "still flat"
+            print(f"      ending {pick_st:+.1f} st ({mark})", flush=True)
+        return pick, best[1]
 
     tmp = tempfile.mkdtemp()
-    segs, cues, t = [], [], 0.30
+    LEAD = 0.30
+    segs, cues, t = [], [], LEAD
+    if not a.fit:
+        segs.append(np.zeros(int(LEAD * SR_MIX), dtype=np.float32))
     timeline = np.zeros(0, dtype=np.float32)
     for i, text in enumerate(lines, 1):
         wav, err = say(text, i)
@@ -234,6 +340,26 @@ def main():
         torchaudio.save(raw, wav, m.sr)
         pol = os.path.join(tmp, f"{i:02d}p.wav")
         polish(raw, pol)
+        # A line that drags is the other half of "it goes too fast": ours was the slowest
+        # of nineteen reels measured, and slow reads as unclear rather than calm. Speed is
+        # corrected with rubberband, which keeps the pitch, and only up to a cap.
+        with wave.open(pol) as w0:
+            secs0 = w0.getnframes() / w0.getframerate()
+        rate0 = syllables(respell(text, phrases, words)) / max(0.3, secs0)
+        # Never speed up a line that failed the transcript check. Line 13 measured
+        # 2.2 syl/s and was sped up x1.20 — but it was slow *because* it said the
+        # phrase twice, so the speed-up compressed the defect instead of removing it
+        # and hid the thing the check had already noticed.
+        if err > 0.001 and rate0 < a.min_rate:
+            print(f"      {rate0:.1f} syl/s but the line failed its check — not "
+                  f"speeding it up, that would hide the cause", flush=True)
+        elif rate0 < a.min_rate:
+            f = min(a.max_speedup, a.min_rate / rate0)
+            if f > 1.01:
+                fast = os.path.join(tmp, f"{i:02d}f.wav")
+                stretch(pol, fast, f)
+                print(f"      {rate0:.1f} syl/s, sped up x{f:.2f}", flush=True)
+                pol = fast
         with wave.open(pol) as w:
             s = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
         # trim the silence the model leaves at either end
@@ -270,7 +396,8 @@ def main():
         else:
             cues.append({"n": i, "line": text, "start": round(t, 2), "end": round(t + len(s) / SR_MIX, 2)})
             segs.append(s); t += len(s) / SR_MIX
-            g = a.long if i in SECTION_END else a.gap
+            closes_g = {int(x) for x in a.closes.split(",") if x.strip()} or SECTION_END
+            g = a.long if i in closes_g else a.gap
             if i < len(lines):
                 segs.append(np.zeros(int(g * SR_MIX), dtype=np.float32)); t += g
             print(f"  {i:02d}/{len(lines)}  {len(s)/SR_MIX:5.2f}s  {text[:52]}", flush=True)

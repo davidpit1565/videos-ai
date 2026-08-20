@@ -1,0 +1,359 @@
+<title>האלף הראשון</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;800&family=Assistant:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Brass on Ink — the house style, committed to one dark world on purpose.
+   Every colour is painted explicitly so the page holds on any host ground. */
+:root{
+  --ink:#0A0D12;--panel:#131A24;--panel-2:#1A222E;--line:#273140;--line-2:#36424F;
+  --brass:#F0CB66;--brass-hot:#FFDF95;--brass-dim:#8A7434;
+  --clay:#E37A56;--ok:#6FBF95;--steel:#7BB0D6;
+  --text:#F4F6F9;--muted:#9DAAB9;--faint:#6B7787;
+  --d:'Frank Ruhl Libre',Georgia,serif;
+  --b:'Assistant','Segoe UI',system-ui,-apple-system,sans-serif;
+  --m:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);direction:rtl;
+  font-family:var(--b);font-size:17.5px;line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px 90px}
+.num{font-family:var(--m);direction:ltr;unicode-bidi:isolate;display:inline-block;
+  white-space:nowrap;font-variant-numeric:tabular-nums}
+a{color:var(--brass)}
+
+/* ── masthead ─────────────────────────────── */
+header{padding:64px 0 34px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.mark{display:flex;align-items:center;gap:11px;margin-bottom:26px}
+.mark .tick{width:22px;height:12px;border-left:4px solid var(--brass);
+  border-bottom:4px solid var(--brass);transform:rotate(-45deg) translate(1px,-2px);flex:0 0 auto}
+.mark span{font-family:var(--m);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--faint)}
+h1{font-family:var(--d);font-weight:800;font-size:clamp(34px,6vw,54px);line-height:1.06;
+  letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--brass)}
+.stand{font-size:19px;color:var(--muted);margin:0;max-width:60ch}
+.stand b{color:var(--text)}
+.dateline{font-family:var(--m);font-size:12.5px;color:var(--faint);margin-top:22px}
+
+/* ── sections ─────────────────────────────── */
+section{padding:40px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.kicker{font-family:var(--m);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--brass);margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:20px;height:1px;background:var(--brass);opacity:.75}
+h2{font-family:var(--d);font-weight:700;font-size:clamp(25px,3.6vw,33px);line-height:1.16;
+  letter-spacing:-.015em;margin:0 0 14px;text-wrap:balance}
+h2 em{font-style:normal;color:var(--brass)}
+h3{font-family:var(--b);font-weight:800;font-size:19px;margin:30px 0 8px}
+p{margin:0 0 15px;max-width:66ch}
+strong{color:var(--text)}
+ul,ol{margin:0 0 16px;padding-inline-start:22px;max-width:66ch}
+li{margin-bottom:7px}
+li::marker{color:var(--brass-dim)}
+
+/* ── the two engines ──────────────────────── */
+.engines{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0 8px}
+@media(max-width:700px){.engines{grid-template-columns:1fr}}
+.eng{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:20px 21px}
+.eng.now{border-color:var(--brass-dim);
+  background:linear-gradient(180deg,rgba(240,203,102,.07),transparent 58%),var(--panel)}
+.eng .t{font-family:var(--m);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:9px}
+.eng.now .t{color:var(--brass)}
+.eng h4{font-family:var(--d);font-weight:700;font-size:22px;margin:0 0 8px;line-height:1.2}
+.eng p{font-size:15.5px;color:var(--muted);margin:0 0 10px}
+.eng .fig{font-family:var(--m);font-size:14px;color:var(--text);border-top:1px solid var(--line);
+  padding-top:11px;margin-top:4px;direction:rtl}
+.eng .fig b{color:var(--brass);font-variant-numeric:tabular-nums}
+
+/* ── tables ───────────────────────────────── */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--panel);margin:20px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px}
+th,td{padding:11px 13px;text-align:right;border-bottom:1px solid var(--line)}
+th{font-family:var(--m);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;background:var(--panel-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n{font-family:var(--m);font-variant-numeric:tabular-nums;direction:ltr;text-align:right;
+  white-space:nowrap}
+tr.hi td{background:rgba(240,203,102,.07)}
+tr.hi td:first-child{font-weight:700}
+caption{caption-side:bottom;text-align:right;padding:11px 13px;font-size:13.5px;color:var(--faint);
+  border-top:1px solid var(--line)}
+
+/* ── callouts ─────────────────────────────── */
+.note{border:1px solid var(--line);border-inline-start:3px solid var(--brass);background:var(--panel);
+  border-radius:6px;padding:18px 20px;margin:22px 0;color:var(--muted);font-size:16.5px}
+.note.warn{border-inline-start-color:var(--clay)}
+.note.ok{border-inline-start-color:var(--ok)}
+.note .t{font-family:var(--m);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brass);margin-bottom:8px}
+.note.warn .t{color:var(--clay)}
+.note.ok .t{color:var(--ok)}
+.note b{color:var(--text)}
+.note p:last-child{margin-bottom:0}
+
+/* ── the weekly plan ──────────────────────── */
+.weeks{list-style:none;padding:0;margin:22px 0 0;border:1px solid var(--line);border-radius:6px;
+  background:var(--panel);overflow:hidden}
+.weeks li{display:grid;grid-template-columns:78px 1fr;gap:16px;padding:16px 18px;
+  border-bottom:1px solid var(--line);margin:0}
+.weeks li:last-child{border-bottom:0}
+.weeks .w{font-family:var(--m);font-size:12.5px;color:var(--brass);letter-spacing:.04em;padding-top:3px}
+.weeks h4{margin:0 0 5px;font-family:var(--b);font-weight:800;font-size:17px}
+.weeks p{margin:0;font-size:15.5px;color:var(--muted);max-width:none}
+.weeks .metric{font-family:var(--m);font-size:13px;color:var(--steel);margin-top:6px;display:block}
+
+.ask{border:1px solid var(--brass-dim);border-radius:6px;
+  background:linear-gradient(180deg,rgba(240,203,102,.06),transparent 55%),var(--panel);
+  padding:22px 24px;margin-top:26px}
+.ask h3{margin-top:0}
+footer{padding:30px 0 0;color:var(--faint);font-family:var(--m);font-size:12.5px;line-height:1.9}
+</style>
+<div class="wrap">
+<header>
+  <div class="mark"><span class="tick"></span><span>Actually Works · תוכנית עסקית</span></div>
+  <h1>האלף <em>הראשון</em></h1>
+  <p class="stand">חיפשתי מקרה אחד מתועד של מישהו שהגיע ל-<span class="num">€1,000,000</span> בשנה
+  מאפס, בפחות משנה, בתחום הזה. <b>לא מצאתי.</b> מה שכן מצאתי זה בדיוק מה שהאנשים
+  שאתה רוצה להיות כמותם עשו בפועל — וזה לא מה שנראה מבחוץ.</p>
+  <p class="dateline">20 באוגוסט 2026 · כל מספר כאן נשלף ממקור אמיתי, או מסומן כהנחה</p>
+</header>
+
+<section>
+  <p class="kicker">הממצא</p>
+  <h2>מי שאתה רוצה להיות <em>לא מוכר כלום</em></h2>
+  <p><strong>mavgpt</strong> — 1.2 מיליון עוקבים, החשבון הגדול מבין השלושה. פתחתי את האתר שלו
+  ובדקתי כל עמוד. <strong>אין שם מחיר. בשום מקום.</strong> אין קורס, אין קהילה בתשלום, אין
+  משפך למוצר. הכל בחינם: מדריך ChatGPT, מאה קודי פרומפט, כל הפרומפטים הוויראליים שלו, חידון של
+  90 שניות.</p>
+  <p>ההכנסה שלו היא <strong>שיתופי פעולה עם מותגים</strong> — סרטון ממומן, אזכור בניוזלטר, ורישוי
+  החומר הגולמי למותג לפרסומות שלו. העסקה הראשונה שלו הייתה <span class="num">$1,200</span>
+  לסרטון אחד.</p>
+  <div class="note warn">
+    <div class="t">והחלק שאף אחד לא מספר</div>
+    <p>הוא <b>ניסה</b> למכור מוצר דיגיטלי לקהל שלו. זה הכניס <span class="num">$1,200</span>
+    בשישים יום, והוא הוריד את התשלום — כי לדבריו אמון שנבנה על תוכן מאחורי חומה הוא
+    <b>"חלש מבחינה מבנית"</b>. זה בדיוק הניסוי שאתה מתכנן לעשות. הוא כבר עשה אותו.</p>
+  </div>
+  <p>הלוח זמנים שלו: התחיל לפרסם תוכן AI ב<strong>קיץ 2025</strong>, עבר מיליון עוקבים
+  ב<strong>יולי 2026</strong> — בערך שנה. והפריצה שלו הייתה <strong>הסרטון הרביעי בחיים שלו
+  שעשה מיליון צפיות</strong>. זה לא תהליך שחוזר על עצמו; זה כרטיס הגרלה. הוא עצמו אומר שמספר
+  העוקבים הוא <b>"לא מטריקה רלוונטית"</b> להכנסה.</p>
+
+  <h3>ושני הישראלים מוכרים דבר אחר לגמרי</h3>
+  <p><strong>e-comlaunch</strong> (טל רוטר) מוכר תוכנית פרימיום עם ליווי: 53 פרקים מצולמים,
+  שיחות שבועיות, קהילה. <strong>המחיר לא מפורסם באף מקום.</strong> נכנסים דרך טופס — שם, טלפון,
+  מייל — ואז "רק מועמדים נבחרים מקובלים". ההבטחה: <b>"תעתיקו את המערכת שלי לבניית מותג של
+  32,000+ ש״ח בחודש"</b>.</p>
+  <p><strong>APLI</strong> (נועם שרי) מוכר מאסטרקלאס. קראתי את הקוד של העמוד: חידון בן ארבעה
+  שלבים — גיל, שלב, אם יש עסק פעיל, ומה חוסם — ואז "אשלח לך את סרטון ההדרכה המלא", ואז ליד.
+  ההבטחה: <b>"בנה ומכור אתרים ב-$5,000 עד $20,000 בלי לכתוב קוד"</b>.</p>
+  <div class="note">
+    <div class="t">שים לב לזה</div>
+    <p>ה-<span class="num">$5,000–$20,000</span> זה <b>מה שהתלמידים שלו אומרים ללקוחות שלהם
+    לגבות</b> — לא מחיר המאסטרקלאס. גם הוא לא מפרסם מחיר.</p>
+  </div>
+  <p>התבנית זהה אצל שניהם, וזו הנקודה החשובה בשבילך: <strong>שניהם מוכרים תוצאה שהם כבר
+  השיגו.</strong> קודם היה להם עסק שעבד, ואחר כך הם מכרו את השיטה. המחיר תמיד נסגר בשיחה, אחרי
+  סינון. <strong>לך אין עדיין תוצאה — וזו הסיבה היחידה שאין לך מה למכור.</strong></p>
+</section>
+
+<section>
+  <p class="kicker">האריתמטיקה</p>
+  <h2>מה <em>€1,000,000</em> בשנה דורש בפועל</h2>
+  <p>לא דעה. חשבון, עם המחירים שמצאתי בפועל.</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>המסלול</th><th>מה זה דורש</th><th>המספר</th></tr></thead>
+    <tbody>
+      <tr><td>ניוזלטר + ספונסרים</td><td>CPM של <span class="num">€25</span> לאלף נרשמים, 104 שליחות בשנה</td><td class="n">384,600 נרשמים</td></tr>
+      <tr><td>ניוזלטר, CPM גבוה</td><td><span class="num">€50</span> — הרף העליון ל-B2B מקצועי</td><td class="n">192,300 נרשמים</td></tr>
+      <tr><td>קורס ב-<span class="num">€297</span></td><td>המרה חציונית מרשימה לתשלום: <span class="num">0.62%</span></td><td class="n">543,100 ברשימה</td></tr>
+      <tr><td>קורס, המרה מעולה</td><td><span class="num">2%</span> — עשירון עליון</td><td class="n">168,350 ברשימה</td></tr>
+      <tr><td>קהילה ב-<span class="num">€10</span> לחודש</td><td>ועוד 583 חברים חדשים בחודש רק כדי לא לדעוך</td><td class="n">8,333 חברים משלמים</td></tr>
+      <tr class="hi"><td>שירותים (בניית אוטומציות)</td><td>ריטיינרים של <span class="num">€2,000</span> לחודש</td><td class="n">42 לקוחות במקביל</td></tr>
+    </tbody>
+    <caption>המספרים של הניוזלטר לפי נתוני beehiiv (28 מיליארד מיילים, 2025) ושל Paved (יולי 2026).
+    ההמרה החציונית לתשלום היא מדד אמיתי מאלפי פרסומים, לא אומדן.</caption>
+  </table>
+  </div>
+  <p><strong>כל מסלול שמבוסס על קהל דורש בין 190 אלף למיליון ושלוש מאות אלף אנשים. יש לך
+  86.</strong></p>
+  <p>והמסלול היחיד שלא דורש קהל — שירותים — יש לו תקרה שאני יכול לחשב: שני פרויקטים בחודש
+  ב-<span class="num">€3,000</span> (<span class="num">€72,000</span> בשנה) פלוס עשרים ריטיינרים
+  ב-<span class="num">€500</span> (<span class="num">€120,000</span> בשנה) = בערך
+  <strong><span class="num">€192,000</span> בשנה</strong>. זו התקרה של אדם אחד.
+  <span class="num">€1M</span> בשירותים זה סוכנות עם ארבעה עד שישה עובדים — חברה, לא יוצר תוכן.</p>
+  <div class="note warn">
+    <div class="t">ההשוואה שמסדרת את הראש</div>
+    <p>mavgpt, עם <span class="num">200,000</span> נרשמים לניוזלטר, מייצר בערך
+    <span class="num">€520,000</span> בשנה מהניוזלטר לבד לפי ה-CPM הזה — פלוס עסקאות מותגים.
+    כלומר <b><span class="num">€1M</span> בשנה זה בערך הסקאלה שבה הוא נמצא היום.</b>
+    זה לקח לו שנה ופריצה של מיליון צפיות.</p>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">שישים יום</p>
+  <h2>מה באמת יכול לקרות עד ה-<em>20 באוקטובר</em></h2>
+  <div class="tw">
+  <table>
+    <thead><tr><th>תרחיש</th><th>הכנסה</th><th>איך</th></tr></thead>
+    <tbody>
+      <tr><td>נמוך <span class="num">(~30%</span>, הנחה)</td><td class="n">€0</td><td>אף לקוח לא נסגר, או שהשבועיים הראשונים הלכו על תוכן במקום על מכירה</td></tr>
+      <tr class="hi"><td>סביר</td><td class="n">€500 – €1,500</td><td>אוטומציה אחת או שתיים לעסק מקומי, ב-<span class="num">€300–€750</span> כל אחת — התחתית של הטווח, כי אין לך עוד רקורד</td></tr>
+      <tr><td>גבוה</td><td class="n">€3,000 – €5,000</td><td>שני בניינים ב-<span class="num">€1,500–€2,500</span> פלוס ריטיינר אחד</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>ספונסרים: <span class="num">€0</span>.</strong> רשת המפרסמים של beehiiv דורשת
+  <span class="num">2,500</span> נרשמים <em>וגם</em> מנוי של <span class="num">€40</span> לחודש.
+  החציון של ניוזלטר חדש הוא <span class="num">482</span> נרשמים בחודש הראשון. אתה נעול בחוץ.</p>
+  <p><strong>קורס: בערך <span class="num">€300</span>.</strong> אם תבנה רשימה של 500 איש עד יום 60
+  — אופטימי ביחס לחציון — אז <span class="num">500 × 0.62% × €97 = €301</span>.</p>
+  <p><strong>שירותים: זה מקום הכסף.</strong> ה-pipeline שבנינו הוא כבר מוצר. מחירים אמיתיים
+  מהשוק: מודעות חיות ב-Fiverr לבניית אוטומציית n8n עומדות על
+  <span class="num">$5, $10, $40, $50, $300</span>; רוב המוכרים בקטגוריה גובים
+  <span class="num">$100–$300</span> לתרחיש. פרילנסרים מקצועיים:
+  <span class="num">$40–$100</span> לשעה.</p>
+  <div class="note ok">
+    <div class="t">המספר הסביר</div>
+    <p><b><span class="num">€500–€1,500</span> בשישים יום, כולו מלקוחות.</b>
+    לא מתוכן, לא מקורס, לא מספונסרים.</p>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">ההמלצה</p>
+  <h2>למכור אוטומציה לעסקים <em>פלמיים</em>. שום דבר אחר.</h2>
+  <p>חמש סיבות, וכולן מבוססות על מה שיש לך <em>היום</em>:</p>
+  <ol>
+    <li><strong>המוצר כבר קיים.</strong> pipeline שמייצר סרטונים, קול משוכפל, מערכת מותג,
+    CRM על Vercel ו-Supabase. העלות השולית של המכירה הראשונה היא אפס.</li>
+    <li><strong>זה לא דורש קהל.</strong> 86 העוקבים שלך לא רלוונטיים לזה. כל מסלול אחר מכפיל
+    במספר שהוא כרגע 86.</li>
+    <li><strong>השפה היא החומה היחידה שיש לך.</strong> ההיצע של אוטומציה בפלמית דל. מתחרים
+    באנגלית לא יכולים לשרת פיזיותרפיסט בגנט, ומוכר ב-<span class="num">$5</span> מהודו לא יכול
+    לנהל איתו שיחת מכירה בהולנדית.</li>
+    <li><strong>זה בדיוק הרצף שהשניים שאתה מעריץ עשו.</strong> קודם התוצאה, אחר כך מוכרים את
+    השיטה.</li>
+    <li><strong>זה מייצר את התוכן.</strong> כל בנייה היא פרק. הקהל מגיע כתוצר של הכנסה, לא
+    כתנאי מקדים שאתה לא יכול לממן.</li>
+  </ol>
+  <div class="note">
+    <div class="t">ההיפוך שחשוב להבין</div>
+    <p><b>הולנדית מנצחת בשירותים. ניוזלטר של <span class="num">€1M</span> חייב להיות באנגלית.</b>
+    אלה שתי שפות ושני עסקים — ובסדר הזה.</p>
+  </div>
+  <ol class="weeks" style="list-style:none">
+    <li><span class="w">שלב 1</span><div><h4>נישה אחת, תהליך אחד</h4><p>לא "אוטומציה עם AI". משהו כמו: קליניקות פיזיותרפיה בפלנדריה → שיחה שלא נענתה הופכת להודעת ווטסאפ → תור. נישה אחת, בעיה אחת, בהולנדית.</p></div></li>
+    <li><span class="w">שלב 2</span><div><h4>לבנות את זה פעם אחת, בחינם</h4><p>לעסק מקומי אחד שמכירים. למדוד את התוצאה ביחידות שלו: שיחות שנצלו, ביקורות, שעות. <span class="metric">זה הנכס — לא ה-workflow, התוצאה</span></p></div></li>
+    <li><span class="w">שלב 3</span><div><h4>מחיר: €750 בנייה + €150 לחודש</h4><p>בכוונה בתחתית הטווח שמדדתי, כי אין רקורד. מעלים אחרי הלקוח השלישי.</p></div></li>
+    <li><span class="w">שלב 4</span><div><h4>להירשם לפני החשבונית הראשונה</h4><p>student-zelfstandige: <span class="num">€98.51</span> לרבעון, עם פטור מתחת ל-<span class="num">€8,687</span> הכנסה נטו. בלי מספר KBO אי אפשר להוציא חשבונית חוקית, והתוכנית נעצרת כאן.</p></div></li>
+    <li><span class="w">שלב 5</span><div><h4>20 הודעות ביום, בהולנדית</h4><p>לאותה נישה. מדד שמצאתי: אחוז מענה עלה מ-<span class="num">0.4%</span> ל-<span class="num">6.2%</span> בשישה שבועות אחרי התמקדות בנישה אחת עם הודעות אישיות. <span class="metric">400 פניות בחודש × 6% ≈ 24 תשובות → 4–6 שיחות → 1–2 סגירות</span></p></div></li>
+    <li><span class="w">שלב 6</span><div><h4>לפרסם את העבודה</h4><p>כל בנייה הופכת לריל. ככה הקהל גדל בלי שתשלם עליו.</p></div></li>
+  </ol>
+</section>
+
+<section>
+  <p class="kicker">כמה זה עולה</p>
+  <h2>ארבעה עשר <em>יורו</em> בחודש</h2>
+  <div class="tw">
+  <table>
+    <thead><tr><th>כלי</th><th>חינם</th><th>שכבה ראשונה בתשלום</th><th>מתי נגמר החינם</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>ElevenLabs</td><td>בלי שכפול קול, בלי רישיון מסחרי</td><td class="n">€6</td><td>יום ראשון — ה-pipeline שלנו תלוי בשניהם</td></tr>
+      <tr><td>דומיין</td><td>—</td><td class="n">€1</td><td>—</td></tr>
+      <tr><td>Claude API</td><td>אין</td><td class="n">€1–3</td><td>100 תסריטים בחודש על Haiku = <span class="num">€0.65</span></td></tr>
+      <tr><td>n8n</td><td>קוד פתוח, self-hosted</td><td class="n">€5</td><td>לעולם, אם על VPS משלנו</td></tr>
+      <tr><td>Vercel</td><td>Hobby — "לשימוש אישי, לא מסחרי"</td><td class="n">€19</td><td>ברגע שה-CRM משרת לקוח</td></tr>
+      <tr><td>Supabase</td><td>נעצר אחרי שבוע בלי שימוש</td><td class="n">€23</td><td>הלקוח המשלם הראשון</td></tr>
+      <tr><td>beehiiv</td><td>2,500 נרשמים — ובלי אפשרות להרוויח</td><td class="n">€40</td><td>מיד, אם רוצים להרוויח מזה</td></tr>
+      <tr><td>ManyChat</td><td>25 אנשי קשר</td><td class="n">€16</td><td>בשבוע הראשון</td></tr>
+      <tr><td>מס — student-zelfstandige</td><td>פטור מתחת ל-<span class="num">€8,687</span></td><td class="n">€33</td><td>החשבונית הראשונה</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="engines">
+    <div class="eng now"><div class="t">להתחיל</div><h4>€14 לחודש</h4>
+      <p>ElevenLabs + דומיין + Claude API + n8n על VPS. Vercel ו-Supabase נשארים חינם כל עוד ה-CRM אישי.</p>
+      <div class="fig">הסיכון: <b>פחות מפיצה בחודש</b></div></div>
+    <div class="eng"><div class="t">אחרי הלקוח הראשון</div><h4>€56 לחודש</h4>
+      <p>מוסיפים Vercel Pro ו-Supabase Pro — כי מערכת שנרדמת אחרי שבוע היא לא מוצר.</p>
+      <div class="fig">משולם <b>מתוך הכנסה</b></div></div>
+  </div>
+  <div class="note warn">
+    <div class="t">המלכודת</div>
+    <p>beehiiv Scale + ManyChat Pro + Circle = <b><span class="num">€172</span> לחודש</b> לפני
+    שקל אחד של הכנסה. זה שורף "כמה מאות יורו" בפחות מחודשיים — והנתונים אומרים שניוזלטר לא
+    מחזיר את עצמו ב-60 יום (חציון של <span class="num">66</span> יום עד <b>הדולר הראשון</b>).
+    <b>אל תקנה כלום מעל <span class="num">€14</span> עד שלקוח שילם.</b></p>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">מה יכול להרוג את זה</p>
+  <h2>סיכונים, לפי סדר</h2>
+  <ol>
+    <li><strong>לקנות כלי קהל לפני הכנסה.</strong> זה הסיכון הכי גדול והכי סביר.</li>
+    <li><strong>להעתיק את mavgpt</strong> — מודל שאין לו מנגנון הכנסה מתחת למאה אלף עוקבים.</li>
+    <li><strong>שהיעד של <span class="num">€1M</span> יגרום לדלג על ה-<span class="num">€1,000</span>.</strong>
+    אופטימיזציה ל-€1M מייצרת אסטרטגיית תוכן. אופטימיזציה ל-€1,000 הראשון מייצרת הכנסה.</li>
+    <li><strong>חשיפה חוקית.</strong> אי אפשר להוציא חשבונית בלי KBO. השכבה החינמית של
+    ElevenLabs לא נותנת רישיון מסחרי — שימוש בקול משוכפל בתוכן שמכניס כסף הוא הפרה.
+    Vercel Hobby הוא "לא מסחרי". <b>עלות ההסרה של שלושת אלה: בערך <span class="num">€25</span>
+    לחודש.</b></li>
+    <li><strong>למכור קורס בלי תוצאה למכור.</strong> נפתר אחרי שלושת הלקוחות הראשונים.</li>
+    <li><strong>תקרת יחיד.</strong> שירותים נעצרים בסביבות <span class="num">€192,000</span>
+    בשנה. את המודל צריך לשנות שם — לא לפני.</li>
+    <li><strong>רצפת המחירים ב-Fiverr.</strong> ההגנה שלך היא הולנדית ונוכחות מקומית. אם תמכור
+    באנגלית לקונה שמשווה מחירים, תפסיד על מחיר.</li>
+  </ol>
+</section>
+
+<section>
+  <p class="kicker">כנות</p>
+  <h2>מה <em>לא</em> הצלחתי לאמת</h2>
+  <ul>
+    <li><strong>מספרי העוקבים של שלושת החשבונות.</strong> אינסטגרם החזיר שגיאה 429. ה-1.2 מיליון
+    / 84.6 אלף / 3,551 לא אומתו ממקור עצמאי.</li>
+    <li><strong>המחיר של e-comlaunch ושל APLI.</strong> שניהם חסומים מאחורי טופס, בכוונה.</li>
+    <li><strong>"2.5K members"</strong> — אין מספר חברים ואין מחיר באתר.</li>
+    <li><strong>המקרה הכי מתועד של ניוזלטר AI</strong> (Cyber Corsairs, בערך
+    <span class="num">$200,000</span> בשנה תוך 7 חודשים) — שני עמודי המקרה של beehiiv
+    <b>מכחישים אחד את השני</b> במספרים ובתאריכים, והוא התחיל עם 4,000 נרשמים קיימים.</li>
+    <li><strong>מדיניות מטא לגבי וידאו וקול שנוצרו ב-AI</strong> — סימון, ואם יש קנס בהגעה.
+    לא נבדק.</li>
+    <li><strong>מכנה משותף.</strong> אף מקור לא מפרסם כמה אנשים פתחו ניוזלטר AI ב-2025 והרוויחו
+    אפס. כל מספר הצלחה כאן צריך להיקרא מול המספר החסר הזה.</li>
+  </ul>
+</section>
+
+<section>
+  <div class="ask">
+    <h3>שלוש החלטות שרק אתה יכול לקבל</h3>
+    <p><strong>1. פנים או לא.</strong> שלושת החשבונות ששלחת — כולם טוקינג-הד. מחקר עם ביקורת
+    עמיתים על 45,244 סרטונים מראה שנוכחות פנים מעלה מעורבות, והאפקט הכי חזק מתחת למאה אלף
+    עוקבים. ואם אתה מופיע, כל בעיית הקול המשוכפל נעלמת. ההמלצה שלי: פנים בשלוש השניות הראשונות
+    ובסוף, גרפיקה באמצע — המחקר אומר ש-30–40% פנים זה האופטימום.</p>
+    <p><strong>2. תקציב.</strong> אני צריך מספר: <span class="num">€0</span> /
+    <span class="num">€14</span> / <span class="num">€56</span> לחודש. ההמלצה:
+    <span class="num">€14</span> היום, <span class="num">€56</span> אחרי הלקוח הראשון, ואף שקל
+    לכלי קהל לפני זה.</p>
+    <p><strong>3. שעות ביום.</strong> בפועל, כולל העבודה בסולפיי. אם התשובה היא שעה — התוכנית
+    נראית אחרת מארבע. הצוואר הצר כאן הוא לא הטכנולוגיה. את הטכנולוגיה כבר בנינו.
+    <b>הצוואר הצר הוא עשרים הודעות ביום בהולנדית, שישה שבועות, מול שתיקה.</b></p>
+  </div>
+</section>
+
+<footer>
+  <p>מקורות ראשוניים: mavgpt.ai · site.e-comlaunch.com · pisgora.com/apli ·
+  beehiiv State of Newsletters 2026 (28 מיליארד מיילים) · beehiiv State of Paid Newsletters 2026 ·
+  Paved (יולי 2026) · vercel.com/pricing · supabase.com/pricing · elevenlabs.io/pricing ·
+  n8n.io/pricing · circle.so/pricing · Fiverr (מודעות חיות) · netinfluencer (14.8.2026) ·
+  accountable.eu · Wang, Ding &amp; Hu, <i>International Journal of Research in Marketing</i> 42(4), 2025.</p>
+  <p>מספרים המסומנים כהנחה הם הנחה. מה שלא אומת מופיע בסעיף "מה לא הצלחתי לאמת" ולא הוחלק.</p>
+</footer>
+</div>

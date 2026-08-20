@@ -61,8 +61,19 @@ def main():
             half = n_want // 2
             out.append(np.concatenate([room[:half], room[len(room) - (n_want - half):]])
                        if n_want else room[:0])
-        else:                                        # extend by repeating the quietest part
-            pad = np.tile(room, int(np.ceil(n_want / max(1, n_have))))[:n_want - n_have]
+        else:
+            # extend with the quietest 60 ms of the gap, not with the gap itself —
+            # tiling a gap that holds a breath or a stray syllable repeats it
+            k = max(1, int(0.06 * sr))
+            if n_have >= k:
+                win = np.array([np.abs(room[i:i + k]).mean()
+                                for i in range(0, max(1, n_have - k), max(1, k // 2))])
+                q = int(np.argmin(win)) * max(1, k // 2)
+                quiet = room[q:q + k]
+            else:
+                quiet = room
+            reps = int(np.ceil((n_want - n_have) / max(1, len(quiet))))
+            pad = np.tile(quiet, reps)[:n_want - n_have]
             out.append(np.concatenate([room, pad]))
         shift += want - have
 
