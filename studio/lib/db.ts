@@ -83,3 +83,48 @@ export async function saveState(s: State): Promise<void> {
     [JSON.stringify(s)],
   );
 }
+
+/** The list is the business, so it lives in our own database and not only in a
+ *  provider's. Beehiiv is the sender; this table is the record. If the Beehiiv key is
+ *  ever wrong, revoked, or the plan lapses, the addresses are still here. */
+export async function ensureSubscribers(): Promise<Pool | null> {
+  const p = db();
+  if (!p) return null;
+  await p.query(`CREATE TABLE IF NOT EXISTS subscribers (
+    email text PRIMARY KEY,
+    created_at timestamptz NOT NULL DEFAULT now(),
+    source text,
+    forwarded boolean NOT NULL DEFAULT false,
+    forward_error text
+  )`);
+  return p;
+}
+
+export async function addSubscriber(
+  email: string, source: string,
+): Promise<{ created: boolean }> {
+  const p = await ensureSubscribers();
+  if (!p) throw new Error("no database configured");
+  const r = await p.query(
+    `INSERT INTO subscribers (email, source) VALUES ($1, $2)
+     ON CONFLICT (email) DO NOTHING`,
+    [email.toLowerCase(), source.slice(0, 60)],
+  );
+  return { created: (r.rowCount ?? 0) > 0 };
+}
+
+export async function markForwarded(email: string, error?: string): Promise<void> {
+  const p = await ensureSubscribers();
+  if (!p) return;
+  await p.query(
+    `UPDATE subscribers SET forwarded = $2, forward_error = $3 WHERE email = $1`,
+    [email.toLowerCase(), !error, error ? error.slice(0, 300) : null],
+  );
+}
+
+export async function subscriberCount(): Promise<number | null> {
+  const p = await ensureSubscribers();
+  if (!p) return null;
+  const r = await p.query<{ n: string }>("SELECT count(*)::text AS n FROM subscribers");
+  return Number(r.rows[0]?.n ?? 0);
+}

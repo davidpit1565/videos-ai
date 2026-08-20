@@ -8,8 +8,13 @@
   --brass:#F3D07A;--brass-hot:#FFE7A8;--brass-dim:#8A7434;
   --ok:#74C79C;--clay:#E88462;--steel:#86B8DC;--violet:#A497DD;
   --text:#F6F8FB;--muted:#A7B3C3;--faint:#778393;
+  /* Assistant was doing all the work and reads flat at UI sizes. IBM Plex Sans Hebrew
+     carries a real Hebrew subset (U+0590-05FF) AND Latin in one family, is drawn for
+     interfaces rather than adapted to them, and is a sibling of the mono already used
+     for the numbers — so the studio is one type system instead of three borrowed ones.
+     Frank Ruhl Libre stays for headings: in Hebrew it is the face that reads serious. */
   --d:'Frank Ruhl Libre',Georgia,serif;
-  --b:'Assistant','Segoe UI',system-ui,-apple-system,sans-serif;
+  --b:'IBM Plex Sans Hebrew','Assistant','Segoe UI',system-ui,sans-serif;
   --m:'IBM Plex Mono',ui-monospace,Menlo,monospace;
   --r:10px;
 }
@@ -248,8 +253,12 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site, .pub {
   --paper:#F7F5F1; --card:#FFFFFF; --ink:#16181C; --soft:#54514B; --faint:#8B857B;
   --rule:#E3DED4; --wash:#F1EBDD; --gold:#8A6D1B; --gold-lit:#B08A22;
-  --serif:"Frank Ruhl Libre",Georgia,serif;
-  --sans:"Assistant","Helvetica Neue",Arial,sans-serif;
+  /* The public display face is Newsreader, not the studio's Hebrew serif: in Latin it
+     has the editorial weight this page wants, and it is not the face the reference site
+     uses, so this reads as ours rather than as a copy. Body is the same IBM Plex as the
+     studio, which keeps one voice across both surfaces. */
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans Hebrew","Helvetica Neue",Arial,sans-serif;
   --code:"IBM Plex Mono",ui-monospace,monospace;
   direction:ltr; text-align:left;
   background:var(--paper); color:var(--ink); font-family:var(--sans);
@@ -339,3 +348,18 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .pub .foot{color:var(--faint);border-top:1px solid var(--rule);margin-top:3rem;
   padding-top:1.3rem;font-size:.93rem}
 .pub .lbl{color:var(--faint)}
+
+/* the signup: the one thing on the public pages that has to work */
+.site .signup, .pub .signup{display:grid;gap:.6rem;margin:1.5rem 0 0;max-width:26rem}
+.site .signup input, .pub .signup input{font:inherit;padding:.78rem .95rem;
+  border:1px solid var(--rule);border-radius:.7rem;background:var(--card);color:var(--ink)}
+.site .signup input:focus-visible, .pub .signup input:focus-visible{outline:2px solid var(--gold);
+  outline-offset:1px;border-color:var(--gold)}
+.site .signup button, .pub .signup button{font:inherit;font-weight:700;cursor:pointer;
+  padding:.8rem 1.5rem;border:0;border-radius:9999px;background:var(--ink);color:#FBF9F5}
+.site .signup button:hover:enabled, .pub .signup button:hover:enabled{background:var(--gold)}
+.site .signup button:disabled, .pub .signup button:disabled{opacity:.45;cursor:default}
+.site .signup .fine, .pub .signup .fine{color:var(--faint);font-size:.87rem;margin:0}
+.site .signup .err, .pub .signup .err{color:#A8481F;font-size:.9rem;margin:0;font-weight:600}
+.site .signed, .pub .signed{background:var(--wash);border-inline-start:3px solid var(--gold);
+  border-radius:0 .6rem .6rem 0;padding:.9rem 1.15rem;margin:1.5rem 0 0;max-width:26rem}

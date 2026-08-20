@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { published } from "@/lib/site";
 import { PROMPTS } from "@/lib/prompts";
+import Signup from "./signup";
 
 export const metadata = {
   title: "Actually Works — AI setups that actually work",
@@ -24,9 +25,7 @@ export default async function Home() {
           One setup per episode. The exact screen, the exact paste, and the part that
           breaks — because the part that breaks is the part everyone else skips.
         </p>
-        <Link className="cta" href="/join">
-          Get each one by email
-        </Link>
+        <Signup source="home" />
       </header>
 
       <section>
