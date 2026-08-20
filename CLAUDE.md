@@ -91,6 +91,23 @@ sat 413px inside it until it was measured.
 - Length: 45-75s. Do not go under 30s. Buffer's 1.1M-video study and Socialinsider's
   11M-post set both put longer above shorter for this kind of content.
 
+## Before a reel is sent
+
+`./export/check.sh <build.html> <narration.wav> [rendered.mp4]` runs all three, and
+nothing goes to him until it passes:
+
+- `audio/voice_doctor.py` — pacing, rate, sibilance, endings, per line.
+- `export/safe_check.js` — every visible text box against the platform safe area, and
+  text boxes landing on each other.
+- `export/qa.py` — the rendered file: resolution, pixel format, 48kHz stereo, length
+  against the build's own DUR, frozen picture runs, black frames, a blank first frame,
+  colour-card duration (under 0.45s reads as a glitch) and whether a card plays over
+  speech, visual-change rhythm, loudness and true peak, loop seam.
+
+Every one of those checks exists because a real defect reached him first. The card
+duration check exists because he stopped the video on a 10-frame yellow card; the blank
+first frame check because the hook faded in over 0.26s and frame zero was empty.
+
 ## The studio app
 
 - `studio/` — Next.js on Vercel, root directory `studio`, Supabase over `POSTGRES_URL`.
