@@ -170,6 +170,10 @@ def main():
                     help="semitones a statement ending must sit below the line's median")
     ap.add_argument("--no-prosody", action="store_true",
                     help="skip the intonation gate")
+    ap.add_argument("--closes", default="",
+                    help="line numbers that close a section. Only those, and the last "
+                         "line, must land — English rises on the non-final items of a "
+                         "list, so a rising \"Open Settings.\" mid-list is correct.")
     ap.add_argument("--no-verify", action="store_true",
                     help="skip the transcription check (faster, unverified)")
     a = ap.parse_args()
@@ -241,7 +245,9 @@ def main():
         # Second gate: the melody. Only for lines that end a sentence, and only after
         # the words are right — an unfinished-sounding ending is worth another take,
         # but not at the cost of a misheard word.
-        if a.no_prosody or not ends_sentence(text):
+        closes = {int(x) for x in a.closes.split(",") if x.strip()}
+        closes.add(len(lines))
+        if a.no_prosody or not ends_sentence(text) or (a.closes and idx not in closes):
             return best[0], best[1]
         pick, pick_st = best[0], lands(best[0])
         if pick_st is not None and pick_st <= a.fall:

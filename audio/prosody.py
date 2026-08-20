@@ -17,6 +17,12 @@ import argparse, json, os, sys, wave
 import numpy as np
 
 FALL_ST = -1.5      # a statement should land at least this far under its own median
+# English rises on the non-final items of a list and falls on the last one, so a rising
+# "Open Settings." inside "Settings -> Personalization -> Custom instructions -> Paste"
+# is correct prosody, not a defect. Measured on episode 01: items 5 and 6 rise (+5.8,
+# +1.6) and the list resolves on 7 and 8 (-4.3, -3.4) — exactly the natural pattern.
+# So the fall is required where a rise really does sound unfinished: the line that closes
+# a section, and the last line of the reel.
 
 
 def load(path):
@@ -78,13 +84,20 @@ def main():
     ap.add_argument("wav")
     ap.add_argument("--cues", help="defaults to <wav>-cues.json")
     ap.add_argument("--fall", type=float, default=FALL_ST)
+    ap.add_argument("--sections", default="",
+                    help="line numbers that close a section; those must land, and so "
+                         "must the last line. Others are reported, not failed.")
     a = ap.parse_args()
     cues_path = a.cues or os.path.splitext(a.wav)[0] + "-cues.json"
     cues = json.load(open(cues_path))
     cues = cues if isinstance(cues, list) else cues["cues"]
     y, sr = load(a.wav)
 
-    print(f"{a.wav}  statement endings must land at or below {a.fall:+.1f} semitones")
+    must = {int(x) for x in a.sections.split(",") if x.strip()}
+    if cues:
+        must.add(int(cues[-1]["n"]))
+    print(f"{a.wav}  a closing line must land at or below {a.fall:+.1f} semitones"
+          + (f"; closes: {sorted(must)}" if a.sections else ""))
     print(f"  {'ln':>3} {'end':>8} {'slope':>7} {'F0':>6}  line")
     bad = []
     for c in cues:
@@ -95,12 +108,15 @@ def main():
             continue
         flag = ""
         if ends_sentence(c["line"]) and st > a.fall:
-            flag = "  <- unfinished"
-            bad.append((c["n"], round(st, 1)))
+            if not a.sections or c["n"] in must:
+                flag = "  <- unfinished"
+                bad.append((c["n"], round(st, 1)))
+            else:
+                flag = "  (rises — fine mid-list)"
         print(f"  {c['n']:>3} {st:+7.1f}st {slope:+7.0f} {med:6.0f}  {c['line'][:38]}{flag}")
     print()
     if bad:
-        print(f"  {len(bad)} of {len(cues)} statement endings do not land: {bad}")
+        print(f"  {len(bad)} closing line(s) do not land: {bad}")
         print("  -> re-roll those lines; build_voice --prosody does it while generating")
     else:
         print("  every statement ending lands.")
