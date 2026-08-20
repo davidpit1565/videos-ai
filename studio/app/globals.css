@@ -234,65 +234,108 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   .day{min-height:0}
 }
 
-/* ── The public site ────────────────────────────────────────────────────────────
-   The studio is Hebrew, RTL and dense, because one person reads it all day. The
-   site is English, LTR and quiet, because a stranger gives it four seconds. It
-   shares only the palette and the typefaces. */
-.site{direction:ltr;text-align:left;max-width:44rem;margin:0 auto;
-  padding:clamp(1.6rem,5vw,4rem) clamp(1.1rem,4vw,1.6rem) 5rem}
-.site .kicker{font-family:var(--mono,ui-monospace);font-size:.72rem;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--dim,#8B8579);margin:0 0 1rem}
-.site .kicker a{color:inherit;text-decoration:none;border-bottom:1px solid transparent}
-.site .kicker a:hover{border-bottom-color:currentColor}
-.site h1{font-size:clamp(2rem,6vw,3rem);line-height:1.08;margin:0 0 .8rem;
-  text-wrap:balance;letter-spacing:-.01em}
-.site h1 em{font-style:normal;color:var(--brass)}
-.site h2{font-size:clamp(1.25rem,3.2vw,1.6rem);margin:2.8rem 0 .6rem;text-wrap:balance}
-.site p{margin:.7rem 0;line-height:1.62}
-.site .sub{color:var(--dim,#8B8579);max-width:34rem}
-.site .cta{display:inline-block;margin-top:1.2rem;background:var(--brass);color:#0A0A0A;
-  font-weight:700;padding:.7rem 1.4rem;border-radius:2rem;text-decoration:none}
-.site .cta:hover{filter:brightness(1.07)}
-.site .empty{border-left:3px solid var(--brass);padding:.8rem 1rem;
-  background:rgba(240,203,102,.07);border-radius:0 .35rem .35rem 0}
-.site .eps{list-style:none;padding:0;margin:1rem 0;counter-reset:none}
-.site .eps li{border-top:1px solid var(--line,#2A2F37)}
-.site .eps li:last-child{border-bottom:1px solid var(--line,#2A2F37)}
-.site .eps a{display:grid;grid-template-columns:2.6rem 1fr;gap:.2rem .9rem;
-  padding:1rem .2rem;text-decoration:none;color:inherit}
-.site .eps a:hover{background:rgba(240,203,102,.06)}
-.site .eps .n{font-family:var(--mono,ui-monospace);color:var(--brass);
-  font-variant-numeric:tabular-nums;grid-row:span 2}
-.site .eps .t{font-weight:700}
-.site .eps .tp{color:var(--dim,#8B8579);font-size:.93rem}
-.site .prompts{list-style:none;padding:0;margin:1rem 0;display:grid;gap:.6rem}
-.site .prompts a{display:block;padding:.9rem 1.1rem;border:1px solid var(--line,#2A2F37);
-  border-radius:.5rem;text-decoration:none;color:inherit}
-.site .prompts a:hover{border-color:var(--brass)}
-.site .prompts b{display:block}
-.site .prompts span{color:var(--dim,#8B8579);font-size:.93rem}
-.site .vid{position:relative;aspect-ratio:16/9;margin:1.6rem 0;border-radius:.5rem;
-  overflow:hidden;background:#000;border:1px solid var(--line,#2A2F37)}
-.site .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.site .steps{padding-inline-start:1.4rem}
-.site .steps li{margin:.45rem 0}
-.site .body{white-space:pre-wrap;background:rgba(127,127,127,.09);
-  border:1px solid var(--line,#2A2F37);border-radius:.5rem;padding:1rem 1.1rem;
-  font-family:var(--mono,ui-monospace);font-size:.86rem;line-height:1.55;
-  overflow-x:auto;max-width:100%}
-.site .limits{border-left:3px solid var(--brass);padding:.7rem 1rem;
-  background:rgba(240,203,102,.07);border-radius:0 .35rem .35rem 0}
-.site .sfoot{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line,#2A2F37);
-  display:flex;flex-wrap:wrap;gap:1.2rem;font-size:.9rem}
-.site .sfoot a{color:var(--dim,#8B8579);text-decoration:none}
-.site .sfoot a:hover{color:var(--brass)}
 
-/* the crash screen: readable, so a broken page names its own cause */
-.crash{max-width:40rem;margin:0 auto;padding:clamp(1.5rem,5vw,3rem) 1.2rem}
-.crash h1{font-size:clamp(1.4rem,4vw,2rem);margin:0 0 .5rem}
-.crash pre{white-space:pre-wrap;background:rgba(220,80,60,.1);
-  border:1px solid rgba(220,80,60,.35);border-radius:.45rem;padding:.9rem 1rem;
-  font-family:var(--mono,ui-monospace);font-size:.85rem;line-height:1.5;overflow-x:auto}
-.crash .dg{color:var(--dim,#8B8579);font-size:.85rem}
-.crash button{margin-top:.9rem;background:var(--brass);color:#0A0A0A;font-weight:700;
-  border:0;border-radius:2rem;padding:.6rem 1.3rem;cursor:pointer}
+/* ══ The public surface ══════════════════════════════════════════════════════════
+   The studio is dark, Hebrew, RTL and dense — one person reads it all day. The public
+   pages are the opposite on every axis, and light on purpose: he asked for it, and the
+   reference he pointed at (a warm off-white ground, a serif display against a plain
+   sans, generous rounding, one accent) is easier to read on a phone at night than our
+   ink. The brass stays as the single accent, darkened to hold contrast on paper —
+   #F0CB66 on white is unreadable, this is the same hue at a legible luminance.
+
+   Only these tokens change between the two worlds; the typefaces are the ones the
+   layout already loads, so the light pages cost no extra font request. */
+.site, .pub {
+  --paper:#F7F5F1; --card:#FFFFFF; --ink:#16181C; --soft:#54514B; --faint:#8B857B;
+  --rule:#E3DED4; --wash:#F1EBDD; --gold:#8A6D1B; --gold-lit:#B08A22;
+  --serif:"Frank Ruhl Libre",Georgia,serif;
+  --sans:"Assistant","Helvetica Neue",Arial,sans-serif;
+  --code:"IBM Plex Mono",ui-monospace,monospace;
+  direction:ltr; text-align:left;
+  background:var(--paper); color:var(--ink); font-family:var(--sans);
+  max-width:44rem; margin:0 auto; padding:clamp(1.7rem,5vw,3.6rem) clamp(1.1rem,4.5vw,1.7rem) 5rem;
+  font-size:17.5px; line-height:1.62;
+}
+/* the ground has to be painted behind the container too, or the dark body shows
+   through on overscroll and in the address-bar tint */
+body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
+
+.site .kicker, .pub .kicker{font-family:var(--code);font-size:.7rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 1.1rem}
+.site .kicker a, .pub .kicker a{color:inherit;text-decoration:none}
+.site .brandline{display:flex;align-items:center;gap:.5rem;margin:0 0 2.2rem;
+  font-family:var(--serif);font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
+.site .brandline .tick{color:var(--gold);font-size:1.15rem}
+.site h1, .pub h1{font-family:var(--serif);font-weight:800;
+  font-size:clamp(2.15rem,7.5vw,3.2rem);line-height:1.06;margin:0 0 .85rem;
+  letter-spacing:-.015em;text-wrap:balance}
+.site h1 em, .pub h1 em{font-style:normal;color:var(--gold)}
+.site h2, .pub h2{font-family:var(--serif);font-weight:700;
+  font-size:clamp(1.3rem,3.6vw,1.7rem);margin:3.2rem 0 .7rem;text-wrap:balance;
+  letter-spacing:-.01em}
+.site p, .pub p{margin:.75rem 0}
+.site .sub, .pub .sub{color:var(--soft);max-width:34rem;font-size:1.06rem}
+.site .cta, .pub .cta{display:inline-block;margin-top:1.5rem;background:var(--ink);
+  color:#FBF9F5;font-weight:700;padding:.8rem 1.7rem;border-radius:9999px;
+  text-decoration:none;font-size:1rem}
+.site .cta:hover, .pub .cta:hover{background:var(--gold)}
+.site .empty{background:var(--card);border:1px solid var(--rule);border-radius:1rem;
+  padding:1.1rem 1.25rem;color:var(--soft)}
+
+.site .eps{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.7rem}
+.site .eps a{display:grid;grid-template-columns:auto 1fr;gap:.15rem .9rem;
+  background:var(--card);border:1px solid var(--rule);border-radius:1rem;
+  padding:1.1rem 1.25rem;text-decoration:none;color:inherit;transition:border-color .15s}
+.site .eps a:hover{border-color:var(--gold-lit)}
+.site .eps .n{font-family:var(--code);font-size:.8rem;color:var(--gold);
+  font-variant-numeric:tabular-nums;grid-row:span 2;padding-top:.28rem}
+.site .eps .t{font-family:var(--serif);font-weight:700;font-size:1.14rem;line-height:1.25}
+.site .eps .tp{color:var(--faint);font-size:.95rem}
+
+.site .prompts{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.7rem}
+.site .prompts a{display:block;background:var(--card);border:1px solid var(--rule);
+  border-radius:1rem;padding:1.1rem 1.25rem;text-decoration:none;color:inherit;
+  transition:border-color .15s}
+.site .prompts a:hover{border-color:var(--gold-lit)}
+.site .prompts b{display:block;font-family:var(--serif);font-size:1.1rem;font-weight:700;
+  margin-bottom:.15rem}
+.site .prompts span{color:var(--faint);font-size:.95rem}
+
+.site .vid{position:relative;aspect-ratio:16/9;margin:1.8rem 0;border-radius:1rem;
+  overflow:hidden;background:#111;border:1px solid var(--rule)}
+.site .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.site .steps{padding-inline-start:1.3rem}
+.site .steps li{margin:.5rem 0}
+.site .body, .pub pre{white-space:pre-wrap;background:var(--card);
+  border:1px solid var(--rule);border-radius:1rem;padding:1.15rem 1.25rem;
+  font-family:var(--code);font-size:.85rem;line-height:1.6;overflow-x:auto;max-width:100%}
+.site .limits{border-inline-start:3px solid var(--gold);background:var(--wash);
+  padding:.85rem 1.15rem;border-radius:0 .6rem .6rem 0;margin-top:1.2rem}
+.site .sfoot, .pub .sfoot{margin-top:4rem;padding-top:1.4rem;border-top:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap:1.3rem;font-size:.93rem}
+.site .sfoot a, .pub .sfoot a{color:var(--faint);text-decoration:none}
+.site .sfoot a:hover, .pub .sfoot a:hover{color:var(--gold)}
+
+/* The /join page predates the light surface: its .note and .list still carry the
+   studio's dark panel, so the hero came out light and the boxes stayed black — with
+   the prompt titles in brass on near-black, effectively invisible. These override the
+   studio values inside a public page only, which is why every colour below is stated
+   rather than inherited. */
+.pub .note{background:var(--card);border-color:var(--rule);color:var(--ink)}
+.pub .note b{color:var(--ink)}
+.pub .note .t{color:#A8481F}
+.pub .note.warn{border-inline-start-color:#A8481F}
+.pub .list, .pub .list > *{background:var(--card);border-color:var(--rule);color:var(--ink)}
+.pub .list{border-radius:1rem;overflow:hidden}
+.pub .list > * + *{border-top:1px solid var(--rule)}
+.pub .list b, .pub .list strong, .pub .list .t{color:var(--ink);
+  font-family:var(--serif);font-weight:700;font-size:1.1rem}
+.pub .list p, .pub .list span, .pub .list div{color:var(--soft)}
+.pub .beehiiv{background:var(--card);border:1px solid var(--rule);border-radius:1rem}
+.pub .top{margin-bottom:2rem}
+.pub .brand{font-family:var(--serif);font-weight:700;color:var(--ink);
+  text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
+.pub .brand .tick{color:var(--gold)}
+.pub .foot{color:var(--faint);border-top:1px solid var(--rule);margin-top:3rem;
+  padding-top:1.3rem;font-size:.93rem}
+.pub .lbl{color:var(--faint)}

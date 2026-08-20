@@ -14,7 +14,9 @@ export default async function Home() {
   return (
     <main className="site" dir="ltr">
       <header className="hero">
-        <p className="kicker">Actually Works</p>
+        <p className="brandline">
+          <span className="tick">✓</span> Actually Works
+        </p>
         <h1>
           AI setups that <em>actually work</em>.
         </h1>
