@@ -164,6 +164,12 @@ def main():
                     help="level of the room-tone bed; -55 matches his real room")
     ap.add_argument("--dry", action="store_true",
                     help="skip breaths and room tone (clinical, for debugging)")
+    ap.add_argument("--prosody-rolls", type=int, default=3,
+                    help="extra takes allowed to make a statement's pitch land")
+    ap.add_argument("--fall", type=float, default=-1.5,
+                    help="semitones a statement ending must sit below the line's median")
+    ap.add_argument("--no-prosody", action="store_true",
+                    help="skip the intonation gate")
     ap.add_argument("--no-verify", action="store_true",
                     help="skip the transcription check (faster, unverified)")
     a = ap.parse_args()
@@ -190,6 +196,15 @@ def main():
         asr = WhisperModel("small", device="cpu", compute_type="int8")
 
     phrases, words = load_pron()
+    from prosody import final_drop, ends_sentence
+
+    def lands(wav):
+        """How far the ending sits under the line's own median pitch, in semitones.
+        A statement that ends flat or rising reads as unfinished — he heard exactly
+        that on "every chat" before any measurement did."""
+        a1 = wav.squeeze().cpu().numpy().astype(np.float32)
+        st, _, _ = final_drop(a1, m.sr)
+        return st
 
     def say(text, idx):
         spoken = respell(text, phrases, words)
@@ -218,10 +233,42 @@ def main():
             if best is None or score < best[1]:
                 best = (wav, score, heard, e, rate)
             if e <= 0.001 and rate <= a.max_rate:
-                return best[0], 0.0
+                best = (wav, score, heard, e, rate)
+                break
             why = f"wer {e:.2f}" if e > 0.001 else f"{rate:.1f} syl/s, too dense"
             print(f"      retry {attempt+1}: heard \"{heard.strip()[:46]}\" ({why})", flush=True)
-        return best[0], best[1]
+
+        # Second gate: the melody. Only for lines that end a sentence, and only after
+        # the words are right — an unfinished-sounding ending is worth another take,
+        # but not at the cost of a misheard word.
+        if a.no_prosody or not ends_sentence(text):
+            return best[0], best[1]
+        pick, pick_st = best[0], lands(best[0])
+        if pick_st is not None and pick_st <= a.fall:
+            return pick, best[1]
+        for roll in range(a.prosody_rolls):
+            torch.manual_seed(a.seed + 7777 + roll * 131 + idx)
+            cand = m.generate(spoken, audio_prompt_path=REF, exaggeration=a.exaggeration,
+                              cfg_weight=a.cfg, temperature=0.75)
+            st = lands(cand)
+            if st is None:
+                continue
+            if asr is not None:                      # never trade a word for a melody
+                probe = os.path.join(tmp, "pros.wav")
+                torchaudio.save(probe, cand, m.sr)
+                subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-i",probe,
+                                "-ar","16000","-ac","1", probe + "16.wav"], check=True)
+                sgs, _ = asr.transcribe(probe + "16.wav", language="en")
+                if wer(" ".join(x.text for x in sgs), text) > 0.001:
+                    continue
+            if pick_st is None or st < pick_st:
+                pick, pick_st = cand, st
+            if pick_st <= a.fall:
+                break
+        if pick_st is not None:
+            mark = "lands" if pick_st <= a.fall else "still flat"
+            print(f"      ending {pick_st:+.1f} st ({mark})", flush=True)
+        return pick, best[1]
 
     tmp = tempfile.mkdtemp()
     segs, cues, t = [], [], 0.30
