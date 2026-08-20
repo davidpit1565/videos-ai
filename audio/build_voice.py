@@ -199,6 +199,12 @@ def main():
                     help="semitones a statement ending must sit below the line's median")
     ap.add_argument("--no-prosody", action="store_true",
                     help="skip the intonation gate")
+    ap.add_argument("--pauses", default="",
+                    help="line numbers that get the long gap. Separate from --closes "
+                         "on purpose: whether a statement must fall and whether it "
+                         "earns a pause are different questions, and conflating them "
+                         "put a 1.1s hole straight after the hook, which cost the "
+                         "opening its momentum. Defaults to --closes.")
     ap.add_argument("--closes", default="",
                     help="line numbers that close a section. Only those, and the last "
                          "line, must land — English rises on the non-final items of a "
@@ -266,7 +272,16 @@ def main():
                 # cut the second copy off rather than gamble on another roll
                 keep = int(cut * m.sr)
                 if keep < wav.shape[-1] - int(0.05 * m.sr):
-                    wav = wav[..., :keep]
+                    # Keep a little of the decay and fade it. Cutting hard on the
+                    # repeat's first sample takes the end of the *first* copy with it —
+                    # the line stops dead instead of landing, which is the "speaks
+                    # outward" quality he heard in the take that used this.
+                    keep = min(wav.shape[-1], keep + int(0.06 * m.sr))
+                    wav = wav[..., :keep].clone()
+                    n = min(int(0.045 * m.sr), wav.shape[-1])
+                    if n > 8:
+                        ramp = torch.linspace(1.0, 0.0, n, device=wav.device)
+                        wav[..., -n:] = wav[..., -n:] * ramp
                     print(f"      said the tail twice — cut the repeat at "
                           f"{cut:.2f}s", flush=True)
                     torchaudio.save(probe, wav, m.sr)
@@ -350,9 +365,13 @@ def main():
         # 2.2 syl/s and was sped up x1.20 — but it was slow *because* it said the
         # phrase twice, so the speed-up compressed the defect instead of removing it
         # and hid the thing the check had already noticed.
-        if err > 0.001 and rate0 < a.min_rate:
-            print(f"      {rate0:.1f} syl/s but the line failed its check — not "
-                  f"speeding it up, that would hide the cause", flush=True)
+        if err > 1.0 and rate0 < a.min_rate:
+            # Only a repetition that could NOT be cut blocks the floor (dup_tail adds
+            # 1.0 to the score for exactly that case). Blocking it on any failed check
+            # was too broad: a line whose repeat was successfully cut is honestly
+            # short now, and refusing to pace it cost the whole read its energy.
+            print(f"      {rate0:.1f} syl/s, and the repetition could not be cut — "
+                  f"not speeding it up, that would hide the cause", flush=True)
         elif rate0 < a.min_rate:
             f = min(a.max_speedup, a.min_rate / rate0)
             if f > 1.01:
@@ -396,7 +415,8 @@ def main():
         else:
             cues.append({"n": i, "line": text, "start": round(t, 2), "end": round(t + len(s) / SR_MIX, 2)})
             segs.append(s); t += len(s) / SR_MIX
-            closes_g = {int(x) for x in a.closes.split(",") if x.strip()} or SECTION_END
+            src_g = a.pauses or a.closes
+            closes_g = {int(x) for x in src_g.split(",") if x.strip()} or SECTION_END
             g = a.long if i in closes_g else a.gap
             if i < len(lines):
                 segs.append(np.zeros(int(g * SR_MIX), dtype=np.float32)); t += g
