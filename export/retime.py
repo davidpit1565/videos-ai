@@ -85,6 +85,7 @@ def main():
     a = ap.parse_args()
 
     src = open(a.html, encoding="utf-8").read()
+    original = src
     old, m = html_cues(src)
     new = json.load(open(a.cues))
     new = new if isinstance(new, list) else new["cues"]
@@ -122,8 +123,12 @@ def main():
     src = re.sub(r'data-(in|out)="([0-9.]+)"',
                  lambda g: f'data-{g.group(1)}="'
                            f'{snap(remap(pts, float(g.group(2))), gaps, flashes, fdur):g}"', src)
-    src = re.sub(r'data-at="([0-9.]+)"',
-                 lambda g: f'data-at="{remap(pts, float(g.group(1))):g}"', src)
+    # data-at AND data-until: a disappear-time left on the old timeline is how the
+    # settings mock was told to leave at 26.7s while the card it hands over to had
+    # been moved to arrive at 25.7s. They shared the frame for a second, the column
+    # overflowed the safe box, and the gate blamed the layout.
+    src = re.sub(r'data-(at|until)="([0-9.]+)"',
+                 lambda g: f'data-{g.group(1)}="{remap(pts, float(g.group(2))):g}"', src)
 
     # a scene must have something on screen the instant the flash lifts. Every scene
     # here opened 0.31-0.38s empty, which after a hidden cut is a visible blank beat.
@@ -142,6 +147,33 @@ def main():
     for i, j, rep in reversed(edits):
         src = src[:i] + rep + src[j:]
     moved = len(edits)
+
+    # The bug this guards against was not a bad value, it was a name the remapper did
+    # not know: data-until was left on the old timeline, so the settings mock was told
+    # to leave at 26.7s while the card it hands over to had been moved to arrive at
+    # 25.7s. Both sat in the frame for a second, the column overflowed the safe box,
+    # and it surfaced three tools downstream as a layout fault. So the check is on
+    # coverage: every timing attribute in the source must be one this file remaps.
+    REMAPPED = {"at", "until", "in", "out"}
+    unknown = {m.group(1) for m in re.finditer(r'data-([a-z-]+)="[0-9.]+"', original)
+               } - REMAPPED
+    if unknown:
+        raise SystemExit("retime: these timing attributes are not remapped, so they "
+                         "would stay on the old timeline: "
+                         + ", ".join(f"data-{u}" for u in sorted(unknown)))
+
+    # and the values themselves must land on the new timeline
+    bad = [f'{m.group(0)} is past the new duration {dur:g}s'
+           for m in re.finditer(r'data-(?:at|until|in|out)="([0-9.]+)"', src)
+           if float(m.group(1)) > dur + 0.05]
+    for m in re.finditer(r'data-at="([0-9.]+)"((?:(?!data-at=).)*?)data-until="([0-9.]+)"',
+                         src, re.S):
+        if float(m.group(3)) <= float(m.group(1)):
+            bad.append(f"an element leaves at {m.group(3)}s but arrives at {m.group(1)}s")
+    if bad:
+        for b in bad:
+            print(f"  BAD  {b}")
+        raise SystemExit("retime: timings left on the old timeline — not writing output")
 
     src = re.sub(r"var DUR=[0-9.]+", f"var DUR={dur:g}", src)
     open(a.out, "w", encoding="utf-8").write(src)
