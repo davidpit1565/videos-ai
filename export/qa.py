@@ -65,7 +65,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("mp4")
     ap.add_argument("--build", help="the HTML the render came from")
-    ap.add_argument("--vo", help="the narration wav, for card-in-silence checks")
+    ap.add_argument("--vo", help="the narration wav")
+    ap.add_argument("--music", help="the music bed, so the mix can be decomposed")
     ap.add_argument("--static-fail", type=float, default=STATIC_FAIL)
     a = ap.parse_args()
 
@@ -135,27 +136,27 @@ def main():
         warn.append(f"last frame is blank (mean luma {mean[-1]:.1f})")
 
     # the full-frame colour cards: a bright frame filling the screen
-    card = mean > mean.mean() + 3.2 * mean.std()
+    # A card is a flat bright fill. Measured: the brass cards sit at mean luma 202-204
+    # with spatial std 20-27, the ember one at 144/16, and ordinary frames at 22-33 with
+    # std 32-57. Brightness alone missed the ember card, so both conditions are used.
+    flat = f.reshape(len(f), -1).std(axis=1)
+    card = (mean > 110) & (flat < 30)
     cards = [(s, e) for s, e in runs_of(card) if e - s > 0.10]
-    vo = None
-    if a.vo and os.path.exists(a.vo):
-        with wave.open(a.vo) as w:
-            sr = w.getframerate()
-            y = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
-        fr = int(0.02 * sr)
-        env = 20 * np.log10(np.maximum(np.array(
-            [np.sqrt((y[i*fr:(i+1)*fr]**2).mean()) for i in range(len(y)//fr)]), 1e-9))
-        thr = np.percentile(env, 10) + 0.35 * (np.median(np.sort(env)[-int(len(env)*0.4):])
-                                               - np.percentile(env, 10))
-        vo = (env, thr)
+    # Whether a card plays over speech is decided by the cue times, not by energy: the
+    # narration carries his own breaths in the gaps, and an energy test calls a breath
+    # speech, which flagged every card in the reel as overrunning.
+    lines = []
+    if a.build:
+        lines = [(float(c[0]), float(c[1])) for c in json.loads(
+            re.search(r"var CUES=(\[.*?\]);", open(a.build, encoding="utf-8").read(),
+                      re.S).group(1))]
     for s, e in cards:
         note = f"card {s:.2f}-{e:.2f}s ({(e-s)*fps:.0f} frames)"
         if e - s < 0.45:
             bad.append(note + " — too fast to read, reads as a glitch")
-        if vo is not None:
-            seg = vo[0][int(s/0.02):int(e/0.02)]
-            if len(seg) and seg.max() > vo[1]:
-                bad.append(note + " — plays over speech")
+        clash = [(x, y) for x, y in lines if y > s + 0.03 and x < e - 0.03]
+        if clash:
+            bad.append(note + f" — plays over the line at {clash[0][0]:.2f}s")
     if cards:
         clean.append(f"{len(cards)} colour cards, "
                      f"{min(e-s for s, e in cards):.2f}-{max(e-s for s, e in cards):.2f}s each")
@@ -182,35 +183,53 @@ def main():
         elif peak is not None:
             clean.append(f"peak {peak} dBFS")
 
-    # music under voice: the level in the gaps between lines is the bed alone, and the
-    # level during a line is voice over bed. Research puts the bed 18-20 dB down.
-    if a.build and au:
-        cues = json.loads(re.search(r"var CUES=(\[.*?\]);",
-                                    open(a.build, encoding="utf-8").read(), re.S).group(1))
-        mono = "/tmp/qa-mix.wav"
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", a.mp4, "-ac", "1",
-                        "-ar", "24000", mono], check=True)
-        with wave.open(mono) as w:
-            sr2 = w.getframerate()
-            m = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
-        def rms(t0, t1):
-            seg = m[int(t0 * sr2):int(t1 * sr2)]
-            return 20 * np.log10(max(float(np.sqrt((seg ** 2).mean())), 1e-9)) if len(seg) else None
-        sp = [rms(float(c[0]) + 0.1, float(c[1]) - 0.1) for c in cues]
-        gp = [rms(float(x[1]) + 0.12, float(y[0]) - 0.12)
-              for x, y in zip(cues, cues[1:]) if float(y[0]) - float(x[1]) > 0.35]
-        sp = [x for x in sp if x is not None]
-        gp = [x for x in gp if x is not None]
-        if sp and gp:
-            sep = float(np.median(sp) - np.median(gp))
-            print(f"  bed: speech {np.median(sp):.1f} dBFS, gaps {np.median(gp):.1f} dBFS "
-                  f"-> {sep:.1f} dB apart")
-            if sep < 12:
-                bad.append(f"music only {sep:.1f} dB under the voice — 18-20 is the target")
-            elif sep < 16:
-                warn.append(f"music {sep:.1f} dB under the voice — 18-20 is the target")
+    # Music under voice. Comparing the gaps to the speech is misleading when the bed is
+    # ducked — the gaps are louder than the bed under the voice, so that comparison once
+    # told me the bed was above the voice when it was 11 dB below it. With both stems in
+    # hand the honest method is a least-squares fit of mix = a*voice + b*music per window,
+    # which gives the ducking depth and the real separation.
+    if a.vo and a.music and os.path.exists(a.vo) and os.path.exists(a.music) and au:
+        mono = {}
+        for tag, path in (("mix", a.mp4), ("vo", a.vo), ("mus", a.music)):
+            dst = f"/tmp/qa-{tag}.wav"
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", path, "-ac", "1",
+                            "-ar", "24000", dst], check=True)
+            with wave.open(dst) as w:
+                mono[tag] = (np.frombuffer(w.readframes(w.getnframes()),
+                                           dtype=np.int16).astype(np.float32) / 32768)
+        sr2, win = 24000, int(0.25 * 24000)
+        n = min(len(mono["mix"]), len(mono["vo"]), len(mono["mus"])) // win
+        gains, vlev, mlev, speaking = [], [], [], []
+        for i in range(n):
+            sl = slice(i * win, (i + 1) * win)
+            V, M, X = mono["vo"][sl], mono["mus"][sl], mono["mix"][sl]
+            A = np.vstack([V, M]).T
+            try:
+                c, *_ = np.linalg.lstsq(A, X, rcond=None)
+            except np.linalg.LinAlgError:
+                continue
+            vr = float(np.sqrt((V ** 2).mean()))
+            gains.append((i * 0.25, float(c[0]), float(c[1]), vr))
+        if gains:
+            vr = np.array([g[3] for g in gains])
+            talk = vr > np.percentile(vr, 60)
+            mus_talk = np.median([g[2] for g, t in zip(gains, talk) if t])
+            mus_gap = np.median([g[2] for g, t in zip(gains, talk) if not t])
+            duck = 20 * np.log10(max(mus_gap, 1e-6) / max(mus_talk, 1e-6))
+            # level of each part inside the mix while he is speaking
+            v_in = 20 * np.log10(max(np.median([g[1] for g, t in zip(gains, talk) if t]), 1e-9)
+                                 * max(float(np.sqrt((mono["vo"] ** 2).mean())), 1e-9))
+            m_in = 20 * np.log10(max(mus_talk, 1e-9)
+                                 * max(float(np.sqrt((mono["mus"] ** 2).mean())), 1e-9))
+            sep = v_in - m_in
+            print(f"  bed: ducking {duck:.1f} dB, and {sep:.1f} dB under the voice "
+                  f"while he speaks")
+            if sep < 14:
+                bad.append(f"bed only {sep:.1f} dB under the voice — 18-20 is the target")
+            elif sep > 26:
+                warn.append(f"bed {sep:.1f} dB under the voice — inaudible, why have it")
             else:
-                clean.append(f"music {sep:.1f} dB under the voice")
+                clean.append(f"bed {sep:.1f} dB under the voice, {duck:.1f} dB of ducking")
 
     seam = np.abs(f[0].astype(int) - f[-1].astype(int)).mean()
     print(f"  loop seam: first vs last frame differ by {seam:.1f}/255")
