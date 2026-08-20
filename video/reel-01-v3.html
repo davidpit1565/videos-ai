@@ -168,45 +168,79 @@ body.render .page{padding:0;gap:0;display:block}
 body.render .side,body.render .ctl,body.render .tapover{display:none!important}
 body.render .reel{width:100vw;max-width:none}
 body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+
+/* A real phone in light mode. The dark mock measured 1.11:1 against the background —
+   the panel was invisible on a phone, and the one thing the video had to show was the
+   screen. mavgpt's tutorials sit at 216-219 luminance across two thirds of the frame. */
+.modal.light{background:#FFFFFF;border-color:#E3E3E6}
+.modal.light .mh{color:#0D0D0D;border-bottom-color:#E3E3E6}
+.modal.light .r{color:#1F1F22;border-bottom-color:#EDEDF0}
+.modal.light .r .ch{color:#8E8E93}
+.modal.light .r .ic{stroke:#3A3A3C}
+.modal.light .r.hi{background:#EFEFF3}
+.ci.light{background:#FFFFFF;border-color:#E3E3E6}
+.ci.light .lbl{color:#6E6E73}
+.ci.light .in{background:#F7F7F8;border-color:#DEDEE2;color:#0D0D0D}
+.ci.light .in.hot{border-color:var(--brass);box-shadow:0 0 0 .5cqw rgba(240,203,102,.28)}
+.ci.light .foot{color:#6E6E73}
+.ci.light .savebtn{background:#0D0D0D;color:#fff}
+.ci.light .savebtn.hit{background:var(--brass);color:#0A0A0A;transform:scale(1.18)}
+.ci.light .sw i{background:#C7C7CC}
+.ci.light .sw.on i{background:var(--brass)}
+
+/* The prompt is the product of the episode. It gets the frame to itself and eight
+   seconds, typed at the pace it is spoken — the old build showed it for two. */
+.promptcard{background:#FFFFFF;border:1px solid #E3E3E6;border-radius:2.4cqw;overflow:hidden;
+  box-shadow:0 2cqw 6cqw rgba(0,0,0,.5)}
+.promptcard .pc-h{font-family:var(--m);font-size:2.9cqw;letter-spacing:.12em;text-transform:uppercase;
+  color:#6E6E73;padding:3cqw 3.6cqw 0}
+.promptcard .pc-b{font-family:var(--ui);font-size:4.6cqw;line-height:1.42;color:#0D0D0D;
+  padding:2cqw 3.6cqw 3.6cqw;min-height:34cqw}
+.promptcard .caret{display:inline-block;width:.42cqw;height:4.4cqw;background:#0D0D0D;
+  vertical-align:-.7cqw;margin-inline-start:.5cqw;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
 </style>
 
 <div class="page">
 <div class="reel">
 <div class="frame" id="frame">
 <div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
-<div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<!-- S1 · PROBLEM 0–7.6 -->
-<section class="scene" data-in="0" data-out="7.6">
-  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
-    <h2 class="b punch" data-at="0.15" data-until="3.5">Your ChatGPT keeps giving you the <span class="box">obvious</span>.</h2>
-    <div class="gpt b" data-at="3.55">
+<!-- S1 · THE PROBLEM 0–7.58 -->
+<section class="scene" data-in="0" data-out="7.58">
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
+    <h2 class="b punch" data-at="0">Your ChatGPT keeps giving you the <span class="box">obvious</span>.</h2>
+    <div class="gpt b" data-at="1.1">
       <div class="top"><span class="ham"><i></i><i></i><i></i></span><span>ChatGPT ⌄</span><span class="av">D</span></div>
       <div class="thread">
         <div class="u">how do I grow my business?</div>
-        <div class="a dull">There are several ways to grow a business: improve your marketing, expand your product line, build customer loyalty, and consider new markets.</div>
+        <div class="comp">There are several ways to grow a business: improve your marketing, expand your product line, build customer loyalty, and consider new markets.</div>
       </div>
-      <div class="comp"><span>Ask anything</span><span class="send">↑</span></div>
+      <div class="ask"><span>Ask anything</span><span class="up">↑</span></div>
     </div>
-    <div class="row b punch" data-at="5.4"><span class="tag ember">not its fault</span><span class="tag ghost">nobody told it how</span></div>
+    <div class="row">
+      <span class="tag ghost b punch" data-at="4.4">not its fault</span>
+      <span class="tag ember b punch" data-at="5.5">nobody told it how</span>
+    </div>
   </div></div>
 </section>
 
-<!-- S2 · FIX 7.6–15.0 -->
-<section class="scene" data-in="7.6" data-out="15">
-  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
-    <h2 class="b punch" data-at="7.7" data-until="10.9">One block of text.<br><span class="box">Pasted once.</span></h2>
-    <div class="instr b" data-at="8.9" data-until="10.9">You are my Universal AI Engine.<br><br>Automatically choose the best methods for every request. I should NOT need to use shortcuts.</div>
-        <h2 class="sm b punch" data-at="10.95">Every chat.<br><em>Forever</em>.</h2>
-    <p class="lede b" data-at="12.4">You never touch it again.</p>
+<!-- S2 · THE PROMPT 7.58–18.80 — the payload, read aloud while it types -->
+<section class="scene" data-in="7.58" data-out="18.8">
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.4cqw">
+    <h2 class="sm b punch" data-at="7.61" data-until="10.6">One block of text.<br><span class="box">This is it.</span></h2>
+    <div class="promptcard b" data-at="10.62">
+      <div class="pc-h">Custom instructions</div>
+      <div class="pc-b"><span id="promptType"></span><span class="caret"></span></div>
+    </div>
   </div></div>
 </section>
 
-<!-- S3 · SETUP 15.0–23.6 -->
-<section class="scene" data-in="15" data-out="23.6">
+<!-- S3 · FORTY SECONDS 18.80–31.98 — light screen, one step at a time -->
+<section class="scene" data-in="18.8" data-out="31.98">
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw">
-    <div class="modal b" data-at="15.05" data-until="20.84">
+    <div class="modal light b" data-at="18.83" data-until="26.7">
       <div class="mh">Settings <span>✕</span></div>
       <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="5.8"/></svg>General</span><span class="ch">›</span></div>
       <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M4.2 11h7.6M6 11V7a2 2 0 0 1 4 0v4M6.9 13.2h2.2"/></svg>Notifications</span><span class="ch">›</span></div>
@@ -215,7 +249,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       <div class="r" id="rowCI"><span><svg class="ic" viewBox="0 0 16 16"><path d="M3.2 12.8l.9-2.9 6.4-6.4 2 2-6.4 6.4z"/></svg>Custom instructions</span><span class="ch">›</span></div>
       <div class="r"><span><svg class="ic" viewBox="0 0 16 16"><path d="M8 2.4l4.8 1.9v3.6c0 2.9-2.1 4.9-4.8 5.7-2.7-.8-4.8-2.8-4.8-5.7V4.3z"/></svg>Data controls</span><span class="ch">›</span></div>
     </div>
-    <div class="ci b" data-at="20.86">
+    <div class="ci light b" data-at="26.75">
       <span class="lbl">Anything else ChatGPT should know about you?</span>
       <div class="in" id="ciBig"><span id="typed"></span><span class="caret"></span></div>
       <div class="foot"><span class="sw" id="ciSw"><i></i> Enable for new chats</span><span class="savebtn" id="ciSave">Save</span></div>
@@ -225,83 +259,65 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div>
 </section>
 
-<!-- S4 · RESULT 23.6–37.9 -->
-<section class="scene" data-in="23.6" data-out="37.9">
+<!-- S4 · THE RESULT 31.98–44.42 -->
+<section class="scene" data-in="31.98" data-out="44.42">
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:2.8cqw">
-    <h2 class="sm b punch" data-at="23.65" data-until="27.2">Same question.<br><span class="box">Normal words.</span></h2>
-    <div class="gpt b" data-at="27.25">
+    <h2 class="sm b punch" data-at="32.01" data-until="35.9">Same question.<br><span class="box">Normal words.</span></h2>
+    <div class="gpt b" data-at="35.95">
       <div class="top"><span class="ham"><i></i><i></i><i></i></span><span>ChatGPT ⌄</span><span class="av">D</span></div>
       <div class="thread">
         <div class="u">how do I grow my business?</div>
-        <div class="a b" data-at="27.3" data-until="32.5"><b>Assumptions</b>You're small, self-funded, and growth means revenue — not headcount.</div>
-        <div class="a b" data-at="29.45" data-until="35.4"><b>Risk you didn't ask about</b>One channel carries all your customers.</div>
-        <div class="a b" data-at="32.6"><b>Decision</b>Fix retention first. Call your last 10 churned customers this week.</div>
+        <div class="a b" data-at="36.2" data-until="41.5"><b>Assumptions</b>You're small, self-funded, and growth means revenue — not headcount.</div>
+        <div class="a b" data-at="38.4" data-until="41.5"><b>Risk you didn't ask about</b>One channel carries all your customers.</div>
+        <div class="a b" data-at="41.6"><b>Decision</b>Fix retention first. Call your last 10 churned customers this week.</div>
       </div>
     </div>
     <div class="row">
-      <span class="tag b punch" data-at="27.3">assumptions</span>
-      <span class="tag b punch" data-at="29.45">risks</span>
-      <span class="tag b punch" data-at="32.6">decision</span>
+      <span class="tag b punch" data-at="36.2">assumptions</span>
+      <span class="tag b punch" data-at="38.4">risks</span>
+      <span class="tag b punch" data-at="41.6">decision</span>
     </div>
-    <h2 class="sm b punch" data-at="35.65"><span class="box">Zero</span> commands typed.</h2>
   </div></div>
 </section>
 
-<!-- S5 · HONEST 37.9–46.5 -->
-<section class="scene" data-in="37.9" data-out="46.5">
+<!-- S5 · HONEST 44.42–48.72 -->
+<section class="scene" data-in="44.42" data-out="48.72">
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
-    <h2 class="sm b punch" data-at="37.95" data-until="41.1">The honest part.</h2>
+    <h2 class="sm b punch" data-at="44.45" data-until="46.6"><span class="box">Zero</span> commands typed.</h2>
     <div class="stack">
-      <div class="strike b" data-at="38.8" data-until="41.1"><s>A new AI model</s></div>
-      <div class="strike b" data-at="39.5" data-until="41.1"><s>Software you install</s></div>
-      <div class="strike b" data-at="40.2" data-until="41.1"><s>A guarantee it's right</s></div>
+      <div class="strike b" data-at="45.0" data-until="46.6"><s>A new AI model</s></div>
+      <div class="strike b" data-at="45.5" data-until="46.6"><s>Software you install</s></div>
     </div>
-    <h2 class="b punch" data-at="41.2">Same <span class="ebox">model</span>.</h2>
-    <h2 class="b punch" data-at="43.9">Different <span class="box">method</span>.</h2>
+    <h2 class="b punch" data-at="46.65">Same <span class="ebox">model</span>.<br>New <span class="box">method</span>.</h2>
   </div></div>
 </section>
 
-<!-- S6 · CTA 46.5–52 -->
-<section class="scene" data-in="46.5" data-out="52">
-  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3.2cqw;align-items:flex-start">
-    <h2 class="b punch" data-at="46.55">Write <span class="box">ENGINE</span><br>below.</h2>
-    <p class="lede b" data-at="48.9" style="font-size:5.6cqw">I send you the prompt. No catch.</p>
+<!-- S6 · TAKE IT 48.72–56.1 -->
+<section class="scene" data-in="48.72" data-out="56.1">
+  <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
+    <h2 class="b punch" data-at="48.75">Write <span class="box">ENGINE</span><br>below.</h2>
+    <p class="lede b" data-at="52.9" style="font-size:5.6cqw">I send you the prompt. No catch.</p>
   </div></div>
 </section>
 
 <div class="flash" id="flash"><span id="flashTxt"></span></div>
 <div class="subs" id="subs"></div>
 <div class="handle" data-decor>@actuallyworks.ai</div>
-<button class="tapover" id="tap" aria-label="Play"><span class="d"></span></button>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+
 </div>
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="52" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="57" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
-</div>
-</div>
-
-<div class="side">
-  <p class="k">Reel 01 · v3 · 52s · his voice</p>
-  <h1>Built to <em>stop the scroll</em></h1>
-  <p>v2 was elegant. Elegant doesn't stop a thumb. This version is designed for a phone held at arm's length, in daylight, with the sound off.</p>
-  <h3>What changed</h3>
-  <ul>
-    <li><strong>It opens on words, not a screenshot.</strong> Frame one is a full-bleed sentence at 13cqw — readable in the 0.4s someone gives you before deciding.</li>
-    <li><strong>Emphasis is a filled block, not coloured text.</strong> A brass box around the key word survives a small, bright screen; coloured text doesn't.</li>
-    <li><strong>Captions are ~30% bigger</strong> and sit higher, clear of the Instagram UI.</li>
-    <li><strong>Section flashes.</strong> A 0.35s full-frame colour card between sections — a hard pattern interrupt that resets attention five times in 52 seconds.</li>
-    <li><strong>Brighter, higher contrast.</strong> The palette was raised and a second accent added, so the frame has heat instead of only mood.</li>
-    <li><strong>A countdown during setup.</strong> Visible urgency while the least dramatic part of the video plays.</li>
-    <li><strong>Cut to his voice, not the other way round.</strong> Every beat is aligned to the actual recording.</li>
-  </ul>
 </div>
 </div>
 
 <script>
 (function(){
-  var DUR=52,t=0,playing=false,last=0;
+  var DUR=56.1,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -313,26 +329,24 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
   /* cues follow the tightened recording exactly */
   var CUES=[
-    [0.30,3.26,"Your ChatGPT keeps giving you the <em>obvious</em>."],
-    [3.52,7.36,"Not because it's dumb.<br>Nobody told it <em>how to think</em>."],
-    [7.62,10.66,"One block of text.<br><em>Pasted once</em>."],
-    [10.92,14.46,"Then it picks its own reasoning — every chat."],
-    [14.98,16.22,"Open <em>Settings</em>."],
-    [16.42,18.86,"Go to <em>Personalization</em>."],
-    [19.06,20.66,"<em>Custom instructions</em>."],
-    [20.88,23.42,"Paste. Switch it on. <em>Save</em>."],
-    [23.60,27.02,"Now ask the same question. Normal words."],
-    [27.28,29.16,"It states what it's <em>assuming</em>."],
-    [29.42,32.32,"It finds the risk you didn't ask about."],
-    [32.58,35.36,"It ends with a <em>decision</em>. Not a list."],
-    [35.62,37.44,"You typed <em>zero</em> commands."],
-    [37.96,40.92,"The honest part: this isn't a new model."],
-    [41.18,46.02,"It changes how ChatGPT <em>reasons</em> — not how often it's right."],
-    [46.54,48.60,"Write <em>ENGINE</em> below and I'll send you the prompt."],
-    [48.86,51.56,"Follow for setups that <em>actually work</em>."]
+    [0.30,3.30,"Your ChatGPT keeps giving you the <em>obvious</em>."],
+    [3.72,7.52,"Not because it's dumb.<br>Nobody told it <em>how to think</em>."],
+    [8.32,10.32,"One block of text. <em>This is it</em>."],
+    [10.74,18.74,"You are my Universal AI Engine. Automatically choose the best methods for every request. I should not need to use shortcuts."],
+    [19.54,21.54,"One — open <em>Settings</em>."],
+    [21.96,23.96,"Two — <em>Personalization</em>."],
+    [24.38,26.38,"Three — <em>Custom instructions</em>."],
+    [26.80,29.00,"Four — paste it in the box."],
+    [29.42,31.92,"Five — switch it on, and <em>Save</em>."],
+    [32.72,35.72,"Now ask anything, in normal words."],
+    [36.14,41.14,"It says what it's <em>assuming</em>. It finds the risk you didn't ask about."],
+    [41.56,44.36,"It ends with a <em>decision</em>. Not a list."],
+    [45.16,48.66,"You typed zero commands. Same model — <em>new method</em>."],
+    [49.46,52.46,"Write <em>ENGINE</em> below and I'll send you the prompt."],
+    [52.88,55.58,"Follow for setups that <em>actually work</em>."]
   ];
   /* [at, label, ember?] — 0.34s hard cuts between sections */
-  var FLASH=[[7.32,"the fix",0],[14.72,"40 seconds",0],[23.34,"the result",0],[37.68,"honest",1],[46.28,"take it",0]];
+  var FLASH=[[7.58,"the fix",0],[18.80,"40 seconds",0],[31.98,"the result",0],[44.42,"honest",1],[48.72,"take it",0]];
   var FDUR=0.66;
   var INSTR="You are my Universal AI Engine. Automatically choose the best methods for every request. I should NOT need to use shortcuts…";
 
@@ -387,13 +401,27 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     b2.style.transform='translate('+(30+22*Math.cos(t*0.13+1.4))+'cqw,'+(34+24*Math.sin(t*0.19+.6))+'cqw)';
     b3.style.transform='translate('+(14+28*Math.sin(t*0.11+2.1))+'cqw,'+(66+16*Math.cos(t*0.15+1.1))+'cqw)';
 
+    /* Every time below is derived from the narration's own cue times, never written as
+       a constant. The old build had the cursor moving at 19.02 and the prompt typing at
+       21.0 — absolute seconds that retime.py does not touch, so after the timeline moved
+       the screen was doing one thing while the voice said another. cue(n) is the start
+       of spoken line n. */
+    function cue(n){ return CUES[n-1] ? CUES[n-1][0] : 0; }
+    function cueEnd(n){ return CUES[n-1] ? CUES[n-1][1] : 0; }
+
+    /* line 4 IS the prompt: it is read aloud, and it types at the pace it is read */
+    var pt=document.getElementById('promptType');
+    if(pt){
+      var p0=cue(4),p1=cueEnd(4)-0.35;
+      var pg=t<=p0?0:t>=p1?1:(t-p0)/(p1-p0);
+      pt.textContent=INSTR.slice(0,Math.round(pg*INSTR.length));
+    }
+
     var rp=document.getElementById('rowPers'),rc=document.getElementById('rowCI'),c=document.getElementById('cur');
-    if(rp){ rp.classList.toggle('hi',t>=16.42&&t<19.02); rc.classList.toggle('hi',t>=19.02&&t<20.8); }
-    var ck=document.getElementById('clock');
-    if(ck){ var left=Math.max(0,Math.round(40-(t-15)*4.7)); ck.textContent='0:'+('0'+left).slice(-2); }
+    if(rp){ rp.classList.toggle('hi',t>=cue(6)&&t<cue(7)); rc.classList.toggle('hi',t>=cue(7)&&t<cue(8)); }
     if(c){
-      var tgt=t<19.02?'rowPers':t<20.86?'rowCI':t<22.2?'ciBig':t<22.8?'ciSw':'ciSave';
-      var el=document.getElementById(tgt),show=t>=15.6&&t<23.5;
+      var tgt=t<cue(6)?'rowPers':t<cue(7)?'rowPers':t<cue(8)?'rowCI':t<cue(9)?'ciBig':t<cue(9)+1.0?'ciSw':'ciSave';
+      var el=document.getElementById(tgt),show=t>=cue(5)+0.2&&t<cueEnd(9);
       c.style.opacity=show?1:0;
       if(show&&el){
         var fr=frame.getBoundingClientRect(),r=el.getBoundingClientRect();
@@ -404,10 +432,11 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       }
     }
     var ty=document.getElementById('typed');
-    if(ty){ var g=t<=21.0?0:t>=22.2?1:(t-21.0)/1.2; ty.textContent=INSTR.slice(0,Math.round(g*INSTR.length)); }
-    var big=document.getElementById('ciBig'); if(big) big.classList.toggle('hot',t>20.94&&t<22.5);
-    var sw=document.getElementById('ciSw'); if(sw) sw.classList.toggle('on',t>22.45);
-    var sv=document.getElementById('ciSave'); if(sv) sv.classList.toggle('hit',t>22.95);
+    if(ty){ var g0=cue(8),g1=cue(8)+1.5;
+      var g=t<=g0?0:t>=g1?1:(t-g0)/(g1-g0); ty.textContent=INSTR.slice(0,Math.round(g*INSTR.length)); }
+    var big=document.getElementById('ciBig'); if(big) big.classList.toggle('hot',t>cue(8)-0.1&&t<cue(9)+0.6);
+    var sw=document.getElementById('ciSw'); if(sw) sw.classList.toggle('on',t>cue(9)+0.35);
+    var sv=document.getElementById('ciSave'); if(sv) sv.classList.toggle('hit',t>cue(9)+1.25);
 
     var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
     subs.innerHTML=txt;
