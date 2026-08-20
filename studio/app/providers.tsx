@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { State } from "@/lib/types";
+import { whole } from "@/lib/whole";
 import { seed } from "@/lib/seed";
 
 const KEY = "aw-studio-v1";
@@ -41,21 +42,6 @@ export function Provider({ children }: { children: React.ReactNode }) {
   const ref = useRef<State | null>(null);
   const modeRef = useRef<Mode>("loading");
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-/** A stored state outlives the shape it was written in. Twenty places in the studio
- *  do `state.episodes.map(...)` and `state.ideas.map(...)` directly, so a row saved
- *  before one of those arrays existed took the whole page down with "Application
- *  error: a client-side exception has occurred" — the server was fine, the browser
- *  crashed on a missing array. Guarding here means the pages can keep reading plainly. */
-function whole(s: State): State {
-  return {
-    ...s,
-    episodes: s.episodes ?? [],
-    ideas: s.ideas ?? [],
-    snapshots: s.snapshots ?? [],
-    activity: s.activity ?? [],
-  };
-}
-
   ref.current = state;
 
   // The browser copy is always written. The database copy is written too when

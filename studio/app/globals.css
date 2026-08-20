@@ -286,3 +286,13 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   display:flex;flex-wrap:wrap;gap:1.2rem;font-size:.9rem}
 .site .sfoot a{color:var(--dim,#8B8579);text-decoration:none}
 .site .sfoot a:hover{color:var(--brass)}
+
+/* the crash screen: readable, so a broken page names its own cause */
+.crash{max-width:40rem;margin:0 auto;padding:clamp(1.5rem,5vw,3rem) 1.2rem}
+.crash h1{font-size:clamp(1.4rem,4vw,2rem);margin:0 0 .5rem}
+.crash pre{white-space:pre-wrap;background:rgba(220,80,60,.1);
+  border:1px solid rgba(220,80,60,.35);border-radius:.45rem;padding:.9rem 1rem;
+  font-family:var(--mono,ui-monospace);font-size:.85rem;line-height:1.5;overflow-x:auto}
+.crash .dg{color:var(--dim,#8B8579);font-size:.85rem}
+.crash button{margin-top:.9rem;background:var(--brass);color:#0A0A0A;font-weight:700;
+  border:0;border-radius:2rem;padding:.6rem 1.3rem;cursor:pointer}
