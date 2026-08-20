@@ -61,3 +61,6 @@ export/reel-01-v12.mp4
 export/reel-01-v13.mp4
 export/reel-01-v14.mp4
 export/line-three-options.m4a
+# Reference speaker audio for measurement only — someone else's content, not ours to
+# redistribute. audio/delivery.py documents where it came from; re-fetch if needed.
+audio/voice/profile/target/
