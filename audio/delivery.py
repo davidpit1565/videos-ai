@@ -52,7 +52,15 @@ def main():
     print(f"{a.label or a.wav.split('/')[-1]}   {dur:.1f}s, {len(words)} words")
     print(f"  rate           {syl / max(0.1, spoken):5.2f} syl/s   "
           f"{len(words) / dur * 60:5.0f} words/min")
-    print(f"  speech density {spoken / dur * 100:5.1f}%  of the time is speech")
+    # Measured from the audio. The first version of this divided the sum of the
+    # transcriber's word spans by the duration and called it speech density — that
+    # depends on the language and on how the transcriber cuts words, so comparing
+    # 61.6% of an English clone against 81.9% of a Dutch recording was not a like
+    # comparison, and a pacing decision was made on it.
+    ref = np.percentile(rms, 95)
+    quiet = rms < ref - 38
+    print(f"  silence       {quiet.mean() * 100:5.1f}%  of the audio, measured")
+    print(f"  (word spans   {spoken / dur * 100:5.1f}%  transcript-derived, language-dependent)")
     print(f"  pitch median   {np.median(v):5.0f} Hz")
     print(f"  pitch range    {np.percentile(st, 90) - np.percentile(st, 10):5.1f} "
           f"semitones (10th-90th)")
