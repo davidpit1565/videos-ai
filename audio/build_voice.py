@@ -119,6 +119,29 @@ def wer(said, want):
             d[i,j] = min(d[i-1,j]+1, d[i,j-1]+1, d[i-1,j-1]+(a[i-1] != b[j-1]))
     return d[len(a), len(b)] / len(b)
 
+def dup_tail(words, want):
+    """Chatterbox sometimes says the end of a line twice. Line 13 of episode 01 came
+    out as "...same model, new method. New method." — he heard it immediately.
+
+    The transcript check scored it 0.25 and accepted it as "best available", because
+    word error rate treats a duplicated phrase as a handful of insertions. A repetition
+    is not a mispronunciation, it is the wrong content, so it gets its own test.
+
+    Returns the time the repeat starts, so the take can be cut instead of thrown away.
+    """
+    h = [(n[0], w.start) for w in words for n in [_norm(w.word)] if n]
+    t = _norm(want)
+    if len(h) < len(t) + 2 or len(t) < 2:
+        return None
+    # the longest tail of the target that is spoken twice in a row at the end
+    for k in range(min(len(t), (len(h)) // 2), 1, -1):
+        a1 = [x[0] for x in h[-k:]]
+        a2 = [x[0] for x in h[-2 * k:-k]]
+        if a1 == a2 == t[-k:]:
+            return h[-k][1]
+    return None
+
+
 def polish(src, dst):
     """Same chain every episode, so every video sounds like the same person.
 
@@ -233,9 +256,30 @@ def main():
             torchaudio.save(probe, wav, m.sr)
             subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-i",probe,
                             "-ar","16000","-ac","1", probe + "16.wav"], check=True)
-            segs, _ = asr.transcribe(probe + "16.wav", language="en")
+            segs, _ = asr.transcribe(probe + "16.wav", language="en",
+                                     word_timestamps=True)
+            segs = list(segs)
             heard = " ".join(sg.text for sg in segs)
+            allw = [w for sg in segs for w in (sg.words or [])]
+            cut = dup_tail(allw, text)
+            if cut is not None and cut > 0.25:
+                # cut the second copy off rather than gamble on another roll
+                keep = int(cut * m.sr)
+                if keep < wav.shape[-1] - int(0.05 * m.sr):
+                    wav = wav[..., :keep]
+                    print(f"      said the tail twice — cut the repeat at "
+                          f"{cut:.2f}s", flush=True)
+                    torchaudio.save(probe, wav, m.sr)
+                    subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y",
+                                    "-i",probe,"-ar","16000","-ac","1",probe+"16.wav"],
+                                   check=True)
+                    segs2, _ = asr.transcribe(probe + "16.wav", language="en")
+                    heard = " ".join(sg.text for sg in segs2)
+                    cut = None
+            rate = syl / max(0.3, wav.shape[-1] / m.sr)
             e = wer(heard, text)
+            if cut is not None:
+                e += 1.0        # an uncuttable repetition must never win on score
             # a line crammed past ~6.5 syllables a second loses its consonants even
             # when the transcriber still guesses the words right
             penalty = max(0.0, (rate - a.max_rate) * 0.08)
@@ -302,7 +346,14 @@ def main():
         with wave.open(pol) as w0:
             secs0 = w0.getnframes() / w0.getframerate()
         rate0 = syllables(respell(text, phrases, words)) / max(0.3, secs0)
-        if rate0 < a.min_rate:
+        # Never speed up a line that failed the transcript check. Line 13 measured
+        # 2.2 syl/s and was sped up x1.20 — but it was slow *because* it said the
+        # phrase twice, so the speed-up compressed the defect instead of removing it
+        # and hid the thing the check had already noticed.
+        if err > 0.001 and rate0 < a.min_rate:
+            print(f"      {rate0:.1f} syl/s but the line failed its check — not "
+                  f"speeding it up, that would hide the cause", flush=True)
+        elif rate0 < a.min_rate:
             f = min(a.max_speedup, a.min_rate / rate0)
             if f > 1.01:
                 fast = os.path.join(tmp, f"{i:02d}f.wav")
