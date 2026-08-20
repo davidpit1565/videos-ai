@@ -19,8 +19,14 @@ import argparse, difflib, json, re, sys
 NORM = re.compile(r"[^a-z0-9]+")
 
 
+NUMS = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
+        "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10"}
+
 def norm(w):
-    return NORM.sub("", w.lower())
+    # the script writes "3", the transcriber writes "three" (or the reverse); the
+    # aligner has to treat them as the same word or the step lines never match up
+    t = NORM.sub("", w.lower())
+    return NUMS.get(t, t)
 
 
 def strip_tags(html):
@@ -136,6 +142,36 @@ def main():
             e = max(e, s + 0.12)          # a zero-length span would never light up
             words.append([round(s, 2), round(e, 2), w.rstrip("—–-"), chunk_id])
         chunk_id += 1
+
+    # A chunk is only read if it is on screen long enough to be read. "Five" held the
+    # frame for 0.12s and the chunk after it started at the same timestamp, so it was
+    # overwritten on the same frame and the step number was never visible at all. The
+    # four other step numbers ran 0.19-0.31s, under the 0.45s this project already
+    # treats as a glitch elsewhere. Rather than special-case the numbers, merge any
+    # chunk that cannot be read into the one that follows it.
+    MIN_ON = 0.42
+    merged, i = 0, 0
+    while i < len(words):
+        cid = words[i][3]
+        run = [j for j in range(i, len(words)) if words[j][3] == cid]
+        nxt = run[-1] + 1
+        if nxt < len(words):
+            on = words[nxt][0] - words[run[0]][0]      # until the next chunk takes over
+            if on < MIN_ON:
+                tgt = words[nxt][3]
+                for j in run:
+                    words[j][3] = tgt
+                merged += 1
+                continue                               # re-test the widened chunk
+        i = run[-1] + 1
+    if merged:
+        ids = sorted({w[3] for w in words})
+        remap = {c: n for n, c in enumerate(ids)}
+        for w in words:
+            w[3] = remap[w[3]]
+        print(f"  merged {merged} chunk(s) that would have been on screen under "
+              f"{MIN_ON:.2f}s")
+        chunk_id = len(ids)
 
     rows = ",\n    ".join(f'[{s},{e},{json.dumps(w, ensure_ascii=False)},{c}]'
                           for s, e, w, c in words)
