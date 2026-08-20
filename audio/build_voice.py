@@ -154,6 +154,12 @@ def main():
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--retries", type=int, default=3,
                     help="regenerate a line this many times if it is misheard")
+    ap.add_argument("--min-rate", type=float, default=4.6,
+                    help="syllables a second below which a line is dragging. Measured on "
+                         "nineteen reels, the accounts we are chasing run 231-313 words a "
+                         "minute (about 5.4-7.3 syl/s) where ours ran 150 (3.5).")
+    ap.add_argument("--max-speedup", type=float, default=1.20,
+                    help="most a dragging line may be sped up; pitch is preserved")
     ap.add_argument("--max-rate", type=float, default=6.5,
                     help="syllables per second above which a line is judged too dense")
     ap.add_argument("--gap", type=float, default=GAP,
@@ -277,7 +283,10 @@ def main():
         return pick, best[1]
 
     tmp = tempfile.mkdtemp()
-    segs, cues, t = [], [], 0.30
+    LEAD = 0.30
+    segs, cues, t = [], [], LEAD
+    if not a.fit:
+        segs.append(np.zeros(int(LEAD * SR_MIX), dtype=np.float32))
     timeline = np.zeros(0, dtype=np.float32)
     for i, text in enumerate(lines, 1):
         wav, err = say(text, i)
@@ -287,6 +296,19 @@ def main():
         torchaudio.save(raw, wav, m.sr)
         pol = os.path.join(tmp, f"{i:02d}p.wav")
         polish(raw, pol)
+        # A line that drags is the other half of "it goes too fast": ours was the slowest
+        # of nineteen reels measured, and slow reads as unclear rather than calm. Speed is
+        # corrected with rubberband, which keeps the pitch, and only up to a cap.
+        with wave.open(pol) as w0:
+            secs0 = w0.getnframes() / w0.getframerate()
+        rate0 = syllables(respell(text, phrases, words)) / max(0.3, secs0)
+        if rate0 < a.min_rate:
+            f = min(a.max_speedup, a.min_rate / rate0)
+            if f > 1.01:
+                fast = os.path.join(tmp, f"{i:02d}f.wav")
+                stretch(pol, fast, f)
+                print(f"      {rate0:.1f} syl/s, sped up x{f:.2f}", flush=True)
+                pol = fast
         with wave.open(pol) as w:
             s = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
         # trim the silence the model leaves at either end
@@ -323,7 +345,8 @@ def main():
         else:
             cues.append({"n": i, "line": text, "start": round(t, 2), "end": round(t + len(s) / SR_MIX, 2)})
             segs.append(s); t += len(s) / SR_MIX
-            g = a.long if i in SECTION_END else a.gap
+            closes_g = {int(x) for x in a.closes.split(",") if x.strip()} or SECTION_END
+            g = a.long if i in closes_g else a.gap
             if i < len(lines):
                 segs.append(np.zeros(int(g * SR_MIX), dtype=np.float32)); t += g
             print(f"  {i:02d}/{len(lines)}  {len(s)/SR_MIX:5.2f}s  {text[:52]}", flush=True)

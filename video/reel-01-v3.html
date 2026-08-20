@@ -291,8 +291,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <!-- S6 · TAKE IT 48.72–56.1 -->
 <section class="scene" data-in="48.72" data-out="56.1">
   <div class="pad"><div class="kb" style="display:flex;flex-direction:column;gap:3cqw">
-    <h2 class="b punch" data-at="48.75">Write <span class="box">ENGINE</span><br>below.</h2>
-    <p class="lede b" data-at="52.9" style="font-size:5.6cqw">I send you the prompt. No catch.</p>
+    <h2 class="b punch" data-at="48.75">The prompt is in<br>the <span class="box">caption</span>.</h2>
+    <p class="lede b" data-at="52.9" style="font-size:5.6cqw">Copy it. No email, no DM, no catch.</p>
   </div></div>
 </section>
 
@@ -338,12 +338,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [36.14,41.14,"It says what it's <em>assuming</em>. It finds the risk you didn't ask about."],
     [41.56,44.36,"It ends with a <em>decision</em>. Not a list."],
     [45.16,48.66,"You typed zero commands. Same model — <em>new method</em>."],
-    [49.46,52.46,"Write <em>ENGINE</em> below and I'll send you the prompt."],
+    [49.46,52.46,"The whole prompt is in the <em>caption</em>. Copy it."],
     [52.88,55.58,"Follow for setups that <em>actually work</em>."]
   ];
   /* [at, label, ember?] — 0.34s hard cuts between sections */
   var FLASH=[[7.58,"the fix",0],[18.80,"40 seconds",0],[31.98,"the result",0],[44.42,"honest",1],[48.72,"take it",0]];
-  var FDUR=0.66;
+  var FDUR=0.90;
   var INSTR="You are my Universal AI Engine. Automatically choose the best methods for every request. I should NOT need to use shortcuts…";
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
