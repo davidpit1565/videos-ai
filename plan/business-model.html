@@ -1,0 +1,527 @@
+<title>שני המנועים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;800&family=Assistant:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Brass on Ink — the house style, committed to one dark world on purpose.
+   Every colour is painted explicitly so the page holds on any host ground. */
+:root{
+  --ink:#0A0D12;--panel:#131A24;--panel-2:#1A222E;--line:#273140;--line-2:#36424F;
+  --brass:#F0CB66;--brass-hot:#FFDF95;--brass-dim:#8A7434;
+  --clay:#E37A56;--ok:#6FBF95;--steel:#7BB0D6;
+  --text:#F4F6F9;--muted:#9DAAB9;--faint:#6B7787;
+  --d:'Frank Ruhl Libre',Georgia,serif;
+  --b:'Assistant','Segoe UI',system-ui,-apple-system,sans-serif;
+  --m:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);direction:rtl;
+  font-family:var(--b);font-size:17.5px;line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px 90px}
+.num{font-family:var(--m);direction:ltr;unicode-bidi:isolate;display:inline-block;
+  white-space:nowrap;font-variant-numeric:tabular-nums}
+a{color:var(--brass)}
+
+/* ── masthead ─────────────────────────────── */
+header{padding:64px 0 34px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.mark{display:flex;align-items:center;gap:11px;margin-bottom:26px}
+.mark .tick{width:22px;height:12px;border-left:4px solid var(--brass);
+  border-bottom:4px solid var(--brass);transform:rotate(-45deg) translate(1px,-2px);flex:0 0 auto}
+.mark span{font-family:var(--m);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--faint)}
+h1{font-family:var(--d);font-weight:800;font-size:clamp(34px,6vw,54px);line-height:1.06;
+  letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--brass)}
+.stand{font-size:19px;color:var(--muted);margin:0;max-width:60ch}
+.stand b{color:var(--text)}
+.dateline{font-family:var(--m);font-size:12.5px;color:var(--faint);margin-top:22px}
+
+/* ── sections ─────────────────────────────── */
+section{padding:40px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.kicker{font-family:var(--m);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--brass);margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:20px;height:1px;background:var(--brass);opacity:.75}
+h2{font-family:var(--d);font-weight:700;font-size:clamp(25px,3.6vw,33px);line-height:1.16;
+  letter-spacing:-.015em;margin:0 0 14px;text-wrap:balance}
+h2 em{font-style:normal;color:var(--brass)}
+h3{font-family:var(--b);font-weight:800;font-size:19px;margin:30px 0 8px}
+p{margin:0 0 15px;max-width:66ch}
+strong{color:var(--text)}
+ul,ol{margin:0 0 16px;padding-inline-start:22px;max-width:66ch}
+li{margin-bottom:7px}
+li::marker{color:var(--brass-dim)}
+
+/* ── the two engines ──────────────────────── */
+.engines{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0 8px}
+@media(max-width:700px){.engines{grid-template-columns:1fr}}
+.eng{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:20px 21px}
+.eng.now{border-color:var(--brass-dim);
+  background:linear-gradient(180deg,rgba(240,203,102,.07),transparent 58%),var(--panel)}
+.eng .t{font-family:var(--m);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:9px}
+.eng.now .t{color:var(--brass)}
+.eng h4{font-family:var(--d);font-weight:700;font-size:22px;margin:0 0 8px;line-height:1.2}
+.eng p{font-size:15.5px;color:var(--muted);margin:0 0 10px}
+.eng .fig{font-family:var(--m);font-size:14px;color:var(--text);border-top:1px solid var(--line);
+  padding-top:11px;margin-top:4px;direction:rtl}
+.eng .fig b{color:var(--brass);font-variant-numeric:tabular-nums}
+
+/* ── tables ───────────────────────────────── */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--panel);margin:20px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px}
+th,td{padding:11px 13px;text-align:right;border-bottom:1px solid var(--line)}
+th{font-family:var(--m);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;background:var(--panel-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n{font-family:var(--m);font-variant-numeric:tabular-nums;direction:ltr;text-align:right;
+  white-space:nowrap}
+tr.hi td{background:rgba(240,203,102,.07)}
+tr.hi td:first-child{font-weight:700}
+caption{caption-side:bottom;text-align:right;padding:11px 13px;font-size:13.5px;color:var(--faint);
+  border-top:1px solid var(--line)}
+
+/* ── callouts ─────────────────────────────── */
+.note{border:1px solid var(--line);border-inline-start:3px solid var(--brass);background:var(--panel);
+  border-radius:6px;padding:18px 20px;margin:22px 0;color:var(--muted);font-size:16.5px}
+.note.warn{border-inline-start-color:var(--clay)}
+.note.ok{border-inline-start-color:var(--ok)}
+.note .t{font-family:var(--m);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brass);margin-bottom:8px}
+.note.warn .t{color:var(--clay)}
+.note.ok .t{color:var(--ok)}
+.note b{color:var(--text)}
+.note p:last-child{margin-bottom:0}
+
+/* ── the weekly plan ──────────────────────── */
+.weeks{list-style:none;padding:0;margin:22px 0 0;border:1px solid var(--line);border-radius:6px;
+  background:var(--panel);overflow:hidden}
+.weeks li{display:grid;grid-template-columns:78px 1fr;gap:16px;padding:16px 18px;
+  border-bottom:1px solid var(--line);margin:0}
+.weeks li:last-child{border-bottom:0}
+.weeks .w{font-family:var(--m);font-size:12.5px;color:var(--brass);letter-spacing:.04em;padding-top:3px}
+.weeks h4{margin:0 0 5px;font-family:var(--b);font-weight:800;font-size:17px}
+.weeks p{margin:0;font-size:15.5px;color:var(--muted);max-width:none}
+.weeks .metric{font-family:var(--m);font-size:13px;color:var(--steel);margin-top:6px;display:block}
+
+.ask{border:1px solid var(--brass-dim);border-radius:6px;
+  background:linear-gradient(180deg,rgba(240,203,102,.06),transparent 55%),var(--panel);
+  padding:22px 24px;margin-top:26px}
+.ask h3{margin-top:0}
+footer{padding:30px 0 0;color:var(--faint);font-family:var(--m);font-size:12.5px;line-height:1.9}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="mark"><span class="tick"></span><span>Actually Works · תוכנית עסקית</span></div>
+  <h1>מה אנחנו מוכרים <em>באמת</em></h1>
+  <p class="stand">הסרטונים הם לא המוצר. הם המנוע שמביא את מי שקונה את המוצר.
+  <b>המוצר הוא מערכות AI שעובדות בעסק אמיתי</b> — והתוכן הוא מה שנשאר אחרי שבנינו אותן.</p>
+  <p class="dateline">19 באוגוסט 2026 · כל מספר כאן נמדד או מסומן כהנחה</p>
+</header>
+
+<section>
+  <p class="kicker">המודל</p>
+  <h2>שני מנועים, ואחד מהם מזין את השני</h2>
+  <p>כל מי שעושה תוכן AI נמצא באחת משתי קטגוריות: <strong>מלמדים בלי לקוחות</strong>, או
+  <strong>סוכנויות בלי תוכן</strong>. הראשונים מסבירים כלים שלא הריצו בעסק, והשניים בונים
+  מערכות שאף אחד לא רואה. השילוב — לבנות בשביל כסף, ולפרסם את מה שנבנה — הוא מקום שכמעט ריק,
+  והוא זה שאפשרי לך <em>כבר עכשיו</em> ולא בעוד שנה.</p>
+
+  <div class="engines">
+    <div class="eng now">
+      <div class="t">מנוע א · כסף מהחודש הראשון</div>
+      <h4>מערכות AI לעסקים</h4>
+      <p>סוכן שעונה על פניות, אוטומציה שמעבירה מידע בין מערכות, מערכת שקוראת מסמכים ומוציאה
+      נתונים. פרויקט אחד, מחיר אחד, סוף מוגדר.</p>
+      <p class="fig">€1,500–8,000 לפרויקט · <b>לא דורש קהל בכלל</b></p>
+    </div>
+    <div class="eng">
+      <div class="t">מנוע ב · כסף מחודש 6 והלאה</div>
+      <h4>קהל ורשימת מייל</h4>
+      <p>ריל → נרשם → ניוזלטר שבועי → ספונסרים ומוצר דיגיטלי. נכס שנצבר לאט ואי אפשר לקצר.</p>
+      <p class="fig">שווה כסף מ-<b>5,000</b> נרשמים · אפס לפני זה</p>
+    </div>
+  </div>
+
+  <h3>הגלגל שמחבר ביניהם</h3>
+  <p>כל פרויקט שאתה בונה בכסף הופך ל<strong>פרק</strong> ול<strong>מקרה מבחן באתר</strong>.
+  כל פרק מביא פניות של לקוחות. הלקוח משלם על הבנייה, והבנייה מייצרת את התוכן בחינם — כלומר
+  אתה לא צריך "להמציא נושאים לסרטונים" ואף פעם לא נגמר לך מה להגיד. זה הדבר שאין למתחרים:
+  להם התוכן הוא עלות, אצלך הוא תוצר.</p>
+  <div class="note ok">
+    <div class="t">מה שמייחד — במשפט אחד</div>
+    <p><b>אני מפרסם את המערכות שאני בונה בפועל, כולל מה שנשבר בהן.</b> אף אחד בתחום לא
+    מפרסם כישלונות עם מספרים — כולם מפרסמים ניצחונות. זה בדיוק מה שגורם לעסק להאמין
+    שהמערכת שלך תעבוד אצלו.</p>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">השאלה שהעלית</p>
+  <h2>הולנדית — <em>מדדתי</em>, וזה יוצא הפוך ממה שחשבת</h2>
+  <p>הרעיון היה: אין סרטוני AI בהולנדית, אז ניכנס לשוק ריק. בדקתי את זה מול מספרי צפיות
+  אמיתיים — 200 תוצאות חיפוש ביוטיוב, שש שאילתות בהולנדית מול ארבע באנגלית.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>שפה</th><th>תוצאות</th><th>חציון צפיות</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>אנגלית</td><td class="n">80</td><td class="n">129,082</td></tr>
+        <tr><td>הולנדית</td><td class="n">119</td><td class="n">8,100</td></tr>
+        <tr><td>עברית</td><td class="n">100</td><td class="n">1,774</td></tr>
+      </tbody>
+      <caption>חציון = הסרטון האמצעי בתוצאות, כלומר מה שמקבל סרטון רגיל ולא מה שקיבל הלהיט.
+      נמדד ב-19.8.2026.</caption>
+    </table>
+  </div>
+
+  <p><strong>אנגלית מביאה פי 16 יותר מהולנדית ופי 73 יותר מעברית.</strong> ויש דבר שני,
+  מעניין יותר: כשחיפשתי בהולנדית, התוצאות החזקות ביותר היו <em>סרטונים באנגלית</em> —
+  Nick Saraev, Liam Ottley, Matt Wolfe. יוטיוב מגיש לדובר הולנדית תוכן באנגלית, והוא צופה
+  בו בשמחה. הולנד היא המדינה עם האנגלית הטובה בעולם למי שזו לא שפת אמו. כלומר <strong>אין
+  צימאון לתוכן AI בהולנדית — הקהל כבר מסופק באנגלית.</strong></p>
+  <p>וגם: הנישה לא ריקה. יש שם יוצרים קטנים שכבר עובדים —
+  <span class="num">Mika Karthe</span>, <span class="num">Wietse Karkdijk</span>,
+  <span class="num">Rick Bennemeer</span> — שחזרו על עצמם בתוצאות.</p>
+
+  <h3>אז מה כן עושים עם הולנדית</h3>
+  <p>הפוך את הכיוון: <strong>הולנדית היא לא ערוץ הקהל, היא ערוץ המכירות.</strong> בעל עסק
+  בהולנדית שרואה סרטון בהולנדית מבחור שנמצא לידו — הסיכוי שיפנה אליו גבוה בהרבה מזה של
+  צופה אנגלי אנונימי מהצד השני של העולם. צפיות הן לא המטרה שם; פניות הן.</p>
+  <ul>
+    <li><strong>אנגלית</strong> — הערוץ הראשי. ריל, יוטיוב, ניוזלטר. זה מנוע ב'.</li>
+    <li><strong>פלמית</strong> — 5–8 סרטונים לבעלי עסקים, דף נחיתה ולינקדאין בפלמית. אבל
+    המכירה עצמה בפלנדריה לא קורית בריל — היא קורית בלינקדאין ובאקוסיסטם של Voka ו-UNIZO.
+    פירוט בסעיף הבא.</li>
+    <li><strong>עברית</strong> — הלקוח הראשון. אתה יודע לדבר, למכור ולתמוך בעברית ללא
+    סיכון. חציון 1,774 צפיות זה חסר משמעות לקהל — אבל שיחה אחת בעברית שווה פרויקט.</li>
+  </ul>
+  <div class="note ok">
+    <div class="t">מגבלה שנפלה</div>
+    <p>בדקתי: המערכת שמשכפלת את הקול שלך תומכת ב-<b>23 שפות</b>, ובתוכן הולנדית ועברית.
+    כלומר <b>הקול שלך יכול לדבר הולנדית</b> בלי שתקליט כלום מחדש. שלחתי לך דוגמה לשמוע.
+    השאלה נשארת עסקית, לא טכנית: <b>אתה מדבר הולנדית ברמה שמאפשרת לענות לתגובות ולנהל
+    שיחת מכירה?</b> אם כן — זה קו הכנסה. אם לא — אל תיגע בזה, כי ערוץ שאתה לא יכול לקרוא
+    את התגובות בו הוא מלכודת.</p>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">פלנדריה</p>
+  <h2>מה מצאנו בשוק — ושתי הפתעות</h2>
+  <p>שלחתי סוכן מחקר לבדוק את השוק הבלגי בפועל, עם דרישה לצטט מקור לכל טענה. שני דברים
+  יצאו שם שמשנים את התוכנית.</p>
+
+  <h3>הפתעה ראשונה: כמעט אף אחד לא מפרסם מחירים</h3>
+  <p>מצאנו כעשרה ספקים פלמיים שמוכרים בדיוק את מה שאתה מתכוון למכור — סוכני AI, אוטומציות
+  n8n, אינטגרציות. <strong>רק שניים מפרסמים מחיר בכלל:</strong></p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>ספק</th><th>מה מפרסמים</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>Codelines · אנטוורפן</td><td class="n">Discovery Sprint vanaf €2.500</td></tr>
+        <tr><td>LTC · לייז'/בריסל</td><td class="n">from €249/month</td></tr>
+        <tr><td>שמונה ספקים נוספים</td><td>"בקשו הצעה"</td></tr>
+      </tbody>
+      <caption>Codelines גם כותבים שתהליך אחד שמאוטמט מלא עולה "enkele tienduizenden euro's" —
+      עשרות אלפי אירו. להשוואה: פרילנסר ידע בפלנדריה הוא כ-€750 ליום, וסוכנויות פיתוח
+      €85–135 לשעה.</caption>
+    </table>
+  </div>
+  <p><strong>זו הפרצה, וזה גם מה שמייחד אותך שם:</strong> להיות היחיד שכותב מחיר באתר.
+  בעל עסק שרואה "€2,500, שבועיים, זה מה שנכנס וזה מה שלא" מול תשעה אתרים שכותבים "בקשו
+  הצעה" — מרים טלפון אליך. שקיפות במחיר היא אותה שקיפות שאתה עושה בתוכן, רק במכירות.</p>
+
+  <h3>הפתעה שנייה: תוכן AI בפלמית באמת כמעט לא קיים — אבל גם הקהל שם קטן</h3>
+  <p>הערוץ ההולנדי הגדול ביותר שהצלחנו לאמת בנישה הזאת הוא <span class="num">237</span>
+  נרשמים. מה שכן קיים בהולנדית מגיע כמעט כולו מהולנד, לא מבלגיה. כלומר הניתוח שלך היה
+  נכון — אין תוכן — אבל בשילוב עם המדידה מהסעיף הקודם (חציון 8,100 מול 129,082) המשמעות
+  היא: <strong>אין שם קהל לצבור, יש שם לקוחות לתפוס.</strong></p>
+
+  <h3>איפה בעלי עסקים פלמיים באמת מחפשים</h3>
+  <p>לא באינסטגרם. הערוצים שאימתנו: <strong>Voka</strong> (מסלול Generative AI עם Antwerp
+  Management School, Digihubs לכל מחוז, AI Summer Week), <strong>UNIZO</strong> (סדנאות
+  "AI essentials"), <strong>VLAIO</strong> ו-<strong>VAIA</strong> (האקדמיה הפלמית ל-AI).
+  אלה מקומות שאפשר להופיע בהם, ללמד בהם, ולהכיר בהם אנשים — וזה שווה יותר מאלף עוקבים.</p>
+
+  <div class="note warn">
+    <div class="t">KMO-portefeuille — מלכודת שכדאי להכיר לפני שמבטיחים ללקוח</div>
+    <p>הסבסוד הפלמי מחזיר <b>30%</b> לחברות קטנות, עד <b>€7,500</b> בשנה. אבל
+    <b>מ-1 בפברואר 2026 הקטגוריה "advies" מכסה רק סייבר</b> — ייעוץ ומימוש בנושאים אחרים
+    כבר לא כלולים. מה שכן נשאר כלול זה <b>הדרכה</b> תחת הנושא Digitalisering.</p>
+    <p>המשמעות המעשית: <b>בנייה של אוטומציה אי אפשר לסבסד. סדנה אפשר.</b> ולספק עצמו יש
+    תנאי כניסה — מבדק לפי תקן kmop דרך משרד ביקורת מוסמך, ואז רישום ל-5 שנים. לא לבנות
+    על זה את התוכנית; לחזור לזה כשיש רקורד.</p>
+  </div>
+
+  <div class="note">
+    <div class="t">מה שצריך להסדיר לפני החשבונית הראשונה</div>
+    <p>עוסק שמוכר שירות בבלגיה נרשם למע"מ <b>לפני</b> תחילת הפעילות, ומספר המע"מ הוא מספר
+    המפעל. יש <b>פטור לעסק קטן עד €25,000</b> מחזור בשנה — ובשנה שמתחילים בה הוא
+    <b>מחולק לפי ימים</b> (מי שמתחיל ב-1 ביולי מגיע ל-€12,603). בפטור אי אפשר לגבות מע"מ
+    ואי אפשר להחזיר מע"מ על הוצאות, צריך להגיש טופס פתיחה e604A, ומדי שנה רשימת לקוחות
+    עד 31 במרץ.</p>
+    <p>בשנה הראשונה הפטור כמעט בוודאות מתאים לך. <b>זה הצעד הבירוקרטי היחיד שחוסם
+    הכנסה</b> — ושווה לעשות אותו לפני שיש לקוח, לא אחרי.</p>
+  </div>
+
+  <div class="note warn">
+    <div class="t">מה שלא אומת — ואל תתייחס לזה כעובדה</div>
+    <p>גיל 18 ותנאי הכשירות לפתיחת עסק עצמאי בפלנדריה (הדף הרשמי לא נטען), עלות אגרת
+    הרישום, עלות מבדק תקן kmop והאם עסק חד-אדם בלי רקורד עובר אותו, והאם סדנת n8n נחשבת
+    "הדרכה" כשירה. את ארבעת אלה צריך לאמת מול רואה חשבון או מול VLAIO ישירות לפני שמבטיחים
+    משהו ללקוח.</p>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">גבול אחד</p>
+  <h2>לתרגם סרטונים של אחרים — <em>לא</em></h2>
+  <p>אני אומר את זה פעם אחת ועובר הלאה. תרגום של סרטון קיים הוא יצירה נגזרת: מבחינה משפטית
+  זו הפרת זכויות יוצרים, מבחינת הפלטפורמות זה מסומן כ-reused content וחוסם מונטיזציה, ומבחינה
+  עסקית זה הורס בדיוק את הדבר היחיד שמייחד אותך — <strong>"בדקתי את זה בעצמי"</strong>.
+  אי אפשר להגיד את זה על סטאפ שמישהו אחר בדק.</p>
+  <p>מה שכן מותר, ואפילו מומלץ: <strong>נושאים אינם קניין של אף אחד.</strong> תיקח את רשימת
+  הנושאים המבוקשים מהמדידה שלנו — n8n, סוכנים, למכור אוטומציה לעסקים — ותבנה כל אחד מהם
+  לבד, בקול שלך, עם המספרים שלך. זה גם חוקי, גם טוב יותר, וגם מה שהופך אותך למישהו ולא
+  לתעלה שמשדרת מחדש.</p>
+</section>
+
+<section>
+  <p class="kicker">המספרים</p>
+  <h2>מאיפה מגיע כסף, ומה באמת דרוש ל-<em>€100 אלף</em></h2>
+  <p>אני מציג את זה כטווחים עם הנחות מסומנות, כי מספר מדויק כאן יהיה המצאה.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>מקור</th><th>מה דרוש</th><th>€ בחודש</th><th>מתי ריאלי</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>פרויקטים לעסקים</td><td>2 פרויקטים · ~40 שיחות</td><td class="n">3,000–10,000</td><td>חודש 1–2</td></tr>
+        <tr><td>ריטיינר תחזוקה</td><td>2–3 לקוחות קיימים</td><td class="n">1,000–3,000</td><td>חודש 3–4</td></tr>
+        <tr><td>ספונסר בניוזלטר</td><td>5,000 נרשמים</td><td class="n">1,200–3,800</td><td>חודש 6–9</td></tr>
+        <tr><td>ספונסר בניוזלטר</td><td>30,000 נרשמים</td><td class="n">10,000–20,000</td><td>שנה 2</td></tr>
+        <tr><td>מוצר דיגיטלי</td><td>3,000 נרשמים</td><td class="n">500–2,500</td><td>חודש 8+</td></tr>
+        <tr><td>אפיליאייט</td><td>קהל קטן</td><td class="n">100–600</td><td>חודש 3+</td></tr>
+      </tbody>
+      <caption><b>הנחות:</b> סגירה של 5% מהשיחות · מחיר פרויקט ממוצע €2,500 · CPM של
+      ‎$140–220 לניוזלטר AI (מחיר שוק שנבדק) · מילוי חצי מהמקומות בשנה הראשונה.</caption>
+    </table>
+  </div>
+
+  <div class="note warn">
+    <div class="t">€100,000 בחודש — האמת בלי ריכוך</div>
+    <p>אין דרך להגיע לשם בחודש, ואין דרך להגיע לשם לבד. פירוק: <b>מפרויקטים</b> זה 20
+    פרויקטים בחודש, כלומר צוות של 5–8 בנאים. <b>מניוזלטר</b> זה בסביבות 150,000 נרשמים —
+    פי 1,700 ממה שיש היום. <b>ריאלי בשנה הראשונה: €10–25 אלף בחודש</b> עם עובד אחד, וזה
+    כבר עסק טוב מאוד לגילך. €100 אלף הוא יעד לשנה 2–3, או עסק אחר לגמרי (מוצר SaaS).
+    להעמיד פנים אחרת פירושו לתכנן על בסיס שקר.</p>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">הפלטפורמות</p>
+  <h2>מה כל אחת עושה, ובאיזה סדר</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>איפה</th><th>התפקיד</th><th>מה עולה לשם</th><th>עכשיו</th></tr></thead>
+      <tbody>
+        <tr><td>אינסטגרם</td><td>חשיפה קרה + פניות ב-DM</td><td>ריל 45–60 שניות</td><td>יש · 86 עוקבים</td></tr>
+        <tr class="hi"><td>טיקטוק</td><td>החשיפה הקרה הטובה ביותר לחשבון חדש</td><td>אותו ריל בדיוק</td><td><b>לפתוח</b></td></tr>
+        <tr><td>יוטיוב Shorts</td><td>עוד הפצה, אפס עבודה</td><td>אותו ריל בדיוק</td><td>לפתוח ערוץ</td></tr>
+        <tr><td>יוטיוב ארוך</td><td>הנכס שממשיך להביא צפיות שנה אחרי</td><td>25–60 דקות, בנייה מלאה</td><td>אחרי 3 ריל</td></tr>
+        <tr><td>ניוזלטר</td><td>הנכס היחיד שבאמת שלך</td><td>סטאפ אחד בשבוע</td><td>Beehiiv מחובר</td></tr>
+        <tr><td>אתר</td><td>הוכחה שמוכרת — מקרי מבחן</td><td>4 מקרים, לא יותר</td><td>לבנות</td></tr>
+      </tbody>
+      <caption>סרטון אחד → שלוש פלטפורמות. אותו קובץ, אותו קול, אפס עבודה נוספת.</caption>
+    </table>
+  </div>
+  <p>מהמדידה: ביוטיוב <strong>ארוך מנצח בפער</strong> — חציון של 206 אלף צפיות לסרטונים מעל
+  30 דקות מול 26 אלף ל-1.5–10 דקות. הלהיטים הם "קורס מלא" ו-"מאפס עד סוכן ראשון". לכן פרק
+  n8n הוא הפרק הארוך והמלא, והריל הוא רק הפתיל שמוביל אליו.</p>
+</section>
+
+<section>
+  <p class="kicker">האתר</p>
+  <h2>מקרי מבחן — עם כלל אחד שאין עליו פשרה</h2>
+  <p>מבנה של כל מקרה, ארבעה במקסימום כדי שכל אחד ייקרא:</p>
+  <ol>
+    <li><strong>הבעיה</strong> — במשפט אחד, בשפה של בעל העסק ולא בשפה טכנית.</li>
+    <li><strong>מה נבנה</strong> — בשלושה משפטים, בלי שמות של ספריות.</li>
+    <li><strong>מה נמדד</strong> — שעות שנחסכו, זמן תגובה, טעויות שנמנעו. מספר אמיתי אחד.</li>
+    <li><strong>מה נשבר</strong> — ומה עשינו. זה מה שגורם לקורא להאמין לשלושת הקודמים.</li>
+    <li><strong>זמן ומחיר</strong> — טווח, לא מחירון.</li>
+  </ol>
+  <div class="note warn">
+    <div class="t">הכלל</div>
+    <p>אין לקוחות עדיין, ולכן <b>אין מקרי מבחן של לקוחות</b>. לא נמציא אחד — לא שם, לא
+    מספר, לא ציטוט. המקרה הראשון באתר הוא <b>המערכת שלנו עצמה</b>, מסומן במפורש כפרויקט
+    פנימי: צינור הפקה אוטומטי, קול משוכפל, ומערכת ניהול עם חיבור חי לאינסטגרם, ל-Beehiiv
+    ולמסד נתונים — נבנה בשלושה ימים, וכל מספר בו מדיד. זה מוכיח יכולת בלי לשקר, וזה מוחלף
+    במקרה אמיתי ברגע שיש אחד.</p>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">הקהל</p>
+  <h2>מי הלקוח שלנו — ולמה <em>אחד</em> ולא שבעה</h2>
+  <p>מנית שבע אפשרויות: בעלי עסקים, אנשים פרטיים, מבוגרים, צעירים, עזרה לבית הספר, עזרה
+  ליום־יום, עזרה בעבודה. כולן קהלים אמיתיים. אבל <strong>קהל נבחר לפי מי משלם</strong>, לא
+  לפי מי צופה — ומהרגע שבוחרים לפי צפיות, נבנה ערוץ גדול שאי אפשר להרוויח ממנו.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>קהל</th><th>צופה?</th><th>משלם?</th><th>מה עושים איתו</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>בעל עסק, 1–20 עובדים</td><td>כן</td><td><b>כן — €1,500–8,000</b></td><td>הקו המרכזי</td></tr>
+        <tr><td>שכיר שרוצה להיפטר מעבודה משעממת</td><td>מאוד</td><td>קורס ב-€100–300</td><td>אותו תוכן בדיוק · קונה מאוחר יותר</td></tr>
+        <tr><td>אנשים פרטיים · יום־יום</td><td>כן</td><td>כמעט לא</td><td>לא הקו · מדי פעם לחשיפה</td></tr>
+        <tr><td>תלמידים · שיעורי בית</td><td>מאוד</td><td>לא</td><td><b>לא ניגע</b></td></tr>
+      </tbody>
+      <caption>שורה 1 ושורה 2 הן <b>אותו אדם בשלבים שונים</b>: לא-טכני, 25–45, טובע בעבודה
+      חוזרת. זה מה שהופך קו אחד לשלושה מקורות הכנסה.</caption>
+    </table>
+  </div>
+
+  <h3>הקו, במשפט אחד</h3>
+  <p class="stand" style="font-size:20px;color:var(--text)"><strong>AI שעושה את החלק
+  המשעמם בעבודה שלך — נבנה מול העיניים שלך, כולל מה שנשבר.</strong></p>
+  <p>למה זה עובד: אותו אדם שצופה בסרטון הוא זה שנרשם לניוזלטר, זה שקונה קורס בעוד חצי שנה,
+  וזה שכותב "אתה יכול לבנות לי את זה?". תלמידים לא. חדשות AI לבד — גם לא, וזה החלק שכדאי
+  לשמוע: <strong>חדשות מביאות צפיות בלי כוונת קנייה.</strong> לכן הן נשארות כפורמט אחד קצר
+  בשבוע — "מה השתנה, ומה זה אומר על העבודה שלך" — ולא הופכות להיות הערוץ.</p>
+</section>
+
+<section>
+  <p class="kicker">השפה</p>
+  <h2>גם אנגלית וגם פלמית — עם <em>תפקידים שונים</em></h2>
+  <p>שאלת אם רק פלמית או גם אנגלית. התשובה: שתיהן, אבל לא באותה מידה ולא לאותה מטרה.</p>
+  <div class="engines">
+    <div class="eng">
+      <div class="t">אנגלית · 4–5 בשבוע</div>
+      <h4>מנוע הקהל</h4>
+      <p>חציון 129,082 צפיות בנושא. כאן נבנים העוקבים, הניוזלטר, הספונסרים והקורסים. בלי
+      אנגלית אין נפח, ובלי נפח אין ספונסר ואין קורס.</p>
+    </div>
+    <div class="eng now">
+      <div class="t">פלמית · 1 בשבוע</div>
+      <h4>מנוע הכסף</h4>
+      <p>חציון 8,100 — קטן, אבל מולו שוק שבו אף אחד לא מפרסם מחירים ואף אחד לא מייצר תוכן.
+      לא לחשיפה: ללקוחות. לינקדאין, Voka, UNIZO.</p>
+    </div>
+  </div>
+  <p><strong>למה לא רק פלמית:</strong> תקרת הקהל שם נמוכה מדי לספונסר ולקורס — הערוץ יישאר
+  קטן לנצח. <strong>למה לא רק אנגלית:</strong> באנגלית אתה מתחרה מול Saraev ו-Ottley עם
+  מיליון עוקבים על אותו צופה, ומוותר על היתרון היחיד שאין להם — שאתה כאן, מדבר את השפה,
+  בשוק שבו התחרות לא מפרסמת מחיר.</p>
+  <p>העלות השולית של השפה השנייה כמעט אפס: אותו סטאפ, אותו רנדר, והקול שלך מדבר את שתיהן.
+  זה רק דורש את פרופיל הקול הפלמי — 45 שניות הקלטה, פעם אחת.</p>
+</section>
+
+<section>
+  <p class="kicker">ההפקה</p>
+  <h2>לייצר באצווה, לפרסם כל יום — <em>וזה</em> הסדר הנכון</h2>
+  <p>ההצעה שלך נכונה כמעט לגמרי. הנה מה שאני מאשר, ומה שאני משנה ולמה.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>מה שאמרת</th><th>מה שאני אומר</th></tr></thead>
+      <tbody>
+        <tr><td>לייצר הכל באצווה אחת</td><td class="hi"><b>כן.</b> יום הפקה אחד בשבוע: אני מייצר, אתה מאשר</td></tr>
+        <tr><td>סרטון אחד ביום, חוץ משבת</td><td class="hi"><b>כן.</b> 6 בשבוע · עקביות שווה יותר מכמות</td></tr>
+        <tr><td>ואולי כמה סרטונים ביום</td><td><b>לא.</b> זה מפצל את הקריאה של האלגוריתם על החשבון. שניים ביום רק כשבודקים שני הוקים על אותו תוכן</td></tr>
+        <tr><td>סרטון גדול כל כמה ימים</td><td><b>אחד בשבוע.</b> הארוך הוא הנכס המחפשׂ — אבל הוא עבודה אמיתית, ושבועי הוא קצב שנשמר</td></tr>
+        <tr><td>לתכנן שבוע מראש ב-CRM</td><td class="hi"><b>כן — ואני בונה את זה.</b> שדה תאריך ופלטפורמה לכל פרק, ותצוגת שבוע</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>השרשרת לכל סוכן — לכל חלק תפקיד אחד</h3>
+  <ol class="steps" style="margin-top:18px">
+    <li><strong>ריל אחד</strong> — ההוק והתוצאה. תפקידו היחיד: לעצור גלילה ולשלוח לארוך.</li>
+    <li><strong>סרטון ארוך אחד</strong> — הבנייה המלאה מקצה לקצה. תפקידו: אמון, וחיפוש ביוטיוב.</li>
+    <li><strong>תגובה "prompt"</strong> → DM אוטומטי → דף ההרשמה → <strong>הסוכן עצמו</strong>.</li>
+    <li><strong>הניוזלטר</strong> — שולח את הסוכן, ושואל מה נשבר. התשובות קובעות את הפרק הבא.</li>
+  </ol>
+  <p>כמה רילים לאותו סוכן? רק למי שעבד. מרחיבים מנצח, לא את כל הקטלוג. וכל פרסום מעדכן
+  לבד את ספריית הסוכנים באתר — אותם נתונים, מקום אחד.</p>
+
+  <h3>קורסים בתשלום — כן, אבל אחרי עשרה</h3>
+  <p>קורס נמכר לקהל שכבר סומך עליך. הסדר הבריא: <strong>עשרה סוכנים בחינם</strong>, ואז קורס
+  שמחבר אותם למסלול אחד ("מאפס לסוכן שעובד בעסק שלך"). המחיר ייקבע ממה שאנשים באמת יבקשו
+  בתגובות ובמיילים — לא ממה שנשמע נכון עכשיו.</p>
+
+  <h3>לעקוב אחרי מה שקורה בעולם ה-AI</h3>
+  <p>אני מקים סריקה שבועית אוטומטית — אותם כלים שבהם מדדתי ביקוש — שמייצרת כל יום שני
+  ב-CRM דירוג של <strong>מה השתנה השבוע ומה זה אומר על העבודה של הצופה שלנו</strong>. משם
+  נבחרים הנושאים, במקום מהרגשה.</p>
+</section>
+
+<section>
+  <p class="kicker">90 יום</p>
+  <h2>מה עושים, שבוע-שבוע</h2>
+  <p>לכל שבוע יש מדד אחד. אם המדד לא זז — משנים את השבוע הבא, לא ממשיכים באותו דבר חזק יותר.</p>
+  <ol class="weeks">
+    <li><span class="w">שבוע 1</span><div>
+      <h4>לפרסם. סוף.</h4>
+      <p>פרק 01 באינסטגרם, פותחים טיקטוק וערוץ יוטיוב, אותו קובץ עולה לשלושתם. ManyChat על
+      התגובות. 10 שיחות יציאה לעסקים שאתה מכיר — לא מכירה, שאלה: "איך זה עובד אצלכם היום".</p>
+      <span class="metric">מדד: פרק אחד באוויר · 10 שיחות</span></div></li>
+    <li><span class="w">שבוע 2–3</span><div>
+      <h4>שני פרקים, ולקוח ראשון בשיחה</h4>
+      <p>פרקים 02 (סוכנים) ו-03 (n8n, הארוך). 20 שיחות נוספות. מהראשונה שנשמעת אמיתית —
+      מפה תהליך ומגישים הצעה קטנה.</p>
+      <span class="metric">מדד: שמירות לצפייה · הצעה אחת בחוץ</span></div></li>
+    <li><span class="w">שבוע 4–6</span><div>
+      <h4>לבנות בשביל כסף, ולפרסם את זה</h4>
+      <p>הפרויקט הראשון. במקביל פרק 04 — "המערכת שהייתי מוכר לעסק". סיום הפרויקט = מקרה
+      מבחן ראשון באתר, עם מה שנשבר.</p>
+      <span class="metric">מדד: €1,500+ ראשונים · מקרה אחד באתר</span></div></li>
+    <li><span class="w">שבוע 7–9</span><div>
+      <h4>לחזור על מה שעבד, לזרוק את מה שלא</h4>
+      <p>לפי הנתונים בסטודיו: הפורמט עם שמירות לצפייה הגבוהות מקבל שני פרקים נוספים, השאר
+      נזרק. 5–8 סרטונים בהולנדית לבעלי עסקים (רק אם ההולנדית שלך שיחתית).</p>
+      <span class="metric">מדד: 500 נרשמים · לקוח שני</span></div></li>
+    <li><span class="w">שבוע 10–13</span><div>
+      <h4>להפוך פרויקט למוצר</h4>
+      <p>אם שני לקוחות ביקשו את אותו דבר — זה מוצר, לא פרויקט. אותה מערכת נמכרת שוב במחיר
+      מלא וברבע מהעבודה. זו הנקודה שבה ההכנסה מתחילה לגדול בלי שאתה עובד יותר.</p>
+      <span class="metric">מדד: €5,000 בחודש · 1,000 נרשמים</span></div></li>
+  </ol>
+</section>
+
+<section>
+  <p class="kicker">כללי החלטה</p>
+  <h2>מתי מפסיקים ומתי מכפילים</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>אם</th><th>אז</th></tr></thead>
+      <tbody>
+        <tr><td>שמירות לצפייה מתחת ל-1% אחרי 5 פרקים</td><td>הבעיה בתוכן, לא בהוק. לשנות פורמט — מבנייה מלאה לתוצאה מוכחת</td></tr>
+        <tr><td>צפיות גבוהות, שמירות נמוכות</td><td>ההוק עובד והתוכן לא. אותו הוק, סטאפ שימושי יותר</td></tr>
+        <tr><td>40 שיחות יציאה ואפס הצעות</td><td>ההצעה לא ברורה. לצמצם למשפט אחד עם מספר</td></tr>
+        <tr><td>אין נרשמים אחרי 3 פרקים באוויר</td><td>הבעיה בדף או בקישור, לא בסרטון. לבדוק את המסלול מ-DM לדף</td></tr>
+        <tr class="hi"><td>שני לקוחות ביקשו אותו דבר</td><td>להפסיק למכור פרויקטים ולהתחיל למכור את זה כמוצר</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">ממך</p>
+  <h2>שלוש החלטות, ואני ממשיך לבד</h2>
+  <div class="ask">
+    <h3>1 · הולנדית — שיחתית או לא</h3>
+    <p>תשובה של מילה. היא קובעת אם בונים קו מכירות שלם או לא נוגעים בזה.</p>
+    <h3>2 · גרסת הקול</h3>
+    <p>מספר מתוך חמש הגרסאות שבדקת. זה חוסם כל סרטון שנוצר מכאן.</p>
+    <h3>3 · לפרסם את פרק 01</h3>
+    <p>לא עוד שיפור אחד. כל השאר בתוכנית הזאת תלוי בכך שיש פוסט אחד באוויר שאפשר למדוד.</p>
+  </div>
+</section>
+
+<footer>
+  Actually Works · המסמך הזה מחליף את התוכנית הקודמת. כל מספר שנמדד מסומן בטבלה שלו,
+  וכל הנחה כתובה כהנחה.
+</footer>
+</div>

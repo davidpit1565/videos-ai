@@ -7,6 +7,7 @@ import { useStudio } from "./providers";
 const TABS = [
   { href: "/", label: "לוח" },
   { href: "/videos", label: "פרקים" },
+  { href: "/week", label: "השבוע" },
   { href: "/pipeline", label: "צינור" },
   { href: "/agent", label: "סוכן" },
 ];

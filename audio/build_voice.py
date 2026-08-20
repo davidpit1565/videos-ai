@@ -16,7 +16,7 @@ PRON  = "audio/voice/profile/pronunciation.json"
 TONE  = "audio/voice/profile/room-tone.wav"
 BREATH= "audio/voice/profile/breaths.wav"
 SR_MIX = 48000
-GAP, LONG = 0.26, 0.52          # pause after a line, and after a section
+GAP, LONG = 0.42, 0.85          # pause after a line, and after a section
 SECTION_END = {4, 8, 13, 15}
 
 def cue_times(path):
@@ -147,15 +147,19 @@ def main():
     ap.add_argument("--fit", help="same build, but place each line in its exact cue slot,\n                          time-stretching within +/-12%% so the cut does not move")
     ap.add_argument("--lines", help="a plain text file, one spoken line per line")
     ap.add_argument("--out", required=True)
-    ap.add_argument("--exaggeration", type=float, default=0.40,
+    ap.add_argument("--exaggeration", type=float, default=0.50,
                     help="0.3 flat · 0.5 conversational · 0.7 animated")
-    ap.add_argument("--cfg", type=float, default=0.60,
+    ap.add_argument("--cfg", type=float, default=0.30,
                     help="lower = looser, more natural rhythm")
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--retries", type=int, default=3,
                     help="regenerate a line this many times if it is misheard")
     ap.add_argument("--max-rate", type=float, default=6.5,
                     help="syllables per second above which a line is judged too dense")
+    ap.add_argument("--gap", type=float, default=GAP,
+                    help="silence after every line; he asked for more room to breathe")
+    ap.add_argument("--long", type=float, default=LONG,
+                    help="silence after a section end")
     ap.add_argument("--room-db", type=float, default=-55,
                     help="level of the room-tone bed; -55 matches his real room")
     ap.add_argument("--dry", action="store_true",
@@ -266,7 +270,7 @@ def main():
         else:
             cues.append({"n": i, "line": text, "start": round(t, 2), "end": round(t + len(s) / SR_MIX, 2)})
             segs.append(s); t += len(s) / SR_MIX
-            g = LONG if i in SECTION_END else GAP
+            g = a.long if i in SECTION_END else a.gap
             if i < len(lines):
                 segs.append(np.zeros(int(g * SR_MIX), dtype=np.float32)); t += g
             print(f"  {i:02d}/{len(lines)}  {len(s)/SR_MIX:5.2f}s  {text[:52]}", flush=True)

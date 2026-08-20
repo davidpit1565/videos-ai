@@ -3,6 +3,10 @@
 #   ./render.sh <html> <width> <height> <seconds> <narration.wav> <out.mp4> [music.wav]
 set -euo pipefail
 HTML="$1"; W="$2"; H="$3"; DUR="$4"; VO="$5"; OUT="$6"; MUS="${7:-}"
+# Measured on the first mixes: at 0.34 the bed came back 0.5 dB LOUDER than the
+# narration in the gaps, because loudnorm lifts the whole mix afterwards. The bed
+# belongs 15-20 dB under the voice, which is this.
+MUSIC_VOL="${MUSIC_VOL:-0.06}"
 # FRAMES=1 captures frame by frame instead of recording playback: slower, but the
 # timeline cannot drift, which matters when narration is cut to authored times.
 FRAMES="${FRAMES:-0}"
@@ -37,7 +41,7 @@ if [ -n "$MUS" ]; then
   # is audible in the gaps and never fights the narration
   ffmpeg -hide_banner -loglevel error -y "${VIN[@]}" -i "$VO" -i "$MUS" \
     -filter_complex "$VCHAIN;$VOCHAIN;\
-[2:a]aresample=48000,volume=0.34[mus];\
+[2:a]aresample=48000,volume=${MUSIC_VOL}[mus];\
 [vo]asplit=2[vo1][key];\
 [mus][key]sidechaincompress=threshold=0.05:ratio=9:attack=12:release=420[duck];\
 [vo1][duck]amix=inputs=2:duration=first:dropout_transition=0:normalize=0,\

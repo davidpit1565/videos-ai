@@ -14,6 +14,8 @@ audio/voice/profile/reference-raw.wav
 export/*CLONED*.mp4
 # delivery remux of a render that is already reproducible from render.sh
 export/*INSTAGRAM*.mp4
+# final delivery renders — reproducible from scripts/produce.sh, too large for git
+export/*FINAL*.mp4
 
 # Next.js build output (studio)
 .next/
@@ -24,3 +26,22 @@ audio/__pycache__/
 audio/voice/work/
 audio/voice/*-cues.json
 export/voice-AB*.m4a
+audio/voice/test/
+export/voice-test-*.m4a
+
+audio/voice/lang/
+audio/voice/test/
+export/voice-*.m4a
+
+# generated listening tests and their manifests
+export/line-*.m4a
+audio/voice/profile/line-candidates.json
+
+# the losing reference candidate — regenerable with audio/build_reference.py
+audio/voice/profile/reference-measured.wav
+
+# paced render and the Flemish listening options — both regenerable, and too large
+# for history: the retimed build, the reference windows and the scripts are all tracked
+export/*PACED*.mp4
+export/flemish-option-*.m4a
+export/*SAFE*.mp4

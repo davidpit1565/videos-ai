@@ -1,0 +1,272 @@
+[
+ {
+  "word": "harder",
+  "sound": "post-vocalic R + flapped D",
+  "ok": true,
+  "soft": true,
+  "tail_db": -20.9,
+  "heard": "It makes chat GPT think harder, not better.",
+  "respell": "harderr"
+ },
+ {
+  "word": "think",
+  "sound": "voiceless TH",
+  "ok": true,
+  "soft": false,
+  "tail_db": -13.2,
+  "heard": "Nobody told it how to think.",
+  "respell": null
+ },
+ {
+  "word": "that",
+  "sound": "voiced TH",
+  "ok": true,
+  "soft": false,
+  "tail_db": -13.8,
+  "heard": "That is the whole job.",
+  "respell": null
+ },
+ {
+  "word": "three",
+  "sound": "THR cluster",
+  "ok": true,
+  "soft": false,
+  "tail_db": null,
+  "heard": "3 Things Break First",
+  "respell": null
+ },
+ {
+  "word": "really",
+  "sound": "initial R",
+  "ok": true,
+  "soft": true,
+  "tail_db": -27.9,
+  "heard": "It really does work.",
+  "respell": null
+ },
+ {
+  "word": "answers",
+  "sound": "NS cluster",
+  "ok": true,
+  "soft": false,
+  "tail_db": -8.9,
+  "heard": "Your chat GPT gives you generic answers.",
+  "respell": null
+ },
+ {
+  "word": "world",
+  "sound": "dark L + RLD",
+  "ok": true,
+  "soft": true,
+  "tail_db": -23.8,
+  "heard": "The world runs on these.  MEs.",
+  "respell": null
+ },
+ {
+  "word": "little",
+  "sound": "flapped T",
+  "ok": true,
+  "soft": true,
+  "tail_db": -23.2,
+  "heard": "One little block of text.",
+  "respell": null
+ },
+ {
+  "word": "water",
+  "sound": "flapped T",
+  "ok": true,
+  "soft": true,
+  "tail_db": -22.6,
+  "heard": "It is like water through a pipe.",
+  "respell": null
+ },
+ {
+  "word": "video",
+  "sound": "V versus W",
+  "ok": true,
+  "soft": false,
+  "tail_db": -17.8,
+  "heard": "This video shows the setup.",
+  "respell": null
+ },
+ {
+  "word": "worse",
+  "sound": "W + RS",
+  "ok": true,
+  "soft": true,
+  "tail_db": -31.4,
+  "heard": "It gets worse before it works.",
+  "respell": null
+ },
+ {
+  "word": "visible",
+  "sound": "V + B",
+  "ok": true,
+  "soft": true,
+  "tail_db": -41.6,
+  "heard": "Nothing is visible until you save.",
+  "respell": null
+ },
+ {
+  "word": "saves",
+  "sound": "final Z",
+  "ok": true,
+  "soft": false,
+  "tail_db": -13.3,
+  "heard": "Saves per view is the signal.",
+  "respell": null
+ },
+ {
+  "word": "sixth",
+  "sound": "KSTH cluster",
+  "ok": true,
+  "soft": true,
+  "tail_db": -34.8,
+  "heard": "The sixth thing agents cannot do.",
+  "respell": "siksth"
+ },
+ {
+  "word": "strong",
+  "sound": "STR cluster",
+  "ok": true,
+  "soft": true,
+  "tail_db": -23.6,
+  "heard": "A strong hook earns the view.",
+  "respell": null
+ },
+ {
+  "word": "agent",
+  "sound": "soft G",
+  "ok": true,
+  "soft": true,
+  "tail_db": -22.5,
+  "heard": "An agent acts on its own.",
+  "respell": null
+ },
+ {
+  "word": "engine",
+  "sound": "NJ",
+  "ok": true,
+  "soft": false,
+  "tail_db": -4.7,
+  "heard": "You are my universal AI engine.",
+  "respell": null
+ },
+ {
+  "word": "settings",
+  "sound": "double T + NGS",
+  "ok": true,
+  "soft": true,
+  "tail_db": -22.3,
+  "heard": "Open settings and paste it in.",
+  "respell": null
+ },
+ {
+  "word": "bit",
+  "sound": "short I",
+  "ok": true,
+  "soft": true,
+  "tail_db": -27.8,
+  "heard": "Wait a bit and check again.",
+  "respell": null
+ },
+ {
+  "word": "beat",
+  "sound": "long E",
+  "ok": false,
+  "soft": false,
+  "tail_db": null,
+  "heard": "It cannot be the tested setup.",
+  "respell": null
+ },
+ {
+  "word": "full",
+  "sound": "OO + dark L",
+  "ok": true,
+  "soft": true,
+  "tail_db": -22.7,
+  "heard": "The full text is in the caption.",
+  "respell": null
+ },
+ {
+  "word": "fool",
+  "sound": "long OO",
+  "ok": true,
+  "soft": true,
+  "tail_db": -33.8,
+  "heard": "It will fool you once.",
+  "respell": null
+ },
+ {
+  "word": "about",
+  "sound": "OW diphthong",
+  "ok": true,
+  "soft": true,
+  "tail_db": -18.6,
+  "heard": "Ask about the risk.",
+  "respell": null
+ },
+ {
+  "word": "first",
+  "sound": "IR + ST",
+  "ok": true,
+  "soft": false,
+  "tail_db": -14.5,
+  "heard": "Your first agent should be reversible.",
+  "respell": "furst"
+ },
+ {
+  "word": "hour",
+  "sound": "silent H + OW",
+  "ok": true,
+  "soft": true,
+  "tail_db": -26.7,
+  "heard": "It took an hour to break.",
+  "respell": "our"
+ },
+ {
+  "word": "results",
+  "sound": "LTS cluster",
+  "ok": true,
+  "soft": true,
+  "tail_db": -28.3,
+  "heard": "The results are in the caption.",
+  "respell": null
+ },
+ {
+  "word": "model",
+  "sound": "D + dark L",
+  "ok": true,
+  "soft": true,
+  "tail_db": -34.4,
+  "heard": "This is not a new model.",
+  "respell": null
+ },
+ {
+  "word": "reasoning",
+  "sound": "Z + NG",
+  "ok": true,
+  "soft": true,
+  "tail_db": -22.2,
+  "heard": "It picks its own reasoning.",
+  "respell": null
+ },
+ {
+  "word": "clearly",
+  "sound": "KL + R",
+  "ok": true,
+  "soft": false,
+  "tail_db": -14.2,
+  "heard": "State it clearly, then decide.",
+  "respell": null
+ },
+ {
+  "word": "prompt",
+  "sound": "PR + MPT",
+  "ok": true,
+  "soft": true,
+  "tail_db": -26.6,
+  "heard": "Comment prompt, and it is yours.",
+  "respell": null
+ }
+]
