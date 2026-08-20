@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { State } from "@/lib/types";
+import { whole } from "@/lib/whole";
 import { seed } from "@/lib/seed";
 
 const KEY = "aw-studio-v1";
@@ -41,21 +42,6 @@ export function Provider({ children }: { children: React.ReactNode }) {
   const ref = useRef<State | null>(null);
   const modeRef = useRef<Mode>("loading");
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-/** A stored state outlives the shape it was written in. Twenty places in the studio
- *  do `state.episodes.map(...)` and `state.ideas.map(...)` directly, so a row saved
- *  before one of those arrays existed took the whole page down with "Application
- *  error: a client-side exception has occurred" — the server was fine, the browser
- *  crashed on a missing array. Guarding here means the pages can keep reading plainly. */
-function whole(s: State): State {
-  return {
-    ...s,
-    episodes: s.episodes ?? [],
-    ideas: s.ideas ?? [],
-    snapshots: s.snapshots ?? [],
-    activity: s.activity ?? [],
-  };
-}
-
   ref.current = state;
 
   // The browser copy is always written. The database copy is written too when
@@ -75,6 +61,16 @@ function whole(s: State): State {
       }
       try {
         const r = await fetch("/api/state", { cache: "no-store" });
+        if (r.status === 401) {
+          // Locked out, not offline. Falling through to the browser copy silently is
+          // what made a stale studio look like a working one — say it instead.
+          if (!live) return;
+          modeRef.current = "local";
+          setMode("local");
+          setHint("הקוד פג. הנתונים כאן מהדפדפן ולא מהמסד — צריך להזין קוד מחדש.");
+          setState(whole(local ?? seed()));
+          return;
+        }
         const j = (await r.json()) as {
           mode: Mode; state: State | null; dbVar?: string | null; hint?: string; error?: string;
         };
@@ -144,8 +140,13 @@ function whole(s: State): State {
         // guessing locally what it changed
         const s = await fetch("/api/state", { cache: "no-store" }).then((x) => x.json());
         if (s.mode === "cloud" && s.state) {
-          ref.current = s.state as State;
-          setState(s.state as State);
+          // through whole() like every other entry point. This one was missed, and it
+          // is the reachable one: /api/track returns early without saving when a pull
+          // ran in the last 20 minutes, so the full path repairs the row as a side
+          // effect and hides the bug, while the skipped path hands back the raw row.
+          const fixed = whole(s.state as State);
+          ref.current = fixed;
+          setState(fixed);
         }
       }
       return j;

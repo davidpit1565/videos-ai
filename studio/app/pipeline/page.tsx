@@ -83,7 +83,10 @@ export default function Pipeline() {
                 style={{ padding: "4px 9px", fontSize: 12 }}
                 onClick={() =>
                   update((d) => {
+                    // i is captured at render; two taps before the re-render run this
+                    // twice and the second finds nothing there
                     const it = d.ideas[i];
+                    if (!it) return;
                     d.episodes.push({
                       id: uid(),
                       number: Math.max(0, ...d.episodes.map((e) => e.number)) + 1,

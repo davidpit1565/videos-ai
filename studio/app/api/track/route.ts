@@ -1,3 +1,4 @@
+import { whole } from "@/lib/whole";
 import { NextResponse } from "next/server";
 import { hasDb, loadState, saveState } from "@/lib/db";
 import { fetchBeehiiv, fetchInstagram } from "@/lib/sources";
@@ -25,7 +26,8 @@ export async function GET(req: Request) {
     });
   }
 
-  const state = (await loadState()) as State | null;
+  const raw = (await loadState()) as State | null;
+  const state = raw ? whole(raw) : null;
   if (!state) return NextResponse.json({ ok: false, reason: "לא נטען מצב מהמסד" });
 
   const feed: ActivityEvent[] = state.activity ?? [];
@@ -46,8 +48,6 @@ export async function GET(req: Request) {
   // guarded and snapshots was not, so any row written before the snapshots field existed
   // crashed the whole pull with "Cannot read properties of undefined (reading 'at')" —
   // which is why the studio showed no numbers at all rather than stale ones.
-  state.snapshots ??= [];
-  state.episodes ??= [];
   const prev = state.snapshots.at(-1) ?? null;
 
   const note = (

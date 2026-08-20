@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useStudio } from "./providers";
 
 const TABS = [
-  { href: "/", label: "לוח" },
+  { href: "/studio", label: "לוח" },
   { href: "/videos", label: "פרקים" },
   { href: "/week", label: "השבוע" },
   { href: "/pipeline", label: "צינור" },
@@ -14,13 +14,17 @@ const TABS = [
 
 /** The funnel pages are public, English and LTR — they must not inherit the studio's
  *  Hebrew chrome, its tab bar or its save badge. */
-const PUBLIC = ["/join", "/p/", "/unlock"];
+/** The site is the public thing; the studio is the private one. "/" is matched exactly
+ *  — startsWith("/") would make every page public, including the studio. */
+const PUBLIC = ["/join", "/p/", "/unlock", "/e/", "/about"];
+const PUBLIC_EXACT = ["/"];
 
 export default function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   const { mode, saving } = useStudio();
 
-  if (PUBLIC.some((p) => path.startsWith(p))) return <>{children}</>;
+  if (PUBLIC_EXACT.includes(path) || PUBLIC.some((p) => path.startsWith(p)))
+    return <>{children}</>;
 
   const badge =
     mode === "loading"
@@ -32,7 +36,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="shell">
       <div className="top">
-        <Link className="brand" href="/">
+        <Link className="brand" href="/studio">
           <span className="tick" />
           <b>Actually Works</b>
         </Link>
