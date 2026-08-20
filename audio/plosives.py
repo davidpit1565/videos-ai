@@ -81,7 +81,7 @@ def initial_stop(raw):
         return None
     return VOICELESS.get(c) or VOICED.get(c)
 
-def measure(y, at, dur):
+def measure(y, at, dur, ph=None):
     """one word. returns dict or None if the burst cannot be located."""
     a = max(0, int((at - 0.100) * SR))
     b = min(len(y), int((at + min(dur, 0.28)) * SR))
@@ -91,7 +91,11 @@ def measure(y, at, dur):
     F, h, w = frames(seg)
     if len(F) < 12:
         return None
-    hi = band_rms(F, 500, 8000)
+    # 1kHz up, deliberately: a 500Hz-up band still carries the first formant, so the
+    # vowel onset itself trips the "energy rose" test and the burst is placed there.
+    # That is what produced /t/ readings of 0ms with a 630Hz burst centre — not an
+    # unaspirated stop, a misdetection.
+    hi = band_rms(F, 1000, 8000)
     per = periodic(seg)
     lowe = band_rms(F, 80, 1000)
     hie = band_rms(F, 2000, 8000)
@@ -147,10 +151,19 @@ def measure(y, at, dur):
     asp = float(band_rms(F[bi:vi] if vi > bi else F[bi:bi + 1], 2000, 8000).mean())
     vow = float(band_rms(F[vi:min(len(F), vi + 12)], 2000, 8000).mean())
     c0 = a + bi * h
+    cen = centroid(y[c0:c0 + int(0.020 * SR)])
+    # Where a release sits in frequency is set by where the tract was sealed: lips
+    # low and diffuse, alveolar ridge high, velum in between. A "burst" outside its
+    # own phoneme's range is not a quiet consonant, it is the wrong event, and must
+    # be dropped rather than reported as an accent.
+    OK = {"p": (250, 2600), "t": (1800, 8000), "k": (900, 4200)}
+    lo_hi = OK.get(ph)
+    if lo_hi and not (lo_hi[0] <= cen <= lo_hi[1]):
+        return None
     return dict(vot=(vi - bi) * HOP * 1000,
                 prevoice=pv * HOP * 1000,
                 asp=round(asp - vow, 1),
-                centroid=round(centroid(y[c0:c0 + int(0.020 * SR)]), 0))
+                centroid=round(cen, 0))
 
 def main():
     ap = argparse.ArgumentParser()
@@ -172,7 +185,7 @@ def main():
         ph = initial_stop(raw)
         if not ph:
             continue
-        m = measure(y, float(w["at"]), float(w["dur"]))
+        m = measure(y, float(w["at"]), float(w["dur"]), ph)
         if m:
             m.update(word=w["word"], ph=ph, at=round(float(w["at"]), 2),
                      voiced=raw[0] in VOICED)

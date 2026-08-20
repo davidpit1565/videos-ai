@@ -42,6 +42,12 @@ export async function GET(req: Request) {
   const [ig, bee] = await Promise.all([fetchInstagram(), fetchBeehiiv()]);
   const now = new Date().toISOString();
   const fresh: ActivityEvent[] = [];
+  // Every field read off a stored state has to tolerate its own absence. activity was
+  // guarded and snapshots was not, so any row written before the snapshots field existed
+  // crashed the whole pull with "Cannot read properties of undefined (reading 'at')" —
+  // which is why the studio showed no numbers at all rather than stale ones.
+  state.snapshots ??= [];
+  state.episodes ??= [];
   const prev = state.snapshots.at(-1) ?? null;
 
   const note = (
