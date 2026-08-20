@@ -181,7 +181,12 @@ def deep(path, rows):
             if len(seg) < int(0.06 * sr):
                 continue
             body = band(seg, sr, 300, 3400)
+            syl = max(1, syllables(w.word))
             out.append(dict(word=w.word.strip(), at=round(t0, 2),
+                            dur=round(t1 - t0, 2),
+                            # seconds per syllable: this is the "smeared" word he hears —
+                            # a word held far longer than the rest of his own delivery
+                            per=round((t1 - t0) / syl, 3),
                             tail=round(db(band(seg[-int(0.09 * sr):], sr, 2000, 8000), body), 1),
                             sib=round(db(band(seg, sr, 4000, 9000), body), 1)))
     return out
@@ -313,6 +318,17 @@ def main():
         print("  weakest endings:")
         for w in worst:
             print(f"    {w['at']:>6.2f}s  {w['word']:<14} ending {w['tail']:>6.1f} dB")
+        per_med, _ = mad_floor([w["per"] for w in words])
+        pv = np.array([w["per"] for w in words])
+        ceiling = float(np.median(pv) + 2.5 * 1.4826 * np.median(np.abs(pv - np.median(pv))))
+        smeared = sorted([w for w in words if w["per"] > ceiling],
+                         key=lambda w: -w["per"])[:8]
+        print(f"  held too long (over {ceiling:.3f}s per syllable, median {per_med:.3f}):")
+        if not smeared:
+            print("    none — no word is held out of line with the rest")
+        for w in smeared:
+            print(f"    {w['at']:>6.2f}s  {w['word']:<14} {w['per']:.3f}s per syllable "
+                  f"({w['dur']:.2f}s)")
         ess = [w for w in words if re.search(r"[szc]", w["word"], re.I)]
         if ess:
             for w in sorted(ess, key=lambda w: w["sib"])[:6]:

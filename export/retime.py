@@ -54,6 +54,27 @@ def remap(pts, t):
     return round(y0 + (t - x0), 3)
 
 
+def gaps_of(new):
+    """The silences between lines, as (start, end) — where a cut belongs."""
+    return [(float(a["end"]), float(b["start"])) for a, b in zip(new, new[1:])]
+
+
+def snap(t, gaps, flashes, fdur, lead=0.06):
+    """Pull a cut into the silence it belongs to.
+
+    Proportional remapping alone put the section flash in the middle of a 0.85s
+    hole with silence on both sides, and the scene change 0.11s after it — which he
+    described as the video stopping and then moving on. A cut has to land ON the
+    flash, and the flash has to land at the top of the gap, not floating in it."""
+    for g0, g1 in gaps:
+        if g0 - 0.35 <= t <= g1 + 0.35:
+            fl = [f for f in flashes if g0 - 0.35 <= f <= g1 + 0.35]
+            if fl:
+                return round(min(max(fl[0] + fdur / 2, g0), g1), 3)
+            return round((g0 + g1) / 2, 3)
+    return t
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("html")
@@ -78,16 +99,47 @@ def main():
             f'{json.dumps(o[2], ensure_ascii=False)}]' for o in old]
     src = src[:m.start(1)] + "[\n" + ",\n".join(rows) + "\n  ]" + src[m.end(1):]
 
+    gaps = gaps_of(new)
+    fdur = float((re.search(r"var FDUR=([0-9.]+)", src) or [0, "0.34"])[1])
+
+    # a section flash sits at the top of its gap, so the silence is behind the cut
     mf = re.search(r"var FLASH=(\[.*?\]);", src, re.S)
+    flashes = []
     if mf:
         fl = json.loads(mf.group(1))
-        rows = [f'[{remap(pts, float(f[0])):.2f},{json.dumps(f[1], ensure_ascii=False)},{f[2]}]'
-                for f in fl]
+        for f in fl:
+            t = remap(pts, float(f[0]))
+            for g0, g1 in gaps:
+                if g0 - 0.35 <= t <= g1 + 0.35 and g1 - g0 >= fdur + 0.1:
+                    t = round(min(g0 + 0.06, g1 - fdur), 3)
+                    break
+            flashes.append(t)
+        rows = [f'[{t:.2f},{json.dumps(f[1], ensure_ascii=False)},{f[2]}]'
+                for t, f in zip(flashes, fl)]
         src = src[:mf.start(1)] + "[" + ",".join(rows) + "]" + src[mf.end(1):]
 
-    for attr in ("data-in", "data-out", "data-at"):
-        src = re.sub(rf'{attr}="([0-9.]+)"',
-                     lambda g: f'{attr}="{remap(pts, float(g.group(1))):g}"', src)
+    # scene cuts land on the flash; animation beats keep their proportional place
+    src = re.sub(r'data-(in|out)="([0-9.]+)"',
+                 lambda g: f'data-{g.group(1)}="'
+                           f'{snap(remap(pts, float(g.group(2))), gaps, flashes, fdur):g}"', src)
+    src = re.sub(r'data-at="([0-9.]+)"',
+                 lambda g: f'data-at="{remap(pts, float(g.group(1))):g}"', src)
+
+    # a scene must have something on screen the instant the flash lifts. Every scene
+    # here opened 0.31-0.38s empty, which after a hidden cut is a visible blank beat.
+    edits = []
+    for m in re.finditer(r'data-in="([0-9.]+)" data-out="[0-9.]+"(.*?)(?=data-in="|\Z)',
+                         src, re.S):
+        start = float(m.group(1))
+        first = re.search(r'data-at="([0-9.]+)"', m.group(2))
+        if not first or float(first.group(1)) - start <= 0.1:
+            continue
+        edits.append((m.start(2) + first.start(1), m.start(2) + first.end(1),
+                      f"{start + 0.03:g}"))
+    # apply back to front, or every offset after the first edit is stale
+    for i, j, rep in reversed(edits):
+        src = src[:i] + rep + src[j:]
+    moved = len(edits)
 
     src = re.sub(r"var DUR=[0-9.]+", f"var DUR={dur:g}", src)
     open(a.out, "w", encoding="utf-8").write(src)
@@ -96,6 +148,7 @@ def main():
     print(f"  duration {old[-1][1]}s -> {dur}s")
     worst = min((float(n2['start']) - float(n1['end'])) for n1, n2 in zip(new, new[1:]))
     print(f"  narration built naturally: smallest gap between lines {worst:+.2f}s")
+    print(f"  {moved} scenes had their opening beat pulled onto the cut")
 
 
 if __name__ == "__main__":
