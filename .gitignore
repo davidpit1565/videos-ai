@@ -73,3 +73,12 @@ video/reel-01-safe.html
 video/reel-01-kar.html
 export/reel-01-v17.mp4
 export/reel-01-v18.mp4
+
+# Renders. Every one is regenerable from tracked inputs with export/render.sh, and the
+# list above tried to name them one at a time — which is why export/reel-01.mp4 slipped
+# through and the working tree was never clean. One pattern instead of a growing list.
+#
+# The cost of the old approach: three renders are already in history at 26MB, in a 95MB
+# repository. At one episode a week that is the whole repo inside a year, for files a
+# script rebuilds in twenty minutes.
+export/*.mp4

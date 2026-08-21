@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteNav from "../sitenav";
 import { PROMPTS, bySlug } from "@/lib/prompts";
 import Signup from "../signup";
 
@@ -19,12 +20,7 @@ export default async function Join({
   const claimed = bySlug((await searchParams).p ?? "");
   return (
     <div className="shell pub" dir="ltr">
-      <div className="top">
-        <Link className="brand" href="/join">
-          <span className="tick" />
-          <b>Actually Works</b>
-        </Link>
-      </div>
+      <SiteNav />
 
       {claimed ? (
         <>
@@ -70,6 +66,12 @@ export default async function Join({
       <div className="foot">
         Free, one email a week, unsubscribe in one click. Nothing is sold to anyone.
       </div>
+      <footer className="sfoot">
+        <Link href="/">Episodes</Link>
+        <Link href="/prompts">All prompts</Link>
+        <Link href="/search">Search</Link>
+        <Link href="/about">About</Link>
+      </footer>
     </div>
   );
 }
