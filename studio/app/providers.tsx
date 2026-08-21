@@ -157,6 +157,21 @@ export function Provider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  /** Pull the numbers when the studio is opened, not only when a button is pressed.
+   *
+   *  He asked for it to update by itself, and it never did: refresh() existed but the only
+   *  caller was the button on the dashboard, so opening the studio showed whatever the
+   *  nightly cron last wrote — up to a day old, and looking exactly like a system that
+   *  does not update. /api/track already returns early without spending an API call when a
+   *  pull ran in the last 20 minutes, so an on-open pull costs nothing when it is not
+   *  needed. Cloud mode only: with no database the tracker has nowhere to write. */
+  const pulled = useRef(false);
+  useEffect(() => {
+    if (mode !== "cloud" || pulled.current) return;
+    pulled.current = true;
+    void refresh();
+  }, [mode, refresh]);
+
   return (
     <C.Provider value={{ state, mode, saving, dbVar, hint, update, refresh, refreshing }}>
       {children}

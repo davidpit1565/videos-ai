@@ -8,7 +8,7 @@ export default function Unlock() {
   const [busy, setBusy] = useState(false);
 
   return (
-    <div className="shell" style={{ maxWidth: 420 }}>
+    <div className="shell" lang="he" dir="rtl" style={{ maxWidth: 420 }}>
       <div className="top">
         <span className="brand">
           <span className="tick" />

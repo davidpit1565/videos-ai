@@ -4,8 +4,11 @@ import { Provider } from "./providers";
 import Shell from "./shell";
 
 export const metadata: Metadata = {
-  title: "Actually Works — Studio",
-  description: "ניהול הערוץ: פרקים, מדדים, הכנסות וסוכן שמסתכל על המספרים",
+  // The document is the public site by default; the studio is one private corner of it.
+  // Titling the root "Studio" put the private tool's name in the browser tab, the bookmark
+  // and the share card of every public page.
+  title: { default: "Actually Works", template: "%s · Actually Works" },
+  description: "AI setups that actually work. One setup per episode: the exact screen, the exact paste, and the part that breaks.",
   manifest: "/manifest.json",
   appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "Studio" },
 };
@@ -21,7 +24,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="he" dir="rtl">
+    <html lang="en" dir="ltr">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

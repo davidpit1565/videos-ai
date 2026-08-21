@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useStudio } from "./providers";
+import { isSite } from "@/lib/routes";
 
 const TABS = [
   { href: "/studio", label: "לוח" },
@@ -13,18 +14,15 @@ const TABS = [
 ];
 
 /** The funnel pages are public, English and LTR — they must not inherit the studio's
- *  Hebrew chrome, its tab bar or its save badge. */
-/** The site is the public thing; the studio is the private one. "/" is matched exactly
- *  — startsWith("/") would make every page public, including the studio. */
-const PUBLIC = ["/join", "/p/", "/unlock", "/e/", "/about"];
-const PUBLIC_EXACT = ["/"];
+ *  Hebrew chrome, its tab bar or its save badge. Which pages those are comes from
+ *  lib/routes.ts; the copy that used to live here is what went stale, so /prompts and
+ *  /search rendered inside the studio's tab bar. */
 
 export default function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   const { mode, saving } = useStudio();
 
-  if (PUBLIC_EXACT.includes(path) || PUBLIC.some((p) => path.startsWith(p)))
-    return <>{children}</>;
+  if (isSite(path)) return <>{children}</>;
 
   const badge =
     mode === "loading"
@@ -34,7 +32,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
         : { cls: "mode local", text: "נשמר בדפדפן" };
 
   return (
-    <div className="shell">
+    <div className="shell" lang="he" dir="rtl">
       <div className="top">
         <Link className="brand" href="/studio">
           <span className="tick" />
