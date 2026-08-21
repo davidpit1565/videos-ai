@@ -5,6 +5,11 @@ import { NextResponse, type NextRequest } from "next/server";
  *  pages stay open — they are the point. */
 const PUBLIC = ["/join", "/p/", "/unlock", "/api/unlock", "/manifest.json", "/icon-",
                 "/apple-touch-icon", "/e/", "/about", "/api/site",
+                // Every new public page has to be listed here, and twice now one was
+                // not: /api/subscribe answered 401 to every visitor, and /prompts and
+                // /search redirected them to the PIN gate. Adding a page to the site
+                // is not the same as making it reachable.
+                "/prompts", "/search",
                 // Public pages need these two, and gating them broke the thing the
                 // pages exist for: /api/subscribe was answering the signup form with
                 // 401 for every visitor, and /api/clientlog would have swallowed the
