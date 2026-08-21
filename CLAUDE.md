@@ -116,4 +116,12 @@ first frame check because the hook faded in over 0.26s and frame zero was empty.
 - Never "Redeploy" an old deployment: it rebuilds that old commit, and any commit from before
   `studio/` existed fails with "The specified Root Directory studio does not exist".
 - `/api/track` reads Instagram and Beehiiv and records only what changed. Cron runs it daily.
-- Public pages (`/join`, `/p/*`) must not inherit the studio's Hebrew chrome.
+- **Which pages are public is declared once, in `studio/lib/routes.ts`** (`SITE` / `STUDIO`
+  / `CRON`). The middleware and `app/shell.tsx` both import it. That list used to be
+  duplicated in both files and drifted three times: `/api/subscribe` answered 401 to every
+  visitor, then `/prompts` and `/search` redirected to the PIN gate, then those same two
+  rendered inside the studio's Hebrew tab bar. `npm run check:routes` (wired as `prebuild`,
+  so Vercel runs it) walks `app/` and fails the build on a route in neither list.
+- The document is **English and LTR** — the visitor-facing site is the default. The studio
+  is the Hebrew RTL island and declares that on its own container, so an English page can
+  never inherit a right-to-left scrollbar.

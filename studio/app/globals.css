@@ -21,7 +21,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:var(--ink);color:var(--text);font-family:var(--b);font-size:17px;
-  line-height:1.65;direction:rtl;-webkit-font-smoothing:antialiased;
+  line-height:1.65;direction:ltr;-webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent}
 /* digits only — never Hebrew */
 .num{font-family:var(--m);direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap;
@@ -32,6 +32,10 @@ button{cursor:pointer}
 :focus-visible{outline:2px solid var(--brass);outline-offset:2px}
 
 .shell{max-width:1120px;margin:0 auto;padding:0 20px 40px}
+/* The document is LTR because the visitor-facing site is English. The studio is the
+   Hebrew island inside it, and says so on its own container rather than on <html>, so an
+   English page can never inherit a right-to-left scrollbar and form controls. */
+.shell:not(.pub){direction:rtl;text-align:right}
 
 /* ── top bar ─────────────────────────────────── */
 .top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px 0 14px}

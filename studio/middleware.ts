@@ -1,35 +1,20 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { isCron, isSite } from "@/lib/routes";
 
 /** The studio holds the whole business. Its URL is unguessable but not private, so when
  *  STUDIO_PIN is set every private page needs the PIN once per device. The public funnel
- *  pages stay open — they are the point. */
-const PUBLIC = ["/join", "/p/", "/unlock", "/api/unlock", "/manifest.json", "/icon-",
-                "/apple-touch-icon", "/e/", "/about", "/api/site",
-                // Every new public page has to be listed here, and twice now one was
-                // not: /api/subscribe answered 401 to every visitor, and /prompts and
-                // /search redirected them to the PIN gate. Adding a page to the site
-                // is not the same as making it reachable.
-                "/prompts", "/search",
-                // Public pages need these two, and gating them broke the thing the
-                // pages exist for: /api/subscribe was answering the signup form with
-                // 401 for every visitor, and /api/clientlog would have swallowed the
-                // crash reports from the public pages that need them most.
-                "/api/subscribe", "/api/clientlog", "/api/stream-check",
-                // shape and verdict only, never a value — public because a check I cannot
-                // read from outside the PIN is a check that leaves the connection guessed
-                "/api/connections"];
-/** matched exactly: startsWith("/") would open the whole studio */
-const PUBLIC_EXACT = ["/"];
+ *  pages stay open — they are the point.
+ *
+ *  Which pages those are is decided in lib/routes.ts and nowhere else. The list used to
+ *  live here as well as in app/shell.tsx, the two drifted, and /prompts and /search ended
+ *  up public but wearing the studio's chrome. */
 
 export function middleware(req: NextRequest) {
   const pin = process.env.STUDIO_PIN;
   if (!pin) return NextResponse.next();
 
   const { pathname } = req.nextUrl;
-  if (PUBLIC_EXACT.includes(pathname) || PUBLIC.some((p) => pathname.startsWith(p)))
-    return NextResponse.next();
-  // the cron calls the tracker with its own credential, not with a browser cookie
-  if (pathname === "/api/track") return NextResponse.next();
+  if (isSite(pathname) || isCron(pathname)) return NextResponse.next();
 
   if (req.cookies.get("studio")?.value === pin) return NextResponse.next();
 

@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "check:routes": "node scripts/check-routes.mjs",
+    "prebuild": "node scripts/check-routes.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.118.0",
