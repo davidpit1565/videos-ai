@@ -95,6 +95,7 @@ export async function GET() {
         ? {
             connected: true,
             activeSubscribers: beehiiv.activeSubscribers,
+            exact: beehiiv.exact,
             shape: beehiiv.shape,
           }
         : { connected: false, reason: beehiiv.reason, detail: beehiiv.detail ?? null },
