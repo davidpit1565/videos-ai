@@ -3,7 +3,7 @@ import SiteNav from "../sitenav";
 import { PROMPTS } from "@/lib/prompts";
 
 export const metadata = {
-  title: "Prompts — Actually Works",
+  title: "Prompts",
   description: "Every prompt an episode uses, in full, with what it cannot do.",
 };
 

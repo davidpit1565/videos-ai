@@ -5,7 +5,7 @@ import { PROMPTS } from "@/lib/prompts";
 import { ARTICLES } from "@/lib/articles";
 
 export const metadata = {
-  title: "Search — Actually Works",
+  title: "Search",
   description: "Find a setup, a prompt, or the episode that explains it.",
 };
 export const revalidate = 300;

@@ -12,8 +12,9 @@ export async function generateMetadata({ params }: { params: Promise<{ n: string
   const e = await episode(n);
   const title = e?.title || a?.title;
   return title
-    ? { title: `${title} — Actually Works`, description: a?.standfirst ?? e?.topic }
-    : { title: "Actually Works" };
+    ? { title, description: a?.standfirst ?? e?.topic }
+    // absolute: the front door is the brand itself, not "Actually Works · Actually Works"
+    : { title: { absolute: "Actually Works" } };
 }
 
 export default async function EpisodePage({ params }: { params: Promise<{ n: string }> }) {

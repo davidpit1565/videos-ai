@@ -2,7 +2,7 @@ import Link from "next/link";
 import SiteNav from "../sitenav";
 
 export const metadata = {
-  title: "About — Actually Works",
+  title: "About",
   description: "Who runs this channel, and the one rule it holds to.",
 };
 

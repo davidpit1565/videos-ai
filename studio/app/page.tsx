@@ -5,7 +5,7 @@ import Signup from "./signup";
 import SiteNav from "./sitenav";
 
 export const metadata = {
-  title: "Actually Works — AI setups that actually work",
+  title: { absolute: "Actually Works — AI setups that actually work" },
   description:
     "One AI setup per episode: the exact screen, the exact paste, and what breaks. No hype.",
 };
