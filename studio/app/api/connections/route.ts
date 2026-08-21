@@ -92,7 +92,11 @@ export async function GET() {
             detail: instagram.detail ?? null,
           },
       beehiiv: beehiiv.connected
-        ? { connected: true, activeSubscribers: beehiiv.activeSubscribers }
+        ? {
+            connected: true,
+            activeSubscribers: beehiiv.activeSubscribers,
+            shape: beehiiv.shape,
+          }
         : { connected: false, reason: beehiiv.reason, detail: beehiiv.detail ?? null },
     },
   });
