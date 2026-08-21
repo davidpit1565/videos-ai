@@ -61,7 +61,8 @@ export async function GET(req: Request) {
   };
 
   if (ig.connected) note("instagram", "עוקבים באינסטגרם", ig.followers, prev?.igFollowers);
-  if (bee.connected) note("beehiiv", "נרשמים לניוזלטר", bee.activeSubscribers, prev?.subscribers);
+  if (bee.connected && bee.exact)
+    note("beehiiv", "נרשמים לניוזלטר", bee.activeSubscribers, prev?.subscribers);
 
   // per-episode movement, so a video that keeps growing is visible without opening it
   if (ig.connected) {
@@ -92,7 +93,10 @@ export async function GET(req: Request) {
 
   // one snapshot a day, so the growth table stays a history and not a log
   const today = now.slice(0, 10);
-  const subs = bee.connected ? bee.activeSubscribers ?? null : prev?.subscribers ?? null;
+  // Only an exact count is recorded. Beehiiv's list endpoint has no total, so past one
+  // page the number is a floor — and a floor written into a snapshot becomes a number
+  // nobody can tell apart from a measured one.
+  const subs = bee.connected && bee.exact ? bee.activeSubscribers ?? null : prev?.subscribers ?? null;
   const fol = ig.connected ? ig.followers ?? null : prev?.igFollowers ?? null;
   if (prev?.date === today) {
     prev.subscribers = subs;
@@ -111,7 +115,7 @@ export async function GET(req: Request) {
   return NextResponse.json({
     ok: true,
     instagram: ig.connected ? { followers: ig.followers, posts: ig.media.length } : ig,
-    beehiiv: bee.connected ? { subscribers: bee.activeSubscribers } : bee,
+    beehiiv: bee.connected ? { subscribers: bee.activeSubscribers, exact: bee.exact } : bee,
     newEvents: fresh.length,
     activity: state.activity.slice(0, 40),
     checkedAt: now,

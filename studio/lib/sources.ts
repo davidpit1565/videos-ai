@@ -49,6 +49,9 @@ export type BeeResult =
   | {
       connected: true;
       activeSubscribers: number | null;
+      /** false when the list ran past one page, so the count above is a floor and not the
+       *  number. A floor presented as a number is a made-up number. */
+      exact: boolean;
       /** the response's top-level key names — not values — so a count that comes back null
        *  can be diagnosed without the key ever leaving Vercel */
       shape: string[];
@@ -149,9 +152,15 @@ export async function fetchBeehiiv(): Promise<BeeResult> {
   const pub = process.env.BEEHIIV_PUBLICATION_ID || "pub_92556dc6-6f7e-42ab-a414-6e291c61557c";
   if (!key) return { connected: false, reason: "BEEHIIV_API_KEY לא מוגדר" };
   try {
-    // limit=1 keeps the payload small — only the total from the meta block is wanted
+    // There is no total to read. The diagnostic reported the response's keys as
+    // ["data","has_more","limit","next_cursor"] — cursor pagination, no count anywhere — so
+    // the count has to come from the rows themselves. One page of 100 is the exact number
+    // while the list is under 100, and has_more says so rather than leaving it assumed.
+    // Deliberately not following the cursor: the parameter name for it is not something I
+    // have seen in a real response, and a guessed parameter that silently returns page one
+    // forever would report a wrong number as a certain one.
     const r = await fetch(
-      `https://api.beehiiv.com/v2/publications/${pub}/subscriptions?limit=1&status=active`,
+      `https://api.beehiiv.com/v2/publications/${pub}/subscriptions?limit=100&status=active`,
       { headers: { Authorization: `Bearer ${key}` }, cache: "no-store" },
     );
     if (!r.ok) {
@@ -161,24 +170,20 @@ export async function fetchBeehiiv(): Promise<BeeResult> {
         detail: (await r.text()).slice(0, 300),
       };
     }
-    // The count arrived as null on the first real connection, which means the field is not
-    // where this code looked. Beehiiv has moved pagination metadata between the top level
-    // and a meta block across versions, so take the first shape that actually carries a
-    // number and fall back to counting the page — rather than reporting "no subscribers"
-    // for a publication that may have some.
     const j = (await r.json()) as {
+      data?: unknown[];
+      has_more?: boolean;
+      // kept in the type because older publications may still answer with a total
       total_results?: number;
       meta?: { total_results?: number; total?: number };
-      data?: unknown[];
     };
-    const count =
-      j.total_results ??
-      j.meta?.total_results ??
-      j.meta?.total ??
-      (Array.isArray(j.data) ? j.data.length : null);
+    const total = j.total_results ?? j.meta?.total_results ?? j.meta?.total ?? null;
+    const rows = Array.isArray(j.data) ? j.data.length : null;
     return {
       connected: true,
-      activeSubscribers: count ?? null,
+      activeSubscribers: total ?? rows,
+      // a total is exact by definition; a page count is exact only if there is no next page
+      exact: total !== null ? true : rows !== null && j.has_more !== true,
       shape: Object.keys(j).sort(),
       checkedAt: new Date().toISOString(),
     };

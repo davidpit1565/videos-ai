@@ -6,7 +6,14 @@ import { useStudio } from "../providers";
 import { saveRate, uid } from "@/lib/types";
 import { eur, n, pct, today } from "@/lib/fmt";
 
-type Bee = { connected: boolean; reason?: string; activeSubscribers?: number | null };
+type Bee = {
+  connected: boolean;
+  reason?: string;
+  activeSubscribers?: number | null;
+  /** false past one page: the count is a floor, so the dashboard must not print it as
+   *  the number of subscribers */
+  exact?: boolean;
+};
 type Ig = { connected: boolean; reason?: string; followers?: number | null; username?: string | null };
 
 export default function Dashboard() {
@@ -24,7 +31,10 @@ export default function Dashboard() {
 
   const last = state.snapshots.at(-1) ?? null;
   const live = state.episodes.filter((e) => e.status === "live");
-  const subs = bee?.connected ? bee.activeSubscribers ?? null : last?.subscribers ?? null;
+  const subs =
+    bee?.connected && bee.exact !== false
+      ? bee.activeSubscribers ?? null
+      : last?.subscribers ?? null;
   const followers = ig?.connected ? ig.followers ?? null : last?.igFollowers ?? null;
 
   const rates = live.map(saveRate).filter((v): v is number => v != null);
