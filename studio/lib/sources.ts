@@ -46,7 +46,14 @@ export type IgResult =
 
 export type BeeResult =
   | { connected: false; reason: string; detail?: string }
-  | { connected: true; activeSubscribers: number | null; checkedAt: string };
+  | {
+      connected: true;
+      activeSubscribers: number | null;
+      /** the response's top-level key names — not values — so a count that comes back null
+       *  can be diagnosed without the key ever leaving Vercel */
+      shape: string[];
+      checkedAt: string;
+    };
 
 export async function fetchInstagram(): Promise<IgResult> {
   const token = process.env.IG_ACCESS_TOKEN;
@@ -154,10 +161,25 @@ export async function fetchBeehiiv(): Promise<BeeResult> {
         detail: (await r.text()).slice(0, 300),
       };
     }
-    const j = (await r.json()) as { total_results?: number };
+    // The count arrived as null on the first real connection, which means the field is not
+    // where this code looked. Beehiiv has moved pagination metadata between the top level
+    // and a meta block across versions, so take the first shape that actually carries a
+    // number and fall back to counting the page — rather than reporting "no subscribers"
+    // for a publication that may have some.
+    const j = (await r.json()) as {
+      total_results?: number;
+      meta?: { total_results?: number; total?: number };
+      data?: unknown[];
+    };
+    const count =
+      j.total_results ??
+      j.meta?.total_results ??
+      j.meta?.total ??
+      (Array.isArray(j.data) ? j.data.length : null);
     return {
       connected: true,
-      activeSubscribers: j.total_results ?? null,
+      activeSubscribers: count ?? null,
+      shape: Object.keys(j).sort(),
       checkedAt: new Date().toISOString(),
     };
   } catch (e) {

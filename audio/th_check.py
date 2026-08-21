@@ -36,6 +36,13 @@ def band(F, lo, hi):
     m = (f >= lo) & (f < hi)
     return 20 * np.log10(np.sqrt((S[:, m] ** 2).mean(1)) + 1e-9)
 
+# Where to draw the line was measured, not chosen: with real silence in front of the word
+# the gap runs 966-1005 dB (the band floor of an all-but-zero signal), and with speech in
+# front of it — including a quiet /n/ or a short breath — it runs 11-28 dB. Three orders of
+# magnitude apart, so the threshold sits in the empty middle. A tighter 25 dB was tried
+# first and refused mid-sentence words whose preceding consonant happened to be quiet.
+ONSET_GAP_DB = 60
+
 def measure(y, at, dur):
     a = max(0, int((at - 0.02) * SR))
     b = min(len(y), int((at + min(dur, 0.30)) * SR))
@@ -51,9 +58,31 @@ def measure(y, at, dur):
         return None
     pre = hi[:vi]
     rise = float(np.max(np.diff(pre))) if len(pre) > 2 else 99.0
+
+    # Is this word preceded by speech, or by silence?
+    #
+    # A control settled this: "Two", "Tea" and "Tree" — three unmistakable stops — measured
+    # the same 75-82ms of gradual, energetic "frication" as "Three" when each opened the
+    # utterance. The tool was reading the model's amplitude ramp, not a phoneme. Long and
+    # gradual and loud is exactly what an onset ramp looks like, so both tests pass and the
+    # verdict is meaningless. Twelve of fifty-eight takes were reported as fricatives on
+    # that basis and none of them were.
+    #
+    # A stop is only distinguishable from a fricative by the closure in front of it, and
+    # there is no closure at the start of an utterance — only silence. So when the 60ms
+    # before the word sits far below the vowel that follows it, this refuses to judge
+    # instead of guessing.
+    p0, p1 = max(0, int((at - 0.06) * SR)), max(1, int(at * SR))
+    PF = frames(y[p0:p1])
+    before = float(band(PF, 80, 900).mean()) if len(PF) >= 3 else -999.0
+    # capped so the diagnostic stays readable: past the threshold the exact figure is just
+    # how deep the digital silence went, which is not information
+    vowel = float(lo[vi:].mean()) if vi < len(lo) - 1 else float(lo[-1])
+
     return dict(fric_ms=vi * HOP * 1000,
                 rise=round(rise, 1),
-                energy=round(float(pre.mean() - lo[:6].mean()), 1))
+                energy=round(float(pre.mean() - lo[:6].mean()), 1),
+                onset=round(min(vowel - before, 99.9), 1))
 
 def verdict_of(r):
     """A real dental fricative is 45-160ms with audible high-band noise and no single
@@ -64,6 +93,10 @@ def verdict_of(r):
     Lives here, and is imported rather than restated, because a sweep that ranks
     candidates by one rule while the delivery gate applies another is a sweep that can
     hand over a take the gate then rejects."""
+    # nothing but silence in front of it: no closure to compare against, so the frication
+    # length is the model's onset ramp and says nothing about the phoneme
+    if r.get("onset", 0) > ONSET_GAP_DB:
+        return "onset (not comparable)"
     if r["energy"] < -18 or r["fric_ms"] > 160:
         return "unmeasured"
     if r["fric_ms"] >= 45 and r["rise"] < 9:
