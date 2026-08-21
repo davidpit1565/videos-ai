@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteNav from "../../sitenav";
 import { notFound } from "next/navigation";
 import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
@@ -35,6 +36,7 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
 
   return (
     <main className="site" dir="ltr">
+      <SiteNav />
       <p className="kicker">
         <Link href="/">Actually Works</Link> · Episode {String(n).padStart(2, "0")}
       </p>

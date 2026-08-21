@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteNav from "../sitenav";
 
 export const metadata = {
   title: "About — Actually Works",
@@ -8,6 +9,7 @@ export const metadata = {
 export default function About() {
   return (
     <main className="site" dir="ltr">
+      <SiteNav here="/about" />
       <p className="kicker">
         <Link href="/">Actually Works</Link> · About
       </p>
