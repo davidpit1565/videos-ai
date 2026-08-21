@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { addSubscriber, hasDb, markForwarded } from "@/lib/db";
+import { BEEHIIV_PUB } from "@/lib/sources";
 
 /** A real signup, and ours.
  *
@@ -12,8 +13,10 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
 async function forward(email: string): Promise<string | null> {
   const key = process.env.BEEHIIV_API_KEY;
-  const pub = process.env.BEEHIIV_PUBLICATION_ID;
-  if (!key || !pub) return "beehiiv not configured";
+  // BEEHIIV_PUB carries the public default. This line used to read the environment variable
+  // directly, and with it unset every signup was silently kept to ourselves.
+  const pub = BEEHIIV_PUB;
+  if (!key) return "beehiiv not configured: no BEEHIIV_API_KEY";
   try {
     const r = await fetch(
       `https://api.beehiiv.com/v2/publications/${pub}/subscriptions`,

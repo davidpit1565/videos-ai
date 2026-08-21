@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { fetchInstagram, fetchBeehiiv } from "@/lib/sources";
+import { BEEHIIV_PUB, fetchInstagram, fetchBeehiiv } from "@/lib/sources";
 import { dbVar } from "@/lib/db";
 
 export const runtime = "nodejs";
@@ -59,14 +59,19 @@ export async function GET() {
     },
     // names only, never values — this is what tells a typo apart from a wrong environment
     named: relatedNames(),
+    // which publication id is actually in force, and whether it came from the environment or
+    // from the built-in default. It is public, so it can be shown.
+    beehiivPublication: { id: BEEHIIV_PUB, fromEnv: !!process.env.BEEHIIV_PUBLICATION_ID },
     totalVars: Object.keys(process.env).length,
     vars: {
       IG_USER_ID: shape(process.env.IG_USER_ID),
       IG_ACCESS_TOKEN: shape(process.env.IG_ACCESS_TOKEN),
       BEEHIIV_API_KEY: shape(process.env.BEEHIIV_API_KEY),
-      BEEHIIV_PUBLICATION_ID: shape(
-        process.env.BEEHIIV_PUBLICATION_ID || "pub_92556dc6-6f7e-42ab-a414-6e291c61557c",
-      ),
+      // Reported raw. This line used to fall back to the built-in default before measuring,
+      // so it answered set:true for a variable that was not set — a diagnostic lying about
+      // presence, which is the exact failure it exists to catch. The `named` list above was
+      // the only thing telling the truth.
+      BEEHIIV_PUBLICATION_ID: shape(process.env.BEEHIIV_PUBLICATION_ID),
       // the provider decides the name (Supabase POSTGRES_URL, Neon DATABASE_URL), so
       // report the one the app actually found rather than the one I guessed
       database: { varName: dbVar(), set: dbVar() !== null },
