@@ -4,7 +4,12 @@ import { NextResponse, type NextRequest } from "next/server";
  *  STUDIO_PIN is set every private page needs the PIN once per device. The public funnel
  *  pages stay open — they are the point. */
 const PUBLIC = ["/join", "/p/", "/unlock", "/api/unlock", "/manifest.json", "/icon-",
-                "/apple-touch-icon", "/e/", "/about", "/api/site"];
+                "/apple-touch-icon", "/e/", "/about", "/api/site",
+                // Public pages need these two, and gating them broke the thing the
+                // pages exist for: /api/subscribe was answering the signup form with
+                // 401 for every visitor, and /api/clientlog would have swallowed the
+                // crash reports from the public pages that need them most.
+                "/api/subscribe", "/api/clientlog"];
 /** matched exactly: startsWith("/") would open the whole studio */
 const PUBLIC_EXACT = ["/"];
 
