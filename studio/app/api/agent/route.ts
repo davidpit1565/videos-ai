@@ -68,8 +68,16 @@ export async function POST(req: Request) {
     // declines, the API retries on its own instead of handing back an error.
     const res = await client.beta.messages.create({
       model: "claude-opus-5",
-      max_tokens: 4000,
+      // 4000 was the bug. Adaptive thinking is on by default on this model and effort
+      // defaults to "high", so the reasoning consumed the whole allowance and the turn
+      // ended on max_tokens before any visible text was written — the route returned
+      // {ok:true, answer:""} and the page showed nothing. Three requests logged 200 and
+      // every one of them looked like "the agent is broken".
+      max_tokens: 16000,
       thinking: { type: "adaptive" },
+      // This is a short question over a small brief. High effort buys nothing here and
+      // was the thing spending the budget.
+      output_config: { effort: "medium" },
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
       system: SYSTEM,
@@ -85,6 +93,22 @@ export async function POST(req: Request) {
       .map((b) => (b.type === "text" ? b.text : ""))
       .join("\n")
       .trim();
+    // Never answer with nothing and call it success. An empty body with a 200 is what
+    // made this look broken rather than misconfigured, so the cause is now named on
+    // both sides: to the reader, and in the runtime logs.
+    if (!text) {
+      console.error(
+        "[agent] empty answer",
+        JSON.stringify({ stop: res.stop_reason, usage: res.usage }),
+      );
+      return NextResponse.json({
+        ok: false,
+        reason:
+          res.stop_reason === "max_tokens"
+            ? "The answer was cut off before it started — the allowance is too small for this question."
+            : `No text came back (stop reason: ${res.stop_reason}).`,
+      });
+    }
     return NextResponse.json({ ok: true, answer: text });
   } catch (e) {
     return NextResponse.json({ ok: false, reason: (e as Error).message }, { status: 500 });
