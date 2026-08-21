@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteNav from "../../sitenav";
 import { notFound } from "next/navigation";
 import { PROMPTS, bySlug } from "@/lib/prompts";
 import Copy from "./copy";
@@ -18,13 +19,10 @@ export default async function PromptPage({ params }: { params: Promise<{ slug: s
   if (!p) notFound();
   return (
     <div className="shell pub" dir="ltr">
-      <div className="top">
-        <Link className="brand" href="/join">
-          <span className="tick" />
-          <b>Actually Works</b>
-        </Link>
-        <span className="mode">Episode {String(p.episode).padStart(2, "0")}</span>
-      </div>
+      <SiteNav />
+      <p className="kicker">
+        <Link href={`/e/${p.episode}`}>Episode {String(p.episode).padStart(2, "0")}</Link>
+      </p>
 
       <h1>{p.title}</h1>
       <p className="sub" style={{ fontSize: 18 }}>{p.blurb}</p>
@@ -48,6 +46,12 @@ export default async function PromptPage({ params }: { params: Promise<{ slug: s
         Every setup on this list was run before it was sent. Reply to any issue and it reaches a
         person.
       </div>
+      <footer className="sfoot">
+        <Link href="/">Episodes</Link>
+        <Link href="/prompts">All prompts</Link>
+        <Link href="/search">Search</Link>
+        <Link href="/about">About</Link>
+      </footer>
     </div>
   );
 }
