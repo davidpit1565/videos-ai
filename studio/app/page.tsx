@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { published } from "@/lib/site";
+import { catalogue } from "@/lib/site";
 import { PROMPTS } from "@/lib/prompts";
 import Signup from "./signup";
+import SiteNav from "./sitenav";
 
 export const metadata = {
   title: "Actually Works — AI setups that actually work",
@@ -11,13 +12,11 @@ export const metadata = {
 export const revalidate = 300;
 
 export default async function Home() {
-  const eps = await published();
+  const eps = await catalogue();
   return (
     <main className="site" dir="ltr">
+      <SiteNav here="/" />
       <header className="hero">
-        <p className="brandline">
-          <span className="tick">✓</span> Actually Works
-        </p>
         <h1>
           AI setups that <em>actually work</em>.
         </h1>
@@ -38,11 +37,11 @@ export default async function Home() {
         ) : (
           <ol className="eps">
             {eps.map((e) => (
-              <li key={e.number}>
-                <Link href={`/e/${e.number}`}>
-                  <span className="n">{String(e.number).padStart(2, "0")}</span>
+              <li key={e.n}>
+                <Link href={`/e/${e.n}`}>
+                  <span className="n">{String(e.n).padStart(2, "0")}</span>
                   <span className="t">{e.title}</span>
-                  <span className="tp">{e.topic}</span>
+                  <span className="tp">{e.blurb}</span>
                 </Link>
               </li>
             ))}
@@ -69,6 +68,8 @@ export default async function Home() {
       </section>
 
       <footer className="sfoot">
+        <Link href="/prompts">All prompts</Link>
+        <Link href="/search">Search</Link>
         <Link href="/about">About</Link>
         <Link href="/join">Email list</Link>
       </footer>

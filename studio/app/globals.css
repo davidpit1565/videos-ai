@@ -396,3 +396,31 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
   font-family:var(--code)}
 .site .limits-list li{background:var(--wash);border-inline-start:3px solid var(--gold);
   border-radius:0 .5rem .5rem 0;padding:.7rem 1rem}
+
+/* the header and the search page */
+.site .sitenav{display:flex;flex-wrap:wrap;gap:.7rem 1.2rem;align-items:baseline;
+  justify-content:space-between;padding-bottom:1rem;margin-bottom:2.2rem;
+  border-bottom:1px solid var(--rule)}
+.site .sitenav .mark{font-family:var(--serif);font-weight:700;font-size:1.08rem;
+  text-decoration:none;color:var(--ink);display:inline-flex;align-items:center;gap:.45rem}
+.site .sitenav .mark .tick{color:var(--gold)}
+.site .sitenav .links{display:flex;flex-wrap:wrap;gap:.35rem}
+.site .sitenav .links a{font-size:.94rem;text-decoration:none;color:var(--soft);
+  padding:.3rem .7rem;border-radius:9999px;border:1px solid transparent}
+.site .sitenav .links a:hover{color:var(--ink);border-color:var(--rule)}
+.site .sitenav .links a[aria-current=page]{color:var(--ink);background:var(--wash);
+  border-color:var(--rule);font-weight:700}
+.site .find{width:100%;font:inherit;font-size:1.05rem;padding:.8rem 1rem;margin:1.3rem 0 .6rem;
+  border:1px solid var(--rule);border-radius:.7rem;background:var(--card);color:var(--ink)}
+.site .find:focus-visible{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+.site .count{font-family:var(--code);font-size:.8rem;color:var(--faint);margin:0 0 1rem}
+.site .hits{list-style:none;padding:0;display:grid;gap:.7rem}
+.site .hits > li{background:var(--card);border:1px solid var(--rule);border-radius:1rem;
+  padding:1rem 1.2rem}
+.site .hits a{text-decoration:none;color:inherit;display:block}
+.site .hits .kind{font-family:var(--code);font-size:.66rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.3rem}
+.site .hits b{font-family:var(--serif);font-size:1.08rem;display:block;margin-bottom:.15rem}
+.site .hits .bl{color:var(--soft);font-size:.95rem;display:block}
+.site .hits .ext{display:flex;gap:.9rem;margin:.7rem 0 0}
+.site .hits .ext a{font-size:.87rem;color:var(--gold);text-decoration:underline;display:inline}
