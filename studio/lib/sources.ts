@@ -146,10 +146,17 @@ export async function fetchInstagram(): Promise<IgResult> {
   }
 }
 
+/** The publication id is public, so it ships as a default — only the key is a secret. It
+ *  lives here and is imported, because /api/subscribe had its own copy of this line WITHOUT
+ *  the default: with the environment variable unset it answered "beehiiv not configured" and
+ *  every signup was stored by us and never forwarded, while the dashboard showed Beehiiv
+ *  connected. */
+export const BEEHIIV_PUB =
+  process.env.BEEHIIV_PUBLICATION_ID || "pub_92556dc6-6f7e-42ab-a414-6e291c61557c";
+
 export async function fetchBeehiiv(): Promise<BeeResult> {
   const key = process.env.BEEHIIV_API_KEY;
-  // The publication id is public, so it ships as a default — only the key is a secret.
-  const pub = process.env.BEEHIIV_PUBLICATION_ID || "pub_92556dc6-6f7e-42ab-a414-6e291c61557c";
+  const pub = BEEHIIV_PUB;
   if (!key) return { connected: false, reason: "BEEHIIV_API_KEY לא מוגדר" };
   try {
     // There is no total to read. The diagnostic reported the response's keys as
