@@ -264,12 +264,23 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    Only these tokens change between the two worlds; the typefaces are the ones the
    layout already loads, so the light pages cost no extra font request. */
 .site, .pub {
-  --paper:#F7F5F1; --card:#FFFFFF; --ink:#16181C; --soft:#54514B; --faint:#8B857B;
+  /* --faint was #8B857B, which measures 3.36:1 on this ground — under the 4.5:1 that
+     normal-size text needs, and it was carrying the kicker, the footer links and every
+     piece of fine print. #6F6A60 is the same warm grey at 4.94:1. Computed, not picked
+     by eye: the ground is #F7F5F1, so anything above ~0.16 relative luminance fails. */
+  --paper:#F7F5F1; --card:#FFFFFF; --ink:#16181C; --soft:#54514B; --faint:#6F6A60;
   --rule:#E3DED4; --wash:#F1EBDD; --gold:#8A6D1B; --gold-lit:#B08A22;
   /* The public display face is Newsreader, not the studio's Hebrew serif: in Latin it
      has the editorial weight this page wants, and it is not the face the reference site
      uses, so this reads as ours rather than as a copy. Body is the same IBM Plex as the
      studio, which keeps one voice across both surfaces. */
+  /* Remap the STUDIO's own tokens, not just our own. Any studio rule that reaches a
+     public page — ol.steps, .promptbox, .note, .list — paints itself from --panel,
+     --line, --text and --brass. Chasing those selectors one at a time is how "The
+     exact clicks" shipped as dark text on a dark panel; redefining the four tokens
+     fixes every one of them at once, including the ones nobody has hit yet. */
+  --panel:#FFFFFF; --line:#E3DED4; --text:#16181C; --muted:#54514B;
+  --brass:#8A6D1B; --brass-dim:#B08A22; --clay:#A8481F; --r:.75rem;
   --serif:"Newsreader",Georgia,"Times New Roman",serif;
   --sans:"IBM Plex Sans Hebrew","Helvetica Neue",Arial,sans-serif;
   --code:"IBM Plex Mono",ui-monospace,monospace;
@@ -376,3 +387,12 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .site .signup .err, .pub .signup .err{color:#A8481F;font-size:.9rem;margin:0;font-weight:600}
 .site .signed, .pub .signed{background:var(--wash);border-inline-start:3px solid var(--gold);
   border-radius:0 .6rem .6rem 0;padding:.9rem 1.15rem;margin:1.5rem 0 0;max-width:26rem}
+
+/* the episode page: steps are a sequence, limits are a warning, and they should not
+   look like the same list */
+.site .changes, .site .limits-list{list-style:none;padding:0;display:grid;gap:.55rem;margin:1rem 0}
+.site .changes li{padding-inline-start:1.5rem;position:relative}
+.site .changes li::before{content:"→";position:absolute;inset-inline-start:0;color:var(--gold);
+  font-family:var(--code)}
+.site .limits-list li{background:var(--wash);border-inline-start:3px solid var(--gold);
+  border-radius:0 .5rem .5rem 0;padding:.7rem 1rem}
