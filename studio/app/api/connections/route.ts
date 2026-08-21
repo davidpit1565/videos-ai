@@ -60,9 +60,22 @@ export async function GET() {
     },
     // the live verdict from the services themselves, which is the only thing that counts
     live: {
+      // `via` names which of Meta's two Instagram APIs the token was sent to. It is
+      // derived from the token's own prefix, so a rejection now says whether the wrong
+      // API was asked rather than only that the token was refused.
       instagram: instagram.connected
-        ? { connected: true, username: instagram.username, followers: instagram.followers }
-        : { connected: false, reason: instagram.reason, detail: instagram.detail ?? null },
+        ? {
+            connected: true,
+            via: instagram.via,
+            username: instagram.username,
+            followers: instagram.followers,
+          }
+        : {
+            connected: false,
+            via: instagram.via ?? null,
+            reason: instagram.reason,
+            detail: instagram.detail ?? null,
+          },
       beehiiv: beehiiv.connected
         ? { connected: true, activeSubscribers: beehiiv.activeSubscribers }
         : { connected: false, reason: beehiiv.reason, detail: beehiiv.detail ?? null },
