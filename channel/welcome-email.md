@@ -1,8 +1,17 @@
 # מייל הברוכים־הבאים
 
-**איפה זה נכנס:** Beehiiv → `Settings` → `Publication` → `Welcome email`.
+**איפה זה נכנס:** Beehiiv → `Settings` → `Emails` → גלילה למטה עד `Preset Emails` →
+`Welcome Email`. (המסמך הזה אמר קודם `Settings → Publication → Welcome email`. זה לא
+המסלול; הוא לא נבדק כשנכתב.)
+
+**המתג שקובע אם זה נשלח בכלל:** `Enable a welcome email that is sent to new
+subscribers`. בלי המתג הזה דלוק, מייל שנשמר לא יוצא — וזו הסיבה הראשונה ברשימת
+"למה מייל הברוכים־הבאים לא נשלח" של Beehiiv עצמם.
+
 הקוד שלנו כבר מבקש מ־Beehiiv לשלוח אותו — ב־`/api/subscribe` מועבר
-`send_welcome_email: true`. ברגע שיש מפתח, זה יוצא לבד.
+`send_welcome_email: true` — אבל הבקשה מפעילה את המייל **הזה**, שצריך להתקיים
+ולהיות דלוק. גם `Welcome Email` וגם `Welcome Automation` קיימים ב-Beehiiv; אנחנו
+רוצים את הראשון, והוא כלול בכל התוכניות כולל `Launch` החינמית.
 
 **חשוב לדעת:** הטקסט הזה יושב אצל Beehiiv, לא בקוד שלנו. אין לנו שרת מייל ואין
 לנו איך לשלוח בלעדיו — ולכן זה לא "בונים ושוכחים", זה הדבקה חד־פעמית שלך.
