@@ -14,6 +14,9 @@ export const viewport: Viewport = {
   themeColor: "#0A0D12",
   width: "device-width",
   initialScale: 1,
+  // without this, env(safe-area-inset-bottom) is always 0 and the tab bar sits under
+  // the home indicator
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

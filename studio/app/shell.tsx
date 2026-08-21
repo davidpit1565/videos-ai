@@ -49,11 +49,17 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           </Link>
         ))}
       </nav>
-      {children}
-      <div className="foot">
-        Actually Works Studio · המספרים נמשכים מאינסטגרם ומ-Beehiiv כשהמפתחות קיימים, ומוצגים כריקים כשלא.
-        <br />
-        שום מספר במערכת הזאת לא מומצא.
+      {/* Its own scroll container so the tab bar never has to be position:fixed —
+          on iOS a fixed bottom bar slides with the address bar as it collapses, which
+          is the jump he reported. */}
+      <div className="scroll">
+        {children}
+        <div className="foot">
+          Actually Works Studio · המספרים נמשכים מאינסטגרם ומ-Beehiiv כשהמפתחות קיימים,
+          ומוצגים כריקים כשלא.
+          <br />
+          שום מספר במערכת הזאת לא מומצא.
+        </div>
       </div>
     </div>
   );

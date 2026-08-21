@@ -181,10 +181,23 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 }
 @media(max-width:600px){
   body{font-size:17px}
-  .shell{padding:0 14px 96px}
   h2{font-size:19px;margin:30px 0 12px}
-  /* the tab bar sits where the thumb is, not at the top of a scroll */
-  nav{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;padding:8px 10px;
+  /* The tab bar sits where the thumb is — and it is NOT position:fixed. On iOS a
+     fixed bottom bar is positioned against a viewport that changes height every time
+     the address bar collapses, so it slides during scroll. Instead the shell is a
+     full-height flex column: the content scrolls inside its own box and the bar is
+     simply the last row, which cannot move because nothing it depends on moves. */
+  /* :not(.pub) matters. /join renders <div class="shell pub"> and has no .scroll child,
+     so the full-height overflow:hidden box clipped it to one screen with no way to
+     scroll — 700px of a 2500px page, silently. The studio chrome is the only thing
+     this layout is for. */
+  .shell:not(.pub){height:100dvh;display:flex;flex-direction:column;overflow:hidden;padding:0}
+  .shell:not(.pub) .top{flex:0 0 auto;order:0;padding:0 14px}
+  .shell:not(.pub) .scroll{flex:1 1 auto;order:1;overflow-y:auto;
+    -webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 14px 28px}
+  .shell.pub{padding:0 14px 40px}
+  .shell:not(.pub) nav{order:2;flex:0 0 auto;position:static;margin:0;padding:8px 10px;
+    padding-bottom:calc(8px + env(safe-area-inset-bottom));
     background:rgba(11,15,22,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);
     border-bottom:0;justify-content:space-around;gap:4px}
   nav a{flex:1 1 0;text-align:center;padding:11px 6px;border:0;font-size:15px;border-radius:8px}
