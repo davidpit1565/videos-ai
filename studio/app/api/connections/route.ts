@@ -34,6 +34,18 @@ function shape(v: string | undefined): Shape {
   };
 }
 
+/** A variable reported missing has four possible causes and they need different fixes:
+ *  saved under a slightly different name, saved to Preview instead of Production, saved on
+ *  a different Vercel project, or never saved. "Not set" cannot tell them apart, and I
+ *  guessed wrong once already — I said a redeploy would fix it and the next build still
+ *  came back empty. So: the NAMES of variables that look related, which are not secrets,
+ *  and the total count, which distinguishes "wrong project" from "wrong name". */
+const RELATED = /BEEHIIV|BEEHIV|BEHIIV|NEWSLETTER|SUBSCRIB|^IG_|INSTAGRAM|ANTHROPIC|POSTGRES|DATABASE|STUDIO_PIN/i;
+
+function relatedNames(): string[] {
+  return Object.keys(process.env).filter((k) => RELATED.test(k)).sort();
+}
+
 export async function GET() {
   const [instagram, beehiiv] = await Promise.all([fetchInstagram(), fetchBeehiiv()]);
 
@@ -45,6 +57,9 @@ export async function GET() {
       branch: process.env.VERCEL_GIT_COMMIT_REF ?? null,
       commit: (process.env.VERCEL_GIT_COMMIT_SHA ?? "").slice(0, 7) || null,
     },
+    // names only, never values — this is what tells a typo apart from a wrong environment
+    named: relatedNames(),
+    totalVars: Object.keys(process.env).length,
     vars: {
       IG_USER_ID: shape(process.env.IG_USER_ID),
       IG_ACCESS_TOKEN: shape(process.env.IG_ACCESS_TOKEN),
