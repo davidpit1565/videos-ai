@@ -10,6 +10,8 @@ every time, then laid out on a timeline with controlled gaps.
 """
 import argparse, json, os, re, subprocess, sys, tempfile, wave
 import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import burst
 
 REF   = "audio/voice/profile/reference.wav"
 PRON  = "audio/voice/profile/pronunciation.json"
@@ -225,6 +227,12 @@ def main():
                     help="line numbers that close a section. Only those, and the last "
                          "line, must land — English rises on the non-final items of a "
                          "list, so a rising \"Open Settings.\" mid-list is correct.")
+    ap.add_argument("--watch", default="three",
+                    help="comma-separated words whose consonant onset is measured after each\n"
+                         "                          take; a hard burst is treated as a failed\n"
+                         "                          attempt and the line is rerolled. Only words\n"
+                         "                          with ground-truth rows in audio/burst.py are\n"
+                         "                          honoured. Empty string turns it off.")
     ap.add_argument("--no-verify", action="store_true",
                     help="skip the transcription check (faster, unverified)")
     a = ap.parse_args()
@@ -247,6 +255,19 @@ def main():
             line_seeds[int(k.strip())] = int(v.strip())
     if line_seeds:
         print(f"      per-line seeds: {line_seeds}", flush=True)
+
+    # Only words with ground-truth rows behind them. Watching a word the metric was never
+    # calibrated for would reroll takes on a reading that means nothing — /s/ measures like a
+    # burst and /f/ measures like nothing, both by physics, and both are recorded as limits
+    # in audio/burst.py.
+    watch, skipped = [], []
+    for w in (x.strip().lower() for x in a.watch.split(",") if x.strip()):
+        (watch if w in burst.IN_SCOPE else skipped).append(w)
+    if watch:
+        print(f"      watching consonant onset: {', '.join(watch)} "
+              f"(band {burst.BAND[0]:+.0f} to {burst.BAND[1]:+.0f} dB)", flush=True)
+    if skipped:
+        print(f"      not watched, no ground truth for it: {', '.join(skipped)}", flush=True)
     m = ChatterboxTTS.from_pretrained(device="cpu")
 
     # Generation is stochastic: an unlucky seed swallows a consonant and turns
@@ -319,12 +340,37 @@ def main():
             e = wer(heard, text)
             if cut is not None:
                 e += 1.0        # an uncuttable repetition must never win on score
+
+            # He reported "three" sounding like a hard T three separate times, and each round
+            # of chasing it by ear cost a day. The retry loop already exists and already has
+            # the word timings, so the word is measured here and a burst counts as a failed
+            # attempt like a misheard word does. He does not listen to twelve takes; the
+            # build rerolls until the consonant lands.
+            #
+            # Rate matters for the budget: at his settings the word measured in band in 2 of
+            # 12 seeds, so this costs a handful of extra rolls on the lines that contain it
+            # and nothing at all on the lines that do not.
+            for tw in watch:
+                hit = burst.find([{"word": w.word, "at": w.start, "dur": w.end - w.start}
+                                  for w in allw], tw)
+                if hit is None:
+                    continue
+                bm = burst.measure(burst.load(probe + "16.wav"), float(hit["at"]),
+                                   float(hit["dur"]))
+                v = burst.verdict(bm)
+                if v == "frication":
+                    print(f"      \"{tw}\": {bm['peak']:+.1f} dB, frication", flush=True)
+                elif v in ("burst", "absent"):
+                    e += 0.5    # loses to a clean take, beats a misheard one
+                    print(f"      \"{tw}\": {bm['peak']:+.1f} dB, {v} — rerolling", flush=True)
             # a line crammed past ~6.5 syllables a second loses its consonants even
             # when the transcriber still guesses the words right
             penalty = max(0.0, (rate - a.max_rate) * 0.08)
             score = e + penalty
             if best is None or score < best[1]:
                 best = (wav, score, heard, e, rate)
+            # e carries the burst penalty, so this also refuses to stop early on a take
+            # whose words were right and whose consonant was not
             if e <= 0.001 and rate <= a.max_rate:
                 best = (wav, score, heard, e, rate)
                 break

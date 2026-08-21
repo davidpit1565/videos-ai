@@ -1,0 +1,103 @@
+{
+ "what": "Ground truth for audio/burst.py. Chatterbox's own voice \u2014 phonetics not in doubt \u2014 saying \"It finds the risk in _ seconds\", three seeds per word.",
+ "why": "th_check could not separate a certain /th/ from a certain /t/ in this position, and had already called \"Two\" and \"Tea\" fricatives at the start of an utterance. A measurement that cannot be checked against a known answer is not a measurement.",
+ "how_to_regenerate": "The audio is generated, not stored. See the note in audio/burst.py; regenerating needs Chatterbox with no audio_prompt_path at exaggeration 0.50, cfg 0.30, temperature 0.75, seeds 0/1/2.",
+ "rows": [
+  {
+   "word": "free",
+   "truth": "fricative",
+   "seed": 0,
+   "peak": 5.5
+  },
+  {
+   "word": "free",
+   "truth": "fricative",
+   "seed": 1,
+   "peak": 0.8
+  },
+  {
+   "word": "free",
+   "truth": "fricative",
+   "seed": 2,
+   "peak": 3.9
+  },
+  {
+   "word": "sea",
+   "truth": "fricative",
+   "seed": 1,
+   "peak": 7.0
+  },
+  {
+   "word": "sea",
+   "truth": "fricative",
+   "seed": 2,
+   "peak": 16.6
+  },
+  {
+   "word": "three",
+   "truth": "fricative",
+   "seed": 0,
+   "peak": 5.4
+  },
+  {
+   "word": "three",
+   "truth": "fricative",
+   "seed": 1,
+   "peak": 9.9
+  },
+  {
+   "word": "three",
+   "truth": "fricative",
+   "seed": 2,
+   "peak": 11.5
+  },
+  {
+   "word": "tea",
+   "truth": "stop",
+   "seed": 0,
+   "peak": 21.9
+  },
+  {
+   "word": "tea",
+   "truth": "stop",
+   "seed": 1,
+   "peak": 19.2
+  },
+  {
+   "word": "tea",
+   "truth": "stop",
+   "seed": 2,
+   "peak": 27.4
+  },
+  {
+   "word": "tree",
+   "truth": "stop",
+   "seed": 1,
+   "peak": 4.1
+  },
+  {
+   "word": "tree",
+   "truth": "stop",
+   "seed": 2,
+   "peak": 6.2
+  },
+  {
+   "word": "two",
+   "truth": "stop",
+   "seed": 0,
+   "peak": 29.4
+  },
+  {
+   "word": "two",
+   "truth": "stop",
+   "seed": 1,
+   "peak": 20.8
+  },
+  {
+   "word": "two",
+   "truth": "stop",
+   "seed": 2,
+   "peak": 18.2
+  }
+ ]
+}
