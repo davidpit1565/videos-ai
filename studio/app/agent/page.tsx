@@ -29,11 +29,45 @@ export default function AgentPage() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ question, state }),
       });
-      const j = (await r.json()) as { ok: boolean; answer?: string; reason?: string };
-      if (j.ok && j.answer) setAnswer(j.answer);
-      else setErr(j.reason ?? "לא התקבלה תשובה");
+      if (!r.ok || !r.body) {
+        setErr(r.status === 401 ? "הקוד פג — צריך להזין אותו מחדש" : `השרת החזיר ${r.status}`);
+        return;
+      }
+      // Read the answer as it arrives. Waiting for the whole body is what failed on the
+      // phone: sixty seconds of silence, then "Load failed". Now the first words appear
+      // in about a second and the connection is never idle.
+      const reader = r.body.getReader();
+      const dec = new TextDecoder();
+      let buf = "";
+      let text = "";
+      let failed: string | null = null;
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, { stream: true });
+        const lines = buf.split("\n");
+        buf = lines.pop() ?? "";           // the last piece may be half a line
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          let o: { t?: string; error?: string; done?: boolean };
+          try {
+            o = JSON.parse(line);
+          } catch {
+            continue;                       // a partial line is not an error
+          }
+          if (o.error) failed = o.error;
+          else if (o.t) {
+            text += o.t;
+            setAnswer(text);                // visible while it is still being written
+          }
+        }
+      }
+      if (failed) setErr(failed);
+      else if (!text) setErr("לא התקבלה תשובה");
     } catch (e) {
-      setErr((e as Error).message);
+      // a dropped connection and a server refusal are different problems
+      const m = (e as Error).message;
+      setErr(m === "Load failed" || m === "Failed to fetch" ? "החיבור נפל באמצע. נסה שוב." : m);
     } finally {
       setBusy(false);
     }
