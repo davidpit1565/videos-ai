@@ -64,19 +64,17 @@ export async function POST(req: Request) {
 
   try {
     const client = new Anthropic();
-    // The beta surface is where `fallbacks` lives: if the primary model is busy or
-    // declines, the API retries on its own instead of handing back an error.
-    const res = await client.beta.messages.create({
+
+    // Streamed, and not for elegance. The previous version held the connection open for
+    // up to 60 seconds without sending a single byte, and on a phone that is exactly
+    // what gets killed: the server logged 200 while the browser reported "Load failed".
+    // Streaming puts bytes on the wire immediately and keeps them coming, so neither
+    // the platform nor the browser ever sees an idle socket. It is also what the API
+    // documentation prescribes for any request with a large token allowance.
+    const stream = client.beta.messages.stream({
       model: "claude-opus-5",
-      // 4000 was the bug. Adaptive thinking is on by default on this model and effort
-      // defaults to "high", so the reasoning consumed the whole allowance and the turn
-      // ended on max_tokens before any visible text was written — the route returned
-      // {ok:true, answer:""} and the page showed nothing. Three requests logged 200 and
-      // every one of them looked like "the agent is broken".
       max_tokens: 16000,
       thinking: { type: "adaptive" },
-      // This is a short question over a small brief. High effort buys nothing here and
-      // was the thing spending the budget.
       output_config: { effort: "medium" },
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
@@ -86,30 +84,68 @@ export async function POST(req: Request) {
       ],
     });
 
-    if (res.stop_reason === "refusal") {
-      return NextResponse.json({ ok: false, reason: "the model declined this request" });
-    }
-    const text = res.content
-      .map((b) => (b.type === "text" ? b.text : ""))
-      .join("\n")
-      .trim();
-    // Never answer with nothing and call it success. An empty body with a 200 is what
-    // made this look broken rather than misconfigured, so the cause is now named on
-    // both sides: to the reader, and in the runtime logs.
-    if (!text) {
-      console.error(
-        "[agent] empty answer",
-        JSON.stringify({ stop: res.stop_reason, usage: res.usage }),
-      );
-      return NextResponse.json({
-        ok: false,
-        reason:
-          res.stop_reason === "max_tokens"
-            ? "The answer was cut off before it started — the allowance is too small for this question."
-            : `No text came back (stop reason: ${res.stop_reason}).`,
-      });
-    }
-    return NextResponse.json({ ok: true, answer: text });
+    // Newline-delimited JSON: one object per line. Simpler than SSE to produce and to
+    // read, and every line is independently parseable, so a truncated tail cannot
+    // corrupt what already arrived.
+    const enc = new TextEncoder();
+    const body = new ReadableStream<Uint8Array>({
+      async start(c) {
+        const send = (o: unknown) => c.enqueue(enc.encode(JSON.stringify(o) + "\n"));
+        // first byte before the model has said anything, so the socket is never idle
+        send({ open: true });
+        try {
+          let any = false;
+          for await (const ev of stream) {
+            if (ev.type === "content_block_delta" && ev.delta.type === "text_delta") {
+              if (ev.delta.text) {
+                any = true;
+                send({ t: ev.delta.text });
+              }
+            }
+          }
+          const final = await stream.finalMessage();
+          if (final.stop_reason === "refusal") {
+            send({ error: "the model declined this request" });
+          } else if (!any) {
+            // never finish silently: an empty answer is a failure with a named cause
+            console.error(
+              "[agent] empty answer",
+              JSON.stringify({ stop: final.stop_reason, usage: final.usage }),
+            );
+            send({
+              error:
+                final.stop_reason === "max_tokens"
+                  ? "The answer was cut off before it started — the allowance is too small."
+                  : `No text came back (stop reason: ${final.stop_reason}).`,
+            });
+          } else {
+            send({ done: true, stop: final.stop_reason });
+          }
+        } catch (e) {
+          const raw = e instanceof Error ? e.message : String(e);
+          console.error("[agent] stream failed", raw);
+          // Connection-level failures arrive as one bare word — "terminated",
+          // "fetch failed", "aborted" — which tells the reader nothing. Anything else
+          // is passed through, because a real API message is worth reading.
+          const network = /terminated|aborted|fetch failed|ECONNRESET|socket hang up/i.test(raw);
+          send({
+            error: network
+              ? "החיבור לשירות נפל באמצע התשובה. מה שהתקבל מוצג למעלה — נסה שוב."
+              : raw,
+          });
+        }
+        c.close();
+      },
+    });
+
+    return new Response(body, {
+      headers: {
+        "content-type": "application/x-ndjson; charset=utf-8",
+        "cache-control": "no-store, no-transform",
+        // proxies that buffer would defeat the whole point of streaming
+        "x-accel-buffering": "no",
+      },
+    });
   } catch (e) {
     return NextResponse.json({ ok: false, reason: (e as Error).message }, { status: 500 });
   }
