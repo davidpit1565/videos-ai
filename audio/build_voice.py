@@ -524,5 +524,41 @@ def main():
     json.dump(cues, open(os.path.splitext(a.out)[0] + "-cues.json", "w"), indent=1)
     print(f"\nwrote {a.out}  {t:.1f}s  {len(lines)} lines")
 
+    # Measure the watched words again, on the file that actually ships.
+    #
+    # The first version of this checked inside the retry loop only, and the loop runs before
+    # the assembly stage speeds a dragging line up by as much as 1.20. On the very first real
+    # build that gap showed itself: the take was accepted at +10.5 dB, in band, and the same
+    # word in the finished mix measured +24.9 dB, a burst. Compressing a line by 20% is not
+    # neutral to the consonant it contains. So the check ran, passed, and the thing it was
+    # protecting shipped broken anyway — the same shape of mistake as measuring a word against
+    # a baseline that is not there.
+    #
+    # This is the guarantee that is worth having: not "the take was measured" but "the audio
+    # in this file was measured". It exits non-zero, because a build that quietly writes a
+    # file it knows is wrong is worse than one that stops.
+    if watch and asr is not None:
+        print("\n  the shipped file, measured:", flush=True)
+        bad = []
+        segs, _ = asr.transcribe(a.out, language="en", word_timestamps=True)
+        allw = [{"word": w.word, "at": w.start, "dur": w.end - w.start}
+                for sg in segs for w in (sg.words or [])]
+        y = burst.load(a.out)
+        for tw in watch:
+            hit = burst.find(allw, tw)
+            if hit is None:
+                print(f"    \"{tw}\": not in the transcript of the mix", flush=True)
+                continue
+            bm = burst.measure(y, float(hit["at"]), float(hit["dur"]))
+            v = burst.verdict(bm)
+            print(f"    \"{tw}\": {bm['peak']:+.1f} dB, {v}", flush=True)
+            if v != "frication":
+                bad.append(f"{tw} {bm['peak']:+.1f} dB ({v})")
+        if bad:
+            print(f"\n  the mix does not hold what the takes measured: {', '.join(bad)}."
+                  f"\n  A line containing a watched word was probably time-stretched after it"
+                  f"\n  passed. Lower --max-speedup, or give that line its own seed.", flush=True)
+            sys.exit(1)
+
 if __name__ == "__main__":
     main()
