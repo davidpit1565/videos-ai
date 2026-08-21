@@ -3,7 +3,9 @@
   "Respellings applied to the text the voice model SPEAKS. Captions and on-screen",
   "text are untouched, so the viewer always sees correct spelling.",
   "Add an entry whenever a word comes out unclear. Fixed once, fixed everywhere.",
-  "A leading comma buys the word breathing room; a dense word swallows consonants."
+  "A leading comma buys the word breathing room; a dense word swallows consonants.",
+  "\"3 \\u2014\" -> \"then\": ten seeds and five respellings were measured and the model never produces an English dental fricative in this voice — frication came out 7.5-25ms where /th/ needs 45-160, and the two spellings that did change the sound broke the word into \"The Re\". So the number leaves the audio and stays in the caption, which is exactly what this file is for.",
+  "The \"3\" mapping was removed on his instruction: he wants the number SPOKEN, not only written. Ten seeds and five spellings never produced the fricative, so the remaining untried levers are exaggeration, cfg_weight, temperature and the carrier phrase around the word — being swept now rather than declared impossible."
  ],
  "words": {
   "Personalization": "Personalisation",

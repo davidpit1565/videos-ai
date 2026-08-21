@@ -180,6 +180,11 @@ def main():
     ap.add_argument("--cfg", type=float, default=0.30,
                     help="lower = looser, more natural rhythm")
     ap.add_argument("--seed", type=int, default=7)
+    ap.add_argument("--line-seeds", default="",
+                    help='per-line seed overrides, "7:41,12:8". CLAUDE.md describes a '
+                         'take being locked per line and nothing implemented it — the '
+                         'whole build had one seed, so fixing one bad word meant '
+                         'rerolling every other line with it.')
     ap.add_argument("--retries", type=int, default=3,
                     help="regenerate a line this many times if it is misheard")
     ap.add_argument("--min-rate", type=float, default=4.6,
@@ -235,6 +240,13 @@ def main():
     from chatterbox.tts import ChatterboxTTS
     torch.set_num_threads(os.cpu_count() or 4)
     torch.manual_seed(a.seed)
+    line_seeds = {}
+    for part in a.line_seeds.split(","):
+        if ":" in part:
+            k, v = part.split(":", 1)
+            line_seeds[int(k.strip())] = int(v.strip())
+    if line_seeds:
+        print(f"      per-line seeds: {line_seeds}", flush=True)
     m = ChatterboxTTS.from_pretrained(device="cpu")
 
     # Generation is stochastic: an unlucky seed swallows a consonant and turns
@@ -263,7 +275,8 @@ def main():
         syl = syllables(spoken)
         best = None
         for attempt in range(a.retries + 1):
-            torch.manual_seed(a.seed + attempt * 1000 + idx)
+            base = line_seeds.get(idx, a.seed)
+            torch.manual_seed(base + attempt * 1000 + idx)
             wav = m.generate(spoken, audio_prompt_path=REF, exaggeration=a.exaggeration,
                              cfg_weight=a.cfg, temperature=0.75)
             rate = syl / max(0.3, wav.shape[-1] / m.sr)
@@ -329,7 +342,7 @@ def main():
         if pick_st is not None and pick_st <= a.fall:
             return pick, best[1]
         for roll in range(a.prosody_rolls):
-            torch.manual_seed(a.seed + 7777 + roll * 131 + idx)
+            torch.manual_seed(line_seeds.get(idx, a.seed) + 7777 + roll * 131 + idx)
             cand = m.generate(spoken, audio_prompt_path=REF, exaggeration=a.exaggeration,
                               cfg_weight=a.cfg, temperature=0.75)
             st = lands(cand)
