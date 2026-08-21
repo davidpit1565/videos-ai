@@ -1,7 +1,22 @@
 /** One place that talks to Instagram and Beehiiv, so the pages, the API routes and the
  *  nightly tracker all see exactly the same numbers. */
 
-const IG = "https://graph.facebook.com/v21.0";
+/** Meta has two different Instagram APIs and they do not accept each other's tokens.
+ *  A token minted by "Generate token" inside Instagram's own API setup (Instagram Login)
+ *  is an IGAA…/IGQ… token for graph.instagram.com; sending it to graph.facebook.com comes
+ *  back as "Invalid OAuth access token - Cannot parse access token", which reads like a
+ *  broken paste and is not one. So the host follows the token instead of being assumed,
+ *  and the Instagram-Login path resolves the account as `me` — no IG_USER_ID needed. */
+const FB_HOST = "https://graph.facebook.com/v21.0";
+const IG_HOST = "https://graph.instagram.com/v21.0";
+
+export type IgLogin = "instagram-login" | "facebook-login";
+
+export function igRoute(token: string): { host: string; via: IgLogin } {
+  return /^IG[QA]/.test(token)
+    ? { host: IG_HOST, via: "instagram-login" }
+    : { host: FB_HOST, via: "facebook-login" };
+}
 
 export type IgMedia = {
   id: string;
@@ -18,9 +33,10 @@ export type IgMedia = {
 };
 
 export type IgResult =
-  | { connected: false; reason: string; detail?: string }
+  | { connected: false; reason: string; detail?: string; via?: IgLogin }
   | {
       connected: true;
+      via: IgLogin;
       username: string | null;
       followers: number | null;
       mediaCount: number | null;
@@ -34,13 +50,15 @@ export type BeeResult =
 
 export async function fetchInstagram(): Promise<IgResult> {
   const token = process.env.IG_ACCESS_TOKEN;
-  const user = process.env.IG_USER_ID;
-  if (!token || !user) {
-    return {
-      connected: false,
-      reason: !user ? "IG_USER_ID לא מוגדר" : "IG_ACCESS_TOKEN לא מוגדר",
-    };
-  }
+  if (!token) return { connected: false, reason: "IG_ACCESS_TOKEN לא מוגדר" };
+
+  const { host, via } = igRoute(token);
+  // Instagram Login identifies the account from the token itself; only the Facebook-Page
+  // route needs the numeric id, and there it is genuinely required.
+  const user = process.env.IG_USER_ID || (via === "instagram-login" ? "me" : "");
+  if (!user) return { connected: false, reason: "IG_USER_ID לא מוגדר", via };
+
+  const IG = host;
   try {
     const prof = await fetch(
       `${IG}/${user}?fields=username,followers_count,media_count&access_token=${token}`,
@@ -51,6 +69,7 @@ export async function fetchInstagram(): Promise<IgResult> {
         connected: false,
         reason: `אינסטגרם החזיר ${prof.status}`,
         detail: (await prof.text()).slice(0, 300),
+        via,
       };
     }
     const profile = await prof.json();
@@ -105,6 +124,7 @@ export async function fetchInstagram(): Promise<IgResult> {
 
     return {
       connected: true,
+      via,
       username: profile.username ?? null,
       followers: profile.followers_count ?? null,
       mediaCount: profile.media_count ?? null,
@@ -112,7 +132,7 @@ export async function fetchInstagram(): Promise<IgResult> {
       checkedAt: new Date().toISOString(),
     };
   } catch (e) {
-    return { connected: false, reason: (e as Error).message };
+    return { connected: false, reason: (e as Error).message, via };
   }
 }
 

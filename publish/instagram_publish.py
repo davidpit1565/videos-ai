@@ -4,15 +4,28 @@
 Instagram will not accept a local file — it fetches the video from a public URL,
 so the MP4 has to be reachable on the open internet first (see publish/SETUP.md).
 
-  export IG_USER_ID=17841400000000000
-  export IG_ACCESS_TOKEN=EAAG...
+  export IG_ACCESS_TOKEN=IGAA...     # Instagram Login: this is all that is needed
+  export IG_USER_ID=17841400000000000  # only for an EAA… Facebook-Page token
   python3 instagram_publish.py --video https://…/reel-01.mp4 --caption caption.txt
 
   --dry-run   validate everything and stop before anything is posted
 """
 import argparse, json, os, sys, time, urllib.parse, urllib.request
 
-API = "https://graph.facebook.com/v21.0"
+# Meta runs two Instagram APIs and neither accepts the other's token. A token from
+# "Generate token" in Instagram's own API setup (Instagram Login) starts with IGAA/IGQ and
+# belongs to graph.instagram.com; sent to graph.facebook.com it comes back as "Cannot parse
+# access token", which looks like a bad paste and is not one. So the host follows the token,
+# and on the Instagram-Login route the account is `me` — IG_USER_ID is not needed there.
+FB_API = "https://graph.facebook.com/v21.0"
+IG_API = "https://graph.instagram.com/v21.0"
+
+
+def route(token):
+    return (IG_API, "instagram-login") if token[:3] in ("IGA", "IGQ") else (FB_API, "facebook-login")
+
+
+API = FB_API
 
 
 def call(method, path, **params):
@@ -58,10 +71,16 @@ def main():
     p.add_argument("--dry-run", action="store_true")
     a = p.parse_args()
 
-    user_id = os.environ.get("IG_USER_ID")
+    global API
     token = os.environ.get("IG_ACCESS_TOKEN")
-    if not user_id or not token:
-        sys.exit("Set IG_USER_ID and IG_ACCESS_TOKEN first — see publish/SETUP.md")
+    if not token:
+        sys.exit("Set IG_ACCESS_TOKEN first — see publish/SETUP.md")
+    API, via = route(token)
+    user_id = os.environ.get("IG_USER_ID") or ("me" if via == "instagram-login" else "")
+    if not user_id:
+        sys.exit("This token is the Facebook-Page kind, which needs IG_USER_ID too — "
+                 "see publish/SETUP.md")
+    print(f"  api: {via}")
 
     caption = open(a.caption, encoding="utf-8").read().strip()
     if len(caption) > 2200:

@@ -55,6 +55,22 @@ def measure(y, at, dur):
                 rise=round(rise, 1),
                 energy=round(float(pre.mean() - lo[:6].mean()), 1))
 
+def verdict_of(r):
+    """A real dental fricative is 45-160ms with audible high-band noise and no single
+    spike. Anything longer with nothing in it is the detector losing the voicing onset,
+    not a very long TH — the first version measured 222ms at -25.8dB, which is silence,
+    and calling that a fricative would have been the measurement lying to agree with me.
+
+    Lives here, and is imported rather than restated, because a sweep that ranks
+    candidates by one rule while the delivery gate applies another is a sweep that can
+    hand over a take the gate then rejects."""
+    if r["energy"] < -18 or r["fric_ms"] > 160:
+        return "unmeasured"
+    if r["fric_ms"] >= 45 and r["rise"] < 9:
+        return "fricative"
+    return "stop-like"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("wav"); ap.add_argument("--words", required=True)
@@ -77,17 +93,7 @@ def main():
         print(f"{name:22s}  the word never appears")
         return
     for r in rows:
-        # A real dental fricative is 45-160ms with audible high-band noise and no
-        # single spike. Anything longer with nothing in it is the detector losing the
-        # voicing onset, not a very long TH — the first version measured 222ms at
-        # -25.8dB, which is silence, and calling that a fricative would have been the
-        # measurement lying to agree with me.
-        if r["energy"] < -18 or r["fric_ms"] > 160:
-            verdict = "unmeasured"
-        elif r["fric_ms"] >= 45 and r["rise"] < 9:
-            verdict = "fricative"
-        else:
-            verdict = "stop-like"
+        verdict = verdict_of(r)
         print(f"{name:22s} {r['at']:6.2f}s  frication {r['fric_ms']:5.1f}ms  "
               f"sharpest rise {r['rise']:5.1f}dB  energy {r['energy']:+5.1f}dB  {verdict}")
 
