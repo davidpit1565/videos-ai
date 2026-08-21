@@ -14,7 +14,10 @@ const PUBLIC = ["/join", "/p/", "/unlock", "/api/unlock", "/manifest.json", "/ic
                 // pages exist for: /api/subscribe was answering the signup form with
                 // 401 for every visitor, and /api/clientlog would have swallowed the
                 // crash reports from the public pages that need them most.
-                "/api/subscribe", "/api/clientlog", "/api/stream-check"];
+                "/api/subscribe", "/api/clientlog", "/api/stream-check",
+                // shape and verdict only, never a value — public because a check I cannot
+                // read from outside the PIN is a check that leaves the connection guessed
+                "/api/connections"];
 /** matched exactly: startsWith("/") would open the whole studio */
 const PUBLIC_EXACT = ["/"];
 
