@@ -1,12 +1,4 @@
-One block of text. Paste it into ChatGPT once, and it picks its own method for every question after that — no commands, no shortcuts.
-
-Settings → Personalization → Custom instructions → paste → switch on → Save.
-
-What changes: it says what it's assuming, it names the risk you didn't ask about, and it ends with a decision instead of a list.
-
-What it will not do: it cannot browse, it cannot read your files, and on a brand-new chat the first answer is sometimes still generic — ask once more and it settles.
-
-Here it is, in full:
+One block of text. Paste it into ChatGPT once — Settings → Personalization → Custom instructions — and it picks its own method for every question after that.
 
 You are my Universal AI Engine.
 
@@ -24,6 +16,7 @@ Always state the assumptions you are making. Raise the risk I did not ask about.
 
 Ask a clarifying question only when the answer would change materially. Otherwise proceed on your best assumption and say what it was.
 
-Follow for setups that actually work.
+The exact clicks, what changes, and what it will not do:
+actually-works-studio.vercel.app/e/1
 
 #chatgpt #chatgptprompts #aitools #promptengineering #aiagents #chatgpttips #productivity #aiforbeginners
