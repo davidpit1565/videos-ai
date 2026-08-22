@@ -15,6 +15,29 @@ the free one — the full reasoning is in `plan/business-model.html`.
 - **Say the honest thing once, then do the work.** He acts on straight answers; he has
   redirected several times when told a plan would not hold.
 
+## Say it out loud when the work turns mechanical
+
+He asked to be reminded, so this is the reminder and it is not optional: **when a stretch of
+work is mechanical, tell him to switch to Sonnet 5 for it — before starting, in one line.**
+
+Mechanical means the answer is already decided and what remains is execution: writing an
+episode script from the slate's template, publishing, caption edits, doc updates, running a
+build and reporting the number, renaming things. Sonnet 5 is roughly 2.5x cheaper and the
+difference does not show on that work.
+
+Keep Opus for the opposite: debugging, architecture calls, and anything where being wrong
+costs him a day. The three most expensive catches on 21.8 were all of that kind — a metric
+that measured position instead of a phoneme, a check that ran before the transform it was
+protecting against, and a diagnostic asserting the presence of a variable that was absent.
+None was caught by a tool.
+
+Two things he should not be told to do, because they do not help: `/fast` is Opus with faster
+output, not a cheaper tier; and switching mid-session does not reclaim what the session
+already accumulated. **The bigger lever is session length** — on 21.8 a three-day session had
+read 194M cached tokens against 572k actually written, a factor of 340. A fresh session
+pointed at `SUNDAY.md` costs far less than a tier change. Say that too, when a session has
+been running for days.
+
 ## Rules that do not bend
 
 - **Never fabricate.** No invented clients, testimonials, results, prices or metrics. If a

@@ -1,0 +1,24 @@
+Everyone says "agent." Almost nobody can tell you where the chatbot ends.
+
+It's three steps on a loop:
+
+PLAN — it decides the steps itself. You give it the job, not the method.
+ACT — it uses a real tool. Sends, writes, fetches, books. Not a description of a tool.
+CHECK — it looks at what came back, then goes again.
+
+That loop is the entire difference.
+
+One test settles it: if it can't act without you, it's a chatbot with a better name.
+
+And the honest part nobody leads with — agents don't fail like chatbots. A chatbot
+gives you a bad answer and you move on. An agent fails confidently, halfway through,
+having already done part of the work.
+
+That's why your first one should touch something reversible. A draft, not a send.
+
+Full breakdown, and the five-step test you can run on whatever you're already paying for:
+actually-works-studio.vercel.app/e/2
+
+Next: your first n8n agent, end to end.
+
+#aiagents #ai #automation #n8n #chatgpt #aitools #productivity

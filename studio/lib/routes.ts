@@ -14,7 +14,7 @@
 
 /** the private tool: the whole business is in here */
 export const STUDIO = [
-  "/studio", "/videos", "/week", "/pipeline", "/agent",
+  "/studio", "/videos", "/week", "/pipeline", "/agent", "/renders",
   "/api/state", "/api/agent", "/api/instagram", "/api/beehiiv",
 ];
 

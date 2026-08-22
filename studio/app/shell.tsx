@@ -9,6 +9,7 @@ const TABS = [
   { href: "/studio", label: "לוח" },
   { href: "/videos", label: "פרקים" },
   { href: "/week", label: "השבוע" },
+  { href: "/renders", label: "רנדרים" },
   { href: "/pipeline", label: "צינור" },
   { href: "/agent", label: "סוכן" },
 ];

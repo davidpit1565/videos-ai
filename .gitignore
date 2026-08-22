@@ -82,3 +82,10 @@ export/reel-01-v18.mp4
 # repository. At one episode a week that is the whole repo inside a year, for files a
 # script rebuilds in twenty minutes.
 export/*.mp4
+
+# The one exception to the rules above. A rendered reel he has to approve needs a durable
+# home, and chat was not one: every container reset lost the file and the work had to be
+# rerun. Anything under studio/public/reels is committed on purpose — Vercel serves it as a
+# static asset, so the studio can play it and he can save it to his phone from there.
+# Keep it to the reels actually in review; delete one when its episode goes live.
+!studio/public/reels/*.mp4

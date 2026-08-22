@@ -50,6 +50,35 @@ export const ARTICLES: Article[] = [
     ],
     promptSlug: "universal-ai-engine",
   },
+  {
+    n: 2,
+    title: "What an AI agent actually is",
+    standfirst:
+      "Everyone says agent. Almost nobody can tell you where the chatbot ends. " +
+      "It is three steps on a loop, and one test settles it in a sentence.",
+    // No prompt to paste in this one, so the steps ARE the test. The channel's promise is
+    // the exact thing to do, and here the exact thing to do is apply the test to whatever
+    // tool the viewer is already paying for.
+    steps: [
+      "Take whatever you are calling an agent — a GPT, a chatbot, an automation.",
+      "Give it a job with more than one step, and do not tell it the steps.",
+      "Watch whether it plans the steps itself, or waits for you to name each one.",
+      "Check whether it used a real tool — sent, wrote, fetched, booked — or only described one.",
+      "Check whether it looked at what came back before continuing.",
+    ],
+    changes: [
+      "Plan, act, check, on a loop. That loop is the entire difference.",
+      "A chatbot answers. An agent acts — it decides the steps itself.",
+      "Acting means a tool that touches something real, not a description of the tool.",
+      "If it cannot act without you, it is a chatbot with a better name.",
+    ],
+    limits: [
+      "Agents do not fail like chatbots. A chatbot gives you a bad answer; an agent fails confidently, halfway through, having already done part of the work.",
+      "That is why the first one you build should touch something reversible — a draft, not a send.",
+      "Nothing here makes an agent reliable. It makes the word mean something, which is what the rest depends on.",
+      "The loop is the definition, not a product. Two tools can both have it and one can still be useless for your job.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
