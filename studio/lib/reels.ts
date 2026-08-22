@@ -15,6 +15,8 @@ import { join } from "node:path";
 export type Reel = {
   /** the URL the player uses */
   src: string;
+  /** audio candidates play in an <audio> element; a video in a <video> one */
+  kind: "video" | "audio";
   file: string;
   /** episode number parsed from the name, when the name carries one */
   episode: number | null;
@@ -51,9 +53,13 @@ function gateFor(file: string): Reel["gate"] {
 }
 
 export function reels(): Reel[] {
+  // Audio as well as video, because the loop that matters most is the shortest one: he says a
+  // line's tone is wrong, and the only way to settle it is for him to hear the candidates.
+  // Rebuilding a whole narration and re-rendering to ask one question costs forty minutes;
+  // playing six takes costs thirty seconds.
   let names: string[];
   try {
-    names = readdirSync(DIR).filter((f) => f.endsWith(".mp4"));
+    names = readdirSync(DIR).filter((f) => /\.(mp4|m4a|wav)$/.test(f));
   } catch {
     return [];
   }
@@ -64,6 +70,7 @@ export function reels(): Reel[] {
       const episode = m ? Number(m[1]) : null;
       return {
         src: `/reels/${file}`,
+        kind: /\.mp4$/.test(file) ? ("video" as const) : ("audio" as const),
         file,
         episode,
         bytes: st.size,

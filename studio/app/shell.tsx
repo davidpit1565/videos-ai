@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useStudio } from "./providers";
+import { useEffect } from "react";
 import { isSite } from "@/lib/routes";
 
 const TABS = [
@@ -22,8 +23,19 @@ const TABS = [
 export default function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   const { mode, saving } = useStudio();
+  const site = isSite(path);
 
-  if (isSite(path)) return <>{children}</>;
+  /* Point the installed-app manifest at the studio, but only while a studio page is what is
+     on screen. Installing from a public page must never produce an app that opens the private
+     tool, which is exactly what a single manifest in the root layout did. */
+  useEffect(() => {
+    const el = document.querySelector<HTMLLinkElement>('link[rel="manifest"]');
+    if (!el) return;
+    const want = site ? "/manifest.json" : "/studio.webmanifest";
+    if (el.getAttribute("href") !== want) el.setAttribute("href", want);
+  }, [site]);
+
+  if (site) return <>{children}</>;
 
   const badge =
     mode === "loading"

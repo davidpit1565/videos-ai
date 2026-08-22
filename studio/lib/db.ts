@@ -47,6 +47,10 @@ function db(): Pool | null {
   return pool;
 }
 
+/** the shared pool, for features that own their own tables — push subscriptions do.
+ *  Named differently from the module-level `pool` variable it hands out. */
+export const sharedPool = db;
+
 export const hasDb = () => pick() !== null;
 /** The variable name only — never the value, which holds the password. */
 export const dbVar = () => pick()?.name ?? null;

@@ -1,11 +1,11 @@
 {
-  "name": "Actually Works",
-  "short_name": "Actually Works",
-  "description": "AI setups that actually work. One setup per episode.",
-  "start_url": "/",
+  "name": "Studio",
+  "short_name": "Studio",
+  "start_url": "/studio",
   "display": "standalone",
-  "background_color": "#F7F5F1",
-  "theme_color": "#F7F5F1",
+  "background_color": "#0A0D12",
+  "theme_color": "#0A0D12",
+  "orientation": "portrait-primary",
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }

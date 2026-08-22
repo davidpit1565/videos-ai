@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { addSubscriber, hasDb, markForwarded } from "@/lib/db";
 import { BEEHIIV_PUB } from "@/lib/sources";
+import { notify } from "@/lib/push";
 
 /** A real signup, and ours.
  *
@@ -61,6 +62,16 @@ export async function POST(req: Request) {
     const { created } = await addSubscriber(email, source);
     const err = await forward(email);
     await markForwarded(email, err ?? undefined);
+    // He asked to be told about every subscriber, on every device. Never let a notification
+    // failure cost the signup that triggered it — the person is already saved by this point.
+    if (created) {
+      void notify({
+        title: "נרשם חדש",
+        body: err ? `נשמר אצלנו, אבל לא הועבר ל-Beehiiv: ${err}` : "נשמר והועבר ל-Beehiiv",
+        url: "/studio",
+        tag: "subscriber",
+      }).catch(() => {});
+    }
     // Stored is what matters to the visitor; the forward is our problem, and it is
     // recorded per row so a failed batch can be replayed.
     return NextResponse.json({ ok: true, created, forwarded: !err });
