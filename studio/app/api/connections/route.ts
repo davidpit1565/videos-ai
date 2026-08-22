@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { BEEHIIV_PUB, fetchInstagram, fetchBeehiiv } from "@/lib/sources";
+import { deviceCount, publicKey } from "@/lib/push";
 import { dbVar } from "@/lib/db";
 
 export const runtime = "nodejs";
@@ -49,6 +50,29 @@ function relatedNames(): string[] {
 export async function GET() {
   const [instagram, beehiiv] = await Promise.all([fetchInstagram(), fetchBeehiiv()]);
 
+  // Whether notifications can work at all, readable from outside the PIN. The endpoints that
+  // do the work are private, and correctly so — but that left no way to check them without
+  // his password, which means the first sign of a problem would have been him pressing the
+  // button and getting an error. The VAPID public key is public by design and the device count
+  // is not sensitive; the private key is never touched here.
+  let push: { ready: boolean; devices: number; keyPrefix: string | null; reason?: string };
+  try {
+    const key = await publicKey();
+    push = {
+      ready: !!key,
+      devices: await deviceCount(),
+      keyPrefix: key ? key.slice(0, 6) : null,
+      ...(key ? {} : { reason: "no database, so no keypair and nowhere to keep a subscription" }),
+    };
+  } catch (e) {
+    push = {
+      ready: false,
+      devices: 0,
+      keyPrefix: null,
+      reason: e instanceof Error ? e.message : String(e),
+    };
+  }
+
   return NextResponse.json({
     // Which deployment answered. A variable saved for Production only is simply absent
     // here when a preview URL answers, and that looked identical to "I never saved it".
@@ -57,6 +81,7 @@ export async function GET() {
       branch: process.env.VERCEL_GIT_COMMIT_REF ?? null,
       commit: (process.env.VERCEL_GIT_COMMIT_SHA ?? "").slice(0, 7) || null,
     },
+    push,
     // names only, never values — this is what tells a typo apart from a wrong environment
     named: relatedNames(),
     // which publication id is actually in force, and whether it came from the environment or
