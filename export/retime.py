@@ -108,15 +108,36 @@ def main():
     flashes = []
     if mf:
         fl = json.loads(mf.group(1))
+        # A card that finds no gap wide enough used to keep whatever time the remap gave it,
+        # which is how three of them ended up playing over speech and blocking the gate after
+        # a full render. Silence was the wrong answer twice over: it wasted the render, and it
+        # made the card's own existence look like a layout problem.
+        #
+        # There are only as many slots as there are gaps of fdur+0.1. Cards beyond that are
+        # dropped and named, because a card over a word costs the word — and the word is the
+        # video.
+        kept, dropped, used = [], [], []
         for f in fl:
             t = remap(pts, float(f[0]))
+            slot = None
             for g0, g1 in gaps:
-                if g0 - 0.35 <= t <= g1 + 0.35 and g1 - g0 >= fdur + 0.1:
-                    t = round(min(g0 + 0.06, g1 - fdur), 3)
+                if (g0, g1) in used or g1 - g0 < fdur + 0.1:
+                    continue
+                if g0 - 0.35 <= t <= g1 + 0.35:
+                    slot = (g0, g1)
                     break
-            flashes.append(t)
+            if slot is None:
+                dropped.append(f[1])
+                continue
+            used.append(slot)
+            kept.append((round(min(slot[0] + 0.06, slot[1] - fdur), 3), f))
+        for name in dropped:
+            print(f'  dropped the "{name}" card: no gap of {fdur + 0.1:.2f}s near it', flush=True)
+        if kept:
+            print(f"  {len(kept)} of {len(fl)} cards placed, each inside a gap", flush=True)
+        flashes = [t for t, _ in kept]
         rows = [f'[{t:.2f},{json.dumps(f[1], ensure_ascii=False)},{f[2]}]'
-                for t, f in zip(flashes, fl)]
+                for t, f in kept]
         src = src[:mf.start(1)] + "[" + ",".join(rows) + "]" + src[mf.end(1):]
 
     # scene cuts land on the flash; animation beats keep their proportional place

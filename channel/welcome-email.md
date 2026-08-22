@@ -18,13 +18,26 @@ subscribers`. בלי המתג הזה דלוק, מייל שנשמר לא יוצא
 
 ---
 
-## נושא (Subject)
+## מה שפורסם בפועל, 23.8.2026
+
+**מקור האמת הוא Beehiiv, לא הקובץ הזה.** הטקסט נערך שם ואפשר שיתיישן בשקט, ולכן הוא
+משוכפל כאן — והשוואה בין השניים היא הדרך היחידה לדעת שהוא עוד מה שאנחנו חושבים.
+
+### Subject line
 
 ```
 You're in. Here's the first setup.
 ```
 
-## גוף המייל
+### Preview text
+
+השורה שמופיעה בתיבת הדואר אחרי הנושא. היא לא חוזרת עליו — היא מרחיבה אותו.
+
+```
+Two minutes, five clicks, and the part other tutorials skip.
+```
+
+### גוף
 
 ```
 You just gave me your email, so I'll be straight about what happens now.
@@ -34,36 +47,54 @@ and the part that breaks. Nothing else — no course, no launch, no funnel.
 
 Start with this one. It's the setup most people should have made first:
 
-  One paste, and ChatGPT stops giving you the obvious
-  actually-works-studio.vercel.app/e/1
+One paste, and ChatGPT stops giving you the obvious
+actually-works-studio.vercel.app/e/1
 
 It takes about two minutes. The page has the five clicks, the prompt in
 full, and — this is the part other tutorials skip — what it will NOT do.
 
-Two things worth saying out loud:
+One thing worth saying out loud: every setup here was run before it was
+published. If something only half works, the episode says which half.
+That's the whole difference, and it's why this list is worth an inbox.
 
-I'm David. I'm 18, I'm in Flanders, and this is not my day job. Every setup
-I publish, I ran first. If something only half works, the episode says
-which half.
-
-And if a setup here breaks for you, reply to this email and tell me. That
-is genuinely more useful to me than a like, and it's how the next episode
-gets better.
+If a setup breaks for you, reply and tell me. That's genuinely more useful
+to me than a like, and it's how the next one gets better.
 
 — David
 Actually Works
-
-Unsubscribe in one click, any time. Nothing is sold to anyone.
 ```
 
----
+## מה נחתך, ולמה
 
-## למה זה כתוב כך
+הגרסה הראשונה כללה פסקה שאמרה "אני בן 18, אני בפלנדריה, וזו לא העבודה שלי". היא
+יצאה, ולא בגלל הגיל.
 
-- **המשלוח מיד, לא בעוד שבוע.** מי שנרשם עכשיו רוצה משהו עכשיו; הקישור לפרק 01
-  הוא ההגשה, ולא הבטחה.
-- **המגבלות מוזכרות במייל עצמו** — זו ההבטחה היחידה של הערוץ, וההזדמנות הראשונה
-  לקיים אותה היא במייל הראשון.
-- **בקשה לתשובה, לא ללייק.** תשובה למייל היא הדבר שמייצר שיחה עם לקוח פוטנציאלי;
-  לייק לא.
-- **בלי לנפח.** אין לקוחות, אין תוצאות, אין ניסיון — אז אין עליהם מילה.
+**"this is not my day job" הוא מה שהיה צריך לצאת.** הוא אומר "פרויקט צד" לקורא שאולי
+יהיה הלקוח של פרק 04, הוא לא קונה שום אמון, והוא עולה באמינות. ושתי השורות ביחד
+נקראו כהסתייגות — התנצלות שמקדימה כל הוכחה שמשהו עובד.
+
+במקומן נכנס הדבר שכן מבדל: **כל הגדרה כאן הורצה לפני שפורסמה, ואם משהו עובד רק
+חצי — הפרק אומר איזה חצי.** במייל ראשון מה שקונה אמון הוא מה שאתה עושה, לא מי אתה.
+
+**הגיל נשאר, אבל בעמוד About.** מי שנכנס לשם כבר חיפש מי עומד מאחורי זה, ושם זה בא
+**אחרי** ההוכחה ולא לפניה. זה גם סוגר את ההתנגדות מראש: אם לקוח יגלה את זה לבד, "הוא
+הסתיר" גרוע פי כמה מ"הוא כתב את זה".
+
+**זו שיפוט ולא מדידה.** ‏86 עוקבים ואפס נרשמים אינם מדגם. כשיהיו כמה מאות נרשמים
+אפשר לבדוק את זה באמת.
+
+## מה שהטקסט הזה מבטיח ואין לו מנגנון
+
+השורה `One email a week` היא **הבטחה בכתב, ושום דבר לא שולח אותה.** מייל הברוכים־הבאים
+קיים; **המייל השבועי לא נבנה בכלל** — אין תבנית, אין שליחה, ואין חיבור בין "פרק עלה"
+ל"מייל יצא". זה קו ההכנסה של כל המודל הזה, וזה הפער הפתוח.
+
+## שני מתגים שקובעים אם משהו נשלח
+
+**`Welcome email`** — דלוק. בלעדיו מייל שנשמר לא יוצא.
+
+**`Double opt in email`** — כשהוא דלוק, נרשם חדש מקבל **מייל אישור** ולא את
+הברוכים־הבאים, וצריך ללחוץ קישור לפני שהוא נכנס לרשימה. זה שובר את "מיד" שביקש.
+אם הוא נשאר דלוק, `Opt in redirect URL` חייב להצביע ל-`/e/1`, אחרת מי שמאשר נזרק
+לדף הבית של beehiiv.
+
