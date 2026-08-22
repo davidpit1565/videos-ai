@@ -9,8 +9,14 @@ export const metadata: Metadata = {
   // and the share card of every public page.
   title: { default: "Actually Works", template: "%s · Actually Works" },
   description: "AI setups that actually work. One setup per episode: the exact screen, the exact paste, and the part that breaks.",
+  // The public manifest, and only that. This line used to point at a manifest named
+  // "Actually Works Studio" with start_url "/studio" and a description reading "the
+  // channel's control centre" — and it sat in the ROOT layout, so every public page
+  // advertised it. A visitor who added the site to their home screen got an app called
+  // "Studio" that opened the private tool. The PIN stopped them; the leak was that the
+  // tool's existence, name, purpose and URL were broadcast to everyone who visited.
   manifest: "/manifest.json",
-  appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "Studio" },
+  appleWebApp: { capable: true, statusBarStyle: "default", title: "Actually Works" },
 };
 
 export const viewport: Viewport = {
