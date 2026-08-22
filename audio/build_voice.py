@@ -355,7 +355,23 @@ def main():
                                   for w in allw], tw)
                 if hit is None:
                     continue
-                bm = burst.measure(burst.load(probe + "16.wav"), float(hit["at"]),
+                # Measure the POLISHED line, not the raw take.
+                #
+                # The raw take measured +10.5 dB, in band, and the same word in the finished
+                # mix measured +22.6 dB. The speed-up was not the cause — 6% cannot move a
+                # figure 12 dB. The polish chain is: it adds +1.5 dB at 4.2kHz and +2 dB at
+                # 7.2kHz, both inside the 3-8kHz band this metric reads, and its compressor
+                # has a 10ms attack, so a 5ms burst passes through untouched while the vowel
+                # behind it is compressed down. Boosting the band and squashing the reference
+                # both push the ratio the same way.
+                #
+                # Polish is deterministic per line, so measuring after it makes the take-level
+                # check predict the mix instead of describing something that will not ship.
+                pb = os.path.join(tmp, f"burst{idx:02d}.wav")
+                polish(probe, pb)
+                subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-i",pb,
+                                "-ar","16000","-ac","1", pb + "16.wav"], check=True)
+                bm = burst.measure(burst.load(pb + "16.wav"), float(hit["at"]),
                                    float(hit["dur"]))
                 v = burst.verdict(bm)
                 if v == "frication":
@@ -556,8 +572,9 @@ def main():
                 bad.append(f"{tw} {bm['peak']:+.1f} dB ({v})")
         if bad:
             print(f"\n  the mix does not hold what the takes measured: {', '.join(bad)}."
-                  f"\n  A line containing a watched word was probably time-stretched after it"
-                  f"\n  passed. Lower --max-speedup, or give that line its own seed.", flush=True)
+                  f"\n  The take-level check measures the polished line, so this should not"
+                  f"\n  happen; something between polish and the written file changed the"
+                  f"\n  consonant. Suspect the time-stretch first, then the trim.", flush=True)
             sys.exit(1)
 
 if __name__ == "__main__":
