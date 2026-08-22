@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useStudio } from "../providers";
+import Notify from "../notify";
 import { saveRate, uid } from "@/lib/types";
 import { eur, n, pct, today } from "@/lib/fmt";
 
@@ -96,6 +97,8 @@ export default function Dashboard() {
       )}
 
       <h2>מה קרה</h2>
+      <Notify />
+
       <div className="actions" style={{ margin: "0 0 14px" }}>
         <button
           className="btn"

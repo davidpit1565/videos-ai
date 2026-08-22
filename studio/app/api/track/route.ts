@@ -1,7 +1,8 @@
 import { whole } from "@/lib/whole";
 import { NextResponse } from "next/server";
+import { notify } from "@/lib/push";
 import { hasDb, loadState, saveState } from "@/lib/db";
-import { fetchBeehiiv, fetchInstagram } from "@/lib/sources";
+import { fetchBeehiiv, fetchInstagram, refreshInstagramToken} from "@/lib/sources";
 import { ActivityEvent, State, uid } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -41,7 +42,36 @@ export async function GET(req: Request) {
     });
   }
 
+  // Refresh before reading, only on the cron's run. An Instagram-Login token dies at 60 days
+  // and nothing was keeping it alive, which is why the connection broke twice and both repairs
+  // were manual. Refreshed daily it never gets close to expiring.
+  if (fromCron) {
+    const rt = await refreshInstagramToken();
+    if (rt.ok) console.log(`[track] instagram token refreshed, ${rt.expiresInDays}d left`);
+    else console.log(`[track] instagram token not refreshed: ${rt.reason}`);
+  }
+
   const [ig, bee] = await Promise.all([fetchInstagram(), fetchBeehiiv()]);
+
+  // Tell him the day a connection breaks, not whenever he next opens the studio. This is the
+  // half a refresh cannot cover: today's failure is Meta blocking the app, which no token
+  // operation reaches, and it went unnoticed until he happened to look.
+  if (!ig.connected) {
+    void notify({
+      title: "אינסטגרם לא מחובר",
+      body: ig.reason + (ig.detail ? ` — ${ig.detail.slice(0, 90)}` : ""),
+      url: "/studio",
+      tag: "ig-down",
+    }).catch(() => {});
+  }
+  if (!bee.connected) {
+    void notify({
+      title: "Beehiiv לא מחובר",
+      body: bee.reason,
+      url: "/studio",
+      tag: "bee-down",
+    }).catch(() => {});
+  }
   const now = new Date().toISOString();
   const fresh: ActivityEvent[] = [];
   // Every field read off a stored state has to tolerate its own absence. activity was

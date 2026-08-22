@@ -1,6 +1,8 @@
 /** One place that talks to Instagram and Beehiiv, so the pages, the API routes and the
  *  nightly tracker all see exactly the same numbers. */
 
+import { sharedPool } from "./db";
+
 /** Meta has two different Instagram APIs and they do not accept each other's tokens.
  *  A token minted by "Generate token" inside Instagram's own API setup (Instagram Login)
  *  is an IGAA…/IGQ… token for graph.instagram.com; sending it to graph.facebook.com comes
@@ -58,8 +60,77 @@ export type BeeResult =
       checkedAt: string;
     };
 
+
+/** Keep the Instagram token alive without him touching it.
+ *
+ *  An Instagram-Login long-lived token lasts 60 days and has to be refreshed before it dies.
+ *  Nothing was refreshing it, so the connection was always going to break on a timer — and it
+ *  did, twice, and both times the repair was manual. The daily tracker calls this; a token
+ *  refreshed every day is never within 59 days of expiring.
+ *
+ *  It cannot fix every failure. Today's is `API access blocked`, which is Meta disabling the
+ *  app rather than the token expiring, and no refresh reaches that. This removes the failure
+ *  that WOULD have recurred on its own, and the notification tells him about the rest the day
+ *  it happens instead of whenever he next looks.
+ *
+ *  The refreshed value cannot be written back into the environment variable from here — Vercel
+ *  env vars are not writable at runtime — so it is stored in the database and preferred over
+ *  the variable when present. That also means the variable stays the value he pasted, and a
+ *  refresh never silently diverges from what /api/connections reports. */
+export async function refreshInstagramToken(): Promise<
+  { ok: true; expiresInDays: number } | { ok: false; reason: string }
+> {
+  const token = await igToken();
+  if (!token) return { ok: false, reason: "IG_ACCESS_TOKEN לא מוגדר" };
+  if (!/^IG[QA]/.test(token)) {
+    // the Facebook-Page route has a different mechanism and a different lifetime
+    return { ok: false, reason: "טוקן מסוג פייסבוק — לא נדרש רענון כאן" };
+  }
+  try {
+    const r = await fetch(
+      `${IG_HOST}/refresh_access_token?grant_type=ig_refresh_token&access_token=${token}`,
+      { cache: "no-store" },
+    );
+    const j = (await r.json()) as { access_token?: string; expires_in?: number; error?: { message?: string } };
+    if (!r.ok || !j.access_token) {
+      return { ok: false, reason: j.error?.message ?? `אינסטגרם החזיר ${r.status}` };
+    }
+    await storeIgToken(j.access_token);
+    return { ok: true, expiresInDays: Math.round((j.expires_in ?? 0) / 86400) };
+  } catch (e) {
+    return { ok: false, reason: (e as Error).message };
+  }
+}
+
+/** the refreshed token if one has been stored, otherwise the one he pasted */
+export async function igToken(): Promise<string | null> {
+  const p = sharedPool();
+  if (p) {
+    try {
+      await p.query(`create table if not exists ig_token (
+        id int primary key default 1, token text not null,
+        refreshed_at timestamptz not null default now())`);
+      const r = await p.query<{ token: string }>("select token from ig_token where id = 1");
+      if (r.rows[0]?.token) return r.rows[0].token;
+    } catch {
+      /* fall through to the environment — a database problem must not break the read path */
+    }
+  }
+  return process.env.IG_ACCESS_TOKEN ?? null;
+}
+
+async function storeIgToken(token: string): Promise<void> {
+  const p = sharedPool();
+  if (!p) return;
+  await p.query(
+    `insert into ig_token (id, token) values (1, $1)
+     on conflict (id) do update set token = $1, refreshed_at = now()`,
+    [token],
+  );
+}
+
 export async function fetchInstagram(): Promise<IgResult> {
-  const token = process.env.IG_ACCESS_TOKEN;
+  const token = await igToken();
   if (!token) return { connected: false, reason: "IG_ACCESS_TOKEN לא מוגדר" };
 
   const { host, via } = igRoute(token);
