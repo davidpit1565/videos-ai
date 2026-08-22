@@ -459,3 +459,4 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .nhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
 .notify .hint{color:var(--faint);font-size:14px;margin:0 0 10px;max-width:52ch}
 .notify .hint.mono{font-family:var(--m);font-size:13px}
+.aplayer{display:block;width:100%;margin:0 auto}

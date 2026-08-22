@@ -34,7 +34,13 @@ export default function Renders() {
       {rs.map((r) => (
         <section key={r.file} className="render">
           <div className="rhead">
-            <b>{r.episode !== null ? `פרק ${r.episode}` : r.file}</b>
+            <b>
+              {r.kind === "audio"
+                ? r.file.replace(/\.[^.]+$/, "")
+                : r.episode !== null
+                  ? `פרק ${r.episode}`
+                  : r.file}
+            </b>
             {r.gate === null ? (
               <span className="pill unknown">השער לא רץ</span>
             ) : r.gate.passed ? (
@@ -45,7 +51,11 @@ export default function Renders() {
           </div>
 
           {/* controls, no autoplay: he watches it on purpose, with sound, like a viewer would */}
-          <video className="player" src={r.src} controls preload="metadata" playsInline />
+          {r.kind === "video" ? (
+            <video className="player" src={r.src} controls preload="metadata" playsInline />
+          ) : (
+            <audio className="aplayer" src={r.src} controls preload="metadata" />
+          )}
 
           <div className="meta">
             <span className="num">{(r.bytes / 1e6).toFixed(1)} MB</span>
