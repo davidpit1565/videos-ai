@@ -32,7 +32,7 @@ body{margin:0;background:#05070A;color:var(--text);font-family:var(--b);-webkit-
 
 .scene{position:absolute;inset:0;z-index:2;opacity:0;visibility:hidden}
 .scene.active{opacity:1;visibility:visible}
-.pad{position:absolute;inset:0;padding:12cqw 6cqw 40cqw;display:flex;flex-direction:column;
+.pad{position:absolute;inset:0;padding:26cqw 9.5cqw 76cqw;display:flex;flex-direction:column;
   justify-content:center;gap:3.2cqw}
 .kb{will-change:transform}
 
@@ -125,7 +125,7 @@ p.lede strong{color:var(--brass)}
   color:var(--brass);background:rgba(8,11,16,.8);border:1px solid var(--brass);border-radius:1cqw;padding:1cqw 2.2cqw}
 
 /* ── captions: big, boxed, unmissable ─────────── */
-.subs{position:absolute;left:4.5cqw;right:4.5cqw;bottom:24cqw;text-align:center;z-index:11;
+.subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
   font-family:var(--b);font-weight:800;font-size:7.2cqw;line-height:1.16;letter-spacing:-.02em;
   text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
 .subs em{font-style:normal;background:var(--brass);color:#0A0A0A;padding:0 1.4cqw;border-radius:.9cqw;
@@ -176,7 +176,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 .col p{margin:0;font-size:3.5cqw;line-height:1.35;color:#C6D0DC;font-weight:600}
 .col.hot p{color:#EDF2F8}
 
-.loop{position:relative;width:64cqw;aspect-ratio:1;margin:0 auto}
+.loop{position:relative;width:50cqw;aspect-ratio:1;margin:0 auto}
 .loop .ring{position:absolute;inset:0;border-radius:50%;border:.7cqw dashed rgba(154,167,184,.42)}
 .loop .spin{position:absolute;inset:0;border-radius:50%;border:.9cqw solid transparent;
   border-top-color:var(--brass);will-change:transform}
@@ -283,7 +283,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="flash" id="flash"><span id="flashTxt"></span></div>
 <div class="subs" id="subs"></div>
-<div class="handle">actually works</div>
+<div class="handle" data-decor>actually works</div>
 <button class="tapover" id="tap" aria-label="Play"><span class="d"></span></button>
 </div>
 
@@ -344,7 +344,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   ];
   /* [at, label, ember?] — the pattern interrupts between sections */
   var FLASH=[[7.10,"the line",0],[17.34,"the loop",0],[29.18,"the test",0],[37.40,"honest",1],[46.00,"next",0]];
-  var FDUR=0.32;
+  var FDUR=0.55;
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
 
