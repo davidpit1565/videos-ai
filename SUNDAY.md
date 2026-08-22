@@ -10,6 +10,7 @@
 |---|---|
 | האתר הציבורי | `actually-works-studio.vercel.app` |
 | הסטודיו (עם קוד) | `actually-works-studio.vercel.app/studio` |
+| **רנדרים — לצפות ולאשר** | `actually-works-studio.vercel.app/renders` |
 | עמוד פרק 01 | `actually-works-studio.vercel.app/e/1` |
 | בדיקת חיבורים | `actually-works-studio.vercel.app/api/connections` |
 | הריפו | `github.com/davidpit1565/videos-ai` |

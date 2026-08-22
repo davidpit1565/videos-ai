@@ -428,3 +428,27 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .site .hits .bl{color:var(--soft);font-size:.95rem;display:block}
 .site .hits .ext{display:flex;gap:.9rem;margin:.7rem 0 0}
 .site .hits .ext a{font-size:.87rem;color:var(--gold);text-decoration:underline;display:inline}
+
+/* ---- renders: a reel waiting for approval, with the gate's verdict beside it ---- */
+.render{border:1px solid var(--line);border-radius:14px;padding:14px;margin:18px 0;
+  background:var(--panel)}
+.rhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.pill{font-family:var(--m);font-size:12px;padding:3px 9px;border-radius:999px;
+  border:1px solid var(--line)}
+.pill.pass{color:#0B3D2C;background:#CFEBD9;border-color:#9FD2B4}
+.pill.fail{color:#4A1414;background:#F3CFCF;border-color:#DCA5A5}
+.pill.unknown{color:var(--faint)}
+/* 9:16 capped by height, so a phone-shaped video does not push the page off the screen */
+.player{display:block;width:100%;max-width:min(100%,320px);aspect-ratio:9/16;
+  max-height:70vh;border-radius:10px;background:#000;margin:0 auto}
+.render .meta{display:flex;align-items:center;gap:14px;justify-content:center;
+  margin-top:10px;font-size:14px}
+.render .meta a{color:var(--brass)}
+.gate{margin-top:12px}
+.gate summary{cursor:pointer;color:var(--faint);font-size:14px}
+.gate pre,.cap pre{white-space:pre-wrap;font-family:var(--m);font-size:13px;line-height:1.5;
+  background:var(--ink);color:var(--text);border:1px solid var(--line);border-radius:10px;
+  padding:12px;overflow-x:auto;max-height:40vh}
+.cap{margin-top:14px}
+.caphead{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.btn.small{font-size:14px;padding:5px 12px}
