@@ -474,7 +474,14 @@ def main():
                 # whole file after it was already written — this catches it per line and
                 # keeps the slower, correct take instead.
                 spoken_i = respell(text, phrases, words).lower()
-                watched_here = [w for w in watch if re.search(r"\b" + w + r"\b", spoken_i)]
+                # the script writes "3", not "three" — same fold NUMS already does for
+                # the WER comparison above, needed again here or a digit line never
+                # matches and this guard silently never runs
+                def _has_word(w, s):
+                    digit = NUMS.get(w)
+                    pat = r"\b(" + w + (r"|" + re.escape(digit) if digit else "") + r")\b"
+                    return re.search(pat, s)
+                watched_here = [w for w in watch if _has_word(w, spoken_i)]
                 broke = False
                 if watched_here and asr is not None:
                     check16 = fast + "16.wav"
