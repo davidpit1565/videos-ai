@@ -5,11 +5,15 @@
     {
       "path": "/api/track",
       "schedule": "10 6 * * *"
+    },
+    {
+      "path": "/api/health-check",
+      "schedule": "10 18 * * *"
     }
   ],
   "git": {
     "deploymentEnabled": {
-      "claude/universal-ai-engine-tutorial-tow3v7": false
+      "claude/*": false
     }
   }
 }
