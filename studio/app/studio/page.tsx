@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useStudio } from "../providers";
 import Notify from "../notify";
+import ClaudeUsage from "../claude-usage";
 import { saveRate, uid } from "@/lib/types";
 import { eur, n, pct, today } from "@/lib/fmt";
 
@@ -281,6 +282,8 @@ export default function Dashboard() {
           </table>
         </div>
       )}
+
+      <ClaudeUsage />
     </>
   );
 }
