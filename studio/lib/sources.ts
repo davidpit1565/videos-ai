@@ -42,6 +42,8 @@ export type IgResult =
       username: string | null;
       followers: number | null;
       mediaCount: number | null;
+      canPublish: boolean;
+      publishReason: string | null;
       media: IgMedia[];
       checkedAt: string;
     };
@@ -129,6 +131,28 @@ async function storeIgToken(token: string): Promise<void> {
   );
 }
 
+/** Whether the token can actually publish, not just read — the two are separate Meta
+ *  permissions (`instagram_basic` vs `instagram_business_content_publish`), and a token
+ *  can be genuinely "connected" for stats while unable to post anything. Reading
+ *  `content_publishing_limit` is the standard non-destructive way to find out: it is a
+ *  GET, it changes nothing, and Meta rejects it specifically when the publish permission
+ *  is missing rather than for any other reason a normal read would fail. */
+async function checkPublishAccess(
+  host: string, user: string, token: string,
+): Promise<{ canPublish: boolean; reason: string | null }> {
+  try {
+    const r = await fetch(
+      `${host}/${user}/content_publishing_limit?fields=config,quota_usage&access_token=${token}`,
+      { cache: "no-store" },
+    );
+    if (r.ok) return { canPublish: true, reason: null };
+    const body = await r.text();
+    return { canPublish: false, reason: body.slice(0, 300) };
+  } catch (e) {
+    return { canPublish: false, reason: (e as Error).message };
+  }
+}
+
 export async function fetchInstagram(): Promise<IgResult> {
   const token = await igToken();
   if (!token) return { connected: false, reason: "IG_ACCESS_TOKEN לא מוגדר" };
@@ -203,9 +227,13 @@ export async function fetchInstagram(): Promise<IgResult> {
       }),
     );
 
+    const publish = await checkPublishAccess(IG, user, token);
+
     return {
       connected: true,
       via,
+      canPublish: publish.canPublish,
+      publishReason: publish.reason,
       username: profile.username ?? null,
       followers: profile.followers_count ?? null,
       mediaCount: profile.media_count ?? null,

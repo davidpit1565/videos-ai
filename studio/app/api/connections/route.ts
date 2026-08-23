@@ -114,6 +114,8 @@ export async function GET() {
             via: instagram.via,
             username: instagram.username,
             followers: instagram.followers,
+            canPublish: instagram.canPublish,
+            publishReason: instagram.publishReason,
           }
         : {
             connected: false,
