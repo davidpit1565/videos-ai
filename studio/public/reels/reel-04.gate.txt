@@ -1,0 +1,41 @@
+=== narration
+audio/reel04-narration-r.wav  25.5s  8 lines
+  medians: ending -23.0 dB · level -19.0 dBFS · S residual +0.3 dB (slope +9.2 dB per sibilant/syllable)
+  flagged below: ending -45.8 dB · S residual -1.2 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  2.46  +0.42  3.66   -8.7  -44.5  -18.9  This video almost shipped broken .
+    2  2.82  +0.42  3.19   -9.4  -22.9  -19.6  A check said the sound landed. It didn
+    3   2.2  +0.42  4.55  -13.5  -23.1  -20.2  A check ran before the fix it watched.
+    4  2.98  +0.85  4.36   -9.6  -35.6  -18.3  A script proved a file existed. It was
+    5  2.42  +0.42  4.55  -11.9  -21.2  -18.1  No tool caught any of it. A human did.
+    6   3.3  +0.42  3.94   -9.3  -20.6  -20.3  So every check now watches the one bef
+    7  2.45  +0.42  4.49   -7.2  -41.9  -19.1  That's the only reason this one shippe
+    8   2.4    —    4.17   -8.4  -13.1  -18.4  Follow for setups that actually works.
+
+  nothing flagged. every line sits inside his own spread.
+
+=== frame layout
+reel-04-kar.html  25.6s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  within tolerance: 6px past the right line   on  "landed."
+  overlaps: none over 10px
+
+=== rendered file
+reel-04.mp4  1080x1920  30fps  25.60s  4.8MB
+  visual change: median 0.53s, longest 1.93s
+  loudness: -14.9 LUFS integrated, peak -4.4 dBFS, LRA 1.6 LU
+  loop seam: first vs last frame differ by 24.5/255
+
+  [warn]    25.6s is outside the 30-90s band
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 42.8)
+  ok        visual change every 0.53s median
+  ok        -14.9 LUFS
+  ok        peak -4.4 dBFS
+
+ALL CHECKS PASSED
