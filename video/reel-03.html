@@ -107,6 +107,15 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-
 .side strong{color:var(--text)}
 .side ul{margin:0;padding-inline-start:17px}
 
+/* the takeaway card — a real, usable rule the viewer can screenshot, not just an
+   opinion. Sized to fill the safe box, not a small floating box. */
+.takecard{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2}
+.takecard .tc-k{font-family:var(--m);font-size:3cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#8A7434;margin:0 0 2.4cqw}
+.takecard .tc-b{font-family:var(--b);font-weight:700;font-size:6.2cqw;line-height:1.32;color:#0D0D0D}
+.takecard .tc-b strong{color:#B8860B}
+
 body.render{background:#000;overflow:hidden}
 #preroll{position:fixed;inset:0;background:#000;z-index:9999}
 body.render .page{padding:0;gap:0;display:block}

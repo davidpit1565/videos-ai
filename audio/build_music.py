@@ -64,15 +64,25 @@ def reverb(x, decay=1.5, mix=0.32):
     wet /= (np.abs(wet).max() or 1)
     return (1-mix)*x + mix*wet*(np.abs(x).max() or 1)
 
-# semitone offsets for each chord voicing, over the key root
-PROG = [
-    ("Am7",  [0, 3, 7, 10]),
-    ("Fmaj7",[-4, 0, 5, 9]),
-    ("Cmaj7",[3, 7, 12, 14]),
-    ("G",    [-2, 2, 7, 11]),
-]
+# semitone offsets for each chord voicing, over the key root. Different progressions
+# read as genuinely different tracks, not just the same one sped up or slowed down —
+# tempo alone was the mistake: every episode sounded identical because only bpm moved.
+MOODS = {
+    # the default — even, unresolved, works for most explainer content
+    "neutral": [("Am7", [0, 3, 7, 10]), ("Fmaj7", [-4, 0, 5, 9]),
+                ("Cmaj7", [3, 7, 12, 14]), ("G", [-2, 2, 7, 11])],
+    # minor, restless, never lands on the root — for exposes and warnings
+    "urgent":  [("Am", [0, 3, 7, 12]), ("E7", [-1, 4, 7, 10]),
+                ("Fmaj7", [-4, 0, 5, 9]), ("Am", [0, 3, 7, 12])],
+    # major, resolves every four bars — for wins, fixes, things that work
+    "bright":  [("Cmaj7", [0, 4, 7, 11]), ("G", [-5, -2, 2, 7]),
+                ("Am7", [0, 3, 7, 10]), ("Fmaj7", [-4, 0, 5, 9])],
+}
+PROG = MOODS["neutral"]
 
-def build(total, bpm=82, root=55.0):
+def build(total, bpm=82, root=55.0, mood="neutral"):
+    global PROG
+    PROG = MOODS.get(mood, MOODS["neutral"])
     beat = 60.0/bpm
     bar  = beat*4
     n_total = int(total*SR)
@@ -140,8 +150,9 @@ if __name__ == "__main__":
     total = float(sys.argv[1]); out = sys.argv[2]
     bpm  = float(sys.argv[sys.argv.index("--bpm")+1]) if "--bpm" in sys.argv else 82.0
     root = float(sys.argv[sys.argv.index("--key")+1]) if "--key" in sys.argv else 55.0
-    a = build(total, bpm, root)
+    mood = sys.argv[sys.argv.index("--mood")+1] if "--mood" in sys.argv else "neutral"
+    a = build(total, bpm, root, mood)
     with wave.open(out, "w") as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
         w.writeframes((a*32767).astype(np.int16).tobytes())
-    print("wrote %s  %.1fs  %d bpm" % (out, len(a)/SR, bpm))
+    print("wrote %s  %.1fs  %d bpm  %s" % (out, len(a)/SR, bpm, mood))

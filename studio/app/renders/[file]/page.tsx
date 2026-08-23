@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { reelByFile } from "@/lib/reels";
 import Copy from "../copy";
+import IgStats from "../igstats";
 
 export const dynamic = "force-dynamic";
 

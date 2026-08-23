@@ -5,7 +5,7 @@
 # genuine bottleneck (CPU-bound, no way around it) but ran one command at a time with
 # a human in the loop for every step in between.
 #
-#   ./export/produce.sh <episode> <build.html> <duration> [accept_words] [bpm]
+#   ./export/produce.sh <episode> <build.html> <duration> [accept_words] [bpm] [mood]
 #
 # <episode> e.g. "03" — used to name every intermediate file consistently.
 # Requires the build's CUES array to already be final; this does not write scripts,
@@ -13,10 +13,13 @@
 # <bpm> the music bed's tempo — pick it per episode, not a fixed default: a warning
 # or exposé earns something more urgent (90-100), a calm walkthrough something
 # lower (72-80). Default 82 if you don't have an opinion yet.
+# <mood> neutral | urgent | bright — a different chord progression per mood, not just
+# a different tempo on the same one. Every episode sounding the same was the bug;
+# tempo alone did not fix it.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
-EP="$1"; BUILD="$2"; DUR="$3"; ACCEPT="${4:-}"; BPM="${5:-82}"
+EP="$1"; BUILD="$2"; DUR="$3"; ACCEPT="${4:-}"; BPM="${5:-82}"; MOOD="${6:-neutral}"
 VO="audio/reel${EP}-narration.wav"
 CUES="audio/reel${EP}-narration-cues.json"
 VO_R="audio/reel${EP}-narration-r.wav"
@@ -55,8 +58,8 @@ html = open('$BUILD_K').read()
 m = re.search(r'var DUR=([\d.]+)', html)
 print(m.group(1) if m else '$DUR')
 ")
-echo "=== [6/8] music bed at ${NEWDUR}s, ${BPM} bpm"
-python3 audio/build_music.py "$NEWDUR" "$MUSIC" --bpm "$BPM" || exit 1
+echo "=== [6/8] music bed at ${NEWDUR}s, ${BPM} bpm, ${MOOD}"
+python3 audio/build_music.py "$NEWDUR" "$MUSIC" --bpm "$BPM" --mood "$MOOD" || exit 1
 
 echo "=== [7/8] render"
 FRAMES=1 ./export/render.sh "$BUILD_K" 1080 1920 "$NEWDUR" "$VO_R" "$MP4" "$MUSIC" || exit 1
