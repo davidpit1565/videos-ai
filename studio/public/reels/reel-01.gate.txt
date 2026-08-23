@@ -26,28 +26,28 @@ audio/reel01-narration-v28.wav  51.1s  15 lines
     "three": -4.2 dB, absent (accepted by ear, see SUNDAY.md)
 
 === frame layout
-reel-01-v25.html  51.11s  safe box: x 65-1015, y 269-1248
+reel-01-v25.html  51.51s  safe box: x 65-1015, y 269-1248
   safe area: clean (tolerance 10px)
   overlaps: none over 10px
   within tolerance: 6px overlap  ebox x box
 
 === rendered file
-reel-01-v27.mp4  1080x1920  30fps  51.11s  8.1MB
+reel-01-v29.mp4  1080x1920  30fps  51.51s  8.1MB
   card spacing: [27.6]
-  visual change: median 2.27s, longest 7.47s
+  visual change: median 2.43s, longest 7.47s
   loudness: -15.3 LUFS integrated, peak -4.3 dBFS, LRA 1.9 LU
-  loop seam: first vs last frame differ by 29.8/255
+  loop seam: first vs last frame differ by 25.5/255
 
   ok        1080x1920
   ok        yuv420p
   ok        30fps
   ok        48kHz stereo
-  ok        length 51.1s inside 30-90s
+  ok        length 51.5s inside 30-90s
   ok        length matches the build
   ok        no frozen run over 4s
   ok        first frame carries picture (luma 33.1)
   ok        2 colour cards, 0.53-0.57s each
-  ok        visual change every 2.27s median
+  ok        visual change every 2.43s median
   ok        -15.3 LUFS
   ok        peak -4.3 dBFS
 
