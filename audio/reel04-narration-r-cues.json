@@ -43,8 +43,14 @@
  },
  {
   "n": 8,
-  "line": "Follow for setups that actually works.",
+  "line": "The rule now: test every check on a case you know is broken, before you trust it.",
   "start": 22.3,
-  "end": 24.7
+  "end": 27.81
+ },
+ {
+  "n": 9,
+  "line": "Follow for setups that actually works.",
+  "start": 28.23,
+  "end": 30.63
  }
 ]

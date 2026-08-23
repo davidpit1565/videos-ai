@@ -91,6 +91,16 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-
 .side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.62}
 .side strong{color:var(--text)}
 
+/* the takeaway card — a real, usable rule the viewer can screenshot, not just an
+   opinion. Sized to fill the safe box, not a small floating box like reel-01's
+   mockup — he flagged that as its own mistake, so this is bigger and plainer. */
+.takecard{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2}
+.takecard .tc-k{font-family:var(--m);font-size:3cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#8A7434;margin:0 0 2.4cqw}
+.takecard .tc-b{font-family:var(--b);font-weight:700;font-size:6.2cqw;line-height:1.32;color:#0D0D0D}
+.takecard .tc-b strong{color:#B8860B}
+
 body.render{background:#000;overflow:hidden}
 #preroll{position:fixed;inset:0;background:#000;z-index:9999}
 body.render .page{padding:0;gap:0;display:block}
@@ -116,19 +126,19 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <section class="scene" data-in="2.97" data-out="6.21">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="2.97">A check said<br>the sound<br><span class="box">landed</span>. It didn't.</h2>
+    <h2 class="b punch" data-at="3">A check said<br>the sound<br><span class="box">landed</span>. It didn't.</h2>
   </div></div>
 </section>
 
 <section class="scene" data-in="6.21" data-out="8.83">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="6.28">A check ran<br><span class="ebox">before</span><br>the fix it watched.</h2>
+    <h2 class="b punch" data-at="6.24">A check ran<br><span class="ebox">before</span><br>the fix it watched.</h2>
   </div></div>
 </section>
 
 <section class="scene" data-in="8.83" data-out="12.445">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="8.9">A script <span class="box">proved</span><br>a file existed.<br>It was empty.</h2>
+    <h2 class="b punch" data-at="8.86">A script <span class="box">proved</span><br>a file existed.<br>It was empty.</h2>
   </div></div>
 </section>
 
@@ -140,19 +150,29 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <section class="scene" data-in="15.5" data-out="19.22">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="15.57">So every check<br>now watches<br>the <span class="box">one before it</span>.</h2>
+    <h2 class="b punch" data-at="15.53">So every check<br>now watches<br>the <span class="box">one before it</span>.</h2>
   </div></div>
 </section>
 
 <section class="scene" data-in="19.22" data-out="22.09">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="19.29">That's the only<br>reason <span class="ebox">this one</span><br>shipped clean.</h2>
+    <h2 class="b punch" data-at="19.25">That's the only<br>reason <span class="ebox">this one</span><br>shipped clean.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="22.09" data-out="25">
+<!-- the takeaway — the concrete, usable rule, on its own screen -->
+<section class="scene" data-in="22.09" data-out="28.02">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="22.16" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <div class="takecard b" data-at="22.12">
+      <div class="tc-k">The rule now</div>
+      <div class="tc-b">Test every check on a case you <strong>know</strong> is broken — before you trust it.</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="28.02" data-out="31.28">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="28.05" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -165,7 +185,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="30" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="31.28" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -182,7 +202,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=25.6,t=0,playing=false,last=0;
+  var DUR=31.53,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -200,71 +220,89 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [12.87,15.29,"No tool caught any of it. A human did."],
     [15.71,19.01,"So every check now watches the one before it."],
     [19.43,21.88,"That's the only reason this one shipped clean."],
-    [22.30,24.70,"Follow for setups that actually works."]
+    [22.30,27.81,"The rule now: test every check on a case you know is broken, before you trust it."],
+    [28.23,30.63,"Follow for setups that actually works."]
   ];
   var WORDS=[
     [0.3,0.58,"This",0],
-    [0.58,1.02,"video",0],
-    [1.02,1.74,"almost",0],
-    [1.74,2.18,"shipped",1],
-    [2.18,2.7,"broken.",1],
-    [3.4,3.52,"A",2],
-    [3.5,3.64,"check",2],
-    [3.64,3.88,"said",2],
-    [3.88,4.14,"the",3],
-    [4.14,4.5,"sound",3],
+    [0.58,0.98,"video",0],
+    [0.98,1.74,"almost",0],
+    [1.74,2.16,"shipped",1],
+    [2.16,2.7,"broken.",1],
+    [3.42,3.54,"A",2],
+    [3.5,3.62,"check",2],
+    [3.62,3.88,"said",2],
+    [3.88,4.12,"the",3],
+    [4.12,4.5,"sound",3],
     [4.5,4.96,"landed.",3],
     [5.38,5.58,"It",4],
-    [5.58,6.26,"didn't.",4],
-    [6.5,6.74,"A",5],
-    [6.74,6.94,"check",5],
-    [6.94,7.24,"ran",5],
-    [7.24,7.58,"before",6],
-    [7.58,7.82,"the",6],
+    [5.58,6.28,"didn't.",4],
+    [6.52,6.72,"A",5],
+    [6.72,6.92,"check",5],
+    [6.92,7.24,"ran",5],
+    [7.24,7.56,"before",6],
+    [7.56,7.82,"the",6],
     [7.82,7.96,"fix",6],
-    [7.96,8.18,"it",7],
-    [8.18,8.52,"watched.",7],
-    [9.12,9.32,"A",8],
+    [7.96,8.2,"it",7],
+    [8.2,8.52,"watched.",7],
+    [9.16,9.32,"A",8],
     [9.32,9.7,"script",8],
     [9.7,10.12,"proved",8],
     [10.12,10.42,"a",9],
     [10.42,10.58,"file",9],
-    [10.58,11.08,"existed.",9],
-    [11.36,11.48,"It",10],
-    [11.42,11.62,"was",10],
-    [11.62,12.0,"empty.",10],
+    [10.58,11.1,"existed.",9],
+    [11.3,11.42,"It",10],
+    [11.4,11.62,"was",10],
+    [11.62,12.06,"empty.",10],
     [13.04,13.24,"No",11],
     [13.24,13.36,"tool",11],
     [13.36,13.64,"caught",11],
     [13.64,13.92,"any",12],
-    [13.92,14.06,"of",12],
-    [14.06,14.28,"it.",12],
-    [14.58,14.76,"A",13],
+    [13.92,14.04,"of",12],
+    [14.04,14.26,"it.",12],
+    [14.56,14.76,"A",13],
     [14.76,14.96,"human",13],
-    [14.96,15.28,"did.",13],
-    [15.94,16.26,"So",14],
-    [16.26,16.68,"every",14],
-    [16.68,17.02,"check",14],
-    [17.02,17.48,"now",15],
-    [17.48,17.84,"watches",15],
-    [17.84,18.16,"the",15],
+    [14.96,15.3,"did.",13],
+    [15.94,16.24,"So",14],
+    [16.24,16.68,"every",14],
+    [16.68,17.04,"check",14],
+    [17.04,17.48,"now",15],
+    [17.48,17.82,"watches",15],
+    [17.82,18.16,"the",15],
     [18.16,18.3,"one",16],
-    [18.3,18.62,"before",16],
-    [18.62,18.9,"it.",16],
-    [19.44,19.86,"That's",17],
-    [19.86,20.04,"the",17],
-    [20.04,20.38,"only",17],
-    [20.38,20.68,"reason",18],
+    [18.3,18.64,"before",16],
+    [18.64,18.92,"it.",16],
+    [19.43,19.84,"That's",17],
+    [19.84,20.02,"the",17],
+    [20.02,20.36,"only",17],
+    [20.36,20.68,"reason",18],
     [20.68,20.98,"this",18],
     [20.98,21.18,"one",18],
-    [21.18,21.42,"shipped",19],
-    [21.42,21.84,"clean.",19],
-    [22.42,22.78,"Follow",20],
-    [22.78,23.16,"for",20],
-    [23.16,23.4,"setups",20],
-    [23.4,23.78,"that",21],
-    [23.78,24.24,"actually",21],
-    [24.24,24.58,"works.",21]
+    [21.18,21.4,"shipped",19],
+    [21.4,21.84,"clean.",19],
+    [22.46,22.6,"The",20],
+    [22.6,22.94,"rule",20],
+    [22.94,23.48,"now:",20],
+    [23.84,24.12,"test",21],
+    [24.12,24.62,"every",21],
+    [24.62,24.86,"check",21],
+    [24.86,25.08,"on",22],
+    [25.08,25.26,"a",22],
+    [25.26,25.42,"case",22],
+    [25.42,25.62,"you",23],
+    [25.62,25.74,"know",23],
+    [25.72,25.98,"is",23],
+    [25.98,26.38,"broken,",24],
+    [26.38,27.12,"before",24],
+    [27.12,27.4,"you",24],
+    [27.4,27.64,"trust",24],
+    [27.64,27.94,"it.",25],
+    [28.23,28.72,"Follow",26],
+    [28.72,29.1,"for",26],
+    [29.1,29.3,"setups",26],
+    [29.3,29.68,"that",27],
+    [29.68,30.16,"actually",27],
+    [30.16,30.5,"works.",27]
   ];
   var FDUR=0.55,FLASH=[];
 
