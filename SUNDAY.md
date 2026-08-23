@@ -271,6 +271,16 @@ python3 export/karaoke.py video/reel-02-paced.html /tmp/deep.json --words-cues a
 מרווח סגירה כמו כל שאר החתכים, לא 0.45 קבוע. `studio/public/reels/reel-01.mp4`
 מעודכן, עבר את `check.sh` במלואו (three עדיין מסומן אך מאושר-אוזן, ראה סעיף 2 למעלה).
 
+## reel-02 — "three" נסגר, ה-reel חי בסטודיו (23.8)
+
+בחרת option 2 (exaggeration 0.35, cfg 0.30, temp 0.75, seed 11) מתוך שבעת הקבצים
+ששלחתי. הושתל בשורה 6 ("Same three steps, on a loop. Plan.") באותה שיטה כמו ב-reel-01
+(חיתוך שקט מוביל/עוקב + fade, אימות ASR+burst.py לפני שילוב). `voice_doctor.py --repair`
+תוקן רמת שורה 6. `retime.py --tail 0.9` (אותו תיקון סוף כמו reel-01) → `karaoke.py`
+לכתוביות → `safe_check.js` נקי → מוזיקה נבנתה מחדש לאורך המדויק (53.01s) → רינדור →
+`ACCEPT_WORDS=three ./export/check.sh` עבר במלואו (three עדיין מסומן, מאושר-אוזן).
+`studio/public/reels/reel-02.mp4` מעודכן ובסטודיו.
+
 ## בקשה עתידית שנרשמה — לא עכשיו
 
 הוא ביקש שלא נשכח: אחרי שהסרטונים מוכנים ורצים (כשזו כבר לא הבעיה שלנו), לשפר
