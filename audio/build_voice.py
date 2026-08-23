@@ -465,8 +465,39 @@ def main():
             if f > 1.01:
                 fast = os.path.join(tmp, f"{i:02d}f.wav")
                 stretch(pol, fast, f)
-                print(f"      {rate0:.1f} syl/s, sped up x{f:.2f}", flush=True)
-                pol = fast
+                # The take-level watch check in say() measures the polished line before
+                # this stretch exists, so a consonant that passed there can still be
+                # broken here — rubberband smears the burst, not just the vowel it is
+                # sitting next to. Measured on episode 01: "three" left the retry loop
+                # in band and came out of a x1.20 stretch at 40+ dB, a clean burst. The
+                # end-of-build check below would have caught it, but only by failing the
+                # whole file after it was already written — this catches it per line and
+                # keeps the slower, correct take instead.
+                spoken_i = respell(text, phrases, words).lower()
+                watched_here = [w for w in watch if re.search(r"\b" + w + r"\b", spoken_i)]
+                broke = False
+                if watched_here and asr is not None:
+                    check16 = fast + "16.wav"
+                    subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-i",fast,
+                                    "-ar","16000","-ac","1", check16], check=True)
+                    segs3, _ = asr.transcribe(check16, language="en", word_timestamps=True)
+                    words3 = [{"word": w.word, "at": w.start, "dur": w.end - w.start}
+                              for sg in segs3 for w in (sg.words or [])]
+                    for tw in watched_here:
+                        hit3 = burst.find(words3, tw)
+                        if hit3 is None:
+                            continue
+                        bm3 = burst.measure(burst.load(fast), float(hit3["at"]), float(hit3["dur"]))
+                        if burst.verdict(bm3) in ("burst", "absent"):
+                            broke = True
+                            print(f"      \"{tw}\": {bm3['peak']:+.1f} dB after the x{f:.2f} "
+                                  f"stretch — the take was clean, the stretch was not. "
+                                  f"Keeping the slower take.", flush=True)
+                if broke:
+                    print(f"      {rate0:.1f} syl/s, staying slow to protect the consonant", flush=True)
+                else:
+                    print(f"      {rate0:.1f} syl/s, sped up x{f:.2f}", flush=True)
+                    pol = fast
         with wave.open(pol) as w:
             s = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
         # trim the silence the model leaves at either end
