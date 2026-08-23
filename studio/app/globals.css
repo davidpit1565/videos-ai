@@ -471,11 +471,16 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .uval{font-size:20px;font-weight:700;margin-bottom:2px}
 .usage .hint{color:var(--faint);font-size:13px;margin:0}
 
-.meter{margin:0 0 16px}
-.mtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;
-  font-weight:600}
-.mtrack{height:8px;border-radius:999px;background:var(--line);overflow:hidden}
-.mfill{height:100%;background:var(--brass);border-radius:999px;transition:width .3s ease}
+.gauge{margin:0 0 20px}
+.gtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.gtop span:last-child{font-weight:600;font-size:14.5px}
+.gnum{font-family:var(--m);font-size:22px;font-weight:700}
+.gtrack{height:14px;border-radius:999px;background:var(--line);overflow:hidden}
+.gfill{height:100%;border-radius:999px;transition:width .3s ease}
+.gfill.ok{background:linear-gradient(90deg,var(--ok),var(--brass))}
+.gfill.warn{background:linear-gradient(90deg,var(--brass),var(--clay))}
+.ghint{margin-top:7px;font-size:12.5px;color:var(--faint);display:flex;justify-content:space-between;
+  gap:10px}
 .ubaredit{border:1px dashed var(--line);border-radius:10px;padding:12px;margin:4px 0 8px;
   display:flex;flex-direction:column;gap:10px}
 .ufield{display:flex;flex-direction:column;gap:4px}

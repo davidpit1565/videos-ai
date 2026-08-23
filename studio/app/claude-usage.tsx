@@ -30,20 +30,30 @@ function rel(iso: string): string {
 
 type Bar = { pct: number; resetsLabel: string; updatedAt: string } | null;
 
+/** Below 70% reads as fine (green sliding into brass); at or above, the gradient shifts
+ *  toward clay — the same two-state read as a fuel gauge, chosen because a viewer at 3am
+ *  should be able to tell "fine" from "getting close" without doing arithmetic. */
+const WARN_AT = 70;
+
 function Meter({ label, bar }: { label: string; bar: Bar }) {
+  const warn = (bar?.pct ?? 0) >= WARN_AT;
   return (
-    <div className="meter">
-      <div className="mtop">
+    <div className="gauge">
+      <div className="gtop">
+        <span className="gnum" style={{ color: bar ? (warn ? "var(--clay)" : "var(--ok)") : "var(--faint)" }}>
+          {bar ? `${bar.pct}%` : "—"}
+        </span>
         <span>{label}</span>
-        {bar && <span className="num">{bar.pct}% נוצל</span>}
       </div>
-      <div className="mtrack">
-        <div className="mfill" style={{ width: `${bar?.pct ?? 0}%` }} />
+      <div className="gtrack">
+        <div
+          className={"gfill" + (warn ? " warn" : " ok")}
+          style={{ width: `${bar?.pct ?? 0}%` }}
+        />
       </div>
-      <div className="hint">
-        {bar
-          ? `מתאפס בעוד ${bar.resetsLabel} · הוזן ${rel(bar.updatedAt)}`
-          : "לא הוזן — תעדכן ידנית, או שלח לי צילום ממסך claude.ai"}
+      <div className="ghint">
+        <span>{bar ? `הוזן ${rel(bar.updatedAt)}` : "לא הוזן"}</span>
+        <span>{bar ? `מתאפס בעוד ${bar.resetsLabel}` : "שלח לי צילום ממסך claude.ai, או עדכן ידנית"}</span>
       </div>
     </div>
   );
