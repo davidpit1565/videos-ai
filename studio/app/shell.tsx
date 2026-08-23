@@ -56,15 +56,28 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       }
     };
     set();
+    // On an installed iOS home-screen app there is no address bar to collapse, so the
+    // resize event this fix relies on to grow past a too-small first reading may never
+    // fire — the launch animation's window isn't always settled yet at the very first
+    // set() above, and whatever height that catches then locks in as a permanent gap
+    // under the nav bar ("the studio opens a bit high"). A few delayed re-reads catch
+    // the settled size without waiting on an event that standalone mode won't send.
+    const timers = [100, 300, 800, 1500].map((ms) => setTimeout(set, ms));
     window.visualViewport?.addEventListener("resize", set);
     window.addEventListener("resize", set);
+    // Coming back from the app switcher/background can also hand back a viewport that
+    // settles a moment after the tab becomes visible again, not at the visibility event itself.
+    const onVisible = () => { if (!document.hidden) { set(); setTimeout(set, 300); } };
+    document.addEventListener("visibilitychange", onVisible);
     // A rotation can make the true max height smaller than whatever was recorded in the other
     // orientation, so the ceiling has to reset there rather than just calling set() again.
-    const reset = () => { max = 0; set(); };
+    const reset = () => { max = 0; set(); setTimeout(set, 300); };
     window.addEventListener("orientationchange", reset);
     return () => {
+      timers.forEach(clearTimeout);
       window.visualViewport?.removeEventListener("resize", set);
       window.removeEventListener("resize", set);
+      document.removeEventListener("visibilitychange", onVisible);
       window.removeEventListener("orientationchange", reset);
     };
   }, []);
