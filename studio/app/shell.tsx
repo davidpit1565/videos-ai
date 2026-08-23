@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useStudio } from "./providers";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { isSite } from "@/lib/routes";
 
 const TABS = [
@@ -24,6 +24,17 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   const { mode, saving } = useStudio();
   const site = isSite(path);
+
+  /* He asked directly: he cannot tell whether the page in front of him is the current
+   * deploy without asking. This is the answer — the real commit this build was made
+   * from, written at build time by scripts/write-build-info.mjs, not a guess. */
+  const [buildInfo, setBuildInfo] = useState<{ sha: string | null; shortSha: string | null; builtAt: string } | null>(null);
+  useEffect(() => {
+    fetch("/build-info.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setBuildInfo)
+      .catch(() => {});
+  }, []);
 
   /* Point the installed-app manifest at the studio, but only while a studio page is what is
      on screen. Installing from a public page must never produce an app that opens the private
@@ -63,7 +74,15 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           <span className="tick" />
           <b>Actually Works</b>
         </Link>
-        <span className={badge.cls}>{badge.text}</span>
+        <div className="top-right">
+          <span className={badge.cls}>{badge.text}</span>
+          {buildInfo && (
+            <span className="build-info" title={buildInfo.sha ?? undefined}>
+              עודכן {buildInfo.builtAt.slice(0, 16).replace("T", " ")}
+              {buildInfo.shortSha ? ` · ${buildInfo.shortSha}` : ""}
+            </span>
+          )}
+        </div>
       </div>
       <nav>
         {TABS.map((t) => (

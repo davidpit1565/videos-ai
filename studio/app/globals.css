@@ -48,6 +48,8 @@ button{cursor:pointer}
 .mode::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
 .mode.cloud{color:var(--ok);border-color:#37674E}
 .mode.local{color:var(--brass);border-color:var(--brass-dim)}
+.top-right{display:flex;align-items:center;gap:10px}
+.build-info{font-family:var(--m);font-size:11px;color:var(--faint);white-space:nowrap}
 
 /* ── nav: tabs on desktop, a thumb bar on a phone ─ */
 nav{display:flex;gap:8px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:24px}
