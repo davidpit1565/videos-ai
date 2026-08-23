@@ -71,6 +71,10 @@ PASSED=$(grep -c "ALL CHECKS PASSED" "$GATE" || true)
 if [ "$PASSED" -gt 0 ]; then
   cp "$MP4" "studio/public/reels/reel-${EP}.mp4"
   cp "$GATE" "studio/public/reels/reel-${EP}.gate.txt"
+  # Filesystem mtime does not survive a git checkout reliably — Vercel's build showed
+  # 2018 for every reel because that's what the checkout left on disk, not when it
+  # actually shipped. This records the real moment, read by lib/reels.ts instead.
+  date -u +"%Y-%m-%dT%H:%M:%SZ" > "studio/public/reels/reel-${EP}.built-at.txt"
   echo ""
   echo "SHIPPED: studio/public/reels/reel-${EP}.mp4"
 else

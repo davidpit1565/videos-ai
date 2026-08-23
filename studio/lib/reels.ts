@@ -41,6 +41,23 @@ function captionFor(n: number | null): string | null {
   }
 }
 
+/** The filesystem mtime does not survive a git checkout reliably — Vercel's own build
+ *  showed every reel dated 2018-10-20, which is not a date that has ever been true for
+ *  this repo. produce.sh now writes the real ship moment to a sidecar file; this reads
+ *  that when present and only falls back to mtime for anything shipped before it existed. */
+function builtAtFor(file: string, fallback: Date): string {
+  const p = join(DIR, file.replace(/\.(mp4|m4a|wav)$/, ".built-at.txt"));
+  try {
+    if (existsSync(p)) {
+      const v = readFileSync(p, "utf8").trim();
+      if (v) return v;
+    }
+  } catch {
+    /* fall through to the filesystem's own timestamp */
+  }
+  return fallback.toISOString();
+}
+
 function gateFor(file: string): Reel["gate"] {
   const p = join(DIR, file.replace(/\.mp4$/, ".gate.txt"));
   try {
@@ -78,7 +95,7 @@ export function reels(): Reel[] {
         file,
         episode,
         bytes: st.size,
-        builtAt: st.mtime.toISOString(),
+        builtAt: builtAtFor(file, st.mtime),
         gate: gateFor(file),
         caption: captionFor(episode),
       };
