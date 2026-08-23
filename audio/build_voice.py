@@ -104,6 +104,18 @@ def syllables(text):
 NUMS = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
         "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10"}
 
+def _watched_in(text, watch):
+    """Which watched words this line actually speaks — the script writes "3", not
+    "three", so the digit form has to be checked too or a digit line never matches."""
+    t = text.lower()
+    out = []
+    for w in watch:
+        digit = NUMS.get(w)
+        pat = r"\b(" + w + (r"|" + re.escape(digit) if digit else "") + r")\b"
+        if re.search(pat, t):
+            out.append(w)
+    return out
+
 def _norm(t):
     """Compare meaning, not spelling. The transcriber writes "chat GPT" and drops
     possessives, and neither is a mispronunciation."""
@@ -465,8 +477,38 @@ def main():
             if f > 1.01:
                 fast = os.path.join(tmp, f"{i:02d}f.wav")
                 stretch(pol, fast, f)
-                print(f"      {rate0:.1f} syl/s, sped up x{f:.2f}", flush=True)
-                pol = fast
+                # The take-level watch check in say() measures the polished line before
+                # this stretch exists, so a consonant that passed there can still be
+                # broken here — rubberband smears the burst, not just the vowel it is
+                # sitting next to. Measured on episode 01: "three" left the retry loop
+                # in band and came out of a x1.20 stretch at 40+ dB, a clean burst. The
+                # end-of-build check below would have caught it, but only by failing the
+                # whole file after it was already written — this catches it per line and
+                # keeps the slower, correct take instead.
+                watched_here = _watched_in(respell(text, phrases, words), watch)
+                broke = False
+                if watched_here and asr is not None:
+                    check16 = fast + "16.wav"
+                    subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-i",fast,
+                                    "-ar","16000","-ac","1", check16], check=True)
+                    segs3, _ = asr.transcribe(check16, language="en", word_timestamps=True)
+                    words3 = [{"word": w.word, "at": w.start, "dur": w.end - w.start}
+                              for sg in segs3 for w in (sg.words or [])]
+                    for tw in watched_here:
+                        hit3 = burst.find(words3, tw)
+                        if hit3 is None:
+                            continue
+                        bm3 = burst.measure(burst.load(fast), float(hit3["at"]), float(hit3["dur"]))
+                        if burst.verdict(bm3) in ("burst", "absent"):
+                            broke = True
+                            print(f"      \"{tw}\": {bm3['peak']:+.1f} dB after the x{f:.2f} "
+                                  f"stretch — the take was clean, the stretch was not. "
+                                  f"Keeping the slower take.", flush=True)
+                if broke:
+                    print(f"      {rate0:.1f} syl/s, staying slow to protect the consonant", flush=True)
+                else:
+                    print(f"      {rate0:.1f} syl/s, sped up x{f:.2f}", flush=True)
+                    pol = fast
         with wave.open(pol) as w:
             s = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
         # trim the silence the model leaves at either end
@@ -474,8 +516,37 @@ def main():
         k = int(0.01 * SR_MIX)
         env = np.convolve(env, np.ones(k) / k, "same")
         loud = np.where(env > env.max() * 0.035)[0]
+        start = 0
         if len(loud):
-            s = s[max(0, loud[0] - int(0.05 * SR_MIX)): min(len(s), loud[-1] + int(0.08 * SR_MIX))]
+            start = max(0, loud[0] - int(0.05 * SR_MIX))
+        # A leading watched word gets one more measurement here, on the exact samples
+        # about to ship, because the 3.5%-of-peak threshold above finds where the loud
+        # part of the word starts — not where the word itself starts. "Three" opens on
+        # an unvoiced /th/, quieter than the vowel that follows it by design, and the
+        # trim was cutting straight through it: line 7 measured a clean +9.7 dB
+        # frication before this trim and a hard +25.2 dB burst after it, because what
+        # was left was the vowel onset alone, with the fricative that made it a "th"
+        # instead of a "t" cut away. Anchoring the kept window to the word's own
+        # Whisper-measured start — not the loudness threshold — keeps the fricative.
+        watched_here = _watched_in(respell(text, phrases, words), watch)
+        if watched_here and asr is not None and start > 0:
+            check16 = pol + ".16.wav"
+            subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-i",pol,
+                            "-ar","16000","-ac","1", check16], check=True)
+            segs4, _ = asr.transcribe(check16, language="en", word_timestamps=True)
+            words4 = [{"word": w.word, "at": w.start, "dur": w.end - w.start}
+                      for sg in segs4 for w in (sg.words or [])]
+            starts = [float(burst.find(words4, tw)["at"]) for tw in watched_here
+                      if burst.find(words4, tw) is not None]
+            if starts:
+                protect = int(min(starts) * SR_MIX)
+                if protect < start:
+                    print(f"      trim would cut into \"{watched_here[0]}\" at "
+                          f"{min(starts):.2f}s — starting the kept audio there instead",
+                          flush=True)
+                    start = max(0, protect)
+        if len(loud):
+            s = s[start: min(len(s), loud[-1] + int(0.08 * SR_MIX))]
         f = int(0.012 * SR_MIX)
         s[:f] *= np.linspace(0, 1, f); s[-f:] *= np.linspace(1, 0, f)
 

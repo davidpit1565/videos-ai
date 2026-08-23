@@ -26,6 +26,7 @@ the numbers can be argued with.
 """
 import argparse, json, os, re, sys, wave
 import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 MIN_GAP = 0.30          # measured: below this the lines read as one run-on
 MAX_RATE = 6.5          # the rate above which build_voice already re-rolls a line
@@ -192,6 +193,46 @@ def deep(path, rows):
     return out
 
 
+def watch_burst(path, cues):
+    """Did a watched consonant survive as far as the file that actually ships?
+
+    build_voice.py verifies these words on the take before it is polished, then again
+    on the line after any rate-correcting stretch — but both checks live inside the
+    build, and a caller who does not check the build's exit code ships the file anyway.
+    Reel 01 v22 shipped with "three" measuring as a hard burst in the finished mix
+    while the take that produced it had passed. This is the same measurement run here,
+    against the file check.sh actually gates on, so a broken word cannot reach him
+    silently a second time."""
+    import burst
+    from faster_whisper import WhisperModel
+    m = WhisperModel("small", device="cpu", compute_type="int8",
+                     cpu_threads=int(os.environ.get("VOICE_THREADS", "2")))
+    segs, _ = m.transcribe(path, language="en", word_timestamps=True)
+    allw = [{"word": w.word, "at": w.start, "dur": w.end - w.start}
+            for sg in segs for w in (sg.words or [])]
+    y = burst.load(path)
+    # the script writes "3", not "three" — same word the transcriber and build_voice
+    # already fold together, so the presence check needs the same digit form
+    NUMS = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
+            "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10"}
+    out = []
+    for tw in burst.IN_SCOPE:
+        # only words the script actually asked for — a word never spoken this
+        # episode has nothing to measure and is not a defect
+        digit = NUMS.get(tw)
+        pat = r"\b(" + tw + (r"|" + re.escape(digit) if digit else "") + r")\b"
+        if not any(re.search(pat, c["line"], re.I) for c in cues):
+            continue
+        hit = burst.find(allw, tw)
+        if hit is None:
+            out.append((tw, None, "not in the transcript of the shipped file"))
+            continue
+        bm = burst.measure(y, float(hit["at"]), float(hit["dur"]))
+        v = burst.verdict(bm)
+        out.append((tw, bm["peak"], v))
+    return out
+
+
 def shelf(seg, sr, lo, hi, gain_db):
     """Linear-phase band gain, done in the FFT domain with a smooth edge so the
     correction cannot ring. Used to pull one line's S back toward the others."""
@@ -256,6 +297,8 @@ def main():
     ap.add_argument("--deep", action="store_true", help="per-word pass (needs whisper)")
     ap.add_argument("--json", help="write the full measurement here")
     ap.add_argument("--repair", help="write a corrected wav here: level and sibilance only")
+    ap.add_argument("--no-watch", action="store_true",
+                    help="skip the shipped-file consonant check (needs whisper + librosa)")
     a = ap.parse_args()
 
     cues_path = a.cues or os.path.splitext(a.wav)[0] + "-cues.json"
@@ -340,7 +383,28 @@ def main():
                   open(a.json, "w"), indent=1)
         print(f"\n  wrote {a.json}")
 
-    return 1 if any(s == 3 for s, *_ in issues) else 0
+    watch_bad = False
+    if not a.no_watch:
+        try:
+            hits = watch_burst(a.wav, cues)
+        except ImportError as e:
+            hits = None
+            print(f"\n  [skip] consonant check needs {e.name} — not installed, not checked")
+        if hits:
+            print(f"\n  the shipped file, measured:")
+            for tw, peak, v in hits:
+                if peak is None:
+                    print(f"    \"{tw}\": {v}")
+                    watch_bad = True
+                    continue
+                print(f"    \"{tw}\": {peak:+.1f} dB, {v}")
+                if v != "frication":
+                    watch_bad = True
+            if watch_bad:
+                print(f"  the take-level check runs before the mix; this runs on the file "
+                      f"that actually ships. Re-roll the flagged line and rebuild.")
+
+    return 1 if (watch_bad or any(s == 3 for s, *_ in issues)) else 0
 
 
 if __name__ == "__main__":
