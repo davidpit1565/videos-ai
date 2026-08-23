@@ -1,0 +1,19 @@
+This video almost shipped broken.
+
+Three checks were supposed to catch defects before they reached anyone. All three had
+the same hidden flaw: nobody had ever tested them against a case that was actually
+broken. They looked correct. They passed every normal run. They just never caught
+anything, because they were never asked to.
+
+The rule now, for every check we build:
+
+Test it on a case you know is broken — before you trust it.
+
+If a "passing" check has never once failed on purpose, you don't know if it works.
+You only know it hasn't complained yet.
+
+Full breakdown: actually-works-studio.vercel.app/e/4
+
+Follow for setups that actually work.
+
+#ai #softwaretesting #automation #aitools #debugging #productivity

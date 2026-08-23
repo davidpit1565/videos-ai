@@ -1,0 +1,20 @@
+Your n8n agent has no idea it's wrong.
+
+It keeps running even when the output is bad, because most workflows never build a
+branch for "I'm not sure." So the wrong result ships exactly like a right one would —
+and by the time you notice, it's already gone out. Say it handles refunds: it approves
+one it shouldn't, and nothing in the workflow ever stopped it.
+
+The fix is one node, not a rebuild:
+
+Add an IF node before the output — confidence below the bar routes to a human, not
+straight to the result.
+
+"n8n ai agent tutorial" is the single highest-demand AI search topic we've measured.
+This is the failure almost nobody builds a check for.
+
+Full breakdown: actually-works-studio.vercel.app/e/7
+
+Follow for setups that actually work.
+
+#n8n #aiagents #automation #nocode #aitools #workflowautomation #productivity

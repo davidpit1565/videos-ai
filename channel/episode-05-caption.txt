@@ -1,0 +1,19 @@
+Your captions are hiding behind Instagram.
+
+Not a guess — we measured it. 413 pixels of caption sat behind the platform's own
+interface: username, audio label, buttons. Eight in ten short clips carry captions and
+most of them animate word-by-word — but if the caption sits in the bottom third of a
+9:16 frame, it's rendering behind the UI, not on top of it. We checked our own videos
+first and found the exact same mistake.
+
+The safe zone, exactly:
+
+Keep text out of the top 269px and bottom 672px on a 1080×1920 frame.
+
+Screenshot that. It's the same for every 9:16 video you make.
+
+Full breakdown: actually-works-studio.vercel.app/e/5
+
+Follow for setups that actually work.
+
+#reels #contentcreation #instagramtips #videoediting #ai #productivity

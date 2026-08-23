@@ -142,29 +142,41 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <section class="scene" data-in="13.20" data-out="17.60">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="13.30">So the wrong output<br>ships. <span class="box">Every time</span>.</h2>
+    <h2 class="b punch" data-at="13.30">Say it handles refunds.<br>It approves <span class="ebox">one it shouldn't</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="17.60" data-out="22.40">
+<section class="scene" data-in="17.60" data-out="21.60">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="17.70">One node before<br>the output <span class="ebox">fixes it</span>.</h2>
+    <h2 class="b punch" data-at="17.70">So the wrong output<br>ships. <span class="box">Every time</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="21.60" data-out="25.60">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="21.70">By the time you notice,<br>it's <span class="ebox">already gone out</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="25.60" data-out="30.40">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="25.70">One node before<br>the output <span class="ebox">fixes it</span>.</h2>
   </div></div>
 </section>
 
 <!-- the takeaway — a real node config, screenshot-able -->
-<section class="scene" data-in="22.40" data-out="28.20">
+<section class="scene" data-in="30.40" data-out="36.20">
   <div class="pad"><div class="kb">
-    <div class="takecard b" data-at="22.50">
+    <div class="takecard b" data-at="30.50">
       <div class="tc-k">Add this node</div>
       <div class="tc-b">An IF node: confidence below the bar → <strong>route to a human</strong>, not to the output.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="28.20" data-out="31.80">
+<section class="scene" data-in="36.20" data-out="39.80">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="28.30" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="36.30" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -177,7 +189,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="32" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="40" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -194,7 +206,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=32,t=0,playing=false,last=0;
+  var DUR=40,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -208,10 +220,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [0.30,4.00,"Your n8n agent has no idea it's wrong."],
     [4.20,8.20,"It keeps running, even when it's wrong."],
     [8.60,12.80,"No node checks for 'not sure.'"],
-    [13.20,17.20,"So the wrong output ships. Every time."],
-    [17.60,22.00,"One node before the output fixes it."],
-    [22.40,27.80,"An IF node: confidence below the bar routes to a human, not to the output."],
-    [28.20,31.40,"Follow for setups that actually works."]
+    [13.20,17.20,"Say it handles refunds. It approves one it shouldn't."],
+    [17.60,21.20,"So the wrong output ships. Every time."],
+    [21.60,25.20,"By the time you notice, it's already gone out."],
+    [25.60,29.80,"One node before the output fixes it."],
+    [30.40,35.80,"An IF node: confidence below the bar routes to a human, not to the output."],
+    [36.20,39.40,"Follow for setups that actually works."]
   ];
   var FDUR=0.55,FLASH=[];
 
