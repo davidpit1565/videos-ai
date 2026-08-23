@@ -19,6 +19,6 @@ That's why your first one should touch something reversible. A draft, not a send
 Full breakdown, and the five-step test you can run on whatever you're already paying for:
 actually-works-studio.vercel.app/e/2
 
-Next: your first n8n agent, end to end.
+Follow for setups that actually work.
 
 #aiagents #ai #automation #n8n #chatgpt #aitools #productivity
