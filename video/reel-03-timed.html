@@ -107,6 +107,15 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-
 .side strong{color:var(--text)}
 .side ul{margin:0;padding-inline-start:17px}
 
+/* the takeaway card — a real, usable rule the viewer can screenshot, not just an
+   opinion. Sized to fill the safe box, not a small floating box. */
+.takecard{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2}
+.takecard .tc-k{font-family:var(--m);font-size:3cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#8A7434;margin:0 0 2.4cqw}
+.takecard .tc-b{font-family:var(--b);font-weight:700;font-size:6.2cqw;line-height:1.32;color:#0D0D0D}
+.takecard .tc-b strong{color:#B8860B}
+
 body.render{background:#000;overflow:hidden}
 #preroll{position:fixed;inset:0;background:#000;z-index:9999}
 body.render .page{padding:0;gap:0;display:block}
@@ -166,21 +175,31 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <section class="scene" data-in="14.86" data-out="17.42">
   <div class="pad"><div class="kb">
     <div class="num" data-decor>1</div>
-    <h2 class="b punch" data-at="14.89">Once it's sent,<br>they <span class="ebox">can't</span><br>take it back.</h2>
+    <h2 class="b punch" data-at="12.206">Once it's sent,<br>they <span class="ebox">can't</span><br>take it back.</h2>
   </div></div>
 </section>
 
 <!-- CLOSE -->
 <section class="scene" data-in="17.42" data-out="20.31">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="17.462">Real agents<br>fail <span class="box">like this</span>.<br>Every one.</h2>
+    <h2 class="b punch" data-at="14.341">Real agents<br>fail <span class="box">like this</span>.<br>Every one.</h2>
+  </div></div>
+</section>
+
+<!-- the takeaway — the concrete, usable rule, on its own screen -->
+<section class="scene" data-in="20.31" data-out="25.85">
+  <div class="pad"><div class="kb">
+    <div class="takecard b" data-at="16.366">
+      <div class="tc-k">Add this to your prompt</div>
+      <div class="tc-b">"If you're <strong>not sure</strong>, say so — instead of guessing."</div>
+    </div>
   </div></div>
 </section>
 
 <!-- CTA -->
-<section class="scene" data-in="20.31" data-out="23.21">
+<section class="scene" data-in="25.85" data-out="28.75">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="20.352" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="19.948" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -193,7 +212,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="30" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="35" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -208,7 +227,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=23.81,t=0,playing=false,last=0;
+  var DUR=29.35,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -226,7 +245,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [11.73,14.65,"They break on a login screen. Every time."],
     [15.07,17.21,"Once it's sent, they can't take it back."],
     [17.63,20.10,"Real agents fail like this. Every one."],
-    [20.52,22.91,"Follow for setups that actually works."]
+    [20.52,25.64,"Add this to your prompt: if you're not sure, say so instead of guessing."],
+    [26.06,28.45,"Follow for setups that actually works."]
   ];
   var FDUR=0.55,FLASH=[];
 

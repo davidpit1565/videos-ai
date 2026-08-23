@@ -91,6 +91,14 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-
 .side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.62}
 .side strong{color:var(--text)}
 
+/* the takeaway card — a real, usable number the viewer can screenshot */
+.takecard{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2}
+.takecard .tc-k{font-family:var(--m);font-size:3cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#8A7434;margin:0 0 2.4cqw}
+.takecard .tc-b{font-family:var(--b);font-weight:700;font-size:6.2cqw;line-height:1.32;color:#0D0D0D}
+.takecard .tc-b strong{color:#B8860B}
+
 body.render{background:#000;overflow:hidden}
 #preroll{position:fixed;inset:0;background:#000;z-index:9999}
 body.render .page{padding:0;gap:0;display:block}
@@ -108,51 +116,61 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- HOOK -->
-<section class="scene" data-in="0" data-out="3">
+<section class="scene" data-in="0" data-out="3.20">
   <div class="pad"><div class="kb">
     <h2 class="b punch" data-at="0">Your captions<br>are hiding<br>behind <span class="ebox">Instagram</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="3" data-out="6.9">
+<section class="scene" data-in="3.20" data-out="7.10">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="3.1">Not a guess.<br>We <span class="box">measured</span><br>413 pixels. Gone.</h2>
+    <h2 class="b punch" data-at="3.20">Not a guess.<br>We <span class="box">measured</span><br>413 pixels. Gone.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="6.9" data-out="10.9">
+<section class="scene" data-in="7.10" data-out="11.10">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="7.0">Eight in ten<br>clips use captions.<br>Most sit <span class="ebox">right there</span>.</h2>
+    <h2 class="b punch" data-at="7.10">Eight in ten<br>clips use captions.<br>Most sit <span class="ebox">right there</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="10.9" data-out="14.9">
+<section class="scene" data-in="11.10" data-out="15.10">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="11.0">The caption<br><span class="box">shows up</span> fine.<br>Nobody sees it.</h2>
+    <h2 class="b punch" data-at="11.10">The caption<br><span class="box">shows up</span> fine.<br>Nobody sees it.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="14.9" data-out="18.9">
+<section class="scene" data-in="15.10" data-out="19.10">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="15.0">The platform<br>hides the bottom<br><span class="ebox">on purpose</span>.</h2>
+    <h2 class="b punch" data-at="15.10">The platform<br>hides the bottom<br><span class="ebox">on purpose</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="18.9" data-out="22.5">
+<section class="scene" data-in="19.10" data-out="22.70">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="19.0">We checked<br>our own videos.<br><span class="box">Same mistake</span>.</h2>
+    <h2 class="b punch" data-at="19.10">We checked<br>our own videos.<br><span class="box">Same mistake</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="22.5" data-out="26.3">
+<section class="scene" data-in="22.70" data-out="27.20">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="22.6">Now every caption<br>sits in the space<br>you can <span class="ebox">actually see</span>.</h2>
+    <h2 class="b punch" data-at="22.80">Now it sits where<br>you can <span class="ebox">actually see</span> it.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="26.3" data-out="30">
+<!-- the takeaway — the exact numbers, on their own screen -->
+<section class="scene" data-in="27.20" data-out="32.60">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="26.4" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <div class="takecard b" data-at="27.30">
+      <div class="tc-k">The safe zone</div>
+      <div class="tc-b">Keep text out of the top <strong>269px</strong> and bottom <strong>672px</strong> on 1080×1920.</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="32.60" data-out="36">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="32.70" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -165,7 +183,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="30" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="36" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -182,7 +200,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=30,t=0,playing=false,last=0;
+  var DUR=36,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -200,7 +218,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [15.10,18.80,"The platform hides the bottom on purpose."],
     [19.10,22.40,"We checked our own videos. Same mistake."],
     [22.70,26.20,"Now every caption sits in the space you can actually see."],
-    [26.50,29.70,"Follow for setups that actually works."]
+    [27.20,32.20,"Keep text out of the top 269 pixels and bottom 672 pixels."],
+    [32.60,35.40,"Follow for setups that actually works."]
   ];
   var FDUR=0.55,FLASH=[];
 

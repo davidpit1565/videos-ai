@@ -133,14 +133,14 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- HOOK 0–2.4 -->
-<section class="scene" data-in="0" data-out="2.2">
+<section class="scene" data-in="0" data-out="2.5">
   <div class="pad"><div class="kb">
     <h2 class="b punch" data-at="0">Your AI agent<br>is already <span class="ebox">lying</span><br>to you.</h2>
   </div></div>
 </section>
 
 <!-- 5 -->
-<section class="scene" data-in="2.2" data-out="6.2">
+<section class="scene" data-in="2.5" data-out="6.5">
   <div class="pad"><div class="kb">
     <div class="num" data-decor>5</div>
     <h2 class="b punch" data-at="2.5">They say<br>they're <span class="ebox">done</span>.<br>They're not.</h2>
@@ -148,7 +148,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- 4 -->
-<section class="scene" data-in="6.2" data-out="10.2">
+<section class="scene" data-in="6.5" data-out="10.5">
   <div class="pad"><div class="kb">
     <div class="num" data-decor>4</div>
     <h2 class="b punch" data-at="6.5">They never say<br><span class="box">"I don't know."</span><br>They guess.</h2>
@@ -156,7 +156,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- 3 -->
-<section class="scene" data-in="10.2" data-out="14.2">
+<section class="scene" data-in="10.5" data-out="14.5">
   <div class="pad"><div class="kb">
     <div class="num" data-decor>3</div>
     <h2 class="b punch" data-at="10.5">They forget<br><span class="ebox">yesterday</span>.<br>Every time.</h2>
@@ -164,7 +164,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- 2 -->
-<section class="scene" data-in="14.2" data-out="18.2">
+<section class="scene" data-in="14.5" data-out="18.5">
   <div class="pad"><div class="kb">
     <div class="num" data-decor>2</div>
     <h2 class="b punch" data-at="14.5">They break on<br>a <span class="box">login screen</span>.<br>Every time.</h2>
@@ -172,24 +172,34 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- 1 -->
-<section class="scene" data-in="18.2" data-out="22.2">
+<section class="scene" data-in="18.5" data-out="22.5">
   <div class="pad"><div class="kb">
     <div class="num" data-decor>1</div>
-    <h2 class="b punch" data-at="18.5">Once it's sent,<br>they <span class="ebox">can't</span><br>take it back.</h2>
+    <h2 class="b punch" data-at="15.07">Once it's sent,<br>they <span class="ebox">can't</span><br>take it back.</h2>
   </div></div>
 </section>
 
 <!-- CLOSE -->
-<section class="scene" data-in="22.2" data-out="26.6">
+<section class="scene" data-in="22.5" data-out="26.9">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="22.3">Real agents<br>fail <span class="box">like this</span>.<br>Every one.</h2>
+    <h2 class="b punch" data-at="17.63">Real agents<br>fail <span class="box">like this</span>.<br>Every one.</h2>
+  </div></div>
+</section>
+
+<!-- the takeaway — the concrete, usable rule, on its own screen -->
+<section class="scene" data-in="26.9" data-out="31.9">
+  <div class="pad"><div class="kb">
+    <div class="takecard b" data-at="20.62">
+      <div class="tc-k">Add this to your prompt</div>
+      <div class="tc-b">"If you're <strong>not sure</strong>, say so — instead of guessing."</div>
+    </div>
   </div></div>
 </section>
 
 <!-- CTA -->
-<section class="scene" data-in="26.6" data-out="30">
+<section class="scene" data-in="31.9" data-out="35">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="26.7" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="26.16" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -202,7 +212,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="30" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="35" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -217,7 +227,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=30,t=0,playing=false,last=0;
+  var DUR=35,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -235,7 +245,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [14.50,18.00,"They break on a login screen. Every time."],
     [18.50,22.00,"Once it's sent, they can't take it back."],
     [22.50,26.40,"Real agents fail like this. Every one."],
-    [26.90,29.70,"Follow for setups that actually works."]
+    [26.90,31.50,"Add this to your prompt: if you're not sure, say so instead of guessing."],
+    [31.90,34.70,"Follow for setups that actually works."]
   ];
   var FDUR=0.55,FLASH=[];
 
