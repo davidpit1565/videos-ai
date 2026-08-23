@@ -121,50 +121,62 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- HOOK -->
-<section class="scene" data-in="0" data-out="4.03">
+<section class="scene" data-in="0" data-out="3.36">
   <div class="pad"><div class="kb">
     <div class="n8n b" data-at="0.1"><span class="dot"></span><b>n8n</b></div>
     <h2 class="b punch" data-at="0.3">Your agent has<br>no idea it's <span class="ebox">wrong</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="4.03" data-out="6.63">
+<section class="scene" data-in="3.36" data-out="5.96">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="4.06">It keeps running —<br>even when it's <span class="box">wrong</span>.</h2>
+    <h2 class="b punch" data-at="3.39">It keeps running —<br>even when it's <span class="box">wrong</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="6.63" data-out="9.2">
+<section class="scene" data-in="5.96" data-out="8.53">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="6.66">No node checks<br>for <span class="ebox">"not sure."</span></h2>
+    <h2 class="b punch" data-at="5.99">No node checks<br>for <span class="ebox">"not sure."</span></h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="9.2" data-out="12.425">
+<section class="scene" data-in="8.53" data-out="11.115">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="9.23">So the wrong output<br>ships. <span class="box">Every time</span>.</h2>
+    <h2 class="b punch" data-at="8.56">It handles refunds.<br><span class="ebox">One gets by</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="12.425" data-out="15.44">
+<section class="scene" data-in="11.115" data-out="14.39">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="12.455">One node before<br>the output <span class="ebox">fixes it</span>.</h2>
+    <h2 class="b punch" data-at="11.145">So the wrong output<br>ships. <span class="box">Every time</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="14.39" data-out="17.59">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="14.42">By the time you notice,<br>it's <span class="ebox">already gone</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="17.59" data-out="20.4">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="17.62">One node before<br>the output <span class="ebox">fixes it</span>.</h2>
   </div></div>
 </section>
 
 <!-- the takeaway — a real node config, screenshot-able -->
-<section class="scene" data-in="15.44" data-out="20.62">
+<section class="scene" data-in="20.4" data-out="25.935">
   <div class="pad"><div class="kb">
-    <div class="takecard b" data-at="15.47">
+    <div class="takecard b" data-at="20.43">
       <div class="tc-k">Add this node</div>
       <div class="tc-b">An IF node: confidence below the bar → <strong>route to a human</strong>, not to the output.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="20.62" data-out="23.39">
+<section class="scene" data-in="25.935" data-out="29.03">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="20.65" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="25.965" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -177,7 +189,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="32" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="40" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -194,7 +206,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=23.89,t=0,playing=false,last=0;
+  var DUR=30.23,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -205,13 +217,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var flash=document.getElementById('flash'),flashTxt=document.getElementById('flashTxt');
 
   var CUES=[
-    [0.30,3.82,"Your n8n agent has no idea it's wrong."],
-    [4.24,6.42,"It keeps running, even when it's wrong."],
-    [6.84,8.99,"No node checks for 'not sure.'"],
-    [9.41,12.00,"So the wrong output ships. Every time."],
-    [12.85,15.23,"One node before the output fixes it."],
-    [15.65,20.41,"An IF node: confidence below the bar routes to a human, not to the output."],
-    [20.83,22.99,"Follow for setups that actually works."]
+    [0.30,3.15,"Your n8n agent has no idea it's wrong."],
+    [3.57,5.75,"It keeps running, even when it's wrong."],
+    [6.17,8.32,"No node checks for 'not sure.'"],
+    [8.74,10.69,"It handles refunds. One gets by."],
+    [11.54,14.18,"So the wrong output ships. Every time."],
+    [14.60,17.38,"By the time you notice, it's already gone."],
+    [17.80,20.19,"One node before the output fixes it."],
+    [20.61,25.51,"An IF node: confidence below the bar routes to a human, not to the output."],
+    [26.36,28.63,"Follow for setups that actually works."]
   ];
   var FDUR=0.55,FLASH=[];
 
