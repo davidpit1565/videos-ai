@@ -1,15 +1,13 @@
+import Link from "next/link";
 import { reels } from "@/lib/reels";
-import Copy from "./copy";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "רנדרים" };
 
-/** Where a finished reel actually lives.
- *
- *  He said it plainly: the videos do not belong in chat, they belong here. Chat lost every
- *  render to a container reset, and approving one meant holding three things at once — the
- *  file, whether it passed the gate, and the caption to post with it. They are on one screen
- *  now, in that order. */
+/** The list. One line per reel — the player, the gate details and the caption all moved to
+ *  /renders/[file], because a page that grows by one section per episode becomes the thing
+ *  he cannot find anything in. He said so directly: once there are many reels, getting to
+ *  the one he wants gets hard. This page's only job now is pointing at the right one fast. */
 export default function Renders() {
   const rs = reels();
 
@@ -17,8 +15,7 @@ export default function Renders() {
     <main>
       <h1>רנדרים</h1>
       <p className="lede">
-        סרטונים שממתינים לאישור שלך. כל אחד עם תוצאת השער והקפשן שלו.
-        קובץ שעבר את השער אפשר לפרסם; קובץ שנפל — לא.
+        סרטונים שממתינים לאישור שלך. לחיצה על אחד פותחת אותו עם תוצאת השער והקפשן שלו.
       </p>
 
       {rs.length === 0 && (
@@ -31,10 +28,10 @@ export default function Renders() {
         </div>
       )}
 
-      {rs.map((r) => (
-        <section key={r.file} className="render">
-          <div className="rhead">
-            <b>
+      <div className="rlist">
+        {rs.map((r) => (
+          <Link key={r.file} href={`/renders/${encodeURIComponent(r.file)}`} className="rrow">
+            <b className="rname">
               {r.kind === "audio"
                 ? r.file.replace(/\.[^.]+$/, "")
                 : r.episode !== null
@@ -46,35 +43,13 @@ export default function Renders() {
             ) : r.gate.passed ? (
               <span className="pill pass">עבר את השער</span>
             ) : (
-              <span className="pill fail">נפל בשער — לא לפרסם</span>
+              <span className="pill fail">נפל בשער</span>
             )}
-          </div>
-
-          {/* controls, no autoplay: he watches it on purpose, with sound, like a viewer would */}
-          {r.kind === "video" ? (
-            <video className="player" src={r.src} controls preload="metadata" playsInline />
-          ) : (
-            <audio className="aplayer" src={r.src} controls preload="metadata" />
-          )}
-
-          <div className="meta">
-            <span className="num">{(r.bytes / 1e6).toFixed(1)} MB</span>
-            <span className="num">{r.builtAt.slice(0, 16).replace("T", " ")}</span>
-            <a href={r.src} download>
-              הורדה
-            </a>
-          </div>
-
-          {r.gate && !r.gate.passed && (
-            <details className="gate">
-              <summary>מה נפל</summary>
-              <pre>{r.gate.text}</pre>
-            </details>
-          )}
-
-          {r.caption && <Copy text={r.caption} />}
-        </section>
-      ))}
+            <span className="num rmeta">{(r.bytes / 1e6).toFixed(1)} MB</span>
+            <span className="num rmeta">{r.builtAt.slice(0, 16).replace("T", " ")}</span>
+          </Link>
+        ))}
+      </div>
     </main>
   );
 }

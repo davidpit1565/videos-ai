@@ -52,6 +52,10 @@ function gateFor(file: string): Reel["gate"] {
   }
 }
 
+export function reelByFile(file: string): Reel | null {
+  return reels().find((r) => r.file === file) ?? null;
+}
+
 export function reels(): Reel[] {
   // Audio as well as video, because the loop that matters most is the shortest one: he says a
   // line's tone is wrong, and the only way to settle it is for him to hear the candidates.
