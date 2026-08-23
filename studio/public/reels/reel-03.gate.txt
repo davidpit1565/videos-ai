@@ -1,0 +1,40 @@
+=== narration
+audio/reel03-narration-r.wav  23.9s  8 lines
+  medians: ending -36.1 dB · level -19.9 dBFS · S residual +0.8 dB (slope +15.2 dB per sibilant/syllable)
+  flagged below: ending -74.5 dB · S residual -8.8 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  2.85  +0.42  2.46  -11.3  -47.3  -19.9  5 things AI agents still can't do.
+    2  1.64  +0.42  3.66  -17.4  -28.5  -20.8  They say they're done . They're not.
+    3  2.29  +0.42  3.93  -14.9  -18.7  -19.8  They never say "I don't know." They gu
+    4  2.66  +0.85  3.76  -13.0  -45.5  -18.8  They forget yesterday . Every time.
+    5  2.92  +0.42  3.77  -10.8  -45.6  -18.8  They break on a login screen. Every ti
+    6  2.14  +0.42  3.74   -5.5  -17.7  -20.5  Once it's sent, they can't take it bac
+    7  2.47  +0.42  4.05  -11.1  -43.7  -19.9  Real agents fail like this. Every one.
+    8  2.39    —    4.18   -8.4  -13.1  -18.4  Follow for setups that actually works.
+
+  nothing flagged. every line sits inside his own spread.
+
+=== frame layout
+reel-03-kar.html  23.93s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  overlaps: none over 10px
+
+=== rendered file
+reel-03.mp4  1080x1920  30fps  23.93s  4.6MB
+  visual change: median 0.43s, longest 1.77s
+  loudness: -15.1 LUFS integrated, peak -4.0 dBFS, LRA 2.0 LU
+  loop seam: first vs last frame differ by 23.7/255
+
+  [warn]    23.9s is outside the 30-90s band
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 42.5)
+  ok        visual change every 0.43s median
+  ok        -15.1 LUFS
+  ok        peak -4.0 dBFS
+
+ALL CHECKS PASSED
