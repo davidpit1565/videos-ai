@@ -1,0 +1,44 @@
+[
+ {
+  "n": 1,
+  "line": "Your n8n agent has no idea it's wrong.",
+  "start": 0.3,
+  "end": 3.82
+ },
+ {
+  "n": 2,
+  "line": "It keeps running, even when it's wrong.",
+  "start": 4.24,
+  "end": 6.42
+ },
+ {
+  "n": 3,
+  "line": "No node checks for 'not sure.'",
+  "start": 6.84,
+  "end": 8.99
+ },
+ {
+  "n": 4,
+  "line": "So the wrong output ships. Every time.",
+  "start": 9.41,
+  "end": 12.0
+ },
+ {
+  "n": 5,
+  "line": "One node before the output fixes it.",
+  "start": 12.85,
+  "end": 15.23
+ },
+ {
+  "n": 6,
+  "line": "An IF node: confidence below the bar routes to a human, not to the output.",
+  "start": 15.65,
+  "end": 20.41
+ },
+ {
+  "n": 7,
+  "line": "Follow for setups that actually works.",
+  "start": 20.83,
+  "end": 22.99
+ }
+]
