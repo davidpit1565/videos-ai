@@ -91,6 +91,14 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-
 .side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.62}
 .side strong{color:var(--text)}
 
+/* the takeaway card — a real, usable rule the viewer can screenshot */
+.takecard{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2}
+.takecard .tc-k{font-family:var(--m);font-size:3cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#8A7434;margin:0 0 2.4cqw}
+.takecard .tc-b{font-family:var(--b);font-weight:700;font-size:6.2cqw;line-height:1.32;color:#0D0D0D}
+.takecard .tc-b strong{color:#B8860B}
+
 body.render{background:#000;overflow:hidden}
 #preroll{position:fixed;inset:0;background:#000;z-index:9999}
 body.render .page{padding:0;gap:0;display:block}
@@ -108,51 +116,61 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- HOOK -->
-<section class="scene" data-in="0" data-out="3">
+<section class="scene" data-in="0" data-out="3.20">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="0">One word<br>broke our pipeline<br><span class="ebox">20 times</span>.</h2>
+    <h2 class="b punch" data-at="0">One word broke<br>our pipeline <span class="ebox">20 times</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="3" data-out="6.9">
+<section class="scene" data-in="3.20" data-out="7.10">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="3.1">The check said<br>"three" sounded<br><span class="box">broken</span>. It was right.</h2>
+    <h2 class="b punch" data-at="3.20">The check flagged<br>"three" as <span class="box">broken</span>. It was right.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="6.9" data-out="10.9">
+<section class="scene" data-in="7.10" data-out="10.40">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="7.0">We found<br><span class="ebox">two real bugs</span><br>because of it.</h2>
+    <h2 class="b punch" data-at="7.10">We found <span class="ebox">two real bugs</span><br>because of it.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="10.9" data-out="14.9">
+<section class="scene" data-in="10.40" data-out="13.70">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="11.0">Then it kept<br><span class="box">failing</span>.<br>Twenty more tries.</h2>
+    <h2 class="b punch" data-at="10.40">Then it kept failing.<br><span class="box">Twenty</span> more tries.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="14.9" data-out="18.9">
+<section class="scene" data-in="13.70" data-out="17.70">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="15.0">The voice model<br>just can't say it<br>at the <span class="ebox">start</span>. Ever.</h2>
+    <h2 class="b punch" data-at="13.70">This voice model<br>can't say it at the <span class="ebox">start</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="18.9" data-out="22.5">
+<section class="scene" data-in="17.70" data-out="21.70">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="19.0">No tool told us<br>that. We had<br>to <span class="box">run it and listen</span>.</h2>
+    <h2 class="b punch" data-at="17.70">No tool told us.<br>We had to <span class="box">listen</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="22.5" data-out="26.3">
+<section class="scene" data-in="21.70" data-out="25.70">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="22.6">So his ear<br>overrides the check<br>now — <span class="ebox">on the record</span>.</h2>
+    <h2 class="b punch" data-at="21.70">So his ear overrides<br>the check — <span class="ebox">on record</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="26.3" data-out="30">
+<!-- the takeaway — the concrete, usable rule, on its own screen -->
+<section class="scene" data-in="25.70" data-out="31.00">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="26.4" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <div class="takecard b" data-at="25.80">
+      <div class="tc-k">The rule</div>
+      <div class="tc-b">If it fails after <strong>real</strong> fixes, trust your ear — and write down why.</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="31.00" data-out="35">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="31.10" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -165,7 +183,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="30" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="35" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -183,7 +201,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=30,t=0,playing=false,last=0;
+  var DUR=35,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -195,13 +213,14 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
   var CUES=[
     [0.30,3.00,"One word broke our pipeline <em>20 times</em>."],
-    [3.20,6.80,"The check said \"three\" sounded broken. It was right."],
-    [7.10,10.80,"We found two real bugs because of it."],
-    [11.10,14.80,"Then it kept failing. Twenty more tries."],
-    [15.10,18.80,"The voice model just can't say it at the start. Ever."],
-    [19.10,22.40,"No tool told us that. We had to run it and listen."],
-    [22.70,26.20,"So his ear overrides the check now, on the record."],
-    [26.50,29.70,"Follow for setups that actually works."]
+    [3.20,6.80,"The check flagged \"three\" as broken. It was right."],
+    [7.10,10.10,"We found two real bugs because of it."],
+    [10.40,13.40,"Then it kept failing. Twenty more tries."],
+    [13.70,17.40,"This voice model can't say it at the start."],
+    [17.70,21.40,"No tool told us. We had to run it and listen."],
+    [21.70,25.40,"So his ear overrides the check now, on the record."],
+    [25.70,30.70,"If it fails after real fixes, trust your ear — and write down why."],
+    [31.00,33.80,"Follow for setups that actually works."]
   ];
   var FDUR=0.55,FLASH=[];
 
