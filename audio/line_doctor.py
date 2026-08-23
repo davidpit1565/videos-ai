@@ -139,6 +139,20 @@ def main():
                         "-ar","48000","-ac","1","-af","volume=0.5",lab48], check=True)
         parts += [lab48, c["path"]]
 
+    # The codec has to match the container the extension asks for, not just always be
+    # AAC: ffmpeg will happily wrap a raw AAC stream in a WAV file with no error, but the
+    # WAV muxer writes no ADTS framing for it, so anything that demuxes the file again —
+    # the studio's own "convert to m4a for playback" step — reads it as a corrupt
+    # elementary stream and throws hundreds of decoder errors. That is what happened to
+    # audio/voice/line12-candidates.wav: it was written with --out ending in .wav while
+    # the encoder stayed hardcoded to AAC.
+    ext = os.path.splitext(a.out)[1].lower()
+    codec_for_ext = {".m4a": ["-c:a", "aac", "-b:a", "192k"],
+                     ".wav": ["-c:a", "pcm_s16le"]}
+    if ext not in codec_for_ext:
+        sys.exit(f"--out must end in .m4a or .wav (got {ext}) — "
+                 f"the encoder is chosen from the extension, not assumed")
+
     args = ["ffmpeg","-hide_banner","-loglevel","error","-y"]
     for p in parts:
         args += ["-i", p]
@@ -146,7 +160,7 @@ def main():
                     for i in range(len(parts)))
     chain += "".join(f"[a{i}]" for i in range(len(parts)))
     chain += f"concat=n={len(parts)}:v=0:a=1,loudnorm=I=-16:TP=-1.5[out]"
-    args += ["-filter_complex", chain, "-map", "[out]", "-c:a", "aac", "-b:a", "192k", a.out]
+    args += ["-filter_complex", chain, "-map", "[out]", *codec_for_ext[ext], a.out]
     subprocess.run(args, check=True)
 
     json.dump({"line": a.line, "targets": targets,
