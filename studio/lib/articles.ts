@@ -150,26 +150,25 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
-    n: 6,
-    title: "One word broke our pipeline 20 times",
+    n: 7,
+    title: "Your n8n agent has no idea it's wrong",
     standfirst:
-      "A quality check kept flagging the word \"three\" as broken. Twice, it was right and pointed " +
-      "at a real bug. After that, it kept failing anyway — for a reason no tool could tell us.",
+      "\"n8n ai agent tutorial\" is the single highest-demand AI topic we've measured. The common " +
+      "failure: a workflow with no branch for its own uncertainty, so a bad answer ships like a good one.",
     steps: [
-      "When an automated check keeps failing on the same case, don't silence it — investigate first.",
-      "Fix every real bug the check surfaces, verifying each fix on real generated output.",
-      "If it still fails after real fixes are confirmed, run it and listen or look yourself.",
-      "If your own judgment overrides the metric, write down why, in the same place the check's output lives.",
+      "Open any n8n agent workflow you've built, right before the node that sends its output.",
+      "Add an IF node that checks the agent's own confidence or a validation result.",
+      "Route the low-confidence branch to a human — a Slack message, an email, a review queue.",
+      "Only let the high-confidence branch reach the original output node.",
     ],
     changes: [
-      "Two real bugs were found this way: a stretch guard that never actually ran, and a silence-trim that cut off the start of the word.",
-      "After both fixes, the same word still failed the check roughly 20 more times, across two different sentences.",
-      "The conclusion, confirmed by listening: this specific voice model cannot reliably land that consonant at the very start of a sentence.",
-      "The gate now has an explicit override — a human's approval by ear, recorded in the file, not a silently disabled check.",
+      "Without the check, the workflow ships the wrong result exactly the way it ships a right one — nothing distinguishes them downstream.",
+      "By the time a human notices, the output has already gone out.",
+      "One IF node before the output is enough — this is not a rebuild of the workflow.",
     ],
     limits: [
-      "An override is not a fix. The underlying limitation is still there; it is now documented instead of hidden.",
-      "This does not mean every repeated failure is the tool's fault — most of the time it still means real work to do. This was confirmed, not assumed.",
+      "This only catches what the agent itself can flag as uncertain — it does not catch a confidently wrong answer.",
+      "\"Route to a human\" only helps if someone actually reviews that queue — an unread inbox is the same as no check.",
     ],
   },
 ];
