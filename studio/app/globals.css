@@ -474,7 +474,7 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .gauge{margin:0 0 20px}
 .gtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
 .gtop span:last-child{font-weight:600;font-size:14.5px}
-.gnum{font-family:var(--m);font-size:22px;font-weight:700}
+.gnum{font-family:var(--m);font-size:22px;font-weight:700;direction:ltr;unicode-bidi:isolate}
 .gtrack{height:14px;border-radius:999px;background:var(--line);overflow:hidden}
 .gfill{height:100%;border-radius:999px;transition:width .3s ease}
 .gfill.ok{background:linear-gradient(90deg,var(--ok),var(--brass))}
@@ -486,5 +486,5 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .ufield{display:flex;flex-direction:column;gap:4px}
 .ufield label{font-size:12px;color:var(--faint)}
 .ufield input{background:var(--ink);border:1px solid var(--line);border-radius:8px;
-  padding:6px 10px;color:var(--text);font-family:var(--m)}
+  padding:6px 10px;color:var(--text);font-family:var(--m);direction:ltr;text-align:right}
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--faint)}

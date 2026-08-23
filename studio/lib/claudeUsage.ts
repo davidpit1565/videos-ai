@@ -27,6 +27,19 @@ async function db() {
     current_updated_at timestamptz,
     session_pct int, session_resets_label text, session_bar_updated_at timestamptz,
     weekly_pct int, weekly_resets_label text, weekly_bar_updated_at timestamptz)`);
+  // "create table if not exists" is a no-op against a table that already existed —
+  // and this table did, from before the bars columns were added. That left production
+  // with a row whose bar columns simply don't exist, so `row.session_pct` read back as
+  // JS `undefined` (not null): the `!== null` check passed, `Number(undefined)` became
+  // NaN, and JSON.stringify silently turns NaN into `null` on the wire — a real row
+  // rendering as an empty gauge instead of surfacing as no data at all.
+  await p.query(`alter table claude_usage
+    add column if not exists session_pct int,
+    add column if not exists session_resets_label text,
+    add column if not exists session_bar_updated_at timestamptz,
+    add column if not exists weekly_pct int,
+    add column if not exists weekly_resets_label text,
+    add column if not exists weekly_bar_updated_at timestamptz`);
   return p;
 }
 
@@ -61,7 +74,7 @@ export async function getUsage(): Promise<Usage | null> {
           updatedAt: row.weekly_updated_at,
         }
       : null,
-    current: row.cost_usd !== null
+    current: row.cost_usd != null
       ? {
           costUsd: Number(row.cost_usd),
           inputTokens: Number(row.input_tokens),
@@ -72,11 +85,11 @@ export async function getUsage(): Promise<Usage | null> {
         }
       : null,
     bars: {
-      session: row.session_pct !== null
+      session: row.session_pct != null
         ? { pct: Number(row.session_pct), resetsLabel: row.session_resets_label,
             updatedAt: row.session_bar_updated_at }
         : null,
-      weekly: row.weekly_pct !== null
+      weekly: row.weekly_pct != null
         ? { pct: Number(row.weekly_pct), resetsLabel: row.weekly_resets_label,
             updatedAt: row.weekly_bar_updated_at }
         : null,
