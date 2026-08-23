@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "check:routes": "node scripts/check-routes.mjs",
-    "prebuild": "node scripts/check-routes.mjs"
+    "prebuild": "node scripts/check-routes.mjs && node scripts/write-build-info.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.118.0",
