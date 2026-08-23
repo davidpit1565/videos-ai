@@ -460,3 +460,13 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .notify .hint{color:var(--faint);font-size:14px;margin:0 0 10px;max-width:52ch}
 .notify .hint.mono{font-family:var(--m);font-size:13px}
 .aplayer{display:block;width:100%;margin:0 auto}
+
+/* ---- his own Claude usage, not the channel's data ---- */
+.usage{border:1px solid var(--line);border-radius:14px;padding:14px;margin:24px 0 0}
+.uhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.ucols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:520px){.ucols{grid-template-columns:1fr}}
+.ulabel{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em;
+  margin-bottom:4px}
+.uval{font-size:20px;font-weight:700;margin-bottom:2px}
+.usage .hint{color:var(--faint);font-size:13px;margin:0}

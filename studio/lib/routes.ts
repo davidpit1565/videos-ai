@@ -25,7 +25,7 @@ export const STUDIO = [
  *  own credential rather than a browser cookie. It was a hand-written special case in the
  *  middleware and belonged nowhere, which is exactly the shape of the bug this file exists
  *  to end — so it is a named third case instead of an exception. */
-export const CRON = ["/api/track"];
+export const CRON = ["/api/track", "/api/claude-usage"];
 
 /** the public funnel, plus the endpoints those pages call */
 export const SITE = [
