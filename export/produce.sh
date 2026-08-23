@@ -58,8 +58,17 @@ html = open('$BUILD_K').read()
 m = re.search(r'var DUR=([\d.]+)', html)
 print(m.group(1) if m else '$DUR')
 ")
-echo "=== [6/8] music bed at ${NEWDUR}s, ${BPM} bpm, ${MOOD}"
-python3 audio/build_music.py "$NEWDUR" "$MUSIC" --bpm "$BPM" --mood "$MOOD" || exit 1
+# Rotate the key by episode number so two episodes sharing a mood (a real, repeated
+# complaint: reel-03/04/07 were all "urgent" back to back) still land in a different
+# key, not the same track transposed by nothing. Five roots spread across the cycle.
+KEY=$(python3 -c "
+roots = [55.0, 49.0, 61.7, 65.4, 73.4]  # A1, G1, B1, C2, D2
+try: ep = int(''.join(c for c in '$EP' if c.isdigit()) or 0)
+except Exception: ep = 0
+print(roots[ep % len(roots)])
+")
+echo "=== [6/8] music bed at ${NEWDUR}s, ${BPM} bpm, ${MOOD}, key ${KEY}Hz"
+python3 audio/build_music.py "$NEWDUR" "$MUSIC" --bpm "$BPM" --mood "$MOOD" --key "$KEY" || exit 1
 
 echo "=== [7/8] render"
 FRAMES=1 ./export/render.sh "$BUILD_K" 1080 1920 "$NEWDUR" "$VO_R" "$MP4" "$MUSIC" || exit 1

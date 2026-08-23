@@ -121,50 +121,62 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- HOOK -->
-<section class="scene" data-in="0" data-out="4.03">
+<section class="scene" data-in="0" data-out="3.36">
   <div class="pad"><div class="kb">
     <div class="n8n b" data-at="0.1"><span class="dot"></span><b>n8n</b></div>
     <h2 class="b punch" data-at="0.3">Your agent has<br>no idea it's <span class="ebox">wrong</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="4.03" data-out="6.63">
+<section class="scene" data-in="3.36" data-out="5.96">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="4.06">It keeps running —<br>even when it's <span class="box">wrong</span>.</h2>
+    <h2 class="b punch" data-at="3.39">It keeps running —<br>even when it's <span class="box">wrong</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="6.63" data-out="9.2">
+<section class="scene" data-in="5.96" data-out="8.53">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="6.66">No node checks<br>for <span class="ebox">"not sure."</span></h2>
+    <h2 class="b punch" data-at="5.99">No node checks<br>for <span class="ebox">"not sure."</span></h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="9.2" data-out="12.425">
+<section class="scene" data-in="8.53" data-out="11.115">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="9.23">So the wrong output<br>ships. <span class="box">Every time</span>.</h2>
+    <h2 class="b punch" data-at="8.56">It handles refunds.<br><span class="ebox">One gets by</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="12.425" data-out="15.44">
+<section class="scene" data-in="11.115" data-out="14.39">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="12.455">One node before<br>the output <span class="ebox">fixes it</span>.</h2>
+    <h2 class="b punch" data-at="11.145">So the wrong output<br>ships. <span class="box">Every time</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="14.39" data-out="17.59">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="14.42">By the time you notice,<br>it's <span class="ebox">already gone</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="17.59" data-out="20.4">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="17.62">One node before<br>the output <span class="ebox">fixes it</span>.</h2>
   </div></div>
 </section>
 
 <!-- the takeaway — a real node config, screenshot-able -->
-<section class="scene" data-in="15.44" data-out="20.62">
+<section class="scene" data-in="20.4" data-out="25.935">
   <div class="pad"><div class="kb">
-    <div class="takecard b" data-at="15.47">
+    <div class="takecard b" data-at="20.43">
       <div class="tc-k">Add this node</div>
       <div class="tc-b">An IF node: confidence below the bar → <strong>route to a human</strong>, not to the output.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="20.62" data-out="23.39">
+<section class="scene" data-in="25.935" data-out="29.03">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="20.65" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="25.965" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -177,7 +189,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="32" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="40" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -194,7 +206,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=23.89,t=0,playing=false,last=0;
+  var DUR=30.23,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -205,71 +217,87 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var flash=document.getElementById('flash'),flashTxt=document.getElementById('flashTxt');
 
   var CUES=[
-    [0.30,3.82,"Your n8n agent has no idea it's wrong."],
-    [4.24,6.42,"It keeps running, even when it's wrong."],
-    [6.84,8.99,"No node checks for 'not sure.'"],
-    [9.41,12.00,"So the wrong output ships. Every time."],
-    [12.85,15.23,"One node before the output fixes it."],
-    [15.65,20.41,"An IF node: confidence below the bar routes to a human, not to the output."],
-    [20.83,22.99,"Follow for setups that actually works."]
+    [0.30,3.15,"Your n8n agent has no idea it's wrong."],
+    [3.57,5.75,"It keeps running, even when it's wrong."],
+    [6.17,8.32,"No node checks for 'not sure.'"],
+    [8.74,10.69,"It handles refunds. One gets by."],
+    [11.54,14.18,"So the wrong output ships. Every time."],
+    [14.60,17.38,"By the time you notice, it's already gone."],
+    [17.80,20.19,"One node before the output fixes it."],
+    [20.61,25.51,"An IF node: confidence below the bar routes to a human, not to the output."],
+    [26.36,28.63,"Follow for setups that actually works."]
   ];
   var WORDS=[
-    [0.3,0.88,"Your",0],
-    [0.88,1.56,"n8n",0],
-    [1.56,1.96,"agent",0],
-    [1.96,2.36,"has",1],
-    [2.36,2.6,"no",1],
-    [2.6,3.06,"idea",1],
-    [3.06,3.48,"it's",2],
-    [3.48,3.8,"wrong.",2],
-    [4.36,4.5,"It",3],
-    [4.5,4.84,"keeps",3],
-    [4.84,5.2,"running,",3],
-    [5.2,5.64,"even",4],
-    [5.64,5.82,"when",4],
-    [5.82,6.1,"it's",4],
-    [6.1,6.4,"wrong.",5],
-    [7.0,7.16,"No",6],
-    [7.16,7.4,"node",6],
-    [7.4,7.72,"checks",6],
-    [7.72,8.18,"for",7],
-    [8.18,8.64,"'not",7],
-    [8.64,8.92,"sure.'",7],
-    [9.54,9.74,"So",8],
-    [9.74,9.96,"the",8],
-    [9.96,10.16,"wrong",8],
-    [10.16,10.52,"output",9],
-    [10.52,10.96,"ships.",9],
-    [11.48,11.78,"Every",10],
-    [11.78,12.42,"time.",10],
-    [12.98,13.22,"One",11],
-    [13.22,13.48,"node",11],
-    [13.48,13.76,"before",11],
-    [13.76,13.98,"the",12],
-    [13.98,14.34,"output",12],
-    [14.34,14.98,"fixes",12],
-    [14.98,15.52,"it.",13],
-    [15.84,16.0,"An",14],
-    [16.0,16.16,"IF",14],
-    [16.16,16.68,"node:",14],
-    [17.02,17.3,"confidence",15],
-    [17.3,17.62,"below",15],
-    [17.62,17.82,"the",15],
-    [17.82,18.0,"bar",16],
-    [18.0,18.24,"routes",16],
-    [18.24,18.54,"to",16],
-    [18.54,18.72,"a",17],
-    [18.72,18.98,"human,",17],
-    [19.54,19.66,"not",18],
-    [19.62,19.84,"to",18],
-    [19.84,19.98,"the",18],
-    [19.98,20.32,"output.",19],
-    [20.83,21.22,"Follow",20],
-    [21.22,21.54,"for",20],
-    [21.54,21.84,"setups",20],
-    [21.84,22.18,"that",21],
-    [22.18,22.56,"actually",21],
-    [22.56,22.88,"works.",21]
+    [0.3,0.62,"Your",0],
+    [0.62,1.26,"n8n",0],
+    [1.26,1.54,"agent",0],
+    [1.54,1.86,"has",1],
+    [1.86,2.12,"no",1],
+    [2.12,2.5,"idea",1],
+    [2.5,2.78,"it's",2],
+    [2.78,3.12,"wrong.",2],
+    [3.74,3.86,"It",3],
+    [3.84,4.18,"keeps",3],
+    [4.18,4.54,"running,",3],
+    [4.72,4.98,"even",4],
+    [4.98,5.16,"when",4],
+    [5.16,5.4,"it's",4],
+    [5.4,5.7,"wrong.",5],
+    [6.3,6.5,"No",6],
+    [6.5,6.74,"node",6],
+    [6.74,7.08,"checks",6],
+    [7.08,7.46,"for",7],
+    [7.76,7.92,"'not",7],
+    [7.92,8.24,"sure.'",7],
+    [8.78,8.98,"It",8],
+    [8.98,9.24,"handles",8],
+    [9.24,10.0,"refunds.",8],
+    [10.04,10.2,"One",9],
+    [10.2,10.44,"gets",9],
+    [10.44,10.76,"by.",9],
+    [11.76,12.06,"So",10],
+    [12.06,12.28,"the",10],
+    [12.28,12.48,"wrong",10],
+    [12.48,12.8,"output",11],
+    [12.8,13.16,"ships.",11],
+    [13.54,13.86,"Every",12],
+    [13.86,14.18,"time.",12],
+    [14.62,14.82,"By",13],
+    [14.82,15.08,"the",13],
+    [15.08,15.26,"time",13],
+    [15.26,15.44,"you",14],
+    [15.44,15.92,"notice,",14],
+    [16.34,16.64,"it's",15],
+    [16.64,17.04,"already",15],
+    [17.04,17.3,"gone.",15],
+    [17.94,18.2,"One",16],
+    [18.2,18.46,"node",16],
+    [18.46,18.86,"before",16],
+    [18.86,19.08,"the",17],
+    [19.08,19.42,"output",17],
+    [19.42,19.96,"fixes",17],
+    [19.96,20.42,"it.",18],
+    [20.7,21.02,"An",19],
+    [21.02,21.34,"IF",19],
+    [21.34,21.62,"node:",19],
+    [21.94,22.22,"confidence",20],
+    [22.22,22.6,"below",20],
+    [22.6,22.82,"the",20],
+    [22.82,23.0,"bar",21],
+    [23.0,23.24,"routes",21],
+    [23.24,23.52,"to",21],
+    [23.52,23.7,"a",22],
+    [23.7,23.96,"human,",22],
+    [24.4,24.7,"not",23],
+    [24.7,24.94,"to",23],
+    [24.94,25.14,"the",23],
+    [25.14,25.52,"output.",24],
+    [26.78,26.9,"Follow",25],
+    [26.78,27.1,"for",25],
+    [27.1,27.42,"setups",25],
+    [27.42,27.86,"that",26],
+    [27.86,28.24,"actually",26],
+    [28.24,28.52,"works.",26]
   ];
   var FDUR=0.55,FLASH=[];
 
