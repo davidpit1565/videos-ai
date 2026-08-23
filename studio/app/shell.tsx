@@ -35,52 +35,17 @@ export default function Shell({ children }: { children: React.ReactNode }) {
     if (el.getAttribute("href") !== want) el.setAttribute("href", want);
   }, [site]);
 
-  /* The nav bar "jumping" is 100dvh doing exactly what it is defined to do: recompute as the
-   * browser's own address bar collapses and expands while scrolling. Each recompute is a real
-   * layout change, so the flex column — and the nav pinned to its bottom — visibly resizes
-   * mid-scroll. This was reported on the installed iPhone app AND in a plain Chrome tab, which
-   * rules out anything PWA-specific; it is the unit itself.
+  /* The nav bar "jumping" was 100dvh doing exactly what it is defined to do: recompute as
+   * the browser's own address bar collapses and expands while scrolling. Two rounds of a
+   * JS fix (track the largest viewport height ever seen, in --app-h) killed the jump but
+   * chased its own tail on the installed iOS app: no address bar there to fire the resize
+   * event the fix leaned on, so whatever height the first measurement caught — sometimes
+   * before the launch animation had settled — locked in permanently as a gap under the nav
+   * bar, and no amount of retried delays is a real fix for a race.
    *
-   * The fix used everywhere this problem gets solved properly: track the LARGEST viewport
-   * height actually seen and never shrink back below it. The shell then stays sized for the
-   * browser-chrome-hidden case at all times; when the address bar reappears it simply covers
-   * the top of that fixed-height box instead of the box resizing under it. Nothing to measure
-   * before first paint, so 100dvh stays as the CSS fallback until this runs once. */
-  useEffect(() => {
-    let max = 0;
-    const set = () => {
-      const h = window.visualViewport?.height ?? window.innerHeight;
-      if (h > max) {
-        max = h;
-        document.documentElement.style.setProperty("--app-h", `${h}px`);
-      }
-    };
-    set();
-    // On an installed iOS home-screen app there is no address bar to collapse, so the
-    // resize event this fix relies on to grow past a too-small first reading may never
-    // fire — the launch animation's window isn't always settled yet at the very first
-    // set() above, and whatever height that catches then locks in as a permanent gap
-    // under the nav bar ("the studio opens a bit high"). A few delayed re-reads catch
-    // the settled size without waiting on an event that standalone mode won't send.
-    const timers = [100, 300, 800, 1500].map((ms) => setTimeout(set, ms));
-    window.visualViewport?.addEventListener("resize", set);
-    window.addEventListener("resize", set);
-    // Coming back from the app switcher/background can also hand back a viewport that
-    // settles a moment after the tab becomes visible again, not at the visibility event itself.
-    const onVisible = () => { if (!document.hidden) { set(); setTimeout(set, 300); } };
-    document.addEventListener("visibilitychange", onVisible);
-    // A rotation can make the true max height smaller than whatever was recorded in the other
-    // orientation, so the ceiling has to reset there rather than just calling set() again.
-    const reset = () => { max = 0; set(); setTimeout(set, 300); };
-    window.addEventListener("orientationchange", reset);
-    return () => {
-      timers.forEach(clearTimeout);
-      window.visualViewport?.removeEventListener("resize", set);
-      window.removeEventListener("resize", set);
-      document.removeEventListener("visibilitychange", onVisible);
-      window.removeEventListener("orientationchange", reset);
-    };
-  }, []);
+   * The actual fix is a CSS unit for exactly this: `lvh` is the LARGE viewport height — the
+   * size with browser chrome retracted — fixed at layout time and never recomputed as the
+   * chrome animates. No measurement, no race, no JS at all. See globals.css. */
 
   if (site) return <>{children}</>;
 
