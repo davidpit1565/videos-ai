@@ -584,7 +584,13 @@ def main():
     if slots:
         track = timeline; t = len(track) / SR_MIX
     else:
-        segs.append(np.zeros(int(0.45 * SR_MIX), dtype=np.float32)); t += 0.45
+        # The last line is always a close whether or not it is listed in --closes, but the
+        # per-line loop above only adds a line's landing gap when another line follows it
+        # ("if i < len(lines)") — so the final line got a flat 0.45s tail no matter how the
+        # build was called, instead of the same a.long room every other section-close gets.
+        # That is "the ending finishes too fast": the last word lands and the cut is right
+        # behind it, with none of the breathing room its own closing beat earns.
+        segs.append(np.zeros(int(a.long * SR_MIX), dtype=np.float32)); t += a.long
         track = np.concatenate(segs)
 
     if not a.dry:
