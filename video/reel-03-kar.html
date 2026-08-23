@@ -124,63 +124,63 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- HOOK 0–2.4 -->
-<section class="scene" data-in="0" data-out="3.36">
+<section class="scene" data-in="0" data-out="3.24">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="0">5 things <span class="ebox">AI agents</span><br>still can't do.</h2>
+    <h2 class="b punch" data-at="0">Your AI agent<br>is already <span class="ebox">lying</span><br>to you.</h2>
   </div></div>
 </section>
 
 <!-- 5 -->
-<section class="scene" data-in="3.36" data-out="5.42">
+<section class="scene" data-in="3.24" data-out="5.3">
   <div class="pad"><div class="kb">
     <div class="num" data-decor>5</div>
-    <h2 class="b punch" data-at="3.39">They say<br>they're <span class="ebox">done</span>.<br>They're not.</h2>
+    <h2 class="b punch" data-at="3.27">They say<br>they're <span class="ebox">done</span>.<br>They're not.</h2>
   </div></div>
 </section>
 
 <!-- 4 -->
-<section class="scene" data-in="5.42" data-out="8.13">
+<section class="scene" data-in="5.3" data-out="8.01">
   <div class="pad"><div class="kb">
     <div class="num" data-decor>4</div>
-    <h2 class="b punch" data-at="5.45">They never say<br><span class="box">"I don't know."</span><br>They guess.</h2>
+    <h2 class="b punch" data-at="5.33">They never say<br><span class="box">"I don't know."</span><br>They guess.</h2>
   </div></div>
 </section>
 
 <!-- 3 -->
-<section class="scene" data-in="8.13" data-out="11.425">
+<section class="scene" data-in="8.01" data-out="11.305">
   <div class="pad"><div class="kb">
     <div class="num" data-decor>3</div>
-    <h2 class="b punch" data-at="8.16">They forget<br><span class="ebox">yesterday</span>.<br>Every time.</h2>
+    <h2 class="b punch" data-at="8.04">They forget<br><span class="ebox">yesterday</span>.<br>Every time.</h2>
   </div></div>
 </section>
 
 <!-- 2 -->
-<section class="scene" data-in="11.425" data-out="14.98">
+<section class="scene" data-in="11.305" data-out="14.86">
   <div class="pad"><div class="kb">
     <div class="num" data-decor>2</div>
-    <h2 class="b punch" data-at="11.455">They break on<br>a <span class="box">login screen</span>.<br>Every time.</h2>
+    <h2 class="b punch" data-at="11.335">They break on<br>a <span class="box">login screen</span>.<br>Every time.</h2>
   </div></div>
 </section>
 
 <!-- 1 -->
-<section class="scene" data-in="14.98" data-out="17.54">
+<section class="scene" data-in="14.86" data-out="17.42">
   <div class="pad"><div class="kb">
     <div class="num" data-decor>1</div>
-    <h2 class="b punch" data-at="15.01">Once it's sent,<br>they <span class="ebox">can't</span><br>take it back.</h2>
+    <h2 class="b punch" data-at="14.89">Once it's sent,<br>they <span class="ebox">can't</span><br>take it back.</h2>
   </div></div>
 </section>
 
 <!-- CLOSE -->
-<section class="scene" data-in="17.54" data-out="20.43">
+<section class="scene" data-in="17.42" data-out="20.31">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="17.582">Real agents<br>fail <span class="box">like this</span>.<br>Every one.</h2>
+    <h2 class="b punch" data-at="17.462">Real agents<br>fail <span class="box">like this</span>.<br>Every one.</h2>
   </div></div>
 </section>
 
 <!-- CTA -->
-<section class="scene" data-in="20.43" data-out="23.33">
+<section class="scene" data-in="20.31" data-out="23.21">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="20.472" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="20.352" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -200,15 +200,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="side">
   <p class="k">Episode 13 · Reel 03</p>
-  <h1>5 things <em>AI agents</em> still can't do</h1>
-  <p>Every hype video shows what agents get right. This is the honest list — the five failure
-  modes that show up in every real build, the same ones we hit ourselves this week.</p>
+  <h1>Your AI agent is already <em>lying</em> to you</h1>
+  <p>Every hype video shows what agents get right. This is the honest list — five ways they
+  fail silently, in every real build, including the ones we shipped ourselves this week.</p>
 </div>
 </div>
 
 <script>
 (function(){
-  var DUR=23.93,t=0,playing=false,last=0;
+  var DUR=23.81,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -219,71 +219,72 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var flash=document.getElementById('flash'),flashTxt=document.getElementById('flashTxt');
 
   var CUES=[
-    [0.30,3.15,"5 things <em>AI agents</em> still can't do."],
-    [3.57,5.21,"They say they're <em>done</em>. They're not."],
-    [5.63,7.92,"They never say \"I don't know.\" They guess."],
-    [8.34,11.00,"They forget <em>yesterday</em>. Every time."],
-    [11.85,14.77,"They break on a login screen. Every time."],
-    [15.19,17.33,"Once it's sent, they can't take it back."],
-    [17.75,20.22,"Real agents fail like this. Every one."],
-    [20.64,23.03,"Follow for setups that actually works."]
+    [0.30,3.03,"Your AI agent is already <em>lying</em> to you."],
+    [3.45,5.09,"They say they're <em>done</em>. They're not."],
+    [5.51,7.80,"They never say \"I don't know.\" They guess."],
+    [8.22,10.88,"They forget <em>yesterday</em>. Every time."],
+    [11.73,14.65,"They break on a login screen. Every time."],
+    [15.07,17.21,"Once it's sent, they can't take it back."],
+    [17.63,20.10,"Real agents fail like this. Every one."],
+    [20.52,22.91,"Follow for setups that actually works."]
   ];
   var WORDS=[
-    [0.3,0.62,"5",0],
-    [0.62,1.28,"things",0],
-    [1.28,1.78,"AI",0],
-    [1.78,2.22,"agents",1],
-    [2.22,2.62,"still",1],
-    [2.62,2.94,"can't",1],
-    [2.94,3.32,"do.",2],
-    [3.72,3.84,"They",3],
-    [3.8,3.96,"say",3],
-    [3.96,4.16,"they're",3],
-    [4.16,4.42,"done.",4],
-    [4.78,4.96,"They're",5],
-    [4.96,5.26,"not.",5],
-    [5.7,5.82,"They",6],
-    [5.8,6.02,"never",6],
-    [6.02,6.34,"say",6],
-    [6.58,6.7,"\"I",7],
-    [6.6,6.78,"don't",7],
-    [6.78,7.18,"know.\"",7],
-    [7.4,7.56,"They",8],
-    [7.56,7.82,"guess.",8],
-    [8.44,8.68,"They",9],
-    [8.68,9.02,"forget",9],
-    [9.02,9.6,"yesterday.",9],
-    [10.2,10.52,"Every",10],
-    [10.52,10.98,"time.",10],
-    [12.12,12.32,"They",11],
-    [12.32,12.54,"break",11],
-    [12.54,12.78,"on",11],
-    [12.78,12.92,"a",12],
-    [12.92,13.1,"login",12],
-    [13.1,13.5,"screen.",12],
-    [13.9,14.34,"Every",13],
-    [14.34,14.86,"time.",13],
-    [15.34,15.54,"Once",14],
-    [15.54,15.9,"it's",14],
-    [15.9,16.04,"sent,",14],
-    [16.28,16.42,"they",15],
-    [16.42,16.72,"can't",15],
-    [16.72,16.86,"take",15],
-    [16.86,17.02,"it",16],
-    [17.02,17.36,"back.",16],
-    [17.98,18.18,"Real",17],
-    [18.18,18.6,"agents",17],
-    [18.6,18.88,"fail",17],
-    [18.88,19.14,"like",18],
-    [19.14,19.4,"this.",18],
+    [0.3,0.6,"Your",0],
+    [0.6,0.96,"AI",0],
+    [0.96,1.4,"agent",0],
+    [1.4,1.92,"is",1],
+    [1.92,2.34,"already",1],
+    [2.34,2.58,"lying",1],
+    [2.58,2.82,"to",2],
+    [2.82,3.12,"you.",2],
+    [3.5,3.66,"They",3],
+    [3.66,3.84,"say",3],
+    [3.84,4.08,"they're",3],
+    [4.08,4.3,"done.",4],
+    [4.62,4.86,"They're",5],
+    [4.86,5.1,"not.",5],
+    [5.51,5.66,"They",6],
+    [5.66,5.92,"never",6],
+    [5.92,6.24,"say",6],
+    [6.24,6.5,"\"I",7],
+    [6.5,6.68,"don't",7],
+    [6.68,7.12,"know.\"",7],
+    [7.12,7.44,"They",8],
+    [7.44,7.74,"guess.",8],
+    [8.22,8.54,"They",9],
+    [8.54,8.9,"forget",9],
+    [8.9,9.62,"yesterday.",9],
+    [9.62,10.38,"Every",10],
+    [10.38,10.96,"time.",10],
+    [11.73,12.18,"They",11],
+    [12.18,12.44,"break",11],
+    [12.44,12.64,"on",11],
+    [12.64,12.8,"a",12],
+    [12.8,13.02,"login",12],
+    [13.02,13.4,"screen.",12],
+    [13.4,14.24,"Every",13],
+    [14.24,14.76,"time.",13],
+    [15.07,15.44,"Once",14],
+    [15.44,15.8,"it's",14],
+    [15.8,15.92,"sent,",14],
+    [16.1,16.3,"they",15],
+    [16.3,16.64,"can't",15],
+    [16.64,16.76,"take",15],
+    [16.72,16.92,"it",16],
+    [16.92,17.27,"back.",16],
+    [17.68,18.06,"Real",17],
+    [18.06,18.5,"agents",17],
+    [18.5,18.76,"fail",17],
+    [18.76,19.04,"like",18],
+    [19.04,19.4,"this.",18],
     [19.4,19.7,"Every",19],
     [19.7,20.0,"one.",19],
-    [20.8,21.12,"Follow",20],
-    [21.12,21.5,"for",20],
-    [21.5,21.72,"setups",20],
-    [21.72,22.1,"that",21],
-    [22.1,22.56,"actually",21],
-    [22.56,22.92,"works.",21]
+    [20.52,20.98,"Follow",20],
+    [20.98,21.38,"for",20],
+    [21.38,21.58,"setups",20],
+    [21.58,21.98,"that",21],
+    [21.98,22.36,"actually",21],
+    [22.36,22.82,"works.",21]
   ];
   var FDUR=0.55,FLASH=[];
 

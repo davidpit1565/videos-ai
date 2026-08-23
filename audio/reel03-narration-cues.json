@@ -1,50 +1,50 @@
 [
  {
   "n": 1,
-  "line": "5 things AI agents still can't do.",
+  "line": "Your AI agent is already <em>lying</em> to you.",
   "start": 0.3,
-  "end": 3.15
+  "end": 3.03
  },
  {
   "n": 2,
   "line": "They say they're done . They're not.",
-  "start": 3.57,
-  "end": 5.21
+  "start": 3.45,
+  "end": 5.09
  },
  {
   "n": 3,
   "line": "They never say \"I don't know.\" They guess.",
-  "start": 5.63,
-  "end": 7.92
+  "start": 5.51,
+  "end": 7.8
  },
  {
   "n": 4,
   "line": "They forget yesterday . Every time.",
-  "start": 8.34,
-  "end": 11.0
+  "start": 8.22,
+  "end": 10.88
  },
  {
   "n": 5,
   "line": "They break on a login screen. Every time.",
-  "start": 11.85,
-  "end": 14.77
+  "start": 11.73,
+  "end": 14.65
  },
  {
   "n": 6,
   "line": "Once it's sent, they can't take it back.",
-  "start": 15.19,
-  "end": 17.33
+  "start": 15.07,
+  "end": 17.21
  },
  {
   "n": 7,
   "line": "Real agents fail like this. Every one.",
-  "start": 17.75,
-  "end": 20.22
+  "start": 17.63,
+  "end": 20.1
  },
  {
   "n": 8,
   "line": "Follow for setups that actually works.",
-  "start": 20.64,
-  "end": 23.03
+  "start": 20.52,
+  "end": 22.91
  }
 ]
