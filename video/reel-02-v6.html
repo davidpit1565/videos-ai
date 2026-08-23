@@ -208,18 +208,18 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- 1 · the hook -->
-<section class="scene" data-in="0" data-out="7.44">
+<section class="scene" data-in="0" data-out="5.3">
   <div class="pad kb">
-    <h2 class="b punch" data-at="0.15" data-until="3.4">Everyone says <span class="box">agent</span>.</h2>
-    <h2 class="sm b punch" data-at="3.5">Almost nobody can say where the <em>chatbot ends</em>.</h2>
+    <h2 class="b punch" data-at="0" data-until="1.963">Everyone says <span class="box">agent</span>.</h2>
+    <h2 class="sm b punch" data-at="2.093">Almost nobody can say where the <em>chatbot ends</em>.</h2>
   </div>
 </section>
 
 <!-- 2 · the split -->
-<section class="scene" data-in="7.44" data-out="17.64">
+<section class="scene" data-in="5.3" data-out="16.6">
   <div class="pad kb">
-    <h2 class="sm b punch" data-at="7.5" data-until="10.5">A chatbot <span class="box">replies</span>.<br>An agent <span class="ebox">acts</span>.</h2>
-    <div class="split b" data-at="10.6">
+    <h2 class="sm b punch" data-at="5.33" data-until="8.83">A chatbot <span class="box">replies</span>.<br>An agent <span class="ebox">acts</span>.</h2>
+    <div class="split b" data-at="8.97">
       <div class="col">
         <div class="h">chatbot</div>
         <div class="t">Replies</div>
@@ -235,16 +235,16 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- 3 · the loop -->
-<section class="scene" data-in="17.64" data-out="29.44">
+<section class="scene" data-in="16.6" data-out="27.83">
   <div class="pad kb">
-    <div class="loop b" data-at="17.7">
+    <div class="loop b" data-at="16.63">
       <div class="ring"></div>
       <div class="spin" id="spin"></div>
       <div class="node n1" id="nd1"><div class="dot">1</div><div class="lb">Plan</div></div>
       <div class="node n2" id="nd2"><div class="dot">2</div><div class="lb">Act</div></div>
       <div class="node n3" id="nd3"><div class="dot">3</div><div class="lb">Check</div></div>
     </div>
-    <div class="chips b" data-at="21.1">
+    <div class="chips b" data-at="20.62">
       <span class="chip2" id="ch1">inbox</span>
       <span class="chip2" id="ch2">calendar</span>
       <span class="chip2" id="ch3">the web</span>
@@ -253,31 +253,31 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- 4 · the test -->
-<section class="scene" data-in="29.44" data-out="37.64">
+<section class="scene" data-in="27.83" data-out="34.84">
   <div class="pad kb">
-    <h2 class="sm b punch" data-at="29.5">The test that settles it:</h2>
-    <h2 class="b punch" data-at="31.6">Can't act <span class="ebox">without you</span>?<br>It's a <span class="box">chatbot</span>.</h2>
+    <h2 class="sm b punch" data-at="27.86">The test that settles it:</h2>
+    <h2 class="b punch" data-at="29.801">Can't act <span class="ebox">without you</span>?<br>It's a <span class="box">chatbot</span>.</h2>
   </div>
 </section>
 
 <!-- 5 · the honest part -->
-<section class="scene" data-in="37.64" data-out="46.24">
+<section class="scene" data-in="34.84" data-out="45.43">
   <div class="pad kb">
-    <h2 class="sm b punch" data-at="37.7" data-until="41.0">They fail with total <span class="ebox">confidence</span>.</h2>
-    <div class="fails b" data-at="41.1">
+    <h2 class="sm b punch" data-at="34.87" data-until="38.51">They fail with total <span class="ebox">confidence</span>.</h2>
+    <div class="fails b" data-at="38.72">
       <div class="fail"><b>01</b><span>Emails the wrong person — politely.</span></div>
       <div class="fail"><b>02</b><span>Stops halfway and reports success.</span></div>
       <div class="fail"><b>03</b><span>Repeats the same paid action twice.</span></div>
     </div>
-    <p class="lede b" data-at="43.8">So build one that touches something you can <strong>undo</strong>.</p>
+    <p class="lede b" data-at="42.32">So build one that touches something you can <strong>undo</strong>.</p>
   </div>
 </section>
 
 <!-- 6 · what's next -->
-<section class="scene" data-in="46.24" data-out="52">
+<section class="scene" data-in="45.43" data-out="52.46">
   <div class="pad kb">
-    <h2 class="b punch" data-at="46.3">Next: an <span class="box">n8n agent</span>.</h2>
-    <p class="lede b" data-at="49.3">End to end, no code. <strong>Follow</strong> for setups that actually works.</p>
+    <h2 class="b punch" data-at="45.46">Next: an <span class="box">n8n agent</span>.</h2>
+    <p class="lede b" data-at="49.614">End to end, no code. <strong>Follow</strong> for setups that actually works.</p>
   </div>
 </section>
 
@@ -313,7 +313,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=52,t=0,playing=false,last=0;
+  var DUR=52.96,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -325,24 +325,24 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
   /* narration cues — the script the voice reads, and the captions on screen */
   var CUES=[
-    [0.30,3.20,"Everyone says <em>agent</em>."],
-    [3.46,7.16,"Almost nobody can tell you where the chatbot ends."],
-    [7.60,10.30,"A chatbot gives a <em>reply</em>. That's the job."],
-    [10.60,13.70,"An agent <em>acts</em> — it plans the steps itself."],
-    [13.96,17.36,"Then it uses real tools, checks the result, and goes again."],
-    [17.70,20.80,"Same three steps, on a loop. <em>Plan</em>."],
-    [21.06,23.50,"<em>Act</em> — with a tool that touches something real."],
-    [23.76,26.30,"<em>Check</em> what came back."],
-    [26.56,29.16,"That loop is the entire difference."],
-    [29.50,37.36,"The test that settles it: if it can't act <em>without you</em>, it's a chatbot with a new name."],
-    [37.70,40.90,"The honest part: agents don't fail like chatbots."],
-    [41.10,43.60,"They fail with total <em>confidence</em>, halfway through."],
-    [43.80,45.96,"So build one that touches something you can <em>undo</em>."],
-    [46.30,49.10,"Next: an <em>n8n agent</em>, end to end."],
-    [49.36,51.60,"Follow for setups that actually works."]
+    [0.30,1.64,"Everyone says <em>agent</em>."],
+    [2.06,5.09,"Almost nobody can tell you where the chatbot ends."],
+    [5.51,8.55,"A chatbot gives a <em>reply</em>. That's the job."],
+    [8.97,11.70,"An agent <em>acts</em> — it plans the steps itself."],
+    [12.55,16.39,"Then it uses real tools, checks the result, and goes again."],
+    [16.81,20.16,"Same three steps, on a loop. <em>Plan</em>."],
+    [20.58,22.99,"<em>Act</em> — with a tool that touches something real."],
+    [23.41,24.62,"<em>Check</em> what came back."],
+    [25.47,27.62,"That loop is the entire difference."],
+    [28.04,34.63,"The test that settles it: if it can't act <em>without you</em>, it's a chatbot with a new name."],
+    [35.05,38.30,"The honest part: agents don't fail like chatbots."],
+    [38.72,41.47,"They fail with total <em>confidence</em>, halfway through."],
+    [42.32,45.22,"So build one that touches something you can <em>undo</em>."],
+    [45.64,48.96,"Next: an <em>n8n agent</em>, end to end."],
+    [49.81,52.06,"Follow for setups that actually works."]
   ];
   /* [at, label, ember?] — the pattern interrupts between sections */
-  var FLASH=[[7.10,"the line",0],[17.34,"the loop",0],[29.18,"the test",0],[37.40,"honest",1],[46.00,"next",0]];
+  var FLASH=[];
   var FDUR=0.55;
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}

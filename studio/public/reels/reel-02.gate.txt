@@ -1,24 +1,23 @@
 === narration
-audio/reel02-narration-v3.wav  52.6s  16 lines
-  medians: ending -35.2 dB · level -19.1 dBFS · S residual -0.2 dB (slope +5.5 dB per sibilant/syllable)
-  flagged below: ending -66.0 dB · S residual -5.1 dB  (median - 2.5 robust sd)
+audio/reel02-narration-v7.wav  52.1s  15 lines
+  medians: ending -37.8 dB · level -19.2 dBFS · S residual -0.3 dB (slope +12.6 dB per sibilant/syllable)
+  flagged below: ending -70.0 dB · S residual -2.9 dB  (median - 2.5 robust sd)
    ln   dur    gap  rate    sib    end    lvl  line
-    1  1.34  +0.42  4.48   -9.6  -11.5  -20.4  Everyone says agent .
+    1  1.34  +0.42  4.48   -9.6  -11.5  -20.5  Everyone says agent .
     2  3.03  +0.42  4.29  -10.9  -23.4  -18.9  Almost nobody can tell you where the c
-    3  3.04  +0.42  3.62  -11.4  -42.7  -19.3  A chatbot gives a reply . That's the j
+    3  3.04  +0.42  3.62  -11.4  -42.9  -19.3  A chatbot gives a reply . That's the j
     4  2.73  +0.85  3.66   -7.2  -29.5  -19.9  An agent acts — it plans the steps its
     5  3.84  +0.42  3.65   -7.5  -42.6  -19.1  Then it uses real tools, checks the re
     6  3.35  +0.42  2.09   -8.1  -43.6  -19.1  Same three steps, on a loop. Plan .
     7  2.41  +0.42  4.56   -6.8  -37.8  -19.5  Act — with a tool that touches somethi
     8  1.21  +0.85  3.31  -11.5  -20.2  -19.1  Check what came back.
     9  2.15  +0.42  4.19  -10.0  -18.6  -19.9  That loop is the entire difference.
-   10  3.39  +0.42  1.47  -10.4  -31.4  -18.3  One test settles it.
-   11  3.38  +0.42  4.44   -7.2  -43.8  -18.8  If it can't act without you , it's a c
-   12  3.25  +0.42  3.38   -9.4  -18.8  -19.2  The honest part: agents don't fail lik
-   13  2.75  +0.85   4.0  -11.7  -46.5  -19.5  They fail with total confidence , half
-   14   2.9  +0.42  4.48   -6.2  -43.4  -18.8  So build one that touches something yo
-   15  3.32  +0.85  2.71  -12.0  -32.6  -19.1  Next: an n8n agent , end to end.
-   16   1.7    —    5.29  -12.1  -42.5  -18.3  Follow so it lands in front of you.
+   10  6.59  +0.42  3.49  -13.7  -53.7  -19.1  The test that settles it: if it can't 
+   11  3.25  +0.42  3.38   -9.4  -18.8  -19.2  The honest part: agents don't fail lik
+   12  2.75  +0.85   4.0  -11.7  -46.5  -19.5  They fail with total confidence , half
+   13   2.9  +0.42  4.48   -6.2  -43.4  -18.8  So build one that touches something yo
+   14  3.32  +0.85  2.71  -11.9  -38.1  -19.1  Next: an n8n agent , end to end.
+   15  2.25    —    4.44   -7.0  -19.5  -19.7  Follow for setups that actually works.
 
   nothing flagged. every line sits inside his own spread.
 
@@ -26,19 +25,18 @@ audio/reel02-narration-v3.wav  52.6s  16 lines
     "three": +27.6 dB, burst (accepted by ear, see SUNDAY.md)
 
 === frame layout
-reel-02-v3.html  53.01s  safe box: x 65-1015, y 269-1248
+reel-02-v7.html  52.96s  safe box: x 65-1015, y 269-1248
   safe area: clean (tolerance 10px)
   within tolerance: 5px past the top line   dot  "1"
   overlaps: none over 10px
   within tolerance: 6px overlap  ebox x box
 
 === rendered file
-reel-02-v2.mp4  1080x1920  30fps  53.01s  8.8MB
-  visual change: median 0.62s, longest 2.37s
-  loudness: -15.4 LUFS integrated, peak -3.9 dBFS, LRA 1.9 LU
-  loop seam: first vs last frame differ by 14.5/255
+reel-02-v4.mp4  1080x1920  30fps  52.97s  9.2MB
+  visual change: median 0.67s, longest 2.20s
+  loudness: -15.5 LUFS integrated, peak -3.6 dBFS, LRA 2.0 LU
+  loop seam: first vs last frame differ by 16.2/255
 
-  [warn]    picture nearly still 2.33s at 29.33-31.67s
   ok        1080x1920
   ok        yuv420p
   ok        30fps
@@ -47,8 +45,8 @@ reel-02-v2.mp4  1080x1920  30fps  53.01s  8.8MB
   ok        length matches the build
   ok        no frozen run over 4s
   ok        first frame carries picture (luma 23.8)
-  ok        visual change every 0.62s median
-  ok        -15.4 LUFS
-  ok        peak -3.9 dBFS
+  ok        visual change every 0.67s median
+  ok        -15.5 LUFS
+  ok        peak -3.6 dBFS
 
 ALL CHECKS PASSED

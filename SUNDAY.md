@@ -281,6 +281,21 @@ python3 export/karaoke.py video/reel-02-paced.html /tmp/deep.json --words-cues a
 `ACCEPT_WORDS=three ./export/check.sh` עבר במלואו (three עדיין מסומן, מאושר-אוזן).
 `studio/public/reels/reel-02.mp4` מעודכן ובסטודיו.
 
+## reel-02 — שני תיקוני תוכן דחופים (23.8)
+
+הוא סימן ששורה 10 ("One test settles it.") חוזרת על עצמה בלי לומר כלום, ולא נשמעת
+משכנעת — ושבלי ריכוז/רקע ב-AI קשה לעקוב. איחדתי אותה עם השורה שאחריה לתוכן אחד
+ברור: **"The test that settles it: if it can't act without you, it's a chatbot with
+a new name."** (בדיוק כמו הכיתוב שכבר כתוב ב-caption של הפרק) — קול חדש הוקלט, הושתל
+במקום השתיים הישנות, כל התזמון הבא זז אוטומטית.
+
+**כלל מותג קבוע (מ-reel-02 והלאה, לא reel-01 — הוא כבר הועלה):** כל סרטון נגמר ב-
+**"Follow for setups that actually works."** (עם S — ככה הוא רצה את זה, לא "work").
+reel-01 נשאר כמו שהוא (״...actually work.״ בלי S) כי כבר הועלה לאינסטגרם. כל פרק
+הבא (03 ואילך) צריך להסתיים באותו משפט המדויק, עם ה-S.
+
+שני התיקונים עברו `check.sh` במלואו, `studio/public/reels/reel-02.mp4` מעודכן.
+
 ## בקשה עתידית שנרשמה — לא עכשיו
 
 הוא ביקש שלא נשכח: אחרי שהסרטונים מוכנים ורצים (כשזו כבר לא הבעיה שלנו), לשפר

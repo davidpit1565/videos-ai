@@ -1,0 +1,92 @@
+[
+ {
+  "n": 1,
+  "line": "Everyone says agent .",
+  "start": 0.3,
+  "end": 1.64
+ },
+ {
+  "n": 2,
+  "line": "Almost nobody can tell you where the chatbot ends.",
+  "start": 2.06,
+  "end": 5.09
+ },
+ {
+  "n": 3,
+  "line": "A chatbot gives a reply . That's the job.",
+  "start": 5.51,
+  "end": 8.55
+ },
+ {
+  "n": 4,
+  "line": "An agent acts \u2014 it plans the steps itself.",
+  "start": 8.97,
+  "end": 11.7
+ },
+ {
+  "n": 5,
+  "line": "Then it uses real tools, checks the result, and goes again.",
+  "start": 12.55,
+  "end": 16.39
+ },
+ {
+  "n": 6,
+  "line": "Same three steps, on a loop. Plan .",
+  "start": 16.81,
+  "end": 20.16
+ },
+ {
+  "n": 7,
+  "line": "Act \u2014 with a tool that touches something real.",
+  "start": 20.58,
+  "end": 22.99
+ },
+ {
+  "n": 8,
+  "line": "Check what came back.",
+  "start": 23.41,
+  "end": 24.62
+ },
+ {
+  "n": 9,
+  "line": "That loop is the entire difference.",
+  "start": 25.47,
+  "end": 27.62
+ },
+ {
+  "n": 10,
+  "line": "The test that settles it: if it can't act <em>without you</em>, it's a chatbot with a new name.",
+  "start": 28.04,
+  "end": 34.63
+ },
+ {
+  "n": 11,
+  "line": "The honest part: agents don't fail like chatbots.",
+  "start": 35.05,
+  "end": 38.3
+ },
+ {
+  "n": 12,
+  "line": "They fail with total confidence , halfway through.",
+  "start": 38.72,
+  "end": 41.47
+ },
+ {
+  "n": 13,
+  "line": "So build one that touches something you can undo .",
+  "start": 42.32,
+  "end": 45.22
+ },
+ {
+  "n": 14,
+  "line": "Next: an n8n agent , end to end.",
+  "start": 45.64,
+  "end": 48.96
+ },
+ {
+  "n": 15,
+  "line": "Follow for setups that actually works.",
+  "start": 49.81,
+  "end": 52.06
+ }
+]
