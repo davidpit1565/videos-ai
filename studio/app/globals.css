@@ -132,7 +132,9 @@ ul.list input[type=checkbox]{width:22px;height:22px;accent-color:var(--brass);ma
 ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 
 /* ── activity feed ───────────────────────────── */
-.feed{list-style:none;padding:0;margin:0}
+/* fixed height on purpose: the feed keeps growing (300 entries kept server-side) and
+   without a cap the home page itself got taller every day instead of scrolling in place */
+.feed{list-style:none;padding:0;margin:0;max-height:420px;overflow-y:auto}
 .feed li{display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:baseline;
   padding:13px 2px;border-bottom:1px solid var(--line)}
 .feed li:last-child{border-bottom:0}
