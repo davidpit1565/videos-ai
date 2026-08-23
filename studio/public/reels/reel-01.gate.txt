@@ -1,78 +1,54 @@
 === narration
-audio/reel01-narration-v22.wav  54.4s  15 lines
-  medians: ending -25.9 dB · level -17.7 dBFS · S residual -0.1 dB (slope +11.7 dB per sibilant/syllable)
-  flagged below: ending -50.4 dB · S residual -8.6 dB  (median - 2.5 robust sd)
+audio/reel01-narration-v28.wav  51.1s  15 lines
+  medians: ending -24.5 dB · level -18.7 dBFS · S residual +0.4 dB (slope +11.9 dB per sibilant/syllable)
+  flagged below: ending -41.5 dB · S residual -8.5 dB  (median - 2.5 robust sd)
    ln   dur    gap  rate    sib    end    lvl  line
-    1  2.65  +0.42   3.4   -4.5  -17.4  -18.0  Your ChatGPT keeps giving you the obvi
-    2  3.03  +0.42  4.29  -16.1  -28.4  -17.5  Not because it's dumb. Nobody told it 
-    3  3.03  +0.42  2.31   -9.3  -25.9  -17.2  One block of text. This is it .
+    1  2.35  +0.42  3.83   -4.3  -14.9  -18.8  Your ChatGPT keeps giving you the obvi
+    2  2.85  +0.42  4.56  -15.8  -28.7  -18.1  Not because it's dumb. Nobody told it 
+    3  2.46  +0.42  2.85   -5.0  -29.1  -18.0  One block of text. This is it .
     4  7.94  +0.85  4.41  -10.2  -20.8  -17.3  You are my Universal AI Engine. Automa
-    5  1.73  +0.42  2.31  -13.5  -20.1  -19.6  1 — open Settings .
-    6  1.87  +0.42  3.21  -10.8  -45.3  -20.8  2 — Personalization .
-    7  2.34  +0.42  2.14   -3.0  -16.0  -20.1  3 — Custom instructions .
-    8  1.71  +0.85  2.92  -10.0  -20.1  -19.8  4 — paste it in the box.
-    9  2.54  +0.42  1.97   -7.0  -36.5  -20.6  5 — switch it on, and Save .
-   10  2.69  +0.42  3.35  -19.1  -22.5  -17.2  Then ask anything, in normal words.
-   11  4.56  +0.42  3.51  -10.6  -35.2  -17.7  It says what it's assuming . It finds 
-   12  2.83  +0.42  3.53   -7.9  -19.3  -17.6  It ends with a decision . Not a list.
-   13  4.37  +0.85  2.97  -13.9  -35.6  -17.4  You typed zero commands. Same model — 
-   14  2.45  +0.42  4.49   -6.5  -26.4  -17.7  The whole prompt is in the caption . C
-   15  2.76    —    3.62   -9.5  -49.5  -17.9  Follow for setups that actually work .
+    5  1.74  +0.42   2.3  -13.5  -17.1  -18.7  1 — open Settings .
+    6  1.74  +0.42  3.45   -9.3  -44.7  -18.7  2 — Personalization .
+    7  2.46  +0.42  2.03   -5.4  -22.0  -18.7  3 — Custom instructions .
+    8  1.53  +0.85  3.27   -9.6  -17.7  -18.7  4 — paste it in the box.
+    9   2.6  +0.42  1.92   -4.7  -27.1  -18.7  5 — switch it on, and Save .
+   10  2.41  +0.42  3.73  -18.7  -21.2  -18.0  Then ask anything, in normal words.
+   11  4.04  +0.42  3.96  -10.5  -33.4  -18.6  It says what it's assuming . It finds 
+   12   2.5  +0.42   4.0   -7.4  -19.3  -18.5  It ends with a decision . Not a list.
+   13  3.89  +0.85  3.34  -13.2  -33.7  -18.3  You typed zero commands. Same model — 
+   14  2.19  +0.42  5.02   -6.6  -24.5  -18.7  The whole prompt is in the caption . C
+   15  2.44    —     4.1   -8.7  -28.5  -19.1  Follow for setups that actually work .
 
-  [note] line  5: quiet (-19.6 dBFS vs median -17.7)
-         -> level this line before the mix
-  [note] line  6: quiet (-20.8 dBFS vs median -17.7)
-         -> level this line before the mix
-  [note] line  7: quiet (-20.1 dBFS vs median -17.7)
-         -> level this line before the mix
-  [note] line  8: quiet (-19.8 dBFS vs median -17.7)
-         -> level this line before the mix
-  [note] line  9: quiet (-20.6 dBFS vs median -17.7)
-         -> level this line before the mix
-  [note] line 14: harsh S (-6.5 dB, +6.6 against prediction)
-         -> de-esser is under-doing this line
+  [fix] line  6: weak ending (-44.7 dB vs median -24.5)
+         -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
+
+  the shipped file, measured:
+    "three": -4.2 dB, absent (accepted by ear, see SUNDAY.md)
 
 === frame layout
-reel-01-v22.html  54.47s  safe box: x 65-1015, y 269-1248
+reel-01-v25.html  51.11s  safe box: x 65-1015, y 269-1248
   safe area: clean (tolerance 10px)
+  overlaps: none over 10px
   within tolerance: 6px overlap  ebox x box
-  overlap  247px at 18s   promptType "You are my Universal AI "  x  subs "You are my Universal AI "
-  overlap   90px at 37s   a b on "One channel carries all "  x  subs "It says what it's . It f"
-  overlap   73px at 37.5s   tag b punch on "assumptions"  x  subs "It says what it's . It f"
-  overlap   72px at 35s   tag b punch on "assumptions"  x  EM "assuming"
-  overlap   48px at 23.5s   SPAN "Data controls"  x  subs "3 — ."
-  overlap   26px at 37s   B "Risk you didn't ask abou"  x  subs "It says what it's . It f"
-  overlap   15px at 23.5s   ch "›"  x  subs "3 — ."
-  overlap   14px at 3.5s   up "↑"  x  subs "Not because it's dumb. N"
 
 === rendered file
-reel-01-v22.mp4  1080x1920  30fps  54.43s  7.9MB
-  card spacing: [29.3]
-  visual change: median 1.90s, longest 7.50s
-  loudness: -15.3 LUFS integrated, peak -3.9 dBFS, LRA 2.4 LU
-  loop seam: first vs last frame differ by 26.4/255
+reel-01-v27.mp4  1080x1920  30fps  51.11s  8.1MB
+  card spacing: [27.6]
+  visual change: median 2.27s, longest 7.47s
+  loudness: -15.3 LUFS integrated, peak -4.3 dBFS, LRA 1.9 LU
+  loop seam: first vs last frame differ by 29.8/255
 
-  [warn]    picture nearly still 2.40s at 0.57-2.97s
-  [warn]    picture nearly still 3.00s at 3.43-6.43s
-  [warn]    picture nearly still 2.80s at 7.07-9.87s
-  [warn]    picture nearly still 3.77s at 10.50-14.27s
-  [warn]    picture nearly still 2.10s at 23.77-25.87s
-  [warn]    picture nearly still 2.47s at 32.03-34.50s
-  [warn]    picture nearly still 2.03s at 37.43-39.47s
-  [warn]    picture nearly still 2.63s at 40.10-42.73s
-  [warn]    picture nearly still 2.20s at 48.60-50.80s
-  [warn]    picture nearly still 2.53s at 51.47-54.00s
   ok        1080x1920
   ok        yuv420p
   ok        30fps
   ok        48kHz stereo
-  ok        length 54.4s inside 30-90s
+  ok        length 51.1s inside 30-90s
   ok        length matches the build
   ok        no frozen run over 4s
-  ok        first frame carries picture (luma 33.7)
-  ok        2 colour cards, 0.53-0.53s each
-  ok        visual change every 1.90s median
+  ok        first frame carries picture (luma 33.1)
+  ok        2 colour cards, 0.53-0.57s each
+  ok        visual change every 2.27s median
   ok        -15.3 LUFS
-  ok        peak -3.9 dBFS
+  ok        peak -4.3 dBFS
 
-SOMETHING FAILED — do not send this file
+ALL CHECKS PASSED

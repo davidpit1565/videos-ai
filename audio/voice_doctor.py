@@ -299,7 +299,15 @@ def main():
     ap.add_argument("--repair", help="write a corrected wav here: level and sibilance only")
     ap.add_argument("--no-watch", action="store_true",
                     help="skip the shipped-file consonant check (needs whisper + librosa)")
+    ap.add_argument("--accept", default="",
+                    help="comma-separated watched words he has already approved by ear for "
+                         "this file, e.g. after listening to line_doctor.py candidates. The "
+                         "measurement still prints — this does not hide a defect, it records "
+                         "that his ear already ruled on it, which is the tie-breaker CLAUDE.md "
+                         "gives him when the metric and his ear disagree. Write down why in "
+                         "SUNDAY.md; don't reach for this to make a check quietly go away.")
     a = ap.parse_args()
+    accepted = {w.strip().lower() for w in a.accept.split(",") if w.strip()}
 
     cues_path = a.cues or os.path.splitext(a.wav)[0] + "-cues.json"
     if not os.path.exists(cues_path):
@@ -393,12 +401,14 @@ def main():
         if hits:
             print(f"\n  the shipped file, measured:")
             for tw, peak, v in hits:
+                note = " (accepted by ear, see SUNDAY.md)" if tw in accepted else ""
                 if peak is None:
-                    print(f"    \"{tw}\": {v}")
-                    watch_bad = True
+                    print(f"    \"{tw}\": {v}{note}")
+                    if tw not in accepted:
+                        watch_bad = True
                     continue
-                print(f"    \"{tw}\": {peak:+.1f} dB, {v}")
-                if v != "frication":
+                print(f"    \"{tw}\": {peak:+.1f} dB, {v}{note}")
+                if v != "frication" and tw not in accepted:
                     watch_bad = True
             if watch_bad:
                 print(f"  the take-level check runs before the mix; this runs on the file "

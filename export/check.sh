@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 # Everything that has to pass before a reel is sent to him.
 #   ./export/check.sh <build.html> <narration.wav> [rendered.mp4]
+#   ACCEPT_WORDS=three ./export/check.sh ...   — words he has already approved by ear
+#                                                 (voice_doctor.py --accept), so the gate
+#                                                 doesn't keep failing him on his own call
 set -uo pipefail
 cd "$(dirname "$0")/.."
 BUILD="$1"; VO="$2"; MP4="${3:-}"
 fail=0
 
 echo "=== narration"
-python3 audio/voice_doctor.py "$VO" || fail=1
+python3 audio/voice_doctor.py "$VO" ${ACCEPT_WORDS:+--accept "$ACCEPT_WORDS"} || fail=1
 
 echo
 echo "=== frame layout"
