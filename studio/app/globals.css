@@ -195,7 +195,7 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
      so the full-height overflow:hidden box clipped it to one screen with no way to
      scroll — 700px of a 2500px page, silently. The studio chrome is the only thing
      this layout is for. */
-  .shell:not(.pub){height:100dvh;display:flex;flex-direction:column;overflow:hidden;padding:0}
+  .shell:not(.pub){height:var(--app-h,100dvh);display:flex;flex-direction:column;overflow:hidden;padding:0}
   .shell:not(.pub) .top{flex:0 0 auto;order:0;padding:0 14px}
   .shell:not(.pub) .scroll{flex:1 1 auto;order:1;overflow-y:auto;
     -webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 14px 28px}

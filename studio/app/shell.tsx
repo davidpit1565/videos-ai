@@ -35,6 +35,40 @@ export default function Shell({ children }: { children: React.ReactNode }) {
     if (el.getAttribute("href") !== want) el.setAttribute("href", want);
   }, [site]);
 
+  /* The nav bar "jumping" is 100dvh doing exactly what it is defined to do: recompute as the
+   * browser's own address bar collapses and expands while scrolling. Each recompute is a real
+   * layout change, so the flex column — and the nav pinned to its bottom — visibly resizes
+   * mid-scroll. This was reported on the installed iPhone app AND in a plain Chrome tab, which
+   * rules out anything PWA-specific; it is the unit itself.
+   *
+   * The fix used everywhere this problem gets solved properly: track the LARGEST viewport
+   * height actually seen and never shrink back below it. The shell then stays sized for the
+   * browser-chrome-hidden case at all times; when the address bar reappears it simply covers
+   * the top of that fixed-height box instead of the box resizing under it. Nothing to measure
+   * before first paint, so 100dvh stays as the CSS fallback until this runs once. */
+  useEffect(() => {
+    let max = 0;
+    const set = () => {
+      const h = window.visualViewport?.height ?? window.innerHeight;
+      if (h > max) {
+        max = h;
+        document.documentElement.style.setProperty("--app-h", `${h}px`);
+      }
+    };
+    set();
+    window.visualViewport?.addEventListener("resize", set);
+    window.addEventListener("resize", set);
+    // A rotation can make the true max height smaller than whatever was recorded in the other
+    // orientation, so the ceiling has to reset there rather than just calling set() again.
+    const reset = () => { max = 0; set(); };
+    window.addEventListener("orientationchange", reset);
+    return () => {
+      window.visualViewport?.removeEventListener("resize", set);
+      window.removeEventListener("resize", set);
+      window.removeEventListener("orientationchange", reset);
+    };
+  }, []);
+
   if (site) return <>{children}</>;
 
   const badge =
