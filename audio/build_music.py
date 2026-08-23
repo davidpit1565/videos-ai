@@ -77,6 +77,17 @@ MOODS = {
     # major, resolves every four bars — for wins, fixes, things that work
     "bright":  [("Cmaj7", [0, 4, 7, 11]), ("G", [-5, -2, 2, 7]),
                 ("Am7", [0, 3, 7, 10]), ("Fmaj7", [-4, 0, 5, 9])],
+    # minor but a different shape from "urgent" — a longer eight-chord cycle so it
+    # doesn't read as the same track transposed. For a slow-build reveal or a warning
+    # that escalates rather than one that's urgent from the first bar.
+    "tense":   [("Dm7", [0, 3, 7, 10]), ("Bbmaj7", [-3, 1, 6, 10]),
+                ("Gm7", [-5, -2, 2, 5]), ("A7", [-3, 4, 7, 9]),
+                ("Dm7", [0, 3, 7, 10]), ("F", [-9, -5, -2, 3]),
+                ("Gm7", [-5, -2, 2, 5]), ("A7", [-3, 4, 7, 9])],
+    # major and forward-moving, faster harmonic rhythm than "bright" — for a fix that
+    # unfolds in real time rather than a single win landed on.
+    "drive":   [("G", [0, 4, 7, 11]), ("D", [-5, -1, 2, 6]),
+                ("Em7", [-8, -3, 0, 4]), ("C", [-7, -3, 0, 5])],
 }
 PROG = MOODS["neutral"]
 
