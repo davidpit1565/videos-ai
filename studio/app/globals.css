@@ -465,30 +465,4 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .notify .hint.mono{font-family:var(--m);font-size:13px}
 .aplayer{display:block;width:100%;margin:0 auto}
 
-/* ---- his own Claude usage, not the channel's data ---- */
-.usage{border:1px solid var(--line);border-radius:14px;padding:14px;margin:24px 0 0}
-.uhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-.ucols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media (max-width:520px){.ucols{grid-template-columns:1fr}}
-.ulabel{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em;
-  margin-bottom:4px}
-.uval{font-size:20px;font-weight:700;margin-bottom:2px}
-.usage .hint{color:var(--faint);font-size:13px;margin:0}
-
-.gauge{margin:0 0 20px}
-.gtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
-.gtop span:last-child{font-weight:600;font-size:14.5px}
-.gnum{font-family:var(--m);font-size:22px;font-weight:700;direction:ltr;unicode-bidi:isolate}
-.gtrack{height:14px;border-radius:999px;background:var(--line);overflow:hidden}
-.gfill{height:100%;border-radius:999px;transition:width .3s ease}
-.gfill.ok{background:linear-gradient(90deg,var(--ok),var(--brass))}
-.gfill.warn{background:linear-gradient(90deg,var(--brass),var(--clay))}
-.ghint{margin-top:7px;font-size:12.5px;color:var(--faint);display:flex;justify-content:space-between;
-  gap:10px}
-.ubaredit{border:1px dashed var(--line);border-radius:10px;padding:12px;margin:4px 0 8px;
-  display:flex;flex-direction:column;gap:10px}
-.ufield{display:flex;flex-direction:column;gap:4px}
-.ufield label{font-size:12px;color:var(--faint)}
-.ufield input{background:var(--ink);border:1px solid var(--line);border-radius:8px;
-  padding:6px 10px;color:var(--text);font-family:var(--m);direction:ltr;text-align:right}
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--faint)}
