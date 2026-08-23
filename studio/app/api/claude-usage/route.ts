@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getUsage, setCurrent, setWeekly } from "@/lib/claudeUsage";
+import { getUsage, setBar, setCurrent, setWeekly } from "@/lib/claudeUsage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,7 +14,9 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   const u = await getUsage();
-  return NextResponse.json(u ?? { weekly: null, current: null, reason: "no database" });
+  return NextResponse.json(
+    u ?? { weekly: null, current: null, bars: { session: null, weekly: null }, reason: "no database" },
+  );
 }
 
 export async function POST(req: Request) {
@@ -27,8 +29,13 @@ export async function POST(req: Request) {
         Number(b.costUsd), Number(b.inputTokens), Number(b.outputTokens),
         Number(b.cacheReadTokens), Number(b.cacheWriteTokens),
       );
+    } else if (b.type === "bar") {
+      if (b.which !== "session" && b.which !== "weekly") {
+        return NextResponse.json({ ok: false, error: "which must be session or weekly" }, { status: 422 });
+      }
+      await setBar(b.which, Number(b.pct), String(b.resetsLabel ?? ""));
     } else {
-      return NextResponse.json({ ok: false, error: "type must be weekly or current" }, { status: 422 });
+      return NextResponse.json({ ok: false, error: "type must be weekly, current, or bar" }, { status: 422 });
     }
     return NextResponse.json({ ok: true });
   } catch (e) {
