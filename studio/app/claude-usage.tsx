@@ -75,6 +75,12 @@ export default function ClaudeUsage() {
             {u.current ? (
               <>
                 <div className="uval num">${u.current.costUsd.toFixed(2)}</div>
+                <div className="hint">
+                  ערך שווה-כסף פנימי, לא בהכרח מה שנגבה בפועל — הסכום האמיתי הוא ב-
+                  <a href="https://claude.ai/settings/billing" target="_blank" rel="noreferrer">
+                    Billing
+                  </a>
+                </div>
                 <div className="hint num">
                   {(u.current.inputTokens + u.current.outputTokens).toLocaleString()} טוקנים ·
                   {" "}{u.current.cacheReadTokens.toLocaleString()} מהמטמון
