@@ -20,6 +20,9 @@ type IgMedia = {
 };
 type IgResp = { connected: boolean; reason?: string; media?: IgMedia[] };
 
+type YtVideo = { id: string; title: string; publishedAt: string | null; views: number | null; likes: number | null; comments: number | null };
+type YtResp = { connected: boolean; reason?: string; videos?: YtVideo[] };
+
 const FORMAT_HE: Record<Format, string> = { reel: "ריל", long: "ארוך", both: "שניהם" };
 
 export default function Videos() {
@@ -27,6 +30,9 @@ export default function Videos() {
   const [ig, setIg] = useState<IgResp | null>(null);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
+  const [yt, setYt] = useState<YtResp | null>(null);
+  const [ytBusy, setYtBusy] = useState(false);
+  const [ytMsg, setYtMsg] = useState<string | null>(null);
 
   if (!state) return <p className="sub">טוען…</p>;
 
@@ -70,6 +76,45 @@ export default function Videos() {
     }
   }
 
+  /** Same idea as sync() above, for YouTube: pull the live numbers and copy them onto
+   *  whichever episodes already carry a video id. */
+  async function syncYoutube() {
+    setYtBusy(true);
+    setYtMsg(null);
+    try {
+      const r = await fetch("/api/youtube", { cache: "no-store" });
+      const j = (await r.json()) as YtResp;
+      setYt(j);
+      if (!j.connected) {
+        setYtMsg(j.reason ?? "יוטיוב לא מחובר");
+        return;
+      }
+      const by = new Map((j.videos ?? []).map((v) => [v.id, v]));
+      let hit = 0;
+      update((d) => {
+        for (const e of d.episodes) {
+          const v = e.ytVideoId ? by.get(e.ytVideoId) : undefined;
+          if (!v) continue;
+          hit++;
+          if (v.views !== null) e.views = v.views;
+          if (v.likes !== null) e.likes = v.likes;
+          if (v.comments !== null) e.comments = v.comments;
+          if (!e.publishedAt && v.publishedAt) e.publishedAt = v.publishedAt.slice(0, 10);
+          if (e.status !== "live") e.status = "live";
+        }
+      });
+      setYtMsg(
+        hit === 0
+          ? `יוטיוב מחובר, ${(j.videos ?? []).length} סרטונים נמצאו — אבל אף פרק לא מקושר לסרטון. לחבר למטה.`
+          : `עודכנו ${hit} פרקים מהמספרים החיים.`,
+      );
+    } catch (e) {
+      setYtMsg((e as Error).message);
+    } finally {
+      setYtBusy(false);
+    }
+  }
+
   const set = <K extends keyof Episode>(i: number, k: K, v: Episode[K]) =>
     update((d) => void (d.episodes[i][k] = v));
 
@@ -81,6 +126,9 @@ export default function Videos() {
 
   const linked = new Set(state.episodes.map((e) => e.igMediaId).filter(Boolean) as string[]);
   const unlinked = (ig?.media ?? []).filter((m) => !linked.has(m.id));
+
+  const linkedYt = new Set(state.episodes.map((e) => e.ytVideoId).filter(Boolean) as string[]);
+  const unlinkedYt = (yt?.videos ?? []).filter((v) => !linkedYt.has(v.id));
 
   return (
     <>
@@ -96,6 +144,9 @@ export default function Videos() {
       <div className="actions" style={{ marginBottom: 16 }}>
         <button className="btn" onClick={sync} disabled={busy}>
           {busy ? <span className="spin" /> : "משיכת מספרים מאינסטגרם"}
+        </button>
+        <button className="btn" onClick={syncYoutube} disabled={ytBusy}>
+          {ytBusy ? <span className="spin" /> : "משיכת מספרים מיוטיוב"}
         </button>
         <button
           className="btn ghost"
@@ -131,6 +182,12 @@ export default function Videos() {
         <div className={"note " + (ig?.connected ? "ok" : "warn")}>
           <div className="t">{ig?.connected ? "סנכרון" : "לא מחובר"}</div>
           {msg}
+        </div>
+      )}
+      {ytMsg && (
+        <div className={"note " + (yt?.connected ? "ok" : "warn")}>
+          <div className="t">{yt?.connected ? "סנכרון יוטיוב" : "יוטיוב לא מחובר"}</div>
+          {ytMsg}
         </div>
       )}
 
@@ -366,6 +423,73 @@ export default function Videos() {
                           ep.comments = m.comments;
                           ep.shares = m.shares;
                           ep.publishedAt = m.timestamp?.slice(0, 10) ?? ep.publishedAt;
+                          ep.status = "live";
+                        });
+                      }}
+                    >
+                      <option value="">בחר פרק…</option>
+                      {state.episodes.map((e) => (
+                        <option key={e.id} value={e.id}>
+                          {e.number}. {e.title}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <h2>קישור לסרטוני יוטיוב</h2>
+      {!yt ? (
+        <p className="sub">לחץ על &quot;משיכת מספרים מיוטיוב&quot; כדי לראות את הסרטונים בערוץ.</p>
+      ) : !yt.connected ? (
+        <p className="sub">
+          יוטיוב לא מחובר: {yt.reason}. עד אז אפשר להזין את המספרים ידנית בטבלה למעלה — הם נשמרים
+          אותו דבר.
+        </p>
+      ) : unlinkedYt.length === 0 ? (
+        <p className="sub">כל הסרטונים בערוץ מקושרים לפרק.</p>
+      ) : (
+        <div className="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>סרטון</th>
+                <th>תאריך</th>
+                <th>צפיות</th>
+                <th>לייקים</th>
+                <th>לקשר לפרק</th>
+              </tr>
+            </thead>
+            <tbody>
+              {unlinkedYt.map((v) => (
+                <tr key={v.id}>
+                  <td className="name">
+                    <a href={`https://youtu.be/${v.id}`} target="_blank" rel="noreferrer" style={{ color: "var(--steel)" }}>
+                      {v.title}
+                    </a>
+                  </td>
+                  <td className="num">{v.publishedAt?.slice(0, 10) ?? "—"}</td>
+                  <td className="num">{n(v.views)}</td>
+                  <td className="num">{n(v.likes)}</td>
+                  <td>
+                    <select
+                      className="cell"
+                      defaultValue=""
+                      onChange={(ev) => {
+                        const id = ev.target.value;
+                        if (!id) return;
+                        update((d) => {
+                          const ep = d.episodes.find((x) => x.id === id);
+                          if (!ep) return;
+                          ep.ytVideoId = v.id;
+                          if (v.views !== null) ep.views = v.views;
+                          if (v.likes !== null) ep.likes = v.likes;
+                          if (v.comments !== null) ep.comments = v.comments;
+                          ep.publishedAt = v.publishedAt?.slice(0, 10) ?? ep.publishedAt;
                           ep.status = "live";
                         });
                       }}
