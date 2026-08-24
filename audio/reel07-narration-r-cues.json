@@ -1,0 +1,62 @@
+[
+ {
+  "n": 1,
+  "line": "Your n8n agent can't tell when it messes up.",
+  "start": 0.3,
+  "end": 3.24
+ },
+ {
+  "n": 2,
+  "line": "It just keeps going anyway.",
+  "start": 3.66,
+  "end": 5.13
+ },
+ {
+  "n": 3,
+  "line": "Nothing stops to check itself.",
+  "start": 5.55,
+  "end": 7.33
+ },
+ {
+  "n": 4,
+  "line": "It handles refunds. One gets by.",
+  "start": 7.75,
+  "end": 9.71
+ },
+ {
+  "n": 5,
+  "line": "So the bad result goes out. Every time.",
+  "start": 10.56,
+  "end": 13.11
+ },
+ {
+  "n": 6,
+  "line": "By the time you notice, it's already gone.",
+  "start": 13.53,
+  "end": 16.31
+ },
+ {
+  "n": 7,
+  "line": "One quick fix stops it.",
+  "start": 16.73,
+  "end": 18.41
+ },
+ {
+  "n": 8,
+  "line": "If it can't tell, stop, and ask a person. Don't send it out.",
+  "start": 18.83,
+  "end": 22.61
+ },
+ {
+  "n": 9,
+  "line": "Copy the prompt below, or tap the bio link.",
+  "start": 23.46,
+  "end": 26.38
+ },
+ {
+  "n": 10,
+  "line": "Follow for setups that actually works.",
+  "start": 26.8,
+  "end": 29.72
+ }
+]
