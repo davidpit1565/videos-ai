@@ -5,6 +5,7 @@ import Signup from "./signup";
 import SiteNav from "./sitenav";
 import EpisodesBrowser from "./episodes-browser";
 import SiteSocial from "./site-social";
+import CountUp from "./count-up";
 
 export const metadata = {
   title: { absolute: "Actually Works — AI setups that actually work" },
@@ -47,13 +48,13 @@ export default async function Home() {
             <div className="herostats">
               {live.length > 0 && (
                 <div>
-                  <b>{live.length}</b>
+                  <b><CountUp value={live.length} /></b>
                   <span>episode{live.length === 1 ? "" : "s"} live</span>
                 </div>
               )}
               {totalViews > 0 && (
                 <div>
-                  <b>{totalViews.toLocaleString("en-US")}</b>
+                  <b><CountUp value={totalViews} /></b>
                   <span>views measured</span>
                 </div>
               )}

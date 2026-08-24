@@ -46,28 +46,32 @@ export default async function Renders() {
                   ? `פרק ${r.episode}${r.title ? ` — ${r.title}` : ""}`
                   : r.file}
             </b>
-            {r.episode !== null && liveNumbers.has(r.episode) && (
-              <span className="pill pass">כבר פורסם</span>
-            )}
-            {r.episode !== null && SEQUEL_FOR[r.episode] !== undefined && (
-              <span className="pill unknown">
-                יש חלק 2: פרק {String(SEQUEL_FOR[r.episode]).padStart(2, "0")}
-              </span>
-            )}
-            {r.episode !== null && SEQUEL_OF[r.episode] !== undefined && (
-              <span className="pill unknown">
-                חלק 2 לפרק {String(SEQUEL_OF[r.episode]).padStart(2, "0")}
-              </span>
-            )}
-            {r.gate === null ? (
-              <span className="pill unknown">השער לא רץ</span>
-            ) : r.gate.passed ? (
-              <span className="pill pass">עבר את השער</span>
-            ) : (
-              <span className="pill fail">נפל בשער</span>
-            )}
-            <span className="num rmeta">{(r.bytes / 1e6).toFixed(1)} MB</span>
-            <span className="num rmeta">{localDT(r.builtAt)}</span>
+            <span className="rbadges">
+              {r.episode !== null && liveNumbers.has(r.episode) && (
+                <span className="pill pass">כבר פורסם</span>
+              )}
+              {r.episode !== null && SEQUEL_FOR[r.episode] !== undefined && (
+                <span className="pill unknown">
+                  חלק 2: פרק {String(SEQUEL_FOR[r.episode]).padStart(2, "0")}
+                </span>
+              )}
+              {r.episode !== null && SEQUEL_OF[r.episode] !== undefined && (
+                <span className="pill unknown">
+                  חלק 2 לפרק {String(SEQUEL_OF[r.episode]).padStart(2, "0")}
+                </span>
+              )}
+              {r.gate === null ? (
+                <span className="pill unknown">השער לא רץ</span>
+              ) : r.gate.passed ? (
+                <span className="pill pass">עבר את השער</span>
+              ) : (
+                <span className="pill fail">נפל בשער</span>
+              )}
+            </span>
+            <span className="rmetas">
+              <span className="num rmeta">{(r.bytes / 1e6).toFixed(1)} MB</span>
+              <span className="num rmeta">{localDT(r.builtAt)}</span>
+            </span>
           </Link>
         ))}
       </div>
