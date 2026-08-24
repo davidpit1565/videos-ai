@@ -297,3 +297,94 @@ export async function fetchBeehiiv(): Promise<BeeResult> {
     return { connected: false, reason: (e as Error).message };
   }
 }
+
+/** YouTube Data API v3. Unlike Instagram this needs no OAuth dance for read access — a
+ *  plain API key from Google Cloud Console reads public channel/video data, so there is
+ *  no token to refresh and nothing to expire on a timer. Set YOUTUBE_API_KEY and either
+ *  YOUTUBE_CHANNEL_ID or YOUTUBE_HANDLE (the @handle, without the @) in Vercel. */
+const YT = "https://www.googleapis.com/youtube/v3";
+
+export type YtVideo = {
+  id: string;
+  title: string;
+  publishedAt: string | null;
+  views: number | null;
+  likes: number | null;
+  comments: number | null;
+};
+
+export type YtResult =
+  | { connected: false; reason: string; detail?: string }
+  | { connected: true; channelTitle: string | null; subscribers: number | null; videos: YtVideo[]; checkedAt: string };
+
+export async function fetchYouTube(): Promise<YtResult> {
+  const key = process.env.YOUTUBE_API_KEY;
+  if (!key) return { connected: false, reason: "YOUTUBE_API_KEY לא מוגדר" };
+  const channelId = process.env.YOUTUBE_CHANNEL_ID;
+  const handle = process.env.YOUTUBE_HANDLE;
+  if (!channelId && !handle) return { connected: false, reason: "YOUTUBE_CHANNEL_ID או YOUTUBE_HANDLE לא מוגדרים" };
+
+  try {
+    const chParam = channelId ? `id=${channelId}` : `forHandle=${handle}`;
+    const chr = await fetch(
+      `${YT}/channels?part=snippet,statistics,contentDetails&${chParam}&key=${key}`,
+      { cache: "no-store" },
+    );
+    if (!chr.ok) {
+      return { connected: false, reason: `יוטיוב החזיר ${chr.status}`, detail: (await chr.text()).slice(0, 300) };
+    }
+    const chj = await chr.json();
+    const channel = chj.items?.[0];
+    if (!channel) return { connected: false, reason: "הערוץ לא נמצא — בדוק את ה-ID או ה-handle" };
+
+    const uploadsPlaylist = channel.contentDetails?.relatedPlaylists?.uploads;
+    if (!uploadsPlaylist) return { connected: false, reason: "לא נמצאה רשימת ההעלאות של הערוץ" };
+
+    const pir = await fetch(
+      `${YT}/playlistItems?part=snippet&playlistId=${uploadsPlaylist}&maxResults=25&key=${key}`,
+      { cache: "no-store" },
+    );
+    const pij = pir.ok ? await pir.json() : { items: [] };
+    const ids: string[] = (pij.items ?? [])
+      .map((it: { snippet?: { resourceId?: { videoId?: string } } }) => it.snippet?.resourceId?.videoId)
+      .filter(Boolean);
+    if (ids.length === 0) {
+      return {
+        connected: true,
+        channelTitle: channel.snippet?.title ?? null,
+        subscribers: channel.statistics?.subscriberCount ? Number(channel.statistics.subscriberCount) : null,
+        videos: [],
+        checkedAt: new Date().toISOString(),
+      };
+    }
+
+    const vr = await fetch(`${YT}/videos?part=snippet,statistics&id=${ids.join(",")}&key=${key}`, {
+      cache: "no-store",
+    });
+    const vj = vr.ok ? await vr.json() : { items: [] };
+    const videos: YtVideo[] = (vj.items ?? []).map(
+      (v: {
+        id: string;
+        snippet?: { title?: string; publishedAt?: string };
+        statistics?: { viewCount?: string; likeCount?: string; commentCount?: string };
+      }): YtVideo => ({
+        id: v.id,
+        title: v.snippet?.title ?? v.id,
+        publishedAt: v.snippet?.publishedAt ?? null,
+        views: v.statistics?.viewCount ? Number(v.statistics.viewCount) : null,
+        likes: v.statistics?.likeCount ? Number(v.statistics.likeCount) : null,
+        comments: v.statistics?.commentCount ? Number(v.statistics.commentCount) : null,
+      }),
+    );
+
+    return {
+      connected: true,
+      channelTitle: channel.snippet?.title ?? null,
+      subscribers: channel.statistics?.subscriberCount ? Number(channel.statistics.subscriberCount) : null,
+      videos,
+      checkedAt: new Date().toISOString(),
+    };
+  } catch (e) {
+    return { connected: false, reason: (e as Error).message };
+  }
+}
