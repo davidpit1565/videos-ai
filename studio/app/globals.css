@@ -164,6 +164,11 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 .feed li{display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:baseline;
   padding:13px 2px;border-bottom:1px solid var(--line)}
 .feed li:last-child{border-bottom:0}
+/* the newest pull's rows, so a fresh sync is visibly its own batch instead of blending
+   into everything pulled before it — every new pull moves this to its own rows only */
+.feed li.latest{background:color-mix(in srgb, var(--brass) 10%, transparent);
+  border-inline-start:2px solid var(--brass);padding-inline-start:11px;margin-inline-start:-2px;
+  border-radius:0 6px 6px 0}
 .feed .dt{font-family:var(--m);font-size:13px;color:var(--faint);direction:ltr}
 .feed .what{font-size:16px}
 .feed .d{font-family:var(--m);font-size:15px;font-weight:600;direction:ltr}

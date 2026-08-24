@@ -136,15 +136,19 @@ export default function Dashboard() {
         </div>
       ) : (
         <ul className="feed">
-          {(state.activity ?? []).slice(0, 25).map((a) => (
-            <li key={a.id}>
-              <span className="dt">{localDT(a.at).slice(5)}</span>
-              <span className="what">{a.label}</span>
-              <span className={"d " + (a.delta == null ? "flat" : a.delta > 0 ? "up" : "down")}>
-                {a.delta == null ? n(a.value) : (a.delta > 0 ? "+" : "") + n(a.delta)}
-              </span>
-            </li>
-          ))}
+          {(() => {
+            const rows = (state.activity ?? []).slice(0, 25);
+            const latestAt = rows[0]?.at;
+            return rows.map((a) => (
+              <li key={a.id} className={a.at === latestAt ? "latest" : undefined}>
+                <span className="dt">{localDT(a.at).slice(5)}</span>
+                <span className="what">{a.label}</span>
+                <span className={"d " + (a.delta == null ? "flat" : a.delta > 0 ? "up" : "down")}>
+                  {a.delta == null ? n(a.value) : (a.delta > 0 ? "+" : "") + n(a.delta)}
+                </span>
+              </li>
+            ));
+          })()}
         </ul>
       )}
 
