@@ -5,7 +5,7 @@ import Link from "next/link";
  *  written for it and no route to it from the front door. */
 export default function SiteNav({ here }: { here?: string }) {
   const items = [
-    { href: "/", label: "Episodes" },
+    { href: "/", label: "Home" },
     { href: "/prompts", label: "Prompts" },
     { href: "/search", label: "Search" },
     { href: "/about", label: "About" },

@@ -364,26 +364,21 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
   text-decoration:none;font-size:1rem}
 .site .cta:hover, .pub .cta:hover{background:var(--gold)}
 
-/* the personal-intro hero, in two columns once there's room for both the text and a
-   photo without either getting cramped; one column below that (photo under text). */
-.site .herotwo{display:flex;flex-wrap:wrap;gap:2rem;align-items:flex-start}
-.site .herotext{flex:1 1 22rem;min-width:0}
+/* the personal-intro hero. Single column for now — a two-column layout with a photo
+   beside the text is worth doing once there's a real photo to put there; an empty
+   dashed placeholder box was worse than no box, on desktop as much as on a phone. */
+.site .herotext{min-width:0}
 .site .herocta{display:flex;align-items:center;gap:1.3rem;margin-top:1.5rem;flex-wrap:wrap}
 .site .herocta .cta{margin-top:0}
 .site .herocta a:not(.cta){color:var(--ink);font-weight:600;text-decoration:none;
   border-bottom:1px solid var(--rule)}
 .site .herocta a:not(.cta):hover{border-color:var(--gold-lit);color:var(--gold-lit)}
-.site .herostats{display:flex;gap:2.2rem;margin-top:2rem}
+.site .herosocial{margin-top:1.3rem}
+.site .herosocial .ssocial{justify-content:flex-start;padding:0;background:transparent;gap:1.1rem}
+.site .herostats{display:flex;gap:2.2rem;margin-top:1.6rem}
 .site .herostats b{display:block;font-family:var(--serif);font-weight:800;font-size:1.7rem;
   color:var(--ink)}
 .site .herostats span{display:block;color:var(--faint);font-size:.85rem;margin-top:.15rem}
-/* no image yet on purpose — a real one replaces this the day he gives one, never a
-   stock or generated photo standing in for him */
-.site .herophoto{flex:1 1 14rem;max-width:20rem;aspect-ratio:4/5;border-radius:1.1rem;
-  background:var(--wash);border:1px dashed var(--rule)}
-/* an empty placeholder box is a fair stand-in for a real photo once there's room
-   beside the text; alone on a phone-width column it's just dead space above nothing */
-@media(max-width:34rem){.site .herophoto{display:none}}
 .site .empty{background:var(--card);border:1px solid var(--rule);border-radius:1rem;
   padding:1.1rem 1.25rem;color:var(--soft)}
 
