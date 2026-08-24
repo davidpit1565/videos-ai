@@ -47,7 +47,7 @@ python3 audio/voice_doctor.py "$VO" --cues "$CUES" --repair "$VO_R" ${ACCEPT:+--
 cp "$CUES" "$CUES_R"
 
 echo "=== [3/8] retime picture to natural pacing (0.9s closing tail)"
-python3 export/retime.py "$BUILD" "$CUES_R" --out "$BUILD_T" --tail 0.9 || exit 1
+python3 export/retime.py "$BUILD" "$CUES_R" --out "$BUILD_T" --tail 0.9 --wav "$VO_R" || exit 1
 
 echo "=== [4/8] word-level captions"
 python3 audio/word_stamps.py "$VO_R" --out "$DEEP" || exit 1

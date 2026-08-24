@@ -17,27 +17,27 @@ audio/reel09-narration-r.wav  35.1s  9 lines
          -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
 
 === frame layout
-reel-09-kar.html  33.49s  safe box: x 65-1015, y 269-1248
+reel-09-kar.html  35.11s  safe box: x 65-1015, y 269-1248
   safe area: clean (tolerance 10px)
   within tolerance: 3px past the left line   on  "should"
   overlaps: none over 10px
 
 === rendered file
-reel-09.mp4  1080x1920  30fps  33.50s  5.8MB
-  visual change: median 0.65s, longest 3.73s
-  loudness: -14.1 LUFS integrated, peak -3.1 dBFS, LRA 1.6 LU
-  loop seam: first vs last frame differ by 25.3/255
+reel-09.mp4  1080x1920  30fps  35.11s  5.9MB
+  visual change: median 0.70s, longest 3.73s
+  loudness: -14.1 LUFS integrated, peak -3.3 dBFS, LRA 1.6 LU
+  loop seam: first vs last frame differ by 27.1/255
 
   ok        1080x1920
   ok        yuv420p
   ok        30fps
   ok        48kHz stereo
-  ok        length 33.5s inside 30-90s
+  ok        length 35.1s inside 30-90s
   ok        length matches the build
   ok        no frozen run over 4s
   ok        first frame carries picture (luma 44.3)
-  ok        visual change every 0.65s median
+  ok        visual change every 0.70s median
   ok        -14.1 LUFS
-  ok        peak -3.1 dBFS
+  ok        peak -3.3 dBFS
 
 ALL CHECKS PASSED
