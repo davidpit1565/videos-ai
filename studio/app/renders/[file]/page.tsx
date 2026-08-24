@@ -66,7 +66,19 @@ export default async function RenderDetail({ params }: { params: Promise<{ file:
           </details>
         )}
 
-        {r.caption && <Copy text={r.caption} />}
+        {r.caption && (
+          <>
+            <p className="section-label">כיתוב לאינסטגרם</p>
+            <Copy text={r.caption} />
+          </>
+        )}
+
+        {r.youtube && (
+          <>
+            <p className="section-label">כותרת + תיאור ל-YouTube Shorts</p>
+            <Copy text={r.youtube} />
+          </>
+        )}
       </section>
     </main>
   );

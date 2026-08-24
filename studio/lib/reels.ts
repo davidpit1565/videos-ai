@@ -26,20 +26,27 @@ export type Reel = {
   gate: { passed: boolean; text: string } | null;
   /** the caption to post with it, if one is written for this episode */
   caption: string | null;
+  /** title + description for YouTube Shorts, if one is written for this episode — a
+   *  separate file because YouTube wants a title line first, which an Instagram
+   *  caption doesn't have */
+  youtube: string | null;
 };
 
 const DIR = join(process.cwd(), "public", "reels");
 const CAPTIONS = join(process.cwd(), "..", "channel");
 
-function captionFor(n: number | null): string | null {
+function textFor(n: number | null, suffix: string): string | null {
   if (n === null) return null;
-  const p = join(CAPTIONS, `episode-${String(n).padStart(2, "0")}-caption.txt`);
+  const p = join(CAPTIONS, `episode-${String(n).padStart(2, "0")}-${suffix}.txt`);
   try {
     return existsSync(p) ? readFileSync(p, "utf8").trim() : null;
   } catch {
     return null;
   }
 }
+
+const captionFor = (n: number | null) => textFor(n, "caption");
+const youtubeFor = (n: number | null) => textFor(n, "youtube");
 
 /** The filesystem mtime does not survive a git checkout reliably — Vercel's own build
  *  showed every reel dated 2018-10-20, which is not a date that has ever been true for
@@ -98,6 +105,7 @@ export function reels(): Reel[] {
         builtAt: builtAtFor(file, st.mtime),
         gate: gateFor(file),
         caption: captionFor(episode),
+        youtube: youtubeFor(episode),
       };
     })
     .sort((a, b) => b.builtAt.localeCompare(a.builtAt));
