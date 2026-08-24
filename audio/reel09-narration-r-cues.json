@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "This agent can send emails by itself. It never does.",
+  "start": 0.3,
+  "end": 3.37
+ },
+ {
+  "n": 2,
+  "line": "Because once it's sent, you can't take it back \u2014 even if it's wrong.",
+  "start": 3.79,
+  "end": 7.43
+ },
+ {
+  "n": 3,
+  "line": "One wrong tone, one wrong fact, and it's already out.",
+  "start": 7.85,
+  "end": 11.11
+ },
+ {
+  "n": 4,
+  "line": "So it only ever writes a draft. You read it, you click send.",
+  "start": 11.53,
+  "end": 15.14
+ },
+ {
+  "n": 5,
+  "line": "One switch in the workflow: create draft, never send.",
+  "start": 15.99,
+  "end": 19.09
+ },
+ {
+  "n": 6,
+  "line": "Every agent that touches your inbox should stop right there.",
+  "start": 19.51,
+  "end": 22.82
+ },
+ {
+  "n": 7,
+  "line": "Build the draft, never the send. You click every time.",
+  "start": 23.24,
+  "end": 26.92
+ },
+ {
+  "n": 8,
+  "line": "The exact setup's in the link in bio.",
+  "start": 27.34,
+  "end": 29.47
+ },
+ {
+  "n": 9,
+  "line": "Follow for setups that actually works.",
+  "start": 30.32,
+  "end": 32.59
+ }
+]
