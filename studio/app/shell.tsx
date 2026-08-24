@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useStudio } from "./providers";
 import { useEffect, useState } from "react";
 import { isSite } from "@/lib/routes";
+import { localDT } from "@/lib/fmt";
 
 const TABS = [
   { href: "/studio", label: "לוח" },
@@ -78,7 +79,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           <span className={badge.cls}>{badge.text}</span>
           {buildInfo && (
             <span className="build-info" title={buildInfo.sha ?? undefined}>
-              עודכן {buildInfo.builtAt.slice(0, 16).replace("T", " ")}
+              עודכן {localDT(buildInfo.builtAt)}
               {buildInfo.shortSha ? ` · ${buildInfo.shortSha}` : ""}
             </span>
           )}

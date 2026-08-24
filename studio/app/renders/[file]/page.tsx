@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { reelByFile } from "@/lib/reels";
 import Copy from "../copy";
 import IgStats from "../igstats";
+import { localDT } from "@/lib/fmt";
 
 export const dynamic = "force-dynamic";
 
@@ -52,7 +53,7 @@ export default async function RenderDetail({ params }: { params: Promise<{ file:
 
         <div className="meta">
           <span className="num">{(r.bytes / 1e6).toFixed(1)} MB</span>
-          <span className="num">{r.builtAt.slice(0, 16).replace("T", " ")}</span>
+          <span className="num">{localDT(r.builtAt)}</span>
           <a href={r.src} download>
             הורדה
           </a>

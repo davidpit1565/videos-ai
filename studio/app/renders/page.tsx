@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { reels } from "@/lib/reels";
+import { localDT } from "@/lib/fmt";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "רנדרים" };
@@ -46,7 +47,7 @@ export default function Renders() {
               <span className="pill fail">נפל בשער</span>
             )}
             <span className="num rmeta">{(r.bytes / 1e6).toFixed(1)} MB</span>
-            <span className="num rmeta">{r.builtAt.slice(0, 16).replace("T", " ")}</span>
+            <span className="num rmeta">{localDT(r.builtAt)}</span>
           </Link>
         ))}
       </div>
