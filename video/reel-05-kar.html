@@ -165,37 +165,37 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="15.705" data-out="19.12">
+<section class="scene" data-in="15.705" data-out="18.73">
   <div class="pad"><div class="kb">
     <h2 class="b punch" data-at="15.735">The platform hides<br>the bottom <span class="ebox">on purpose</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="19.12" data-out="22.12">
+<section class="scene" data-in="18.73" data-out="21.73">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="19.15">We checked our videos.<br><span class="box">Same mistake</span>.</h2>
+    <h2 class="b punch" data-at="18.76">We checked our videos.<br><span class="box">Same mistake</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="22.12" data-out="26.17">
+<section class="scene" data-in="21.73" data-out="25.78">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="22.15">Now it's where<br>you can <span class="ebox">see</span> it.</h2>
+    <h2 class="b punch" data-at="21.76">Now it's where<br>you can <span class="ebox">see</span> it.</h2>
   </div></div>
 </section>
 
 <!-- the takeaway — the exact numbers, on their own screen -->
-<section class="scene" data-in="26.17" data-out="31.235">
+<section class="scene" data-in="25.78" data-out="30.875">
   <div class="pad"><div class="kb">
-    <div class="takecard b" data-at="26.2">
+    <div class="takecard b" data-at="25.81">
       <div class="tc-k">The safe zone</div>
       <div class="tc-b">Keep text out of the top <strong>269px</strong> and bottom <strong>672px</strong> on 1080×1920.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="31.235" data-out="34.53">
+<section class="scene" data-in="30.875" data-out="34.17">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="31.265" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="30.905" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -225,7 +225,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=34.83,t=0,playing=false,last=0;
+  var DUR=34.47,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -240,11 +240,11 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [2.99,7.14,"Not a guess. We measured 413 pixels. Gone."],
     [7.56,12.43,"80.2% of clips use captions. 78.6% animate them."],
     [12.85,15.28,"The caption shows up fine. Nobody sees it."],
-    [16.13,18.91,"The platform hides the bottom on purpose."],
-    [19.33,21.91,"We checked our own videos. Same mistake."],
-    [22.33,25.96,"Now every caption sits in the space you can actually see."],
-    [26.38,30.81,"Keep text out of the top 269 pixels and bottom 672 pixels."],
-    [31.66,33.93,"Follow for setups that actually works."]
+    [16.13,18.52,"The platform hides the bottom on purpose."],
+    [18.94,21.52,"We checked our own videos. Same mistake."],
+    [21.94,25.57,"Now every caption sits in the space you can actually see."],
+    [25.99,30.45,"Keep text out of the top 269 pixels and bottom 672 pixels."],
+    [31.30,33.57,"Follow for setups that actually works."]
   ];
   var WORDS=[
     [0.3,0.58,"Your",0],
@@ -253,14 +253,14 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [1.2,1.46,"hiding",1],
     [1.46,1.86,"behind",1],
     [1.86,2.62,"Instagram.",1],
-    [3.26,3.38,"Not",2],
+    [3.24,3.36,"Not",2],
     [3.34,3.5,"a",2],
     [3.5,3.72,"guess.",2],
-    [4.22,4.34,"We",3],
+    [4.16,4.32,"We",3],
     [4.32,4.64,"measured",3],
     [4.64,5.64,"413",3],
     [5.64,6.3,"pixels.",4],
-    [6.78,7.04,"Gone.",5],
+    [6.76,7.04,"Gone.",5],
     [8.64,8.76,"80.2%",6],
     [8.64,8.92,"of",6],
     [8.92,9.12,"clips",6],
@@ -272,54 +272,54 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [12.98,13.12,"The",9],
     [13.12,13.4,"caption",9],
     [13.4,13.7,"shows",9],
-    [13.7,13.94,"up",10],
-    [13.94,14.22,"fine.",10],
-    [14.6,14.86,"Nobody",11],
+    [13.7,13.92,"up",10],
+    [13.92,14.22,"fine.",10],
+    [14.58,14.86,"Nobody",11],
     [14.86,15.12,"sees",11],
-    [15.12,15.68,"it.",11],
-    [16.28,16.44,"The",12],
-    [16.44,16.96,"platform",12],
-    [16.96,17.42,"hides",12],
-    [17.42,17.64,"the",13],
-    [17.64,17.98,"bottom",13],
-    [17.98,18.44,"on",13],
-    [18.44,18.82,"purpose.",14],
-    [19.42,19.62,"We",15],
-    [19.62,19.84,"checked",15],
-    [19.84,20.14,"our",15],
-    [20.14,20.36,"own",16],
-    [20.36,20.94,"videos.",16],
-    [21.24,21.42,"Same",17],
-    [21.42,21.88,"mistake.",17],
-    [22.42,22.72,"Now",18],
-    [22.72,22.96,"every",18],
-    [22.96,23.4,"caption",18],
-    [23.4,23.82,"sits",19],
-    [23.82,24.24,"in",19],
-    [24.24,24.44,"the",19],
-    [24.44,24.76,"space",20],
-    [24.76,25.02,"you",20],
-    [25.02,25.26,"can",20],
-    [25.26,25.64,"actually",21],
-    [25.64,25.96,"see.",21],
-    [26.38,26.72,"Keep",22],
-    [26.72,26.98,"text",22],
-    [26.98,27.18,"out",22],
-    [27.18,27.36,"of",23],
-    [27.36,27.5,"the",23],
-    [27.5,27.66,"top",23],
-    [27.66,28.3,"269",24],
-    [28.3,28.82,"pixels",24],
-    [28.82,29.24,"and",24],
-    [29.24,29.44,"bottom",25],
-    [29.44,30.24,"672",25],
-    [30.24,31.04,"pixels.",25],
-    [31.76,32.1,"Follow",26],
-    [32.1,32.4,"for",26],
-    [32.4,32.74,"setups",26],
-    [32.74,33.16,"that",27],
-    [33.16,33.54,"actually",27],
-    [33.54,33.82,"works.",27]
+    [15.12,15.7,"it.",11],
+    [16.48,16.66,"The",12],
+    [16.66,16.94,"platform",12],
+    [16.94,17.32,"hides",12],
+    [17.32,17.6,"the",13],
+    [17.6,17.78,"bottom",13],
+    [17.78,18.1,"on",13],
+    [18.1,18.44,"purpose.",14],
+    [19.04,19.24,"We",15],
+    [19.24,19.46,"checked",15],
+    [19.46,19.74,"our",15],
+    [19.74,19.98,"own",16],
+    [19.98,20.44,"videos.",16],
+    [20.86,21.02,"Same",17],
+    [21.02,21.48,"mistake.",17],
+    [22.04,22.32,"Now",18],
+    [22.32,22.58,"every",18],
+    [22.58,23.0,"caption",18],
+    [23.0,23.44,"sits",19],
+    [23.44,23.86,"in",19],
+    [23.86,24.02,"the",19],
+    [24.02,24.42,"space",20],
+    [24.42,24.62,"you",20],
+    [24.62,24.86,"can",20],
+    [24.86,25.28,"actually",21],
+    [25.28,25.64,"see.",21],
+    [26.13,26.48,"Keep",22],
+    [26.48,26.74,"text",22],
+    [26.74,27.02,"out",22],
+    [27.02,27.22,"of",23],
+    [27.22,27.34,"the",23],
+    [27.34,27.52,"top",23],
+    [27.52,28.16,"269",24],
+    [28.16,28.7,"pixels",24],
+    [28.7,29.02,"and",24],
+    [29.02,29.24,"bottom",25],
+    [29.24,30.02,"672",25],
+    [30.02,30.76,"pixels.",25],
+    [31.38,31.74,"Follow",26],
+    [31.74,32.04,"for",26],
+    [32.04,32.38,"setups",26],
+    [32.38,32.8,"that",27],
+    [32.8,33.18,"actually",27],
+    [33.18,33.46,"works.",27]
   ];
   var FDUR=0.55,FLASH=[];
 
