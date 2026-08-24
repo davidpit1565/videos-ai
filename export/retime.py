@@ -17,7 +17,7 @@ boundaries. Visual pacing is preserved; only the gaps grow.
   python3 export/retime.py video/reel-01-v3.html audio/voice/ep01-nat-cues.json \
           --out video/reel-01-v4.html
 """
-import argparse, json, re, sys
+import argparse, json, re, sys, wave
 
 
 def html_cues(src):
@@ -82,6 +82,9 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--tail", type=float, default=0.5,
                     help="seconds of picture after the last word")
+    ap.add_argument("--wav", help="the narration wav this cues.json describes — "
+                    "the render is clamped to never end before it, in case the "
+                    "last line's measured 'end' undercounts a slow trailing word")
     a = ap.parse_args()
 
     src = open(a.html, encoding="utf-8").read()
@@ -94,6 +97,14 @@ def main():
 
     pts = build_map(old, new)
     dur = round(float(new[-1]["end"]) + a.tail, 2)
+    if a.wav:
+        # reel-09 cut off mid-word on "actually works": the last line's cues.json
+        # "end" was 32.59s, but the real take ran to 34.16s of audible speech — the
+        # measured end undercounted a slow trailing word, and the render followed
+        # that number off a cliff. The wav itself can't lie about its own length.
+        with wave.open(a.wav, "rb") as f:
+            wav_dur = f.getnframes() / f.getframerate()
+        dur = round(max(dur, wav_dur), 2)
 
     # captions carry their own text, so rebuild the array rather than patch numbers
     rows = [f'    [{remap(pts, float(o[0])):.2f},{remap(pts, float(o[1])):.2f},'
