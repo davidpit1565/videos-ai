@@ -470,6 +470,8 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
   margin-top:10px;font-size:14px}
 .render .meta a{color:var(--brass)}
 .gate{margin-top:12px}
+.section-label{font-family:var(--m);font-size:12px;letter-spacing:.06em;color:var(--faint);
+  text-transform:uppercase;margin:18px 0 6px}
 .gate summary{cursor:pointer;color:var(--faint);font-size:14px}
 .gate pre,.cap pre{white-space:pre-wrap;font-family:var(--m);font-size:13px;line-height:1.5;
   background:var(--ink);color:var(--text);border:1px solid var(--line);border-radius:10px;
