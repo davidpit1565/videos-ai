@@ -30,6 +30,8 @@ export type Reel = {
    *  separate file because YouTube wants a title line first, which an Instagram
    *  caption doesn't have */
   youtube: string | null;
+  /** the real, already-approved title, when one exists — see realTitleFor() below */
+  title: string | null;
 };
 
 const DIR = join(process.cwd(), "public", "reels");
@@ -116,6 +118,7 @@ export function reels(): Reel[] {
         gate: gateFor(file),
         caption: captionFor(episode),
         youtube: youtubeFor(episode),
+        title: realTitleFor(episode),
       };
     })
     .sort((a, b) => b.builtAt.localeCompare(a.builtAt));

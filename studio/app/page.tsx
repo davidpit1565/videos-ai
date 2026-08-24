@@ -4,6 +4,7 @@ import { PROMPTS } from "@/lib/prompts";
 import Signup from "./signup";
 import SiteNav from "./sitenav";
 import EpisodesBrowser from "./episodes-browser";
+import SiteSocial from "./site-social";
 
 export const metadata = {
   title: { absolute: "Actually Works — AI setups that actually work" },
@@ -20,7 +21,7 @@ export default async function Home() {
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/" />
-      <header className="hero herotwo">
+      <header className="hero">
         <div className="herotext">
           <p className="kicker">AI CREATOR</p>
           <h1>
@@ -36,6 +37,9 @@ export default async function Home() {
             </a>
             <Link href="/about">My story →</Link>
           </div>
+          <div className="herosocial">
+            <SiteSocial />
+          </div>
           <Signup source="home" />
           {/* Real, already-measured numbers only — a stat with nothing behind it yet
               doesn't get a tile, rather than a tile showing a fabricated 0. */}
@@ -50,14 +54,12 @@ export default async function Home() {
               {totalViews > 0 && (
                 <div>
                   <b>{totalViews.toLocaleString("en-US")}</b>
-                  <span>real views measured</span>
+                  <span>views measured</span>
                 </div>
               )}
             </div>
           )}
         </div>
-        {/* No stock or generated photo here — a real one goes in when he gives one. */}
-        <div className="herophoto" aria-hidden="true" />
       </header>
 
       <section id="episodes">
