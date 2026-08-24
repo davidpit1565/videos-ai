@@ -118,7 +118,12 @@ export default function Dashboard() {
           {refreshing ? <span className="spin" /> : "למשוך עכשיו"}
         </button>
         <span style={{ alignSelf: "center", color: "var(--faint)", fontSize: 14.5 }}>
-          נמשך לבד כל בוקר ב-9:10 שעון ישראל
+          {/* Vercel cron fires at 06:10 UTC — 08:10 in Brussels' summer clock (CEST,
+              UTC+2), 07:10 once winter time (CET, UTC+1) starts in late October.
+              This used to say "שעון ישראל" from when the app assumed he was in
+              Israel; he's in Flemish Belgium (see CLAUDE.md), so it said the wrong
+              country next to a dashboard that now shows every other time in his own. */}
+          נמשך לבד כל בוקר סביב 8:10 שעון בלגיה
         </span>
       </div>
       {pull && <div className="note ok"><div className="t">משיכה</div>{pull}</div>}
