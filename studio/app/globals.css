@@ -110,9 +110,12 @@ input.n{width:96px;font-family:var(--m);direction:ltr;text-align:right;font-vari
 .btn.ghost:hover{border-color:var(--brass);color:var(--brass)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.del{background:none;border:0;color:var(--faint);font-size:20px;padding:6px 10px;border-radius:8px;
-  line-height:1;min-width:40px;min-height:40px}
-.del:hover{color:var(--clay);background:rgba(232,132,98,.12)}
+/* was --faint on transparent — a thin "×" in that color was nearly invisible,
+   especially at the far end of a scrollable table where he never spotted it */
+.del{background:rgba(232,132,98,.10);border:1px solid rgba(232,132,98,.35);color:var(--clay);
+  font-size:18px;font-weight:700;padding:6px 10px;border-radius:8px;line-height:1;
+  min-width:40px;min-height:40px}
+.del:hover{color:#fff;background:var(--clay);border-color:var(--clay)}
 
 /* ── cards & notes ───────────────────────────── */
 .note{border:1px solid var(--line);border-inline-start:4px solid var(--brass);background:var(--panel);
