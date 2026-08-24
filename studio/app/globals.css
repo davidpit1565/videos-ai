@@ -522,12 +522,23 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 /* the index — one line per reel, so it stays scannable once there are twenty of them
    instead of two; the player, gate output and caption all live one click away now */
 .rlist{display:flex;flex-direction:column;gap:8px;margin-top:18px}
-.rrow{display:flex;align-items:center;gap:12px;border:1px solid var(--line);
+/* Wraps by design, not overflow: a long title plus several badges never fits one line
+   once an episode has a gate pill, a "part 2" pill and a "already live" pill together —
+   that's what read as broken on a phone. Each group (title / badges / meta) wraps inside
+   itself instead of fighting the others for the row. */
+.rrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;border:1px solid var(--line);
   border-radius:12px;padding:12px 14px;background:var(--panel);text-decoration:none;
   color:inherit}
 .rrow:hover{border-color:var(--brass)}
-.rname{flex:0 0 auto}
-.rmeta{color:var(--faint);margin-inline-start:auto}
+.rname{flex:1 1 260px;min-width:0}
+.rbadges{display:flex;flex-wrap:wrap;gap:6px;flex:0 1 auto}
+.rmetas{display:flex;gap:12px;margin-inline-start:auto;flex:0 0 auto}
+.rmeta{color:var(--faint)}
+@media (max-width:560px){
+  .rrow{flex-direction:column;align-items:flex-start;gap:8px}
+  .rname{flex-basis:auto;white-space:normal}
+  .rmetas{margin-inline-start:0}
+}
 .back{margin-bottom:14px}
 .back a{color:var(--brass);text-decoration:none}
 .render{border:1px solid var(--line);border-radius:14px;padding:14px;margin:18px 0;
