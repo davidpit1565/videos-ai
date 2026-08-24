@@ -55,11 +55,11 @@ export default function Videos() {
           const m = e.igMediaId ? by.get(e.igMediaId) : undefined;
           if (!m) continue;
           hit++;
-          e.views = m.views ?? m.reach;
-          e.likes = m.likes;
-          e.saves = m.saves;
-          e.comments = m.comments;
-          e.shares = m.shares;
+          e.views = m.views ?? m.reach ?? e.views;
+          e.likes = m.likes ?? e.likes;
+          e.saves = m.saves ?? e.saves;
+          e.comments = m.comments ?? e.comments;
+          e.shares = m.shares ?? e.shares;
           if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
           if (e.status !== "live") e.status = "live";
         }

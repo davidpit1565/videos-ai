@@ -20,6 +20,25 @@ export async function GET(req: Request) {
   const auth = req.headers.get("authorization");
   const fromCron = Boolean(req.headers.get("x-vercel-cron")) || (secret && auth === `Bearer ${secret}`);
 
+  // /api/track is classified CRON in lib/routes.ts, so middleware's PIN check skips it
+  // for everyone — that's correct for Vercel's own cron call, which carries neither a
+  // PIN cookie nor a browser. But it also means a manual (non-cron) call reaches this
+  // far with no gate at all: anyone with the URL could trigger a real Instagram/Beehiiv
+  // pull and a DB write. The pull he does from inside the studio always carries his PIN
+  // cookie, so require it here for every call that isn't the real cron.
+  const pin = process.env.STUDIO_PIN;
+  if (!fromCron && pin) {
+    const cookiePin = req.headers
+      .get("cookie")
+      ?.split(";")
+      .map((c) => c.trim())
+      .find((c) => c.startsWith("studio="))
+      ?.slice("studio=".length);
+    if (cookiePin !== pin) {
+      return NextResponse.json({ ok: false, reason: "locked" }, { status: 401 });
+    }
+  }
+
   if (!hasDb()) {
     return NextResponse.json({
       ok: false,
