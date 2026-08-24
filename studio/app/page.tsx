@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { catalogue } from "@/lib/site";
+import { fetchLatestBeehiivIssue } from "@/lib/sources";
 import { PROMPTS } from "@/lib/prompts";
 import Signup from "./signup";
 import SiteNav from "./sitenav";
@@ -24,6 +25,7 @@ export default async function Home() {
   // episode index. He said directly that home reading as the same page as the episode
   // list — no visual break between them — made it feel like there was no home page at all.
   const recent = live.slice(0, 3);
+  const latestIssue = await fetchLatestBeehiivIssue();
 
   return (
     <main className="site" dir="ltr">
@@ -66,6 +68,14 @@ export default async function Home() {
               )}
             </div>
           )}
+          {/* Something concrete to judge before handing over an email — a signup form
+              with nothing behind it is a harder ask than one with a real last issue. */}
+          {latestIssue ? (
+            <a className="issueteaser" href={latestIssue.url} target="_blank" rel="noopener">
+              <span className="ilabel">Last issue</span>
+              <span className="ititle">{latestIssue.title}</span>
+            </a>
+          ) : null}
           <Signup source="home" />
         </div>
         {heroEpisode?.ytVideoId ? (

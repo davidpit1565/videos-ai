@@ -389,6 +389,13 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .site .herocta a:not(.cta):hover{border-color:var(--gold-lit);color:var(--gold-lit)}
 .site .herosocial{margin-top:1.3rem}
 .site .herosocial .ssocial{justify-content:flex-start;padding:0;background:transparent;gap:1.1rem}
+.site .issueteaser{display:block;margin-top:1.4rem;padding:.85rem 1.1rem;
+  background:var(--card);border:1px solid var(--rule);border-radius:.8rem;
+  text-decoration:none;color:inherit;max-width:26rem}
+.site .issueteaser:hover{border-color:var(--gold-lit)}
+.site .issueteaser .ilabel{display:block;font-family:var(--code);font-size:.68rem;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--gold-lit)}
+.site .issueteaser .ititle{display:block;font-weight:600;margin-top:.2rem}
 /* He circled these on a screenshot and asked for them bigger, clearer, and to actually
    stand out — as plain inline numbers they read as an afterthought under the CTAs. Cards
    with a gold number give them the same weight the rest of the hero has. */
