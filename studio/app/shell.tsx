@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { isSite } from "@/lib/routes";
 import { localDT } from "@/lib/fmt";
 import SiteSocial from "./site-social";
+import Mark from "./mark";
 
 const TABS = [
   { href: "/studio", label: "לוח" },
@@ -81,7 +82,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
     <div className="shell" lang="he" dir="rtl">
       <div className="top">
         <Link className="brand" href="/studio">
-          <span className="tick" />
+          <Mark />
           <b>Actually Works</b>
         </Link>
         <div className="top-right">
