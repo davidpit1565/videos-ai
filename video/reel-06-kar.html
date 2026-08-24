@@ -115,56 +115,56 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- RECAP (kept under 8s on purpose) -->
-<section class="scene" data-in="0" data-out="3.60">
+<section class="scene" data-in="0" data-out="3.53">
   <div class="pad"><div class="kb">
     <h2 class="b punch" data-at="0">Last time:<br>3 things your<br>agent still <span class="ebox">breaks on</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="3.60" data-out="7.40">
+<section class="scene" data-in="3.53" data-out="6.84">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="3.60">No memory.<br>Login screens.<br>No <span class="box">undo</span>.</h2>
+    <h2 class="b punch" data-at="3.56">No memory.<br>Login screens.<br>No <span class="box">undo</span>.</h2>
   </div></div>
 </section>
 
 <!-- SOLUTIONS -->
-<section class="scene" data-in="7.40" data-out="10.60">
+<section class="scene" data-in="6.84" data-out="9.22">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="7.40">Here's the<br><span class="ebox">real fix</span><br>for each one.</h2>
+    <h2 class="b punch" data-at="6.87">Here's the<br><span class="ebox">real fix</span><br>for each one.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="10.60" data-out="14.60">
+<section class="scene" data-in="9.22" data-out="12.715">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="10.60">Memory: <span class="box">what changed</span>.</h2>
+    <h2 class="b punch" data-at="9.25">Memory: <span class="box">what changed</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="14.60" data-out="18.60">
+<section class="scene" data-in="12.715" data-out="16.6">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="14.60">Logins: tell it to<br><span class="ebox">stop and ask</span><br>you. Don't guess.</h2>
+    <h2 class="b punch" data-at="12.745">Logins: tell it to<br><span class="ebox">stop and ask</span><br>you. Don't guess.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="18.60" data-out="22.60">
+<section class="scene" data-in="16.6" data-out="19.99">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="18.60">Undo: make it show<br>you a <span class="box">draft</span><br>before it sends.</h2>
+    <h2 class="b punch" data-at="16.63">Undo: make it show<br>you a <span class="box">draft</span><br>before it sends.</h2>
   </div></div>
 </section>
 
 <!-- the takeaway — the three fixes, on their own screen -->
-<section class="scene" data-in="22.60" data-out="29.20">
+<section class="scene" data-in="19.99" data-out="24.71">
   <div class="pad"><div class="kb">
-    <div class="takecard b" data-at="22.70">
+    <div class="takecard b" data-at="20.02">
       <div class="tc-k">The 3 fixes</div>
       <div class="tc-b">1. Paste in <strong>what changed</strong>.<br>2. On a login, <strong>stop and ask</strong>.<br>3. Show a <strong>draft</strong> before it sends.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="29.20" data-out="32.30">
+<section class="scene" data-in="24.71" data-out="27.67">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="29.30" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="24.74" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -193,7 +193,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=32.30,t=0,playing=false,last=0;
+  var DUR=28.22,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -204,14 +204,88 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var flash=document.getElementById('flash'),flashTxt=document.getElementById('flashTxt');
 
   var CUES=[
-    [0.30,3.30,"Last time: three things your agent still breaks on."],
-    [3.60,7.10,"No memory. Login screens. No undo."],
-    [7.40,10.30,"Here's the real fix for each one."],
-    [10.60,14.30,"Memory: paste in what changed since last time."],
-    [14.60,18.30,"Logins: tell it to stop and ask you. Don't guess."],
-    [18.60,22.30,"Undo: make it show you a draft before it sends."],
-    [22.60,28.90,"Paste in what changed, stop and ask on a login, show a draft before it sends."],
-    [29.20,31.95,"Follow for setups that actually works."]
+    [0.30,3.32,"Last time: three things your agent still breaks on."],
+    [3.74,6.63,"No memory. Login screens. No undo."],
+    [7.05,9.01,"Here's the real fix for each one."],
+    [9.43,12.29,"Memory: paste in what changed since last time."],
+    [13.14,16.39,"Logins: tell it to stop and ask you. Don't guess."],
+    [16.81,19.78,"Undo: make it show you a draft before it sends."],
+    [20.20,24.50,"Paste in what changed, stop and ask on a login, show a draft before it sends."],
+    [24.92,27.32,"Follow for setups that actually works."]
+  ];
+  var WORDS=[
+    [0.3,0.72,"Last",0],
+    [0.72,1.08,"time:",0],
+    [1.3,1.52,"three",1],
+    [1.52,1.8,"things",1],
+    [1.8,2.1,"your",1],
+    [2.1,2.36,"agent",2],
+    [2.36,2.7,"still",2],
+    [2.7,2.98,"breaks",2],
+    [2.98,3.38,"on.",3],
+    [3.94,4.06,"No",4],
+    [4.06,4.48,"memory.",4],
+    [4.92,5.22,"Login",5],
+    [5.22,5.6,"screens.",5],
+    [6.06,6.24,"No",6],
+    [6.24,6.5,"undo.",6],
+    [7.14,7.46,"Here's",7],
+    [7.46,7.6,"the",7],
+    [7.6,7.84,"real",7],
+    [7.84,8.16,"fix",8],
+    [8.16,8.46,"for",8],
+    [8.46,8.76,"each",8],
+    [8.76,9.16,"one.",9],
+    [9.56,9.98,"Memory:",10],
+    [10.38,10.72,"paste",11],
+    [10.72,10.96,"in",11],
+    [10.96,11.14,"what",11],
+    [11.14,11.42,"changed",12],
+    [11.42,11.72,"since",12],
+    [11.72,12.02,"last",12],
+    [12.02,12.48,"time.",13],
+    [13.38,13.78,"Logins:",14],
+    [14.08,14.24,"tell",15],
+    [14.24,14.36,"it",15],
+    [14.36,14.56,"to",15],
+    [14.56,14.72,"stop",16],
+    [14.72,14.96,"and",16],
+    [14.96,15.22,"ask",16],
+    [15.22,15.46,"you.",17],
+    [15.7,16.0,"Don't",18],
+    [16.0,16.32,"guess.",18],
+    [17.02,17.4,"Undo:",19],
+    [17.78,17.96,"make",20],
+    [17.96,18.1,"it",20],
+    [18.1,18.26,"show",20],
+    [18.26,18.48,"you",21],
+    [18.48,18.6,"a",21],
+    [18.6,18.78,"draft",21],
+    [18.78,19.12,"before",22],
+    [19.12,19.36,"it",22],
+    [19.36,19.62,"sends.",22],
+    [20.28,20.56,"Paste",23],
+    [20.56,20.78,"in",23],
+    [20.78,20.94,"what",23],
+    [20.94,21.28,"changed,",24],
+    [21.58,21.84,"stop",25],
+    [21.84,22.06,"and",25],
+    [22.06,22.24,"ask",25],
+    [22.24,22.38,"on",26],
+    [22.38,22.5,"a",26],
+    [22.46,22.7,"login,",26],
+    [23.12,23.24,"show",27],
+    [23.24,23.44,"a",27],
+    [23.44,23.62,"draft",27],
+    [23.62,23.94,"before",28],
+    [23.94,24.16,"it",28],
+    [24.16,24.42,"sends.",28],
+    [25.06,25.42,"Follow",29],
+    [25.42,25.78,"for",29],
+    [25.78,26.0,"setups",29],
+    [26.0,26.38,"that",30],
+    [26.38,26.84,"actually",30],
+    [26.84,27.22,"works.",30]
   ];
   var FDUR=0.55,FLASH=[];
 
@@ -253,7 +327,29 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     b2.style.transform='translate('+(18*Math.cos(t*0.18+1.4))+'cqw,'+(16*Math.sin(t*0.24+.6))+'cqw)';
     b3.style.transform='translate('+(10+18*Math.sin(t*0.15+2.1))+'cqw,'+(-10*Math.cos(t*0.2+1.1))+'cqw)';
 
-    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
+    /* The chunk on screen is the one the last spoken word belongs to, and it holds
+       until the next chunk's first word — otherwise the caption blanks for a third of
+       a second between chunks while the voice is still going. It clears only between
+       lines, where the silence is real. */
+    /* The window has to close the ordinary gaps. The scene's own headline is written to
+       disappear before the next one arrives, so a caption that blanks in a 0.42s gap
+       leaves the whole screen textless — measured at eleven places, 0.13s each. Reaching
+       0.32s back and 0.15s forward covers those, and the only remaining blanks fall
+       inside the 0.80s section gaps, where the colour card fills the frame anyway. After
+       the last line the caption holds to the end rather than leaving a blank tail. */
+    var inLine=false;
+    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.32&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    if(t>CUES[CUES.length-1][1]) inLine=true;
+    var here=-1, cur=-1;
+    /* the lit word is the last one that started, not only the one still sounding:
+       Whisper's word boundaries are tight, so gating on the word's own end left the
+       highlight off for 13.4s of the reel */
+    for(i=0;i<WORDS.length;i++) if(WORDS[i][0]<=t+0.08){ here=WORDS[i][3]; cur=i; }
+    var txt='';
+    if(inLine&&here>=0){
+      for(i=0;i<WORDS.length;i++) if(WORDS[i][3]===here)
+        txt+=(i===cur?'<b class="on">':'<b>')+WORDS[i][2]+'</b> ';
+    }
     subs.innerHTML=txt;
     prog.style.width=(t/DUR*100)+'%';
     seek.value=t; cur2.textContent=fmt(t);
