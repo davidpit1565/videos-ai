@@ -388,3 +388,36 @@ export async function fetchYouTube(): Promise<YtResult> {
     return { connected: false, reason: (e as Error).message };
   }
 }
+
+export type LatestIssue = { title: string; url: string; publishedAt: string } | null;
+
+/** The most recent published issue, for the homepage: someone deciding whether to hand
+ *  over an email has nothing to judge the newsletter by if the signup form is the only
+ *  thing they see. Returns null on anything wrong — no key, no posts yet, a bad response
+ *  — rather than fabricating a preview, since "nothing to show" is an honest state and
+ *  a wrong one is not. */
+export async function fetchLatestBeehiivIssue(): Promise<LatestIssue> {
+  const key = process.env.BEEHIIV_API_KEY;
+  if (!key) return null;
+  try {
+    const r = await fetch(
+      `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB}/posts?limit=1&status=confirmed&order_by=publish_date&direction=desc`,
+      { headers: { Authorization: `Bearer ${key}` }, cache: "no-store" },
+    );
+    if (!r.ok) return null;
+    const j = (await r.json()) as {
+      data?: Array<{ title?: string; web_url?: string; publish_date?: number }>;
+    };
+    const p = j.data?.[0];
+    if (!p?.title || !p.web_url) return null;
+    return {
+      title: p.title,
+      url: p.web_url,
+      publishedAt: p.publish_date
+        ? new Date(p.publish_date * 1000).toISOString()
+        : new Date().toISOString(),
+    };
+  } catch {
+    return null;
+  }
+}
