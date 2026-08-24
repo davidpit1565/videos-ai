@@ -83,6 +83,17 @@ th{font-size:13.5px;color:var(--muted);font-weight:700;background:var(--panel-2)
 tbody tr:last-child td{border-bottom:0}
 tbody tr:hover{background:rgba(255,255,255,.025)}
 td.name{font-weight:700;min-width:210px}
+/* the episodes table on /videos has 16 columns — # and title stay pinned to the start
+   edge while the rest scrolls, so which episode's row you're editing is never lost
+   once you're deep in the performance numbers. The group header row above it (grp)
+   names what those numbers are, instead of one flat wall of 16 column labels. */
+tr.grp th{background:var(--raise);color:var(--text);text-align:center;
+  border-bottom:1px solid var(--line-2)}
+.sticky{position:sticky;z-index:2;background:var(--panel-2)}
+tbody .sticky{background:var(--panel)}
+tbody tr:hover .sticky{background:#1a2331}
+.sticky.c1{inset-inline-start:0;width:80px}
+.sticky.c2{inset-inline-start:80px;min-width:210px;box-shadow:-2px 0 0 var(--line)}
 /* an editable cell has to look editable — he could not tell before */
 input.cell,textarea.cell,select.cell{width:100%;background:var(--panel-2);
   border:1px solid var(--line);border-radius:7px;padding:9px 11px;min-width:64px;min-height:40px}
