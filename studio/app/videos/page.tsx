@@ -224,8 +224,8 @@ export default function Videos() {
                 />
                 נבדק
               </label>
-              <button className="del" aria-label="מחיקה" onClick={() => update((d) => void d.episodes.splice(i, 1))}>
-                ×
+              <button className="del del-labeled" onClick={() => update((d) => void d.episodes.splice(i, 1))}>
+                × מחק פרק
               </button>
             </div>
             <div className="grid">
