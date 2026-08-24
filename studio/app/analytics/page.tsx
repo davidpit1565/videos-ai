@@ -265,7 +265,7 @@ export default function Analytics() {
               {rows.map((e) => (
                 <tr key={e.id}>
                   <td className="num">{e.number}</td>
-                  <td>{e.title}</td>
+                  <td className="ttl" title={e.title}>{e.title}</td>
                   <td className="num">{n(e.views)}</td>
                   <td className="num">{n(e.likes)}</td>
                   <td className="num">{n(e.saves)}</td>

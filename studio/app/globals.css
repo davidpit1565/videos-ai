@@ -231,6 +231,11 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 .tooltip b{font-family:var(--m);color:var(--brass);display:block;font-size:14px}
 .tooltip span{color:var(--faint);font-size:12px}
 .empty-cell{color:var(--faint);text-align:center;padding:22px}
+/* A long title wrapping to 2-3 lines made its row much taller than the rows around it —
+   the numeric cells stay vertically centered (th,td's own vertical-align:middle), so
+   they land at different heights row to row and the whole table reads as unaligned.
+   One line, truncated with the full title on hover, keeps every row the same height. */
+.ttl{max-width:320px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .faint{color:var(--faint);font-size:.9em;font-weight:400}
 
 @media(max-width:760px){
