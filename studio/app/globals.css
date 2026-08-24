@@ -372,9 +372,28 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
   padding:1.1rem 1.25rem;text-decoration:none;color:inherit;transition:border-color .15s}
 .site .eps a:hover{border-color:var(--gold-lit)}
 .site .eps .n{font-family:var(--code);font-size:.8rem;color:var(--gold);
-  font-variant-numeric:tabular-nums;grid-row:span 2;padding-top:.28rem}
+  font-variant-numeric:tabular-nums;grid-row:span 3;padding-top:.28rem}
+.site .eps .tag{font-family:var(--code);font-size:.68rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold-lit)}
 .site .eps .t{font-family:var(--serif);font-weight:700;font-size:1.14rem;line-height:1.25}
 .site .eps .tp{color:var(--faint);font-size:.95rem}
+
+/* the browse controls above the episode list — chips for the tool an episode is
+   actually about (read from its own title, never a separate field to keep in sync),
+   plus a plain-text search. Both are client-side over data the server already sent. */
+.site .ebrowse{margin:1.2rem 0}
+.site .echips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.9rem}
+.site .echips button{font:inherit;font-size:.85rem;font-weight:600;padding:.4rem .95rem;
+  border-radius:9999px;border:1px solid var(--rule);background:var(--card);color:var(--soft);
+  cursor:pointer;transition:border-color .15s,color .15s}
+.site .echips button:hover{border-color:var(--gold-lit);color:var(--ink)}
+.site .echips button.on{background:var(--ink);border-color:var(--ink);color:#FBF9F5}
+.site .esearch{display:block;width:100%;font:inherit;font-size:1rem;padding:.7rem 1rem;
+  border-radius:.75rem;border:1px solid var(--rule);background:var(--card);color:var(--ink);
+  margin-bottom:1rem}
+.site .esearch:focus{outline:none;border-color:var(--gold-lit)}
+.site .herostat{font-family:var(--code);font-size:.82rem;letter-spacing:.03em;
+  color:var(--gold);margin-top:-.4rem}
 
 .site .prompts{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.7rem}
 .site .prompts a{display:block;background:var(--card);border:1px solid var(--rule);

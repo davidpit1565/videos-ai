@@ -3,6 +3,7 @@ import { catalogue } from "@/lib/site";
 import { PROMPTS } from "@/lib/prompts";
 import Signup from "./signup";
 import SiteNav from "./sitenav";
+import EpisodesBrowser from "./episodes-browser";
 
 export const metadata = {
   title: { absolute: "Actually Works — AI setups that actually work" },
@@ -13,6 +14,9 @@ export const revalidate = 300;
 
 export default async function Home() {
   const eps = await catalogue();
+  const live = eps.filter((e) => e.live);
+  const totalViews = live.reduce((a, e) => a + (e.views ?? 0), 0);
+
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/" />
@@ -24,6 +28,14 @@ export default async function Home() {
           One setup per episode. The exact screen, the exact paste, and the part that
           breaks — because the part that breaks is the part everyone else skips.
         </p>
+        {/* Real, already-measured numbers only — no series here is invented, and a
+            metric with nothing behind it yet (0 views measured so far) doesn't print. */}
+        {(live.length > 0 || totalViews > 0) && (
+          <p className="herostat">
+            {live.length} episode{live.length === 1 ? "" : "s"} live
+            {totalViews > 0 ? ` · ${totalViews.toLocaleString("en-US")} real views measured` : ""}
+          </p>
+        )}
         <Signup source="home" />
       </header>
 
@@ -35,17 +47,7 @@ export default async function Home() {
             it goes out.
           </p>
         ) : (
-          <ol className="eps">
-            {eps.map((e) => (
-              <li key={e.n}>
-                <Link href={`/e/${e.n}`}>
-                  <span className="n">{String(e.n).padStart(2, "0")}</span>
-                  <span className="t">{e.title}</span>
-                  <span className="tp">{e.blurb}</span>
-                </Link>
-              </li>
-            ))}
-          </ol>
+          <EpisodesBrowser eps={eps} />
         )}
       </section>
 
