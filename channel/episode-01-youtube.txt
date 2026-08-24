@@ -1,0 +1,9 @@
+Your ChatGPT keeps giving you the obvious
+
+One block of text, pasted once into ChatGPT's Custom Instructions — and it stops giving you the obvious answer. It states its assumptions, names the risk you didn't ask about, and ends with a decision instead of a list of options.
+
+The exact clicks, what changes, and what it will not do: actually-works-studio.vercel.app/e/1
+
+Follow for setups that actually work.
+
+#chatgpt #ai #customgpt #productivity #aitools #promptengineering

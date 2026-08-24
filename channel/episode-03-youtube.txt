@@ -1,0 +1,9 @@
+Your AI agent is already lying to you
+
+Not maliciously — it just doesn't know how to say "I'm not sure." So when it doesn't know, it guesses, states the guess with full confidence, and moves on. The fix costs one line in your system prompt: "If you're not sure, say so — instead of guessing."
+
+Full breakdown: actually-works-studio.vercel.app/e/3
+
+Follow for setups that actually work.
+
+#aiagents #ai #promptengineering #chatgpt #aitools #automation

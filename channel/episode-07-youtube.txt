@@ -1,0 +1,9 @@
+Your n8n agent doesn't know it's wrong
+
+It just keeps going, because most workflows never build a check for their own uncertainty. So a bad result goes out exactly like a good one — and by the time you notice, it's already gone. One fix, no rebuild: add a check that stops and asks a person when the agent can't tell.
+
+Copy the prompt, or read the full breakdown: actually-works-studio.vercel.app/e/7
+
+Follow for setups that actually work.
+
+#n8n #aiagents #automation #nocode #aitools #workflowautomation

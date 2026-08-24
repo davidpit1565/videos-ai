@@ -1,0 +1,9 @@
+This video almost shipped broken
+
+Three checks were supposed to catch defects before they reached anyone. All three had the same hidden flaw: nobody had ever tested them against a case that was actually broken. The fix: break it on purpose, confirm it catches the break, only then trust it.
+
+Full breakdown: actually-works-studio.vercel.app/e/4
+
+Follow for setups that actually work.
+
+#ai #softwaretesting #automation #aitools #debugging
