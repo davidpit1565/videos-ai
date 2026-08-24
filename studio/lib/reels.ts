@@ -34,6 +34,14 @@ export type Reel = {
   title: string | null;
 };
 
+/** Episodes that are a direct "part 2" of an earlier one: recap the earlier episode's
+ *  problem in the first few seconds, then give the fix it didn't have. Hardcoded because
+ *  it is written once, by hand, when the part 2 is scripted — never inferred from a title. */
+export const SEQUEL_OF: Record<number, number> = { 6: 3, 8: 4 };
+export const SEQUEL_FOR: Record<number, number> = Object.fromEntries(
+  Object.entries(SEQUEL_OF).map(([part2, original]) => [original, Number(part2)]),
+);
+
 const DIR = join(process.cwd(), "public", "reels");
 const CAPTIONS = join(process.cwd(), "..", "channel");
 

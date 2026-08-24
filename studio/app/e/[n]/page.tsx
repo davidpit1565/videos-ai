@@ -3,6 +3,7 @@ import SiteNav from "../../sitenav";
 import { notFound } from "next/navigation";
 import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
+import { SEQUEL_OF, SEQUEL_FOR } from "@/lib/reels";
 
 export const revalidate = 300;
 
@@ -30,10 +31,16 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
 
   const prompt = promptFor(a);
   const title = e?.title || a!.title;
-  const others = (await published()).filter((x) => x.number !== n);
+  const allPub = await published();
+  const others = allPub.filter((x) => x.number !== n);
   const more = others.length
     ? others.slice(0, 3).map((x) => ({ n: x.number, t: x.title }))
     : ARTICLES.filter((x) => x.n !== n).slice(0, 3).map((x) => ({ n: x.n, t: x.title }));
+
+  // Part 2 recaps this episode's problem, then gives the fix it didn't have — only
+  // link to it once it is actually live, never to a page that doesn't exist yet.
+  const part2 = SEQUEL_FOR[n] !== undefined ? allPub.find((x) => x.number === SEQUEL_FOR[n]) : null;
+  const part1 = SEQUEL_OF[n] !== undefined ? allPub.find((x) => x.number === SEQUEL_OF[n]) : null;
 
   return (
     <main className="site" dir="ltr">
@@ -43,6 +50,18 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
       </p>
       <h1>{title}</h1>
       {a ? <p className="sub">{a.standfirst}</p> : e?.topic ? <p className="sub">{e.topic}</p> : null}
+      {part1 ? (
+        <p className="sub">
+          Part 2 of <Link href={`/e/${part1.number}`}>{part1.title}</Link> — the fix for what
+          that episode named but didn't solve.
+        </p>
+      ) : null}
+      {part2 ? (
+        <p className="sub">
+          There's a part 2: <Link href={`/e/${part2.number}`}>{part2.title}</Link> — the fix
+          for exactly this.
+        </p>
+      ) : null}
 
       {e?.ytVideoId ? (
         <div className="vid">
