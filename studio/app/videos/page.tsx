@@ -49,7 +49,7 @@ export default function Videos() {
         return;
       }
       const by = new Map((j.media ?? []).map((m) => [m.id, m]));
-      let hit = 0;
+      let hit = 0, autoLinked = 0;
       update((d) => {
         for (const e of d.episodes) {
           const m = e.igMediaId ? by.get(e.igMediaId) : undefined;
@@ -63,11 +63,40 @@ export default function Videos() {
           if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
           if (e.status !== "live") e.status = "live";
         }
+        // A post whose caption plainly names an episode's own title gets linked here
+        // automatically instead of sitting in the "לקשר לפרק" list forever — he kept
+        // having to link these by hand even when the caption made the match obvious.
+        // Only when exactly one unlinked episode's title matches, so an ambiguous
+        // caption still falls through to the dropdown below.
+        const linkedIds = new Set(d.episodes.map((e) => e.igMediaId).filter(Boolean));
+        const unlinkedEps = d.episodes.filter((e) => !e.igMediaId);
+        for (const m of j.media ?? []) {
+          if (linkedIds.has(m.id)) continue;
+          const caption = (m.caption || "").toLowerCase();
+          const matches = unlinkedEps.filter((e) => {
+            const title = e.title.trim().toLowerCase();
+            return title.length > 4 && title !== "פרק חדש" && caption.includes(title);
+          });
+          if (matches.length !== 1) continue;
+          const e = matches[0];
+          e.igMediaId = m.id;
+          e.views = m.views ?? m.reach ?? e.views;
+          e.likes = m.likes ?? e.likes;
+          e.saves = m.saves ?? e.saves;
+          e.comments = m.comments ?? e.comments;
+          e.shares = m.shares ?? e.shares;
+          if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
+          e.status = "live";
+          linkedIds.add(m.id);
+          autoLinked++;
+        }
       });
       setMsg(
-        hit === 0
+        hit === 0 && autoLinked === 0
           ? `אינסטגרם מחובר, ${(j.media ?? []).length} פוסטים נמצאו — אבל אף פרק לא מקושר לפוסט. לחבר למטה.`
-          : `עודכנו ${hit} פרקים מהמספרים החיים.`,
+          : autoLinked > 0
+            ? `עודכנו ${hit} פרקים, וקושרו אוטומטית עוד ${autoLinked} לפי הכותרת בפוסט.`
+            : `עודכנו ${hit} פרקים מהמספרים החיים.`,
       );
     } catch (e) {
       setMsg((e as Error).message);
