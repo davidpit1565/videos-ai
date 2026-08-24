@@ -142,8 +142,40 @@ export async function GET(req: Request) {
       if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
       if (e.status !== "live") e.status = "live";
     }
-    // a post that exists on the account and is not linked to an episode is worth saying once
+    // A post whose caption plainly names an episode's own real title gets linked here,
+    // automatically, instead of sitting as a nagging "not linked" note forever — he kept
+    // seeing that note for posts that were obviously the right episode from the caption
+    // alone, and had to go link them by hand in /videos every time. Only auto-links when
+    // exactly one unlinked episode's title matches, so an ambiguous caption still falls
+    // through to the manual path rather than risk linking the wrong episode.
     const linked = new Set(state.episodes.map((x) => x.igMediaId).filter(Boolean));
+    const unlinkedEpisodes = state.episodes.filter((e) => !e.igMediaId);
+    for (const m of ig.media) {
+      if (linked.has(m.id)) continue;
+      const caption = (m.caption || "").toLowerCase();
+      const hits = unlinkedEpisodes.filter((e) => {
+        const title = (realTitleFor(e.number) || e.title || "").trim().toLowerCase();
+        return title.length > 4 && caption.includes(title);
+      });
+      if (hits.length === 1) {
+        const e = hits[0];
+        e.igMediaId = m.id;
+        e.views = m.views ?? m.reach ?? e.views;
+        e.likes = m.likes ?? e.likes;
+        e.saves = m.saves ?? e.saves;
+        e.comments = m.comments ?? e.comments;
+        e.shares = m.shares ?? e.shares;
+        if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
+        if (e.status !== "live") e.status = "live";
+        linked.add(m.id);
+        fresh.push({
+          id: uid(), at: now, source: "instagram",
+          label: `פוסט קושר אוטומטית לפרק ${e.number} · ${e.title}`,
+          value: m.views ?? null, delta: null,
+        });
+      }
+    }
+    // a post that exists on the account and is not linked to an episode is worth saying once
     const said = new Set(feed.filter((f) => f.label.startsWith("פוסט לא מקושר")).map((f) => f.label));
     for (const m of ig.media) {
       if (linked.has(m.id)) continue;
