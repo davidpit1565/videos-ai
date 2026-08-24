@@ -1,0 +1,16 @@
+This agent can send emails by itself. It never does.
+
+Because once it's sent, you can't take it back — even if the tone is wrong or the fact
+is wrong. One bad send and it's already out.
+
+So it only ever writes a draft. You read it, you click send. One switch in the
+workflow: create draft, never send.
+
+Every agent that touches your inbox should stop right there — build the draft, never
+the send. You click every time.
+
+Full breakdown: actually-works-studio.vercel.app/e/9
+
+Follow for setups that actually work.
+
+#aiagents #ai #gmail #automation #aitools #productivity #email
