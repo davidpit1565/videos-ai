@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Mark from "../mark";
 
 export default function Unlock() {
   const [pin, setPin] = useState("");
@@ -11,7 +12,7 @@ export default function Unlock() {
     <div className="shell" lang="he" dir="rtl" style={{ maxWidth: 420 }}>
       <div className="top">
         <span className="brand">
-          <span className="tick" />
+          <Mark />
           <b>Actually Works</b>
         </span>
       </div>
