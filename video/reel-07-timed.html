@@ -121,62 +121,68 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- HOOK -->
-<section class="scene" data-in="0" data-out="3.36">
+<section class="scene" data-in="0" data-out="3.45">
   <div class="pad"><div class="kb">
     <div class="n8n b" data-at="0.1"><span class="dot"></span><b>n8n</b></div>
-    <h2 class="b punch" data-at="0.3">Your agent has<br>no idea it's <span class="ebox">wrong</span>.</h2>
+    <h2 class="b punch" data-at="0.3">Your agent can't tell<br>when it <span class="ebox">messes up</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="3.36" data-out="5.96">
+<section class="scene" data-in="3.45" data-out="5.34">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="3.39">It keeps running —<br>even when it's <span class="box">wrong</span>.</h2>
+    <h2 class="b punch" data-at="3.48">It just keeps<br>going <span class="box">anyway</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="5.96" data-out="8.53">
+<section class="scene" data-in="5.34" data-out="7.54">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="5.99">No node checks<br>for <span class="ebox">"not sure."</span></h2>
+    <h2 class="b punch" data-at="5.37">Nothing stops to<br><span class="ebox">check itself</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="8.53" data-out="11.115">
+<section class="scene" data-in="7.54" data-out="10.135">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="8.56">It handles refunds.<br><span class="ebox">One gets by</span>.</h2>
+    <h2 class="b punch" data-at="7.57">It handles refunds.<br><span class="ebox">One gets by</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="11.115" data-out="14.39">
+<section class="scene" data-in="10.135" data-out="13.32">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="11.145">So the wrong output<br>ships. <span class="box">Every time</span>.</h2>
+    <h2 class="b punch" data-at="10.165">So the bad result<br>goes out. <span class="box">Every time</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="14.39" data-out="17.59">
+<section class="scene" data-in="13.32" data-out="16.52">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="14.42">By the time you notice,<br>it's <span class="ebox">already gone</span>.</h2>
+    <h2 class="b punch" data-at="13.35">By the time you notice,<br>it's <span class="ebox">already gone</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="17.59" data-out="20.4">
+<section class="scene" data-in="16.52" data-out="18.62">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="17.62">One node before<br>the output <span class="ebox">fixes it</span>.</h2>
+    <h2 class="b punch" data-at="16.55">One quick fix<br><span class="ebox">stops it</span>.</h2>
   </div></div>
 </section>
 
-<!-- the takeaway — a real node config, screenshot-able -->
-<section class="scene" data-in="20.4" data-out="25.935">
+<!-- the takeaway — plain instruction, screenshot-able -->
+<section class="scene" data-in="18.62" data-out="23.035">
   <div class="pad"><div class="kb">
-    <div class="takecard b" data-at="20.43">
-      <div class="tc-k">Add this node</div>
-      <div class="tc-b">An IF node: confidence below the bar → <strong>route to a human</strong>, not to the output.</div>
+    <div class="takecard b" data-at="18.65">
+      <div class="tc-k">Add this check</div>
+      <div class="tc-b">If it <strong>can't tell</strong> — stop, and ask a person. Don't send it out.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="25.935" data-out="29.03">
+<section class="scene" data-in="23.035" data-out="27">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="25.965" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="23.065" style="font-size:5.6cqw">Copy the prompt below,<br>or tap the <strong>link in our bio</strong>.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="27" data-out="30.52">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="27.03" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -189,7 +195,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="40" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="43" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -206,7 +212,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=30.23,t=0,playing=false,last=0;
+  var DUR=31.02,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -217,15 +223,16 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var flash=document.getElementById('flash'),flashTxt=document.getElementById('flashTxt');
 
   var CUES=[
-    [0.30,3.15,"Your n8n agent has no idea it's wrong."],
-    [3.57,5.75,"It keeps running, even when it's wrong."],
-    [6.17,8.32,"No node checks for 'not sure.'"],
-    [8.74,10.69,"It handles refunds. One gets by."],
-    [11.54,14.18,"So the wrong output ships. Every time."],
-    [14.60,17.38,"By the time you notice, it's already gone."],
-    [17.80,20.19,"One node before the output fixes it."],
-    [20.61,25.51,"An IF node: confidence below the bar routes to a human, not to the output."],
-    [26.36,28.63,"Follow for setups that actually works."]
+    [0.30,3.24,"Your n8n agent can't tell when it messes up."],
+    [3.66,5.13,"It just keeps going anyway."],
+    [5.55,7.33,"Nothing stops to check itself."],
+    [7.75,9.71,"It handles refunds. One gets by."],
+    [10.56,13.11,"So the bad result goes out. Every time."],
+    [13.53,16.31,"By the time you notice, it's already gone."],
+    [16.73,18.41,"One quick fix stops it."],
+    [18.83,22.61,"If it can't tell, stop, and ask a person. Don't send it out."],
+    [23.46,26.79,"Copy the prompt below, or tap the link in our bio."],
+    [27.21,30.12,"Follow for setups that actually works."]
   ];
   var FDUR=0.55,FLASH=[];
 
