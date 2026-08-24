@@ -130,49 +130,49 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="6.21" data-out="8.83">
+<section class="scene" data-in="6.21" data-out="8.7">
   <div class="pad"><div class="kb">
     <h2 class="b punch" data-at="6.24">A check ran<br><span class="ebox">before</span><br>the fix it watched.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="8.83" data-out="12.445">
+<section class="scene" data-in="8.7" data-out="12.325">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="8.86">A script <span class="box">proved</span><br>a file existed.<br>It was empty.</h2>
+    <h2 class="b punch" data-at="8.73">A script <span class="box">proved</span><br>a file existed.<br>It was empty.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="12.445" data-out="15.5">
+<section class="scene" data-in="12.325" data-out="15.37">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="12.475">No tool caught<br>any of it.<br>A <span class="ebox">human</span> did.</h2>
+    <h2 class="b punch" data-at="12.355">No tool caught<br>any of it.<br>A <span class="ebox">human</span> did.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="15.5" data-out="19.22">
+<section class="scene" data-in="15.37" data-out="19.09">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="15.53">So every check<br>now watches<br>the <span class="box">one before it</span>.</h2>
+    <h2 class="b punch" data-at="15.4">So every check<br>now watches<br>the <span class="box">one before it</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="19.22" data-out="22.09">
+<section class="scene" data-in="19.09" data-out="21.96">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="19.25">That's the only<br>reason <span class="ebox">this one</span><br>shipped clean.</h2>
+    <h2 class="b punch" data-at="19.12">That's the only<br>reason <span class="ebox">this one</span><br>shipped clean.</h2>
   </div></div>
 </section>
 
 <!-- the takeaway — the concrete, usable rule, on its own screen -->
-<section class="scene" data-in="22.09" data-out="28.02">
+<section class="scene" data-in="21.96" data-out="27.315">
   <div class="pad"><div class="kb">
-    <div class="takecard b" data-at="22.12">
-      <div class="tc-k">The rule now</div>
-      <div class="tc-b">Test every check on a case you <strong>know</strong> is broken — before you trust it.</div>
+    <div class="takecard b" data-at="21.99">
+      <div class="tc-k">The 3-step fix</div>
+      <div class="tc-b">1. Break it on purpose.<br>2. Confirm it <strong>catches</strong> the break.<br>3. Only then trust it.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="28.02" data-out="31.28">
+<section class="scene" data-in="27.315" data-out="30.66">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="28.05" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="27.345" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -202,7 +202,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=31.53,t=0,playing=false,last=0;
+  var DUR=30.91,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -215,13 +215,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var CUES=[
     [0.30,2.76,"This video almost shipped <em>broken</em>."],
     [3.18,6.00,"A check said the sound landed. It didn't."],
-    [6.42,8.62,"A check ran before the fix it watched."],
-    [9.04,12.02,"A script proved a file existed. It was empty."],
-    [12.87,15.29,"No tool caught any of it. A human did."],
-    [15.71,19.01,"So every check now watches the one before it."],
-    [19.43,21.88,"That's the only reason this one shipped clean."],
-    [22.30,27.81,"The rule now: test every check on a case you know is broken, before you trust it."],
-    [28.23,30.63,"Follow for setups that actually works."]
+    [6.42,8.49,"A check ran before the fix it watched."],
+    [8.91,11.90,"A script proved a file existed. It was empty."],
+    [12.75,15.16,"No tool caught any of it. A human did."],
+    [15.58,18.88,"So every check now watches the one before it."],
+    [19.30,21.75,"That's the only reason this one shipped clean."],
+    [22.17,26.89,"The fix: break it on purpose, confirm it catches the break, only then trust it."],
+    [27.74,30.01,"Follow for setups that actually works."]
   ];
   var FDUR=0.55,FLASH=[];
 

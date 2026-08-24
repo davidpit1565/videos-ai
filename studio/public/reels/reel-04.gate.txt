@@ -1,42 +1,51 @@
 === narration
-audio/reel04-narration-r.wav  31.5s  9 lines
-  medians: ending -23.1 dB · level -18.9 dBFS · S residual +0.2 dB (slope +8.9 dB per sibilant/syllable)
-  flagged below: ending -60.2 dB · S residual -1.3 dB  (median - 2.5 robust sd)
+audio/reel04-narration-r.wav  30.9s  9 lines
+  medians: ending -21.2 dB · level -18.9 dBFS · S residual +0.0 dB (slope +9.5 dB per sibilant/syllable)
+  flagged below: ending -33.1 dB · S residual -1.5 dB  (median - 2.5 robust sd)
    ln   dur    gap  rate    sib    end    lvl  line
     1  2.46  +0.42  3.66   -8.7  -44.5  -18.9  This video almost shipped broken .
-    2  2.82  +0.42  3.19   -9.4  -22.9  -19.6  A check said the sound landed. It didn
-    3   2.2  +0.42  4.55  -13.5  -23.1  -20.2  A check ran before the fix it watched.
-    4  2.98  +0.85  4.36   -9.6  -35.6  -18.3  A script proved a file existed. It was
-    5  2.42  +0.42  4.55  -11.9  -21.2  -18.1  No tool caught any of it. A human did.
+    2  2.82  +0.42  3.19   -9.3  -20.4  -19.8  A check said the sound landed. It didn
+    3  2.07  +0.42  4.83  -13.2  -18.0  -17.9  A check ran before the fix it watched.
+    4  2.99  +0.85  4.35   -9.6  -35.4  -18.3  A script proved a file existed. It was
+    5  2.41  +0.42  4.56  -11.8  -21.2  -18.1  No tool caught any of it. A human did.
     6   3.3  +0.42  3.94   -9.3  -20.6  -20.3  So every check now watches the one bef
-    7  2.45  +0.42  4.49   -7.2  -41.9  -19.1  That's the only reason this one shippe
-    8  5.51  +0.42  3.81   -9.3  -34.0  -18.9  The rule now: test every check on a ca
-    9   2.4    —    4.17   -8.4  -13.1  -18.4  Follow for setups that actually works.
+    7  2.45  +0.42  4.49   -7.2  -42.8  -19.1  That's the only reason this one shippe
+    8  4.72  +0.85  4.03  -10.3  -34.8  -19.2  The fix: break it on purpose, confirm 
+    9  2.27    —    4.41   -6.6  -18.3  -18.8  Follow for setups that actually works.
 
-  nothing flagged. every line sits inside his own spread.
+  [fix] line  1: weak ending (-44.5 dB vs median -21.2)
+         -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
+  [fix] line  4: weak ending (-35.4 dB vs median -21.2)
+         -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
+  [fix] line  7: weak ending (-42.8 dB vs median -21.2)
+         -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
+  [fix] line  8: weak ending (-34.8 dB vs median -21.2)
+         -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
 
 === frame layout
-reel-04-kar.html  31.53s  safe box: x 65-1015, y 269-1248
+reel-04-kar.html  30.91s  safe box: x 65-1015, y 269-1248
   safe area: clean (tolerance 10px)
   within tolerance: 6px past the right line   on  "landed."
   overlaps: none over 10px
+  within tolerance: 8px overlap  tc-b x on
+  within tolerance: 7px overlap  tc-b x B
 
 === rendered file
-reel-04.mp4  1080x1920  30fps  31.53s  5.9MB
-  visual change: median 0.27s, longest 2.53s
-  loudness: -15.0 LUFS integrated, peak -4.1 dBFS, LRA 1.5 LU
-  loop seam: first vs last frame differ by 19.2/255
+reel-04.mp4  1080x1920  30fps  30.91s  5.7MB
+  visual change: median 0.17s, longest 5.13s
+  loudness: -15.1 LUFS integrated, peak -4.3 dBFS, LRA 1.3 LU
+  loop seam: first vs last frame differ by 19.5/255
 
   ok        1080x1920
   ok        yuv420p
   ok        30fps
   ok        48kHz stereo
-  ok        length 31.5s inside 30-90s
+  ok        length 30.9s inside 30-90s
   ok        length matches the build
   ok        no frozen run over 4s
-  ok        first frame carries picture (luma 42.7)
-  ok        visual change every 0.27s median
-  ok        -15.0 LUFS
-  ok        peak -4.1 dBFS
+  ok        first frame carries picture (luma 42.8)
+  ok        visual change every 0.17s median
+  ok        -15.1 LUFS
+  ok        peak -4.3 dBFS
 
 ALL CHECKS PASSED
