@@ -269,22 +269,49 @@ export default function Dashboard() {
                 <th>#</th>
                 <th>פרק</th>
                 <th>צפיות</th>
-                <th>שמירות</th>
-                <th>שמירות לצפייה</th>
-                <th>נרשמים</th>
+                {/* "כמה שמרו" replaces two separate columns (שמירות + שמירות לצפייה) that
+                    used to show a bare, standalone percentage — 100.0% from 3 views looked
+                    like a real result instead of a sample too small to mean anything. One
+                    column now always shows the actual count first, and only adds a percent
+                    once there's enough views for one to mean something. */}
+                <th>כמה שמרו</th>
+                <th>נרשמים לרשימה בזכות הפרק</th>
               </tr>
             </thead>
             <tbody>
-              {ranked.map((e) => (
-                <tr key={e.id}>
-                  <td className="num">{e.number}</td>
-                  <td className="name">{e.title}</td>
-                  <td className="num">{n(e.views)}</td>
-                  <td className="num">{n(e.saves)}</td>
-                  <td className="num">{pct(saveRate(e))}</td>
-                  <td className="num">{n(e.subsAttributed)}</td>
-                </tr>
-              ))}
+              {ranked.map((e) => {
+                const enough = (e.views ?? 0) >= 20;
+                const rate = saveRate(e);
+                return (
+                  <tr key={e.id}>
+                    <td className="num">{e.number}</td>
+                    <td className="name">{e.title}</td>
+                    <td className="num">{n(e.views)}</td>
+                    <td className="num">
+                      {e.saves == null || e.views == null ? (
+                        "—"
+                      ) : (
+                        <>
+                          {n(e.saves)}
+                          {enough && rate != null && (
+                            <span className="faint"> ({pct(rate)})</span>
+                          )}
+                          {!enough && (e.views ?? 0) > 0 && (
+                            <span className="faint"> · עוד מוקדם לאחוז</span>
+                          )}
+                        </>
+                      )}
+                    </td>
+                    <td className="num">
+                      {e.subsAttributed == null ? (
+                        <span className="faint">לא הוזן</span>
+                      ) : (
+                        n(e.subsAttributed)
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

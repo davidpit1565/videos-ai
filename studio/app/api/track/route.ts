@@ -4,6 +4,7 @@ import { notify } from "@/lib/push";
 import { hasDb, loadState, saveState } from "@/lib/db";
 import { fetchBeehiiv, fetchInstagram, refreshInstagramToken} from "@/lib/sources";
 import { ActivityEvent, State, uid } from "@/lib/types";
+import { realTitleFor } from "@/lib/reels";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -98,6 +99,18 @@ export async function GET(req: Request) {
   // crashed the whole pull with "Cannot read properties of undefined (reading 'at')" —
   // which is why the studio showed no numbers at all rather than stale ones.
   const prev = state.snapshots.at(-1) ?? null;
+
+  // He kept having to retype an episode's title into the studio by hand after it was
+  // already finalized in channel/episode-0N-youtube.txt — and kept forgetting to, so
+  // the public site showed the studio's own "פרק חדש" placeholder for weeks. The real
+  // title exists the moment that file is written; this just stops requiring a human
+  // to copy it a second time. Only fills a title that's missing or still the
+  // placeholder, so a title he's since edited by hand is never overwritten.
+  for (const e of state.episodes) {
+    if (e.title && e.title !== "פרק חדש") continue;
+    const real = realTitleFor(e.number);
+    if (real) e.title = real;
+  }
 
   const note = (
     source: ActivityEvent["source"], label: string,

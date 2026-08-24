@@ -1,5 +1,6 @@
 import { loadState } from "./db";
 import { Episode } from "./types";
+import { realTitleFor } from "./reels";
 
 /** What a visitor is allowed to see: episodes that are actually live, newest first.
  *  Nothing else from the state crosses this line — the studio holds revenue, client
@@ -15,7 +16,7 @@ export type PublicEpisode = {
 
 const toPublic = (e: Episode): PublicEpisode => ({
   number: e.number,
-  title: e.title,
+  title: realTitleFor(e.number) || e.title,
   topic: e.topic,
   notes: e.notes,
   ytVideoId: e.ytVideoId,
@@ -70,7 +71,7 @@ export async function catalogue(): Promise<Entry[]> {
     const prev = byNumber.get(e.number);
     byNumber.set(e.number, {
       n: e.number,
-      title: e.title || prev?.title || `Episode ${e.number}`,
+      title: realTitleFor(e.number) || e.title || prev?.title || `Episode ${e.number}`,
       blurb: e.topic || prev?.blurb || "",
       views: e.views ?? null,
       live: true,
