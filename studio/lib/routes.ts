@@ -18,7 +18,7 @@ export const STUDIO = [
   // named separately from the public manifest, and gated like everything else here: a
   // manifest that can be fetched is a manifest that tells a stranger the tool exists
   "/studio.webmanifest",
-  "/api/state", "/api/agent", "/api/instagram", "/api/beehiiv", "/api/push",
+  "/api/state", "/api/agent", "/api/instagram", "/api/youtube", "/api/beehiiv", "/api/push",
 ];
 
 /** Neither the site nor the studio: the nightly tracker, called by Vercel's cron with its
