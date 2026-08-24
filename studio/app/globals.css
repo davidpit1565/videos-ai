@@ -220,6 +220,7 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 .tooltip b{font-family:var(--m);color:var(--brass);display:block;font-size:14px}
 .tooltip span{color:var(--faint);font-size:12px}
 .empty-cell{color:var(--faint);text-align:center;padding:22px}
+.faint{color:var(--faint);font-size:.9em;font-weight:400}
 
 @media(max-width:760px){
   .cards{display:flex}

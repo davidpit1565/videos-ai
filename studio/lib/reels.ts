@@ -48,6 +48,16 @@ function textFor(n: number | null, suffix: string): string | null {
 const captionFor = (n: number | null) => textFor(n, "caption");
 const youtubeFor = (n: number | null) => textFor(n, "youtube");
 
+/** The real, already-approved title — its first line is written once, when the episode's
+ *  YouTube copy is finalized, and never needs retyping anywhere else. He kept having to
+ *  copy it into the studio's title field by hand and it kept not happening (both public
+ *  episode pages showed the studio's "פרק חדש" placeholder for weeks after the real title
+ *  existed on disk). Read directly from the file that already has it, instead. */
+export function realTitleFor(n: number | null): string | null {
+  const yt = youtubeFor(n);
+  return yt ? yt.split("\n")[0].trim() || null : null;
+}
+
 /** The filesystem mtime does not survive a git checkout reliably — Vercel's own build
  *  showed every reel dated 2018-10-20, which is not a date that has ever been true for
  *  this repo. produce.sh now writes the real ship moment to a sidecar file; this reads
