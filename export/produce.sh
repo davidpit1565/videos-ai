@@ -39,7 +39,11 @@ else
 fi
 
 echo "=== [2/8] level repair"
-python3 audio/voice_doctor.py "$VO" --cues "$CUES" --repair "$VO_R" || exit 1
+# The same word list accepted at the final gate has to be accepted here too — this call
+# runs the identical shipped-file check and can exit 1 on its own, before the pipeline
+# ever reaches check.sh. reel-06 hit exactly this: --accept was wired to the gate only,
+# so an already ear-approved word ("three") still failed the build at this earlier stage.
+python3 audio/voice_doctor.py "$VO" --cues "$CUES" --repair "$VO_R" ${ACCEPT:+--accept "$ACCEPT"} || exit 1
 cp "$CUES" "$CUES_R"
 
 echo "=== [3/8] retime picture to natural pacing (0.9s closing tail)"
