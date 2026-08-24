@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { TEMPLATES, MUSIC_MOODS } from "@/lib/templates";
+import { TEMPLATES, MUSIC_MOODS, USED_ACCENTS } from "@/lib/templates";
 
 export const metadata = { title: "תבניות" };
 
@@ -37,6 +37,7 @@ export default function TemplatesPage() {
               <th>#</th>
               <th>שם</th>
               <th>מתי משתמשים</th>
+              <th>שמיעה</th>
             </tr>
           </thead>
           <tbody>
@@ -45,6 +46,9 @@ export default function TemplatesPage() {
                 <td className="num">{m.n}</td>
                 <td>{m.name}</td>
                 <td>{m.when}</td>
+                <td>
+                  <audio controls preload="none" src={m.sample} style={{ height: 32, maxWidth: 200 }} />
+                </td>
               </tr>
             ))}
           </tbody>
@@ -52,8 +56,60 @@ export default function TemplatesPage() {
       </div>
       <p className="sub">
         המספר כאן הוא בדיוק ה-<code>--mood</code> שמועבר ל-<code>produce.sh</code> — לא רשימה
-        נפרדת שיכולה להתפספס.
+        נפרדת שיכולה להתפספס. הקטע ששומעים הוא 8 שניות אמיתיות שנוצרו עם{" "}
+        <code>audio/build_music.py</code>, לא תיאור.
       </p>
+
+      <h2>צבעים שכבר שימשו</h2>
+      <p className="sub">
+        זוג הצבעים שכל פרק יצא איתו בפועל — כדי שהפרק הבא לא יחזור על אותו זוג בטעות.
+      </p>
+      <div className="tw">
+        <table>
+          <thead>
+            <tr>
+              <th>פרק</th>
+              <th>brass</th>
+              <th>ember</th>
+            </tr>
+          </thead>
+          <tbody>
+            {USED_ACCENTS.map((a) => (
+              <tr key={a.episode}>
+                <td className="num">{a.episode}</td>
+                <td className="num">
+                  <span
+                    style={{
+                      display: "inline-block",
+                      width: 14,
+                      height: 14,
+                      borderRadius: 4,
+                      background: a.brass,
+                      marginInlineEnd: 8,
+                      verticalAlign: "middle",
+                    }}
+                  />
+                  {a.brass}
+                </td>
+                <td className="num">
+                  <span
+                    style={{
+                      display: "inline-block",
+                      width: 14,
+                      height: 14,
+                      borderRadius: 4,
+                      background: a.ember,
+                      marginInlineEnd: 8,
+                      verticalAlign: "middle",
+                    }}
+                  />
+                  {a.ember}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

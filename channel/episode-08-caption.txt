@@ -1,0 +1,16 @@
+A check said it passed. It lied.
+
+It looked correct. It ran clean every single time. Nobody ever gave it a case that was
+actually broken — so it never had the chance to fail, and "never failed" got mistaken
+for "works."
+
+The one test that proves a check is real:
+
+Write one input you already know is broken. Run the check on that, not on good input.
+If it doesn't fail, the check isn't real yet — it's just never been asked the question.
+
+Full breakdown: actually-works-studio.vercel.app/e/8
+
+Follow for setups that actually work.
+
+#ai #softwaretesting #automation #aitools #debugging #productivity
