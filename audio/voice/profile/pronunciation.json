@@ -20,13 +20,16 @@
   "hour": "our",
   "Hour": "Our",
   "n8n": "en-eight-en",
-  "N8n": "En-eight-en"
+  "N8n": "En-eight-en",
+  "our": "ourr",
+  "Our": "Ourr"
  },
  "phrases": {
   "Go to Personalization": "Go to, Personalisation",
   "Go to Personalisation": "Go to, Personalisation"
  },
  "notes": {
-  "Personalization": "Six syllables landed in 0.86s and the L disappeared. British spelling scores higher and the comma slows it to 5 syllables/sec."
+  "Personalization": "Six syllables landed in 0.86s and the L disappeared. British spelling scores higher and the comma slows it to 5 syllables/sec.",
+  "our": "He flagged reel-07's outro (\"in our bio\") as sounding British — same class as harder/first, a swallowed final R. Respelling entries apply in dict order, so this also affects any future line using \"hour\" (which already maps to \"our\" above) — that's intentional, not a bug, since \"hour\" has the identical R."
  }
 }
