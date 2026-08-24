@@ -1,19 +1,20 @@
 === narration
-audio/reel09-narration-r.wav  33.4s  9 lines
-  medians: ending -39.8 dB · level -18.6 dBFS · S residual +0.2 dB (slope +16.8 dB per sibilant/syllable)
-  flagged below: ending -65.4 dB · S residual -8.7 dB  (median - 2.5 robust sd)
+audio/reel09-narration-r.wav  35.1s  9 lines
+  medians: ending -28.8 dB · level -18.9 dBFS · S residual -0.6 dB (slope +22.4 dB per sibilant/syllable)
+  flagged below: ending -38.4 dB · S residual -7.3 dB  (median - 2.5 robust sd)
    ln   dur    gap  rate    sib    end    lvl  line
     1  3.07  +0.42  4.56  -11.4  -16.9  -18.4  This agent can send emails by itself. 
-    2  3.64  +0.42  4.12   -8.1  -46.5  -18.1  Because once it's sent, you can't take
-    3  3.26  +0.42  3.68  -15.6  -40.9  -17.4  One wrong tone, one wrong fact, and it
-    4  3.61  +0.85  4.43  -12.9  -33.4  -18.1  So it only ever writes a draft. You re
-    5   3.1  +0.42  3.55  -11.0  -46.7  -18.6  One switch in the workflow: create dra
-    6  3.31  +0.42  4.53   -5.3  -31.5  -18.9  Every agent that touches your inbox sh
-    7  3.68  +0.42  3.53   -8.7  -46.9  -18.6  Build the draft, never the send. You c
-    8  2.13  +0.85  4.69   -7.6  -39.8  -19.4  The exact setup's in the link in bio.
-    9  2.27    —    4.41   -6.6  -18.3  -18.8  Follow for setups that actually works.
+    2  3.64  +0.42  4.12   -8.5  -31.5  -18.8  Because once it's sent, you can't take
+    3  3.26  +0.42  3.68  -17.8  -37.9  -18.0  One wrong tone, one wrong fact, and it
+    4  3.61  +0.85  4.43  -14.6  -28.8  -18.9  So it only ever writes a draft. You re
+    5   3.1  +0.42  3.55  -11.7  -26.2  -19.8  One switch in the workflow: create dra
+    6  3.31  +0.42  4.53   -8.2  -40.5  -19.1  Every agent that touches your inbox sh
+    7  3.68  +0.42  3.53  -12.3  -28.4  -19.5  Build the draft, never the send. You c
+    8  2.13  +0.85  4.69   -7.6  -31.0  -18.9  The exact setup's in the link in bio.
+    9  2.27    —    4.41  -12.3  -28.8  -18.9  Follow for setups that actually works.
 
-  nothing flagged. every line sits inside his own spread.
+  [fix] line  6: weak ending (-40.5 dB vs median -28.8)
+         -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
 
 === frame layout
 reel-09-kar.html  33.49s  safe box: x 65-1015, y 269-1248
@@ -23,8 +24,8 @@ reel-09-kar.html  33.49s  safe box: x 65-1015, y 269-1248
 
 === rendered file
 reel-09.mp4  1080x1920  30fps  33.50s  5.8MB
-  visual change: median 0.63s, longest 2.77s
-  loudness: -14.1 LUFS integrated, peak -3.3 dBFS, LRA 1.2 LU
+  visual change: median 0.65s, longest 3.73s
+  loudness: -14.1 LUFS integrated, peak -3.1 dBFS, LRA 1.6 LU
   loop seam: first vs last frame differ by 25.3/255
 
   ok        1080x1920
@@ -35,8 +36,8 @@ reel-09.mp4  1080x1920  30fps  33.50s  5.8MB
   ok        length matches the build
   ok        no frozen run over 4s
   ok        first frame carries picture (luma 44.3)
-  ok        visual change every 0.63s median
+  ok        visual change every 0.65s median
   ok        -14.1 LUFS
-  ok        peak -3.3 dBFS
+  ok        peak -3.1 dBFS
 
 ALL CHECKS PASSED
