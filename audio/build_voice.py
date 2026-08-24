@@ -643,6 +643,9 @@ def main():
                 print(f"    \"{tw}\": not in the transcript of the mix", flush=True)
                 continue
             bm = burst.measure(y, float(hit["at"]), float(hit["dur"]))
+            if bm is None:
+                print(f"    \"{tw}\": could not be measured", flush=True)
+                continue
             v = burst.verdict(bm)
             print(f"    \"{tw}\": {bm['peak']:+.1f} dB, {v}", flush=True)
             if v != "frication":

@@ -1,0 +1,50 @@
+[
+ {
+  "n": 1,
+  "line": "Last time: a check said it passed. It lied.",
+  "start": 0.3,
+  "end": 3.08
+ },
+ {
+  "n": 2,
+  "line": "Because nobody ever tested the check itself.",
+  "start": 3.5,
+  "end": 6.58
+ },
+ {
+  "n": 3,
+  "line": "Here's the one test that proves a check is real.",
+  "start": 7.0,
+  "end": 10.02
+ },
+ {
+  "n": 4,
+  "line": "Write one input you already know is broken.",
+  "start": 10.44,
+  "end": 13.17
+ },
+ {
+  "n": 5,
+  "line": "Run your check on that, not on good input.",
+  "start": 14.02,
+  "end": 16.11
+ },
+ {
+  "n": 6,
+  "line": "If it doesn't fail, the check isn't real yet.",
+  "start": 16.53,
+  "end": 19.04
+ },
+ {
+  "n": 7,
+  "line": "Feed it a known-broken input. If it doesn't fail, it doesn't work yet.",
+  "start": 19.46,
+  "end": 23.49
+ },
+ {
+  "n": 8,
+  "line": "Follow for setups that actually works.",
+  "start": 23.91,
+  "end": 26.3
+ }
+]
