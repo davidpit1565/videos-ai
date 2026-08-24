@@ -1,0 +1,9 @@
+Your captions are hiding behind Instagram
+
+Not a guess — we measured it. 413 pixels of caption sat behind the platform's own interface. The safe zone, exactly: keep text out of the top 269px and bottom 672px on a 1080×1920 frame. Screenshot that.
+
+Full breakdown: actually-works-studio.vercel.app/e/5
+
+Follow for setups that actually work.
+
+#reels #shorts #contentcreation #instagramtips #videoediting

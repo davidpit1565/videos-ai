@@ -1,0 +1,9 @@
+What an AI agent actually is (not the marketing definition)
+
+Everyone says "agent." Almost nobody can tell you where the chatbot ends. It's three steps on a loop — plan, act, check — and one test settles it: if it can't act without you, it's a chatbot with a better name.
+
+Full breakdown, and the five-step test you can run on whatever you're already paying for: actually-works-studio.vercel.app/e/2
+
+Follow for setups that actually work.
+
+#aiagents #ai #automation #n8n #chatgpt #aitools #productivity
