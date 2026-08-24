@@ -29,7 +29,7 @@ export const CRON = ["/api/track", "/api/health-check"];
 
 /** the public funnel, plus the endpoints those pages call */
 export const SITE = [
-  "/", "/e", "/p", "/join", "/about", "/prompts", "/search", "/unlock",
+  "/", "/e", "/p", "/join", "/about", "/prompts", "/search", "/unlock", "/episodes",
   "/api/subscribe", "/api/clientlog", "/api/stream-check", "/api/connections",
   "/api/unlock", "/api/site",
   "/manifest.json", "/icon-", "/apple-touch-icon",

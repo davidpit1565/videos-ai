@@ -364,10 +364,24 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
   text-decoration:none;font-size:1rem}
 .site .cta:hover, .pub .cta:hover{background:var(--gold)}
 
-/* the personal-intro hero. Single column for now — a two-column layout with a photo
-   beside the text is worth doing once there's a real photo to put there; an empty
-   dashed placeholder box was worse than no box, on desktop as much as on a phone. */
+/* the personal-intro hero. Single column when there's no video to show yet; once an
+   episode has a YouTube id, the newest one plays beside the text so the channel's whole
+   premise — the exact screen — is visible before anyone scrolls, not just promised. */
+.site .hero{display:grid;gap:2.2rem;grid-template-columns:1fr}
 .site .herotext{min-width:0}
+.site .hero .herovid{margin:0;order:-1}
+@media (min-width:860px){
+  .site .hero{grid-template-columns:1.05fr 1fr;align-items:center}
+  .site .hero .herovid{order:0}
+}
+/* section headers with a link to the full list, so "recent episodes" on the home page
+   reads as a teaser of something bigger rather than the whole thing. */
+.site .sechead{display:flex;align-items:baseline;justify-content:space-between;
+  gap:1rem;margin-top:3.2rem}
+.site .sechead h2{margin:0}
+.site .sechead a{color:var(--gold);font-weight:600;font-size:.95rem;
+  text-decoration:none;white-space:nowrap}
+.site .sechead a:hover{color:var(--gold-lit)}
 .site .herocta{display:flex;align-items:center;gap:1.3rem;margin-top:1.5rem;flex-wrap:wrap}
 .site .herocta .cta{margin-top:0}
 .site .herocta a:not(.cta){color:var(--ink);font-weight:600;text-decoration:none;
@@ -375,14 +389,24 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .site .herocta a:not(.cta):hover{border-color:var(--gold-lit);color:var(--gold-lit)}
 .site .herosocial{margin-top:1.3rem}
 .site .herosocial .ssocial{justify-content:flex-start;padding:0;background:transparent;gap:1.1rem}
-.site .herostats{display:flex;gap:2.2rem;margin-top:1.6rem}
-.site .herostats b{display:block;font-family:var(--serif);font-weight:800;font-size:1.7rem;
-  color:var(--ink)}
-.site .herostats span{display:block;color:var(--faint);font-size:.85rem;margin-top:.15rem}
+/* He circled these on a screenshot and asked for them bigger, clearer, and to actually
+   stand out — as plain inline numbers they read as an afterthought under the CTAs. Cards
+   with a gold number give them the same weight the rest of the hero has. */
+.site .herostats{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.8rem}
+.site .herostats > div{background:var(--card);border:1px solid var(--rule);
+  border-radius:1rem;padding:1.1rem 1.5rem;min-width:9rem}
+.site .herostats b{display:block;font-family:var(--serif);font-weight:800;font-size:2.6rem;
+  line-height:1;color:var(--gold-lit)}
+.site .herostats span{display:block;color:var(--soft);font-size:.88rem;margin-top:.4rem;
+  font-weight:600}
 .site .empty{background:var(--card);border:1px solid var(--rule);border-radius:1rem;
   padding:1.1rem 1.25rem;color:var(--soft)}
 
-.site .eps{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.7rem}
+/* Two columns once there is room: a single narrow column of cards read as sparse and
+   half-empty on a wide screen even with several episodes filtered in. */
+.site .eps{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.7rem;
+  grid-template-columns:1fr}
+@media (min-width:760px){.site .eps{grid-template-columns:1fr 1fr}}
 .site .eps a{display:grid;grid-template-columns:auto 1fr;gap:.15rem .9rem;
   background:var(--card);border:1px solid var(--rule);border-radius:1rem;
   padding:1.1rem 1.25rem;text-decoration:none;color:inherit;transition:border-color .15s}
@@ -495,8 +519,8 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
   justify-content:space-between;padding-bottom:1rem;margin-bottom:2.2rem;
   border-bottom:1px solid var(--rule)}
 .site .sitenav .mark{font-family:var(--serif);font-weight:700;font-size:1.08rem;
-  text-decoration:none;color:var(--ink);display:inline-flex;align-items:center;gap:.45rem}
-.site .sitenav .mark .tick{color:var(--gold)}
+  text-decoration:none;color:var(--ink);display:inline-flex;align-items:center;gap:.5rem}
+.site .sitenav .mark .logo{border-radius:7px;flex:0 0 auto}
 .site .sitenav .links{display:flex;flex-wrap:wrap;gap:.35rem}
 .site .sitenav .links a{font-size:.94rem;text-decoration:none;color:var(--soft);
   padding:.3rem .7rem;border-radius:9999px;border:1px solid transparent}

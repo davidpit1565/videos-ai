@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 /** The same header on every public page, because a visitor who lands on one of them
  *  from a caption has no other way to discover the rest. Episode 01 had a full page
@@ -6,6 +7,7 @@ import Link from "next/link";
 export default function SiteNav({ here }: { here?: string }) {
   const items = [
     { href: "/", label: "Home" },
+    { href: "/episodes", label: "Episodes" },
     { href: "/prompts", label: "Prompts" },
     { href: "/search", label: "Search" },
     { href: "/about", label: "About" },
@@ -13,7 +15,8 @@ export default function SiteNav({ here }: { here?: string }) {
   return (
     <header className="sitenav">
       <Link className="mark" href="/">
-        <span className="tick">✓</span> Actually Works
+        <Image className="logo" src="/icon-192.png" alt="" width={28} height={28} priority />
+        Actually Works
       </Link>
       <nav className="links">
         {items.map((i) => (

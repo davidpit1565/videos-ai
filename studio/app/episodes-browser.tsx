@@ -7,7 +7,7 @@ import { Entry } from "@/lib/site";
 /** Which real tool an episode is about, read straight out of its own title — never a
  *  separate category someone has to remember to set. Order matters: first match wins,
  *  so a title naming two tools still gets one clear tag instead of picking arbitrarily. */
-const TOOLS = ["ChatGPT", "Claude", "n8n", "Instagram", "Whisper", "YouTube"];
+const TOOLS = ["ChatGPT", "Claude", "n8n", "Instagram", "Whisper", "YouTube", "Agents", "Skills"];
 function toolFor(title: string): string {
   const hit = TOOLS.find((t) => title.toLowerCase().includes(t.toLowerCase()));
   return hit ?? "General";

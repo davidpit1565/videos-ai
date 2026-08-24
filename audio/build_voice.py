@@ -642,7 +642,9 @@ def main():
             if hit is None:
                 print(f"    \"{tw}\": not in the transcript of the mix", flush=True)
                 continue
-            bm = burst.measure(y, float(hit["at"]), float(hit["dur"]))
+            i = allw.index(hit)
+            prev_end = (allw[i - 1]["at"] + allw[i - 1]["dur"]) if i > 0 else None
+            bm = burst.measure(y, float(hit["at"]), float(hit["dur"]), prev_end)
             if bm is None:
                 print(f"    \"{tw}\": could not be measured", flush=True)
                 continue

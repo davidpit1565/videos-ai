@@ -3,7 +3,6 @@ import { catalogue } from "@/lib/site";
 import { PROMPTS } from "@/lib/prompts";
 import Signup from "./signup";
 import SiteNav from "./sitenav";
-import EpisodesBrowser from "./episodes-browser";
 import SiteSocial from "./site-social";
 import CountUp from "./count-up";
 
@@ -18,6 +17,13 @@ export default async function Home() {
   const eps = await catalogue();
   const live = eps.filter((e) => e.live);
   const totalViews = live.reduce((a, e) => a + (e.views ?? 0), 0);
+  // The newest live episode with a video, for the hero — the channel's whole premise is
+  // "the exact screen", and a home page that never shows one before the fold undercuts it.
+  const heroEpisode = live.find((e) => e.ytVideoId) ?? null;
+  // A short teaser, not the full browser: the home page is a landing page, not the
+  // episode index. He said directly that home reading as the same page as the episode
+  // list — no visual break between them — made it feel like there was no home page at all.
+  const recent = live.slice(0, 3);
 
   return (
     <main className="site" dir="ltr">
@@ -33,17 +39,17 @@ export default async function Home() {
             breaks — because the part that breaks is the part everyone else skips.
           </p>
           <div className="herocta">
-            <a className="cta" href="#episodes">
+            <Link className="cta" href="/episodes">
               Browse episodes →
-            </a>
+            </Link>
             <Link href="/about">My story →</Link>
           </div>
           <div className="herosocial">
             <SiteSocial />
           </div>
-          <Signup source="home" />
           {/* Real, already-measured numbers only — a stat with nothing behind it yet
-              doesn't get a tile, rather than a tile showing a fabricated 0. */}
+              doesn't get a tile, rather than a tile showing a fabricated 0. Placed before
+              the signup form on purpose: proof before the ask. */}
           {(live.length > 0 || totalViews > 0) && (
             <div className="herostats">
               {live.length > 0 && (
@@ -60,18 +66,42 @@ export default async function Home() {
               )}
             </div>
           )}
+          <Signup source="home" />
         </div>
+        {heroEpisode?.ytVideoId ? (
+          <div className="herovid vid">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${heroEpisode.ytVideoId}`}
+              title={heroEpisode.title}
+              allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        ) : null}
       </header>
 
-      <section id="episodes">
-        <h2>Episodes</h2>
+      <section>
+        <div className="sechead">
+          <h2>Recent episodes</h2>
+          <Link href="/episodes">All episodes →</Link>
+        </div>
         {eps.length === 0 ? (
           <p className="empty">
             The first episode is finished and not published yet. It lands here the day
             it goes out.
           </p>
         ) : (
-          <EpisodesBrowser eps={eps} />
+          <ul className="eps">
+            {(recent.length ? recent : eps.slice(0, 3)).map((e) => (
+              <li key={e.n}>
+                <Link href={`/e/${e.n}`}>
+                  <span className="n">{String(e.n).padStart(2, "0")}</span>
+                  <span className="t">{e.title}</span>
+                  <span className="tp">{e.blurb}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         )}
       </section>
 
@@ -94,6 +124,7 @@ export default async function Home() {
       </section>
 
       <footer className="sfoot">
+        <Link href="/episodes">Episodes</Link>
         <Link href="/prompts">All prompts</Link>
         <Link href="/search">Search</Link>
         <Link href="/about">About</Link>
