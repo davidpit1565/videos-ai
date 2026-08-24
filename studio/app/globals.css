@@ -413,6 +413,13 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .pub .brand{font-family:var(--serif);font-weight:700;color:var(--ink);
   text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
 .pub .brand .tick{color:var(--gold)}
+/* Real profile links, rendered once by Shell for every public page — not scoped
+   inside .site/.pub, so it can't rely on their custom properties; the same paper
+   palette is repeated here as literal values instead. */
+.ssocial{display:flex;justify-content:center;gap:1.4rem;padding:1.4rem 1.1rem 3rem;
+  background:#F7F5F1}
+.ssocial a{color:#6F6A60;display:flex;transition:color .15s}
+.ssocial a:hover{color:#8A6D1B}
 .pub .foot{color:var(--faint);border-top:1px solid var(--rule);margin-top:3rem;
   padding-top:1.3rem;font-size:.93rem}
 .pub .lbl{color:var(--faint)}

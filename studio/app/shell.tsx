@@ -6,6 +6,7 @@ import { useStudio } from "./providers";
 import { useEffect, useState } from "react";
 import { isSite } from "@/lib/routes";
 import { localDT } from "@/lib/fmt";
+import SiteSocial from "./site-social";
 
 const TABS = [
   { href: "/studio", label: "לוח" },
@@ -60,7 +61,13 @@ export default function Shell({ children }: { children: React.ReactNode }) {
    * size with browser chrome retracted — fixed at layout time and never recomputed as the
    * chrome animates. No measurement, no race, no JS at all. See globals.css. */
 
-  if (site) return <>{children}</>;
+  if (site)
+    return (
+      <>
+        {children}
+        <SiteSocial />
+      </>
+    );
 
   const badge =
     mode === "loading"
