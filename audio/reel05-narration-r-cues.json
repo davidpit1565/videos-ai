@@ -13,44 +13,44 @@
  },
  {
   "n": 3,
-  "line": "Eight in ten clips use captions. Most sit right there.",
+  "line": "80.2% of clips use captions. 78.6% animate them.",
   "start": 7.56,
-  "end": 10.65
+  "end": 12.43
  },
  {
   "n": 4,
   "line": "The caption shows up fine. Nobody sees it.",
-  "start": 11.07,
-  "end": 13.5
+  "start": 12.85,
+  "end": 15.28
  },
  {
   "n": 5,
   "line": "The platform hides the bottom on purpose.",
-  "start": 14.35,
-  "end": 17.13
+  "start": 16.13,
+  "end": 18.91
  },
  {
   "n": 6,
   "line": "We checked our own videos. Same mistake.",
-  "start": 17.55,
-  "end": 20.13
+  "start": 19.33,
+  "end": 21.91
  },
  {
   "n": 7,
   "line": "Now every caption sits in the space you can actually see.",
-  "start": 20.55,
-  "end": 24.19
+  "start": 22.33,
+  "end": 25.96
  },
  {
   "n": 8,
   "line": "Keep text out of the top 269 pixels and bottom 672 pixels.",
-  "start": 24.61,
-  "end": 30.34
+  "start": 26.38,
+  "end": 30.81
  },
  {
   "n": 9,
   "line": "Follow for setups that actually works.",
-  "start": 30.76,
-  "end": 33.15
+  "start": 31.66,
+  "end": 33.93
  }
 ]

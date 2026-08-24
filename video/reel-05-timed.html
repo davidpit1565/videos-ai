@@ -91,6 +91,22 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-
 .side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.62}
 .side strong{color:var(--text)}
 
+.igicon{width:9.5cqw;height:9.5cqw;display:inline-block;vertical-align:-1.6cqw;margin-inline-end:1.2cqw;
+  border-radius:2.4cqw;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
+.igicon svg{width:100%;height:100%;display:block}
+
+/* the two stats he says with his mouth get the same weight on screen — a real bar
+   pair, not a text card, since a number with no shape next to it is the thing this
+   channel keeps calling out in every other episode's own advice */
+.graph{width:100%;display:flex;flex-direction:column;gap:4.6cqw;position:relative;z-index:2}
+.gr{display:flex;flex-direction:column;gap:1.4cqw}
+.gr .gl{font-family:var(--b);font-weight:700;font-size:4.6cqw;color:#D5DCE6}
+.gr .gt{position:relative;height:7.4cqw;background:#151B24;border:1px solid var(--line);border-radius:3.7cqw}
+.gr .gf{position:absolute;inset:0;width:0;border-radius:3.7cqw;
+  background:linear-gradient(90deg,var(--brass),var(--brass-hot));
+  display:flex;align-items:center;justify-content:flex-end;padding-inline-end:2.4cqw}
+.gr .gv{font-family:var(--m);font-weight:700;font-size:4cqw;color:#0A0A0A;white-space:nowrap}
+
 /* the takeaway card — a real, usable number the viewer can screenshot */
 .takecard{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
   box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2}
@@ -118,7 +134,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <!-- HOOK -->
 <section class="scene" data-in="0" data-out="2.78">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="0">Your captions<br>are hiding<br>behind <span class="ebox">Instagram</span>.</h2>
+    <h2 class="b punch" data-at="0">Your captions<br>are hiding<br>behind <span class="ebox"><span class="igicon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="4.6" stroke="#fff" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.15" fill="#fff"/></svg></span>Instagram</span>.</h2>
   </div></div>
 </section>
 
@@ -128,49 +144,58 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="7.35" data-out="10.86">
+<section class="scene" data-in="7.35" data-out="12.64">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="7.38">Most clips use<br>captions — sitting <span class="ebox">right there</span>.</h2>
+    <div class="graph b" data-at="7.38">
+      <div class="gr">
+        <div class="gl">Clips with captions</div>
+        <div class="gt"><div class="gf" style="width:80.2%"><span class="gv">80.2%</span></div></div>
+      </div>
+      <div class="gr">
+        <div class="gl">Captions that animate</div>
+        <div class="gt"><div class="gf" style="width:78.6%"><span class="gv">78.6%</span></div></div>
+      </div>
+    </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="10.86" data-out="13.925">
+<section class="scene" data-in="12.64" data-out="15.705">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="10.89">The caption shows up.<br>Nobody <span class="ebox">sees</span> it.</h2>
+    <h2 class="b punch" data-at="12.67">The caption shows up.<br>Nobody <span class="ebox">sees</span> it.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="13.925" data-out="17.34">
+<section class="scene" data-in="15.705" data-out="19.12">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="13.955">The platform hides<br>the bottom <span class="ebox">on purpose</span>.</h2>
+    <h2 class="b punch" data-at="15.735">The platform hides<br>the bottom <span class="ebox">on purpose</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="17.34" data-out="20.34">
+<section class="scene" data-in="19.12" data-out="22.12">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="17.37">We checked our videos.<br><span class="box">Same mistake</span>.</h2>
+    <h2 class="b punch" data-at="19.15">We checked our videos.<br><span class="box">Same mistake</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="20.34" data-out="24.4">
+<section class="scene" data-in="22.12" data-out="26.17">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="20.37">Now it's where<br>you can <span class="ebox">see</span> it.</h2>
+    <h2 class="b punch" data-at="22.15">Now it's where<br>you can <span class="ebox">see</span> it.</h2>
   </div></div>
 </section>
 
 <!-- the takeaway — the exact numbers, on their own screen -->
-<section class="scene" data-in="24.4" data-out="30.55">
+<section class="scene" data-in="26.17" data-out="31.235">
   <div class="pad"><div class="kb">
-    <div class="takecard b" data-at="24.43">
+    <div class="takecard b" data-at="26.2">
       <div class="tc-k">The safe zone</div>
       <div class="tc-b">Keep text out of the top <strong>269px</strong> and bottom <strong>672px</strong> on 1080×1920.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="30.55" data-out="33.75">
+<section class="scene" data-in="31.235" data-out="34.53">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="30.58" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="31.265" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -200,7 +225,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=34.05,t=0,playing=false,last=0;
+  var DUR=34.83,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -213,13 +238,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var CUES=[
     [0.30,2.57,"Your captions are hiding behind <em>Instagram</em>."],
     [2.99,7.14,"Not a guess. We measured 413 pixels. Gone."],
-    [7.56,10.65,"Eight in ten clips use captions. Most sit right there."],
-    [11.07,13.50,"The caption shows up fine. Nobody sees it."],
-    [14.35,17.13,"The platform hides the bottom on purpose."],
-    [17.55,20.13,"We checked our own videos. Same mistake."],
-    [20.55,24.19,"Now every caption sits in the space you can actually see."],
-    [24.61,30.34,"Keep text out of the top 269 pixels and bottom 672 pixels."],
-    [30.76,33.15,"Follow for setups that actually works."]
+    [7.56,12.43,"80.2% of clips use captions. 78.6% animate them."],
+    [12.85,15.28,"The caption shows up fine. Nobody sees it."],
+    [16.13,18.91,"The platform hides the bottom on purpose."],
+    [19.33,21.91,"We checked our own videos. Same mistake."],
+    [22.33,25.96,"Now every caption sits in the space you can actually see."],
+    [26.38,30.81,"Keep text out of the top 269 pixels and bottom 672 pixels."],
+    [31.66,33.93,"Follow for setups that actually works."]
   ];
   var FDUR=0.55,FLASH=[];
 
