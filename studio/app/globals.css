@@ -116,6 +116,9 @@ input.n{width:96px;font-family:var(--m);direction:ltr;text-align:right;font-vari
   font-size:18px;font-weight:700;padding:6px 10px;border-radius:8px;line-height:1;
   min-width:40px;min-height:40px}
 .del:hover{color:#fff;background:var(--clay);border-color:var(--clay)}
+/* the bare × alone kept getting missed inside a busy row on the phone-width card view —
+   spelled out here so it reads as a control, not a stray character */
+.del-labeled{font-size:14px;font-weight:600;width:auto;margin-inline-start:auto}
 
 /* ── cards & notes ───────────────────────────── */
 .note{border:1px solid var(--line);border-inline-start:4px solid var(--brass);background:var(--panel);

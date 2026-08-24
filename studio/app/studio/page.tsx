@@ -16,16 +16,19 @@ type Bee = {
   exact?: boolean;
 };
 type Ig = { connected: boolean; reason?: string; followers?: number | null; username?: string | null };
+type Yt = { connected: boolean; reason?: string; subscribers?: number | null; channelTitle?: string | null };
 
 export default function Dashboard() {
   const { state, update, mode, dbVar, hint, refresh, refreshing } = useStudio();
   const [pull, setPull] = useState<string | null>(null);
   const [bee, setBee] = useState<Bee | null>(null);
   const [ig, setIg] = useState<Ig | null>(null);
+  const [yt, setYt] = useState<Yt | null>(null);
 
   useEffect(() => {
     fetch("/api/beehiiv", { cache: "no-store" }).then((r) => r.json()).then(setBee).catch(() => setBee({ connected: false, reason: "הבקשה נכשלה" }));
     fetch("/api/instagram", { cache: "no-store" }).then((r) => r.json()).then(setIg).catch(() => setIg({ connected: false, reason: "הבקשה נכשלה" }));
+    fetch("/api/youtube", { cache: "no-store" }).then((r) => r.json()).then(setYt).catch(() => setYt({ connected: false, reason: "הבקשה נכשלה" }));
   }, []);
 
   if (!state) return <p className="sub">טוען…</p>;
@@ -144,7 +147,7 @@ export default function Dashboard() {
       <ul className="list">
         <Conn ok={!!bee?.connected} name="Beehiiv" reason={bee?.reason} detail="מספר הנרשמים" />
         <Conn ok={!!ig?.connected} name="Instagram" reason={ig?.reason} detail={ig?.username ? `@${ig.username}` : "צפיות, שמירות, שיתופים לכל פרק"} />
-        <Conn ok={false} name="YouTube" reason="לא מחובר — נוסיף כשיהיה ערוץ עם פרק אחד באוויר" detail="צפיות ומנויים" />
+        <Conn ok={!!yt?.connected} name="YouTube" reason={yt?.reason} detail={yt?.channelTitle ?? "צפיות ומנויים"} />
       </ul>
       <div className={"note " + (mode === "cloud" ? "ok" : "warn")}>
         <div className="t">{mode === "cloud" ? "מסד נתונים מחובר" : "מסד נתונים לא מחובר"}</div>
