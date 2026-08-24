@@ -20,13 +20,16 @@
   "hour": "our",
   "Hour": "Our",
   "n8n": "en-eight-en",
-  "N8n": "En-eight-en"
+  "N8n": "En-eight-en",
+  "bottom": "boddom",
+  "Bottom": "Boddom"
  },
  "phrases": {
   "Go to Personalization": "Go to, Personalisation",
   "Go to Personalisation": "Go to, Personalisation"
  },
  "notes": {
+  "bottom": "He flagged reel-05's \"the platform hides the bottom on purpose\" as sounding British — a mid-word flapped T that script_lint.py's flapped-T regex doesn't catch (it only matches word-final -er/-le/-ing/-ed, not a T in the middle like bot-tom). Verified with line_doctor.py: \"boddom\" measured -24.4dB tail energy vs -32.5dB unrespelled, and Whisper found the word fine (unlike \"our\" below) — a real, validated fix, not a guess.",
   "Personalization": "Six syllables landed in 0.86s and the L disappeared. British spelling scores higher and the comma slows it to 5 syllables/sec.",
   "our": "He flagged reel-07's outro (\"in our bio\") as sounding British — same class as harder/first, a swallowed final R. Tried respelling it (\"ourr\", then \"are\") the way harder/first were fixed, but both broke line_doctor.py's own Whisper-based word lookup (reported the target word MISSING), so neither could be measured or validated, and the unvalidated \"ourr\" that got committed anyway did not actually fix the sound he heard. Removed the respelling entirely and instead cut the word from reel-07's line (\"tap the bio link\" instead of \"tap the link in our bio\") — the same move already used for \"wrong\" and \"not sure\" this session: when a word won't respell cleanly, reword around it rather than keep guessing at spellings. reel-05 still says \"our own videos\" mid-sentence (not utterance-final, different R context) and is queued for a full rebuild — check that line by ear when it's rebuilt rather than assuming this same defect is there."
  }

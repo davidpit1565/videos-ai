@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useStudio } from "../providers";
 import { n } from "@/lib/fmt";
 import { Episode, Snapshot } from "@/lib/types";
+import CountUp from "../count-up";
 
 /** Real progress, from data the studio already tracks — no number here is invented.
  *  Followers come from the daily snapshot Vercel's cron writes (api/track); views/likes/
@@ -210,21 +211,21 @@ export default function Analytics() {
       <div className="tiles">
         <div className="tile">
           <div className="k">עוקבים כרגע</div>
-          <div className="v">{n(last?.igFollowers)}</div>
+          <div className="v"><CountUp value={last?.igFollowers ?? null} /></div>
           <div className="s">מתוך התמונה האחרונה, {last?.date ?? "—"}</div>
         </div>
         <div className="tile">
           <div className="k">סה״כ צפיות</div>
-          <div className="v">{n(totalViews || null)}</div>
+          <div className="v"><CountUp value={totalViews || null} /></div>
           <div className="s">סכום הפרקים שפורסמו ונמדדו</div>
         </div>
         <div className="tile">
           <div className="k">סה״כ לייקים</div>
-          <div className="v">{n(totalLikes || null)}</div>
+          <div className="v"><CountUp value={totalLikes || null} /></div>
         </div>
         <div className="tile">
           <div className="k">סה״כ שמירות + שיתופים</div>
-          <div className="v">{n(totalSaves + totalShares || null)}</div>
+          <div className="v"><CountUp value={(totalSaves + totalShares) || null} /></div>
         </div>
       </div>
 
