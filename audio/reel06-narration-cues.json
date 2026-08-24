@@ -1,0 +1,50 @@
+[
+ {
+  "n": 1,
+  "line": "Last time: three things your agent still breaks on.",
+  "start": 0.3,
+  "end": 3.32
+ },
+ {
+  "n": 2,
+  "line": "No memory. Login screens. No undo.",
+  "start": 3.74,
+  "end": 6.63
+ },
+ {
+  "n": 3,
+  "line": "Here's the real fix for each one.",
+  "start": 7.05,
+  "end": 9.01
+ },
+ {
+  "n": 4,
+  "line": "Memory: paste in what changed since last time.",
+  "start": 9.43,
+  "end": 12.29
+ },
+ {
+  "n": 5,
+  "line": "Logins: tell it to stop and ask you. Don't guess.",
+  "start": 13.14,
+  "end": 16.39
+ },
+ {
+  "n": 6,
+  "line": "Undo: make it show you a draft before it sends.",
+  "start": 16.81,
+  "end": 19.78
+ },
+ {
+  "n": 7,
+  "line": "Paste in what changed, stop and ask on a login, show a draft before it sends.",
+  "start": 20.2,
+  "end": 24.5
+ },
+ {
+  "n": 8,
+  "line": "Follow for setups that actually works.",
+  "start": 24.92,
+  "end": 27.32
+ }
+]
