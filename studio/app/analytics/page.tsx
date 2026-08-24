@@ -43,7 +43,7 @@ function FollowersLine({ snaps }: { snaps: Snapshot[] }) {
   const innerH = H - PAD.top - PAD.bottom;
   const vMin = Math.min(...pts.map((p) => p.v));
   const vMax = Math.max(...pts.map((p) => p.v));
-  const lo = Math.max(0, vMin - Math.max(1, Math.round((vMax - vMin) * 0.15)));
+  const lo = Math.max(0, vMin - Math.max(1, Math.round((vMax - vMin) * 0.15 || vMax * 0.1)));
   const hi = vMax + Math.max(1, Math.round((vMax - vMin) * 0.15 || vMax * 0.1));
   const x = (i: number) => PAD.left + (pts.length === 1 ? innerW / 2 : (i / (pts.length - 1)) * innerW);
   const y = (v: number) => PAD.top + innerH - ((v - lo) / (hi - lo || 1)) * innerH;

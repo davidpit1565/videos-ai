@@ -194,9 +194,15 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
    4px rounded bar ends, direct end-labels, hover/focus tooltip on both. */
 .chart-section{margin-top:34px}
 .chart-section h2{font-size:18px;margin:0 0 12px}
+/* No padding here on purpose: the tooltip in analytics/page.tsx positions itself as a
+   percentage of the SVG's own viewBox (x/W, y/H). Wrapper padding would offset the
+   rendered SVG box from the wrapper box those percentages assume, and the tooltip
+   would drift from the point it's meant to sit on — worse near the edges, and never
+   correct vertically since PAD.top and PAD.bottom inside the chart aren't equal. The
+   chart's own PAD constants already reserve room for axis labels inside the viewBox. */
 .chart-wrap{position:relative;background:var(--panel);border:1px solid var(--line);
-  border-radius:var(--r);padding:14px 10px 6px}
-.chart{width:100%;height:auto;display:block;overflow:visible}
+  border-radius:var(--r);padding:0}
+.chart{width:100%;height:auto;display:block;overflow:visible;border-radius:inherit}
 .chart .grid{stroke:var(--line);stroke-width:1}
 .chart .axis{font-family:var(--m);font-size:11px;fill:var(--faint)}
 .chart .line{stroke:var(--brass);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
