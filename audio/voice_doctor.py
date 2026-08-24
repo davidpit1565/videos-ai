@@ -228,6 +228,9 @@ def watch_burst(path, cues):
             out.append((tw, None, "not in the transcript of the shipped file"))
             continue
         bm = burst.measure(y, float(hit["at"]), float(hit["dur"]))
+        if bm is None:
+            out.append((tw, None, "could not be measured"))
+            continue
         v = burst.verdict(bm)
         out.append((tw, bm["peak"], v))
     return out
