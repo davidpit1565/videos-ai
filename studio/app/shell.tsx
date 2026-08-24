@@ -14,6 +14,7 @@ const TABS = [
   { href: "/analytics", label: "התקדמות" },
   { href: "/week", label: "השבוע" },
   { href: "/renders", label: "רנדרים" },
+  { href: "/templates", label: "תבניות" },
   { href: "/pipeline", label: "צינור" },
   { href: "/agent", label: "סוכן" },
 ];
