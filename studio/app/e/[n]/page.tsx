@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
 import { SEQUEL_OF, SEQUEL_FOR } from "@/lib/reels";
+import Signup from "../../signup";
 
 export const revalidate = 300;
 
@@ -124,6 +125,12 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
           ))}
         </section>
       ) : null}
+
+      <section>
+        <h2>Get the next one</h2>
+        <p className="sub">One AI setup a week, straight to your inbox.</p>
+        <Signup source="episode" />
+      </section>
 
       <footer className="sfoot">
         {more.map((x) => (
