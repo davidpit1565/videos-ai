@@ -10,6 +10,7 @@ import { localDT } from "@/lib/fmt";
 const TABS = [
   { href: "/studio", label: "לוח" },
   { href: "/videos", label: "פרקים" },
+  { href: "/analytics", label: "התקדמות" },
   { href: "/week", label: "השבוע" },
   { href: "/renders", label: "רנדרים" },
   { href: "/pipeline", label: "צינור" },
