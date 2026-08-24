@@ -18,10 +18,16 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
   const [q, setQ] = useState("");
 
   const tagged = useMemo(() => eps.map((e) => ({ ...e, tool: toolFor(e.title) })), [eps]);
-  const tools = useMemo(
-    () => ["All", ...TOOLS.filter((t) => tagged.some((e) => e.tool === t))],
-    [tagged],
-  );
+  const tools = useMemo(() => {
+    // toolFor() falls back to "General" for anything not in TOOLS, so a pill list built
+    // only from TOOLS silently dropped every "General" episode's own filter — it still
+    // got the tag on its card, just no way to filter by it. Any tag actually in use gets
+    // a pill now, known tools in their fixed order first, then whatever else shows up.
+    const present = new Set(tagged.map((e) => e.tool));
+    const known = TOOLS.filter((t) => present.has(t));
+    const extra = [...present].filter((t) => !TOOLS.includes(t)).sort();
+    return ["All", ...known, ...extra];
+  }, [tagged]);
   const filtered = tagged.filter((e) => {
     if (tool !== "All" && e.tool !== tool) return false;
     if (q && !(e.title + " " + e.blurb).toLowerCase().includes(q.toLowerCase())) return false;
