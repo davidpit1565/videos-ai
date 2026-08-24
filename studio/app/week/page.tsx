@@ -19,15 +19,21 @@ export default function Week() {
   const days = weekDays(base);
   const label = `${days[0].slice(5)} – ${days[5].slice(5)}`;
 
-  const forDay = (d: string) => state.episodes.filter((e) => e.publishOn === d);
-  const unplanned = state.episodes.filter((e) => !e.publishOn && e.status !== "live");
+  // Once an episode is actually live, the day it went out is a fact (publishedAt, set
+  // from Instagram/YouTube's own timestamp) — not something to keep typing in by hand.
+  // publishOn stays for planning episodes that haven't shipped yet; a live episode's
+  // real date always wins once it exists, which is why reel 3 not being here after he
+  // published it was the bug: the calendar only ever looked at the manual field.
+  const dateFor = (e: Episode) => e.publishedAt ?? e.publishOn ?? null;
+  const forDay = (d: string) => state.episodes.filter((e) => dateFor(e) === d);
+  const unplanned = state.episodes.filter((e) => !dateFor(e));
 
   /** One a day, Sunday to Friday, in episode order — the schedule he asked for. */
   function fill() {
     update((s) => {
-      const free = days.filter((d) => !s.episodes.some((e) => e.publishOn === d));
+      const free = days.filter((d) => !s.episodes.some((e) => dateFor(e) === d));
       const ready = s.episodes
-        .filter((e) => !e.publishOn && e.status !== "live")
+        .filter((e) => !dateFor(e))
         .sort((a, b) => a.number - b.number);
       for (const d of free) {
         const e = ready.shift();
