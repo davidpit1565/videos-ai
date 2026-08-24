@@ -14,7 +14,7 @@
 
 /** the private tool: the whole business is in here */
 export const STUDIO = [
-  "/studio", "/videos", "/analytics", "/week", "/pipeline", "/agent", "/renders",
+  "/studio", "/videos", "/analytics", "/week", "/pipeline", "/agent", "/renders", "/templates",
   // named separately from the public manifest, and gated like everything else here: a
   // manifest that can be fetched is a manifest that tells a stranger the tool exists
   "/studio.webmanifest",
