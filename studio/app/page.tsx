@@ -3,6 +3,7 @@ import { catalogue } from "@/lib/site";
 import { PROMPTS } from "@/lib/prompts";
 import Signup from "./signup";
 import SiteNav from "./sitenav";
+import EpisodesBrowser from "./episodes-browser";
 
 export const metadata = {
   title: { absolute: "Actually Works — AI setups that actually work" },
@@ -13,21 +14,53 @@ export const revalidate = 300;
 
 export default async function Home() {
   const eps = await catalogue();
+  const live = eps.filter((e) => e.live);
+  const totalViews = live.reduce((a, e) => a + (e.views ?? 0), 0);
+
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/" />
-      <header className="hero">
-        <h1>
-          AI setups that <em>actually work</em>.
-        </h1>
-        <p className="sub">
-          One setup per episode. The exact screen, the exact paste, and the part that
-          breaks — because the part that breaks is the part everyone else skips.
-        </p>
-        <Signup source="home" />
+      <header className="hero herotwo">
+        <div className="herotext">
+          <p className="kicker">AI CREATOR</p>
+          <h1>
+            AI setups that <em>actually work</em>.
+          </h1>
+          <p className="sub">
+            One setup per episode. The exact screen, the exact paste, and the part that
+            breaks — because the part that breaks is the part everyone else skips.
+          </p>
+          <div className="herocta">
+            <a className="cta" href="#episodes">
+              Browse episodes →
+            </a>
+            <Link href="/about">My story →</Link>
+          </div>
+          <Signup source="home" />
+          {/* Real, already-measured numbers only — a stat with nothing behind it yet
+              doesn't get a tile, rather than a tile showing a fabricated 0. */}
+          {(live.length > 0 || totalViews > 0) && (
+            <div className="herostats">
+              {live.length > 0 && (
+                <div>
+                  <b>{live.length}</b>
+                  <span>episode{live.length === 1 ? "" : "s"} live</span>
+                </div>
+              )}
+              {totalViews > 0 && (
+                <div>
+                  <b>{totalViews.toLocaleString("en-US")}</b>
+                  <span>real views measured</span>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+        {/* No stock or generated photo here — a real one goes in when he gives one. */}
+        <div className="herophoto" aria-hidden="true" />
       </header>
 
-      <section>
+      <section id="episodes">
         <h2>Episodes</h2>
         {eps.length === 0 ? (
           <p className="empty">
@@ -35,17 +68,7 @@ export default async function Home() {
             it goes out.
           </p>
         ) : (
-          <ol className="eps">
-            {eps.map((e) => (
-              <li key={e.n}>
-                <Link href={`/e/${e.n}`}>
-                  <span className="n">{String(e.n).padStart(2, "0")}</span>
-                  <span className="t">{e.title}</span>
-                  <span className="tp">{e.blurb}</span>
-                </Link>
-              </li>
-            ))}
-          </ol>
+          <EpisodesBrowser eps={eps} />
         )}
       </section>
 
