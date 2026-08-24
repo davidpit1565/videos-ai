@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useStudio } from "../providers";
 import Notify from "../notify";
 import { saveRate, uid } from "@/lib/types";
-import { eur, n, pct, today } from "@/lib/fmt";
+import { eur, localDT, n, pct, today } from "@/lib/fmt";
 
 type Bee = {
   connected: boolean;
@@ -133,7 +133,7 @@ export default function Dashboard() {
         <ul className="feed">
           {(state.activity ?? []).slice(0, 25).map((a) => (
             <li key={a.id}>
-              <span className="dt">{a.at.slice(5, 16).replace("T", " ")}</span>
+              <span className="dt">{localDT(a.at).slice(5)}</span>
               <span className="what">{a.label}</span>
               <span className={"d " + (a.delta == null ? "flat" : a.delta > 0 ? "up" : "down")}>
                 {a.delta == null ? n(a.value) : (a.delta > 0 ? "+" : "") + n(a.delta)}
