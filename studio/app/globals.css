@@ -337,7 +337,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   --code:"IBM Plex Mono",ui-monospace,monospace;
   direction:ltr; text-align:left;
   background:var(--paper); color:var(--ink); font-family:var(--sans);
-  max-width:44rem; margin:0 auto; padding:clamp(1.7rem,5vw,3.6rem) clamp(1.1rem,4.5vw,1.7rem) 5rem;
+  max-width:64rem; margin:0 auto; padding:clamp(1.7rem,5vw,3.6rem) clamp(1.1rem,4.5vw,1.7rem) 5rem;
   font-size:17.5px; line-height:1.62;
 }
 /* the ground has to be painted behind the container too, or the dark body shows
