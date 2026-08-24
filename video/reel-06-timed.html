@@ -115,56 +115,56 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- RECAP (kept under 8s on purpose) -->
-<section class="scene" data-in="0" data-out="3.60">
+<section class="scene" data-in="0" data-out="3.53">
   <div class="pad"><div class="kb">
     <h2 class="b punch" data-at="0">Last time:<br>3 things your<br>agent still <span class="ebox">breaks on</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="3.60" data-out="7.40">
+<section class="scene" data-in="3.53" data-out="6.84">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="3.60">No memory.<br>Login screens.<br>No <span class="box">undo</span>.</h2>
+    <h2 class="b punch" data-at="3.56">No memory.<br>Login screens.<br>No <span class="box">undo</span>.</h2>
   </div></div>
 </section>
 
 <!-- SOLUTIONS -->
-<section class="scene" data-in="7.40" data-out="10.60">
+<section class="scene" data-in="6.84" data-out="9.22">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="7.40">Here's the<br><span class="ebox">real fix</span><br>for each one.</h2>
+    <h2 class="b punch" data-at="6.87">Here's the<br><span class="ebox">real fix</span><br>for each one.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="10.60" data-out="14.60">
+<section class="scene" data-in="9.22" data-out="12.715">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="10.60">Memory: <span class="box">what changed</span>.</h2>
+    <h2 class="b punch" data-at="9.25">Memory: <span class="box">what changed</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="14.60" data-out="18.60">
+<section class="scene" data-in="12.715" data-out="16.6">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="14.60">Logins: tell it to<br><span class="ebox">stop and ask</span><br>you. Don't guess.</h2>
+    <h2 class="b punch" data-at="12.745">Logins: tell it to<br><span class="ebox">stop and ask</span><br>you. Don't guess.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="18.60" data-out="22.60">
+<section class="scene" data-in="16.6" data-out="19.99">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="18.60">Undo: make it show<br>you a <span class="box">draft</span><br>before it sends.</h2>
+    <h2 class="b punch" data-at="16.63">Undo: make it show<br>you a <span class="box">draft</span><br>before it sends.</h2>
   </div></div>
 </section>
 
 <!-- the takeaway — the three fixes, on their own screen -->
-<section class="scene" data-in="22.60" data-out="29.20">
+<section class="scene" data-in="19.99" data-out="24.71">
   <div class="pad"><div class="kb">
-    <div class="takecard b" data-at="22.70">
+    <div class="takecard b" data-at="20.02">
       <div class="tc-k">The 3 fixes</div>
       <div class="tc-b">1. Paste in <strong>what changed</strong>.<br>2. On a login, <strong>stop and ask</strong>.<br>3. Show a <strong>draft</strong> before it sends.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="29.20" data-out="32.30">
+<section class="scene" data-in="24.71" data-out="27.67">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="29.30" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="24.74" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -193,7 +193,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=32.30,t=0,playing=false,last=0;
+  var DUR=28.22,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -204,14 +204,14 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var flash=document.getElementById('flash'),flashTxt=document.getElementById('flashTxt');
 
   var CUES=[
-    [0.30,3.30,"Last time: three things your agent still breaks on."],
-    [3.60,7.10,"No memory. Login screens. No undo."],
-    [7.40,10.30,"Here's the real fix for each one."],
-    [10.60,14.30,"Memory: paste in what changed since last time."],
-    [14.60,18.30,"Logins: tell it to stop and ask you. Don't guess."],
-    [18.60,22.30,"Undo: make it show you a draft before it sends."],
-    [22.60,28.90,"Paste in what changed, stop and ask on a login, show a draft before it sends."],
-    [29.20,31.95,"Follow for setups that actually works."]
+    [0.30,3.32,"Last time: three things your agent still breaks on."],
+    [3.74,6.63,"No memory. Login screens. No undo."],
+    [7.05,9.01,"Here's the real fix for each one."],
+    [9.43,12.29,"Memory: paste in what changed since last time."],
+    [13.14,16.39,"Logins: tell it to stop and ask you. Don't guess."],
+    [16.81,19.78,"Undo: make it show you a draft before it sends."],
+    [20.20,24.50,"Paste in what changed, stop and ask on a login, show a draft before it sends."],
+    [24.92,27.32,"Follow for setups that actually works."]
   ];
   var FDUR=0.55,FLASH=[];
 
