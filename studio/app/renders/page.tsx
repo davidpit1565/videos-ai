@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { reels } from "@/lib/reels";
+import { reels, SEQUEL_OF, SEQUEL_FOR } from "@/lib/reels";
 import { localDT } from "@/lib/fmt";
 import { loadState } from "@/lib/db";
 
@@ -48,6 +48,16 @@ export default async function Renders() {
             </b>
             {r.episode !== null && liveNumbers.has(r.episode) && (
               <span className="pill pass">כבר פורסם</span>
+            )}
+            {r.episode !== null && SEQUEL_FOR[r.episode] !== undefined && (
+              <span className="pill unknown">
+                יש חלק 2: פרק {String(SEQUEL_FOR[r.episode]).padStart(2, "0")}
+              </span>
+            )}
+            {r.episode !== null && SEQUEL_OF[r.episode] !== undefined && (
+              <span className="pill unknown">
+                חלק 2 לפרק {String(SEQUEL_OF[r.episode]).padStart(2, "0")}
+              </span>
             )}
             {r.gate === null ? (
               <span className="pill unknown">השער לא רץ</span>
