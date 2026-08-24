@@ -1,0 +1,311 @@
+<title>Reel 05 — Your captions are hiding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ink:#080B10;--line:#2C3745;
+  --brass:#FFCF4A;--brass-hot:#FFE188;--ember:#FF6B3D;
+  --text:#FFFFFF;--muted:#9AA7B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#05070A;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.bg{position:absolute;inset:0;z-index:0}
+.bg i{position:absolute;display:block;border-radius:50%;will-change:transform;left:0;top:0}
+.bg .b1{width:130cqw;height:130cqw;top:-40cqw;left:-30cqw;background:radial-gradient(circle closest-side,rgba(255,207,74,.5),rgba(255,207,74,0) 70%)}
+.bg .b2{width:150cqw;height:150cqw;top:50cqw;left:-10cqw;background:radial-gradient(circle closest-side,rgba(40,110,190,.48),rgba(40,110,190,0) 70%)}
+.bg .b3{width:120cqw;height:120cqw;top:120cqw;left:20cqw;background:radial-gradient(circle closest-side,rgba(255,107,61,.4),rgba(255,107,61,0) 70%)}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+.vig{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 50%,transparent 40%,rgba(5,7,10,.55) 100%)}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--brass);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(255,207,74,.7)}
+
+.scene{position:absolute;inset:0;z-index:2;opacity:0;visibility:hidden}
+.scene.active{opacity:1;visibility:visible}
+.pad{position:absolute;inset:0;padding:28cqw 10cqw 65cqw;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:12.6cqw;line-height:.98;letter-spacing:-.045em;
+  margin:0;text-wrap:balance;position:relative;z-index:2}
+h2 em{font-style:normal;color:var(--brass)}
+h2 .box{background:var(--brass);color:#0A0A0A;padding:0 1.6cqw;border-radius:1cqw;
+  display:inline-block;transform:rotate(-1.2deg)}
+h2 .ebox{background:var(--ember);color:#fff;padding:0 1.6cqw;border-radius:1cqw;display:inline-block}
+p.lede{font-size:5.6cqw;line-height:1.3;color:#D5DCE6;margin:0;font-weight:700;position:relative;z-index:2}
+p.lede strong{color:var(--brass)}
+
+.flash{position:absolute;inset:0;z-index:12;background:var(--brass);display:grid;place-items:center;
+  opacity:0;visibility:hidden}
+.flash.on{opacity:1;visibility:visible}
+.flash span{font-family:var(--d);font-weight:900;font-size:13.4cqw;color:#0A0A0A;letter-spacing:-.045em;
+  text-transform:uppercase;max-width:86cqw;text-align:center;line-height:1.02;
+  transform:scale(.9);transition:transform .22s cubic-bezier(.2,1.6,.4,1)}
+.flash.on span{transform:scale(1)}
+
+.subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
+  font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
+  text-transform:uppercase;
+  text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
+.subs em{font-style:normal;background:var(--brass);color:#0A0A0A;padding:0 1.4cqw;border-radius:.9cqw;
+  display:inline-block;text-shadow:none}
+.subs b{font-weight:800;color:#fff;transition:color .09s linear,transform .09s linear;display:inline-block}
+.subs b.on{color:var(--brass);transform:scale(1.06)}
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#6C7889}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,10,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#2E3743;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#2E3743;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#141014;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+.side{flex:1 1 320px;max-width:470px}
+.side .k{font-family:var(--m);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8A7434;margin:0 0 8px}
+.side h1{font-family:var(--d);font-weight:900;font-size:clamp(24px,3vw,34px);letter-spacing:-.035em;margin:0 0 12px;line-height:1.03}
+.side h1 em{font-style:normal;color:var(--brass)}
+.side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.62}
+.side strong{color:var(--text)}
+
+.igicon{width:9.5cqw;height:9.5cqw;display:inline-block;vertical-align:-1.6cqw;margin-inline-end:1.2cqw;
+  border-radius:2.4cqw;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
+.igicon svg{width:100%;height:100%;display:block}
+
+/* the two stats he says with his mouth get the same weight on screen — a real bar
+   pair, not a text card, since a number with no shape next to it is the thing this
+   channel keeps calling out in every other episode's own advice */
+.graph{width:100%;display:flex;flex-direction:column;gap:4.6cqw;position:relative;z-index:2}
+.gr{display:flex;flex-direction:column;gap:1.4cqw}
+.gr .gl{font-family:var(--b);font-weight:700;font-size:4.6cqw;color:#D5DCE6}
+.gr .gt{position:relative;height:7.4cqw;background:#151B24;border:1px solid var(--line);border-radius:3.7cqw}
+.gr .gf{position:absolute;inset:0;width:0;border-radius:3.7cqw;
+  background:linear-gradient(90deg,var(--brass),var(--brass-hot));
+  display:flex;align-items:center;justify-content:flex-end;padding-inline-end:2.4cqw}
+.gr .gv{font-family:var(--m);font-weight:700;font-size:4cqw;color:#0A0A0A;white-space:nowrap}
+
+/* the takeaway card — a real, usable number the viewer can screenshot */
+.takecard{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2}
+.takecard .tc-k{font-family:var(--m);font-size:3cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#8A7434;margin:0 0 2.4cqw}
+.takecard .tc-b{font-family:var(--b);font-weight:700;font-size:6.2cqw;line-height:1.32;color:#0D0D0D}
+.takecard .tc-b strong{color:#B8860B}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .side,body.render .ctl,body.render .tapover{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
+<div class="grain" data-decor></div>
+<div class="vig"></div>
+<div class="prog" id="prog"></div>
+
+<!-- HOOK -->
+<section class="scene" data-in="0" data-out="2.78">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="0">Your captions<br>are hiding<br>behind <span class="ebox"><span class="igicon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="4.6" stroke="#fff" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.15" fill="#fff"/></svg></span>Instagram</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="2.78" data-out="7.35">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="2.81">Not a guess —<br>we <span class="box">measured</span> 413 pixels.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="7.35" data-out="12.64">
+  <div class="pad"><div class="kb">
+    <div class="graph b" data-at="7.38">
+      <div class="gr">
+        <div class="gl">Clips with captions</div>
+        <div class="gt"><div class="gf" style="width:80.2%"><span class="gv">80.2%</span></div></div>
+      </div>
+      <div class="gr">
+        <div class="gl">Captions that animate</div>
+        <div class="gt"><div class="gf" style="width:78.6%"><span class="gv">78.6%</span></div></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="12.64" data-out="15.705">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="12.67">The caption shows up.<br>Nobody <span class="ebox">sees</span> it.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="15.705" data-out="19.12">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="15.735">The platform hides<br>the bottom <span class="ebox">on purpose</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="19.12" data-out="22.12">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="19.15">We checked our videos.<br><span class="box">Same mistake</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="22.12" data-out="26.17">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="22.15">Now it's where<br>you can <span class="ebox">see</span> it.</h2>
+  </div></div>
+</section>
+
+<!-- the takeaway — the exact numbers, on their own screen -->
+<section class="scene" data-in="26.17" data-out="31.235">
+  <div class="pad"><div class="kb">
+    <div class="takecard b" data-at="26.2">
+      <div class="tc-k">The safe zone</div>
+      <div class="tc-b">Keep text out of the top <strong>269px</strong> and bottom <strong>672px</strong> on 1080×1920.</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="31.235" data-out="34.53">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="31.265" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+  </div></div>
+</section>
+
+<div class="flash" id="flash"><span id="flashTxt"></span></div>
+<div class="subs" id="subs"></div>
+<div class="handle" data-decor>@actuallyworks.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="36" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+
+<div class="side">
+  <p class="k">Episode 17 · Reel 05</p>
+  <h1>Your captions are hiding behind <em>Instagram</em></h1>
+  <p>Meta publishes the numbers: the bottom third of a 9:16 frame is where the interface draws
+  the username, caption, audio label and buttons. 80.2% of short clips carry captions and
+  78.6% animate them — and a caption sitting in that bottom third is behind the UI, not on
+  top of it. We measured our own videos and found the same mistake.</p>
+</div>
+</div>
+
+<script>
+(function(){
+  var DUR=34.83,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+  var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+  var flash=document.getElementById('flash'),flashTxt=document.getElementById('flashTxt');
+
+  var CUES=[
+    [0.30,2.57,"Your captions are hiding behind <em>Instagram</em>."],
+    [2.99,7.14,"Not a guess. We measured 413 pixels. Gone."],
+    [7.56,12.43,"80.2% of clips use captions. 78.6% animate them."],
+    [12.85,15.28,"The caption shows up fine. Nobody sees it."],
+    [16.13,18.91,"The platform hides the bottom on purpose."],
+    [19.33,21.91,"We checked our own videos. Same mistake."],
+    [22.33,25.96,"Now every caption sits in the space you can actually see."],
+    [26.38,30.81,"Keep text out of the top 269 pixels and bottom 672 pixels."],
+    [31.66,33.93,"Follow for setups that actually works."]
+  ];
+  var FDUR=0.55,FLASH=[];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      s.classList.toggle('active',on); if(on) active=s;
+    }
+    if(active){
+      var f=(t-+active.dataset.in)/((+active.dataset.out)-(+active.dataset.in));
+      var kbs=active.querySelectorAll('.kb');
+      for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.06*f).toFixed(4)+')';
+    }
+    var pu=0;
+    for(i=0;i<CUES.length;i++){
+      var pd=t-CUES[i][0]; if(pd>=0&&pd<0.22){ pu=1-pd/0.22; break; }
+    }
+    for(i=0;i<scenes.length;i++)
+      scenes[i].style.transform = (scenes[i]===active&&pu) ? 'scale('+(1+0.02*pu).toFixed(4)+')' : '';
+
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      e.classList.toggle('snap',t<0.30);
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    var fl=null;
+    for(i=0;i<FLASH.length;i++) if(t>=FLASH[i][0]&&t<FLASH[i][0]+FDUR) fl=FLASH[i];
+    flash.classList.toggle('on',!!fl);
+    if(fl&&flashTxt.textContent!==fl[1]) flashTxt.textContent=fl[1];
+
+    b1.style.transform='translate('+(2+14*Math.sin(t*0.3))+'cqw,'+(-4+16*Math.cos(t*0.22))+'cqw)';
+    b2.style.transform='translate('+(18*Math.cos(t*0.18+1.4))+'cqw,'+(16*Math.sin(t*0.24+.6))+'cqw)';
+    b3.style.transform='translate('+(10+18*Math.sin(t*0.15+2.1))+'cqw,'+(-10*Math.cos(t*0.2+1.1))+'cqw)';
+
+    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
+    subs.innerHTML=txt;
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;tap.classList.add('hide');render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>
