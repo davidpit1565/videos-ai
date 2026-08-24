@@ -94,3 +94,8 @@ export/*.mp4
 # static asset, so the studio can play it and he can save it to his phone from there.
 # Keep it to the reels actually in review; delete one when its episode goes live.
 !studio/public/reels/*.mp4
+
+# Written fresh by studio/scripts/write-build-info.mjs on every build (real commit sha +
+# build time) — a local `npm run build` for testing leaves this untracked; it's derived,
+# not source, and Vercel regenerates it on every real deploy.
+studio/public/build-info.json

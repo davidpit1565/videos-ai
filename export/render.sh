@@ -58,4 +58,25 @@ else
     -c:a aac -b:a 192k -ar 48000 -ac 2 "$OUT"
 fi
 
+# The loudnorm above runs inside a real-time filter graph with no first pass to measure
+# against, and it has landed at -15.8 LUFS (vs the -14 target) on two separate renders now
+# — always low, never high, so it isn't noise. A genuine two-pass loudnorm (measure, then
+# apply with linear=true and the measured stats) fixes it for good instead of a manual
+# ffmpeg patch every time the gate catches it.
+echo "loudness correction: measuring the render's true stats"
+ffmpeg -hide_banner -i "$OUT" -af loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json -f null - 2> "$TMP/loudstats.log"
+read -r MEAS_I MEAS_TP MEAS_LRA MEAS_THRESH <<STATS
+$(python3 -c "
+import json
+text = open('$TMP/loudstats.log').read()
+data = json.loads(text[text.rfind('{'):])
+print(data['input_i'], data['input_tp'], data['input_lra'], data['input_thresh'])
+")
+STATS
+ACTUAL_DUR="$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$OUT")"
+ffmpeg -hide_banner -loglevel error -y -i "$OUT" -c:v copy \
+  -af "loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${MEAS_I}:measured_TP=${MEAS_TP}:measured_LRA=${MEAS_LRA}:measured_thresh=${MEAS_THRESH}:linear=true,aresample=48000" \
+  -c:a aac -b:a 192k -ar 48000 -ac 2 -t "$ACTUAL_DUR" "$TMP/corrected.mp4"
+mv "$TMP/corrected.mp4" "$OUT"
+
 ffprobe -hide_banner -v error -show_entries format=duration,size -of default=nw=1 "$OUT"

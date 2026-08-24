@@ -174,15 +174,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="23.035" data-out="26.24">
+<section class="scene" data-in="23.035" data-out="26.59">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="23.065" style="font-size:5.6cqw">Copy the prompt below,<br>or tap the <strong>link in our bio</strong>.</p>
+    <p class="lede b" data-at="23.065" style="font-size:5.6cqw">Copy the prompt below,<br>or tap the <strong>bio link</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="26.24" data-out="29.77">
+<section class="scene" data-in="26.59" data-out="30.12">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="26.27" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="26.62" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -212,7 +212,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=30.27,t=0,playing=false,last=0;
+  var DUR=30.62,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -231,32 +231,32 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [13.53,16.31,"By the time you notice, it's already gone."],
     [16.73,18.41,"One quick fix stops it."],
     [18.83,22.61,"If it can't tell, stop, and ask a person. Don't send it out."],
-    [23.46,26.03,"Copy the prompt below, or tap the link in our bio."],
-    [26.45,29.37,"Follow for setups that actually works."]
+    [23.46,26.38,"Copy the prompt below, or tap the bio link."],
+    [26.80,29.72,"Follow for setups that actually works."]
   ];
   var WORDS=[
-    [0.3,0.64,"Your",0],
-    [0.64,1.3,"n8n",0],
-    [1.3,1.66,"agent",0],
-    [1.66,2.08,"can't",1],
+    [0.3,0.66,"Your",0],
+    [0.66,1.32,"n8n",0],
+    [1.32,1.64,"agent",0],
+    [1.64,2.08,"can't",1],
     [2.08,2.3,"tell",1],
     [2.3,2.46,"when",1],
     [2.46,2.6,"it",2],
     [2.6,2.88,"messes",2],
-    [2.88,3.5,"up.",2],
+    [2.88,3.52,"up.",2],
     [3.76,3.88,"It",3],
     [3.88,4.12,"just",3],
     [4.12,4.3,"keeps",3],
     [4.3,4.56,"going",4],
-    [4.56,5.14,"anyway.",4],
+    [4.56,5.24,"anyway.",4],
     [5.8,6.02,"Nothing",5],
     [6.02,6.4,"stops",5],
     [6.4,6.64,"to",5],
     [6.64,6.78,"check",6],
-    [6.78,7.26,"itself.",6],
-    [7.8,7.96,"It",7],
+    [6.78,7.24,"itself.",6],
+    [7.82,7.96,"It",7],
     [7.96,8.24,"handles",7],
-    [8.24,9.0,"refunds.",7],
+    [8.24,8.98,"refunds.",7],
     [9.04,9.2,"One",8],
     [9.2,9.46,"gets",8],
     [9.46,9.76,"by.",8],
@@ -265,52 +265,50 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [11.02,11.24,"bad",9],
     [11.24,11.58,"result",10],
     [11.58,11.96,"goes",10],
-    [11.96,12.32,"out.",10],
-    [12.32,12.78,"Every",11],
-    [12.78,13.16,"time.",11],
-    [13.54,13.76,"By",12],
+    [11.96,12.34,"out.",10],
+    [12.48,12.72,"Every",11],
+    [12.72,13.12,"time.",11],
+    [13.56,13.76,"By",12],
     [13.76,14.0,"the",12],
     [14.0,14.18,"time",12],
-    [14.18,14.38,"you",13],
-    [14.38,14.88,"notice,",13],
-    [15.18,15.56,"it's",14],
+    [14.18,14.36,"you",13],
+    [14.36,14.84,"notice,",13],
+    [15.2,15.56,"it's",14],
     [15.56,15.96,"already",14],
     [15.96,16.26,"gone.",14],
-    [16.8,17.06,"One",15],
-    [17.06,17.32,"quick",15],
-    [17.32,17.66,"fix",15],
-    [17.66,18.18,"stops",16],
-    [18.18,18.52,"it.",16],
+    [16.82,17.06,"One",15],
+    [17.06,17.34,"quick",15],
+    [17.34,17.66,"fix",15],
+    [17.66,18.16,"stops",16],
+    [18.16,18.62,"it.",16],
     [18.96,19.1,"If",17],
     [19.1,19.24,"it",17],
-    [19.24,19.6,"can't",17],
-    [19.6,19.8,"tell,",18],
-    [20.12,20.44,"stop,",19],
+    [19.24,19.58,"can't",17],
+    [19.58,19.8,"tell,",18],
+    [20.14,20.44,"stop,",19],
     [20.44,20.78,"and",19],
     [20.78,21.02,"ask",19],
     [21.02,21.18,"a",19],
-    [21.18,21.46,"person.",20],
-    [21.84,22.06,"Don't",21],
-    [22.06,22.28,"send",21],
-    [22.28,22.44,"it",21],
+    [21.18,21.44,"person.",20],
+    [21.86,22.06,"Don't",21],
+    [22.06,22.3,"send",21],
+    [22.3,22.44,"it",21],
     [22.44,22.98,"out.",22],
-    [23.52,23.78,"Copy",23],
-    [23.78,23.98,"the",23],
-    [23.98,24.14,"prompt",23],
-    [24.14,24.5,"below,",24],
-    [24.5,24.86,"or",24],
-    [24.86,25.0,"tap",24],
-    [25.0,25.18,"the",24],
-    [25.18,25.32,"link",25],
-    [25.32,25.56,"in",25],
-    [25.56,25.72,"our",25],
-    [25.72,26.02,"bio.",26],
-    [26.45,26.94,"Follow",27],
-    [26.94,27.42,"for",27],
-    [27.42,27.68,"setups",27],
-    [27.68,28.18,"that",28],
-    [28.18,28.88,"actually",28],
-    [28.88,29.24,"works.",28]
+    [23.76,24.04,"Copy",23],
+    [24.04,24.28,"the",23],
+    [24.28,24.48,"prompt",23],
+    [24.48,24.9,"below,",24],
+    [24.9,25.46,"or",24],
+    [25.46,25.68,"tap",24],
+    [25.68,25.9,"the",24],
+    [25.9,26.1,"bio",25],
+    [26.1,26.44,"link.",25],
+    [26.8,27.3,"Follow",26],
+    [27.3,27.78,"for",26],
+    [27.78,28.02,"setups",26],
+    [28.02,28.52,"that",27],
+    [28.52,29.24,"actually",27],
+    [29.24,29.58,"works.",27]
   ];
   var FDUR=0.55,FLASH=[];
 

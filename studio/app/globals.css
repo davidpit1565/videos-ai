@@ -189,6 +189,32 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 .dot{width:9px;height:9px;border-radius:50%;background:var(--faint);display:inline-block;margin-top:8px}
 .dot.on{background:var(--ok)}
 
+/* /analytics — single-series charts (one metric each), so no legend: the section
+   heading already names what's plotted. Hairline gridlines, 2px round-cap line,
+   4px rounded bar ends, direct end-labels, hover/focus tooltip on both. */
+.chart-section{margin-top:34px}
+.chart-section h2{font-size:18px;margin:0 0 12px}
+.chart-wrap{position:relative;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);padding:14px 10px 6px}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .axis{font-family:var(--m);font-size:11px;fill:var(--faint)}
+.chart .line{stroke:var(--brass);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.chart .endpoint{fill:var(--brass);stroke:var(--panel);stroke-width:2}
+.chart .end-label{font-family:var(--m);font-size:12px;font-weight:700;fill:var(--text)}
+.chart .crosshair{stroke:var(--line-2);stroke-width:1;pointer-events:none}
+.chart .bar{fill:var(--brass-dim);cursor:pointer;transition:fill .1s}
+.chart .bar-hover,.chart .bar:hover,.chart .bar:focus{fill:var(--brass);outline:none}
+.chart-note{font-size:13.5px;color:var(--faint);margin:8px 2px 0}
+.chart-empty{background:var(--panel);border:1px dashed var(--line-2);border-radius:var(--r);
+  padding:22px 18px;color:var(--muted);font-size:15px;line-height:1.6}
+.tooltip{position:absolute;transform:translate(-50%,-130%);background:var(--raise);
+  border:1px solid var(--line-2);border-radius:8px;padding:6px 10px;font-size:13px;
+  white-space:nowrap;pointer-events:none;direction:ltr;text-align:center}
+.tooltip b{font-family:var(--m);color:var(--brass);display:block;font-size:14px}
+.tooltip span{color:var(--faint);font-size:12px}
+.empty-cell{color:var(--faint);text-align:center;padding:22px}
+
 @media(max-width:760px){
   .cards{display:flex}
   .tw.eps{display:none}
