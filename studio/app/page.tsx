@@ -20,26 +20,47 @@ export default async function Home() {
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/" />
-      <header className="hero">
-        <h1>
-          AI setups that <em>actually work</em>.
-        </h1>
-        <p className="sub">
-          One setup per episode. The exact screen, the exact paste, and the part that
-          breaks — because the part that breaks is the part everyone else skips.
-        </p>
-        {/* Real, already-measured numbers only — no series here is invented, and a
-            metric with nothing behind it yet (0 views measured so far) doesn't print. */}
-        {(live.length > 0 || totalViews > 0) && (
-          <p className="herostat">
-            {live.length} episode{live.length === 1 ? "" : "s"} live
-            {totalViews > 0 ? ` · ${totalViews.toLocaleString("en-US")} real views measured` : ""}
+      <header className="hero herotwo">
+        <div className="herotext">
+          <p className="kicker">AI CREATOR</p>
+          <h1>
+            AI setups that <em>actually work</em>.
+          </h1>
+          <p className="sub">
+            One setup per episode. The exact screen, the exact paste, and the part that
+            breaks — because the part that breaks is the part everyone else skips.
           </p>
-        )}
-        <Signup source="home" />
+          <div className="herocta">
+            <a className="cta" href="#episodes">
+              Browse episodes →
+            </a>
+            <Link href="/about">My story →</Link>
+          </div>
+          <Signup source="home" />
+          {/* Real, already-measured numbers only — a stat with nothing behind it yet
+              doesn't get a tile, rather than a tile showing a fabricated 0. */}
+          {(live.length > 0 || totalViews > 0) && (
+            <div className="herostats">
+              {live.length > 0 && (
+                <div>
+                  <b>{live.length}</b>
+                  <span>episode{live.length === 1 ? "" : "s"} live</span>
+                </div>
+              )}
+              {totalViews > 0 && (
+                <div>
+                  <b>{totalViews.toLocaleString("en-US")}</b>
+                  <span>real views measured</span>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+        {/* No stock or generated photo here — a real one goes in when he gives one. */}
+        <div className="herophoto" aria-hidden="true" />
       </header>
 
-      <section>
+      <section id="episodes">
         <h2>Episodes</h2>
         {eps.length === 0 ? (
           <p className="empty">
