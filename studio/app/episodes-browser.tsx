@@ -55,11 +55,23 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
       {filtered.length === 0 ? (
         <p className="empty">No episode matches that yet.</p>
       ) : (
-        <ol className="eps">
+        <ol className="eps eps-thumbed">
           {filtered.map((e) => (
             <li key={e.n}>
               <Link href={`/e/${e.n}`}>
-                <span className="n">{String(e.n).padStart(2, "0")}</span>
+                {e.ytVideoId ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- YouTube's own
+                  // thumbnail CDN, not a local asset; next/image can't optimize a
+                  // third-party host without extra config for one thumbnail per episode.
+                  <img
+                    className="ethumb"
+                    src={`https://i.ytimg.com/vi/${e.ytVideoId}/hqdefault.jpg`}
+                    alt=""
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="n">{String(e.n).padStart(2, "0")}</span>
+                )}
                 <span className="tag">{e.tool}</span>
                 <span className="t">{e.title}</span>
                 <span className="tp">{e.blurb}</span>

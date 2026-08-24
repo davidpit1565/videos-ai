@@ -413,6 +413,10 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .site .eps a:hover{border-color:var(--gold-lit)}
 .site .eps .n{font-family:var(--code);font-size:.8rem;color:var(--gold);
   font-variant-numeric:tabular-nums;grid-row:span 3;padding-top:.28rem}
+/* the real YouTube thumbnail instead of a bare number, once an episode has a video —
+   the number-only card read as a spec sheet, not a preview of something to watch */
+.site .eps .ethumb{grid-row:span 3;width:6rem;height:6rem;object-fit:cover;
+  border-radius:.6rem;background:var(--wash)}
 .site .eps .tag{font-family:var(--code);font-size:.68rem;letter-spacing:.08em;
   text-transform:uppercase;color:var(--gold-lit)}
 .site .eps .t{font-family:var(--serif);font-weight:700;font-size:1.14rem;line-height:1.25}
