@@ -359,8 +359,8 @@ export default function Videos() {
                   <input className="cell n" inputMode="numeric" value={e.subsAttributed ?? ""} onChange={(ev) => num(i, "subsAttributed", ev.target.value)} />
                 </td>
                 <td>
-                  <button className="del" aria-label="מחיקה" onClick={() => update((d) => void d.episodes.splice(i, 1))}>
-                    ×
+                  <button className="del del-labeled" onClick={() => update((d) => void d.episodes.splice(i, 1))}>
+                    × מחק
                   </button>
                 </td>
               </tr>
