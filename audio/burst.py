@@ -76,9 +76,23 @@ def load(p):
     return y / (np.abs(y).max() + 1e-9)
 
 
-def measure(y, at, dur):
-    """peak: high band before voicing, relative to the word's own vowel, in dB."""
-    a = max(0, int((at - 0.08) * SR))
+def measure(y, at, dur, prev_end=None):
+    """peak: high band before voicing, relative to the word's own vowel, in dB.
+
+    `prev_end` clips the lead-in window so it never reaches into the previous word.
+    Without it, a target word that follows closely on another one's voiced tail (no
+    pause between them, mid-sentence rather than the start of a line) can have its own
+    vowel peak found *inside* that bleed-over instead of inside the target word itself
+    — the calibration set (`IN_SCOPE`'s docstring) always had a clean pause before the
+    target, so this case was never in the calibrated set. Found on reel-06's "three",
+    which sits right after "time" with no pause: at the plain 0.08s window the low-band
+    peak (`vpk`) landed 5 frames in, i.e. still inside "time"'s tail, not "three"'s own
+    vowel, and the walk-back for `pre` had nowhere left to go. Clipping to the boundary
+    forces the search to start no earlier than the target word actually does."""
+    lo_bound = at - 0.08
+    if prev_end is not None:
+        lo_bound = max(lo_bound, prev_end)
+    a = max(0, int(lo_bound * SR))
     b = min(len(y), int((at + min(dur, 0.30)) * SR))
     F = _frames(y[a:b])
     if len(F) < 20:
