@@ -1,56 +1,62 @@
 [
  {
   "n": 1,
-  "line": "Your n8n agent has no idea it's wrong.",
+  "line": "Your n8n agent can't tell when it messes up.",
   "start": 0.3,
-  "end": 3.15
+  "end": 3.24
  },
  {
   "n": 2,
-  "line": "It keeps running, even when it's wrong.",
-  "start": 3.57,
-  "end": 5.75
+  "line": "It just keeps going anyway.",
+  "start": 3.66,
+  "end": 5.13
  },
  {
   "n": 3,
-  "line": "No node checks for 'not sure.'",
-  "start": 6.17,
-  "end": 8.32
+  "line": "Nothing stops to check itself.",
+  "start": 5.55,
+  "end": 7.33
  },
  {
   "n": 4,
   "line": "It handles refunds. One gets by.",
-  "start": 8.74,
-  "end": 10.69
+  "start": 7.75,
+  "end": 9.71
  },
  {
   "n": 5,
-  "line": "So the wrong output ships. Every time.",
-  "start": 11.54,
-  "end": 14.18
+  "line": "So the bad result goes out. Every time.",
+  "start": 10.56,
+  "end": 13.11
  },
  {
   "n": 6,
   "line": "By the time you notice, it's already gone.",
-  "start": 14.6,
-  "end": 17.38
+  "start": 13.53,
+  "end": 16.31
  },
  {
   "n": 7,
-  "line": "One node before the output fixes it.",
-  "start": 17.8,
-  "end": 20.19
+  "line": "One quick fix stops it.",
+  "start": 16.73,
+  "end": 18.41
  },
  {
   "n": 8,
-  "line": "An IF node: confidence below the bar routes to a human, not to the output.",
-  "start": 20.61,
-  "end": 25.51
+  "line": "If it can't tell, stop, and ask a person. Don't send it out.",
+  "start": 18.83,
+  "end": 22.61
  },
  {
   "n": 9,
+  "line": "Copy the prompt below, or tap the link in our bio.",
+  "start": 23.46,
+  "end": 26.79
+ },
+ {
+  "n": 10,
   "line": "Follow for setups that actually works.",
-  "start": 26.36,
-  "end": 28.63
+  "start": 27.21,
+  "end": 30.12
  }
 ]
