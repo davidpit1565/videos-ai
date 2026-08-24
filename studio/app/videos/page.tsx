@@ -268,9 +268,17 @@ export default function Videos() {
       <div className="tw eps">
         <table>
           <thead>
+            {/* 16 columns in one flat row read as one undifferentiated wall once the
+                table scrolled sideways — this row groups them by what they're for, so
+                scrolling into the performance numbers still says so at the top. */}
+            <tr className="grp">
+              <th colSpan={7}>פרטי הפרק</th>
+              <th colSpan={8}>ביצועים</th>
+              <th />
+            </tr>
             <tr>
-              <th>#</th>
-              <th>כותרת</th>
+              <th className="sticky c1">#</th>
+              <th className="sticky c2">כותרת</th>
               <th>נושא</th>
               <th>פורמט</th>
               <th>שלב</th>
@@ -290,7 +298,7 @@ export default function Videos() {
           <tbody>
             {state.episodes.map((e, i) => (
               <tr key={e.id}>
-                <td>
+                <td className="sticky c1">
                   <input
                     className="cell n"
                     style={{ width: 46 }}
@@ -298,7 +306,7 @@ export default function Videos() {
                     onChange={(ev) => set(i, "number", Number(ev.target.value.replace(/[^\d]/g, "") || 0))}
                   />
                 </td>
-                <td className="name">
+                <td className="name sticky c2">
                   <input className="cell" dir="auto" value={e.title} onChange={(ev) => set(i, "title", ev.target.value)} />
                 </td>
                 <td>
