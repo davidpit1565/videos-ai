@@ -25,6 +25,12 @@ export default function TemplatesPage() {
             </div>
             <b>{t.name}</b>
             <p className="sub">{t.when}</p>
+            {t.psychology && (
+              <p className="sub" style={{ color: "var(--brass)" }}>
+                <b>הפסיכולוגיה: </b>
+                {t.psychology}
+              </p>
+            )}
           </div>
         ))}
       </div>
