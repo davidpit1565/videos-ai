@@ -40,6 +40,10 @@ export const SITE = [
   "/manifest.json", "/icon-", "/apple-touch-icon",
   // the service worker must be fetchable at the root scope or push cannot register
   "/sw.js",
+  // the site header's own logo mark — a visitor's browser fetches this with no studio
+  // cookie, same as the icons above; missing from this list, it redirects to /unlock
+  // and the browser shows a broken-image placeholder instead of the mark.
+  "/logo-light.png",
   // The rendered mp4 files themselves. Every publish (Instagram, its Story, YouTube's
   // upload) fetches this exact URL from outside any browser — no cookie to carry the PIN.
   // Without this, the "video_url" Instagram is told to download redirects to /unlock
