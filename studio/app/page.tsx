@@ -3,6 +3,7 @@ import { catalogue } from "@/lib/site";
 import { fetchLatestBeehiivIssue } from "@/lib/sources";
 import { PROMPTS } from "@/lib/prompts";
 import Signup from "./signup";
+import SiteNotify from "./site-notify";
 import SiteNav from "./sitenav";
 import SiteSocial from "./site-social";
 import CountUp from "./count-up";
@@ -77,6 +78,7 @@ export default async function Home() {
             </a>
           ) : null}
           <Signup source="home" />
+          <SiteNotify />
         </div>
         {heroEpisode?.ytVideoId ? (
           <div className="herovid vid">

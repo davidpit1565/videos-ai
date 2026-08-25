@@ -37,9 +37,18 @@ export const SITE = [
   "/skills", "/s",
   "/api/subscribe", "/api/clientlog", "/api/stream-check", "/api/connections",
   "/api/unlock", "/api/site",
+  // a visitor's own "notify me about new episodes" device registration — a separate path
+  // from the studio's /api/push so it can never be classified alongside it (see the route
+  // file's own comment on why the two must never share a path or a send)
+  "/api/subscribe-push",
   "/manifest.json", "/icon-", "/apple-touch-icon",
   // the service worker must be fetchable at the root scope or push cannot register
   "/sw.js",
+  // crawlers and readers, not browsers with a cookie: Google reading sitemap.xml,
+  // Facebook/Twitter/Slack's link-preview bots reading an episode's og-image, an RSS
+  // reader polling the feed. None of them carry the studio's PIN cookie, so each one
+  // needs to be named here the same way /reels and /logo-light.png already are.
+  "/sitemap.xml", "/robots.txt", "/rss.xml", "/opengraph-image",
   // the site header's own logo mark — a visitor's browser fetches this with no studio
   // cookie, same as the icons above; missing from this list, it redirects to /unlock
   // and the browser shows a broken-image placeholder instead of the mark.

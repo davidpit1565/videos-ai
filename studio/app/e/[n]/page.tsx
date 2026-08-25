@@ -5,7 +5,9 @@ import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
 import { SEQUEL_OF, SEQUEL_FOR } from "@/lib/reels";
 import Signup from "../../signup";
+import SiteNotify from "../../site-notify";
 import IgEmbed from "../../ig-embed";
+import { SITE_URL } from "@/lib/site";
 
 export const revalidate = 300;
 
@@ -14,10 +16,20 @@ export async function generateMetadata({ params }: { params: Promise<{ n: string
   const a = articleFor(n);
   const e = await episode(n);
   const title = e?.title || a?.title;
-  return title
-    ? { title, description: a?.standfirst ?? e?.topic }
+  if (!title) {
     // absolute: the front door is the brand itself, not "Actually Works · Actually Works"
-    : { title: { absolute: "Actually Works" } };
+    return { title: { absolute: "Actually Works" } };
+  }
+  const description = a?.standfirst ?? e?.topic ?? undefined;
+  // The image itself comes from the sibling opengraph-image.tsx (Next resolves it per
+  // route automatically); this only needs to override the title/description a shared
+  // link shows, per episode instead of the site-wide default in layout.tsx.
+  return {
+    title,
+    description,
+    openGraph: { title, description, type: "article" as const },
+    twitter: { title, description },
+  };
 }
 
 export default async function EpisodePage({ params }: { params: Promise<{ n: string }> }) {
@@ -44,8 +56,34 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
   const part2 = SEQUEL_FOR[n] !== undefined ? allPub.find((x) => x.number === SEQUEL_FOR[n]) : null;
   const part1 = SEQUEL_OF[n] !== undefined ? allPub.find((x) => x.number === SEQUEL_OF[n]) : null;
 
+  // Only the two platforms that actually have a genuinely embeddable URL — the YouTube
+  // nocookie embed (Google's own documented VideoObject example) or Instagram's own
+  // permalink+"embed" (the exact URL its embed.js renders into an iframe, per Meta's
+  // oEmbed docs). Without one of these, Google's rich-result validator flags the
+  // markup as incomplete, so an episode with neither just gets no VideoObject at all
+  // rather than one that fails validation.
+  const embedUrl = e?.ytVideoId
+    ? `https://www.youtube-nocookie.com/embed/${e.ytVideoId}`
+    : e?.igPermalink
+      ? `${e.igPermalink.replace(/\/?$/, "/")}embed`
+      : null;
+  const videoSchema = embedUrl
+    ? {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        name: title,
+        description: a?.standfirst ?? e?.topic ?? title,
+        thumbnailUrl: `${SITE_URL}/e/${n}/opengraph-image`,
+        uploadDate: e?.publishedAt ? new Date(e.publishedAt).toISOString() : undefined,
+        embedUrl,
+      }
+    : null;
+
   return (
     <main className="site" dir="ltr">
+      {videoSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }} />
+      )}
       <SiteNav />
       <p className="kicker">
         <Link href="/">Actually Works</Link> · Episode {String(n).padStart(2, "0")}
@@ -81,6 +119,16 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
             allowFullScreen
           />
         </div>
+      ) : null}
+
+      {/* Whichever platform didn't get the primary embed above, if it exists too — a
+          reader who'd rather watch on YouTube shouldn't have to go find it themselves. */}
+      {e?.igPermalink && e?.ytVideoId ? (
+        <p className="sub">
+          <a href={`https://youtu.be/${e.ytVideoId}`} target="_blank" rel="noreferrer">
+            Watch on YouTube instead ↗
+          </a>
+        </p>
       ) : null}
 
       {a ? (
@@ -138,6 +186,7 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         <h2>Get the next one</h2>
         <p className="sub">One AI setup a week, straight to your inbox.</p>
         <Signup source="episode" />
+        <SiteNotify />
       </section>
 
       <footer className="sfoot">
