@@ -1,9 +1,51 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStudio } from "../providers";
 import { STATUS_HE, STATUS_ORDER, Status, uid } from "@/lib/types";
 import { eur } from "@/lib/fmt";
+
+/** Turns the plain **bold** markers in the backlog file into real emphasis, without
+ *  pulling in a markdown library for one internal page. */
+function bolded(line: string) {
+  const parts = line.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((p, i) =>
+    p.startsWith("**") && p.endsWith("**") ? <b key={i}>{p.slice(2, -2)}</b> : <span key={i}>{p}</span>,
+  );
+}
+
+function IdeasBacklog() {
+  const [text, setText] = useState<string | null | undefined>(undefined);
+  useEffect(() => {
+    fetch("/api/ideas-backlog")
+      .then((r) => r.json())
+      .then((j) => setText(j.ok ? j.text : null))
+      .catch(() => setText(null));
+  }, []);
+
+  if (text === undefined) return null;
+  if (text === null) {
+    return <p className="sub">אין עדיין קובץ רעיונות מוכן (channel/next-episode-ideas.md).</p>;
+  }
+  const lines = text.split("\n").filter((l) => l.trim() && !l.startsWith("# "));
+  return (
+    <div className="note" style={{ lineHeight: 1.8 }}>
+      {lines.map((l, i) =>
+        l.startsWith("## ") ? (
+          <p key={i} style={{ margin: "14px 0 4px", fontWeight: 800, color: "var(--brass)" }}>
+            {l.slice(3)}
+          </p>
+        ) : l.startsWith("---") ? (
+          <hr key={i} style={{ border: 0, borderTop: "1px solid var(--line)", margin: "12px 0" }} />
+        ) : (
+          <p key={i} style={{ margin: "0 0 6px" }}>
+            {bolded(l)}
+          </p>
+        ),
+      )}
+    </div>
+  );
+}
 
 export default function Pipeline() {
   const { state, update } = useStudio();
@@ -71,7 +113,15 @@ export default function Pipeline() {
         </button>
       </form>
 
-      <h2>רעיונות לפרקים</h2>
+      <h2>מוכן מראש · 5 רעיונות לפרקים הבאים</h2>
+      <p className="sub">
+        נכתב מראש כדי שכל פעם שאומרים "תכין את הפרק הבא" כבר יש ממה לבחור, בלי לחשוב
+        מאפס. מבוסס על ביקוש נמדד ב-<code>demand-report.md</code>. עדכון עצמו — כל פעם
+        שכלי מהרשימה משמש לפרק, כדאי להוסיף רעיון חדש במקומו.
+      </p>
+      <IdeasBacklog />
+
+      <h2>רעיונות אחרים</h2>
       <ul className="list">
         {state.ideas.map((x, i) => (
           <li key={x.id}>
