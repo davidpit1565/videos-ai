@@ -198,6 +198,12 @@ export default function Analytics() {
   const totalLikes = rows.reduce((a, e) => a + (e.likes ?? 0), 0);
   const totalSaves = rows.reduce((a, e) => a + (e.saves ?? 0), 0);
   const totalShares = rows.reduce((a, e) => a + (e.shares ?? 0), 0);
+  // Entered by hand in /videos (no API attributes a subscriber to the post that brought
+  // them) — 0 here means "not yet counted," not "brought none," so it stays out of the
+  // sum until at least one episode has a real number, same rule ViewsBars already
+  // follows for views.
+  const attributedRows = rows.filter((e) => e.subsAttributed != null);
+  const totalAttributed = attributedRows.reduce((a, e) => a + (e.subsAttributed ?? 0), 0);
 
   return (
     <main>
@@ -227,6 +233,15 @@ export default function Analytics() {
           <div className="k">סה״כ שמירות + שיתופים</div>
           <div className="v"><CountUp value={(totalSaves + totalShares) || null} /></div>
         </div>
+        <div className="tile">
+          <div className="k">נרשמים שיוחסו לפרקים</div>
+          <div className="v"><CountUp value={attributedRows.length ? totalAttributed : null} /></div>
+          <div className="s">
+            {attributedRows.length
+              ? `מ-${attributedRows.length} פרק${attributedRows.length > 1 ? "ים" : ""} שסומנו ב-/videos`
+              : "עדיין לא סומן אף פרק — נכנס ידנית ב-/videos"}
+          </div>
+        </div>
       </div>
 
       <section className="chart-section">
@@ -252,12 +267,13 @@ export default function Analytics() {
                 <th>שמירות</th>
                 <th>תגובות</th>
                 <th>שיתופים</th>
+                <th title="נכנס ידנית ב-/videos — אין API שמייחס נרשם לפוסט שהביא אותו">נרשמים</th>
               </tr>
             </thead>
             <tbody>
               {rows.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="empty-cell">
+                  <td colSpan={8} className="empty-cell">
                     אין עדיין פרק שפורסם ונמדד.
                   </td>
                 </tr>
@@ -271,6 +287,7 @@ export default function Analytics() {
                   <td className="num">{n(e.saves)}</td>
                   <td className="num">{n(e.comments)}</td>
                   <td className="num">{n(e.shares)}</td>
+                  <td className="num">{n(e.subsAttributed)}</td>
                 </tr>
               ))}
             </tbody>
