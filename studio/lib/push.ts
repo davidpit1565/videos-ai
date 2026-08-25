@@ -26,6 +26,8 @@ async function db() {
     endpoint text primary key, p256dh text not null, auth text not null,
     label text, created_at timestamptz not null default now(),
     last_ok timestamptz, fails int not null default 0)`);
+  await p.query(`create table if not exists notified_renders (
+    episode int primary key, notified_at timestamptz not null default now())`);
   return p;
 }
 
@@ -117,4 +119,31 @@ export async function notify(n: Note): Promise<{ sent: number; gone: number; fai
     }
   }
   return { sent, gone, failed };
+}
+
+/** Notify once per episode the first time its render shows up passing the gate — never
+ *  again for the same episode, even across re-renders, since "notified_renders" is a
+ *  permanent record, not a cache. A render only becomes visible to the live site at
+ *  deploy time (the files are static, committed assets, not uploaded), so this is
+ *  called from the same place that already checks for other daily changes rather than
+ *  needing its own schedule. */
+export async function notifyNewRenders(
+  passed: { episode: number; title: string | null }[],
+): Promise<void> {
+  const p = await db();
+  if (!p) return;
+  for (const r of passed) {
+    if (r.episode == null) continue;
+    const ins = await p.query(
+      "insert into notified_renders (episode) values ($1) on conflict do nothing returning episode",
+      [r.episode],
+    );
+    if (ins.rowCount === 0) continue; // already notified for this episode
+    await notify({
+      title: `פרק ${r.episode} מוכן`,
+      body: r.title ? r.title : `הרנדור עבר את כל הבדיקות.`,
+      url: "/renders",
+      tag: `render-${r.episode}`,
+    }).catch(() => {});
+  }
 }

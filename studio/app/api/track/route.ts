@@ -1,10 +1,10 @@
 import { whole } from "@/lib/whole";
 import { NextResponse } from "next/server";
-import { notify } from "@/lib/push";
+import { notify, notifyNewRenders } from "@/lib/push";
 import { hasDb, loadState, saveState } from "@/lib/db";
 import { fetchBeehiiv, fetchInstagram, refreshInstagramToken} from "@/lib/sources";
 import { ActivityEvent, State, uid } from "@/lib/types";
-import { realTitleFor } from "@/lib/reels";
+import { realTitleFor, reels } from "@/lib/reels";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -212,6 +212,25 @@ export async function GET(req: Request) {
   state.activity = [...fresh, ...feed].slice(0, 300);
   state.updatedAt = now;
   await saveState(state);
+
+  // He asked for a push on every new addition/pull, not just connection failures — a
+  // pull that found nothing still ran, but only a pull that found something is news.
+  if (fresh.length > 0) {
+    const body =
+      fresh.length === 1
+        ? fresh[0].label
+        : `${fresh.length} עדכונים: ${fresh.slice(0, 3).map((f) => f.label).join(", ")}${fresh.length > 3 ? "…" : ""}`;
+    void notify({ title: "עדכון חדש", body, url: "/studio", tag: "activity" }).catch(() => {});
+  }
+
+  // And on every render that ships passing the gate — checked here rather than on its
+  // own schedule, since a render only becomes visible to the live site at deploy time
+  // anyway (the files are static, committed assets).
+  void notifyNewRenders(
+    reels()
+      .filter((r) => r.gate?.passed && r.episode != null)
+      .map((r) => ({ episode: r.episode as number, title: r.title })),
+  ).catch(() => {});
 
   return NextResponse.json({
     ok: true,
