@@ -5,6 +5,7 @@ import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
 import { SEQUEL_OF, SEQUEL_FOR } from "@/lib/reels";
 import Signup from "../../signup";
+import IgEmbed from "../../ig-embed";
 
 export const revalidate = 300;
 
@@ -64,7 +65,14 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         </p>
       ) : null}
 
-      {e?.ytVideoId ? (
+      {/* The Instagram post is the one that actually went out with a real caption and real
+          numbers — shown first when it exists. YouTube is the fallback, not a duplicate:
+          two players for the same clip is worse than one, not more complete. */}
+      {e?.igPermalink ? (
+        <div className="vid-ig">
+          <IgEmbed permalink={e.igPermalink} />
+        </div>
+      ) : e?.ytVideoId ? (
         <div className="vid">
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${e.ytVideoId}`}

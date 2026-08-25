@@ -11,6 +11,7 @@ export type PublicEpisode = {
   topic: string;
   notes: string;
   ytVideoId: string | null;
+  igPermalink: string | null;
   publishedAt: string | null;
 };
 
@@ -20,6 +21,7 @@ const toPublic = (e: Episode): PublicEpisode => ({
   topic: e.topic,
   notes: e.notes,
   ytVideoId: e.ytVideoId,
+  igPermalink: e.igPermalink ?? null,
   publishedAt: e.publishedAt,
 });
 
@@ -52,7 +54,7 @@ export type Entry = {
   views: number | null;
   live: boolean;
   ytVideoId: string | null;
-  igMediaId: string | null;
+  igPermalink: string | null;
 };
 
 export async function catalogue(): Promise<Entry[]> {
@@ -64,7 +66,7 @@ export async function catalogue(): Promise<Entry[]> {
   for (const a of ARTICLES) {
     byNumber.set(a.n, {
       n: a.n, title: a.title, blurb: a.standfirst,
-      views: null, live: false, ytVideoId: null, igMediaId: null,
+      views: null, live: false, ytVideoId: null, igPermalink: null,
     });
   }
   for (const e of live) {
@@ -76,7 +78,7 @@ export async function catalogue(): Promise<Entry[]> {
       views: e.views ?? null,
       live: true,
       ytVideoId: e.ytVideoId ?? null,
-      igMediaId: e.igMediaId ?? null,
+      igPermalink: e.igPermalink ?? null,
     });
   }
   return [...byNumber.values()].sort((a, b) => {

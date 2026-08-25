@@ -139,6 +139,9 @@ export async function GET(req: Request) {
       e.saves = m.saves ?? e.saves;
       e.comments = m.comments ?? e.comments;
       e.shares = m.shares ?? e.shares;
+      // backfilled for episodes linked before this field existed — the permalink is what
+      // the episode page's Instagram embed needs, the media id alone can't build a URL.
+      if (!e.igPermalink && m.permalink) e.igPermalink = m.permalink;
       if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
       if (e.status !== "live") e.status = "live";
     }
@@ -167,6 +170,7 @@ export async function GET(req: Request) {
       if (hits.length === 1) {
         const e = hits[0];
         e.igMediaId = m.id;
+        e.igPermalink = m.permalink;
         e.views = m.views ?? m.reach ?? e.views;
         e.likes = m.likes ?? e.likes;
         e.saves = m.saves ?? e.saves;
