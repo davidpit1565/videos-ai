@@ -1,0 +1,41 @@
+=== narration
+audio/reel10-narration-r.wav  39.6s  9 lines
+  medians: ending -26.4 dB · level -18.4 dBFS · S residual -0.2 dB (slope +16.8 dB per sibilant/syllable)
+  flagged below: ending -56.1 dB · S residual -9.8 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  3.42  +0.42  4.68  -13.2  -18.5  -18.4  Most businesses lose a lead before any
+    2  4.23  +0.42  4.02  -15.7  -26.4  -18.4  By the time you reply, the lead alread
+    3  5.46  +0.42  3.66  -13.6  -23.6  -18.0  This n8n agent replies in under a minu
+    4  3.72  +0.85  4.03   -7.1  -45.5  -18.7  But it only auto-sends the safe reply 
+    5  4.19  +0.42  5.01   -9.1  -32.9  -18.4  Anything that needs a real decision be
+    6  2.91  +0.42  3.09   -7.7  -37.2  -18.4  Fast where it's safe. A draft where it
+    7  5.88  +0.42  4.08  -10.9  -18.3  -18.7  Auto-reply four out of every five repl
+    8  2.12  +0.85  4.72   -7.6  -39.8  -19.4  The exact setup's in the link in bio.
+    9  2.27    —    4.41   -6.6  -18.4  -18.8  Follow for setups that actually works.
+
+  nothing flagged. every line sits inside his own spread.
+
+=== frame layout
+reel-10-kar.html  39.62s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  overlaps: none over 10px
+
+=== rendered file
+reel-10.mp4  1080x1920  30fps  39.63s  6.2MB
+  visual change: median 0.68s, longest 1.80s
+  loudness: -14.1 LUFS integrated, peak -3.1 dBFS, LRA 1.7 LU
+  loop seam: first vs last frame differ by 20.9/255
+
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length 39.6s inside 30-90s
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 37.5)
+  ok        visual change every 0.68s median
+  ok        -14.1 LUFS
+  ok        peak -3.1 dBFS
+
+ALL CHECKS PASSED
