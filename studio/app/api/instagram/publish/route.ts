@@ -20,11 +20,14 @@ export async function POST(req: Request) {
     // A publish that lands on the account and nowhere in the studio's own list looks
     // broken even though it worked — the pull that links a post to its episode
     // (/api/track) otherwise only runs on the nightly cron or a manual pull-to-refresh.
-    // Instagram's own post-processing takes a few seconds after publish_id returns, so
-    // this fetch races that — a miss here just waits for the next cron/pull, same as
-    // before this existed.
+    // This has to be awaited, not fired-and-forgotten: a serverless function can be torn
+    // down the instant its response is sent, killing an un-awaited fetch before it ever
+    // reaches Instagram — which is exactly why the first version of this never actually
+    // synced anything. Instagram's own post-processing takes a few seconds after
+    // publish_id returns, so this can still race it — a miss here just waits for the
+    // next cron/pull, same as before this existed.
     if (ig.reel.ok && process.env.CRON_SECRET) {
-      void fetch(`${SITE_URL}/api/track`, {
+      await fetch(`${SITE_URL}/api/track`, {
         headers: { authorization: `Bearer ${process.env.CRON_SECRET}` },
       }).catch(() => {});
     }
