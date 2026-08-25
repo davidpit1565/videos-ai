@@ -20,6 +20,9 @@ export const STUDIO = [
   "/studio.webmanifest",
   "/api/state", "/api/agent", "/api/instagram", "/api/youtube", "/api/beehiiv", "/api/push",
   "/api/ideas-backlog",
+  // /api/youtube/callback is under /api/youtube, already listed — Google's redirect back
+  // from the consent screen is a same-browser top-level GET, so the "studio" cookie (set
+  // sameSite:lax) still rides along and the PIN gate passes normally.
 ];
 
 /** Neither the site nor the studio: the nightly tracker, called by Vercel's cron with its
