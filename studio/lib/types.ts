@@ -24,6 +24,9 @@ export type Episode = {
   publishedAt: string | null;
   /** Instagram media id — how metrics get attached to this episode */
   igMediaId: string | null;
+  /** the post's own instagram.com/reel/... URL — what the official embed needs; optional
+   *  because rows linked before this field existed only ever stored the id, not this. */
+  igPermalink?: string | null;
   ytVideoId: string | null;
   notes: string;
   /** pulled from Instagram; null until the episode is live and a token exists */

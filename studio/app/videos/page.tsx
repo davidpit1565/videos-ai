@@ -60,6 +60,7 @@ export default function Videos() {
           e.saves = m.saves ?? e.saves;
           e.comments = m.comments ?? e.comments;
           e.shares = m.shares ?? e.shares;
+          if (!e.igPermalink && m.permalink) e.igPermalink = m.permalink;
           if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
           if (e.status !== "live") e.status = "live";
         }
@@ -87,6 +88,7 @@ export default function Videos() {
           if (matches.length !== 1) continue;
           const e = matches[0];
           e.igMediaId = m.id;
+          e.igPermalink = m.permalink;
           e.views = m.views ?? m.reach ?? e.views;
           e.likes = m.likes ?? e.likes;
           e.saves = m.saves ?? e.saves;
@@ -461,6 +463,7 @@ export default function Videos() {
                           const ep = d.episodes.find((x) => x.id === id);
                           if (!ep) return;
                           ep.igMediaId = m.id;
+                          ep.igPermalink = m.permalink;
                           ep.views = m.views ?? m.reach;
                           ep.likes = m.likes;
                           ep.saves = m.saves;

@@ -24,7 +24,7 @@ export default async function SearchPage() {
         blurb: e.blurb,
         views: e.views,
         yt: e.ytVideoId ? `https://youtu.be/${e.ytVideoId}` : null,
-        ig: e.igMediaId ? `https://www.instagram.com/reel/${e.igMediaId}/` : null,
+        ig: e.igPermalink,
         text: [e.title, e.blurb, ...(a?.steps ?? []), ...(a?.changes ?? []),
                ...(a?.limits ?? [])].join(" ").toLowerCase(),
       };
