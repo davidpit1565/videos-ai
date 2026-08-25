@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "There's a flaw in AI narration, and you can't say what it is.",
+  "start": 0.3,
+  "end": 3.66
+ },
+ {
+  "n": 2,
+  "line": "One word loses its ending. An S goes dull, or too hot.",
+  "start": 4.08,
+  "end": 8.19
+ },
+ {
+  "n": 3,
+  "line": "voice_doctor.py measures pacing, rate, sibilance, and endings, straight from the audio.",
+  "start": 8.61,
+  "end": 13.58
+ },
+ {
+  "n": 4,
+  "line": "It grades every line against this narration's own median, not a guess.",
+  "start": 14.0,
+  "end": 18.11
+ },
+ {
+  "n": 5,
+  "line": "One bad overlap, and the check fails the whole file.",
+  "start": 18.96,
+  "end": 22.05
+ },
+ {
+  "n": 6,
+  "line": "--repair levels every line to the median, pulls a harsh S back in, and checks itself again until nothing's left.",
+  "start": 22.47,
+  "end": 28.77
+ },
+ {
+  "n": 7,
+  "line": "Never ship AI narration without the check that catches what you can't.",
+  "start": 29.19,
+  "end": 33.74
+ },
+ {
+  "n": 8,
+  "line": "The setup's in the link in bio.",
+  "start": 34.16,
+  "end": 36.09
+ },
+ {
+  "n": 9,
+  "line": "Follow for setups that actually works.",
+  "start": 36.94,
+  "end": 39.21
+ }
+]
