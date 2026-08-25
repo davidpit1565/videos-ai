@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { reelByFile } from "@/lib/reels";
 import Copy from "../copy";
 import IgStats from "../igstats";
+import PublishButtons from "./publish-buttons";
 import { localDT } from "@/lib/fmt";
 
 export const dynamic = "force-dynamic";
@@ -78,6 +79,10 @@ export default async function RenderDetail({ params }: { params: Promise<{ file:
             <p className="section-label">כותרת + תיאור ל-YouTube Shorts</p>
             <Copy text={r.youtube} />
           </>
+        )}
+
+        {r.kind === "video" && r.gate?.passed && (
+          <PublishButtons file={r.file} caption={r.caption} youtube={r.youtube} />
         )}
       </section>
     </main>

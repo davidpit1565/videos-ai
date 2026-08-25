@@ -1,0 +1,219 @@
+/** Actually publishing to Instagram and YouTube — not just reading numbers back, which is
+ *  all sources.ts ever did. Both platforms need something sources.ts's read-only setup
+ *  didn't: Instagram needs the video at a public HTTPS URL it fetches itself (the reel's
+ *  own page on this deployment is exactly that, once it's live); YouTube needs a real
+ *  OAuth-authenticated upload, which a read-only YOUTUBE_API_KEY can never do — uploading
+ *  as the channel owner requires a consent grant, once, from a human. */
+
+import { sharedPool } from "./db";
+import { igRoute, igToken } from "./sources";
+
+// Same domain every caption already points readers at (channel/episode-NN-caption.txt),
+// so it's the known-good fallback rather than a guess — but a custom domain or env
+// override always wins if one is set.
+const KNOWN_DOMAIN = "actually-works-studio.vercel.app";
+const SITE_URL = `https://${(
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+  KNOWN_DOMAIN
+).replace(/^https?:\/\//, "")}`;
+
+// ───────────────────────── Instagram ─────────────────────────
+
+export type IgPublishResult =
+  | { ok: true; mediaId: string; permalink: string | null }
+  | { ok: false; reason: string; detail?: string };
+
+/** Create the media container, wait for Instagram to finish downloading and processing the
+ *  video from its public URL, then publish it. Three real HTTP round trips against a real
+ *  account — never called speculatively, only from a button he presses. */
+export async function publishToInstagram(file: string, caption: string): Promise<IgPublishResult> {
+  const token = await igToken();
+  if (!token) return { ok: false, reason: "IG_ACCESS_TOKEN לא מוגדר" };
+  const { host, via } = igRoute(token);
+  const user = process.env.IG_USER_ID || (via === "instagram-login" ? "me" : "");
+  if (!user) return { ok: false, reason: "IG_USER_ID לא מוגדר" };
+
+  const videoUrl = `${SITE_URL}/reels/${encodeURIComponent(file)}`;
+
+  // 1) create the container
+  const createUrl = new URL(`${host}/${user}/media`);
+  createUrl.searchParams.set("media_type", "REELS");
+  createUrl.searchParams.set("video_url", videoUrl);
+  createUrl.searchParams.set("caption", caption);
+  createUrl.searchParams.set("access_token", token);
+  const created = await fetch(createUrl, { method: "POST", cache: "no-store" });
+  const createdBody = (await created.json()) as { id?: string; error?: { message?: string } };
+  if (!created.ok || !createdBody.id) {
+    return { ok: false, reason: createdBody.error?.message ?? `יצירת המדיה נכשלה (${created.status})` };
+  }
+  const containerId = createdBody.id;
+
+  // 2) poll until Instagram has actually downloaded and processed the file — publishing
+  // too early is the documented cause of a silent failure, not a fast one
+  const deadline = Date.now() + 90_000;
+  let status = "IN_PROGRESS";
+  while (Date.now() < deadline) {
+    const statusUrl = new URL(`${host}/${containerId}`);
+    statusUrl.searchParams.set("fields", "status_code");
+    statusUrl.searchParams.set("access_token", token);
+    const r = await fetch(statusUrl, { cache: "no-store" });
+    const j = (await r.json()) as { status_code?: string };
+    status = j.status_code ?? status;
+    if (status === "FINISHED" || status === "ERROR") break;
+    await new Promise((res) => setTimeout(res, 3000));
+  }
+  if (status !== "FINISHED") {
+    return { ok: false, reason: `אינסטגרם לא סיים לעבד את הווידאו (סטטוס: ${status})`, detail: containerId };
+  }
+
+  // 3) publish
+  const publishUrl = new URL(`${host}/${user}/media_publish`);
+  publishUrl.searchParams.set("creation_id", containerId);
+  publishUrl.searchParams.set("access_token", token);
+  const published = await fetch(publishUrl, { method: "POST", cache: "no-store" });
+  const publishedBody = (await published.json()) as { id?: string; error?: { message?: string } };
+  if (!published.ok || !publishedBody.id) {
+    return { ok: false, reason: publishedBody.error?.message ?? `הפרסום נכשל (${published.status})` };
+  }
+
+  // best-effort permalink lookup — not fatal if it fails, the publish itself already succeeded
+  let permalink: string | null = null;
+  try {
+    const permUrl = new URL(`${host}/${publishedBody.id}`);
+    permUrl.searchParams.set("fields", "permalink");
+    permUrl.searchParams.set("access_token", token);
+    const pr = await fetch(permUrl, { cache: "no-store" });
+    const pj = (await pr.json()) as { permalink?: string };
+    permalink = pj.permalink ?? null;
+  } catch {
+    /* not fatal */
+  }
+
+  return { ok: true, mediaId: publishedBody.id, permalink };
+}
+
+// ───────────────────────── YouTube ─────────────────────────
+
+const GOOGLE_OAUTH = "https://accounts.google.com/o/oauth2/v2/auth";
+const GOOGLE_TOKEN = "https://oauth2.googleapis.com/token";
+const YT_UPLOAD = "https://www.googleapis.com/upload/youtube/v3/videos";
+
+async function db() {
+  const p = sharedPool();
+  if (!p) return null;
+  await p.query(`create table if not exists youtube_token (
+    id int primary key default 1, refresh_token text not null,
+    created_at timestamptz not null default now())`);
+  return p;
+}
+
+function redirectUri(): string {
+  return `${SITE_URL}/api/youtube/callback`;
+}
+
+/** The one-time consent link — only a human logged into the channel's Google account can
+ *  complete this, which is exactly why it can't be automated further than "here's the
+ *  link to click". */
+export function youtubeAuthUrl(): { ok: true; url: string } | { ok: false; reason: string } {
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+  if (!clientId) return { ok: false, reason: "GOOGLE_CLIENT_ID לא מוגדר" };
+  const uri = redirectUri();
+  const u = new URL(GOOGLE_OAUTH);
+  u.searchParams.set("client_id", clientId);
+  u.searchParams.set("redirect_uri", uri);
+  u.searchParams.set("response_type", "code");
+  u.searchParams.set("scope", "https://www.googleapis.com/auth/youtube.upload");
+  u.searchParams.set("access_type", "offline");
+  u.searchParams.set("prompt", "consent");
+  return { ok: true, url: u.toString() };
+}
+
+export async function exchangeYoutubeCode(code: string): Promise<{ ok: true } | { ok: false; reason: string }> {
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+  if (!clientId || !clientSecret) return { ok: false, reason: "GOOGLE_CLIENT_ID/SECRET לא מוגדרים" };
+  const body = new URLSearchParams({
+    code, client_id: clientId, client_secret: clientSecret,
+    redirect_uri: redirectUri(), grant_type: "authorization_code",
+  });
+  const r = await fetch(GOOGLE_TOKEN, { method: "POST", body, cache: "no-store" });
+  const j = (await r.json()) as { refresh_token?: string; error_description?: string; error?: string };
+  if (!r.ok || !j.refresh_token) {
+    // Google omits refresh_token on a repeat consent unless prompt=consent forced a new
+    // one — already set above, but worth naming if it still happens
+    return { ok: false, reason: j.error_description ?? j.error ?? `Google החזיר ${r.status}` };
+  }
+  const p = await db();
+  if (!p) return { ok: false, reason: "אין מסד נתונים לשמור בו את הטוקן" };
+  await p.query(
+    `insert into youtube_token (id, refresh_token) values (1, $1)
+     on conflict (id) do update set refresh_token = $1, created_at = now()`,
+    [j.refresh_token],
+  );
+  return { ok: true };
+}
+
+export async function youtubeConnected(): Promise<boolean> {
+  const p = await db();
+  if (!p) return false;
+  const r = await p.query("select 1 from youtube_token where id = 1");
+  return (r.rowCount ?? 0) > 0;
+}
+
+async function youtubeAccessToken(): Promise<{ ok: true; token: string } | { ok: false; reason: string }> {
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+  if (!clientId || !clientSecret) return { ok: false, reason: "GOOGLE_CLIENT_ID/SECRET לא מוגדרים" };
+  const p = await db();
+  if (!p) return { ok: false, reason: "אין מסד נתונים" };
+  const r = await p.query<{ refresh_token: string }>("select refresh_token from youtube_token where id = 1");
+  const refreshToken = r.rows[0]?.refresh_token;
+  if (!refreshToken) return { ok: false, reason: "YouTube לא מחובר עדיין — צריך לאשר גישה פעם אחת" };
+  const body = new URLSearchParams({
+    refresh_token: refreshToken, client_id: clientId, client_secret: clientSecret,
+    grant_type: "refresh_token",
+  });
+  const tr = await fetch(GOOGLE_TOKEN, { method: "POST", body, cache: "no-store" });
+  const tj = (await tr.json()) as { access_token?: string; error_description?: string };
+  if (!tr.ok || !tj.access_token) return { ok: false, reason: tj.error_description ?? `Google החזיר ${tr.status}` };
+  return { ok: true, token: tj.access_token };
+}
+
+export type YtPublishResult = { ok: true; videoId: string } | { ok: false; reason: string };
+
+/** Uploads the reel's own file bytes — read straight from the deployment's bundled public
+ *  folder, the same file /renders already serves — as a resumable-simple upload. Shorts
+ *  are identified by YouTube itself from a vertical video under 3 minutes; there is no
+ *  separate "Shorts" upload endpoint to call. */
+export async function publishToYoutube(
+  fileBytes: Buffer,
+  title: string,
+  description: string,
+): Promise<YtPublishResult> {
+  const auth = await youtubeAccessToken();
+  if (!auth.ok) return auth;
+
+  const metadata = { snippet: { title: title.slice(0, 100), description }, status: { privacyStatus: "public" } };
+  const boundary = "aw_boundary_" + Date.now();
+  const body = Buffer.concat([
+    Buffer.from(
+      `--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${JSON.stringify(metadata)}\r\n` +
+        `--${boundary}\r\nContent-Type: video/mp4\r\n\r\n`,
+    ),
+    fileBytes,
+    Buffer.from(`\r\n--${boundary}--`),
+  ]);
+
+  const r = await fetch(`${YT_UPLOAD}?uploadType=multipart&part=snippet,status`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${auth.token}`,
+      "Content-Type": `multipart/related; boundary=${boundary}`,
+    },
+    body,
+  });
+  const j = (await r.json()) as { id?: string; error?: { message?: string } };
+  if (!r.ok || !j.id) return { ok: false, reason: j.error?.message ?? `ההעלאה נכשלה (${r.status})` };
+  return { ok: true, videoId: j.id };
+}
