@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { TEMPLATES, MUSIC_MOODS, USED_ACCENTS } from "@/lib/templates";
+import TemplateThumb from "./lightbox";
 
 export const metadata = { title: "תבניות" };
 
@@ -19,10 +19,7 @@ export default function TemplatesPage() {
       <div className="tplgrid">
         {TEMPLATES.map((t) => (
           <div className="tplcard" key={t.n}>
-            <div className="tplthumb">
-              <Image src={t.thumb} alt={t.name} width={270} height={480} />
-              <span className="tplnum">{t.n}</span>
-            </div>
+            <TemplateThumb src={t.thumb} alt={t.name} num={t.n} />
             <b>{t.name}</b>
             <p className="sub">{t.when}</p>
             {t.psychology && (
