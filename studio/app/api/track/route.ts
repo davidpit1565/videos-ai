@@ -4,7 +4,7 @@ import { notify, notifyNewRenders, notifyEpisodeLive } from "@/lib/push";
 import { hasDb, loadState, saveState } from "@/lib/db";
 import { fetchBeehiiv, fetchInstagram, refreshInstagramToken} from "@/lib/sources";
 import { ActivityEvent, State, uid } from "@/lib/types";
-import { realTitleFor, reels } from "@/lib/reels";
+import { realTitleFor, captionTitleFor, reels } from "@/lib/reels";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -110,6 +110,32 @@ export async function GET(req: Request) {
     if (e.title && e.title !== "פרק חדש") continue;
     const real = realTitleFor(e.number);
     if (real) e.title = real;
+  }
+
+  // Every gated reel is a real, shipped episode, whether or not anyone ever pushed it
+  // through /pipeline's "לצינור" button — lib/seed.ts only ever created rows 1 through
+  // 6, and nothing since has created one for a number beyond that automatically. A
+  // number with no row has nothing for the Instagram auto-link below to attach to, no
+  // way to show "already published" on /renders, no line on /pipeline — the exact gap
+  // that let reel-08 (and 9, 10, 11, 12) sit built, gated and even published, invisible
+  // everywhere in the studio, because there was nothing in the list to update.
+  const existingNumbers = new Set(state.episodes.map((e) => e.number));
+  for (const r of reels()) {
+    if (r.kind !== "video" || !r.gate?.passed || r.episode == null) continue;
+    if (existingNumbers.has(r.episode)) continue;
+    const title = realTitleFor(r.episode) || captionTitleFor(r.episode) || `פרק ${r.episode}`;
+    state.episodes.push({
+      id: uid(), number: r.episode, title, format: "reel", status: "testing",
+      topic: "", tested: true, publishedAt: null, igMediaId: null, igPermalink: null,
+      ytVideoId: null, notes: "", views: null, likes: null, saves: null, comments: null,
+      shares: null, subsAttributed: null,
+    });
+    existingNumbers.add(r.episode);
+    fresh.push({
+      id: uid(), at: now, source: "studio",
+      label: `פרק ${r.episode} נוסף אוטומטית לרשימה · ${title}`,
+      value: null, delta: null,
+    });
   }
 
   const note = (
