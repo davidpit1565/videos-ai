@@ -33,7 +33,7 @@ export default function TemplatesPage() {
       </div>
 
       <h2>מנגינות רקע</h2>
-      <div className="tw">
+      <div className="tw eps">
         <table>
           <thead>
             <tr>
@@ -56,6 +56,24 @@ export default function TemplatesPage() {
             ))}
           </tbody>
         </table>
+      </div>
+      {/* A 4-column table with a full description column has no honest way to fit a
+          phone screen — "מתי משתמשים" squeezed into a sliver wrapped to 15 lines and
+          pushed the name and player off-screen. Below the .cards breakpoint this
+          renders instead, one mood per card, full width. */}
+      <div className="cards moodcards">
+        {MUSIC_MOODS.map((m) => (
+          <div className="card" key={m.n}>
+            <div className="hd">
+              <span className="no">{m.n}</span>
+              <b>{m.name}</b>
+            </div>
+            <p className="sub" style={{ margin: "0 0 10px" }}>
+              {m.when}
+            </p>
+            <audio controls preload="none" src={m.sample} style={{ width: "100%" }} />
+          </div>
+        ))}
       </div>
       <p className="sub">
         המספר כאן הוא בדיוק ה-<code>--mood</code> שמועבר ל-<code>produce.sh</code> — לא רשימה
