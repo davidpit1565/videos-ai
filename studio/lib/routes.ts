@@ -40,6 +40,13 @@ export const SITE = [
   "/manifest.json", "/icon-", "/apple-touch-icon",
   // the service worker must be fetchable at the root scope or push cannot register
   "/sw.js",
+  // The rendered mp4 files themselves. Every publish (Instagram, its Story, YouTube's
+  // upload) fetches this exact URL from outside any browser — no cookie to carry the PIN.
+  // Without this, the "video_url" Instagram is told to download redirects to /unlock
+  // instead of serving video bytes, and the container comes back status ERROR — which is
+  // silent about the real cause because the failure looks like a bad video, not a locked
+  // one. These files are also the ones about to be posted publicly regardless.
+  "/reels",
 ];
 
 /** "/" must match only itself — startsWith("/") would publish the entire studio, which is
