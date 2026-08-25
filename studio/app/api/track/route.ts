@@ -1,6 +1,6 @@
 import { whole } from "@/lib/whole";
 import { NextResponse } from "next/server";
-import { notify, notifyNewRenders } from "@/lib/push";
+import { notify, notifyNewRenders, notifyEpisodeLive } from "@/lib/push";
 import { hasDb, loadState, saveState } from "@/lib/db";
 import { fetchBeehiiv, fetchInstagram, refreshInstagramToken} from "@/lib/sources";
 import { ActivityEvent, State, uid } from "@/lib/types";
@@ -127,6 +127,7 @@ export async function GET(req: Request) {
     note("beehiiv", "נרשמים לניוזלטר", bee.activeSubscribers, prev?.subscribers);
 
   // per-episode movement, so a video that keeps growing is visible without opening it
+  const newlyLive: number[] = [];
   if (ig.connected) {
     const byId = new Map(ig.media.map((m) => [m.id, m]));
     for (const e of state.episodes) {
@@ -143,7 +144,7 @@ export async function GET(req: Request) {
       // the episode page's Instagram embed needs, the media id alone can't build a URL.
       if (!e.igPermalink && m.permalink) e.igPermalink = m.permalink;
       if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
-      if (e.status !== "live") e.status = "live";
+      if (e.status !== "live") { e.status = "live"; newlyLive.push(e.number); }
     }
     // Every caption we write ends with "actually-works-studio.vercel.app/e/N" — an
     // exact, unambiguous episode number, checked first. Title matching (against the
@@ -177,7 +178,7 @@ export async function GET(req: Request) {
         e.comments = m.comments ?? e.comments;
         e.shares = m.shares ?? e.shares;
         if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
-        if (e.status !== "live") e.status = "live";
+        if (e.status !== "live") { e.status = "live"; newlyLive.push(e.number); }
         linked.add(m.id);
         fresh.push({
           id: uid(), at: now, source: "instagram",
@@ -235,6 +236,15 @@ export async function GET(req: Request) {
       .filter((r) => r.gate?.passed && r.episode != null)
       .map((r) => ({ episode: r.episode as number, title: r.title })),
   ).catch(() => {});
+
+  // The visitor-facing notification: only for an episode that just actually went live,
+  // never for internal state (gate passes, subscriber counts) — that's what notify()
+  // above sends, to the studio audience only.
+  for (const num of newlyLive) {
+    const e = state.episodes.find((x) => x.number === num);
+    const title = realTitleFor(num) || e?.title || `Episode ${num}`;
+    void notifyEpisodeLive(num, title).catch(() => {});
+  }
 
   return NextResponse.json({
     ok: true,

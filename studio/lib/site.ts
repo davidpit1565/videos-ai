@@ -2,6 +2,16 @@ import { loadState } from "./db";
 import { Episode } from "./types";
 import { realTitleFor } from "./reels";
 
+// Same domain every caption already points readers at, and the known-good fallback for
+// every other place that needs the site's own absolute URL — sitemap, RSS, OG images,
+// the publish flow. A custom domain or env override still wins if one is ever set.
+const KNOWN_DOMAIN = "actually-works-studio.vercel.app";
+export const SITE_URL = `https://${(
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+  KNOWN_DOMAIN
+).replace(/^https?:\/\//, "")}`;
+
 /** What a visitor is allowed to see: episodes that are actually live, newest first.
  *  Nothing else from the state crosses this line — the studio holds revenue, client
  *  notes and unpublished plans, and none of that belongs on a public page. */

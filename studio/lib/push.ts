@@ -26,7 +26,15 @@ async function db() {
     endpoint text primary key, p256dh text not null, auth text not null,
     label text, created_at timestamptz not null default now(),
     last_ok timestamptz, fails int not null default 0)`);
+  // "studio" (default, for every row that predates this column) is the owner's own
+  // devices — render/subscriber/connection alerts, all business-internal. "public" is a
+  // site visitor who asked to hear about new episodes only. The two must never share a
+  // send: a visitor's device receiving a private subscriber-count alert is a real leak,
+  // not a cosmetic one.
+  await p.query(`alter table push_subs add column if not exists audience text not null default 'studio'`);
   await p.query(`create table if not exists notified_renders (
+    episode int primary key, notified_at timestamptz not null default now())`);
+  await p.query(`create table if not exists notified_live (
     episode int primary key, notified_at timestamptz not null default now())`);
   return p;
 }
@@ -59,20 +67,24 @@ export async function publicKey(): Promise<string | null> {
 export async function addSub(
   sub: { endpoint: string; keys: { p256dh: string; auth: string } },
   label: string,
+  audience: "studio" | "public" = "studio",
 ): Promise<void> {
   const p = await db();
   if (!p) throw new Error("no database");
   await p.query(
-    `insert into push_subs (endpoint, p256dh, auth, label) values ($1,$2,$3,$4)
-     on conflict (endpoint) do update set p256dh = $2, auth = $3, label = $4, fails = 0`,
-    [sub.endpoint, sub.keys.p256dh, sub.keys.auth, label.slice(0, 80)],
+    `insert into push_subs (endpoint, p256dh, auth, label, audience) values ($1,$2,$3,$4,$5)
+     on conflict (endpoint) do update set p256dh = $2, auth = $3, label = $4, audience = $5, fails = 0`,
+    [sub.endpoint, sub.keys.p256dh, sub.keys.auth, label.slice(0, 80), audience],
   );
 }
 
-export async function deviceCount(): Promise<number> {
+export async function deviceCount(audience: "studio" | "public" = "studio"): Promise<number> {
   const p = await db();
   if (!p) return 0;
-  const r = await p.query<{ n: string }>("select count(*)::text n from push_subs");
+  const r = await p.query<{ n: string }>(
+    "select count(*)::text n from push_subs where audience = $1",
+    [audience],
+  );
   return Number(r.rows[0]?.n ?? 0);
 }
 
@@ -81,7 +93,10 @@ export type Note = { title: string; body: string; url?: string; tag?: string };
 /** Send to every registered device. Returns what happened, per device, because a
  *  notification that silently failed to arrive is worse than no notification: he would stop
  *  checking the thing he asked to be told about. */
-export async function notify(n: Note): Promise<{ sent: number; gone: number; failed: number }> {
+export async function notify(
+  n: Note,
+  audience: "studio" | "public" = "studio",
+): Promise<{ sent: number; gone: number; failed: number }> {
   const p = await db();
   if (!p) return { sent: 0, gone: 0, failed: 0 };
   const k = await keys();
@@ -89,7 +104,8 @@ export async function notify(n: Note): Promise<{ sent: number; gone: number; fai
   webpush.setVapidDetails(SUBJECT, k.public, k.private);
 
   const subs = await p.query<{ endpoint: string; p256dh: string; auth: string }>(
-    "select endpoint, p256dh, auth from push_subs",
+    "select endpoint, p256dh, auth from push_subs where audience = $1",
+    [audience],
   );
   let sent = 0, gone = 0, failed = 0;
   const payload = JSON.stringify(n);
@@ -146,4 +162,26 @@ export async function notifyNewRenders(
       tag: `render-${r.episode}`,
     }).catch(() => {});
   }
+}
+
+/** The visitor-facing counterpart of notifyNewRenders — same once-ever guarantee, its own
+ *  table so an episode's "gate passed" (internal) and "went live" (public) never share a
+ *  row, and its own audience so a site visitor never sees a studio-facing notification. */
+export async function notifyEpisodeLive(episode: number, title: string): Promise<void> {
+  const p = await db();
+  if (!p) return;
+  const ins = await p.query(
+    "insert into notified_live (episode) values ($1) on conflict do nothing returning episode",
+    [episode],
+  );
+  if (ins.rowCount === 0) return; // already notified for this episode
+  await notify(
+    {
+      title: "New episode",
+      body: title,
+      url: `/e/${episode}`,
+      tag: `live-${episode}`,
+    },
+    "public",
+  ).catch(() => {});
 }

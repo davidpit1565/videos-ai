@@ -2,13 +2,35 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Provider } from "./providers";
 import Shell from "./shell";
+import { SITE_URL } from "@/lib/site";
+
+const DESCRIPTION =
+  "AI setups that actually work. One setup per episode: the exact screen, the exact paste, and the part that breaks.";
 
 export const metadata: Metadata = {
+  // Required for Next to turn the opengraph-image.tsx files into absolute URLs in the
+  // actual meta tags — without it, a crawler that doesn't resolve relative og:image URLs
+  // itself (several don't) sees no image at all.
+  metadataBase: new URL(SITE_URL),
   // The document is the public site by default; the studio is one private corner of it.
   // Titling the root "Studio" put the private tool's name in the browser tab, the bookmark
   // and the share card of every public page.
   title: { default: "Actually Works", template: "%s · Actually Works" },
-  description: "AI setups that actually work. One setup per episode: the exact screen, the exact paste, and the part that breaks.",
+  description: DESCRIPTION,
+  // Every page inherits this; a page with its own opengraph-image.tsx (the episode pages)
+  // gets that image instead automatically — Next resolves the nearest one per route.
+  openGraph: {
+    siteName: "Actually Works",
+    type: "website",
+    title: "Actually Works",
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Actually Works",
+    description: DESCRIPTION,
+  },
+  alternates: { types: { "application/rss+xml": "/rss.xml" } },
   // The public manifest, and only that. This line used to point at a manifest named
   // "Actually Works Studio" with start_url "/studio" and a description reading "the
   // channel's control centre" — and it sat in the ROOT layout, so every public page

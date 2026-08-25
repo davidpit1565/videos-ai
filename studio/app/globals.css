@@ -558,6 +558,10 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 .site .signup button:disabled, .pub .signup button:disabled{opacity:.45;cursor:default}
 .site .signup .fine, .pub .signup .fine{color:var(--faint);font-size:.87rem;margin:0}
 .site .signup .err, .pub .signup .err{color:#A8481F;font-size:.9rem;margin:0;font-weight:600}
+.site .pushnote, .pub .pushnote{color:var(--faint);font-size:.87rem;margin:.6rem 0 0}
+.site .linklike, .pub .linklike{font:inherit;color:var(--brass);background:none;border:0;
+  padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.site .linklike:disabled, .pub .linklike:disabled{opacity:.6;cursor:default}
 .site .signed, .pub .signed{background:var(--wash);border-inline-start:3px solid var(--gold);
   border-radius:0 .6rem .6rem 0;padding:.9rem 1.15rem;margin:1.5rem 0 0;max-width:26rem}
 

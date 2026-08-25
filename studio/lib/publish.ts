@@ -7,16 +7,9 @@
 
 import { sharedPool } from "./db";
 import { igRoute, igToken } from "./sources";
+import { SITE_URL } from "./site";
 
-// Same domain every caption already points readers at (channel/episode-NN-caption.txt),
-// so it's the known-good fallback rather than a guess — but a custom domain or env
-// override always wins if one is set.
-const KNOWN_DOMAIN = "actually-works-studio.vercel.app";
-export const SITE_URL = `https://${(
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-  KNOWN_DOMAIN
-).replace(/^https?:\/\//, "")}`;
+export { SITE_URL };
 
 // ───────────────────────── Instagram ─────────────────────────
 
