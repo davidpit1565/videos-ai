@@ -142,21 +142,28 @@ export async function GET(req: Request) {
       if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
       if (e.status !== "live") e.status = "live";
     }
-    // A post whose caption plainly names an episode's own real title gets linked here,
-    // automatically, instead of sitting as a nagging "not linked" note forever — he kept
-    // seeing that note for posts that were obviously the right episode from the caption
-    // alone, and had to go link them by hand in /videos every time. Only auto-links when
-    // exactly one unlinked episode's title matches, so an ambiguous caption still falls
-    // through to the manual path rather than risk linking the wrong episode.
+    // Every caption we write ends with "actually-works-studio.vercel.app/e/N" — an
+    // exact, unambiguous episode number, checked first. Title matching (against the
+    // real YouTube-file title when the studio's own title field is still the "פרק
+    // חדש" placeholder) is the fallback for older posts or a caption written by hand
+    // without the link — he kept seeing the "not linked" note for posts that were
+    // obviously the right episode from the caption alone, and had to go link them by
+    // hand in /videos every time. Only auto-links when exactly one candidate matches,
+    // so an ambiguous caption still falls through to the manual path.
     const linked = new Set(state.episodes.map((x) => x.igMediaId).filter(Boolean));
     const unlinkedEpisodes = state.episodes.filter((e) => !e.igMediaId);
     for (const m of ig.media) {
       if (linked.has(m.id)) continue;
       const caption = (m.caption || "").toLowerCase();
-      const hits = unlinkedEpisodes.filter((e) => {
-        const title = (realTitleFor(e.number) || e.title || "").trim().toLowerCase();
-        return title.length > 4 && caption.includes(title);
-      });
+      const epLink = caption.match(/\/e\/(\d+)/);
+      const byNumber = epLink ? unlinkedEpisodes.filter((e) => e.number === +epLink[1]) : [];
+      const hits =
+        byNumber.length === 1
+          ? byNumber
+          : unlinkedEpisodes.filter((e) => {
+              const title = (realTitleFor(e.number) || e.title || "").trim().toLowerCase();
+              return title.length > 4 && caption.includes(title);
+            });
       if (hits.length === 1) {
         const e = hits[0];
         e.igMediaId = m.id;
