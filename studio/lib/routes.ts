@@ -19,6 +19,7 @@ export const STUDIO = [
   // manifest that can be fetched is a manifest that tells a stranger the tool exists
   "/studio.webmanifest",
   "/api/state", "/api/agent", "/api/instagram", "/api/youtube", "/api/beehiiv", "/api/push",
+  "/api/ideas-backlog",
 ];
 
 /** Neither the site nor the studio: the nightly tracker, called by Vercel's cron with its
