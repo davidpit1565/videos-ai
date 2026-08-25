@@ -22,7 +22,12 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
   }, []);
 
   async function doInstagram() {
-    if (!confirm("לפרסם עכשיו לאינסטגרם, פומבי, לכל העולם? אין דרך למחוק את זה מכאן.")) return;
+    if (
+      !confirm(
+        "לפרסם עכשיו — ריל לאינסטגרם, סטורי, ואם מחובר גם פייסבוק — פומבי, לכל העולם? אין דרך למחוק את זה מכאן.",
+      )
+    )
+      return;
     setIgBusy(true);
     setIgMsg(null);
     try {
@@ -31,7 +36,20 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ file, caption: caption ?? "" }),
       }).then((x) => x.json());
-      setIgMsg(r.ok ? `פורסם ✓${r.permalink ? ` — ${r.permalink}` : ""}` : `נכשל: ${r.reason}`);
+      const lines = [
+        r.reel?.ok ? `ריל ✓${r.reel.permalink ? ` — ${r.reel.permalink}` : ""}` : `ריל נכשל: ${r.reel?.reason}`,
+        r.story
+          ? r.story.ok
+            ? "סטורי ✓"
+            : `סטורי נכשל: ${r.story.reason}`
+          : null,
+        r.facebook
+          ? r.facebook.ok
+            ? "פייסבוק ✓"
+            : `פייסבוק: ${r.facebook.reason}`
+          : null,
+      ].filter(Boolean);
+      setIgMsg(lines.join(" · "));
     } catch (e) {
       setIgMsg(`שגיאה: ${e instanceof Error ? e.message : String(e)}`);
     } finally {
@@ -68,7 +86,7 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
       <p className="section-label">פרסום</p>
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
         <button className="btn" onClick={doInstagram} disabled={igBusy}>
-          {igBusy ? "מפרסם…" : "פרסם לאינסטגרם"}
+          {igBusy ? "מפרסם…" : "פרסם: ריל + סטורי + פייסבוק"}
         </button>
         {ytConnected === false ? (
           <a className="btn ghost" href="/api/youtube/auth">
