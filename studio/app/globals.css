@@ -503,6 +503,11 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
    16:9 child to fill it absolutely. Forcing that here would crop and distort the clip. */
 .site .vid-ig{margin:1.8rem 0;display:flex;justify-content:center}
 .site .vid-ig iframe{border-radius:1rem}
+/* The self-hosted fallback (the actual rendered mp4, when no Instagram/YouTube link is
+   recorded yet) — same vertical shape as the Instagram embed, a plain native player. */
+.site .vid-native{margin:1.8rem 0;display:flex;justify-content:center}
+.site .vid-native video{display:block;width:100%;max-width:min(100%,380px);
+  aspect-ratio:9/16;border-radius:1rem;background:#111}
 .site .steps{padding-inline-start:1.3rem}
 .site .steps li{margin:.5rem 0}
 .site .body, .pub pre{white-space:pre-wrap;background:var(--card);

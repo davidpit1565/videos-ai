@@ -55,7 +55,7 @@ function textFor(n: number | null, suffix: string): string | null {
   }
 }
 
-const captionFor = (n: number | null) => textFor(n, "caption");
+export const captionFor = (n: number | null) => textFor(n, "caption");
 const youtubeFor = (n: number | null) => textFor(n, "youtube");
 
 /** The real, already-approved title — its first line is written once, when the episode's
@@ -66,6 +66,18 @@ const youtubeFor = (n: number | null) => textFor(n, "youtube");
 export function realTitleFor(n: number | null): string | null {
   const yt = youtubeFor(n);
   return yt ? yt.split("\n")[0].trim() || null : null;
+}
+
+/** The last-resort title, for an episode whose youtube.txt was never written (several
+ *  were — the caption alone shipped) and has no hand-written article either. A caption's
+ *  first line is always its hook, written to work as a headline on its own, so it reads
+ *  fine as a page title. Without this, /e/N 404s for a real, already-published, already-
+ *  advertised episode the instant it's missing one companion file — and the caption
+ *  itself prints this exact URL, so a real visitor hits that 404. */
+export function captionTitleFor(n: number | null): string | null {
+  const cap = captionFor(n);
+  if (!cap) return null;
+  return cap.split("\n").find((l) => l.trim())?.trim() || null;
 }
 
 /** The filesystem mtime does not survive a git checkout reliably — Vercel's own build

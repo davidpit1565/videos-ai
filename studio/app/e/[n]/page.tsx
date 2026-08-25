@@ -3,7 +3,7 @@ import SiteNav from "../../sitenav";
 import { notFound } from "next/navigation";
 import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
-import { SEQUEL_OF, SEQUEL_FOR } from "@/lib/reels";
+import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor, reels } from "@/lib/reels";
 import Signup from "../../signup";
 import SiteNotify from "../../site-notify";
 import IgEmbed from "../../ig-embed";
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ n: string
   const n = Number((await params).n);
   const a = articleFor(n);
   const e = await episode(n);
-  const title = e?.title || a?.title;
+  const title = e?.title || a?.title || captionTitleFor(n) || undefined;
   if (!title) {
     // absolute: the front door is the brand itself, not "Actually Works · Actually Works"
     return { title: { absolute: "Actually Works" } };
@@ -36,15 +36,32 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
   const n = Number((await params).n);
   if (!Number.isFinite(n)) notFound();
 
-  // The page exists if EITHER the studio has published the episode or the article is
-  // written. Requiring both meant the link in a caption 404'd until someone remembered
-  // to flip a switch — and the caption is printed the moment the reel goes out.
+  // The page exists if the studio has published the episode, the article is written, OR
+  // the caption exists on disk — that third case is not theoretical: episodes 6, 8, 10,
+  // 11 and 12 all shipped with a caption but no youtube.txt and no DB record yet, and the
+  // caption itself prints this exact URL the moment the reel goes out. Requiring a DB
+  // record or an article meant a real visitor, clicking a real published caption's own
+  // link, got a 404.
   const e = await episode(n);
   const a = articleFor(n);
-  if (!e && !a) notFound();
+  const capTitle = captionTitleFor(n);
+  if (!e && !a && !capTitle) notFound();
 
   const prompt = promptFor(a);
-  const title = e?.title || a!.title;
+  const title = e?.title || a?.title || capTitle || `Episode ${n}`;
+  // The reel file itself, when it exists and passed its gate — the last-resort video for
+  // an episode with no Instagram/YouTube link recorded yet (same gap as the title above).
+  const selfHosted = reels().find((r) => r.kind === "video" && r.episode === n && r.gate?.passed);
+  // Same last-resort source as the title/video above, for the body: the caption's own
+  // paragraphs, minus the first (already the h1) and the Instagram-specific tail — the
+  // link back to this exact page, the follow CTA, the hashtag line. Only used when no
+  // hand-written article exists; the article is always the better version of this.
+  const capBody = !a
+    ? (captionFor(n) ?? "")
+        .split(/\n{2,}/)
+        .slice(1)
+        .filter((p) => !/^Full breakdown:|^Follow for|^#/.test(p.trim()))
+    : [];
   const allPub = await published();
   const others = allPub.filter((x) => x.number !== n);
   const more = others.length
@@ -119,6 +136,10 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
             allowFullScreen
           />
         </div>
+      ) : selfHosted ? (
+        <div className="vid-native">
+          <video src={selfHosted.src} controls playsInline preload="metadata" />
+        </div>
       ) : null}
 
       {/* Whichever platform didn't get the primary embed above, if it exists too — a
@@ -171,6 +192,12 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
             </ul>
           </section>
         </>
+      ) : capBody.length ? (
+        <section>
+          {capBody.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </section>
       ) : null}
 
       {e?.notes ? (
