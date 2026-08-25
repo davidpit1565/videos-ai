@@ -16,7 +16,7 @@ export default function SiteNav({ here }: { here?: string }) {
   return (
     <header className="sitenav">
       <Link className="mark" href="/">
-        <Image className="logo" src="/icon-192.png" alt="" width={28} height={28} priority />
+        <Image className="logo" src="/logo-light.png" alt="" width={28} height={28} priority />
         Actually Works
       </Link>
       <nav className="links">
