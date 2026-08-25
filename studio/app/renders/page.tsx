@@ -23,7 +23,8 @@ export default async function Renders() {
     <main>
       <h1>רנדרים</h1>
       <p className="lede">
-        סרטונים שממתינים לאישור שלך. לחיצה על אחד פותחת אותו עם תוצאת השער והקפשן שלו.
+        סרטונים שממתינים לאישור שלך. לחיצה על אחד פותחת אותו עם תוצאת השער, הקפשן, וכפתורי
+        הפרסום (ריל+סטורי+פייסבוק לאינסטגרם, והעלאה ל-YouTube) — מיד אחרי הנגן.
       </p>
 
       {rs.length === 0 && (
@@ -66,6 +67,11 @@ export default async function Renders() {
                 <span className="pill pass">עבר את השער</span>
               ) : (
                 <span className="pill fail">נפל בשער</span>
+              )}
+              {r.kind === "video" && r.gate?.passed && (!r.episode || !liveNumbers.has(r.episode)) && (
+                <span className="pill" style={{ borderColor: "var(--brass)", color: "var(--brass)" }}>
+                  אפשר לפרסם ⇢
+                </span>
               )}
             </span>
             <span className="rmetas">

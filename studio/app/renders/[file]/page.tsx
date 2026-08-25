@@ -60,6 +60,14 @@ export default async function RenderDetail({ params }: { params: Promise<{ file:
           </a>
         </div>
 
+        {/* Right after the player, before anything else — this used to sit at the very
+            bottom of the page, past the gate output and both copy-paste blocks, and he
+            couldn't find it. The button he's looking for belongs where his eyes land
+            right after watching, not after two unrelated sections. */}
+        {r.kind === "video" && r.gate?.passed && (
+          <PublishButtons file={r.file} caption={r.caption} youtube={r.youtube} />
+        )}
+
         {r.gate && (
           <details className="gate" open={!r.gate.passed}>
             <summary>{r.gate.passed ? "פלט השער" : "מה נפל"}</summary>
@@ -79,10 +87,6 @@ export default async function RenderDetail({ params }: { params: Promise<{ file:
             <p className="section-label">כותרת + תיאור ל-YouTube Shorts</p>
             <Copy text={r.youtube} />
           </>
-        )}
-
-        {r.kind === "video" && r.gate?.passed && (
-          <PublishButtons file={r.file} caption={r.caption} youtube={r.youtube} />
         )}
       </section>
     </main>

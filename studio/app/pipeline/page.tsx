@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useStudio } from "../providers";
 import { STATUS_HE, STATUS_ORDER, Status, uid } from "@/lib/types";
 import { eur } from "@/lib/fmt";
@@ -14,7 +14,7 @@ function bolded(line: string) {
   );
 }
 
-function IdeasBacklog() {
+function IdeasBacklog({ onCount }: { onCount: (n: number) => void }) {
   const [text, setText] = useState<string | null | undefined>(undefined);
   useEffect(() => {
     fetch("/api/ideas-backlog")
@@ -22,6 +22,11 @@ function IdeasBacklog() {
       .then((j) => setText(j.ok ? j.text : null))
       .catch(() => setText(null));
   }, []);
+
+  useEffect(() => {
+    if (!text) return;
+    onCount(text.split("\n").filter((l) => l.startsWith("## ")).length);
+  }, [text, onCount]);
 
   if (text === undefined) return null;
   if (text === null) {
@@ -51,6 +56,8 @@ export default function Pipeline() {
   const { state, update } = useStudio();
   const [task, setTask] = useState("");
   const [idea, setIdea] = useState("");
+  const [backlogCount, setBacklogCount] = useState(0);
+  const onBacklogCount = useCallback((n: number) => setBacklogCount(n), []);
 
   if (!state) return <p className="sub">טוען…</p>;
 
@@ -113,15 +120,25 @@ export default function Pipeline() {
         </button>
       </form>
 
-      <h2>מוכן מראש · 5 רעיונות לפרקים הבאים</h2>
+      <h2>
+        הרעיונות לפרק הבא · סה״כ {backlogCount + state.ideas.length} מוכנים
+      </h2>
+      <p className="sub">
+        שני המקורות למטה הם אותה רשימה אחת — כל רעיון שאתה מוסיף בטופס למטה נספר
+        באותה מכסה של "5 קדימה", בדיוק כמו מה שהסוכן מכין. אין צורך לבחור בין השניים.
+      </p>
+
+      <p className="section-label">מוכן מראש על ידי הסוכן · {backlogCount}</p>
       <p className="sub">
         נכתב מראש כדי שכל פעם שאומרים "תכין את הפרק הבא" כבר יש ממה לבחור, בלי לחשוב
         מאפס. מבוסס על ביקוש נמדד ב-<code>demand-report.md</code>. עדכון עצמו — כל פעם
         שכלי מהרשימה משמש לפרק, כדאי להוסיף רעיון חדש במקומו.
       </p>
-      <IdeasBacklog />
+      <IdeasBacklog onCount={onBacklogCount} />
 
-      <h2>רעיונות אחרים</h2>
+      <p className="section-label" style={{ marginTop: 24 }}>
+        הרעיונות שלך · {state.ideas.length}
+      </p>
       <ul className="list">
         {state.ideas.map((x, i) => (
           <li key={x.id}>
