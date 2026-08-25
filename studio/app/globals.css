@@ -82,6 +82,14 @@ p.sub b{color:var(--text)}
 
 /* ── tables ──────────────────────────────────── */
 .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+/* A table that can grow long (every episode, every unlinked post) scrolls in its own
+   box instead of pushing the whole page down — the "unlinked posts" list and the full
+   analytics table both grow without bound. The header needs its own opaque background
+   and z-index once it's sticky, or the row scrolling underneath shows through it as an
+   overlap right at the point the header pins — which is exactly what looked like the
+   header sitting "on top of" a row instead of above it. */
+.tw.boxed{max-height:420px;overflow-y:auto}
+.tw.boxed thead th{position:sticky;top:0;background:var(--panel);z-index:1}
 table{border-collapse:collapse;width:100%;font-size:15.5px}
 th,td{padding:12px 14px;text-align:right;border-bottom:1px solid var(--line);vertical-align:middle}
 th{font-size:13.5px;color:var(--muted);font-weight:700;background:var(--panel-2);white-space:nowrap}

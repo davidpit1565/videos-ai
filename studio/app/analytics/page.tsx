@@ -241,7 +241,7 @@ export default function Analytics() {
 
       <section className="chart-section">
         <h2>הטבלה המלאה</h2>
-        <div className="tw">
+        <div className="tw boxed">
           <table>
             <thead>
               <tr>

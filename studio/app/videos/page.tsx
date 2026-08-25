@@ -63,20 +63,27 @@ export default function Videos() {
           if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
           if (e.status !== "live") e.status = "live";
         }
-        // A post whose caption plainly names an episode's own title gets linked here
-        // automatically instead of sitting in the "לקשר לפרק" list forever — he kept
-        // having to link these by hand even when the caption made the match obvious.
-        // Only when exactly one unlinked episode's title matches, so an ambiguous
-        // caption still falls through to the dropdown below.
+        // Every caption we write ends with "actually-works-studio.vercel.app/e/N" —
+        // an exact, unambiguous episode number, so that's the first thing checked.
+        // Title matching is the fallback, for older posts or a caption written by
+        // hand without the link: a post whose caption plainly names an episode's own
+        // title gets linked automatically instead of sitting in the "לקשר לפרק" list
+        // forever — but only when exactly one unlinked episode's title matches, so an
+        // ambiguous caption still falls through to the dropdown below.
         const linkedIds = new Set(d.episodes.map((e) => e.igMediaId).filter(Boolean));
         const unlinkedEps = d.episodes.filter((e) => !e.igMediaId);
         for (const m of j.media ?? []) {
           if (linkedIds.has(m.id)) continue;
           const caption = (m.caption || "").toLowerCase();
-          const matches = unlinkedEps.filter((e) => {
-            const title = e.title.trim().toLowerCase();
-            return title.length > 4 && title !== "פרק חדש" && caption.includes(title);
-          });
+          const epLink = caption.match(/\/e\/(\d+)/);
+          const byNumber = epLink ? unlinkedEps.filter((e) => e.number === +epLink[1]) : [];
+          const matches =
+            byNumber.length === 1
+              ? byNumber
+              : unlinkedEps.filter((e) => {
+                  const title = e.title.trim().toLowerCase();
+                  return title.length > 4 && title !== "פרק חדש" && caption.includes(title);
+                });
           if (matches.length !== 1) continue;
           const e = matches[0];
           e.igMediaId = m.id;
@@ -417,7 +424,7 @@ export default function Videos() {
       ) : unlinked.length === 0 ? (
         <p className="sub">כל הפוסטים בחשבון מקושרים לפרק.</p>
       ) : (
-        <div className="tw">
+        <div className="tw boxed">
           <table>
             <thead>
               <tr>
@@ -490,7 +497,7 @@ export default function Videos() {
       ) : unlinkedYt.length === 0 ? (
         <p className="sub">כל הסרטונים בערוץ מקושרים לפרק.</p>
       ) : (
-        <div className="tw">
+        <div className="tw boxed">
           <table>
             <thead>
               <tr>
