@@ -123,6 +123,7 @@ export const USED_ACCENTS: UsedAccent[] = [
   { episode: 9, brass: "#8FE3FF", ember: "#B98CFF" },
   { episode: 10, brass: "#B4E66E", ember: "#3FA9F5" },
   { episode: 11, brass: "#FF8A5B", ember: "#7B4FFF" },
+  { episode: 12, brass: "#5EEAD4", ember: "#F472B6" },
 ];
 
 export type MusicMood = {

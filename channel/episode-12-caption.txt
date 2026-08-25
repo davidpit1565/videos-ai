@@ -1,0 +1,16 @@
+Most people think Claude Code is only for programmers.
+
+It isn't. You just say what you want, in plain words — "make the button
+big" — and the tool writes the code. This exact website, the studio you'd
+land on from this link, was built exactly that way: one sentence, one small
+change, over and over.
+
+The rule for any first try with it:
+
+Start with one sentence and one small change, before anything big.
+
+Full breakdown: actually-works-studio.vercel.app/e/12
+
+Follow for setups that actually work.
+
+#claudecode #aitools #coding #buildinpublic #automation #nocode
