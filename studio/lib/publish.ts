@@ -12,7 +12,7 @@ import { igRoute, igToken } from "./sources";
 // so it's the known-good fallback rather than a guess — but a custom domain or env
 // override always wins if one is set.
 const KNOWN_DOMAIN = "actually-works-studio.vercel.app";
-const SITE_URL = `https://${(
+export const SITE_URL = `https://${(
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.VERCEL_PROJECT_PRODUCTION_URL ||
   KNOWN_DOMAIN
