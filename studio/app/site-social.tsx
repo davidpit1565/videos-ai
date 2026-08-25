@@ -26,14 +26,19 @@ const LINKS = [
 
 export default function SiteSocial() {
   return (
-    <div className="ssocial" aria-label="Social links">
-      {LINKS.map((l) => (
-        <a key={l.name} href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.name}>
-          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-            {l.icon}
-          </svg>
-        </a>
-      ))}
+    <div className="ssocial-wrap">
+      <a href="https://agently-orcin.vercel.app" className="ssocial-crosslink">
+        Also building Agently — the marketplace for AI agents ↗
+      </a>
+      <div className="ssocial" aria-label="Social links">
+        {LINKS.map((l) => (
+          <a key={l.name} href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.name}>
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              {l.icon}
+            </svg>
+          </a>
+        ))}
+      </div>
     </div>
   );
 }

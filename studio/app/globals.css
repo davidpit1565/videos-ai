@@ -538,8 +538,11 @@ body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
 /* Real profile links, rendered once by Shell for every public page — not scoped
    inside .site/.pub, so it can't rely on their custom properties; the same paper
    palette is repeated here as literal values instead. */
-.ssocial{display:flex;justify-content:center;gap:1.4rem;padding:1.4rem 1.1rem 3rem;
-  background:#F7F5F1}
+.ssocial-wrap{background:#F7F5F1;padding-top:1.4rem}
+.ssocial-crosslink{display:block;text-align:center;font-size:.8rem;color:#6F6A60;
+  text-decoration:none;padding:0 1.1rem .7rem;transition:color .15s}
+.ssocial-crosslink:hover{color:#8A6D1B}
+.ssocial{display:flex;justify-content:center;gap:1.4rem;padding:0 1.1rem 3rem}
 .ssocial a{color:#6F6A60;display:flex;transition:color .15s}
 .ssocial a:hover{color:#8A6D1B}
 .pub .foot{color:var(--faint);border-top:1px solid var(--rule);margin-top:3rem;
