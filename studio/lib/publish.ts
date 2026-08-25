@@ -24,23 +24,24 @@ export type IgPublishResult =
   | { ok: true; mediaId: string; permalink: string | null }
   | { ok: false; reason: string; detail?: string };
 
-/** Create the media container, wait for Instagram to finish downloading and processing the
- *  video from its public URL, then publish it. Three real HTTP round trips against a real
- *  account — never called speculatively, only from a button he presses. */
-export async function publishToInstagram(file: string, caption: string): Promise<IgPublishResult> {
-  const token = await igToken();
-  if (!token) return { ok: false, reason: "IG_ACCESS_TOKEN לא מוגדר" };
-  const { host, via } = igRoute(token);
-  const user = process.env.IG_USER_ID || (via === "instagram-login" ? "me" : "");
-  if (!user) return { ok: false, reason: "IG_USER_ID לא מוגדר" };
-
-  const videoUrl = `${SITE_URL}/reels/${encodeURIComponent(file)}`;
-
-  // 1) create the container
+/** The three-step container dance (create -> poll until processed -> publish) is
+ *  identical for a Reel and for a Story; only media_type and whether a caption applies
+ *  differ. Verified against Meta's own Content Publishing docs before writing this —
+ *  there is no single "also post to Stories" flag on the Reels container (a few SEO
+ *  blog posts claim a `share_to_story` parameter; it isn't in Meta's own reference and
+ *  isn't used here), so a Story is genuinely its own container and its own publish. */
+async function createAndPublishIgMedia(
+  host: string,
+  user: string,
+  token: string,
+  mediaType: "REELS" | "STORIES",
+  videoUrl: string,
+  caption?: string,
+): Promise<IgPublishResult> {
   const createUrl = new URL(`${host}/${user}/media`);
-  createUrl.searchParams.set("media_type", "REELS");
+  createUrl.searchParams.set("media_type", mediaType);
   createUrl.searchParams.set("video_url", videoUrl);
-  createUrl.searchParams.set("caption", caption);
+  if (caption) createUrl.searchParams.set("caption", caption);
   createUrl.searchParams.set("access_token", token);
   const created = await fetch(createUrl, { method: "POST", cache: "no-store" });
   const createdBody = (await created.json()) as { id?: string; error?: { message?: string } };
@@ -49,9 +50,10 @@ export async function publishToInstagram(file: string, caption: string): Promise
   }
   const containerId = createdBody.id;
 
-  // 2) poll until Instagram has actually downloaded and processed the file — publishing
-  // too early is the documented cause of a silent failure, not a fast one
-  const deadline = Date.now() + 90_000;
+  // poll until Instagram has actually downloaded and processed the file — publishing
+  // too early is the documented cause of a silent failure, not a fast one. Kept under
+  // 45s because the Reel and Story publishes now run back to back in one request.
+  const deadline = Date.now() + 45_000;
   let status = "IN_PROGRESS";
   while (Date.now() < deadline) {
     const statusUrl = new URL(`${host}/${containerId}`);
@@ -67,7 +69,6 @@ export async function publishToInstagram(file: string, caption: string): Promise
     return { ok: false, reason: `אינסטגרם לא סיים לעבד את הווידאו (סטטוס: ${status})`, detail: containerId };
   }
 
-  // 3) publish
   const publishUrl = new URL(`${host}/${user}/media_publish`);
   publishUrl.searchParams.set("creation_id", containerId);
   publishUrl.searchParams.set("access_token", token);
@@ -91,6 +92,62 @@ export async function publishToInstagram(file: string, caption: string): Promise
   }
 
   return { ok: true, mediaId: publishedBody.id, permalink };
+}
+
+export type IgFullPublishResult = {
+  reel: IgPublishResult;
+  /** null when the reel itself failed — a story of a post that doesn't exist yet isn't attempted */
+  story: IgPublishResult | null;
+};
+
+/** Publishes the Reel, then — same video, same account, same confirm click he already
+ *  gave — also publishes it as a Story. Two independent Graph API objects under the
+ *  hood, run as one action because that's how he asked for it to work. The Story
+ *  attempt only fires after the Reel really is live, and its own failure never hides
+ *  or rolls back a successful Reel publish. */
+export async function publishToInstagram(file: string, caption: string): Promise<IgFullPublishResult> {
+  const token = await igToken();
+  if (!token) return { reel: { ok: false, reason: "IG_ACCESS_TOKEN לא מוגדר" }, story: null };
+  const { host, via } = igRoute(token);
+  const user = process.env.IG_USER_ID || (via === "instagram-login" ? "me" : "");
+  if (!user) return { reel: { ok: false, reason: "IG_USER_ID לא מוגדר" }, story: null };
+
+  const videoUrl = `${SITE_URL}/reels/${encodeURIComponent(file)}`;
+  const reel = await createAndPublishIgMedia(host, user, token, "REELS", videoUrl, caption);
+  if (!reel.ok) return { reel, story: null };
+
+  const story = await createAndPublishIgMedia(host, user, token, "STORIES", videoUrl);
+  return { reel, story };
+}
+
+// ───────────────────────── Facebook ─────────────────────────
+
+export type FbPublishResult =
+  | { ok: true; postId: string }
+  | { ok: false; reason: string };
+
+/** A genuinely separate platform, not a side effect of the Instagram call — Meta has no
+ *  API parameter that cross-posts an Instagram Reel to a Facebook Page automatically
+ *  (verified against Meta's own docs; that's a manual toggle inside the Instagram app
+ *  only, not exposed to the Graph API). Posting to the Page needs the Page's own token
+ *  (`pages_manage_posts` scope) — a separate credential from the Instagram user token,
+ *  which is why this reads its own env vars and reports plainly when they're missing
+ *  instead of quietly reusing the Instagram one. */
+export async function publishToFacebook(file: string, caption: string): Promise<FbPublishResult> {
+  const pageId = process.env.FB_PAGE_ID;
+  const pageToken = process.env.FB_PAGE_ACCESS_TOKEN;
+  if (!pageId || !pageToken) {
+    return { ok: false, reason: "FB_PAGE_ID / FB_PAGE_ACCESS_TOKEN לא מוגדרים — זה חיבור נפרד מאינסטגרם" };
+  }
+  const videoUrl = `${SITE_URL}/reels/${encodeURIComponent(file)}`;
+  const u = new URL(`https://graph.facebook.com/v21.0/${pageId}/videos`);
+  u.searchParams.set("file_url", videoUrl);
+  u.searchParams.set("description", caption);
+  u.searchParams.set("access_token", pageToken);
+  const r = await fetch(u, { method: "POST", cache: "no-store" });
+  const j = (await r.json()) as { id?: string; error?: { message?: string } };
+  if (!r.ok || !j.id) return { ok: false, reason: j.error?.message ?? `הפרסום לפייסבוק נכשל (${r.status})` };
+  return { ok: true, postId: j.id };
 }
 
 // ───────────────────────── YouTube ─────────────────────────
