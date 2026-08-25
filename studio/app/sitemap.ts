@@ -3,16 +3,20 @@ import { published, SITE_URL } from "@/lib/site";
 import { ARTICLES } from "@/lib/articles";
 import { PROMPTS } from "@/lib/prompts";
 import { SKILLS } from "@/lib/skills";
+import { reels, captionTitleFor } from "@/lib/reels";
 
 export const revalidate = 3600;
 
 /** Every URL the front door actually wants Google to know exists. An episode page exists
- *  the moment either the studio marks it live or its article is written (see lib/site.ts's
- *  episode()) — same rule here, so this list is never behind what a visitor can already
- *  open, and never ahead of it either. */
+ *  the moment the studio marks it live, its article is written, OR its caption exists on
+ *  disk (the same third case /e/[n]/page.tsx falls back to — see that file's comment) —
+ *  same three sources here, so this list is never behind what a visitor can already open. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const live = await published();
-  const numbers = new Set([...live.map((e) => e.number), ...ARTICLES.map((a) => a.n)]);
+  const captioned = reels()
+    .filter((r) => r.kind === "video" && r.gate?.passed && r.episode != null && captionTitleFor(r.episode))
+    .map((r) => r.episode as number);
+  const numbers = new Set([...live.map((e) => e.number), ...ARTICLES.map((a) => a.n), ...captioned]);
 
   const episodes: MetadataRoute.Sitemap = [...numbers].map((n) => {
     const e = live.find((x) => x.number === n);
