@@ -76,8 +76,15 @@ export default function Week() {
       <div className="week">
         {days.map((d, i) => {
           const eps = forDay(d);
+          // A day with a real, already-live episode and a day with only a planned date
+          // for one that hasn't shipped yet looked identical — same gold border either
+          // way — which is exactly what read as "showing days that haven't happened
+          // yet" as if they had. live-day border stays the confirmed signal; a
+          // planned-only day gets a visibly different, dashed one.
+          const live = eps.some((e) => e.status === "live");
+          const cls = "day" + (eps.length ? (live ? " has" : " planned") : "");
           return (
-            <div className={"day" + (eps.length ? " has" : "")} key={d}>
+            <div className={cls} key={d}>
               <div className="dh">
                 <b>{DAY_HE[i]}</b>
                 <span className="num">{d.slice(5)}</span>
@@ -129,6 +136,7 @@ function Card({ e, onToggle }: { e: Episode; onToggle: (id: string, c: Channel) 
     <div className="wcard">
       <div className="t">
         <span className="num">{e.number}</span> {e.title}
+        {e.status !== "live" && <span className="planned-tag">מתוכנן</span>}
       </div>
       <div className="chs">
         {CHANNELS.map((c) => (

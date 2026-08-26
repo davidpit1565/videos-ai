@@ -362,6 +362,11 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .day{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
   padding:10px 10px 12px;min-height:132px}
 .day.has{border-color:var(--brass-dim)}
+/* A day holding only a planned (not-yet-live) episode used to get the identical gold
+   border as a day with a real, already-published one — a future date read as if it had
+   already happened. Dashed and muted instead: still visibly "something's here", never
+   mistaken for a confirmed fact. */
+.day.planned{border-style:dashed;border-color:var(--line-2)}
 .day .dh{display:flex;align-items:baseline;justify-content:space-between;gap:6px;
   padding-bottom:8px;margin-bottom:9px;border-bottom:1px solid var(--line)}
 .day .dh b{font-size:14.5px}
@@ -371,6 +376,9 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   padding:9px 10px;margin-bottom:8px}
 .wcard .t{font-size:14px;font-weight:700;line-height:1.35;margin-bottom:8px}
 .wcard .t .num{color:var(--brass);margin-inline-end:4px}
+.planned-tag{font-family:var(--m);font-size:10.5px;font-weight:700;letter-spacing:.04em;
+  color:var(--faint);border:1px solid var(--line-2);border-radius:999px;
+  padding:2px 7px;margin-inline-start:6px;vertical-align:middle}
 .chs{display:flex;flex-wrap:wrap;gap:5px}
 .ch{background:transparent;border:1px solid var(--line-2);border-radius:999px;
   padding:5px 10px;font-size:13px;color:var(--muted)}
