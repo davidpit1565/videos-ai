@@ -73,18 +73,23 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
   const part2 = SEQUEL_FOR[n] !== undefined ? allPub.find((x) => x.number === SEQUEL_FOR[n]) : null;
   const part1 = SEQUEL_OF[n] !== undefined ? allPub.find((x) => x.number === SEQUEL_OF[n]) : null;
 
-  // Only the two platforms that actually have a genuinely embeddable URL — the YouTube
-  // nocookie embed (Google's own documented VideoObject example) or Instagram's own
-  // permalink+"embed" (the exact URL its embed.js renders into an iframe, per Meta's
-  // oEmbed docs). Without one of these, Google's rich-result validator flags the
-  // markup as incomplete, so an episode with neither just gets no VideoObject at all
-  // rather than one that fails validation.
-  const embedUrl = e?.ytVideoId
-    ? `https://www.youtube-nocookie.com/embed/${e.ytVideoId}`
-    : e?.igPermalink
-      ? `${e.igPermalink.replace(/\/?$/, "/")}embed`
-      : null;
-  const videoSchema = embedUrl
+  // contentUrl beats embedUrl when there's an actual, directly-playable file — schema.org's
+  // own preferred field for exactly this case — so the self-hosted mp4 gets that instead
+  // of being squeezed into "embed" semantics. Otherwise, the two platforms that have a
+  // genuinely embeddable URL: the YouTube nocookie embed (Google's own documented
+  // VideoObject example) or Instagram's own permalink+"embed" (the exact URL its embed.js
+  // renders into an iframe, per Meta's oEmbed docs). Without any of these, Google's
+  // rich-result validator flags the markup as incomplete, so an episode with none just
+  // gets no VideoObject at all rather than one that fails validation.
+  const contentUrl = selfHosted ? `${SITE_URL}${selfHosted.src}` : null;
+  const embedUrl = contentUrl
+    ? null
+    : e?.ytVideoId
+      ? `https://www.youtube-nocookie.com/embed/${e.ytVideoId}`
+      : e?.igPermalink
+        ? `${e.igPermalink.replace(/\/?$/, "/")}embed`
+        : null;
+  const videoSchema = contentUrl || embedUrl
     ? {
         "@context": "https://schema.org",
         "@type": "VideoObject",
@@ -92,7 +97,8 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         description: a?.standfirst ?? e?.topic ?? title,
         thumbnailUrl: `${SITE_URL}/e/${n}/opengraph-image`,
         uploadDate: e?.publishedAt ? new Date(e.publishedAt).toISOString() : undefined,
-        embedUrl,
+        contentUrl: contentUrl ?? undefined,
+        embedUrl: embedUrl ?? undefined,
       }
     : null;
 
@@ -120,10 +126,17 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         </p>
       ) : null}
 
-      {/* The Instagram post is the one that actually went out with a real caption and real
-          numbers — shown first when it exists. YouTube is the fallback, not a duplicate:
-          two players for the same clip is worse than one, not more complete. */}
-      {e?.igPermalink ? (
+      {/* The self-hosted file first when it exists — instant, on-brand, no third-party
+          script to wait on or get blocked. The Instagram embed depends on embed.js
+          loading over the network and shows its own generic blue branding until it does;
+          on a page whose one job is showing the clip, that's a real, visible cost, not a
+          style preference. Instagram/YouTube become secondary links below instead, which
+          is where their real numbers (views, likes) still get their due. */}
+      {selfHosted ? (
+        <div className="vid-native">
+          <video src={selfHosted.src} controls playsInline preload="metadata" />
+        </div>
+      ) : e?.igPermalink ? (
         <div className="vid-ig">
           <IgEmbed permalink={e.igPermalink} />
         </div>
@@ -136,15 +149,25 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
             allowFullScreen
           />
         </div>
-      ) : selfHosted ? (
-        <div className="vid-native">
-          <video src={selfHosted.src} controls playsInline preload="metadata" />
-        </div>
       ) : null}
 
-      {/* Whichever platform didn't get the primary embed above, if it exists too — a
-          reader who'd rather watch on YouTube shouldn't have to go find it themselves. */}
-      {e?.igPermalink && e?.ytVideoId ? (
+      {/* Real platforms and real numbers, once the self-hosted file already carried the
+          primary watch experience above. */}
+      {selfHosted && (e?.igPermalink || e?.ytVideoId) ? (
+        <p className="sub">
+          {e?.igPermalink && (
+            <a href={e.igPermalink} target="_blank" rel="noreferrer">
+              View on Instagram{e.views ? ` — ${e.views.toLocaleString("en-US")} views` : ""} ↗
+            </a>
+          )}
+          {e?.igPermalink && e?.ytVideoId ? " · " : ""}
+          {e?.ytVideoId && (
+            <a href={`https://youtu.be/${e.ytVideoId}`} target="_blank" rel="noreferrer">
+              Watch on YouTube ↗
+            </a>
+          )}
+        </p>
+      ) : !selfHosted && e?.igPermalink && e?.ytVideoId ? (
         <p className="sub">
           <a href={`https://youtu.be/${e.ytVideoId}`} target="_blank" rel="noreferrer">
             Watch on YouTube instead ↗

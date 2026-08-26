@@ -20,9 +20,18 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{background:var(--ink);color:var(--text);font-family:var(--b);font-size:17px;
+/* The document is the public site by default, same principle as layout.tsx's title and
+   as `direction:ltr` right below — the studio (.shell) is the one private corner that
+   overrides it, not the other way round. This used to default dark (the studio's own
+   color) and rely on `body:has(.site)` further down to paint it cream, which fails open
+   to the wrong background — the private tool's color — on the rare browser without
+   :has() support, and on iOS Safari's overscroll bounce shows that dark edge past the
+   page bounds before the override can apply. Failing open to cream is the safe direction:
+   the worst case is a site page briefly under-styled, never the business exposed. */
+body{background:#F7F5F1;color:#16181C;font-family:var(--b);font-size:17px;
   line-height:1.65;direction:ltr;-webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent}
+body:has(.shell){background:var(--ink);color:var(--text)}
 /* digits only — never Hebrew */
 .num{font-family:var(--m);direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap;
   font-variant-numeric:tabular-nums}
@@ -380,9 +389,8 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   max-width:64rem; margin:0 auto; padding:clamp(1.7rem,5vw,3.6rem) clamp(1.1rem,4.5vw,1.7rem) 5rem;
   font-size:17.5px; line-height:1.62;
 }
-/* the ground has to be painted behind the container too, or the dark body shows
-   through on overscroll and in the address-bar tint */
-body:has(.site), body:has(.pub){ background:#F7F5F1; color:#16181C; }
+/* Cream is body's own default now (see the top of this file) — .site/.pub no longer
+   need to ask for it back, only .shell (the studio) opts out of it. */
 
 .site .kicker, .pub .kicker{font-family:var(--code);font-size:.7rem;letter-spacing:.15em;
   text-transform:uppercase;color:var(--faint);margin:0 0 1.1rem}
