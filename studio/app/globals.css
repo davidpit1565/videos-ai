@@ -487,6 +487,12 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    at the same width it was most of a phone's first screen before anything else on the
    page. Capped smaller specifically in the hero, on top of the shared rule below. */
 .site .hero .herovid.vid-native video{max-width:min(62vw,300px)}
+/* Same reasoning as the self-hosted player above, for the Instagram embed case:
+   Instagram's own embed.js sizes its iframe to fill whatever width its blockquote
+   is given, so an unconstrained 100%-width blockquote in the hero would size itself
+   to the full column width — same "preview beside real text, not the main event"
+   problem, just via a script instead of a fixed aspect-ratio. */
+.site .hero .herovid.vid-ig{max-width:min(62vw,300px);margin-inline:auto}
 /* Fills the hero's second column on wide screens when there's no video yet — that
    column rendered nothing at all before, a bare gap beside the headline. Hidden on
    phones on purpose: below 860px the grid is single-column already (headline stacks
