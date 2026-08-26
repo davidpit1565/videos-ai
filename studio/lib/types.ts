@@ -71,8 +71,6 @@ export type ActivityEvent = {
   delta: number | null;
 };
 
-export type Task = { id: string; text: string; note: string; done: boolean };
-
 /** The agent's read on one idea, 0-100 per category — his own judgment call, not a
  *  measured metric, framed that way in the prompt that produces it. Six categories,
  *  each answering a different question so they don't just restate each other:
@@ -103,7 +101,6 @@ export type State = {
   episodes: Episode[];
   snapshots: Snapshot[];
   revenue: RevenueLine[];
-  tasks: Task[];
   ideas: Idea[];
   /** optional so states saved before the feed existed still load */
   activity?: ActivityEvent[];

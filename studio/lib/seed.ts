@@ -40,13 +40,6 @@ export function seed(): State {
       { id: uid(), name: "מוצר דיגיטלי — חבילת workflows", status: "idea", mrrEur: 0,
         needsAudience: "~3,000", nextStep: "לבנות מהסרטונים הנשמרים ביותר" },
     ],
-    tasks: [
-      { id: uid(), text: "להסב את חשבון האינסטגרם ל-Creator ולשנות את השם", note: "~15 דקות · חוסם הכל", done: false },
-      { id: uid(), text: "לאשר את פרק 01 ולפרסם", note: "הצעד היחיד שבאמת קובע", done: false },
-      { id: uid(), text: "להזמין מיקרופון USB", note: "~300 ₪ · משדרג כל פרק עתידי", done: false },
-      { id: uid(), text: "לבדוק בעצמי את הסטאפ של פרק 02", note: "~1 שעה · זה המוצר", done: false },
-      { id: uid(), text: "לענות על כל תגובה והודעה", note: "יומי · משם מגיעים הלקוחות", done: false },
-    ],
     ideas: [
       { id: uid(), text: "Claude Code למי שלא מתכנת — חציון 159 אלף במדידה" },
       { id: uid(), text: "לבנות ולמכור אוטומציה לעסק מקומי — צעד אחר צעד" },

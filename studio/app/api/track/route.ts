@@ -240,6 +240,24 @@ export async function GET(req: Request) {
     });
   }
 
+  // An episode can end up marked "live" without ever really being one — a manual
+  // status edit in /videos, or an auto-link that later got its igMediaId cleared.
+  // The homepage's "N episodes live" count and this page's own "already published"
+  // badge both read status alone, so a stray row like that inflates a real number
+  // silently — exactly what happened: 11 shown live, 10 actually on Instagram. Demote
+  // rather than delete (never destroy a row nobody asked to lose) and say so in the
+  // feed, once per episode, so it's a visible correction, not a silent rewrite.
+  for (const e of state.episodes) {
+    if (e.status === "live" && !e.igMediaId && !e.ytVideoId) {
+      e.status = "testing";
+      fresh.push({
+        id: uid(), at: now, source: "studio",
+        label: `פרק ${e.number} סומן "פורסם" בלי קישור אמיתי לאינסטגרם או ליוטיוב — הוחזר ל"בדיקה"`,
+        value: null, delta: null,
+      });
+    }
+  }
+
   state.activity = [...fresh, ...feed].slice(0, 300);
   state.updatedAt = now;
   await saveState(state);

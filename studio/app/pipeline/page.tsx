@@ -103,7 +103,6 @@ function IdeasBacklog({ onCount }: { onCount: (n: number) => void }) {
 
 export default function Pipeline() {
   const { state, update } = useStudio();
-  const [task, setTask] = useState("");
   const [idea, setIdea] = useState("");
   const [pendingScore, setPendingScore] = useState<IdeaScore | null>(null);
   const [scoring, setScoring] = useState(false);
@@ -116,7 +115,6 @@ export default function Pipeline() {
 
   const count = (s: Status) => state.episodes.filter((e) => e.status === s).length;
   const mrr = state.revenue.reduce((a, r) => a + (r.mrrEur || 0), 0);
-  const open = state.tasks.filter((t) => !t.done).length;
 
   return (
     <>
@@ -136,42 +134,6 @@ export default function Pipeline() {
           </div>
         ))}
       </div>
-
-      <h2>משימות · {open} פתוחות</h2>
-      <ul className="list">
-        {state.tasks.map((t, i) => (
-          <li key={t.id} className={t.done ? "done" : undefined}>
-            <input
-              type="checkbox"
-              checked={t.done}
-              onChange={(e) => update((d) => void (d.tasks[i].done = e.target.checked))}
-            />
-            <span className="lbl">
-              {t.text}
-              {t.note && <small>{t.note}</small>}
-            </span>
-            <button className="del" aria-label="מחיקה" onClick={() => update((d) => void d.tasks.splice(i, 1))}>
-              ×
-            </button>
-          </li>
-        ))}
-      </ul>
-      <form
-        className="ask"
-        style={{ marginTop: 12 }}
-        onSubmit={(e) => {
-          e.preventDefault();
-          const text = task.trim();
-          if (!text) return;
-          update((d) => void d.tasks.push({ id: uid(), text, note: "", done: false }));
-          setTask("");
-        }}
-      >
-        <input value={task} onChange={(e) => setTask(e.target.value)} placeholder="משימה חדשה" />
-        <button className="btn" type="submit">
-          הוספה
-        </button>
-      </form>
 
       <h2>
         הרעיונות לפרק הבא · סה״כ {backlogCount + state.ideas.length} מוכנים

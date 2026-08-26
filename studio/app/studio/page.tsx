@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useStudio } from "../providers";
 import Notify from "../notify";
 import { saveRate, uid } from "@/lib/types";
@@ -44,7 +43,6 @@ export default function Dashboard() {
   const rates = live.map(saveRate).filter((v): v is number => v != null);
   const avgSave = rates.length ? rates.reduce((a, b) => a + b, 0) / rates.length : null;
   const mrr = state.revenue.reduce((a, r) => a + (r.mrrEur || 0), 0);
-  const nextTask = state.tasks.find((t) => !t.done) ?? null;
 
   const ranked = [...live].sort((a, b) => (saveRate(b) ?? -1) - (saveRate(a) ?? -1));
 
@@ -86,18 +84,6 @@ export default function Dashboard() {
           <div className="s">מוזן ידנית לפי מה שנכנס בפועל</div>
         </div>
       </div>
-
-      {nextTask && (
-        <div className="note">
-          <div className="t">הצעד הבא</div>
-          <b>{nextTask.text}</b>
-          {nextTask.note ? ` — ${nextTask.note}` : ""}
-          <br />
-          <Link href="/pipeline" style={{ color: "var(--brass)" }}>
-            לרשימה המלאה →
-          </Link>
-        </div>
-      )}
 
       <h2>מה קרה</h2>
       <Notify />
