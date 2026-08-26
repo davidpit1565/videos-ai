@@ -30,6 +30,15 @@ html,body{margin:0;padding:0}
 body{background:#0E1116;color:#EEF0F3;font-family:var(--b);font-size:17px;
   line-height:1.65;direction:ltr;-webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent}
+/* A faint dot grid, brass at 5% opacity, on the public pages only — a flat single
+   color read as an empty void rather than a considered surface once the palette
+   itself stopped being the thing carrying "distinctive." Kept out of the studio
+   (.shell): that surface is dense working UI, not a marketing page, and a texture
+   under a data table is noise, not craft. */
+body:not(:has(.shell)){
+  background-image:radial-gradient(circle at 1px 1px, rgba(232,200,106,.05) 1px, transparent 0);
+  background-size:30px 30px;
+}
 body:has(.shell){background:var(--ink);color:var(--text)}
 /* digits only — never Hebrew */
 .num{font-family:var(--m);direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap;
@@ -836,13 +845,20 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   .site .reveal::before{display:none}
 }
 
+/* A flat 1px border reads as an outline, not a surface — a hairline highlight along
+   the top edge (a common cue for "this is raised, catching light from above") gives
+   every card a resting-state sense of depth instead of only reacting on hover. */
+.site .eps a,.site .prompts a,.site .hits > li{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
 /* Cards already had a border-color hover; a small lift plus a brass-tinted shadow
    reads as "this is a real surface, not flat text" without becoming a bounce or a
    distraction — one direction of movement (up), one property doing the work. */
 .site .eps a,.site .prompts a,.site .hits > li,.site .issueteaser{
   transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
-.site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover,.site .issueteaser:hover{
-  transform:translateY(-3px);box-shadow:0 10px 24px -12px rgba(232,200,106,.28)}
+.site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover{
+  transform:translateY(-3px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 10px 24px -12px rgba(232,200,106,.28)}
+.site .issueteaser:hover{transform:translateY(-3px);box-shadow:0 10px 24px -12px rgba(232,200,106,.28)}
 .site .cta,.site .signup button,.pub .cta,.pub .signup button{
   transition:transform .15s ease,background .15s ease,box-shadow .15s ease}
 .site .cta:hover,.site .signup button:hover:enabled,
