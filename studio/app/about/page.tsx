@@ -1,13 +1,32 @@
 import Link from "next/link";
 import SiteNav from "../sitenav";
 import Reveal from "../reveal";
+import { catalogue } from "@/lib/site";
+import { ARTICLES } from "@/lib/articles";
 
 export const metadata = {
   title: "About",
   description: "Who runs this channel, and the one rule it holds to.",
 };
 
-export default function About() {
+export const revalidate = 300;
+
+export default async function About() {
+  const eps = await catalogue();
+  const live = eps.filter((e) => e.live);
+  const totalViews = live.reduce((a, e) => a + (e.views ?? 0), 0);
+  const breaksDocumented = ARTICLES.reduce((a, ar) => a + ar.limits.length, 0);
+  // Nick Saraev's own about page states hard numbers once, with no adjectives around
+  // them, rather than testimonial prose — the pattern a competitor audit flagged as
+  // this channel's own differentiator done right. Every figure here is one already
+  // computed elsewhere on the site (the hero stats, the episode/article data) — never
+  // a second, separate estimate that could quietly drift from the real one.
+  const proof = [
+    live.length > 0 ? { v: live.length, l: `episode${live.length === 1 ? "" : "s"} published` } : null,
+    breaksDocumented > 0 ? { v: breaksDocumented, l: "failure modes written down" } : null,
+    totalViews > 0 ? { v: totalViews, l: "views measured" } : null,
+  ].filter((x): x is { v: number; l: string } => x !== null);
+
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/about" />
@@ -27,6 +46,16 @@ export default function About() {
           never mentions the step where it breaks. So that step gets the same screen
           time here as the happy path.
         </p>
+        {proof.length > 0 && (
+          <ul className="proofline">
+            {proof.map((p) => (
+              <li key={p.l}>
+                <b>{p.v.toLocaleString("en-US")}</b>
+                <span>{p.l}</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <Reveal>

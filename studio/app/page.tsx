@@ -10,6 +10,7 @@ import SiteNav from "./sitenav";
 import CountUp from "./count-up";
 import IgEmbed from "./ig-embed";
 import Reveal from "./reveal";
+import { TOOLS, toolFor } from "@/lib/tools";
 
 export const metadata = {
   title: { absolute: "Actually Works — AI setups that actually work" },
@@ -41,6 +42,15 @@ export default async function Home() {
   // list — no visual break between them — made it feel like there was no home page at all.
   const recent = live.slice(0, 3);
   const latestIssue = await fetchLatestBeehiivIssue();
+  // Named tracks instead of one flat feed — the structural idea a competitor audit
+  // flagged directly (Every.to organizes its whole homepage around named verticals
+  // rather than an undifferentiated blog list). The tags are real ones already
+  // computed for the episode browser (lib/tools.ts), never a separate taxonomy
+  // invented just for this row — so a click here and a click on /episodes always
+  // agree on what belongs where.
+  const trackCounts = new Map<string, number>();
+  for (const e of eps) trackCounts.set(toolFor(e.title), (trackCounts.get(toolFor(e.title)) ?? 0) + 1);
+  const tracks = TOOLS.filter((t) => trackCounts.has(t)).map((t) => ({ t, n: trackCounts.get(t)! }));
 
   return (
     <main className="site" dir="ltr">
@@ -130,6 +140,24 @@ export default async function Home() {
           </div>
         ) : null}
       </header>
+
+      {tracks.length > 1 && (
+        <section>
+          <Reveal>
+            <h2>Browse by tool</h2>
+            <ul className="tracks">
+              {tracks.map(({ t, n }) => (
+                <li key={t}>
+                  <Link href={`/episodes?tool=${encodeURIComponent(t)}`}>
+                    <span className="tname">{t}</span>
+                    <span className="tcount">{n}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </section>
+      )}
 
       <section>
         <Reveal>

@@ -19,3 +19,13 @@ export const localDT = (iso: string) => {
   if (isNaN(d.getTime())) return iso.slice(0, 16).replace("T", " ");
   return d.toLocaleString("sv-SE", { timeZone: "Europe/Brussels", hour12: false }).slice(0, 16);
 };
+
+/** English, for the public site — every other date helper here is Hebrew-studio-facing
+ *  (Brussels timezone, sortable sv-SE format). "Aug 2026" rather than a full date: the
+ *  public list only needs to show real chronology exists, not the exact day. */
+export const publicMonth = (iso: string | null) => {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return null;
+  return d.toLocaleString("en-US", { month: "short", year: "numeric" });
+};

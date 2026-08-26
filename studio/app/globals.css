@@ -488,6 +488,17 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 /* He circled these on a screenshot and asked for them bigger, clearer, and to actually
    stand out — as plain inline numbers they read as an afterthought under the CTAs. Cards
    with a gold number give them the same weight the rest of the hero has. */
+/* Deliberately not a card — the competitor pattern this borrows from (Saraev's own
+   about page) states hard numbers plain, once, with no box or adjective doing the
+   convincing instead of the figure itself. Sits inline in running text, not styled as
+   a separate "stats module." */
+.site .proofline{list-style:none;display:flex;flex-wrap:wrap;gap:1.6rem 2rem;
+  padding:0;margin:1.4rem 0 .4rem;border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);padding-block:1.1rem}
+.site .proofline li{display:flex;align-items:baseline;gap:.5rem}
+.site .proofline b{font-family:var(--code);font-size:1.3rem;color:var(--gold-lit);
+  font-variant-numeric:tabular-nums}
+.site .proofline span{color:var(--faint);font-size:.86rem}
 .site .herostats{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.8rem}
 .site .herostats > div{background:var(--card);border:1px solid var(--rule);
   border-radius:1rem;padding:1.1rem 1.5rem;min-width:9rem}
@@ -547,6 +558,19 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .esearch:focus{outline:none;border-color:var(--gold-lit)}
 .site .herostat{font-family:var(--code);font-size:.82rem;letter-spacing:.03em;
   color:var(--gold);margin-top:-.4rem}
+
+/* Named tracks, not tags — the homepage's own way of splitting "one flat feed" into
+   self-selectable verticals (see page.tsx). Pill-shaped like the nav/filter chips
+   elsewhere, so it reads as navigation, not as one more content list. */
+.site .tracks{list-style:none;padding:0;margin:1.2rem 0;display:flex;flex-wrap:wrap;gap:.6rem}
+.site .tracks a{display:flex;align-items:center;gap:.5rem;background:var(--card);
+  border:1px solid var(--rule);border-radius:9999px;padding:.55rem 1.1rem;
+  text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;
+  transition:border-color .18s ease,transform .18s ease}
+.site .tracks a:hover{border-color:var(--gold-lit);transform:translateY(-2px)}
+.site .tracks .tcount{font-family:var(--code);font-size:.76rem;color:var(--faint);
+  background:var(--wash);border-radius:9999px;padding:.1rem .5rem;
+  font-variant-numeric:tabular-nums}
 
 .site .prompts{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.7rem}
 .site .prompts a{display:block;background:var(--card);border:1px solid var(--rule);

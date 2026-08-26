@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import SiteNav from "../sitenav";
 import EpisodesBrowser from "../episodes-browser";
@@ -28,7 +29,9 @@ export default async function EpisodesPage() {
         </p>
       ) : (
         <Reveal>
-          <EpisodesBrowser eps={eps} />
+          <Suspense fallback={null}>
+            <EpisodesBrowser eps={eps} />
+          </Suspense>
         </Reveal>
       )}
       <footer className="sfoot">
