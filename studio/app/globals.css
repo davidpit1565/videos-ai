@@ -417,8 +417,18 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    longer need to ask for it back, only .shell (the studio) keeps its own separate dark
    token set (a deliberately different near-black — see :root above). */
 
+/* house-style.md §4, "the eyebrow rule": a short brass hairline before every section
+   label — one of the channel's own documented signature devices, present in every
+   video but only ever applied to two of six public pages here. A competitor can copy
+   "dark background, gold accent" (Futurepedia already has, near-identically) in an
+   afternoon; a specific, consistently-applied device like this one is what actually
+   reads as "one channel" across a three-second scroll, which is the whole point a
+   house style exists to solve. */
 .site .kicker, .pub .kicker{font-family:var(--code);font-size:.7rem;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--faint);margin:0 0 1.1rem}
+  text-transform:uppercase;color:var(--faint);margin:0 0 1.1rem;
+  display:flex;align-items:center;gap:.6rem}
+.site .kicker::before, .pub .kicker::before{content:"";width:22px;height:2px;
+  background:var(--gold);border-radius:2px;flex:none}
 .site .kicker a, .pub .kicker a{color:inherit;text-decoration:none}
 .site .kicker-row{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
   margin:0 0 1.1rem}

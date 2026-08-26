@@ -13,6 +13,9 @@ export default function PromptsPage() {
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/prompts" />
+      <p className="kicker">
+        <Link href="/">Actually Works</Link> · Prompts
+      </p>
       <h1>The prompts, in full</h1>
       <p className="sub">
         Complete, with what each one cannot do. No email needed to read them.
