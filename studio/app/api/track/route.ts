@@ -213,6 +213,52 @@ export async function GET(req: Request) {
         });
       }
     }
+    // A link can be wrong even when one already exists — reel 13 showed "already
+    // published" while reel 11's real post sat unlinked, because 13's row was carrying
+    // 11's actual Instagram media id (a manual mislink in /videos' "link to episode"
+    // dropdown, the two numbers one row apart). Every caption we write names its own
+    // episode with an explicit /e/N; that's ground truth the studio already has and
+    // never checked against the episode a post is actually attached to. Move the link
+    // onto the episode the caption actually names, whenever that episode exists and
+    // isn't already carrying a different real link of its own — never onto one that is,
+    // so this can't create a new wrong link while fixing an old one.
+    const byMediaId = new Map(
+      state.episodes.filter((e) => e.igMediaId).map((e) => [e.igMediaId as string, e]),
+    );
+    for (const m of ig.media) {
+      const wrong = byMediaId.get(m.id);
+      if (!wrong) continue;
+      const epLink = (m.caption || "").toLowerCase().match(/\/e\/(\d+)/);
+      if (!epLink) continue;
+      const correctNum = +epLink[1];
+      if (correctNum === wrong.number) continue;
+      const correct = state.episodes.find((e) => e.number === correctNum);
+      if (!correct || correct.igMediaId) continue;
+      correct.igMediaId = wrong.igMediaId;
+      correct.igPermalink = wrong.igPermalink;
+      correct.views = wrong.views;
+      correct.likes = wrong.likes;
+      correct.saves = wrong.saves;
+      correct.comments = wrong.comments;
+      correct.shares = wrong.shares;
+      correct.publishedAt = wrong.publishedAt;
+      correct.status = "live";
+      wrong.igMediaId = null;
+      wrong.igPermalink = null;
+      wrong.views = null;
+      wrong.likes = null;
+      wrong.saves = null;
+      wrong.comments = null;
+      wrong.shares = null;
+      wrong.publishedAt = null;
+      wrong.status = "testing";
+      fresh.push({
+        id: uid(), at: now, source: "studio",
+        label: `פרק ${wrong.number} הוצג בטעות כמפורסם — הפוסט שייך בפועל לפרק ${correct.number} (לפי הקישור בכיתוב) והועבר אליו`,
+        value: null, delta: null,
+      });
+    }
+
     // a post that exists on the account and is not linked to an episode is worth saying once
     const said = new Set(feed.filter((f) => f.label.startsWith("פוסט לא מקושר")).map((f) => f.label));
     for (const m of ig.media) {
