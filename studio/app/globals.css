@@ -499,19 +499,24 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .proofline b{font-family:var(--code);font-size:1.3rem;color:var(--gold-lit);
   font-variant-numeric:tabular-nums}
 .site .proofline span{color:var(--faint);font-size:.86rem}
-.site .herostats{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.8rem}
-.site .herostats > div{background:var(--card);border:1px solid var(--rule);
-  border-radius:1rem;padding:1.1rem 1.5rem;min-width:9rem}
-.site .herostats b{display:block;font-family:var(--serif);font-weight:700;font-size:2.6rem;
-  line-height:1;color:var(--gold-lit)}
-/* Three tiles in a row, all one color, read as one flat block instead of three distinct
-   facts — steel is house-style's own documented "the other option in any comparison"
-   (§2), and the middle stat (the count that has no competitor equivalent — nobody else
-   in this niche counts failure modes) earns the break in rhythm. One color swap, not a
-   new hue introduced. */
+/* He asked directly: the boxed cards were making the numbers *less* clear, not more —
+   a small figure boxed in a border reads as a UI widget; the same figure set large and
+   bare on the page reads as a fact. Dropped the card entirely (background, border,
+   padding-box) and let the number itself carry the weight — nearly 40% larger, tighter
+   line-height so it doesn't float, and the label demoted to a small tracked caption
+   underneath it rather than competing at similar size inside a box. */
+.site .herostats{display:flex;flex-wrap:wrap;gap:2.4rem;margin-top:2rem}
+.site .herostats b{display:block;font-family:var(--serif);font-weight:700;
+  font-size:clamp(2.6rem,7vw,3.7rem);line-height:1;letter-spacing:-.015em;
+  color:var(--gold-lit);font-variant-numeric:tabular-nums}
+/* Three numbers in a row, all one color, read as one flat block instead of three
+   distinct facts — steel is house-style's own documented "the other option in any
+   comparison" (§2), and the middle stat (the count with no competitor equivalent —
+   nobody else in this niche counts failure modes) earns the break in rhythm. One
+   color swap, not a new hue introduced. */
 .site .herostats > div:nth-child(2) b{color:var(--steel)}
-.site .herostats span{display:block;color:var(--soft);font-size:.88rem;margin-top:.4rem;
-  font-weight:600}
+.site .herostats span{display:block;color:var(--faint);font-size:.76rem;margin-top:.5rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.09em}
 .site .empty{background:var(--card);border:1px solid var(--rule);border-radius:1rem;
   padding:1.1rem 1.25rem;color:var(--soft)}
 
@@ -819,7 +824,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 /* Cards already had a border-color hover; a small lift plus a brass-tinted shadow
    reads as "this is a real surface, not flat text" without becoming a bounce or a
    distraction — one direction of movement (up), one property doing the work. */
-.site .eps a,.site .prompts a,.site .hits > li,.site .herostats > div,.site .issueteaser{
+.site .eps a,.site .prompts a,.site .hits > li,.site .issueteaser{
   transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
 .site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover,.site .issueteaser:hover{
   transform:translateY(-3px);box-shadow:0 10px 24px -12px rgba(232,200,106,.28)}
@@ -831,7 +836,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .cta:active,.site .signup button:active:enabled,
 .pub .cta:active,.pub .signup button:active:enabled{transform:translateY(0)}
 @media (prefers-reduced-motion:reduce){
-  .site .eps a,.site .prompts a,.site .hits > li,.site .herostats > div,.site .issueteaser,
+  .site .eps a,.site .prompts a,.site .hits > li,.site .issueteaser,
   .site .cta,.site .signup button,.pub .cta,.pub .signup button{transition:none}
   .site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover,.site .issueteaser:hover,
   .site .cta:hover,.site .signup button:hover:enabled,
