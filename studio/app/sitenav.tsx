@@ -27,7 +27,7 @@ export default function SiteNav({ here }: { here?: string }) {
             static asset; the image optimizer's own cache showed a broken image on a device
             that hit the URL before this file's first deploy finished, and never recovered.
             A plain img always re-fetches the real static file, no separate cache to go stale. */}
-        <img className="logo" src="/logo-light.png" alt="" width={28} height={28} />
+        <img className="logo" src="/logo-dark.png" alt="" width={28} height={28} />
         Actually Works
       </Link>
       <div className="sitenav-right">

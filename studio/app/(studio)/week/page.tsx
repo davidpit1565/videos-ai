@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useStudio } from "../providers";
+import { useStudio } from "../../providers";
 import {
   CHANNELS, CHANNEL_HE, Channel, DAY_HE, Episode, STATUS_HE, weekDays,
 } from "@/lib/types";

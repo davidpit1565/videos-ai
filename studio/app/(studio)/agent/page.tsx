@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useStudio } from "../providers";
+import { useStudio } from "../../providers";
 
 const PRESETS = [
   "מה הפרק הבא שכדאי לי לעשות, ולמה?",

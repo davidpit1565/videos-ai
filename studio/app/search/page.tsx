@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import SiteNav from "../sitenav";
 import Search from "./search";
 import { catalogue } from "@/lib/site";
@@ -45,6 +46,9 @@ export default async function SearchPage() {
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/search" />
+      <p className="kicker">
+        <Link href="/">Actually Works</Link> · Search
+      </p>
       <h1>Search</h1>
       <p className="sub">
         Every episode, every prompt, and the link to each video. Type anything — a tool, a

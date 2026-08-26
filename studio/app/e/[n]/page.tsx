@@ -3,7 +3,7 @@ import SiteNav from "../../sitenav";
 import { notFound } from "next/navigation";
 import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
-import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor, reels } from "@/lib/reels";
+import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor } from "@/lib/reels";
 import Signup from "../../signup";
 import SiteNotify from "../../site-notify";
 import IgEmbed from "../../ig-embed";
@@ -51,10 +51,7 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
 
   const prompt = promptFor(a);
   const title = e?.title || a?.title || capTitle || `Episode ${n}`;
-  // The reel file itself, when it exists and passed its gate — the last-resort video for
-  // an episode with no Instagram/YouTube link recorded yet (same gap as the title above).
-  const selfHosted = reels().find((r) => r.kind === "video" && r.episode === n && r.gate?.passed);
-  // Same last-resort source as the title/video above, for the body: the caption's own
+  // Same last-resort source as the title above, for the body: the caption's own
   // paragraphs, minus the first (already the h1) and the Instagram-specific tail — the
   // link back to this exact page, the follow CTA, the hashtag line. Only used when no
   // hand-written article exists; the article is always the better version of this.
@@ -83,14 +80,13 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
   // renders into an iframe, per Meta's oEmbed docs). Without any of these, Google's
   // rich-result validator flags the markup as incomplete, so an episode with none just
   // gets no VideoObject at all rather than one that fails validation.
-  const contentUrl = selfHosted ? `${SITE_URL}${selfHosted.src}` : null;
-  const embedUrl = contentUrl
-    ? null
-    : e?.ytVideoId
-      ? `https://www.youtube-nocookie.com/embed/${e.ytVideoId}`
-      : e?.igPermalink
-        ? `${e.igPermalink.replace(/\/?$/, "/")}embed`
-        : null;
+  const embedUrl = e?.ytVideoId
+    ? `https://www.youtube-nocookie.com/embed/${e.ytVideoId}`
+    : e?.igPermalink
+      ? `${e.igPermalink.replace(/\/?$/, "/")}embed`
+      : null;
+  // No self-hosted contentUrl fallback here anymore — see the render block below for why.
+  const contentUrl = null;
   const videoSchema = contentUrl || embedUrl
     ? {
         "@context": "https://schema.org",
@@ -139,17 +135,14 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         </p>
       ) : null}
 
-      {/* The self-hosted file first when it exists — instant, on-brand, no third-party
-          script to wait on or get blocked. The Instagram embed depends on embed.js
-          loading over the network and shows its own generic blue branding until it does;
-          on a page whose one job is showing the clip, that's a real, visible cost, not a
-          style preference. Instagram/YouTube become secondary links below instead, which
-          is where their real numbers (views, likes) still get their due. */}
-      {selfHosted ? (
-        <div className="vid-native">
-          <video src={selfHosted.src} controls playsInline preload="metadata" />
-        </div>
-      ) : e?.igPermalink ? (
+      {/* No self-hosted fallback anymore, on purpose — he said so directly: a visitor
+          watching the local mp4 instead of the real post counts toward nothing, and a
+          finished reel that passed its technical gate isn't the same thing as a reel
+          that's actually out. The gated studio tool (/renders) still plays the local
+          file for review — the public page shows a video at all only once there's a
+          real platform link to send that view to. Until then: an honest "not up yet"
+          line, not a silent gap and not a stand-in that quietly cost him the view. */}
+      {e?.igPermalink ? (
         <div className="vid-ig">
           <IgEmbed permalink={e.igPermalink} />
         </div>
@@ -162,25 +155,14 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
             allowFullScreen
           />
         </div>
-      ) : null}
+      ) : (
+        <p className="empty">Not posted yet — check back soon.</p>
+      )}
 
-      {/* Real platforms and real numbers, once the self-hosted file already carried the
-          primary watch experience above. */}
-      {selfHosted && (e?.igPermalink || e?.ytVideoId) ? (
-        <p className="sub">
-          {e?.igPermalink && (
-            <a href={e.igPermalink} target="_blank" rel="noreferrer">
-              View on Instagram{e.views ? ` — ${e.views.toLocaleString("en-US")} views` : ""} <ExternalIcon />
-            </a>
-          )}
-          {e?.igPermalink && e?.ytVideoId ? " · " : ""}
-          {e?.ytVideoId && (
-            <a href={`https://youtu.be/${e.ytVideoId}`} target="_blank" rel="noreferrer">
-              Watch on YouTube <ExternalIcon />
-            </a>
-          )}
-        </p>
-      ) : !selfHosted && e?.igPermalink && e?.ytVideoId ? (
+      {/* A YouTube link alongside the Instagram embed above, when both exist — the
+          Instagram post already carries the primary watch experience and its own real
+          view count, so YouTube only needs a secondary link here, not a second player. */}
+      {e?.igPermalink && e?.ytVideoId ? (
         <p className="sub">
           <a href={`https://youtu.be/${e.ytVideoId}`} target="_blank" rel="noreferrer">
             Watch on YouTube instead <ExternalIcon />

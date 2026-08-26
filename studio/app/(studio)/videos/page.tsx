@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useStudio } from "../providers";
+import { useStudio } from "../../providers";
 import { Episode, Format, Status, STATUS_HE, STATUS_ORDER, engagement, saveRate } from "@/lib/types";
 import { n, pct } from "@/lib/fmt";
 
@@ -283,14 +283,17 @@ export default function Videos() {
                   ["saves", "שמירות"],
                   ["comments", "תגובות"],
                   ["shares", "שיתופים"],
-                  ["subsAttributed", "נרשמים"],
                 ] as const
               ).map(([k, label]) => (
                 <div className="g" key={k}>
                   <div className="k">{label}</div>
-                  <input inputMode="numeric" value={e[k] ?? ""} onChange={(ev) => num(i, k, ev.target.value)} />
+                  <div className="ro">{n(e[k])}</div>
                 </div>
               ))}
+              <div className="g">
+                <div className="k">נרשמים</div>
+                <input inputMode="numeric" value={e.subsAttributed ?? ""} onChange={(ev) => num(i, "subsAttributed", ev.target.value)} />
+              </div>
               <div className="g">
                 <div className="k">מדידה</div>
                 <div className="ro">{pct(engagement(e))}</div>
@@ -321,7 +324,7 @@ export default function Videos() {
             <tr className="grp">
               <th colSpan={7}>פרטי הפרק</th>
               <th>פלטפורמות</th>
-              <th colSpan={8}>ביצועים</th>
+              <th colSpan={8}>ביצועים · צפיות עד שיתופים אוטומטי מ-Instagram/YouTube, לא לעריכה</th>
               <th />
             </tr>
             <tr>
@@ -406,10 +409,14 @@ export default function Videos() {
                 <td style={{ whiteSpace: "nowrap" }}>
                   <PlatformBadges episode={e} />
                 </td>
+                {/* Read-only, not because typing a correction is hard, but because it's
+                    exactly what produced a hand-entered row that never matched a real
+                    post and threw off the homepage's own live count. These five come
+                    from /api/track (Instagram/YouTube) — a platform that's disconnected
+                    shows its real last-synced value, not an invented one. subsAttributed
+                    stays editable below: no API attributes a signup to an episode. */}
                 {(["views", "likes", "saves", "comments", "shares"] as const).map((k) => (
-                  <td key={k}>
-                    <input className="cell n" inputMode="numeric" value={e[k] ?? ""} onChange={(ev) => num(i, k, ev.target.value)} />
-                  </td>
+                  <td key={k} className="num">{n(e[k])}</td>
                 ))}
                 <td className="num">{pct(engagement(e))}</td>
                 <td className="num" style={{ color: "var(--brass)" }}>

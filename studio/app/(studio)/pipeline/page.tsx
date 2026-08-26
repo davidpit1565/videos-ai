@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { useStudio } from "../providers";
+import { useStudio } from "../../providers";
 import { STATUS_HE, STATUS_ORDER, Status, IdeaScore, uid } from "@/lib/types";
 import { eur } from "@/lib/fmt";
 

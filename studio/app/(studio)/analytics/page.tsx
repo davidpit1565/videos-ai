@@ -1,10 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useStudio } from "../providers";
+import { useStudio } from "../../providers";
 import { n } from "@/lib/fmt";
 import { Episode, Snapshot } from "@/lib/types";
-import CountUp from "../count-up";
+import CountUp from "../../count-up";
 
 /** Real progress, from data the studio already tracks — no number here is invented.
  *  Followers come from the daily snapshot Vercel's cron writes (api/track); views/likes/

@@ -17,6 +17,9 @@ export default async function EpisodesPage() {
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/episodes" />
+      <p className="kicker">
+        <Link href="/">Actually Works</Link> · Episodes
+      </p>
       <h1>Episodes</h1>
       <p className="sub">
         One AI setup per episode. The exact screen, the exact paste, and the part that
