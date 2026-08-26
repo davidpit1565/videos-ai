@@ -2,10 +2,15 @@ import { loadState } from "./db";
 import { Episode } from "./types";
 import { realTitleFor } from "./reels";
 
-// Same domain every caption already points readers at, and the known-good fallback for
-// every other place that needs the site's own absolute URL — sitemap, RSS, OG images,
-// the publish flow. A custom domain or env override still wins if one is ever set.
-const KNOWN_DOMAIN = "actually-works-studio.vercel.app";
+// The real domain, bought and connected 26.8 — the fallback for every place that needs
+// the site's own absolute URL (sitemap, RSS, OG images, the publish flow) when neither
+// env var below is set. Confirmed live by fetching it directly, not from the Vercel
+// project's domains list, which was still stale when this changed — a fresh deploy or
+// a manual re-check is what would show it there, not a hard requirement to wait on
+// before this constant is safe to update. Old captions already shipped still point at
+// actually-works-studio.vercel.app in their own text on Instagram/YouTube — Vercel
+// keeps serving that domain for the project regardless, so those links don't break.
+const KNOWN_DOMAIN = "actually-works.com";
 export const SITE_URL = `https://${(
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.VERCEL_PROJECT_PRODUCTION_URL ||
