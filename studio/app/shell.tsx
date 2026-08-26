@@ -41,15 +41,12 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       .catch(() => {});
   }, []);
 
-  /* Point the installed-app manifest at the studio, but only while a studio page is what is
-     on screen. Installing from a public page must never produce an app that opens the private
-     tool, which is exactly what a single manifest in the root layout did. */
-  useEffect(() => {
-    const el = document.querySelector<HTMLLinkElement>('link[rel="manifest"]');
-    if (!el) return;
-    const want = site ? "/manifest.json" : "/studio.webmanifest";
-    if (el.getAttribute("href") !== want) el.setAttribute("href", want);
-  }, [site]);
+  /* The manifest swap used to happen here, client-side, after hydration — too late for
+     "Add to Home Screen" on iOS, which reads whatever was already server-rendered. Every
+     studio route now has its own layout (app/(studio)/layout.tsx) exporting the studio
+     manifest as real metadata, so it's correct in the very first response and Next's own
+     App Router metadata handling keeps it correct across client-side navigation too —
+     see that file for why. */
 
   /* The nav bar "jumping" was 100dvh doing exactly what it is defined to do: recompute as
    * the browser's own address bar collapses and expands while scrolling. Two rounds of a

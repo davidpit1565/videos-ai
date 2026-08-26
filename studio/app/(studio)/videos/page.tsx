@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useStudio } from "../providers";
+import { useStudio } from "../../providers";
 import { Episode, Format, Status, STATUS_HE, STATUS_ORDER, engagement, saveRate } from "@/lib/types";
 import { n, pct } from "@/lib/fmt";
 

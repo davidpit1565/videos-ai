@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useStudio } from "../providers";
-import Notify from "../notify";
+import { useStudio } from "../../providers";
+import Notify from "../../notify";
 import { saveRate, uid } from "@/lib/types";
 import { eur, localDT, n, pct, today } from "@/lib/fmt";
 

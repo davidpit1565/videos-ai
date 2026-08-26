@@ -1,6 +1,6 @@
 "use client";
 
-import { useStudio } from "../providers";
+import { useStudio } from "../../providers";
 import { n } from "@/lib/fmt";
 
 /** Live Instagram performance for this reel, read straight from the same episode state
