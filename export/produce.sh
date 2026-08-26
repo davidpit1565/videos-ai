@@ -31,14 +31,14 @@ MP4="/tmp/reel-${EP}.mp4"
 DEEP="/tmp/reel${EP}-deep.json"
 GATE="/tmp/reel${EP}-gate.txt"
 
-echo "=== [1/8] voice"
+echo "=== [1/11] voice"
 if [ ! -f "$VO" ]; then
   python3 audio/build_voice.py --cues "$BUILD" --out "$VO" --exaggeration 0.50 --cfg 0.30 || exit 1
 else
   echo "  $VO already exists, reusing"
 fi
 
-echo "=== [2/8] level repair"
+echo "=== [2/11] level repair"
 # The same word list accepted at the final gate has to be accepted here too — this call
 # runs the identical shipped-file check and can exit 1 on its own, before the pipeline
 # ever reaches check.sh. reel-06 hit exactly this: --accept was wired to the gate only,
@@ -46,15 +46,50 @@ echo "=== [2/8] level repair"
 python3 audio/voice_doctor.py "$VO" --cues "$CUES" --repair "$VO_R" ${ACCEPT:+--accept "$ACCEPT"} || exit 1
 cp "$CUES" "$CUES_R"
 
-echo "=== [3/8] retime picture to natural pacing (0.9s closing tail)"
+echo "=== [3/11] retime picture to natural pacing (0.9s closing tail)"
 python3 export/retime.py "$BUILD" "$CUES_R" --out "$BUILD_T" --tail 0.9 --wav "$VO_R" || exit 1
 
-echo "=== [4/8] word-level captions"
+echo "=== [4/11] word-level captions"
 python3 audio/word_stamps.py "$VO_R" --out "$DEEP" || exit 1
 python3 export/karaoke.py "$BUILD_T" "$DEEP" --words-cues "$CUES_R" --out "$BUILD_K" || exit 1
 
-echo "=== [5/8] safe-area check"
+echo "=== [5/11] safe-area check"
 node export/safe_check.js "$BUILD_K" --every 0.5 || exit 1
+
+echo "=== [6/11] design variety check"
+# "Never two episodes back to back in the same design" was a stated rule that nothing
+# actually enforced — channel/used-designs.json tracked what shipped, but nothing
+# compared a new build against it before rendering. Read straight from the build's own
+# --brass/--ember CSS variables, same as the studio's /templates page does, not
+# retyped by hand. Checked BEFORE the render/gate steps below so a repeat fails in
+# seconds, not after minutes of rendering something that would get rejected anyway.
+DESIGNS="channel/used-designs.json"
+BRASS=$(grep -o -- '--brass:#[0-9A-Fa-f]\{6\}' "$BUILD_K" | head -1 | cut -d: -f2)
+EMBER=$(grep -o -- '--ember:#[0-9A-Fa-f]\{6\}' "$BUILD_K" | head -1 | cut -d: -f2)
+if [ -z "$BRASS" ] || [ -z "$EMBER" ]; then
+  echo "  could not find --brass/--ember in $BUILD_K — skipping this check for this run"
+else
+  python3 - "$DESIGNS" "$EP" "$BRASS" "$EMBER" "$MOOD" <<'PYEOF' || exit 1
+import json, sys
+path, ep, brass, ember, mood = sys.argv[1:6]
+try:
+    with open(path) as f:
+        designs = json.load(f)
+except FileNotFoundError:
+    designs = []
+if designs:
+    last = designs[-1]
+    if last["brass"].lower() == brass.lower() and last["ember"].lower() == ember.lower():
+        print(f"DESIGN REPEAT: episode {ep} would use the exact same brass/ember as "
+              f"episode {last['episode']} ({brass}/{ember}). Change the palette before shipping.")
+        sys.exit(1)
+    if last.get("mood") and last["mood"] == mood:
+        print(f"DESIGN REPEAT: episode {ep} would use the same music mood "
+              f"('{mood}') as episode {last['episode']}. Pick a different --mood.")
+        sys.exit(1)
+print(f"  ok — {brass}/{ember}, mood '{mood}', distinct from episode {designs[-1]['episode'] if designs else 'none shipped yet'}")
+PYEOF
+fi
 
 NEWDUR=$(python3 -c "
 import re
@@ -71,27 +106,65 @@ try: ep = int(''.join(c for c in '$EP' if c.isdigit()) or 0)
 except Exception: ep = 0
 print(roots[ep % len(roots)])
 ")
-echo "=== [6/8] music bed at ${NEWDUR}s, ${BPM} bpm, ${MOOD}, key ${KEY}Hz"
+echo "=== [7/11] music bed at ${NEWDUR}s, ${BPM} bpm, ${MOOD}, key ${KEY}Hz"
 python3 audio/build_music.py "$NEWDUR" "$MUSIC" --bpm "$BPM" --mood "$MOOD" --key "$KEY" || exit 1
 
-echo "=== [7/8] render"
+echo "=== [8/11] render"
 FRAMES=1 ./export/render.sh "$BUILD_K" 1080 1920 "$NEWDUR" "$VO_R" "$MP4" "$MUSIC" || exit 1
 
-echo "=== [8/8] gate"
+echo "=== [9/11] gate"
 ACCEPT_WORDS="$ACCEPT" ./export/check.sh "$BUILD_K" "$VO_R" "$MP4" 2>&1 | tee "$GATE"
 PASSED=$(grep -c "ALL CHECKS PASSED" "$GATE" || true)
 
-if [ "$PASSED" -gt 0 ]; then
-  cp "$MP4" "studio/public/reels/reel-${EP}.mp4"
-  cp "$GATE" "studio/public/reels/reel-${EP}.gate.txt"
-  # Filesystem mtime does not survive a git checkout reliably — Vercel's build showed
-  # 2018 for every reel because that's what the checkout left on disk, not when it
-  # actually shipped. This records the real moment, read by lib/reels.ts instead.
-  date -u +"%Y-%m-%dT%H:%M:%SZ" > "studio/public/reels/reel-${EP}.built-at.txt"
-  echo ""
-  echo "SHIPPED: studio/public/reels/reel-${EP}.mp4"
-else
+if [ "$PASSED" -eq 0 ]; then
   echo ""
   echo "GATE FAILED — not shipped. See $GATE"
   exit 1
 fi
+
+echo "=== [10/11] captions"
+# A reel that ships without these publishes broken: the Instagram button posts with an
+# empty caption (nothing stops it — it just goes out blank), and the YouTube button
+# refuses outright because the title comes from line 1 of this file. This isn't a
+# reminder, it's a hard stop — a passed gate used to be enough to call a reel done, and
+# "done" kept shipping without them. Numbered separately from the gate itself: a video
+# can pass every technical check and still not be postable.
+CAP="channel/episode-${EP}-caption.txt"
+YT="channel/episode-${EP}-youtube.txt"
+MISSING=()
+[ -s "$CAP" ] || MISSING+=("$CAP")
+[ -s "$YT" ] || MISSING+=("$YT")
+if [ "${#MISSING[@]}" -gt 0 ]; then
+  echo ""
+  echo "CAPTIONS MISSING — not shipped:"
+  printf '  %s\n' "${MISSING[@]}"
+  echo "Write them (real content grounded in this episode's script — see channel/episode-12-caption.txt for the format), then re-run."
+  exit 1
+fi
+
+if [ -n "$BRASS" ] && [ -n "$EMBER" ]; then
+  python3 - "$DESIGNS" "$EP" "$BRASS" "$EMBER" "$MOOD" <<'PYEOF'
+import json, sys
+path, ep, brass, ember, mood = sys.argv[1:6]
+try:
+    with open(path) as f:
+        designs = json.load(f)
+except FileNotFoundError:
+    designs = []
+designs = [d for d in designs if d["episode"] != int(ep)]  # re-running the same episode replaces its row
+designs.append({"episode": int(ep), "brass": brass, "ember": ember, "mood": mood})
+designs.sort(key=lambda d: d["episode"])
+with open(path, "w") as f:
+    json.dump(designs, f, indent=2)
+    f.write("\n")
+PYEOF
+fi
+
+cp "$MP4" "studio/public/reels/reel-${EP}.mp4"
+cp "$GATE" "studio/public/reels/reel-${EP}.gate.txt"
+# Filesystem mtime does not survive a git checkout reliably — Vercel's build showed
+# 2018 for every reel because that's what the checkout left on disk, not when it
+# actually shipped. This records the real moment, read by lib/reels.ts instead.
+date -u +"%Y-%m-%dT%H:%M:%SZ" > "studio/public/reels/reel-${EP}.built-at.txt"
+echo ""
+echo "SHIPPED: studio/public/reels/reel-${EP}.mp4  (caption + youtube text present)"

@@ -71,15 +71,36 @@ export type ActivityEvent = {
   delta: number | null;
 };
 
-export type Task = { id: string; text: string; note: string; done: boolean };
-export type Idea = { id: string; text: string };
+/** The agent's read on one idea, 0-100 per category — his own judgment call, not a
+ *  measured metric, framed that way in the prompt that produces it. Six categories,
+ *  each answering a different question so they don't just restate each other:
+ *  the original six (marketing/content-interesting/content-needed/branding/
+ *  importance/demand) had real overlap between "importance" and everything else. */
+export type IdeaScore = {
+  categories: {
+    /** Does this sell itself in one line — a caption, a thumbnail text, a hook? */
+    marketingPotential: number;
+    /** Does the hook intrigue someone with zero interest in the topic, not just the target viewer? */
+    hookStrength: number;
+    /** Can this be explained with no jargon, in plain words, per the channel's own rule? */
+    simplicity: number;
+    /** Does it fit "Actually Works": a real setup, what breaks, no hype? */
+    brandFit: number;
+    /** Is this an open topic (per demand-report.md's method) or one where a 1M+ leader already owns it? */
+    competitiveSpace: number;
+    /** Is there real measured search/view demand behind this, or is it a guess? */
+    audienceDemand: number;
+  };
+  verdict: "yes" | "no" | "draft";
+  reasoning: string;
+};
+export type Idea = { id: string; text: string; score?: IdeaScore | null };
 
 export type State = {
   version: 1;
   episodes: Episode[];
   snapshots: Snapshot[];
   revenue: RevenueLine[];
-  tasks: Task[];
   ideas: Idea[];
   /** optional so states saved before the feed existed still load */
   activity?: ActivityEvent[];

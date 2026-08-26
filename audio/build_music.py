@@ -35,6 +35,26 @@ def tri(f, n):
     x = (np.arange(n)*f/SR) % 1.0
     return 2*np.abs(2*x - 1) - 1
 
+def pluck(f, n, damping=0.5, decay=0.996, brightness=0.6, seed=0):
+    """Karplus-Strong plucked string — a period-length noise/tone burst run through a
+    feedback delay line one cycle long, each pass averaged with the sample one cycle
+    behind it. That averaging is what a real plucked string does physically (high
+    harmonics die fastest); it's the actual mechanism, not a sample of one. `damping`
+    near 1 keeps more of the delayed signal (a longer, warmer ring — guitar);
+    nearer 0.5 blends in more of the fresh burst (a shorter, brighter strike — piano).
+    `decay` is separate: overall energy lost per cycle, independent of tone."""
+    period = max(2, int(round(SR / f)))
+    rng = np.random.default_rng(seed)
+    buf = rng.uniform(-1, 1, period)*brightness + sine(f, period)*(1 - brightness)
+    out = np.empty(n)
+    for i in range(n):
+        j = i % period
+        val = buf[j]
+        out[i] = val
+        nxt = buf[(j + 1) % period]
+        buf[j] = (damping*val + (1 - damping)*nxt) * decay
+    return out
+
 def lowpass(x, cutoff, q=0.9):
     """One-pole cascade — gentle, no ringing, good enough for a pad."""
     a = np.exp(-2*np.pi*cutoff/SR)
@@ -73,7 +93,8 @@ def reverb(x, decay=1.5, mix=0.32):
 # pad+arp+kick only ever read as the same track retuned. STYLE changes which voices
 # exist and how, so a genuinely different one has to sound built differently, not
 # just moved to a different key.
-DEFAULT_STYLE = dict(arp=True, perc="kick", wave="saw", swell=19.0, decay=1.6, mix=0.30, chord_hold=1.0)
+DEFAULT_STYLE = dict(arp=True, perc="kick", wave="saw", swell=19.0, decay=1.6, mix=0.30, chord_hold=1.0,
+                pluck_damping=0.5, pluck_decay=0.996, pluck_brightness=0.6)
 
 MOODS = {
     # the default — even, unresolved, works for most explainer content
@@ -148,6 +169,25 @@ MOODS = {
     "clockwork":  dict(prog=[("Am7", [0, 3, 7, 10]), ("Dm7", [-7, -3, 0, 3]),
                 ("Fmaj7", [-4, 0, 5, 9]), ("G", [-2, 2, 7, 11])],
                 arp=True, perc="clockwork", wave="tri", swell=999.0, decay=1.0, mix=0.22, chord_hold=1.0),
+
+    # ---- round 3: plucked-string synthesis (Karplus-Strong), not a sample library ----
+
+    # bright, fast decay, no pad swell — the pad chord is struck once per bar and
+    # left to die away rather than held, so it reads as a piano's hammer-strike
+    # rather than a synth pad wearing a piano's name. For a calm walkthrough or a
+    # skills explainer that wants warmth without the room a full pad bed takes.
+    "piano":      dict(prog=[("Cmaj7", [0, 4, 7, 11]), ("Am7", [0, 3, 7, 10]),
+                ("Fmaj7", [-4, 0, 5, 9]), ("G", [-2, 2, 7, 11])],
+                arp=False, perc="soft", wave="pluck", swell=999.0, decay=1.1, mix=0.20, chord_hold=1.3,
+                pluck_damping=0.42, pluck_decay=0.9935, pluck_brightness=0.75),
+    # warmer and longer-ringing than "piano" — more of the delayed signal kept each
+    # cycle (higher damping), less overall energy lost per cycle, so a chord rings
+    # into the next one instead of striking and dying. For a personal or
+    # behind-the-scenes bit, or anything that wants an organic rather than digital feel.
+    "guitar":     dict(prog=[("G", [0, 4, 7, 11]), ("Em7", [-8, -3, 0, 4]),
+                ("Cmaj7", [-9, -5, 0, 4]), ("D", [-5, -1, 2, 6])],
+                arp=True, perc="none", wave="pluck", swell=12.0, decay=1.8, mix=0.28, chord_hold=1.0,
+                pluck_damping=0.62, pluck_decay=0.9975, pluck_brightness=0.45),
 }
 for _name, _cfg in MOODS.items():
     for _k, _v in DEFAULT_STYLE.items():
@@ -173,7 +213,11 @@ def build(total, bpm=82, root=55.0, mood="neutral"):
         n = min(int(bar*SR*1.15), n_total-start)          # let chords ring over the bar
         if n <= 0: break
 
-        voice = {"saw": saw, "tri": lambda f, n: tri(f, n), "sine": lambda f, n: sine(f, n)}[STYLE["wave"]]
+        voice = {
+            "saw": saw, "tri": lambda f, n: tri(f, n), "sine": lambda f, n: sine(f, n),
+            "pluck": lambda f, n: pluck(f, n, damping=STYLE["pluck_damping"],
+                        decay=STYLE["pluck_decay"], brightness=STYLE["pluck_brightness"]),
+        }[STYLE["wave"]]
 
         # pad — four detuned voices an octave up (skipped entirely for a style built
         # without one, e.g. "glitch", which has no sustained voice at all)

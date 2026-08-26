@@ -37,8 +37,10 @@ function brief(s: State) {
     latestSnapshot: last ?? null,
     growth: s.snapshots.map((x) => ({ date: x.date, subs: x.subscribers, ig: x.igFollowers })),
     revenue: s.revenue.map((r) => ({ name: r.name, status: r.status, mrrEur: r.mrrEur })),
-    openTasks: s.tasks.filter((t) => !t.done).map((t) => t.text),
-    ideas: s.ideas.map((i) => i.text),
+    // The idea-score agent (/api/idea-score) already scored some of these across 6
+    // categories with a verdict — pass that along too, so "which idea should I do
+    // next" is answered from the real evaluation already done, not blind to it.
+    ideas: s.ideas.map((i) => ({ text: i.text, score: i.score ?? null })),
   });
 }
 

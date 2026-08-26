@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useStudio } from "../providers";
-import { Episode, Format, Status, STATUS_HE, STATUS_ORDER, engagement, saveRate, uid } from "@/lib/types";
+import { Episode, Format, Status, STATUS_HE, STATUS_ORDER, engagement, saveRate } from "@/lib/types";
 import { n, pct } from "@/lib/fmt";
 
 type IgMedia = {
@@ -22,6 +22,35 @@ type IgResp = { connected: boolean; reason?: string; media?: IgMedia[] };
 
 type YtVideo = { id: string; title: string; publishedAt: string | null; views: number | null; likes: number | null; comments: number | null };
 type YtResp = { connected: boolean; reason?: string; videos?: YtVideo[] };
+
+/** Where this episode actually stands per platform, in one place — the thing he asked
+ *  for by name. Instagram and YouTube link out to the real post/video when one is
+ *  recorded; Facebook has no dash for "posted" because nothing here ever records a
+ *  Facebook post against an episode — publishToFacebook() returns a postId but it's
+ *  never written back to state, so showing anything but "not tracked" would be a
+ *  number this page doesn't actually have. Doesn't touch views/likes/saves/comments/
+ *  shares — those stay one shared set per episode, same as before; splitting them
+ *  properly per platform is a real schema change, not a display tweak, and touches
+ *  engagement()/saveRate() used across /analytics and /studio too. */
+function PlatformBadges({ episode: e }: { episode: Episode }) {
+  const badge = (label: string, href: string | null, title: string) =>
+    href ? (
+      <a href={href} target="_blank" rel="noreferrer" title={title} style={{ color: "var(--brass)", marginInlineEnd: 6 }}>
+        {label}
+      </a>
+    ) : (
+      <span className="faint" title={title} style={{ marginInlineEnd: 6 }}>
+        {label}
+      </span>
+    );
+  return (
+    <>
+      {badge("IG", e.igPermalink ?? null, e.igPermalink ? "פורסם באינסטגרם" : "לא קושר לפוסט באינסטגרם")}
+      {badge("FB", null, "לא במעקב — פרסום לפייסבוק לא נשמר לפרק כרגע")}
+      {badge("YT", e.ytVideoId ? `https://youtu.be/${e.ytVideoId}` : null, e.ytVideoId ? "פורסם ביוטיוב" : "לא קושר לסרטון יוטיוב")}
+    </>
+  );
+}
 
 const FORMAT_HE: Record<Format, string> = { reel: "ריל", long: "ארוך", both: "שניהם" };
 
@@ -186,35 +215,12 @@ export default function Videos() {
         <button className="btn" onClick={syncYoutube} disabled={ytBusy}>
           {ytBusy ? <span className="spin" /> : "משיכת מספרים מיוטיוב"}
         </button>
-        <button
-          className="btn ghost"
-          onClick={() =>
-            update((d) =>
-              void d.episodes.push({
-                id: uid(),
-                number: Math.max(0, ...d.episodes.map((e) => e.number)) + 1,
-                title: "פרק חדש",
-                format: "reel",
-                status: "idea",
-                topic: "",
-                tested: false,
-                publishedAt: null,
-                igMediaId: null,
-                ytVideoId: null,
-                notes: "",
-                views: null,
-                likes: null,
-                saves: null,
-                comments: null,
-                shares: null,
-                subsAttributed: null,
-              }),
-            )
-          }
-        >
-          + פרק
-        </button>
       </div>
+      <p className="sub" style={{ marginTop: -8, marginBottom: 16 }}>
+        פרק חדש נוצר דרך <a href="/pipeline">הצינור</a> — רעיון שהוסכם וקיבל הערכה, לא כפתור
+        ריק כאן. הכפתור הידני הוסר: הוא היה יוצר רשומה בלי נושא, בלי הערכה, ובלי דרך קלה לזהות
+        שהיא לא אמורה להיות שם.
+      </p>
 
       {msg && (
         <div className={"note " + (ig?.connected ? "ok" : "warn")}>
@@ -237,6 +243,9 @@ export default function Videos() {
               <span className="no">{e.number}</span>
               <input className="cell" dir="auto" value={e.title} onChange={(ev) => set(i, "title", ev.target.value)} />
               <span className={"chip s-" + e.status}>{STATUS_HE[e.status]}</span>
+            </div>
+            <div className="row" style={{ fontSize: 13 }}>
+              <PlatformBadges episode={e} />
             </div>
             <div className="row">
               <select className="cell" value={e.status} onChange={(ev) => set(i, "status", ev.target.value as Status)}>
@@ -303,7 +312,7 @@ export default function Videos() {
         ))}
       </div>
 
-      <div className="tw eps">
+      <div className="tw eps boxed">
         <table>
           <thead>
             {/* 16 columns in one flat row read as one undifferentiated wall once the
@@ -311,6 +320,7 @@ export default function Videos() {
                 scrolling into the performance numbers still says so at the top. */}
             <tr className="grp">
               <th colSpan={7}>פרטי הפרק</th>
+              <th>פלטפורמות</th>
               <th colSpan={8}>ביצועים</th>
               <th />
             </tr>
@@ -322,6 +332,7 @@ export default function Videos() {
               <th>שלב</th>
               <th>נבדק</th>
               <th>פורסם</th>
+              <th>IG · FB · YT</th>
               <th>צפיות</th>
               <th>לייקים</th>
               <th>שמירות</th>
@@ -391,6 +402,9 @@ export default function Videos() {
                     value={e.publishedAt ?? ""}
                     onChange={(ev) => set(i, "publishedAt", ev.target.value || null)}
                   />
+                </td>
+                <td style={{ whiteSpace: "nowrap" }}>
+                  <PlatformBadges episode={e} />
                 </td>
                 {(["views", "likes", "saves", "comments", "shares"] as const).map((k) => (
                   <td key={k}>

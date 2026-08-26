@@ -3,7 +3,7 @@ import { ActivityEvent, State } from "./types";
 /** A stored state outlives the shape it was written in.
  *
  *  Rows in the database predate fields the pages now assume, and the studio reads
- *  its lists plainly — `state.revenue.reduce(...)`, `state.tasks.filter(...)`,
+ *  its lists plainly — `state.revenue.reduce(...)`, `state.ideas.filter(...)`,
  *  `state.episodes.map(...)`. A row missing any one of them took the whole page down
  *  with "Application error: a client-side exception has occurred".
  *
@@ -19,7 +19,6 @@ const LISTS: Required<{ [K in ListKeys<State>]: true }> = {
   episodes: true,
   snapshots: true,
   revenue: true,
-  tasks: true,
   ideas: true,
   activity: true,
 };
