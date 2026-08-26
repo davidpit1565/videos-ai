@@ -22,13 +22,12 @@
 html,body{margin:0;padding:0}
 /* The document is the public site by default, same principle as layout.tsx's title and
    as `direction:ltr` right below — the studio (.shell) is the one private corner that
-   overrides it, not the other way round. This used to default dark (the studio's own
-   color) and rely on `body:has(.site)` further down to paint it cream, which fails open
-   to the wrong background — the private tool's color — on the rare browser without
-   :has() support, and on iOS Safari's overscroll bounce shows that dark edge past the
-   page bounds before the override can apply. Failing open to cream is the safe direction:
-   the worst case is a site page briefly under-styled, never the business exposed. */
-body{background:#F7F5F1;color:#16181C;font-family:var(--b);font-size:17px;
+   overrides it, not the other way round. Both surfaces are dark now (see the public-
+   surface block below), but they're deliberately two different near-blacks, not one
+   shared token — .shell repaints itself from the studio's own :root --ink the instant
+   it mounts, so a browser without :has() support, or the moment before hydration on
+   iOS Safari's overscroll bounce, still shows a plausible dark ground either way. */
+body{background:#0C0E12;color:#E8E6E1;font-family:var(--b);font-size:17px;
   line-height:1.65;direction:ltr;-webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent}
 body:has(.shell){background:var(--ink);color:var(--text)}
@@ -354,34 +353,35 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 
 
 /* ══ The public surface ══════════════════════════════════════════════════════════
-   The studio is dark, Hebrew, RTL and dense — one person reads it all day. The public
-   pages are the opposite on every axis, and light on purpose: he asked for it, and the
-   reference he pointed at (a warm off-white ground, a serif display against a plain
-   sans, generous rounding, one accent) is easier to read on a phone at night than our
-   ink. The brass stays as the single accent, darkened to hold contrast on paper —
-   #F0CB66 on white is unreadable, this is the same hue at a legible luminance.
+   Was a warm-cream/serif/gold treatment — real competitor research (Saraev, Ottley,
+   Every.to, God of Prompt, FutureTools) came back light-background-and-sans-only across
+   every one of them, which made cream-and-serif *look* different from them, but only by
+   landing on a different generic — the cream/serif/earthy-accent look several AI coding
+   tools default to. Nobody in that competitor set runs a dark ground, so this is real,
+   unclaimed territory, not just "different from before."
 
-   Only these tokens change between the two worlds; the typefaces are the ones the
-   layout already loads, so the light pages cost no extra font request. */
+   The two-accent system below isn't decorative: mint marks what a setup DOES do, red
+   marks what it explicitly WON'T — the site's one real differentiator (every episode
+   states its own failure modes) is now visible in the color system itself, not just in
+   copy buried on the detail page. */
 .site, .pub {
-  /* --faint was #8B857B, which measures 3.36:1 on this ground — under the 4.5:1 that
-     normal-size text needs, and it was carrying the kicker, the footer links and every
-     piece of fine print. #6F6A60 is the same warm grey at 4.94:1. Computed, not picked
-     by eye: the ground is #F7F5F1, so anything above ~0.16 relative luminance fails. */
-  --paper:#F7F5F1; --card:#FFFFFF; --ink:#16181C; --soft:#54514B; --faint:#6F6A60;
-  --rule:#E3DED4; --wash:#F1EBDD; --gold:#8A6D1B; --gold-lit:#B08A22;
-  /* The public display face is Newsreader, not the studio's Hebrew serif: in Latin it
-     has the editorial weight this page wants, and it is not the face the reference site
-     uses, so this reads as ours rather than as a copy. Body is the same IBM Plex as the
-     studio, which keeps one voice across both surfaces. */
+  --paper:#0C0E12; --card:#15181E; --ink:#E8E6E1; --soft:#ABB0B8; --faint:#8B8F98;
+  --rule:#262A33; --wash:#182420; --gold:#3DDC97; --gold-lit:#6BE8B0;
+  /* Space Grotesk for the display face — geometric and technical rather than editorial,
+     matching a "systems lab" identity instead of a magazine one. Latin-only, so it
+     stays scoped to these English public pages; the studio's Hebrew-RTL surface keeps
+     Frank Ruhl Libre (--d) untouched — Space Grotesk has no Hebrew glyph coverage and
+     would silently fall back if applied there. Body face is unchanged: IBM Plex Sans
+     Hebrew already has real Hebrew coverage and does bilingual duty across both
+     surfaces, so there was no reason to touch the one typeface that has to. */
   /* Remap the STUDIO's own tokens, not just our own. Any studio rule that reaches a
      public page — ol.steps, .promptbox, .note, .list — paints itself from --panel,
      --line, --text and --brass. Chasing those selectors one at a time is how "The
      exact clicks" shipped as dark text on a dark panel; redefining the four tokens
      fixes every one of them at once, including the ones nobody has hit yet. */
-  --panel:#FFFFFF; --line:#E3DED4; --text:#16181C; --muted:#54514B;
-  --brass:#8A6D1B; --brass-dim:#B08A22; --clay:#A8481F; --r:.75rem;
-  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --panel:#15181E; --line:#262A33; --text:#E8E6E1; --muted:#ABB0B8;
+  --brass:#3DDC97; --brass-dim:#2BAF77; --clay:#FF5C5C; --r:.75rem;
+  --serif:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
   --sans:"IBM Plex Sans Hebrew","Helvetica Neue",Arial,sans-serif;
   --code:"IBM Plex Mono",ui-monospace,monospace;
   direction:ltr; text-align:left;
@@ -389,8 +389,9 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   max-width:64rem; margin:0 auto; padding:clamp(1.7rem,5vw,3.6rem) clamp(1.1rem,4.5vw,1.7rem) 5rem;
   font-size:17.5px; line-height:1.62;
 }
-/* Cream is body's own default now (see the top of this file) — .site/.pub no longer
-   need to ask for it back, only .shell (the studio) opts out of it. */
+/* The dark ground is body's own default now (see the top of this file) — .site/.pub no
+   longer need to ask for it back, only .shell (the studio) keeps its own separate dark
+   token set (a deliberately different near-black — see :root above). */
 
 .site .kicker, .pub .kicker{font-family:var(--code);font-size:.7rem;letter-spacing:.15em;
   text-transform:uppercase;color:var(--faint);margin:0 0 1.1rem}
@@ -398,7 +399,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .brandline{display:flex;align-items:center;gap:.5rem;margin:0 0 2.2rem;
   font-family:var(--serif);font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
 .site .brandline .tick{color:var(--gold);font-size:1.15rem}
-.site h1, .pub h1{font-family:var(--serif);font-weight:800;
+.site h1, .pub h1{font-family:var(--serif);font-weight:700;
   font-size:clamp(2.15rem,7.5vw,3.2rem);line-height:1.06;margin:0 0 .85rem;
   letter-spacing:-.015em;text-wrap:balance}
 .site h1 em, .pub h1 em{font-style:normal;color:var(--gold)}
@@ -407,10 +408,10 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   letter-spacing:-.01em}
 .site p, .pub p{margin:.75rem 0}
 .site .sub, .pub .sub{color:var(--soft);max-width:34rem;font-size:1.06rem}
-.site .cta, .pub .cta{display:inline-block;margin-top:1.5rem;background:var(--ink);
-  color:#FBF9F5;font-weight:700;padding:.8rem 1.7rem;border-radius:9999px;
+.site .cta, .pub .cta{display:inline-block;margin-top:1.5rem;background:var(--gold);
+  color:var(--paper);font-weight:700;padding:.8rem 1.7rem;border-radius:9999px;
   text-decoration:none;font-size:1rem}
-.site .cta:hover, .pub .cta:hover{background:var(--gold)}
+.site .cta:hover, .pub .cta:hover{background:var(--gold-lit)}
 
 /* the personal-intro hero. Single column when there's no video to show yet; once an
    episode has a YouTube id, the newest one plays beside the text so the channel's whole
@@ -458,7 +459,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .herostats{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.8rem}
 .site .herostats > div{background:var(--card);border:1px solid var(--rule);
   border-radius:1rem;padding:1.1rem 1.5rem;min-width:9rem}
-.site .herostats b{display:block;font-family:var(--serif);font-weight:800;font-size:2.6rem;
+.site .herostats b{display:block;font-family:var(--serif);font-weight:700;font-size:2.6rem;
   line-height:1;color:var(--gold-lit)}
 .site .herostats span{display:block;color:var(--soft);font-size:.88rem;margin-top:.4rem;
   font-weight:600}
@@ -488,7 +489,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    instead of only inside it. grid-column:2 pins it under the title/blurb column no
    matter where CSS grid's row-major auto-placement would otherwise land it once the
    thumbnail (grid-row:span 3) has already claimed the rest of column 1. */
-.site .ebreaks{color:#A8481F;font-size:.86rem;margin-top:.15rem;display:block}
+.site .ebreaks{color:#FF5C5C;font-size:.86rem;margin-top:.15rem;display:block}
 .site .ebreaks::before{content:"⚠ ";font-size:.8em}
 .site .eps .ebreaks{grid-column:2}
 
@@ -501,7 +502,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   border-radius:9999px;border:1px solid var(--rule);background:var(--card);color:var(--soft);
   cursor:pointer;transition:border-color .15s,color .15s}
 .site .echips button:hover{border-color:var(--gold-lit);color:var(--ink)}
-.site .echips button.on{background:var(--ink);border-color:var(--ink);color:#FBF9F5}
+.site .echips button.on{background:var(--gold);border-color:var(--gold);color:var(--paper)}
 .site .esearch{display:block;width:100%;font:inherit;font-size:1rem;padding:.7rem 1rem;
   border-radius:.75rem;border:1px solid var(--rule);background:var(--card);color:var(--ink);
   margin-bottom:1rem}
@@ -550,8 +551,8 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    rather than inherited. */
 .pub .note{background:var(--card);border-color:var(--rule);color:var(--ink)}
 .pub .note b{color:var(--ink)}
-.pub .note .t{color:#A8481F}
-.pub .note.warn{border-inline-start-color:#A8481F}
+.pub .note .t{color:#FF5C5C}
+.pub .note.warn{border-inline-start-color:#FF5C5C}
 .pub .list, .pub .list > *{background:var(--card);border-color:var(--rule);color:var(--ink)}
 .pub .list{border-radius:1rem;overflow:hidden}
 .pub .list > * + *{border-top:1px solid var(--rule)}
@@ -566,7 +567,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 /* Real profile links, rendered once by Shell for every public page — not scoped
    inside .site/.pub, so it can't rely on their custom properties; the same paper
    palette is repeated here as literal values instead. */
-.ssocial-wrap{background:#F7F5F1;padding-top:1.6rem}
+.ssocial-wrap{background:#0C0E12;padding-top:1.6rem}
 /* A pill, not a bare line of small gray text — the bare version read as a leftover
    fragment rather than a deliberate credit, especially where it used to sit mid-hero
    (moved to the real page footer instead, see page.tsx). Same rounded-pill language the
@@ -574,16 +575,16 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    than a stray link. */
 .ssocial-crosslink{display:flex;justify-content:center;align-items:baseline;gap:.4em;
   flex-wrap:wrap;text-align:center;margin:0 1.1rem 1.1rem;padding:.5rem 1.1rem;
-  border:1px solid #E3DED4;border-radius:999px;text-decoration:none;
-  font-size:.82rem;color:#6F6A60;transition:border-color .15s,color .15s}
-.ssocial-crosslink:hover{border-color:#8A6D1B;color:#8A6D1B}
-.ssocial-crosslink-label{color:#8B8579}
-.ssocial-crosslink-name{font-family:"Newsreader",Georgia,serif;font-weight:700;color:#16181C}
-.ssocial-crosslink:hover .ssocial-crosslink-name{color:#8A6D1B}
-.ssocial-crosslink-desc{color:#8B8579}
+  border:1px solid #262A33;border-radius:999px;text-decoration:none;
+  font-size:.82rem;color:#8B8F98;transition:border-color .15s,color .15s}
+.ssocial-crosslink:hover{border-color:#3DDC97;color:#3DDC97}
+.ssocial-crosslink-label{color:#8B8F98}
+.ssocial-crosslink-name{font-family:"Space Grotesk",Helvetica,Arial,sans-serif;font-weight:700;color:#E8E6E1}
+.ssocial-crosslink:hover .ssocial-crosslink-name{color:#3DDC97}
+.ssocial-crosslink-desc{color:#8B8F98}
 .ssocial{display:flex;justify-content:center;gap:1.4rem;padding:0 1.1rem 3rem}
-.ssocial a{color:#6F6A60;display:flex;transition:color .15s}
-.ssocial a:hover{color:#8A6D1B}
+.ssocial a{color:#8B8F98;display:flex;transition:color .15s}
+.ssocial a:hover{color:#3DDC97}
 .pub .foot{color:var(--faint);border-top:1px solid var(--rule);margin-top:3rem;
   padding-top:1.3rem;font-size:.93rem}
 .pub .lbl{color:var(--faint)}
@@ -595,11 +596,11 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .signup input:focus-visible, .pub .signup input:focus-visible{outline:2px solid var(--gold);
   outline-offset:1px;border-color:var(--gold)}
 .site .signup button, .pub .signup button{font:inherit;font-weight:700;cursor:pointer;
-  padding:.8rem 1.5rem;border:0;border-radius:9999px;background:var(--ink);color:#FBF9F5}
-.site .signup button:hover:enabled, .pub .signup button:hover:enabled{background:var(--gold)}
+  padding:.8rem 1.5rem;border:0;border-radius:9999px;background:var(--gold);color:var(--paper)}
+.site .signup button:hover:enabled, .pub .signup button:hover:enabled{background:var(--gold-lit)}
 .site .signup button:disabled, .pub .signup button:disabled{opacity:.45;cursor:default}
 .site .signup .fine, .pub .signup .fine{color:var(--faint);font-size:.87rem;margin:0}
-.site .signup .err, .pub .signup .err{color:#A8481F;font-size:.9rem;margin:0;font-weight:600}
+.site .signup .err, .pub .signup .err{color:var(--clay);font-size:.9rem;margin:0;font-weight:600}
 .site .pushnote, .pub .pushnote{color:var(--faint);font-size:.87rem;margin:.6rem 0 0}
 .site .linklike, .pub .linklike{font:inherit;color:var(--brass);background:none;border:0;
   padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
@@ -638,8 +639,8 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    thin divider separates it from the text links without a hard box around it. */
 .ssocial-inline{display:flex;align-items:center;gap:.7rem;padding-inline-start:.75rem;
   border-inline-start:1px solid var(--rule)}
-.ssocial-inline a{color:#6F6A60;display:flex;transition:color .15s}
-.ssocial-inline a:hover{color:#8A6D1B}
+.ssocial-inline a{color:#8B8F98;display:flex;transition:color .15s}
+.ssocial-inline a:hover{color:#3DDC97}
 @media (max-width:520px){
   .ssocial-inline{border-inline-start:0;padding-inline-start:0;width:100%;
     justify-content:flex-start;margin-top:.2rem}
