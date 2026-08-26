@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useStudio } from "../providers";
-import { Episode, Format, Status, STATUS_HE, STATUS_ORDER, engagement, saveRate, uid } from "@/lib/types";
+import { Episode, Format, Status, STATUS_HE, STATUS_ORDER, engagement, saveRate } from "@/lib/types";
 import { n, pct } from "@/lib/fmt";
 
 type IgMedia = {
@@ -186,35 +186,12 @@ export default function Videos() {
         <button className="btn" onClick={syncYoutube} disabled={ytBusy}>
           {ytBusy ? <span className="spin" /> : "משיכת מספרים מיוטיוב"}
         </button>
-        <button
-          className="btn ghost"
-          onClick={() =>
-            update((d) =>
-              void d.episodes.push({
-                id: uid(),
-                number: Math.max(0, ...d.episodes.map((e) => e.number)) + 1,
-                title: "פרק חדש",
-                format: "reel",
-                status: "idea",
-                topic: "",
-                tested: false,
-                publishedAt: null,
-                igMediaId: null,
-                ytVideoId: null,
-                notes: "",
-                views: null,
-                likes: null,
-                saves: null,
-                comments: null,
-                shares: null,
-                subsAttributed: null,
-              }),
-            )
-          }
-        >
-          + פרק
-        </button>
       </div>
+      <p className="sub" style={{ marginTop: -8, marginBottom: 16 }}>
+        פרק חדש נוצר דרך <a href="/pipeline">הצינור</a> — רעיון שהוסכם וקיבל הערכה, לא כפתור
+        ריק כאן. הכפתור הידני הוסר: הוא היה יוצר רשומה בלי נושא, בלי הערכה, ובלי דרך קלה לזהות
+        שהיא לא אמורה להיות שם.
+      </p>
 
       {msg && (
         <div className={"note " + (ig?.connected ? "ok" : "warn")}>
