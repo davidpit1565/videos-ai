@@ -23,6 +23,35 @@ type IgResp = { connected: boolean; reason?: string; media?: IgMedia[] };
 type YtVideo = { id: string; title: string; publishedAt: string | null; views: number | null; likes: number | null; comments: number | null };
 type YtResp = { connected: boolean; reason?: string; videos?: YtVideo[] };
 
+/** Where this episode actually stands per platform, in one place — the thing he asked
+ *  for by name. Instagram and YouTube link out to the real post/video when one is
+ *  recorded; Facebook has no dash for "posted" because nothing here ever records a
+ *  Facebook post against an episode — publishToFacebook() returns a postId but it's
+ *  never written back to state, so showing anything but "not tracked" would be a
+ *  number this page doesn't actually have. Doesn't touch views/likes/saves/comments/
+ *  shares — those stay one shared set per episode, same as before; splitting them
+ *  properly per platform is a real schema change, not a display tweak, and touches
+ *  engagement()/saveRate() used across /analytics and /studio too. */
+function PlatformBadges({ episode: e }: { episode: Episode }) {
+  const badge = (label: string, href: string | null, title: string) =>
+    href ? (
+      <a href={href} target="_blank" rel="noreferrer" title={title} style={{ color: "var(--brass)", marginInlineEnd: 6 }}>
+        {label}
+      </a>
+    ) : (
+      <span className="faint" title={title} style={{ marginInlineEnd: 6 }}>
+        {label}
+      </span>
+    );
+  return (
+    <>
+      {badge("IG", e.igPermalink ?? null, e.igPermalink ? "פורסם באינסטגרם" : "לא קושר לפוסט באינסטגרם")}
+      {badge("FB", null, "לא במעקב — פרסום לפייסבוק לא נשמר לפרק כרגע")}
+      {badge("YT", e.ytVideoId ? `https://youtu.be/${e.ytVideoId}` : null, e.ytVideoId ? "פורסם ביוטיוב" : "לא קושר לסרטון יוטיוב")}
+    </>
+  );
+}
+
 const FORMAT_HE: Record<Format, string> = { reel: "ריל", long: "ארוך", both: "שניהם" };
 
 export default function Videos() {
@@ -215,6 +244,9 @@ export default function Videos() {
               <input className="cell" dir="auto" value={e.title} onChange={(ev) => set(i, "title", ev.target.value)} />
               <span className={"chip s-" + e.status}>{STATUS_HE[e.status]}</span>
             </div>
+            <div className="row" style={{ fontSize: 13 }}>
+              <PlatformBadges episode={e} />
+            </div>
             <div className="row">
               <select className="cell" value={e.status} onChange={(ev) => set(i, "status", ev.target.value as Status)}>
                 {STATUS_ORDER.map((s) => (
@@ -288,6 +320,7 @@ export default function Videos() {
                 scrolling into the performance numbers still says so at the top. */}
             <tr className="grp">
               <th colSpan={7}>פרטי הפרק</th>
+              <th>פלטפורמות</th>
               <th colSpan={8}>ביצועים</th>
               <th />
             </tr>
@@ -299,6 +332,7 @@ export default function Videos() {
               <th>שלב</th>
               <th>נבדק</th>
               <th>פורסם</th>
+              <th>IG · FB · YT</th>
               <th>צפיות</th>
               <th>לייקים</th>
               <th>שמירות</th>
@@ -368,6 +402,9 @@ export default function Videos() {
                     value={e.publishedAt ?? ""}
                     onChange={(ev) => set(i, "publishedAt", ev.target.value || null)}
                   />
+                </td>
+                <td style={{ whiteSpace: "nowrap" }}>
+                  <PlatformBadges episode={e} />
                 </td>
                 {(["views", "likes", "saves", "comments", "shares"] as const).map((k) => (
                   <td key={k}>
