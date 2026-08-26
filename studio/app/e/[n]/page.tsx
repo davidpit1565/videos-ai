@@ -3,7 +3,7 @@ import SiteNav from "../../sitenav";
 import { notFound } from "next/navigation";
 import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
-import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor, reels } from "@/lib/reels";
+import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor } from "@/lib/reels";
 import Signup from "../../signup";
 import SiteNotify from "../../site-notify";
 import IgEmbed from "../../ig-embed";
@@ -51,10 +51,7 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
 
   const prompt = promptFor(a);
   const title = e?.title || a?.title || capTitle || `Episode ${n}`;
-  // The reel file itself, when it exists and passed its gate — the last-resort video for
-  // an episode with no Instagram/YouTube link recorded yet (same gap as the title above).
-  const selfHosted = reels().find((r) => r.kind === "video" && r.episode === n && r.gate?.passed);
-  // Same last-resort source as the title/video above, for the body: the caption's own
+  // Same last-resort source as the title above, for the body: the caption's own
   // paragraphs, minus the first (already the h1) and the Instagram-specific tail — the
   // link back to this exact page, the follow CTA, the hashtag line. Only used when no
   // hand-written article exists; the article is always the better version of this.
@@ -88,7 +85,8 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
     : e?.igPermalink
       ? `${e.igPermalink.replace(/\/?$/, "/")}embed`
       : null;
-  const contentUrl = !embedUrl && selfHosted ? `${SITE_URL}${selfHosted.src}` : null;
+  // No self-hosted contentUrl fallback here anymore — see the render block below for why.
+  const contentUrl = null;
   const videoSchema = contentUrl || embedUrl
     ? {
         "@context": "https://schema.org",
@@ -137,14 +135,13 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         </p>
       ) : null}
 
-      {/* Instagram first once a real post exists — he said so directly: a visitor who
-          watches the self-hosted file instead of the real post never counts toward that
-          post's actual view number, which is the number he reads and the number a
-          sponsor would ask about. The self-hosted file is the last resort now, for an
-          episode with no Instagram link recorded yet — not a permanent alternative to
-          one. Same tradeoff as before (instant load, no third-party script, no generic
-          blue branding while embed.js loads) just no longer worth it once the real
-          count is what's actually at stake. */}
+      {/* No self-hosted fallback anymore, on purpose — he said so directly: a visitor
+          watching the local mp4 instead of the real post counts toward nothing, and a
+          finished reel that passed its technical gate isn't the same thing as a reel
+          that's actually out. The gated studio tool (/renders) still plays the local
+          file for review — the public page shows a video at all only once there's a
+          real platform link to send that view to. Until then: an honest "not up yet"
+          line, not a silent gap and not a stand-in that quietly cost him the view. */}
       {e?.igPermalink ? (
         <div className="vid-ig">
           <IgEmbed permalink={e.igPermalink} />
@@ -158,11 +155,9 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
             allowFullScreen
           />
         </div>
-      ) : selfHosted ? (
-        <div className="vid-native">
-          <video src={selfHosted.src} controls playsInline preload="metadata" />
-        </div>
-      ) : null}
+      ) : (
+        <p className="empty">Not posted yet — check back soon.</p>
+      )}
 
       {/* A YouTube link alongside the Instagram embed above, when both exist — the
           Instagram post already carries the primary watch experience and its own real
