@@ -3,10 +3,12 @@ import { catalogue } from "@/lib/site";
 import { fetchLatestBeehiivIssue } from "@/lib/sources";
 import { PROMPTS } from "@/lib/prompts";
 import { ARTICLES } from "@/lib/articles";
+import { reels } from "@/lib/reels";
 import Signup from "./signup";
 import SiteNotify from "./site-notify";
 import SiteNav from "./sitenav";
 import CountUp from "./count-up";
+import IgEmbed from "./ig-embed";
 
 export const metadata = {
   title: { absolute: "Actually Works — AI setups that actually work" },
@@ -25,7 +27,14 @@ export default async function Home() {
   const breaksDocumented = ARTICLES.reduce((a, ar) => a + ar.limits.length, 0);
   // The newest live episode with a video, for the hero — the channel's whole premise is
   // "the exact screen", and a home page that never shows one before the fold undercuts it.
-  const heroEpisode = live.find((e) => e.ytVideoId) ?? null;
+  // Used to only look at ytVideoId, so the hero showed a YouTube embed even on episodes
+  // that do have an Instagram post — the opposite of the episode page's own priority
+  // (self-hosted file, then Instagram, then YouTube last, see /e/[n]/page.tsx) and
+  // exactly the mismatch he flagged directly. Same priority here now.
+  const heroEpisode = live.find((e) => e.ytVideoId || e.igPermalink) ?? null;
+  const heroSelfHosted = heroEpisode
+    ? reels().find((r) => r.kind === "video" && r.episode === heroEpisode.n && r.gate?.passed)
+    : undefined;
   // A short teaser, not the full browser: the home page is a landing page, not the
   // episode index. He said directly that home reading as the same page as the episode
   // list — no visual break between them — made it feel like there was no home page at all.
@@ -87,7 +96,29 @@ export default async function Home() {
           <Signup source="home" />
           <SiteNotify />
         </div>
-        {heroEpisode?.ytVideoId ? (
+        {heroSelfHosted ? (
+          <div className="herovid vid-native">
+            <video src={heroSelfHosted.src} controls playsInline preload="metadata" />
+            {heroEpisode?.ytVideoId ? (
+              <p className="sub herovidlink">
+                <a href={`https://youtu.be/${heroEpisode.ytVideoId}`} target="_blank" rel="noreferrer">
+                  Also on YouTube ↗
+                </a>
+              </p>
+            ) : null}
+          </div>
+        ) : heroEpisode?.igPermalink ? (
+          <div className="herovid vid-ig">
+            <IgEmbed permalink={heroEpisode.igPermalink} />
+            {heroEpisode.ytVideoId ? (
+              <p className="sub herovidlink">
+                <a href={`https://youtu.be/${heroEpisode.ytVideoId}`} target="_blank" rel="noreferrer">
+                  Also on YouTube ↗
+                </a>
+              </p>
+            ) : null}
+          </div>
+        ) : heroEpisode?.ytVideoId ? (
           <div className="herovid vid">
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${heroEpisode.ytVideoId}`}

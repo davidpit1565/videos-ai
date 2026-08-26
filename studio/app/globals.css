@@ -418,6 +418,16 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .hero{display:grid;gap:2.2rem;grid-template-columns:1fr}
 .site .herotext{min-width:0}
 .site .hero .herovid{margin:0;order:-1}
+/* Sits directly under the Instagram/self-hosted video that now takes the primary hero
+   slot — a quiet, secondary way to reach YouTube instead of YouTube occupying the slot
+   Instagram's own post is meant to have. */
+.site .herovidlink{margin:.6rem 0 0;font-size:.85rem;text-align:center}
+.site .herovidlink a{color:var(--gold-lit);font-weight:600;text-decoration:none}
+.site .herovidlink a:hover{text-decoration:underline}
+/* .vid-native/.vid-ig are shared with the episode page, where they only ever wrap one
+   child (the player). The hero variant adds a second child (the YouTube link below it),
+   which .vid-*'s row-flex would otherwise place beside the video instead of under it. */
+.site .hero .herovid.vid-native,.site .hero .herovid.vid-ig{flex-direction:column}
 @media (min-width:860px){
   .site .hero{grid-template-columns:1.05fr 1fr;align-items:center}
   .site .hero .herovid{order:0}
