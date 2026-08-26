@@ -82,7 +82,6 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
                 </span>
                 <span className="t">{e.title}</span>
                 <span className="tp">{e.blurb}</span>
-                {e.breaks ? <span className="ebreaks"><b>Won&apos;t:</b> {e.breaks}</span> : null}
               </Link>
             </li>
           ))}
