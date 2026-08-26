@@ -20,6 +20,12 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
+/* The viewport's own horizontal-scroll box is html (documentElement), not body — and
+   giving body an explicit overflow (below) actually stops the UA from propagating
+   body's overflow up to the viewport at all, per the CSSOM View spec, leaving html's
+   own default (visible) in charge. Setting it only on body looked right and measured
+   wrong: real fix needs it here too. */
+html{overflow-x:hidden}
 /* The document is the public site by default, same principle as layout.tsx's title and
    as `direction:ltr` right below — the studio (.shell) is the one private corner that
    overrides it, not the other way round. Both surfaces are dark now (see the public-
@@ -27,9 +33,17 @@ html,body{margin:0;padding:0}
    shared token — .shell repaints itself from the studio's own :root --ink the instant
    it mounts, so a browser without :has() support, or the moment before hydration on
    iOS Safari's overscroll bounce, still shows a plausible dark ground either way. */
+/* overflow-x:hidden is load-bearing, not decoration: the hero's ambient glow
+   (.site .hero::before, further down) is a 32rem pseudo-element positioned
+   partly outside its own box on purpose, to bleed off the edge — invisible to a
+   `document.querySelectorAll('body *')` DOM check (pseudo-elements aren't real
+   nodes) but real to the layout engine, which was stretching the page 136px wider
+   than a 320px phone and creating a horizontal scrollbar on every public page.
+   Found by measuring document.documentElement.scrollWidth directly, not by eye —
+   the glow is behind everything else, so nothing looked wrong on screen. */
 body{background:#0E1116;color:#EEF0F3;font-family:var(--b);font-size:17px;
   line-height:1.65;direction:ltr;-webkit-font-smoothing:antialiased;
-  -webkit-tap-highlight-color:transparent}
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden}
 /* A faint dot grid, brass at 5% opacity, on the public pages only — a flat single
    color read as an empty void rather than a considered surface once the palette
    itself stopped being the thing carrying "distinctive." Kept out of the studio
