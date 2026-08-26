@@ -99,6 +99,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
+        {/* The scroll-reveal sections (app/reveal.tsx) start at opacity:0 in CSS and only
+            reach opacity:1 once client JS runs and IntersectionObserver fires — meaning a
+            visitor, crawler, or reader mode with JavaScript off would see a near-empty
+            page below the hero forever, on every episode's own "what it will not do"
+            section included. The text is always in the server HTML either way, but a
+            page whose real content is only visually true under JS shouldn't ship quietly
+            broken for the one case that can't run it. */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}.reveal::before{display:none!important}`}</style>
+        </noscript>
       </head>
       <body>
         <Provider>

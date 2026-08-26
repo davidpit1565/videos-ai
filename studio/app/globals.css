@@ -364,7 +364,11 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    same identity the videos and the studio already have, instead of inventing a fourth
    one: video brand, studio, and now the public site all read as one channel. */
 .site, .pub {
-  --paper:#0E1116; --card:#151A22; --ink:#EEF0F3; --soft:#8C97A8; --faint:#6B7484;
+  /* --faint measured at 4.01:1 on --paper as first shipped — under the 4.5:1 normal
+     text needs, and it was carrying the footer links, the fine print under the signup
+     button, and the episode-card byline text. Computed, not eyeballed: #7A8393 is the
+     same blue-grey at 4.95:1, found by lightening in HSL until it cleared the floor. */
+  --paper:#0E1116; --card:#151A22; --ink:#EEF0F3; --soft:#8C97A8; --faint:#7A8393;
   --rule:#2A313D; --wash:#1B2029; --gold:#E8C86A; --gold-lit:#FFE7A8;
   /* Archivo/Assistant are the house style's own documented pair (`brand/house-
      style.md` §3) — display/headline face and body/caption face, respectively. Latin +
@@ -542,9 +546,16 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 /* "Won't:" — the one thing every competitor page hides, made visible before the click
    instead of only inside it. grid-column:2 pins it under the title/blurb column no
    matter where CSS grid's row-major auto-placement would otherwise land it once the
-   thumbnail (grid-row:span 3) has already claimed the rest of column 1. */
-.site .ebreaks{color:#C96A4E;font-size:.86rem;margin-top:.15rem;display:block}
-.site .ebreaks::before{content:"⚠ ";font-size:.8em}
+   thumbnail (grid-row:span 3) has already claimed the rest of column 1.
+   Body text is --faint, not full clay: clay is reserved for the real disclosure (the
+   detail page's own "What it will not do" list, in full, in the reader's own words).
+   This is a one-line preview truncated to a first sentence — giving every one of those,
+   routine or serious, the same alarm-adjacent color as a genuine warning was flagged in
+   review as diluting the real warnings rather than helping the routine ones. The clay
+   marker still flags "there's a limit, worth reading" at a glance; only the icon carries
+   that signal here, not the whole line. */
+.site .ebreaks{color:var(--faint);font-size:.86rem;margin-top:.15rem;display:block}
+.site .ebreaks::before{content:"⚠ ";font-size:.8em;color:var(--clay)}
 .site .eps .ebreaks{grid-column:2}
 
 /* the browse controls above the episode list — chips for the tool an episode is
