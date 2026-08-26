@@ -597,25 +597,11 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   text-transform:uppercase;color:var(--gold-lit)}
 .site .eps .t{font-family:var(--serif);font-weight:700;font-size:1.14rem;line-height:1.25}
 .site .eps .tp{color:var(--faint);font-size:.95rem}
-/* "Won't:" — the one thing every competitor page hides, made visible before the click
-   instead of only inside it. grid-column:2 pins it under the title/blurb column no
-   matter where CSS grid's row-major auto-placement would otherwise land it once the
-   thumbnail (grid-row:span 3) has already claimed the rest of column 1.
-   Body text is --faint, not full clay: clay is reserved for the real disclosure (the
-   detail page's own "What it will not do" list, in full, in the reader's own words).
-   This is a one-line preview truncated to a first sentence — giving every one of those,
-   routine or serious, the same alarm-adjacent color as a genuine warning was flagged in
-   review as diluting the real warnings rather than helping the routine ones. The clay
-   marker still flags "there's a limit, worth reading" at a glance; only the icon carries
-   that signal here, not the whole line. */
-.site .ebreaks{color:var(--faint);font-size:.86rem;margin-top:.15rem;display:block}
-/* Was a "⚠ " warning-triangle glyph — flagged directly, with a screenshot, as
-   stressful: a routine one-line scope note ("won't do portrait mode yet") wearing an
-   alert-triangle reads as danger, not as a fact. The word "Won't" itself, bold and in
-   clay, still marks the line as the site's limitations signal — same information, no
-   symbol borrowed from a hazard sign. See episodes-browser.tsx / prompts-browser.tsx. */
-.site .ebreaks b{color:var(--clay);font-weight:700}
-.site .eps .ebreaks{grid-column:2}
+/* The "Won't:" preview line on list cards (episodes-browser.tsx / prompts-browser.tsx)
+   was removed after he saw it live — a bold, colored line inside every card read as
+   heavy/unbalanced across a whole grid of them, not as a trust signal. The real
+   disclosure stays exactly where it always was: the episode page's own "What it will
+   not do" section, and the prompt page's own "What it isn't" note — both untouched. */
 
 /* the browse controls above the episode list — chips for the tool an episode is
    actually about (read from its own title, never a separate field to keep in sync),

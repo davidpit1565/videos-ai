@@ -4,11 +4,6 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Prompt } from "@/lib/prompts";
 
-const firstSentence = (s: string) => {
-  const cut = s.match(/^.*?[.!?](?=\s|$)/)?.[0] ?? s;
-  return cut.length > 90 ? cut.slice(0, 87).trimEnd() + "…" : cut;
-};
-
 export default function PromptsBrowser({ prompts }: { prompts: Prompt[] }) {
   const [q, setQ] = useState("");
   const hits = useMemo(() => {
@@ -40,7 +35,6 @@ export default function PromptsBrowser({ prompts }: { prompts: Prompt[] }) {
               <Link href={`/p/${p.slug}`}>
                 <b>{p.title}</b>
                 <span>{p.blurb}</span>
-                {p.limits ? <span className="ebreaks"><b>Won&apos;t:</b> {firstSentence(p.limits)}</span> : null}
               </Link>
             </li>
           ))}
