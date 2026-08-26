@@ -1,0 +1,12 @@
+ChatGPT can already leave the chat box
+
+You've used it a hundred times. You've never seen this: ChatGPT can open a real
+page and click a real button by itself, while you watch — Agent Mode, already
+inside ChatGPT, turned off by default. No code, no app to install. It won't do
+anything you didn't ask it to — it still needs you to say what.
+
+Full breakdown: actually-works-studio.vercel.app/e/13
+
+Follow for the ChatGPT features you didn't know you had.
+
+#chatgpt #agentmode #aitools #openai #productivity
