@@ -2,6 +2,7 @@ import Link from "next/link";
 import { catalogue } from "@/lib/site";
 import { fetchLatestBeehiivIssue } from "@/lib/sources";
 import { PROMPTS } from "@/lib/prompts";
+import { ARTICLES } from "@/lib/articles";
 import Signup from "./signup";
 import SiteNotify from "./site-notify";
 import SiteNav from "./sitenav";
@@ -18,6 +19,10 @@ export default async function Home() {
   const eps = await catalogue();
   const live = eps.filter((e) => e.live);
   const totalViews = live.reduce((a, e) => a + (e.views ?? 0), 0);
+  // Not a vanity number — every other AI-content page leads with subscribers or views.
+  // This one counts the thing this channel actually promises: a written, numbered "what
+  // it will not do" per setup. Real count off the hand-written articles, never estimated.
+  const breaksDocumented = ARTICLES.reduce((a, ar) => a + ar.limits.length, 0);
   // The newest live episode with a video, for the hero — the channel's whole premise is
   // "the exact screen", and a home page that never shows one before the fold undercuts it.
   const heroEpisode = live.find((e) => e.ytVideoId) ?? null;
@@ -49,12 +54,18 @@ export default async function Home() {
           {/* Real, already-measured numbers only — a stat with nothing behind it yet
               doesn't get a tile, rather than a tile showing a fabricated 0. Placed before
               the signup form on purpose: proof before the ask. */}
-          {(live.length > 0 || totalViews > 0) && (
+          {(live.length > 0 || totalViews > 0 || breaksDocumented > 0) && (
             <div className="herostats">
               {live.length > 0 && (
                 <div>
                   <b><CountUp value={live.length} /></b>
                   <span>episode{live.length === 1 ? "" : "s"} live</span>
+                </div>
+              )}
+              {breaksDocumented > 0 && (
+                <div>
+                  <b><CountUp value={breaksDocumented} /></b>
+                  <span>failure modes written down</span>
                 </div>
               )}
               {totalViews > 0 && (

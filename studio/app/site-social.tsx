@@ -1,6 +1,8 @@
 /** Real profile links, once — every public page gets the same row, and changing an
- *  account only means changing it here. Icons are plain inline SVGs, no icon library. */
-const LINKS = [
+ *  account only means changing it here. Icons are plain inline SVGs, no icon library.
+ *  Exported so layout.tsx can reuse the same real URLs as JSON-LD sameAs — one list,
+ *  not a second hardcoded copy that drifts the moment an account changes. */
+export const LINKS = [
   {
     name: "Instagram",
     href: "https://www.instagram.com/david_pitchkhadze/",

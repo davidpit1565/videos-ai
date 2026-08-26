@@ -3,6 +3,7 @@ import "./globals.css";
 import { Provider } from "./providers";
 import Shell from "./shell";
 import { SITE_URL } from "@/lib/site";
+import { LINKS } from "./site-social";
 
 const DESCRIPTION =
   "AI setups that actually work. One setup per episode: the exact screen, the exact paste, and the part that breaks.";
@@ -59,6 +60,33 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+// Real, verifiable facts only — the same "checkable, not trusted on faith" rule the
+// /about page states outright. name/sameAs are the actual profile URLs SiteSocial
+// already links to; nothing here is a claim this schema invents on its own.
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "David Pitchkhadze",
+  url: SITE_URL,
+  sameAs: LINKS.map((l) => l.href),
+};
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Actually Works",
+  url: SITE_URL,
+  description: DESCRIPTION,
+  author: { "@type": "Person", name: "David Pitchkhadze" },
+  // Honest only because /search actually reads and writes ?q= now (see search.tsx) —
+  // a SearchAction pointing at a query param the page silently ignored would be exactly
+  // the kind of unverifiable claim CLAUDE.md rules out.
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/search?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" dir="ltr">
@@ -69,6 +97,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;800&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&display=swap"
         />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
       </head>
       <body>
         <Provider>

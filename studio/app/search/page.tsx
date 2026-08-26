@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import SiteNav from "../sitenav";
 import Search from "./search";
 import { catalogue } from "@/lib/site";
@@ -49,7 +50,9 @@ export default async function SearchPage() {
         Every episode, every prompt, and the link to each video. Type anything — a tool, a
         word from a prompt, or what you are trying to get done.
       </p>
-      <Search index={index} />
+      <Suspense fallback={null}>
+        <Search index={index} />
+      </Suspense>
     </main>
   );
 }

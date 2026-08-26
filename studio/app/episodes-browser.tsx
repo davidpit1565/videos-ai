@@ -75,6 +75,7 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
                 <span className="tag">{e.tool}</span>
                 <span className="t">{e.title}</span>
                 <span className="tp">{e.blurb}</span>
+                {e.breaks ? <span className="ebreaks">Won't: {e.breaks}</span> : null}
               </Link>
             </li>
           ))}

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 
 type Row = {
@@ -14,7 +15,18 @@ type Row = {
 };
 
 export default function Search({ index }: { index: Row[] }) {
-  const [q, setQ] = useState("");
+  const router = useRouter();
+  const params = useSearchParams();
+  // Deep-linkable: a search someone actually did is now a URL worth sharing, and the
+  // browser's own back button steps through it — neither worked when the query lived
+  // only in useState. replace (not push) so typing a letter at a time doesn't fill the
+  // back-button history with one entry per keystroke; scroll:false keeps the page from
+  // jumping to the top on every character.
+  const [q, setQ] = useState(() => params.get("q") ?? "");
+  const setSearch = (v: string) => {
+    setQ(v);
+    router.replace(v ? `/search?q=${encodeURIComponent(v)}` : "/search", { scroll: false });
+  };
   const hits = useMemo(() => {
     const t = q.trim().toLowerCase();
     if (!t) return index;
@@ -32,7 +44,8 @@ export default function Search({ index }: { index: Row[] }) {
         placeholder="chatgpt, custom instructions, agents…"
         aria-label="Search"
         value={q}
-        onChange={(e) => setQ(e.target.value)}
+        onChange={(e) => setSearch(e.target.value)}
+        autoFocus
       />
       <p className="count">
         {hits.length} of {index.length}
