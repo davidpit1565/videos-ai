@@ -17,8 +17,8 @@ export default async function OG({ params }: { params: Promise<{ n: string }> })
         style={{
           width: "100%", height: "100%", display: "flex", flexDirection: "column",
           justifyContent: "center", padding: "80px",
-          background: "#F7F5F1", color: "#16181C",
-          fontFamily: "Georgia, serif",
+          background: "#0E1116", color: "#EEF0F3",
+          fontFamily: "Helvetica, Arial, sans-serif",
         }}
       >
         {/* Satori (next/og's renderer) requires explicit display:flex on any node with
@@ -29,13 +29,13 @@ export default async function OG({ params }: { params: Promise<{ n: string }> })
           style={{
             display: "flex",
             fontSize: 26, letterSpacing: 4, textTransform: "uppercase",
-            color: "#8A6D1B", fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700,
+            color: "#E8C86A", fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700,
             marginBottom: 30,
           }}
         >
           Actually Works · Episode {String(n).padStart(2, "0")}
         </div>
-        <div style={{ fontSize: 58, lineHeight: 1.18, maxWidth: 1000 }}>{title}</div>
+        <div style={{ fontSize: 58, lineHeight: 1.18, maxWidth: 1000, fontWeight: 700 }}>{title}</div>
       </div>
     ),
     size,

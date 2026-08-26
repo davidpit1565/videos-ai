@@ -1,6 +1,8 @@
 import Link from "next/link";
 import SiteNav from "../sitenav";
 import { PROMPTS } from "@/lib/prompts";
+import PromptsBrowser from "../prompts-browser";
+import Reveal from "../reveal";
 
 export const metadata = {
   title: "Prompts",
@@ -15,16 +17,9 @@ export default function PromptsPage() {
       <p className="sub">
         Complete, with what each one cannot do. No email needed to read them.
       </p>
-      <ul className="prompts">
-        {PROMPTS.map((p) => (
-          <li key={p.slug}>
-            <Link href={`/p/${p.slug}`}>
-              <b>{p.title}</b>
-              <span>{p.blurb}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <Reveal>
+        <PromptsBrowser prompts={PROMPTS} />
+      </Reveal>
       <footer className="sfoot">
         <Link href="/">Episodes</Link>
         <Link href="/search">Search</Link>

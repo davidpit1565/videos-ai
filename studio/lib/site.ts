@@ -67,6 +67,15 @@ export type Entry = {
   live: boolean;
   ytVideoId: string | null;
   igPermalink: string | null;
+  /** First sentence of the article's own "what it will not do" — real, written-by-hand
+   *  text, never a summary generated for this purpose. An episode with no article yet
+   *  (caption-only) has none, which is honest: nothing has actually been written down. */
+  breaks: string | null;
+  /** Real publish date, only for an episode the studio actually marked live — an
+   *  article-only entry has none, because nothing has actually gone out yet. Lets a
+   *  list read as real chronology (see God of Prompt's dated timeline, adapted here)
+   *  instead of an undated stack. */
+  publishedAt: string | null;
 };
 
 export async function catalogue(): Promise<Entry[]> {
@@ -74,11 +83,17 @@ export async function catalogue(): Promise<Entry[]> {
   const s = await loadState();
   const live = (s?.episodes ?? []).filter((e) => e.status === "live");
   const byNumber = new Map<number, Entry>();
+  const firstSentence = (s: string) => {
+    const cut = s.match(/^.*?[.!?](?=\s|$)/)?.[0] ?? s;
+    return cut.length > 90 ? cut.slice(0, 87).trimEnd() + "…" : cut;
+  };
 
   for (const a of ARTICLES) {
     byNumber.set(a.n, {
       n: a.n, title: a.title, blurb: a.standfirst,
       views: null, live: false, ytVideoId: null, igPermalink: null,
+      breaks: a.limits[0] ? firstSentence(a.limits[0]) : null,
+      publishedAt: null,
     });
   }
   for (const e of live) {
@@ -91,6 +106,8 @@ export async function catalogue(): Promise<Entry[]> {
       live: true,
       ytVideoId: e.ytVideoId ?? null,
       igPermalink: e.igPermalink ?? null,
+      breaks: prev?.breaks ?? null,
+      publishedAt: e.publishedAt ?? null,
     });
   }
   return [...byNumber.values()].sort((a, b) => {

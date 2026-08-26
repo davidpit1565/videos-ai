@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import SiteNav from "../sitenav";
 import EpisodesBrowser from "../episodes-browser";
+import Reveal from "../reveal";
 import { catalogue } from "@/lib/site";
 
 export const metadata = {
@@ -26,7 +28,11 @@ export default async function EpisodesPage() {
           goes out.
         </p>
       ) : (
-        <EpisodesBrowser eps={eps} />
+        <Reveal>
+          <Suspense fallback={null}>
+            <EpisodesBrowser eps={eps} />
+          </Suspense>
+        </Reveal>
       )}
       <footer className="sfoot">
         <Link href="/">Home</Link>

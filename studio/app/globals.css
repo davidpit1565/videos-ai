@@ -22,13 +22,12 @@
 html,body{margin:0;padding:0}
 /* The document is the public site by default, same principle as layout.tsx's title and
    as `direction:ltr` right below — the studio (.shell) is the one private corner that
-   overrides it, not the other way round. This used to default dark (the studio's own
-   color) and rely on `body:has(.site)` further down to paint it cream, which fails open
-   to the wrong background — the private tool's color — on the rare browser without
-   :has() support, and on iOS Safari's overscroll bounce shows that dark edge past the
-   page bounds before the override can apply. Failing open to cream is the safe direction:
-   the worst case is a site page briefly under-styled, never the business exposed. */
-body{background:#F7F5F1;color:#16181C;font-family:var(--b);font-size:17px;
+   overrides it, not the other way round. Both surfaces are dark now (see the public-
+   surface block below), but they're deliberately two different near-blacks, not one
+   shared token — .shell repaints itself from the studio's own :root --ink the instant
+   it mounts, so a browser without :has() support, or the moment before hydration on
+   iOS Safari's overscroll bounce, still shows a plausible dark ground either way. */
+body{background:#0E1116;color:#EEF0F3;font-family:var(--b);font-size:17px;
   line-height:1.65;direction:ltr;-webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent}
 body:has(.shell){background:var(--ink);color:var(--text)}
@@ -354,70 +353,118 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 
 
 /* ══ The public surface ══════════════════════════════════════════════════════════
-   The studio is dark, Hebrew, RTL and dense — one person reads it all day. The public
-   pages are the opposite on every axis, and light on purpose: he asked for it, and the
-   reference he pointed at (a warm off-white ground, a serif display against a plain
-   sans, generous rounding, one accent) is easier to read on a phone at night than our
-   ink. The brass stays as the single accent, darkened to hold contrast on paper —
-   #F0CB66 on white is unreadable, this is the same hue at a legible luminance.
-
-   Only these tokens change between the two worlds; the typefaces are the ones the
-   layout already loads, so the light pages cost no extra font request. */
+   First pass here (mint-on-black) landed generic in a different way — he pointed out
+   directly that it read as the same palette as another, unrelated product of his. That
+   pass invented colors instead of using ones this channel already owns: `brand/house-
+   style.md` is the documented "Brass on Ink" identity every VIDEO already ships in —
+   ink background, brass as the one accent that ever marks a takeaway, clay reserved
+   specifically for "limitations, warnings, honest caveats." That's a real, bespoke
+   asset — nobody else's product can accidentally match it — and it was sitting unused
+   on the public site the whole time. This pass just brings the web surface into the
+   same identity the videos and the studio already have, instead of inventing a fourth
+   one: video brand, studio, and now the public site all read as one channel. */
 .site, .pub {
-  /* --faint was #8B857B, which measures 3.36:1 on this ground — under the 4.5:1 that
-     normal-size text needs, and it was carrying the kicker, the footer links and every
-     piece of fine print. #6F6A60 is the same warm grey at 4.94:1. Computed, not picked
-     by eye: the ground is #F7F5F1, so anything above ~0.16 relative luminance fails. */
-  --paper:#F7F5F1; --card:#FFFFFF; --ink:#16181C; --soft:#54514B; --faint:#6F6A60;
-  --rule:#E3DED4; --wash:#F1EBDD; --gold:#8A6D1B; --gold-lit:#B08A22;
-  /* The public display face is Newsreader, not the studio's Hebrew serif: in Latin it
-     has the editorial weight this page wants, and it is not the face the reference site
-     uses, so this reads as ours rather than as a copy. Body is the same IBM Plex as the
-     studio, which keeps one voice across both surfaces. */
+  /* --faint measured at 4.01:1 on --paper as first shipped — under the 4.5:1 normal
+     text needs, and it was carrying the footer links, the fine print under the signup
+     button, and the episode-card byline text. Computed, not eyeballed: #7A8393 is the
+     same blue-grey at 4.95:1, found by lightening in HSL until it cleared the floor. */
+  --paper:#0E1116; --card:#151A22; --ink:#EEF0F3; --soft:#8C97A8; --faint:#7A8393;
+  --rule:#2A313D; --wash:#1B2029; --gold:#E8C86A; --gold-lit:#FFE7A8;
+  /* Archivo/Assistant are the house style's own documented pair (`brand/house-
+     style.md` §3) — display/headline face and body/caption face, respectively. Latin +
+     Hebrew coverage on Assistant means nothing here breaks if this surface ever needs
+     Hebrew, but the public pages stay English regardless. The studio's Hebrew-RTL
+     surface keeps its own Frank Ruhl Libre (--d) untouched — this swap is public-only. */
   /* Remap the STUDIO's own tokens, not just our own. Any studio rule that reaches a
      public page — ol.steps, .promptbox, .note, .list — paints itself from --panel,
      --line, --text and --brass. Chasing those selectors one at a time is how "The
      exact clicks" shipped as dark text on a dark panel; redefining the four tokens
      fixes every one of them at once, including the ones nobody has hit yet. */
-  --panel:#FFFFFF; --line:#E3DED4; --text:#16181C; --muted:#54514B;
-  --brass:#8A6D1B; --brass-dim:#B08A22; --clay:#A8481F; --r:.75rem;
-  --serif:"Newsreader",Georgia,"Times New Roman",serif;
-  --sans:"IBM Plex Sans Hebrew","Helvetica Neue",Arial,sans-serif;
+  --panel:#151A22; --line:#2A313D; --text:#EEF0F3; --muted:#8C97A8;
+  --brass:#E8C86A; --brass-dim:#8A7434; --clay:#C96A4E; --steel:#6FA8CF; --r:.75rem;
+  --serif:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --sans:"Assistant","Helvetica Neue",Arial,sans-serif;
   --code:"IBM Plex Mono",ui-monospace,monospace;
   direction:ltr; text-align:left;
   background:var(--paper); color:var(--ink); font-family:var(--sans);
   max-width:64rem; margin:0 auto; padding:clamp(1.7rem,5vw,3.6rem) clamp(1.1rem,4.5vw,1.7rem) 5rem;
   font-size:17.5px; line-height:1.62;
 }
-/* Cream is body's own default now (see the top of this file) — .site/.pub no longer
-   need to ask for it back, only .shell (the studio) opts out of it. */
+/* The dark ground is body's own default now (see the top of this file) — .site/.pub no
+   longer need to ask for it back, only .shell (the studio) keeps its own separate dark
+   token set (a deliberately different near-black — see :root above). */
 
 .site .kicker, .pub .kicker{font-family:var(--code);font-size:.7rem;letter-spacing:.15em;
   text-transform:uppercase;color:var(--faint);margin:0 0 1.1rem}
 .site .kicker a, .pub .kicker a{color:inherit;text-decoration:none}
+.site .kicker-row{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  margin:0 0 1.1rem}
+.site .kicker-row .kicker{margin:0}
+.site .index-chip{font-family:var(--code);font-size:.72rem;letter-spacing:.06em;
+  color:var(--faint);white-space:nowrap;font-variant-numeric:tabular-nums}
 .site .brandline{display:flex;align-items:center;gap:.5rem;margin:0 0 2.2rem;
   font-family:var(--serif);font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
 .site .brandline .tick{color:var(--gold);font-size:1.15rem}
-.site h1, .pub h1{font-family:var(--serif);font-weight:800;
+.site h1, .pub h1{font-family:var(--serif);font-weight:700;
   font-size:clamp(2.15rem,7.5vw,3.2rem);line-height:1.06;margin:0 0 .85rem;
   letter-spacing:-.015em;text-wrap:balance}
-.site h1 em, .pub h1 em{font-style:normal;color:var(--gold)}
+/* Flat brass on a monochrome dark field read as one muted note, not a bold one — he
+   said so directly. A warm gradient (brass into a hotter amber) on exactly the one
+   emphasized word keeps the "one accent, sparingly" rule from house-style.md intact —
+   it's still a single warm family, just given more range — while giving the headline
+   the kind of punch a flat fill can't. background-clip text is the one property this
+   needs; the plain --gold color is the fallback for anything that can't render it. */
+.site h1 em, .pub h1 em{font-style:normal;color:var(--gold);
+  background:linear-gradient(100deg,#E8C86A 10%,#FFB454 55%,#E8C86A 90%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .site h2, .pub h2{font-family:var(--serif);font-weight:700;
   font-size:clamp(1.3rem,3.6vw,1.7rem);margin:3.2rem 0 .7rem;text-wrap:balance;
   letter-spacing:-.01em}
 .site p, .pub p{margin:.75rem 0}
 .site .sub, .pub .sub{color:var(--soft);max-width:34rem;font-size:1.06rem}
-.site .cta, .pub .cta{display:inline-block;margin-top:1.5rem;background:var(--ink);
-  color:#FBF9F5;font-weight:700;padding:.8rem 1.7rem;border-radius:9999px;
+/* A flat brass fill on a near-black button read as one more muted dark-mode SaaS
+   button — a warm two-stop gradient gives it real presence as the single boldest
+   object on the page without adding a color outside the brass family. */
+.site .cta, .pub .cta{display:inline-block;margin-top:1.5rem;
+  background:linear-gradient(135deg,#F0C674,#E29A3E);
+  color:#1A1200;font-weight:700;padding:.8rem 1.7rem;border-radius:9999px;
   text-decoration:none;font-size:1rem}
-.site .cta:hover, .pub .cta:hover{background:var(--gold)}
+.site .cta:hover, .pub .cta:hover{background:linear-gradient(135deg,#FFDD94,#F0B458)}
 
 /* the personal-intro hero. Single column when there's no video to show yet; once an
    episode has a YouTube id, the newest one plays beside the text so the channel's whole
    premise — the exact screen — is visible before anyone scrolls, not just promised. */
-.site .hero{display:grid;gap:2.2rem;grid-template-columns:1fr}
+/* A brass glow behind the hero, so the near-black ground doesn't sit completely flat
+   above the fold. An adversarial review of the first version (an infinite 9s pulse)
+   flagged it correctly: layered on top of the scroll reveal and the hover-lifts, a
+   never-ending ambient loop was a second, competing motion system running at the same
+   time as the first, which reads as "trying hard" rather than calm and premium. One
+   settle-in on load, then it holds still — the glow is doing its job by existing, not
+   by moving forever. */
+.site .hero{display:grid;gap:2.2rem;grid-template-columns:1fr;position:relative}
+.site .hero::before{content:"";position:absolute;top:-8rem;inset-inline-end:-10rem;
+  width:32rem;height:32rem;border-radius:50%;pointer-events:none;z-index:-1;
+  background:radial-gradient(circle,rgba(232,200,106,.2) 0%,rgba(226,154,62,.08) 45%,rgba(232,200,106,0) 72%);
+  animation:heroglow .9s ease-out both}
+@keyframes heroglow{
+  from{transform:scale(.85);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+@media (prefers-reduced-motion:reduce){
+  .site .hero::before{animation:none}
+}
 .site .herotext{min-width:0}
 .site .hero .herovid{margin:0;order:-1}
+/* Sits directly under the Instagram/self-hosted video that now takes the primary hero
+   slot — a quiet, secondary way to reach YouTube instead of YouTube occupying the slot
+   Instagram's own post is meant to have. */
+.site .herovidlink{margin:.6rem 0 0;font-size:.85rem;text-align:center}
+.site .herovidlink a{color:var(--steel);font-weight:600;text-decoration:none}
+.site .herovidlink a:hover{text-decoration:underline}
+/* .vid-native/.vid-ig are shared with the episode page, where they only ever wrap one
+   child (the player). The hero variant adds a second child (the YouTube link below it),
+   which .vid-*'s row-flex would otherwise place beside the video instead of under it. */
+.site .hero .herovid.vid-native,.site .hero .herovid.vid-ig{flex-direction:column}
 @media (min-width:860px){
   .site .hero{grid-template-columns:1.05fr 1fr;align-items:center}
   .site .hero .herovid{order:0}
@@ -445,13 +492,35 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 /* He circled these on a screenshot and asked for them bigger, clearer, and to actually
    stand out — as plain inline numbers they read as an afterthought under the CTAs. Cards
    with a gold number give them the same weight the rest of the hero has. */
-.site .herostats{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.8rem}
-.site .herostats > div{background:var(--card);border:1px solid var(--rule);
-  border-radius:1rem;padding:1.1rem 1.5rem;min-width:9rem}
-.site .herostats b{display:block;font-family:var(--serif);font-weight:800;font-size:2.6rem;
-  line-height:1;color:var(--gold-lit)}
-.site .herostats span{display:block;color:var(--soft);font-size:.88rem;margin-top:.4rem;
-  font-weight:600}
+/* Deliberately not a card — the competitor pattern this borrows from (Saraev's own
+   about page) states hard numbers plain, once, with no box or adjective doing the
+   convincing instead of the figure itself. Sits inline in running text, not styled as
+   a separate "stats module." */
+.site .proofline{list-style:none;display:flex;flex-wrap:wrap;gap:1.6rem 2rem;
+  padding:0;margin:1.4rem 0 .4rem;border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);padding-block:1.1rem}
+.site .proofline li{display:flex;align-items:baseline;gap:.5rem}
+.site .proofline b{font-family:var(--code);font-size:1.3rem;color:var(--gold-lit);
+  font-variant-numeric:tabular-nums}
+.site .proofline span{color:var(--faint);font-size:.86rem}
+/* He asked directly: the boxed cards were making the numbers *less* clear, not more —
+   a small figure boxed in a border reads as a UI widget; the same figure set large and
+   bare on the page reads as a fact. Dropped the card entirely (background, border,
+   padding-box) and let the number itself carry the weight — nearly 40% larger, tighter
+   line-height so it doesn't float, and the label demoted to a small tracked caption
+   underneath it rather than competing at similar size inside a box. */
+.site .herostats{display:flex;flex-wrap:wrap;gap:2.4rem;margin-top:2rem}
+.site .herostats b{display:block;font-family:var(--serif);font-weight:700;
+  font-size:clamp(2.6rem,7vw,3.7rem);line-height:1;letter-spacing:-.015em;
+  color:var(--gold-lit);font-variant-numeric:tabular-nums}
+/* Three numbers in a row, all one color, read as one flat block instead of three
+   distinct facts — steel is house-style's own documented "the other option in any
+   comparison" (§2), and the middle stat (the count with no competitor equivalent —
+   nobody else in this niche counts failure modes) earns the break in rhythm. One
+   color swap, not a new hue introduced. */
+.site .herostats > div:nth-child(2) b{color:var(--steel)}
+.site .herostats span{display:block;color:var(--faint);font-size:.76rem;margin-top:.5rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.09em}
 .site .empty{background:var(--card);border:1px solid var(--rule);border-radius:1rem;
   padding:1.1rem 1.25rem;color:var(--soft)}
 
@@ -474,6 +543,20 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   text-transform:uppercase;color:var(--gold-lit)}
 .site .eps .t{font-family:var(--serif);font-weight:700;font-size:1.14rem;line-height:1.25}
 .site .eps .tp{color:var(--faint);font-size:.95rem}
+/* "Won't:" — the one thing every competitor page hides, made visible before the click
+   instead of only inside it. grid-column:2 pins it under the title/blurb column no
+   matter where CSS grid's row-major auto-placement would otherwise land it once the
+   thumbnail (grid-row:span 3) has already claimed the rest of column 1.
+   Body text is --faint, not full clay: clay is reserved for the real disclosure (the
+   detail page's own "What it will not do" list, in full, in the reader's own words).
+   This is a one-line preview truncated to a first sentence — giving every one of those,
+   routine or serious, the same alarm-adjacent color as a genuine warning was flagged in
+   review as diluting the real warnings rather than helping the routine ones. The clay
+   marker still flags "there's a limit, worth reading" at a glance; only the icon carries
+   that signal here, not the whole line. */
+.site .ebreaks{color:var(--faint);font-size:.86rem;margin-top:.15rem;display:block}
+.site .ebreaks::before{content:"⚠ ";font-size:.8em;color:var(--clay)}
+.site .eps .ebreaks{grid-column:2}
 
 /* the browse controls above the episode list — chips for the tool an episode is
    actually about (read from its own title, never a separate field to keep in sync),
@@ -484,13 +567,26 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   border-radius:9999px;border:1px solid var(--rule);background:var(--card);color:var(--soft);
   cursor:pointer;transition:border-color .15s,color .15s}
 .site .echips button:hover{border-color:var(--gold-lit);color:var(--ink)}
-.site .echips button.on{background:var(--ink);border-color:var(--ink);color:#FBF9F5}
+.site .echips button.on{background:var(--gold);border-color:var(--gold);color:var(--paper)}
 .site .esearch{display:block;width:100%;font:inherit;font-size:1rem;padding:.7rem 1rem;
   border-radius:.75rem;border:1px solid var(--rule);background:var(--card);color:var(--ink);
   margin-bottom:1rem}
 .site .esearch:focus{outline:none;border-color:var(--gold-lit)}
 .site .herostat{font-family:var(--code);font-size:.82rem;letter-spacing:.03em;
   color:var(--gold);margin-top:-.4rem}
+
+/* Named tracks, not tags — the homepage's own way of splitting "one flat feed" into
+   self-selectable verticals (see page.tsx). Pill-shaped like the nav/filter chips
+   elsewhere, so it reads as navigation, not as one more content list. */
+.site .tracks{list-style:none;padding:0;margin:1.2rem 0;display:flex;flex-wrap:wrap;gap:.6rem}
+.site .tracks a{display:flex;align-items:center;gap:.5rem;background:var(--card);
+  border:1px solid var(--rule);border-radius:9999px;padding:.55rem 1.1rem;
+  text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;
+  transition:border-color .18s ease,transform .18s ease}
+.site .tracks a:hover{border-color:var(--gold-lit);transform:translateY(-2px)}
+.site .tracks .tcount{font-family:var(--code);font-size:.76rem;color:var(--faint);
+  background:var(--wash);border-radius:9999px;padding:.1rem .5rem;
+  font-variant-numeric:tabular-nums}
 
 .site .prompts{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.7rem}
 .site .prompts a{display:block;background:var(--card);border:1px solid var(--rule);
@@ -533,8 +629,8 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    rather than inherited. */
 .pub .note{background:var(--card);border-color:var(--rule);color:var(--ink)}
 .pub .note b{color:var(--ink)}
-.pub .note .t{color:#A8481F}
-.pub .note.warn{border-inline-start-color:#A8481F}
+.pub .note .t{color:#C96A4E}
+.pub .note.warn{border-inline-start-color:#C96A4E}
 .pub .list, .pub .list > *{background:var(--card);border-color:var(--rule);color:var(--ink)}
 .pub .list{border-radius:1rem;overflow:hidden}
 .pub .list > * + *{border-top:1px solid var(--rule)}
@@ -549,7 +645,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 /* Real profile links, rendered once by Shell for every public page — not scoped
    inside .site/.pub, so it can't rely on their custom properties; the same paper
    palette is repeated here as literal values instead. */
-.ssocial-wrap{background:#F7F5F1;padding-top:1.6rem}
+.ssocial-wrap{background:#0E1116;padding-top:1.6rem}
 /* A pill, not a bare line of small gray text — the bare version read as a leftover
    fragment rather than a deliberate credit, especially where it used to sit mid-hero
    (moved to the real page footer instead, see page.tsx). Same rounded-pill language the
@@ -557,16 +653,16 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    than a stray link. */
 .ssocial-crosslink{display:flex;justify-content:center;align-items:baseline;gap:.4em;
   flex-wrap:wrap;text-align:center;margin:0 1.1rem 1.1rem;padding:.5rem 1.1rem;
-  border:1px solid #E3DED4;border-radius:999px;text-decoration:none;
-  font-size:.82rem;color:#6F6A60;transition:border-color .15s,color .15s}
-.ssocial-crosslink:hover{border-color:#8A6D1B;color:#8A6D1B}
-.ssocial-crosslink-label{color:#8B8579}
-.ssocial-crosslink-name{font-family:"Newsreader",Georgia,serif;font-weight:700;color:#16181C}
-.ssocial-crosslink:hover .ssocial-crosslink-name{color:#8A6D1B}
-.ssocial-crosslink-desc{color:#8B8579}
+  border:1px solid #2A313D;border-radius:999px;text-decoration:none;
+  font-size:.82rem;color:#8C97A8;transition:border-color .15s,color .15s}
+.ssocial-crosslink:hover{border-color:#E8C86A;color:#E8C86A}
+.ssocial-crosslink-label{color:#8C97A8}
+.ssocial-crosslink-name{font-family:"Archivo",Helvetica,Arial,sans-serif;font-weight:700;color:#EEF0F3}
+.ssocial-crosslink:hover .ssocial-crosslink-name{color:#E8C86A}
+.ssocial-crosslink-desc{color:#8C97A8}
 .ssocial{display:flex;justify-content:center;gap:1.4rem;padding:0 1.1rem 3rem}
-.ssocial a{color:#6F6A60;display:flex;transition:color .15s}
-.ssocial a:hover{color:#8A6D1B}
+.ssocial a{color:#8C97A8;display:flex;transition:color .15s}
+.ssocial a:hover{color:#E8C86A}
 .pub .foot{color:var(--faint);border-top:1px solid var(--rule);margin-top:3rem;
   padding-top:1.3rem;font-size:.93rem}
 .pub .lbl{color:var(--faint)}
@@ -578,11 +674,11 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .signup input:focus-visible, .pub .signup input:focus-visible{outline:2px solid var(--gold);
   outline-offset:1px;border-color:var(--gold)}
 .site .signup button, .pub .signup button{font:inherit;font-weight:700;cursor:pointer;
-  padding:.8rem 1.5rem;border:0;border-radius:9999px;background:var(--ink);color:#FBF9F5}
-.site .signup button:hover:enabled, .pub .signup button:hover:enabled{background:var(--gold)}
+  padding:.8rem 1.5rem;border:0;border-radius:9999px;background:var(--gold);color:var(--paper)}
+.site .signup button:hover:enabled, .pub .signup button:hover:enabled{background:var(--gold-lit)}
 .site .signup button:disabled, .pub .signup button:disabled{opacity:.45;cursor:default}
 .site .signup .fine, .pub .signup .fine{color:var(--faint);font-size:.87rem;margin:0}
-.site .signup .err, .pub .signup .err{color:#A8481F;font-size:.9rem;margin:0;font-weight:600}
+.site .signup .err, .pub .signup .err{color:var(--clay);font-size:.9rem;margin:0;font-weight:600}
 .site .pushnote, .pub .pushnote{color:var(--faint);font-size:.87rem;margin:.6rem 0 0}
 .site .linklike, .pub .linklike{font:inherit;color:var(--brass);background:none;border:0;
   padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
@@ -596,8 +692,28 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .changes li{padding-inline-start:1.5rem;position:relative}
 .site .changes li::before{content:"→";position:absolute;inset-inline-start:0;color:var(--gold);
   font-family:var(--code)}
-.site .limits-list li{background:var(--wash);border-inline-start:3px solid var(--gold);
-  border-radius:0 .5rem .5rem 0;padding:.7rem 1rem}
+/* brand/house-style.md §2: clay is reserved specifically for "limitations, warnings,
+   honest caveats" — brass is the takeaway, the opposite semantic. This list is the
+   channel's limitations section by definition, so it was the one place still wearing
+   the wrong half of the two-color system. The drawn underline is this surface's take
+   on house-style §4's "strike cards" — a literal struck-through line would fight this
+   text's own legibility, since these warnings are meant to be read carefully, not
+   dismissed, so the device becomes a clay rule drawing in under each line instead,
+   staggered per item so the cascade itself reads as motion, not just a fade. */
+.site .limits-list li{background:var(--wash);border-inline-start:3px solid var(--clay);
+  border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;position:relative;overflow:hidden}
+.site .limits-list li::after{content:"";position:absolute;inset-inline-start:1rem;
+  inset-inline-end:1rem;bottom:.5rem;height:2px;width:0;background:var(--clay);
+  opacity:.55;transition:width .5s ease-out}
+.site .reveal.in .limits-list li::after{width:calc(100% - 2rem)}
+.site .reveal.in .limits-list li:nth-child(1)::after{transition-delay:.05s}
+.site .reveal.in .limits-list li:nth-child(2)::after{transition-delay:.16s}
+.site .reveal.in .limits-list li:nth-child(3)::after{transition-delay:.27s}
+.site .reveal.in .limits-list li:nth-child(4)::after{transition-delay:.38s}
+.site .reveal.in .limits-list li:nth-child(n+5)::after{transition-delay:.45s}
+@media (prefers-reduced-motion:reduce){
+  .site .limits-list li::after{display:none}
+}
 
 /* the header and the search page */
 .site .sitenav{display:flex;flex-wrap:wrap;gap:.7rem 1.2rem;align-items:baseline;
@@ -612,6 +728,21 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .sitenav .links a:hover{color:var(--ink);border-color:var(--rule)}
 .site .sitenav .links a[aria-current=page]{color:var(--ink);background:var(--wash);
   border-color:var(--rule);font-weight:700}
+/* Groups the nav links and the social icons on the same side of the header, so the
+   two-item flex (.mark / .sitenav-right) keeps space-between's original left-right
+   split instead of spreading three items evenly across the row. */
+.site .sitenav-right{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem}
+/* Icon-only, no wrapper background — sits right beside the nav links in the header so
+   the real accounts are visible on arrival, not only after scrolling to the footer. A
+   thin divider separates it from the text links without a hard box around it. */
+.ssocial-inline{display:flex;align-items:center;gap:.7rem;padding-inline-start:.75rem;
+  border-inline-start:1px solid var(--rule)}
+.ssocial-inline a{color:#8C97A8;display:flex;transition:color .15s}
+.ssocial-inline a:hover{color:#E8C86A}
+@media (max-width:520px){
+  .ssocial-inline{border-inline-start:0;padding-inline-start:0;width:100%;
+    justify-content:flex-start;margin-top:.2rem}
+}
 .site .find{width:100%;font:inherit;font-size:1.05rem;padding:.8rem 1rem;margin:1.3rem 0 .6rem;
   border:1px solid var(--rule);border-radius:.7rem;background:var(--card);color:var(--ink)}
 .site .find:focus-visible{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
@@ -682,5 +813,45 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .notify .hint{color:var(--faint);font-size:14px;margin:0 0 10px;max-width:52ch}
 .notify .hint.mono{font-family:var(--m);font-size:13px}
 .aplayer{display:block;width:100%;margin:0 auto}
+
+/* ── motion, public site only ─────────────────────────────────────────────────────
+   He asked directly for real movement, not just hover states on buttons — and for it
+   to trace back to something specific to this channel rather than a generic animation
+   library. `brand/house-style.md` §4 already names its signature transition, "the
+   brass wipe": a 3px brass line sweeps across and the new section is revealed behind
+   it. This is that device, ported from a video cut to a scroll trigger (see
+   app/reveal.tsx) — the same identity the palette swap above already borrowed. */
+.site .reveal{opacity:0;transform:translateY(20px);position:relative;
+  transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
+.site .reveal.in{opacity:1;transform:none}
+.site .reveal::before{content:"";position:absolute;inset-inline-start:0;top:-1px;
+  height:3px;width:0;background:var(--gold);transition:width .35s ease-out .12s}
+.site .reveal.in::before{width:64px}
+@media (prefers-reduced-motion:reduce){
+  .site .reveal{opacity:1;transform:none;transition:none}
+  .site .reveal::before{display:none}
+}
+
+/* Cards already had a border-color hover; a small lift plus a brass-tinted shadow
+   reads as "this is a real surface, not flat text" without becoming a bounce or a
+   distraction — one direction of movement (up), one property doing the work. */
+.site .eps a,.site .prompts a,.site .hits > li,.site .issueteaser{
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover,.site .issueteaser:hover{
+  transform:translateY(-3px);box-shadow:0 10px 24px -12px rgba(232,200,106,.28)}
+.site .cta,.site .signup button,.pub .cta,.pub .signup button{
+  transition:transform .15s ease,background .15s ease,box-shadow .15s ease}
+.site .cta:hover,.site .signup button:hover:enabled,
+.pub .cta:hover,.pub .signup button:hover:enabled{
+  transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(232,200,106,.45)}
+.site .cta:active,.site .signup button:active:enabled,
+.pub .cta:active,.pub .signup button:active:enabled{transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){
+  .site .eps a,.site .prompts a,.site .hits > li,.site .issueteaser,
+  .site .cta,.site .signup button,.pub .cta,.pub .signup button{transition:none}
+  .site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover,.site .issueteaser:hover,
+  .site .cta:hover,.site .signup button:hover:enabled,
+  .pub .cta:hover,.pub .signup button:hover:enabled{transform:none;box-shadow:none}
+}
 
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--faint)}

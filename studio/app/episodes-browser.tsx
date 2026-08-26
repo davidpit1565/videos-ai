@@ -1,20 +1,24 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { Entry } from "@/lib/site";
-
-/** Which real tool an episode is about, read straight out of its own title — never a
- *  separate category someone has to remember to set. Order matters: first match wins,
- *  so a title naming two tools still gets one clear tag instead of picking arbitrarily. */
-const TOOLS = ["ChatGPT", "Claude", "n8n", "Instagram", "Whisper", "YouTube", "Agents", "Skills"];
-function toolFor(title: string): string {
-  const hit = TOOLS.find((t) => title.toLowerCase().includes(t.toLowerCase()));
-  return hit ?? "General";
-}
+import { publicMonth } from "@/lib/fmt";
+import { TOOLS, toolFor } from "@/lib/tools";
 
 export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
-  const [tool, setTool] = useState("All");
+  const router = useRouter();
+  const params = useSearchParams();
+  // Reads ?tool= on load so the homepage's own "browse by tool" row can link straight
+  // into a pre-filtered list — a visitor arriving from there for "n8n" and landing on
+  // an unfiltered wall of every episode is the exact bait-and-switch a named vertical
+  // is supposed to avoid.
+  const [tool, setToolState] = useState(() => params.get("tool") ?? "All");
+  const setTool = (t: string) => {
+    setToolState(t);
+    router.replace(t === "All" ? "/episodes" : `/episodes?tool=${encodeURIComponent(t)}`, { scroll: false });
+  };
   const [q, setQ] = useState("");
 
   const tagged = useMemo(() => eps.map((e) => ({ ...e, tool: toolFor(e.title) })), [eps]);
@@ -72,9 +76,13 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
                 {/* eslint-disable-next-line @next/next/no-img-element -- a generated route,
                     not a static asset; next/image can't optimize a dynamic image route. */}
                 <img className="ethumb" src={`/e/${e.n}/opengraph-image`} alt="" loading="lazy" />
-                <span className="tag">{e.tool}</span>
+                <span className="tag">
+                  {e.tool}
+                  {publicMonth(e.publishedAt) ? ` · ${publicMonth(e.publishedAt)}` : ""}
+                </span>
                 <span className="t">{e.title}</span>
                 <span className="tp">{e.blurb}</span>
+                {e.breaks ? <span className="ebreaks">Won't: {e.breaks}</span> : null}
               </Link>
             </li>
           ))}
