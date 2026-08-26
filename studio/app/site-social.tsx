@@ -26,6 +26,24 @@ export const LINKS = [
   },
 ];
 
+/** The icon row alone, no wrapper, no Agently pill — for reuse inside the header
+ *  (SiteNav), where the accounts need to be visible on arrival instead of only after
+ *  scrolling to the very bottom of the page. He flagged this directly: the icons
+ *  existed, but only in the footer, and on a long page that reads as "gone." */
+export function SocialIcons({ size = 18 }: { size?: number }) {
+  return (
+    <div className="ssocial-inline" aria-label="Social links">
+      {LINKS.map((l) => (
+        <a key={l.name} href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.name}>
+          <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size}>
+            {l.icon}
+          </svg>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export default function SiteSocial() {
   return (
     <div className="ssocial-wrap">

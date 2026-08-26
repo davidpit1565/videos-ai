@@ -619,6 +619,21 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .sitenav .links a:hover{color:var(--ink);border-color:var(--rule)}
 .site .sitenav .links a[aria-current=page]{color:var(--ink);background:var(--wash);
   border-color:var(--rule);font-weight:700}
+/* Groups the nav links and the social icons on the same side of the header, so the
+   two-item flex (.mark / .sitenav-right) keeps space-between's original left-right
+   split instead of spreading three items evenly across the row. */
+.site .sitenav-right{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem}
+/* Icon-only, no wrapper background — sits right beside the nav links in the header so
+   the real accounts are visible on arrival, not only after scrolling to the footer. A
+   thin divider separates it from the text links without a hard box around it. */
+.ssocial-inline{display:flex;align-items:center;gap:.7rem;padding-inline-start:.75rem;
+  border-inline-start:1px solid var(--rule)}
+.ssocial-inline a{color:#6F6A60;display:flex;transition:color .15s}
+.ssocial-inline a:hover{color:#8A6D1B}
+@media (max-width:520px){
+  .ssocial-inline{border-inline-start:0;padding-inline-start:0;width:100%;
+    justify-content:flex-start;margin-top:.2rem}
+}
 .site .find{width:100%;font:inherit;font-size:1.05rem;padding:.8rem 1rem;margin:1.3rem 0 .6rem;
   border:1px solid var(--rule);border-radius:.7rem;background:var(--card);color:var(--ink)}
 .site .find:focus-visible{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
