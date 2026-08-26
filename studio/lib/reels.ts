@@ -138,7 +138,11 @@ export function reels(): Reel[] {
         gate: gateFor(file),
         caption: captionFor(episode),
         youtube: youtubeFor(episode),
-        title: realTitleFor(episode),
+        // realTitleFor() alone left every episode shipped before a youtube.txt existed
+        // (06, 08-12) showing as a bare "פרק N" in /renders, even though its caption —
+        // which always exists the moment a reel ships — has the same headline as its
+        // first line. /e/[n] already falls back to this; /renders never did.
+        title: realTitleFor(episode) ?? captionTitleFor(episode),
       };
     })
     .sort((a, b) => b.builtAt.localeCompare(a.builtAt));
