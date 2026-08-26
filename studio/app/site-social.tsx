@@ -1,3 +1,5 @@
+import ExternalIcon from "./external-icon";
+
 /** Real profile links, once — every public page gets the same row, and changing an
  *  account only means changing it here. Icons are plain inline SVGs, no icon library.
  *  Exported so layout.tsx can reuse the same real URLs as JSON-LD sameAs — one list,
@@ -50,7 +52,7 @@ export default function SiteSocial() {
       <a href="https://agently-jet.vercel.app" className="ssocial-crosslink" target="_blank" rel="noopener noreferrer">
         <span className="ssocial-crosslink-label">Also building</span>
         <span className="ssocial-crosslink-name">Agently</span>
-        <span className="ssocial-crosslink-desc">— the catalog for AI agents ↗</span>
+        <span className="ssocial-crosslink-desc">— the catalog for AI agents <ExternalIcon /></span>
       </a>
       <div className="ssocial" aria-label="Social links">
         {LINKS.map((l) => (
