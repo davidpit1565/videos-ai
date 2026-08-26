@@ -83,14 +83,12 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
   // renders into an iframe, per Meta's oEmbed docs). Without any of these, Google's
   // rich-result validator flags the markup as incomplete, so an episode with none just
   // gets no VideoObject at all rather than one that fails validation.
-  const contentUrl = selfHosted ? `${SITE_URL}${selfHosted.src}` : null;
-  const embedUrl = contentUrl
-    ? null
-    : e?.ytVideoId
-      ? `https://www.youtube-nocookie.com/embed/${e.ytVideoId}`
-      : e?.igPermalink
-        ? `${e.igPermalink.replace(/\/?$/, "/")}embed`
-        : null;
+  const embedUrl = e?.ytVideoId
+    ? `https://www.youtube-nocookie.com/embed/${e.ytVideoId}`
+    : e?.igPermalink
+      ? `${e.igPermalink.replace(/\/?$/, "/")}embed`
+      : null;
+  const contentUrl = !embedUrl && selfHosted ? `${SITE_URL}${selfHosted.src}` : null;
   const videoSchema = contentUrl || embedUrl
     ? {
         "@context": "https://schema.org",
@@ -139,17 +137,15 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         </p>
       ) : null}
 
-      {/* The self-hosted file first when it exists — instant, on-brand, no third-party
-          script to wait on or get blocked. The Instagram embed depends on embed.js
-          loading over the network and shows its own generic blue branding until it does;
-          on a page whose one job is showing the clip, that's a real, visible cost, not a
-          style preference. Instagram/YouTube become secondary links below instead, which
-          is where their real numbers (views, likes) still get their due. */}
-      {selfHosted ? (
-        <div className="vid-native">
-          <video src={selfHosted.src} controls playsInline preload="metadata" />
-        </div>
-      ) : e?.igPermalink ? (
+      {/* Instagram first once a real post exists — he said so directly: a visitor who
+          watches the self-hosted file instead of the real post never counts toward that
+          post's actual view number, which is the number he reads and the number a
+          sponsor would ask about. The self-hosted file is the last resort now, for an
+          episode with no Instagram link recorded yet — not a permanent alternative to
+          one. Same tradeoff as before (instant load, no third-party script, no generic
+          blue branding while embed.js loads) just no longer worth it once the real
+          count is what's actually at stake. */}
+      {e?.igPermalink ? (
         <div className="vid-ig">
           <IgEmbed permalink={e.igPermalink} />
         </div>
@@ -162,25 +158,16 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
             allowFullScreen
           />
         </div>
+      ) : selfHosted ? (
+        <div className="vid-native">
+          <video src={selfHosted.src} controls playsInline preload="metadata" />
+        </div>
       ) : null}
 
-      {/* Real platforms and real numbers, once the self-hosted file already carried the
-          primary watch experience above. */}
-      {selfHosted && (e?.igPermalink || e?.ytVideoId) ? (
-        <p className="sub">
-          {e?.igPermalink && (
-            <a href={e.igPermalink} target="_blank" rel="noreferrer">
-              View on Instagram{e.views ? ` — ${e.views.toLocaleString("en-US")} views` : ""} <ExternalIcon />
-            </a>
-          )}
-          {e?.igPermalink && e?.ytVideoId ? " · " : ""}
-          {e?.ytVideoId && (
-            <a href={`https://youtu.be/${e.ytVideoId}`} target="_blank" rel="noreferrer">
-              Watch on YouTube <ExternalIcon />
-            </a>
-          )}
-        </p>
-      ) : !selfHosted && e?.igPermalink && e?.ytVideoId ? (
+      {/* A YouTube link alongside the Instagram embed above, when both exist — the
+          Instagram post already carries the primary watch experience and its own real
+          view count, so YouTube only needs a secondary link here, not a second player. */}
+      {e?.igPermalink && e?.ytVideoId ? (
         <p className="sub">
           <a href={`https://youtu.be/${e.ytVideoId}`} target="_blank" rel="noreferrer">
             Watch on YouTube instead <ExternalIcon />
