@@ -149,10 +149,6 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
             allowFullScreen
           />
         </div>
-      ) : selfHosted ? (
-        <div className="vid-native">
-          <video src={selfHosted.src} controls playsInline preload="metadata" />
-        </div>
       ) : null}
 
       {/* Real platforms and real numbers, once the self-hosted file already carried the

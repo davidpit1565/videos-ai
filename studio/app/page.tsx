@@ -5,7 +5,6 @@ import { PROMPTS } from "@/lib/prompts";
 import Signup from "./signup";
 import SiteNotify from "./site-notify";
 import SiteNav from "./sitenav";
-import SiteSocial from "./site-social";
 import CountUp from "./count-up";
 
 export const metadata = {
@@ -46,9 +45,6 @@ export default async function Home() {
               Browse episodes →
             </Link>
             <Link href="/about">My story →</Link>
-          </div>
-          <div className="herosocial">
-            <SiteSocial />
           </div>
           {/* Real, already-measured numbers only — a stat with nothing behind it yet
               doesn't get a tile, rather than a tile showing a fabricated 0. Placed before
