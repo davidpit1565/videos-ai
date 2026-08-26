@@ -27,7 +27,7 @@ html,body{margin:0;padding:0}
    shared token — .shell repaints itself from the studio's own :root --ink the instant
    it mounts, so a browser without :has() support, or the moment before hydration on
    iOS Safari's overscroll bounce, still shows a plausible dark ground either way. */
-body{background:#0C0E12;color:#E8E6E1;font-family:var(--b);font-size:17px;
+body{background:#0E1116;color:#EEF0F3;font-family:var(--b);font-size:17px;
   line-height:1.65;direction:ltr;-webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent}
 body:has(.shell){background:var(--ink);color:var(--text)}
@@ -353,36 +353,33 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 
 
 /* ══ The public surface ══════════════════════════════════════════════════════════
-   Was a warm-cream/serif/gold treatment — real competitor research (Saraev, Ottley,
-   Every.to, God of Prompt, FutureTools) came back light-background-and-sans-only across
-   every one of them, which made cream-and-serif *look* different from them, but only by
-   landing on a different generic — the cream/serif/earthy-accent look several AI coding
-   tools default to. Nobody in that competitor set runs a dark ground, so this is real,
-   unclaimed territory, not just "different from before."
-
-   The two-accent system below isn't decorative: mint marks what a setup DOES do, red
-   marks what it explicitly WON'T — the site's one real differentiator (every episode
-   states its own failure modes) is now visible in the color system itself, not just in
-   copy buried on the detail page. */
+   First pass here (mint-on-black) landed generic in a different way — he pointed out
+   directly that it read as the same palette as another, unrelated product of his. That
+   pass invented colors instead of using ones this channel already owns: `brand/house-
+   style.md` is the documented "Brass on Ink" identity every VIDEO already ships in —
+   ink background, brass as the one accent that ever marks a takeaway, clay reserved
+   specifically for "limitations, warnings, honest caveats." That's a real, bespoke
+   asset — nobody else's product can accidentally match it — and it was sitting unused
+   on the public site the whole time. This pass just brings the web surface into the
+   same identity the videos and the studio already have, instead of inventing a fourth
+   one: video brand, studio, and now the public site all read as one channel. */
 .site, .pub {
-  --paper:#0C0E12; --card:#15181E; --ink:#E8E6E1; --soft:#ABB0B8; --faint:#8B8F98;
-  --rule:#262A33; --wash:#182420; --gold:#3DDC97; --gold-lit:#6BE8B0;
-  /* Space Grotesk for the display face — geometric and technical rather than editorial,
-     matching a "systems lab" identity instead of a magazine one. Latin-only, so it
-     stays scoped to these English public pages; the studio's Hebrew-RTL surface keeps
-     Frank Ruhl Libre (--d) untouched — Space Grotesk has no Hebrew glyph coverage and
-     would silently fall back if applied there. Body face is unchanged: IBM Plex Sans
-     Hebrew already has real Hebrew coverage and does bilingual duty across both
-     surfaces, so there was no reason to touch the one typeface that has to. */
+  --paper:#0E1116; --card:#151A22; --ink:#EEF0F3; --soft:#8C97A8; --faint:#6B7484;
+  --rule:#2A313D; --wash:#1B2029; --gold:#E8C86A; --gold-lit:#FFE7A8;
+  /* Archivo/Assistant are the house style's own documented pair (`brand/house-
+     style.md` §3) — display/headline face and body/caption face, respectively. Latin +
+     Hebrew coverage on Assistant means nothing here breaks if this surface ever needs
+     Hebrew, but the public pages stay English regardless. The studio's Hebrew-RTL
+     surface keeps its own Frank Ruhl Libre (--d) untouched — this swap is public-only. */
   /* Remap the STUDIO's own tokens, not just our own. Any studio rule that reaches a
      public page — ol.steps, .promptbox, .note, .list — paints itself from --panel,
      --line, --text and --brass. Chasing those selectors one at a time is how "The
      exact clicks" shipped as dark text on a dark panel; redefining the four tokens
      fixes every one of them at once, including the ones nobody has hit yet. */
-  --panel:#15181E; --line:#262A33; --text:#E8E6E1; --muted:#ABB0B8;
-  --brass:#3DDC97; --brass-dim:#2BAF77; --clay:#FF5C5C; --r:.75rem;
-  --serif:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
-  --sans:"IBM Plex Sans Hebrew","Helvetica Neue",Arial,sans-serif;
+  --panel:#151A22; --line:#2A313D; --text:#EEF0F3; --muted:#8C97A8;
+  --brass:#E8C86A; --brass-dim:#8A7434; --clay:#C96A4E; --steel:#6FA8CF; --r:.75rem;
+  --serif:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --sans:"Assistant","Helvetica Neue",Arial,sans-serif;
   --code:"IBM Plex Mono",ui-monospace,monospace;
   direction:ltr; text-align:left;
   background:var(--paper); color:var(--ink); font-family:var(--sans);
@@ -423,7 +420,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    slot — a quiet, secondary way to reach YouTube instead of YouTube occupying the slot
    Instagram's own post is meant to have. */
 .site .herovidlink{margin:.6rem 0 0;font-size:.85rem;text-align:center}
-.site .herovidlink a{color:var(--gold-lit);font-weight:600;text-decoration:none}
+.site .herovidlink a{color:var(--steel);font-weight:600;text-decoration:none}
 .site .herovidlink a:hover{text-decoration:underline}
 /* .vid-native/.vid-ig are shared with the episode page, where they only ever wrap one
    child (the player). The hero variant adds a second child (the YouTube link below it),
@@ -489,7 +486,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    instead of only inside it. grid-column:2 pins it under the title/blurb column no
    matter where CSS grid's row-major auto-placement would otherwise land it once the
    thumbnail (grid-row:span 3) has already claimed the rest of column 1. */
-.site .ebreaks{color:#FF5C5C;font-size:.86rem;margin-top:.15rem;display:block}
+.site .ebreaks{color:#C96A4E;font-size:.86rem;margin-top:.15rem;display:block}
 .site .ebreaks::before{content:"⚠ ";font-size:.8em}
 .site .eps .ebreaks{grid-column:2}
 
@@ -551,8 +548,8 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    rather than inherited. */
 .pub .note{background:var(--card);border-color:var(--rule);color:var(--ink)}
 .pub .note b{color:var(--ink)}
-.pub .note .t{color:#FF5C5C}
-.pub .note.warn{border-inline-start-color:#FF5C5C}
+.pub .note .t{color:#C96A4E}
+.pub .note.warn{border-inline-start-color:#C96A4E}
 .pub .list, .pub .list > *{background:var(--card);border-color:var(--rule);color:var(--ink)}
 .pub .list{border-radius:1rem;overflow:hidden}
 .pub .list > * + *{border-top:1px solid var(--rule)}
@@ -567,7 +564,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 /* Real profile links, rendered once by Shell for every public page — not scoped
    inside .site/.pub, so it can't rely on their custom properties; the same paper
    palette is repeated here as literal values instead. */
-.ssocial-wrap{background:#0C0E12;padding-top:1.6rem}
+.ssocial-wrap{background:#0E1116;padding-top:1.6rem}
 /* A pill, not a bare line of small gray text — the bare version read as a leftover
    fragment rather than a deliberate credit, especially where it used to sit mid-hero
    (moved to the real page footer instead, see page.tsx). Same rounded-pill language the
@@ -575,16 +572,16 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    than a stray link. */
 .ssocial-crosslink{display:flex;justify-content:center;align-items:baseline;gap:.4em;
   flex-wrap:wrap;text-align:center;margin:0 1.1rem 1.1rem;padding:.5rem 1.1rem;
-  border:1px solid #262A33;border-radius:999px;text-decoration:none;
-  font-size:.82rem;color:#8B8F98;transition:border-color .15s,color .15s}
-.ssocial-crosslink:hover{border-color:#3DDC97;color:#3DDC97}
-.ssocial-crosslink-label{color:#8B8F98}
-.ssocial-crosslink-name{font-family:"Space Grotesk",Helvetica,Arial,sans-serif;font-weight:700;color:#E8E6E1}
-.ssocial-crosslink:hover .ssocial-crosslink-name{color:#3DDC97}
-.ssocial-crosslink-desc{color:#8B8F98}
+  border:1px solid #2A313D;border-radius:999px;text-decoration:none;
+  font-size:.82rem;color:#8C97A8;transition:border-color .15s,color .15s}
+.ssocial-crosslink:hover{border-color:#E8C86A;color:#E8C86A}
+.ssocial-crosslink-label{color:#8C97A8}
+.ssocial-crosslink-name{font-family:"Archivo",Helvetica,Arial,sans-serif;font-weight:700;color:#EEF0F3}
+.ssocial-crosslink:hover .ssocial-crosslink-name{color:#E8C86A}
+.ssocial-crosslink-desc{color:#8C97A8}
 .ssocial{display:flex;justify-content:center;gap:1.4rem;padding:0 1.1rem 3rem}
-.ssocial a{color:#8B8F98;display:flex;transition:color .15s}
-.ssocial a:hover{color:#3DDC97}
+.ssocial a{color:#8C97A8;display:flex;transition:color .15s}
+.ssocial a:hover{color:#E8C86A}
 .pub .foot{color:var(--faint);border-top:1px solid var(--rule);margin-top:3rem;
   padding-top:1.3rem;font-size:.93rem}
 .pub .lbl{color:var(--faint)}
@@ -639,8 +636,8 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    thin divider separates it from the text links without a hard box around it. */
 .ssocial-inline{display:flex;align-items:center;gap:.7rem;padding-inline-start:.75rem;
   border-inline-start:1px solid var(--rule)}
-.ssocial-inline a{color:#8B8F98;display:flex;transition:color .15s}
-.ssocial-inline a:hover{color:#3DDC97}
+.ssocial-inline a{color:#8C97A8;display:flex;transition:color .15s}
+.ssocial-inline a:hover{color:#E8C86A}
 @media (max-width:520px){
   .ssocial-inline{border-inline-start:0;padding-inline-start:0;width:100%;
     justify-content:flex-start;margin-top:.2rem}

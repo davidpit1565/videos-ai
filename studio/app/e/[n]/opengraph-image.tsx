@@ -17,7 +17,7 @@ export default async function OG({ params }: { params: Promise<{ n: string }> })
         style={{
           width: "100%", height: "100%", display: "flex", flexDirection: "column",
           justifyContent: "center", padding: "80px",
-          background: "#0C0E12", color: "#E8E6E1",
+          background: "#0E1116", color: "#EEF0F3",
           fontFamily: "Helvetica, Arial, sans-serif",
         }}
       >
@@ -29,7 +29,7 @@ export default async function OG({ params }: { params: Promise<{ n: string }> })
           style={{
             display: "flex",
             fontSize: 26, letterSpacing: 4, textTransform: "uppercase",
-            color: "#3DDC97", fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700,
+            color: "#E8C86A", fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700,
             marginBottom: 30,
           }}
         >

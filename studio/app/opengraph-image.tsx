@@ -16,14 +16,14 @@ export default function OG() {
         style={{
           width: "100%", height: "100%", display: "flex", flexDirection: "column",
           justifyContent: "center", padding: "80px",
-          background: "#0C0E12", color: "#E8E6E1",
+          background: "#0E1116", color: "#EEF0F3",
           fontFamily: "Helvetica, Arial, sans-serif",
         }}
       >
         <div
           style={{
             fontSize: 28, letterSpacing: 4, textTransform: "uppercase",
-            color: "#3DDC97", fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700,
+            color: "#E8C86A", fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700,
             marginBottom: 28,
           }}
         >
@@ -34,7 +34,7 @@ export default function OG() {
         </div>
         <div
           style={{
-            fontSize: 26, marginTop: 30, color: "#8B8F98",
+            fontSize: 26, marginTop: 30, color: "#8C97A8",
             fontFamily: "Helvetica, Arial, sans-serif",
           }}
         >
