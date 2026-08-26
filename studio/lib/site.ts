@@ -22,6 +22,7 @@ export type PublicEpisode = {
   notes: string;
   ytVideoId: string | null;
   igPermalink: string | null;
+  views: number | null;
   publishedAt: string | null;
 };
 
@@ -31,6 +32,7 @@ const toPublic = (e: Episode): PublicEpisode => ({
   topic: e.topic,
   notes: e.notes,
   ytVideoId: e.ytVideoId,
+  views: e.views ?? null,
   igPermalink: e.igPermalink ?? null,
   publishedAt: e.publishedAt,
 });

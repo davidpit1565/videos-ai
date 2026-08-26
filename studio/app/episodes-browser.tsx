@@ -65,19 +65,13 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
           {filtered.map((e) => (
             <li key={e.n}>
               <Link href={`/e/${e.n}`}>
-                {e.ytVideoId ? (
-                  // eslint-disable-next-line @next/next/no-img-element -- YouTube's own
-                  // thumbnail CDN, not a local asset; next/image can't optimize a
-                  // third-party host without extra config for one thumbnail per episode.
-                  <img
-                    className="ethumb"
-                    src={`https://i.ytimg.com/vi/${e.ytVideoId}/hqdefault.jpg`}
-                    alt=""
-                    loading="lazy"
-                  />
-                ) : (
-                  <span className="n">{String(e.n).padStart(2, "0")}</span>
-                )}
+                {/* The same branded card every shared link already gets (see
+                    app/e/[n]/opengraph-image.tsx) — a designed still with the real title,
+                    not a random auto-picked YouTube video frame. Works for every episode
+                    uniformly, not just ones with a YouTube link. */}
+                {/* eslint-disable-next-line @next/next/no-img-element -- a generated route,
+                    not a static asset; next/image can't optimize a dynamic image route. */}
+                <img className="ethumb" src={`/e/${e.n}/opengraph-image`} alt="" loading="lazy" />
                 <span className="tag">{e.tool}</span>
                 <span className="t">{e.title}</span>
                 <span className="tp">{e.blurb}</span>
