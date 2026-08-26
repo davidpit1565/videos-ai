@@ -33,7 +33,7 @@ export default function TemplatesPage() {
       </div>
 
       <h2>מנגינות רקע</h2>
-      <div className="tw eps">
+      <div className="tw eps boxed">
         <table>
           <thead>
             <tr>
@@ -85,7 +85,7 @@ export default function TemplatesPage() {
       <p className="sub">
         זוג הצבעים שכל פרק יצא איתו בפועל — כדי שהפרק הבא לא יחזור על אותו זוג בטעות.
       </p>
-      <div className="tw">
+      <div className="tw boxed">
         <table>
           <thead>
             <tr>

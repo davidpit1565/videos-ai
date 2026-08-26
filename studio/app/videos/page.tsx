@@ -303,7 +303,7 @@ export default function Videos() {
         ))}
       </div>
 
-      <div className="tw eps">
+      <div className="tw eps boxed">
         <table>
           <thead>
             {/* 16 columns in one flat row read as one undifferentiated wall once the
