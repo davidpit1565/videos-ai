@@ -11,6 +11,7 @@ import CountUp from "./count-up";
 import IgEmbed from "./ig-embed";
 import Reveal from "./reveal";
 import ExternalIcon from "./external-icon";
+import HeroDiagnostic from "./hero-diagnostic";
 import { TOOLS, toolFor } from "@/lib/tools";
 
 export const metadata = {
@@ -139,7 +140,9 @@ export default async function Home() {
               allowFullScreen
             />
           </div>
-        ) : null}
+        ) : (
+          <HeroDiagnostic />
+        )}
       </header>
 
       {tracks.length > 1 && (

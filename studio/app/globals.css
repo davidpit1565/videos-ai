@@ -20,6 +20,12 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
+/* The viewport's own horizontal-scroll box is html (documentElement), not body — and
+   giving body an explicit overflow (below) actually stops the UA from propagating
+   body's overflow up to the viewport at all, per the CSSOM View spec, leaving html's
+   own default (visible) in charge. Setting it only on body looked right and measured
+   wrong: real fix needs it here too. */
+html{overflow-x:hidden}
 /* The document is the public site by default, same principle as layout.tsx's title and
    as `direction:ltr` right below — the studio (.shell) is the one private corner that
    overrides it, not the other way round. Both surfaces are dark now (see the public-
@@ -27,9 +33,26 @@ html,body{margin:0;padding:0}
    shared token — .shell repaints itself from the studio's own :root --ink the instant
    it mounts, so a browser without :has() support, or the moment before hydration on
    iOS Safari's overscroll bounce, still shows a plausible dark ground either way. */
+/* overflow-x:hidden is load-bearing, not decoration: the hero's ambient glow
+   (.site .hero::before, further down) is a 32rem pseudo-element positioned
+   partly outside its own box on purpose, to bleed off the edge — invisible to a
+   `document.querySelectorAll('body *')` DOM check (pseudo-elements aren't real
+   nodes) but real to the layout engine, which was stretching the page 136px wider
+   than a 320px phone and creating a horizontal scrollbar on every public page.
+   Found by measuring document.documentElement.scrollWidth directly, not by eye —
+   the glow is behind everything else, so nothing looked wrong on screen. */
 body{background:#0E1116;color:#EEF0F3;font-family:var(--b);font-size:17px;
   line-height:1.65;direction:ltr;-webkit-font-smoothing:antialiased;
-  -webkit-tap-highlight-color:transparent}
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden}
+/* A faint dot grid, brass at 5% opacity, on the public pages only — a flat single
+   color read as an empty void rather than a considered surface once the palette
+   itself stopped being the thing carrying "distinctive." Kept out of the studio
+   (.shell): that surface is dense working UI, not a marketing page, and a texture
+   under a data table is noise, not craft. */
+body:not(:has(.shell)){
+  background-image:radial-gradient(circle at 1px 1px, rgba(232,200,106,.05) 1px, transparent 0);
+  background-size:30px 30px;
+}
 body:has(.shell){background:var(--ink);color:var(--text)}
 /* digits only — never Hebrew */
 .num{font-family:var(--m);direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap;
@@ -454,7 +477,15 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   .site .hero::before{animation:none}
 }
 .site .herotext{min-width:0}
-.site .hero .herovid{margin:0;order:-1}
+/* Used to force the video ABOVE the headline on a phone (order:-1) — meant to put "the
+   exact screen" first, but a full-height 9:16 video is most of a phone's first
+   screen, so the actual effect was the headline, the CTA and the stats all landing
+   below the fold behind a giant video with nothing to explain it yet. Flagged
+   directly, with a screenshot: the video first, tiny bit of black at first paint, and
+   only "Also on YouTube" visible before a long scroll. Document order (text, then
+   video) is the right order below the two-column breakpoint; the explicit order swap
+   only ever needs to happen once the layout actually goes side-by-side, see below. */
+.site .hero .herovid{margin:0}
 /* Sits directly under the Instagram/self-hosted video that now takes the primary hero
    slot — a quiet, secondary way to reach YouTube instead of YouTube occupying the slot
    Instagram's own post is meant to have. */
@@ -465,9 +496,32 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    child (the player). The hero variant adds a second child (the YouTube link below it),
    which .vid-*'s row-flex would otherwise place beside the video instead of under it. */
 .site .hero .herovid.vid-native,.site .hero .herovid.vid-ig{flex-direction:column}
+/* The episode page's own player (.vid-native video) is the main content there and
+   earns a generous size; in the hero it's a supporting preview beside real copy, and
+   at the same width it was most of a phone's first screen before anything else on the
+   page. Capped smaller specifically in the hero, on top of the shared rule below. */
+.site .hero .herovid.vid-native video{max-width:min(62vw,300px)}
+/* Same reasoning as the self-hosted player above, for the Instagram embed case:
+   Instagram's own embed.js sizes its iframe to fill whatever width its blockquote
+   is given, so an unconstrained 100%-width blockquote in the hero would size itself
+   to the full column width — same "preview beside real text, not the main event"
+   problem, just via a script instead of a fixed aspect-ratio. */
+.site .hero .herovid.vid-ig{max-width:min(62vw,300px);margin-inline:auto}
+/* Fills the hero's second column on wide screens when there's no video yet — that
+   column rendered nothing at all before, a bare gap beside the headline. Hidden on
+   phones on purpose: below 860px the grid is single-column already (headline stacks
+   above where this would go), so a decorative panel there would just add scroll
+   length before the real content — the stats, the signup — with nothing gained. */
+.herodiag{display:none}
 @media (min-width:860px){
   .site .hero{grid-template-columns:1.05fr 1fr;align-items:center}
-  .site .hero .herovid{order:0}
+  .herodiag{display:flex;flex-direction:column;gap:1rem;padding:1.6rem 1.8rem;
+    border:1px solid var(--rule);border-radius:1rem;background:var(--card);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+  .herodiag-label{font-family:var(--code);font-size:.72rem;letter-spacing:.12em;
+    color:var(--faint)}
+  .herodiag-caption{font-family:var(--code);font-size:.72rem;letter-spacing:.06em;
+    color:var(--faint);text-align:center}
 }
 /* section headers with a link to the full list, so "recent episodes" on the home page
    reads as a teaser of something bigger rather than the whole thing. */
@@ -836,13 +890,20 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   .site .reveal::before{display:none}
 }
 
+/* A flat 1px border reads as an outline, not a surface — a hairline highlight along
+   the top edge (a common cue for "this is raised, catching light from above") gives
+   every card a resting-state sense of depth instead of only reacting on hover. */
+.site .eps a,.site .prompts a,.site .hits > li{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
 /* Cards already had a border-color hover; a small lift plus a brass-tinted shadow
    reads as "this is a real surface, not flat text" without becoming a bounce or a
    distraction — one direction of movement (up), one property doing the work. */
 .site .eps a,.site .prompts a,.site .hits > li,.site .issueteaser{
   transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
-.site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover,.site .issueteaser:hover{
-  transform:translateY(-3px);box-shadow:0 10px 24px -12px rgba(232,200,106,.28)}
+.site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover{
+  transform:translateY(-3px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 10px 24px -12px rgba(232,200,106,.28)}
+.site .issueteaser:hover{transform:translateY(-3px);box-shadow:0 10px 24px -12px rgba(232,200,106,.28)}
 .site .cta,.site .signup button,.pub .cta,.pub .signup button{
   transition:transform .15s ease,background .15s ease,box-shadow .15s ease}
 .site .cta:hover,.site .signup button:hover:enabled,
