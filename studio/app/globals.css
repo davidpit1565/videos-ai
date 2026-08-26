@@ -739,6 +739,10 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   border-inline-start:1px solid var(--rule)}
 .ssocial-inline a{color:#8C97A8;display:flex;transition:color .15s}
 .ssocial-inline a:hover{color:#E8C86A}
+/* Replaces every bare "↗" character on the public site (see external-icon.tsx) — a
+   raw arrow glyph renders through the phone's own emoji font, a colored boxed icon
+   that clashes with every hand-drawn SVG icon elsewhere on the page. */
+.ext-icon{display:inline-block;vertical-align:-1px;margin-inline-start:.2em;opacity:.72}
 @media (max-width:520px){
   .ssocial-inline{border-inline-start:0;padding-inline-start:0;width:100%;
     justify-content:flex-start;margin-top:.2rem}

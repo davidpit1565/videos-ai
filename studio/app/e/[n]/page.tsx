@@ -8,6 +8,7 @@ import Signup from "../../signup";
 import SiteNotify from "../../site-notify";
 import IgEmbed from "../../ig-embed";
 import Reveal from "../../reveal";
+import ExternalIcon from "../../external-icon";
 import { SITE_URL } from "@/lib/site";
 
 export const revalidate = 300;
@@ -169,20 +170,20 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         <p className="sub">
           {e?.igPermalink && (
             <a href={e.igPermalink} target="_blank" rel="noreferrer">
-              View on Instagram{e.views ? ` — ${e.views.toLocaleString("en-US")} views` : ""} ↗
+              View on Instagram{e.views ? ` — ${e.views.toLocaleString("en-US")} views` : ""} <ExternalIcon />
             </a>
           )}
           {e?.igPermalink && e?.ytVideoId ? " · " : ""}
           {e?.ytVideoId && (
             <a href={`https://youtu.be/${e.ytVideoId}`} target="_blank" rel="noreferrer">
-              Watch on YouTube ↗
+              Watch on YouTube <ExternalIcon />
             </a>
           )}
         </p>
       ) : !selfHosted && e?.igPermalink && e?.ytVideoId ? (
         <p className="sub">
           <a href={`https://youtu.be/${e.ytVideoId}`} target="_blank" rel="noreferrer">
-            Watch on YouTube instead ↗
+            Watch on YouTube instead <ExternalIcon />
           </a>
         </p>
       ) : null}

@@ -10,6 +10,7 @@ import SiteNav from "./sitenav";
 import CountUp from "./count-up";
 import IgEmbed from "./ig-embed";
 import Reveal from "./reveal";
+import ExternalIcon from "./external-icon";
 import { TOOLS, toolFor } from "@/lib/tools";
 
 export const metadata = {
@@ -113,7 +114,7 @@ export default async function Home() {
             {heroEpisode?.ytVideoId ? (
               <p className="sub herovidlink">
                 <a href={`https://youtu.be/${heroEpisode.ytVideoId}`} target="_blank" rel="noreferrer">
-                  Also on YouTube ↗
+                  Also on YouTube <ExternalIcon />
                 </a>
               </p>
             ) : null}
@@ -124,7 +125,7 @@ export default async function Home() {
             {heroEpisode.ytVideoId ? (
               <p className="sub herovidlink">
                 <a href={`https://youtu.be/${heroEpisode.ytVideoId}`} target="_blank" rel="noreferrer">
-                  Also on YouTube ↗
+                  Also on YouTube <ExternalIcon />
                 </a>
               </p>
             ) : null}
