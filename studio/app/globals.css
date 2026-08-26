@@ -404,32 +404,47 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site h1, .pub h1{font-family:var(--serif);font-weight:700;
   font-size:clamp(2.15rem,7.5vw,3.2rem);line-height:1.06;margin:0 0 .85rem;
   letter-spacing:-.015em;text-wrap:balance}
-.site h1 em, .pub h1 em{font-style:normal;color:var(--gold)}
+/* Flat brass on a monochrome dark field read as one muted note, not a bold one — he
+   said so directly. A warm gradient (brass into a hotter amber) on exactly the one
+   emphasized word keeps the "one accent, sparingly" rule from house-style.md intact —
+   it's still a single warm family, just given more range — while giving the headline
+   the kind of punch a flat fill can't. background-clip text is the one property this
+   needs; the plain --gold color is the fallback for anything that can't render it. */
+.site h1 em, .pub h1 em{font-style:normal;color:var(--gold);
+  background:linear-gradient(100deg,#E8C86A 10%,#FFB454 55%,#E8C86A 90%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .site h2, .pub h2{font-family:var(--serif);font-weight:700;
   font-size:clamp(1.3rem,3.6vw,1.7rem);margin:3.2rem 0 .7rem;text-wrap:balance;
   letter-spacing:-.01em}
 .site p, .pub p{margin:.75rem 0}
 .site .sub, .pub .sub{color:var(--soft);max-width:34rem;font-size:1.06rem}
-.site .cta, .pub .cta{display:inline-block;margin-top:1.5rem;background:var(--gold);
-  color:var(--paper);font-weight:700;padding:.8rem 1.7rem;border-radius:9999px;
+/* A flat brass fill on a near-black button read as one more muted dark-mode SaaS
+   button — a warm two-stop gradient gives it real presence as the single boldest
+   object on the page without adding a color outside the brass family. */
+.site .cta, .pub .cta{display:inline-block;margin-top:1.5rem;
+  background:linear-gradient(135deg,#F0C674,#E29A3E);
+  color:#1A1200;font-weight:700;padding:.8rem 1.7rem;border-radius:9999px;
   text-decoration:none;font-size:1rem}
-.site .cta:hover, .pub .cta:hover{background:var(--gold-lit)}
+.site .cta:hover, .pub .cta:hover{background:linear-gradient(135deg,#FFDD94,#F0B458)}
 
 /* the personal-intro hero. Single column when there's no video to show yet; once an
    episode has a YouTube id, the newest one plays beside the text so the channel's whole
    premise — the exact screen — is visible before anyone scrolls, not just promised. */
-/* An ambient brass glow, slow and low-opacity enough to read as atmosphere rather than
-   a distraction — the near-black ground otherwise sits completely still above the
-   fold, which was the one part of the page that still felt like a flat screenshot
-   rather than a live product. Pure CSS, no JS, so it costs nothing to run. */
+/* A brass glow behind the hero, so the near-black ground doesn't sit completely flat
+   above the fold. An adversarial review of the first version (an infinite 9s pulse)
+   flagged it correctly: layered on top of the scroll reveal and the hover-lifts, a
+   never-ending ambient loop was a second, competing motion system running at the same
+   time as the first, which reads as "trying hard" rather than calm and premium. One
+   settle-in on load, then it holds still — the glow is doing its job by existing, not
+   by moving forever. */
 .site .hero{display:grid;gap:2.2rem;grid-template-columns:1fr;position:relative}
 .site .hero::before{content:"";position:absolute;top:-8rem;inset-inline-end:-10rem;
   width:32rem;height:32rem;border-radius:50%;pointer-events:none;z-index:-1;
-  background:radial-gradient(circle,rgba(232,200,106,.16) 0%,rgba(232,200,106,0) 68%);
-  animation:heroglow 9s ease-in-out infinite}
+  background:radial-gradient(circle,rgba(232,200,106,.2) 0%,rgba(226,154,62,.08) 45%,rgba(232,200,106,0) 72%);
+  animation:heroglow .9s ease-out both}
 @keyframes heroglow{
-  0%,100%{transform:translate(0,0) scale(1);opacity:.9}
-  50%{transform:translate(-1.2rem,1.4rem) scale(1.08);opacity:1}
+  from{transform:scale(.85);opacity:0}
+  to{transform:scale(1);opacity:1}
 }
 @media (prefers-reduced-motion:reduce){
   .site .hero::before{animation:none}
@@ -478,6 +493,12 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   border-radius:1rem;padding:1.1rem 1.5rem;min-width:9rem}
 .site .herostats b{display:block;font-family:var(--serif);font-weight:700;font-size:2.6rem;
   line-height:1;color:var(--gold-lit)}
+/* Three tiles in a row, all one color, read as one flat block instead of three distinct
+   facts — steel is house-style's own documented "the other option in any comparison"
+   (§2), and the middle stat (the count that has no competitor equivalent — nobody else
+   in this niche counts failure modes) earns the break in rhythm. One color swap, not a
+   new hue introduced. */
+.site .herostats > div:nth-child(2) b{color:var(--steel)}
 .site .herostats span{display:block;color:var(--soft);font-size:.88rem;margin-top:.4rem;
   font-weight:600}
 .site .empty{background:var(--card);border:1px solid var(--rule);border-radius:1rem;
