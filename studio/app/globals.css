@@ -713,4 +713,44 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .notify .hint.mono{font-family:var(--m);font-size:13px}
 .aplayer{display:block;width:100%;margin:0 auto}
 
+/* ── motion, public site only ─────────────────────────────────────────────────────
+   He asked directly for real movement, not just hover states on buttons — and for it
+   to trace back to something specific to this channel rather than a generic animation
+   library. `brand/house-style.md` §4 already names its signature transition, "the
+   brass wipe": a 3px brass line sweeps across and the new section is revealed behind
+   it. This is that device, ported from a video cut to a scroll trigger (see
+   app/reveal.tsx) — the same identity the palette swap above already borrowed. */
+.site .reveal{opacity:0;transform:translateY(20px);position:relative;
+  transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
+.site .reveal.in{opacity:1;transform:none}
+.site .reveal::before{content:"";position:absolute;inset-inline-start:0;top:-1px;
+  height:3px;width:0;background:var(--gold);transition:width .35s ease-out .12s}
+.site .reveal.in::before{width:64px}
+@media (prefers-reduced-motion:reduce){
+  .site .reveal{opacity:1;transform:none;transition:none}
+  .site .reveal::before{display:none}
+}
+
+/* Cards already had a border-color hover; a small lift plus a brass-tinted shadow
+   reads as "this is a real surface, not flat text" without becoming a bounce or a
+   distraction — one direction of movement (up), one property doing the work. */
+.site .eps a,.site .prompts a,.site .hits > li,.site .herostats > div,.site .issueteaser{
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover,.site .issueteaser:hover{
+  transform:translateY(-3px);box-shadow:0 10px 24px -12px rgba(232,200,106,.28)}
+.site .cta,.site .signup button,.pub .cta,.pub .signup button{
+  transition:transform .15s ease,background .15s ease,box-shadow .15s ease}
+.site .cta:hover,.site .signup button:hover:enabled,
+.pub .cta:hover,.pub .signup button:hover:enabled{
+  transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(232,200,106,.45)}
+.site .cta:active,.site .signup button:active:enabled,
+.pub .cta:active,.pub .signup button:active:enabled{transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){
+  .site .eps a,.site .prompts a,.site .hits > li,.site .herostats > div,.site .issueteaser,
+  .site .cta,.site .signup button,.pub .cta,.pub .signup button{transition:none}
+  .site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover,.site .issueteaser:hover,
+  .site .cta:hover,.site .signup button:hover:enabled,
+  .pub .cta:hover,.pub .signup button:hover:enabled{transform:none;box-shadow:none}
+}
+
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--faint)}

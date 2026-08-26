@@ -7,6 +7,7 @@ import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor, reels } from "@/lib
 import Signup from "../../signup";
 import SiteNotify from "../../site-notify";
 import IgEmbed from "../../ig-embed";
+import Reveal from "../../reveal";
 import { SITE_URL } from "@/lib/site";
 
 export const revalidate = 300;
@@ -177,43 +178,51 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
 
       {a ? (
         <>
-          <section>
-            <h2>The exact clicks</h2>
-            <ol className="steps">
-              {a.steps.map((s, i) => (
-                <li key={i}>{s}</li>
-              ))}
-            </ol>
-          </section>
+          <Reveal>
+            <section>
+              <h2>The exact clicks</h2>
+              <ol className="steps">
+                {a.steps.map((s, i) => (
+                  <li key={i}>{s}</li>
+                ))}
+              </ol>
+            </section>
+          </Reveal>
 
           {prompt ? (
-            <section>
-              <h2>The prompt</h2>
-              <pre className="body">{prompt.body}</pre>
-              <p className="sub">
-                Copy all of it. <Link href={`/p/${prompt.slug}`}>Its own page</Link> has it
-                too, if this one is awkward to select on a phone.
-              </p>
-            </section>
+            <Reveal>
+              <section>
+                <h2>The prompt</h2>
+                <pre className="body">{prompt.body}</pre>
+                <p className="sub">
+                  Copy all of it. <Link href={`/p/${prompt.slug}`}>Its own page</Link> has it
+                  too, if this one is awkward to select on a phone.
+                </p>
+              </section>
+            </Reveal>
           ) : null}
 
-          <section>
-            <h2>What changes</h2>
-            <ul className="changes">
-              {a.changes.map((c, i) => (
-                <li key={i}>{c}</li>
-              ))}
-            </ul>
-          </section>
+          <Reveal>
+            <section>
+              <h2>What changes</h2>
+              <ul className="changes">
+                {a.changes.map((c, i) => (
+                  <li key={i}>{c}</li>
+                ))}
+              </ul>
+            </section>
+          </Reveal>
 
-          <section>
-            <h2>What it will not do</h2>
-            <ul className="limits-list">
-              {a.limits.map((l, i) => (
-                <li key={i}>{l}</li>
-              ))}
-            </ul>
-          </section>
+          <Reveal>
+            <section>
+              <h2>What it will not do</h2>
+              <ul className="limits-list">
+                {a.limits.map((l, i) => (
+                  <li key={i}>{l}</li>
+                ))}
+              </ul>
+            </section>
+          </Reveal>
         </>
       ) : capBody.length ? (
         <section>

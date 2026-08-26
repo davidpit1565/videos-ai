@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SiteNav from "../sitenav";
+import Reveal from "../reveal";
 
 export const metadata = {
   title: "About",
@@ -28,35 +29,39 @@ export default function About() {
         </p>
       </section>
 
-      <section>
-        <h2>The rule</h2>
-        <p>
-          Nothing gets published that has not been run. If a setup only half works, the
-          episode says which half. If a number is an estimate, it is labelled as one.
-          There is no reason to trust me yet, so the only thing I can offer is being
-          checkable.
-        </p>
-      </section>
+      <Reveal>
+        <section>
+          <h2>The rule</h2>
+          <p>
+            Nothing gets published that has not been run. If a setup only half works, the
+            episode says which half. If a number is an estimate, it is labelled as one.
+            There is no reason to trust me yet, so the only thing I can offer is being
+            checkable.
+          </p>
+        </section>
+      </Reveal>
 
-      <section>
-        <h2>The work behind it</h2>
-        <p>
-          The episodes are produced by a pipeline I built: the narration is my own voice,
-          cloned locally, and every reel passes a set of measurements before it is sent —
-          speech pacing, caption position against the platform's safe area, loudness,
-          frozen frames. Each of those checks exists because a real defect got through
-          first.
-        </p>
-        <p>
-          If you want the same kind of thing built for your business, that is the paid
-          side, and it is the same promise: it gets tested before it gets handed over.
-        </p>
-        <p>
-          One example: Flow, a personal finance app — every transaction, subscription,
-          and budget stored only on the device, no account or server. Built through
-          Actually Works, currently heading toward the App Store.
-        </p>
-      </section>
+      <Reveal>
+        <section>
+          <h2>The work behind it</h2>
+          <p>
+            The episodes are produced by a pipeline I built: the narration is my own voice,
+            cloned locally, and every reel passes a set of measurements before it is sent —
+            speech pacing, caption position against the platform's safe area, loudness,
+            frozen frames. Each of those checks exists because a real defect got through
+            first.
+          </p>
+          <p>
+            If you want the same kind of thing built for your business, that is the paid
+            side, and it is the same promise: it gets tested before it gets handed over.
+          </p>
+          <p>
+            One example: Flow, a personal finance app — every transaction, subscription,
+            and budget stored only on the device, no account or server. Built through
+            Actually Works, currently heading toward the App Store.
+          </p>
+        </section>
+      </Reveal>
 
       <footer className="sfoot">
         <Link href="/">Episodes</Link>

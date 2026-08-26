@@ -9,6 +9,7 @@ import SiteNotify from "./site-notify";
 import SiteNav from "./sitenav";
 import CountUp from "./count-up";
 import IgEmbed from "./ig-embed";
+import Reveal from "./reveal";
 
 export const metadata = {
   title: { absolute: "Actually Works — AI setups that actually work" },
@@ -131,46 +132,50 @@ export default async function Home() {
       </header>
 
       <section>
-        <div className="sechead">
-          <h2>Recent episodes</h2>
-          <Link href="/episodes">All episodes →</Link>
-        </div>
-        {eps.length === 0 ? (
-          <p className="empty">
-            The first episode is finished and not published yet. It lands here the day
-            it goes out.
+        <Reveal>
+          <div className="sechead">
+            <h2>Recent episodes</h2>
+            <Link href="/episodes">All episodes →</Link>
+          </div>
+          {eps.length === 0 ? (
+            <p className="empty">
+              The first episode is finished and not published yet. It lands here the day
+              it goes out.
+            </p>
+          ) : (
+            <ul className="eps">
+              {(recent.length ? recent : eps.slice(0, 3)).map((e) => (
+                <li key={e.n}>
+                  <Link href={`/e/${e.n}`}>
+                    <span className="n">{String(e.n).padStart(2, "0")}</span>
+                    <span className="t">{e.title}</span>
+                    <span className="tp">{e.blurb}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Reveal>
+      </section>
+
+      <section>
+        <Reveal>
+          <h2>The prompts, in full</h2>
+          <p className="sub">
+            Every prompt an episode uses is here, complete, with what it cannot do. No
+            email needed to read them.
           </p>
-        ) : (
-          <ul className="eps">
-            {(recent.length ? recent : eps.slice(0, 3)).map((e) => (
-              <li key={e.n}>
-                <Link href={`/e/${e.n}`}>
-                  <span className="n">{String(e.n).padStart(2, "0")}</span>
-                  <span className="t">{e.title}</span>
-                  <span className="tp">{e.blurb}</span>
+          <ul className="prompts">
+            {PROMPTS.map((p) => (
+              <li key={p.slug}>
+                <Link href={`/p/${p.slug}`}>
+                  <b>{p.title}</b>
+                  <span>{p.blurb}</span>
                 </Link>
               </li>
             ))}
           </ul>
-        )}
-      </section>
-
-      <section>
-        <h2>The prompts, in full</h2>
-        <p className="sub">
-          Every prompt an episode uses is here, complete, with what it cannot do. No
-          email needed to read them.
-        </p>
-        <ul className="prompts">
-          {PROMPTS.map((p) => (
-            <li key={p.slug}>
-              <Link href={`/p/${p.slug}`}>
-                <b>{p.title}</b>
-                <span>{p.blurb}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        </Reveal>
       </section>
 
       <footer className="sfoot">

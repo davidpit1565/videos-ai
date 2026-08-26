@@ -2,6 +2,7 @@ import Link from "next/link";
 import SiteNav from "../sitenav";
 import { SKILLS } from "@/lib/skills";
 import SkillsBrowser from "../skills-browser";
+import Reveal from "../reveal";
 
 export const metadata = {
   title: "Skills",
@@ -17,7 +18,9 @@ export default function SkillsPage() {
         Every skill built for this project is itself something we use daily — the exact
         file, no email needed to read it.
       </p>
-      <SkillsBrowser skills={SKILLS} />
+      <Reveal>
+        <SkillsBrowser skills={SKILLS} />
+      </Reveal>
       <footer className="sfoot">
         <Link href="/">Episodes</Link>
         <Link href="/prompts">Prompts</Link>
