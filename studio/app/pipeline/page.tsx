@@ -2,8 +2,57 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useStudio } from "../providers";
-import { STATUS_HE, STATUS_ORDER, Status, uid } from "@/lib/types";
+import { STATUS_HE, STATUS_ORDER, Status, IdeaScore, uid } from "@/lib/types";
 import { eur } from "@/lib/fmt";
+
+const CATEGORY_LABELS: Record<keyof IdeaScore["categories"], string> = {
+  marketingPotential: "שיווקיות",
+  hookStrength: "כוח ההוק",
+  simplicity: "פשטות",
+  brandFit: "התאמה למותג",
+  competitiveSpace: "מרחב תחרותי",
+  audienceDemand: "ביקוש",
+};
+const VERDICT_HE: Record<IdeaScore["verdict"], string> = {
+  yes: "כדאי לבנות",
+  no: "לא כדאי",
+  draft: "מבטיח, אבל עוד לא",
+};
+const VERDICT_COLOR: Record<IdeaScore["verdict"], string> = {
+  yes: "var(--brass)",
+  no: "var(--rose, #e0607a)",
+  draft: "var(--steel)",
+};
+
+async function scoreIdea(text: string): Promise<{ ok: true; score: IdeaScore } | { ok: false; reason: string }> {
+  try {
+    const r = await fetch("/api/idea-score", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ idea: text }),
+    });
+    return (await r.json()) as { ok: true; score: IdeaScore } | { ok: false; reason: string };
+  } catch (e) {
+    return { ok: false, reason: e instanceof Error ? e.message : String(e) };
+  }
+}
+
+function ScoreCard({ score }: { score: IdeaScore }) {
+  return (
+    <div className="note" style={{ marginTop: 6, marginBottom: 10 }}>
+      <b style={{ color: VERDICT_COLOR[score.verdict] }}>{VERDICT_HE[score.verdict]}</b>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px 16px", margin: "8px 0" }}>
+        {(Object.keys(CATEGORY_LABELS) as (keyof IdeaScore["categories"])[]).map((k) => (
+          <div key={k} style={{ display: "flex", justifyContent: "space-between", fontSize: 13 }}>
+            <span className="sub">{CATEGORY_LABELS[k]}</span>
+            <span className="num">{score.categories[k]}%</span>
+          </div>
+        ))}
+      </div>
+      <p className="sub" style={{ margin: 0 }}>{score.reasoning}</p>
+    </div>
+  );
+}
 
 /** Turns the plain **bold** markers in the backlog file into real emphasis, without
  *  pulling in a markdown library for one internal page. */
@@ -56,6 +105,10 @@ export default function Pipeline() {
   const { state, update } = useStudio();
   const [task, setTask] = useState("");
   const [idea, setIdea] = useState("");
+  const [pendingScore, setPendingScore] = useState<IdeaScore | null>(null);
+  const [scoring, setScoring] = useState(false);
+  const [scoreError, setScoreError] = useState<string | null>(null);
+  const [scoringIdeaId, setScoringIdeaId] = useState<string | null>(null);
   const [backlogCount, setBacklogCount] = useState(0);
   const onBacklogCount = useCallback((n: number) => setBacklogCount(n), []);
 
@@ -140,66 +193,139 @@ export default function Pipeline() {
         הרעיונות שלך · {state.ideas.length}
       </p>
       <ul className="list">
-        {state.ideas.map((x, i) => (
-          <li key={x.id}>
-            <span />
-            <span className="lbl">{x.text}</span>
-            <span style={{ display: "flex", gap: 4 }}>
-              <button
-                className="btn ghost"
-                style={{ padding: "4px 9px", fontSize: 12 }}
-                onClick={() =>
-                  update((d) => {
-                    // i is captured at render; two taps before the re-render run this
-                    // twice and the second finds nothing there
-                    const it = d.ideas[i];
-                    if (!it) return;
-                    d.episodes.push({
-                      id: uid(),
-                      number: Math.max(0, ...d.episodes.map((e) => e.number)) + 1,
-                      title: it.text,
-                      format: "reel",
-                      status: "idea",
-                      topic: "",
-                      tested: false,
-                      publishedAt: null,
-                      igMediaId: null,
-                      ytVideoId: null,
-                      notes: "",
-                      views: null,
-                      likes: null,
-                      saves: null,
-                      comments: null,
-                      shares: null,
-                      subsAttributed: null,
-                    });
-                    d.ideas.splice(i, 1);
-                  })
-                }
-              >
-                לצינור
-              </button>
-              <button className="del" aria-label="מחיקה" onClick={() => update((d) => void d.ideas.splice(i, 1))}>
-                ×
-              </button>
-            </span>
-          </li>
-        ))}
+        {state.ideas.map((x, i) => {
+          const pushToPipeline = () =>
+            update((d) => {
+              // i is captured at render; two taps before the re-render run this
+              // twice and the second finds nothing there
+              const it = d.ideas[i];
+              if (!it) return;
+              d.episodes.push({
+                id: uid(),
+                number: Math.max(0, ...d.episodes.map((e) => e.number)) + 1,
+                title: it.text,
+                format: "reel",
+                status: "idea",
+                topic: "",
+                tested: false,
+                publishedAt: null,
+                igMediaId: null,
+                ytVideoId: null,
+                notes: "",
+                views: null,
+                likes: null,
+                saves: null,
+                comments: null,
+                shares: null,
+                subsAttributed: null,
+              });
+              d.ideas.splice(i, 1);
+            });
+          return (
+            <li key={x.id} style={{ display: "block" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span className="lbl" style={{ flex: 1 }}>{x.text}</span>
+                <span style={{ display: "flex", gap: 4 }}>
+                  {!x.score && (
+                    <button
+                      className="btn ghost"
+                      style={{ padding: "4px 9px", fontSize: 12 }}
+                      disabled={scoringIdeaId === x.id}
+                      onClick={async () => {
+                        setScoringIdeaId(x.id);
+                        const r = await scoreIdea(x.text);
+                        setScoringIdeaId(null);
+                        if (r.ok) update((d) => void (d.ideas.find((e) => e.id === x.id)!.score = r.score));
+                      }}
+                    >
+                      {scoringIdeaId === x.id ? "מעריך…" : "הערכה"}
+                    </button>
+                  )}
+                  <button className="btn ghost" style={{ padding: "4px 9px", fontSize: 12 }} onClick={pushToPipeline}>
+                    לצינור
+                  </button>
+                  <button className="del" aria-label="מחיקה" onClick={() => update((d) => void d.ideas.splice(i, 1))}>
+                    ×
+                  </button>
+                </span>
+              </div>
+              {x.score && <ScoreCard score={x.score} />}
+            </li>
+          );
+        })}
       </ul>
+
+      {pendingScore && (
+        <div style={{ marginTop: 12 }}>
+          <ScoreCard score={pendingScore} />
+          <div style={{ display: "flex", gap: 8 }}>
+            <button
+              className="btn"
+              onClick={() => {
+                update((d) => void d.ideas.push({ id: uid(), text: idea.trim(), score: pendingScore }));
+                setIdea("");
+                setPendingScore(null);
+              }}
+            >
+              שמור כטיוטה
+            </button>
+            <button
+              className="btn ghost"
+              onClick={() => {
+                update((d) =>
+                  void d.episodes.push({
+                    id: uid(),
+                    number: Math.max(0, ...d.episodes.map((e) => e.number)) + 1,
+                    title: idea.trim(),
+                    format: "reel",
+                    status: "idea",
+                    topic: "",
+                    tested: false,
+                    publishedAt: null,
+                    igMediaId: null,
+                    ytVideoId: null,
+                    notes: "",
+                    views: null,
+                    likes: null,
+                    saves: null,
+                    comments: null,
+                    shares: null,
+                    subsAttributed: null,
+                  }),
+                );
+                setIdea("");
+                setPendingScore(null);
+              }}
+            >
+              לצינור
+            </button>
+            <button className="del" aria-label="מחיקה" onClick={() => setPendingScore(null)}>
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+      {scoreError && <p className="sub" style={{ color: "var(--rose, #e0607a)" }}>{scoreError}</p>}
+
       <form
         className="ask"
         style={{ marginTop: 12 }}
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
           const text = idea.trim();
           if (!text) return;
-          update((d) => void d.ideas.push({ id: uid(), text }));
-          setIdea("");
+          setScoring(true);
+          setScoreError(null);
+          setPendingScore(null);
+          const r = await scoreIdea(text);
+          setScoring(false);
+          if (r.ok) setPendingScore(r.score);
+          else setScoreError(r.reason);
         }}
       >
-        <input value={idea} onChange={(e) => setIdea(e.target.value)} placeholder="רעיון חדש" />
-        <button className="btn" type="submit">
-          הוספה
+        <input value={idea} onChange={(e) => setIdea(e.target.value)} placeholder="רעיון חדש" disabled={scoring} />
+        <button className="btn" type="submit" disabled={scoring}>
+          {scoring ? "מעריך…" : "הערכה"}
         </button>
       </form>
 

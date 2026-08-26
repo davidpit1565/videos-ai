@@ -18,7 +18,7 @@ export const STUDIO = [
   // named separately from the public manifest, and gated like everything else here: a
   // manifest that can be fetched is a manifest that tells a stranger the tool exists
   "/studio.webmanifest",
-  "/api/state", "/api/agent", "/api/instagram", "/api/youtube", "/api/beehiiv", "/api/push",
+  "/api/state", "/api/agent", "/api/idea-score", "/api/instagram", "/api/youtube", "/api/beehiiv", "/api/push",
   "/api/ideas-backlog",
   // /api/youtube/callback is under /api/youtube, already listed — Google's redirect back
   // from the consent screen is a same-browser top-level GET, so the "studio" cookie (set
