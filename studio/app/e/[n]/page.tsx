@@ -109,9 +109,20 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }} />
       )}
       <SiteNav />
-      <p className="kicker">
-        <Link href="/">Actually Works</Link> · Episode {String(n).padStart(2, "0")}
-      </p>
+      <div className="kicker-row">
+        <p className="kicker">
+          <Link href="/">Actually Works</Link> · Episode {String(n).padStart(2, "0")}
+        </p>
+        {/* brand/house-style.md §4, "the index chip": top-right, monospace, X / Y —
+            here, this episode's position among every episode actually published, so a
+            reader can tell at a glance how deep the library already goes. */}
+        {e && allPub.length ? (
+          <span className="index-chip">
+            {String(allPub.findIndex((x) => x.number === n) + 1).padStart(2, "0")} /{" "}
+            {String(allPub.length).padStart(2, "0")}
+          </span>
+        ) : null}
+      </div>
       <h1>{title}</h1>
       {a ? <p className="sub">{a.standfirst}</p> : e?.topic ? <p className="sub">{e.topic}</p> : null}
       {part1 ? (

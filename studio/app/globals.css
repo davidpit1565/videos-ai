@@ -393,6 +393,11 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .kicker, .pub .kicker{font-family:var(--code);font-size:.7rem;letter-spacing:.15em;
   text-transform:uppercase;color:var(--faint);margin:0 0 1.1rem}
 .site .kicker a, .pub .kicker a{color:inherit;text-decoration:none}
+.site .kicker-row{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  margin:0 0 1.1rem}
+.site .kicker-row .kicker{margin:0}
+.site .index-chip{font-family:var(--code);font-size:.72rem;letter-spacing:.06em;
+  color:var(--faint);white-space:nowrap;font-variant-numeric:tabular-nums}
 .site .brandline{display:flex;align-items:center;gap:.5rem;margin:0 0 2.2rem;
   font-family:var(--serif);font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
 .site .brandline .tick{color:var(--gold);font-size:1.15rem}
@@ -413,7 +418,22 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 /* the personal-intro hero. Single column when there's no video to show yet; once an
    episode has a YouTube id, the newest one plays beside the text so the channel's whole
    premise — the exact screen — is visible before anyone scrolls, not just promised. */
-.site .hero{display:grid;gap:2.2rem;grid-template-columns:1fr}
+/* An ambient brass glow, slow and low-opacity enough to read as atmosphere rather than
+   a distraction — the near-black ground otherwise sits completely still above the
+   fold, which was the one part of the page that still felt like a flat screenshot
+   rather than a live product. Pure CSS, no JS, so it costs nothing to run. */
+.site .hero{display:grid;gap:2.2rem;grid-template-columns:1fr;position:relative}
+.site .hero::before{content:"";position:absolute;top:-8rem;inset-inline-end:-10rem;
+  width:32rem;height:32rem;border-radius:50%;pointer-events:none;z-index:-1;
+  background:radial-gradient(circle,rgba(232,200,106,.16) 0%,rgba(232,200,106,0) 68%);
+  animation:heroglow 9s ease-in-out infinite}
+@keyframes heroglow{
+  0%,100%{transform:translate(0,0) scale(1);opacity:.9}
+  50%{transform:translate(-1.2rem,1.4rem) scale(1.08);opacity:1}
+}
+@media (prefers-reduced-motion:reduce){
+  .site .hero::before{animation:none}
+}
 .site .herotext{min-width:0}
 .site .hero .herovid{margin:0;order:-1}
 /* Sits directly under the Instagram/self-hosted video that now takes the primary hero
@@ -611,8 +631,28 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .changes li{padding-inline-start:1.5rem;position:relative}
 .site .changes li::before{content:"→";position:absolute;inset-inline-start:0;color:var(--gold);
   font-family:var(--code)}
-.site .limits-list li{background:var(--wash);border-inline-start:3px solid var(--gold);
-  border-radius:0 .5rem .5rem 0;padding:.7rem 1rem}
+/* brand/house-style.md §2: clay is reserved specifically for "limitations, warnings,
+   honest caveats" — brass is the takeaway, the opposite semantic. This list is the
+   channel's limitations section by definition, so it was the one place still wearing
+   the wrong half of the two-color system. The drawn underline is this surface's take
+   on house-style §4's "strike cards" — a literal struck-through line would fight this
+   text's own legibility, since these warnings are meant to be read carefully, not
+   dismissed, so the device becomes a clay rule drawing in under each line instead,
+   staggered per item so the cascade itself reads as motion, not just a fade. */
+.site .limits-list li{background:var(--wash);border-inline-start:3px solid var(--clay);
+  border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;position:relative;overflow:hidden}
+.site .limits-list li::after{content:"";position:absolute;inset-inline-start:1rem;
+  inset-inline-end:1rem;bottom:.5rem;height:2px;width:0;background:var(--clay);
+  opacity:.55;transition:width .5s ease-out}
+.site .reveal.in .limits-list li::after{width:calc(100% - 2rem)}
+.site .reveal.in .limits-list li:nth-child(1)::after{transition-delay:.05s}
+.site .reveal.in .limits-list li:nth-child(2)::after{transition-delay:.16s}
+.site .reveal.in .limits-list li:nth-child(3)::after{transition-delay:.27s}
+.site .reveal.in .limits-list li:nth-child(4)::after{transition-delay:.38s}
+.site .reveal.in .limits-list li:nth-child(n+5)::after{transition-delay:.45s}
+@media (prefers-reduced-motion:reduce){
+  .site .limits-list li::after{display:none}
+}
 
 /* the header and the search page */
 .site .sitenav{display:flex;flex-wrap:wrap;gap:.7rem 1.2rem;align-items:baseline;
