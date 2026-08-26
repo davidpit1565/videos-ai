@@ -92,6 +92,7 @@ export default function TemplatesPage() {
               <th>פרק</th>
               <th>brass</th>
               <th>ember</th>
+              <th>מוזיקה</th>
             </tr>
           </thead>
           <tbody>
@@ -126,6 +127,7 @@ export default function TemplatesPage() {
                   />
                   {a.ember}
                 </td>
+                <td className="num">{a.mood ?? "—"}</td>
               </tr>
             ))}
           </tbody>

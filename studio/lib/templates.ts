@@ -2,6 +2,8 @@
  *  music 6" instead of re-describing a whole look every time. He asked for exactly this:
  *  several finished templates and every music mood in one place before committing an
  *  episode to one. */
+import usedDesigns from "../../channel/used-designs.json";
+
 export type Template = {
   n: number;
   slug: string;
@@ -107,24 +109,15 @@ export const TEMPLATES: Template[] = [
   },
 ];
 
-/** Every accent pair an episode has actually shipped with, so the next one doesn't
- *  repeat a color by accident — pulled from each build's own --brass/--ember CSS
- *  variables, not retyped by hand. */
-export type UsedAccent = { episode: number; brass: string; ember: string };
-export const USED_ACCENTS: UsedAccent[] = [
-  { episode: 1, brass: "#FFCF4A", ember: "#FF6B3D" },
-  { episode: 2, brass: "#FFCF4A", ember: "#FF6B3D" },
-  { episode: 3, brass: "#FFCF4A", ember: "#FF6B3D" },
-  { episode: 4, brass: "#FFCF4A", ember: "#FF6B3D" },
-  { episode: 5, brass: "#FFCF4A", ember: "#FF6B3D" },
-  { episode: 6, brass: "#FFCF4A", ember: "#FF6B3D" },
-  { episode: 7, brass: "#FF6B8F", ember: "#FF3D5C" },
-  { episode: 8, brass: "#FFCF4A", ember: "#FF6B3D" },
-  { episode: 9, brass: "#8FE3FF", ember: "#B98CFF" },
-  { episode: 10, brass: "#B4E66E", ember: "#3FA9F5" },
-  { episode: 11, brass: "#FF8A5B", ember: "#7B4FFF" },
-  { episode: 12, brass: "#5EEAD4", ember: "#F472B6" },
-];
+/** Every accent pair (and music mood) an episode has actually shipped with, read from
+ *  the same file export/produce.sh writes to and checks against before shipping a new
+ *  one — a real enforcement now, not a table someone has to remember to consult. This
+ *  used to be a hardcoded array here that nothing kept in sync with the actual builds;
+ *  moved to channel/used-designs.json so there's exactly one source of truth for both
+ *  the shell pipeline and this page. `mood` is null for episodes shipped before
+ *  produce.sh tracked it — not a guessed "neutral", an honest gap. */
+export type UsedAccent = { episode: number; brass: string; ember: string; mood: string | null };
+export const USED_ACCENTS: UsedAccent[] = usedDesigns;
 
 export type MusicMood = {
   n: number;
