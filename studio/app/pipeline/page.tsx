@@ -223,9 +223,9 @@ export default function Pipeline() {
             });
           return (
             <li key={x.id} style={{ display: "block" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span className="lbl" style={{ flex: 1 }}>{x.text}</span>
-                <span style={{ display: "flex", gap: 4 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                <span className="lbl" style={{ flex: "1 1 160px", minWidth: 0 }}>{x.text}</span>
+                <span style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
                   {!x.score && (
                     <button
                       className="btn ghost"
@@ -258,7 +258,7 @@ export default function Pipeline() {
       {pendingScore && (
         <div style={{ marginTop: 12 }}>
           <ScoreCard score={pendingScore} />
-          <div style={{ display: "flex", gap: 8 }}>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <button
               className="btn"
               onClick={() => {
