@@ -2,7 +2,7 @@ import { whole } from "@/lib/whole";
 import { NextResponse } from "next/server";
 import { notify, notifyNewRenders, notifyEpisodeLive } from "@/lib/push";
 import { hasDb, loadState, saveState } from "@/lib/db";
-import { fetchBeehiiv, fetchInstagram, refreshInstagramToken} from "@/lib/sources";
+import { fetchBeehiiv, fetchInstagram, fetchYouTube, refreshInstagramToken} from "@/lib/sources";
 import { ActivityEvent, State, uid } from "@/lib/types";
 import { realTitleFor, captionTitleFor, reels } from "@/lib/reels";
 
@@ -50,6 +50,9 @@ export async function GET(req: Request) {
   const raw = (await loadState()) as State | null;
   const state = raw ? whole(raw) : null;
   if (!state) return NextResponse.json({ ok: false, reason: "לא נטען מצב מהמסד" });
+  // Captured before any mutation below, so saveState can tell whether another writer
+  // (the cron and a manual pull can genuinely overlap) landed a save in between.
+  const loadedAt = state.updatedAt;
 
   const feed: ActivityEvent[] = state.activity ?? [];
   const last = feed[0];
@@ -71,7 +74,7 @@ export async function GET(req: Request) {
     else console.log(`[track] instagram token not refreshed: ${rt.reason}`);
   }
 
-  const [ig, bee] = await Promise.all([fetchInstagram(), fetchBeehiiv()]);
+  const [ig, bee, yt] = await Promise.all([fetchInstagram(), fetchBeehiiv(), fetchYouTube()]);
 
   // Tell him the day a connection breaks, not whenever he next opens the studio. This is the
   // half a refresh cannot cover: today's failure is Meta blocking the app, which no token
@@ -152,53 +155,77 @@ export async function GET(req: Request) {
   if (bee.connected && bee.exact)
     note("beehiiv", "נרשמים לניוזלטר", bee.activeSubscribers, prev?.subscribers);
 
-  // per-episode movement, so a video that keeps growing is visible without opening it
+  // per-episode movement, so a video that keeps growing is visible without opening it.
+  // Instagram and YouTube used to run this as two separately hand-written blocks — that's
+  // exactly the kind of drift that let a fix land for one platform (the mislink-correction
+  // pass below) and quietly never reach the other, which is its own real risk. One
+  // function, run once per platform, keeps them provably doing the same thing.
   const newlyLive: number[] = [];
-  if (ig.connected) {
-    const byId = new Map(ig.media.map((m) => [m.id, m]));
+  type LinkableMedia = {
+    id: string; text: string; permalink: string | null; timestamp: string | null;
+    views: number | null; likes: number | null; saves: number | null;
+    comments: number | null; shares: number | null;
+  };
+  type PlatformConfig = {
+    key: "instagram" | "youtube";
+    label: string;
+    unmatchedPrefix: string;
+    getId: (e: State["episodes"][number]) => string | null;
+    setId: (e: State["episodes"][number], id: string | null) => void;
+    setPermalinkIfMissing: (e: State["episodes"][number], p: string | null) => void;
+    setPermalink: (e: State["episodes"][number], p: string | null) => void;
+    viewsNoteLabel: (n: number) => string;
+    savesNoteLabel: ((n: number) => string) | null;
+  };
+
+  const syncPlatform = (media: LinkableMedia[], cfg: PlatformConfig) => {
+    const byId = new Map(media.map((m) => [m.id, m]));
     for (const e of state.episodes) {
-      const m = e.igMediaId ? byId.get(e.igMediaId) : undefined;
+      const id = cfg.getId(e);
+      const m = id ? byId.get(id) : undefined;
       if (!m) continue;
-      note("instagram", `פרק ${e.number} · צפיות`, m.views ?? m.reach, e.views);
-      note("instagram", `פרק ${e.number} · שמירות`, m.saves, e.saves);
-      e.views = m.views ?? m.reach ?? e.views;
+      note(cfg.key, cfg.viewsNoteLabel(e.number), m.views, e.views);
+      if (cfg.savesNoteLabel && m.saves != null) note(cfg.key, cfg.savesNoteLabel(e.number), m.saves, e.saves);
+      e.views = m.views ?? e.views;
       e.likes = m.likes ?? e.likes;
       e.saves = m.saves ?? e.saves;
       e.comments = m.comments ?? e.comments;
       e.shares = m.shares ?? e.shares;
       // backfilled for episodes linked before this field existed — the permalink is what
-      // the episode page's Instagram embed needs, the media id alone can't build a URL.
-      if (!e.igPermalink && m.permalink) e.igPermalink = m.permalink;
+      // the episode page's embed needs, the media id alone can't build a URL.
+      cfg.setPermalinkIfMissing(e, m.permalink);
       if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
       if (e.status !== "live") { e.status = "live"; newlyLive.push(e.number); }
     }
-    // Every caption we write ends with "actually-works-studio.vercel.app/e/N" — an
-    // exact, unambiguous episode number, checked first. Title matching (against the
-    // real YouTube-file title when the studio's own title field is still the "פרק
-    // חדש" placeholder) is the fallback for older posts or a caption written by hand
-    // without the link — he kept seeing the "not linked" note for posts that were
-    // obviously the right episode from the caption alone, and had to go link them by
-    // hand in /videos every time. Only auto-links when exactly one candidate matches,
-    // so an ambiguous caption still falls through to the manual path.
-    const linked = new Set(state.episodes.map((x) => x.igMediaId).filter(Boolean));
-    const unlinkedEpisodes = state.episodes.filter((e) => !e.igMediaId);
-    for (const m of ig.media) {
+
+    // Every caption/description we write ends with "actually-works-studio.vercel.app/e/N"
+    // — an exact, unambiguous episode number. Title matching (against the real
+    // YouTube-file title when the studio's own title field is still the "פרק חדש"
+    // placeholder) is the fallback ONLY for content with no /e/N at all — an older post,
+    // or one written by hand without the link. An /e/N that IS present but doesn't
+    // resolve to a real unlinked episode must never fall through to the fuzzy title
+    // scan below it: that's a plain substring match with no word-boundary check, run
+    // across every unlinked episode, and it can silently grab the wrong one even though
+    // the content's own number was unambiguous ground truth. Only auto-links when
+    // exactly one candidate matches, so an ambiguous case still falls through to the
+    // manual path in /videos.
+    const linked = new Set(state.episodes.map((e) => cfg.getId(e)).filter((x): x is string => !!x));
+    const unlinkedEpisodes = state.episodes.filter((e) => !cfg.getId(e));
+    for (const m of media) {
       if (linked.has(m.id)) continue;
-      const caption = (m.caption || "").toLowerCase();
-      const epLink = caption.match(/\/e\/(\d+)/);
-      const byNumber = epLink ? unlinkedEpisodes.filter((e) => e.number === +epLink[1]) : [];
-      const hits =
-        byNumber.length === 1
-          ? byNumber
-          : unlinkedEpisodes.filter((e) => {
-              const title = (realTitleFor(e.number) || e.title || "").trim().toLowerCase();
-              return title.length > 4 && caption.includes(title);
-            });
+      const text = m.text.toLowerCase();
+      const epLink = text.match(/\/e\/(\d+)/);
+      const hits = epLink
+        ? unlinkedEpisodes.filter((e) => e.number === +epLink[1])
+        : unlinkedEpisodes.filter((e) => {
+            const title = (realTitleFor(e.number) || e.title || "").trim().toLowerCase();
+            return title.length > 4 && text.includes(title);
+          });
       if (hits.length === 1) {
         const e = hits[0];
-        e.igMediaId = m.id;
-        e.igPermalink = m.permalink;
-        e.views = m.views ?? m.reach ?? e.views;
+        cfg.setId(e, m.id);
+        cfg.setPermalink(e, m.permalink);
+        e.views = m.views ?? e.views;
         e.likes = m.likes ?? e.likes;
         e.saves = m.saves ?? e.saves;
         e.comments = m.comments ?? e.comments;
@@ -207,35 +234,36 @@ export async function GET(req: Request) {
         if (e.status !== "live") { e.status = "live"; newlyLive.push(e.number); }
         linked.add(m.id);
         fresh.push({
-          id: uid(), at: now, source: "instagram",
+          id: uid(), at: now, source: cfg.key,
           label: `פוסט קושר אוטומטית לפרק ${e.number} · ${e.title}`,
           value: m.views ?? null, delta: null,
         });
       }
     }
+
     // A link can be wrong even when one already exists — reel 13 showed "already
     // published" while reel 11's real post sat unlinked, because 13's row was carrying
     // 11's actual Instagram media id (a manual mislink in /videos' "link to episode"
-    // dropdown, the two numbers one row apart). Every caption we write names its own
-    // episode with an explicit /e/N; that's ground truth the studio already has and
-    // never checked against the episode a post is actually attached to. Move the link
-    // onto the episode the caption actually names, whenever that episode exists and
-    // isn't already carrying a different real link of its own — never onto one that is,
-    // so this can't create a new wrong link while fixing an old one.
+    // dropdown, the two numbers one row apart). Every caption/description we write names
+    // its own episode with an explicit /e/N; that's ground truth the studio already has
+    // and never checked against the episode a post is actually attached to. Move the
+    // link onto the episode it actually names, whenever that episode exists and isn't
+    // already carrying a different real link of its own — never onto one that is, so
+    // this can't create a new wrong link while fixing an old one.
     const byMediaId = new Map(
-      state.episodes.filter((e) => e.igMediaId).map((e) => [e.igMediaId as string, e]),
+      state.episodes.filter((e) => cfg.getId(e)).map((e) => [cfg.getId(e) as string, e]),
     );
-    for (const m of ig.media) {
+    for (const m of media) {
       const wrong = byMediaId.get(m.id);
       if (!wrong) continue;
-      const epLink = (m.caption || "").toLowerCase().match(/\/e\/(\d+)/);
+      const epLink = m.text.toLowerCase().match(/\/e\/(\d+)/);
       if (!epLink) continue;
       const correctNum = +epLink[1];
       if (correctNum === wrong.number) continue;
       const correct = state.episodes.find((e) => e.number === correctNum);
-      if (!correct || correct.igMediaId) continue;
-      correct.igMediaId = wrong.igMediaId;
-      correct.igPermalink = wrong.igPermalink;
+      if (!correct || cfg.getId(correct)) continue;
+      cfg.setId(correct, m.id);
+      cfg.setPermalink(correct, m.permalink);
       correct.views = wrong.views;
       correct.likes = wrong.likes;
       correct.saves = wrong.saves;
@@ -243,8 +271,12 @@ export async function GET(req: Request) {
       correct.shares = wrong.shares;
       correct.publishedAt = wrong.publishedAt;
       correct.status = "live";
-      wrong.igMediaId = null;
-      wrong.igPermalink = null;
+      // The reassigned episode is going live for the first time from the site's
+      // perspective — without this, the public "episode is live" push below never
+      // fires for it, and a repair through this path looks like it did nothing.
+      newlyLive.push(correct.number);
+      cfg.setId(wrong, null);
+      cfg.setPermalink(wrong, null);
       wrong.views = null;
       wrong.likes = null;
       wrong.saves = null;
@@ -254,19 +286,61 @@ export async function GET(req: Request) {
       wrong.status = "testing";
       fresh.push({
         id: uid(), at: now, source: "studio",
-        label: `פרק ${wrong.number} הוצג בטעות כמפורסם — הפוסט שייך בפועל לפרק ${correct.number} (לפי הקישור בכיתוב) והועבר אליו`,
+        label: `פרק ${wrong.number} הוצג בטעות כמפורסם ב${cfg.label} — הפוסט שייך בפועל לפרק ${correct.number} (לפי הקישור בכיתוב) והועבר אליו`,
         value: null, delta: null,
       });
     }
 
-    // a post that exists on the account and is not linked to an episode is worth saying once
-    const said = new Set(feed.filter((f) => f.label.startsWith("פוסט לא מקושר")).map((f) => f.label));
-    for (const m of ig.media) {
+    // content that exists on the account and is not linked to an episode is worth saying once
+    const said = new Set(feed.filter((f) => f.label.startsWith(cfg.unmatchedPrefix)).map((f) => f.label));
+    for (const m of media) {
       if (linked.has(m.id)) continue;
-      const label = `פוסט לא מקושר · ${m.caption.slice(0, 40) || m.id}`;
+      const label = `${cfg.unmatchedPrefix} · ${m.text.slice(0, 40) || m.id}`;
       if (said.has(label)) continue;
-      fresh.push({ id: uid(), at: now, source: "instagram", label, value: m.views ?? null, delta: null });
+      fresh.push({ id: uid(), at: now, source: cfg.key, label, value: m.views ?? null, delta: null });
     }
+  };
+
+  if (ig.connected) {
+    syncPlatform(
+      ig.media.map((m) => ({
+        id: m.id, text: m.caption, permalink: m.permalink, timestamp: m.timestamp,
+        views: m.views ?? m.reach, likes: m.likes, saves: m.saves,
+        comments: m.comments, shares: m.shares,
+      })),
+      {
+        key: "instagram",
+        label: "אינסטגרם",
+        unmatchedPrefix: "פוסט לא מקושר",
+        getId: (e) => e.igMediaId,
+        setId: (e, id) => { e.igMediaId = id; },
+        setPermalinkIfMissing: (e, p) => { if (!e.igPermalink && p) e.igPermalink = p; },
+        setPermalink: (e, p) => { e.igPermalink = p; },
+        viewsNoteLabel: (n) => `פרק ${n} · צפיות`,
+        savesNoteLabel: (n) => `פרק ${n} · שמירות`,
+      },
+    );
+  }
+
+  if (yt.connected) {
+    syncPlatform(
+      yt.videos.map((v) => ({
+        id: v.id, text: v.description, permalink: `https://youtu.be/${v.id}`,
+        timestamp: v.publishedAt, views: v.views, likes: v.likes, saves: null,
+        comments: v.comments, shares: null,
+      })),
+      {
+        key: "youtube",
+        label: "יוטיוב",
+        unmatchedPrefix: "סרטון לא מקושר ביוטיוב",
+        getId: (e) => e.ytVideoId,
+        setId: (e, id) => { e.ytVideoId = id; },
+        setPermalinkIfMissing: () => {}, // no stored field — always derived from ytVideoId
+        setPermalink: () => {},
+        viewsNoteLabel: (n) => `פרק ${n} · צפיות ביוטיוב`,
+        savesNoteLabel: null,
+      },
+    );
   }
 
   // one snapshot a day, so the growth table stays a history and not a log
@@ -306,7 +380,20 @@ export async function GET(req: Request) {
 
   state.activity = [...fresh, ...feed].slice(0, 300);
   state.updatedAt = now;
-  await saveState(state);
+  // Guarded against the cron and a manual pull genuinely overlapping — both start from
+  // the same loaded row, so without this the one whose write lands second would silently
+  // discard everything the other computed (new links, corrected mislinks, new episode
+  // rows) with no error and no trace. Losing this run's write is safe: nothing external
+  // was mutated, only the shared row, and the next cron/pull redoes the same work.
+  const saved = await saveState(state, loadedAt);
+  if (!saved.ok) {
+    return NextResponse.json({
+      ok: true,
+      skipped: true,
+      reason: "עדכון אחר נשמר במקביל — הריצה הזאת דולגה כדי לא לדרוס אותו",
+      activity: feed.slice(0, 40),
+    });
+  }
 
   // He asked for a push on every new addition/pull, not just connection failures — a
   // pull that found nothing still ran, but only a pull that found something is news.
@@ -340,6 +427,7 @@ export async function GET(req: Request) {
     ok: true,
     instagram: ig.connected ? { followers: ig.followers, posts: ig.media.length } : ig,
     beehiiv: bee.connected ? { subscribers: bee.activeSubscribers, exact: bee.exact } : bee,
+    youtube: yt.connected ? { subscribers: yt.subscribers, videos: yt.videos.length } : yt,
     newEvents: fresh.length,
     activity: state.activity.slice(0, 40),
     checkedAt: now,
