@@ -169,4 +169,8 @@ export const MUSIC_MOODS: MusicMood[] = [
     when: "Full pad, arp, and a kick on every beat instead of two — the only mood that resolves and hits hard at once. A genuine \"it works, and here's the proof\" close." },
   { n: 15, slug: "clockwork", name: "Clockwork", sample: "/templates/music/clockwork.mp3",
     when: "A steady mechanical sixteenth-note pulse with no swell and no rubato. Automation/workflow content where the point is that the machine doesn't waver." },
+  { n: 16, slug: "piano", name: "Piano", sample: "/templates/music/piano.mp3",
+    when: "Plucked-string synthesis (Karplus-Strong, not a sample), struck once per bar and left to decay rather than held. Bright, fast decay. A calm walkthrough or skills explainer that wants warmth without a full pad bed." },
+  { n: 17, slug: "guitar", name: "Guitar", sample: "/templates/music/guitar.mp3",
+    when: "Same synthesis as Piano, tuned warmer and longer-ringing — a chord rings into the next instead of striking and dying. A personal or behind-the-scenes bit, or anything that wants an organic rather than digital feel." },
 ];
