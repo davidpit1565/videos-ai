@@ -179,14 +179,27 @@ export async function fetchInstagram(): Promise<IgResult> {
     }
     const profile = await prof.json();
 
-    const mr = await fetch(
-      `${IG}/${user}/media?fields=id,caption,media_type,permalink,timestamp,like_count,comments_count&limit=25&access_token=${token}`,
-      { cache: "no-store" },
-    );
-    const raw: {
+    // One page of 25 was the whole account's history at first, so nothing here ever
+    // needed a second page — but a post that ages past the newest 25 doesn't just stop
+    // showing up here, it drops out of every check downstream too: auto-linking,
+    // mislink correction, the "unlinked post" notice. Following the account's own next
+    // link keeps that coverage as the account grows past this channel's early size;
+    // capped at 4 pages (100 posts, a few months at this channel's pace) so a runaway
+    // account can't turn one pull into an unbounded chain of requests.
+    type IgMediaRaw = {
       id: string; caption?: string; media_type?: string; permalink?: string;
       timestamp?: string; like_count?: number; comments_count?: number;
-    }[] = mr.ok ? ((await mr.json()).data ?? []) : [];
+    };
+    const raw: IgMediaRaw[] = [];
+    let next: string | null =
+      `${IG}/${user}/media?fields=id,caption,media_type,permalink,timestamp,like_count,comments_count&limit=25&access_token=${token}`;
+    for (let page = 0; page < 4 && next; page++) {
+      const mr: Response = await fetch(next, { cache: "no-store" });
+      if (!mr.ok) break;
+      const j: { data?: IgMediaRaw[]; paging?: { next?: string } } = await mr.json();
+      raw.push(...(j.data ?? []));
+      next = j.paging?.next ?? null;
+    }
 
     // Insight names differ by media type; asking for reel metrics on an image 400s,
     // so each request is scoped and a failure degrades to the basic counts.
@@ -194,7 +207,13 @@ export async function fetchInstagram(): Promise<IgResult> {
       raw.map(async (m): Promise<IgMedia> => {
         const base: IgMedia = {
           id: m.id,
-          caption: (m.caption ?? "").slice(0, 120),
+          // Every caption we write puts the episode's own "/e/N" link several lines down,
+          // well past 120 characters (e.g. reel 11's sits at character 643) — truncating
+          // here silently fed the auto-link matcher in /api/track a caption that could
+          // never contain its own episode number, which is why matching ever had to fall
+          // back to the much less reliable title-substring guess in the first place.
+          // Instagram's own caption cap is 2200 characters; that's the only limit needed.
+          caption: (m.caption ?? "").slice(0, 2200),
           permalink: m.permalink ?? null,
           timestamp: m.timestamp ?? null,
           mediaType: m.media_type ?? null,
@@ -307,6 +326,10 @@ const YT = "https://www.googleapis.com/youtube/v3";
 export type YtVideo = {
   id: string;
   title: string;
+  /** Every description we upload starts with this episode's own line, same as an
+   *  Instagram caption's "/e/N" — needed so a video can be matched/verified against
+   *  the episode it names, the same way Instagram posts already are. */
+  description: string;
   publishedAt: string | null;
   views: number | null;
   likes: number | null;
@@ -340,14 +363,23 @@ export async function fetchYouTube(): Promise<YtResult> {
     const uploadsPlaylist = channel.contentDetails?.relatedPlaylists?.uploads;
     if (!uploadsPlaylist) return { connected: false, reason: "לא נמצאה רשימת ההעלאות של הערוץ" };
 
-    const pir = await fetch(
-      `${YT}/playlistItems?part=snippet&playlistId=${uploadsPlaylist}&maxResults=25&key=${key}`,
-      { cache: "no-store" },
-    );
-    const pij = pir.ok ? await pir.json() : { items: [] };
-    const ids: string[] = (pij.items ?? [])
-      .map((it: { snippet?: { resourceId?: { videoId?: string } } }) => it.snippet?.resourceId?.videoId)
-      .filter(Boolean);
+    // Same reasoning as Instagram's media pull: one page used to be the whole channel,
+    // so nothing here ever needed a second page — but a video past the newest 25 doesn't
+    // just stop showing up, it drops out of matching entirely. Capped at 4 pages (100
+    // videos) for the same reason.
+    const ids: string[] = [];
+    let ytNext: string | null =
+      `${YT}/playlistItems?part=snippet&playlistId=${uploadsPlaylist}&maxResults=25&key=${key}`;
+    for (let page = 0; page < 4 && ytNext; page++) {
+      const pir: Response = await fetch(ytNext, { cache: "no-store" });
+      if (!pir.ok) break;
+      const pij: { items?: { snippet?: { resourceId?: { videoId?: string } } }[]; nextPageToken?: string } =
+        await pir.json();
+      ids.push(...(pij.items ?? []).map((it) => it.snippet?.resourceId?.videoId).filter((x): x is string => !!x));
+      ytNext = pij.nextPageToken
+        ? `${YT}/playlistItems?part=snippet&playlistId=${uploadsPlaylist}&maxResults=25&pageToken=${pij.nextPageToken}&key=${key}`
+        : null;
+    }
     if (ids.length === 0) {
       return {
         connected: true,
@@ -358,24 +390,31 @@ export async function fetchYouTube(): Promise<YtResult> {
       };
     }
 
-    const vr = await fetch(`${YT}/videos?part=snippet,statistics&id=${ids.join(",")}&key=${key}`, {
-      cache: "no-store",
-    });
-    const vj = vr.ok ? await vr.json() : { items: [] };
-    const videos: YtVideo[] = (vj.items ?? []).map(
-      (v: {
-        id: string;
-        snippet?: { title?: string; publishedAt?: string };
-        statistics?: { viewCount?: string; likeCount?: string; commentCount?: string };
-      }): YtVideo => ({
-        id: v.id,
-        title: v.snippet?.title ?? v.id,
-        publishedAt: v.snippet?.publishedAt ?? null,
-        views: v.statistics?.viewCount ? Number(v.statistics.viewCount) : null,
-        likes: v.statistics?.likeCount ? Number(v.statistics.likeCount) : null,
-        comments: v.statistics?.commentCount ? Number(v.statistics.commentCount) : null,
-      }),
-    );
+    // The videos endpoint caps at 50 ids per call regardless of how many playlist pages
+    // were followed above, so a >50-video pull has to go in batches.
+    type YtVideoRaw = {
+      id: string;
+      snippet?: { title?: string; description?: string; publishedAt?: string };
+      statistics?: { viewCount?: string; likeCount?: string; commentCount?: string };
+    };
+    const items: YtVideoRaw[] = [];
+    for (let i = 0; i < ids.length; i += 50) {
+      const batch = ids.slice(i, i + 50);
+      const vr = await fetch(`${YT}/videos?part=snippet,statistics&id=${batch.join(",")}&key=${key}`, {
+        cache: "no-store",
+      });
+      const vj: { items?: YtVideoRaw[] } = vr.ok ? await vr.json() : { items: [] };
+      items.push(...(vj.items ?? []));
+    }
+    const videos: YtVideo[] = items.map((v): YtVideo => ({
+      id: v.id,
+      title: v.snippet?.title ?? v.id,
+      description: v.snippet?.description ?? "",
+      publishedAt: v.snippet?.publishedAt ?? null,
+      views: v.statistics?.viewCount ? Number(v.statistics.viewCount) : null,
+      likes: v.statistics?.likeCount ? Number(v.statistics.likeCount) : null,
+      comments: v.statistics?.commentCount ? Number(v.statistics.commentCount) : null,
+    }));
 
     return {
       connected: true,

@@ -20,8 +20,24 @@ type IgMedia = {
 };
 type IgResp = { connected: boolean; reason?: string; media?: IgMedia[] };
 
-type YtVideo = { id: string; title: string; publishedAt: string | null; views: number | null; likes: number | null; comments: number | null };
+type YtVideo = {
+  id: string;
+  title: string;
+  description: string;
+  publishedAt: string | null;
+  views: number | null;
+  likes: number | null;
+  comments: number | null;
+};
 type YtResp = { connected: boolean; reason?: string; videos?: YtVideo[] };
+
+/** Both linking dropdowns below extract the episode a post/video actually names from its
+ *  own text, the same regex /api/track already uses server-side. Reused here to warn
+ *  before a manual pick disagrees with it — see the linking selects further down. */
+const epLinkIn = (text: string) => {
+  const m = text.toLowerCase().match(/\/e\/(\d+)/);
+  return m ? +m[1] : null;
+};
 
 /** Where this episode actually stands per platform, in one place — the thing he asked
  *  for by name. Instagram and YouTube link out to the real post/video when one is
@@ -55,7 +71,7 @@ function PlatformBadges({ episode: e }: { episode: Episode }) {
 const FORMAT_HE: Record<Format, string> = { reel: "ריל", long: "ארוך", both: "שניהם" };
 
 export default function Videos() {
-  const { state, update } = useStudio();
+  const { state, update, refresh } = useStudio();
   const [ig, setIg] = useState<IgResp | null>(null);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
@@ -65,77 +81,21 @@ export default function Videos() {
 
   if (!state) return <p className="sub">טוען…</p>;
 
-  /** Pull the live numbers and copy them onto whichever episodes carry a media id. */
+  // Both buttons below used to re-derive the auto-link/status logic client-side, by
+  // hand, as a second copy of what /api/track already does server-side — which is
+  // exactly how a fix could land in one and not the other, and did (the mislink
+  // correction pass existed only server-side until a real episode showed "already
+  // published" while carrying a different episode's real post). refresh() runs the
+  // one canonical implementation and writes back through it; the fetches here are only
+  // to populate the "still needs a human to pick" tables further down the page.
   async function sync() {
     setBusy(true);
     setMsg(null);
     try {
-      const r = await fetch("/api/instagram", { cache: "no-store" });
-      const j = (await r.json()) as IgResp;
+      const j = (await fetch("/api/instagram", { cache: "no-store" }).then((r) => r.json())) as IgResp;
       setIg(j);
-      if (!j.connected) {
-        setMsg(j.reason ?? "אינסטגרם לא מחובר");
-        return;
-      }
-      const by = new Map((j.media ?? []).map((m) => [m.id, m]));
-      let hit = 0, autoLinked = 0;
-      update((d) => {
-        for (const e of d.episodes) {
-          const m = e.igMediaId ? by.get(e.igMediaId) : undefined;
-          if (!m) continue;
-          hit++;
-          e.views = m.views ?? m.reach ?? e.views;
-          e.likes = m.likes ?? e.likes;
-          e.saves = m.saves ?? e.saves;
-          e.comments = m.comments ?? e.comments;
-          e.shares = m.shares ?? e.shares;
-          if (!e.igPermalink && m.permalink) e.igPermalink = m.permalink;
-          if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
-          if (e.status !== "live") e.status = "live";
-        }
-        // Every caption we write ends with "actually-works-studio.vercel.app/e/N" —
-        // an exact, unambiguous episode number, so that's the first thing checked.
-        // Title matching is the fallback, for older posts or a caption written by
-        // hand without the link: a post whose caption plainly names an episode's own
-        // title gets linked automatically instead of sitting in the "לקשר לפרק" list
-        // forever — but only when exactly one unlinked episode's title matches, so an
-        // ambiguous caption still falls through to the dropdown below.
-        const linkedIds = new Set(d.episodes.map((e) => e.igMediaId).filter(Boolean));
-        const unlinkedEps = d.episodes.filter((e) => !e.igMediaId);
-        for (const m of j.media ?? []) {
-          if (linkedIds.has(m.id)) continue;
-          const caption = (m.caption || "").toLowerCase();
-          const epLink = caption.match(/\/e\/(\d+)/);
-          const byNumber = epLink ? unlinkedEps.filter((e) => e.number === +epLink[1]) : [];
-          const matches =
-            byNumber.length === 1
-              ? byNumber
-              : unlinkedEps.filter((e) => {
-                  const title = e.title.trim().toLowerCase();
-                  return title.length > 4 && title !== "פרק חדש" && caption.includes(title);
-                });
-          if (matches.length !== 1) continue;
-          const e = matches[0];
-          e.igMediaId = m.id;
-          e.igPermalink = m.permalink;
-          e.views = m.views ?? m.reach ?? e.views;
-          e.likes = m.likes ?? e.likes;
-          e.saves = m.saves ?? e.saves;
-          e.comments = m.comments ?? e.comments;
-          e.shares = m.shares ?? e.shares;
-          if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
-          e.status = "live";
-          linkedIds.add(m.id);
-          autoLinked++;
-        }
-      });
-      setMsg(
-        hit === 0 && autoLinked === 0
-          ? `אינסטגרם מחובר, ${(j.media ?? []).length} פוסטים נמצאו — אבל אף פרק לא מקושר לפוסט. לחבר למטה.`
-          : autoLinked > 0
-            ? `עודכנו ${hit} פרקים, וקושרו אוטומטית עוד ${autoLinked} לפי הכותרת בפוסט.`
-            : `עודכנו ${hit} פרקים מהמספרים החיים.`,
-      );
+      const r = await refresh();
+      setMsg(!j.connected ? j.reason ?? "אינסטגרם לא מחובר" : r.reason ?? `עודכן · ${r.newEvents ?? 0} שינויים`);
     } catch (e) {
       setMsg((e as Error).message);
     } finally {
@@ -143,38 +103,14 @@ export default function Videos() {
     }
   }
 
-  /** Same idea as sync() above, for YouTube: pull the live numbers and copy them onto
-   *  whichever episodes already carry a video id. */
   async function syncYoutube() {
     setYtBusy(true);
     setYtMsg(null);
     try {
-      const r = await fetch("/api/youtube", { cache: "no-store" });
-      const j = (await r.json()) as YtResp;
+      const j = (await fetch("/api/youtube", { cache: "no-store" }).then((r) => r.json())) as YtResp;
       setYt(j);
-      if (!j.connected) {
-        setYtMsg(j.reason ?? "יוטיוב לא מחובר");
-        return;
-      }
-      const by = new Map((j.videos ?? []).map((v) => [v.id, v]));
-      let hit = 0;
-      update((d) => {
-        for (const e of d.episodes) {
-          const v = e.ytVideoId ? by.get(e.ytVideoId) : undefined;
-          if (!v) continue;
-          hit++;
-          if (v.views !== null) e.views = v.views;
-          if (v.likes !== null) e.likes = v.likes;
-          if (v.comments !== null) e.comments = v.comments;
-          if (!e.publishedAt && v.publishedAt) e.publishedAt = v.publishedAt.slice(0, 10);
-          if (e.status !== "live") e.status = "live";
-        }
-      });
-      setYtMsg(
-        hit === 0
-          ? `יוטיוב מחובר, ${(j.videos ?? []).length} סרטונים נמצאו — אבל אף פרק לא מקושר לסרטון. לחבר למטה.`
-          : `עודכנו ${hit} פרקים מהמספרים החיים.`,
-      );
+      const r = await refresh();
+      setYtMsg(!j.connected ? j.reason ?? "יוטיוב לא מחובר" : r.reason ?? `עודכן · ${r.newEvents ?? 0} שינויים`);
     } catch (e) {
       setYtMsg((e as Error).message);
     } finally {
@@ -459,52 +395,73 @@ export default function Videos() {
               </tr>
             </thead>
             <tbody>
-              {unlinked.map((m) => (
-                <tr key={m.id}>
-                  <td className="name">
-                    {m.permalink ? (
-                      <a href={m.permalink} target="_blank" rel="noreferrer" style={{ color: "var(--steel)" }}>
-                        {m.caption || m.id}
-                      </a>
-                    ) : (
-                      m.caption || m.id
-                    )}
-                  </td>
-                  <td className="num">{m.timestamp?.slice(0, 10) ?? "—"}</td>
-                  <td className="num">{n(m.views ?? m.reach)}</td>
-                  <td className="num">{n(m.saves)}</td>
-                  <td>
-                    <select
-                      className="cell"
-                      defaultValue=""
-                      onChange={(ev) => {
-                        const id = ev.target.value;
-                        if (!id) return;
-                        update((d) => {
-                          const ep = d.episodes.find((x) => x.id === id);
-                          if (!ep) return;
-                          ep.igMediaId = m.id;
-                          ep.igPermalink = m.permalink;
-                          ep.views = m.views ?? m.reach;
-                          ep.likes = m.likes;
-                          ep.saves = m.saves;
-                          ep.comments = m.comments;
-                          ep.shares = m.shares;
-                          ep.publishedAt = m.timestamp?.slice(0, 10) ?? ep.publishedAt;
-                          ep.status = "live";
-                        });
-                      }}
-                    >
-                      <option value="">בחר פרק…</option>
-                      {state.episodes.map((e) => (
-                        <option key={e.id} value={e.id}>
-                          {e.number}. {e.title}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                </tr>
-              ))}
+              {unlinked.map((m) => {
+                // The post's own caption already names its episode when it has an /e/N —
+                // that's the exact fact a manual mislink got wrong once (reel 13 picked
+                // for what the caption itself named reel 11, one row apart in this same
+                // list). Picking anything else now needs a deliberate second click, not
+                // one that lands wherever the row happened to be.
+                const named = epLinkIn(m.caption || "");
+                return (
+                  <tr key={m.id}>
+                    <td className="name">
+                      {m.permalink ? (
+                        <a href={m.permalink} target="_blank" rel="noreferrer" style={{ color: "var(--steel)" }}>
+                          {m.caption || m.id}
+                        </a>
+                      ) : (
+                        m.caption || m.id
+                      )}
+                    </td>
+                    <td className="num">{m.timestamp?.slice(0, 10) ?? "—"}</td>
+                    <td className="num">{n(m.views ?? m.reach)}</td>
+                    <td className="num">{n(m.saves)}</td>
+                    <td>
+                      <select
+                        className="cell"
+                        defaultValue=""
+                        onChange={(ev) => {
+                          const id = ev.target.value;
+                          if (!id) return;
+                          const ep = state.episodes.find((x) => x.id === id);
+                          if (
+                            ep &&
+                            named !== null &&
+                            named !== ep.number &&
+                            !confirm(
+                              `הכיתוב של הפוסט הזה מציין בעצמו פרק ${named}, לא פרק ${ep.number}. לקשר בכל זאת לפרק ${ep.number}?`,
+                            )
+                          ) {
+                            ev.target.value = "";
+                            return;
+                          }
+                          update((d) => {
+                            const ep = d.episodes.find((x) => x.id === id);
+                            if (!ep) return;
+                            ep.igMediaId = m.id;
+                            ep.igPermalink = m.permalink;
+                            ep.views = m.views ?? m.reach;
+                            ep.likes = m.likes;
+                            ep.saves = m.saves;
+                            ep.comments = m.comments;
+                            ep.shares = m.shares;
+                            ep.publishedAt = m.timestamp?.slice(0, 10) ?? ep.publishedAt;
+                            ep.status = "live";
+                          });
+                        }}
+                      >
+                        <option value="">בחר פרק…</option>
+                        {state.episodes.map((e) => (
+                          <option key={e.id} value={e.id}>
+                            {e.number === named ? "→ " : ""}
+                            {e.number}. {e.title}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -533,45 +490,61 @@ export default function Videos() {
               </tr>
             </thead>
             <tbody>
-              {unlinkedYt.map((v) => (
-                <tr key={v.id}>
-                  <td className="name">
-                    <a href={`https://youtu.be/${v.id}`} target="_blank" rel="noreferrer" style={{ color: "var(--steel)" }}>
-                      {v.title}
-                    </a>
-                  </td>
-                  <td className="num">{v.publishedAt?.slice(0, 10) ?? "—"}</td>
-                  <td className="num">{n(v.views)}</td>
-                  <td className="num">{n(v.likes)}</td>
-                  <td>
-                    <select
-                      className="cell"
-                      defaultValue=""
-                      onChange={(ev) => {
-                        const id = ev.target.value;
-                        if (!id) return;
-                        update((d) => {
-                          const ep = d.episodes.find((x) => x.id === id);
-                          if (!ep) return;
-                          ep.ytVideoId = v.id;
-                          if (v.views !== null) ep.views = v.views;
-                          if (v.likes !== null) ep.likes = v.likes;
-                          if (v.comments !== null) ep.comments = v.comments;
-                          ep.publishedAt = v.publishedAt?.slice(0, 10) ?? ep.publishedAt;
-                          ep.status = "live";
-                        });
-                      }}
-                    >
-                      <option value="">בחר פרק…</option>
-                      {state.episodes.map((e) => (
-                        <option key={e.id} value={e.id}>
-                          {e.number}. {e.title}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                </tr>
-              ))}
+              {unlinkedYt.map((v) => {
+                const named = epLinkIn(v.description || "");
+                return (
+                  <tr key={v.id}>
+                    <td className="name">
+                      <a href={`https://youtu.be/${v.id}`} target="_blank" rel="noreferrer" style={{ color: "var(--steel)" }}>
+                        {v.title}
+                      </a>
+                    </td>
+                    <td className="num">{v.publishedAt?.slice(0, 10) ?? "—"}</td>
+                    <td className="num">{n(v.views)}</td>
+                    <td className="num">{n(v.likes)}</td>
+                    <td>
+                      <select
+                        className="cell"
+                        defaultValue=""
+                        onChange={(ev) => {
+                          const id = ev.target.value;
+                          if (!id) return;
+                          const ep = state.episodes.find((x) => x.id === id);
+                          if (
+                            ep &&
+                            named !== null &&
+                            named !== ep.number &&
+                            !confirm(
+                              `התיאור של הסרטון הזה מציין בעצמו פרק ${named}, לא פרק ${ep.number}. לקשר בכל זאת לפרק ${ep.number}?`,
+                            )
+                          ) {
+                            ev.target.value = "";
+                            return;
+                          }
+                          update((d) => {
+                            const ep = d.episodes.find((x) => x.id === id);
+                            if (!ep) return;
+                            ep.ytVideoId = v.id;
+                            if (v.views !== null) ep.views = v.views;
+                            if (v.likes !== null) ep.likes = v.likes;
+                            if (v.comments !== null) ep.comments = v.comments;
+                            ep.publishedAt = v.publishedAt?.slice(0, 10) ?? ep.publishedAt;
+                            ep.status = "live";
+                          });
+                        }}
+                      >
+                        <option value="">בחר פרק…</option>
+                        {state.episodes.map((e) => (
+                          <option key={e.id} value={e.id}>
+                            {e.number === named ? "→ " : ""}
+                            {e.number}. {e.title}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

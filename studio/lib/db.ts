@@ -77,15 +77,35 @@ export async function loadState(): Promise<State | null> {
   return r.rows[0].data;
 }
 
-export async function saveState(s: State): Promise<void> {
+/** `expectedUpdatedAt` turns this from a blind overwrite into a compare-and-swap: pass the
+ *  `updatedAt` the caller's copy of the state was loaded with, and the write only lands if
+ *  nobody else has saved since. Without it (the client's own PUT of its own edits) the
+ *  write always wins, same as before — that path is one person's browser, debounced, and
+ *  is meant to win. /api/track uses the guard because it runs from two independent
+ *  triggers (the daily cron and a manual pull) that can genuinely overlap: without it,
+ *  whichever one's write lands second silently discards everything the other one computed
+ *  — new links, corrected mislinks, newly-created episode rows — with no error and no log. */
+export async function saveState(
+  s: State,
+  expectedUpdatedAt?: string | null,
+): Promise<{ ok: true } | { ok: false; conflict: true }> {
   const p = db();
   if (!p) throw new Error("no database configured");
   await ensure(p);
+  if (expectedUpdatedAt !== undefined) {
+    const r = await p.query(
+      `UPDATE studio_state SET data = $1, updated_at = now()
+       WHERE id = 1 AND (data->>'updatedAt') IS NOT DISTINCT FROM $2`,
+      [JSON.stringify(s), expectedUpdatedAt],
+    );
+    return r.rowCount === 0 ? { ok: false, conflict: true } : { ok: true };
+  }
   await p.query(
     `INSERT INTO studio_state (id, data, updated_at) VALUES (1, $1, now())
      ON CONFLICT (id) DO UPDATE SET data = $1, updated_at = now()`,
     [JSON.stringify(s)],
   );
+  return { ok: true };
 }
 
 /** The list is the business, so it lives in our own database and not only in a
