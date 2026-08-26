@@ -27,8 +27,10 @@ const LINKS = [
 export default function SiteSocial() {
   return (
     <div className="ssocial-wrap">
-      <a href="https://agently-jet.vercel.app" className="ssocial-crosslink">
-        Also building Agently — the catalog for AI agents ↗
+      <a href="https://agently-jet.vercel.app" className="ssocial-crosslink" target="_blank" rel="noopener noreferrer">
+        <span className="ssocial-crosslink-label">Also building</span>
+        <span className="ssocial-crosslink-name">Agently</span>
+        <span className="ssocial-crosslink-desc">— the catalog for AI agents ↗</span>
       </a>
       <div className="ssocial" aria-label="Social links">
         {LINKS.map((l) => (

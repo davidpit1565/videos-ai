@@ -435,8 +435,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .herocta a:not(.cta){color:var(--ink);font-weight:600;text-decoration:none;
   border-bottom:1px solid var(--rule)}
 .site .herocta a:not(.cta):hover{border-color:var(--gold-lit);color:var(--gold-lit)}
-.site .herosocial{margin-top:1.3rem}
-.site .herosocial .ssocial{justify-content:flex-start;padding:0;background:transparent;gap:1.1rem}
 .site .issueteaser{display:block;margin-top:1.4rem;padding:.85rem 1.1rem;
   background:var(--card);border:1px solid var(--rule);border-radius:.8rem;
   text-decoration:none;color:inherit;max-width:26rem}
@@ -551,10 +549,21 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 /* Real profile links, rendered once by Shell for every public page — not scoped
    inside .site/.pub, so it can't rely on their custom properties; the same paper
    palette is repeated here as literal values instead. */
-.ssocial-wrap{background:#F7F5F1;padding-top:1.4rem}
-.ssocial-crosslink{display:block;text-align:center;font-size:.8rem;color:#6F6A60;
-  text-decoration:none;padding:0 1.1rem .7rem;transition:color .15s}
-.ssocial-crosslink:hover{color:#8A6D1B}
+.ssocial-wrap{background:#F7F5F1;padding-top:1.6rem}
+/* A pill, not a bare line of small gray text — the bare version read as a leftover
+   fragment rather than a deliberate credit, especially where it used to sit mid-hero
+   (moved to the real page footer instead, see page.tsx). Same rounded-pill language the
+   nav tabs already use, so it reads as one more considered element of the page rather
+   than a stray link. */
+.ssocial-crosslink{display:flex;justify-content:center;align-items:baseline;gap:.4em;
+  flex-wrap:wrap;text-align:center;margin:0 1.1rem 1.1rem;padding:.5rem 1.1rem;
+  border:1px solid #E3DED4;border-radius:999px;text-decoration:none;
+  font-size:.82rem;color:#6F6A60;transition:border-color .15s,color .15s}
+.ssocial-crosslink:hover{border-color:#8A6D1B;color:#8A6D1B}
+.ssocial-crosslink-label{color:#8B8579}
+.ssocial-crosslink-name{font-family:"Newsreader",Georgia,serif;font-weight:700;color:#16181C}
+.ssocial-crosslink:hover .ssocial-crosslink-name{color:#8A6D1B}
+.ssocial-crosslink-desc{color:#8B8579}
 .ssocial{display:flex;justify-content:center;gap:1.4rem;padding:0 1.1rem 3rem}
 .ssocial a{color:#6F6A60;display:flex;transition:color .15s}
 .ssocial a:hover{color:#8A6D1B}
