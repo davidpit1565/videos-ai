@@ -474,9 +474,22 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    child (the player). The hero variant adds a second child (the YouTube link below it),
    which .vid-*'s row-flex would otherwise place beside the video instead of under it. */
 .site .hero .herovid.vid-native,.site .hero .herovid.vid-ig{flex-direction:column}
+/* Fills the hero's second column on wide screens when there's no video yet — that
+   column rendered nothing at all before, a bare gap beside the headline. Hidden on
+   phones on purpose: below 860px the grid is single-column already (headline stacks
+   above where this would go), so a decorative panel there would just add scroll
+   length before the real content — the stats, the signup — with nothing gained. */
+.herodiag{display:none}
 @media (min-width:860px){
   .site .hero{grid-template-columns:1.05fr 1fr;align-items:center}
   .site .hero .herovid{order:0}
+  .herodiag{display:flex;flex-direction:column;gap:1rem;padding:1.6rem 1.8rem;
+    border:1px solid var(--rule);border-radius:1rem;background:var(--card);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+  .herodiag-label{font-family:var(--code);font-size:.72rem;letter-spacing:.12em;
+    color:var(--faint)}
+  .herodiag-caption{font-family:var(--code);font-size:.72rem;letter-spacing:.06em;
+    color:var(--faint);text-align:center}
 }
 /* section headers with a link to the full list, so "recent episodes" on the home page
    reads as a teaser of something bigger rather than the whole thing. */
