@@ -463,7 +463,15 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   .site .hero::before{animation:none}
 }
 .site .herotext{min-width:0}
-.site .hero .herovid{margin:0;order:-1}
+/* Used to force the video ABOVE the headline on a phone (order:-1) — meant to put "the
+   exact screen" first, but a full-height 9:16 video is most of a phone's first
+   screen, so the actual effect was the headline, the CTA and the stats all landing
+   below the fold behind a giant video with nothing to explain it yet. Flagged
+   directly, with a screenshot: the video first, tiny bit of black at first paint, and
+   only "Also on YouTube" visible before a long scroll. Document order (text, then
+   video) is the right order below the two-column breakpoint; the explicit order swap
+   only ever needs to happen once the layout actually goes side-by-side, see below. */
+.site .hero .herovid{margin:0}
 /* Sits directly under the Instagram/self-hosted video that now takes the primary hero
    slot — a quiet, secondary way to reach YouTube instead of YouTube occupying the slot
    Instagram's own post is meant to have. */
@@ -474,6 +482,11 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    child (the player). The hero variant adds a second child (the YouTube link below it),
    which .vid-*'s row-flex would otherwise place beside the video instead of under it. */
 .site .hero .herovid.vid-native,.site .hero .herovid.vid-ig{flex-direction:column}
+/* The episode page's own player (.vid-native video) is the main content there and
+   earns a generous size; in the hero it's a supporting preview beside real copy, and
+   at the same width it was most of a phone's first screen before anything else on the
+   page. Capped smaller specifically in the hero, on top of the shared rule below. */
+.site .hero .herovid.vid-native video{max-width:min(62vw,300px)}
 /* Fills the hero's second column on wide screens when there's no video yet — that
    column rendered nothing at all before, a bare gap beside the headline. Hidden on
    phones on purpose: below 860px the grid is single-column already (headline stacks
@@ -482,7 +495,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .herodiag{display:none}
 @media (min-width:860px){
   .site .hero{grid-template-columns:1.05fr 1fr;align-items:center}
-  .site .hero .herovid{order:0}
   .herodiag{display:flex;flex-direction:column;gap:1rem;padding:1.6rem 1.8rem;
     border:1px solid var(--rule);border-radius:1rem;background:var(--card);
     box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
