@@ -308,7 +308,11 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
      recomputes, so this needs no JS and no measurement race (see shell.tsx history).
      100dvh stays first for the handful of engines with no lvh support. */
   .shell:not(.pub){height:100dvh;height:100lvh;display:flex;flex-direction:column;overflow:hidden;padding:0}
-  .shell:not(.pub) .top{flex:0 0 auto;order:0;padding:0 14px}
+  /* Installed as a home-screen app (standalone display, viewport-fit:cover already set
+     in layout.tsx), there's no browser chrome left to push content down from the notch
+     — the header rendered right up against it, real content lost under the status bar.
+     Only mattered once installed; a normal browser tab always had its own chrome there. */
+  .shell:not(.pub) .top{flex:0 0 auto;order:0;padding:calc(14px + env(safe-area-inset-top)) 14px 0}
   .shell:not(.pub) .scroll{flex:1 1 auto;order:1;overflow-y:auto;
     -webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 14px 28px}
   .shell.pub{padding:0 14px 40px}
@@ -320,7 +324,13 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
     padding-bottom:calc(8px + env(safe-area-inset-bottom));
     background:rgba(11,15,22,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);
     border-bottom:0;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;
-    scrollbar-width:none}
+    scrollbar-width:none;
+    /* A bar that just stops at "רנדרים" with no fade reads as broken or complete, not
+       scrollable — he flagged exactly this look. The fade is a direction-agnostic signal
+       (works the same in this RTL nav without a JS scroll-position check) that there's
+       more on both edges to swipe to. */
+    mask-image:linear-gradient(to right,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%);
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%)}
   .shell:not(.pub) nav::-webkit-scrollbar{display:none}
   nav a{flex:0 0 auto;text-align:center;padding:11px 14px;border:0;font-size:15px;border-radius:8px}
   nav a[aria-current=page]{background:rgba(243,208,122,.14);color:var(--brass)}
