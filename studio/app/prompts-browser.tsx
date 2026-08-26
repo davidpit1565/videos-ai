@@ -40,7 +40,7 @@ export default function PromptsBrowser({ prompts }: { prompts: Prompt[] }) {
               <Link href={`/p/${p.slug}`}>
                 <b>{p.title}</b>
                 <span>{p.blurb}</span>
-                {p.limits ? <span className="ebreaks">Won't: {firstSentence(p.limits)}</span> : null}
+                {p.limits ? <span className="ebreaks"><b>Won&apos;t:</b> {firstSentence(p.limits)}</span> : null}
               </Link>
             </li>
           ))}

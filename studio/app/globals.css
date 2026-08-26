@@ -609,7 +609,12 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    marker still flags "there's a limit, worth reading" at a glance; only the icon carries
    that signal here, not the whole line. */
 .site .ebreaks{color:var(--faint);font-size:.86rem;margin-top:.15rem;display:block}
-.site .ebreaks::before{content:"⚠ ";font-size:.8em;color:var(--clay)}
+/* Was a "⚠ " warning-triangle glyph — flagged directly, with a screenshot, as
+   stressful: a routine one-line scope note ("won't do portrait mode yet") wearing an
+   alert-triangle reads as danger, not as a fact. The word "Won't" itself, bold and in
+   clay, still marks the line as the site's limitations signal — same information, no
+   symbol borrowed from a hazard sign. See episodes-browser.tsx / prompts-browser.tsx. */
+.site .ebreaks b{color:var(--clay);font-weight:700}
 .site .eps .ebreaks{grid-column:2}
 
 /* the browse controls above the episode list — chips for the tool an episode is
