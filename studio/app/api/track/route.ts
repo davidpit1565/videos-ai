@@ -245,50 +245,33 @@ export async function GET(req: Request) {
     // published" while reel 11's real post sat unlinked, because 13's row was carrying
     // 11's actual Instagram media id (a manual mislink in /videos' "link to episode"
     // dropdown, the two numbers one row apart). Every caption/description we write names
-    // its own episode with an explicit /e/N; that's ground truth the studio already has
-    // and never checked against the episode a post is actually attached to. Move the
-    // link onto the episode it actually names, whenever that episode exists and isn't
-    // already carrying a different real link of its own — never onto one that is, so
-    // this can't create a new wrong link while fixing an old one.
+    // its own episode with an explicit /e/N — but that's only ground truth about what
+    // number the episode carried the DAY it was posted. An episode's number is a plain
+    // editable field in /videos, so a post's own /e/N can legitimately go stale if the
+    // episode was renumbered afterward — this used to almost never surface, because
+    // captions were truncated to 120 characters before this check ever saw them, but
+    // fixing that truncation (elsewhere in this change) means it now sees every real
+    // number, including stale ones, and a swap-and-wipe here is destructive: it strips a
+    // correctly-linked episode's real views/likes/saves and demotes it out of every live
+    // count. Flagging the disagreement for a human to look at is the sound version of
+    // this check; silently acting on it is not — no automatic swap, only a note in the
+    // feed, until there's a way to confirm which number is actually current.
     const byMediaId = new Map(
       state.episodes.filter((e) => cfg.getId(e)).map((e) => [cfg.getId(e) as string, e]),
     );
+    const flaggedMismatches = new Set(
+      feed.filter((f) => f.label.startsWith(`אי-התאמה אפשרית ב${cfg.label}`)).map((f) => f.label),
+    );
     for (const m of media) {
-      const wrong = byMediaId.get(m.id);
-      if (!wrong) continue;
+      const linkedEp = byMediaId.get(m.id);
+      if (!linkedEp) continue;
       const epLink = m.text.toLowerCase().match(/\/e\/(\d+)/);
       if (!epLink) continue;
-      const correctNum = +epLink[1];
-      if (correctNum === wrong.number) continue;
-      const correct = state.episodes.find((e) => e.number === correctNum);
-      if (!correct || cfg.getId(correct)) continue;
-      cfg.setId(correct, m.id);
-      cfg.setPermalink(correct, m.permalink);
-      correct.views = wrong.views;
-      correct.likes = wrong.likes;
-      correct.saves = wrong.saves;
-      correct.comments = wrong.comments;
-      correct.shares = wrong.shares;
-      correct.publishedAt = wrong.publishedAt;
-      correct.status = "live";
-      // The reassigned episode is going live for the first time from the site's
-      // perspective — without this, the public "episode is live" push below never
-      // fires for it, and a repair through this path looks like it did nothing.
-      newlyLive.push(correct.number);
-      cfg.setId(wrong, null);
-      cfg.setPermalink(wrong, null);
-      wrong.views = null;
-      wrong.likes = null;
-      wrong.saves = null;
-      wrong.comments = null;
-      wrong.shares = null;
-      wrong.publishedAt = null;
-      wrong.status = "testing";
-      fresh.push({
-        id: uid(), at: now, source: "studio",
-        label: `פרק ${wrong.number} הוצג בטעות כמפורסם ב${cfg.label} — הפוסט שייך בפועל לפרק ${correct.number} (לפי הקישור בכיתוב) והועבר אליו`,
-        value: null, delta: null,
-      });
+      const namedNum = +epLink[1];
+      if (namedNum === linkedEp.number) continue;
+      const label = `אי-התאמה אפשרית ב${cfg.label}: פרק ${linkedEp.number} מקושר לתוכן שהכיתוב שלו מציין פרק ${namedNum} — יכול להיות מספר פרק ישן, בדוק ב-/videos לפני שמתקנים`;
+      if (flaggedMismatches.has(label)) continue;
+      fresh.push({ id: uid(), at: now, source: "studio", label, value: null, delta: null });
     }
 
     // content that exists on the account and is not linked to an episode is worth saying once
