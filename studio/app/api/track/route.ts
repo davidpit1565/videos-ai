@@ -10,14 +10,6 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-// This Instagram post's own caption carries a literal "/e/9" even though its content is
-// episode 6's ("Three things your AI agent still breaks on") — a genuine authoring
-// mistake from whenever it was written, not something fixable from here. Unlinking it
-// (below) without also blocking it here was a real, live infinite loop: the very next
-// pull's exact-/e/N auto-link (further down, keyed only on that number) saw the same
-// "/e/9" and reattached it immediately, so he kept seeing the "unlinked it" activity
-// entry fire again, forever, one pull after another.
-const WRONG_9 = "18163954408479206";
 
 /**
  * The point of the whole system: nobody has to remember to write the numbers down.
@@ -170,44 +162,16 @@ export async function GET(req: Request) {
     }
   }
 
-  // ONE-TIME repair, not a general mechanism — remove this block once it has run. Episode
-  // 9's row was auto-linked to Instagram media 18163954408479206, whose caption reads
-  // "Three things your AI agent still breaks on" — episode 6's real title, word for word
-  // (verified against channel/episode-06-youtube.txt), not episode 9's ("This agent can
-  // send emails by itself. It never does."). Episode 6 already has its own, different,
-  // correctly-linked post, so this looks like a separate recap/teaser post for episode 6's
-  // content that the fuzzy title-matching fallback attached to episode 9 instead — the
-  // only unlinked row at the time — rather than to nothing. He confirmed directly that
-  // episode 9 itself was never actually posted, so the right correction is to unlink it,
-  // not to reassign it anywhere: there is no real episode-9 post to point it at.
-  // Demoting rather than deleting the row (never destroy what nobody asked to lose), and
-  // hardcoded to this one externally-verified media id on purpose — a generic "detect and
-  // auto-unlink a mismatch" mechanism is exactly the kind of automatic correction that
-  // wiped a real episode's data earlier this same week.
-  {
-    const e9 = state.episodes.find((e) => e.number === 9);
-    if (e9?.igMediaId === WRONG_9) {
-      e9.igMediaId = null;
-      e9.igPermalink = null;
-      e9.views = null;
-      e9.likes = null;
-      e9.saves = null;
-      e9.comments = null;
-      e9.shares = null;
-      if (e9.status === "live") e9.status = "testing";
-      // The title-healing pass above runs before this block, so it never saw episode 9's
-      // title as wrong — episode 6's real title isn't a caption-fragment cut of episode
-      // 9's, it's a completely different episode's title, which healing correctly leaves
-      // alone. Reset it here instead, now that the mislink it came from is gone.
-      const realTitle = realTitleFor(9);
-      if (realTitle) e9.title = realTitle;
-      fresh.push({
-        id: uid(), at: now, source: "studio",
-        label: "ריל 9 היה מקושר בטעות לפוסט של ריל 6 (\"Three things your AI agent still breaks on\") — לא לתוכן של ריל 9 עצמו, שמעולם לא פורסם. הקישור הוסר",
-        value: null, delta: null,
-      });
-    }
-  }
+  // A "ONE-TIME repair" used to live here, unlinking episode 9 from Instagram media
+  // 18163954408479206 on the claim that its caption read episode 6's title
+  // ("Three things your AI agent still breaks on") rather than episode 9's own. That
+  // claim was checked directly against the real caption and is false: the post's actual
+  // caption is episode 9's own content verbatim ("This agent can send emails by itself.
+  // It never does...") and its own text names /e/9. The repair had it backwards — this
+  // was always episode 9's real, correctly-linked post, and the block spent every pull
+  // since stripping it back off, discarding its real view count each time (191 views
+  // sitting unlinked and invisible from every total in the studio). Removed entirely;
+  // the ordinary auto-link below reattaches it on the next pull, same as any other post.
 
   // Every gated reel is a real, shipped episode, whether or not anyone ever pushed it
   // through /pipeline's "לצינור" button — lib/seed.ts only ever created rows 1 through
@@ -316,10 +280,6 @@ export async function GET(req: Request) {
     const unlinkedEpisodes = state.episodes.filter((e) => !cfg.getId(e));
     for (const m of media) {
       if (linked.has(m.id)) continue;
-      // The exact same infinite-relink this media id caused for episode 9 (see WRONG_9
-      // above) — its own caption carries a stale "/e/9" that no longer matches its real
-      // content, so the exact-number match below must never reattach it there again.
-      if (cfg.key === "instagram" && m.id === WRONG_9) continue;
       const text = m.text.toLowerCase();
       const epLink = text.match(/\/e\/(\d+)/);
       const hits = epLink
