@@ -119,6 +119,31 @@ export async function GET(req: Request) {
     if (real) e.title = real;
   }
 
+  // ONE-TIME repair, not a general mechanism — remove this block once it has run. Episode
+  // 1 and 2's YouTube links were swapped, from before any of the checks above existed:
+  // confirmed directly against YouTube's own oEmbed API (no guessing from local text),
+  // which returned "What an AI agent actually is" — episode 2's real title — for the video
+  // linked to episode 1, and "Your ChatGPT keeps giving you the obvious" — episode 1's
+  // real title — for the video linked to episode 2. Hardcoded to these two specific,
+  // externally-verified video ids on purpose: a generic "trust the algorithm" swap is
+  // exactly what wiped a real episode's data earlier today, so this only ever touches the
+  // two ids it was actually checked against, nothing inferred at runtime.
+  {
+    const WRONG_1 = "8LExf9nmW0w"; // really episode 2's video
+    const WRONG_2 = "tdvxIK3KX64"; // really episode 1's video
+    const e1 = state.episodes.find((e) => e.number === 1);
+    const e2 = state.episodes.find((e) => e.number === 2);
+    if (e1?.ytVideoId === WRONG_1 && e2?.ytVideoId === WRONG_2) {
+      e1.ytVideoId = WRONG_2;
+      e2.ytVideoId = WRONG_1;
+      fresh.push({
+        id: uid(), at: now, source: "studio",
+        label: "פרק 1 ופרק 2 ביוטיוב היו מוחלפים — אומת מול היוטיוב עצמו ותוקן",
+        value: null, delta: null,
+      });
+    }
+  }
+
   // Every gated reel is a real, shipped episode, whether or not anyone ever pushed it
   // through /pipeline's "לצינור" button — lib/seed.ts only ever created rows 1 through
   // 6, and nothing since has created one for a number beyond that automatically. A
