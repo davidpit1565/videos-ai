@@ -61,7 +61,7 @@ const youtubeFor = (n: number | null) => textFor(n, "youtube");
 /** The real, already-approved title — its first line is written once, when the episode's
  *  YouTube copy is finalized, and never needs retyping anywhere else. He kept having to
  *  copy it into the studio's title field by hand and it kept not happening (both public
- *  episode pages showed the studio's "פרק חדש" placeholder for weeks after the real title
+ *  episode pages showed the studio's "ריל חדש" placeholder for weeks after the real title
  *  existed on disk). Read directly from the file that already has it, instead. */
 export function realTitleFor(n: number | null): string | null {
   const yt = youtubeFor(n);
@@ -139,7 +139,7 @@ export function reels(): Reel[] {
         caption: captionFor(episode),
         youtube: youtubeFor(episode),
         // realTitleFor() alone left every episode shipped before a youtube.txt existed
-        // (06, 08-12) showing as a bare "פרק N" in /renders, even though its caption —
+        // (06, 08-12) showing as a bare "ריל N" in /renders, even though its caption —
         // which always exists the moment a reel ships — has the same headline as its
         // first line. /e/[n] already falls back to this; /renders never did.
         title: realTitleFor(episode) ?? captionTitleFor(episode),

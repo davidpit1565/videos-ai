@@ -69,14 +69,14 @@ export default function Dashboard() {
           <div className="s">{ig?.connected ? "חי מאינסטגרם" : "מהתמונה האחרונה"}</div>
         </div>
         <div className="tile">
-          <div className="k">פרקים באוויר</div>
+          <div className="k">רילים באוויר</div>
           <div className="v num">{n(live.length)}</div>
           <div className="s">מתוך {state.episodes.length} בצינור</div>
         </div>
         <div className="tile">
           <div className="k">שמירות לצפייה</div>
           <div className="v num">{avgSave == null ? "—" : pct(avgSave)}</div>
-          <div className="s">{avgSave == null ? "אין עדיין נתונים" : "ממוצע על הפרקים באוויר"}</div>
+          <div className="s">{avgSave == null ? "אין עדיין נתונים" : "ממוצע על הרילים באוויר"}</div>
         </div>
         <div className="tile">
           <div className="k">הכנסה חודשית</div>
@@ -116,8 +116,8 @@ export default function Dashboard() {
       {(state.activity ?? []).length === 0 ? (
         <div className="note">
           <div className="t">עדיין ריק</div>
-          כאן יופיע כל שינוי שקורה מעצמו — עוקב חדש, נרשם חדש, צפיות ושמירות שעלו בכל פרק,
-          ופוסט באינסטגרם שעוד לא קושר לפרק. <b>אתה לא צריך להזין כלום.</b> זה מתחיל לעבוד
+          כאן יופיע כל שינוי שקורה מעצמו — עוקב חדש, נרשם חדש, צפיות ושמירות שעלו בכל ריל,
+          ופוסט באינסטגרם שעוד לא קושר לריל. <b>אתה לא צריך להזין כלום.</b> זה מתחיל לעבוד
           ברגע שיש מסד נתונים ומפתחות.
         </div>
       ) : (
@@ -141,7 +141,7 @@ export default function Dashboard() {
       <h2>חיבורים</h2>
       <ul className="list">
         <Conn ok={!!bee?.connected} name="Beehiiv" reason={bee?.reason} detail="מספר הנרשמים" />
-        <Conn ok={!!ig?.connected} name="Instagram" reason={ig?.reason} detail={ig?.username ? `@${ig.username}` : "צפיות, שמירות, שיתופים לכל פרק"} />
+        <Conn ok={!!ig?.connected} name="Instagram" reason={ig?.reason} detail={ig?.username ? `@${ig.username}` : "צפיות, שמירות, שיתופים לכל ריל"} />
         <Conn ok={!!yt?.connected} name="YouTube" reason={yt?.reason} detail={yt?.channelTitle ?? "צפיות ומנויים"} />
       </ul>
       <div className={"note " + (mode === "cloud" ? "ok" : "warn")}>
@@ -248,7 +248,7 @@ export default function Dashboard() {
       {ranked.length === 0 ? (
         <div className="note warn">
           <div className="t">אין עדיין מה למדוד</div>
-          אף פרק לא באוויר, ולכן אין שמירות, צפיות או נרשמים לייחס לפרק. ברגע שפרק אחד מתפרסם
+          אף ריל לא באוויר, ולכן אין שמירות, צפיות או נרשמים לייחס לריל. ברגע שריל אחד מתפרסם
           ומקבל <b>igMediaId</b>, הטבלה הזאת מתמלאת לבד.
         </div>
       ) : (
@@ -257,7 +257,7 @@ export default function Dashboard() {
             <thead>
               <tr>
                 <th>#</th>
-                <th>פרק</th>
+                <th>ריל</th>
                 <th>צפיות</th>
                 {/* "כמה שמרו" replaces two separate columns (שמירות + שמירות לצפייה) that
                     used to show a bare, standalone percentage — 100.0% from 3 views looked
@@ -265,7 +265,7 @@ export default function Dashboard() {
                     column now always shows the actual count first, and only adds a percent
                     once there's enough views for one to mean something. */}
                 <th>כמה שמרו</th>
-                <th>נרשמים לרשימה בזכות הפרק</th>
+                <th>נרשמים לרשימה בזכות הריל</th>
               </tr>
             </thead>
             <tbody>

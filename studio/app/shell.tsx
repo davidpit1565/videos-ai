@@ -11,7 +11,7 @@ import Mark from "./mark";
 
 const TABS = [
   { href: "/studio", label: "לוח" },
-  { href: "/videos", label: "פרקים" },
+  { href: "/videos", label: "רילים" },
   { href: "/analytics", label: "התקדמות" },
   { href: "/week", label: "השבוע" },
   { href: "/renders", label: "רנדרים" },

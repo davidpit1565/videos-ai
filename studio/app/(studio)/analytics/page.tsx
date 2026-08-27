@@ -121,7 +121,7 @@ function ViewsBars({ episodes }: { episodes: Episode[] }) {
   if (live.length === 0) {
     return (
       <div className="chart-empty">
-        עדיין אין פרק עם צפיות מדודות. אחרי שפרק ראשון מפורסם ומקושר באינסטגרם
+        עדיין אין ריל עם צפיות מדודות. אחרי שריל ראשון מפורסם ומקושר באינסטגרם
         (ב-/videos), הצפיות שלו יופיעו כאן.
       </div>
     );
@@ -137,7 +137,7 @@ function ViewsBars({ episodes }: { episodes: Episode[] }) {
 
   return (
     <div className="chart-wrap">
-      <svg viewBox={`0 0 ${W} ${H}`} className="chart" role="img" aria-label="צפיות לפי פרק">
+      <svg viewBox={`0 0 ${W} ${H}`} className="chart" role="img" aria-label="צפיות לפי ריל">
         {ticks.map((t, i) => (
           <g key={i}>
             <line x1={PAD.left} x2={W - PAD.right} y1={y(t)} y2={y(t)} className="grid" />
@@ -211,7 +211,7 @@ export default function Analytics() {
       <h1>ההתקדמות שלך</h1>
       <p className="sub">
         כל מספר כאן נמדד — עוקבים מהתמונה היומית שהצינור שומר, צפיות/לייקים/שמירות/שיתופים
-        מהסנכרון האחרון מול אינסטגרם. פרק בלי נתונים מדודים לא מוצג בטבלה, ולא מומצא לו מספר.
+        מהסנכרון האחרון מול אינסטגרם. ריל בלי נתונים מדודים לא מוצג בטבלה, ולא מומצא לו מספר.
       </p>
 
       <div className="tiles">
@@ -223,7 +223,7 @@ export default function Analytics() {
         <div className="tile">
           <div className="k">סה״כ צפיות</div>
           <div className="v"><CountUp value={totalViews || null} /></div>
-          <div className="s">סכום הפרקים שפורסמו ונמדדו</div>
+          <div className="s">סכום הרילים שפורסמו ונמדדו</div>
         </div>
         <div className="tile">
           <div className="k">סה״כ לייקים</div>
@@ -234,12 +234,12 @@ export default function Analytics() {
           <div className="v"><CountUp value={(totalSaves + totalShares) || null} /></div>
         </div>
         <div className="tile">
-          <div className="k">נרשמים שיוחסו לפרקים</div>
+          <div className="k">נרשמים שיוחסו לרילים</div>
           <div className="v"><CountUp value={attributedRows.length ? totalAttributed : null} /></div>
           <div className="s">
             {attributedRows.length
-              ? `מ-${attributedRows.length} פרק${attributedRows.length > 1 ? "ים" : ""} שסומנו ב-/videos`
-              : "עדיין לא סומן אף פרק — נכנס ידנית ב-/videos"}
+              ? `מ-${attributedRows.length} ריל${attributedRows.length > 1 ? "ים" : ""} שסומנו ב-/videos`
+              : "עדיין לא סומן אף ריל — נכנס ידנית ב-/videos"}
           </div>
         </div>
       </div>
@@ -250,7 +250,7 @@ export default function Analytics() {
       </section>
 
       <section className="chart-section">
-        <h2>צפיות לפי פרק</h2>
+        <h2>צפיות לפי ריל</h2>
         <ViewsBars episodes={state.episodes} />
       </section>
 
@@ -260,7 +260,7 @@ export default function Analytics() {
           <table>
             <thead>
               <tr>
-                <th>פרק</th>
+                <th>ריל</th>
                 <th>כותרת</th>
                 <th>צפיות</th>
                 <th>לייקים</th>
@@ -274,7 +274,7 @@ export default function Analytics() {
               {rows.length === 0 && (
                 <tr>
                   <td colSpan={8} className="empty-cell">
-                    אין עדיין פרק שפורסם ונמדד.
+                    אין עדיין ריל שפורסם ונמדד.
                   </td>
                 </tr>
               )}

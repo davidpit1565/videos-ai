@@ -44,7 +44,7 @@ export default async function Renders() {
               {r.kind === "audio"
                 ? r.file.replace(/\.[^.]+$/, "")
                 : r.episode !== null
-                  ? `פרק ${r.episode}${r.title ? ` — ${r.title}` : ""}`
+                  ? `ריל ${r.episode}${r.title ? ` — ${r.title}` : ""}`
                   : r.file}
             </b>
             <span className="rbadges">
@@ -53,12 +53,12 @@ export default async function Renders() {
               )}
               {r.episode !== null && SEQUEL_FOR[r.episode] !== undefined && (
                 <span className="pill unknown">
-                  חלק 2: פרק {String(SEQUEL_FOR[r.episode]).padStart(2, "0")}
+                  חלק 2: ריל {String(SEQUEL_FOR[r.episode]).padStart(2, "0")}
                 </span>
               )}
               {r.episode !== null && SEQUEL_OF[r.episode] !== undefined && (
                 <span className="pill unknown">
-                  חלק 2 לפרק {String(SEQUEL_OF[r.episode]).padStart(2, "0")}
+                  חלק 2 לריל {String(SEQUEL_OF[r.episode]).padStart(2, "0")}
                 </span>
               )}
               {r.gate === null ? (

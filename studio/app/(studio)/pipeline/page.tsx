@@ -123,7 +123,7 @@ export default function Pipeline() {
         מה בעבודה, מה <em>חוסם</em>
       </h1>
       <p className="sub">
-        פרק תקוע בשלב אחד יותר משבוע זה סימן שהשלב הזה הוא הצוואר בקבוק — לא שהפרק לא טוב.
+        ריל תקוע בשלב אחד יותר משבוע זה סימן שהשלב הזה הוא הצוואר בקבוק — לא שהריל לא טוב.
       </p>
 
       <div className="tiles">
@@ -136,7 +136,7 @@ export default function Pipeline() {
       </div>
 
       <h2>
-        הרעיונות לפרק הבא · סה״כ {backlogCount + state.ideas.length} מוכנים
+        הרעיונות לריל הבא · סה״כ {backlogCount + state.ideas.length} מוכנים
       </h2>
       <p className="sub">
         שני המקורות למטה הם אותה רשימה אחת — כל רעיון שאתה מוסיף בטופס למטה נספר
@@ -145,9 +145,9 @@ export default function Pipeline() {
 
       <p className="section-label">מוכן מראש על ידי הסוכן · {backlogCount}</p>
       <p className="sub">
-        נכתב מראש כדי שכל פעם שאומרים "תכין את הפרק הבא" כבר יש ממה לבחור, בלי לחשוב
+        נכתב מראש כדי שכל פעם שאומרים "תכין את הריל הבא" כבר יש ממה לבחור, בלי לחשוב
         מאפס. מבוסס על ביקוש נמדד ב-<code>demand-report.md</code>. עדכון עצמו — כל פעם
-        שכלי מהרשימה משמש לפרק, כדאי להוסיף רעיון חדש במקומו.
+        שכלי מהרשימה משמש לריל, כדאי להוסיף רעיון חדש במקומו.
       </p>
       <IdeasBacklog onCount={onBacklogCount} />
 

@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }: { params: Promise<{ file: string }> }) {
   const { file } = await params;
   const r = reelByFile(decodeURIComponent(file));
-  return { title: r ? (r.episode !== null ? `פרק ${r.episode}` : r.file) : "רנדר" };
+  return { title: r ? (r.episode !== null ? `ריל ${r.episode}` : r.file) : "רנדר" };
 }
 
 /** One reel, full screen. Split out of the /renders list so the list can stay a list once
@@ -34,7 +34,7 @@ export default async function RenderDetail({ params }: { params: Promise<{ file:
             {r.kind === "audio"
               ? r.file.replace(/\.[^.]+$/, "")
               : r.episode !== null
-                ? `פרק ${r.episode}`
+                ? `ריל ${r.episode}`
                 : r.file}
           </b>
           {r.gate === null ? (

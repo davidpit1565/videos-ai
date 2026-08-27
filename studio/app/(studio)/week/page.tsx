@@ -61,7 +61,7 @@ export default function Week() {
       </h1>
       <p className="sub">
         סרטון אחד ביום, ראשון עד שישי. שבת לא מופיעה כאן בכלל — <b>אין יום שביעי לתכנן</b>.
-        גרירה לא נדרשת: בוחרים תאריך בכרטיס של הפרק, או לוחצים על מילוי אוטומטי.
+        גרירה לא נדרשת: בוחרים תאריך בכרטיס של הריל, או לוחצים על מילוי אוטומטי.
       </p>
 
       <div className="actions" style={{ marginBottom: 6 }}>
@@ -101,7 +101,7 @@ export default function Week() {
 
       <h2>ממתינים לתאריך · {unplanned.length}</h2>
       {unplanned.length === 0 ? (
-        <p className="sub">כל הפרקים שלא באוויר משובצים.</p>
+        <p className="sub">כל הרילים שלא באוויר משובצים.</p>
       ) : (
         <ul className="list">
           {unplanned.map((e) => (
