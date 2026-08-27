@@ -712,6 +712,32 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   background:var(--wash);border-radius:9999px;padding:.1rem .5rem;
   font-variant-numeric:tabular-nums}
 
+/* ── the safe-area demo — a real frame, dragged instead of read ──────────
+   Numbers from Meta's own published 9:16 safe-area spec (see CLAUDE.md's frame-layout
+   section): 14% off the top, 35% off the bottom, 6% off each side. Same box
+   export/safe_check.js enforces on every episode before it ships — this just lets a
+   visitor drag to see it on a real frame instead of taking the percentage on faith. */
+.szdemo{display:grid;gap:1.4rem;justify-items:center;margin:1.4rem 0 .6rem}
+@media (min-width:640px){.szdemo{grid-template-columns:auto 1fr;align-items:center;justify-items:start;gap:2.2rem}}
+.szframe{position:relative;width:min(220px,60vw);aspect-ratio:9/16;border-radius:14px;
+  overflow:hidden;border:1px solid var(--rule);box-shadow:0 1.2rem 2.4rem rgba(0,0,0,.35);
+  flex:0 0 auto}
+.szframe img{width:100%;height:100%;object-fit:cover;display:block}
+.szmask{position:absolute;inset-inline:0;background:rgba(196,58,58,.55);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  transition:opacity .1s linear;pointer-events:none}
+.szmask span{font-family:var(--code);font-size:.58rem;line-height:1.3;color:#fff;
+  padding:0 .4rem;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.szmask-top{top:0;height:14%}
+.szmask-bottom{bottom:0;height:35%}
+.szmask-left{inset-block:14% 35%;left:0;width:6%}
+.szmask-right{inset-block:14% 35%;right:0;width:6%}
+.szcontrol{max-width:38ch}
+.szcontrol label{display:block;font-weight:700;color:var(--ink);margin-bottom:.6rem;
+  font-size:1.02rem}
+.szcontrol input[type=range]{width:100%;accent-color:var(--gold);margin-bottom:.9rem}
+.szcaption{color:var(--soft);font-size:.92rem;line-height:1.55;margin:0}
+
 .site .prompts{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.7rem}
 .site .prompts a{display:block;background:var(--card);border:1px solid var(--rule);
   border-radius:1rem;padding:1.1rem 1.25rem;text-decoration:none;color:inherit;

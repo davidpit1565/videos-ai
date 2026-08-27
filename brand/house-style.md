@@ -130,3 +130,37 @@ much bigger type.
 - No more than two accent colours in a single frame.
 - No claim the video can't back — see `assets/guaranteed-vs-model-behaviour.md`. The honesty
   section is part of the format, not a disclaimer bolted on the end.
+
+---
+
+## 10. What the script says
+
+He watched episode 13 and did not understand it himself — someone who already knew what the
+video was supposed to be about. The word that broke it was "column": said once, never defined,
+assuming the viewer already knows what a spreadsheet column or a database field is. He was
+explicit about the bar: written for someone with zero background on the topic, not a beginner
+who at least knows the vocabulary — "even a child," his words, means don't assume ANY prior
+knowledge, not "assume less."
+
+This is not a one-time note on one script. It is a standing rule, checked on every script
+before voice generation, the same way the safe-area check runs before every render:
+
+- **One concrete thing carries the whole idea, all the way through.** Episode 13's rewrite
+  uses "a box" — Instagram writes a number in the box, TikTok writes over it, no warning, you
+  never know it happened. Never introduces the underlying real mechanism as a second, separate
+  vocabulary — "box" is not a simplification of "shared field" that gets swapped in later, it
+  IS the explanation, start to finish.
+- **A technical word is either replaced or defined the instant it's said, never left standing
+  on its own.** "Column," "field," "sync," "endpoint," "API," "webhook" — any word a working
+  professional in the topic would use without a second thought is exactly the word a
+  zero-background viewer stops on. If the real term has to appear (a tool name, a button
+  label), it's introduced through the concrete thing, not before it.
+- **Read it as the ten-year-old test, literally.** If a sentence needs the viewer to already
+  know what the last sentence's jargon meant, the script isn't done — cut the word, not just
+  slow down on it.
+- **The structure a proven video uses is not optional flavor — measure it.** Before a script
+  is called finished, check it against videos in the same topic that actually got real
+  comments, likes and follows: not just their hook, but their sentence-by-sentence writing —
+  what they say, what they deliberately don't say, and why. A hook can be perfect and the
+  script can still lose the viewer one sentence later; the whole script gets the same scrutiny
+  the hook already gets.

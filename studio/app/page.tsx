@@ -10,6 +10,7 @@ import SiteNav from "./sitenav";
 import CountUp from "./count-up";
 import IgEmbed from "./ig-embed";
 import Reveal from "./reveal";
+import SafeZoneDemo from "./safe-zone-demo";
 import ExternalIcon from "./external-icon";
 import HeroDiagnostic from "./hero-diagnostic";
 import { TOOLS, toolFor } from "@/lib/tools";
@@ -187,6 +188,17 @@ export default async function Home() {
               ))}
             </ul>
           )}
+        </Reveal>
+      </section>
+
+      <section>
+        <Reveal>
+          <h2>The bottom third of your video is already covered</h2>
+          <p className="sub">
+            Not a guess — this is Instagram&apos;s own published spec, drawn on a real
+            frame from one of our episodes.
+          </p>
+          <SafeZoneDemo />
         </Reveal>
       </section>
 
