@@ -77,7 +77,17 @@ export async function GET() {
         // account itself, so showing them here is not exposing anything new.
         links: state.episodes
           .filter((e) => e.igMediaId)
-          .map((e) => ({ number: e.number, igMediaId: e.igMediaId, views: e.views, title: e.title })),
+          .map((e) => {
+            const live = instagram.connected ? instagram.media.find((m) => m.id === e.igMediaId) : undefined;
+            return {
+              number: e.number,
+              igMediaId: e.igMediaId,
+              storedViews: e.views,
+              liveViews: live ? live.views : "not in current fetch window",
+              liveReach: live ? live.reach : undefined,
+              title: e.title,
+            };
+          }),
       }
     : null;
 
