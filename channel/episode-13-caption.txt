@@ -1,4 +1,4 @@
-If you track Instagram and TikTok views in the same tracker, one of them is probably losing right now — and you'd never know.
+Your Instagram views are losing to TikTok right now.
 
 Here's the pattern: your automation pulls Instagram's numbers into a column, and looks
 correct. Then it pulls TikTok's numbers into that exact same column — and quietly

@@ -1,4 +1,4 @@
-If you track Instagram and TikTok in the same tracker, one of them is probably losing right now
+Your Instagram views are losing to TikTok right now
 
 Your automation pulls Instagram's numbers into a column, looks correct. Then it pulls TikTok's numbers into that exact same column and quietly overwrites Instagram's real number — no error, no warning, the column still looks normal. This happens the second two platforms feed one field: Instagram + TikTok in one tracker, Reels + Shorts merged into one "views" column, any multi-platform report built in n8n, Zapier, or a spreadsheet. The fix: give every platform its own column, never let two write to the same one.
 
