@@ -167,16 +167,17 @@ export function Provider({ children }: { children: React.ReactNode }) {
    *  it, got exactly one pull, ever, no matter how many hours passed — indistinguishable
    *  from a system that never updates on its own, which is exactly what he reported: numbers
    *  stuck until he manually pressed a button. /api/track already returns early without
-   *  spending an API call when a pull ran in the last 20 minutes, so calling it on an
-   *  interval costs nothing when there is nothing new to fetch — the server-side cooldown
-   *  does the actual rate-limiting, this just stops requiring a human to remember to ask.
+   *  spending an API call when a pull ran in the last 3 minutes (shortened from 20 — see
+   *  that file), so calling it on an interval costs nothing when there is nothing new to
+   *  fetch — the server-side cooldown does the actual rate-limiting, this just stops
+   *  requiring a human to remember to ask.
    *  Also re-pulls when the tab/app comes back into view, for the common case of switching
    *  away and back rather than leaving it open and idle. Cloud mode only: with no database
    *  the tracker has nowhere to write. */
   useEffect(() => {
     if (mode !== "cloud") return;
     void refresh();
-    const interval = setInterval(() => void refresh(), 20 * 60 * 1000);
+    const interval = setInterval(() => void refresh(), 3 * 60 * 1000);
     const onVisible = () => {
       if (document.visibilityState === "visible") void refresh();
     };
