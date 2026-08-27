@@ -1,13 +1,77 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useStudio } from "./providers";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { isSite } from "@/lib/routes";
 import { localDT } from "@/lib/fmt";
 import SiteSocial from "./site-social";
 import Mark from "./mark";
+
+/** ?debug=1 on any studio page — reads the actual numbers behind the nav-bar-gap report
+ *  straight off this device's own DOM, instead of another guess from a screenshot. Env
+ *  vars named on the page: safe-area-inset-bottom (0 means this browser context isn't
+ *  giving one at all — standalone/PWA only, a plain browser tab doesn't need it and
+ *  Safari already handles the home indicator there), the shell's actual height against
+ *  window.innerHeight (a real gap under nav means the shell is taller than the visible
+ *  area), and the nav's own bounding box. Screenshot this box and that's the real state,
+ *  not a photo of pixels open to interpretation. */
+/** useSearchParams() opts its caller out of static rendering unless wrapped in Suspense —
+ *  this tiny wrapper contains that bailout to just the debug overlay instead of forcing
+ *  every studio page (Shell wraps all of them) into dynamic rendering. */
+function NavDebugGate() {
+  const params = useSearchParams();
+  if (params.get("debug") !== "1") return null;
+  return <NavDebug />;
+}
+
+function NavDebug() {
+  const [info, setInfo] = useState<Record<string, string> | null>(null);
+  useEffect(() => {
+    const read = () => {
+      const nav = document.querySelector(".shell:not(.pub) nav");
+      const shell = document.querySelector(".shell");
+      const probe = document.createElement("div");
+      probe.style.cssText = "position:fixed;bottom:0;left:0;height:env(safe-area-inset-bottom);width:1px;visibility:hidden";
+      document.body.appendChild(probe);
+      const inset = getComputedStyle(probe).height;
+      document.body.removeChild(probe);
+      const navRect = nav?.getBoundingClientRect();
+      const shellRect = shell?.getBoundingClientRect();
+      setInfo({
+        "safe-area-inset-bottom": inset,
+        "window.innerHeight": String(window.innerHeight),
+        "shell height": shellRect ? shellRect.height.toFixed(0) : "—",
+        "shell bottom": shellRect ? shellRect.bottom.toFixed(0) : "—",
+        "nav bottom": navRect ? navRect.bottom.toFixed(0) : "—",
+        "nav top": navRect ? navRect.top.toFixed(0) : "—",
+        "gap under nav (viewport − nav bottom)": navRect ? (window.innerHeight - navRect.bottom).toFixed(0) : "—",
+        standalone: String(window.matchMedia("(display-mode: standalone)").matches),
+      });
+    };
+    read();
+    window.addEventListener("resize", read);
+    return () => window.removeEventListener("resize", read);
+  }, []);
+  if (!info) return null;
+  return (
+    <div
+      style={{
+        position: "fixed", insetInlineStart: 8, top: 8, zIndex: 9999,
+        background: "#000", color: "#0f0", font: "11px/1.5 monospace",
+        padding: "8px 10px", borderRadius: 6, direction: "ltr", textAlign: "left",
+        maxWidth: "60vw", pointerEvents: "none",
+      }}
+    >
+      {Object.entries(info).map(([k, v]) => (
+        <div key={k}>
+          {k}: {v}
+        </div>
+      ))}
+    </div>
+  );
+}
 
 const TABS = [
   { href: "/studio", label: "לוח" },
@@ -48,6 +112,12 @@ export default function Shell({ children }: { children: React.ReactNode }) {
      App Router metadata handling keeps it correct across client-side navigation too —
      see that file for why. */
 
+  /* He reported the gap under the nav bar again, on the device itself — every guess so far
+   * has come from a screenshot, and a screenshot can't show env(safe-area-inset-bottom) or
+   * which viewport unit his exact browser actually resolved. Guessing at more CSS without
+   * that number is how the last "fix" made a different thing worse. ?debug=1 reads it
+   * straight off the real DOM, once, instead — see NavDebug below. */
+
   /* The nav bar "jumping" was 100dvh doing exactly what it is defined to do: recompute as
    * the browser's own address bar collapses and expands while scrolling. Two rounds of a
    * JS fix (track the largest viewport height ever seen, in --app-h) killed the jump but
@@ -77,6 +147,9 @@ export default function Shell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="shell" lang="he" dir="rtl">
+      <Suspense fallback={null}>
+        <NavDebugGate />
+      </Suspense>
       <div className="top">
         <Link className="brand" href="/studio">
           <Mark />
