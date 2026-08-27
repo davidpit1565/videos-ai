@@ -1,9 +1,9 @@
-The tab next to ChatGPT's chat box you've never clicked
+Your ChatGPT has a tab you've probably never clicked
 
-You've used ChatGPT a hundred times. You've never seen this: right above the message box
-there's a toggle — Chat or Work. Switch it, describe what you actually need done, and
-ChatGPT breaks it into steps and works through them — it can even browse a real website,
-log into it for you, and check back instead of guessing.
+Right above the message box there's a toggle — Chat or Work — and most people have never
+touched it. Switch it, describe what you actually need done, and ChatGPT breaks it into
+steps and works through them — it can even browse a real website, log into it for you, and
+check back instead of guessing.
 
 The sign-in browsing part currently needs a Plus or Pro plan. The Work mode itself is open
 to everyone.
