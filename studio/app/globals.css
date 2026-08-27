@@ -523,8 +523,12 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 /* The hero headline's own karaoke reveal — house-style's word-by-word caption device
    (export/karaoke.py), played once on the one line that earns a bold moment instead of
    the quiet fade every other element gets. .hk starts dim, flashes brass as it "lands"
-   (.on), then settles: plain words to --ink, "actually work." holding the same brass
-   gradient the em treatment above already uses. */
+   (.on), then settles: plain words to --ink, "actually work." to --gold.
+   Deliberately plain solid colors only, no gradient/background-clip anywhere in this
+   sequence — mixing that with the animated states was the first version's real bug: a
+   gradient clipped to transparent text can't transition smoothly to a solid color, so
+   swapping between them on .on read as a visible pop/glitch rather than a blend. Plain
+   `color` is the one property that reliably animates, so every state here uses only that. */
 .site h1.herokar{font-family:var(--serif);font-weight:700;
   font-size:clamp(2.15rem,7.5vw,3.2rem);line-height:1.06;margin:0 0 .85rem;
   letter-spacing:-.015em;text-wrap:balance}
@@ -532,19 +536,16 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    an inline-block box — a real CSS quirk (trailing whitespace at an inline-block's own
    edge collapses), and exactly what happened here first: "AIsetupsthat actuallywork."
    with every space silently gone. A margin between spans is unambiguous where a text
-   node wasn't. */
-.site .hk{display:inline-block;margin-inline-end:.24em;transition:color .5s ease,opacity .3s ease}
+   node wasn't — widened further after he asked for more visible room between words. */
+.site .hk{display:inline-block;margin-inline-end:.42em;
+  transform:translateY(0) scale(1);
+  transition:color .45s ease,transform .3s cubic-bezier(.2,1.4,.4,1),text-shadow .3s ease}
 .site .hk:last-child{margin-inline-end:0}
-.site .hk.dim{color:var(--rule);opacity:.55}
+.site .hk.dim{color:var(--rule)}
 .site .hk.text{color:var(--ink)}
-.site .hk.brass{color:var(--gold);
-  background:linear-gradient(100deg,#E8C86A 10%,#FFB454 55%,#E8C86A 90%);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.site .hk.on{color:var(--gold-lit)!important;-webkit-text-fill-color:var(--gold-lit)!important;
-  background:none!important;transform:translateY(-2px) scale(1.03);
+.site .hk.brass{color:var(--gold)}
+.site .hk.on{color:var(--gold-lit);transform:translateY(-2px) scale(1.03);
   text-shadow:0 0 18px rgba(232,200,106,.55)}
-.site .hk{transform:translateY(0) scale(1);transition:color .45s ease,transform .3s cubic-bezier(.2,1.4,.4,1),
-  text-shadow .3s ease}
 @media(prefers-reduced-motion:reduce){.site .hk{transition:none;transform:none}}
 .site h2, .pub h2{font-family:var(--serif);font-weight:700;
   font-size:clamp(1.3rem,3.6vw,1.7rem);margin:3.2rem 0 .7rem;text-wrap:balance;
