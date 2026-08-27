@@ -76,5 +76,11 @@
     "brass": "#FFD23F",
     "ember": "#06D6A0",
     "mood": "bright"
+  },
+  {
+    "episode": 14,
+    "brass": "#D9C9F0",
+    "ember": "#6FA8CF",
+    "mood": "neutral"
   }
 ]

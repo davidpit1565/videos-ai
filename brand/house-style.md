@@ -210,3 +210,21 @@ Singular "the setup," not plural "setups" — that's what makes "works" the gram
 correct word instead of a forced edit. Every script's last line before the follow prompt gets
 checked against this exact phrase before voice generation, the same way the other standing
 rules in this file are checked.
+
+---
+
+## 12. Naming a tool on screen
+
+Standing rule, every episode from now on: the first time a script names a specific AI tool
+by name — ChatGPT, Claude, Gemini, or any other named product — that name gets its own small
+identifying mark on screen next to the text, the same instant it's said, not a generic
+"AI" icon. The point is the same one behind "name the tool in the first sentence, not after
+a tease" (§10): a viewer should never have to guess which product is on screen.
+
+**The honest caveat, because this file doesn't skip them:** an official trademarked logo file
+needs that company's brand-usage permission to reproduce exactly — this channel doesn't have
+that clearance today. Until it does, the mark is a plain, simple, non-infringing treatment:
+the product's name set in its own recognizable type/color association (e.g. "ChatGPT" doesn't
+need OpenAI's literal logomark to read instantly), not a traced copy of the real logo. Swap
+in the real asset only after checking each company's actual brand guidelines — this is a
+placeholder for recognizability, not a legal opinion that it's clear to use their mark as-is.
