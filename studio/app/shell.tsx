@@ -126,9 +126,15 @@ export default function Shell({ children }: { children: React.ReactNode }) {
    * before the launch animation had settled — locked in permanently as a gap under the nav
    * bar, and no amount of retried delays is a real fix for a race.
    *
-   * The actual fix is a CSS unit for exactly this: `lvh` is the LARGE viewport height — the
-   * size with browser chrome retracted — fixed at layout time and never recomputed as the
-   * chrome animates. No measurement, no race, no JS at all. See globals.css. */
+   * A CSS unit fixes the recompute-jump with no JS at all — but `lvh` (chrome fully
+   * retracted, the TALLEST reading) was the wrong one of the three to pick: it stayed
+   * taller than the real visible area for as long as the chrome hadn't yet collapsed,
+   * which is the normal state on first load — and .shell clips its own overflow, so that
+   * extra height was the nav bar itself pushed below the fold, not spare scroll room.
+   * `svh` (chrome fully expanded, the SHORTEST reading) is now used instead: it's
+   * guaranteed to fit inside the visible area regardless of chrome state, so the bar is
+   * never the thing that goes missing — worst case is a harmless gap of background below
+   * it once the chrome does collapse. See globals.css. */
 
   if (site)
     return (
