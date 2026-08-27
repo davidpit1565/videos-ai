@@ -1,0 +1,68 @@
+[
+ {
+  "n": 1,
+  "line": "Your Instagram views are losing to TikTok right now.",
+  "start": 0.3,
+  "end": 3.17
+ },
+ {
+  "n": 2,
+  "line": "Your automation pulls Instagram's numbers into a column. It looks correct.",
+  "start": 3.59,
+  "end": 8.27
+ },
+ {
+  "n": 3,
+  "line": "Then it pulls TikTok's numbers into that exact same column.",
+  "start": 8.69,
+  "end": 12.45
+ },
+ {
+  "n": 4,
+  "line": "And it quietly overwrites Instagram's real number with TikTok's.",
+  "start": 12.87,
+  "end": 16.05
+ },
+ {
+  "n": 5,
+  "line": "No error. No warning. The column still looks completely normal.",
+  "start": 16.9,
+  "end": 20.84
+ },
+ {
+  "n": 6,
+  "line": "It's just the wrong platform's number now.",
+  "start": 21.26,
+  "end": 23.43
+ },
+ {
+  "n": 7,
+  "line": "This happens the second two platforms feed one shared field.",
+  "start": 23.85,
+  "end": 27.35
+ },
+ {
+  "n": 8,
+  "line": "Give every platform its own column. Never let two platforms write to the same one.",
+  "start": 27.77,
+  "end": 33.12
+ },
+ {
+  "n": 9,
+  "line": "If a number ever looks wrong and you can't explain why \u2014 that's the first thing to check.",
+  "start": 33.97,
+  "end": 38.62
+ },
+ {
+  "n": 10,
+  "line": "The exact setup's in the link in bio.",
+  "start": 39.04,
+  "end": 41.5
+ },
+ {
+  "n": 11,
+  "line": "Follow for setups that actually work.",
+  "start": 41.92,
+  "end": 44.01
+ }
+]
