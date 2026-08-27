@@ -65,7 +65,7 @@ export async function GET(req: Request) {
     return NextResponse.json({
       ok: true,
       skipped: true,
-      reason: "נמשך כבר בעשרים הדקות האחרונות",
+      reason: "נמשך כבר בשלוש הדקות האחרונות",
       activity: feed.slice(0, 40),
     });
   }
