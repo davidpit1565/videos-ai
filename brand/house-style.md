@@ -195,3 +195,18 @@ agent's report for full citations):
   shares and saves above likes. The practical test for a script: would a viewer actually
   forward this to a colleague because it's a specific, usable thing — not because it was
   entertaining for 40 seconds.
+
+---
+
+## 11. The closing line
+
+Said repeatedly, so it's written down instead of relied on memory: the sign-off always ends
+on **"actually works"** — matching the channel's own name — never the plural-agreeing
+"actually work." The line is:
+
+**"Follow for the setup that actually works."**
+
+Singular "the setup," not plural "setups" — that's what makes "works" the grammatically
+correct word instead of a forced edit. Every script's last line before the follow prompt gets
+checked against this exact phrase before voice generation, the same way the other standing
+rules in this file are checked.

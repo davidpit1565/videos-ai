@@ -201,29 +201,6 @@ export async function GET(req: Request) {
     }
   }
 
-  // ONE-TIME removal, not a general mechanism — remove this block once it has run. Episode
-  // 13's topic (a ChatGPT feature toggle) was retired: the underlying feature had already
-  // moved twice under this episode in two weeks (first "Agent Mode" was discontinued, then
-  // the replacement's own access rules turned out to be reported wrong — Work is gated to
-  // paid plans, not "open to everyone" as the script said), so the episode was scrapped
-  // outright rather than rewritten a third time. He confirmed directly: delete it, from the
-  // studio and everywhere else it's registered. Its caption/youtube.txt, video build, and
-  // the already-rendered (gate-passed, never-published) file were removed from the repo in
-  // the same change; this is the matching removal of its row here, since it never went
-  // live and there is no real post to preserve data for. Guarded on never-live specifically
-  // so this can never touch a row that actually shipped.
-  {
-    const e13 = state.episodes.find((e) => e.number === 13);
-    if (e13 && e13.status !== "live") {
-      state.episodes = state.episodes.filter((e) => e.id !== e13.id);
-      fresh.push({
-        id: uid(), at: now, source: "studio",
-        label: "ריל 13 הוסר — הנושא שלו נזנח (מעולם לא פורסם)",
-        value: null, delta: null,
-      });
-    }
-  }
-
   // Every gated reel is a real, shipped episode, whether or not anyone ever pushed it
   // through /pipeline's "לצינור" button — lib/seed.ts only ever created rows 1 through
   // 6, and nothing since has created one for a number beyond that automatically. A
