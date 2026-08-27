@@ -8,6 +8,7 @@ import { isSite } from "@/lib/routes";
 import { localDT } from "@/lib/fmt";
 import SiteSocial from "./site-social";
 import Mark from "./mark";
+import PageWipe from "./page-wipe";
 
 /** ?debug=1 on any studio page — reads the actual numbers behind the nav-bar-gap report
  *  straight off this device's own DOM, instead of another guess from a screenshot. Env
@@ -139,6 +140,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   if (site)
     return (
       <>
+        <PageWipe />
         {children}
         <SiteSocial />
       </>
