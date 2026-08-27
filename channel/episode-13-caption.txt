@@ -1,0 +1,22 @@
+Your dashboard could be showing you the wrong number right now, and it would look completely fine.
+
+Here's the pattern: two different sources write into the same one field. Source A writes
+first, the real number lands, everything looks correct. Then source B writes second — into
+that exact same field — and quietly replaces it. No error. No warning. The number just
+belongs to the wrong source now, and it still looks like a normal number.
+
+This shows up anywhere two systems feed one place: an n8n or Zapier flow pulling from two
+platforms into one spreadsheet column, a CRM merging leads from two forms into one field, a
+report that syncs from more than one API into a single total.
+
+The fix is one rule, not a rebuild:
+
+Give every source its own field. Never let two different sources write to the same one.
+
+If a number ever changes and you can't explain why — that's the first thing to check.
+
+Full breakdown: actually-works.com/e/13
+
+Follow for setups that actually work.
+
+#automation #n8n #ai #dataintegrity #nocode #productivity
