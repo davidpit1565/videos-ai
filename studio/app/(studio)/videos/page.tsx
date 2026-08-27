@@ -78,6 +78,17 @@ export default function Videos() {
   const [yt, setYt] = useState<YtResp | null>(null);
   const [ytBusy, setYtBusy] = useState(false);
   const [ytMsg, setYtMsg] = useState<string | null>(null);
+  // Which rows have their secondary fields open — closed by default, so the list reads
+  // as one row per reel with its headline numbers, not a wall of inputs. Per-episode id,
+  // not index, so an open row stays open across a re-sort or a row above it being deleted.
+  const [open, setOpen] = useState<Set<string>>(new Set());
+  const toggle = (id: string) =>
+    setOpen((s) => {
+      const next = new Set(s);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
 
   if (!state) return <p className="sub">טוען…</p>;
 
@@ -171,205 +182,123 @@ export default function Videos() {
         </div>
       )}
 
-      {/* phone view — same data, one card per episode */}
-      <div className="cards">
-        {state.episodes.map((e, i) => (
-          <div className="card" key={e.id}>
-            <div className="hd">
-              <span className="no">{e.number}</span>
-              <input className="cell" dir="auto" value={e.title} onChange={(ev) => set(i, "title", ev.target.value)} />
-              <span className={"chip s-" + e.status}>{STATUS_HE[e.status]}</span>
-            </div>
-            <div className="row" style={{ fontSize: 13 }}>
-              <PlatformBadges episode={e} />
-            </div>
-            <div className="row">
-              <select className="cell" value={e.status} onChange={(ev) => set(i, "status", ev.target.value as Status)}>
-                {STATUS_ORDER.map((s) => (
-                  <option key={s} value={s}>
-                    {STATUS_HE[s]}
-                  </option>
-                ))}
-              </select>
-              <select className="cell" value={e.format} onChange={(ev) => set(i, "format", ev.target.value as Format)}>
-                {(["reel", "long", "both"] as Format[]).map((f) => (
-                  <option key={f} value={f}>
-                    {FORMAT_HE[f]}
-                  </option>
-                ))}
-              </select>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={e.tested}
-                  onChange={(ev) => set(i, "tested", ev.target.checked)}
-                  style={{ accentColor: "var(--brass)" }}
-                />
-                נבדק
-              </label>
-              <button className="del del-labeled" onClick={() => update((d) => void d.episodes.splice(i, 1))}>
-                × מחק ריל
+      {/* One row per reel, at every width — no separate phone/desktop implementations to
+          keep in sync (that drift is exactly what let the mislink-correction pass exist
+          server-side only for a while), and no wide table to scroll sideways through.
+          The number is never an input: hand-editing it is what set off two real data
+          incidents this same week (a stale-caption /e/N read as ground truth, and a
+          manual "link to episode" pick landing one row off) — it comes only from the
+          episode being created, and stays whatever it was created as. Everything a pull
+          fills in by itself (views, likes, saves, comments, shares, engagement, save
+          rate) is plain text, never an input, for the same reason. What's left editable
+          is only what genuinely has no other source: title, topic, format, tested,
+          published date, and subsAttributed (no API attributes a signup to a reel). */}
+      <div className="reels">
+        {state.episodes.map((e, i) => {
+          const isOpen = open.has(e.id);
+          return (
+            <div className="reel" key={e.id}>
+              <button
+                type="button"
+                className="reel-main"
+                onClick={() => toggle(e.id)}
+                aria-expanded={isOpen}
+              >
+                <span className="reel-no">{e.number}</span>
+                <span className="reel-title" dir="auto" title={e.title}>{e.title}</span>
+                <span className={"chip s-" + e.status}>{STATUS_HE[e.status]}</span>
+                <span className="reel-platforms"><PlatformBadges episode={e} /></span>
+                <span className="reel-views">
+                  <b>{n(e.views)}</b>
+                  <span className="k">צפיות</span>
+                </span>
+                <span className="reel-chevron">{isOpen ? "▲" : "▼"}</span>
               </button>
-            </div>
-            <div className="grid">
-              {(
-                [
-                  ["views", "צפיות"],
-                  ["likes", "לייקים"],
-                  ["saves", "שמירות"],
-                  ["comments", "תגובות"],
-                  ["shares", "שיתופים"],
-                ] as const
-              ).map(([k, label]) => (
-                <div className="g" key={k}>
-                  <div className="k">{label}</div>
-                  <div className="ro">{n(e[k])}</div>
-                </div>
-              ))}
-              <div className="g">
-                <div className="k">נרשמים</div>
-                <input inputMode="numeric" value={e.subsAttributed ?? ""} onChange={(ev) => num(i, "subsAttributed", ev.target.value)} />
-              </div>
-              <div className="g">
-                <div className="k">מדידה</div>
-                <div className="ro">{pct(engagement(e))}</div>
-              </div>
-              <div className="g">
-                <div className="k">שמירות/צפייה</div>
-                <div className="ro">{pct(saveRate(e))}</div>
-              </div>
-              <div className="g">
-                <div className="k">פורסם</div>
-                <input
-                  type="date"
-                  value={e.publishedAt ?? ""}
-                  onChange={(ev) => set(i, "publishedAt", ev.target.value || null)}
-                />
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
 
-      <div className="tw eps boxed">
-        <table>
-          <thead>
-            {/* 16 columns in one flat row read as one undifferentiated wall once the
-                table scrolled sideways — this row groups them by what they're for, so
-                scrolling into the performance numbers still says so at the top. */}
-            <tr className="grp">
-              <th colSpan={7}>פרטי הריל</th>
-              <th>פלטפורמות</th>
-              <th colSpan={8}>ביצועים · צפיות עד שיתופים אוטומטי מ-Instagram/YouTube, לא לעריכה</th>
-              <th />
-            </tr>
-            <tr>
-              <th className="sticky c1">#</th>
-              <th className="sticky c2">כותרת</th>
-              <th>נושא</th>
-              <th>פורמט</th>
-              <th>שלב</th>
-              <th>נבדק</th>
-              <th>פורסם</th>
-              <th>IG · FB · YT</th>
-              <th>צפיות</th>
-              <th>לייקים</th>
-              <th>שמירות</th>
-              <th>תגובות</th>
-              <th>שיתופים</th>
-              <th>מדידה</th>
-              <th>שמירות/צפייה</th>
-              <th>נרשמים</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {state.episodes.map((e, i) => (
-              <tr key={e.id}>
-                <td className="sticky c1">
-                  <input
-                    className="cell n"
-                    style={{ width: 46 }}
-                    value={e.number}
-                    onChange={(ev) => set(i, "number", Number(ev.target.value.replace(/[^\d]/g, "") || 0))}
-                  />
-                </td>
-                <td className="name sticky c2">
-                  <input className="cell" dir="auto" value={e.title} onChange={(ev) => set(i, "title", ev.target.value)} />
-                </td>
-                <td>
-                  <input className="cell" dir="auto" value={e.topic} onChange={(ev) => set(i, "topic", ev.target.value)} />
-                </td>
-                <td>
-                  <select
-                    className="cell"
-                    value={e.format}
-                    onChange={(ev) => set(i, "format", ev.target.value as Format)}
-                  >
-                    {(["reel", "long", "both"] as Format[]).map((f) => (
-                      <option key={f} value={f}>
-                        {FORMAT_HE[f]}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-                <td>
-                  <select
-                    className="cell"
-                    value={e.status}
-                    onChange={(ev) => set(i, "status", ev.target.value as Status)}
-                  >
-                    {STATUS_ORDER.map((s) => (
-                      <option key={s} value={s}>
-                        {STATUS_HE[s]}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-                <td style={{ textAlign: "center" }}>
-                  <input
-                    type="checkbox"
-                    checked={e.tested}
-                    onChange={(ev) => set(i, "tested", ev.target.checked)}
-                    style={{ accentColor: "var(--brass)" }}
-                  />
-                </td>
-                <td>
-                  <input
-                    className="cell num"
-                    type="date"
-                    value={e.publishedAt ?? ""}
-                    onChange={(ev) => set(i, "publishedAt", ev.target.value || null)}
-                  />
-                </td>
-                <td style={{ whiteSpace: "nowrap" }}>
-                  <PlatformBadges episode={e} />
-                </td>
-                {/* Read-only, not because typing a correction is hard, but because it's
-                    exactly what produced a hand-entered row that never matched a real
-                    post and threw off the homepage's own live count. These five come
-                    from /api/track (Instagram/YouTube) — a platform that's disconnected
-                    shows its real last-synced value, not an invented one. subsAttributed
-                    stays editable below: no API attributes a signup to an episode. */}
-                {(["views", "likes", "saves", "comments", "shares"] as const).map((k) => (
-                  <td key={k} className="num">{n(e[k])}</td>
-                ))}
-                <td className="num">{pct(engagement(e))}</td>
-                <td className="num" style={{ color: "var(--brass)" }}>
-                  {pct(saveRate(e))}
-                </td>
-                <td>
-                  <input className="cell n" inputMode="numeric" value={e.subsAttributed ?? ""} onChange={(ev) => num(i, "subsAttributed", ev.target.value)} />
-                </td>
-                <td>
+              {isOpen && (
+                <div className="reel-details">
+                  <label className="fld">
+                    <span className="k">כותרת</span>
+                    <input className="cell" dir="auto" value={e.title} onChange={(ev) => set(i, "title", ev.target.value)} />
+                  </label>
+                  <label className="fld">
+                    <span className="k">נושא</span>
+                    <input className="cell" dir="auto" value={e.topic} onChange={(ev) => set(i, "topic", ev.target.value)} />
+                  </label>
+                  <label className="fld">
+                    <span className="k">שלב</span>
+                    <select className="cell" value={e.status} onChange={(ev) => set(i, "status", ev.target.value as Status)}>
+                      {STATUS_ORDER.map((s) => (
+                        <option key={s} value={s}>{STATUS_HE[s]}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="fld">
+                    <span className="k">פורמט</span>
+                    <select className="cell" value={e.format} onChange={(ev) => set(i, "format", ev.target.value as Format)}>
+                      {(["reel", "long", "both"] as Format[]).map((f) => (
+                        <option key={f} value={f}>{FORMAT_HE[f]}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="fld fld-check">
+                    <input
+                      type="checkbox"
+                      checked={e.tested}
+                      onChange={(ev) => set(i, "tested", ev.target.checked)}
+                      style={{ accentColor: "var(--brass)" }}
+                    />
+                    <span className="k">נבדק</span>
+                  </label>
+                  <label className="fld">
+                    <span className="k">פורסם</span>
+                    <input className="cell num" type="date" value={e.publishedAt ?? ""} onChange={(ev) => set(i, "publishedAt", ev.target.value || null)} />
+                  </label>
+
+                  <div className="fld ro">
+                    <span className="k">לייקים</span>
+                    <span className="v">{n(e.likes)}</span>
+                  </div>
+                  <div className="fld ro">
+                    <span className="k">שמירות</span>
+                    <span className="v">{n(e.saves)}</span>
+                  </div>
+                  <div className="fld ro">
+                    <span className="k">תגובות</span>
+                    <span className="v">{n(e.comments)}</span>
+                  </div>
+                  <div className="fld ro">
+                    <span className="k">שיתופים</span>
+                    <span className="v">{n(e.shares)}</span>
+                  </div>
+                  <div className="fld ro">
+                    <span className="k">מדידה</span>
+                    <span className="v">{pct(engagement(e))}</span>
+                  </div>
+                  <div className="fld ro">
+                    <span className="k">שמירות/צפייה</span>
+                    <span className="v" style={{ color: "var(--brass)" }}>{pct(saveRate(e))}</span>
+                  </div>
+                  {e.ytViews != null && (
+                    <div className="fld ro">
+                      <span className="k">צפיות ביוטיוב</span>
+                      <span className="v">{n(e.ytViews)}</span>
+                    </div>
+                  )}
+
+                  <label className="fld">
+                    <span className="k">נרשמים שיוחסו</span>
+                    <input className="cell n" inputMode="numeric" value={e.subsAttributed ?? ""} onChange={(ev) => num(i, "subsAttributed", ev.target.value)} />
+                  </label>
+
                   <button className="del del-labeled" onClick={() => update((d) => void d.episodes.splice(i, 1))}>
-                    × מחק
+                    × מחק ריל
                   </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       <h2>קישור לפוסטים באינסטגרם</h2>
@@ -525,9 +454,14 @@ export default function Videos() {
                             const ep = d.episodes.find((x) => x.id === id);
                             if (!ep) return;
                             ep.ytVideoId = v.id;
-                            if (v.views !== null) ep.views = v.views;
-                            if (v.likes !== null) ep.likes = v.likes;
-                            if (v.comments !== null) ep.comments = v.comments;
+                            // ytViews/ytLikes/ytComments, never views/likes/comments — those
+                            // are Instagram's own fields (see the comment on Episode in
+                            // types.ts). This same manual link used to write YouTube's
+                            // numbers into Instagram's fields, which is the exact bug that
+                            // silently erased six episodes' real view counts every pull.
+                            if (v.views !== null) ep.ytViews = v.views;
+                            if (v.likes !== null) ep.ytLikes = v.likes;
+                            if (v.comments !== null) ep.ytComments = v.comments;
                             ep.publishedAt = v.publishedAt?.slice(0, 10) ?? ep.publishedAt;
                             ep.status = "live";
                           });
