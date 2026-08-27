@@ -1,3 +1,10 @@
+⚠️ DO NOT PUBLISH — verified wrong as of 2026-08-27: ChatGPT Agent Mode was discontinued
+in early August 2026 (OpenAI now points to ChatGPT Work / the cloud browser instead), and
+even before that it was never actually reached via "Settings" the way this script claims.
+Retire this episode or rewrite it from scratch against what's real today — see the chat
+where this was found for sources. Delete this warning line only once the content below
+has actually been checked and fixed.
+
 You've used ChatGPT a hundred times. You've never actually seen this.
 
 It's not answering you — it's doing something by itself: opening a real page,
