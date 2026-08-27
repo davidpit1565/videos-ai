@@ -275,7 +275,7 @@ export default function Dashboard() {
                 return (
                   <tr key={e.id}>
                     <td className="num">{e.number}</td>
-                    <td className="name">{e.title}</td>
+                    <td className="ttl" dir="auto" title={e.title}>{e.title}</td>
                     <td className="num">{n(e.views)}</td>
                     <td className="num">
                       {e.saves == null || e.views == null ? (
