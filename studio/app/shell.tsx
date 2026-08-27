@@ -139,6 +139,12 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   if (site)
     return (
       <>
+        {/* A thin brass line that fills with the page's own scroll position — the same
+         *  progress bar every reel already draws across the top of its own frame
+         *  (export/*.html's .prog), just tied to this page's scroll instead of a video's
+         *  playhead. Pure CSS (animation-timeline: scroll()), so browsers without support
+         *  simply never grow it — no JS, nothing to break. */}
+        <div className="scrollrail" data-decor />
         {children}
         <SiteSocial />
       </>
