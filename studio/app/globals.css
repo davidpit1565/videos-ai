@@ -519,6 +519,27 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site h1 em, .pub h1 em{font-style:normal;color:var(--gold);
   background:linear-gradient(100deg,#E8C86A 10%,#FFB454 55%,#E8C86A 90%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* The hero headline's own karaoke reveal — house-style's word-by-word caption device
+   (export/karaoke.py), played once on the one line that earns a bold moment instead of
+   the quiet fade every other element gets. .hk starts dim, flashes brass as it "lands"
+   (.on), then settles: plain words to --ink, "actually work." holding the same brass
+   gradient the em treatment above already uses. */
+.site h1.herokar{font-family:var(--serif);font-weight:700;
+  font-size:clamp(2.15rem,7.5vw,3.2rem);line-height:1.06;margin:0 0 .85rem;
+  letter-spacing:-.015em;text-wrap:balance}
+.site .hk{display:inline-block;transition:color .5s ease,opacity .3s ease}
+.site .hk.dim{color:var(--rule);opacity:.55}
+.site .hk.text{color:var(--ink)}
+.site .hk.brass{color:var(--gold);
+  background:linear-gradient(100deg,#E8C86A 10%,#FFB454 55%,#E8C86A 90%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.site .hk.on{color:var(--gold-lit)!important;-webkit-text-fill-color:var(--gold-lit)!important;
+  background:none!important;transform:translateY(-2px) scale(1.03);
+  text-shadow:0 0 18px rgba(232,200,106,.55)}
+.site .hk{transform:translateY(0) scale(1);transition:color .45s ease,transform .3s cubic-bezier(.2,1.4,.4,1),
+  text-shadow .3s ease}
+@media(prefers-reduced-motion:reduce){.site .hk{transition:none;transform:none}}
 .site h2, .pub h2{font-family:var(--serif);font-weight:700;
   font-size:clamp(1.3rem,3.6vw,1.7rem);margin:3.2rem 0 .7rem;text-wrap:balance;
   letter-spacing:-.01em}
@@ -555,6 +576,30 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 @media (prefers-reduced-motion:reduce){
   .site .hero::before{animation:none}
 }
+
+/* Film grain — every video carries this at 5% opacity (video/reel-*.html's own .grain);
+   the site never did, which is the difference between "a dark page" and "the same
+   material as the videos." A single inline SVG turbulence filter, fixed over the whole
+   viewport, static (grain that visibly crawls reads as a loading indicator, not texture),
+   ignored entirely under reduced-motion since a static overlay has no motion to reduce —
+   left in for everyone, it costs nothing to render once. */
+.site::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* The brass wipe, brought to page navigation (page-wipe.tsx) — the same 3px/350ms sweep
+   brand/house-style.md §4 documents as the channel's only transition, so far only used
+   between video sections and the scroll reveal. A full route change was still an instant,
+   silent swap; this is the one place site navigation didn't yet feel like the channel. */
+.pagewipe{position:fixed;inset-block-start:0;inset-inline:0;height:3px;z-index:9999;
+  pointer-events:none;transform-origin:left;
+  background:linear-gradient(90deg,#E8C86A,#FFE7A8,#E8C86A);
+  box-shadow:0 0 16px rgba(232,200,106,.75);
+  animation:pagewipe-sweep .35s cubic-bezier(.2,.8,.3,1) both,
+            pagewipe-fade .2s ease .35s both}
+@keyframes pagewipe-sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pagewipe-fade{to{opacity:0}}
+
 .site .herotext{min-width:0}
 /* Used to force the video ABOVE the headline on a phone (order:-1) — meant to put "the
    exact screen" first, but a full-height 9:16 video is most of a phone's first

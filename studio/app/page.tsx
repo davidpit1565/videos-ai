@@ -13,6 +13,7 @@ import Reveal from "./reveal";
 import SafeZoneDemo from "./safe-zone-demo";
 import ExternalIcon from "./external-icon";
 import HeroDiagnostic from "./hero-diagnostic";
+import HeroHeadline from "./hero-headline";
 import { TOOLS, toolFor } from "@/lib/tools";
 
 export const metadata = {
@@ -61,9 +62,7 @@ export default async function Home() {
       <header className="hero">
         <div className="herotext">
           <p className="kicker">AI CREATOR</p>
-          <h1>
-            AI setups that <em>actually work</em>.
-          </h1>
+          <HeroHeadline />
           <p className="sub">
             One setup per episode. The exact screen, the exact paste, and the part that
             breaks — because the part that breaks is the part everyone else skips.
