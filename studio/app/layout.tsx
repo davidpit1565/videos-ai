@@ -49,6 +49,9 @@ export const metadata: Metadata = {
     ],
     apple: "/icon-192.png",
   },
+  // Proves ownership of the domain to Google Search Console (URL prefix property,
+  // HTML tag method) — required before the site can be indexed or its sitemap submitted.
+  verification: { google: "87HZR9bS3bdyxXBokek25fhY1zgzjJwI2ug1qdTMb8A" },
 };
 
 export const viewport: Viewport = {
