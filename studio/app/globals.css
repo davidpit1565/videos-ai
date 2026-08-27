@@ -310,10 +310,20 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
      scroll — 700px of a 2500px page, silently. The studio chrome is the only thing
      this layout is for. */
   /* dvh recomputes as the browser's address bar collapses/expands — that recompute is
-     the jump. lvh is fixed to the chrome-retracted size at layout time and never
-     recomputes, so this needs no JS and no measurement race (see shell.tsx history).
-     100dvh stays first for the handful of engines with no lvh support. */
-  .shell:not(.pub){height:100dvh;height:100lvh;display:flex;flex-direction:column;overflow:hidden;padding:0}
+     the jump that motivated moving off it, and lvh (chrome fully retracted, the TALLEST
+     of the three units) doesn't recompute — but it stayed taller than the real visible
+     area for exactly as long as the chrome hadn't yet collapsed, which is the normal
+     state on first load and after most navigations. .shell clips its own overflow, so
+     that gap wasn't extra scroll room, it was the nav bar — the last flex item — pushed
+     down past the visible fold until a scroll gesture happened to retract the chrome.
+     That's an intermittent "the nav bar is gone" report, not a permanent layout bug,
+     which is exactly what kept coming back. svh (chrome fully expanded, the SHORTEST of
+     the three) is the one value guaranteed to fit inside the visible area no matter what
+     state the chrome is in — nothing to recompute, nothing to wait on, and the failure
+     mode if the chrome is ever wider than assumed is a harmless gap of background below
+     the bar, never the bar itself going missing. 100dvh stays first as the fallback for
+     the handful of engines with no small-viewport-unit support at all. */
+  .shell:not(.pub){height:100dvh;height:100svh;display:flex;flex-direction:column;overflow:hidden;padding:0}
   /* Installed as a home-screen app (standalone display, viewport-fit:cover already set
      in layout.tsx), there's no browser chrome left to push content down from the notch
      — the header rendered right up against it, real content lost under the status bar.
