@@ -1,0 +1,23 @@
+Your Instagram views are losing to TikTok right now.
+
+Here's the pattern: your automation pulls Instagram's numbers into a column, and looks
+correct. Then it pulls TikTok's numbers into that exact same column — and quietly
+overwrites Instagram's real number with TikTok's. No error. No warning. The column still
+shows a normal-looking number. It's just the wrong platform's number now.
+
+This happens the second two platforms feed the same field: Instagram + TikTok in one
+tracker, Reels + Shorts merged into one "views" column, any multi-platform report built in
+n8n, Zapier, Make, or a plain spreadsheet.
+
+The fix is one rule, not a rebuild:
+
+Give every platform its own column. Never let two platforms write to the same one.
+
+If a number ever looks flat or wrong and you can't explain why — that's the first thing to
+check.
+
+Full breakdown: actually-works.com/e/13
+
+Follow for setups that actually work.
+
+#automation #n8n #ai #instagram #tiktok #contentcreator #nocode
