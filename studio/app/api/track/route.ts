@@ -205,6 +205,17 @@ export async function GET(req: Request) {
     setPermalink: (e: State["episodes"][number], p: string | null) => void;
     viewsNoteLabel: (n: number) => string;
     savesNoteLabel: ((n: number) => string) | null;
+    /** Where this platform's numbers actually live on the episode. Instagram and YouTube
+     *  used to both write e.views/e.likes/e.comments — the same shared field — and since
+     *  Instagram was synced first and YouTube second, YouTube's own, much smaller count
+     *  silently overwrote Instagram's real one on every single pull for any episode with
+     *  both linked. Confirmed against the activity feed: the same timestamp shows a real
+     *  Instagram "ריל N · צפיות" write immediately followed by "ריל N · צפיות ביוטיוב"
+     *  overwriting the same field. e.views/likes/saves/comments/shares are Instagram's own
+     *  now (saves/shares have no YouTube equivalent, which was the tell); YouTube gets its
+     *  own ytViews/ytLikes/ytComments so the two can never collide again. */
+    currentViews: (e: State["episodes"][number]) => number | null;
+    applyMetrics: (e: State["episodes"][number], m: LinkableMedia) => void;
   };
 
   const syncPlatform = (media: LinkableMedia[], cfg: PlatformConfig) => {
@@ -213,13 +224,9 @@ export async function GET(req: Request) {
       const id = cfg.getId(e);
       const m = id ? byId.get(id) : undefined;
       if (!m) continue;
-      note(cfg.key, cfg.viewsNoteLabel(e.number), m.views, e.views);
+      note(cfg.key, cfg.viewsNoteLabel(e.number), m.views, cfg.currentViews(e));
       if (cfg.savesNoteLabel && m.saves != null) note(cfg.key, cfg.savesNoteLabel(e.number), m.saves, e.saves);
-      e.views = m.views ?? e.views;
-      e.likes = m.likes ?? e.likes;
-      e.saves = m.saves ?? e.saves;
-      e.comments = m.comments ?? e.comments;
-      e.shares = m.shares ?? e.shares;
+      cfg.applyMetrics(e, m);
       // backfilled for episodes linked before this field existed — the permalink is what
       // the episode page's embed needs, the media id alone can't build a URL.
       cfg.setPermalinkIfMissing(e, m.permalink);
@@ -256,11 +263,7 @@ export async function GET(req: Request) {
         const e = hits[0];
         cfg.setId(e, m.id);
         cfg.setPermalink(e, m.permalink);
-        e.views = m.views ?? e.views;
-        e.likes = m.likes ?? e.likes;
-        e.saves = m.saves ?? e.saves;
-        e.comments = m.comments ?? e.comments;
-        e.shares = m.shares ?? e.shares;
+        cfg.applyMetrics(e, m);
         if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
         if (e.status !== "live") { e.status = "live"; newlyLive.push(e.number); }
         linked.add(m.id);
@@ -332,6 +335,14 @@ export async function GET(req: Request) {
         setPermalink: (e, p) => { e.igPermalink = p; },
         viewsNoteLabel: (n) => `ריל ${n} · צפיות`,
         savesNoteLabel: (n) => `ריל ${n} · שמירות`,
+        currentViews: (e) => e.views,
+        applyMetrics: (e, m) => {
+          e.views = m.views ?? e.views;
+          e.likes = m.likes ?? e.likes;
+          e.saves = m.saves ?? e.saves;
+          e.comments = m.comments ?? e.comments;
+          e.shares = m.shares ?? e.shares;
+        },
       },
     );
   }
@@ -353,6 +364,12 @@ export async function GET(req: Request) {
         setPermalink: () => {},
         viewsNoteLabel: (n) => `ריל ${n} · צפיות ביוטיוב`,
         savesNoteLabel: null,
+        currentViews: (e) => e.ytViews ?? null,
+        applyMetrics: (e, m) => {
+          e.ytViews = m.views ?? e.ytViews ?? null;
+          e.ytLikes = m.likes ?? e.ytLikes ?? null;
+          e.ytComments = m.comments ?? e.ytComments ?? null;
+        },
       },
     );
   }

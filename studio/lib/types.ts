@@ -29,12 +29,23 @@ export type Episode = {
   igPermalink?: string | null;
   ytVideoId: string | null;
   notes: string;
-  /** pulled from Instagram; null until the episode is live and a token exists */
+  /** pulled from Instagram; null until the episode is live and a token exists. saves/shares
+   *  have no YouTube equivalent, which is the tell that these were always Instagram's own
+   *  fields, not a shared "views" — the two platforms used to write into the same field and
+   *  YouTube's own, much smaller count silently overwrote Instagram's real one on every pull
+   *  that had both linked (confirmed against the activity feed: the same timestamp shows
+   *  "ריל N · צפיות" write a real Instagram number, then "ריל N · צפיות ביוטיוב" immediately
+   *  overwrite the same `views` field seconds later). See ytViews/ytLikes/ytComments below. */
   views: number | null;
   likes: number | null;
   saves: number | null;
   comments: number | null;
   shares: number | null;
+  /** YouTube's own counts, kept apart from the Instagram fields above on purpose — see the
+   *  comment on `views`. Optional so a state saved before this field existed still loads. */
+  ytViews?: number | null;
+  ytLikes?: number | null;
+  ytComments?: number | null;
   /** how many subscribers this episode brought — entered by hand, since no API attributes it */
   subsAttributed: number | null;
   /** planned publish date, YYYY-MM-DD. The week view is built from this. */
