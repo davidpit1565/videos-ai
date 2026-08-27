@@ -89,6 +89,7 @@ export async function GET() {
               storedViews: e.views,
               liveViews: live ? live.views : "not in current fetch window",
               liveReach: live ? live.reach : undefined,
+              publishedAt: e.publishedAt,
               title: e.title,
             };
           }),
