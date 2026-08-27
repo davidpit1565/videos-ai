@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { BEEHIIV_PUB, fetchInstagram, fetchBeehiiv } from "@/lib/sources";
 import { deviceCount, publicKey } from "@/lib/push";
-import { dbVar } from "@/lib/db";
+import { dbVar, loadState } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -50,6 +50,30 @@ function relatedNames(): string[] {
 export async function GET() {
   const [instagram, beehiiv] = await Promise.all([fetchInstagram(), fetchBeehiiv()]);
 
+  // The one question this endpoint couldn't answer: not "is the connection alive" but
+  // "did the auto-link actually run, and what did it decide" — which used to be readable
+  // only from inside the PIN, so diagnosing it needed a screenshot from him every time.
+  // Nothing here is secret — episode numbers, titles and unlinked-post captions are
+  // already public on the site itself; this just saves a round trip.
+  const state = await loadState().catch(() => null);
+  const episodes = state
+    ? {
+        total: state.episodes.length,
+        live: state.episodes.filter((e) => e.status === "live").length,
+        // the exact activity-feed labels a human would otherwise have to open /studio to read
+        recentFlags: (state.activity ?? [])
+          .filter(
+            (f) =>
+              f.label.startsWith("פוסט לא מקושר") ||
+              f.label.startsWith("סרטון לא מקושר ביוטיוב") ||
+              f.label.startsWith("אי-התאמה אפשרית"),
+          )
+          .slice(0, 20)
+          .map((f) => ({ at: f.at, label: f.label })),
+        lastPullAt: state.activity?.[0]?.at ?? null,
+      }
+    : null;
+
   // Whether notifications can work at all, readable from outside the PIN. The endpoints that
   // do the work are private, and correctly so — but that left no way to check them without
   // his password, which means the first sign of a problem would have been him pressing the
@@ -88,6 +112,7 @@ export async function GET() {
     // from the built-in default. It is public, so it can be shown.
     beehiivPublication: { id: BEEHIIV_PUB, fromEnv: !!process.env.BEEHIIV_PUBLICATION_ID },
     totalVars: Object.keys(process.env).length,
+    episodes,
     vars: {
       IG_USER_ID: shape(process.env.IG_USER_ID),
       IG_ACCESS_TOKEN: shape(process.env.IG_ACCESS_TOKEN),
