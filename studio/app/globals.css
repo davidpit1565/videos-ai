@@ -616,15 +616,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 @keyframes pagewipe-sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes pagewipe-fade{to{opacity:0}}
 
-/* The cursor's own house-style treatment (§5: "enlarged, soft brass glow, smoothed
-   path"), brought to the real pointer — cursor-glow.tsx positions this via translate()
-   in rAF, smoothed there rather than in CSS since the smoothing IS the point. The
-   component itself never mounts without a real mouse or under reduced-motion; this is
-   just the paint-time half of that gate. */
-.cursorglow{position:fixed;top:0;left:0;width:26px;height:26px;margin:-13px;border-radius:50%;
-  background:radial-gradient(circle,rgba(232,200,106,.55) 0%,rgba(232,200,106,.18) 55%,rgba(232,200,106,0) 75%);
-  pointer-events:none;z-index:9998;mix-blend-mode:screen;will-change:transform}
-
 .site .herotext{min-width:0}
 /* Used to force the video ABOVE the headline on a phone (order:-1) — meant to put "the
    exact screen" first, but a full-height 9:16 video is most of a phone's first
