@@ -48,7 +48,7 @@ and the part that breaks. Nothing else — no course, no launch, no funnel.
 Start with this one. It's the setup most people should have made first:
 
 One paste, and ChatGPT stops giving you the obvious
-actually-works-studio.vercel.app/e/1
+actually-works.com/e/1
 
 It takes about two minutes. The page has the five clicks, the prompt in
 full, and — this is the part other tutorials skip — what it will NOT do.

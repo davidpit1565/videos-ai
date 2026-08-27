@@ -4,7 +4,7 @@ It isn't. You just say what you want, in plain words â€” "make the button big" â
 
 The rule for any first try with it: start with one sentence and one small change, before anything big.
 
-Full breakdown: actually-works-studio.vercel.app/e/12
+Full breakdown: actually-works.com/e/12
 
 Follow for setups that actually work.
 

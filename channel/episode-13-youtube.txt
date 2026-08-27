@@ -5,7 +5,7 @@ page and click a real button by itself, while you watch — Agent Mode, already
 inside ChatGPT, turned off by default. No code, no app to install. It won't do
 anything you didn't ask it to — it still needs you to say what.
 
-Full breakdown: actually-works-studio.vercel.app/e/13
+Full breakdown: actually-works.com/e/13
 
 Follow for the ChatGPT features you didn't know you had.
 

@@ -4,7 +4,7 @@ It's not answering you — it's doing something by itself: opening a real page,
 clicking a real button, while you watch. No code, no app to install. It's
 already inside ChatGPT, turned off by default.
 
-Full breakdown: actually-works-studio.vercel.app/e/13
+Full breakdown: actually-works.com/e/13
 
 Follow for the ChatGPT features you didn't know you had.
 
