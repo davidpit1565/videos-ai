@@ -161,31 +161,31 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="24.45" data-out="28.285">
+<section class="scene" data-in="24.45" data-out="28.795">
   <div class="pad"><div class="kb">
     <h2 class="b punch" data-at="24.48">No settings.<br>No <span class="box">re-typing</span>.</h2>
   </div></div>
 </section>
 
 <!-- the takeaway — the concrete rule, on its own screen -->
-<section class="scene" data-in="28.285" data-out="32.89">
+<section class="scene" data-in="28.795" data-out="33.4">
   <div class="pad"><div class="kb">
-    <div class="takecard b" data-at="28.315">
+    <div class="takecard b" data-at="28.825">
       <div class="tc-k">The rule</div>
       <div class="tc-b">Tell it once. It carries that into <strong>every new chat</strong> you open.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="32.89" data-out="35.27">
+<section class="scene" data-in="33.4" data-out="35.78">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="32.92"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="33.43"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="35.27" data-out="37.99">
+<section class="scene" data-in="35.78" data-out="38.5">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="35.3" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="35.81" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -215,7 +215,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=38.59,t=0,playing=false,last=0;
+  var DUR=39.1,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -233,10 +233,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [13.38,16.35,"It already knows. You never said it a second time."],
     [16.77,19.76,"No settings to dig through. No re-typing your own life."],
     [20.18,24.24,"You just talk to it once, like it's a person who was paying attention."],
-    [24.66,27.86,"And it stays that way, chat after chat, day after day."],
-    [28.71,32.68,"Tell it once, and it carries that into every new chat you open."],
-    [33.10,35.06,"The setup's in the link in bio."],
-    [35.48,37.69,"Follow for the setup that actually works."]
+    [24.66,28.37,"And it stays that way, chat after chat, day after day."],
+    [29.22,33.19,"Tell it once, and it carries that into every new chat you open."],
+    [33.61,35.57,"The setup's in the link in bio."],
+    [35.99,38.20,"Follow for the setup that actually works."]
   ];
   var WORDS=[
     [0.52,1.04,"ChatGPT",0],
@@ -244,108 +244,108 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [1.18,1.46,"recall",0],
     [1.46,1.74,"things",1],
     [1.74,1.96,"about",1],
-    [1.96,2.28,"you,",1],
-    [2.42,2.54,"even",2],
-    [2.5,2.66,"in",2],
-    [2.66,2.78,"a",2],
+    [1.96,2.3,"you,",1],
+    [2.34,2.5,"even",2],
+    [2.5,2.68,"in",2],
+    [2.68,2.8,"a",2],
     [2.76,2.98,"brand",2],
     [2.98,3.1,"new",2],
     [3.1,3.52,"chat.",2],
-    [4.0,4.16,"Say",3],
+    [3.94,4.16,"Say",3],
     [4.16,4.54,"something",3],
-    [4.54,5.04,"once,",3],
-    [5.3,5.64,"anything",4],
+    [4.54,5.02,"once,",3],
+    [5.28,5.64,"anything",4],
     [5.64,6.0,"real",4],
     [6.0,6.24,"about",4],
     [6.24,6.5,"your",5],
     [6.5,6.72,"own",5],
-    [6.72,7.24,"life.",5],
-    [7.58,7.84,"Close",6],
-    [7.84,8.28,"it.",6],
+    [6.72,7.22,"life.",5],
+    [7.56,7.84,"Close",6],
+    [7.84,8.3,"it.",6],
     [8.44,8.68,"Open",7],
     [8.68,8.84,"a",7],
     [8.84,9.04,"brand",7],
     [9.04,9.18,"new",8],
-    [9.18,9.86,"conversation.",8],
-    [10.5,10.68,"Ask",9],
+    [9.18,9.84,"conversation.",8],
+    [10.46,10.68,"Ask",9],
     [10.68,11.0,"something",9],
     [11.0,11.4,"connected",9],
     [11.4,11.54,"to",10],
-    [11.54,11.68,"what",10],
-    [11.68,11.92,"you",10],
+    [11.54,11.7,"what",10],
+    [11.7,11.92,"you",10],
     [11.92,12.26,"said.",11],
     [13.52,13.7,"It",12],
-    [13.7,14.04,"already",12],
-    [14.04,14.36,"knows.",12],
+    [13.7,14.02,"already",12],
+    [14.02,14.36,"knows.",12],
     [14.7,14.88,"You",13],
-    [14.88,15.16,"never",13],
-    [15.16,15.32,"said",13],
+    [14.88,15.14,"never",13],
+    [15.14,15.32,"said",13],
     [15.32,15.52,"it",14],
     [15.52,15.74,"a",14],
     [15.74,15.92,"second",14],
-    [15.92,16.42,"time.",15],
-    [16.92,17.06,"No",16],
+    [15.92,16.36,"time.",15],
+    [16.88,17.06,"No",16],
     [17.06,17.42,"settings",16],
     [17.42,17.64,"to",16],
     [17.64,17.78,"dig",17],
     [17.78,18.04,"through.",17],
-    [18.36,18.56,"No",18],
-    [18.56,19.02,"re-typing",18],
-    [19.02,19.28,"your",18],
-    [19.28,19.48,"own",19],
+    [18.36,18.54,"No",18],
+    [18.54,19.02,"re-typing",18],
+    [19.02,19.26,"your",18],
+    [19.26,19.48,"own",19],
     [19.48,19.78,"life.",19],
-    [20.24,20.42,"You",20],
-    [20.42,20.64,"just",20],
+    [20.2,20.4,"You",20],
+    [20.4,20.64,"just",20],
     [20.64,20.9,"talk",20],
     [20.9,21.1,"to",21],
     [21.1,21.28,"it",21],
     [21.28,21.68,"once,",21],
-    [21.96,22.12,"like",22],
-    [22.12,22.36,"it's",22],
+    [21.98,22.1,"like",22],
+    [22.1,22.36,"it's",22],
     [22.36,22.48,"a",22],
-    [22.44,22.92,"person",23],
+    [22.48,22.92,"person",23],
     [22.92,23.2,"who",23],
     [23.2,23.44,"was",23],
     [23.44,23.58,"paying",24],
-    [23.58,24.18,"attention.",24],
-    [24.72,24.9,"And",25],
-    [24.9,25.1,"it",25],
-    [25.1,25.3,"stays",25],
-    [25.3,25.54,"that",26],
-    [25.54,26.0,"way,",26],
-    [26.06,26.26,"chat",27],
-    [26.26,26.52,"after",27],
-    [26.52,26.88,"chat,",27],
-    [27.14,27.28,"day",28],
-    [27.28,27.56,"after",28],
-    [27.56,27.88,"day.",28],
-    [28.71,28.98,"Tell",29],
-    [28.98,29.24,"it",29],
-    [29.24,29.62,"once,",29],
-    [29.96,30.08,"and",30],
-    [30.06,30.18,"it",30],
-    [30.18,30.44,"carries",30],
-    [30.44,30.82,"that",31],
-    [30.82,31.1,"into",31],
-    [31.1,31.42,"every",31],
-    [31.42,31.72,"new",32],
-    [31.72,31.94,"chat",32],
-    [31.94,32.16,"you",32],
-    [32.16,32.48,"open.",33],
-    [33.26,33.42,"The",34],
-    [33.42,33.98,"setup's",34],
-    [33.98,34.12,"in",34],
-    [34.12,34.24,"the",35],
-    [34.24,34.42,"link",35],
-    [34.42,34.74,"in",35],
-    [34.74,35.0,"bio.",36],
-    [35.66,35.82,"Follow",37],
-    [35.82,36.06,"for",37],
-    [36.06,36.28,"the",37],
-    [36.28,36.52,"setup",38],
-    [36.52,36.92,"that",38],
-    [36.92,37.3,"actually",38],
-    [37.3,37.6,"works.",39]
+    [23.58,24.22,"attention.",24],
+    [24.66,24.86,"And",25],
+    [24.86,25.1,"it",25],
+    [25.1,25.26,"stays",25],
+    [25.26,25.52,"that",26],
+    [25.52,26.04,"way,",26],
+    [26.14,26.44,"chat",27],
+    [26.44,26.76,"after",27],
+    [26.76,27.16,"chat,",27],
+    [27.48,27.7,"day",28],
+    [27.7,28.02,"after",28],
+    [28.02,28.4,"day.",28],
+    [29.22,29.5,"Tell",29],
+    [29.5,29.74,"it",29],
+    [29.74,30.1,"once,",29],
+    [30.5,30.62,"and",30],
+    [30.54,30.66,"it",30],
+    [30.66,30.94,"carries",30],
+    [30.94,31.32,"that",31],
+    [31.32,31.62,"into",31],
+    [31.62,31.94,"every",31],
+    [31.94,32.22,"new",32],
+    [32.22,32.44,"chat",32],
+    [32.44,32.7,"you",32],
+    [32.7,33.04,"open.",33],
+    [33.74,33.94,"The",34],
+    [33.94,34.14,"setup's",34],
+    [34.14,34.6,"in",34],
+    [34.6,34.74,"the",35],
+    [34.74,34.94,"link",35],
+    [34.94,35.26,"in",35],
+    [35.26,35.5,"bio.",36],
+    [36.14,36.32,"Follow",37],
+    [36.32,36.58,"for",37],
+    [36.58,36.78,"the",37],
+    [36.78,37.02,"setup",38],
+    [37.02,37.44,"that",38],
+    [37.44,37.8,"actually",38],
+    [37.8,38.1,"works.",39]
   ];
   var FDUR=0.55,FLASH=[];
 
