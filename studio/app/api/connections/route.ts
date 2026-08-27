@@ -176,6 +176,13 @@ export async function GET() {
             followers: instagram.followers,
             canPublish: instagram.canPublish,
             publishReason: instagram.publishReason,
+            // The pull caps at 4 pages / 100 items, newest first, on purpose — see the
+            // comment in sources.ts. If the account's real total is past that, the oldest
+            // posts silently fall outside every pull from then on, and their stored
+            // numbers freeze forever no matter how many pulls run. This is the number that
+            // tells the two apart instead of guessing from how stale a post looks.
+            accountMediaCount: instagram.mediaCount,
+            fetchedThisPull: instagram.media.length,
           }
         : {
             connected: false,
