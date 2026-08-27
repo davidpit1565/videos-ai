@@ -188,6 +188,13 @@ export async function GET() {
             // tells the two apart instead of guessing from how stale a post looks.
             accountMediaCount: instagram.mediaCount,
             fetchedThisPull: instagram.media.length,
+            // Surfaces what used to be invisible: a media item whose insights call
+            // itself failed silently kept whatever view count was already stored, which
+            // read identically to "the numbers just aren't moving." See lib/sources.ts's
+            // IgMedia.insightsError.
+            insightsFailures: instagram.media
+              .filter((m) => m.insightsError)
+              .map((m) => ({ id: m.id, error: m.insightsError })),
           }
         : {
             connected: false,
