@@ -1,10 +1,38 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useStudio } from "../../providers";
 import { n } from "@/lib/fmt";
 import { Episode, Snapshot } from "@/lib/types";
 import CountUp from "../../count-up";
+
+/** The same count-up reveal the homepage hero stats use (count-up.tsx), rebuilt as a
+ *  plain number instead of a component: an SVG <text> can't host the <span> CountUp
+ *  renders, so this is the same animation logic without the wrapper element. Runs once
+ *  per mount, respecting reduced-motion the same way. */
+function useCountUp(target: number, duration = 700): number {
+  const [shown, setShown] = useState(0);
+  const started = useRef(false);
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setShown(target);
+      return;
+    }
+    const start = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      setShown(Math.round(target * (1 - Math.pow(1 - t, 3))));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target]);
+  return shown;
+}
 
 /** Real progress, from data the studio already tracks — no number here is invented.
  *  Followers come from the daily snapshot Vercel's cron writes (api/track); views/likes/
@@ -54,6 +82,7 @@ function FollowersLine({ snaps }: { snaps: Snapshot[] }) {
   const first = pts[0];
   const last = pts[pts.length - 1];
   const delta = last.v - first.v;
+  const lastShown = useCountUp(last.v);
 
   return (
     <div className="chart-wrap">
@@ -75,7 +104,7 @@ function FollowersLine({ snaps }: { snaps: Snapshot[] }) {
         <path d={path} className="line" fill="none" />
         <circle cx={x(pts.length - 1)} cy={y(last.v)} r="4" className="endpoint" />
         <text x={x(pts.length - 1) - 8} y={y(last.v) - 10} className="end-label" textAnchor="end">
-          {n(last.v)}
+          {n(lastShown)}
         </text>
         {pts.map((p, i) => (
           <rect
@@ -99,7 +128,7 @@ function FollowersLine({ snaps }: { snaps: Snapshot[] }) {
           className="tooltip"
           style={{ insetInlineStart: `${(x(hover) / W) * 100}%`, top: `${(y(pts[hover].v) / H) * 100}%` }}
         >
-          <b>{n(pts[hover].v)}</b>
+          <b><CountUp value={pts[hover].v} duration={350} /></b>
           <span>{pts[hover].date}</span>
         </div>
       )}
@@ -108,6 +137,42 @@ function FollowersLine({ snaps }: { snaps: Snapshot[] }) {
         {n(delta)}) מ-{first.date} עד {last.date}
       </p>
     </div>
+  );
+}
+
+/** One bar, split out so its hover-value label can call useCountUp unconditionally —
+ *  a hook can't safely live inside the parent's .map() callback, where how many times
+ *  it's called shifts with how many episodes are live. */
+function Bar({
+  cx, top, barW, floor, axisY, number, v, isHover, onEnter, onLeave,
+}: {
+  cx: number; top: number; barW: number; floor: number; axisY: number;
+  number: number; v: number; isHover: boolean; onEnter: () => void; onLeave: () => void;
+}) {
+  const shown = useCountUp(v, 350);
+  return (
+    <g>
+      <rect
+        x={cx - barW / 2}
+        y={top}
+        width={barW}
+        height={floor - top}
+        rx="4"
+        className={isHover ? "bar bar-hover" : "bar"}
+        onMouseEnter={onEnter}
+        onMouseLeave={onLeave}
+        onFocus={onEnter}
+        tabIndex={0}
+      />
+      <text x={cx} y={axisY} className="axis" textAnchor="middle">
+        {number}
+      </text>
+      {isHover && (
+        <text x={cx} y={top - 8} className="end-label" textAnchor="middle">
+          {n(shown)}
+        </text>
+      )}
+    </g>
   );
 }
 
@@ -152,28 +217,19 @@ function ViewsBars({ episodes }: { episodes: Episode[] }) {
           const top = y(v);
           const isHover = hover === i;
           return (
-            <g key={e.id}>
-              <rect
-                x={cx - barW / 2}
-                y={top}
-                width={barW}
-                height={PAD.top + innerH - top}
-                rx="4"
-                className={isHover ? "bar bar-hover" : "bar"}
-                onMouseEnter={() => setHover(i)}
-                onMouseLeave={() => setHover(null)}
-                onFocus={() => setHover(i)}
-                tabIndex={0}
-              />
-              <text x={cx} y={H - PAD.bottom + 16} className="axis" textAnchor="middle">
-                {e.number}
-              </text>
-              {isHover && (
-                <text x={cx} y={top - 8} className="end-label" textAnchor="middle">
-                  {n(v)}
-                </text>
-              )}
-            </g>
+            <Bar
+              key={e.id}
+              cx={cx}
+              top={top}
+              barW={barW}
+              floor={PAD.top + innerH}
+              axisY={H - PAD.bottom + 16}
+              number={e.number}
+              v={v}
+              isHover={isHover}
+              onEnter={() => setHover(i)}
+              onLeave={() => setHover(null)}
+            />
           );
         })}
       </svg>
