@@ -293,6 +293,41 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 .ttl{max-width:320px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .faint{color:var(--faint);font-size:.9em;font-weight:400}
 
+/* ── /videos: one row per reel, same layout at every width ──────────────
+   Replaces a wide table that scrolled sideways plus a separate phone-only card
+   layout — two implementations of the same list, which is exactly the kind of
+   drift that let a fix land in one place and not the other elsewhere in this
+   app. Closed by default: the headline (title, status, platforms, views) is
+   what he asked to see at a glance; everything else opens on click. */
+.reels{display:flex;flex-direction:column;gap:10px;margin:18px 0}
+.reel{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);overflow:hidden}
+.reel-main{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:12px;
+  width:100%;padding:13px 16px;cursor:pointer}
+.reel-main:hover{background:rgba(255,255,255,.025)}
+.reel-main:focus-visible{outline:2px solid var(--brass);outline-offset:-2px}
+.reel-no{font-family:var(--m);color:var(--faint);font-size:14px;flex:0 0 auto;
+  min-width:22px;text-align:center}
+.reel-title{flex:1 1 auto;font-weight:700;font-size:15.5px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap;min-width:0;text-align:start}
+.reel-platforms{flex:0 0 auto;font-size:13px;white-space:nowrap}
+.reel-views{flex:0 0 auto;display:flex;align-items:baseline;gap:6px;
+  font-family:var(--m);min-width:74px;justify-content:flex-end}
+.reel-views b{font-size:17px;color:var(--brass);font-variant-numeric:tabular-nums}
+.reel-views .k{font-size:12px;color:var(--faint)}
+.reel-chevron{flex:0 0 auto;color:var(--faint);font-size:11px}
+.reel-details{display:flex;flex-wrap:wrap;gap:12px 16px;padding:2px 16px 16px;
+  border-top:1px solid var(--line)}
+.reel-details .fld{display:flex;flex-direction:column;gap:5px;min-width:130px;flex:1 1 130px}
+.reel-details .fld.ro{gap:4px}
+.reel-details .fld .k{font-size:12.5px;color:var(--muted)}
+.reel-details .fld .v{font-family:var(--m);font-size:15px;font-variant-numeric:tabular-nums}
+.reel-details .fld-check{flex-direction:row;align-items:center;gap:8px;flex:0 0 auto;min-width:0}
+.reel-details .fld-check input{width:20px;height:20px}
+@media(max-width:520px){
+  .reel-title{font-size:14.5px}
+  .reel-platforms{display:none}
+}
+
 @media(max-width:760px){
   .cards{display:flex}
   .tw.eps{display:none}
