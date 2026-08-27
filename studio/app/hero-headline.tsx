@@ -49,7 +49,6 @@ export default function HeroHeadline() {
         return (
           <span key={i} className={`hk ${settled}${isLit ? " on" : ""}`}>
             {w}
-            {i < words.length - 1 ? " " : ""}
           </span>
         );
       })}

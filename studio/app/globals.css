@@ -528,7 +528,13 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site h1.herokar{font-family:var(--serif);font-weight:700;
   font-size:clamp(2.15rem,7.5vw,3.2rem);line-height:1.06;margin:0 0 .85rem;
   letter-spacing:-.015em;text-wrap:balance}
-.site .hk{display:inline-block;transition:color .5s ease,opacity .3s ease}
+/* Word-by-word spans lose the space between them if it's left as trailing text inside
+   an inline-block box — a real CSS quirk (trailing whitespace at an inline-block's own
+   edge collapses), and exactly what happened here first: "AIsetupsthat actuallywork."
+   with every space silently gone. A margin between spans is unambiguous where a text
+   node wasn't. */
+.site .hk{display:inline-block;margin-inline-end:.24em;transition:color .5s ease,opacity .3s ease}
+.site .hk:last-child{margin-inline-end:0}
 .site .hk.dim{color:var(--rule);opacity:.55}
 .site .hk.text{color:var(--ink)}
 .site .hk.brass{color:var(--gold);
