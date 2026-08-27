@@ -130,8 +130,8 @@ export async function GET(req: Request) {
     // two independently-written titles don't coincidentally share a long exact prefix,
     // so this can't be mistaken for a human's deliberate rename in /videos.
     const stored = e.title.trim().replace(/\.$/, "").toLowerCase();
-    const fresh = best.trim().replace(/\.$/, "").toLowerCase();
-    if (stored !== fresh && stored.length > 8 && fresh.length > 8 && (stored.startsWith(fresh) || fresh.startsWith(stored))) {
+    const freshTitle = best.trim().replace(/\.$/, "").toLowerCase();
+    if (stored !== freshTitle && stored.length > 8 && freshTitle.length > 8 && (stored.startsWith(freshTitle) || freshTitle.startsWith(stored))) {
       e.title = best;
     }
   }
@@ -156,6 +156,46 @@ export async function GET(req: Request) {
       fresh.push({
         id: uid(), at: now, source: "studio",
         label: "פרק 1 ופרק 2 ביוטיוב היו מוחלפים — אומת מול היוטיוב עצמו ותוקן",
+        value: null, delta: null,
+      });
+    }
+  }
+
+  // ONE-TIME repair, not a general mechanism — remove this block once it has run. Episode
+  // 9's row was auto-linked to Instagram media 18163954408479206, whose caption reads
+  // "Three things your AI agent still breaks on" — episode 6's real title, word for word
+  // (verified against channel/episode-06-youtube.txt), not episode 9's ("This agent can
+  // send emails by itself. It never does."). Episode 6 already has its own, different,
+  // correctly-linked post, so this looks like a separate recap/teaser post for episode 6's
+  // content that the fuzzy title-matching fallback attached to episode 9 instead — the
+  // only unlinked row at the time — rather than to nothing. He confirmed directly that
+  // episode 9 itself was never actually posted, so the right correction is to unlink it,
+  // not to reassign it anywhere: there is no real episode-9 post to point it at.
+  // Demoting rather than deleting the row (never destroy what nobody asked to lose), and
+  // hardcoded to this one externally-verified media id on purpose — a generic "detect and
+  // auto-unlink a mismatch" mechanism is exactly the kind of automatic correction that
+  // wiped a real episode's data earlier this same week.
+  {
+    const WRONG_9 = "18163954408479206";
+    const e9 = state.episodes.find((e) => e.number === 9);
+    if (e9?.igMediaId === WRONG_9) {
+      e9.igMediaId = null;
+      e9.igPermalink = null;
+      e9.views = null;
+      e9.likes = null;
+      e9.saves = null;
+      e9.comments = null;
+      e9.shares = null;
+      if (e9.status === "live") e9.status = "testing";
+      // The title-healing pass above runs before this block, so it never saw episode 9's
+      // title as wrong — episode 6's real title isn't a caption-fragment cut of episode
+      // 9's, it's a completely different episode's title, which healing correctly leaves
+      // alone. Reset it here instead, now that the mislink it came from is gone.
+      const realTitle = realTitleFor(9);
+      if (realTitle) e9.title = realTitle;
+      fresh.push({
+        id: uid(), at: now, source: "studio",
+        label: "ריל 9 היה מקושר בטעות לפוסט של ריל 6 (\"Three things your AI agent still breaks on\") — לא לתוכן של ריל 9 עצמו, שמעולם לא פורסם. הקישור הוסר",
         value: null, delta: null,
       });
     }
