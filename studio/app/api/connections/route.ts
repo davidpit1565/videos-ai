@@ -71,8 +71,32 @@ export async function GET() {
           .slice(0, 20)
           .map((f) => ({ at: f.at, label: f.label })),
         lastPullAt: state.activity?.[0]?.at ?? null,
+        // Which real Instagram post every tracked episode is actually pulling its number
+        // from — the only way to tell "linked to the right post" apart from "linked to
+        // A post" without opening the database. Views/caption are already public on the
+        // account itself, so showing them here is not exposing anything new.
+        links: state.episodes
+          .filter((e) => e.igMediaId)
+          .map((e) => ({ number: e.number, igMediaId: e.igMediaId, views: e.views, title: e.title })),
       }
     : null;
+
+  // Every real post on the account that the sync could not attach to any tracked episode —
+  // its views never reach the total on /analytics, silently, however large they are. This
+  // is the thing a screenshot of the grid could show him and the dashboard total could not:
+  // exactly which posts are sitting outside the count, and how many views each is missing.
+  const unmatched =
+    state && instagram.connected
+      ? instagram.media
+          .filter((m) => !state.episodes.some((e) => e.igMediaId === m.id))
+          .map((m) => ({
+            id: m.id,
+            caption: m.caption.slice(0, 200),
+            views: m.views ?? m.reach,
+            eLink: m.caption.toLowerCase().match(/\/e\/(\d+)/)?.[1] ?? null,
+            timestamp: m.timestamp,
+          }))
+      : null;
 
   // Whether notifications can work at all, readable from outside the PIN. The endpoints that
   // do the work are private, and correctly so — but that left no way to check them without
@@ -113,6 +137,7 @@ export async function GET() {
     beehiivPublication: { id: BEEHIIV_PUB, fromEnv: !!process.env.BEEHIIV_PUBLICATION_ID },
     totalVars: Object.keys(process.env).length,
     episodes,
+    unmatched,
     vars: {
       IG_USER_ID: shape(process.env.IG_USER_ID),
       IG_ACCESS_TOKEN: shape(process.env.IG_ACCESS_TOKEN),
