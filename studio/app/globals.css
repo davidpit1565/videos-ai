@@ -755,6 +755,12 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    16:9 child to fill it absolutely. Forcing that here would crop and distort the clip. */
 .site .vid-ig{margin:1.8rem 0;display:flex;justify-content:center}
 .site .vid-ig iframe{border-radius:1rem}
+/* Instagram's embed.js reads the blockquote's own computed width to size its iframe —
+   the blockquote ships with width:100% (ig-embed.tsx) so it fills whatever it's given.
+   Without a cap here it fills the whole page column on a wide desktop viewport, the
+   opposite of the vertical reel it's showing. Match .vid-native's cap so every video
+   shape on this page reads the same width regardless of source. */
+.site .vid-ig, .site .vid-ig blockquote{max-width:380px;margin-inline:auto;width:100%}
 /* The self-hosted fallback (the actual rendered mp4, when no Instagram/YouTube link is
    recorded yet) — same vertical shape as the Instagram embed, a plain native player. */
 .site .vid-native{margin:1.8rem 0;display:flex;justify-content:center}
