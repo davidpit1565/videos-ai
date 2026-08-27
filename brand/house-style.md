@@ -164,3 +164,34 @@ before voice generation, the same way the safe-area check runs before every rend
   what they say, what they deliberately don't say, and why. A hook can be perfect and the
   script can still lose the viewer one sentence later; the whole script gets the same scrutiny
   the hook already gets.
+
+He asked directly for research into what the highest-performing AI-tools content on Instagram
+and TikTok actually does — structure, wording, visual format, not just hooks. Real sourcing
+found (creator interviews and case studies, not this channel's own guesses — see the research
+agent's report for full citations):
+
+- **Name the tool in the first sentence, not after a tease.** The creators with documented
+  viral AI-tips videos (Maverick Maltin: "I always try to have the AI tool that I'm talking
+  about in the actual hook") open with the concrete thing, never a curiosity gap that makes
+  the viewer wait to find out what tool it even is.
+- **Write the hook after the demo is built, not before.** Riley Brown (20M views on his first
+  AI TikTok) films the whole walkthrough first and writes the opening line from what actually
+  turned out interesting — the opposite of scripting the hook, then building content to match
+  it.
+- **A script that reads as AI-written is a failure mode, not a neutral choice.** Riley Brown's
+  own words: "the more you use AI for writing your scripts, the more you're going to sound
+  like AI... sounding like AI is suicide." Independent 2026 research backs this from the
+  audience side: preference for visibly AI-generated creator content fell from 60% (2023) to
+  26% (2025), and one surveyed heuristic was literally "if you do not make mistakes, people
+  will suspect it is AI." A script needs a visible human judgment call somewhere in it — a
+  stated limitation, a specific mistake avoided, an opinion — not just a clean list of
+  benefits.
+- **Screen-record the tool actually doing the thing, narrated live, as the primary visual
+  mode.** Both documented viral cases did this, not talking-head-to-camera and not pure motion
+  graphics. Matches what this channel already does (text-on-screen + voiceover over the real
+  interface); the standing lesson is to keep leaning on the real screen, not drift toward
+  more produced/animated visuals as a way to seem more polished.
+- **Optimize for saves and shares, not raw watch time.** Instagram's 2026 ranking weights DM
+  shares and saves above likes. The practical test for a script: would a viewer actually
+  forward this to a colleague because it's a specific, usable thing — not because it was
+  entertaining for 40 seconds.
