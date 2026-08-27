@@ -1,9 +1,9 @@
-Your dashboard could be showing you the wrong number right now
+If you track Instagram and TikTok in the same tracker, one of them is probably losing right now
 
-Two sources write into the same field. Source A writes first, the real number lands and looks correct. Source B writes second, into that exact same field, and quietly replaces it — no error, no warning. The fix is one rule: give every source its own field, never let two write to the same one. If a number changes and you can't explain why, that's the first thing to check.
+Your automation pulls Instagram's numbers into a column, looks correct. Then it pulls TikTok's numbers into that exact same column and quietly overwrites Instagram's real number — no error, no warning, the column still looks normal. This happens the second two platforms feed one field: Instagram + TikTok in one tracker, Reels + Shorts merged into one "views" column, any multi-platform report built in n8n, Zapier, or a spreadsheet. The fix: give every platform its own column, never let two write to the same one.
 
 Full breakdown: actually-works.com/e/13
 
 Follow for setups that actually work.
 
-#automation #n8n #ai #dataintegrity #nocode
+#automation #n8n #ai #instagram #tiktok #contentcreator

@@ -1,22 +1,23 @@
-Your dashboard could be showing you the wrong number right now, and it would look completely fine.
+If you track Instagram and TikTok views in the same tracker, one of them is probably losing right now — and you'd never know.
 
-Here's the pattern: two different sources write into the same one field. Source A writes
-first, the real number lands, everything looks correct. Then source B writes second — into
-that exact same field — and quietly replaces it. No error. No warning. The number just
-belongs to the wrong source now, and it still looks like a normal number.
+Here's the pattern: your automation pulls Instagram's numbers into a column, and looks
+correct. Then it pulls TikTok's numbers into that exact same column — and quietly
+overwrites Instagram's real number with TikTok's. No error. No warning. The column still
+shows a normal-looking number. It's just the wrong platform's number now.
 
-This shows up anywhere two systems feed one place: an n8n or Zapier flow pulling from two
-platforms into one spreadsheet column, a CRM merging leads from two forms into one field, a
-report that syncs from more than one API into a single total.
+This happens the second two platforms feed the same field: Instagram + TikTok in one
+tracker, Reels + Shorts merged into one "views" column, any multi-platform report built in
+n8n, Zapier, Make, or a plain spreadsheet.
 
 The fix is one rule, not a rebuild:
 
-Give every source its own field. Never let two different sources write to the same one.
+Give every platform its own column. Never let two platforms write to the same one.
 
-If a number ever changes and you can't explain why — that's the first thing to check.
+If a number ever looks flat or wrong and you can't explain why — that's the first thing to
+check.
 
 Full breakdown: actually-works.com/e/13
 
 Follow for setups that actually work.
 
-#automation #n8n #ai #dataintegrity #nocode #productivity
+#automation #n8n #ai #instagram #tiktok #contentcreator #nocode
