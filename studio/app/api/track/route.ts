@@ -10,6 +10,15 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
+// This Instagram post's own caption carries a literal "/e/9" even though its content is
+// episode 6's ("Three things your AI agent still breaks on") — a genuine authoring
+// mistake from whenever it was written, not something fixable from here. Unlinking it
+// (below) without also blocking it here was a real, live infinite loop: the very next
+// pull's exact-/e/N auto-link (further down, keyed only on that number) saw the same
+// "/e/9" and reattached it immediately, so he kept seeing the "unlinked it" activity
+// entry fire again, forever, one pull after another.
+const WRONG_9 = "18163954408479206";
+
 /**
  * The point of the whole system: nobody has to remember to write the numbers down.
  * Vercel's cron calls this once a day, and the app calls it when he pulls to refresh.
@@ -176,7 +185,6 @@ export async function GET(req: Request) {
   // auto-unlink a mismatch" mechanism is exactly the kind of automatic correction that
   // wiped a real episode's data earlier this same week.
   {
-    const WRONG_9 = "18163954408479206";
     const e9 = state.episodes.find((e) => e.number === 9);
     if (e9?.igMediaId === WRONG_9) {
       e9.igMediaId = null;
@@ -308,6 +316,10 @@ export async function GET(req: Request) {
     const unlinkedEpisodes = state.episodes.filter((e) => !cfg.getId(e));
     for (const m of media) {
       if (linked.has(m.id)) continue;
+      // The exact same infinite-relink this media id caused for episode 9 (see WRONG_9
+      // above) — its own caption carries a stale "/e/9" that no longer matches its real
+      // content, so the exact-number match below must never reattach it there again.
+      if (cfg.key === "instagram" && m.id === WRONG_9) continue;
       const text = m.text.toLowerCase();
       const epLink = text.match(/\/e\/(\d+)/);
       const hits = epLink
