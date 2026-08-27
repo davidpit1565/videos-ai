@@ -1,14 +1,80 @@
 [
-  { "episode": 1, "brass": "#FFCF4A", "ember": "#FF6B3D", "mood": null },
-  { "episode": 2, "brass": "#FFCF4A", "ember": "#FF6B3D", "mood": null },
-  { "episode": 3, "brass": "#FFCF4A", "ember": "#FF6B3D", "mood": null },
-  { "episode": 4, "brass": "#FFCF4A", "ember": "#FF6B3D", "mood": null },
-  { "episode": 5, "brass": "#FFCF4A", "ember": "#FF6B3D", "mood": null },
-  { "episode": 6, "brass": "#FFCF4A", "ember": "#FF6B3D", "mood": null },
-  { "episode": 7, "brass": "#FF6B8F", "ember": "#FF3D5C", "mood": null },
-  { "episode": 8, "brass": "#FFCF4A", "ember": "#FF6B3D", "mood": null },
-  { "episode": 9, "brass": "#8FE3FF", "ember": "#B98CFF", "mood": null },
-  { "episode": 10, "brass": "#B4E66E", "ember": "#3FA9F5", "mood": null },
-  { "episode": 11, "brass": "#FF8A5B", "ember": "#7B4FFF", "mood": null },
-  { "episode": 12, "brass": "#5EEAD4", "ember": "#F472B6", "mood": null }
+  {
+    "episode": 1,
+    "brass": "#FFCF4A",
+    "ember": "#FF6B3D",
+    "mood": null
+  },
+  {
+    "episode": 2,
+    "brass": "#FFCF4A",
+    "ember": "#FF6B3D",
+    "mood": null
+  },
+  {
+    "episode": 3,
+    "brass": "#FFCF4A",
+    "ember": "#FF6B3D",
+    "mood": null
+  },
+  {
+    "episode": 4,
+    "brass": "#FFCF4A",
+    "ember": "#FF6B3D",
+    "mood": null
+  },
+  {
+    "episode": 5,
+    "brass": "#FFCF4A",
+    "ember": "#FF6B3D",
+    "mood": null
+  },
+  {
+    "episode": 6,
+    "brass": "#FFCF4A",
+    "ember": "#FF6B3D",
+    "mood": null
+  },
+  {
+    "episode": 7,
+    "brass": "#FF6B8F",
+    "ember": "#FF3D5C",
+    "mood": null
+  },
+  {
+    "episode": 8,
+    "brass": "#FFCF4A",
+    "ember": "#FF6B3D",
+    "mood": null
+  },
+  {
+    "episode": 9,
+    "brass": "#8FE3FF",
+    "ember": "#B98CFF",
+    "mood": null
+  },
+  {
+    "episode": 10,
+    "brass": "#B4E66E",
+    "ember": "#3FA9F5",
+    "mood": null
+  },
+  {
+    "episode": 11,
+    "brass": "#FF8A5B",
+    "ember": "#7B4FFF",
+    "mood": null
+  },
+  {
+    "episode": 12,
+    "brass": "#5EEAD4",
+    "ember": "#F472B6",
+    "mood": null
+  },
+  {
+    "episode": 13,
+    "brass": "#FFB84D",
+    "ember": "#FF4757",
+    "mood": "urgent"
+  }
 ]

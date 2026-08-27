@@ -1,0 +1,44 @@
+=== narration
+audio/reel13-narration-r.wav  44.9s  11 lines
+  medians: ending -39.3 dB · level -18.5 dBFS · S residual -0.3 dB (slope +21.1 dB per sibilant/syllable)
+  flagged below: ending -55.2 dB · S residual -5.9 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  2.87  +0.42  4.53   -5.7  -39.3  -18.2  Your Instagram views are losing to Tik
+    2  4.68  +0.42  4.27  -10.0  -39.7  -18.7  Your automation pulls Instagram's numb
+    3  3.76  +0.42  3.99   -7.6  -50.3  -18.5  Then it pulls TikTok's numbers into th
+    4  3.18  +0.85  5.35  -11.4  -21.7  -17.2  And it quietly overwrites Instagram's 
+    5  3.94  +0.42  4.31  -12.2  -43.6  -17.8  No error. No warning. The column still
+    6  2.17  +0.42  4.15  -10.9  -35.1  -18.5  It's just the wrong platform's number 
+    7   3.5  +0.42   4.0   -4.9  -40.8  -19.2  This happens the second two platforms 
+    8  5.35  +0.85  3.93  -12.4  -49.5  -18.6  Give every platform its own column. Ne
+    9  4.65  +0.42   4.3   -9.4  -21.8  -18.5  If a number ever looks wrong and you c
+   10  2.46  +0.42  4.07   -6.9  -36.6  -19.4  The exact setup's in the link in bio.
+   11  2.09    —    4.78   -8.9  -22.1  -18.5  Follow for setups that actually work.
+
+  nothing flagged. every line sits inside his own spread.
+
+=== frame layout
+reel-13-kar.html  44.91s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  within tolerance: 7px past the right line   on  "platform's"
+  overlaps: none over 10px
+
+=== rendered file
+reel-13.mp4  1080x1920  30fps  44.91s  7.3MB
+  visual change: median 0.67s, longest 2.00s
+  loudness: -14.0 LUFS integrated, peak -3.2 dBFS, LRA 1.9 LU
+  loop seam: first vs last frame differ by 22.8/255
+
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length 44.9s inside 30-90s
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 36.1)
+  ok        visual change every 0.67s median
+  ok        -14.0 LUFS
+  ok        peak -3.2 dBFS
+
+ALL CHECKS PASSED
