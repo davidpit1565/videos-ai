@@ -1,6 +1,6 @@
-You've used ChatGPT a hundred times. You've never actually seen this.
+Your ChatGPT has a mode you've probably never touched.
 
-There's a second mode next to the regular chat box — Work. Switch to it, describe a real
+Right next to the regular chat box there's a toggle — Work. Switch to it, describe a real
 task, and instead of just answering it breaks the job into steps and works through them —
 it can even open a real website and log into it for you, then check back with you.
 
