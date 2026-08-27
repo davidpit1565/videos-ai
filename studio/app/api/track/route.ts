@@ -57,7 +57,11 @@ export async function GET(req: Request) {
 
   const feed: ActivityEvent[] = state.activity ?? [];
   const last = feed[0];
-  if (!fromCron && last && Date.now() - Date.parse(last.at) < 20 * 60 * 1000) {
+  // Was 20 minutes — he asked to shorten it after a fix he needed to see reflected sat
+  // behind the cooldown for most of that window. 3 minutes still protects against a
+  // real hammering pattern (rapid tab-switching re-triggering the visibilitychange
+  // listener below) without making a genuine fix wait nearly as long to show up.
+  if (!fromCron && last && Date.now() - Date.parse(last.at) < 3 * 60 * 1000) {
     return NextResponse.json({
       ok: true,
       skipped: true,
