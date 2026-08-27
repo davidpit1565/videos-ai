@@ -71,6 +71,10 @@ export async function GET() {
           .slice(0, 20)
           .map((f) => ({ at: f.at, label: f.label })),
         lastPullAt: state.activity?.[0]?.at ?? null,
+        // The full recent feed, not just the flagged subset — the only way to see when a
+        // given episode's views field last actually changed, and by how much, instead of
+        // guessing why a stored number looks frozen.
+        recentActivity: (state.activity ?? []).slice(0, 40).map((f) => ({ at: f.at, label: f.label, value: f.value, delta: f.delta })),
         // Which real Instagram post every tracked episode is actually pulling its number
         // from — the only way to tell "linked to the right post" apart from "linked to
         // A post" without opening the database. Views/caption are already public on the
