@@ -257,17 +257,17 @@ export default function Analytics() {
       <section className="chart-section">
         <h2>הטבלה המלאה</h2>
         <div className="tw boxed">
-          <table>
+          <table dir="rtl">
             <thead>
               <tr>
                 <th>ריל</th>
                 <th>כותרת</th>
-                <th>צפיות</th>
-                <th>לייקים</th>
-                <th>שמירות</th>
-                <th>תגובות</th>
-                <th>שיתופים</th>
-                <th title="נכנס ידנית ב-/videos — אין API שמייחס נרשם לפוסט שהביא אותו">נרשמים</th>
+                <th className="num">צפיות</th>
+                <th className="num">לייקים</th>
+                <th className="num">שמירות</th>
+                <th className="num">תגובות</th>
+                <th className="num">שיתופים</th>
+                <th className="num" title="נכנס ידנית ב-/videos — אין API שמייחס נרשם לפוסט שהביא אותו">נרשמים</th>
               </tr>
             </thead>
             <tbody>
