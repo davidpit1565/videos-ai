@@ -60,7 +60,7 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
   async function doYoutube() {
     const title = (youtube ?? "").split("\n")[0]?.trim();
     if (!title) {
-      setYtMsg("אין קובץ כותרת ל-YouTube לפרק הזה (episode-NN-youtube.txt)");
+      setYtMsg("אין קובץ כותרת ל-YouTube לריל הזה (episode-NN-youtube.txt)");
       return;
     }
     if (!confirm("להעלות עכשיו ל-YouTube, פומבי, לכל העולם? אין דרך למחוק את זה מכאן.")) return;

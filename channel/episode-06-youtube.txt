@@ -1,0 +1,13 @@
+Three things your AI agent still breaks on.
+
+It forgets everything between sessions. It gets stuck the moment a site asks you to log in. And it can send an email you never meant to send — with no undo.
+
+Three fixes, one line each: paste in what changed since last time instead of relying on memory, tell it to stop and ask you at any login instead of guessing a password, and make it show you a draft before anything goes out — you click send, not the agent.
+
+None of these need a rebuild. They need you to say it once, in the instructions.
+
+Full breakdown: actually-works-studio.vercel.app/e/6
+
+Follow for setups that actually work.
+
+#aiagents #ai #automation #chatgpt #aitools #productivity #nocode

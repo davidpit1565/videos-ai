@@ -1,0 +1,11 @@
+Most leads go cold before anyone even replies.
+
+By the time you get to it, they've already messaged someone else. This n8n agent replies in under a minute, day or night — but it only auto-sends the safe acknowledgment. Anything that needs a real decision becomes a draft instead. A person still sends it.
+
+The rule for any lead-response setup: auto-reply the easy majority, draft the one that needs a real call, and never guess which is which.
+
+Full breakdown: actually-works-studio.vercel.app/e/10
+
+Follow for setups that actually work.
+
+#n8n #aiagents #automation #smallbusiness #leadgen #aitools #productivity

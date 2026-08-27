@@ -156,7 +156,7 @@ export async function notifyNewRenders(
     );
     if (ins.rowCount === 0) continue; // already notified for this episode
     await notify({
-      title: `פרק ${r.episode} מוכן`,
+      title: `ריל ${r.episode} מוכן`,
       body: r.title ? r.title : `הרנדור עבר את כל הבדיקות.`,
       url: "/renders",
       tag: `render-${r.episode}`,

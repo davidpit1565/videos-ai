@@ -3,6 +3,25 @@
 
 import { sharedPool } from "./db";
 
+/** Every external call in this file used to be a bare fetch() with no deadline. A
+ *  connection that opens but never finishes responding never rejects and never
+ *  resolves — it just hangs, and fetchInstagram() alone can issue up to 100 of these
+ *  concurrently (one insights call per media item, across up to 4 paginated pages).
+ *  One stuck socket anywhere in that batch stalls the whole Promise.all, which stalls
+ *  /api/track's single await Promise.all([...]) with no fallback of its own — the
+ *  request just hangs until Vercel's platform ceiling kills it, instead of failing
+ *  fast and leaving the rest of the pull to still go through. Every fetch below goes
+ *  through this instead of the raw global. */
+async function timedFetch(url: string, init?: RequestInit, ms = 15000): Promise<Response> {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), ms);
+  try {
+    return await fetch(url, { ...init, signal: ctrl.signal });
+  } finally {
+    clearTimeout(t);
+  }
+}
+
 /** Meta has two different Instagram APIs and they do not accept each other's tokens.
  *  A token minted by "Generate token" inside Instagram's own API setup (Instagram Login)
  *  is an IGAA…/IGQ… token for graph.instagram.com; sending it to graph.facebook.com comes
@@ -89,7 +108,7 @@ export async function refreshInstagramToken(): Promise<
     return { ok: false, reason: "טוקן מסוג פייסבוק — לא נדרש רענון כאן" };
   }
   try {
-    const r = await fetch(
+    const r = await timedFetch(
       `${IG_HOST}/refresh_access_token?grant_type=ig_refresh_token&access_token=${token}`,
       { cache: "no-store" },
     );
@@ -141,7 +160,7 @@ async function checkPublishAccess(
   host: string, user: string, token: string,
 ): Promise<{ canPublish: boolean; reason: string | null }> {
   try {
-    const r = await fetch(
+    const r = await timedFetch(
       `${host}/${user}/content_publishing_limit?fields=config,quota_usage&access_token=${token}`,
       { cache: "no-store" },
     );
@@ -165,7 +184,7 @@ export async function fetchInstagram(): Promise<IgResult> {
 
   const IG = host;
   try {
-    const prof = await fetch(
+    const prof = await timedFetch(
       `${IG}/${user}?fields=username,followers_count,media_count&access_token=${token}`,
       { cache: "no-store" },
     );
@@ -194,7 +213,7 @@ export async function fetchInstagram(): Promise<IgResult> {
     let next: string | null =
       `${IG}/${user}/media?fields=id,caption,media_type,permalink,timestamp,like_count,comments_count&limit=25&access_token=${token}`;
     for (let page = 0; page < 4 && next; page++) {
-      const mr: Response = await fetch(next, { cache: "no-store" });
+      const mr: Response = await timedFetch(next, { cache: "no-store" });
       if (!mr.ok) break;
       const j: { data?: IgMediaRaw[]; paging?: { next?: string } } = await mr.json();
       raw.push(...(j.data ?? []));
@@ -226,7 +245,7 @@ export async function fetchInstagram(): Promise<IgResult> {
             ? "views,reach,saved,shares,total_interactions"
             : "views,reach,saved,total_interactions";
         try {
-          const ir = await fetch(`${IG}/${m.id}/insights?metric=${metrics}&access_token=${token}`, {
+          const ir = await timedFetch(`${IG}/${m.id}/insights?metric=${metrics}&access_token=${token}`, {
             cache: "no-store",
           });
           if (!ir.ok) return base;
@@ -284,7 +303,7 @@ export async function fetchBeehiiv(): Promise<BeeResult> {
     // Deliberately not following the cursor: the parameter name for it is not something I
     // have seen in a real response, and a guessed parameter that silently returns page one
     // forever would report a wrong number as a certain one.
-    const r = await fetch(
+    const r = await timedFetch(
       `https://api.beehiiv.com/v2/publications/${pub}/subscriptions?limit=100&status=active`,
       { headers: { Authorization: `Bearer ${key}` }, cache: "no-store" },
     );
@@ -349,7 +368,7 @@ export async function fetchYouTube(): Promise<YtResult> {
 
   try {
     const chParam = channelId ? `id=${channelId}` : `forHandle=${handle}`;
-    const chr = await fetch(
+    const chr = await timedFetch(
       `${YT}/channels?part=snippet,statistics,contentDetails&${chParam}&key=${key}`,
       { cache: "no-store" },
     );
@@ -371,7 +390,7 @@ export async function fetchYouTube(): Promise<YtResult> {
     let ytNext: string | null =
       `${YT}/playlistItems?part=snippet&playlistId=${uploadsPlaylist}&maxResults=25&key=${key}`;
     for (let page = 0; page < 4 && ytNext; page++) {
-      const pir: Response = await fetch(ytNext, { cache: "no-store" });
+      const pir: Response = await timedFetch(ytNext, { cache: "no-store" });
       if (!pir.ok) break;
       const pij: { items?: { snippet?: { resourceId?: { videoId?: string } } }[]; nextPageToken?: string } =
         await pir.json();
@@ -400,7 +419,7 @@ export async function fetchYouTube(): Promise<YtResult> {
     const items: YtVideoRaw[] = [];
     for (let i = 0; i < ids.length; i += 50) {
       const batch = ids.slice(i, i + 50);
-      const vr = await fetch(`${YT}/videos?part=snippet,statistics&id=${batch.join(",")}&key=${key}`, {
+      const vr = await timedFetch(`${YT}/videos?part=snippet,statistics&id=${batch.join(",")}&key=${key}`, {
         cache: "no-store",
       });
       const vj: { items?: YtVideoRaw[] } = vr.ok ? await vr.json() : { items: [] };
@@ -439,7 +458,7 @@ export async function fetchLatestBeehiivIssue(): Promise<LatestIssue> {
   const key = process.env.BEEHIIV_API_KEY;
   if (!key) return null;
   try {
-    const r = await fetch(
+    const r = await timedFetch(
       `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB}/posts?limit=1&status=confirmed&order_by=publish_date&direction=desc`,
       { headers: { Authorization: `Bearer ${key}` }, cache: "no-store" },
     );

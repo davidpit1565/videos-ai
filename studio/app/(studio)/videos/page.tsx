@@ -62,7 +62,7 @@ function PlatformBadges({ episode: e }: { episode: Episode }) {
   return (
     <>
       {badge("IG", e.igPermalink ?? null, e.igPermalink ? "פורסם באינסטגרם" : "לא קושר לפוסט באינסטגרם")}
-      {badge("FB", null, "לא במעקב — פרסום לפייסבוק לא נשמר לפרק כרגע")}
+      {badge("FB", null, "לא במעקב — פרסום לפייסבוק לא נשמר לריל כרגע")}
       {badge("YT", e.ytVideoId ? `https://youtu.be/${e.ytVideoId}` : null, e.ytVideoId ? "פורסם ביוטיוב" : "לא קושר לסרטון יוטיוב")}
     </>
   );
@@ -135,9 +135,9 @@ export default function Videos() {
 
   return (
     <>
-      <p className="eyebrow">פרקים</p>
+      <p className="eyebrow">רילים</p>
       <h1>
-        כל פרק, עם <em>המספרים שלו</em>
+        כל ריל, עם <em>המספרים שלו</em>
       </h1>
       <p className="sub">
         אחוז מדידה = כל האינטראקציות חלקי צפיות. <b>שמירות לצפייה</b> זה המדד שקובע האם התוכן
@@ -153,7 +153,7 @@ export default function Videos() {
         </button>
       </div>
       <p className="sub" style={{ marginTop: -8, marginBottom: 16 }}>
-        פרק חדש נוצר דרך <a href="/pipeline">הצינור</a> — רעיון שהוסכם וקיבל הערכה, לא כפתור
+        ריל חדש נוצר דרך <a href="/pipeline">הצינור</a> — רעיון שהוסכם וקיבל הערכה, לא כפתור
         ריק כאן. הכפתור הידני הוסר: הוא היה יוצר רשומה בלי נושא, בלי הערכה, ובלי דרך קלה לזהות
         שהיא לא אמורה להיות שם.
       </p>
@@ -208,7 +208,7 @@ export default function Videos() {
                 נבדק
               </label>
               <button className="del del-labeled" onClick={() => update((d) => void d.episodes.splice(i, 1))}>
-                × מחק פרק
+                × מחק ריל
               </button>
             </div>
             <div className="grid">
@@ -258,7 +258,7 @@ export default function Videos() {
                 table scrolled sideways — this row groups them by what they're for, so
                 scrolling into the performance numbers still says so at the top. */}
             <tr className="grp">
-              <th colSpan={7}>פרטי הפרק</th>
+              <th colSpan={7}>פרטי הריל</th>
               <th>פלטפורמות</th>
               <th colSpan={8}>ביצועים · צפיות עד שיתופים אוטומטי מ-Instagram/YouTube, לא לעריכה</th>
               <th />
@@ -381,7 +381,7 @@ export default function Videos() {
           אותו דבר.
         </p>
       ) : unlinked.length === 0 ? (
-        <p className="sub">כל הפוסטים בחשבון מקושרים לפרק.</p>
+        <p className="sub">כל הפוסטים בחשבון מקושרים לריל.</p>
       ) : (
         <div className="tw boxed">
           <table>
@@ -391,7 +391,7 @@ export default function Videos() {
                 <th>תאריך</th>
                 <th>צפיות</th>
                 <th>שמירות</th>
-                <th>לקשר לפרק</th>
+                <th>לקשר לריל</th>
               </tr>
             </thead>
             <tbody>
@@ -429,7 +429,7 @@ export default function Videos() {
                             named !== null &&
                             named !== ep.number &&
                             !confirm(
-                              `הכיתוב של הפוסט הזה מציין בעצמו פרק ${named}, לא פרק ${ep.number}. לקשר בכל זאת לפרק ${ep.number}?`,
+                              `הכיתוב של הפוסט הזה מציין בעצמו ריל ${named}, לא ריל ${ep.number}. לקשר בכל זאת לריל ${ep.number}?`,
                             )
                           ) {
                             ev.target.value = "";
@@ -450,7 +450,7 @@ export default function Videos() {
                           });
                         }}
                       >
-                        <option value="">בחר פרק…</option>
+                        <option value="">בחר ריל…</option>
                         {state.episodes.map((e) => (
                           <option key={e.id} value={e.id}>
                             {e.number === named ? "→ " : ""}
@@ -476,7 +476,7 @@ export default function Videos() {
           אותו דבר.
         </p>
       ) : unlinkedYt.length === 0 ? (
-        <p className="sub">כל הסרטונים בערוץ מקושרים לפרק.</p>
+        <p className="sub">כל הסרטונים בערוץ מקושרים לריל.</p>
       ) : (
         <div className="tw boxed">
           <table>
@@ -486,7 +486,7 @@ export default function Videos() {
                 <th>תאריך</th>
                 <th>צפיות</th>
                 <th>לייקים</th>
-                <th>לקשר לפרק</th>
+                <th>לקשר לריל</th>
               </tr>
             </thead>
             <tbody>
@@ -515,7 +515,7 @@ export default function Videos() {
                             named !== null &&
                             named !== ep.number &&
                             !confirm(
-                              `התיאור של הסרטון הזה מציין בעצמו פרק ${named}, לא פרק ${ep.number}. לקשר בכל זאת לפרק ${ep.number}?`,
+                              `התיאור של הסרטון הזה מציין בעצמו ריל ${named}, לא ריל ${ep.number}. לקשר בכל זאת לריל ${ep.number}?`,
                             )
                           ) {
                             ev.target.value = "";
@@ -533,7 +533,7 @@ export default function Videos() {
                           });
                         }}
                       >
-                        <option value="">בחר פרק…</option>
+                        <option value="">בחר ריל…</option>
                         {state.episodes.map((e) => (
                           <option key={e.id} value={e.id}>
                             {e.number === named ? "→ " : ""}

@@ -77,8 +77,14 @@ button{cursor:pointer}
 .mode::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
 .mode.cloud{color:var(--ok);border-color:#37674E}
 .mode.local{color:var(--brass);border-color:var(--brass-dim)}
-.top-right{display:flex;align-items:center;gap:10px}
-.build-info{font-family:var(--m);font-size:11px;color:var(--faint);white-space:nowrap}
+/* min-width:0 overrides the flex default (min-width:auto, which refuses to shrink below
+   content width) — without it, .top-right's children forced .top wider than a narrow
+   phone screen and the overflow got clipped by html{overflow-x:hidden} above, which in
+   RTL clips off the visual left edge: the build-info hash cut off mid-string. Truncating
+   that string with an ellipsis instead of wrapping the row keeps the header one line. */
+.top-right{display:flex;align-items:center;gap:10px;min-width:0}
+.build-info{font-family:var(--m);font-size:11px;color:var(--faint);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;min-width:0;max-width:40vw}
 
 /* ── nav: tabs on desktop, a thumb bar on a phone ─ */
 nav{display:flex;gap:8px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:24px}

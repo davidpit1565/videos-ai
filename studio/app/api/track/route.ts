@@ -105,12 +105,16 @@ export async function GET(req: Request) {
 
   // He kept having to retype an episode's title into the studio by hand after it was
   // already finalized in channel/episode-0N-youtube.txt — and kept forgetting to, so
-  // the public site showed the studio's own "פרק חדש" placeholder for weeks. The real
-  // title exists the moment that file is written; this just stops requiring a human
-  // to copy it a second time. Only fills a title that's missing or still the
-  // placeholder, so a title he's since edited by hand is never overwritten.
+  // the public site showed the studio's own placeholder for weeks. The real title
+  // exists the moment that file is written; this just stops requiring a human to copy
+  // it a second time. Only fills a title that's missing or still the placeholder, so a
+  // title he's since edited by hand is never overwritten. Checks both spellings of the
+  // placeholder — "פרק חדש" is what older rows in the real database still carry from
+  // before the "ריל" rename; renaming only the string this compares against would have
+  // silently stopped healing every one of those rows.
+  const PLACEHOLDER_TITLES = new Set(["ריל חדש", "פרק חדש"]);
   for (const e of state.episodes) {
-    if (e.title && e.title !== "פרק חדש") continue;
+    if (e.title && !PLACEHOLDER_TITLES.has(e.title)) continue;
     const real = realTitleFor(e.number);
     if (real) e.title = real;
   }
@@ -126,7 +130,7 @@ export async function GET(req: Request) {
   for (const r of reels()) {
     if (r.kind !== "video" || !r.gate?.passed || r.episode == null) continue;
     if (existingNumbers.has(r.episode)) continue;
-    const title = realTitleFor(r.episode) || captionTitleFor(r.episode) || `פרק ${r.episode}`;
+    const title = realTitleFor(r.episode) || captionTitleFor(r.episode) || `ריל ${r.episode}`;
     state.episodes.push({
       id: uid(), number: r.episode, title, format: "reel", status: "testing",
       topic: "", tested: true, publishedAt: null, igMediaId: null, igPermalink: null,
@@ -136,7 +140,7 @@ export async function GET(req: Request) {
     existingNumbers.add(r.episode);
     fresh.push({
       id: uid(), at: now, source: "studio",
-      label: `פרק ${r.episode} נוסף אוטומטית לרשימה · ${title}`,
+      label: `ריל ${r.episode} נוסף אוטומטית לרשימה · ${title}`,
       value: null, delta: null,
     });
   }
@@ -200,7 +204,7 @@ export async function GET(req: Request) {
 
     // Every caption/description we write ends with "actually-works-studio.vercel.app/e/N"
     // — an exact, unambiguous episode number. Title matching (against the real
-    // YouTube-file title when the studio's own title field is still the "פרק חדש"
+    // YouTube-file title when the studio's own title field is still the "ריל חדש"
     // placeholder) is the fallback ONLY for content with no /e/N at all — an older post,
     // or one written by hand without the link. An /e/N that IS present but doesn't
     // resolve to a real unlinked episode must never fall through to the fuzzy title
@@ -235,7 +239,7 @@ export async function GET(req: Request) {
         linked.add(m.id);
         fresh.push({
           id: uid(), at: now, source: cfg.key,
-          label: `פוסט קושר אוטומטית לפרק ${e.number} · ${e.title}`,
+          label: `פוסט קושר אוטומטית לריל ${e.number} · ${e.title}`,
           value: m.views ?? null, delta: null,
         });
       }
@@ -269,7 +273,7 @@ export async function GET(req: Request) {
       if (!epLink) continue;
       const namedNum = +epLink[1];
       if (namedNum === linkedEp.number) continue;
-      const label = `אי-התאמה אפשרית ב${cfg.label}: פרק ${linkedEp.number} מקושר לתוכן שהכיתוב שלו מציין פרק ${namedNum} — יכול להיות מספר פרק ישן, בדוק ב-/videos לפני שמתקנים`;
+      const label = `אי-התאמה אפשרית ב${cfg.label}: ריל ${linkedEp.number} מקושר לתוכן שהכיתוב שלו מציין ריל ${namedNum} — יכול להיות מספר ריל ישן, בדוק ב-/videos לפני שמתקנים`;
       if (flaggedMismatches.has(label)) continue;
       fresh.push({ id: uid(), at: now, source: "studio", label, value: null, delta: null });
     }
@@ -299,8 +303,8 @@ export async function GET(req: Request) {
         setId: (e, id) => { e.igMediaId = id; },
         setPermalinkIfMissing: (e, p) => { if (!e.igPermalink && p) e.igPermalink = p; },
         setPermalink: (e, p) => { e.igPermalink = p; },
-        viewsNoteLabel: (n) => `פרק ${n} · צפיות`,
-        savesNoteLabel: (n) => `פרק ${n} · שמירות`,
+        viewsNoteLabel: (n) => `ריל ${n} · צפיות`,
+        savesNoteLabel: (n) => `ריל ${n} · שמירות`,
       },
     );
   }
@@ -320,7 +324,7 @@ export async function GET(req: Request) {
         setId: (e, id) => { e.ytVideoId = id; },
         setPermalinkIfMissing: () => {}, // no stored field — always derived from ytVideoId
         setPermalink: () => {},
-        viewsNoteLabel: (n) => `פרק ${n} · צפיות ביוטיוב`,
+        viewsNoteLabel: (n) => `ריל ${n} · צפיות ביוטיוב`,
         savesNoteLabel: null,
       },
     );
@@ -355,7 +359,7 @@ export async function GET(req: Request) {
       e.status = "testing";
       fresh.push({
         id: uid(), at: now, source: "studio",
-        label: `פרק ${e.number} סומן "פורסם" בלי קישור אמיתי לאינסטגרם או ליוטיוב — הוחזר ל"בדיקה"`,
+        label: `ריל ${e.number} סומן "פורסם" בלי קישור אמיתי לאינסטגרם או ליוטיוב — הוחזר ל"בדיקה"`,
         value: null, delta: null,
       });
     }

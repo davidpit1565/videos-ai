@@ -1,0 +1,11 @@
+AI narration has a flaw you can't consciously name — a word loses its ending, an S goes dull or too hot.
+
+voice_doctor.py measures it straight from the audio: pacing, rate, sibilance, and endings, graded against this narration's own median, not a made-up number. One bad overlap between lines and the check fails the whole file — it doesn't ship. --repair levels every line to the median and pulls a harsh S back in, then checks its own fix again until a pass finds nothing left.
+
+The rule for any AI-voiced content: never ship AI narration without the check that catches what you can't hear.
+
+Full breakdown: actually-works-studio.vercel.app/e/11
+
+Follow for setups that actually work.
+
+#aitools #texttospeech #audioengineering #automation #buildinpublic #aiagents
