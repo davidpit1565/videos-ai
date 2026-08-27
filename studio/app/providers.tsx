@@ -157,19 +157,34 @@ export function Provider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  /** Pull the numbers when the studio is opened, not only when a button is pressed.
+  /** Pull the numbers when the studio is opened, not only when a button is pressed — and
+   *  keep pulling while it stays open, not just once.
    *
-   *  He asked for it to update by itself, and it never did: refresh() existed but the only
-   *  caller was the button on the dashboard, so opening the studio showed whatever the
-   *  nightly cron last wrote — up to a day old, and looking exactly like a system that
-   *  does not update. /api/track already returns early without spending an API call when a
-   *  pull ran in the last 20 minutes, so an on-open pull costs nothing when it is not
-   *  needed. Cloud mode only: with no database the tracker has nowhere to write. */
-  const pulled = useRef(false);
+   *  He asked for it to update by itself, and the first version of this only half did: the
+   *  guard below fired once per app session (a ref, not reset by client-side navigation
+   *  between tabs — Next.js keeps the same Provider mounted the whole time he's in the
+   *  studio), so anyone who opened it and just tapped between pages, the normal way to use
+   *  it, got exactly one pull, ever, no matter how many hours passed — indistinguishable
+   *  from a system that never updates on its own, which is exactly what he reported: numbers
+   *  stuck until he manually pressed a button. /api/track already returns early without
+   *  spending an API call when a pull ran in the last 20 minutes, so calling it on an
+   *  interval costs nothing when there is nothing new to fetch — the server-side cooldown
+   *  does the actual rate-limiting, this just stops requiring a human to remember to ask.
+   *  Also re-pulls when the tab/app comes back into view, for the common case of switching
+   *  away and back rather than leaving it open and idle. Cloud mode only: with no database
+   *  the tracker has nowhere to write. */
   useEffect(() => {
-    if (mode !== "cloud" || pulled.current) return;
-    pulled.current = true;
+    if (mode !== "cloud") return;
     void refresh();
+    const interval = setInterval(() => void refresh(), 20 * 60 * 1000);
+    const onVisible = () => {
+      if (document.visibilityState === "visible") void refresh();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
   }, [mode, refresh]);
 
   return (
