@@ -1,68 +1,68 @@
 [
  {
   "n": 1,
-  "line": "Your Instagram views are losing to TikTok right now.",
+  "line": "Your Instagram views might be wrong right now, and you'd never know.",
   "start": 0.3,
-  "end": 3.17
+  "end": 3.3
  },
  {
   "n": 2,
-  "line": "Your automation pulls Instagram's numbers into a column. It looks correct.",
-  "start": 3.59,
-  "end": 8.27
+  "line": "Picture one box. Instagram writes a number into it.",
+  "start": 3.72,
+  "end": 7.26
  },
  {
   "n": 3,
-  "line": "Then it pulls TikTok's numbers into that exact same column.",
-  "start": 8.69,
-  "end": 12.45
+  "line": "A second later, TikTok writes its own number into that exact same box.",
+  "start": 7.68,
+  "end": 12.06
  },
  {
   "n": 4,
-  "line": "And it quietly overwrites Instagram's real number with TikTok's.",
-  "start": 12.87,
-  "end": 16.05
+  "line": "TikTok's number erases Instagram's. Completely gone.",
+  "start": 12.48,
+  "end": 16.18
  },
  {
   "n": 5,
-  "line": "No error. No warning. The column still looks completely normal.",
-  "start": 16.9,
-  "end": 20.84
+  "line": "No warning. No error. It just looks like a normal number.",
+  "start": 17.03,
+  "end": 20.38
  },
  {
   "n": 6,
-  "line": "It's just the wrong platform's number now.",
-  "start": 21.26,
-  "end": 23.43
+  "line": "You have no way to know it's the wrong one.",
+  "start": 20.8,
+  "end": 22.72
  },
  {
   "n": 7,
-  "line": "This happens the second two platforms feed one shared field.",
-  "start": 23.85,
-  "end": 27.35
+  "line": "This happens with Instagram and TikTok. It happens with Reels and Shorts too.",
+  "start": 23.14,
+  "end": 27.66
  },
  {
   "n": 8,
-  "line": "Give every platform its own column. Never let two platforms write to the same one.",
-  "start": 27.77,
-  "end": 33.12
+  "line": "The fix is simple. Give each one its own box. Never let them share.",
+  "start": 28.08,
+  "end": 32.11
  },
  {
   "n": 9,
-  "line": "If a number ever looks wrong and you can't explain why \u2014 that's the first thing to check.",
-  "start": 33.97,
-  "end": 38.62
+  "line": "If a number ever looks wrong and you don't know why \u2014 this is the first thing to check.",
+  "start": 32.96,
+  "end": 37.16
  },
  {
   "n": 10,
   "line": "The exact setup's in the link in bio.",
-  "start": 39.04,
-  "end": 41.5
+  "start": 37.58,
+  "end": 40.04
  },
  {
   "n": 11,
   "line": "Follow for setups that actually work.",
-  "start": 41.92,
-  "end": 44.01
+  "start": 40.46,
+  "end": 42.55
  }
 ]

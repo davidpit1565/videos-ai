@@ -1,6 +1,6 @@
-Your Instagram views are losing to TikTok right now
+Your Instagram views might be wrong right now, and you'd never know
 
-Your automation pulls Instagram's numbers into a column, looks correct. Then it pulls TikTok's numbers into that exact same column and quietly overwrites Instagram's real number — no error, no warning, the column still looks normal. This happens the second two platforms feed one field: Instagram + TikTok in one tracker, Reels + Shorts merged into one "views" column, any multi-platform report built in n8n, Zapier, or a spreadsheet. The fix: give every platform its own column, never let two write to the same one.
+Picture one box. Instagram writes a number into it. A second later, TikTok writes its own number into that exact same box — and TikTok's number erases Instagram's, completely. No warning, no error, the number just looks normal. This happens with Instagram and TikTok, with Reels and Shorts, any time two things share one box instead of having their own. The fix is simple: give each one its own box, never let them share. If a number ever looks wrong and you don't know why, this is the first thing to check.
 
 Full breakdown: actually-works.com/e/13
 
