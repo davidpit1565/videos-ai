@@ -1,0 +1,439 @@
+<title>Reel 13 — Your Instagram views are losing to TikTok right now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ink:#120A08;--line:#3B2A24;
+  --brass:#FFB84D;--brass-hot:#FFD699;--ember:#FF4757;
+  --text:#FFFFFF;--muted:#B0938A;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#080403;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.bg{position:absolute;inset:0;z-index:0}
+.bg i{position:absolute;display:block;border-radius:50%;will-change:transform;left:0;top:0}
+.bg .b1{width:130cqw;height:130cqw;top:-40cqw;left:-30cqw;background:radial-gradient(circle closest-side,rgba(255,184,77,.40),rgba(255,184,77,0) 70%)}
+.bg .b2{width:150cqw;height:150cqw;top:50cqw;left:-10cqw;background:radial-gradient(circle closest-side,rgba(90,20,25,.55),rgba(90,20,25,0) 70%)}
+.bg .b3{width:120cqw;height:120cqw;top:120cqw;left:20cqw;background:radial-gradient(circle closest-side,rgba(255,71,87,.34),rgba(255,71,87,0) 70%)}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+.vig{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 50%,transparent 40%,rgba(8,4,3,.55) 100%)}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--brass);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(255,184,77,.7)}
+
+.scene{position:absolute;inset:0;z-index:2;opacity:0;visibility:hidden}
+.scene.active{opacity:1;visibility:visible}
+.pad{position:absolute;inset:0;padding:28cqw 10cqw 65cqw;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:12.6cqw;line-height:.98;letter-spacing:-.045em;
+  margin:0;text-wrap:balance;position:relative;z-index:2}
+h2 em{font-style:normal;color:var(--brass)}
+h2 .box{background:var(--brass);color:#1A0E08;padding:0 1.6cqw;border-radius:1cqw;
+  display:inline-block;transform:rotate(-1.2deg)}
+h2 .ebox{background:var(--ember);color:#fff;padding:0 1.6cqw;border-radius:1cqw;display:inline-block}
+p.lede{font-size:5.6cqw;line-height:1.3;color:#F0E0D8;margin:0;font-weight:700;position:relative;z-index:2}
+p.lede strong{color:var(--brass)}
+
+.flash{position:absolute;inset:0;z-index:12;background:var(--brass);display:grid;place-items:center;
+  opacity:0;visibility:hidden}
+.flash.on{opacity:1;visibility:visible}
+.flash span{font-family:var(--d);font-weight:900;font-size:13.4cqw;color:#1A0E08;letter-spacing:-.045em;
+  text-transform:uppercase;max-width:86cqw;text-align:center;line-height:1.02;
+  transform:scale(.9);transition:transform .22s cubic-bezier(.2,1.6,.4,1)}
+.flash.on span{transform:scale(1)}
+
+.subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
+  font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
+  text-transform:uppercase;
+  text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
+.subs em{font-style:normal;background:var(--brass);color:#1A0E08;padding:0 1.4cqw;border-radius:.9cqw;
+  display:inline-block;text-shadow:none}
+.subs b{font-weight:800;color:#fff;transition:color .09s linear,transform .09s linear;display:inline-block}
+.subs b.on{color:var(--brass);transform:scale(1.06)}
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#8A6C5C}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(8,4,3,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#3B2A24;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#3B2A24;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#1A0E08;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+.side{flex:1 1 320px;max-width:470px}
+.side .k{font-family:var(--m);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#FF8A94;margin:0 0 8px}
+.side h1{font-family:var(--d);font-weight:900;font-size:clamp(24px,3vw,34px);letter-spacing:-.035em;margin:0 0 12px;line-height:1.03}
+.side h1 em{font-style:normal;color:var(--brass)}
+.side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.62}
+.side strong{color:var(--text)}
+
+.takecard{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2}
+.takecard .tc-k{font-family:var(--m);font-size:3cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#C2540E;margin:0 0 2.4cqw}
+.takecard .tc-b{font-family:var(--b);font-weight:700;font-size:5.8cqw;line-height:1.34;color:#0D0D0D}
+.takecard .tc-b strong{color:#B8300E}
+
+.biocard{display:inline-flex;align-items:center;gap:2.2cqw;background:#1F0E0E;border:.35cqw solid var(--brass);
+  border-radius:99cqw;padding:2.4cqw 5cqw;position:relative;z-index:2}
+.biocard .dot{width:2.6cqw;height:2.6cqw;border-radius:50%;background:var(--brass)}
+.biocard b{font-family:var(--m);font-weight:600;font-size:4.6cqw;letter-spacing:-.01em;color:#fff}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .side,body.render .ctl,body.render .tapover{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
+<div class="grain" data-decor></div>
+<div class="vig"></div>
+<div class="prog" id="prog"></div>
+
+<section class="scene" data-in="0" data-out="3.38">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="0">Your Instagram views<br>are <span class="ebox">losing</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="3.38" data-out="8.48">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="3.41">Instagram's number<br>lands. Looks <span class="box">correct</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="8.48" data-out="12.66">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="8.51">Then <span class="ebox">TikTok's</span> number<br>lands in that same column.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="12.66" data-out="16.475">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="12.69">It <span class="ebox">overwrites</span><br>the real number.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="16.475" data-out="21.05">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="16.505">No error. No warning.<br>Still looks <span class="box">normal</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="21.05" data-out="23.64">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="21.08">It's the <span class="ebox">wrong<br>platform's</span> number now.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="23.64" data-out="27.56">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="23.67">Two platforms,<br><span class="box">one field</span>.</h2>
+  </div></div>
+</section>
+
+<!-- the takeaway — the concrete rule, on its own screen -->
+<section class="scene" data-in="27.56" data-out="33.545">
+  <div class="pad"><div class="kb">
+    <div class="takecard b" data-at="27.59">
+      <div class="tc-k">The rule</div>
+      <div class="tc-b">Give every platform <strong>its own column</strong>. Never let two write to the same one.</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="33.545" data-out="38.83">
+  <div class="pad"><div class="kb">
+    <h2 class="b punch" data-at="33.575">A number looks wrong?<br><span class="box">Check this first</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="38.83" data-out="41.71">
+  <div class="pad"><div class="kb">
+    <div class="biocard b" data-at="38.86"><span class="dot"></span><b>link in bio</b></div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="41.71" data-out="44.26">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="41.74" style="font-size:6.2cqw">Follow for setups<br>that <strong>actually work</strong>.</p>
+  </div></div>
+</section>
+
+<div class="flash" id="flash"><span id="flashTxt"></span></div>
+<div class="subs" id="subs"></div>
+<div class="handle" data-decor>@actuallyworks.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="44.10" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+
+<div class="side">
+  <p class="k">Episode 13</p>
+  <h1>Your Instagram views are <em>losing</em> to TikTok</h1>
+  <p>Two platforms writing into one shared field is a silent bug: whichever sync runs
+  second wins, with no error and no warning. Shows up in Instagram + TikTok trackers,
+  Reels + Shorts merged into one views column, any multi-platform report built in n8n,
+  Zapier, or a spreadsheet. The fix: give every platform its own field, never share one.</p>
+</div>
+</div>
+
+<script>
+(function(){
+  var DUR=44.91,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+  var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+  var flash=document.getElementById('flash'),flashTxt=document.getElementById('flashTxt');
+
+  var CUES=[
+    [0.30,3.17,"Your Instagram views are losing to TikTok right now."],
+    [3.59,8.27,"Your automation pulls Instagram's numbers into a column. It looks correct."],
+    [8.69,12.45,"Then it pulls TikTok's numbers into that exact same column."],
+    [12.87,16.05,"And it quietly overwrites Instagram's real number with TikTok's."],
+    [16.90,20.84,"No error. No warning. The column still looks completely normal."],
+    [21.26,23.43,"It's just the wrong platform's number now."],
+    [23.85,27.35,"This happens the second two platforms feed one shared field."],
+    [27.77,33.12,"Give every platform its own column. Never let two platforms write to the same one."],
+    [33.97,38.62,"If a number ever looks wrong and you can't explain why — that's the first thing to check."],
+    [39.04,41.50,"The exact setup's in the link in bio."],
+    [41.92,44.01,"Follow for setups that actually work."]
+  ];
+  var WORDS=[
+    [0.3,0.58,"Your",0],
+    [0.58,1.1,"Instagram",0],
+    [1.1,1.38,"views",0],
+    [1.38,1.66,"are",1],
+    [1.66,1.94,"losing",1],
+    [1.94,2.2,"to",1],
+    [2.2,2.52,"TikTok",2],
+    [2.52,2.88,"right",2],
+    [2.88,3.24,"now.",2],
+    [3.68,3.92,"Your",3],
+    [3.92,4.52,"automation",3],
+    [4.52,5.08,"pulls",3],
+    [5.08,6.08,"Instagram's",4],
+    [6.08,6.2,"numbers",4],
+    [6.18,6.6,"into",4],
+    [6.6,6.8,"a",5],
+    [6.8,7.0,"column.",5],
+    [7.3,7.5,"It",6],
+    [7.5,7.76,"looks",6],
+    [7.76,8.3,"correct.",6],
+    [8.8,9.16,"Then",7],
+    [9.16,9.5,"it",7],
+    [9.5,9.76,"pulls",7],
+    [9.76,10.36,"TikTok's",8],
+    [10.36,10.66,"numbers",8],
+    [10.66,11.2,"into",8],
+    [11.2,11.42,"that",9],
+    [11.42,11.78,"exact",9],
+    [11.78,12.06,"same",9],
+    [12.06,12.4,"column.",10],
+    [12.9,13.08,"And",11],
+    [13.08,13.3,"it",11],
+    [13.3,13.64,"quietly",11],
+    [13.64,14.14,"overwrites",12],
+    [14.14,14.8,"Instagram's",12],
+    [14.8,14.94,"real",12],
+    [14.94,15.22,"number",13],
+    [15.22,15.46,"with",13],
+    [15.46,16.76,"TikTok's.",13],
+    [17.0,17.32,"No",14],
+    [17.32,17.7,"error.",14],
+    [18.16,18.3,"No",15],
+    [18.3,18.62,"warning.",15],
+    [18.98,19.24,"The",16],
+    [19.24,19.36,"column",16],
+    [19.36,19.6,"still",16],
+    [19.6,19.82,"looks",17],
+    [19.82,20.36,"completely",17],
+    [20.36,20.74,"normal.",17],
+    [21.28,21.62,"It's",18],
+    [21.62,21.9,"just",18],
+    [21.9,22.14,"the",18],
+    [22.14,22.3,"wrong",19],
+    [22.3,22.92,"platform's",19],
+    [22.92,23.08,"number",19],
+    [23.08,23.4,"now.",20],
+    [23.88,24.2,"This",21],
+    [24.2,24.62,"happens",21],
+    [24.92,25.18,"the",21],
+    [25.18,25.4,"second",22],
+    [25.4,25.64,"two",22],
+    [25.64,26.04,"platforms",22],
+    [26.04,26.38,"feed",23],
+    [26.38,26.68,"one",23],
+    [26.68,26.94,"shared",23],
+    [26.94,27.34,"field.",24],
+    [27.77,28.14,"Give",25],
+    [28.14,28.54,"every",25],
+    [28.54,29.02,"platform",25],
+    [29.02,29.5,"its",26],
+    [29.5,29.84,"own",26],
+    [29.84,30.18,"column.",26],
+    [30.66,30.86,"Never",27],
+    [30.86,31.06,"let",27],
+    [31.06,31.36,"two",27],
+    [31.36,31.86,"platforms",28],
+    [31.86,32.3,"write",28],
+    [32.3,32.48,"to",28],
+    [32.48,32.6,"the",29],
+    [32.6,32.82,"same",29],
+    [32.82,33.1,"one.",29],
+    [34.04,34.2,"If",30],
+    [34.2,34.42,"a",30],
+    [34.42,34.64,"number",30],
+    [34.64,34.92,"ever",31],
+    [34.92,35.14,"looks",31],
+    [35.14,35.5,"wrong",31],
+    [35.5,35.76,"and",32],
+    [35.76,35.9,"you",32],
+    [35.9,36.34,"can't",32],
+    [36.34,36.54,"explain",33],
+    [36.54,36.9,"why",33],
+    [37.34,37.58,"that's",34],
+    [37.58,37.7,"the",34],
+    [37.7,37.9,"first",34],
+    [37.9,38.08,"thing",35],
+    [38.08,38.32,"to",35],
+    [38.32,38.58,"check.",35],
+    [39.2,39.44,"The",36],
+    [39.44,39.7,"exact",36],
+    [39.7,40.06,"setup's",36],
+    [40.06,40.36,"in",37],
+    [40.36,40.52,"the",37],
+    [40.52,40.82,"link",37],
+    [40.82,41.26,"in",38],
+    [41.26,41.52,"bio.",38],
+    [42.04,42.36,"Follow",39],
+    [42.36,42.62,"for",39],
+    [42.62,42.88,"setups",39],
+    [42.88,43.14,"that",40],
+    [43.14,43.5,"actually",40],
+    [43.5,43.82,"work.",40]
+  ];
+  var FDUR=0.55,FLASH=[];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      s.classList.toggle('active',on); if(on) active=s;
+    }
+    if(active){
+      var f=(t-+active.dataset.in)/((+active.dataset.out)-(+active.dataset.in));
+      var kbs=active.querySelectorAll('.kb');
+      for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.06*f).toFixed(4)+')';
+    }
+    var pu=0;
+    for(i=0;i<CUES.length;i++){
+      var pd=t-CUES[i][0]; if(pd>=0&&pd<0.22){ pu=1-pd/0.22; break; }
+    }
+    for(i=0;i<scenes.length;i++)
+      scenes[i].style.transform = (scenes[i]===active&&pu) ? 'scale('+(1+0.02*pu).toFixed(4)+')' : '';
+
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      e.classList.toggle('snap',t<0.30);
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    var fl=null;
+    for(i=0;i<FLASH.length;i++) if(t>=FLASH[i][0]&&t<FLASH[i][0]+FDUR) fl=FLASH[i];
+    flash.classList.toggle('on',!!fl);
+    if(fl&&flashTxt.textContent!==fl[1]) flashTxt.textContent=fl[1];
+
+    b1.style.transform='translate('+(2+14*Math.sin(t*0.3))+'cqw,'+(-4+16*Math.cos(t*0.22))+'cqw)';
+    b2.style.transform='translate('+(18*Math.cos(t*0.18+1.4))+'cqw,'+(16*Math.sin(t*0.24+.6))+'cqw)';
+    b3.style.transform='translate('+(10+18*Math.sin(t*0.15+2.1))+'cqw,'+(-10*Math.cos(t*0.2+1.1))+'cqw)';
+
+    /* The chunk on screen is the one the last spoken word belongs to, and it holds
+       until the next chunk's first word — otherwise the caption blanks for a third of
+       a second between chunks while the voice is still going. It clears only between
+       lines, where the silence is real. */
+    /* The window has to close the ordinary gaps. The scene's own headline is written to
+       disappear before the next one arrives, so a caption that blanks in a 0.42s gap
+       leaves the whole screen textless — measured at eleven places, 0.13s each. Reaching
+       0.32s back and 0.15s forward covers those, and the only remaining blanks fall
+       inside the 0.80s section gaps, where the colour card fills the frame anyway. After
+       the last line the caption holds to the end rather than leaving a blank tail. */
+    var inLine=false;
+    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.32&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    if(t>CUES[CUES.length-1][1]) inLine=true;
+    var here=-1, cur=-1;
+    /* the lit word is the last one that started, not only the one still sounding:
+       Whisper's word boundaries are tight, so gating on the word's own end left the
+       highlight off for 13.4s of the reel */
+    for(i=0;i<WORDS.length;i++) if(WORDS[i][0]<=t+0.08){ here=WORDS[i][3]; cur=i; }
+    var txt='';
+    if(inLine&&here>=0){
+      for(i=0;i<WORDS.length;i++) if(WORDS[i][3]===here)
+        txt+=(i===cur?'<b class="on">':'<b>')+WORDS[i][2]+'</b> ';
+    }
+    subs.innerHTML=txt;
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>
