@@ -114,9 +114,26 @@ export async function GET(req: Request) {
   // silently stopped healing every one of those rows.
   const PLACEHOLDER_TITLES = new Set(["ריל חדש", "פרק חדש"]);
   for (const e of state.episodes) {
-    if (e.title && !PLACEHOLDER_TITLES.has(e.title)) continue;
-    const real = realTitleFor(e.number);
-    if (real) e.title = real;
+    const best = realTitleFor(e.number) ?? captionTitleFor(e.number);
+    if (!e.title || PLACEHOLDER_TITLES.has(e.title)) {
+      if (best) e.title = best;
+      continue;
+    }
+    if (!best) continue;
+    // A row auto-linked before its youtube.txt existed fell back to a caption's raw
+    // first line — and when that caption had no line break yet, "first line" was the
+    // whole paragraph, so the stored title became the caption text, not a headline
+    // ("Your AI agent is already lying to you. Not maliciously — it just doesn't know
+    // how to say..." instead of "Your AI agent is already lying to you"). The correct
+    // title exists now; nothing since has re-checked a title that already looked non-
+    // empty. Healing is safe specifically because one is a plain prefix of the other —
+    // two independently-written titles don't coincidentally share a long exact prefix,
+    // so this can't be mistaken for a human's deliberate rename in /videos.
+    const stored = e.title.trim().replace(/\.$/, "").toLowerCase();
+    const fresh = best.trim().replace(/\.$/, "").toLowerCase();
+    if (stored !== fresh && stored.length > 8 && fresh.length > 8 && (stored.startsWith(fresh) || fresh.startsWith(stored))) {
+      e.title = best;
+    }
   }
 
   // ONE-TIME repair, not a general mechanism — remove this block once it has run. Episode
