@@ -511,9 +511,18 @@ export async function GET(req: Request) {
     void notifyEpisodeLive(num, title).catch(() => {});
   }
 
+  // How many of this pull's Instagram posts came back with no fresh metrics because
+  // the insights call itself failed — previously invisible; a stuck-looking view count
+  // and a real insights failure read identically without this. See lib/sources.ts's
+  // IgMedia.insightsError for what's actually being reported here.
+  const igInsightsFailures = ig.connected ? ig.media.filter((m) => m.insightsError) : [];
+
   return NextResponse.json({
     ok: true,
     instagram: ig.connected ? { followers: ig.followers, posts: ig.media.length } : ig,
+    igInsightsFailures: igInsightsFailures.length
+      ? { count: igInsightsFailures.length, sample: igInsightsFailures[0].insightsError }
+      : undefined,
     beehiiv: bee.connected ? { subscribers: bee.activeSubscribers, exact: bee.exact } : bee,
     youtube: yt.connected ? { subscribers: yt.subscribers, videos: yt.videos.length } : yt,
     newEvents: fresh.length,

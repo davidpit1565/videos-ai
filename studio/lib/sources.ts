@@ -51,6 +51,12 @@ export type IgMedia = {
   shares: number | null;
   likes: number | null;
   comments: number | null;
+  /** Set only when the insights call itself failed (non-2xx) or threw — the reason
+   *  views/reach/etc came back null this pull was never visible anywhere before: the
+   *  code silently kept whatever was already stored, which reads identically to "the
+   *  numbers just aren't moving" whether the real cause is a stale token, a metric
+   *  the API rejected, or Instagram itself. See /api/connections' live.instagram. */
+  insightsError?: string;
 };
 
 export type IgResult =
@@ -248,7 +254,9 @@ export async function fetchInstagram(): Promise<IgResult> {
           const ir = await timedFetch(`${IG}/${m.id}/insights?metric=${metrics}&access_token=${token}`, {
             cache: "no-store",
           });
-          if (!ir.ok) return base;
+          if (!ir.ok) {
+            return { ...base, insightsError: `HTTP ${ir.status}: ${(await ir.text()).slice(0, 200)}` };
+          }
           const j = (await ir.json()) as { data?: { name: string; values: { value: number }[] }[] };
           const v: Record<string, number> = {};
           for (const d of j.data ?? []) v[d.name] = d.values?.[0]?.value ?? 0;
@@ -259,8 +267,8 @@ export async function fetchInstagram(): Promise<IgResult> {
             saves: v.saved ?? null,
             shares: v.shares ?? null,
           };
-        } catch {
-          return base;
+        } catch (err) {
+          return { ...base, insightsError: err instanceof Error ? err.message : String(err) };
         }
       }),
     );
