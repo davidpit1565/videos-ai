@@ -8,11 +8,11 @@
 
 | מה | כתובת |
 |---|---|
-| האתר הציבורי | `actually-works-studio.vercel.app` |
-| הסטודיו (עם קוד) | `actually-works-studio.vercel.app/studio` |
-| **רנדרים — לצפות ולאשר** | `actually-works-studio.vercel.app/renders` |
-| עמוד פרק 01 | `actually-works-studio.vercel.app/e/1` |
-| בדיקת חיבורים | `actually-works-studio.vercel.app/api/connections` |
+| האתר הציבורי | `actually-works.com` |
+| הסטודיו (עם קוד) | `actually-works.com/studio` |
+| **רנדרים — לצפות ולאשר** | `actually-works.com/renders` |
+| עמוד פרק 01 | `actually-works.com/e/1` |
+| בדיקת חיבורים | `actually-works.com/api/connections` |
 | הריפו | `github.com/davidpit1565/videos-ai` |
 
 **הקוד לסטודיו:** ‏Vercel → actually-works-studio → Settings → Environment Variables →
@@ -63,7 +63,7 @@ and the part that breaks. Nothing else — no course, no launch, no funnel.
 Start with this one. It's the setup most people should have made first:
 
   One paste, and ChatGPT stops giving you the obvious
-  actually-works-studio.vercel.app/e/1
+  actually-works.com/e/1
 
 It takes about two minutes. The page has the five clicks, the prompt in
 full, and — this is the part other tutorials skip — what it will NOT do.

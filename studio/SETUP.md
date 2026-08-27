@@ -13,7 +13,7 @@
 
 הפרויקט ב-Vercel כבר קיים ופרוס: **actually-works-studio** (Root Directory: `studio`).
 
-    https://actually-works-studio.vercel.app
+    https://actually-works.com
 
 זו הכתובת הראשית, וזו הכתובת שצריך לשמור. הכתובת הארוכה של הענף
 (`...-git-claude-universa-610c01-...`) היא **בנייה קפואה מהעבר** — בניות ענף כבויות
@@ -42,7 +42,7 @@ Vercel → Project → Settings → Environment Variables. אף אחד מהם ל
 
 ### לבדוק חיבור בלי לנחש
 
-    https://actually-works-studio.vercel.app/api/connections
+    https://actually-works.com/api/connections
 
 הכתובת הזאת פתוחה (בלי קוד) ומחזירה שורה אחת של JSON: לכל משתנה — אם הוא **קיים**
 בפריסה הזאת, באורך כמה תווים, בשתי האותיות הראשונות, והאם נדבק לו רווח או שורה חדשה

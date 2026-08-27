@@ -202,8 +202,10 @@ export async function GET(req: Request) {
       if (e.status !== "live") { e.status = "live"; newlyLive.push(e.number); }
     }
 
-    // Every caption/description we write ends with "actually-works-studio.vercel.app/e/N"
-    // — an exact, unambiguous episode number. Title matching (against the real
+    // Every caption/description we write ends with a "/e/N" link — actually-works.com
+    // going forward, actually-works-studio.vercel.app on anything posted before the real
+    // domain was live — an exact, unambiguous episode number either way, which is all
+    // this regex looks for. Title matching (against the real
     // YouTube-file title when the studio's own title field is still the "ריל חדש"
     // placeholder) is the fallback ONLY for content with no /e/N at all — an older post,
     // or one written by hand without the link. An /e/N that IS present but doesn't
