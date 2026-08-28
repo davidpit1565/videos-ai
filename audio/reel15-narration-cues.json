@@ -25,56 +25,56 @@
  },
  {
   "n": 5,
-  "line": "One button. Click Fix, and it checks every box in the whole sheet, not just this one.",
+  "line": "One button. Click Fix, and it also checks the rest of the sheet for the same kind of mistake.",
   "start": 21.99,
-  "end": 27.34
+  "end": 26.94
  },
  {
   "n": 6,
   "line": "It fixes it.",
-  "start": 27.76,
-  "end": 28.59
+  "start": 27.36,
+  "end": 28.2
  },
  {
   "n": 7,
   "line": "And tells you why: one bracket was never closed. Now every number actually gets counted.",
-  "start": 29.01,
-  "end": 34.59
+  "start": 28.62,
+  "end": 34.2
  },
  {
   "n": 8,
   "line": "That's not the only thing it can do.",
-  "start": 35.01,
-  "end": 36.89
+  "start": 34.62,
+  "end": 36.5
  },
  {
   "n": 9,
   "line": "You can also type a question straight into any box, using the word AI, and Gemini gives a reply right there.",
-  "start": 37.74,
-  "end": 44.08
+  "start": 37.35,
+  "end": 43.68
  },
  {
   "n": 10,
   "line": "No new app, no new tab. The reply just shows up in the box.",
-  "start": 44.5,
-  "end": 48.02
+  "start": 44.1,
+  "end": 47.63
  },
  {
   "n": 11,
   "line": "The fix was never a plugin away. It was already inside the app you open every day.",
-  "start": 48.44,
-  "end": 54.21
+  "start": 48.05,
+  "end": 53.81
  },
  {
   "n": 12,
   "line": "The setup's in the link in bio.",
-  "start": 54.63,
-  "end": 56.44
+  "start": 54.23,
+  "end": 56.04
  },
  {
   "n": 13,
   "line": "Follow for the setup that actually works.",
-  "start": 56.86,
-  "end": 58.99
+  "start": 56.46,
+  "end": 58.6
  }
 ]
