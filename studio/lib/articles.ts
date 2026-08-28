@@ -354,7 +354,7 @@ export const ARTICLES: Article[] = [
       "If you make a small mistake in that instruction (a missing bracket, for example), the math breaks and the box shows an error.",
       "A button appears next to the broken box: Fix.",
       "Click it. Gemini checks the instruction — and the rest of the sheet — explains what was wrong in plain words, and corrects it.",
-      "Separately, type a question into any empty box using the word AI, like =AI(\"what does this number mean\"), and Gemini answers directly inside that box.",
+      "Separately, in any empty box type an equals sign, then the word AI, then your question in quotation marks inside round brackets — like =AI(\"what does this number mean\") — and Gemini answers directly inside that box. The equals sign is just how Sheets knows \"this box does something\" instead of holding plain text; the quotation marks mark where your question starts and ends.",
     ],
     changes: [
       "No plugin, no separate app, no copy-pasting into a chatbot — the fix and the question-answering both happen inside the same box you were already using.",
