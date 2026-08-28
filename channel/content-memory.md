@@ -125,6 +125,29 @@ says.
   research supports — hook quality and completion rate are real, practicable levers; the
   scale and speed of a specific breakout are not something content quality alone controls.
 
+## Jargon audit across episodes 2-14 (28.8.2026)
+
+David said every episode except the first is hard to follow. Read the actual narration
+(CUES arrays) of every episode 2-14 against house-style.md §10's zero-jargon rule, rather
+than accepting the claim as-is or dismissing it. Real finding, not a blanket agreement or
+blanket denial:
+
+**Most episodes (4, 5, 6, 8, 9, 12, 13, 14) are actually self-contained and concrete** — no
+undefined jargon found on this pass.
+
+**Four real, specific gaps found, the same failure class that broke reel-15:**
+- **Episode 3**: "Add this to your **prompt**" — "prompt" is never defined anywhere in the
+  episode.
+- **Episodes 7 and 10**: "**n8n** agent" — n8n (the automation tool) is named with no
+  explanation of what it is, assuming the viewer already recognizes the brand.
+- **Episode 11**: "**sibilance**", "**median**" — audio-engineering jargon inside an episode
+  aimed at a general audience.
+
+Not rebuilt yet — these are published episodes, and redoing them is a bigger call than a
+quick script fix. Flagging here so the next full editing pass (or a dedicated "clean up the
+back catalog" session) starts from a real list instead of guessing which four, or assuming
+all thirteen, need work.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
