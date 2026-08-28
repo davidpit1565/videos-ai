@@ -31,9 +31,49 @@ settle, not the first hour).
 
 ---
 
+## Before running a hook-type experiment as two full episodes
+
+The production pipeline (voice clone, `voice_doctor.py`, karaoke captions, `safe_check.js`,
+full render QA) is expensive per episode — don't spend two full productions just to compare
+two hooks on the same underlying content. Instagram's own Trial Reels feature is built for
+exactly this: it shows a Reel to non-followers first, before deciding whether to push it
+further. Check whether a hook question can be answered that way before defaulting to two
+parallel full episodes.
+
+**Checked on this account, 28.8.2026: not available.** No "Trial"/"Test" toggle anywhere
+in the share screen (Tag people / Add location / Rename audio / Add AI label / Audience /
+Also share on... / More options), and nothing under Settings either. Account is already
+Professional. Meta rolls this out gradually per account, not to everyone at once — this is
+a FACT about this account right now, not a permanent one.
+
+**Likely explanation (HYPOTHESIS, not confirmed by Meta):** unofficial sources report a
+~1,000-follower threshold for eligibility. This account had 94 followers on 28.8.2026 —
+well under that reported line. Meta hasn't published the exact number anywhere official,
+so treat the threshold itself as unconfirmed, but it's consistent with what we're seeing.
+Re-check once follower count is meaningfully past 1,000, not before — no setting to
+request early access exists.
+
 ## Log
 
-*(Empty — no deliberate experiment has been run yet. The first candidate, once episode
-volume is high enough to have a real baseline to test against, is probably the hook-type
-test already flagged as a hypothesis in content-memory.md: a build-failure-first episode
-vs. a clean-demo episode on the same tool, holding everything else constant.)*
+### NOT AN EXPERIMENT — Reel 13, "ChatGPT remembers you, even in a new chat"
+
+David confirmed: Reel 13 went out as a normal upload through the studio, not through the
+Trial toggle. So this was never actually the trial-mechanism test the earlier version of
+this entry described — correcting the record rather than leaving a false RUNNING entry.
+Reel 13's real numbers (once in) are just the next ordinary data point for
+`content-memory.md`, same as any other episode — not a Trial Reel result, and not a
+baseline for comparing Trial Reel performance.
+
+### CANCELLED — Reel 14 as a Trial Reel, "We tried to make Claude flatter us"
+
+Never ran. The Trial toggle isn't available on this account (see the note above) — checked
+the share screen and Settings, nothing there. Reel 14 goes out as a normal upload through
+the studio instead, same as every other episode so far. Its real numbers are an ordinary
+data point for `content-memory.md`, not a Trial Reel result — don't compare it against a
+"trial baseline" that never existed.
+
+*(No other deliberate experiment has been run yet. The next candidate after these two,
+once episode volume is high enough to have a real baseline to test against, is probably
+the hook-type test already flagged as a hypothesis in content-memory.md: a
+build-failure-first episode vs. a clean-demo episode on the same tool, holding everything
+else constant.)*

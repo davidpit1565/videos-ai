@@ -1,0 +1,80 @@
+[
+ {
+  "n": 1,
+  "line": "Gemini just caught a mistake in this box, before you did.",
+  "start": 0.3,
+  "end": 3.63
+ },
+ {
+  "n": 2,
+  "line": "Not a separate app. It's already inside the sheet you're using right now.",
+  "start": 4.05,
+  "end": 8.37
+ },
+ {
+  "n": 3,
+  "line": "Type a formula into the box. Get one thing wrong.",
+  "start": 8.79,
+  "end": 12.95
+ },
+ {
+  "n": 4,
+  "line": "A red flag shows up, with one button: Fix.",
+  "start": 13.37,
+  "end": 16.24
+ },
+ {
+  "n": 5,
+  "line": "Click it, and Gemini reads the whole sheet, not just the one box.",
+  "start": 17.09,
+  "end": 20.69
+ },
+ {
+  "n": 6,
+  "line": "It fixes the box.",
+  "start": 21.11,
+  "end": 22.55
+ },
+ {
+  "n": 7,
+  "line": "And explains: missing a closing bracket, the total now includes every row.",
+  "start": 22.97,
+  "end": 27.46
+ },
+ {
+  "n": 8,
+  "line": "That's not the only trick.",
+  "start": 27.88,
+  "end": 29.18
+ },
+ {
+  "n": 9,
+  "line": "Type this in any box, in brackets: A-I, ask it anything.",
+  "start": 30.03,
+  "end": 34.27
+ },
+ {
+  "n": 10,
+  "line": "And it gives a reply, right there, no new tab.",
+  "start": 34.69,
+  "end": 38.01
+ },
+ {
+  "n": 11,
+  "line": "The fix was never a plugin away. It was already inside the app you open every day.",
+  "start": 38.43,
+  "end": 44.19
+ },
+ {
+  "n": 12,
+  "line": "The setup's in the link in bio.",
+  "start": 44.61,
+  "end": 46.43
+ },
+ {
+  "n": 13,
+  "line": "Follow for the setup that actually works.",
+  "start": 46.85,
+  "end": 48.98
+ }
+]
