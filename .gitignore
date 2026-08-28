@@ -95,6 +95,10 @@ export/*.mp4
 # Keep it to the reels actually in review; delete one when its episode goes live.
 !studio/public/reels/*.mp4
 
+# Whisper word-timestamp intermediate for karaoke.py — regenerable in seconds with
+# audio/word_stamps.py, and never itself a decision worth diffing.
+audio/*-deep.json
+
 # Written fresh by studio/scripts/write-build-info.mjs on every build (real commit sha +
 # build time) — a local `npm run build` for testing leaves this untracked; it's derived,
 # not source, and Vercel regenerates it on every real deploy.
