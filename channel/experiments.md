@@ -42,10 +42,16 @@ parallel full episodes.
 
 **Checked on this account, 28.8.2026: not available.** No "Trial"/"Test" toggle anywhere
 in the share screen (Tag people / Add location / Rename audio / Add AI label / Audience /
-Also share on... / More options), and nothing under Settings either. Meta rolls this out
-gradually per account, not to everyone at once — this is a FACT about this account right
-now, not a permanent one. Worth re-checking occasionally, but don't plan an experiment
-around it until it actually appears.
+Also share on... / More options), and nothing under Settings either. Account is already
+Professional. Meta rolls this out gradually per account, not to everyone at once — this is
+a FACT about this account right now, not a permanent one.
+
+**Likely explanation (HYPOTHESIS, not confirmed by Meta):** unofficial sources report a
+~1,000-follower threshold for eligibility. This account had 94 followers on 28.8.2026 —
+well under that reported line. Meta hasn't published the exact number anywhere official,
+so treat the threshold itself as unconfirmed, but it's consistent with what we're seeing.
+Re-check once follower count is meaningfully past 1,000, not before — no setting to
+request early access exists.
 
 ## Log
 
