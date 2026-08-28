@@ -83,6 +83,48 @@ These are unconfirmed as *patterns* the same way everything else here is — the
 candidate shapes, not proven winners. Don't tag an episode with one of these and treat the
 tag as evidence it will work.
 
+## External landscape research (28.8.2026)
+
+Six parallel research passes, prompted by David after watching reel-15 and not understanding
+it. Full write-up: `channel/direction-report-28-8.md`. Summary here for future planning —
+every claim below is labeled, and none of it should be read as more certain than the label
+says.
+
+- **FACT (two independent research passes agree):** a short-form (Reels/TikTok) account whose
+  entire premise is "test an AI claim live, show the real verdict" is almost nonexistent.
+  One long-form match found at real scale (Internet of Bugs, ~130k subs). In short-form
+  specifically, exactly one account was found doing this (@huskistaken) — framed as comedy,
+  not as a tutorial format — and it got 9M+ views on a single video. This is the strongest
+  external support yet for the "Pattern shapes worth trying" list above (the Impossible Test,
+  AI vs. Reality, Break the AI): not just plausible, actually rare in the wild.
+- **HYPOTHESIS, not yet tested on our own numbers:** what the successful adjacent channels
+  (Project Farm, RTINGS, Captain Disillusion — none of them AI content) share structurally is
+  a repeatable, visible measurement and a stated independence policy, not just "we tested it."
+  We don't yet have our own equivalent of Project Farm's test bench — an open question, not
+  a decided answer.
+- **FACT:** agentic-coding/harness content (Claude Code and similar, explained to non-coders)
+  is the thinnest-covered format found in the whole landscape pass — every small channel in it
+  (Matt Pocock, IndyDevDan, Brian Casel) gets view counts well above its subscriber count,
+  the opposite pattern from the saturated daily-AI-news tier. Episode 12 is already in this
+  space; there's room to go deeper, not just once.
+- **FACT:** no ranked list surveyed contains a non-English (e.g. Flemish/Dutch) AI-education
+  channel. Absence of a competitor in a ranking is not evidence of demand — it's simply
+  unmeasured (same caveat as everywhere else demand isn't directly measured).
+- **FACT, from the monetization research:** the audience-to-services funnel already in use
+  here (channel → paid AI-automation work) is the best-documented path that pays before an
+  audience is large — Nate Herk (n8n tutorials + agency, named enterprise clients) is the
+  closest real analogue found. **Risk to watch, not yet ours:** in the two most-documented
+  cases of this exact funnel (Nick Saraev, Liam Ottley), the community/course side ended up
+  outearning the services side, or the founder exited services entirely — a natural drift
+  toward the more scalable info-product, not a failure. Worth noticing if it starts happening
+  here, not something to prevent pre-emptively.
+- **FACT, and important to keep repeating:** no documented case exists of a genuinely
+  zero-to-small account reaching millions of views within days without either a structural
+  format innovation (e.g. a serialized cliffhanger format) or pre-existing reach the "zero
+  followers" framing hid. "Find the right topic and it will happen fast" is not a plan this
+  research supports — hook quality and completion rate are real, practicable levers; the
+  scale and speed of a specific breakout are not something content quality alone controls.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
