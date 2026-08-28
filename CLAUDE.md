@@ -74,6 +74,33 @@ Already queued this way: `explain-steps`, `voice_doctor.py` (an agent that hears
 wrong with a voice and fixes it), `retime.py` (why editors squeeze audio and why that is
 backwards).
 
+## Content memory — the weekly loop
+
+Two files carry this, deliberately kept to two: `channel/content-memory.md` (patterns,
+hypotheses, winning/losing formats) and `channel/experiments.md` (deliberate tests only —
+"we changed X to test Y," never every episode). Real per-episode performance — views,
+saves, save-rate, engagement — lives in the studio's own tracked state (`/api/track` pulls
+it daily from Instagram and Beehiiv), not in a markdown file; `/api/agent` already answers
+questions against it under the same rule as everywhere else in this repo: never invent a
+metric, say plainly when there isn't enough data yet. `channel/demand-report.md` is a
+separate, one-time thing — YouTube search-demand research, not live episode performance.
+Don't conflate the two.
+
+When he says "plan next week" or "what should we learn from this," do it without needing
+a slash command: read `content-memory.md`, check the studio's real numbers (ask him to
+paste the studio's data or a relevant `/api/agent` answer if this session can't reach it
+directly), separate FACT from HYPOTHESIS from UNKNOWN, and report: what happened, what
+might explain it (labeled as guesses, not conclusions), what pattern is worth repeating,
+what's worth a deliberate experiment next, and what to stop doing — only if there's
+actually enough evidence to say so. Update the two files with anything that changed. A
+pattern moves from *Current hypotheses* to *Confirmed* only after showing up in two
+independent episodes, not one good week — 12 published episodes is not enough volume to
+overfit a rule to a single video.
+
+Skip a numeric virality score (no "Hook: 9/10, Score: 87") — it fakes precision the
+data doesn't support. STRONG / PROMISING / WEAK / UNCLEAR, with the reasoning stated, is
+honest about what we actually know.
+
 ## Building and rendering
 
 - The picture follows the narration, never the reverse. Build the voice at its own pace,
