@@ -40,6 +40,13 @@ exactly this: it shows a Reel to non-followers first, before deciding whether to
 further. Check whether a hook question can be answered that way before defaulting to two
 parallel full episodes.
 
+**Checked on this account, 28.8.2026: not available.** No "Trial"/"Test" toggle anywhere
+in the share screen (Tag people / Add location / Rename audio / Add AI label / Audience /
+Also share on... / More options), and nothing under Settings either. Meta rolls this out
+gradually per account, not to everyone at once — this is a FACT about this account right
+now, not a permanent one. Worth re-checking occasionally, but don't plan an experiment
+around it until it actually appears.
+
 ## Log
 
 ### NOT AN EXPERIMENT — Reel 13, "ChatGPT remembers you, even in a new chat"
@@ -51,23 +58,13 @@ Reel 13's real numbers (once in) are just the next ordinary data point for
 `content-memory.md`, same as any other episode — not a Trial Reel result, and not a
 baseline for comparing Trial Reel performance.
 
-### [RUNNING] — Reel 14, "We tried to make Claude flatter us"
+### CANCELLED — Reel 14 as a Trial Reel, "We tried to make Claude flatter us"
 
-**Changed:** Published as an Instagram Trial Reel (shown to non-followers first) instead
-of a normal full push through the studio. First actual use of this mechanism — Reel 13
-didn't end up testing it.
-**To test:** Whether retention/completion on the trial clears the bar to justify a full
-push. This episode tests a viral claim ("AI always flatters you") against a fresh Claude
-instance with real transcripts — `channel/demand-report.md` has no query for AI
-sycophancy/flattery, so the demand side is unmeasured too.
-**Baseline:** None — first time this mechanism is actually used on this account.
-**Result:** [fill in from Instagram's own Trial Reel screen — retention/completion for a
-Trial Reel do **not** flow into `/api/track` or the studio; that pull only ever gets
-views/likes/saves/comments/shares. Read the trial numbers directly off Instagram, then
-record them here by hand.]
-**Verdict:** [fill in after the trial window closes]
-**Feeds into:** whether Trial Reels becomes the default publish path for future episodes
-with unmeasured demand.
+Never ran. The Trial toggle isn't available on this account (see the note above) — checked
+the share screen and Settings, nothing there. Reel 14 goes out as a normal upload through
+the studio instead, same as every other episode so far. Its real numbers are an ordinary
+data point for `content-memory.md`, not a Trial Reel result — don't compare it against a
+"trial baseline" that never existed.
 
 *(No other deliberate experiment has been run yet. The next candidate after these two,
 once episode volume is high enough to have a real baseline to test against, is probably
