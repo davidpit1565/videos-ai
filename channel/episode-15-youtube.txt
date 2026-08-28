@@ -1,0 +1,17 @@
+Gemini fixes your broken formula, free.
+
+Gemini just caught a mistake in this box, before you did. Not a separate app — it's
+already inside the sheet you're using right now. Type a formula, get one thing wrong,
+and a red flag shows up with one button: Fix. Click it and Gemini reads the whole
+sheet, not just the one box — then fixes it and explains exactly what broke.
+
+That's not the only trick: type =AI("your question") in any box, and Gemini answers
+right there, no new tab.
+
+The fix was never a plugin away. It was already inside the app you open every day.
+
+Full breakdown: actually-works.com/e/15
+
+Follow for the setup that actually works.
+
+#gemini #googlesheets #ai #productivity #aitools #automation
