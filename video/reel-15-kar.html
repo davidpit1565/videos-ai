@@ -65,17 +65,15 @@ p.lede strong{color:var(--brass)}
 .quote .qb{font-family:var(--b);font-weight:700;font-size:5cqw;line-height:1.4;color:#0D0D0D}
 .quote .qb strong{color:#8A7434}
 
-/* the broken-formula box: the one concrete thing that carries the whole script */
+/* the box with numbers in it — the one concrete thing that carries the whole script */
 .cellbox{background:#1B160D;border:.4cqw solid var(--ember);border-radius:1.6cqw;
   padding:4cqw 4.6cqw;width:100%;position:relative;z-index:2;text-align:left}
 .cellbox.fixed{border-color:var(--brass)}
 .cellbox .ck{font-family:var(--m);font-size:2.6cqw;letter-spacing:.14em;text-transform:uppercase;
   color:#8A7434;margin:0 0 1.6cqw}
-.cellbox .cf{font-family:var(--m);font-weight:600;font-size:5.6cqw;color:var(--ember)}
+.cellbox .cf{font-family:var(--m);font-weight:600;font-size:5.2cqw;color:var(--ember)}
 .cellbox.fixed .cf{color:var(--brass)}
-.fixbtn{display:inline-flex;align-items:center;gap:1.4cqw;background:var(--brass);color:#14100A;
-  border-radius:99cqw;padding:1.6cqw 4cqw;font-family:var(--m);font-weight:600;font-size:4cqw;
-  margin-top:3cqw}
+.cellbox .cf2{font-family:var(--m);font-weight:600;font-size:4.4cqw;color:#fff;margin-top:2cqw}
 
 .subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
   font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
@@ -130,89 +128,94 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="3.84">
+<section class="scene" data-in="0" data-out="4.26">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="0"><span class="toolmark"><span class="dot"></span>Gemini</span> just caught<br>a mistake in this <span class="box">box</span>.</h2>
+    <h2 class="b punch" data-at="0">You type numbers<br>into <span class="box">boxes</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="3.84" data-out="8.58">
+<section class="scene" data-in="4.26" data-out="10.12">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="3.91">Already <span class="ebox">inside the sheet</span> you use.</h2>
+    <h2 class="b punch" data-at="4.29">Then you tell it:<br><span class="ebox">"add these up."</span></h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="8.58" data-out="13.16">
+<section class="scene" data-in="10.12" data-out="15.33">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="8.65">Type a formula<br>into the box. <span class="box">Get it wrong</span>.</h2>
-  </div></div>
-</section>
-
-<section class="scene" data-in="13.16" data-out="16.665">
-  <div class="pad"><div class="kb">
-    <div class="cellbox b" data-at="13.19">
-      <div class="ck">the box, right now</div>
-      <div class="cf">=SUM(A2:A9</div>
-      <div class="fixbtn">⚡ Fix</div>
+    <div class="cellbox b" data-at="10.05">
+      <div class="ck">your instruction</div>
+      <div class="cf">"Add up these box</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="16.665" data-out="20.9">
+<section class="scene" data-in="15.33" data-out="21.565">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="16.695">Click <span class="box">Fix</span>.<br>It reads the <span class="ebox">whole sheet</span>.</h2>
+    <h2 class="b punch" data-at="15.33"><span class="toolmark"><span class="dot"></span>Gemini</span> already<br>caught it.</h2>
   </div></div>
 </section>
 
-<!-- the payoff: the box, corrected, with the explanation -->
-<section class="scene" data-in="20.9" data-out="27.67">
+<section class="scene" data-in="21.565" data-out="27.55">
   <div class="pad"><div class="kb">
-    <div class="cellbox fixed b" data-at="20.93">
+    <h2 class="b punch" data-at="21.565">One button:<br><span class="box">Fix</span>.</h2>
+  </div></div>
+</section>
+
+<!-- the payoff: the instruction, whole, with the plain-language explanation -->
+<section class="scene" data-in="27.55" data-out="34.38">
+  <div class="pad"><div class="kb">
+    <div class="cellbox fixed b" data-at="27.58">
       <div class="ck">gemini's fix</div>
-      <div class="cf">=SUM(A2:A9)</div>
+      <div class="cf">"Add up these boxes"</div>
     </div>
-    <div class="quote b" data-at="22.83">
+    <div class="quote b" data-at="29.966">
       <div class="qk">what it told us</div>
-      <div class="qb">"<strong>Missing a closing bracket.</strong> I added it — the total now includes every row."</div>
+      <div class="qb">"<strong>You forgot to close it.</strong> Fixed — now every number is counted."</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="27.67" data-out="29.605">
+<section class="scene" data-in="34.38" data-out="36.895">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="27.74">That's not<br>the only <span class="box">trick</span>.</h2>
+    <h2 class="b punch" data-at="34.45">That's not<br>the only <span class="box">trick</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="29.605" data-out="38.22">
+<section class="scene" data-in="36.895" data-out="43.86">
   <div class="pad"><div class="kb">
-    <div class="cellbox b" data-at="29.635">
+    <div class="cellbox b" data-at="36.925">
       <div class="ck">type this in any box</div>
-      <div class="cf">=AI("summarize row 2")</div>
+      <div class="cf">Ask Gemini a question</div>
+      <div class="cf2">=AI("...")</div>
     </div>
-    <p class="lede b" data-at="34.55" style="font-size:5cqw">And it answers.<br><strong>Right there.</strong> No new tab.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="43.86" data-out="47.81">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="43.89" style="font-size:5.6cqw">And it answers.<br><strong>Right there.</strong> No new tab.</p>
   </div></div>
 </section>
 
 <!-- the takeaway — the concrete rule, on its own screen -->
-<section class="scene" data-in="38.22" data-out="44.4">
+<section class="scene" data-in="47.81" data-out="53.99">
   <div class="pad"><div class="kb">
-    <div class="quote b" data-at="38.25">
+    <div class="quote b" data-at="47.84">
       <div class="qk">the rule</div>
       <div class="qb">The fix was never a plugin away. <strong>It was already inside the app you open every day.</strong></div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="44.4" data-out="46.64">
+<section class="scene" data-in="53.99" data-out="56.23">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="44.43"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="54.02"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="46.64" data-out="49.18">
+<section class="scene" data-in="56.23" data-out="58.97">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="46.67" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="56.26" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -224,7 +227,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="44.60" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="47.50" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -232,16 +235,16 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="side">
   <p class="k">Episode 15</p>
   <h1><em>Gemini</em> fixes your broken formula, free.</h1>
-  <p>A formula breaks in Google Sheets — Gemini already caught it, no plugin, no paid tool.
-  One click and it reads the whole sheet, explains what broke, and fixes it. There's also
-  <code>=AI()</code>, a formula that asks Gemini anything, right in the cell. Both already
-  live inside the Sheets you open every day.</p>
+  <p>Google Sheets is an app where you type numbers into boxes, and tell it instructions
+  like "add these up." Type the instruction wrong and the math breaks — Gemini already
+  catches that, no plugin, one click. There's also a second trick: type a question
+  straight into any box with <code>=AI(...)</code> and Gemini answers right there.</p>
 </div>
 </div>
 
 <script>
 (function(){
-  var DUR=49.48,t=0,playing=false,last=0;
+  var DUR=59.07,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -251,150 +254,191 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,3.63,"Gemini just caught a mistake in this box, before you did."],
-    [4.05,8.37,"Not a separate app. It's already inside the sheet you're using right now."],
-    [8.79,12.95,"Type a formula into the box. Get one thing wrong."],
-    [13.37,16.24,"A red flag shows up, with one button: Fix."],
-    [17.09,20.69,"Click it, and Gemini reads the whole sheet, not just the one box."],
-    [21.11,22.55,"It fixes the box."],
-    [22.97,27.46,"And explains: missing a closing bracket, the total now includes every row."],
-    [27.88,29.18,"That's not the only trick."],
-    [30.03,34.27,"Type this in any box, in brackets: A-I, ask it anything."],
-    [34.69,38.01,"And it gives a reply, right there, no new tab."],
-    [38.43,44.19,"The fix was never a plugin away. It was already inside the app you open every day."],
-    [44.61,46.43,"The setup's in the link in bio."],
-    [46.85,48.98,"Follow for the setup that actually works."]
+    [0.30,4.05,"This is Google Sheets, an app where you type numbers into small boxes."],
+    [4.47,9.91,"You can also type an instruction, like add up these boxes for me, and it does the math."],
+    [10.33,15.12,"Type that instruction in wrong, even one small typo, and the math just breaks."],
+    [15.54,21.14,"Gemini, Google's AI built right into this app, already spotted the mistake. Before you did."],
+    [21.99,27.34,"One button. Click Fix, and it checks every box in the whole sheet, not just this one."],
+    [27.76,28.59,"It fixes it."],
+    [29.01,34.17,"And tells you why: you forgot to close the instruction. Now every number actually gets counted."],
+    [34.59,36.47,"That's not the only thing it can do."],
+    [37.32,43.65,"You can also type a question straight into any box, using the word AI, and Gemini gives a reply right there."],
+    [44.07,47.60,"No new app, no new tab. The reply just shows up in the box."],
+    [48.02,53.78,"The fix was never a plugin away. It was already inside the app you open every day."],
+    [54.20,56.02,"The setup's in the link in bio."],
+    [56.44,58.57,"Follow for the setup that actually works."]
   ];
   var WORDS=[
-    [0.3,0.88,"Gemini",0],
-    [0.88,1.34,"just",0],
-    [1.34,1.56,"caught",0],
-    [1.56,1.72,"a",1],
-    [1.72,1.98,"mistake",1],
-    [1.98,2.16,"in",1],
-    [2.16,2.36,"this",2],
-    [2.36,2.7,"box,",2],
-    [2.92,3.24,"before",3],
-    [3.24,3.44,"you",3],
-    [3.44,3.8,"did.",3],
-    [4.2,4.44,"Not",4],
-    [4.44,4.66,"a",4],
-    [4.66,4.88,"separate",4],
-    [4.88,5.22,"app.",5],
-    [5.68,5.94,"It's",6],
-    [5.94,6.34,"already",6],
-    [6.34,6.78,"inside",6],
-    [6.78,7.02,"the",7],
-    [7.02,7.2,"sheet",7],
-    [7.2,7.44,"you're",7],
-    [7.44,7.74,"using",8],
-    [7.74,8.14,"right",8],
-    [8.14,8.56,"now.",8],
-    [8.9,9.22,"Type",9],
-    [9.22,9.54,"a",9],
-    [9.54,9.94,"formula",9],
-    [9.94,10.42,"into",10],
-    [10.42,10.62,"the",10],
-    [10.62,11.12,"box.",10],
-    [11.64,11.96,"Get",11],
-    [11.96,12.3,"one",11],
-    [12.3,12.6,"thing",11],
-    [12.6,12.9,"wrong.",12],
-    [13.46,13.58,"A",13],
-    [13.58,13.8,"red",13],
-    [13.8,13.94,"flag",13],
-    [13.94,14.18,"shows",14],
-    [14.18,14.56,"up,",14],
-    [14.56,14.86,"with",15],
-    [14.86,15.04,"one",15],
-    [15.04,15.46,"button:",15],
-    [15.7,16.32,"Fix.",16],
-    [17.18,17.38,"Click",17],
-    [17.38,17.74,"it,",17],
-    [17.92,18.1,"and",18],
-    [18.1,18.4,"Gemini",18],
-    [18.4,18.64,"reads",18],
-    [18.64,18.9,"the",19],
-    [18.9,19.16,"whole",19],
-    [19.16,19.42,"sheet,",19],
-    [19.58,19.7,"not",20],
-    [19.7,19.92,"just",20],
-    [19.92,20.06,"the",20],
-    [20.06,20.24,"one",21],
-    [20.24,20.58,"box.",21],
-    [21.16,21.4,"It",22],
-    [21.4,21.72,"fixes",22],
-    [21.72,21.96,"the",22],
-    [21.96,22.36,"box.",23],
-    [23.02,23.38,"And",24],
-    [23.38,23.72,"explains:",24],
-    [24.14,24.42,"missing",25],
-    [24.42,24.68,"a",25],
-    [24.68,24.92,"closing",25],
-    [24.92,25.3,"bracket,",26],
-    [25.7,25.86,"the",27],
-    [25.86,26.1,"total",27],
-    [26.1,26.44,"now",27],
-    [26.44,26.8,"includes",28],
-    [26.8,27.18,"every",28],
-    [27.18,27.42,"row.",28],
-    [27.88,28.3,"That's",29],
-    [28.3,28.48,"not",29],
-    [28.48,28.6,"the",29],
-    [28.56,28.76,"only",30],
-    [28.76,29.22,"trick.",30],
-    [30.14,30.32,"Type",31],
-    [30.32,30.74,"this",31],
-    [30.74,31.08,"in",31],
-    [31.08,31.24,"any",32],
-    [31.24,31.6,"box,",32],
-    [31.82,31.94,"in",33],
-    [31.92,32.34,"brackets:",33],
-    [32.78,33.08,"A-I,",34],
-    [33.6,33.72,"ask",35],
-    [33.7,33.84,"it",35],
-    [33.84,34.14,"anything.",35],
-    [34.86,35.02,"And",36],
-    [35.02,35.24,"it",36],
-    [35.24,35.46,"gives",36],
-    [35.46,35.58,"a",37],
-    [35.56,35.92,"reply,",37],
-    [36.36,36.52,"right",38],
-    [36.52,36.86,"there,",38],
-    [37.18,37.42,"no",39],
-    [37.42,37.72,"new",39],
-    [37.72,37.98,"tab.",39],
-    [38.74,39.0,"The",40],
-    [39.0,39.18,"fix",40],
-    [39.18,39.58,"was",40],
-    [39.58,40.08,"never",41],
-    [40.08,40.38,"a",41],
-    [40.38,40.56,"plugin",41],
-    [40.56,40.88,"away.",42],
-    [41.2,41.32,"It",43],
-    [41.28,41.52,"was",43],
-    [41.52,42.06,"already",43],
-    [42.06,42.56,"inside",44],
-    [42.56,42.82,"the",44],
-    [42.82,43.0,"app",44],
-    [43.0,43.22,"you",45],
-    [43.22,43.52,"open",45],
-    [43.52,43.94,"every",45],
-    [43.94,44.2,"day.",46],
-    [44.76,44.96,"The",47],
-    [44.96,45.34,"setup's",47],
-    [45.34,45.46,"in",47],
-    [45.46,45.6,"the",48],
-    [45.6,45.82,"link",48],
-    [45.82,46.14,"in",48],
-    [46.14,46.38,"bio.",49],
-    [46.94,47.14,"Follow",50],
-    [47.14,47.36,"for",50],
-    [47.36,47.58,"the",50],
-    [47.58,47.82,"setup",51],
-    [47.82,48.18,"that",51],
-    [48.18,48.58,"actually",51],
-    [48.58,48.92,"works.",52]
+    [0.3,0.52,"This",0],
+    [0.52,0.74,"is",0],
+    [0.74,1.0,"Google",0],
+    [1.0,1.52,"Sheets,",1],
+    [1.76,1.88,"an",2],
+    [1.88,2.1,"app",2],
+    [2.1,2.28,"where",2],
+    [2.28,2.44,"you",3],
+    [2.44,2.58,"type",3],
+    [2.58,2.98,"numbers",3],
+    [2.98,3.26,"into",4],
+    [3.26,3.54,"small",4],
+    [3.54,4.08,"boxes.",4],
+    [4.8,4.92,"You",5],
+    [4.82,5.08,"can",5],
+    [5.08,5.36,"also",5],
+    [5.36,5.64,"type",6],
+    [5.64,5.82,"an",6],
+    [5.82,6.36,"instruction,",6],
+    [6.78,7.06,"like",7],
+    [7.06,7.36,"add",7],
+    [7.36,7.56,"up",7],
+    [7.56,7.78,"these",8],
+    [7.78,8.08,"boxes",8],
+    [8.08,8.38,"for",8],
+    [8.38,8.64,"me,",9],
+    [8.8,8.92,"and",9],
+    [8.92,9.04,"it",9],
+    [9.04,9.28,"does",9],
+    [9.28,9.5,"the",10],
+    [9.5,9.96,"math.",10],
+    [10.38,10.62,"Type",11],
+    [10.62,10.84,"that",11],
+    [10.84,11.28,"instruction",11],
+    [11.28,11.6,"in",12],
+    [11.6,11.8,"wrong,",12],
+    [12.0,12.34,"even",13],
+    [12.34,12.74,"one",13],
+    [12.74,13.02,"small",13],
+    [13.02,13.66,"typo,",14],
+    [13.76,13.94,"and",15],
+    [13.94,14.08,"the",15],
+    [14.08,14.34,"math",15],
+    [14.34,14.76,"just",16],
+    [14.76,15.2,"breaks.",16],
+    [15.8,16.22,"Gemini,",17],
+    [16.56,17.1,"Google's",18],
+    [17.1,17.38,"AI",18],
+    [17.38,17.62,"built",18],
+    [17.62,17.94,"right",19],
+    [17.94,18.18,"into",19],
+    [18.18,18.4,"this",19],
+    [18.4,18.68,"app,",20],
+    [18.68,19.24,"already",20],
+    [19.24,19.52,"spotted",20],
+    [19.52,19.7,"the",20],
+    [19.7,20.14,"mistake.",21],
+    [20.14,20.68,"Before",22],
+    [20.68,20.9,"you",22],
+    [20.9,21.24,"did.",22],
+    [22.16,22.42,"One",23],
+    [22.42,22.94,"button.",23],
+    [23.28,23.64,"Click",24],
+    [23.64,24.04,"Fix,",24],
+    [24.04,24.36,"and",25],
+    [24.36,24.56,"it",25],
+    [24.56,24.72,"checks",25],
+    [24.72,25.14,"every",26],
+    [25.14,25.38,"box",26],
+    [25.38,25.56,"in",26],
+    [25.56,25.68,"the",27],
+    [25.68,25.9,"whole",27],
+    [25.9,26.16,"sheet,",27],
+    [26.48,26.62,"not",28],
+    [26.62,26.84,"just",28],
+    [26.84,27.08,"this",28],
+    [27.08,27.38,"one.",29],
+    [27.76,28.06,"It",30],
+    [28.06,28.34,"fixes",30],
+    [28.34,28.88,"it.",30],
+    [29.06,29.22,"And",31],
+    [29.22,29.42,"tells",31],
+    [29.42,29.66,"you",31],
+    [29.66,29.96,"why:",32],
+    [29.96,30.32,"you",32],
+    [30.32,30.56,"forgot",32],
+    [30.56,30.78,"to",32],
+    [30.78,30.94,"close",33],
+    [30.94,31.1,"the",33],
+    [31.1,31.66,"instruction.",33],
+    [32.08,32.26,"Now",34],
+    [32.26,32.58,"every",34],
+    [32.58,32.92,"number",34],
+    [32.92,33.42,"actually",35],
+    [33.42,33.74,"gets",35],
+    [33.74,34.06,"counted.",35],
+    [34.82,35.1,"That's",36],
+    [35.1,35.28,"not",36],
+    [35.28,35.4,"the",36],
+    [35.4,35.64,"only",37],
+    [35.64,35.8,"thing",37],
+    [35.8,35.92,"it",37],
+    [35.88,36.08,"can",38],
+    [36.08,36.48,"do.",38],
+    [37.44,37.56,"You",39],
+    [37.48,37.66,"can",39],
+    [37.66,37.94,"also",39],
+    [37.94,38.12,"type",40],
+    [38.12,38.3,"a",40],
+    [38.3,38.58,"question",40],
+    [38.58,38.9,"straight",41],
+    [38.9,39.12,"into",41],
+    [39.12,39.36,"any",41],
+    [39.36,39.72,"box,",42],
+    [40.28,40.4,"using",43],
+    [40.38,40.5,"the",43],
+    [40.5,40.78,"word",43],
+    [40.78,41.32,"AI,",44],
+    [41.96,42.1,"and",45],
+    [42.1,42.4,"Gemini",45],
+    [42.4,42.64,"gives",45],
+    [42.8,42.94,"a",46],
+    [42.94,43.06,"reply",46],
+    [43.06,43.34,"right",46],
+    [43.34,43.7,"there.",47],
+    [44.18,44.36,"No",48],
+    [44.36,44.56,"new",48],
+    [44.56,44.86,"app,",48],
+    [45.06,45.18,"no",49],
+    [45.18,45.42,"new",49],
+    [45.42,45.66,"tab.",49],
+    [45.94,46.12,"The",50],
+    [46.12,46.32,"reply",50],
+    [46.32,46.54,"just",50],
+    [46.54,46.72,"shows",51],
+    [46.72,46.88,"up",51],
+    [46.88,47.0,"in",51],
+    [47.0,47.16,"the",52],
+    [47.16,47.44,"box.",52],
+    [48.3,48.56,"The",53],
+    [48.56,48.78,"fix",53],
+    [48.78,49.16,"was",53],
+    [49.16,49.62,"never",54],
+    [49.62,49.96,"a",54],
+    [49.96,50.16,"plugin",54],
+    [50.16,50.48,"away.",55],
+    [50.78,50.9,"It",56],
+    [50.84,51.1,"was",56],
+    [51.1,51.62,"already",56],
+    [51.62,52.16,"inside",57],
+    [52.16,52.4,"the",57],
+    [52.4,52.6,"app",57],
+    [52.6,52.82,"you",58],
+    [52.82,53.1,"open",58],
+    [53.1,53.54,"every",58],
+    [53.54,53.82,"day.",59],
+    [54.2,54.52,"The",60],
+    [54.52,54.94,"setup's",60],
+    [54.94,55.06,"in",60],
+    [55.06,55.2,"the",61],
+    [55.2,55.4,"link",61],
+    [55.4,55.72,"in",61],
+    [55.72,55.98,"bio.",62],
+    [56.66,56.78,"Follow",63],
+    [56.74,56.96,"for",63],
+    [56.96,57.18,"the",63],
+    [57.18,57.4,"setup",64],
+    [57.4,57.78,"that",64],
+    [57.78,58.16,"actually",64],
+    [58.16,58.48,"works.",65]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
