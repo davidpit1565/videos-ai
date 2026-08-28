@@ -42,7 +42,24 @@ parallel full episodes.
 
 ## Log
 
-*(Empty — no deliberate experiment has been run yet. The first candidate, once episode
-volume is high enough to have a real baseline to test against, is probably the hook-type
-test already flagged as a hypothesis in content-memory.md: a build-failure-first episode
-vs. a clean-demo episode on the same tool, holding everything else constant.)*
+### [pending] — Reel 13, "ChatGPT remembers you, even in a new chat"
+
+**Changed:** Publish as an Instagram Trial Reel (shown to non-followers first) instead of
+a normal full push.
+**To test:** Whether retention/completion on the trial clears the bar to justify a full
+push. `channel/demand-report.md` doesn't cover this topic at all (ChatGPT memory wasn't
+one of the eight measured queries), so this is a genuine UNKNOWN, not a guess dressed up
+as a test.
+**Baseline:** No comparable episode — first time this mechanism is used.
+**Result:** [fill in from Instagram's own Trial Reel screen — retention/completion for a
+Trial Reel do **not** flow into `/api/track` or the studio; that pull only ever gets
+views/likes/saves/comments/shares. Read the trial numbers directly off Instagram, then
+record them here by hand.]
+**Verdict:** [fill in after the trial window closes]
+**Feeds into:** whether Trial Reels becomes the default publish path for future episodes
+with unmeasured demand.
+
+*(No other deliberate experiment has been run yet. The next candidate, once episode volume
+is high enough to have a real baseline to test against, is probably the hook-type test
+already flagged as a hypothesis in content-memory.md: a build-failure-first episode vs. a
+clean-demo episode on the same tool, holding everything else constant.)*
