@@ -64,6 +64,25 @@ winner yet. A format goes here only after Confirmed patterns has something to po
   pull without login). The studio's own tracked saves/views are the real substitute for
   that gap, once there's enough published volume to read anything from them.
 
+## Pattern shapes worth trying
+
+Not categories to fill a quota in — just story shapes that already fit what "Actually
+Works" promises (a test, not a claim), useful when picking the angle for a new episode:
+
+- **The Impossible Test** — claim → attempt → escalation → failure or surprise → result.
+- **Break the AI** — try to make it fail on purpose; the point is what the failure shows,
+  not that it failed.
+- **AI vs. Reality** — a claim from online → an actual test → measurement → verdict.
+- **Build It** — idea → build → obstacle → iteration → working result. This is already
+  the channel's own standing rule ("everything we build becomes an episode") in a
+  different name.
+- **Human vs. AI** — only when there's a real question worth answering, never because the
+  comparison sounds interesting on its own.
+
+These are unconfirmed as *patterns* the same way everything else here is — they're
+candidate shapes, not proven winners. Don't tag an episode with one of these and treat the
+tag as evidence it will work.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same

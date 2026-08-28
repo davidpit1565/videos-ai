@@ -31,6 +31,15 @@ settle, not the first hour).
 
 ---
 
+## Before running a hook-type experiment as two full episodes
+
+The production pipeline (voice clone, `voice_doctor.py`, karaoke captions, `safe_check.js`,
+full render QA) is expensive per episode — don't spend two full productions just to compare
+two hooks on the same underlying content. Instagram's own Trial Reels feature is built for
+exactly this: it shows a Reel to non-followers first, before deciding whether to push it
+further. Check whether a hook question can be answered that way before defaulting to two
+parallel full episodes.
+
 ## Log
 
 *(Empty — no deliberate experiment has been run yet. The first candidate, once episode
