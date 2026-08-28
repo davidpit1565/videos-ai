@@ -340,6 +340,32 @@ export const ARTICLES: Article[] = [
       "This confirms the claim didn't hold here; it doesn't prove sycophancy never happens anywhere.",
     ],
   },
+  {
+    n: 15,
+    title: "Gemini fixes your broken formula, free",
+    standfirst:
+      "Google Sheets is the spreadsheet app where you type numbers into boxes and give it " +
+      "instructions like \"add these up.\" Get an instruction wrong and Gemini — Google's AI, " +
+      "already built into the app — catches the mistake and fixes it, one click, free. It can " +
+      "also answer a question typed straight into any box.",
+    steps: [
+      "Open a Google Sheet — the grid where you type numbers into boxes.",
+      "Type an instruction into a box that tells it to do math, like adding up a set of other boxes.",
+      "If you make a small mistake in that instruction (a missing bracket, for example), the math breaks and the box shows an error.",
+      "A button appears next to the broken box: Fix.",
+      "Click it. Gemini checks the instruction — and the rest of the sheet — explains what was wrong in plain words, and corrects it.",
+      "Separately, type a question into any empty box using the word AI, like =AI(\"what does this number mean\"), and Gemini answers directly inside that box.",
+    ],
+    changes: [
+      "No plugin, no separate app, no copy-pasting into a chatbot — the fix and the question-answering both happen inside the same box you were already using.",
+      "It doesn't just correct the instruction silently — it says what was wrong (e.g. a bracket that was never closed), so the mistake is understood, not just patched over.",
+      "The question-answering trick (typing AI into a box) works in any box, not just ones that already have a broken instruction in them.",
+    ],
+    limits: [
+      "This fixes mistakes in the instructions you write yourself — it doesn't know whether the numbers you typed in are correct, only whether the instruction is valid.",
+      "The exact wording and location of the Fix button can change as Google updates Sheets — if it isn't where this episode shows it, look for an error indicator on the box itself.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

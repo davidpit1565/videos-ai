@@ -37,44 +37,44 @@
  },
  {
   "n": 7,
-  "line": "And tells you why: you forgot to close the instruction. Now every number actually gets counted.",
+  "line": "And tells you why: one bracket was never closed. Now every number actually gets counted.",
   "start": 29.01,
-  "end": 34.17
+  "end": 34.59
  },
  {
   "n": 8,
   "line": "That's not the only thing it can do.",
-  "start": 34.59,
-  "end": 36.47
+  "start": 35.01,
+  "end": 36.89
  },
  {
   "n": 9,
   "line": "You can also type a question straight into any box, using the word AI, and Gemini gives a reply right there.",
-  "start": 37.32,
-  "end": 43.65
+  "start": 37.74,
+  "end": 44.08
  },
  {
   "n": 10,
   "line": "No new app, no new tab. The reply just shows up in the box.",
-  "start": 44.07,
-  "end": 47.6
+  "start": 44.5,
+  "end": 48.02
  },
  {
   "n": 11,
   "line": "The fix was never a plugin away. It was already inside the app you open every day.",
-  "start": 48.02,
-  "end": 53.78
+  "start": 48.44,
+  "end": 54.21
  },
  {
   "n": 12,
   "line": "The setup's in the link in bio.",
-  "start": 54.2,
-  "end": 56.02
+  "start": 54.63,
+  "end": 56.44
  },
  {
   "n": 13,
   "line": "Follow for the setup that actually works.",
-  "start": 56.44,
-  "end": 58.57
+  "start": 56.86,
+  "end": 58.99
  }
 ]
