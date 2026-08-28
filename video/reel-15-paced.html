@@ -65,17 +65,15 @@ p.lede strong{color:var(--brass)}
 .quote .qb{font-family:var(--b);font-weight:700;font-size:5cqw;line-height:1.4;color:#0D0D0D}
 .quote .qb strong{color:#8A7434}
 
-/* the broken-formula box: the one concrete thing that carries the whole script */
+/* the box with numbers in it — the one concrete thing that carries the whole script */
 .cellbox{background:#1B160D;border:.4cqw solid var(--ember);border-radius:1.6cqw;
   padding:4cqw 4.6cqw;width:100%;position:relative;z-index:2;text-align:left}
 .cellbox.fixed{border-color:var(--brass)}
 .cellbox .ck{font-family:var(--m);font-size:2.6cqw;letter-spacing:.14em;text-transform:uppercase;
   color:#8A7434;margin:0 0 1.6cqw}
-.cellbox .cf{font-family:var(--m);font-weight:600;font-size:5.6cqw;color:var(--ember)}
+.cellbox .cf{font-family:var(--m);font-weight:600;font-size:5.2cqw;color:var(--ember)}
 .cellbox.fixed .cf{color:var(--brass)}
-.fixbtn{display:inline-flex;align-items:center;gap:1.4cqw;background:var(--brass);color:#14100A;
-  border-radius:99cqw;padding:1.6cqw 4cqw;font-family:var(--m);font-weight:600;font-size:4cqw;
-  margin-top:3cqw}
+.cellbox .cf2{font-family:var(--m);font-weight:600;font-size:4.4cqw;color:#fff;margin-top:2cqw}
 
 .subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
   font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
@@ -130,89 +128,94 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="3.84">
+<section class="scene" data-in="0" data-out="4.26">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="0"><span class="toolmark"><span class="dot"></span>Gemini</span> just caught<br>a mistake in this <span class="box">box</span>.</h2>
+    <h2 class="b punch" data-at="0">You type numbers<br>into <span class="box">boxes</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="3.84" data-out="8.58">
+<section class="scene" data-in="4.26" data-out="10.12">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="3.91">Already <span class="ebox">inside the sheet</span> you use.</h2>
+    <h2 class="b punch" data-at="4.29">Then you tell it:<br><span class="ebox">"add these up."</span></h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="8.58" data-out="13.16">
+<section class="scene" data-in="10.12" data-out="15.33">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="8.65">Type a formula<br>into the box. <span class="box">Get it wrong</span>.</h2>
-  </div></div>
-</section>
-
-<section class="scene" data-in="13.16" data-out="16.665">
-  <div class="pad"><div class="kb">
-    <div class="cellbox b" data-at="13.19">
-      <div class="ck">the box, right now</div>
-      <div class="cf">=SUM(A2:A9</div>
-      <div class="fixbtn">⚡ Fix</div>
+    <div class="cellbox b" data-at="10.05">
+      <div class="ck">your instruction</div>
+      <div class="cf">"Add up these box</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="16.665" data-out="20.9">
+<section class="scene" data-in="15.33" data-out="21.565">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="16.695">Click <span class="box">Fix</span>.<br>It reads the <span class="ebox">whole sheet</span>.</h2>
+    <h2 class="b punch" data-at="15.33"><span class="toolmark"><span class="dot"></span>Gemini</span> already<br>caught it.</h2>
   </div></div>
 </section>
 
-<!-- the payoff: the box, corrected, with the explanation -->
-<section class="scene" data-in="20.9" data-out="27.67">
+<section class="scene" data-in="21.565" data-out="27.55">
   <div class="pad"><div class="kb">
-    <div class="cellbox fixed b" data-at="20.93">
+    <h2 class="b punch" data-at="21.565">One button:<br><span class="box">Fix</span>.</h2>
+  </div></div>
+</section>
+
+<!-- the payoff: the instruction, whole, with the plain-language explanation -->
+<section class="scene" data-in="27.55" data-out="34.38">
+  <div class="pad"><div class="kb">
+    <div class="cellbox fixed b" data-at="27.58">
       <div class="ck">gemini's fix</div>
-      <div class="cf">=SUM(A2:A9)</div>
+      <div class="cf">"Add up these boxes"</div>
     </div>
-    <div class="quote b" data-at="22.83">
+    <div class="quote b" data-at="29.966">
       <div class="qk">what it told us</div>
-      <div class="qb">"<strong>Missing a closing bracket.</strong> I added it — the total now includes every row."</div>
+      <div class="qb">"<strong>You forgot to close it.</strong> Fixed — now every number is counted."</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="27.67" data-out="29.605">
+<section class="scene" data-in="34.38" data-out="36.895">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="27.74">That's not<br>the only <span class="box">trick</span>.</h2>
+    <h2 class="b punch" data-at="34.45">That's not<br>the only <span class="box">trick</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="29.605" data-out="38.22">
+<section class="scene" data-in="36.895" data-out="43.86">
   <div class="pad"><div class="kb">
-    <div class="cellbox b" data-at="29.635">
+    <div class="cellbox b" data-at="36.925">
       <div class="ck">type this in any box</div>
-      <div class="cf">=AI("summarize row 2")</div>
+      <div class="cf">Ask Gemini a question</div>
+      <div class="cf2">=AI("...")</div>
     </div>
-    <p class="lede b" data-at="34.55" style="font-size:5cqw">And it answers.<br><strong>Right there.</strong> No new tab.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="43.86" data-out="47.81">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="43.89" style="font-size:5.6cqw">And it answers.<br><strong>Right there.</strong> No new tab.</p>
   </div></div>
 </section>
 
 <!-- the takeaway — the concrete rule, on its own screen -->
-<section class="scene" data-in="38.22" data-out="44.4">
+<section class="scene" data-in="47.81" data-out="53.99">
   <div class="pad"><div class="kb">
-    <div class="quote b" data-at="38.25">
+    <div class="quote b" data-at="47.84">
       <div class="qk">the rule</div>
       <div class="qb">The fix was never a plugin away. <strong>It was already inside the app you open every day.</strong></div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="44.4" data-out="46.64">
+<section class="scene" data-in="53.99" data-out="56.23">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="44.43"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="54.02"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="46.64" data-out="49.18">
+<section class="scene" data-in="56.23" data-out="58.97">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="46.67" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="56.26" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -224,7 +227,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="44.60" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="47.50" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -232,16 +235,16 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="side">
   <p class="k">Episode 15</p>
   <h1><em>Gemini</em> fixes your broken formula, free.</h1>
-  <p>A formula breaks in Google Sheets — Gemini already caught it, no plugin, no paid tool.
-  One click and it reads the whole sheet, explains what broke, and fixes it. There's also
-  <code>=AI()</code>, a formula that asks Gemini anything, right in the cell. Both already
-  live inside the Sheets you open every day.</p>
+  <p>Google Sheets is an app where you type numbers into boxes, and tell it instructions
+  like "add these up." Type the instruction wrong and the math breaks — Gemini already
+  catches that, no plugin, one click. There's also a second trick: type a question
+  straight into any box with <code>=AI(...)</code> and Gemini answers right there.</p>
 </div>
 </div>
 
 <script>
 (function(){
-  var DUR=49.48,t=0,playing=false,last=0;
+  var DUR=59.07,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -251,19 +254,19 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,3.63,"Gemini just caught a mistake in this box, before you did."],
-    [4.05,8.37,"Not a separate app. It's already inside the sheet you're using right now."],
-    [8.79,12.95,"Type a formula into the box. Get one thing wrong."],
-    [13.37,16.24,"A red flag shows up, with one button: Fix."],
-    [17.09,20.69,"Click it, and Gemini reads the whole sheet, not just the one box."],
-    [21.11,22.55,"It fixes the box."],
-    [22.97,27.46,"And explains: missing a closing bracket, the total now includes every row."],
-    [27.88,29.18,"That's not the only trick."],
-    [30.03,34.27,"Type this in any box, in brackets: A-I, ask it anything."],
-    [34.69,38.01,"And it gives a reply, right there, no new tab."],
-    [38.43,44.19,"The fix was never a plugin away. It was already inside the app you open every day."],
-    [44.61,46.43,"The setup's in the link in bio."],
-    [46.85,48.98,"Follow for the setup that actually works."]
+    [0.30,4.05,"This is Google Sheets, an app where you type numbers into small boxes."],
+    [4.47,9.91,"You can also type an instruction, like add up these boxes for me, and it does the math."],
+    [10.33,15.12,"Type that instruction in wrong, even one small typo, and the math just breaks."],
+    [15.54,21.14,"Gemini, Google's AI built right into this app, already spotted the mistake. Before you did."],
+    [21.99,27.34,"One button. Click Fix, and it checks every box in the whole sheet, not just this one."],
+    [27.76,28.59,"It fixes it."],
+    [29.01,34.17,"And tells you why: you forgot to close the instruction. Now every number actually gets counted."],
+    [34.59,36.47,"That's not the only thing it can do."],
+    [37.32,43.65,"You can also type a question straight into any box, using the word AI, and Gemini gives a reply right there."],
+    [44.07,47.60,"No new app, no new tab. The reply just shows up in the box."],
+    [48.02,53.78,"The fix was never a plugin away. It was already inside the app you open every day."],
+    [54.20,56.02,"The setup's in the link in bio."],
+    [56.44,58.57,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}

@@ -1,80 +1,80 @@
 [
  {
   "n": 1,
-  "line": "Gemini just caught a mistake in this box, before you did.",
+  "line": "This is Google Sheets, an app where you type numbers into small boxes.",
   "start": 0.3,
-  "end": 3.63
+  "end": 4.05
  },
  {
   "n": 2,
-  "line": "Not a separate app. It's already inside the sheet you're using right now.",
-  "start": 4.05,
-  "end": 8.37
+  "line": "You can also type an instruction, like add up these boxes for me, and it does the math.",
+  "start": 4.47,
+  "end": 9.91
  },
  {
   "n": 3,
-  "line": "Type a formula into the box. Get one thing wrong.",
-  "start": 8.79,
-  "end": 12.95
+  "line": "Type that instruction in wrong, even one small typo, and the math just breaks.",
+  "start": 10.33,
+  "end": 15.12
  },
  {
   "n": 4,
-  "line": "A red flag shows up, with one button: Fix.",
-  "start": 13.37,
-  "end": 16.24
+  "line": "Gemini, Google's AI built right into this app, already spotted the mistake. Before you did.",
+  "start": 15.54,
+  "end": 21.14
  },
  {
   "n": 5,
-  "line": "Click it, and Gemini reads the whole sheet, not just the one box.",
-  "start": 17.09,
-  "end": 20.69
+  "line": "One button. Click Fix, and it checks every box in the whole sheet, not just this one.",
+  "start": 21.99,
+  "end": 27.34
  },
  {
   "n": 6,
-  "line": "It fixes the box.",
-  "start": 21.11,
-  "end": 22.55
+  "line": "It fixes it.",
+  "start": 27.76,
+  "end": 28.59
  },
  {
   "n": 7,
-  "line": "And explains: missing a closing bracket, the total now includes every row.",
-  "start": 22.97,
-  "end": 27.46
+  "line": "And tells you why: you forgot to close the instruction. Now every number actually gets counted.",
+  "start": 29.01,
+  "end": 34.17
  },
  {
   "n": 8,
-  "line": "That's not the only trick.",
-  "start": 27.88,
-  "end": 29.18
+  "line": "That's not the only thing it can do.",
+  "start": 34.59,
+  "end": 36.47
  },
  {
   "n": 9,
-  "line": "Type this in any box, in brackets: A-I, ask it anything.",
-  "start": 30.03,
-  "end": 34.27
+  "line": "You can also type a question straight into any box, using the word AI, and Gemini gives a reply right there.",
+  "start": 37.32,
+  "end": 43.65
  },
  {
   "n": 10,
-  "line": "And it gives a reply, right there, no new tab.",
-  "start": 34.69,
-  "end": 38.01
+  "line": "No new app, no new tab. The reply just shows up in the box.",
+  "start": 44.07,
+  "end": 47.6
  },
  {
   "n": 11,
   "line": "The fix was never a plugin away. It was already inside the app you open every day.",
-  "start": 38.43,
-  "end": 44.19
+  "start": 48.02,
+  "end": 53.78
  },
  {
   "n": 12,
   "line": "The setup's in the link in bio.",
-  "start": 44.61,
-  "end": 46.43
+  "start": 54.2,
+  "end": 56.02
  },
  {
   "n": 13,
   "line": "Follow for the setup that actually works.",
-  "start": 46.85,
-  "end": 48.98
+  "start": 56.44,
+  "end": 58.57
  }
 ]

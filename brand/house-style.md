@@ -228,3 +228,56 @@ the product's name set in its own recognizable type/color association (e.g. "Cha
 need OpenAI's literal logomark to read instantly), not a traced copy of the real logo. Swap
 in the real asset only after checking each company's actual brand guidelines — this is a
 placeholder for recognizability, not a legal opinion that it's clear to use their mark as-is.
+
+---
+
+## 13. Test comprehension before rendering, not after
+
+Reel 15 (the Gemini/Sheets episode) failed the §10 bar worse than episode 13 ever did — not
+one bad word, a structural one: the script jumped straight into `=SUM(A2:A9)` and "the whole
+sheet" without ever establishing what a spreadsheet even is. David, who already knew the
+topic, watched the finished render and didn't understand what the video was about. That's a
+defect a render-time check can't catch, because `safe_check.js` and `qa.py` measure pixels
+and audio, not whether a stranger would follow the sentence.
+
+There's a real, cheap, government-documented protocol for this (plainlanguage.gov, paraphrase
+testing) — used here before voice generation, not after the render:
+
+- Read the script aloud, once, to one person who has never used the tool it's about.
+- Stop at each scene boundary and ask **"what did I just say, in your own words?"** — never
+  "did you get that?" A yes/no question is worthless here; people say yes whether or not they
+  followed.
+- Write down what they say without correcting them. Anywhere their paraphrase drifts from
+  what the line actually meant, that line has a defect — cut the assumption, not the listener.
+- Three or four cue points on a 45-75s script is enough. This takes minutes, not a production
+  cycle.
+
+If no second person is available in the moment, the fallback is the "ten-year-old test" from
+§10, applied literally sentence by sentence — but it is a fallback, not a substitute: writing
+a script and then judging your own script's clarity is exactly the blind spot that produced
+reel 15. The tapper/listener gap is measured, not a guess — in a classic study, people
+"tapping" a well-known tune predicted 50% of listeners would name it; the real rate was 2.5%.
+Knowing what a script means makes it nearly impossible to judge whether it's actually clear.
+
+**Captions should not repeat the narration word-for-word on screen at the same time it's
+spoken.** This one cuts against a convention already in place here (word-by-word karaoke
+captions), so it's flagged rather than mandated: the redundancy principle in multimedia
+learning research finds people understand narrated visuals *better* without matching on-screen
+text of the same words, not the same or worse — a measured effect (d≈0.87 across the original
+test set) in the same family as the other principles already driving this file's other rules
+(segmenting into short beats, cutting anything not load-bearing). Whether it holds for a
+9:16 platform where most viewers watch muted — where captions aren't decoration, they're the
+only audio channel some viewers get — is genuinely unclear (UNKNOWN, not tested on this
+channel's own numbers). Don't rip out karaoke captions on the strength of this alone; treat it
+as a real question to check once there's enough published volume to read saves/completion
+against, per `channel/content-memory.md`.
+
+**The first three seconds get the most editing attention of any three seconds in the script,**
+on the documented practice of Kane Kallaway (@kallaway, Instagram) — whose Reels average more
+views than his follower count, an unusually strong ratio. His method: the opening carries
+three separate hooks that all have to agree — what's moving on screen, the first spoken line,
+and a large on-screen text line that is *not* the same text as the caption underneath it. He
+reports spending roughly 80% of total editing effort on that opening alone. Concretely: before
+calling any script's first beat finished, check that the visual, the spoken line, and the
+on-screen headline aren't just each individually fine, but are saying the same thing three
+different ways in the same three seconds.
