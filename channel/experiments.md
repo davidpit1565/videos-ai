@@ -42,18 +42,25 @@ parallel full episodes.
 
 ## Log
 
-### [RUNNING] — Reel 13, "ChatGPT remembers you, even in a new chat"
+### NOT AN EXPERIMENT — Reel 13, "ChatGPT remembers you, even in a new chat"
 
-**Changed:** Publish as an Instagram Trial Reel (shown to non-followers first) instead of
-a normal full push.
+David confirmed: Reel 13 went out as a normal upload through the studio, not through the
+Trial toggle. So this was never actually the trial-mechanism test the earlier version of
+this entry described — correcting the record rather than leaving a false RUNNING entry.
+Reel 13's real numbers (once in) are just the next ordinary data point for
+`content-memory.md`, same as any other episode — not a Trial Reel result, and not a
+baseline for comparing Trial Reel performance.
+
+### [RUNNING] — Reel 14, "We tried to make Claude flatter us"
+
+**Changed:** Published as an Instagram Trial Reel (shown to non-followers first) instead
+of a normal full push through the studio. First actual use of this mechanism — Reel 13
+didn't end up testing it.
 **To test:** Whether retention/completion on the trial clears the bar to justify a full
-push. `channel/demand-report.md` doesn't cover this topic at all (ChatGPT memory wasn't
-one of the eight measured queries), so this is a genuine UNKNOWN, not a guess dressed up
-as a test.
-**Baseline:** No comparable episode — first time this mechanism is used.
-**Status:** David confirmed Reel 13 is published. Not yet confirmed here whether it went
-out through the Trial toggle specifically or a normal push — check that before reading
-anything into the numbers below as a trial result.
+push. This episode tests a viral claim ("AI always flatters you") against a fresh Claude
+instance with real transcripts — `channel/demand-report.md` has no query for AI
+sycophancy/flattery, so the demand side is unmeasured too.
+**Baseline:** None — first time this mechanism is actually used on this account.
 **Result:** [fill in from Instagram's own Trial Reel screen — retention/completion for a
 Trial Reel do **not** flow into `/api/track` or the studio; that pull only ever gets
 views/likes/saves/comments/shares. Read the trial numbers directly off Instagram, then
@@ -61,22 +68,6 @@ record them here by hand.]
 **Verdict:** [fill in after the trial window closes]
 **Feeds into:** whether Trial Reels becomes the default publish path for future episodes
 with unmeasured demand.
-
-### [pending] — Reel 14, "We tried to make Claude flatter us"
-
-**Changed:** Publish as an Instagram Trial Reel instead of a normal full push, same
-mechanism as Reel 13.
-**To test:** Whether retention/completion clears the bar for a full push. This episode
-tests a viral claim ("AI always flatters you") against a fresh Claude instance with real
-transcripts — `channel/demand-report.md` has no query for AI sycophancy/flattery either,
-so the demand side is as unmeasured as Reel 13's was.
-**Baseline:** Reel 13's trial result, once it's filled in above — same mechanism, so it's
-the first real point of comparison for whether Trial Reels work for this channel at all.
-**Result:** [fill in from Instagram's own Trial Reel screen, same caveat as Reel 13 —
-retention/completion don't reach `/api/track`.]
-**Verdict:** [fill in after the trial window closes]
-**Feeds into:** same line as Reel 13 — whether Trial Reels becomes the default publish
-path for episodes with unmeasured demand.
 
 *(No other deliberate experiment has been run yet. The next candidate after these two,
 once episode volume is high enough to have a real baseline to test against, is probably
