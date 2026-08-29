@@ -1,0 +1,20 @@
+We spent 15 videos building one system. A company just gave the same one away, free.
+
+It's called HyperFrames, from HeyGen. Think of it like a recipe — each clip is one step:
+a start time, and a length.
+
+Type one line, it sets up the project. One more line, it writes the recipe for you. One
+more line turns that recipe into a real video.
+
+We ran it ourselves: a real 10-second video file, ready in about 15 seconds. We opened it
+— we didn't just take their word for it.
+
+It's built to work with the same AI agents we already use, Claude included.
+
+We built this by hand for fifteen episodes. Someone just open-sourced it.
+
+Full breakdown: actually-works.com/e/16
+
+Follow for the setup that actually works.
+
+#opensource #ai #claude #buildinpublic #automation #aitools
