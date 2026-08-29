@@ -158,6 +158,27 @@ direct, concrete instance of that direction — sourced from a real Instagram Re
 sent, verified by actually installing and rendering with the tool before writing a script
 line. Not a repeat of the research; the follow-through on it.
 
+## Nas Daily's business, researched directly (29.8.2026)
+
+Real, sourced findings (not blog-repeated numbers — see the research for a verification
+tier on every claim):
+
+- **FACT, his own public statement**: 606 million views in one month generated $33,000 in
+  ad revenue across Instagram/Facebook/TikTok/YouTube Shorts combined — content never paid
+  for itself through platform ad revenue, at any scale.
+- **FACT**: the actual monetization is a separate paid SaaS product (nas.com), reported ARR
+  ~$1M → ~$8M over the last year — not courses, not ads. Nas Academy (the courses business)
+  has been demoted to a support function for it.
+- **FACT**: this took ~$40M of outside venture capital (Lightspeed, Khosla Ventures, and
+  others) to build. The audience was the distribution/credibility asset; it did not by
+  itself fund the paid product's growth.
+- **The transferable shape, and the one honest caveat**: same structure as this channel's
+  own model (free content → paid AI-automation services) — content buys distribution and
+  credibility, a separate product monetizes it. The caveat: Nas Daily needed outside
+  capital to scale that paid side to real revenue; we don't have that, so the equivalent
+  here has to grow organically from actual client work, on a much longer timeline. Not a
+  reason not to do it — a reason not to expect Nas Daily's speed from it.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
