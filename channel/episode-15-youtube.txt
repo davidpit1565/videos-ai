@@ -1,4 +1,4 @@
-Gemini fixes your broken formula, free.
+Gemini fixes your broken formula, already built in.
 
 Gemini just caught a mistake in this box, before you did. Not a separate app — it's
 already inside the sheet you're using right now. Type a formula, get one thing wrong,
