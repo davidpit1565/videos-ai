@@ -148,6 +148,16 @@ quick script fix. Flagging here so the next full editing pass (or a dedicated "c
 back catalog" session) starts from a real list instead of guessing which four, or assuming
 all thirteen, need work.
 
+## Direction report acted on: episode 16 (29.8.2026)
+
+The 28.8 direction research (`channel/direction-report-28-8.md`) named agentic-coding
+content as the thinnest-covered format found in the whole landscape pass. Episode 16
+(HeyGen's HyperFrames — an open-source tool that does, released publicly, roughly what
+this channel's own render pipeline does by hand, and ships real Claude Code skills) is a
+direct, concrete instance of that direction — sourced from a real Instagram Reel David
+sent, verified by actually installing and rendering with the tool before writing a script
+line. Not a repeat of the research; the follow-through on it.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
