@@ -1,0 +1,92 @@
+[
+ {
+  "n": 1,
+  "line": "We spent fifteen videos building one system.",
+  "start": 0.3,
+  "end": 2.97
+ },
+ {
+  "n": 2,
+  "line": "A company just gave the same system away, for free.",
+  "start": 3.39,
+  "end": 6.42
+ },
+ {
+  "n": 3,
+  "line": "It's called HyperFrames.",
+  "start": 6.84,
+  "end": 8.45
+ },
+ {
+  "n": 4,
+  "line": "Think of it like a recipe.",
+  "start": 8.87,
+  "end": 10.18
+ },
+ {
+  "n": 5,
+  "line": "Each clip is one step: a start time, and a length.",
+  "start": 11.03,
+  "end": 14.17
+ },
+ {
+  "n": 6,
+  "line": "Type one line, and it sets up the project for you.",
+  "start": 14.59,
+  "end": 17.58
+ },
+ {
+  "n": 7,
+  "line": "One more line, and it writes the recipe for you.",
+  "start": 18.0,
+  "end": 20.79
+ },
+ {
+  "n": 8,
+  "line": "Here's the recipe it wrote, in plain text: start at zero, last ten seconds.",
+  "start": 21.21,
+  "end": 25.8
+ },
+ {
+  "n": 9,
+  "line": "One more line turns that recipe into a real video.",
+  "start": 26.65,
+  "end": 30.07
+ },
+ {
+  "n": 10,
+  "line": "We ran it ourselves: a ten second video, ready in about fifteen seconds.",
+  "start": 30.49,
+  "end": 34.74
+ },
+ {
+  "n": 11,
+  "line": "A real file. We opened it, we didn't just take their word for it.",
+  "start": 35.16,
+  "end": 38.84
+ },
+ {
+  "n": 12,
+  "line": "It's built to work with the same AI agents we already use, Claude included.",
+  "start": 39.26,
+  "end": 43.92
+ },
+ {
+  "n": 13,
+  "line": "We built this by hand for fifteen episodes. Someone just open sourced it.",
+  "start": 44.34,
+  "end": 48.62
+ },
+ {
+  "n": 14,
+  "line": "The setup's in the link in bio.",
+  "start": 49.47,
+  "end": 51.68
+ },
+ {
+  "n": 15,
+  "line": "Follow for the setup that actually works.",
+  "start": 52.1,
+  "end": 54.16
+ }
+]

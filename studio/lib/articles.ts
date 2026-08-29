@@ -367,6 +367,33 @@ export const ARTICLES: Article[] = [
       "Not free for every account: Google's own rollout (June 2026) lists this for Business, Enterprise, Education, AI Pro and AI Ultra Workspace plans. On a personal Gmail account, the equivalent needs Google One AI Premium — check your own account's access before assuming it's there.",
     ],
   },
+  {
+    n: 16,
+    title: "Someone open-sourced our own video pipeline",
+    standfirst:
+      "This channel's videos are built from a system: turn a plain instruction into a finished " +
+      "video, one clip at a time. HeyGen just released a free, open-source tool called " +
+      "HyperFrames that does the same thing — built specifically to work with AI coding " +
+      "agents like Claude. We installed it and rendered a real video ourselves before " +
+      "saying any of this.",
+    steps: [
+      "Install it with one line in a terminal (a box where you type one instruction and press enter): npx hyperframes init.",
+      "Describe what you want, in plain language, to an AI coding agent (like Claude Code) — the same way you'd describe it to a person.",
+      "The agent writes a \"recipe\" for you: plain text where each clip is one step, with a start time and how long it lasts.",
+      "Run one more command — npm run render — and it turns that recipe into a real video file.",
+      "Open the finished file yourself to confirm it's real, the same thing we did before publishing this.",
+    ],
+    changes: [
+      "The same idea this channel has run by hand for fifteen episodes — instruction in, real video out — is now a free, open-source tool anyone can install.",
+      "It's free (Apache 2.0 license — no cost, no usage fees) and it installs its own starter files for AI coding agents, so an agent like Claude Code already knows how to use it.",
+      "We measured it ourselves: a 10-second test video rendered in about 15 seconds on ordinary hardware.",
+    ],
+    limits: [
+      "This is a tool for building videos with code/agent instructions — it doesn't replace a camera or footage of a real event; it's for the same kind of screen-recording-and-graphics video this channel already makes.",
+      "We tested a small, simple example, not a full multi-scene production — a longer, more complex video will take longer to render and may need more setup than shown here.",
+      "Open-source projects change; if a command in this episode no longer matches what you see, check the project's own current documentation rather than assuming this episode is still exact.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
