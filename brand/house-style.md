@@ -281,3 +281,31 @@ reports spending roughly 80% of total editing effort on that opening alone. Conc
 calling any script's first beat finished, check that the visual, the spoken line, and the
 on-screen headline aren't just each individually fine, but are saying the same thing three
 different ways in the same three seconds.
+
+---
+
+## 14. Verify every factual claim against a primary source before publishing
+
+Reel 15 shipped a wrong claim in its title text ("free") that never appeared in the video
+itself — Gemini's Sheets Fix button and `=AI()` are real (Google's own June 2026 Workspace
+Updates post, and Google's own support docs), but the feature isn't free for every account:
+it's rolled out to Business/Enterprise/Education/AI Pro/AI Ultra Workspace plans, and a
+personal Gmail account needs Google One AI Premium. Caught only because he asked directly,
+right before publishing, not because it was checked as a standing step.
+
+**Standing rule now:** before any episode's caption, YouTube title, on-screen text, or site
+article makes a factual claim about a tool — what it does, what it costs, who has access,
+what a button is called — check that claim against the company's own current documentation,
+not a secondary blog post repeating it. A claim can be true in the video's own on-screen
+demonstration and still be wrong in the surrounding title/caption text (exactly what happened
+here) — check all of it, not just the script.
+
+- **Availability and pricing claims are the highest-risk category** — "free," "no cost,"
+  "anyone can," "built into every account" — because they're usually true for *someone's*
+  account (often the researcher's own paid tier) and false as a universal claim.
+- If a feature's access varies by plan, say so — the site article's `limits` array exists
+  exactly for this; it isn't an admission of weakness, it's what makes the "changes" claims
+  next to it trustworthy.
+- This is the same discipline as `assets/guaranteed-vs-model-behaviour.md` (mechanically
+  guaranteed vs. the model choosing to comply) applied one level up: mechanically guaranteed
+  vs. **guaranteed for who**.

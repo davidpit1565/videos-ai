@@ -342,12 +342,12 @@ export const ARTICLES: Article[] = [
   },
   {
     n: 15,
-    title: "Gemini fixes your broken formula, free",
+    title: "Gemini fixes your broken formula, already built in",
     standfirst:
       "Google Sheets is the spreadsheet app where you type numbers into boxes and give it " +
       "instructions like \"add these up.\" Get an instruction wrong and Gemini — Google's AI, " +
-      "already built into the app — catches the mistake and fixes it, one click, free. It can " +
-      "also answer a question typed straight into any box.",
+      "already built into the app — catches the mistake and fixes it, one click, no separate " +
+      "tool to install. It can also answer a question typed straight into any box.",
     steps: [
       "Open a Google Sheet — the grid where you type numbers into boxes.",
       "Type an instruction into a box that tells it to do math, like adding up a set of other boxes.",
@@ -364,6 +364,7 @@ export const ARTICLES: Article[] = [
     limits: [
       "This fixes mistakes in the instructions you write yourself — it doesn't know whether the numbers you typed in are correct, only whether the instruction is valid.",
       "The exact wording and location of the Fix button can change as Google updates Sheets — if it isn't where this episode shows it, look for an error indicator on the box itself.",
+      "Not free for every account: Google's own rollout (June 2026) lists this for Business, Enterprise, Education, AI Pro and AI Ultra Workspace plans. On a personal Gmail account, the equivalent needs Google One AI Premium — check your own account's access before assuming it's there.",
     ],
   },
 ];
