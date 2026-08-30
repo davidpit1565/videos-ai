@@ -626,30 +626,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   box-shadow:0 0 10px rgba(232,200,106,.5)}
 @media(prefers-reduced-motion:reduce){.scrollbar{display:none}}
 
-/* A cursor-follow glow on every card-style link — episode cards, prompt cards, tool
-   pills, search hits. spotlight.tsx writes --mx/--my in percent as the pointer moves;
-   this is just the paint. Card already gets a hover lift+shadow (further down this
-   file) — the glow is the second, cheaper layer of "this responds to you," not a
-   replacement for it. overflow:hidden clips the glow to the card's own rounded corners
-   instead of bleeding a square edge past them. */
-.site .eps a,.site .prompts a,.site .tracks a,.site .hits > li,.site .issueteaser,.site .tplcard{
-  position:relative;overflow:hidden}
-.site .eps a::after,.site .prompts a::after,.site .tracks a::after,.site .hits > li::after,
-.site .issueteaser::after,.site .tplcard::after{
-  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;z-index:0;
-  transition:opacity .3s ease;
-  background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(232,200,106,.16),transparent 70%)}
-.site .eps a:hover::after,.site .prompts a:hover::after,.site .tracks a:hover::after,
-.site .hits > li:hover::after,.site .issueteaser:hover::after,.site .tplcard:hover::after{opacity:1}
-/* every child needs to sit above the glow layer, or the card's own text picks up the
-   glow's z-index:0 stacking context and disappears behind it */
-.site .eps a > *,.site .prompts a > *,.site .tracks a > *,.site .hits > li > *,
-.site .issueteaser > *,.site .tplcard > *{position:relative;z-index:1}
-@media(prefers-reduced-motion:reduce){
-  .site .eps a::after,.site .prompts a::after,.site .tracks a::after,.site .hits > li::after,
-  .site .issueteaser::after,.site .tplcard::after{display:none}
-}
-
 /* A staggered entrance instead of one flat block — the first version of Reveal (still
    used for the section as a whole) played every list item at once, which reads as a
    panel appearing rather than a list arriving. Delays are hardcoded per position rather
