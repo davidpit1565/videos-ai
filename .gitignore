@@ -23,6 +23,7 @@ export/*FINAL*.mp4
 
 # voice work files and caches
 audio/__pycache__/
+export/__pycache__/
 audio/voice/work/
 audio/voice/*-cues.json
 export/voice-AB*.m4a
