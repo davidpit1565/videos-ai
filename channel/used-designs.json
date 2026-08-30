@@ -94,5 +94,11 @@
     "brass": "#7AF5B0",
     "ember": "#FF5C5C",
     "mood": "technical"
+  },
+  {
+    "episode": 17,
+    "brass": "#7EC8FF",
+    "ember": "#FFB347",
+    "mood": "diagnostic"
   }
 ]

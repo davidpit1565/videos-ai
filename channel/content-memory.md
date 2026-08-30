@@ -179,6 +179,65 @@ tier on every claim):
   here has to grow organically from actual client work, on a much longer timeline. Not a
   reason not to do it — a reason not to expect Nas Daily's speed from it.
 
+## Real view counts, from David's own Instagram grid (30.8.2026)
+
+David sent two screenshots of the profile grid on `actually_work...` (94ish followers, per
+earlier session context). This is the first time this file has real per-episode view
+numbers instead of only the demand-side research. Matched to episode number by comparing
+each tile's on-screen hook text against the real caption files (`channel/episode-NN-
+caption.txt`) — most matches are exact first-line quotes; a few (marked below) are inferred
+from phrasing and could be off by one adjacent episode. Grid order is Instagram's own
+newest-first order, not upload timestamps — the screenshot shows no post dates, so this is
+recency order, not a measured time-of-day or day-of-week signal. Anyone reading this later:
+don't upgrade "newest first" into "posted at a specific time" — that data isn't here.
+
+| Grid position (newest→oldest) | Hook on screen | Views | Episode | Match confidence |
+|---|---|---|---|---|
+| 1 | "We spent 15 videos building one system." | 458 | 16 | exact |
+| 2 | "Gemini already caught it. Before you did." | 427 | 15 | exact |
+| 3 | "Everyone's sharing this 'AI lies' claim. Please you." | 340 | 14 | exact |
+| 4 | "ChatGPT remembers you." | 175 | 13 | exact |
+| 5 | "Most think it's for coders." | 416 | 12 | exact |
+| 6 | "This agent can send email on its own. It never does." | 429 | 9 | exact |
+| 7 | "voice_doctor.py measures it in the audio. SIBILANCE," | 425 | 11 | exact |
+| 8 | "Most leads go cold fast." | 293 | 10 | exact |
+| 9 | "Last time: a check said it passed. It lied." | 139 | 8 | exact |
+| 10 | "Last time: 3 things your agent still breaks on." | 452 | 6 | exact |
+| 11 | "Your captions are hiding behind Instagram." | 408 | 5 | exact |
+| 12 | "This video almost shipped broken." | 462 | 4 | exact |
+| 13 | "Real agents fail like this. Every one." | 386 | 3 | **inferred**, not a literal quote from ep03's caption |
+| 14 | "n8n — Your agent can't tell when it messes up." | 658 | 7 | exact |
+| 15 | "The test that settles it: Can't act without you? It's a chatbot." | 940 | 2 | **inferred** — ep02's own caption opens differently ("Everyone says agent...") but the theme (agent vs. chatbot) matches uniquely |
+| 16 | "Your ChatGPT keeps giving you the obvious." | 662 | 1 | **inferred** — closest remaining match to ep01 (Universal AI Engine) by elimination |
+
+**Sample-size warning, stated plainly:** these are views in the low hundreds on a ~94-
+follower account — small enough that a handful of algorithmic placements can swing a number
+this much on their own. Nothing below is a CONFIRMED pattern; everything is a HYPOTHESIS at
+best, some weaker than others.
+
+- **HYPOTHESIS:** the two highest performers (940, 662 — ep02 and ep01) are both a plain,
+  self-contained claim that needs no earlier video to make sense ("it's a chatbot," "keeps
+  giving you the obvious"). The two lowest (139, 175 — ep08 and ep13) are a "Last time:"
+  callback hook and a narrow claim, respectively. A caption starting "Last time:" assumes
+  the viewer already saw the previous one — most people hitting a Reel from Explore/the
+  algorithm haven't, which is the same "don't assume the reader knows what came before"
+  rule `explain-steps` already states for interface instructions. Only two data points on
+  each side; this is a direction to watch, not a rule to apply retroactively to unpublished
+  scripts.
+- **HYPOTHESIS, and it complicates a standing worry:** ep07's hook names "n8n" directly in
+  the first line and still got the second-highest view count (658) of all sixteen — despite
+  `n8n` being one of the four spots the 28.8 jargon audit flagged as unexplained brand-name
+  jargon. Either naming a specific tool doesn't hurt a hook the way the audit's framing
+  assumed, or ep07 won on some other factor unrelated to that word. Not enough here to
+  reverse the jargon-audit finding — that audit was about comprehension *inside* the video,
+  this is about the hook getting a view at all — but worth remembering before assuming
+  "never name an unexplained tool in the first line" as settled.
+- **What's still missing:** saves, completion rate, and follower growth per episode — the
+  numbers that actually distinguish "the hook worked" from "the content worked" (this
+  file's own oldest hypothesis, above). View count alone can't separate those. Ask David for
+  the studio's `/api/agent` saves/completion numbers next time this file gets updated, or
+  pull them directly if the studio's live data becomes reachable from here.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
