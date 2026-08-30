@@ -200,25 +200,31 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<!-- the takeaway -->
-<section class="scene" data-in="43.00" data-out="48.00">
+<section class="scene" data-in="43.00" data-out="47.50">
   <div class="pad"><div class="kb">
-    <div class="quote b" data-at="43.10">
+    <h2 class="b punch" data-at="43.10">It lives in a skill<br>called <span class="toolmark"><span class="dot"></span>explain-steps</span>.</h2>
+  </div></div>
+</section>
+
+<!-- the takeaway -->
+<section class="scene" data-in="47.50" data-out="52.50">
+  <div class="pad"><div class="kb">
+    <div class="quote b" data-at="47.60">
       <div class="qk">the rule</div>
       <div class="qb">We run this test on <strong>every script now</strong> — before a word gets recorded.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="48.00" data-out="51.00">
+<section class="scene" data-in="52.50" data-out="55.50">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="48.10"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="52.60"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="51.00" data-out="53.90">
+<section class="scene" data-in="55.50" data-out="58.40">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="51.10" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="55.60" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -230,7 +236,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="53.90" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="58.40" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -248,7 +254,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=53.90,t=0,playing=false,last=0;
+  var DUR=58.40,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -268,9 +274,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [28.30,32.60,"Before: add this to the column."],
     [33.30,37.60,"After: Instagram fills this box on its own."],
     [38.30,42.60,"Same idea. Zero required vocabulary."],
-    [43.30,47.60,"We run this test on every script now, before one word gets recorded."],
-    [48.30,50.60,"The setup's in the link in bio."],
-    [51.30,53.90,"Follow for the setup that actually works."]
+    [43.30,47.00,"That rule lives in a skill we call explain-steps."],
+    [47.60,51.90,"We run this test on every script now, before one word gets recorded."],
+    [52.60,54.90,"The setup's in the link in bio."],
+    [55.60,58.20,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
