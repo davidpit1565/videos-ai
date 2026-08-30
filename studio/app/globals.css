@@ -616,6 +616,42 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 @keyframes pagewipe-sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes pagewipe-fade{to{opacity:0}}
 
+/* A thin read-progress line, always present (unlike the pagewipe, which fires once per
+   navigation and fades) — scroll-progress.tsx writes the scale directly, no state, no
+   re-render per pixel. Sits one layer below the pagewipe's z-index so a fresh navigation's
+   sweep still reads as the topmost event. */
+.scrollbar{position:fixed;inset-block-start:0;inset-inline:0;height:2px;z-index:9998;
+  pointer-events:none;transform-origin:left;transform:scaleX(0);
+  background:linear-gradient(90deg,#E8C86A,#FFE7A8);
+  box-shadow:0 0 10px rgba(232,200,106,.5)}
+@media(prefers-reduced-motion:reduce){.scrollbar{display:none}}
+
+/* A staggered entrance instead of one flat block — the first version of Reveal (still
+   used for the section as a whole) played every list item at once, which reads as a
+   panel appearing rather than a list arriving. Delays are hardcoded per position rather
+   than computed: CSS has no way to multiply nth-child's own index, and ten explicit
+   steps covers every list on the site (episodes: 3 on the home page, up to a page of
+   search hits; tool pills: a handful) without a build-time index prop threaded through
+   four different page components just to name a number CSS could otherwise guess at. */
+.reveal .eps li,.reveal .prompts li,.reveal .tracks li,.reveal .hits > li{
+  opacity:0;transform:translateY(14px);
+  transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.3,1)}
+.reveal.in .eps li,.reveal.in .prompts li,.reveal.in .tracks li,.reveal.in .hits > li{
+  opacity:1;transform:translateY(0)}
+.reveal.in .eps li:nth-child(1),.reveal.in .prompts li:nth-child(1),.reveal.in .tracks li:nth-child(1),.reveal.in .hits > li:nth-child(1){transition-delay:.02s}
+.reveal.in .eps li:nth-child(2),.reveal.in .prompts li:nth-child(2),.reveal.in .tracks li:nth-child(2),.reveal.in .hits > li:nth-child(2){transition-delay:.06s}
+.reveal.in .eps li:nth-child(3),.reveal.in .prompts li:nth-child(3),.reveal.in .tracks li:nth-child(3),.reveal.in .hits > li:nth-child(3){transition-delay:.10s}
+.reveal.in .eps li:nth-child(4),.reveal.in .prompts li:nth-child(4),.reveal.in .tracks li:nth-child(4),.reveal.in .hits > li:nth-child(4){transition-delay:.14s}
+.reveal.in .eps li:nth-child(5),.reveal.in .prompts li:nth-child(5),.reveal.in .tracks li:nth-child(5),.reveal.in .hits > li:nth-child(5){transition-delay:.18s}
+.reveal.in .eps li:nth-child(6),.reveal.in .prompts li:nth-child(6),.reveal.in .tracks li:nth-child(6),.reveal.in .hits > li:nth-child(6){transition-delay:.22s}
+.reveal.in .eps li:nth-child(7),.reveal.in .prompts li:nth-child(7),.reveal.in .tracks li:nth-child(7),.reveal.in .hits > li:nth-child(7){transition-delay:.26s}
+.reveal.in .eps li:nth-child(8),.reveal.in .prompts li:nth-child(8),.reveal.in .tracks li:nth-child(8),.reveal.in .hits > li:nth-child(8){transition-delay:.30s}
+.reveal.in .eps li:nth-child(n+9),.reveal.in .prompts li:nth-child(n+9),.reveal.in .tracks li:nth-child(n+9),.reveal.in .hits > li:nth-child(n+9){transition-delay:.32s}
+@media(prefers-reduced-motion:reduce){
+  .reveal .eps li,.reveal .prompts li,.reveal .tracks li,.reveal .hits > li{
+    transition:none;opacity:1;transform:none}
+}
+
 .site .herotext{min-width:0}
 /* Used to force the video ABOVE the headline on a phone (order:-1) — meant to put "the
    exact screen" first, but a full-height 9:16 video is most of a phone's first
