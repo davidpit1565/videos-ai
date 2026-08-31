@@ -73,9 +73,12 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
                     app/e/[n]/opengraph-image.tsx) — a designed still with the real title,
                     not a random auto-picked YouTube video frame. Works for every episode
                     uniformly, not just ones with a YouTube link. */}
-                {/* eslint-disable-next-line @next/next/no-img-element -- a generated route,
-                    not a static asset; next/image can't optimize a dynamic image route. */}
-                <img className="ethumb" src={`/e/${e.n}/opengraph-image`} alt="" loading="lazy" />
+                <span className="ethumbwrap">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- a generated route,
+                      not a static asset; next/image can't optimize a dynamic image route. */}
+                  <img className="ethumb" src={`/e/${e.n}/opengraph-image`} alt="" loading="lazy" />
+                  <span className="eno">{String(e.n).padStart(2, "0")}</span>
+                </span>
                 <span className="tag">
                   {e.tool}
                   {publicMonth(e.publishedAt) ? ` · ${publicMonth(e.publishedAt)}` : ""}

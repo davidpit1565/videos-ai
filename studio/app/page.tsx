@@ -15,6 +15,7 @@ import ExternalIcon from "./external-icon";
 import HeroDiagnostic from "./hero-diagnostic";
 import HeroHeadline from "./hero-headline";
 import HeroParallax from "./hero-parallax";
+import ToolMarquee from "./tool-marquee";
 import { TOOLS, toolFor } from "@/lib/tools";
 
 export const metadata = {
@@ -146,6 +147,8 @@ export default async function Home() {
           <HeroDiagnostic />
         )}
       </header>
+
+      {tracks.length > 1 && <ToolMarquee names={tracks.map(({ t }) => t)} />}
 
       {tracks.length > 1 && (
         <section>
