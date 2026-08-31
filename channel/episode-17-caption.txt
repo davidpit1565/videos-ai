@@ -1,21 +1,20 @@
-One word broke this video, for someone who already knew the topic.
+One word can wreck a whole explanation.
 
-The word was "column." Said once, never explained.
+Real example: "Add this to the column." Said once. Never explained.
 
-So now every script gets a real test before it's recorded: read the line, ask "what did
-I just say — in your own words?" Never yes or no. If they can't say it back, the line
-isn't done.
+Here's a 5-second test that catches it: read the line out loud, ask "what did I just
+say — in your own words?" Never yes or no. If they can't say it back, it's not done.
 
 Before: "Add this to the column."
 After: "Instagram fills this box on its own."
 
 Same idea. Zero required vocabulary.
 
-That rule lives in a skill we call explain-steps. We run it on every script now, before
-a word gets recorded.
+This test lives in a free skill called explain-steps — download it, use it on
+anything you're explaining.
 
 Full breakdown: actually-works.com/e/17
 
 Follow for the setup that actually works.
 
-#aitools #contentcreation #videoscript #buildinpublic #accessibility
+#aitools #contentcreation #writingtips #buildinpublic #accessibility

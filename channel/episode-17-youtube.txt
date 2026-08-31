@@ -1,25 +1,24 @@
-One word broke this video for someone who already knew the topic.
+One word can wreck a whole explanation.
 
-The word was "column." Said once in episode 13, never explained — and it broke the
-video for a viewer who already understood the underlying idea. Not a one-off; the fix
-became a standing rule for every script since.
+Here's a real example: "Add this to the column." Said once, never explained — and
+it's exactly the kind of line that makes total sense to whoever wrote it, and loses
+everyone else.
 
-The rule: before a line gets recorded, read it out loud and ask "what did I just say —
-in your own words?" Never yes or no. If the answer doesn't come back right, the line
-isn't done.
+There's a 5-second test that catches this every time: read the line out loud, then
+ask "what did I just say — in your own words?" Never yes or no. If the answer
+doesn't come back right, the line isn't done.
 
-The real before and after it caught:
+The real before and after:
 Before: "Add this to the column."
 After: "Instagram fills this box on its own."
 
 Same idea, zero required vocabulary.
 
-That rule lives in a skill we call explain-steps — the same skill behind every
-step-by-step explanation on this channel. We run it on every script now, before a
-single word gets recorded.
+This test lives in a free skill called explain-steps — download it below and run it
+on anything you're explaining, not just videos.
 
 Full breakdown: actually-works.com/e/17
 
 Follow for the setup that actually works.
 
-#aitools #contentcreation #videoscript #buildinpublic
+#aitools #contentcreation #writingtips #buildinpublic

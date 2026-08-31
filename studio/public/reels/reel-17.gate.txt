@@ -1,46 +1,46 @@
 === narration
-audio/reel17-narration-fixed.wav  49.2s  14 lines
-  medians: ending -37.5 dB · level -19.0 dBFS · S residual +0.8 dB (slope +5.3 dB per sibilant/syllable)
-  flagged below: ending -67.2 dB · S residual -2.2 dB  (median - 2.5 robust sd)
+audio/reel17-narration-fixed.wav  45.6s  14 lines
+  medians: ending -36.6 dB · level -20.5 dBFS · S residual +0.3 dB (slope +7.7 dB per sibilant/syllable)
+  flagged below: ending -60.7 dB · S residual -3.9 dB  (median - 2.5 robust sd)
    ln   dur    gap  rate    sib    end    lvl  line
-    1  4.12  +0.42  4.13  -10.8  -35.5  -19.0  One word broke this video, for someone
-    2  1.24  +0.42  4.03  -10.7  -41.2  -19.0  The word was column.
-    3  3.14  +0.42  3.82   -9.5  -48.7  -19.9  The line that shipped said, add this t
-    4  2.07  +0.85  3.38   -9.4  -22.2  -19.9  Said once. Never explained.
-    5  3.49  +0.42  4.58  -10.2  -42.4  -18.1  So now every script gets a real test b
-    6  2.76  +0.42  3.99   -8.8  -19.0  -19.0  The test: what did I just say, in your
-    7  4.36  +0.42  3.44  -14.0  -49.8  -18.6  Never yes or no. If they can't say it 
-    8  2.03  +0.85  3.94  -10.6  -41.9  -19.0  Before: add this to the column.
-    9  2.72  +0.42  4.04  -10.4  -49.2  -18.8  After: Instagram fills this box on its
-   10   2.9  +0.42  4.48  -15.9  -34.2  -17.8  Same idea. Zero required vocabulary.
-   11  3.95  +0.42  3.04  -13.5  -24.1  -19.1  That rule lives in a skill we call exp
-   12  4.07  +0.42  4.42  -11.5  -39.0  -19.0  We run this test on every script now, 
-   13  1.89  +0.85  4.23  -12.0  -36.1  -19.6  The setup's in the link in bio.
-   14  2.53    —    4.35  -11.0  -15.8  -19.0  Follow for the setup that actually wor
+    1   2.6  +0.42  3.85  -12.9  -39.6  -19.8  One word can wreck a whole explanation
+    2  1.25  +0.42   4.0  -10.8  -41.3  -20.5  The word was column.
+    3  2.44  +0.42  4.92   -9.9  -44.5  -20.2  A real instruction said, add this to t
+    4  2.07  +0.85  3.38   -9.4  -22.2  -21.4  Said once. Never explained.
+    5  2.38  +0.42  4.62   -7.3  -26.6  -20.5  Here's a five second test that catches
+    6  2.76  +0.42  3.99   -8.8  -19.0  -20.5  The test: what did I just say, in your
+    7  3.75  +0.42  3.73  -11.1  -46.3  -20.5  Never yes or no. If they can't say it 
+    8  2.03  +0.85  3.94  -10.6  -41.8  -20.5  Before: add this to the column.
+    9  2.71  +0.42  4.06  -10.4  -49.1  -20.2  After: Instagram fills this box on its
+   10  2.91  +0.42  4.47  -15.8  -34.1  -19.3  Same idea. Zero required vocabulary.
+   11  4.17  +0.42  2.88  -10.9  -37.4  -21.4  This test lives in a skill we call exp
+   12  4.52  +0.42  4.65  -10.0  -35.3  -20.5  We run this test on every explanation 
+   13  1.89  +0.85  4.23  -12.0  -35.9  -21.1  The setup's in the link in bio.
+   14  2.25    —    4.89  -13.0  -19.5  -19.7  Follow for the setup that actually wor
 
   nothing flagged. every line sits inside his own spread.
 
 === frame layout
-reel-17-kar.html  48.82s  safe box: x 65-1015, y 269-1248
+reel-17-kar.html  45.28s  safe box: x 65-1015, y 269-1248
   safe area: clean (tolerance 10px)
   overlaps: none over 10px
 
 === rendered file
-reel-17.mp4  1080x1920  30fps  48.83s  6.7MB
-  visual change: median 0.87s, longest 4.57s
-  loudness: -14.2 LUFS integrated, peak -1.6 dBFS, LRA 1.7 LU
-  loop seam: first vs last frame differ by 15.3/255
+reel-17.mp4  1080x1920  30fps  45.28s  6.5MB
+  visual change: median 0.40s, longest 4.60s
+  loudness: -14.0 LUFS integrated, peak -2.0 dBFS, LRA 1.9 LU
+  loop seam: first vs last frame differ by 19.6/255
 
   ok        1080x1920
   ok        yuv420p
   ok        30fps
   ok        48kHz stereo
-  ok        length 48.8s inside 30-90s
+  ok        length 45.3s inside 30-90s
   ok        length matches the build
   ok        no frozen run over 4s
-  ok        first frame carries picture (luma 31.6)
-  ok        visual change every 0.87s median
-  ok        -14.2 LUFS
-  ok        peak -1.6 dBFS
+  ok        first frame carries picture (luma 35.2)
+  ok        visual change every 0.40s median
+  ok        -14.0 LUFS
+  ok        peak -2.0 dBFS
 
 ALL CHECKS PASSED

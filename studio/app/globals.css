@@ -573,16 +573,20 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    settle-in on load, then it holds still — the glow is doing its job by existing, not
    by moving forever. */
 .site .hero{display:grid;gap:2.2rem;grid-template-columns:1fr;position:relative}
+/* hero-parallax.tsx writes --hero-px on scroll — a separate `translate` property
+   rather than another `transform`, so it composes with this element's own one-time
+   `transform:scale()` entrance below instead of one silently overwriting the other. */
 .site .hero::before{content:"";position:absolute;top:-8rem;inset-inline-end:-10rem;
   width:32rem;height:32rem;border-radius:50%;pointer-events:none;z-index:-1;
   background:radial-gradient(circle,rgba(232,200,106,.2) 0%,rgba(226,154,62,.08) 45%,rgba(232,200,106,0) 72%);
-  animation:heroglow .9s ease-out both}
+  animation:heroglow .9s ease-out both;
+  translate:0 var(--hero-px,0px);transition:translate .1s linear}
 @keyframes heroglow{
   from{transform:scale(.85);opacity:0}
   to{transform:scale(1);opacity:1}
 }
 @media (prefers-reduced-motion:reduce){
-  .site .hero::before{animation:none}
+  .site .hero::before{animation:none;translate:none;transition:none}
 }
 
 /* Film grain — every video carries this at 5% opacity (video/reel-*.html's own .grain);
@@ -1078,15 +1082,15 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    brass wipe": a 3px brass line sweeps across and the new section is revealed behind
    it. This is that device, ported from a video cut to a scroll trigger (see
    app/reveal.tsx) — the same identity the palette swap above already borrowed. */
-.site .reveal{opacity:0;transform:translateY(20px);position:relative;
+.site .reveal, .pub .reveal{opacity:0;transform:translateY(20px);position:relative;
   transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
-.site .reveal.in{opacity:1;transform:none}
-.site .reveal::before{content:"";position:absolute;inset-inline-start:0;top:-1px;
+.site .reveal.in, .pub .reveal.in{opacity:1;transform:none}
+.site .reveal::before, .pub .reveal::before{content:"";position:absolute;inset-inline-start:0;top:-1px;
   height:3px;width:0;background:var(--gold);transition:width .35s ease-out .12s}
-.site .reveal.in::before{width:64px}
+.site .reveal.in::before, .pub .reveal.in::before{width:64px}
 @media (prefers-reduced-motion:reduce){
-  .site .reveal{opacity:1;transform:none;transition:none}
-  .site .reveal::before{display:none}
+  .site .reveal, .pub .reveal{opacity:1;transform:none;transition:none}
+  .site .reveal::before, .pub .reveal::before{display:none}
 }
 
 /* A flat 1px border reads as an outline, not a surface — a hairline highlight along

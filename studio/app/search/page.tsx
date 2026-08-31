@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import SiteNav from "../sitenav";
 import Search from "./search";
+import Reveal from "../reveal";
 import { catalogue } from "@/lib/site";
 import { PROMPTS } from "@/lib/prompts";
 import { ARTICLES } from "@/lib/articles";
@@ -54,9 +55,11 @@ export default async function SearchPage() {
         Every episode, every prompt, and the link to each video. Type anything — a tool, a
         word from a prompt, or what you are trying to get done.
       </p>
-      <Suspense fallback={null}>
-        <Search index={index} />
-      </Suspense>
+      <Reveal>
+        <Suspense fallback={null}>
+          <Search index={index} />
+        </Suspense>
+      </Reveal>
     </main>
   );
 }

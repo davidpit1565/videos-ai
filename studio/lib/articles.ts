@@ -396,23 +396,24 @@ export const ARTICLES: Article[] = [
   },
   {
     n: 17,
-    title: "One word broke this video — for someone who already knew the topic",
+    title: "A 5-second test for any explanation you write",
     standfirst:
-      "Episode 13 shipped with the word \"column\" said once and never explained — and it " +
-      "broke the video for a viewer who already understood the underlying idea. The fix " +
-      "wasn't a stricter writer, it was a real test run before recording: read the line, " +
-      "ask \"what did I just say, in your own words?\" This is that test, and the real " +
-      "before-and-after example it caught.",
+      "One undefined word — \"column\" — is enough to lose someone who already knows the " +
+      "topic. The fix isn't writing more carefully, it's a real test run before you record " +
+      "or publish anything: read the line, ask \"what did I just say, in your own words?\" " +
+      "This is that test, the real before-and-after it catches, and the free skill " +
+      "(explain-steps) it lives in — download it below.",
     steps: [
       "Read the line out loud, exactly as written.",
       "Ask someone else — or yourself, out loud, in a different sitting — \"what did I just say, in your own words?\"",
       "Never accept a yes-or-no answer to \"did that make sense?\" — it doesn't catch anything; a paraphrase does.",
       "If the answer doesn't come back matching what the line actually meant, the line isn't done — rewrite it, don't just slow down on it.",
-      "Repeat for every line that names a tool, a technical term, or an interface element before it gets recorded.",
+      "Repeat for every line that names a tool, a technical term, or an interface element before it gets recorded or published.",
+      "To run this automatically in Claude Code: open /s/explain-steps on this site, download SKILL.md, and put it at .claude/skills/explain-steps/SKILL.md in your own project — Claude Code picks it up with no restart and no config.",
     ],
     changes: [
       "The real example this rule caught: \"Add this to the column\" (said once, never explained) became \"Instagram fills this box on its own\" — same fact, zero required vocabulary.",
-      "The rule now lives in a written skill, explain-steps, used for every step-by-step explanation this channel makes, not just this one script.",
+      "The rule lives in a written, free skill called explain-steps — the same one behind every step-by-step explanation this channel makes, not invented just for this episode.",
       "It's a five-minute check before recording, not a rewrite of the whole production process — the cost is asking the question, not redoing the work.",
     ],
     limits: [

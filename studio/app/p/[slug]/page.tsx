@@ -3,6 +3,7 @@ import SiteNav from "../../sitenav";
 import { notFound } from "next/navigation";
 import { PROMPTS, bySlug } from "@/lib/prompts";
 import Copy from "./copy";
+import Reveal from "../../reveal";
 
 export const dynamic = "force-static";
 export function generateStaticParams() {
@@ -27,20 +28,26 @@ export default async function PromptPage({ params }: { params: Promise<{ slug: s
       <h1>{p.title}</h1>
       <p className="sub" style={{ fontSize: 18 }}>{p.blurb}</p>
 
-      <h2>Install it</h2>
-      <ol className="steps">
-        {p.install.map((s) => (
-          <li key={s}>{s}</li>
-        ))}
-      </ol>
+      <Reveal>
+        <h2>Install it</h2>
+        <ol className="steps">
+          {p.install.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ol>
+      </Reveal>
 
-      <h2>The text</h2>
-      <Copy text={p.body} />
+      <Reveal>
+        <h2>The text</h2>
+        <Copy text={p.body} />
+      </Reveal>
 
-      <div className="note warn">
-        <div className="t">What it isn&apos;t</div>
-        {p.limits}
-      </div>
+      <Reveal>
+        <div className="note warn">
+          <div className="t">What it isn&apos;t</div>
+          {p.limits}
+        </div>
+      </Reveal>
 
       <div className="foot">
         Every setup on this list was run before it was sent. Reply to any issue and it reaches a

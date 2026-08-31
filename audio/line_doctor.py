@@ -16,7 +16,7 @@ renders reproduce exactly what he approved.
       --subs '[{}, {"harder":"har-der"}, {"harder":"har-der","right":"rite"}]' \
       --params '[[0.50,0.30],[0.45,0.45]]' --top 3 --out export/line-harder.m4a
 """
-import argparse, json, os, subprocess, tempfile, warnings
+import argparse, json, os, subprocess, sys, tempfile, warnings
 import numpy as np
 warnings.filterwarnings("ignore")
 
@@ -54,6 +54,14 @@ def main():
     ap.add_argument("--out", default="export/line-candidates.m4a")
     ap.add_argument("--lang", default=None)
     a = ap.parse_args()
+
+    # Fail on a bad --out extension now, not after generating and ranking every
+    # candidate — this used to crash on a NameError right at the finish line (missing
+    # `import sys`), which hid the real message and wasted a full run's worth of TTS.
+    ext = os.path.splitext(a.out)[1].lower()
+    if ext not in (".m4a", ".wav"):
+        sys.exit(f"--out must end in .m4a or .wav (got {ext}) — "
+                 f"the encoder is chosen from the extension, not assumed")
 
     targets = [t.strip().lower() for t in a.targets.split(",") if t.strip()]
     subs = json.loads(a.subs)
@@ -146,12 +154,8 @@ def main():
     # elementary stream and throws hundreds of decoder errors. That is what happened to
     # audio/voice/line12-candidates.wav: it was written with --out ending in .wav while
     # the encoder stayed hardcoded to AAC.
-    ext = os.path.splitext(a.out)[1].lower()
     codec_for_ext = {".m4a": ["-c:a", "aac", "-b:a", "192k"],
                      ".wav": ["-c:a", "pcm_s16le"]}
-    if ext not in codec_for_ext:
-        sys.exit(f"--out must end in .m4a or .wav (got {ext}) — "
-                 f"the encoder is chosen from the extension, not assumed")
 
     args = ["ffmpeg","-hide_banner","-loglevel","error","-y"]
     for p in parts:

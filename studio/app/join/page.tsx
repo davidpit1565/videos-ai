@@ -2,6 +2,7 @@ import Link from "next/link";
 import SiteNav from "../sitenav";
 import { PROMPTS, bySlug } from "@/lib/prompts";
 import Signup from "../signup";
+import Reveal from "../reveal";
 
 export const metadata = {
   title: "Actually Works — get the setups",
@@ -49,19 +50,21 @@ export default async function Join({
           and this page stopped telling visitors to go set an environment variable. */}
       <Signup source="join" />
 
-      <h2>What&apos;s in the library</h2>
-      <ul className="list">
-        {PROMPTS.map((p) => (
-          <li key={p.slug}>
-            <span />
-            <span className="lbl">
-              {p.title}
-              <small>{p.blurb}</small>
-            </span>
-            <span />
-          </li>
-        ))}
-      </ul>
+      <Reveal>
+        <h2>What&apos;s in the library</h2>
+        <ul className="list">
+          {PROMPTS.map((p) => (
+            <li key={p.slug}>
+              <span />
+              <span className="lbl">
+                {p.title}
+                <small>{p.blurb}</small>
+              </span>
+              <span />
+            </li>
+          ))}
+        </ul>
+      </Reveal>
 
       <div className="foot">
         Free, one email a week, unsubscribe in one click. Nothing is sold to anyone.

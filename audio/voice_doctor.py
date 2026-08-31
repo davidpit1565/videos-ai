@@ -288,7 +288,17 @@ def repair(y, sr, cues, rows, med, out):
             seg = z[a:b] * (1 - m) + seg * m
         z[a:b] = seg
         fixed.append((r["n"], ", ".join(notes)))
-    z = np.clip(z, -1, 1)
+    # A level or sibilance correction can push a line over full scale — reel-17 hit
+    # this for real: an S+5dB shelf boost on an already-hot line clipped one sample to
+    # exactly 1.0, and the render's downstream loudnorm (linear mode, chasing -14 LUFS)
+    # amplified that flat-topped sample's extra harmonics into a +2.1 dBTP true-peak
+    # blocker — audible distortion the render.sh chain never catches, only qa.py does,
+    # and only after a full render. np.clip(-1,1) here was a hard clip (the distortion
+    # itself); rescaling the whole file down when it overshoots preserves the relative
+    # levels every correction above just set, instead of flattening one sample's top.
+    peak = float(np.max(np.abs(z))) if z.size else 0.0
+    if peak > 0.98:
+        z = z * (0.98 / peak)
     with wave.open(out, "w") as o:
         o.setnchannels(1); o.setsampwidth(2); o.setframerate(sr)
         o.writeframes((z * 32767).astype(np.int16).tobytes())
