@@ -43,6 +43,14 @@ been running for days.
 - **Never fabricate.** No invented clients, testimonials, results, prices or metrics. If a
   number is an assumption, it says ASSUMPTION next to it. If research could not confirm
   something, it is listed as unconfirmed, not smoothed over.
+- **Before writing any script, verify the product is still real — every time, automatically,
+  not just when something feels off.** Episode 18 was first built around "ChatGPT agent
+  mode," a name OpenAI had already retired days earlier in favor of "ChatGPT Work" — caught
+  before shipping, but only because it got checked, not because checking was already the
+  default. AI-tool features and names change fast enough that a script written from memory
+  or an old episode's assumptions can be stale within weeks. A live web search for the
+  current name, current behavior and current limits comes before the first line is written,
+  not after a version is already built.
 - **Measure, don't guess.** Demand comes from real view counts (`channel/demand-report.md`),
   voice decisions from measurement *and* his ear — and when they disagree, his ear wins and
   the disagreement gets written down.

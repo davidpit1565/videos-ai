@@ -426,26 +426,29 @@ export const ARTICLES: Article[] = [
     n: 18,
     title: "ChatGPT can use a website now",
     standfirst:
-      "Agent mode gives ChatGPT its own browser inside the chat — it clicks, scrolls, " +
-      "fills in forms, and works through real websites on its own instead of just " +
-      "describing what to do. Ask it to compare a few pricing plans and it comes back " +
-      "with a finished spreadsheet, not a suggestion to go check yourself.",
+      "ChatGPT Work — the mode next to Chat — reads through real websites on its own " +
+      "instead of just describing what to do, and comes back with a finished result. " +
+      "Ask it to compare a few pricing plans and it hands you a spreadsheet, not a " +
+      "suggestion to go check yourself. Verified before publishing, including the " +
+      "rename: this used to ship as a separate \"agent mode,\" which OpenAI retired in " +
+      "early August 2026 in favor of Work — an episode about the old name would already " +
+      "be wrong.",
     steps: [
-      "Open ChatGPT and switch to agent mode before you send your request (look for the mode picker near the message box).",
+      "Open ChatGPT and switch from \"Chat\" to \"Work\" — the mode picker sits right next to where you type your message.",
       "Give it one concrete task with a clear finish line — \"compare these 3 plans and tell me the cheapest\" — not an open-ended one.",
-      "Let it run: it opens each site, clicks and scrolls, fills in any forms it needs to, and reports back — this can take a few minutes, not seconds.",
-      "Watch the first run all the way through before trusting a second one unsupervised — it's the only way to catch it clicking the wrong thing on a page it doesn't understand.",
-      "If it stops at a CAPTCHA or a login wall, that's not a bug to work around — finish that one step yourself and let it continue from there.",
+      "Let it run: it's not instant — a real task can take a while, sometimes hours, not seconds.",
+      "Watch the first run all the way through before handing it a second task unsupervised.",
+      "Don't give it anything that needs you to already be logged into an account somewhere — that's not what it's built to do.",
     ],
     changes: [
-      "The real limit, verified before publishing: it stops cold at a CAPTCHA or a login wall, every time, with no way past it.",
-      "On a busy or unusual page layout it can click the wrong element — the failure mode isn't silence, it's confidently doing the wrong thing.",
-      "There's a real monthly cap, not an unlimited feature: Plus accounts get 40 agent runs a month, Pro accounts get 400.",
+      "The real limit, verified before publishing: it won't log into an account for you — it works with public pages, not ones behind your own sign-in.",
+      "It's genuinely slow by design — built to stay with a task for a long stretch, not to answer in seconds.",
+      "It's not a separate unlimited add-on: usage comes out of your existing plan (Plus or Pro), not a special extra quota.",
     ],
     limits: [
-      "This is for tasks with a clear, checkable finish line (compare, fill in, look up) — not open-ended research or anything where a wrong answer is costly and hard to catch.",
-      "A run can take 5 to 30 minutes depending on the task — this replaces tedious browser work, not instant answers.",
-      "Session logins don't reliably carry over between runs, so a task needing you to already be logged in somewhere may ask you to sign in again mid-task.",
+      "This is for tasks with a clear, checkable finish line (compare, look up, summarize across a few pages) — not open-ended research or anything where a wrong answer is costly and hard to catch.",
+      "It won't act inside an account you're already signed into — a task needing that isn't a fit for it.",
+      "Names and limits in this space change fast — OpenAI retired the previous \"agent mode\" without much notice days before this episode was recorded; check ChatGPT's own current mode picker if this episode is more than a few months old.",
     ],
   },
 ];
