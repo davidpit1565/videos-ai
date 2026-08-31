@@ -309,3 +309,41 @@ here) — check all of it, not just the script.
 - This is the same discipline as `assets/guaranteed-vs-model-behaviour.md` (mechanically
   guaranteed vs. the model choosing to comply) applied one level up: mechanically guaranteed
   vs. **guaranteed for who**.
+
+## 15. Line count is a real time budget, not a style choice
+
+David asked directly why production had grown from "about fifteen minutes" to nearly an
+hour on the last few episodes and wanted the real cause, not a guess. Measured it from the
+actual generation logs rather than assuming:
+
+- **Each narration line costs a roughly fixed ~90-100 seconds of voice generation**,
+  regardless of how short the line is — the model samples a fixed number of steps per line.
+  Early episodes (03-09) ran 8-10 lines and took about 13-17 minutes of voice generation
+  alone; recent ones (15-16) ran 13-15 lines — 22-25 minutes, on generation time alone.
+  **Total time scales almost linearly with line count.** This is the single biggest lever:
+  a script written as 9 dense lines costs less than half what the same content costs written
+  as 15 short ones, with no loss of what gets said.
+- **A second, smaller cost**: any line that ends a sentence gets up to three extra
+  generation passes chasing a natural falling pitch at the end (`audio/build_voice.py`'s
+  prosody-roll check) — real audio quality, but each attempted roll is another full pass.
+  A script written as several short one-sentence lines back to back triggers this more often
+  than the same content written as fewer, longer lines. This is a real quality feature, not
+  a bug — the fix is fewer sentence-ending lines, not turning the check off.
+- **Not the cause**: nothing about the pipeline got slower over time. The scripts got
+  longer and more information-dense (more concrete before/after examples, more verified
+  claims) as a direct result of the quality standards added since — that's a real trade,
+  correctly made, and this section exists so it's a known trade instead of an unexplained
+  slowdown.
+
+**Standing target:** write for **9-11 narration lines** where the content allows it —
+matching the pace of the earliest episodes, which is what actually produced the
+"about fifteen minutes" he remembers. This is a script-writing constraint, not a
+license to cut verification or comprehension work; it means saying the same real,
+checked thing in fewer, more complete lines instead of splitting it across more short
+ones.
+
+`export/make_reel.sh <name>` runs the full pipeline (lint → voice → word stamps → retime →
+captions → safe-area check → voice doctor repair → music → render → final check) as one
+command instead of nine manual ones — it doesn't make voice generation faster, but it
+removes the manual mistakes (a duration typo, forgetting a step, a stale intermediate file)
+that cost real minutes on top of the model's own generation time.

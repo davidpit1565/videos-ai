@@ -57,11 +57,13 @@ export async function GET(req: Request) {
 
   const feed: ActivityEvent[] = state.activity ?? [];
   const last = feed[0];
-  // Was 20 minutes — he asked to shorten it after a fix he needed to see reflected sat
-  // behind the cooldown for most of that window. 3 minutes still protects against a
-  // real hammering pattern (rapid tab-switching re-triggering the visibilitychange
-  // listener below) without making a genuine fix wait nearly as long to show up.
-  if (!fromCron && last && Date.now() - Date.parse(last.at) < 3 * 60 * 1000) {
+  // Was 20 minutes, then 3 — he asked to shorten it after a fix he needed to see reflected
+  // sat behind the cooldown for most of that window. Moved back up to 10: with view-count
+  // notifications gone (see the push filter below), the only things a manual pull surfaces
+  // now are followers/subscribers/likes, which don't move fast enough to need a 3-minute
+  // poll, and the tighter interval was mostly buying YouTube's own noisy view-count jitter
+  // more chances to page him.
+  if (!fromCron && last && Date.now() - Date.parse(last.at) < 10 * 60 * 1000) {
     return NextResponse.json({
       ok: true,
       skipped: true,
@@ -216,6 +218,11 @@ export async function GET(req: Request) {
   if (ig.connected) note("instagram", "עוקבים באינסטגרם", ig.followers, prev?.igFollowers);
   if (bee.connected && bee.exact)
     note("beehiiv", "נרשמים לניוזלטר", bee.activeSubscribers, prev?.subscribers);
+  // He asked for YouTube subscriber alerts too — turns out there was nothing to alert on:
+  // yt.subscribers was fetched every pull and then discarded. The snapshot's own ytSubs
+  // field only ever copied itself forward from the previous day's row (see below), so this
+  // number has never actually been recorded, only silently re-saved as null forever.
+  if (yt.connected) note("youtube", "עוקבים ביוטיוב", yt.subscribers, prev?.ytSubs);
 
   // per-episode movement, so a video that keeps growing is visible without opening it.
   // Instagram and YouTube used to run this as two separately hand-written blocks — that's
@@ -238,6 +245,12 @@ export async function GET(req: Request) {
     setPermalink: (e: State["episodes"][number], p: string | null) => void;
     viewsNoteLabel: (n: number) => string;
     savesNoteLabel: ((n: number) => string) | null;
+    // He asked for push alerts on likes and explicitly not on views — but no per-episode
+    // like count was ever recorded as an activity event, only written silently onto the
+    // episode row. Added so "likes" is a real, notifiable event and not just a number
+    // sitting unannounced in /videos.
+    likesNoteLabel: (n: number) => string;
+    currentLikes: (e: State["episodes"][number]) => number | null;
     /** Where this platform's numbers actually live on the episode. Instagram and YouTube
      *  used to both write e.views/e.likes/e.comments — the same shared field — and since
      *  Instagram was synced first and YouTube second, YouTube's own, much smaller count
@@ -259,6 +272,7 @@ export async function GET(req: Request) {
       if (!m) continue;
       note(cfg.key, cfg.viewsNoteLabel(e.number), m.views, cfg.currentViews(e));
       if (cfg.savesNoteLabel && m.saves != null) note(cfg.key, cfg.savesNoteLabel(e.number), m.saves, e.saves);
+      note(cfg.key, cfg.likesNoteLabel(e.number), m.likes, cfg.currentLikes(e));
       cfg.applyMetrics(e, m);
       // backfilled for episodes linked before this field existed — the permalink is what
       // the episode page's embed needs, the media id alone can't build a URL.
@@ -368,7 +382,9 @@ export async function GET(req: Request) {
         setPermalink: (e, p) => { e.igPermalink = p; },
         viewsNoteLabel: (n) => `ריל ${n} · צפיות`,
         savesNoteLabel: (n) => `ריל ${n} · שמירות`,
+        likesNoteLabel: (n) => `ריל ${n} · לייקים`,
         currentViews: (e) => e.views,
+        currentLikes: (e) => e.likes,
         applyMetrics: (e, m) => {
           e.views = m.views ?? e.views;
           e.likes = m.likes ?? e.likes;
@@ -397,7 +413,9 @@ export async function GET(req: Request) {
         setPermalink: () => {},
         viewsNoteLabel: (n) => `ריל ${n} · צפיות ביוטיוב`,
         savesNoteLabel: null,
+        likesNoteLabel: (n) => `ריל ${n} · לייקים ביוטיוב`,
         currentViews: (e) => e.ytViews ?? null,
+        currentLikes: (e) => e.ytLikes ?? null,
         applyMetrics: (e, m) => {
           e.ytViews = m.views ?? e.ytViews ?? null;
           e.ytLikes = m.likes ?? e.ytLikes ?? null;
@@ -414,13 +432,18 @@ export async function GET(req: Request) {
   // nobody can tell apart from a measured one.
   const subs = bee.connected && bee.exact ? bee.activeSubscribers ?? null : prev?.subscribers ?? null;
   const fol = ig.connected ? ig.followers ?? null : prev?.igFollowers ?? null;
+  // Was always prev?.ytSubs ?? null here — yt.subscribers is fetched above (used in the
+  // response payload and now in the note() call) but never actually reached a snapshot;
+  // every day's row just copied yesterday's (permanently null) value forward.
+  const ytSubsVal = yt.connected ? yt.subscribers ?? null : prev?.ytSubs ?? null;
   if (prev?.date === today) {
     prev.subscribers = subs;
     prev.igFollowers = fol;
+    prev.ytSubs = ytSubsVal;
   } else {
     state.snapshots.push({
       id: uid(), date: today, subscribers: subs, igFollowers: fol,
-      ytSubs: prev?.ytSubs ?? null, note: "נמדד אוטומטית",
+      ytSubs: ytSubsVal, note: "נמדד אוטומטית",
     });
   }
 
@@ -461,11 +484,22 @@ export async function GET(req: Request) {
 
   // He asked for a push on every new addition/pull, not just connection failures — a
   // pull that found nothing still ran, but only a pull that found something is news.
-  if (fresh.length > 0) {
+  //
+  // View counts are recorded in `fresh` (and shown in the studio's own activity feed)
+  // the same as before — this only decides what's worth interrupting his phone for. He
+  // asked directly to stop being paged about views: YouTube's own view count isn't
+  // strictly increasing in real time (it dips and recovers as YouTube's backend
+  // recalculates and filters spam views), and polling it every few minutes surfaced that
+  // churn as alarming-looking negative deltas that were never a real drop in anything.
+  // Followers, newsletter subscribers, and likes move slowly enough that a change in
+  // them is real news; a "-33" on a view count a minute after a "+33" almost never is.
+  const NOTIFIABLE = ["עוקבים באינסטגרם", "עוקבים ביוטיוב", "נרשמים לניוזלטר", "· לייקים"];
+  const notifiable = fresh.filter((f) => NOTIFIABLE.some((k) => f.label.includes(k)));
+  if (notifiable.length > 0) {
     const body =
-      fresh.length === 1
-        ? fresh[0].label
-        : `${fresh.length} עדכונים: ${fresh.slice(0, 3).map((f) => f.label).join(", ")}${fresh.length > 3 ? "…" : ""}`;
+      notifiable.length === 1
+        ? notifiable[0].label
+        : `${notifiable.length} עדכונים: ${notifiable.slice(0, 3).map((f) => f.label).join(", ")}${notifiable.length > 3 ? "…" : ""}`;
     void notify({ title: "עדכון חדש", body, url: "/studio", tag: "activity" }).catch(() => {});
   }
 

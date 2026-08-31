@@ -394,6 +394,33 @@ export const ARTICLES: Article[] = [
       "Open-source projects change; if a command in this episode no longer matches what you see, check the project's own current documentation rather than assuming this episode is still exact.",
     ],
   },
+  {
+    n: 17,
+    title: "One word broke this video — for someone who already knew the topic",
+    standfirst:
+      "Episode 13 shipped with the word \"column\" said once and never explained — and it " +
+      "broke the video for a viewer who already understood the underlying idea. The fix " +
+      "wasn't a stricter writer, it was a real test run before recording: read the line, " +
+      "ask \"what did I just say, in your own words?\" This is that test, and the real " +
+      "before-and-after example it caught.",
+    steps: [
+      "Read the line out loud, exactly as written.",
+      "Ask someone else — or yourself, out loud, in a different sitting — \"what did I just say, in your own words?\"",
+      "Never accept a yes-or-no answer to \"did that make sense?\" — it doesn't catch anything; a paraphrase does.",
+      "If the answer doesn't come back matching what the line actually meant, the line isn't done — rewrite it, don't just slow down on it.",
+      "Repeat for every line that names a tool, a technical term, or an interface element before it gets recorded.",
+    ],
+    changes: [
+      "The real example this rule caught: \"Add this to the column\" (said once, never explained) became \"Instagram fills this box on its own\" — same fact, zero required vocabulary.",
+      "The rule now lives in a written skill, explain-steps, used for every step-by-step explanation this channel makes, not just this one script.",
+      "It's a five-minute check before recording, not a rewrite of the whole production process — the cost is asking the question, not redoing the work.",
+    ],
+    limits: [
+      "This catches whether a sentence is understandable, not whether it's factually correct — a wrong but clearly-worded claim still needs separate fact-checking (see episode 15's own correction).",
+      "It works best with a second person; testing it on yourself only works if you can genuinely forget what you meant to say, which is harder than it sounds.",
+      "Four other spots in the back catalog (episodes 3, 7, 10, 11) were already found to have the same kind of unexplained jargon and haven't been rebuilt yet — this rule is applied going forward, not retroactively to published episodes.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
