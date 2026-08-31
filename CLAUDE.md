@@ -67,7 +67,12 @@ been running for days.
   voice softens word endings — unstressed -ER, -LE/-BLE, -LY, R plus a cluster, flapped T.
   Swap the word; respellings were measured and do not help.
 - A line he flags goes through `audio/line_doctor.py`, which ranks candidates by the energy
-  left in the last 90 ms of the target word. The approved take is locked per line.
+  left in the last 90 ms of the target word. The approved take is genuinely locked per
+  line — `audio/voice/profile/canonical-lines.json` maps a line's exact text to a
+  pre-polished clip, and `build_voice.py` loads that clip byte-for-byte instead of
+  regenerating, for every episode. Both closing lines ("Follow for the setup that
+  actually works." and "The setup's in the link in bio.") are locked this way already —
+  add a new line to the manifest the same way once he approves a take for it.
 - `audio/speak_language.py` does the same voice in 23 languages. Flemish needs its own
   reference recording — `record/flemish-script.md`.
 

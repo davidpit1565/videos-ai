@@ -21,6 +21,25 @@ SR_MIX = 48000
 GAP, LONG = 0.42, 0.85          # pause after a line, and after a section
 SECTION_END = {4, 8, 13, 15}
 
+# He asked directly, after "Follow" landed wrong in two different episodes despite
+# --line-seeds pinning the same seed both times: a locked seed still re-runs the
+# model, and the same seed in a different surrounding context is not guaranteed to
+# reproduce the same take. The outro lines are word-for-word identical across every
+# episode already (checked: reels 13-18 all say exactly "Follow for the setup that
+# actually works." and "The setup's in the link in bio.") — so this stops
+# regenerating them at all. A line here is loaded once, already polished, and
+# reused byte-for-byte; it only changes when someone deliberately replaces the file.
+CANON_MANIFEST = "audio/voice/profile/canonical-lines.json"
+
+
+def canonical_line(text):
+    """Path to a locked, pre-polished clip for this exact line, or None."""
+    if not os.path.exists(CANON_MANIFEST):
+        return None
+    lines = json.load(open(CANON_MANIFEST))
+    p = lines.get(text.strip())
+    return p if p and os.path.exists(p) else None
+
 def cue_times(path):
     src = open(path, encoding="utf-8").read()
     m = re.search(r"var CUES=(\[.*?\]);", src, re.S)
@@ -446,21 +465,35 @@ def main():
         segs.append(np.zeros(int(LEAD * SR_MIX), dtype=np.float32))
     timeline = np.zeros(0, dtype=np.float32)
     for i, text in enumerate(lines, 1):
-        wav, err = say(text, i)
-        if err > 0.001:
-            print(f"      ! line {i} best available after {a.retries} retries (score {err:.2f})", flush=True)
-        raw = os.path.join(tmp, f"{i:02d}.wav")
-        torchaudio.save(raw, wav, m.sr)
         pol = os.path.join(tmp, f"{i:02d}p.wav")
-        polish(raw, pol)
-        # A line that drags is the other half of "it goes too fast": ours was the slowest
-        # of nineteen reels measured, and slow reads as unclear rather than calm. Speed is
-        # corrected with rubberband, which keeps the pitch, and only up to a cap.
-        with wave.open(pol) as w0:
-            secs0 = w0.getnframes() / w0.getframerate()
-        rate0 = syllables(respell(text, phrases, words)) / max(0.3, secs0)
-        slow = {int(x) for x in a.slow.split(",") if x.strip()}
-        floor = a.slow_rate if i in slow else a.min_rate
+        canon = canonical_line(text)
+        if canon:
+            # Locked once, reused byte-for-byte — no generation, no retry, no reroll,
+            # so a line that already landed right cannot land wrong again just because
+            # the surrounding script changed. See CANON_MANIFEST above.
+            print(f"      {i:02d}/{len(lines):02d}   locked take (no regeneration): {text}", flush=True)
+            import shutil
+            shutil.copyfile(canon, pol)
+            with wave.open(pol) as w0:
+                secs0 = w0.getnframes() / w0.getframerate()
+            rate0 = syllables(respell(text, phrases, words)) / max(0.3, secs0)
+            floor = 0.0  # never stretch a locked take — it already landed at its own pace
+            err = 0.0
+        else:
+            wav, err = say(text, i)
+            if err > 0.001:
+                print(f"      ! line {i} best available after {a.retries} retries (score {err:.2f})", flush=True)
+            raw = os.path.join(tmp, f"{i:02d}.wav")
+            torchaudio.save(raw, wav, m.sr)
+            polish(raw, pol)
+            # A line that drags is the other half of "it goes too fast": ours was the slowest
+            # of nineteen reels measured, and slow reads as unclear rather than calm. Speed is
+            # corrected with rubberband, which keeps the pitch, and only up to a cap.
+            with wave.open(pol) as w0:
+                secs0 = w0.getnframes() / w0.getframerate()
+            rate0 = syllables(respell(text, phrases, words)) / max(0.3, secs0)
+            slow = {int(x) for x in a.slow.split(",") if x.strip()}
+            floor = a.slow_rate if i in slow else a.min_rate
         # Never speed up a line that failed the transcript check. Line 13 measured
         # 2.2 syl/s and was sped up x1.20 — but it was slow *because* it said the
         # phrase twice, so the speed-up compressed the defect instead of removing it
