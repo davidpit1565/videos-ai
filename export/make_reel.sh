@@ -56,7 +56,11 @@ echo "     only the big on-screen card needs to be shorter)."
 step "7/9  voice doctor — repair anything flagged"
 if ! python3 audio/voice_doctor.py "$VO"; then
   echo "   repairing…"
-  python3 audio/voice_doctor.py "$VO" --repair "$VO_FIXED"
+  # --repair's own exit code reflects what it found on the ORIGINAL file, not
+  # whether the repair succeeded — it was aborting the whole script here via
+  # set -e before the cp below ever ran, silently skipping straight past the
+  # re-check on line 61 and shipping the unrepaired take with no error shown.
+  python3 audio/voice_doctor.py "$VO" --repair "$VO_FIXED" || true
   cp "$VO_CUES" "$VO_FIXED_CUES"
   python3 audio/voice_doctor.py "$VO_FIXED"
   FINAL_VO="$VO_FIXED"
@@ -65,7 +69,13 @@ else
 fi
 
 step "8/9  music, generated to the exact retimed length"
-DUR="$(python3 -c "import wave;w=wave.open('$FINAL_VO');print(f'{w.getnframes()/w.getframerate():.2f}')")"
+# The build's own declared DUR (retime.py's last-beat timing), not the audio
+# file's raw length — repair can leave trailing room-tone past the last cue,
+# and rendering to that longer length trips qa.py's "length matches the
+# build" check with no defect actually present (found on reel-18: 42.6s
+# declared vs. 42.95s raw file, a silent QA failure with no code cause).
+DUR="$(grep -o 'var DUR=[0-9.]*' "$KAR" | head -1 | cut -d= -f2)"
+[ -n "$DUR" ] || DUR="$(python3 -c "import wave;w=wave.open('$FINAL_VO');print(f'{w.getnframes()/w.getframerate():.2f}')")"
 python3 audio/build_music.py "$DUR" "$MUSIC"
 
 step "9/9  render (frame-by-frame — this is the second slow step, a minute or two)"
