@@ -1113,11 +1113,35 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   display:inline-block;transform:scale(1.06);letter-spacing:.04em;
   transition:transform .6s cubic-bezier(.16,1,.3,1) .05s,letter-spacing .6s cubic-bezier(.16,1,.3,1) .05s}
 .site .reveal.in h2, .pub .reveal.in h2{transform:none;letter-spacing:normal}
+/* A real wipe, not just a fade, on the one element type where it reads as intentional:
+   an image inside a Reveal uncovers left-to-right right as the brass line finishes its
+   own sweep — the same wipe brand/house-style.md already names for video cuts, applied
+   to every episode thumbnail and article image the public site reveals on scroll. */
+.site .reveal img, .pub .reveal img{
+  clip-path:inset(0 100% 0 0);transition:clip-path .65s cubic-bezier(.16,1,.3,1) .15s}
+.site .reveal.in img, .pub .reveal.in img{clip-path:inset(0 0 0 0)}
 @media (prefers-reduced-motion:reduce){
   .site .reveal, .pub .reveal{opacity:1;transform:none;transition:none}
   .site .reveal::before, .pub .reveal::before{display:none}
   .site .reveal h2, .pub .reveal h2{transform:none;letter-spacing:normal;transition:none}
+  .site .reveal img, .pub .reveal img{clip-path:none;transition:none}
 }
+
+/* The ticker band under the hero — a continuous scroll, the other half of "scrolling
+   animation": everything else on this page reveals once and settles; this one never
+   stops, so the page reads as alive even before anything crosses into view. Masked at
+   both edges so tool names never appear to clip mid-character at the container's own
+   border, doubled in the markup so the 50%-translate loop has no visible seam. */
+.site .marquee{overflow:hidden;margin:1.4rem 0 0;padding:.6rem 0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.site .marquee-track{display:flex;width:max-content;gap:3rem;
+  animation:marquee 26s linear infinite}
+.site .marquee-track span{font-family:var(--code);font-size:.82rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);white-space:nowrap}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.site .marquee-track{animation:none}}
 
 /* A flat 1px border reads as an outline, not a surface — a hairline highlight along
    the top edge (a common cue for "this is raised, catching light from above") gives
