@@ -761,9 +761,16 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 /* Two columns once there is room: a single narrow column of cards read as sparse and
    half-empty on a wide screen even with several episodes filtered in. */
 .site .eps{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.7rem;
-  grid-template-columns:1fr}
+  grid-template-columns:1fr;align-items:stretch}
 @media (min-width:760px){.site .eps{grid-template-columns:1fr 1fr}}
+/* CSS Grid stretches each <li> to the tallest card in its row by default — the card
+   he flagged as "not symmetric" wasn't the <li>, it was this <a>, which only ever grew
+   to fit its own two lines of blurb text and sat flush at the top of that taller <li>,
+   leaving the extra row height as dead space below the card instead of inside it. A
+   grid item's own default height is `auto`, not 100% of its parent, so nothing here
+   was stretching until this said so explicitly. */
 .site .eps a{display:grid;grid-template-columns:auto 1fr;gap:.15rem .9rem;
+  align-content:start;height:100%;box-sizing:border-box;
   background:var(--card);border:1px solid var(--rule);border-radius:1rem;
   padding:1.1rem 1.25rem;text-decoration:none;color:inherit;transition:border-color .15s}
 .site .eps a:hover{border-color:var(--gold-lit)}
