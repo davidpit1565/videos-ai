@@ -422,6 +422,32 @@ export const ARTICLES: Article[] = [
       "Four other spots in the back catalog (episodes 3, 7, 10, 11) were already found to have the same kind of unexplained jargon and haven't been rebuilt yet — this rule is applied going forward, not retroactively to published episodes.",
     ],
   },
+  {
+    n: 18,
+    title: "ChatGPT can use a website now",
+    standfirst:
+      "Agent mode gives ChatGPT its own browser inside the chat — it clicks, scrolls, " +
+      "fills in forms, and works through real websites on its own instead of just " +
+      "describing what to do. Ask it to compare a few pricing plans and it comes back " +
+      "with a finished spreadsheet, not a suggestion to go check yourself.",
+    steps: [
+      "Open ChatGPT and switch to agent mode before you send your request (look for the mode picker near the message box).",
+      "Give it one concrete task with a clear finish line — \"compare these 3 plans and tell me the cheapest\" — not an open-ended one.",
+      "Let it run: it opens each site, clicks and scrolls, fills in any forms it needs to, and reports back — this can take a few minutes, not seconds.",
+      "Watch the first run all the way through before trusting a second one unsupervised — it's the only way to catch it clicking the wrong thing on a page it doesn't understand.",
+      "If it stops at a CAPTCHA or a login wall, that's not a bug to work around — finish that one step yourself and let it continue from there.",
+    ],
+    changes: [
+      "The real limit, verified before publishing: it stops cold at a CAPTCHA or a login wall, every time, with no way past it.",
+      "On a busy or unusual page layout it can click the wrong element — the failure mode isn't silence, it's confidently doing the wrong thing.",
+      "There's a real monthly cap, not an unlimited feature: Plus accounts get 40 agent runs a month, Pro accounts get 400.",
+    ],
+    limits: [
+      "This is for tasks with a clear, checkable finish line (compare, fill in, look up) — not open-ended research or anything where a wrong answer is costly and hard to catch.",
+      "A run can take 5 to 30 minutes depending on the task — this replaces tedious browser work, not instant answers.",
+      "Session logins don't reliably carry over between runs, so a task needing you to already be logged in somewhere may ask you to sign in again mid-task.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

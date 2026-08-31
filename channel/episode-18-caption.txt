@@ -1,0 +1,18 @@
+ChatGPT can use a website now. Not read it — click it.
+
+You type: "Compare a few plans and tell me the cheapest." Agent mode opens each
+site, clicks, scrolls, fills the form — comes back with a finished spreadsheet.
+No copy-paste, no ten open tabs.
+
+Now the part it won't do: it hits a CAPTCHA and stops dead, every time. On a busy
+page it can click the wrong button. And the real cap — Plus accounts get 40 runs
+a month, Pro gets 400.
+
+It's not a tool you set and forget. Give it one clear task, watch it run, then
+trust it.
+
+Full breakdown: actually-works.com/e/18
+
+Follow for the setup that actually works.
+
+#chatgpt #aiagent #aitools #automation #productivity

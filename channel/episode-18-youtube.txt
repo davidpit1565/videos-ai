@@ -1,0 +1,17 @@
+ChatGPT can use a website now — not just talk about one
+
+Agent mode gives ChatGPT its own browser inside the chat: it clicks, scrolls,
+fills in forms, and works through real websites on its own. Ask it to compare a
+few pricing plans and it opens each site, reads them, and comes back with a
+finished spreadsheet — no copy-paste, no ten open tabs.
+
+It's not magic and it's not unlimited. It stops cold at a CAPTCHA or a login
+wall, it can click the wrong thing on a busy page, and there's a real cap: Plus
+accounts get 40 runs a month, Pro gets 400. Give it one clear task, watch the
+first run, then decide how much you trust the rest.
+
+Full breakdown: actually-works.com/e/18
+
+Follow for the setup that actually works.
+
+#chatgpt #aiagent #aitools #automation #productivity #buildinpublic
