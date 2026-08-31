@@ -14,6 +14,7 @@ import SafeZoneDemo from "./safe-zone-demo";
 import ExternalIcon from "./external-icon";
 import HeroDiagnostic from "./hero-diagnostic";
 import HeroHeadline from "./hero-headline";
+import HeroParallax from "./hero-parallax";
 import { TOOLS, toolFor } from "@/lib/tools";
 
 export const metadata = {
@@ -59,6 +60,7 @@ export default async function Home() {
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/" />
+      <HeroParallax />
       <header className="hero">
         <div className="herotext">
           <p className="kicker">AI CREATOR</p>

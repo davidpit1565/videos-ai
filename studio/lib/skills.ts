@@ -20,7 +20,7 @@ export const SKILLS: Skill[] = [
     title: "explain-steps",
     blurb:
       "The rule this whole channel is built on: one numbered step per click, the interface's own words in both languages, and the step that breaks gets the same screen time as the one that works.",
-    episode: null,
+    episode: 17,
     body: `---
 name: explain-steps
 description: >-

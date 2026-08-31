@@ -238,6 +238,38 @@ best, some weaker than others.
   the studio's `/api/agent` saves/completion numbers next time this file gets updated, or
   pull them directly if the studio's live data becomes reachable from here.
 
+## Episode 17 failed its own test (31.8.2026)
+
+Real, and worth stating plainly because of what it's about: reel-17's first cut was
+built around "we tested our own comprehension rule" — episode 13's real 'column'
+incident, framed as "one word broke this video," "our own script," "we run this on
+every script now." David watched it and said directly: it's understandable only to
+someone who already knows what episode 13 is and what this channel's process looks
+like — exactly the failure the episode itself is about, on the episode that's
+supposed to be the proof we catch this.
+
+**The specific mistake:** self-referential meta framing ("this video," "our own
+process") instead of a third-person, standalone teaching example. A viewer with zero
+context can't parse "one word broke this video" — the video they're watching hasn't
+broken, so the claim doesn't land; it only makes sense to someone who knows it's
+about a *different*, earlier video.
+
+**The fix, applied and now a standing check, not just for this episode:** before any
+episode ships, ask specifically whether a first-time viewer with zero channel history
+needs any of that history to follow the claim start to finish. "This channel already
+did X" or "our own Y" is a warning sign, not a hook — the concrete example (the
+column → box before/after) can stand completely on its own without ever mentioning
+that it came from a real published mistake. Reel-17 was rebuilt to drop every
+self-referential line and present the test as a general technique with a concrete
+example, full stop.
+
+**The irony is the point, not an excuse:** an episode about testing whether an
+explanation makes sense to someone with no context did not itself get tested that
+way before shipping. The paraphrase test in the episode works precisely because
+someone (David) actually did it and said "I don't understand this, and I already
+know the answer." That's the test running as designed — it just should have run
+before he saw it, not after.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
