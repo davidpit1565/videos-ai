@@ -1,7 +1,7 @@
 === narration
-audio/reel-18-narration.wav  43.6s  14 lines
-  medians: ending -34.7 dB · level -19.1 dBFS · S residual -0.7 dB (slope +26.4 dB per sibilant/syllable)
-  flagged below: ending -67.3 dB · S residual -5.7 dB  (median - 2.5 robust sd)
+audio/reel-18-narration.wav  44.1s  14 lines
+  medians: ending -33.0 dB · level -18.8 dBFS · S residual -0.6 dB (slope +25.3 dB per sibilant/syllable)
+  flagged below: ending -74.9 dB · S residual -12.2 dB  (median - 2.5 robust sd)
    ln   dur    gap  rate    sib    end    lvl  line
     1   1.9  +0.42  3.68   -6.8  -33.4  -20.4  ChatGPT can use a website now.
     2  1.53  +0.42  3.27  -18.9  -25.5  -19.4  Not read it. Click it.
@@ -15,40 +15,37 @@ audio/reel-18-narration.wav  43.6s  14 lines
    10  3.64  +0.42   4.4  -12.0  -45.6  -18.4  The real cap: it's part of your plan, 
    11  2.01  +0.42  4.48   -5.4  -47.1  -21.2  It's not a tool you set and forget.
    12  3.58  +0.42  3.07   -8.1  -32.6  -18.9  Give it one clear task, watch it run, 
-   13   1.9  +0.85  4.21  -12.0  -36.0  -19.6  The setup's in the link in bio.
-   14  2.25    —    4.89  -12.9  -19.5  -18.2  Follow for the setup that actually wor
+   13  1.94  +0.85  4.12   -5.5  -19.0  -18.3  The setup's in the link in bio.
+   14  2.74    —    4.01   -5.9  -15.3  -17.6  Follow for the setup that actually wor
 
-  [note] line  5: quiet (-22.6 dBFS vs median -19.1)
+  [note] line  5: quiet (-22.6 dBFS vs median -18.8)
          -> level this line before the mix
-  [note] line  7: dull S (-23.7 dB, -6.7 against what this line's own sibilants predict)
-         -> lift 6-8 kHz on this line, or re-roll it
-  [note] line  8: harsh S (-8.2 dB, +6.2 against prediction)
-         -> de-esser is under-doing this line
-  [note] line 11: harsh S (-5.4 dB, +5.7 against prediction)
-         -> de-esser is under-doing this line
+  [note] line 11: quiet (-21.2 dBFS vs median -18.8)
+         -> level this line before the mix
 
 === frame layout
-reel-18-kar.html  43.22s  safe box: x 65-1015, y 269-1248
+reel-18-kar.html  43.75s  safe box: x 65-1015, y 269-1248
   safe area: clean (tolerance 10px)
   within tolerance: 1px past the left line   on  "keeps"
   overlaps: none over 10px
 
 === rendered file
-reel-18.mp4  1080x1920  30fps  43.23s  5.6MB
-  visual change: median 0.73s, longest 3.93s
-  loudness: -14.0 LUFS integrated, peak -1.9 dBFS, LRA 2.2 LU
+reel-18.mp4  1080x1920  30fps  43.77s  5.6MB
+  visual change: median 0.68s, longest 3.93s
+  loudness: -14.0 LUFS integrated, peak -3.0 dBFS, LRA 2.1 LU
   loop seam: first vs last frame differ by 15.5/255
 
   ok        1080x1920
   ok        yuv420p
   ok        30fps
   ok        48kHz stereo
-  ok        length 43.2s inside 30-90s
+  ok        length 43.8s inside 30-90s
   ok        length matches the build
   ok        no frozen run over 4s
   ok        first frame carries picture (luma 31.3)
-  ok        visual change every 0.73s median
+  ok        visual change every 0.68s median
   ok        -14.0 LUFS
-  ok        peak -1.9 dBFS
+  ok        peak -3.0 dBFS
 
 ALL CHECKS PASSED
+EXIT:0
