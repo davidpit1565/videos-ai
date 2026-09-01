@@ -233,9 +233,16 @@ async function youtubeAccessToken(): Promise<{ ok: true; token: string } | { ok:
 export type YtPublishResult = { ok: true; videoId: string } | { ok: false; reason: string };
 
 /** Uploads the reel's own file bytes — read straight from the deployment's bundled public
- *  folder, the same file /renders already serves — as a resumable-simple upload. Shorts
- *  are identified by YouTube itself from a vertical video under 3 minutes; there is no
- *  separate "Shorts" upload endpoint to call. */
+ *  folder, the same file /renders already serves — as a resumable-simple upload. A
+ *  vertical video under 3 minutes is *eligible* to be a Short, but the first real
+ *  upload through this endpoint (1.9.2026, episode 11 — the first publish since
+ *  YouTube OAuth was actually connected) landed as a regular video, not a Short, even
+ *  though episodes 1-10 (uploaded by hand, directly in YouTube Studio) all show as
+ *  Shorts. The difference is the upload path, not the video itself: YouTube's Shorts
+ *  classification for an API upload is unreliable without the #Shorts tag in the
+ *  title or description — manual uploads through youtube.com don't need it, API
+ *  uploads do. Appended here, once, so every future publish gets it regardless of
+ *  what the caller's own description text happens to include. */
 export async function publishToYoutube(
   fileBytes: Buffer,
   title: string,
@@ -244,7 +251,13 @@ export async function publishToYoutube(
   const auth = await youtubeAccessToken();
   if (!auth.ok) return auth;
 
-  const metadata = { snippet: { title: title.slice(0, 100), description }, status: { privacyStatus: "public" } };
+  const taggedDescription = /#shorts\b/i.test(description)
+    ? description
+    : `${description}${description ? "\n\n" : ""}#Shorts`;
+  const metadata = {
+    snippet: { title: title.slice(0, 100), description: taggedDescription },
+    status: { privacyStatus: "public" },
+  };
   const boundary = "aw_boundary_" + Date.now();
   const body = Buffer.concat([
     Buffer.from(
