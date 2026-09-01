@@ -451,6 +451,33 @@ export const ARTICLES: Article[] = [
       "Names and limits in this space change fast — OpenAI retired the previous \"agent mode\" without much notice days before this episode was recorded; check ChatGPT's own current mode picker if this episode is more than a few months old.",
     ],
   },
+  {
+    n: 19,
+    title: "Claude keeps your files now",
+    standfirst:
+      "A Claude Project carries your uploaded files and written instructions into " +
+      "every new chat you open inside it — no re-explaining, no re-uploading. Verified " +
+      "before publishing: twenty files per project, five megabytes each, and files " +
+      "stay scoped to the project you added them to — they don't follow you into a " +
+      "different one.",
+    steps: [
+      "Open Claude and start a new Project (not a regular chat) — the option sits alongside your chat list.",
+      "Upload the files this work actually needs, and write your instructions once in the project's own instructions field.",
+      "Open a new chat from inside that project whenever you come back to the same work — it already has your files and instructions, nothing to re-paste.",
+      "Keep unrelated work in a separate project — files and instructions don't cross over between projects automatically.",
+      "If you hit the file limit, remove what the current chat doesn't need rather than starting a new project just to fit one more file.",
+    ],
+    changes: [
+      "The real cap, verified before publishing: twenty files per project, five megabytes each.",
+      "It won't share files with a project you didn't add them to — each project's files stay scoped to that project.",
+      "It's not a chat you keep alive in the background — the saving is in not re-explaining or re-uploading each time you return, not in the project itself doing anything while you're away.",
+    ],
+    limits: [
+      "This fits recurring work with the same files and instructions — a one-off question doesn't need a project.",
+      "Files still count toward the model's context the same as anything else — a project doesn't make your files free to include.",
+      "Anthropic's own limits here can move — check Claude's current project settings if this episode is more than a few months old.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

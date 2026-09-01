@@ -1,0 +1,15 @@
+Claude keeps your files now. Not just this chat.
+
+Upload your files and write the instructions once — it's called a Claude Project.
+Every new chat you open inside it already has your context. No re-explaining, no
+re-uploading. Same project, zero repeat work.
+
+Now the part it won't do: it won't share files with a project you didn't add them
+to. The real cap is twenty files a project, five megabytes each. It's not a chat
+you keep alive — set it up once, reuse it every time you open that project.
+
+Full breakdown: actually-works.com/e/19
+
+Follow for the setup that actually works.
+
+#claude #ai #aitools #productivity #automation
