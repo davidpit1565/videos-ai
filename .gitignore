@@ -104,3 +104,8 @@ audio/*-deep.json
 # build time) — a local `npm run build` for testing leaves this untracked; it's derived,
 # not source, and Vercel regenerates it on every real deploy.
 studio/public/build-info.json
+
+# Same reasoning as export/*.mp4 above, applied to a render left in video/ by mistake —
+# a rendered reel's real home is studio/public/reels/ (the !studio/public/reels/*.mp4
+# exception), never video/. Regenerable from the tracked build + render.sh either way.
+video/*.mp4
