@@ -238,6 +238,52 @@ best, some weaker than others.
   the studio's `/api/agent` saves/completion numbers next time this file gets updated, or
   pull them directly if the studio's live data becomes reachable from here.
 
+## Growth is a trickle, not a curve (1.9.2026)
+
+David sent a new grid screenshot and said it directly: views are up, but "not drastic,"
+and asked what would actually make it jump. Compared against the 30.8.2026 snapshot above,
+episode-by-episode, ~2 days apart:
+
+| Hook | 30.8 views | 1.9 views | Δ (2 days) |
+|---|---|---|---|
+| "We spent 15 videos building one system." (ep16) | 458 | 500 | +42 |
+| "Gemini already caught it. Before you did." (ep15) | 427 | 431 | +4 |
+| "Everyone's sharing this 'AI lies' claim." (ep14) | 340 | 349 | +9 |
+| "Most think it's for coders." (ep12) | 416 | 420 | +4 |
+| "This agent can send email on its own. It never does." (ep09) | 429 | 435 | +6 |
+| "voice_doctor.py measures it in the audio." (ep11) | 425 | 427 | +2 |
+| "Most leads go cold fast." (ep10) | 293 | 298 | +5 |
+| "Last time: a check said it passed. It lied." (ep08) | 139 | 139 | **+0** |
+| "Last time: 3 things your agent still breaks on." (ep06) | 452 | 453 | +1 |
+
+**FACT, not a hypothesis:** every one of these gained under 50 views in two days, and one
+(ep08, the "Last time:" callback hook already flagged above as a likely-weak pattern)
+gained exactly zero. This is what "not drastic" looks like in real numbers — a trickle
+across the whole catalogue, not a stall on one bad episode. Two new tiles also appeared
+in this snapshot (episode 18's "ChatGPT can use a website now" at 370, and one more read
+as "ChatGPT remembers you" at 185 — that second one's episode match is uncertain enough
+not to state as fact here) — both new posts started in the same 139-507 range as
+everything else, not above it.
+
+**What this does and doesn't tell us:** a flat trickle across every episode, old and new,
+points at a distribution/reach ceiling (follower count, algorithmic placement, whatever
+Explore is or isn't doing with this account) more than at any one episode's content —
+content quality differences would be expected to show up as *some* episodes climbing while
+others stay flat, not the whole catalogue moving in lockstep by single digits. That's a
+reasoned read, not a confirmed one: still only two snapshots, and the account's follower
+count itself (94-ish as of 28.8) is small enough that this could still be explained by a
+handful of algorithmic placements rather than a structural ceiling.
+
+**Still the same blocker as the 30.8 entry, worth repeating because it's the actual
+answer to "what makes it jump":** views alone can't diagnose this. Saves, completion
+rate, and follower growth per episode would show whether content is being watched to the
+end and kept, which is the difference between "reach is capped" (a distribution problem,
+fixed by things like consistency, collabs, or the account crossing a size threshold) and
+"content isn't landing once seen" (a content problem, fixed by format/hook changes). This
+session still can't reach the studio's live database directly — ask David to paste the
+`/api/agent` saves/completion numbers, or the /videos table, before treating either
+explanation as more likely than the other.
+
 ## Episode 17 failed its own test (31.8.2026)
 
 Real, and worth stating plainly because of what it's about: reel-17's first cut was
