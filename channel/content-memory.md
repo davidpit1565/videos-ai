@@ -28,11 +28,22 @@ enough volume to confirm a pattern without overfitting to one or two videos.)*
 
 Reasoned predictions, not yet tested against enough published episodes to confirm.
 
-- **HYPOTHESIS:** Saves-per-view matters more than views for a "paste this and use it"
-  video — a save means someone kept it to actually use, a view alone means the hook
-  worked and the content didn't. (Already encoded as a rule in the studio's own
-  `/api/agent` system prompt — carrying it here so content decisions use the same
-  standard, not a separate one.)
+- **HYPOTHESIS, now with a first real number behind it (1.9.2026):** Saves-per-view
+  matters more than views for a "paste this and use it" video — a save means someone
+  kept it to actually use, a view alone means the hook worked and the content didn't.
+  (Already encoded as a rule in the studio's own `/api/agent` system prompt — carrying
+  it here so content decisions use the same standard, not a separate one.) Pulled the
+  real save-rate table from `/api/agent` for the first time: **16 of 18 published
+  episodes have exactly one save each** — at this volume, save counts this low are a
+  floor effect, not a ranking signal, and sorting by save-rate mostly just re-sorts by
+  1/views. The one real outlier: **episode 1, 5 saves on 398 views (1.26%)** — 2.5-5x
+  every other episode's rate. Episode 1 is literally the purest version of this
+  hypothesis' mechanism: its entire content is one ready-to-paste prompt, the most
+  "keep this to use later" thing published so far. Real support for the hypothesis, but
+  still n=1 on the save-rate side — stays a hypothesis, not Confirmed, until a second
+  paste-and-use episode does the same. **Next move worth trying:** identify what
+  else episode 1 has in common structurally (not just "it's a prompt") and build 2-3
+  more episodes that share it, to get the second data point this needs.
 - **HYPOTHESIS:** Content that shows a real build failure and how it was found/fixed
   (per `channel/episode-ideas.md`'s "$711 number that wasn't real" idea, and the
   `th_check.py`→`burst.py` correction documented in `channel/slate-20.md`) reads as more
@@ -63,6 +74,15 @@ winner yet. A format goes here only after Confirmed patterns has something to po
   demand is explicitly unmeasured there (the doc says so directly: Instagram blocked the
   pull without login). The studio's own tracked saves/views are the real substitute for
   that gap, once there's enough published volume to read anything from them.
+- **`subsAttributed` is empty on every one of the 18 published episodes** (confirmed
+  1.9.2026 via `/api/agent`) — no API attributes a newsletter signup to the specific
+  episode that drove it, and the field is a manually-typed number, not a real
+  measurement. This is the actual answer to "what would make growth jump": views and
+  saves say whether a Reel gets watched and kept, but the paid-funnel question this
+  whole channel exists to answer (which episode brings a subscriber, per
+  `plan/business-model.html`'s paid-engine-feeds-the-free-one model) is currently
+  unmeasured entirely. Real fix needs per-episode UTM-tagged links from the bio/caption
+  through to the signup, not a bigger studio dashboard — not yet built.
 
 ## Pattern shapes worth trying
 
