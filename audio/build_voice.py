@@ -33,12 +33,28 @@ CANON_MANIFEST = "audio/voice/profile/canonical-lines.json"
 
 
 def canonical_line(text):
-    """Path to a locked, pre-polished clip for this exact line, or None."""
+    """Path to a locked, pre-polished clip for this exact line, or None.
+
+    Sanity-checked on every load, not just when it was first cut: a canonical clip
+    shipped once as digital silence (-180 dBFS) because the ffmpeg command that made
+    it silently produced an empty cut — the pipeline had no reason to distrust a file
+    that "exists", so it went all the way to a rendered episode before a human caught
+    it. A level this far from real speech can only mean the file itself is broken."""
     if not os.path.exists(CANON_MANIFEST):
         return None
     lines = json.load(open(CANON_MANIFEST))
     p = lines.get(text.strip())
-    return p if p and os.path.exists(p) else None
+    if not p or not os.path.exists(p):
+        return None
+    with wave.open(p) as w:
+        n = w.getnframes()
+        data = np.frombuffer(w.readframes(n), dtype=np.int16).astype(np.float32) / 32768
+    rms_dbfs = 20 * np.log10(np.sqrt(np.mean(data ** 2)) + 1e-12)
+    if rms_dbfs < -45:
+        sys.exit(f"canonical clip for \"{text.strip()}\" measures {rms_dbfs:.0f} dBFS "
+                  f"(near-silent) — {p} is broken, re-cut it before using it. "
+                  f"Refusing to ship a silent line silently.")
+    return p
 
 def cue_times(path):
     src = open(path, encoding="utf-8").read()

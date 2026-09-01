@@ -31,6 +31,13 @@ MP4="/tmp/reel-${EP}.mp4"
 DEEP="/tmp/reel${EP}-deep.json"
 GATE="/tmp/reel${EP}-gate.txt"
 
+echo "=== [0/11] pronunciation lint"
+# The other pipeline wrapper (make_reel.sh) ran this before generating anything;
+# this one never did, and it is a free, seconds-long check that catches a whole
+# class of "sounds soft/wrong" complaints (see audio/script_lint.py) before
+# burning 90-100s per line on a script that needed a wording fix anyway.
+python3 audio/script_lint.py --cues "$BUILD" || exit 1
+
 echo "=== [1/11] voice"
 if [ ! -f "$VO" ]; then
   python3 audio/build_voice.py --cues "$BUILD" --out "$VO" --exaggeration 0.50 --cfg 0.30 || exit 1

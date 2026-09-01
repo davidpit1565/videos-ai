@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
+# SUPERSEDED by export/produce.sh — that script already does everything this one
+# does (voice through render + gate) *and* the parts this one was missing: ships
+# the file to studio/public/reels/, refuses to ship without captions written,
+# and checks the episode isn't reusing the last one's color palette. Built this
+# one without realizing produce.sh already existed; found out the hard way when
+# episode 18 passed every check here and still never reached the studio. Use
+# produce.sh for any new episode — this file stays only so nothing that already
+# points at it breaks.
+#
 # One command for the whole pipeline from a finished build to a checked, rendered file.
 #   ./export/make_reel.sh reel-NN [seconds-guess]
 #
