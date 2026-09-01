@@ -1,0 +1,17 @@
+ChatGPT was going to buy things for you — then they quietly killed it
+
+One year ago the pitch was "buy it in ChatGPT, no more leaving the chat." Six months
+after that, OpenAI retired the feature. The real number behind the shutdown: fewer
+than fifteen of Shopify's millions of merchants ever turned it on, and buying inside
+ChatGPT converted at roughly a third the rate of just sending the shopper to the
+store directly.
+
+What's left now is product discovery, not purchase: ChatGPT finds what you want and
+hands you a link to go buy it yourself — the same thing a search engine has done
+since 2010. The upgrade, in the end, was a link.
+
+Full breakdown: actually-works.com/e/20
+
+Follow for the setup that actually works.
+
+#chatgpt #openai #aitools #techhumor #agenticcommerce
