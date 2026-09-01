@@ -158,61 +158,79 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="17.00" data-out="20.60">
+<section class="scene" data-in="17.00" data-out="21.50">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="17.00">Now the part<br>it <span class="ebox">won't do</span>.</h2>
+    <p class="lede b" data-at="17.10">And the few that tried?<br><strong>A third the rate</strong> of the plain website.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="20.60" data-out="25.20">
+<section class="scene" data-in="21.50" data-out="25.10">
   <div class="pad"><div class="kb">
-    <div class="quote bad b" data-at="20.70">
+    <h2 class="b punch" data-at="21.50">Now the part<br>it <span class="ebox">won't do</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="25.10" data-out="29.70">
+  <div class="pad"><div class="kb">
+    <div class="quote bad b" data-at="25.20">
       <div class="qk">what it won't do</div>
       <div class="qb">Buy anything for you. <strong>Not anymore</strong>.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="25.20" data-out="30.70">
+<section class="scene" data-in="29.70" data-out="33.20">
   <div class="pad"><div class="kb">
-    <div class="termbox b" data-at="25.30">
+    <h2 class="b punch" data-at="29.70">The thing that<br>stopped it? A <span class="ebox">CAPTCHA</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="33.20" data-out="37.70">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="33.30">The internet's own way<br>of asking <strong>"prove you're not a robot."</strong></p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="37.70" data-out="43.20">
+  <div class="pad"><div class="kb">
+    <div class="termbox b" data-at="37.80">
       <div class="tk">what it does instead</div>
       <div class="tl">it finds the product<span class="out">then sends you off to buy it yourself</span></div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="30.70" data-out="34.70">
+<section class="scene" data-in="43.20" data-out="47.20">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="30.80">Same thing search<br>engines did in <strong>two thousand ten</strong>.</p>
+    <p class="lede b" data-at="43.30">Same thing search<br>engines did in <strong>two thousand ten</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="34.70" data-out="38.00">
+<section class="scene" data-in="47.20" data-out="50.50">
   <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="34.70">The upgrade<br>was a <span class="box">link</span>.</h2>
+    <h2 class="b punch" data-at="47.20">The upgrade<br>was a <span class="box">link</span>.</h2>
   </div></div>
 </section>
 
 <!-- the takeaway -->
-<section class="scene" data-in="38.00" data-out="43.00">
+<section class="scene" data-in="50.50" data-out="55.50">
   <div class="pad"><div class="kb">
-    <div class="quote b" data-at="38.10">
+    <div class="quote b" data-at="50.60">
       <div class="qk">the honest version</div>
       <div class="qb">Use it to find what you want. <strong>Not to buy it for you</strong>.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="43.00" data-out="46.00">
+<section class="scene" data-in="55.50" data-out="58.50">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="43.10"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="55.60"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="46.00" data-out="48.90">
+<section class="scene" data-in="58.50" data-out="61.40">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="46.10" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="58.60" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -224,7 +242,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="48.90" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="61.40" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -243,7 +261,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <script>
 (function(){
-  var DUR=48.90,t=0,playing=false,last=0;
+  var DUR=61.40,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -257,14 +275,17 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [4.00,7.90,"Buy it in ChatGPT, no more leaving the chat, they said."],
     [8.60,11.70,"Six months after that, they killed it."],
     [12.20,16.60,"Under fifteen stores, out of millions on Shopify, ever turned it on."],
-    [17.30,20.30,"Now the part it won't do."],
-    [21.00,24.60,"It won't buy anything for you. Not anymore."],
-    [25.60,30.40,"It finds the product, then sends you off to buy it yourself."],
-    [31.10,34.90,"Same thing search engines did in two thousand ten."],
-    [35.10,37.70,"The upgrade was a link."],
-    [38.40,42.70,"Use it to find what you want, not to buy it for you."],
-    [43.40,45.70,"The setup's in the link in bio."],
-    [46.30,48.70,"Follow for the setup that actually works."]
+    [17.10,20.90,"And the few that tried? A third the rate of the plain website."],
+    [21.60,24.60,"Now the part it won't do."],
+    [25.30,28.90,"It won't buy anything for you. Not anymore."],
+    [29.60,33.10,"The thing that stopped it? A CAPTCHA."],
+    [33.80,37.60,"The internet's own way of asking, prove you're not a robot."],
+    [38.10,42.90,"It finds the product, then sends you off to buy it yourself."],
+    [43.60,47.40,"Same thing search engines did in two thousand ten."],
+    [48.10,50.70,"The upgrade was a link."],
+    [51.40,55.70,"Use it to find what you want, not to buy it for you."],
+    [56.40,58.70,"The setup's in the link in bio."],
+    [59.30,61.70,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
