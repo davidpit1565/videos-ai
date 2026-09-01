@@ -40,6 +40,19 @@ SECTION_END = {4, 8, 13, 15}
 # (what shipped first) bled into the next candidate's spoken "Option N" label on
 # reel-18's "Follow" clip — the tail end of "works" was actually the start of
 # "Option 2", which is exactly the "unclear fragment near the end" David heard.
+#
+# A clean STANDALONE generation is still not guaranteed to match: episodes 18/19
+# shipped with a canon-follow.wav built exactly this way (--dry --no-prosody,
+# trimmed, polished, nothing technically wrong with it), and David still heard it
+# as off from every earlier episode — his ear caught what no measurement here
+# checks for. Measured cause: it ran 2.73s, while the same line inside reels
+# 15/16/17's own shipped narration ran 2.06-2.25s — a standalone read paces
+# differently than the same line spoken in the context of the outro that precedes
+# it. The fix was to stop generating a new take at all and instead extract the
+# line directly from an already-shipped, already-approved episode's own narration
+# file, using its own cue start/end as the window and this exact trim block —
+# same code, real production audio instead of a fresh read. Prefer that path over
+# a new --dry generation whenever an earlier episode already has the line clean.
 CANON_MANIFEST = "audio/voice/profile/canonical-lines.json"
 
 
