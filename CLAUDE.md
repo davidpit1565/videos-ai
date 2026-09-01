@@ -116,6 +116,10 @@ honest about what we actually know.
 
 ## Building and rendering
 
+- **The real handle is `@actually_works.ai` — with the underscore.** `channel/launch-plan.md`
+  and `channel/instagram-automation.md` had it wrong (no underscore) for a while and every
+  reel's on-screen `.handle` div copied that mistake. Check the handle text in any new
+  build against this line, not against the last episode's file.
 - The picture follows the narration, never the reverse. Build the voice at its own pace,
   then `export/retime.py <build> <cues.json> --out <build>-paced.html` moves every timing
   in the build to match. `--fit` on build_voice is only for a cut that genuinely may not
