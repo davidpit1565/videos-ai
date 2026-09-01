@@ -770,10 +770,21 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
    grid item's own default height is `auto`, not 100% of its parent, so nothing here
    was stretching until this said so explicitly. */
 .site .eps a{display:grid;grid-template-columns:auto 1fr;gap:.15rem .9rem;
-  align-content:start;height:100%;box-sizing:border-box;
+  align-content:start;height:100%;box-sizing:border-box;position:relative;overflow:hidden;
   background:var(--card);border:1px solid var(--rule);border-radius:1rem;
   padding:1.1rem 1.25rem;text-decoration:none;color:inherit;transition:border-color .15s}
 .site .eps a:hover{border-color:var(--gold-lit)}
+/* Cursor spotlight (premium-motion.tsx writes --mx/--my as the pointer moves over the
+   card): a soft brass highlight that tracks the cursor, on top of the border/lift hover
+   already here. Low opacity on purpose — a highlight, not a mask over the title. */
+.site .eps a::after,.site .tracks a::after{content:"";position:absolute;inset:0;
+  pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .25s ease;
+  background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),
+    rgba(232,200,106,.14),transparent 70%)}
+.site .eps a:hover::after,.site .tracks a:hover::after{opacity:1}
+@media (hover:none),(prefers-reduced-motion:reduce){
+  .site .eps a::after,.site .tracks a::after{display:none}
+}
 .site .eps .n{font-family:var(--code);font-size:.8rem;color:var(--gold);
   font-variant-numeric:tabular-nums;grid-row:span 3;padding-top:.28rem}
 /* the real YouTube thumbnail instead of a bare number, once an episode has a video —
@@ -822,6 +833,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .tracks a{display:flex;align-items:center;gap:.5rem;background:var(--card);
   border:1px solid var(--rule);border-radius:9999px;padding:.55rem 1.1rem;
   text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;
+  position:relative;overflow:hidden;
   transition:border-color .18s ease,transform .18s ease}
 .site .tracks a:hover{border-color:var(--gold-lit);transform:translateY(-2px)}
 .site .tracks .tcount{font-family:var(--code);font-size:.76rem;color:var(--faint);
@@ -1164,12 +1176,21 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(232,200,106,.45)}
 .site .cta:active,.site .signup button:active:enabled,
 .pub .cta:active,.pub .signup button:active:enabled{transform:translateY(0)}
+/* Magnetic pull, the primary CTA only (premium-motion.tsx writes --mtx/--mty as the
+   cursor approaches, on top of everything the rule above already does — this is the one
+   button the whole page points at). Its own transition is a touch springier than the
+   plain hover-lift's, since a magnet that snaps back linearly reads as broken, not calm. */
+.site .herocta .cta{transform:translate(var(--mtx,0px),var(--mty,0px));
+  transition:transform .35s cubic-bezier(.2,1.6,.4,1),background .15s ease,box-shadow .15s ease}
+.site .herocta .cta:hover{transform:translate(var(--mtx,0px),var(--mty,0px)) translateY(-2px)}
+.site .herocta .cta:active{transform:translate(var(--mtx,0px),var(--mty,0px))}
 @media (prefers-reduced-motion:reduce){
   .site .eps a,.site .prompts a,.site .hits > li,.site .issueteaser,
   .site .cta,.site .signup button,.pub .cta,.pub .signup button{transition:none}
   .site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover,.site .issueteaser:hover,
   .site .cta:hover,.site .signup button:hover:enabled,
   .pub .cta:hover,.pub .signup button:hover:enabled{transform:none;box-shadow:none}
+  .site .herocta .cta,.site .herocta .cta:hover,.site .herocta .cta:active{transform:none}
 }
 
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--faint)}

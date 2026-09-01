@@ -15,6 +15,7 @@ import ExternalIcon from "./external-icon";
 import HeroDiagnostic from "./hero-diagnostic";
 import HeroHeadline from "./hero-headline";
 import HeroParallax from "./hero-parallax";
+import PremiumMotion from "./premium-motion";
 import ToolMarquee from "./tool-marquee";
 import { TOOLS, toolFor } from "@/lib/tools";
 
@@ -62,6 +63,7 @@ export default async function Home() {
     <main className="site" dir="ltr">
       <SiteNav here="/" />
       <HeroParallax />
+      <PremiumMotion />
       <header className="hero">
         <div className="herotext">
           <p className="kicker">AI CREATOR</p>
