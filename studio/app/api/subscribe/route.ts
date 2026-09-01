@@ -12,7 +12,7 @@ import { notify } from "@/lib/push";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
-async function forward(email: string): Promise<string | null> {
+async function forward(email: string, campaign: string): Promise<string | null> {
   const key = process.env.BEEHIIV_API_KEY;
   // BEEHIIV_PUB carries the public default. This line used to read the environment variable
   // directly, and with it unset every signup was silently kept to ourselves.
@@ -24,7 +24,14 @@ async function forward(email: string): Promise<string | null> {
       {
         method: "POST",
         headers: { authorization: `Bearer ${key}`, "content-type": "application/json" },
-        body: JSON.stringify({ email, reactivate_existing: true, send_welcome_email: true }),
+        body: JSON.stringify({
+          email,
+          reactivate_existing: true,
+          send_welcome_email: true,
+          utm_source: "actually-works.com",
+          utm_medium: "signup",
+          utm_campaign: campaign,
+        }),
       },
     );
     if (!r.ok) return `beehiiv ${r.status}: ${(await r.text()).slice(0, 200)}`;
@@ -37,13 +44,20 @@ async function forward(email: string): Promise<string | null> {
 export async function POST(req: Request) {
   let email = "";
   let source = "site";
+  let episode: number | undefined;
   try {
-    const b = (await req.json()) as { email?: string; source?: string };
+    const b = (await req.json()) as { email?: string; source?: string; episode?: number };
     email = String(b.email ?? "").trim();
     source = String(b.source ?? "site");
+    episode = Number.isInteger(b.episode) && (b.episode as number) > 0 ? b.episode : undefined;
   } catch {
     return NextResponse.json({ ok: false, error: "bad request" }, { status: 400 });
   }
+  // Which episode page a signup happened on is the one fact that lets it be attributed
+  // later — see subscribersByEpisode() in lib/db.ts. Folded into the source column
+  // itself rather than a new one, so every existing subscriber row keeps working and
+  // an "episode" (no number) source still means what it always did: unknown episode.
+  const attributedSource = episode ? `episode-${episode}` : source;
   if (!EMAIL.test(email) || email.length > 200) {
     return NextResponse.json(
       { ok: false, error: "That does not look like an email address." },
@@ -59,8 +73,8 @@ export async function POST(req: Request) {
     );
   }
   try {
-    const { created } = await addSubscriber(email, source);
-    const err = await forward(email);
+    const { created } = await addSubscriber(email, attributedSource);
+    const err = await forward(email, attributedSource);
     await markForwarded(email, err ?? undefined);
     // He asked to be told about every subscriber, on every device. Never let a notification
     // failure cost the signup that triggered it — the person is already saved by this point.

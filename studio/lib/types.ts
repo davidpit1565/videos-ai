@@ -46,7 +46,12 @@ export type Episode = {
   ytViews?: number | null;
   ytLikes?: number | null;
   ytComments?: number | null;
-  /** how many subscribers this episode brought — entered by hand, since no API attributes it */
+  /** How many subscribers this episode brought. /api/track now fills this in for real,
+   *  counting subscribers whose signup happened on this episode's own page (see
+   *  subscribersByEpisode() in lib/db.ts) — it only ever overwrites with a real positive
+   *  count, so a manually-typed number from before this existed stays put until real
+   *  data for that episode actually arrives. Still hand-editable in /videos as a
+   *  fallback for episodes with no tagged signups yet. */
   subsAttributed: number | null;
   /** planned publish date, YYYY-MM-DD. The week view is built from this. */
   publishOn?: string | null;

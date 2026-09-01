@@ -238,7 +238,7 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
       <section>
         <h2>Get the next one</h2>
         <p className="sub">One AI setup a week, straight to your inbox.</p>
-        <Signup source="episode" />
+        <Signup source="episode" episode={n} />
         <SiteNotify />
       </section>
 

@@ -152,3 +152,24 @@ export async function subscriberCount(): Promise<number | null> {
   const r = await p.query<{ n: string }>("SELECT count(*)::text AS n FROM subscribers");
   return Number(r.rows[0]?.n ?? 0);
 }
+
+/** Real per-episode attribution, computed from our own table rather than guessed by a
+ *  human. /api/subscribe writes the source as "episode-N" whenever the signup happened
+ *  on that episode's own page, so counting rows by that exact pattern is the whole
+ *  mechanism — no Beehiiv field, no UTM parsing, nothing that can drift from what
+ *  actually happened. Before this, subsAttributed was a number typed in by hand with
+ *  no source at all (see the comment on that field in lib/types.ts). */
+export async function subscribersByEpisode(): Promise<Map<number, number>> {
+  const p = await ensureSubscribers();
+  const out = new Map<number, number>();
+  if (!p) return out;
+  const r = await p.query<{ source: string; n: string }>(
+    `SELECT source, count(*)::text AS n FROM subscribers
+     WHERE source ~ '^episode-[0-9]+$' GROUP BY source`,
+  );
+  for (const row of r.rows) {
+    const n = Number(row.source.slice("episode-".length));
+    if (Number.isFinite(n)) out.set(n, Number(row.n));
+  }
+  return out;
+}
