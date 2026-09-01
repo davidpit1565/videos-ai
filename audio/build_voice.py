@@ -29,6 +29,17 @@ SECTION_END = {4, 8, 13, 15}
 # actually works." and "The setup's in the link in bio.") — so this stops
 # regenerating them at all. A line here is loaded once, already polished, and
 # reused byte-for-byte; it only changes when someone deliberately replaces the file.
+#
+# HOW TO MAKE ONE: temporarily rename this manifest so the line under test actually
+# generates, then run this file with --lines (a one-line text file) and --dry
+# --no-prosody --seed N, then apply the exact trim block below (the one right after
+# "# trim the silence the model leaves at either end") to the raw output, then
+# audio.build_voice.polish() it. That's it — the file already goes through this
+# exact trim/polish, so a clip made this way sounds like every other line always
+# has. Hand-cutting a timestamp out of a line_doctor multi-candidate file instead
+# (what shipped first) bled into the next candidate's spoken "Option N" label on
+# reel-18's "Follow" clip — the tail end of "works" was actually the start of
+# "Option 2", which is exactly the "unclear fragment near the end" David heard.
 CANON_MANIFEST = "audio/voice/profile/canonical-lines.json"
 
 

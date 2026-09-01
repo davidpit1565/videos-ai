@@ -1,48 +1,49 @@
 === narration
-audio/reel-18-narration-fixed.wav  44.5s  14 lines
-  medians: ending -36.0 dB · level -19.4 dBFS · S residual -0.2 dB (slope +26.2 dB per sibilant/syllable)
-  flagged below: ending -65.9 dB · S residual -8.0 dB  (median - 2.5 robust sd)
+audio/reel-18-narration.wav  44.0s  14 lines
+  medians: ending -33.8 dB · level -19.1 dBFS · S residual -0.2 dB (slope +25.8 dB per sibilant/syllable)
+  flagged below: ending -66.5 dB · S residual -9.3 dB  (median - 2.5 robust sd)
    ln   dur    gap  rate    sib    end    lvl  line
     1   1.9  +0.42  3.68   -6.8  -33.4  -20.4  ChatGPT can use a website now.
-    2  1.53  +0.42  3.27  -18.9  -25.5  -19.5  Not read it. Click it.
+    2  1.53  +0.42  3.27  -18.9  -25.5  -19.4  Not read it. Click it.
     3  2.44  +0.42  4.51   -5.7  -20.5  -19.3  Compare a few plans and tell me the ch
-    4  3.87  +0.85  3.36   -9.7  -41.3  -19.4  It's called ChatGPT Work — it opens ea
-    5  1.94  +0.42  5.15   -7.1  -27.5  -19.4  Comes back with a finished spreadsheet
+    4  3.87  +0.85  3.36   -9.7  -41.2  -19.4  It's called ChatGPT Work — it opens ea
+    5  1.94  +0.42  5.15   -7.1  -27.8  -22.6  Comes back with a finished spreadsheet
     6  2.43  +0.42  4.12  -12.6  -13.5  -18.1  No copy paste. No opening ten tabs.
     7  1.57  +0.42  3.82  -23.7  -43.1  -18.6  Now the part it won't do.
-    8  2.17  +0.85  4.61   -8.3  -45.7  -18.0  It won't log into your accounts for yo
+    8  2.17  +0.85  4.61   -8.2  -45.7  -18.0  It won't log into your accounts for yo
     9  4.44  +0.42  2.93   -8.1  -38.7  -18.4  This isn't quick. A real task keeps ru
    10  3.64  +0.42   4.4  -12.0  -45.6  -18.4  The real cap: it's part of your plan, 
-   11  2.01  +0.42  4.48   -5.4  -47.1  -19.4  It's not a tool you set and forget.
+   11  2.01  +0.42  4.48   -5.4  -47.1  -21.2  It's not a tool you set and forget.
    12  3.58  +0.42  3.07   -8.1  -32.6  -18.9  Give it one clear task, watch it run, 
-   13   2.7  +0.85  2.96   -5.9  -29.4  -20.3  The setup's in the link in bio.
-   14  2.37    —    4.64   -9.9  -43.6  -19.9  Follow for the setup that actually wor
+   13   1.9  +0.85  4.21   -7.5  -34.3  -17.9  The setup's in the link in bio.
+   14  2.72    —    4.04   -9.0  -15.8  -19.8  Follow for the setup that actually wor
 
-  nothing flagged. every line sits inside his own spread.
+  [note] line  5: quiet (-22.6 dBFS vs median -19.1)
+         -> level this line before the mix
 
 === frame layout
-reel-18-kar.html  44.14s  safe box: x 65-1015, y 269-1248
+reel-18-kar.html  43.69s  safe box: x 65-1015, y 269-1248
   safe area: clean (tolerance 10px)
   within tolerance: 1px past the left line   on  "keeps"
   overlaps: none over 10px
 
 === rendered file
-reel-18.mp4  1080x1920  30fps  44.14s  5.7MB
-  visual change: median 0.57s, longest 3.90s
-  loudness: -14.0 LUFS integrated, peak -2.6 dBFS, LRA 1.8 LU
+reel-18.mp4  1080x1920  30fps  43.70s  5.6MB
+  visual change: median 0.77s, longest 3.93s
+  loudness: -14.1 LUFS integrated, peak -2.1 dBFS, LRA 2.1 LU
   loop seam: first vs last frame differ by 15.6/255
 
   ok        1080x1920
   ok        yuv420p
   ok        30fps
   ok        48kHz stereo
-  ok        length 44.1s inside 30-90s
+  ok        length 43.7s inside 30-90s
   ok        length matches the build
   ok        no frozen run over 4s
   ok        first frame carries picture (luma 31.3)
-  ok        visual change every 0.57s median
-  ok        -14.0 LUFS
-  ok        peak -2.6 dBFS
+  ok        visual change every 0.77s median
+  ok        -14.1 LUFS
+  ok        peak -2.1 dBFS
 
 ALL CHECKS PASSED
 EXIT:0

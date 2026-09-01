@@ -180,6 +180,14 @@ Every one of those checks exists because a real defect reached him first. The ca
 duration check exists because he stopped the video on a 10-frame yellow card; the blank
 first frame check because the hook faded in over 0.26s and frame zero was empty.
 
+**Standing rule, as of episode 18: check → fix → re-check → only then send.** A targeted
+fix after the gate already passed (a de-esser pass on one line, a re-cut clip) can break
+something the first pass never touched, silently. `check.sh` runs again, in full, after
+every such fix — not just the piece that changed — before the file goes to him. If that
+re-check finds anything, fix it and run the whole check again. Repeat until a full run
+comes back clean, then send. Never send on the strength of the first pass alone once a
+fix has been made after it.
+
 ## The studio app
 
 - `studio/` — Next.js on Vercel, root directory `studio`, Supabase over `POSTGRES_URL`.
