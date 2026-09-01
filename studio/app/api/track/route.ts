@@ -1,7 +1,7 @@
 import { whole } from "@/lib/whole";
 import { NextResponse } from "next/server";
 import { notify, notifyNewRenders, notifyEpisodeLive } from "@/lib/push";
-import { hasDb, loadState, saveState } from "@/lib/db";
+import { hasDb, loadState, saveState, subscribersByEpisode } from "@/lib/db";
 import { fetchBeehiiv, fetchInstagram, fetchYouTube, refreshInstagramToken} from "@/lib/sources";
 import { ActivityEvent, State, uid } from "@/lib/types";
 import { realTitleFor, captionTitleFor, reels } from "@/lib/reels";
@@ -203,6 +203,23 @@ export async function GET(req: Request) {
       label: `ריל ${r.episode} נוסף אוטומטית לרשימה · ${title}`,
       value: null, delta: null,
     });
+  }
+
+  // Real per-episode attribution, replacing what used to be a number typed in by hand
+  // with nothing behind it. /api/subscribe now records which episode page a signup
+  // happened on; this just counts those rows and writes the real number onto each
+  // episode, same as views/saves/likes already work.
+  const attributed = await subscribersByEpisode();
+  for (const e of state.episodes) {
+    const count = attributed.get(e.number) ?? null;
+    if (count !== null && count !== e.subsAttributed) {
+      fresh.push({
+        id: uid(), at: now, source: "studio",
+        label: `${count} הרשמות מיוחסות לפרק ${e.number}`,
+        value: count, delta: e.subsAttributed == null ? null : count - e.subsAttributed,
+      });
+      e.subsAttributed = count;
+    }
   }
 
   const note = (
