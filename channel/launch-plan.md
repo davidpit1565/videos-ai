@@ -29,7 +29,7 @@ the one thing the hype accounts can't copy without losing their whole business m
 
 ## 2. The name — decided
 
-**`Actually Works` · `@actuallyworks.ai`** on both platforms.
+**`Actually Works` · `@actually_works.ai`** on both platforms.
 
 It aims straight at the positioning: in a feed full of accounts promising secret prompts, the
 name is a claim about the *outcome*, and every video either backs it up or doesn't. That's a
@@ -53,9 +53,9 @@ Check availability on both platforms before committing — same handle on both, 
 | **Paste This** | `@pastethis.ai` | Ties directly to your first video and to the format — every episode is something you copy. Short, memorable, no AI cliché. | Slightly narrow if you later cover things you don't paste |
 | **The Setup** | `@thesetup.ai` | Names the format, not the topic. Survives you moving from ChatGPT to agents to whatever's next. | Generic on its own — needs the visual identity to carry it |
 | **Brass Tacks AI** | `@brasstacks.ai` | "Get down to brass tacks" = cut to what matters. Matches your palette exactly, which is a rare and good kind of coherence. | English idiom — lands with native speakers, less so elsewhere |
-| **Actually Works** | `@actuallyworks.ai` | Straight at the honesty positioning. Great comment-bait in a feed full of hype. | Sets a bar you have to keep clearing |
+| **Actually Works** | `@actually_works.ai` | Straight at the honesty positioning. Great comment-bait in a feed full of hype. | Sets a bar you have to keep clearing |
 
-`Paste This` remains the strongest fallback if `@actuallyworks.ai` is taken — it's already
+`Paste This` remains the strongest fallback if `@actually_works.ai` is taken — it's already
 proven by the first video and gives an obvious episode template.
 
 ---
@@ -74,7 +74,7 @@ New setup Tue + Fri ↓
 AI setups that actually work — the exact screen, the exact paste, the exact
 toggle. Plus the part nobody else shows you: what each one can't do.
 
-Long walkthroughs here. 60-second versions on Instagram @actuallyworks.ai
+Long walkthroughs here. 60-second versions on Instagram @actually_works.ai
 New video every Tuesday.
 ```
 

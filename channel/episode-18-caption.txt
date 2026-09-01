@@ -1,0 +1,18 @@
+ChatGPT can use a website now. Not read it — click it.
+
+You type: "Compare a few plans and tell me the cheapest." It's called ChatGPT Work
+(the mode next to Chat) — it opens each site, reads it, and comes back with a
+finished spreadsheet. No copy-paste, no ten open tabs.
+
+Now the part it won't do: it won't log into your accounts for you. It's not
+instant — a real task runs for hours. And it's part of your existing plan, not a
+separate unlimited tool.
+
+It's not a tool you set and forget. Give it one clear task, watch it run, then
+trust it.
+
+Full breakdown: actually-works.com/e/18
+
+Follow for the setup that actually works.
+
+#chatgpt #aiagent #aitools #automation #productivity

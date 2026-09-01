@@ -422,6 +422,62 @@ export const ARTICLES: Article[] = [
       "Four other spots in the back catalog (episodes 3, 7, 10, 11) were already found to have the same kind of unexplained jargon and haven't been rebuilt yet — this rule is applied going forward, not retroactively to published episodes.",
     ],
   },
+  {
+    n: 18,
+    title: "ChatGPT can use a website now",
+    standfirst:
+      "ChatGPT Work — the mode next to Chat — reads through real websites on its own " +
+      "instead of just describing what to do, and comes back with a finished result. " +
+      "Ask it to compare a few pricing plans and it hands you a spreadsheet, not a " +
+      "suggestion to go check yourself. Verified before publishing, including the " +
+      "rename: this used to ship as a separate \"agent mode,\" which OpenAI retired in " +
+      "early August 2026 in favor of Work — an episode about the old name would already " +
+      "be wrong.",
+    steps: [
+      "Open ChatGPT and switch from \"Chat\" to \"Work\" — the mode picker sits right next to where you type your message.",
+      "Give it one concrete task with a clear finish line — \"compare these 3 plans and tell me the cheapest\" — not an open-ended one.",
+      "Let it run: it's not instant — a real task can take a while, sometimes hours, not seconds.",
+      "Watch the first run all the way through before handing it a second task unsupervised.",
+      "Don't give it anything that needs you to already be logged into an account somewhere — that's not what it's built to do.",
+    ],
+    changes: [
+      "The real limit, verified before publishing: it won't log into an account for you — it works with public pages, not ones behind your own sign-in.",
+      "It's genuinely slow by design — built to stay with a task for a long stretch, not to answer in seconds.",
+      "It's not a separate unlimited add-on: usage comes out of your existing plan (Plus or Pro), not a special extra quota.",
+    ],
+    limits: [
+      "This is for tasks with a clear, checkable finish line (compare, look up, summarize across a few pages) — not open-ended research or anything where a wrong answer is costly and hard to catch.",
+      "It won't act inside an account you're already signed into — a task needing that isn't a fit for it.",
+      "Names and limits in this space change fast — OpenAI retired the previous \"agent mode\" without much notice days before this episode was recorded; check ChatGPT's own current mode picker if this episode is more than a few months old.",
+    ],
+  },
+  {
+    n: 19,
+    title: "Claude keeps your files now",
+    standfirst:
+      "A Claude Project carries your uploaded files and written instructions into " +
+      "every new chat you open inside it — no re-explaining, no re-uploading. Verified " +
+      "before publishing: twenty files per project, five megabytes each, and files " +
+      "stay scoped to the project you added them to — they don't follow you into a " +
+      "different one.",
+    steps: [
+      "Open Claude and start a new Project (not a regular chat) — the option sits alongside your chat list.",
+      "Upload the files this work actually needs, and write your instructions once in the project's own instructions field.",
+      "Open a new chat from inside that project whenever you come back to the same work — it already has your files and instructions, nothing to re-paste.",
+      "Keep unrelated work in a separate project — files and instructions don't cross over between projects automatically.",
+      "If you hit the file limit, remove what the current chat doesn't need rather than starting a new project just to fit one more file.",
+    ],
+    changes: [
+      "The real cap, verified before publishing: twenty files per project, five megabytes each.",
+      "It won't share files with a project you didn't add them to — each project's files stay scoped to that project.",
+      "It's not a chat you keep alive in the background — the saving is in not re-explaining or re-uploading each time you return, not in the project itself doing anything while you're away.",
+    ],
+    limits: [
+      "This fits recurring work with the same files and instructions — a one-off question doesn't need a project.",
+      "Files still count toward the model's context the same as anything else — a project doesn't make your files free to include.",
+      "Anthropic's own limits here can move — check Claude's current project settings if this episode is more than a few months old.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

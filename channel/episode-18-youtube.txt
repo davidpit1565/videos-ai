@@ -1,0 +1,17 @@
+ChatGPT can use a website now — not just talk about one
+
+It's called ChatGPT Work — the mode sitting right next to Chat. It reads through
+real websites on its own and works through them instead of just describing what
+to do. Ask it to compare a few pricing plans and it opens each site and comes
+back with a finished spreadsheet — no copy-paste, no ten open tabs.
+
+It's not magic and it's not unlimited. It won't log into an account for you, it's
+genuinely slow by design (a real task can run for hours, not seconds), and it's
+part of your existing Plus or Pro plan, not a separate unlimited add-on. Give it
+one clear task, watch the first run, then decide how much you trust the rest.
+
+Full breakdown: actually-works.com/e/18
+
+Follow for the setup that actually works.
+
+#chatgpt #aiagent #aitools #automation #productivity #buildinpublic

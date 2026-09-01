@@ -53,7 +53,7 @@ Professional Dashboard → Automated replies / Keywords. שולח הודעה ק�
 > people who actually follow the channel.
 >
 > If you're following, tap the button and the link is yours.
-> If not, follow @actuallyworks.ai and then tap it.
+> If not, follow @actually_works.ai and then tap it.
 
 כפתור: `I followed →`
 

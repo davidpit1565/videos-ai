@@ -43,6 +43,14 @@ been running for days.
 - **Never fabricate.** No invented clients, testimonials, results, prices or metrics. If a
   number is an assumption, it says ASSUMPTION next to it. If research could not confirm
   something, it is listed as unconfirmed, not smoothed over.
+- **Before writing any script, verify the product is still real — every time, automatically,
+  not just when something feels off.** Episode 18 was first built around "ChatGPT agent
+  mode," a name OpenAI had already retired days earlier in favor of "ChatGPT Work" — caught
+  before shipping, but only because it got checked, not because checking was already the
+  default. AI-tool features and names change fast enough that a script written from memory
+  or an old episode's assumptions can be stale within weeks. A live web search for the
+  current name, current behavior and current limits comes before the first line is written,
+  not after a version is already built.
 - **Measure, don't guess.** Demand comes from real view counts (`channel/demand-report.md`),
   voice decisions from measurement *and* his ear — and when they disagree, his ear wins and
   the disagreement gets written down.
@@ -59,7 +67,12 @@ been running for days.
   voice softens word endings — unstressed -ER, -LE/-BLE, -LY, R plus a cluster, flapped T.
   Swap the word; respellings were measured and do not help.
 - A line he flags goes through `audio/line_doctor.py`, which ranks candidates by the energy
-  left in the last 90 ms of the target word. The approved take is locked per line.
+  left in the last 90 ms of the target word. The approved take is genuinely locked per
+  line — `audio/voice/profile/canonical-lines.json` maps a line's exact text to a
+  pre-polished clip, and `build_voice.py` loads that clip byte-for-byte instead of
+  regenerating, for every episode. Both closing lines ("Follow for the setup that
+  actually works." and "The setup's in the link in bio.") are locked this way already —
+  add a new line to the manifest the same way once he approves a take for it.
 - `audio/speak_language.py` does the same voice in 23 languages. Flemish needs its own
   reference recording — `record/flemish-script.md`.
 
@@ -103,6 +116,15 @@ honest about what we actually know.
 
 ## Building and rendering
 
+- **`export/produce.sh <episode> <build.html> <duration> [accept_words] [bpm] [mood]` is the
+  one pipeline entry point**, script_lint through render, gate, captions-must-exist, the
+  design-variety check against the last episode's palette, and shipping the file itself to
+  `studio/public/reels/`. `export/make_reel.sh` is an older, incomplete duplicate built
+  without knowing this one existed — it stops before shipping. Don't build a third one.
+- **The real handle is `@actually_works.ai` — with the underscore.** `channel/launch-plan.md`
+  and `channel/instagram-automation.md` had it wrong (no underscore) for a while and every
+  reel's on-screen `.handle` div copied that mistake. Check the handle text in any new
+  build against this line, not against the last episode's file.
 - The picture follows the narration, never the reverse. Build the voice at its own pace,
   then `export/retime.py <build> <cues.json> --out <build>-paced.html` moves every timing
   in the build to match. `--fit` on build_voice is only for a cut that genuinely may not
@@ -157,6 +179,14 @@ nothing goes to him until it passes:
 Every one of those checks exists because a real defect reached him first. The card
 duration check exists because he stopped the video on a 10-frame yellow card; the blank
 first frame check because the hook faded in over 0.26s and frame zero was empty.
+
+**Standing rule, as of episode 18: check → fix → re-check → only then send.** A targeted
+fix after the gate already passed (a de-esser pass on one line, a re-cut clip) can break
+something the first pass never touched, silently. `check.sh` runs again, in full, after
+every such fix — not just the piece that changed — before the file goes to him. If that
+re-check finds anything, fix it and run the whole check again. Repeat until a full run
+comes back clean, then send. Never send on the strength of the first pass alone once a
+fix has been made after it.
 
 ## The studio app
 
