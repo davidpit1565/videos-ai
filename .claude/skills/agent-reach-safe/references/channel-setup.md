@@ -314,15 +314,20 @@ Jina Reader. Full features (profile details, people/job search) need
 https://docs.astral.sh/uv/getting-started/installation/
 
 ```bash
-mcporter config add linkedin --command uvx --arg mcp-server-linkedin@latest --env UV_HTTP_TIMEOUT=300 --scope home
+mcporter config add linkedin --command uvx --arg mcp-server-linkedin==4.23.1 --env UV_HTTP_TIMEOUT=300 --scope home
 ```
 
-`uvx` fetches and runs the latest version on demand — no separate Python
-package or always-on HTTP service needed.
+Pin an exact version rather than `@latest` — `uvx` will otherwise fetch
+whatever the maintainer just published, silently, on every run. Check
+[PyPI](https://pypi.org/project/mcp-server-linkedin/) for the current
+release before installing, and bump the pinned version deliberately when
+you want to update, the same way `references/channel-setup.md`'s own
+"What updating safely looks like" section handles this fork's main
+package.
 
 **First login (needs a visible browser):**
 ```bash
-uvx mcp-server-linkedin@latest --login
+uvx mcp-server-linkedin==4.23.1 --login
 ```
 A browser window opens for the user to log into LinkedIn manually; the
 session is saved to `~/.linkedin-mcp/profile/`. On a headless server, run
