@@ -61,9 +61,11 @@ export async function episode(n: number): Promise<PublicEpisode | null> {
  *  — finished, with a full page written for it — was unreachable from the front door.
  *  A visitor arriving from a caption link could read it and nobody else could find it.
  *
- *  Ranked by views when views exist, and by episode number when they do not, which is
- *  the honest version of "show the ones that did best": with nothing published there is
- *  nothing to rank, and inventing an order would be worse than admitting that. */
+ *  Ordered by episode number, newest first — a views-first ranking used to sort here
+ *  ("show the ones that did best"), but with only a handful of episodes and views only
+ *  on some of them, it blended two different orders into one and read as scrambled, not
+ *  ranked. He said so directly. Real per-episode performance still lives on /videos in
+ *  the studio and drives what gets made next — it just isn't this list's sort key. */
 export type Entry = {
   n: number;
   title: string;
@@ -105,10 +107,14 @@ export async function catalogue(): Promise<Entry[]> {
       publishedAt: e.publishedAt ?? null,
     });
   }
-  return [...byNumber.values()].sort((a, b) => {
-    if (a.views != null && b.views != null) return b.views - a.views;
-    if (a.views != null) return -1;
-    if (b.views != null) return 1;
-    return b.n - a.n;
-  });
+  // Listed only once it is actually live — an article gets written in the same commit
+  // that ships the render, well before the reel is actually posted to Instagram or
+  // YouTube, and the merge above used to leave every article-only entry in the list
+  // regardless. That surfaced episode 19 on /episodes and the home page's "Recent
+  // episodes" the same day it was built, hours before it went out anywhere. The merge
+  // itself stays as-is (an article still enriches a live DB record's title/blurb) —
+  // only the final visible list is cut down to what a visitor could actually go watch.
+  return [...byNumber.values()]
+    .filter((e) => e.live)
+    .sort((a, b) => b.n - a.n);
 }
