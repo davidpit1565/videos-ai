@@ -4,13 +4,19 @@ import { realTitleFor } from "./reels";
 
 // The real domain, bought and connected 26.8 — the fallback for every place that needs
 // the site's own absolute URL (sitemap, RSS, OG images, the publish flow) when neither
-// env var below is set. Confirmed live by fetching it directly, not from the Vercel
-// project's domains list, which was still stale when this changed — a fresh deploy or
-// a manual re-check is what would show it there, not a hard requirement to wait on
-// before this constant is safe to update. Old captions already shipped still point at
+// env var below is set. Old captions already shipped still point at
 // actually-works-studio.vercel.app in their own text on Instagram/YouTube — Vercel
 // keeps serving that domain for the project regardless, so those links don't break.
-const KNOWN_DOMAIN = "actually-works.com";
+//
+// Must be the www subdomain, not the bare apex: Vercel's project domain list (checked
+// 1.9.2026) only serves `www.actually-works.com` — the bare apex is registered purely
+// as a redirect to it, not a real serving domain. Using the bare apex here built a
+// YouTube OAuth redirect_uri of https://actually-works.com/api/youtube/callback; Google
+// sent the browser there with the real auth code in the query string, Vercel's apex→www
+// redirect dropped the query string on the way, and the callback route saw no code at
+// all. Any other absolute link built from the apex form has the same silent failure
+// mode wherever a redirect strips a query string or fragment, not just this one.
+const KNOWN_DOMAIN = "www.actually-works.com";
 export const SITE_URL = `https://${(
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.VERCEL_PROJECT_PRODUCTION_URL ||
