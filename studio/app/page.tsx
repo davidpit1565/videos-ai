@@ -57,7 +57,14 @@ export default async function Home() {
   // agree on what belongs where.
   const trackCounts = new Map<string, number>();
   for (const e of eps) trackCounts.set(toolFor(e.title), (trackCounts.get(toolFor(e.title)) ?? 0) + 1);
-  const tracks = TOOLS.filter((t) => trackCounts.has(t)).map((t) => ({ t, n: trackCounts.get(t)! }));
+  // Any tag actually in use gets a track here, not just ones already in the fixed
+  // TOOLS list — the same fix episodes-browser.tsx already had for its own filter
+  // chips (toolFor() falls back to "General" for a title that matches nothing yet),
+  // applied here too so a new topic shows up in both places at once instead of only
+  // getting tagged on its own card with no way to browse to it from either row.
+  const knownTracks = TOOLS.filter((t) => trackCounts.has(t));
+  const extraTracks = [...trackCounts.keys()].filter((t) => !TOOLS.includes(t)).sort();
+  const tracks = [...knownTracks, ...extraTracks].map((t) => ({ t, n: trackCounts.get(t)! }));
 
   return (
     <main className="site" dir="ltr">

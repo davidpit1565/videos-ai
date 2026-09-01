@@ -116,6 +116,14 @@ honest about what we actually know.
 
 ## Building and rendering
 
+- **Studio production only reflects `main` — merge, don't just push.** Branch deploys are
+  off (`studio/vercel.json`), so a shipped reel sitting on an open PR is invisible to him no
+  matter how clean the build is. He said this directly, more than once, after builds he
+  couldn't find in the studio: once `check.sh` passes clean and there is nothing left for a
+  human to weigh in on, mark the PR ready and merge it — don't leave it as an unmerged draft
+  waiting to be asked. This applies to episode-shipping PRs and routine site fixes alike;
+  still ask first for anything that's actually a judgment call (a design direction with no
+  clear right answer, a change to what an episode claims).
 - **`export/produce.sh <episode> <build.html> <duration> [accept_words] [bpm] [mood]` is the
   one pipeline entry point**, script_lint through render, gate, captions-must-exist, the
   design-variety check against the last episode's palette, and shipping the file itself to

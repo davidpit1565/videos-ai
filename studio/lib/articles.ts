@@ -478,6 +478,32 @@ export const ARTICLES: Article[] = [
       "Anthropic's own limits here can move — check Claude's current project settings if this episode is more than a few months old.",
     ],
   },
+  {
+    n: 20,
+    title: "ChatGPT was going to buy things for you",
+    standfirst:
+      "OpenAI's Instant Checkout promised a purchase without ever leaving the chat. " +
+      "Six months after launch, it's retired: fewer than fifteen of Shopify's millions " +
+      "of merchants ever turned it on. Verified before publishing — what's left is " +
+      "product discovery, not purchase; ChatGPT finds what you want and hands you a " +
+      "link, the same as a search engine always did.",
+    steps: [
+      "Ask ChatGPT to find or compare a product the way you'd ask a search engine.",
+      "Expect a recommendation and a link out to the merchant's own site or app — not a completed purchase inside the chat.",
+      "Do the actual checkout (payment, shipping, account login) on the merchant's own page, same as any other online purchase.",
+      "Don't build a workflow around \"buy it in ChatGPT\" — that specific feature (Instant Checkout) is retired.",
+    ],
+    changes: [
+      "The real number, verified before publishing: fewer than fifteen of Shopify's millions of merchants ever turned Instant Checkout on before it was retired.",
+      "Buying inside ChatGPT converted at roughly a third the rate of sending the same shopper straight to the merchant's own site.",
+      "What's left is discovery, not purchase — the same shape as a search engine's results page, not a new capability.",
+    ],
+    limits: [
+      "This isn't a criticism of ChatGPT generally — it's one specific, named feature (Instant Checkout) that launched and was retired within about six months.",
+      "Agentic checkout hasn't disappeared industry-wide — other players (Google, Perplexity) have their own versions; this episode covers what ChatGPT itself does today, not the whole category.",
+      "Check ChatGPT's own current shopping behavior if this episode is more than a few months old — this space is changing fast.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

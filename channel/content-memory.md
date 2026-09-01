@@ -28,11 +28,22 @@ enough volume to confirm a pattern without overfitting to one or two videos.)*
 
 Reasoned predictions, not yet tested against enough published episodes to confirm.
 
-- **HYPOTHESIS:** Saves-per-view matters more than views for a "paste this and use it"
-  video — a save means someone kept it to actually use, a view alone means the hook
-  worked and the content didn't. (Already encoded as a rule in the studio's own
-  `/api/agent` system prompt — carrying it here so content decisions use the same
-  standard, not a separate one.)
+- **HYPOTHESIS, now with a first real number behind it (1.9.2026):** Saves-per-view
+  matters more than views for a "paste this and use it" video — a save means someone
+  kept it to actually use, a view alone means the hook worked and the content didn't.
+  (Already encoded as a rule in the studio's own `/api/agent` system prompt — carrying
+  it here so content decisions use the same standard, not a separate one.) Pulled the
+  real save-rate table from `/api/agent` for the first time: **16 of 18 published
+  episodes have exactly one save each** — at this volume, save counts this low are a
+  floor effect, not a ranking signal, and sorting by save-rate mostly just re-sorts by
+  1/views. The one real outlier: **episode 1, 5 saves on 398 views (1.26%)** — 2.5-5x
+  every other episode's rate. Episode 1 is literally the purest version of this
+  hypothesis' mechanism: its entire content is one ready-to-paste prompt, the most
+  "keep this to use later" thing published so far. Real support for the hypothesis, but
+  still n=1 on the save-rate side — stays a hypothesis, not Confirmed, until a second
+  paste-and-use episode does the same. **Next move worth trying:** identify what
+  else episode 1 has in common structurally (not just "it's a prompt") and build 2-3
+  more episodes that share it, to get the second data point this needs.
 - **HYPOTHESIS:** Content that shows a real build failure and how it was found/fixed
   (per `channel/episode-ideas.md`'s "$711 number that wasn't real" idea, and the
   `th_check.py`→`burst.py` correction documented in `channel/slate-20.md`) reads as more
@@ -63,6 +74,15 @@ winner yet. A format goes here only after Confirmed patterns has something to po
   demand is explicitly unmeasured there (the doc says so directly: Instagram blocked the
   pull without login). The studio's own tracked saves/views are the real substitute for
   that gap, once there's enough published volume to read anything from them.
+- **`subsAttributed` is empty on every one of the 18 published episodes** (confirmed
+  1.9.2026 via `/api/agent`) — no API attributes a newsletter signup to the specific
+  episode that drove it, and the field is a manually-typed number, not a real
+  measurement. This is the actual answer to "what would make growth jump": views and
+  saves say whether a Reel gets watched and kept, but the paid-funnel question this
+  whole channel exists to answer (which episode brings a subscriber, per
+  `plan/business-model.html`'s paid-engine-feeds-the-free-one model) is currently
+  unmeasured entirely. Real fix needs per-episode UTM-tagged links from the bio/caption
+  through to the signup, not a bigger studio dashboard — not yet built.
 
 ## Pattern shapes worth trying
 
@@ -237,6 +257,52 @@ best, some weaker than others.
   file's own oldest hypothesis, above). View count alone can't separate those. Ask David for
   the studio's `/api/agent` saves/completion numbers next time this file gets updated, or
   pull them directly if the studio's live data becomes reachable from here.
+
+## Growth is a trickle, not a curve (1.9.2026)
+
+David sent a new grid screenshot and said it directly: views are up, but "not drastic,"
+and asked what would actually make it jump. Compared against the 30.8.2026 snapshot above,
+episode-by-episode, ~2 days apart:
+
+| Hook | 30.8 views | 1.9 views | Δ (2 days) |
+|---|---|---|---|
+| "We spent 15 videos building one system." (ep16) | 458 | 500 | +42 |
+| "Gemini already caught it. Before you did." (ep15) | 427 | 431 | +4 |
+| "Everyone's sharing this 'AI lies' claim." (ep14) | 340 | 349 | +9 |
+| "Most think it's for coders." (ep12) | 416 | 420 | +4 |
+| "This agent can send email on its own. It never does." (ep09) | 429 | 435 | +6 |
+| "voice_doctor.py measures it in the audio." (ep11) | 425 | 427 | +2 |
+| "Most leads go cold fast." (ep10) | 293 | 298 | +5 |
+| "Last time: a check said it passed. It lied." (ep08) | 139 | 139 | **+0** |
+| "Last time: 3 things your agent still breaks on." (ep06) | 452 | 453 | +1 |
+
+**FACT, not a hypothesis:** every one of these gained under 50 views in two days, and one
+(ep08, the "Last time:" callback hook already flagged above as a likely-weak pattern)
+gained exactly zero. This is what "not drastic" looks like in real numbers — a trickle
+across the whole catalogue, not a stall on one bad episode. Two new tiles also appeared
+in this snapshot (episode 18's "ChatGPT can use a website now" at 370, and one more read
+as "ChatGPT remembers you" at 185 — that second one's episode match is uncertain enough
+not to state as fact here) — both new posts started in the same 139-507 range as
+everything else, not above it.
+
+**What this does and doesn't tell us:** a flat trickle across every episode, old and new,
+points at a distribution/reach ceiling (follower count, algorithmic placement, whatever
+Explore is or isn't doing with this account) more than at any one episode's content —
+content quality differences would be expected to show up as *some* episodes climbing while
+others stay flat, not the whole catalogue moving in lockstep by single digits. That's a
+reasoned read, not a confirmed one: still only two snapshots, and the account's follower
+count itself (94-ish as of 28.8) is small enough that this could still be explained by a
+handful of algorithmic placements rather than a structural ceiling.
+
+**Still the same blocker as the 30.8 entry, worth repeating because it's the actual
+answer to "what makes it jump":** views alone can't diagnose this. Saves, completion
+rate, and follower growth per episode would show whether content is being watched to the
+end and kept, which is the difference between "reach is capped" (a distribution problem,
+fixed by things like consistency, collabs, or the account crossing a size threshold) and
+"content isn't landing once seen" (a content problem, fixed by format/hook changes). This
+session still can't reach the studio's live database directly — ask David to paste the
+`/api/agent` saves/completion numbers, or the /videos table, before treating either
+explanation as more likely than the other.
 
 ## Episode 17 failed its own test (31.8.2026)
 
