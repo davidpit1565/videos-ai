@@ -74,15 +74,14 @@ winner yet. A format goes here only after Confirmed patterns has something to po
   demand is explicitly unmeasured there (the doc says so directly: Instagram blocked the
   pull without login). The studio's own tracked saves/views are the real substitute for
   that gap, once there's enough published volume to read anything from them.
-- **`subsAttributed` is empty on every one of the 18 published episodes** (confirmed
-  1.9.2026 via `/api/agent`) — no API attributes a newsletter signup to the specific
-  episode that drove it, and the field is a manually-typed number, not a real
-  measurement. This is the actual answer to "what would make growth jump": views and
-  saves say whether a Reel gets watched and kept, but the paid-funnel question this
-  whole channel exists to answer (which episode brings a subscriber, per
-  `plan/business-model.html`'s paid-engine-feeds-the-free-one model) is currently
-  unmeasured entirely. Real fix needs per-episode UTM-tagged links from the bio/caption
-  through to the signup, not a bigger studio dashboard — not yet built.
+- **`subsAttributed` fixed 1.9.2026** — every caption already links to `actually-works.com/e/N`
+  (its own episode page), and the signup form on that page now carries the episode number
+  through `/api/subscribe` into the subscriber's own row (`source = episode-N`) and into
+  Beehiiv's UTM fields; `/api/track` counts real signups per episode and writes the number
+  automatically. This closes the actual gap the paid-funnel question needed (which episode
+  brings a subscriber, per `plan/business-model.html`'s paid-engine-feeds-the-free-one
+  model) — not measured until there's real published volume after this date to read
+  anything from, but the plumbing is real now, not a manual guess.
 
 ## Pattern shapes worth trying
 
