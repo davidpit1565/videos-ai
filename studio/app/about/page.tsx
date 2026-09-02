@@ -22,10 +22,12 @@ export default async function About() {
   // computed elsewhere on the site (the hero stats, the episode/article data) — never
   // a second, separate estimate that could quietly drift from the real one.
   const proof = [
-    live.length > 0 ? { v: live.length, l: `episode${live.length === 1 ? "" : "s"} published` } : null,
-    breaksDocumented > 0 ? { v: breaksDocumented, l: "failure modes written down" } : null,
-    totalViews > 0 ? { v: totalViews, l: "views measured" } : null,
-  ].filter((x): x is { v: number; l: string } => x !== null);
+    live.length > 0 ? { v: live.length, l: `episode${live.length === 1 ? "" : "s"} published`, href: null } : null,
+    breaksDocumented > 0
+      ? { v: breaksDocumented, l: "failure modes written down", href: "/failure-modes" }
+      : null,
+    totalViews > 0 ? { v: totalViews, l: "views measured", href: null } : null,
+  ].filter((x): x is { v: number; l: string; href: string | null } => x !== null);
 
   return (
     <main className="site" dir="ltr">
@@ -48,12 +50,21 @@ export default async function About() {
         </p>
         {proof.length > 0 && (
           <ul className="proofline">
-            {proof.map((p) => (
-              <li key={p.l}>
-                <b>{p.v.toLocaleString("en-US")}</b>
-                <span>{p.l}</span>
-              </li>
-            ))}
+            {proof.map((p) =>
+              p.href ? (
+                <li key={p.l}>
+                  <Link href={p.href} className="stat-link">
+                    <b>{p.v.toLocaleString("en-US")}</b>
+                    <span>{p.l}</span>
+                  </Link>
+                </li>
+              ) : (
+                <li key={p.l}>
+                  <b>{p.v.toLocaleString("en-US")}</b>
+                  <span>{p.l}</span>
+                </li>
+              ),
+            )}
           </ul>
         )}
       </section>
