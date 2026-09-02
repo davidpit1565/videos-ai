@@ -865,6 +865,9 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   cursor:pointer;transition:border-color .15s,color .15s}
 .site .echips button:hover{border-color:var(--gold-lit);color:var(--ink)}
 .site .echips button.on{background:var(--gold);border-color:var(--gold);color:var(--paper)}
+/* "General" reads as a leftover bucket with no explanation next to it — this is the one
+   filter that gets a sentence, since it's the one whose name doesn't say what's in it. */
+.site .efilter-note{color:var(--faint);font-size:.86rem;margin:-.3rem 0 .9rem}
 .site .esearch{display:block;width:100%;font:inherit;font-size:1rem;padding:.7rem 1rem;
   border-radius:.75rem;border:1px solid var(--rule);background:var(--card);color:var(--ink);
   margin-bottom:1rem}
