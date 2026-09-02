@@ -30,6 +30,7 @@ async function createAndPublishIgMedia(
   mediaType: "REELS" | "STORIES",
   videoUrl: string,
   caption?: string,
+  timeoutMs = 45_000,
 ): Promise<IgPublishResult> {
   const createUrl = new URL(`${host}/${user}/media`);
   createUrl.searchParams.set("media_type", mediaType);
@@ -44,9 +45,13 @@ async function createAndPublishIgMedia(
   const containerId = createdBody.id;
 
   // poll until Instagram has actually downloaded and processed the file — publishing
-  // too early is the documented cause of a silent failure, not a fast one. Kept under
-  // 45s because the Reel and Story publishes now run back to back in one request.
-  const deadline = Date.now() + 45_000;
+  // too early is the documented cause of a silent failure, not a fast one. The Reel
+  // and Story publishes run back to back in one request (120s function budget), so
+  // each gets its own share — Reels carries the real video and consistently needed
+  // more than the 45s both used to get, which is why episode 21 failed here twice in
+  // a row rather than as an occasional flake; a Story publish only ever runs after
+  // the Reel already succeeded, so it can afford less.
+  const deadline = Date.now() + timeoutMs;
   let status = "IN_PROGRESS";
   while (Date.now() < deadline) {
     const statusUrl = new URL(`${host}/${containerId}`);
@@ -106,10 +111,10 @@ export async function publishToInstagram(file: string, caption: string): Promise
   if (!user) return { reel: { ok: false, reason: "IG_USER_ID לא מוגדר" }, story: null };
 
   const videoUrl = `${SITE_URL}/reels/${encodeURIComponent(file)}`;
-  const reel = await createAndPublishIgMedia(host, user, token, "REELS", videoUrl, caption);
+  const reel = await createAndPublishIgMedia(host, user, token, "REELS", videoUrl, caption, 75_000);
   if (!reel.ok) return { reel, story: null };
 
-  const story = await createAndPublishIgMedia(host, user, token, "STORIES", videoUrl);
+  const story = await createAndPublishIgMedia(host, user, token, "STORIES", videoUrl, undefined, 35_000);
   return { reel, story };
 }
 
