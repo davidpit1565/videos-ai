@@ -6,9 +6,12 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 120;
 
 /** He presses a real button for this — publishing to a real public account is not
- *  something to trigger silently the first time this code ever runs. One click now
- *  does three independent publishes (Reel, Story, Facebook Page) — each reported on
- *  its own, since one can genuinely succeed while another fails or isn't configured. */
+ *  something to trigger silently the first time this code ever runs. One click does
+ *  two independent publishes (Reel, Facebook Page) — each reported on its own, since
+ *  one can genuinely succeed while another fails or isn't configured. The Story used
+ *  to be a third automatic publish here; see the comment on publishToInstagram in
+ *  lib/publish.ts for why that's gone — he shares the Reel to his Story by hand now,
+ *  since Instagram's own "Share to Story" makes the version the API physically cannot. */
 export async function POST(req: Request) {
   try {
     const { file, caption } = (await req.json()) as { file?: string; caption?: string };

@@ -24,7 +24,7 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
   async function doInstagram() {
     if (
       !confirm(
-        "לפרסם עכשיו — ריל לאינסטגרם, סטורי, ואם מחובר גם פייסבוק — פומבי, לכל העולם? אין דרך למחוק את זה מכאן.",
+        "לפרסם עכשיו — ריל לאינסטגרם, ואם מחובר גם פייסבוק — פומבי, לכל העולם? אין דרך למחוק את זה מכאן.",
       )
     )
       return;
@@ -86,7 +86,7 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
       <p className="section-label">פרסום</p>
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
         <button className="btn" onClick={doInstagram} disabled={igBusy}>
-          {igBusy ? "מפרסם…" : "פרסם: ריל + סטורי + פייסבוק"}
+          {igBusy ? "מפרסם…" : "פרסם: ריל + פייסבוק"}
         </button>
         {ytConnected === false ? (
           <a className="btn ghost" href="/api/youtube/auth">
