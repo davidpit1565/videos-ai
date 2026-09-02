@@ -4,7 +4,7 @@
  *
  *  Shared between the client-side episode browser and the server-rendered homepage
  *  "browse by tool" row, so the two can never disagree about what an episode's tag is. */
-export const TOOLS = ["ChatGPT", "Claude", "Gemini", "n8n", "Instagram", "Whisper", "YouTube", "Agents", "Skills"];
+export const TOOLS = ["ChatGPT", "Claude", "Gemini", "n8n", "Instagram", "Whisper", "YouTube", "Agents", "Skills", "Comet"];
 
 export function toolFor(title: string): string {
   const hit = TOOLS.find((t) => title.toLowerCase().includes(t.toLowerCase()));
