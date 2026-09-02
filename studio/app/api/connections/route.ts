@@ -100,22 +100,40 @@ export async function GET() {
       }
     : null;
 
-  // Every real post on the account that the sync could not attach to any tracked episode —
-  // its views never reach the total on /analytics, silently, however large they are. This
-  // is the thing a screenshot of the grid could show him and the dashboard total could not:
-  // exactly which posts are sitting outside the count, and how many views each is missing.
-  const unmatched =
-    state && instagram.connected
-      ? instagram.media
-          .filter((m) => !state.episodes.some((e) => e.igMediaId === m.id))
-          .map((m) => ({
-            id: m.id,
-            caption: m.caption.slice(0, 200),
-            views: m.views ?? m.reach,
-            eLink: m.caption.toLowerCase().match(/\/e\/(\d+)/)?.[1] ?? null,
-            timestamp: m.timestamp,
-          }))
-      : null;
+  // Every real post/video on an account that the sync could not attach to any tracked
+  // episode — its views never reach the total on /analytics, silently, however large
+  // they are. This is the thing a screenshot of the grid could show him and the
+  // dashboard total could not: exactly which posts are sitting outside the count, and
+  // how many views each is missing. YouTube used to only surface this buried in the
+  // activity feed as a "סרטון לא מקושר ביוטיוב" line — real, but one entry per pull, with
+  // no titles or view counts beside it to actually act on.
+  const unmatched = {
+    instagram:
+      state && instagram.connected
+        ? instagram.media
+            .filter((m) => !state.episodes.some((e) => e.igMediaId === m.id))
+            .map((m) => ({
+              id: m.id,
+              caption: m.caption.slice(0, 200),
+              views: m.views ?? m.reach,
+              eLink: m.caption.toLowerCase().match(/\/e\/(\d+)/)?.[1] ?? null,
+              timestamp: m.timestamp,
+            }))
+        : null,
+    youtube:
+      state && youtube.connected
+        ? youtube.videos
+            .filter((v) => !state.episodes.some((e) => e.ytVideoId === v.id))
+            .map((v) => ({
+              id: v.id,
+              title: v.title,
+              description: v.description.slice(0, 200),
+              views: v.views,
+              eLink: v.description.toLowerCase().match(/\/e\/(\d+)/)?.[1] ?? null,
+              timestamp: v.publishedAt,
+            }))
+        : null,
+  };
 
   // Whether notifications can work at all, readable from outside the PIN. The endpoints that
   // do the work are private, and correctly so — but that left no way to check them without
