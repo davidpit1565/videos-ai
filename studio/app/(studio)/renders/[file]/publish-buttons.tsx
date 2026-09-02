@@ -13,11 +13,15 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
   const [ytBusy, setYtBusy] = useState(false);
   const [ytMsg, setYtMsg] = useState<string | null>(null);
   const [ytConnected, setYtConnected] = useState<boolean | null>(null);
+  const [ytUploadedToday, setYtUploadedToday] = useState(false);
 
   useEffect(() => {
     fetch("/api/youtube/status")
       .then((r) => r.json())
-      .then((j) => setYtConnected(!!j.connected))
+      .then((j) => {
+        setYtConnected(!!j.connected);
+        setYtUploadedToday(!!j.uploadedToday);
+      })
       .catch(() => setYtConnected(false));
   }, []);
 
@@ -63,7 +67,10 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
       setYtMsg("אין קובץ כותרת ל-YouTube לריל הזה (episode-NN-youtube.txt)");
       return;
     }
-    if (!confirm("להעלות עכשיו ל-YouTube, פומבי, לכל העולם? אין דרך למחוק את זה מכאן.")) return;
+    const warn = ytUploadedToday
+      ? "כבר הועלה סרטון ל-YouTube היום — מכסת ההעלאות היומית שלהם קטנה במיוחד לערוצים חדשים, וסביר שההעלאה הזו תיכשל. "
+      : "";
+    if (!confirm(`${warn}להעלות עכשיו ל-YouTube, פומבי, לכל העולם? אין דרך למחוק את זה מכאן.`)) return;
     setYtBusy(true);
     setYtMsg(null);
     try {
@@ -73,6 +80,7 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ file, title, description }),
       }).then((x) => x.json());
+      if (r.ok) setYtUploadedToday(true);
       setYtMsg(r.ok ? `הועלה ✓ — https://youtube.com/watch?v=${r.videoId}` : `נכשל: ${r.reason}`);
     } catch (e) {
       setYtMsg(`שגיאה: ${e instanceof Error ? e.message : String(e)}`);
@@ -98,6 +106,11 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
           </button>
         )}
       </div>
+      {ytUploadedToday && !ytMsg && (
+        <p className="hint" style={{ marginTop: 8, color: "var(--clay)" }}>
+          כבר הועלה סרטון ל-YouTube היום — סביר שהעלאה נוספת תיכשל בגלל המכסה היומית שלהם.
+        </p>
+      )}
       {igMsg && <p className="hint mono" style={{ marginTop: 8 }}>{igMsg}</p>}
       {ytMsg && <p className="hint mono" style={{ marginTop: 8 }}>{ytMsg}</p>}
     </div>

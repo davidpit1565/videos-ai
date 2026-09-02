@@ -120,6 +120,11 @@ export type State = {
   ideas: Idea[];
   /** optional so states saved before the feed existed still load */
   activity?: ActivityEvent[];
+  /** set by /api/youtube/publish right after a successful upload — YouTube's own daily
+   *  upload quota is per-channel and undocumented, and a new/low-trust channel's real
+   *  limit runs well under the general range, so the studio warns before a second
+   *  same-day attempt instead of letting it fail live against the platform. */
+  lastYoutubeUploadAt?: string | null;
   updatedAt: string;
 };
 
