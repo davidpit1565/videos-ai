@@ -210,8 +210,19 @@ export default function Videos() {
                 <span className="reel-platforms"><PlatformBadges episode={e} /></span>
                 <span className="reel-views">
                   <b>{n(e.views)}</b>
-                  <span className="k">צפיות</span>
+                  {/* Just "צפיות" here read as the total, and the separate YouTube number
+                      sits several rows down inside the expanded card — easy to miss
+                      entirely on a phone, which is exactly what happened: 174 (Instagram)
+                      was read as the whole story while YouTube's real, different number
+                      sat unseen below the fold. */}
+                  <span className="k">צפיות באינסטגרם</span>
                 </span>
+                {e.ytViews != null && (
+                  <span className="reel-views reel-views-yt">
+                    <b>{n(e.ytViews)}</b>
+                    <span className="k">ביוטיוב</span>
+                  </span>
+                )}
                 <span className="reel-chevron">{isOpen ? "▲" : "▼"}</span>
               </button>
 

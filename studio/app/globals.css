@@ -337,6 +337,11 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
   font-family:var(--m);min-width:74px;justify-content:flex-end}
 .reel-views b{font-size:17px;color:var(--brass);font-variant-numeric:tabular-nums}
 .reel-views .k{font-size:12px;color:var(--faint)}
+/* A separate, muted YouTube number beside the Instagram one — smaller and dimmer so the
+   two are never mistaken for a single total, but both visible in the same glance instead
+   of one hiding several rows down in the expanded card (see the comment above the JSX). */
+.reel-views-yt{min-width:0}
+.reel-views-yt b{font-size:14px;color:var(--muted)}
 .reel-chevron{flex:0 0 auto;color:var(--faint);font-size:11px}
 .reel-details{display:flex;flex-wrap:wrap;gap:12px 16px;padding:2px 16px 16px;
   border-top:1px solid var(--line)}
