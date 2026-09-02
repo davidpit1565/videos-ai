@@ -372,11 +372,20 @@ export async function GET(req: Request) {
       fresh.push({ id: uid(), at: now, source: "studio", label, value: null, delta: null });
     }
 
-    // content that exists on the account and is not linked to an episode is worth saying once
+    // content that exists on the account and is not linked to an episode is worth saying once.
+    // A generic "not linked" label used to be the only signal even when the content's own
+    // /e/N names an episode that already has a DIFFERENT id linked — the exact shape of a
+    // re-upload (a video deleted and re-posted, e.g. for a #Shorts fix) superseding an
+    // older, now-stale link. That case looked identical to a genuinely unrelated post, so
+    // finding it meant reading every unmatched item by hand. Name the conflict directly.
     const said = new Set(feed.filter((f) => f.label.startsWith(cfg.unmatchedPrefix)).map((f) => f.label));
     for (const m of media) {
       if (linked.has(m.id)) continue;
-      const label = `${cfg.unmatchedPrefix} · ${m.text.slice(0, 40) || m.id}`;
+      const epLink = m.text.toLowerCase().match(/\/e\/(\d+)/);
+      const claimedEp = epLink ? state.episodes.find((e) => e.number === +epLink[1]) : undefined;
+      const label = claimedEp && cfg.getId(claimedEp)
+        ? `${cfg.unmatchedPrefix} · names ריל ${claimedEp.number}, שכבר מקושר לפריט אחר — כנראה העלאה מחדש · ${m.text.slice(0, 40) || m.id}`
+        : `${cfg.unmatchedPrefix} · ${m.text.slice(0, 40) || m.id}`;
       if (said.has(label)) continue;
       fresh.push({ id: uid(), at: now, source: cfg.key, label, value: m.views ?? null, delta: null });
     }
