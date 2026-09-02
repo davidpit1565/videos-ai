@@ -100,8 +100,22 @@ h1 em{font-style:normal;color:var(--brass)}
   display:flex;align-items:center;gap:9px}
 .eyebrow::before{content:"";width:22px;height:2px;background:var(--brass);border-radius:2px}
 h2{font-family:var(--b);font-weight:800;font-size:21px;margin:38px 0 14px}
-p.sub{color:var(--muted);font-size:16px;margin:0 0 20px;max-width:70ch}
+/* .lede is /renders' own name for the same intro-paragraph role p.sub plays everywhere
+   else — it never had a rule of its own, so that one page's intro sentence rendered as
+   plain unstyled body text (default color/size/width) instead of matching the muted,
+   width-capped lede every other studio page opens with. */
+p.sub,p.lede{color:var(--muted);font-size:16px;margin:0 0 20px;max-width:70ch}
 p.sub b{color:var(--text)}
+/* The studio's own "nothing here yet" state (/renders with an empty reels folder) —
+   distinct from `.site .empty` (public pages) and `.day .empty` (the week grid's tiny
+   placeholder dash), neither of which reaches this surface. Left unstyled before: the
+   whole block rendered as bare text with no panel, no border, nothing to mark it as a
+   deliberate empty state rather than a layout gap. */
+.empty{border:1px solid var(--line);background:var(--panel);border-radius:var(--r);
+  padding:18px 20px;color:var(--muted);font-size:15.5px;line-height:1.65;max-width:74ch}
+.empty b{display:block;color:var(--text);font-size:16px;margin-bottom:6px}
+.empty p{margin:0}
+.empty code{font-family:var(--m);font-size:.9em;background:var(--panel-2);padding:1px 5px;border-radius:4px}
 
 /* ── stat tiles ──────────────────────────────── */
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:10px}
@@ -183,7 +197,13 @@ input.n{width:96px;font-family:var(--m);direction:ltr;text-align:right;font-vari
 
 /* ── cards & notes ───────────────────────────── */
 .note{border:1px solid var(--line);border-inline-start:4px solid var(--brass);background:var(--panel);
-  border-radius:var(--r);padding:16px 18px;margin:18px 0;font-size:16px;color:var(--muted)}
+  border-radius:var(--r);padding:16px 18px;margin:18px 0;font-size:16px;color:var(--muted);
+  /* A wide screen let running prose (the ideas backlog, longer warnings) stretch past
+     100 characters a line — unreadable at the width a 1120px shell allows. Capped to the
+     same reading width p.sub already uses, so a note reads like a paragraph again instead
+     of a banner stretched edge to edge. Grid-content notes (ScoreCard) just get a
+     narrower box, which reads fine since nothing inside depends on full width. */
+  max-width:74ch}
 .note.warn{border-inline-start-color:var(--clay)}
 .note.ok{border-inline-start-color:var(--ok)}
 .note b{color:var(--text)}
@@ -228,7 +248,10 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 .presets button:hover{border-color:var(--brass);color:var(--brass)}
 .answer{border:1px solid var(--brass-dim);border-radius:var(--r);
   background:linear-gradient(180deg,rgba(243,208,122,.06),transparent 55%),var(--panel);
-  padding:22px 24px;white-space:pre-wrap;font-size:17px;line-height:1.75}
+  padding:22px 24px;white-space:pre-wrap;font-size:17px;line-height:1.75;
+  /* Same reasoning as .note above — the agent's answer is free-form prose and a 1120px-
+     wide shell let it run a full line width nobody can comfortably read in one pass. */
+  max-width:74ch}
 .spin{display:inline-block;width:15px;height:15px;border:2px solid var(--brass-dim);
   border-top-color:var(--brass);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-3px}
 @keyframes sp{to{transform:rotate(360deg)}}
@@ -324,7 +347,15 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 .reel-details .fld-check{flex-direction:row;align-items:center;gap:8px;flex:0 0 auto;min-width:0}
 .reel-details .fld-check input{width:20px;height:20px}
 @media(max-width:520px){
-  .reel-title{font-size:14.5px}
+  /* At this width the fixed-size chrome around the title (number, status chip, the
+     views placeholder, the chevron) already added up to more than half the row before
+     the title — a real user's title, not a short demo one, was truncating to "Paste
+     th…" with most of the row still empty. Wrapping the title onto its own full-width
+     line and pushing the number/chip/views/chevron to a second line (order:-1 plus a
+     100% basis takes it out of the single-line fight for space) gives it the room a
+     one-line ellipsis needs to actually mean something. */
+  .reel-main{flex-wrap:wrap;row-gap:6px}
+  .reel-title{order:-1;flex:1 1 100%;font-size:14.5px}
   .reel-platforms{display:none}
 }
 

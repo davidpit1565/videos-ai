@@ -20,7 +20,7 @@ const VERDICT_HE: Record<IdeaScore["verdict"], string> = {
 };
 const VERDICT_COLOR: Record<IdeaScore["verdict"], string> = {
   yes: "var(--brass)",
-  no: "var(--rose, #e0607a)",
+  no: "var(--clay)",
   draft: "var(--steel)",
 };
 
@@ -267,7 +267,7 @@ export default function Pipeline() {
           </div>
         </div>
       )}
-      {scoreError && <p className="sub" style={{ color: "var(--rose, #e0607a)" }}>{scoreError}</p>}
+      {scoreError && <p className="sub" style={{ color: "var(--clay)" }}>{scoreError}</p>}
 
       <form
         className="ask"
