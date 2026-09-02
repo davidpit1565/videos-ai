@@ -9,6 +9,24 @@ memory. Read this before writing any episode's first line.
 Pick deliberately from the categories below, based on what this specific episode's content
 actually is — not whichever type got used last.
 
+## The dry-sentence test — required before a hook ships
+
+He said it plainly, twice now (2.9.2026): a hook is not just a true, on-topic first
+sentence — a flat, informational statement is not a hook even when it technically matches
+one of the categories below. The first version of episode 22's hook ("If it failed right
+now, would you even know?" — before that, "Your automation says it worked. It didn't.")
+demonstrated the failure mode directly: two lines that classified as *different* categories
+in the table below, and still read as the same thing, because neither one actually pulled
+on anything the viewer feels.
+
+Before a hook ships, ask honestly: **does this create real pull — fear, identity, stakes,
+curiosity that itches — or does it just state a fact in a short sentence?** A hook can be
+calm and still land (not every hook needs to shout), but it has to make the viewer feel
+seen, worried, or genuinely curious — not just informed. If the honest answer is "it's just
+informative," it fails this test regardless of which category it technically fits, and it
+does not ship. Reread the "why it works" column for the chosen category and check the draft
+line actually does that thing, not just that it's shaped like the example.
+
 ## The real research (sourced, not invented)
 
 Two independent, cited analyses, both current as of 2026:
@@ -89,7 +107,15 @@ last row before writing the next hook, and pick a different type.**
 | 19 | "Claude keeps your files now" | Product/Outcome Showcase |
 | 20 | "ChatGPT was going to buy things for you — then they quietly killed it" | Shock/Surprise (a claim that turned out false) |
 | 21 | "Can an AI browser actually run your errands?" | Direct Address/Question |
-| 22 | "Your automation says it worked. It didn't." | Contrarian Open / Mistake Warning |
+| 22 | "If it failed right now — would you even know?" | You-Focused Appeal, posed as a question |
+
+**Rejected drafts for episode 22, both failed the dry-sentence test, kept here so the same
+flat shape doesn't get proposed again as if it were new:**
+- "Your automation says it worked. It didn't." — technically Contrarian Open/Mistake
+  Warning, read in practice as a flat statement with no pull on the viewer.
+- "If it failed right now, would you even know?" (first pass, third-person framing) — still
+  informational in tone even after adding a question mark; the fix was making it land on
+  "you" specifically, not just posing a question.
 
 Episodes 19-20 both leaned on the same Product/Outcome shape back to back — not flagged as a
 mistake at the time because this file didn't exist yet, but exactly the pattern this log is
