@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { publishToYoutube } from "@/lib/publish";
+import { loadState, saveState } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -24,6 +25,16 @@ export async function POST(req: Request) {
     if (!existsSync(p)) return NextResponse.json({ ok: false, reason: "הקובץ לא נמצא" }, { status: 404 });
     const bytes = readFileSync(p);
     const r = await publishToYoutube(bytes, title, description ?? "");
+    // Best-effort — a real upload that just succeeded should never be reported as failed
+    // because this bookkeeping write hiccuped.
+    if (r.ok) {
+      try {
+        const s = await loadState();
+        if (s) await saveState({ ...s, lastYoutubeUploadAt: new Date().toISOString() });
+      } catch {
+        /* the upload itself is what matters; this is just the next warning's memory */
+      }
+    }
     return NextResponse.json(r);
   } catch (e) {
     return NextResponse.json({ ok: false, reason: e instanceof Error ? e.message : String(e) }, { status: 500 });
