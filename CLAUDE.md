@@ -66,6 +66,13 @@ been running for days.
   both languages, the boring path, what happens after each step — and it goes on the
   episode's own site page (`/e/N`), not just spoken narration a viewer can't pause and
   copy from. Applies to every future reel/episode, whichever content pattern it uses.
+- **Read `channel/hooks-guide.md` before writing any episode's opening line, and never
+  repeat the same hook type two episodes in a row.** Decided 2.9.2026, after he flagged
+  that the opening line had settled into the same shape (a plain claim, negated) too many
+  times in a row. That file has the researched, sourced hook taxonomy, cross-checked
+  against this channel's own real view numbers, and a log of which type each recent
+  episode used — check that log, pick a type not used last time, and update the log after
+  shipping.
 
 ## The voice
 
