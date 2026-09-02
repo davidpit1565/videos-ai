@@ -1,0 +1,15 @@
+An AI browser can do your errands online now.
+
+So someone actually tested it: 300 everyday tasks, across 136 real websites. The
+best AI browser agent finished 61.3% of them. Most agents landed near 30%. A person
+handed the same list clears almost all of it.
+
+The one worth trying: Perplexity's Comet browser. Free, on every platform, and
+honest about the limit — long multi-step chains still break, because one wrong step
+early ruins everything after it.
+
+Full setup, exact clicks: actually-works.com/e/21
+
+Follow for the setup that actually works.
+
+#ai #perplexity #comet #aitools #browseragent
