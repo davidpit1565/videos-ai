@@ -792,9 +792,13 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .site .herostats span{display:block;color:var(--faint);font-size:.76rem;margin-top:.5rem;
   font-weight:700;text-transform:uppercase;letter-spacing:.09em}
 /* The one stat that links somewhere (failure modes → its own page) needs to read as
-   clickable without the other two, which don't link anywhere, looking clickable too —
-   an underline on the number only, on hover, is enough of a tell either way. */
+   clickable without the other two, which don't link anywhere, looking clickable too — a
+   hover-only underline isn't enough of a tell on its own, since a visitor has to already
+   suspect it's a link to find out by hovering. A small arrow beside the label, visible at
+   rest, is the same affordance the hero CTA already uses ("Browse episodes →"), so this
+   reads as the same kind of thing rather than a one-off. */
 .site .stat-link{display:block;text-decoration:none;color:inherit}
+.site .stat-link span::after{content:" →";color:var(--gold);font-weight:700}
 .site .stat-link:hover b{text-decoration:underline;text-decoration-color:var(--gold);
   text-underline-offset:.15em}
 .site .empty{background:var(--card);border:1px solid var(--rule);border-radius:1rem;
