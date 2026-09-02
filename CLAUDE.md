@@ -66,13 +66,15 @@ been running for days.
   both languages, the boring path, what happens after each step — and it goes on the
   episode's own site page (`/e/N`), not just spoken narration a viewer can't pause and
   copy from. Applies to every future reel/episode, whichever content pattern it uses.
-- **Read `channel/hooks-guide.md` before writing any episode's opening line, and never
-  repeat the same hook type two episodes in a row.** Decided 2.9.2026, after he flagged
-  that the opening line had settled into the same shape (a plain claim, negated) too many
-  times in a row. That file has the researched, sourced hook taxonomy, cross-checked
-  against this channel's own real view numbers, and a log of which type each recent
-  episode used — check that log, pick a type not used last time, and update the log after
-  shipping.
+- **Read `channel/hooks-guide.md` before writing any episode's opening line. Never repeat
+  the same hook type two episodes in a row, and never ship a hook that only passes the
+  "dry-sentence test" by accident.** Decided 2.9.2026, after he flagged twice, in the same
+  day, that the opening line kept reading as a flat, informational sentence — even after a
+  type-rotation fix, the replacement line still failed on tone. A hook is not just a true,
+  on-topic first sentence: it has to create real pull (fear, identity, stakes, curiosity),
+  not just state a fact. `hooks-guide.md` has the sourced taxonomy, the dry-sentence test
+  itself, a log of which type each recent episode used, and the two rejected drafts that
+  failed this exact check — read those before assuming a new draft clears the bar.
 
 ## The voice
 
