@@ -56,7 +56,10 @@ export default async function Home() {
   // invented just for this row — so a click here and a click on /episodes always
   // agree on what belongs where.
   const trackCounts = new Map<string, number>();
-  for (const e of eps) trackCounts.set(toolFor(e.title), (trackCounts.get(toolFor(e.title)) ?? 0) + 1);
+  for (const e of eps) {
+    const t = toolFor(e.title, e.blurb);
+    trackCounts.set(t, (trackCounts.get(t) ?? 0) + 1);
+  }
   // Any tag actually in use gets a track here, not just ones already in the fixed
   // TOOLS list — the same fix episodes-browser.tsx already had for its own filter
   // chips (toolFor() falls back to "General" for a title that matches nothing yet),

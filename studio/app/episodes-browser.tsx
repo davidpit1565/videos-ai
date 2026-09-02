@@ -21,7 +21,7 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
   };
   const [q, setQ] = useState("");
 
-  const tagged = useMemo(() => eps.map((e) => ({ ...e, tool: toolFor(e.title) })), [eps]);
+  const tagged = useMemo(() => eps.map((e) => ({ ...e, tool: toolFor(e.title, e.blurb) })), [eps]);
   const tools = useMemo(() => {
     // toolFor() falls back to "General" for anything not in TOOLS, so a pill list built
     // only from TOOLS silently dropped every "General" episode's own filter — it still
@@ -53,6 +53,11 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
             </button>
           ))}
         </div>
+      )}
+      {tool === "General" && (
+        <p className="efilter-note">
+          Not tied to one tool: broader AI behavior, or the production process itself.
+        </p>
       )}
       <input
         className="esearch"
