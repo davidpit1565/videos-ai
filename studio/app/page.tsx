@@ -98,8 +98,10 @@ export default async function Home() {
               )}
               {breaksDocumented > 0 && (
                 <div>
-                  <b><CountUp value={breaksDocumented} /></b>
-                  <span>failure modes written down</span>
+                  <Link href="/failure-modes" className="stat-link">
+                    <b><CountUp value={breaksDocumented} /></b>
+                    <span>failure modes written down</span>
+                  </Link>
                 </div>
               )}
               {totalViews > 0 && (
