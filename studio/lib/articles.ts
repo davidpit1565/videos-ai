@@ -504,6 +504,37 @@ export const ARTICLES: Article[] = [
       "Check ChatGPT's own current shopping behavior if this episode is more than a few months old — this space is changing fast.",
     ],
   },
+  {
+    n: 21,
+    title: "Can an AI browser actually run your errands?",
+    standfirst:
+      "A real test, not a demo: 300 everyday tasks across 136 real websites. The " +
+      "strongest AI browser agent finished 61.3% of them; most agents landed near " +
+      "30%. A person handed the same list clears almost all of it. Perplexity's " +
+      "Comet browser is the one worth actually trying — free, on every platform, " +
+      "and honest about what still breaks it.",
+    steps: [
+      "Go to perplexity.ai/comet and click \"Get Comet\" — it's a small, fast download (about 13MB), free, no account required to start.",
+      "Open the downloaded file and install it, same as any other browser (Chrome, Edge).",
+      "On first launch, sign in with a free Perplexity account, or create one.",
+      "Comet will offer to import your existing browser's history, bookmarks and passwords — this step is optional, the browser works without it.",
+      "Open the Comet Assistant (the sidebar panel — its exact icon/label can shift between versions, so if it's not obvious, check Comet's own onboarding tour, which points it out).",
+      "Type a real task in plain English — e.g. \"find a flight from my city to London next weekend and show me the three cheapest options.\"",
+      "Watch it work: Comet shows each step it takes as it browses, not just a final answer — you can stop or correct it mid-task.",
+      "Start with a short, one-destination task before trying anything with multiple steps chained together — that's exactly where it's most likely to break (see Limits).",
+    ],
+    changes: [
+      "The real number, from an independent test across 136 real websites: the strongest AI browser agent completed 61.3% of 300 everyday tasks; most agents scored closer to 30%.",
+      "A human given the identical list of tasks completes nearly all of them — the gap between that and even the best agent is the part a product demo never shows.",
+      "Comet's free tier already includes agentic browsing (form-filling, shopping, multi-step workflows) — this isn't a paywalled preview feature.",
+    ],
+    limits: [
+      "It does not reliably chain many steps together — a wrong turn early in a long task compounds, and everything after it goes wrong too. Shorter, single-purpose tasks are where it's actually reliable today.",
+      "A paid \"background assistant\" tier exists for running tasks without watching them live — the free tier expects you to stay present and check in.",
+      "This episode names one specific browser (Comet) and one specific benchmark, both current as of publishing — re-check both if this episode is more than a few months old; this category is moving fast.",
+      "Not a security review: agentic browsers as a category have documented risks around a malicious page hijacking an agent's actions — this episode doesn't cover that side, only whether the everyday-task claim holds up.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

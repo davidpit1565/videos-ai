@@ -1,0 +1,16 @@
+Can an AI browser actually run your errands? We tested the real number
+
+An AI browser agent promises to take a task, browse the web, and finish it — no
+clicking required. A real test put that claim to work: 300 everyday tasks across 136
+real websites. The strongest AI browser agent finished 61.3% of them. Most agents
+landed closer to 30%. A person handed the same list clears almost all of it.
+
+The one actually worth trying is Perplexity's Comet browser — free, available on
+every platform, and upfront about what still breaks it: long multi-step chains,
+where one wrong step early ruins everything that follows.
+
+Full setup — the exact install and the exact clicks: actually-works.com/e/21
+
+Follow for the setup that actually works.
+
+#ai #perplexity #comet #aitools #browseragent #agenticbrowsing
