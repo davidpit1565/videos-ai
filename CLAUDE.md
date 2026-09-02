@@ -58,6 +58,14 @@ been running for days.
   publication id is public; the API key is not.
 - **Nothing ships untested silently.** If something was built but not run — the n8n workflow,
   for instance — the file says so in plain language.
+- **Every episode ships with a full, exact setup path the viewer can actually follow —
+  standing, not optional, from episode 21 on.** Decided 2.9.2026, alongside choosing the
+  "live test / escalate until it breaks" format for episode 21: watching isn't enough, a
+  viewer has to be able to install or replicate whatever the episode shows on their own
+  side by the end of it. Write it per `explain-steps` — numbered clicks, interface labels in
+  both languages, the boring path, what happens after each step — and it goes on the
+  episode's own site page (`/e/N`), not just spoken narration a viewer can't pause and
+  copy from. Applies to every future reel/episode, whichever content pattern it uses.
 
 ## The voice
 
