@@ -94,15 +94,20 @@ async function createAndPublishIgMedia(
 
 export type IgFullPublishResult = {
   reel: IgPublishResult;
-  /** null when the reel itself failed — a story of a post that doesn't exist yet isn't attempted */
+  /** Always null now — see the comment above publishToInstagram for why the API-made
+   *  Story was dropped rather than kept as a fallback. Left in the type instead of
+   *  removed so nothing downstream has to change shape over a feature that's gone. */
   story: IgPublishResult | null;
 };
 
-/** Publishes the Reel, then — same video, same account, same confirm click he already
- *  gave — also publishes it as a Story. Two independent Graph API objects under the
- *  hood, run as one action because that's how he asked for it to work. The Story
- *  attempt only fires after the Reel really is live, and its own failure never hides
- *  or rolls back a successful Reel publish. */
+/** Publishes the Reel only. This used to also publish the same raw video file as a
+ *  second, independent Story right after — technically real, but visibly worse than
+ *  what he'd get by hand: Meta's Content Publishing API has no way to make the
+ *  "share this post to your Story" sticker (confirmed against Meta's own docs —
+ *  "Publishing stickers is not supported"), so the API version was a bare video with
+ *  no link back to the Reel, while tapping Instagram's native "Share to Story" on the
+ *  Reel itself produces the linked, branded version in five seconds. He asked for the
+ *  automatic one to stop rather than keep shipping the worse one by default. */
 export async function publishToInstagram(file: string, caption: string): Promise<IgFullPublishResult> {
   const token = await igToken();
   if (!token) return { reel: { ok: false, reason: "IG_ACCESS_TOKEN לא מוגדר" }, story: null };
@@ -112,10 +117,7 @@ export async function publishToInstagram(file: string, caption: string): Promise
 
   const videoUrl = `${SITE_URL}/reels/${encodeURIComponent(file)}`;
   const reel = await createAndPublishIgMedia(host, user, token, "REELS", videoUrl, caption, 75_000);
-  if (!reel.ok) return { reel, story: null };
-
-  const story = await createAndPublishIgMedia(host, user, token, "STORIES", videoUrl, undefined, 35_000);
-  return { reel, story };
+  return { reel, story: null };
 }
 
 // ───────────────────────── Facebook ─────────────────────────
