@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { BEEHIIV_PUB, fetchInstagram, fetchBeehiiv } from "@/lib/sources";
+import { BEEHIIV_PUB, fetchInstagram, fetchBeehiiv, fetchYouTube } from "@/lib/sources";
 import { deviceCount, publicKey } from "@/lib/push";
 import { dbVar, loadState } from "@/lib/db";
 
@@ -48,7 +48,11 @@ function relatedNames(): string[] {
 }
 
 export async function GET() {
-  const [instagram, beehiiv] = await Promise.all([fetchInstagram(), fetchBeehiiv()]);
+  const [instagram, beehiiv, youtube] = await Promise.all([
+    fetchInstagram(),
+    fetchBeehiiv(),
+    fetchYouTube(),
+  ]);
 
   // The one question this endpoint couldn't answer: not "is the connection alive" but
   // "did the auto-link actually run, and what did it decide" — which used to be readable
@@ -210,6 +214,19 @@ export async function GET() {
             shape: beehiiv.shape,
           }
         : { connected: false, reason: beehiiv.reason, detail: beehiiv.detail ?? null },
+      // Separate from /api/youtube/status on purpose: that endpoint reports the OAuth
+      // publish connection (GOOGLE_CLIENT_ID/SECRET, a refresh token in the DB) — this is
+      // the unrelated read-only stats fetch (YOUTUBE_API_KEY + CHANNEL_ID/HANDLE) that
+      // fills in ytViews. "Connected" on one has never implied anything about the other,
+      // and this endpoint used to say nothing about this half at all.
+      youtube: youtube.connected
+        ? {
+            connected: true,
+            channelTitle: youtube.channelTitle,
+            subscribers: youtube.subscribers,
+            fetchedVideos: youtube.videos.length,
+          }
+        : { connected: false, reason: youtube.reason, detail: youtube.detail ?? null },
     },
   });
 }
