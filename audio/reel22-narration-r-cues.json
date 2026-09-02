@@ -1,0 +1,92 @@
+[
+ {
+  "n": 1,
+  "line": "If it failed right now, would you even know?",
+  "start": 0.3,
+  "end": 2.68
+ },
+ {
+  "n": 2,
+  "line": "In n8n, an AI Agent calls a tool to do the real work.",
+  "start": 3.1,
+  "end": 6.94
+ },
+ {
+  "n": 3,
+  "line": "If that tool fails, the Agent can still finish green.",
+  "start": 7.36,
+  "end": 9.96
+ },
+ {
+  "n": 4,
+  "line": "Not a guess. It's an open issue on n8n's own GitHub, today.",
+  "start": 10.38,
+  "end": 14.01
+ },
+ {
+  "n": 5,
+  "line": "So we built one. One agent, one tool, one broken key.",
+  "start": 14.86,
+  "end": 18.88
+ },
+ {
+  "n": 6,
+  "line": "The tool failed. The dashboard called it a success.",
+  "start": 19.3,
+  "end": 22.06
+ },
+ {
+  "n": 7,
+  "line": "n8n treats that failure as the Agent's own thinking, not as an error.",
+  "start": 22.48,
+  "end": 26.64
+ },
+ {
+  "n": 8,
+  "line": "Build these for a client? You won't catch it. They will.",
+  "start": 27.06,
+  "end": 30.24
+ },
+ {
+  "n": 9,
+  "line": "n8n. A real tool. Use it with care.",
+  "start": 31.09,
+  "end": 34.56
+ },
+ {
+  "n": 10,
+  "line": "What it's good at: real tools, real work, fast to build.",
+  "start": 34.98,
+  "end": 38.82
+ },
+ {
+  "n": 11,
+  "line": "What it hides: a failed step, with no alarm at all.",
+  "start": 39.24,
+  "end": 42.32
+ },
+ {
+  "n": 12,
+  "line": "So check the real output. Not the color.",
+  "start": 42.74,
+  "end": 45.11
+ },
+ {
+  "n": 13,
+  "line": "Green isn't proof. It's just a paint job.",
+  "start": 45.53,
+  "end": 48.14
+ },
+ {
+  "n": 14,
+  "line": "The setup's in the link in bio.",
+  "start": 48.99,
+  "end": 50.8
+ },
+ {
+  "n": 15,
+  "line": "Follow for the setup that actually works.",
+  "start": 51.22,
+  "end": 53.44
+ }
+]

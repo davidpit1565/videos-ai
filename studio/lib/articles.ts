@@ -535,6 +535,36 @@ export const ARTICLES: Article[] = [
       "Not a security review: agentic browsers as a category have documented risks around a malicious page hijacking an agent's actions — this episode doesn't cover that side, only whether the everyday-task claim holds up.",
     ],
   },
+  {
+    n: 22,
+    title: "n8n's AI Agent can lie to you — and still show green",
+    standfirst:
+      "In n8n, when an AI Agent calls a tool and that tool fails, the Agent itself can " +
+      "still finish green. Real, open, unresolved on n8n's own GitHub. We built one: " +
+      "one agent, one tool, one deliberately broken key. The tool failed. The dashboard " +
+      "called it a success — because n8n's own error trigger alone doesn't catch this.",
+    steps: [
+      "This fix has two parts — a workflow-level error trigger alone does not catch this, because the AI Agent resolves the failure internally before the workflow ever \"errors.\" Both parts are needed.",
+      "Part 1 — make every tool report its own status honestly. Open each Tool node your AI Agent calls. For an HTTP Request tool, go to Options → Response and enable \"Never Error\" — this stops the tool from throwing silently and lets you inspect what actually happened instead.",
+      "For a Code node or sub-workflow used as a tool, wrap its logic so it always returns one structured object instead of throwing: {\"status\": \"ok\" | \"failed\" | \"empty\", \"data\": ...} — a plain success/failure field the next step can actually read.",
+      "Part 2 — add a real check after the Agent. Add an IF node (or a Code node) directly after your AI Agent node.",
+      "In that node, check the Agent's own output for the failure signs: any tool result where status equals \"failed\", a tool missing entirely from the Agent's intermediate steps, or a result with zero items where you expected real data.",
+      "Route the \"broken\" branch of that IF node into a Stop And Error node — this is what actually makes the workflow fail for real, instead of silently continuing on bad data.",
+      "Only now does the standard fix apply: create a small separate workflow starting with an Error Trigger node (no configuration needed) — this is where you add a Slack/email/Discord alert.",
+      "In your main workflow (the one with the Agent), open the three-dot menu → Settings → Error Workflow, and select the error-handler workflow you just made. Save.",
+      "Test it honestly: temporarily break one tool on purpose (a wrong API key works well) and run the workflow for real. If you did this right, you get an actual alert — not a quiet green checkmark.",
+    ],
+    changes: [
+      "A real, sourced defect: n8n's own GitHub has two separate open issues on this (#22771, #24042), and an active 2026 community thread from someone already on n8n's latest version — this isn't a stale, already-fixed bug.",
+      "n8n treats a tool's failure as part of the AI Agent's own reasoning process, not as a workflow execution error — so the built-in Error Workflow mechanism never fires on its own, no matter how it's configured.",
+      "The real fix isn't the Error Trigger alone — it's making every tool report status honestly, checking that status right after the Agent, and deliberately throwing before anything destructive happens.",
+    ],
+    limits: [
+      "This is a design characteristic of n8n's current AI Agent node, confirmed as unresolved as of this episode's publishing (one fix proposal was closed \"not planned\" in March 2026) — re-check n8n's own GitHub if this episode is more than a few months old.",
+      "The fix adds real setup work per tool, per agent — it does not come free, and skipping it on even one tool leaves that one silent.",
+      "This episode covers one specific, documented failure mode (a tool call failing silently inside an Agent) — not a general audit of n8n's reliability.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

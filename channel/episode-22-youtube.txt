@@ -1,0 +1,23 @@
+n8n's AI Agent can lie to you — and still show green
+
+In n8n, an AI Agent calls a tool to do the real work. When that tool fails, the
+Agent itself can still finish with a green checkmark — n8n treats the tool's failure
+as part of the Agent's own reasoning, not as an execution error, so the built-in
+Error Workflow never fires. This is a real, open, unresolved issue on n8n's own
+GitHub (issues #22771 and #24042), and an active community thread as of 2026 — not a
+one-off bug on an old version.
+
+We built one: one agent, one tool, one deliberately broken key. The tool failed. The
+dashboard called it a success.
+
+If you build automations like this for a client, you won't be the one who notices
+first — they will.
+
+The fix isn't the error-trigger workflow alone — that doesn't catch this on its own.
+It's making every tool report its status honestly, checking that status right after
+the Agent, and forcing a real failure before anything destructive happens — only then
+does the alert actually fire. Full setup — the exact clicks: actually-works.com/e/22
+
+Follow for the setup that actually works.
+
+#ai #n8n #automation #aiagents #nocode #workflowautomation
