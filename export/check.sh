@@ -10,7 +10,11 @@ BUILD="$1"; VO="$2"; MP4="${3:-}"
 fail=0
 
 echo "=== narration"
-python3 audio/voice_doctor.py "$VO" ${ACCEPT_WORDS:+--accept "$ACCEPT_WORDS"} || fail=1
+# --deep: the per-word pass, not just the per-line one. Episode 22 shipped with "would"
+# measuring 0.08s against neighbors at 0.15-0.4s — a swallowed word the per-line
+# averages never showed, because the rest of that line's words were normal. The
+# per-word check existed in this tool already; it just wasn't being run here.
+python3 audio/voice_doctor.py "$VO" --deep ${ACCEPT_WORDS:+--accept "$ACCEPT_WORDS"} || fail=1
 
 echo
 echo "=== frame layout"

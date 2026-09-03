@@ -38,6 +38,20 @@ DEAD_SIB = 5.0          # dB of sibilance residual worth touching
 VOWELS = re.compile(r"[aeiouy]+", re.I)
 SIBILANT = re.compile(r"sh|ch|ss|s|z|x|c[ei]", re.I)
 
+def canonical_words():
+    """Words from the locked closing lines (canonical-lines.json) — the same clip,
+    byte-for-byte, on every episode that uses it. If one of its words runs fast
+    against a given episode's median, that is a property of the already-approved
+    take meeting a different episode's rhythm, not a new defect to re-litigate on
+    every single check."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                        "voice/profile/canonical-lines.json")
+    try:
+        lines = json.load(open(path)).keys()
+    except (FileNotFoundError, json.JSONDecodeError):
+        return set()
+    return {w.strip(",.!?—\"'").lower() for line in lines for w in line.split()}
+
 
 def load(path):
     with wave.open(path) as w:
@@ -170,7 +184,12 @@ def deep(path, rows):
     """Per-word endings and per-word S, for the lines the cheap pass flagged."""
     from faster_whisper import WhisperModel
     y, sr = load(path)
-    m = WhisperModel("base", device="cpu", compute_type="int8",
+    # "medium", not "base" — the same model size word_stamps.py already uses for the
+    # real shipped captions. "base"'s word boundaries are coarse enough that it missed
+    # episode 22's actual defect entirely (measured "would" at 0.20s, dead center of
+    # the episode's own median, while "medium" — and the captions Whisper pass that
+    # actually shipped — measured the same word at 0.08s).
+    m = WhisperModel("medium", device="cpu", compute_type="int8",
                      cpu_threads=int(os.environ.get("VOICE_THREADS", "2")))
     segs, _ = m.transcribe(path, word_timestamps=True, language="en")
     out = []
@@ -375,6 +394,7 @@ def main():
             print("    nothing needed correcting")
 
     words = deep(a.wav, rows) if a.deep else None
+    rushed_bad = []
     if words:
         tail_med, tail_floor = mad_floor([w["tail"] for w in words])
         sib_med, sib_floor = mad_floor([w["sib"] for w in words])
@@ -386,15 +406,47 @@ def main():
             print(f"    {w['at']:>6.2f}s  {w['word']:<14} ending {w['tail']:>6.1f} dB")
         per_med, _ = mad_floor([w["per"] for w in words])
         pv = np.array([w["per"] for w in words])
-        ceiling = float(np.median(pv) + 2.5 * 1.4826 * np.median(np.abs(pv - np.median(pv))))
+        mad = 1.4826 * np.median(np.abs(pv - np.median(pv)))
+        ceiling = float(np.median(pv) + 2.5 * mad)
         smeared = sorted([w for w in words if w["per"] > ceiling],
                          key=lambda w: -w["per"])[:8]
+        # Real, short function words ("it", "in", "a") are legitimately fast — their
+        # own natural spread would otherwise set the floor for content words too,
+        # which is exactly backwards: a 2-letter word at 0.1s/syllable is normal, a
+        # 6-letter word at 0.1s/syllable is the swallowed one. The floor below is
+        # built only from words long enough that "fast" is actually informative.
+        content_pv = np.array([w["per"] for w in words if len(w["word"]) > 2])
         print(f"  held too long (over {ceiling:.3f}s per syllable, median {per_med:.3f}):")
         if not smeared:
             print("    none — no word is held out of line with the rest")
         for w in smeared:
             print(f"    {w['at']:>6.2f}s  {w['word']:<14} {w['per']:.3f}s per syllable "
                   f"({w['dur']:.2f}s)")
+        # The opposite defect, and the one that actually reached him first (episode 22:
+        # "would" measured 0.08s against neighbors at 0.15-0.4s) — a word compressed
+        # far below his own median reads as swallowed/clipped, the same complaint as a
+        # missing tail, just visible in duration instead of high-frequency energy. Same
+        # robust floor as the ceiling above, mirrored downward. Skip short words (a,
+        # to, of, you, it) — real speech has genuinely fast function words, wide
+        # enough on their own that a MAD-based floor computed from them (or even from
+        # slightly longer words alone) routinely goes negative and never fires, which
+        # measured false on this exact file before this ratio replaced it. A word's
+        # own per-syllable time under half this narration's median is the tell —
+        # verified against episode 22's real defect ("would", 0.08s against a 0.2s
+        # median) without false-flagging its genuinely-fast short words.
+        content_med = float(np.median(content_pv)) if content_pv.size else per_med
+        floor = 0.5 * content_med
+        canon = canonical_words()
+        rushed = sorted([w for w in words if len(w["word"]) >= 4 and w["per"] < floor
+                         and w["word"].strip(",.!?—").lower() not in canon],
+                        key=lambda w: w["per"])[:8]
+        print(f"  rushed / clipped (under {floor:.3f}s per syllable):")
+        if not rushed:
+            print("    none — no word is compressed out of line with the rest")
+        for w in rushed:
+            print(f"    {w['at']:>6.2f}s  {w['word']:<14} {w['per']:.3f}s per syllable "
+                  f"({w['dur']:.2f}s) — likely swallowed, re-roll this line")
+        rushed_bad = [w["word"] for w in rushed if w["word"].strip(",.!?").lower() not in accepted]
         ess = [w for w in words if re.search(r"[szc]", w["word"], re.I)]
         if ess:
             for w in sorted(ess, key=lambda w: w["sib"])[:6]:
@@ -429,7 +481,7 @@ def main():
                 print(f"  the take-level check runs before the mix; this runs on the file "
                       f"that actually ships. Re-roll the flagged line and rebuild.")
 
-    return 1 if (watch_bad or any(s == 3 for s, *_ in issues)) else 0
+    return 1 if (watch_bad or rushed_bad or any(s == 3 for s, *_ in issues)) else 0
 
 
 if __name__ == "__main__":

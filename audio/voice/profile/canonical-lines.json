@@ -1,4 +1,7 @@
 {
   "Follow for the setup that actually works.": "audio/voice/profile/canon-follow.wav",
-  "The setup's in the link in bio.": "audio/voice/profile/canon-linkbio.wav"
+  "The setup's in the link in bio.": "audio/voice/profile/canon-linkbio.wav",
+  "If it failed right now, would you even know?": "audio/voice/profile/canon-reel22-line1.wav",
+  "If that tool fails, the Agent can still finish green.": "audio/voice/profile/canon-reel22-line3.wav",
+  "Not a guess. It's an open issue on n8n's own GitHub, today.": "audio/voice/profile/canon-reel22-line4.wav"
 }
