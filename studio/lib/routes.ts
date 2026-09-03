@@ -15,11 +15,12 @@
 /** the private tool: the whole business is in here */
 export const STUDIO = [
   "/studio", "/videos", "/analytics", "/week", "/pipeline", "/agent", "/renders", "/templates",
+  "/higgsfield",
   // named separately from the public manifest, and gated like everything else here: a
   // manifest that can be fetched is a manifest that tells a stranger the tool exists
   "/studio.webmanifest",
   "/api/state", "/api/agent", "/api/idea-score", "/api/instagram", "/api/youtube", "/api/beehiiv", "/api/push",
-  "/api/ideas-backlog",
+  "/api/ideas-backlog", "/api/higgsfield",
   // /api/youtube/callback is under /api/youtube, already listed — Google's redirect back
   // from the consent screen is a same-browser top-level GET, so the "studio" cookie (set
   // sameSite:lax) still rides along and the PIN gate passes normally.

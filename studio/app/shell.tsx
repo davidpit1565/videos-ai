@@ -84,6 +84,7 @@ const TABS = [
   { href: "/templates", label: "תבניות" },
   { href: "/pipeline", label: "צינור" },
   { href: "/agent", label: "סוכן" },
+  { href: "/higgsfield", label: "Higgsfield" },
 ];
 
 /** The funnel pages are public, English and LTR — they must not inherit the studio's
