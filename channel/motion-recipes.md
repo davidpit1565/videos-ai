@@ -205,10 +205,22 @@ confirmed correct across the wrap point — no sliver bug) before shipping. Incl
 with `<script src="../export/motion-kit.js">` in a reel build and call its functions
 from the build's own `render()`/`__frame(t)` loop.
 
-**Not done yet:** the reel template `produce.sh` actually builds from doesn't call
-`MotionKit` anywhere — no shipped episode uses it. The real next step: update that
-template so a new episode gets the right recipe per scene type automatically — hook
-scenes get recipe 1, `.quote` scenes get recipe 2, contradiction/scoreboard scenes get
-recipe 3, every scene transition gets recipe 4 (matched to the episode's mood), and
-recipe 5 gets used once, deliberately, at the actual reveal beat. Not a rewrite of every
-past episode — applied going forward, the same rule the jargon-audit fix used.
+**Step two, partly done: `video/reel-template.html`** is a real starter build — copy it
+to start a new episode instead of copying an old shipped episode's file. It wires in
+**recipe 4 (zoom-through transitions) universally**: every scene now crosses into the
+next with `MotionKit.zoomThroughTransition`, not the flat `.scene{opacity:0/1}` hard-cut
+every episode has shipped with so far. Verified the same way as the module itself — a
+real frame-by-frame capture (`export/frames.js`) confirmed the transitions actually
+render (blur/scale/fade crossing correctly at each scene boundary), and
+`node export/safe_check.js video/reel-template.html` came back clean across the whole
+runtime, not just eyeballed.
+
+**Not done yet, and here's exactly why:** recipes 1-3 (hook word-by-word, quote
+per-word highlight, scoreboard stagger) are NOT wired into the template. They need a
+word-splitter that can wrap words inside existing inline markup — a `<br>`, a
+`<span class="box">` — without breaking it. `MotionKit.splitWords()` only takes plain
+text; calling it on `h2.innerHTML` as-is would silently mangle the boxed-word markup
+every hook scene already relies on. That's a real, separate piece of work (a markup-safe
+word-wrapper), not something to fake by skipping the markup-preserving case. Until it
+exists, `video/reel-template.html`'s beat-level animation (`.b`/`.kb`) is unchanged from
+what has already shipped — functional, just not upgraded to recipes 1-3 yet.

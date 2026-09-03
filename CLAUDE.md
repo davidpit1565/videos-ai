@@ -164,8 +164,14 @@ honest about what we actually know.
   hard-cuts between scenes with zero transition, which `hyperframes-animation`'s own
   rules call a non-negotiable gap), and one GPU-tier fragment-shatter hero beat reserved
   for a single real reveal per episode.** Verified in isolated demos David approved one
-  at a time; not yet wired into the reel template `produce.sh` builds from — do that
-  before claiming a future episode uses them.
+  at a time, then extracted into a real shared module, `export/motion-kit.js`
+  (`window.MotionKit`), re-verified with its own frame capture. **`video/reel-template.html`**
+  is the real starter build to copy for a new episode — it wires in recipe 4
+  (zoom-through transitions) universally, verified clean end-to-end with
+  `export/safe_check.js`. Recipes 1-3 (hook word-by-word, quote highlight, scoreboard
+  stagger) are still NOT wired into it — they need a word-splitter that preserves
+  existing inline markup (`<br>`, `<span class="box">`) instead of mangling it, which
+  doesn't exist yet. Don't claim a future episode uses recipes 1-3 until that lands.
 - Reels render with `FRAMES=1 ./export/render.sh <build> 1080 1920 <seconds> <vo.wav> <out.mp4> [music.wav]`
   — frame-by-frame capture, because recorded playback drifted up to two seconds.
 - Music is generated to the exact length: `python3 audio/build_music.py <seconds> <out.wav>`.
