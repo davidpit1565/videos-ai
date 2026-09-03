@@ -193,11 +193,22 @@ const rng = mulberry32(42);
 
 ## Rewiring this into produce.sh
 
-None of the five recipes above are live in the pipeline yet. The real next step: turn
-each into a small reusable JS/CSS partial (matching the existing `.kb`/`.b` convention
-in the reel template), and update the reel template that `produce.sh` builds from so a
-new episode gets the right recipe per scene type automatically — hook scenes get recipe
-1, `.quote` scenes get recipe 2, contradiction/scoreboard scenes get recipe 3, every
-scene transition gets recipe 4 (matched to the episode's mood), and recipe 5 gets used
-once, deliberately, at the actual reveal beat. Not a rewrite of every past episode —
-applied going forward, the same rule the jargon-audit fix used.
+**Step one is done: `export/motion-kit.js`** is a real, tested `window.MotionKit`
+module implementing all five recipes as plain functions (`splitWords`/`animateWords`,
+`buildHighlightBars`/`animateHighlightBars`, `animatePop`/`animateGlowBloom`,
+`impactShake`, `multiPhaseCamera`, `zoomThroughTransition`/`transitionFlash`,
+`buildShatter`) — pure math driven by a single `t` per frame, no `Math.random()`, no
+real-time clock, matching the deterministic pattern `FRAMES=1` capture requires. It was
+extracted directly from the demo code above and re-verified with its own frame-by-frame
+capture (word-by-word build + per-word highlight bars on a line-wrapping phrase,
+confirmed correct across the wrap point — no sliver bug) before shipping. Include it
+with `<script src="../export/motion-kit.js">` in a reel build and call its functions
+from the build's own `render()`/`__frame(t)` loop.
+
+**Not done yet:** the reel template `produce.sh` actually builds from doesn't call
+`MotionKit` anywhere — no shipped episode uses it. The real next step: update that
+template so a new episode gets the right recipe per scene type automatically — hook
+scenes get recipe 1, `.quote` scenes get recipe 2, contradiction/scoreboard scenes get
+recipe 3, every scene transition gets recipe 4 (matched to the episode's mood), and
+recipe 5 gets used once, deliberately, at the actual reveal beat. Not a rewrite of every
+past episode — applied going forward, the same rule the jargon-audit fix used.
