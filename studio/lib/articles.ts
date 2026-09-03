@@ -86,11 +86,12 @@ export const ARTICLES: Article[] = [
       "Five ways agents fail silently, in every real build — not a hype reel, the honest list. " +
       "One line to add to your own prompt closes the worst of them.",
     steps: [
-      "Open the system prompt of any agent you have built or are testing.",
-      "Add one sentence: \"If you're not sure, say so instead of guessing.\"",
-      "Give it a task where the honest answer is \"I don't know\" or \"this failed.\"",
-      "Check what it actually says — not what it does next, what it reports.",
-      "If it still claims success on a failure, the prompt line did not fix the underlying problem, only the wording.",
+      "Find where your agent's starting instructions live — that's what \"system prompt\" means, the text it reads before your first message. In ChatGPT: Settings → Personalization → Custom instructions. In n8n or a similar builder: the agent node's own \"System Message\" field.",
+      "Add one sentence, word for word: \"If you're not sure, say so instead of guessing.\"",
+      "Save it.",
+      "Give the agent a task where the honest answer is \"I don't know\" or \"this failed\" — something you already know it can't actually do.",
+      "Read exactly what it says back — not what it does next, what it reports.",
+      "If it still claims success on that failure, the line changed its wording, not the underlying problem — that's a real result, not a broken test.",
     ],
     changes: [
       "It says it's done when it is not — check the actual result, not the report.",
@@ -156,10 +157,11 @@ export const ARTICLES: Article[] = [
       "It forgets everything between sessions, it gets stuck the moment a site asks for a " +
       "login, and it can send something you never meant to send. Three one-line fixes, no rebuild.",
     steps: [
-      "Open the system prompt or instructions of any agent you're running.",
-      "Add one line: paste in what changed since last session, instead of trusting it to remember.",
-      "Add a second line: stop and ask at any login screen — never guess a password or click through one.",
-      "Add a third line: always create a draft, never send. You click send yourself.",
+      "Find where your agent's starting instructions live (its \"system prompt\" — the text it reads before your first message). In ChatGPT: Settings → Personalization → Custom instructions. In n8n or Make: the agent node's own \"System Message\" field.",
+      "Add: \"At the start of each session I'll tell you what changed since last time — don't assume you remember on your own.\"",
+      "Add a second line: \"If a site asks you to log in, stop and ask me — never guess a password or click through a login screen yourself.\"",
+      "Add a third line: \"Always create a draft. Never send anything yourself — I'll click send.\"",
+      "Save, then test each one on purpose: point it at a login-walled page and give it something to send, and confirm it stops both times instead of acting.",
     ],
     changes: [
       "It forgets everything between sessions by default — the memory line fixes what it's told, not what it retains.",
@@ -178,10 +180,13 @@ export const ARTICLES: Article[] = [
       "\"n8n ai agent tutorial\" is the single highest-demand AI topic we've measured. The common " +
       "failure: a workflow with no branch for its own uncertainty, so a bad answer ships like a good one.",
     steps: [
-      "Open any n8n agent workflow you've built, right before the node that sends its output.",
-      "Add an IF node that checks the agent's own confidence or a validation result.",
-      "Route the low-confidence branch to a human — a Slack message, an email, a review queue.",
-      "Only let the high-confidence branch reach the original output node.",
+      "Open the n8n workflow with your AI Agent in it, and find where its output currently connects straight into the next step (the one that sends or saves the result).",
+      "In the node panel on the left, search \"If\" and drag an IF node — n8n's branching block, one input and two outputs (\"true\" / \"false\") based on a condition you set — onto the canvas between the Agent and that next step.",
+      "Delete the direct wire from the Agent to the next step, then wire the Agent's output into the IF node instead.",
+      "Set the IF node's condition to check whatever tells you the answer might be shaky — a confidence field the Agent already outputs, or a plain rule like \"is this field empty.\"",
+      "Wire the IF node's \"true\" output (the low-confidence branch) to a Slack message, an email node, or wherever a person will actually see it — not back into the original flow.",
+      "Wire the \"false\" output (the confident branch) into the same next step that was connected before.",
+      "Run the workflow once with a case you expect to be low-confidence, and confirm it lands with a person instead of going straight out.",
     ],
     changes: [
       "Without the check, the workflow ships the wrong result exactly the way it ships a right one — nothing distinguishes them downstream.",
@@ -221,10 +226,11 @@ export const ARTICLES: Article[] = [
       "Once a message is sent, a wrong tone or a wrong fact can't be taken back. One switch " +
       "in the workflow keeps every send a human decision: create draft, never send.",
     steps: [
-      "Open the step in your email agent's workflow where it currently sends a message.",
-      "Change that step from send to create draft.",
-      "Read the draft yourself.",
-      "Click send yourself, every time — the agent's job ends at the draft.",
+      "Find the exact step in your email agent's workflow that sends the message — in n8n this is usually a \"Send Email\" or Gmail/Outlook node; in Zapier or Make, the final email action in the flow.",
+      "Open that step and change its action from \"Send\" to \"Create Draft\" — most email nodes have Draft sitting in the same dropdown as Send.",
+      "Run the workflow once and check that account's Drafts folder yourself, to confirm it actually landed there instead of going out.",
+      "Read the draft yourself before doing anything else with it.",
+      "Click send yourself, from your own inbox, every time — the workflow's job now ends at the draft.",
     ],
     changes: [
       "A wrong tone or a wrong fact in a sent email can't be taken back — a draft can be edited or deleted before anyone sees it.",
@@ -242,10 +248,12 @@ export const ARTICLES: Article[] = [
       "By the time a person notices a new lead, it's often already gone cold. An n8n agent " +
       "replies in under a minute — but only the safe part is automatic. The rest becomes a draft.",
     steps: [
-      "Wire an n8n agent to reply to a new lead the moment it comes in.",
-      "Let it auto-send only the safe acknowledgment.",
-      "Route anything that needs a real decision or a real answer to a draft instead.",
-      "Have a person review and send the draft ones — never auto-sent.",
+      "In n8n, connect your lead-intake trigger (a form submission, a new CRM record, a webhook) directly into an AI Agent node that drafts the reply.",
+      "Right after the Agent, add an IF node (n8n's branching block — search \"If\" in the node panel) that checks whether the reply is a safe acknowledgment (\"thanks, someone will follow up\") or something needing a real decision (a price, a yes/no, a specific answer).",
+      "Wire the \"safe\" branch straight into a Send Email node — this one goes out automatically, with no review.",
+      "Wire the \"needs judgment\" branch into a Create Draft step instead of Send — same fix as episode 9.",
+      "Have a real person check that drafts folder on a schedule — a draft nobody reads is the same as no reply at all.",
+      "Test it with two example leads: one where a plain acknowledgment is genuinely enough, one where it clearly isn't — confirm each one takes the branch it should.",
     ],
     changes: [
       "Response time drops from however long a human takes to notice, to under a minute, day or night.",
@@ -263,10 +271,12 @@ export const ARTICLES: Article[] = [
       "A word loses its ending, an S goes dull or too hot — most listeners can't name it, only " +
       "feel that something's slightly off. voice_doctor.py measures it directly, before it ships.",
     steps: [
-      "Run AI-voiced narration through a measurement tool before shipping it — not your ear alone.",
-      "Check it against pacing, rate, sibilance, and word endings, measured against that narration's own median.",
-      "If a line fails, run --repair — it levels that line to the median and re-checks its own fix.",
-      "Only ship once a pass finds nothing left to flag.",
+      "Open a terminal (a text window where you type a command and press enter) in the folder that has your narration file and voice_doctor.py.",
+      "Type: python3 voice_doctor.py your-narration-file.wav — and press enter.",
+      "Read the report it prints: pacing, rate, sibilance (how harsh the S sounds are), and word-ending strength, each measured against that same file's own average line, not a fixed outside standard.",
+      "If a line is flagged, run it again with the repair option: python3 voice_doctor.py your-narration-file.wav --repair fixed-file.wav — this levels just that line to match the rest.",
+      "Run the same check again on the repaired file, to confirm the flag is actually gone, not just quieter.",
+      "Only ship once a run comes back with nothing left flagged.",
     ],
     changes: [
       "A dulled word ending or a too-hot S is something most listeners can't name, but hear as \"something's a little off\" — measuring it directly catches what conscious listening misses.",
@@ -419,7 +429,7 @@ export const ARTICLES: Article[] = [
     limits: [
       "This catches whether a sentence is understandable, not whether it's factually correct — a wrong but clearly-worded claim still needs separate fact-checking (see episode 15's own correction).",
       "It works best with a second person; testing it on yourself only works if you can genuinely forget what you meant to say, which is harder than it sounds.",
-      "Four other spots in the back catalog (episodes 3, 7, 10, 11) were already found to have the same kind of unexplained jargon and haven't been rebuilt yet — this rule is applied going forward, not retroactively to published episodes.",
+      "This rule caught real gaps in the back catalog too (episodes 3, 6, 7, 9, 10, 11 all had unexplained jargon or steps too vague to actually follow) — those have since been rewritten to the same standard, not left as an exception.",
     ],
   },
   {
@@ -544,6 +554,7 @@ export const ARTICLES: Article[] = [
       "one agent, one tool, one deliberately broken key. The tool failed. The dashboard " +
       "called it a success — because n8n's own error trigger alone doesn't catch this.",
     steps: [
+      "Quick term check: in n8n, a \"node\" is one block in your workflow — you drag it in from the panel on the left and wire it to the blocks before and after it. Every \"node\" below is one of these blocks.",
       "This fix has two parts — a workflow-level error trigger alone does not catch this, because the AI Agent resolves the failure internally before the workflow ever \"errors.\" Both parts are needed.",
       "Part 1 — make every tool report its own status honestly. Open each Tool node your AI Agent calls. For an HTTP Request tool, go to Options → Response and enable \"Never Error\" — this stops the tool from throwing silently and lets you inspect what actually happened instead.",
       "For a Code node or sub-workflow used as a tool, wrap its logic so it always returns one structured object instead of throwing: {\"status\": \"ok\" | \"failed\" | \"empty\", \"data\": ...} — a plain success/failure field the next step can actually read.",
