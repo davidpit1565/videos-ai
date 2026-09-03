@@ -443,24 +443,18 @@ export default function Videos() {
                     <td className="num">{n(v.views)}</td>
                     <td className="num">{n(v.likes)}</td>
                     <td>
-                      <select
-                        className="cell"
-                        defaultValue=""
-                        onChange={(ev) => {
-                          const id = ev.target.value;
-                          if (!id) return;
-                          const ep = state.episodes.find((x) => x.id === id);
-                          if (
-                            ep &&
-                            named !== null &&
-                            named !== ep.number &&
-                            !confirm(
-                              `התיאור של הסרטון הזה מציין בעצמו ריל ${named}, לא ריל ${ep.number}. לקשר בכל זאת לריל ${ep.number}?`,
-                            )
-                          ) {
-                            ev.target.value = "";
-                            return;
-                          }
+                      {/** The native <select> below is the original control — kept for the
+                       *  case where the video's description doesn't name an episode at all.
+                       *  He hit a real dead end with it once (2.9.2026): the dropdown opened,
+                       *  a row highlighted, and nothing — no change event, no network
+                       *  request, in Chrome and in the wrapped app alike, across mouse and
+                       *  keyboard. Never root-caused (no console error either), so instead
+                       *  of leaving the one linking control on this page a single point of
+                       *  failure, the common case — the video's own description already
+                       *  names the right episode — gets a plain button that does the exact
+                       *  same update() with one click, no dropdown involved at all. */}
+                      {(() => {
+                        function linkTo(id: string) {
                           update((d) => {
                             const ep = d.episodes.find((x) => x.id === id);
                             if (!ep) return;
@@ -476,16 +470,47 @@ export default function Videos() {
                             ep.publishedAt = v.publishedAt?.slice(0, 10) ?? ep.publishedAt;
                             ep.status = "live";
                           });
-                        }}
-                      >
-                        <option value="">בחר ריל…</option>
-                        {state.episodes.map((e) => (
-                          <option key={e.id} value={e.id}>
-                            {e.number === named ? "→ " : ""}
-                            {e.number}. {e.title}
-                          </option>
-                        ))}
-                      </select>
+                        }
+                        const namedEp = named !== null ? state.episodes.find((e) => e.number === named) : undefined;
+                        return (
+                          <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+                            {namedEp && (
+                              <button type="button" className="btn small" onClick={() => linkTo(namedEp.id)}>
+                                קשר לריל {named} (מה שהתיאור מציין)
+                              </button>
+                            )}
+                            <select
+                              className="cell"
+                              defaultValue=""
+                              onChange={(ev) => {
+                                const id = ev.target.value;
+                                if (!id) return;
+                                const ep = state.episodes.find((x) => x.id === id);
+                                if (
+                                  ep &&
+                                  named !== null &&
+                                  named !== ep.number &&
+                                  !confirm(
+                                    `התיאור של הסרטון הזה מציין בעצמו ריל ${named}, לא ריל ${ep.number}. לקשר בכל זאת לריל ${ep.number}?`,
+                                  )
+                                ) {
+                                  ev.target.value = "";
+                                  return;
+                                }
+                                linkTo(id);
+                              }}
+                            >
+                              <option value="">בחר ריל…</option>
+                              {state.episodes.map((e) => (
+                                <option key={e.id} value={e.id}>
+                                  {e.number === named ? "→ " : ""}
+                                  {e.number}. {e.title}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        );
+                      })()}
                     </td>
                   </tr>
                 );
