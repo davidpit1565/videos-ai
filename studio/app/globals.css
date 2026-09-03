@@ -252,6 +252,7 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
   /* Same reasoning as .note above — the agent's answer is free-form prose and a 1120px-
      wide shell let it run a full line width nobody can comfortably read in one pass. */
   max-width:74ch}
+.answer .btn.small{margin-bottom:14px}
 .spin{display:inline-block;width:15px;height:15px;border:2px solid var(--brass-dim);
   border-top-color:var(--brass);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-3px}
 @keyframes sp{to{transform:rotate(360deg)}}
