@@ -17,12 +17,14 @@ export default function AgentPage() {
   const [busy, setBusy] = useState(false);
   const [answer, setAnswer] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [copyState, setCopyState] = useState<"idle" | "done" | "failed">("idle");
 
   async function ask(question: string) {
     if (!state || !question.trim() || busy) return;
     setBusy(true);
     setErr(null);
     setAnswer(null);
+    setCopyState("idle");
     try {
       const r = await fetch("/api/agent", {
         method: "POST",
@@ -118,7 +120,32 @@ export default function AgentPage() {
           {err}
         </div>
       )}
-      {answer && <div className="answer">{answer}</div>}
+      {answer && (
+        <div className="answer">
+          {/* Copying a long answer by hand (select, scroll, select more) on a phone is
+              exactly what he flagged as painful — same fix as the caption's own copy
+              button (renders/copy.tsx), so both places behave the same way. Only shown
+              once the answer has actually finished streaming in — copying mid-stream
+              would copy a half-written sentence. */}
+          {!busy && (
+            <button
+              type="button"
+              className="btn small"
+              onClick={async () => {
+                try {
+                  await navigator.clipboard.writeText(answer);
+                  setCopyState("done");
+                } catch {
+                  setCopyState("failed");
+                }
+              }}
+            >
+              {copyState === "done" ? "הועתק" : copyState === "failed" ? "סמן והעתק ידנית" : "העתק"}
+            </button>
+          )}
+          <div>{answer}</div>
+        </div>
+      )}
       {!answer && !err && !busy && (
         <div className="note">
           <div className="t">שים לב</div>
