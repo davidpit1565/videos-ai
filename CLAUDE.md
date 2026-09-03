@@ -158,6 +158,14 @@ honest about what we actually know.
   then `export/retime.py <build> <cues.json> --out <build>-paced.html` moves every timing
   in the build to match. `--fit` on build_voice is only for a cut that genuinely may not
   move; using it for pacing is what produced seven overlapping lines in episode 02.
+- **`channel/motion-recipes.md` has five verified motion upgrades — word-by-word builds,
+  a per-word text highlight (fixes a real line-wrap bug in the naive one-box version),
+  a staggered contradiction reveal, zoom-through scene transitions (every episode today
+  hard-cuts between scenes with zero transition, which `hyperframes-animation`'s own
+  rules call a non-negotiable gap), and one GPU-tier fragment-shatter hero beat reserved
+  for a single real reveal per episode.** Verified in isolated demos David approved one
+  at a time; not yet wired into the reel template `produce.sh` builds from — do that
+  before claiming a future episode uses them.
 - Reels render with `FRAMES=1 ./export/render.sh <build> 1080 1920 <seconds> <vo.wav> <out.mp4> [music.wav]`
   — frame-by-frame capture, because recorded playback drifted up to two seconds.
 - Music is generated to the exact length: `python3 audio/build_music.py <seconds> <out.wav>`.
