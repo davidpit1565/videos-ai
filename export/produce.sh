@@ -149,6 +149,15 @@ if [ "${#MISSING[@]}" -gt 0 ]; then
   exit 1
 fi
 
+echo "=== [10b/11] setup guide"
+# Same class of gap as the caption check above, for a different rule: every episode is
+# supposed to ship with a full, exact setup path a viewer can actually follow on its own
+# /e/N page (CLAUDE.md, standing since episode 21) — not just spoken narration. That was
+# a stated rule with nothing checking it: an episode could ship with no
+# studio/lib/articles.ts entry, or a thin placeholder steps list, and /e/N would render
+# with no "The exact clicks" section at all. Checked here, not just written down.
+python3 export/check_setup_guide.py "$EP" || exit 1
+
 if [ -n "$BRASS" ] && [ -n "$EMBER" ]; then
   python3 - "$DESIGNS" "$EP" "$BRASS" "$EMBER" "$MOOD" <<'PYEOF'
 import json, sys

@@ -66,6 +66,10 @@ been running for days.
   both languages, the boring path, what happens after each step — and it goes on the
   episode's own site page (`/e/N`), not just spoken narration a viewer can't pause and
   copy from. Applies to every future reel/episode, whichever content pattern it uses.
+  Enforced, not just written down: `export/produce.sh` runs `export/check_setup_guide.py`
+  before shipping and refuses to ship an episode with no `studio/lib/articles.ts` entry, or
+  one whose `steps[]` is missing or placeholder-thin — a caption existing was already a hard
+  stop for the same reason, this closes the matching gap for the setup guide itself.
 - **Read `channel/hooks-guide.md` before writing any episode's opening line. Never repeat
   the same hook type two episodes in a row, and never ship a hook that only passes the
   "dry-sentence test" by accident.** Decided 2.9.2026, after he flagged twice, in the same
