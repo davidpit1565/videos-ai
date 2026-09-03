@@ -84,8 +84,15 @@ try:
         designs = json.load(f)
 except FileNotFoundError:
     designs = []
-if designs:
-    last = designs[-1]
+# Compare against the last SHIPPED episode other than this one — not designs[-1] raw.
+# Re-running produce.sh for an episode that already shipped once (a re-render after a
+# fix, for instance) finds its own row already appended at the end of the list, which
+# made every rerun compare an episode's design against itself and always "repeat." This
+# was a known bug worked around by hand each time (deleting the row before rerunning);
+# fixed here instead of left as a manual step.
+others = [d for d in designs if d["episode"] != int(ep)]
+if others:
+    last = others[-1]
     if last["brass"].lower() == brass.lower() and last["ember"].lower() == ember.lower():
         print(f"DESIGN REPEAT: episode {ep} would use the exact same brass/ember as "
               f"episode {last['episode']} ({brass}/{ember}). Change the palette before shipping.")
@@ -94,7 +101,7 @@ if designs:
         print(f"DESIGN REPEAT: episode {ep} would use the same music mood "
               f"('{mood}') as episode {last['episode']}. Pick a different --mood.")
         sys.exit(1)
-print(f"  ok — {brass}/{ember}, mood '{mood}', distinct from episode {designs[-1]['episode'] if designs else 'none shipped yet'}")
+print(f"  ok — {brass}/{ember}, mood '{mood}', distinct from episode {others[-1]['episode'] if others else 'none shipped yet'}")
 PYEOF
 fi
 
