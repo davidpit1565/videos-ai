@@ -61,10 +61,22 @@ const path = require('path');
         if (!own) continue;
         const cs = getComputedStyle(el);
         if (cs.visibility === 'hidden' || cs.display === 'none' || +cs.opacity < 0.05) continue;
-        for (let a = el; a; a = a.parentElement) {
+        // A zoom-through scene transition (motion-recipes.md recipe 4) deliberately
+        // scales content past the frame edges while blurring it out — that is the
+        // "flies past the camera" effect, not readable text sitting in the UI band.
+        // A blur past ~2px means the element is mid-transition, not resting content
+        // a viewer needs to read, so the safe-area rule (which is about static,
+        // legible text) does not apply to it at that instant.
+        const blurMatch = /blur\(([\d.]+)px\)/.exec(cs.filter || '');
+        if (blurMatch && +blurMatch[1] > 2) continue;
+        let hiddenByAncestor = false;
+        for (let a = el.parentElement; a; a = a.parentElement) {
           const p = getComputedStyle(a);
-          if (p.visibility === 'hidden' || p.display === 'none' || +p.opacity < 0.05) { own2 = 0; break; }
+          if (p.visibility === 'hidden' || p.display === 'none' || +p.opacity < 0.05) { hiddenByAncestor = true; break; }
+          const pBlur = /blur\(([\d.]+)px\)/.exec(p.filter || '');
+          if (pBlur && +pBlur[1] > 2) { hiddenByAncestor = true; break; }
         }
+        if (hiddenByAncestor) continue;
         const r = el.getBoundingClientRect();
         if (r.width < 2 || r.height < 2) continue;
         // an element marked data-decor is allowed in the platform's UI band: it is
