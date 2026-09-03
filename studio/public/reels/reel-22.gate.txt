@@ -27,10 +27,10 @@ reel-22-kar.html  54.34s  safe box: x 65-1015, y 269-1248
   overlaps: none over 10px
 
 === rendered file
-reel-22.mp4  1080x1920  30fps  54.34s  7.3MB
-  visual change: median 0.50s, longest 4.13s
+reel-22.mp4  1080x1920  30fps  54.34s  7.2MB
+  visual change: median 0.50s, longest 4.07s
   loudness: -14.0 LUFS integrated, peak -2.6 dBFS, LRA 1.7 LU
-  loop seam: first vs last frame differ by 15.6/255
+  loop seam: first vs last frame differ by 14.8/255
 
   ok        1080x1920
   ok        yuv420p
