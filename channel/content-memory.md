@@ -335,6 +335,51 @@ someone (David) actually did it and said "I don't understand this, and I already
 know the answer." That's the test running as designed — it just should have run
 before he saw it, not after.
 
+## First real save-rate table from the studio's own agent (3.9.2026)
+
+David pulled saves/views/save-rate for all 21 published episodes directly from `/api/agent`
+and did the analysis himself before handing it over — recorded here close to verbatim
+because the read is correct and shouldn't be re-derived worse.
+
+**Totals:** 4,409 views, 25 saves, 0.57% weighted average save rate across 21 episodes.
+
+**FACT, and it changes how every save-rate number above should be read:** 20 of 21 episodes
+are recorded with **exactly 1 save**. That is not a natural distribution — it reads as a
+collection floor or a rounding artifact in how saves are tracked, not real per-episode
+variation. Consequence: a save-rate ranking built from this data is mostly an *inverted
+views ranking* (episode 21 "leads" at 4.35% saves/view for the sole reason that it only has
+23 views) — **do not read this table as "which topic gets saved,"** it doesn't show that.
+
+**The one real signal in the table:** episode 1 (the Custom Instructions prompt-paste
+episode) is the only episode with a save count that isn't 1 — 5 saves on 402 views, 5x
+every other episode's absolute save count. This is the same episode and mechanism already
+flagged in *Current hypotheses* above (the "paste this and use it" hypothesis, first spotted
+on 30.8 at 398 views/5 saves) — this is a refreshed read of the *same* data point as the
+views column moved, not a second independent episode. Still n=1 on the save-rate side;
+stays a hypothesis until a second paste-and-use episode does the same.
+
+**Two real data gaps found, not just a "not enough episodes yet" problem:**
+- `subsAttributed` is empty across all 21 episodes — meaning no published episode can yet
+  be tied to any of the current 11 subscribers, the number the paid side actually cares
+  about. The `content-memory.md` entry from 1.9.2026 already describes the plumbing for
+  this (episode-tagged signup URLs, UTM into Beehiiv) as built — this confirms it hasn't
+  produced a real attributed number yet for any of the 21 episodes published since.
+- `topic` is empty on every episode too, so the data can't be cut by subject (agents vs.
+  n8n vs. tools) even qualitatively — only by episode number and hook text.
+
+**Open, unverified, and flagged as a possible data-integrity problem rather than a content
+finding — do not act on the save-rate column until this is checked:** David's own next
+step, recorded here so it isn't lost — check Instagram Insights by hand against episodes 2,
+7, and 16 (highest views, lowest save rate in this table). If the real save counts differ
+from the tracked "1," the collection itself is broken and needs fixing before any save-rate
+based content decision, not just this table's ranking.
+
+**Standing conclusion, restated because it's the actual answer to "what should we do with
+this":** until there are real (verified, not floor-effect) saves on 10+ episodes each with
+200+ views, **there is not enough published, verified data to say which format gets saved.**
+Keep publishing, keep this file's hypotheses as hypotheses, and re-run this table after the
+Insights check above and after UTM-driven `subsAttributed` starts producing real numbers.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
