@@ -380,6 +380,56 @@ this":** until there are real (verified, not floor-effect) saves on 10+ episodes
 Keep publishing, keep this file's hypotheses as hypotheses, and re-run this table after the
 Insights check above and after UTM-driven `subsAttributed` starts producing real numbers.
 
+## Episode 22 looks like a drop — probably age, not the hook (4.9.2026)
+
+David sent a new grid screenshot and flagged it directly: views look like they dropped,
+"this was supposed to be the opposite." Matched the visible tiles to episodes the same
+way as the 30.8/1.9 snapshots (hook text against `channel/hooks-guide.md`'s log and the
+existing table), only the top 12 tiles readable (view counts on row 3+ were cut off):
+
+| Hook on screen | 4.9 views | Episode | Days since last snapshot's number |
+|---|---|---|---|
+| "If it failed right now — would you even know?" | **119** | 22 | new since last snapshot |
+| "An AI can run your errands now." | 449 | 21 | new since last snapshot |
+| "ChatGPT was going to buy things for you... for you." | 284 | 20 | new since last snapshot |
+| "Claude keeps your files now." | 425 | 19 | new since last snapshot |
+| "ChatGPT can use a website now." | 464 | 18 | was 370 on 1.9 |
+| "It lives in a skill called explain-steps." | 514 | (tool-content post, not numbered) | new |
+| "We spent 15 videos building one system." | 506 | 16 | was 500 on 1.9 (+6) |
+| "Gemini already caught it. Before you did." | 436 | 15 | was 431 on 1.9 (+5) |
+| "Everyone's sharing this 'AI lies' claim." | 349 | 14 | was 349 on 1.9 (+0) |
+| "ChatGPT remembers you." | 186 | 13 | was ~185 on 1.9 (uncertain match then) |
+| "Most think it's for coders." | 423 | 12 | was 420 on 1.9 (+3) |
+| "This agent can send email on its own. It never does." | 435 | 9 | was 429-435 on 1.9 |
+
+**FACT:** episode 22 is at 119 views — the lowest of every currently-visible tile, several
+times below the 280-514 range every other recent episode sits in.
+
+**The real confound, not a guess — stated because it changes the read:** every episode
+*except* 22 (ep16 through ep9) moved by single digits since the 1.9 snapshot, the same
+"trickle, not a curve" pattern already documented above. That means these are episodes that
+have had days to accumulate views. Episodes 18-21 and 22 are new *to this snapshot* — we
+don't have a prior number for them, so we can't tell how many days each has actually been
+live. A freshly-posted reel will show a low absolute view count for the simple reason that
+it hasn't had time to accumulate them yet, same as every other episode did in its own first
+day or two — **this looks exactly like what "posted most recently" would produce, before
+we can call it a real hook or content failure.**
+
+**HYPOTHESIS, not dismissed, just not confirmed either:** episode 22's hook is also the one
+`hooks-guide.md` already flagged internally before it shipped — two earlier drafts
+("Your automation says it worked. It didn't." and an earlier third-person framing of the
+same question) both failed the dry-sentence test and got rewritten. Even the shipped
+version is a hypothetical question with no concrete claim, unlike the two historically
+highest performers (ep01 "keeps giving you the obvious," ep02 "it's a chatbot" — both
+stated, specific facts). Worth watching, not worth concluding from one data point at one day
+old.
+
+**What actually answers this, and it's cheap:** re-run this exact table in 2 days, the same
+way the 30.8→1.9 comparison worked. If episode 22 catches up into the same 280-500+ range
+the others reached, the drop was age, not the hook — matching every other episode's pattern.
+If it stays near 119 while episodes posted around the same time (20, 21) keep climbing
+normally, that's the first real signal this specific hook underperformed, not a confound.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
