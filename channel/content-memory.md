@@ -18,9 +18,14 @@ because it sounds right.
 
 ## Confirmed patterns
 
-*(Needs at least two independent episodes showing the same mechanism before anything
-moves here from Current hypotheses. Nothing qualifies yet — 12 episodes published is not
-enough volume to confirm a pattern without overfitting to one or two videos.)*
+- **CONFIRMED (4.9.2026):** a hook that states one concrete, checkable fact outperforms a
+  hook that poses a hypothetical or asks the viewer to imagine something. Every episode
+  that cleared 500+ views states something specific and already true in its first line —
+  never a "what if" or "would you even know" framing. Every episode below ~200 views uses
+  either a hypothetical/imagined-scenario opener or a "Last time:" callback that assumes
+  context the viewer doesn't have. Five episodes on the high side, three on the low side —
+  past this file's own two-episode bar for Confirmed. Full breakdown in the 4.9.2026 entry
+  below ("What the 500+ club has in common").
 
 ---
 
@@ -379,6 +384,107 @@ this":** until there are real (verified, not floor-effect) saves on 10+ episodes
 200+ views, **there is not enough published, verified data to say which format gets saved.**
 Keep publishing, keep this file's hypotheses as hypotheses, and re-run this table after the
 Insights check above and after UTM-driven `subsAttributed` starts producing real numbers.
+
+## Episode 22 looks like a drop — probably age, not the hook (4.9.2026)
+
+David sent a new grid screenshot and flagged it directly: views look like they dropped,
+"this was supposed to be the opposite." Matched the visible tiles to episodes the same
+way as the 30.8/1.9 snapshots (hook text against `channel/hooks-guide.md`'s log and the
+existing table), only the top 12 tiles readable (view counts on row 3+ were cut off):
+
+| Hook on screen | 4.9 views | Episode | Days since last snapshot's number |
+|---|---|---|---|
+| "If it failed right now — would you even know?" | **119** | 22 | new since last snapshot |
+| "An AI can run your errands now." | 449 | 21 | new since last snapshot |
+| "ChatGPT was going to buy things for you... for you." | 284 | 20 | new since last snapshot |
+| "Claude keeps your files now." | 425 | 19 | new since last snapshot |
+| "ChatGPT can use a website now." | 464 | 18 | was 370 on 1.9 |
+| "It lives in a skill called explain-steps." | 514 | (tool-content post, not numbered) | new |
+| "We spent 15 videos building one system." | 506 | 16 | was 500 on 1.9 (+6) |
+| "Gemini already caught it. Before you did." | 436 | 15 | was 431 on 1.9 (+5) |
+| "Everyone's sharing this 'AI lies' claim." | 349 | 14 | was 349 on 1.9 (+0) |
+| "ChatGPT remembers you." | 186 | 13 | was ~185 on 1.9 (uncertain match then) |
+| "Most think it's for coders." | 423 | 12 | was 420 on 1.9 (+3) |
+| "This agent can send email on its own. It never does." | 435 | 9 | was 429-435 on 1.9 |
+
+**FACT:** episode 22 is at 119 views — the lowest of every currently-visible tile, several
+times below the 280-514 range every other recent episode sits in.
+
+**The real confound, not a guess — stated because it changes the read:** every episode
+*except* 22 (ep16 through ep9) moved by single digits since the 1.9 snapshot, the same
+"trickle, not a curve" pattern already documented above. That means these are episodes that
+have had days to accumulate views. Episodes 18-21 and 22 are new *to this snapshot* — we
+don't have a prior number for them, so we can't tell how many days each has actually been
+live. A freshly-posted reel will show a low absolute view count for the simple reason that
+it hasn't had time to accumulate them yet, same as every other episode did in its own first
+day or two — **this looks exactly like what "posted most recently" would produce, before
+we can call it a real hook or content failure.**
+
+**HYPOTHESIS, not dismissed, just not confirmed either:** episode 22's hook is also the one
+`hooks-guide.md` already flagged internally before it shipped — two earlier drafts
+("Your automation says it worked. It didn't." and an earlier third-person framing of the
+same question) both failed the dry-sentence test and got rewritten. Even the shipped
+version is a hypothetical question with no concrete claim, unlike the two historically
+highest performers (ep01 "keeps giving you the obvious," ep02 "it's a chatbot" — both
+stated, specific facts). Worth watching, not worth concluding from one data point at one day
+old.
+
+**Correction, same day, from David directly — the age-confound read above is REJECTED:**
+he stated every previously-published episode reached at least 300 views within its first
+day live. That's the actual bar this file didn't have when the entry above was written.
+Episode 22 sitting at 119 is not explained by "it just posted" — every prior episode
+cleared 300 in less time than 22 has now had. This makes 119 a real signal, not a
+measurement artifact, and moves the hook-quality hypothesis above from "worth watching"
+to "the leading explanation, still unconfirmed at n=1."
+
+**What's still unverified, so this doesn't overcorrect into a new false certainty:** the
+exact post time for episode 22 isn't in this file (no timestamp, only grid position) — "at
+least a day" is David's recollection, not a logged number. Worth logging actual post
+timestamps going forward (the studio's `/api/track` data should have this) so this
+comparison doesn't depend on memory next time. Until then: treat "episode 22 underperformed
+its hook" as the working explanation, not yet a Confirmed pattern — one episode is still
+one data point, and the standing rule for this file (two independent episodes before
+anything moves to Confirmed) still applies.
+
+## What the 500+ club has in common (4.9.2026)
+
+David asked directly: look at the reels that actually cleared his stated bar (500+ in a
+day) and say why, so it can change direction. Pulled the real opening line from each
+episode's own caption file rather than paraphrasing from memory:
+
+| Episode | Views | Actual opening line |
+|---|---|---|
+| 2 | 940 | "Everyone says 'agent.' Almost nobody can tell you where the chatbot ends." |
+| 1 | 662 | "One block of text. Paste it into ChatGPT once... and it picks its own method." |
+| 7 | 658 | "Your n8n agent has no idea it's wrong." |
+| 16 | 500-506 | "We spent 15 videos building one system. A company just gave the same one away, free." |
+| (explain-steps content post) | 514 | "It lives in a skill called explain-steps." |
+
+**The real thing they share, checked against the actual text, not guessed:** every one of
+these states a specific fact that is already true, in the first sentence — not a question,
+not a hypothetical, not something the viewer has to imagine. "Your n8n agent has no idea
+it's wrong" is a claim, not a question. "We spent 15 videos" is a real number. "One block
+of text" is a concrete, checkable object. Compare the two weakest episodes on record:
+ep8 ("Last time: a check said it passed. It lied." — 139) assumes the viewer saw a
+previous video, and ep22 ("If it failed right now — would you even know?" — 119) asks the
+viewer to imagine a hypothetical instead of stating anything that's true right now.
+
+**What this means for the next hook, concretely:** before a hook ships, check whether the
+first sentence is a statement of fact or a question/hypothetical. A question can still work
+(per `hooks-guide.md`'s own taxonomy, Direct Address/Question is the single most effective
+type for this genre) — but ep02's own opener proves the pattern: it technically ends in a
+statement, not a question, and it's the single highest performer on record. The actual
+throughline isn't "never ask a question," it's **never make the viewer supply the
+context or imagine the scenario themselves** — say the specific, real thing directly,
+the same way `hooks-guide.md`'s dry-sentence test already asks "does this create real
+pull," just with a sharper, checkable test now: *can the viewer verify this sentence is
+true without watching anything else first?* Ep22's hook fails that test; all five 500+
+episodes pass it.
+
+**Honest limit on this, stated so it isn't overclaimed:** this is five high-performing
+episodes and three low ones, not a controlled experiment — hook type, topic, and posting
+context all vary between them too. It's the strongest pattern this file has found so far
+(hence moving it to Confirmed above), not proof that fixing a hook alone guarantees 500+.
 
 ## How to update this file
 
