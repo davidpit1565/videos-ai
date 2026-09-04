@@ -104,9 +104,10 @@ new one is finished, add it to the idea list in the studio with the angle alread
 what it does, the one screen that proves it, and the number that makes it real. Nothing gets
 built and quietly filed.
 
-Already queued this way: `explain-steps`, `voice_doctor.py` (an agent that hears what is
-wrong with a voice and fixes it), `retime.py` (why editors squeeze audio and why that is
-backwards).
+Already shipped this way: `explain-steps` (its own content post), `voice_doctor.py`
+(episode 11), and `retime.py` (episode 24 — "Editors squeeze the picture to fit the audio.
+We do the opposite."). Nothing currently queued and unshipped as of episode 24 — the next
+tool or skill this repo builds goes on this list the same day it's finished, not after.
 
 ## Content memory — the weekly loop
 
