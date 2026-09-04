@@ -1,0 +1,13 @@
+Editors squeeze the picture to fit the audio. We do the opposite.
+
+Every video editor squeezes the picture to fit a fixed length, then stretches the narration to fit inside it. This channel's own render pipeline (retime.py) does the opposite: it builds the narration first, at its own natural pace, and moves every cut, caption and on-screen beat to match the voice's real pauses.
+
+One real episode measured a 0.60-second overlap from the old way — two lines of narration talking at once, caught only after it shipped. A separate bug once cut a line off mid-word, because the measured "end" of the narration undercounted a slow trailing word — fixed by using the actual audio file's real length as a floor, never a guess.
+
+The technique itself needs no special software: a waveform view and a split tool, which every mainstream video editor already has.
+
+Full setup, with the exact steps for doing this by hand in your own editor: actually-works.com/e/24
+
+Follow for the setup that actually works.
+
+#videoediting #contentcreation #aitools #buildinpublic #capcut

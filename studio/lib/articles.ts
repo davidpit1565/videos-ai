@@ -607,6 +607,38 @@ export const ARTICLES: Article[] = [
       "The exact install command shown here can change as Claude Code updates — re-check code.claude.com/docs if this episode is more than a few months old.",
     ],
   },
+  {
+    n: 24,
+    title: "Editors squeeze the picture to fit the audio. We do the opposite",
+    standfirst:
+      "Every video editor squeezes the picture to fit a fixed length, then stretches the " +
+      "narration to fit inside it. This channel's own render pipeline (retime.py) does the " +
+      "opposite: it builds the narration first, at its own natural pace, and moves every " +
+      "cut, caption and on-screen beat to match the voice's real pauses. One real episode " +
+      "measured a 0.60-second overlap from the old way; the technique that fixed it works " +
+      "by hand, in any editor, without any special software.",
+    steps: [
+      "Record or generate your full narration first, as one continuous audio file — before you touch the video timeline at all. This is the one thing that has to change first: the voice comes before the picture, not after.",
+      "Open your editor (this works the same in CapCut, DaVinci Resolve, or Premiere) and drop only that audio file onto its own track. Don't add any video clips yet.",
+      "Zoom in on the timeline until you can see the actual waveform — the audio track's shape, not just a flat bar. Every editor shows this by default once you zoom in far enough.",
+      "Look for the real gaps: flat, near-silent sections in the waveform between sentences. These are the natural pauses your voice actually took, not a fixed number of seconds.",
+      "Use the Split tool (in CapCut, tap the audio clip then tap the split icon; in Premiere or Resolve, the razor tool, keyboard shortcut C) and place a cut at the start of each real gap you found — not at a round number like \"every 3 seconds.\"",
+      "Now bring in your video clips, one per section of narration. Drag each clip's edge to line up with the cuts you just placed in the audio, so the picture changes exactly where the voice actually pauses.",
+      "If a video clip is a little short or long for its section, trim the clip itself to fit the gap — never speed up or stretch the audio to fit a video length you picked first. The audio's real timing is the one thing that shouldn't move.",
+      "Play it back. The tell that this worked: no sentence gets cut off, and no scene change happens while someone is still mid-word.",
+    ],
+    changes: [
+      "The core reversal: build narration at its natural pace first, then move the picture's cuts to match its real pauses — not the other way around.",
+      "A real, measured bug this fixed: one published episode had two lines of narration overlapping by 0.60 seconds because the old pipeline stretched a line up to 12% to force it into a fixed slot.",
+      "A second real bug: an episode once cut off mid-word because the pipeline's own measurement of where a line \"ended\" undercounted a slow trailing word — fixed by using the actual audio file's real length as a floor, never a guess.",
+      "The technique itself needs no special software — a waveform view and a split tool, which every mainstream video editor already has, is enough to do this by hand.",
+    ],
+    limits: [
+      "This does not fix a bad recording — if the narration itself is rushed or unclear, matching cuts to its pauses just preserves that pacing exactly as-is.",
+      "Doing this by hand, clip by clip, is slower than a fixed-slot template — the payoff is fewer overlaps and cut-off words, not less editing time.",
+      "This channel's own version (retime.py) automates the matching across an entire script at once; doing it manually in a general editor means finding each gap yourself, one at a time.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

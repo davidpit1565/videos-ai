@@ -1,0 +1,11 @@
+Editors squeeze the picture to fit the audio. We do the opposite.
+
+retime.py builds the narration first, at its own natural pace, then moves every cut, caption and on-screen beat to match the voice's real pauses.
+
+One real episode measured a 0.60-second overlap from the old way — two lines talking at once, caught only after it shipped. Another cut off mid-word because the measured "end" undercounted a slow trailing word. Both are fixed now, and the fix works by hand in any editor: find the real gap in the waveform, cut there, never guess a fixed slot and squeeze the voice to fit.
+
+Full walkthrough, with the exact steps to do this in your own editor: actually-works.com/e/24
+
+Follow for the setup that actually works.
+
+#videoediting #contentcreation #aitools #buildinpublic #capcut

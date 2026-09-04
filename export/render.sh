@@ -74,14 +74,31 @@ print(data['input_i'], data['input_tp'], data['input_lra'], data['input_thresh']
 ")
 STATS
 ACTUAL_DUR="$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$OUT")"
-# loudnorm's linear=true mode computes a pure linear gain from the measured stats and
-# does not itself enforce the TP target — it can still overshoot on a single hot
-# transient (found shipping episode 23: TP=-1.5 targeted, true peak landed at -0.3dBFS,
-# 1.2dB over). alimiter after it guarantees the actual ceiling regardless of what
-# loudnorm's own correction leaves in the file. -1.1dBFS limit, not -1.0 flat, so a
-# render sitting exactly at the qa.py boundary doesn't get flagged by its own rounding.
+# loudnorm's linear=true mode does NOT always apply a pure linear gain — ffmpeg's own
+# implementation silently falls back to its non-linear "dynamic" mode (the same
+# unpredictable compressor/gate behavior as a plain single-pass loudnorm) whenever the
+# measured stats don't meet its internal conditions for linear correction, with no
+# warning printed.
+#
+# Fixed by dropping loudnorm from this second pass entirely and computing the gain
+# ourselves: a flat dB shift so the file's own measured loudness lands exactly on
+# target is arithmetic, not a filter with its own fallback behavior to second-guess.
+#
+# The real, second bug this uncovered, found shipping episode 24 — two completely
+# different correction methods (the loudnorm two-pass above, then this flat-gain
+# replacement) both landed the file at the exact same wrong place (-11.5 LUFS, true
+# peak near 0dBFS), regardless of the very different math feeding into them. The
+# common factor was alimiter itself: its `level` option defaults to true, which
+# auto-normalizes alimiter's OWN output level (a built-in makeup gain) — silently
+# undoing whatever gain was applied before it and re-inflating the signal back up
+# near its own internal target, no matter what that input gain was. `level=disabled`
+# makes it a pure ceiling with no makeup gain, so the gain computed above is the one
+# that actually reaches the file. limit=0.75 (~-2.5dBFS sample peak) still leaves
+# real margin for the aresample + AAC encode after it to reconstruct a peak slightly
+# higher than any discrete sample alimiter saw.
+GAIN_DB="$(python3 -c "print(-14 - (${MEAS_I}))")"
 ffmpeg -hide_banner -loglevel error -y -i "$OUT" -c:v copy \
-  -af "loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${MEAS_I}:measured_TP=${MEAS_TP}:measured_LRA=${MEAS_LRA}:measured_thresh=${MEAS_THRESH}:linear=true,alimiter=limit=0.879:attack=5:release=50,aresample=48000" \
+  -af "volume=${GAIN_DB}dB,alimiter=limit=0.75:attack=5:release=50:level=disabled,aresample=48000" \
   -c:a aac -b:a 192k -ar 48000 -ac 2 -t "$ACTUAL_DUR" "$TMP/corrected.mp4"
 mv "$TMP/corrected.mp4" "$OUT"
 

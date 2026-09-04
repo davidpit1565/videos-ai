@@ -1,0 +1,599 @@
+<title>Reel 24 — Editors squeeze the picture to fit the audio. We do the opposite.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@500;600&display=swap">
+<style>
+:root{
+  --ink:#0A0E14;--line:#1F2B3A;
+  --brass:#8B7CF6;--brass-hot:#B4ABFF;--ember:#4ADE80;
+  --text:#FFFFFF;--muted:#8AA0B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+  --ui:'Inter','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.bg{position:absolute;inset:0;z-index:0}
+.bg i{position:absolute;display:block;border-radius:50%;will-change:transform;left:0;top:0}
+.bg .b1{width:130cqw;height:130cqw;top:-40cqw;left:-30cqw;background:radial-gradient(circle closest-side,rgba(139,124,246,.24),rgba(139,124,246,0) 70%)}
+.bg .b2{width:150cqw;height:150cqw;top:50cqw;left:-10cqw;background:radial-gradient(circle closest-side,rgba(20,28,40,.6),rgba(20,28,40,0) 70%)}
+.bg .b3{width:120cqw;height:120cqw;top:120cqw;left:20cqw;background:radial-gradient(circle closest-side,rgba(74,222,128,.16),rgba(74,222,128,0) 70%)}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+.vig{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 50%,transparent 40%,rgba(5,7,9,.55) 100%)}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--brass);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(139,124,246,.7)}
+
+.scene{position:absolute;inset:0;z-index:2}
+.pad{position:absolute;inset:0;padding:28cqw 10cqw 65cqw;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:12.6cqw;line-height:.98;letter-spacing:-.045em;
+  margin:0;text-wrap:balance;position:relative;z-index:2}
+h2 em{font-style:normal;color:var(--brass)}
+h2 .box{background:var(--brass);color:#0A0E14;padding:0 1.6cqw;border-radius:1cqw;
+  display:inline-block;position:relative;transform:rotate(-1.2deg)}
+h2 .ebox{background:var(--ember);color:#062012;padding:0 1.6cqw;border-radius:1cqw;display:inline-block;position:relative}
+p.lede{font-size:5.6cqw;line-height:1.3;color:#EAF3FB;margin:0;font-weight:700;position:relative;z-index:2}
+p.lede strong{color:var(--brass)}
+
+.toolmark{display:inline-flex;align-items:center;gap:.9cqw;background:#101823;
+  border:.3cqw solid var(--brass);border-radius:99cqw;padding:1.4cqw 3.4cqw 1.4cqw 1.6cqw;
+  font-family:var(--m);font-weight:600;font-size:4.6cqw;color:#fff;vertical-align:middle}
+.toolmark .dot{width:3cqw;height:3cqw;border-radius:50%;background:var(--brass)}
+
+.quote{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:calc(100% - 6cqw);margin:0 auto;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2;text-align:left}
+.quote .qk{font-family:var(--m);font-size:2.8cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#6B7C90;margin:0 0 2.4cqw}
+.quote .qb{font-family:var(--b);font-weight:700;font-size:5cqw;line-height:1.4;color:#0D0D0D;position:relative}
+.quote .qb strong{color:#5B4FD6}
+.quote.bad .qk{color:#B8532E}
+.quote.bad .qb strong{color:#B8532E}
+.quote.good .qk{color:#1E8A5C}
+.quote.good .qb strong{color:#1E8A5C}
+.wd{position:relative;z-index:1}
+.glowbloom{position:absolute;pointer-events:none;opacity:0}
+
+.scoreboard{display:flex;flex-direction:column;gap:2.6cqw;width:100%;position:relative;z-index:2}
+.scorerow{display:flex;align-items:center;justify-content:space-between;background:#101823;
+  border:.3cqw solid #1E3348;border-radius:1.6cqw;padding:3cqw 4cqw;position:relative}
+.scorerow .lbl{font-family:var(--ui);font-weight:600;font-size:3.8cqw;color:#CFE0F0;text-align:left}
+.scorerow .val{font-family:var(--d);font-weight:900;font-size:6cqw;color:var(--brass)}
+.scorerow.lose .val{color:#FF8A65}
+.scorerow.win .val{color:#5CE18A}
+
+.termbox{background:#0A1420;border:.4cqw solid #1E3348;border-radius:1.6cqw;
+  padding:4cqw 4.6cqw;width:100%;position:relative;z-index:2;text-align:left}
+.termbox .tk{font-family:var(--m);font-size:2.6cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#5C86A8;margin:0 0 1.8cqw}
+.termbox .tl{font-family:var(--ui);font-weight:500;font-size:4.6cqw;color:var(--brass);line-height:1.5}
+
+.subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
+  font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
+  text-transform:uppercase;
+  text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
+.subs em{font-style:normal;background:var(--brass);color:#0A0E14;padding:0 1.4cqw;border-radius:.9cqw;
+  display:inline-block;text-shadow:none}
+.subs b{font-weight:800;color:#fff;transition:color .09s linear,transform .09s linear;display:inline-block}
+.subs b.on{color:var(--brass);transform:scale(1.06)}
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#5C7086}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,9,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.biocard{display:inline-flex;align-items:center;gap:2.2cqw;background:#101823;border:.35cqw solid var(--brass);
+  border-radius:99cqw;padding:2.4cqw 5cqw;position:relative;z-index:2}
+.biocard .dot{width:2.6cqw;height:2.6cqw;border-radius:50%;background:var(--brass)}
+.biocard b{font-family:var(--m);font-weight:600;font-size:4.6cqw;letter-spacing:-.01em;color:#fff}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#0A0E14;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+.side{flex:1 1 320px;max-width:470px}
+.side .k{font-family:var(--m);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#4ADE80;margin:0 0 8px}
+.side h1{font-family:var(--d);font-weight:900;font-size:clamp(24px,3vw,34px);letter-spacing:-.035em;margin:0 0 12px;line-height:1.03}
+.side h1 em{font-style:normal;color:var(--brass)}
+.side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.62}
+.side strong{color:var(--text)}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .side,body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
+<div class="grain" data-decor></div>
+<div class="vig"></div>
+<div class="prog" id="prog"></div>
+
+<section class="scene" data-in="0" data-out="6.55">
+  <div class="pad"><div class="kb" id="hookKb">
+    <h2 class="punch" id="hookH2">Editors squeeze<br>the picture to fit<br>the audio. We <span class="box">flip</span> it.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="6.55" data-out="12.67">
+  <div class="pad"><div class="kb">
+    <div class="quote" id="quoteCard" style="opacity:0">
+      <div class="qk" id="quoteQk">the mechanism</div>
+      <div class="qb" id="quoteQb">retime.py doesn't stretch the voice to fit the video — it moves every cut to match the voice's <strong>real pauses</strong>.</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="12.67" data-out="20.2">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="12.7">The old way stretched<br>every line up to 12%<br>— and still <strong>overflowed</strong>.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="20.2" data-out="24.655">
+  <div class="pad"><div class="kb">
+    <div class="scoreboard" id="scoreBoard">
+      <div class="scorerow lose" id="scoreRowA" style="opacity:0"><span class="lbl">Old pipeline</span><span class="val">−0.60s</span></div>
+      <div class="scorerow win" id="scoreRowB" style="opacity:0"><span class="lbl">Every episode since</span><span class="val">0.00s</span></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="24.655" data-out="32.08">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="24.685">Now every timing —<br>captions, cuts, beats —<br>moves through <strong>one real map</strong>.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="32.08" data-out="38.06">
+  <div class="pad"><div class="kb">
+    <div class="quote bad b" data-at="32.11">
+      <div class="qk">a real bug</div>
+      <div class="qb">One episode cut off <strong>mid-word</strong> — the measured "end" undercounted a slow last word.</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="38.06" data-out="43.56">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="38.09">Now the real audio file<br>is the floor.<br><strong>Not a guess</strong>.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="43.56" data-out="51.255">
+  <div class="pad"><div class="kb">
+    <div class="toolmark b" data-at="43.59"><span class="dot"></span>RETIME.PY</div>
+    <p class="lede b" data-at="45.094" style="margin-top:2.4cqw">No special software. <strong>Measure the real pauses. Cut there.</strong></p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="51.255" data-out="53.7">
+  <div class="pad"><div class="kb">
+    <div class="biocard b" data-at="51.285"><span class="dot"></span><b>link in bio</b></div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="53.7" data-out="56.42">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="53.73" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+  </div></div>
+</section>
+
+<div class="subs" id="subs"></div>
+<div class="handle" data-decor>@actually_works.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="41.60" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+
+<div class="side">
+  <p class="k">Episode 24</p>
+  <h1>Editors squeeze the picture to fit the audio. We do the <em>opposite</em></h1>
+  <p>retime.py doesn't stretch narration to fit fixed video slots — it moves every cut, caption
+  and on-screen beat through the narration's own real pauses. One real episode measured -0.60s
+  of overlap from the old way; another cut off mid-word because the measured end undercounted
+  a slow trailing word. Both are fixed now, and the technique works by hand in any editor.</p>
+</div>
+</div>
+
+<script src="../export/motion-kit.js"></script>
+<script>
+(function(){
+  var MK=window.MotionKit;
+  var DUR=57.02,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+  var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+
+  var CUES=[
+    [0.30,6.34,"Every video editor squeezes the picture to fit the audio. We build it backwards, on purpose."],
+    [6.76,12.46,"This script doesn't stretch the voice to fit the video — the cuts move to match the voice's real pauses instead."],
+    [12.88,19.99,"The old way stretched every line to fit one set size. A line that ran long still spilled into the next."],
+    [20.41,24.23,"One real episode went out with two lines talking at once."],
+    [25.08,31.87,"Now every timing, captions, cuts, on-screen beats, moves through the narration's own measured gaps."],
+    [32.29,37.85,"One more real bug — an episode once cut off mid-word, because the tool's guess landed early."],
+    [38.27,43.35,"Now the actual audio file is the floor. The picture can't end before the voice does."],
+    [43.77,50.83,"This isn't special software. Anyone can do this by hand, in any program. Find the real pause in the voice, and cut there."],
+    [51.68,53.49,"The setup's in the link in bio."],
+    [53.91,56.12,"Follow for the setup that actually works."]
+  ];
+  var WORDS=[
+    [0.3,0.94,"Every",0],
+    [0.94,1.42,"video",0],
+    [1.42,1.9,"editor",0],
+    [1.9,2.58,"squeezes",1],
+    [2.58,2.72,"the",1],
+    [2.72,2.96,"picture",1],
+    [2.96,3.16,"to",2],
+    [3.16,3.3,"fit",2],
+    [3.3,3.56,"the",2],
+    [3.56,3.88,"audio.",3],
+    [4.32,4.48,"We",4],
+    [4.48,4.68,"build",4],
+    [4.68,4.92,"it",4],
+    [4.92,5.32,"backwards,",5],
+    [5.32,5.78,"on",5],
+    [5.78,6.24,"purpose.",5],
+    [6.94,7.06,"This",6],
+    [7.06,7.38,"script",6],
+    [7.38,7.88,"doesn't",6],
+    [7.88,8.18,"stretch",7],
+    [8.18,8.4,"the",7],
+    [8.4,8.58,"voice",7],
+    [8.58,8.78,"to",8],
+    [8.78,8.92,"fit",8],
+    [8.92,9.1,"the",8],
+    [9.1,9.4,"video",9],
+    [9.72,9.86,"the",10],
+    [9.86,10.0,"cuts",10],
+    [10.0,10.4,"move",10],
+    [10.4,10.66,"to",11],
+    [10.66,10.8,"match",11],
+    [10.8,10.98,"the",11],
+    [10.98,11.34,"voice's",12],
+    [11.34,11.5,"real",12],
+    [11.5,11.84,"pauses",12],
+    [11.84,12.46,"instead.",13],
+    [12.98,13.22,"The",14],
+    [13.22,13.46,"old",14],
+    [13.46,13.8,"way",14],
+    [13.8,14.18,"stretched",15],
+    [14.18,14.64,"every",15],
+    [14.64,14.98,"line",15],
+    [14.98,15.36,"to",16],
+    [15.36,15.6,"fit",16],
+    [15.6,15.98,"one",16],
+    [15.98,16.24,"set",17],
+    [16.24,16.6,"size.",17],
+    [17.02,17.22,"A",18],
+    [17.22,17.4,"line",18],
+    [17.4,17.64,"that",18],
+    [17.64,17.86,"ran",19],
+    [17.86,18.38,"long",19],
+    [18.38,18.84,"still",19],
+    [18.84,19.14,"spilled",20],
+    [19.14,19.46,"into",20],
+    [19.46,19.64,"the",20],
+    [19.64,19.9,"next.",21],
+    [20.5,20.98,"One",22],
+    [20.98,21.32,"real",22],
+    [21.32,21.82,"episode",22],
+    [21.82,22.1,"went",23],
+    [22.1,22.3,"out",23],
+    [22.3,22.46,"with",23],
+    [22.46,22.7,"two",24],
+    [22.7,23.08,"lines",24],
+    [23.08,23.64,"talking",24],
+    [23.64,23.96,"at",25],
+    [23.96,24.26,"once.",25],
+    [25.18,25.5,"Now",26],
+    [25.5,25.98,"every",26],
+    [25.98,26.46,"timing,",26],
+    [26.64,27.14,"captions,",27],
+    [27.5,27.82,"cuts,",28],
+    [27.82,28.66,"on-screen",28],
+    [28.66,29.06,"beats,",28],
+    [29.06,29.52,"moves",29],
+    [29.52,29.86,"through",29],
+    [29.86,30.1,"the",29],
+    [30.1,30.78,"narration's",30],
+    [30.78,30.98,"own",30],
+    [30.98,31.36,"measured",30],
+    [31.36,31.82,"gaps.",31],
+    [32.4,32.6,"One",32],
+    [32.6,32.9,"more",32],
+    [32.9,33.16,"real",32],
+    [33.16,33.44,"bug",33],
+    [33.88,34.06,"an",34],
+    [34.06,34.4,"episode",34],
+    [34.4,34.72,"once",34],
+    [34.72,34.9,"cut",35],
+    [34.9,35.14,"off",35],
+    [35.14,35.66,"mid-word,",35],
+    [35.66,36.18,"because",36],
+    [36.18,36.44,"the",36],
+    [36.44,36.84,"tool's",36],
+    [36.84,37.0,"guess",37],
+    [37.0,37.4,"landed",37],
+    [37.4,37.86,"early.",37],
+    [38.5,38.72,"Now",38],
+    [38.72,38.94,"the",38],
+    [38.94,39.32,"actual",38],
+    [39.32,39.7,"audio",39],
+    [39.7,40.0,"file",39],
+    [40.0,40.46,"is",39],
+    [40.46,40.7,"the",40],
+    [40.7,40.92,"floor.",40],
+    [41.36,41.54,"The",41],
+    [41.54,41.76,"picture",41],
+    [41.76,42.14,"can't",41],
+    [42.14,42.26,"end",42],
+    [42.26,42.58,"before",42],
+    [42.58,42.76,"the",42],
+    [42.76,42.92,"voice",43],
+    [42.92,43.32,"does.",43],
+    [44.06,44.32,"This",44],
+    [44.32,44.72,"isn't",44],
+    [44.72,44.98,"special",44],
+    [44.98,45.44,"software.",45],
+    [45.84,46.12,"Anyone",46],
+    [46.12,46.3,"can",46],
+    [46.3,46.42,"do",46],
+    [46.4,46.54,"this",47],
+    [46.54,46.8,"by",47],
+    [46.8,47.06,"hand,",47],
+    [47.06,47.32,"in",48],
+    [47.32,47.54,"any",48],
+    [47.54,47.98,"program.",48],
+    [48.5,48.76,"Find",49],
+    [48.76,48.96,"the",49],
+    [48.96,49.18,"real",49],
+    [49.18,49.46,"pause",50],
+    [49.46,49.6,"in",50],
+    [49.6,49.72,"the",50],
+    [49.72,49.96,"voice,",51],
+    [49.96,50.22,"and",51],
+    [50.22,50.44,"cut",51],
+    [50.44,50.84,"there.",51],
+    [51.82,52.02,"The",52],
+    [52.02,52.38,"setup's",52],
+    [52.38,52.52,"in",52],
+    [52.52,52.66,"the",53],
+    [52.66,52.88,"link",53],
+    [52.88,53.2,"in",53],
+    [53.2,53.48,"bio.",54],
+    [54.0,54.24,"Follow",55],
+    [54.24,54.5,"for",55],
+    [54.5,54.72,"the",55],
+    [54.72,54.94,"setup",56],
+    [54.94,55.36,"that",56],
+    [55.36,55.72,"actually",56],
+    [55.72,56.04,"works.",57]
+  ];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  // ---- Recipes 1-3 (channel/motion-recipes.md), same wiring as video/reel-template.html ----
+  var hookKb=document.getElementById('hookKb');
+  var hookH2=document.getElementById('hookH2');
+  var hookScene=hookH2.closest('.scene');
+  var hookSplit=MK.splitWordsSafe(hookH2);
+  var hookClimax=null;
+  for(var hi=0;hi<hookSplit.words.length;hi++){
+    var hw=hookSplit.words[hi];
+    if(hw.classList.contains('box')||hw.classList.contains('ebox')){ hookClimax=hw; break; }
+  }
+  var hookClimaxIndex=hookClimax?hookSplit.words.indexOf(hookClimax):-1;
+  var hookGlow=null;
+  if(hookClimax){
+    hookGlow=document.createElement('div');
+    hookGlow.className='glowbloom';
+    hookGlow.style.cssText='position:absolute;inset:-45%;border-radius:50%;z-index:-1;'+
+      'background:radial-gradient(circle,var(--brass) 0%,rgba(0,0,0,0) 70%)';
+    hookClimax.insertBefore(hookGlow,hookClimax.firstChild);
+  }
+
+  var quoteCard=document.getElementById('quoteCard');
+  var quoteScene=quoteCard.closest('.scene');
+  var quoteQkWords=MK.splitWordsSafe(document.getElementById('quoteQk')).words;
+  var quoteQbSplit=MK.splitWordsSafe(document.getElementById('quoteQb'));
+  var quoteQbEl=document.getElementById('quoteQb');
+  var quoteBars=[];
+  function buildQuoteBars(){
+    quoteBars.forEach(function(b){ if(b.parentNode) b.parentNode.removeChild(b); });
+    quoteBars=MK.buildHighlightBars(quoteQbEl,quoteQbSplit.highlighted);
+  }
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(buildQuoteBars);
+  else buildQuoteBars();
+
+  var scoreBoard=document.getElementById('scoreBoard');
+  var scoreScene=scoreBoard.closest('.scene');
+  var scoreRowA=document.getElementById('scoreRowA'), scoreRowB=document.getElementById('scoreRowB');
+  var scoreGlow=document.createElement('div');
+  scoreGlow.className='glowbloom';
+  scoreGlow.style.cssText='position:absolute;inset:-16%;border-radius:1.6cqw;z-index:-1;'+
+    'background:radial-gradient(circle,#5CE18A 0%,rgba(0,0,0,0) 70%)';
+  scoreRowB.insertBefore(scoreGlow,scoreRowB.firstChild);
+
+  function renderHook(){
+    var ht=t-(+hookScene.dataset.in);
+    var START=0.15,GAP=0.10,DUR2=0.30;
+    for(var i=0;i<hookSplit.words.length;i++){
+      var w=hookSplit.words[i],at=START+i*GAP;
+      if(w===hookClimax){
+        MK.animatePop(w,ht,at,DUR2);
+        if(hookGlow) MK.animateGlowBloom(hookGlow,ht,at,DUR2,0.30);
+      } else {
+        var e=MK.smoothIn(MK.clamp01((ht-at)/DUR2));
+        w.style.opacity=String(e);
+        w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+      }
+    }
+    if(hookClimaxIndex>=0){
+      var climaxAt=START+hookClimaxIndex*GAP;
+      var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.96,pushAt:climaxAt,pushDur:0.9,pushTo:1.08});
+      hookKb.style.transform='scale('+camScale.toFixed(4)+')';
+    }
+  }
+
+  function renderQuote(){
+    var qt=t-(+quoteScene.dataset.in);
+    var CARD_DUR=0.4;
+    var le=MK.smoothIn(MK.clamp01(qt/CARD_DUR));
+    quoteCard.style.opacity=String(le);
+    quoteCard.style.transform='translateY('+(36*(1-le)).toFixed(2)+'px)';
+    quoteCard.style.boxShadow='0 '+(10+30*le).toFixed(1)+'px '+(40+60*le).toFixed(1)+'px rgba(0,0,0,'+(0.25*le).toFixed(3)+')';
+
+    var QK_START=0.10,QK_GAP=0.05,QK_DUR=0.22;
+    for(var i=0;i<quoteQkWords.length;i++){
+      var e=MK.smoothIn(MK.clamp01((qt-(QK_START+i*QK_GAP))/QK_DUR));
+      quoteQkWords[i].style.opacity=String(e);
+      quoteQkWords[i].style.transform='translateY('+(10*(1-e)).toFixed(2)+'px)';
+    }
+    var qkEnd=MK.wordsEndAt(quoteQkWords,QK_START,QK_GAP,QK_DUR);
+    var QB_START=qkEnd+0.10,QB_GAP=0.045,QB_DUR=0.24;
+    for(var j=0;j<quoteQbSplit.words.length;j++){
+      var e2=MK.smoothIn(MK.clamp01((qt-(QB_START+j*QB_GAP))/QB_DUR));
+      quoteQbSplit.words[j].style.opacity=String(e2);
+      quoteQbSplit.words[j].style.transform='translateY('+(10*(1-e2)).toFixed(2)+'px)';
+    }
+    var qbEnd=MK.wordsEndAt(quoteQbSplit.words,QB_START,QB_GAP,QB_DUR);
+    MK.animateHighlightBars(quoteBars,qt,qbEnd+0.05,0.22,0.06);
+  }
+
+  function renderScoreboard(){
+    var st=t-(+scoreScene.dataset.in);
+    var A_AT=0.10,A_DUR=0.32,B_AT=0.65,B_DUR=0.32;
+    var ae=MK.smoothIn(MK.clamp01((st-A_AT)/A_DUR));
+    scoreRowA.style.opacity=String(ae);
+    scoreRowA.style.transform='scale('+ae.toFixed(3)+')';
+    var be=MK.smoothIn(MK.clamp01((st-B_AT)/B_DUR));
+    scoreRowB.style.opacity=String(be);
+    scoreRowB.style.transform='scale('+be.toFixed(3)+')';
+    MK.animateGlowBloom(scoreGlow,st,B_AT,B_DUR,0.30);
+    var shakeX=MK.impactShake(st,B_AT,0.22,6);
+    scoreBoard.style.transform='translateX('+shakeX.toFixed(2)+'px)';
+  }
+
+  var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
+  function renderTransitions(){
+    for(var i=0;i<scenes.length-1;i++){
+      var boundary=+scenes[i].dataset.out;
+      var outStart=boundary-OUT_DUR, inStart=outStart+IN_OFFSET;
+      MK.zoomThroughTransition(scenes[i], scenes[i+1], t, outStart, inStart, OUT_DUR, IN_DUR);
+    }
+  }
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      if(on) active=s;
+    }
+    renderTransitions();
+    if(active){
+      var kbEnd=(+active.dataset.out)-OUT_DUR;
+      var f=t>=kbEnd?0:(t-+active.dataset.in)/(kbEnd-(+active.dataset.in));
+      var kbs=active.querySelectorAll('.kb');
+      for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.06*f).toFixed(4)+')';
+    }
+
+    renderHook();
+    renderQuote();
+    renderScoreboard();
+
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      e.classList.toggle('snap',t<0.30);
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    b1.style.transform='translate('+(2+14*Math.sin(t*0.3))+'cqw,'+(-4+16*Math.cos(t*0.22))+'cqw)';
+    b2.style.transform='translate('+(18*Math.cos(t*0.18+1.4))+'cqw,'+(16*Math.sin(t*0.24+.6))+'cqw)';
+    b3.style.transform='translate('+(10+18*Math.sin(t*0.15+2.1))+'cqw,'+(-10*Math.cos(t*0.2+1.1))+'cqw)';
+
+    /* The chunk on screen is the one the last spoken word belongs to, and it holds
+       until the next chunk's first word — otherwise the caption blanks for a third of
+       a second between chunks while the voice is still going. It clears only between
+       lines, where the silence is real. */
+    /* The window has to close the ordinary gaps. The scene's own headline is written to
+       disappear before the next one arrives, so a caption that blanks in a 0.42s gap
+       leaves the whole screen textless — measured at eleven places, 0.13s each. Reaching
+       0.32s back and 0.15s forward covers those, and the only remaining blanks fall
+       inside the 0.80s section gaps, where the colour card fills the frame anyway. After
+       the last line the caption holds to the end rather than leaving a blank tail. */
+    var inLine=false;
+    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.32&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    if(t>CUES[CUES.length-1][1]) inLine=true;
+    var here=-1, cur=-1;
+    /* the lit word is the last one that started, not only the one still sounding:
+       Whisper's word boundaries are tight, so gating on the word's own end left the
+       highlight off for 13.4s of the reel */
+    for(i=0;i<WORDS.length;i++) if(WORDS[i][0]<=t+0.08){ here=WORDS[i][3]; cur=i; }
+    var txt='';
+    if(inLine&&here>=0){
+      for(i=0;i<WORDS.length;i++) if(WORDS[i][3]===here)
+        txt+=(i===cur?'<b class="on">':'<b>')+WORDS[i][2]+'</b> ';
+    }
+    subs.innerHTML=txt;
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>

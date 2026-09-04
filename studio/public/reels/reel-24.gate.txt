@@ -1,0 +1,69 @@
+=== narration
+audio/reel24-narration-r.wav  57.0s  10 lines
+  medians: ending -33.2 dB · level -19.8 dBFS · S residual -0.4 dB (slope +0.6 dB per sibilant/syllable)
+  flagged below: ending -59.9 dB · S residual -6.9 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  6.04  +0.42   4.3  -10.7  -31.4  -19.0  Every video editor squeezes the pictur
+    2   5.7  +0.42  4.21  -10.6  -40.0  -21.0  This script doesn't stretch the voice 
+    3  7.11  +0.42  3.66   -9.0  -35.0  -20.1  The old way stretched every line to fi
+    4  3.82  +0.85  3.93  -10.7  -23.2  -20.1  One real episode went out with two lin
+    5  6.79  +0.42  3.53   -8.0  -20.8  -19.2  Now every timing, captions, cuts, on-s
+    6  5.56  +0.42  3.96  -12.6  -37.4  -19.3  One more real bug — an episode once cu
+    7  5.08  +0.42  3.94  -12.2  -20.6  -19.7  Now the actual audio file is the floor
+    8  7.06  +0.85  3.97  -14.2  -40.8  -19.3  This isn't special software. Anyone ca
+    9  1.81  +0.42  4.42   -7.6  -35.8  -19.9  The setup's in the link in bio.
+   10  2.21    —    4.98   -6.7  -15.5  -19.9  Follow for the setup that actually wor
+
+  nothing flagged. every line sits inside his own spread.
+
+  per word: 153 words · ending median -20.1 dB · S median -17.1 dB
+  weakest endings:
+     48.96s  real           ending  -53.7 dB
+     50.22s  cut            ending  -52.6 dB
+     32.60s  more           ending  -51.1 dB
+     32.90s  real           ending  -50.2 dB
+     30.98s  measured       ending  -49.3 dB
+     29.86s  the            ending  -48.9 dB
+     53.20s  bio.           ending  -48.3 dB
+     20.50s  One            ending  -47.6 dB
+  held too long (over 0.442s per syllable, median 0.220):
+     17.86s  long           0.520s per syllable (0.52s)
+      7.38s  doesn't        0.500s per syllable (0.50s)
+     20.50s  One            0.480s per syllable (0.48s)
+      5.32s  on             0.460s per syllable (0.46s)
+     18.38s  still          0.460s per syllable (0.46s)
+     31.36s  gaps.          0.460s per syllable (0.46s)
+     40.00s  is             0.460s per syllable (0.46s)
+  rushed / clipped (under 0.110s per syllable):
+    none — no word is compressed out of line with the rest
+     18.84s  spilled        S  -29.3 dB
+     29.06s  moves          S  -26.4 dB
+     28.40s  -screen        S  -26.1 dB
+     54.72s  setup          S  -25.8 dB
+     49.18s  pause          S  -22.6 dB
+      4.92s  backwards      S  -22.3 dB
+
+=== frame layout
+reel-24-kar.html  57.02s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  overlaps: none over 10px
+
+=== rendered file
+reel-24.mp4  1080x1920  30fps  57.03s  7.3MB
+  visual change: median 0.37s, longest 2.07s
+  loudness: -14.0 LUFS integrated, peak -2.5 dBFS, LRA 2.0 LU
+  loop seam: first vs last frame differ by 3.7/255
+
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length 57.0s inside 30-90s
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 21.4)
+  ok        visual change every 0.37s median
+  ok        -14.0 LUFS
+  ok        peak -2.5 dBFS
+
+ALL CHECKS PASSED
