@@ -1,0 +1,13 @@
+22 episodes in, one file keeps this from breaking.
+
+Claude Code reads one file — CLAUDE.md — the moment it opens a project. No prompt, no re-explaining: every new session already knows the rules.
+
+Ours has a real rule for each of its costliest mistakes — a metric that checked position on screen instead of the actual sound, and a check that ran before the fix it was meant to catch. Neither was caught by a tool. Both are one line in the file now.
+
+The file doesn't need to be long. It needs to be honest.
+
+Full setup: actually-works.com/e/23
+
+Follow for the setup that actually works.
+
+#claudecode #aitools #coding #buildinpublic #automation
