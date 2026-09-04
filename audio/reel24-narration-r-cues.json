@@ -1,0 +1,62 @@
+[
+ {
+  "n": 1,
+  "line": "Every video editor squeezes the picture to fit the audio. We build it backwards, on purpose.",
+  "start": 0.3,
+  "end": 6.34
+ },
+ {
+  "n": 2,
+  "line": "This script doesn't stretch the voice to fit the video \u2014 the cuts move to match the voice's real pauses instead.",
+  "start": 6.76,
+  "end": 12.46
+ },
+ {
+  "n": 3,
+  "line": "The old way stretched every line to fit one set size. A line that ran long still spilled into the next.",
+  "start": 12.88,
+  "end": 19.99
+ },
+ {
+  "n": 4,
+  "line": "One real episode went out with two lines talking at once.",
+  "start": 20.41,
+  "end": 24.23
+ },
+ {
+  "n": 5,
+  "line": "Now every timing, captions, cuts, on-screen beats, moves through the narration's own measured gaps.",
+  "start": 25.08,
+  "end": 31.87
+ },
+ {
+  "n": 6,
+  "line": "One more real bug \u2014 an episode once cut off mid-word, because the tool's guess landed early.",
+  "start": 32.29,
+  "end": 37.85
+ },
+ {
+  "n": 7,
+  "line": "Now the actual audio file is the floor. The picture can't end before the voice does.",
+  "start": 38.27,
+  "end": 43.35
+ },
+ {
+  "n": 8,
+  "line": "This isn't special software. Anyone can do this by hand, in any program. Find the real pause in the voice, and cut there.",
+  "start": 43.77,
+  "end": 50.83
+ },
+ {
+  "n": 9,
+  "line": "The setup's in the link in bio.",
+  "start": 51.68,
+  "end": 53.49
+ },
+ {
+  "n": 10,
+  "line": "Follow for the setup that actually works.",
+  "start": 53.91,
+  "end": 56.12
+ }
+]
