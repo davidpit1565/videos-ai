@@ -21,26 +21,28 @@ audio/reel23-narration-r.wav  54.5s  12 lines
   per word: 141 words · ending median -21.6 dB · S median -16.9 dB
   weakest endings:
      36.22s  now.           ending  -57.1 dB
+     11.52s  No             ending  -54.0 dB
      50.76s  bio.           ending  -52.3 dB
       3.64s  breaking.      ending  -51.7 dB
      14.84s  already        ending  -49.1 dB
-     35.44s  are            ending  -48.1 dB
       7.16s  O,             ending  -47.0 dB
       5.78s  file.          ending  -46.8 dB
       9.50s  moment         ending  -45.3 dB
-  held too long (over 0.462s per syllable, median 0.240):
+  held too long (over 0.415s per syllable, median 0.230):
      26.94s  One            0.780s per syllable (0.78s)
       0.68s  22             0.580s per syllable (0.58s)
      20.08s  that           0.520s per syllable (0.52s)
-     11.76s  prompt,        0.480s per syllable (0.48s)
+     11.74s  prompt,        0.500s per syllable (0.50s)
      18.46s  for            0.480s per syllable (0.48s)
+      5.78s  file.          0.460s per syllable (0.46s)
+     36.22s  now.           0.460s per syllable (0.46s)
   rushed / clipped (under 0.120s per syllable):
     none — no word is compressed out of line with the rest
-      4.96s  code           S  -38.6 dB
+      4.96s  Code           S  -38.6 dB
      10.00s  opens          S  -27.6 dB
      43.14s  knows          S  -26.8 dB
      52.30s  setup          S  -25.3 dB
-     37.46s  code,          S  -23.7 dB
+     37.46s  Code,          S  -23.7 dB
       5.24s  reads          S  -20.4 dB
 
 === frame layout
@@ -49,10 +51,10 @@ reel-23-kar.html  54.6s  safe box: x 65-1015, y 269-1248
   overlaps: none over 10px
 
 === rendered file
-reel-23.mp4  1080x1920  30fps  54.60s  7.9MB
-  visual change: median 0.03s, longest 5.33s
+reel-23.mp4  1080x1920  30fps  54.60s  7.4MB
+  visual change: median 0.32s, longest 3.90s
   loudness: -12.8 LUFS integrated, peak -1.2 dBFS, LRA 1.9 LU
-  loop seam: first vs last frame differ by 13.3/255
+  loop seam: first vs last frame differ by 13.2/255
 
   [warn]    picture nearly still 2.13s at 6.20-8.33s
   ok        1080x1920
@@ -63,8 +65,9 @@ reel-23.mp4  1080x1920  30fps  54.60s  7.9MB
   ok        length matches the build
   ok        no frozen run over 4s
   ok        first frame carries picture (luma 31.4)
-  ok        visual change every 0.03s median
+  ok        visual change every 0.32s median
   ok        -12.8 LUFS
   ok        peak -1.2 dBFS
 
 ALL CHECKS PASSED
+
