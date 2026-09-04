@@ -238,6 +238,15 @@ fix has been made after it.
   100 builds a day are counted before any ignore step runs. Production builds on merge.
 - Never "Redeploy" an old deployment: it rebuilds that old commit, and any commit from before
   `studio/` existed fails with "The specified Root Directory studio does not exist".
+- **Vercel's own "Skip deployments when there are no changes to the root directory or its
+  dependencies" (Settings → Build and Deployment → Root Directory) silently stopped every
+  production deploy for almost a full day on 3-4.9.2026** — ten separate merges to `main`,
+  several genuinely touching files under `studio/`, produced zero new deployments; the
+  dashboard's Production Deployment stayed pinned to a merge from a day earlier with no
+  error, no skipped-build entry, nothing to see without opening Settings directly. Disabled
+  now. If episodes or site fixes stop appearing after merging again, check this toggle
+  first, before assuming a Hobby-plan build-quota exhaustion (the two look identical from
+  outside — no banner, no error, just silence).
 - `/api/track` reads Instagram and Beehiiv and records only what changed. Cron runs it daily.
 - **Which pages are public is declared once, in `studio/lib/routes.ts`** (`SITE` / `STUDIO`
   / `CRON`). The middleware and `app/shell.tsx` both import it. That list used to be
