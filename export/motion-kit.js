@@ -139,13 +139,23 @@
   // frame during the transition window; harmless to call outside it (it clamps to the
   // resting state on either side).
   function zoomThroughTransition(outEl, inEl, t, outStart, inStart, outDur, inDur) {
+    // David flagged the first version of this (episode 23) as nauseating and
+    // inconsistent-feeling scene to scene — the culprit was the *magnitude*, not the
+    // idea: a 1.5x scale swing eased with a cubic ease-in (powerIn3, which puts almost
+    // all the motion in the final ~30% of the window) reads as a sudden lurch, and that
+    // lurch looks different depending on what's behind it (a photo reads as "zoom into
+    // depth," a text card reads as "sliding," motion blur on a busy background reads as
+    // "falling apart") even though the code path is identical every time. Cutting the
+    // scale swing to a small, calm push and switching to a linear-ish ease (smoothIn,
+    // no sudden acceleration) makes the same effect read as one consistent thing —
+    // a soft push-through — no matter what's on screen.
     if (t < outStart) {
       outEl.style.opacity = '1'; outEl.style.transform = 'scale(1)'; outEl.style.filter = 'blur(0px)';
     } else if (t < outStart + outDur) {
-      var oe = powerIn3((t - outStart) / outDur);
+      var oe = smoothIn((t - outStart) / outDur);
       outEl.style.opacity = String(1 - oe);
-      outEl.style.transform = 'scale(' + (1 + 1.5 * oe).toFixed(3) + ')';
-      outEl.style.filter = 'blur(' + (8 * oe).toFixed(1) + 'px)';
+      outEl.style.transform = 'scale(' + (1 + 0.16 * oe).toFixed(3) + ')';
+      outEl.style.filter = 'blur(' + (5 * oe).toFixed(1) + 'px)';
     } else {
       outEl.style.opacity = '0';
     }
@@ -154,8 +164,8 @@
     } else {
       var ie = smoothIn(Math.min(1, (t - inStart) / inDur));
       inEl.style.opacity = String(ie);
-      inEl.style.transform = 'scale(' + (0.5 + 0.5 * ie).toFixed(3) + ')';
-      inEl.style.filter = 'blur(' + (8 * (1 - ie)).toFixed(1) + 'px)';
+      inEl.style.transform = 'scale(' + (0.94 + 0.06 * ie).toFixed(3) + ')';
+      inEl.style.filter = 'blur(' + (5 * (1 - ie)).toFixed(1) + 'px)';
     }
   }
   // A brief white flash at the transition's crossover point — the "High energy" accent
