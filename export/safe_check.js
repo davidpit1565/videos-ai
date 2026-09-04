@@ -64,17 +64,24 @@ const path = require('path');
         // A zoom-through scene transition (motion-recipes.md recipe 4) deliberately
         // scales content past the frame edges while blurring it out — that is the
         // "flies past the camera" effect, not readable text sitting in the UI band.
-        // A blur past ~2px means the element is mid-transition, not resting content
-        // a viewer needs to read, so the safe-area rule (which is about static,
-        // legible text) does not apply to it at that instant.
-        const blurMatch = /blur\(([\d.]+)px\)/.exec(cs.filter || '');
-        if (blurMatch && +blurMatch[1] > 2) continue;
+        // Blur and scale both ramp off the same transition progress, but scale grows
+        // much faster relative to blur: by the time blur clears a couple of px, the
+        // element has often already scaled up 30%+ (confirmed shipping episode 23 —
+        // an element measured mid-transition at 13.9% scale still had under 1px of
+        // blur). So exempt on scale directly, not just blur, checking the element's
+        // own transform AND every ancestor's (the scene wrapper is what actually
+        // carries the transition's scale, not the text node itself).
+        function scaleOf(style) {
+          const m = /matrix\(([-\d.]+),/.exec(style.transform || '');
+          return m ? +m[1] : 1;
+        }
+        const blurOf = (style) => { const m = /blur\(([\d.]+)px\)/.exec(style.filter || ''); return m ? +m[1] : 0; };
+        if (blurOf(cs) > 2 || scaleOf(cs) > 1.05) continue;
         let hiddenByAncestor = false;
         for (let a = el.parentElement; a; a = a.parentElement) {
           const p = getComputedStyle(a);
           if (p.visibility === 'hidden' || p.display === 'none' || +p.opacity < 0.05) { hiddenByAncestor = true; break; }
-          const pBlur = /blur\(([\d.]+)px\)/.exec(p.filter || '');
-          if (pBlur && +pBlur[1] > 2) { hiddenByAncestor = true; break; }
+          if (blurOf(p) > 2 || scaleOf(p) > 1.05) { hiddenByAncestor = true; break; }
         }
         if (hiddenByAncestor) continue;
         const r = el.getBoundingClientRect();

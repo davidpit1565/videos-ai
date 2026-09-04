@@ -1,0 +1,70 @@
+=== narration
+audio/reel23-narration-r.wav  54.5s  12 lines
+  medians: ending -33.5 dB · level -20.6 dBFS · S residual +0.8 dB (slope +7.3 dB per sibilant/syllable)
+  flagged below: ending -71.1 dB · S residual -7.4 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  3.78  +0.42  4.23  -10.1  -46.1  -19.6  After twenty-two episodes, one file ke
+    2  6.43  +0.42  2.49  -16.2  -31.0  -20.7  Claude Code reads one file, CLAUDE.md,
+    3   5.0  +0.42   3.8   -8.3  -25.7  -20.5  No prompt, no refresh. Every session s
+    4  4.65  +0.85  3.87  -14.1  -26.7  -20.5  This file has one rule for every real 
+    5  4.71  +0.42  4.46   -6.1  -55.4  -21.3  One rule exists because a metric check
+    6  4.65  +0.42  3.87   -9.1  -14.1  -20.2  One more exists because a check ran be
+    7  4.13  +0.42  3.39   -8.3  -42.8  -19.9  Not one of these was caught by a tool.
+    8  3.63  +0.85  3.58   -7.6  -42.9  -21.1  Claude Code. Free to install. It reads
+    9  4.07  +0.42  3.93  -14.4  -44.3  -20.6  Each new session already knows the rul
+   10  2.84  +0.42  4.58  -13.3  -22.5  -19.9  The file doesn't need to be long. It n
+   11  1.81  +0.42  4.42   -7.6  -35.9  -20.6  The setup's in the link in bio.
+   12  2.22    —    4.95   -6.7  -17.3  -20.6  Follow for the setup that actually wor
+
+  nothing flagged. every line sits inside his own spread.
+
+  per word: 141 words · ending median -21.6 dB · S median -16.9 dB
+  weakest endings:
+     36.22s  now.           ending  -57.1 dB
+     50.76s  bio.           ending  -52.3 dB
+      3.64s  breaking.      ending  -51.7 dB
+     14.84s  already        ending  -49.1 dB
+     35.44s  are            ending  -48.1 dB
+      7.16s  O,             ending  -47.0 dB
+      5.78s  file.          ending  -46.8 dB
+      9.50s  moment         ending  -45.3 dB
+  held too long (over 0.462s per syllable, median 0.240):
+     26.94s  One            0.780s per syllable (0.78s)
+      0.68s  22             0.580s per syllable (0.58s)
+     20.08s  that           0.520s per syllable (0.52s)
+     11.76s  prompt,        0.480s per syllable (0.48s)
+     18.46s  for            0.480s per syllable (0.48s)
+  rushed / clipped (under 0.120s per syllable):
+    none — no word is compressed out of line with the rest
+      4.96s  code           S  -38.6 dB
+     10.00s  opens          S  -27.6 dB
+     43.14s  knows          S  -26.8 dB
+     52.30s  setup          S  -25.3 dB
+     37.46s  code,          S  -23.7 dB
+      5.24s  reads          S  -20.4 dB
+
+=== frame layout
+reel-23-kar.html  54.6s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  overlaps: none over 10px
+
+=== rendered file
+reel-23.mp4  1080x1920  30fps  54.60s  7.9MB
+  visual change: median 0.03s, longest 5.33s
+  loudness: -12.8 LUFS integrated, peak -1.2 dBFS, LRA 1.9 LU
+  loop seam: first vs last frame differ by 13.3/255
+
+  [warn]    picture nearly still 2.13s at 6.20-8.33s
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length 54.6s inside 30-90s
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 31.4)
+  ok        visual change every 0.03s median
+  ok        -12.8 LUFS
+  ok        peak -1.2 dBFS
+
+ALL CHECKS PASSED

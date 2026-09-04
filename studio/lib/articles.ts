@@ -576,6 +576,37 @@ export const ARTICLES: Article[] = [
       "This episode covers one specific, documented failure mode (a tool call failing silently inside an Agent) — not a general audit of n8n's reliability.",
     ],
   },
+  {
+    n: 23,
+    title: "22 episodes in, one file keeps this from breaking",
+    standfirst:
+      "Claude Code reads one file — CLAUDE.md — the moment it opens a project folder, and " +
+      "every new session starts already knowing the rules. This channel runs on one: a real " +
+      "rule for each of its costliest mistakes, including a metric that measured position on " +
+      "screen instead of the actual sound, and a check that ran before the fix it was " +
+      "supposed to protect. Neither was caught by a tool. Both are one line in the file now.",
+    steps: [
+      "Open your terminal — on Mac, search \"Terminal\" with Spotlight (the magnifying glass, top right); on Windows, search \"PowerShell\" in the Start menu. Both come built into the OS already, nothing to download for this step.",
+      "Mac, Linux or WSL: paste curl -fsSL https://claude.ai/install.sh | bash and press Enter. Windows PowerShell: paste irm https://claude.ai/install.ps1 | iex instead and press Enter. This installs Claude Code itself — no separate Node.js install needed.",
+      "When it finishes, type claude --version and press Enter. If it prints a version number back, the install worked — if it says \"command not found,\" close and reopen the terminal window first before trying again.",
+      "Move into the project you want Claude Code to work on: type cd followed by a space and the folder's path, then press Enter — for example cd Documents/my-project.",
+      "Type claude and press Enter. This opens a Claude Code session inside that exact folder — the folder you're in when you type this is the one it will read rules from.",
+      "In that same folder, create a new plain-text file named exactly CLAUDE.md (capital letters exactly as shown, no other extension) — any text editor works, including opening it with your editor of choice or running code CLAUDE.md if you use VS Code.",
+      "Write one real rule per line, in plain English, for a mistake that has actually already happened in this project — not a wishlist of things that might. \"Never delete the backup folder\" is a real rule; \"write clean code\" is not specific enough to catch anything.",
+      "Save the file, close the current Claude Code session, and start a fresh one with claude in the same folder — it reads CLAUDE.md automatically this time, before you type a single instruction.",
+      "Optional, to confirm it actually worked: ask it directly, \"what rules are in CLAUDE.md?\" — a working setup quotes the rules back without you pasting the file into the chat.",
+    ],
+    changes: [
+      "Claude Code reads a file named exactly CLAUDE.md, sitting in a project's top folder, automatically on every session start — no flag, no pasted reminder, no re-explaining.",
+      "The current native install command (checked today): curl -fsSL https://claude.ai/install.sh | bash on Mac/Linux/WSL, or irm https://claude.ai/install.ps1 | iex on Windows PowerShell — no Node.js required either way.",
+      "This is not a hypothetical benefit — this exact channel's own CLAUDE.md carries a real rule for each of its three costliest production mistakes, written the same day each one was found.",
+    ],
+    limits: [
+      "The file only helps if it names real, specific mistakes — a vague wishlist (\"write good code,\" \"be careful\") gives an agent nothing concrete to check itself against.",
+      "It's read once at session start, not enforced like a lint rule — nothing physically stops an agent from breaking a written rule anyway. What it removes is the excuse of not knowing the rule existed, not the possibility of a mistake.",
+      "The exact install command shown here can change as Claude Code updates — re-check code.claude.com/docs if this episode is more than a few months old.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

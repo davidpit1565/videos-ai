@@ -108,6 +108,7 @@ last row before writing the next hook, and pick a different type.**
 | 20 | "ChatGPT was going to buy things for you — then they quietly killed it" | Shock/Surprise (a claim that turned out false) |
 | 21 | "Can an AI browser actually run your errands?" | Direct Address/Question |
 | 22 | "If it failed right now — would you even know?" | You-Focused Appeal, posed as a question |
+| 23 | "22 episodes. One file keeps us safe." | Expert/Authority (the "After N things, here's what I learned" shape) |
 
 **Rejected drafts for episode 22, both failed the dry-sentence test, kept here so the same
 flat shape doesn't get proposed again as if it were new:**
