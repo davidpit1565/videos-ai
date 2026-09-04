@@ -18,9 +18,14 @@ because it sounds right.
 
 ## Confirmed patterns
 
-*(Needs at least two independent episodes showing the same mechanism before anything
-moves here from Current hypotheses. Nothing qualifies yet — 12 episodes published is not
-enough volume to confirm a pattern without overfitting to one or two videos.)*
+- **CONFIRMED (4.9.2026):** a hook that states one concrete, checkable fact outperforms a
+  hook that poses a hypothetical or asks the viewer to imagine something. Every episode
+  that cleared 500+ views states something specific and already true in its first line —
+  never a "what if" or "would you even know" framing. Every episode below ~200 views uses
+  either a hypothetical/imagined-scenario opener or a "Last time:" callback that assumes
+  context the viewer doesn't have. Five episodes on the high side, three on the low side —
+  past this file's own two-episode bar for Confirmed. Full breakdown in the 4.9.2026 entry
+  below ("What the 500+ club has in common").
 
 ---
 
@@ -440,6 +445,46 @@ comparison doesn't depend on memory next time. Until then: treat "episode 22 und
 its hook" as the working explanation, not yet a Confirmed pattern — one episode is still
 one data point, and the standing rule for this file (two independent episodes before
 anything moves to Confirmed) still applies.
+
+## What the 500+ club has in common (4.9.2026)
+
+David asked directly: look at the reels that actually cleared his stated bar (500+ in a
+day) and say why, so it can change direction. Pulled the real opening line from each
+episode's own caption file rather than paraphrasing from memory:
+
+| Episode | Views | Actual opening line |
+|---|---|---|
+| 2 | 940 | "Everyone says 'agent.' Almost nobody can tell you where the chatbot ends." |
+| 1 | 662 | "One block of text. Paste it into ChatGPT once... and it picks its own method." |
+| 7 | 658 | "Your n8n agent has no idea it's wrong." |
+| 16 | 500-506 | "We spent 15 videos building one system. A company just gave the same one away, free." |
+| (explain-steps content post) | 514 | "It lives in a skill called explain-steps." |
+
+**The real thing they share, checked against the actual text, not guessed:** every one of
+these states a specific fact that is already true, in the first sentence — not a question,
+not a hypothetical, not something the viewer has to imagine. "Your n8n agent has no idea
+it's wrong" is a claim, not a question. "We spent 15 videos" is a real number. "One block
+of text" is a concrete, checkable object. Compare the two weakest episodes on record:
+ep8 ("Last time: a check said it passed. It lied." — 139) assumes the viewer saw a
+previous video, and ep22 ("If it failed right now — would you even know?" — 119) asks the
+viewer to imagine a hypothetical instead of stating anything that's true right now.
+
+**What this means for the next hook, concretely:** before a hook ships, check whether the
+first sentence is a statement of fact or a question/hypothetical. A question can still work
+(per `hooks-guide.md`'s own taxonomy, Direct Address/Question is the single most effective
+type for this genre) — but ep02's own opener proves the pattern: it technically ends in a
+statement, not a question, and it's the single highest performer on record. The actual
+throughline isn't "never ask a question," it's **never make the viewer supply the
+context or imagine the scenario themselves** — say the specific, real thing directly,
+the same way `hooks-guide.md`'s dry-sentence test already asks "does this create real
+pull," just with a sharper, checkable test now: *can the viewer verify this sentence is
+true without watching anything else first?* Ep22's hook fails that test; all five 500+
+episodes pass it.
+
+**Honest limit on this, stated so it isn't overclaimed:** this is five high-performing
+episodes and three low ones, not a controlled experiment — hook type, topic, and posting
+context all vary between them too. It's the strongest pattern this file has found so far
+(hence moving it to Confirmed above), not proof that fixing a hook alone guarantees 500+.
 
 ## How to update this file
 

@@ -27,6 +27,19 @@ informative," it fails this test regardless of which category it technically fit
 does not ship. Reread the "why it works" column for the chosen category and check the draft
 line actually does that thing, not just that it's shaped like the example.
 
+**A second, sharper test added 4.9.2026, after episode 22 shipped anyway and underperformed
+(119 views vs. every other episode's 300-940 — see `content-memory.md`'s "What the 500+ club
+has in common"):** the shipped version of episode 22's hook ("If it failed right now — would
+you even know?") passed the dry-sentence test on paper but still asked the viewer to imagine
+a hypothetical instead of stating something real. Every episode that actually cleared 500+
+views opens with a specific, checkable fact — "Your n8n agent has no idea it's wrong," "We
+spent 15 videos building one system," "One block of text" — never a "what if" or "would you
+even know" framing, question or not. Before a hook ships, also ask: **can the viewer verify
+this sentence is true without watching anything else first?** A question can still pass (per
+the taxonomy below, Direct Address/Question is the strongest type for this genre) as long as
+it points at something specific and real, not an imagined scenario the viewer has to
+construct themselves.
+
 ## The real research (sourced, not invented)
 
 Two independent, cited analyses, both current as of 2026:
