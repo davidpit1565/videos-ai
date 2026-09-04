@@ -66,8 +66,15 @@ h2{font-family:var(--d);font-weight:900;font-size:12.6cqw;line-height:.98;letter
   margin:0;text-wrap:balance;position:relative;z-index:2}
 h2 em{font-style:normal;color:var(--brass)}
 h2 .box{background:var(--brass);color:#0A0E14;padding:0 1.6cqw;border-radius:1cqw;
-  display:inline-block;transform:rotate(-1.2deg)}
-h2 .ebox{background:var(--ember);color:#2A1000;padding:0 1.6cqw;border-radius:1cqw;display:inline-block}
+  display:inline-block;position:relative;transform:rotate(-1.2deg)}
+h2 .ebox{background:var(--ember);color:#2A1000;padding:0 1.6cqw;border-radius:1cqw;display:inline-block;position:relative}
+/* Recipe 1/3 glow bloom — a radial-gradient div sitting behind the climax word or the
+   scoreboard's "win" row, landing on the same beat as its own pop/settle. Opacity is
+   always driven in JS (animateGlowBloom caps it at 0.30-0.45), never set here. */
+.glowbloom{position:absolute;pointer-events:none;opacity:0}
+/* Recipe 1/2: word-by-word spans need to sit above their scene's highlight bars
+   (buildHighlightBars draws each bar as the container's first child, z-index:0). */
+.wd{position:relative;z-index:1}
 p.lede{font-size:5.6cqw;line-height:1.3;color:#EAF3FB;margin:0;font-weight:700;position:relative;z-index:2}
 p.lede strong{color:var(--brass)}
 
@@ -75,12 +82,12 @@ p.lede strong{color:var(--brass)}
   box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2;text-align:left}
 .quote .qk{font-family:var(--m);font-size:2.8cqw;letter-spacing:.14em;text-transform:uppercase;
   color:#6B7C90;margin:0 0 2.4cqw}
-.quote .qb{font-family:var(--b);font-weight:700;font-size:5cqw;line-height:1.4;color:#0D0D0D}
+.quote .qb{font-family:var(--b);font-weight:700;font-size:5cqw;line-height:1.4;color:#0D0D0D;position:relative}
 .quote .qb strong{color:#1E8A82}
 
 .scoreboard{display:flex;flex-direction:column;gap:2.6cqw;width:100%;position:relative;z-index:2}
 .scorerow{display:flex;align-items:center;justify-content:space-between;background:#101823;
-  border:.3cqw solid #1E3348;border-radius:1.6cqw;padding:3cqw 4cqw}
+  border:.3cqw solid #1E3348;border-radius:1.6cqw;padding:3cqw 4cqw;position:relative}
 .scorerow .lbl{font-family:var(--ui);font-weight:600;font-size:4cqw;color:#CFE0F0;text-align:left}
 .scorerow .val{font-family:var(--d);font-weight:900;font-size:6.4cqw;color:var(--brass)}
 .scorerow.win .val{color:#5CE18A}
@@ -128,16 +135,16 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <section class="scene" data-in="0" data-out="4.00">
-  <div class="pad"><div class="kb">
-    <h2 class="b punch" data-at="0">Replace this —<br>a real hook,<br>3 lines <span class="box">max</span></h2>
+  <div class="pad"><div class="kb" id="hookKb">
+    <h2 class="punch" id="hookH2">Replace this —<br>a real hook,<br>3 lines <span class="box">max</span></h2>
   </div></div>
 </section>
 
 <section class="scene" data-in="4.00" data-out="8.00">
   <div class="pad"><div class="kb">
-    <div class="quote b" data-at="4.10">
-      <div class="qk">replace me</div>
-      <div class="qb">Quote-card scene — <strong>emphasized phrase here</strong>.</div>
+    <div class="quote" id="quoteCard" style="opacity:0">
+      <div class="qk" id="quoteQk">replace me</div>
+      <div class="qb" id="quoteQb">Quote-card scene — <strong>emphasized phrase here</strong>.</div>
     </div>
   </div></div>
 </section>
@@ -150,9 +157,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <section class="scene" data-in="12.00" data-out="16.50">
   <div class="pad"><div class="kb">
-    <div class="scoreboard b" data-at="12.10">
-      <div class="scorerow lose"><span class="lbl">Replace me</span><span class="val">BAD</span></div>
-      <div class="scorerow win"><span class="lbl">Replace me</span><span class="val">GOOD</span></div>
+    <div class="scoreboard" id="scoreBoard">
+      <div class="scorerow lose" id="scoreRowA" style="opacity:0"><span class="lbl">Replace me</span><span class="val">BAD</span></div>
+      <div class="scorerow win" id="scoreRowB" style="opacity:0"><span class="lbl">Replace me</span><span class="val">GOOD</span></div>
     </div>
   </div></div>
 </section>
@@ -201,6 +208,119 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
 
+  // ---- Recipes 1-3, wired in via MK.splitWordsSafe() (channel/motion-recipes.md) ----
+  // Runs once, before the first render — splitWordsSafe mutates the DOM (wraps every
+  // word in a span), so it must not run per-frame or run twice.
+  var hookKb=document.getElementById('hookKb');
+  var hookH2=document.getElementById('hookH2');
+  var hookScene=hookH2.closest('.scene');
+  var hookSplit=MK.splitWordsSafe(hookH2);
+  var hookClimax=null;
+  for(var hi=0;hi<hookSplit.words.length;hi++){
+    var hw=hookSplit.words[hi];
+    if(hw.classList.contains('box')||hw.classList.contains('ebox')){ hookClimax=hw; break; }
+  }
+  var hookClimaxIndex=hookClimax?hookSplit.words.indexOf(hookClimax):-1;
+  var hookGlow=null;
+  if(hookClimax){
+    hookGlow=document.createElement('div');
+    hookGlow.className='glowbloom';
+    hookGlow.style.cssText='position:absolute;inset:-45%;border-radius:50%;z-index:-1;'+
+      'background:radial-gradient(circle,var(--brass) 0%,rgba(0,0,0,0) 70%)';
+    hookClimax.insertBefore(hookGlow,hookClimax.firstChild);
+  }
+
+  var quoteCard=document.getElementById('quoteCard');
+  var quoteScene=quoteCard.closest('.scene');
+  var quoteQkWords=MK.splitWordsSafe(document.getElementById('quoteQk')).words;
+  var quoteQbSplit=MK.splitWordsSafe(document.getElementById('quoteQb'));
+  // buildHighlightBars() measures each highlighted word's getBoundingClientRect() —
+  // if that runs before the Google Fonts webfont has finished loading, it measures
+  // the fallback font's (narrower) glyph metrics, so every bar lands at the wrong
+  // spot once the real font swaps in (found testing this recipe for the first time:
+  // the bar rendered behind "Qu" of "Quote-card" instead of the actual highlighted
+  // phrase). Building the bars only after document.fonts.ready removes the race;
+  // rebuilding is cheap (a handful of divs) so there's no cost to waiting for it.
+  var quoteQbEl=document.getElementById('quoteQb');
+  var quoteBars=[];
+  function buildQuoteBars(){
+    quoteBars.forEach(function(b){ if(b.parentNode) b.parentNode.removeChild(b); });
+    quoteBars=MK.buildHighlightBars(quoteQbEl,quoteQbSplit.highlighted);
+  }
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(buildQuoteBars);
+  else buildQuoteBars();
+
+  var scoreBoard=document.getElementById('scoreBoard');
+  var scoreScene=scoreBoard.closest('.scene');
+  var scoreRowA=document.getElementById('scoreRowA'), scoreRowB=document.getElementById('scoreRowB');
+  var scoreGlow=document.createElement('div');
+  scoreGlow.className='glowbloom';
+  scoreGlow.style.cssText='position:absolute;inset:-16%;border-radius:1.6cqw;z-index:-1;'+
+    'background:radial-gradient(circle,#5CE18A 0%,rgba(0,0,0,0) 70%)';
+  scoreRowB.insertBefore(scoreGlow,scoreRowB.firstChild);
+
+  function renderHook(){
+    var ht=t-(+hookScene.dataset.in);
+    var START=0.15,GAP=0.10,DUR=0.30;
+    for(var i=0;i<hookSplit.words.length;i++){
+      var w=hookSplit.words[i],at=START+i*GAP;
+      if(w===hookClimax){
+        MK.animatePop(w,ht,at,DUR);
+        if(hookGlow) MK.animateGlowBloom(hookGlow,ht,at,DUR,0.30);
+      } else {
+        var e=MK.smoothIn(MK.clamp01((ht-at)/DUR));
+        w.style.opacity=String(e);
+        w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+      }
+    }
+    // Multi-phase camera (recipe 1): pull back, hold, then push timed to land exactly
+    // on the climax word instead of the flat linear zoom every other scene still uses.
+    if(hookClimaxIndex>=0){
+      var climaxAt=START+hookClimaxIndex*GAP;
+      var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.96,pushAt:climaxAt,pushDur:0.9,pushTo:1.08});
+      hookKb.style.transform='scale('+camScale.toFixed(4)+')';
+    }
+  }
+
+  function renderQuote(){
+    var qt=t-(+quoteScene.dataset.in);
+    var CARD_DUR=0.4;
+    var le=MK.smoothIn(MK.clamp01(qt/CARD_DUR));
+    quoteCard.style.opacity=String(le);
+    quoteCard.style.transform='translateY('+(36*(1-le)).toFixed(2)+'px)';
+    quoteCard.style.boxShadow='0 '+(10+30*le).toFixed(1)+'px '+(40+60*le).toFixed(1)+'px rgba(0,0,0,'+(0.25*le).toFixed(3)+')';
+
+    var QK_START=0.10,QK_GAP=0.05,QK_DUR=0.22;
+    for(var i=0;i<quoteQkWords.length;i++){
+      var e=MK.smoothIn(MK.clamp01((qt-(QK_START+i*QK_GAP))/QK_DUR));
+      quoteQkWords[i].style.opacity=String(e);
+      quoteQkWords[i].style.transform='translateY('+(10*(1-e)).toFixed(2)+'px)';
+    }
+    var qkEnd=MK.wordsEndAt(quoteQkWords,QK_START,QK_GAP,QK_DUR);
+    var QB_START=qkEnd+0.10,QB_GAP=0.06,QB_DUR=0.26;
+    for(var j=0;j<quoteQbSplit.words.length;j++){
+      var e2=MK.smoothIn(MK.clamp01((qt-(QB_START+j*QB_GAP))/QB_DUR));
+      quoteQbSplit.words[j].style.opacity=String(e2);
+      quoteQbSplit.words[j].style.transform='translateY('+(10*(1-e2)).toFixed(2)+'px)';
+    }
+    var qbEnd=MK.wordsEndAt(quoteQbSplit.words,QB_START,QB_GAP,QB_DUR);
+    MK.animateHighlightBars(quoteBars,qt,qbEnd+0.05,0.22,0.06);
+  }
+
+  function renderScoreboard(){
+    var st=t-(+scoreScene.dataset.in);
+    var A_AT=0.10,A_DUR=0.32,B_AT=0.65,B_DUR=0.32;
+    var ae=MK.smoothIn(MK.clamp01((st-A_AT)/A_DUR));
+    scoreRowA.style.opacity=String(ae);
+    scoreRowA.style.transform='scale('+ae.toFixed(3)+')';
+    var be=MK.smoothIn(MK.clamp01((st-B_AT)/B_DUR));
+    scoreRowB.style.opacity=String(be);
+    scoreRowB.style.transform='scale('+be.toFixed(3)+')';
+    MK.animateGlowBloom(scoreGlow,st,B_AT,B_DUR,0.30);
+    var shakeX=MK.impactShake(st,B_AT,0.22,6);
+    scoreBoard.style.transform='translateX('+shakeX.toFixed(2)+'px)';
+  }
+
   // Zoom-through transition (motion-recipes.md recipe 4) between every consecutive
   // scene pair, universally — the repo-wide gap this template exists to close.
   var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
@@ -223,10 +343,23 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     }
     renderTransitions();
     if(active){
-      var f=(t-+active.dataset.in)/((+active.dataset.out)-(+active.dataset.in));
+      // Freeze this per-scene push-in once the scene's own outgoing zoom-through
+      // transition begins — .kb's scale and the transition's own scale are nested
+      // transforms that compound multiplicatively otherwise (found shipping episode
+      // 23: a lede's box measured 1.2x wider than either effect alone would produce).
+      var kbEnd=(+active.dataset.out)-OUT_DUR;
+      var f=t>=kbEnd?0:(t-+active.dataset.in)/(kbEnd-(+active.dataset.in));
       var kbs=active.querySelectorAll('.kb');
       for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.06*f).toFixed(4)+')';
     }
+
+    // Recipes 1-3 (motion-recipes.md) — hand-driven per-scene animation, run every
+    // frame regardless of which scene is active (cheap no-op math when off-screen);
+    // renderHook() runs after the generic .kb loop above so it can override hookKb's
+    // transform with the multi-phase camera instead of the flat linear push.
+    renderHook();
+    renderQuote();
+    renderScoreboard();
 
     for(i=0;i<beats.length;i++){
       e=beats[i];

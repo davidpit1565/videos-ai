@@ -41,6 +41,61 @@
     return words.map(function (_, i) { return document.getElementById(container.id + '-w' + i); });
   }
 
+  // Markup-safe word splitter — the missing piece channel/motion-recipes.md flagged:
+  // splitWords() above only takes plain text, so calling it on a hook's or quote's
+  // actual innerHTML would silently destroy existing markup a scene relies on (a
+  // <br> line break, the climax word's <span class="box">, a <strong> emphasis run).
+  // This walks the live DOM instead of retyping it as a string, so that markup
+  // survives untouched:
+  //   - <br> is left alone (it isn't a word).
+  //   - .box/.ebox (the hook's boxed climax word) is treated as ONE atomic word unit
+  //     — never split, never unwrapped — so animatePop()/animateGlowBloom() can still
+  //     target it directly, same as before this splitter existed.
+  //   - any other element (<strong>, <em>, a plain wrapper) is recursed into and its
+  //     own words are split individually, but each resulting span is tagged .hl if
+  //     it came from inside `highlightTag` (default STRONG) — buildHighlightBars()
+  //     reads that tag to find the words to underline, since a phrase that wraps two
+  //     lines needs one bar per word, never one stretched bar (see recipe 2).
+  // Returns {words: [...in document order...], highlighted: [the .hl subset]} —
+  // `words` feeds animateWords()/wordsEndAt(), `highlighted` feeds buildHighlightBars().
+  function splitWordsSafe(container, opts) {
+    opts = opts || {};
+    var hlTag = (opts.highlightTag || 'STRONG').toUpperCase();
+    var words = [], highlighted = [];
+    function isWhitespace(s) { return /^\s*$/.test(s); }
+    function walk(node, insideHl) {
+      var kids = [].slice.call(node.childNodes);
+      kids.forEach(function (child) {
+        if (child.nodeType === 3) {
+          var parts = child.textContent.split(/(\s+)/).filter(function (p) { return p.length > 0; });
+          var frag = document.createDocumentFragment();
+          parts.forEach(function (p) {
+            if (isWhitespace(p)) { frag.appendChild(document.createTextNode(p)); return; }
+            var span = document.createElement('span');
+            span.className = 'wd' + (insideHl ? ' hl' : '');
+            span.style.cssText = 'display:inline-block;opacity:0';
+            span.textContent = p;
+            frag.appendChild(span);
+            words.push(span);
+            if (insideHl) highlighted.push(span);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1) {
+          if (child.tagName === 'BR') return;
+          if (child.classList.contains('box') || child.classList.contains('ebox')) {
+            child.classList.add('wd');
+            if (!child.style.opacity) child.style.opacity = '0';
+            words.push(child);
+            return;
+          }
+          walk(child, insideHl || child.tagName === hlTag);
+        }
+      });
+    }
+    walk(container, false);
+    return { words: words, highlighted: highlighted };
+  }
+
   // Animate the words already built by splitWords() for the given frame time `t`.
   //   startAt: when word 0 begins: opts.gap between each word's start, opts.dur each word's own rise.
   function animateWords(spans, t, startAt, gap, dur, riseY) {
@@ -236,7 +291,7 @@
   global.MotionKit = {
     clamp01: clamp01, smoothIn: smoothIn, powerIn2: powerIn2, powerIn3: powerIn3,
     mulberry32: mulberry32,
-    splitWords: splitWords, animateWords: animateWords, wordsEndAt: wordsEndAt,
+    splitWords: splitWords, splitWordsSafe: splitWordsSafe, animateWords: animateWords, wordsEndAt: wordsEndAt,
     buildHighlightBars: buildHighlightBars, animateHighlightBars: animateHighlightBars,
     animatePop: animatePop, animateGlowBloom: animateGlowBloom, impactShake: impactShake,
     multiPhaseCamera: multiPhaseCamera,
