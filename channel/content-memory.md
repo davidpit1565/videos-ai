@@ -424,11 +424,22 @@ highest performers (ep01 "keeps giving you the obvious," ep02 "it's a chatbot" �
 stated, specific facts). Worth watching, not worth concluding from one data point at one day
 old.
 
-**What actually answers this, and it's cheap:** re-run this exact table in 2 days, the same
-way the 30.8→1.9 comparison worked. If episode 22 catches up into the same 280-500+ range
-the others reached, the drop was age, not the hook — matching every other episode's pattern.
-If it stays near 119 while episodes posted around the same time (20, 21) keep climbing
-normally, that's the first real signal this specific hook underperformed, not a confound.
+**Correction, same day, from David directly — the age-confound read above is REJECTED:**
+he stated every previously-published episode reached at least 300 views within its first
+day live. That's the actual bar this file didn't have when the entry above was written.
+Episode 22 sitting at 119 is not explained by "it just posted" — every prior episode
+cleared 300 in less time than 22 has now had. This makes 119 a real signal, not a
+measurement artifact, and moves the hook-quality hypothesis above from "worth watching"
+to "the leading explanation, still unconfirmed at n=1."
+
+**What's still unverified, so this doesn't overcorrect into a new false certainty:** the
+exact post time for episode 22 isn't in this file (no timestamp, only grid position) — "at
+least a day" is David's recollection, not a logged number. Worth logging actual post
+timestamps going forward (the studio's `/api/track` data should have this) so this
+comparison doesn't depend on memory next time. Until then: treat "episode 22 underperformed
+its hook" as the working explanation, not yet a Confirmed pattern — one episode is still
+one data point, and the standing rule for this file (two independent episodes before
+anything moves to Confirmed) still applies.
 
 ## How to update this file
 
