@@ -7,10 +7,13 @@ clip before landing here — none of this is theoretical. Sourced from the real 
 catalog in `.claude/skills/hyperframes-animation/` (rules, blueprints, transitions), not
 invented from scratch.
 
-**Status: verified in isolated demos, not yet wired into `produce.sh` or a shipped
-episode.** The next real step is pulling these into the actual scene templates the
-pipeline builds from — this file is the reference for doing that, not a replacement for
-it.
+**Status: all five recipes are real, tested code in `export/motion-kit.js`, and all
+five are wired into `video/reel-template.html`** — the starter build every new episode
+copies. Recipe 4 (zoom-through transitions) has shipped in a real episode (23); recipes
+1-3 (hook word-by-word, quote highlight, scoreboard stagger) are wired into the
+template and verified there but have not shipped in an episode's actual content yet —
+the next real episode built from the template is the first real test of them end to
+end, not just in isolation.
 
 ---
 
@@ -215,12 +218,38 @@ render (blur/scale/fade crossing correctly at each scene boundary), and
 `node export/safe_check.js video/reel-template.html` came back clean across the whole
 runtime, not just eyeballed.
 
-**Not done yet, and here's exactly why:** recipes 1-3 (hook word-by-word, quote
-per-word highlight, scoreboard stagger) are NOT wired into the template. They need a
-word-splitter that can wrap words inside existing inline markup — a `<br>`, a
-`<span class="box">` — without breaking it. `MotionKit.splitWords()` only takes plain
-text; calling it on `h2.innerHTML` as-is would silently mangle the boxed-word markup
-every hook scene already relies on. That's a real, separate piece of work (a markup-safe
-word-wrapper), not something to fake by skipping the markup-preserving case. Until it
-exists, `video/reel-template.html`'s beat-level animation (`.b`/`.kb`) is unchanged from
-what has already shipped — functional, just not upgraded to recipes 1-3 yet.
+**Step three, now done: recipes 1-3 are wired into the template.** The missing piece
+was a markup-safe word-splitter — `MotionKit.splitWords()` only takes plain text, and
+calling it on `h2.innerHTML` as-is would have silently mangled the boxed-word markup
+every hook scene relies on. `MotionKit.splitWordsSafe(container, opts)` walks the live
+DOM instead of retyping it as a string: a `<br>` is left alone (it isn't a word), the
+climax word's `.box`/`.ebox` span is treated as one atomic word unit (never split, so
+`animatePop()`/`animateGlowBloom()` still target it directly), and any other inline
+element (`<strong>`, `<em>`) is recursed into with its own words split individually and
+tagged `.hl` when they came from `opts.highlightTag` (default `STRONG`) — that's what
+`buildHighlightBars()` reads to find the words to underline. It returns
+`{words, highlighted}`.
+
+`video/reel-template.html` now uses it for all three: the hook (`renderHook()`) splits
+`h2` and gives the `.box` word the spring-pop + glow bloom while the rest fade in word
+by word, with `multiPhaseCamera` timed to push exactly on the climax word instead of the
+flat linear zoom; the quote card (`renderQuote()`) lifts with a growing shadow, builds
+its label and body word by word, and highlights the `<strong>` phrase with one bar per
+word (verified correct across a real line-wrap — no sliver); the scoreboard
+(`renderScoreboard()`) lands the bad-news row alone first, then the good-news row ~0.5s
+later with a glow bloom and a brief impact shake on the whole board.
+
+**A real bug found wiring this in, not a hypothetical one:** `buildHighlightBars()`
+measures each word's `getBoundingClientRect()` — calling it immediately on script load
+measures the fallback font's metrics if the Google Fonts webfont hasn't finished
+loading yet, so every bar lands at the wrong spot once the real font swaps in (it
+rendered behind the first two letters of the wrong word in testing). Fixed by building
+the bars only after `document.fonts.ready` resolves.
+
+Verified with `export/frames.js` frame captures at each recipe's key beat (word-by-word
+build, climax pop+glow, the corrected highlight bars, the scoreboard's staggered
+reveal+shake) and `node export/safe_check.js video/reel-template.html` — clean, no
+safe-area or overlap violations. The same pass also carried over episode 23's `.kb`/
+transition-compounding fix (drop the per-scene push-in to 0 once the scene's own
+outgoing transition begins) into this template, so a new episode built from it doesn't
+have to rediscover that bug.
