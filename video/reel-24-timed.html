@@ -136,13 +136,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="6.55">
+<section class="scene" data-in="0" data-out="5.64">
   <div class="pad"><div class="kb" id="hookKb">
-    <h2 class="punch" id="hookH2">Editors squeeze<br>the picture to fit<br>the audio. We <span class="box">flip</span> it.</h2>
+    <h2 class="punch" id="hookH2">Editors squeeze<br>the picture.<br>We <span class="box">flip</span> it.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="6.55" data-out="12.67">
+<section class="scene" data-in="5.64" data-out="11.76">
   <div class="pad"><div class="kb">
     <div class="quote" id="quoteCard" style="opacity:0">
       <div class="qk" id="quoteQk">the mechanism</div>
@@ -151,13 +151,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="12.67" data-out="20.2">
+<section class="scene" data-in="11.76" data-out="19.29">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="12.7">The old way stretched<br>every line up to 12%<br>— and still <strong>overflowed</strong>.</p>
+    <p class="lede b" data-at="11.79">The old way stretched<br>every line up to 12%<br>— and still <strong>overflowed</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="20.2" data-out="24.655">
+<section class="scene" data-in="19.29" data-out="23.745">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow lose" id="scoreRowA" style="opacity:0"><span class="lbl">Old pipeline</span><span class="val">−0.60s</span></div>
@@ -166,43 +166,43 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="24.655" data-out="32.08">
+<section class="scene" data-in="23.745" data-out="27.5">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="24.685">Now every timing —<br>captions, cuts, beats —<br>moves through <strong>one real map</strong>.</p>
+    <p class="lede b" data-at="23.775">Now every timing —<br>captions, cuts, beats —<br>moves through <strong>one real map</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="32.08" data-out="38.06">
+<section class="scene" data-in="27.5" data-out="32.81">
   <div class="pad"><div class="kb">
-    <div class="quote bad b" data-at="32.11">
+    <div class="quote bad b" data-at="27.53">
       <div class="qk">a real bug</div>
       <div class="qb">One episode cut off <strong>mid-word</strong> — the measured "end" undercounted a slow last word.</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="38.06" data-out="43.56">
+<section class="scene" data-in="32.81" data-out="38.68">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="38.09">Now the real audio file<br>is the floor.<br><strong>Not a guess</strong>.</p>
+    <p class="lede b" data-at="32.84">Now the real audio file<br>sets the limit.<br><strong>Not a guess</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="43.56" data-out="51.255">
+<section class="scene" data-in="38.68" data-out="46.095">
   <div class="pad"><div class="kb">
-    <div class="toolmark b" data-at="43.59"><span class="dot"></span>RETIME.PY</div>
-    <p class="lede b" data-at="45.094" style="margin-top:2.4cqw">No special software. <strong>Measure the real pauses. Cut there.</strong></p>
+    <div class="toolmark b" data-at="38.71"><span class="dot"></span>RETIME.PY</div>
+    <p class="lede b" data-at="40.161" style="margin-top:2.4cqw">No special tool. <strong>Measure the real pauses. Make the cut.</strong></p>
   </div></div>
 </section>
 
-<section class="scene" data-in="51.255" data-out="53.7">
+<section class="scene" data-in="46.095" data-out="48.54">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="51.285"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="46.125"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="53.7" data-out="56.42">
+<section class="scene" data-in="48.54" data-out="51.26">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="53.73" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="48.57" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -233,7 +233,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=57.02,t=0,playing=false,last=0;
+  var DUR=51.86,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -243,16 +243,16 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,6.34,"Every video editor squeezes the picture to fit the audio. We build it backwards, on purpose."],
-    [6.76,12.46,"This script doesn't stretch the voice to fit the video — the cuts move to match the voice's real pauses instead."],
-    [12.88,19.99,"The old way stretched every line to fit one set size. A line that ran long still spilled into the next."],
-    [20.41,24.23,"One real episode went out with two lines talking at once."],
-    [25.08,31.87,"Now every timing, captions, cuts, on-screen beats, moves through the narration's own measured gaps."],
-    [32.29,37.85,"One more real bug — an episode once cut off mid-word, because the tool's guess landed early."],
-    [38.27,43.35,"Now the actual audio file is the floor. The picture can't end before the voice does."],
-    [43.77,50.83,"This isn't special software. Anyone can do this by hand, in any program. Find the real pause in the voice, and cut there."],
-    [51.68,53.49,"The setup's in the link in bio."],
-    [53.91,56.12,"Follow for the setup that actually works."]
+    [0.30,5.43,"Every video app squeezes the picture to fit the audio. We flip it, on purpose."],
+    [5.85,11.55,"This script doesn't stretch the voice to fit the video — the cuts move to match the voice's real pauses instead."],
+    [11.97,19.08,"The old way stretched every line to fit one set size. A line that ran long still spilled into the next."],
+    [19.50,23.32,"One real episode went out with two lines talking at once."],
+    [24.17,27.29,"Now the whole picture follows the voice's own pace."],
+    [27.71,32.60,"One more real bug: it used to cut off mid-word, because the tool's guess landed early."],
+    [33.02,38.47,"Now the actual audio file sets the hard limit. The video can't stop while the voice keeps talking."],
+    [38.89,45.67,"This isn't a special tool. Anyone can do this by hand, in any program. Find the real pause in the voice, and make the cut."],
+    [46.52,48.33,"The setup's in the link in bio."],
+    [48.75,50.96,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}

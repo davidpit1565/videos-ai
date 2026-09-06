@@ -97,9 +97,54 @@ ACTUAL_DUR="$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$OUT")
 # real margin for the aresample + AAC encode after it to reconstruct a peak slightly
 # higher than any discrete sample alimiter saw.
 GAIN_DB="$(python3 -c "print(-14 - (${MEAS_I}))")"
-ffmpeg -hide_banner -loglevel error -y -i "$OUT" -c:v copy \
-  -af "volume=${GAIN_DB}dB,alimiter=limit=0.75:attack=5:release=50:level=disabled,aresample=48000" \
-  -c:a aac -b:a 192k -ar 48000 -ac 2 -t "$ACTUAL_DUR" "$TMP/corrected.mp4"
+
+# Shipping episode 24 found a third failure mode on top of the two above: a take
+# whose integrated loudness landed right on -14 LUFS still measured true peak at
+# +2.7 dBTP — a single sharp transient (a plosive, a duck-release, a music hit)
+# that alimiter's sample-domain ceiling let through, then AAC's block-based
+# encoding inflated further (lossy codecs commonly overshoot the pre-encode
+# ceiling on transient content — this is the actual reason "true peak" as a
+# measurement exists). The theoretical chain above doesn't bound this case, so
+# instead of trusting it, re-measure the real encoded output and fix it for
+# real: a first attempt at this cut the whole file's GAIN further, which did
+# bring the peak down, but a flat gain cut drags the integrated loudness down
+# with it (a 5dB cut to fix one transient landed the whole file 5dB under the
+# -14 LUFS target, failing the OTHER half of the gate). What actually needs to
+# come down is the alimiter's ceiling itself: it only acts on the rare samples
+# that exceed it, so tightening it clips the transient without touching the
+# level of everything else that already sits well under it.
+# The gate (qa.py) only fails a true peak above -0.5 dBFS — tighter than that
+# buys nothing and, since pulling the ceiling down costs some integrated
+# loudness too (confirmed empirically: a first attempt at this targeted -1.5
+# dBTP with a 1dB margin, which fixed the peak but dragged the file to -15.74
+# LUFS, outside the +/-1.5 LUFS tolerance), the target here stays close to the
+# real spec instead of the more conservative -1.5 used elsewhere in this file.
+LIMIT=0.75
+PASS=0
+for ATTEMPT in 1 2 3 4; do
+  ffmpeg -hide_banner -loglevel error -y -i "$OUT" -c:v copy \
+    -af "volume=${GAIN_DB}dB,alimiter=limit=${LIMIT}:attack=5:release=50:level=disabled,aresample=48000" \
+    -c:a aac -b:a 192k -ar 48000 -ac 2 -t "$ACTUAL_DUR" "$TMP/corrected.mp4"
+  ffmpeg -hide_banner -i "$TMP/corrected.mp4" -af loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json \
+    -f null - 2> "$TMP/verify.log"
+  read -r ACTUAL_I ACTUAL_TP <<STATS
+$(python3 -c "
+import json
+text = open('$TMP/verify.log').read()
+d = json.loads(text[text.rfind('{'):])
+print(d['input_i'], d['input_tp'])
+")
+STATS
+  echo "  attempt ${ATTEMPT}: limit ${LIMIT} -> ${ACTUAL_I} LUFS, true peak ${ACTUAL_TP} dBTP"
+  if python3 -c "exit(0 if float('${ACTUAL_TP}') <= -0.8 else 1)"; then PASS=1; break; fi
+  # scale the ceiling down toward a -1.0 dBTP landing (0.3dB inside the real
+  # -0.5 spec), not the file's own -1.5 target — a smaller cut costs less LUFS
+  REDUCE_DB="$(python3 -c "print(float('${ACTUAL_TP}') - (-1.0) + 0.3)")"
+  LIMIT="$(python3 -c "print(${LIMIT} * 10 ** (-(${REDUCE_DB}) / 20))")"
+done
+if [ "$PASS" != "1" ]; then
+  echo "  [warn] could not bring true peak under -0.8 dBTP in 4 attempts (last measured ${ACTUAL_TP})" >&2
+fi
 mv "$TMP/corrected.mp4" "$OUT"
 
 ffprobe -hide_banner -v error -show_entries format=duration,size -of default=nw=1 "$OUT"

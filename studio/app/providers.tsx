@@ -13,6 +13,9 @@ type Ctx = {
   state: State | null;
   mode: Mode;
   saving: boolean;
+  /** Set when the last save to the database failed after a retry — the edit is still
+   *  only in this browser's copy. Cleared by the next successful save. */
+  saveError: string | null;
   /** which environment variable the database was found under, for diagnosis */
   dbVar: string | null;
   /** what the server said when there is no database, or when connecting failed */
@@ -36,6 +39,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<State | null>(null);
   const [mode, setMode] = useState<Mode>("loading");
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [dbVar, setDbVar] = useState<string | null>(null);
   const [hint, setHint] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
@@ -96,25 +100,50 @@ export function Provider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  const persist = useCallback((next: State) => {
+  // The PUT below used to fire and forget: any failure — a dropped connection, the
+  // database briefly unreachable, a 500 — was swallowed by `.catch(() => undefined)`
+  // with nothing shown anywhere. The optimistic update() already changed what's on
+  // screen, so the click looked like it worked; the database just never got it. The
+  // next periodic refresh() (every 3 minutes) or the next page load pulls the
+  // database's real, unchanged copy and silently reverts the edit — which is exactly
+  // what "I clicked it and nothing happened" looks like from someone who checked back
+  // a minute later, even though something DID happen, it just didn't stick. One retry
+  // covers a genuine one-off network blip; a real, persistent failure now sets
+  // saveError so the badge in shell.tsx can say so instead of quietly lying "מסד
+  // נתונים" (saved) once `saving` goes back to false regardless of outcome.
+  const putState = useCallback(async (next: State): Promise<boolean> => {
     try {
-      localStorage.setItem(KEY, JSON.stringify(next));
-    } catch {
-      /* private mode or a full quota — the in-memory copy still works */
-    }
-    if (modeRef.current !== "cloud") return;
-    if (timer.current) clearTimeout(timer.current);
-    setSaving(true);
-    timer.current = setTimeout(() => {
-      fetch("/api/state", {
+      const r = await fetch("/api/state", {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(next),
-      })
-        .catch(() => undefined)
-        .finally(() => setSaving(false));
-    }, 700);
+      });
+      const j = (await r.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+      return r.ok && j?.ok === true;
+    } catch {
+      return false;
+    }
   }, []);
+
+  const persist = useCallback(
+    (next: State) => {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(next));
+      } catch {
+        /* private mode or a full quota — the in-memory copy still works */
+      }
+      if (modeRef.current !== "cloud") return;
+      if (timer.current) clearTimeout(timer.current);
+      setSaving(true);
+      timer.current = setTimeout(async () => {
+        let ok = await putState(next);
+        if (!ok) ok = await putState(next); // one retry — covers a one-off network blip
+        setSaving(false);
+        setSaveError(ok ? null : "השמירה למסד הנתונים נכשלה — השינוי האחרון עלול לא להישמר. נסה שוב.");
+      }, 700);
+    },
+    [putState],
+  );
 
   const update = useCallback(
     (fn: (s: State) => void) => {
@@ -189,7 +218,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
   }, [mode, refresh]);
 
   return (
-    <C.Provider value={{ state, mode, saving, dbVar, hint, update, refresh, refreshing }}>
+    <C.Provider value={{ state, mode, saving, saveError, dbVar, hint, update, refresh, refreshing }}>
       {children}
     </C.Provider>
   );

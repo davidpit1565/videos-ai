@@ -46,6 +46,15 @@ SWAP = {
     "north": ["up"], "return": ["send back", "give back"],
     "learn": ["pick up"], "turn": ["switch"],
     "together": ["as one", "in one place"],
+    "floor": ["limit", "minimum", "baseline"],
+    "before": ["earlier than", "ahead of"],
+    "software": ["a tool", "an app", "a program"],
+    "editor": ["editing tool", "edit"],
+    "more": ["extra", "an added"],
+    "store": ["keep", "save"],
+    "explore": ["dig into", "look into"],
+    "chair": ["seat"],
+    "hardware": ["a device", "the machine"],
 }
 
 RULES = [
@@ -54,8 +63,11 @@ RULES = [
     ("-LE / -BLE", re.compile(r"^[a-z]{2,}[^aeiou]le$"), "the final syllable disappears"),
     ("-IBLE / -ABLE", re.compile(r"^[a-z]{3,}[ia]ble$"), "two unstressed syllables, both soft"),
     ("-LY", re.compile(r"^[a-z]{4,}ly$"), "the L is dark and the Y trails off"),
-    ("R + cluster", re.compile(r"^[a-z]{2,}(rld|rs|rse|rce|rst|rth|rn)e?$"),
+    ("R + cluster", re.compile(r"^[a-z]{2,}(rld|rds|rs|rse|rce|rst|rth|rn)e?$"),
      "R plus a cluster, all at the end"),
+    ("final R", re.compile(r"^[a-z]{2,}(oor|oar|air|are|ear|eer|oir|or|ore)$"),
+     "a plain R after a vowel, nothing after it — this is the single most audible "
+     "marker of a non-American accent, and it drops in this voice"),
     ("flapped T", re.compile(r"^[a-z]*[aeiou]t(er|le|ing|ed)$"), "the T turns into a tap and vanishes"),
     ("-ENT / -ANT", re.compile(r"^[a-z]{4,}[ea]nt$"), "the final T is unreleased"),
     ("-TH", re.compile(r"^[a-z]{3,}th$"), "the TH at the end goes breathy and disappears"),
@@ -72,7 +84,8 @@ def cues_from_html(path):
 BRAND = re.compile(r"actually\s+works", re.I)
 
 STOP = {"with", "both", "this", "that", "they", "than", "then", "there", "these", "those",
-        "their", "other", "over", "after", "under", "ever", "never"}
+        "their", "other", "over", "after", "under", "ever", "never", "for", "or", "nor",
+        "your", "you're"}
 
 def check(line):
     hits = []

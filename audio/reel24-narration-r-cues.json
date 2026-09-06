@@ -1,62 +1,62 @@
 [
  {
   "n": 1,
-  "line": "Every video editor squeezes the picture to fit the audio. We build it backwards, on purpose.",
+  "line": "Every video app squeezes the picture to fit the audio. We flip it, on purpose.",
   "start": 0.3,
-  "end": 6.34
+  "end": 5.43
  },
  {
   "n": 2,
   "line": "This script doesn't stretch the voice to fit the video \u2014 the cuts move to match the voice's real pauses instead.",
-  "start": 6.76,
-  "end": 12.46
+  "start": 5.85,
+  "end": 11.55
  },
  {
   "n": 3,
   "line": "The old way stretched every line to fit one set size. A line that ran long still spilled into the next.",
-  "start": 12.88,
-  "end": 19.99
+  "start": 11.97,
+  "end": 19.08
  },
  {
   "n": 4,
   "line": "One real episode went out with two lines talking at once.",
-  "start": 20.41,
-  "end": 24.23
+  "start": 19.5,
+  "end": 23.32
  },
  {
   "n": 5,
-  "line": "Now every timing, captions, cuts, on-screen beats, moves through the narration's own measured gaps.",
-  "start": 25.08,
-  "end": 31.87
+  "line": "Now the whole picture follows the voice's own pace.",
+  "start": 24.17,
+  "end": 27.29
  },
  {
   "n": 6,
-  "line": "One more real bug \u2014 an episode once cut off mid-word, because the tool's guess landed early.",
-  "start": 32.29,
-  "end": 37.85
+  "line": "One more real bug: it used to cut off mid-word, because the tool's guess landed early.",
+  "start": 27.71,
+  "end": 32.6
  },
  {
   "n": 7,
-  "line": "Now the actual audio file is the floor. The picture can't end before the voice does.",
-  "start": 38.27,
-  "end": 43.35
+  "line": "Now the actual audio file sets the hard limit. The video can't stop while the voice keeps talking.",
+  "start": 33.02,
+  "end": 38.47
  },
  {
   "n": 8,
-  "line": "This isn't special software. Anyone can do this by hand, in any program. Find the real pause in the voice, and cut there.",
-  "start": 43.77,
-  "end": 50.83
+  "line": "This isn't a special tool. Anyone can do this by hand, in any program. Find the real pause in the voice, and make the cut.",
+  "start": 38.89,
+  "end": 45.67
  },
  {
   "n": 9,
   "line": "The setup's in the link in bio.",
-  "start": 51.68,
-  "end": 53.49
+  "start": 46.52,
+  "end": 48.33
  },
  {
   "n": 10,
   "line": "Follow for the setup that actually works.",
-  "start": 53.91,
-  "end": 56.12
+  "start": 48.75,
+  "end": 50.96
  }
 ]

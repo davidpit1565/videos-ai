@@ -10,6 +10,8 @@ type Props = { file: string; caption: string | null; youtube: string | null };
 export default function PublishButtons({ file, caption, youtube }: Props) {
   const [igBusy, setIgBusy] = useState(false);
   const [igMsg, setIgMsg] = useState<string | null>(null);
+  const [fbBusy, setFbBusy] = useState(false);
+  const [fbMsg, setFbMsg] = useState<string | null>(null);
   const [ytBusy, setYtBusy] = useState(false);
   const [ytMsg, setYtMsg] = useState<string | null>(null);
   const [ytConnected, setYtConnected] = useState<boolean | null>(null);
@@ -61,6 +63,27 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
     }
   }
 
+  /** A retry that touches only the Facebook Page post — for a file whose Reel already
+   *  published (like episodes 21 and 22, where the Reel went out but Facebook didn't),
+   *  so it never needs to re-publish a second, duplicate Reel just to try Facebook again. */
+  async function doFacebook() {
+    if (!confirm("לפרסם עכשיו לפייסבוק — פומבי, לכל העולם? אין דרך למחוק את זה מכאן.")) return;
+    setFbBusy(true);
+    setFbMsg(null);
+    try {
+      const r = await fetch("/api/facebook/publish", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ file, caption: caption ?? "" }),
+      }).then((x) => x.json());
+      setFbMsg(r.facebook?.ok ? "פייסבוק ✓" : `פייסבוק נכשל: ${r.facebook?.reason}`);
+    } catch (e) {
+      setFbMsg(`שגיאה: ${e instanceof Error ? e.message : String(e)}`);
+    } finally {
+      setFbBusy(false);
+    }
+  }
+
   async function doYoutube() {
     const title = (youtube ?? "").split("\n")[0]?.trim();
     if (!title) {
@@ -96,6 +119,9 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
         <button className="btn" onClick={doInstagram} disabled={igBusy}>
           {igBusy ? "מפרסם…" : "פרסם: ריל + פייסבוק"}
         </button>
+        <button className="btn ghost" onClick={doFacebook} disabled={fbBusy}>
+          {fbBusy ? "מפרסם…" : "פרסם: פייסבוק בלבד (נסיון חוזר)"}
+        </button>
         {ytConnected === false ? (
           <a className="btn ghost" href="/api/youtube/auth">
             חבר את YouTube (פעם אחת)
@@ -112,6 +138,7 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
         </p>
       )}
       {igMsg && <p className="hint mono" style={{ marginTop: 8 }}>{igMsg}</p>}
+      {fbMsg && <p className="hint mono" style={{ marginTop: 8 }}>{fbMsg}</p>}
       {ytMsg && <p className="hint mono" style={{ marginTop: 8 }}>{ytMsg}</p>}
     </div>
   );

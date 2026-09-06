@@ -61,7 +61,7 @@ python3 audio/word_stamps.py "$VO_R" --out "$DEEP" || exit 1
 python3 export/karaoke.py "$BUILD_T" "$DEEP" --words-cues "$CUES_R" --out "$BUILD_K" || exit 1
 
 echo "=== [5/11] safe-area check"
-node export/safe_check.js "$BUILD_K" --every 0.5 || exit 1
+node export/safe_check.js "$BUILD_K" --every 0.2 || exit 1
 
 echo "=== [6/11] design variety check"
 # "Never two episodes back to back in the same design" was a stated rule that nothing

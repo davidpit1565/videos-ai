@@ -94,7 +94,7 @@ const TABS = [
 
 export default function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
-  const { mode, saving } = useStudio();
+  const { mode, saving, saveError, update } = useStudio();
   const site = isSite(path);
 
   /* He asked directly: he cannot tell whether the page in front of him is the current
@@ -149,12 +149,19 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       </>
     );
 
+  // saveError takes priority over the normal cloud badge — a save that failed after
+  // its retry is a real problem (the edit sits only in this browser, and the next
+  // periodic refresh or page load will silently drop it), so it stays visible instead
+  // of reverting to "מסד נתונים" the moment `saving` goes back to false. Clicking it
+  // retries with a no-op update(), which re-runs persist() on the current state.
   const badge =
-    mode === "loading"
-      ? { cls: "mode", text: "טוען" }
-      : mode === "cloud"
-        ? { cls: "mode cloud", text: saving ? "שומר…" : "מסד נתונים" }
-        : { cls: "mode local", text: "נשמר בדפדפן" };
+    mode === "cloud" && saveError
+      ? { cls: "mode error", text: "שגיאת שמירה — לחץ לנסות שוב", onClick: () => update(() => {}) }
+      : mode === "loading"
+        ? { cls: "mode", text: "טוען" }
+        : mode === "cloud"
+          ? { cls: "mode cloud", text: saving ? "שומר…" : "מסד נתונים" }
+          : { cls: "mode local", text: "נשמר בדפדפן" };
 
   return (
     <div className="shell" lang="he" dir="rtl">
@@ -167,7 +174,9 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           <b>Actually Works</b>
         </Link>
         <div className="top-right">
-          <span className={badge.cls}>{badge.text}</span>
+          <span className={badge.cls} onClick={"onClick" in badge ? badge.onClick : undefined}>
+            {badge.text}
+          </span>
           {buildInfo && (
             <span className="build-info" title={buildInfo.sha ?? undefined}>
               עודכן {localDT(buildInfo.builtAt)}

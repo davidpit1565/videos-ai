@@ -24,7 +24,12 @@ const path = require('path');
   const args = process.argv.slice(2);
   const file = path.resolve(args[0]);
   const tiktok = args.includes('--tiktok');
-  const every = +(args[args.indexOf('--every') + 1]) || 0.5;
+  // 0.5s used to be the default here, but a real overlap in episode 24 (the hook's
+  // word-by-word reveal briefly colliding with the caption bar) sat entirely inside
+  // a ~0.2-0.4s window between two 0.5s samples and was never seen until a manual
+  // re-check at 0.1s caught it. 0.2s keeps at least one sample inside any window
+  // that size, at roughly 2.5x the runtime.
+  const every = +(args[args.indexOf('--every') + 1]) || 0.2;
   // Meta's 14/35/6 are guidance with margin in them, and the mock UI panels are a few
   // pixels taller than the band they sit in. Chasing 3px with layout hacks risks the
   // design for nothing, so anything under the tolerance is reported and not failed.
