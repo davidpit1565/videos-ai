@@ -137,13 +137,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="4.00">
+<section class="scene" data-in="0" data-out="5.39">
   <div class="pad"><div class="kb" id="hookKb">
     <h2 class="punch" id="hookH2">Your n8n retry<br>can do the exact<br>same thing <span class="box">twice</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="4.00" data-out="8.60">
+<section class="scene" data-in="5.39" data-out="12.35">
   <div class="pad"><div class="kb">
     <div class="quote" id="quoteCard" style="opacity:0">
       <div class="qk" id="quoteQk">the real mechanism</div>
@@ -152,13 +152,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="8.60" data-out="12.60">
+<section class="scene" data-in="12.35" data-out="17.77">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="8.70">One real case:<br>a real API call finished —<br>the response <strong>never came back</strong>.</p>
+    <p class="lede b" data-at="12.38">One real case:<br>a real API call finished —<br>the response <strong>never came back</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="12.60" data-out="17.10">
+<section class="scene" data-in="17.77" data-out="22.225">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow lose" id="scoreRowA" style="opacity:0"><span class="lbl">No key checked</span><span class="val">Sent twice</span></div>
@@ -167,11 +167,11 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="17.10" data-out="21.50">
+<section class="scene" data-in="22.225" data-out="25.08">
   <div class="pad"><div class="kb">
     <div class="shatterWrap" style="width:100%">
       <canvas id="shatterCanvas" width="1080" height="300" style="width:100%;height:auto;display:block"></canvas>
-      <div class="quote bad b" id="realReveal" data-at="19.50" style="margin-top:2.4cqw">
+      <div class="quote bad b" id="realReveal" data-at="22.255" style="margin-top:2.4cqw">
         <div class="qk">the real bug</div>
         <div class="qb">It hadn't worked — so it <strong>ran again</strong>.</div>
       </div>
@@ -179,28 +179,28 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="21.50" data-out="26.00">
+<section class="scene" data-in="25.08" data-out="28.23">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="21.60">Save a key first.<br>Find it there —<br><strong>and stop</strong>.</p>
+    <p class="lede b" data-at="25.11">Save a key first.<br>Find it there —<br><strong>and stop</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="26.00" data-out="30.50">
+<section class="scene" data-in="28.23" data-out="31.31">
   <div class="pad"><div class="kb">
-    <div class="toolmark b" data-at="26.10"><span class="dot"></span>IDEMPOTENCY KEY</div>
-    <p class="lede b" data-at="27.00" style="margin-top:2.4cqw">One check. <strong>Any external call needs it.</strong></p>
+    <div class="toolmark b" data-at="28.26"><span class="dot"></span>IDEMPOTENCY KEY</div>
+    <p class="lede b" data-at="29.01" style="margin-top:2.4cqw">One check. <strong>Any external call needs it.</strong></p>
   </div></div>
 </section>
 
-<section class="scene" data-in="30.50" data-out="33.50">
+<section class="scene" data-in="31.31" data-out="33.755">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="30.60"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="31.34"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="33.50" data-out="36.50">
+<section class="scene" data-in="33.755" data-out="36.59">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="33.60" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="33.785" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -232,7 +232,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=36.50,t=0,playing=false,last=0;
+  var DUR=37.29,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -242,15 +242,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.20,3.80,"Your n8n retry doesn't just try again. It can do the exact same thing twice."],
-    [4.10,8.40,"n8n workflows default to trying at least once — a timeout retry replays the whole step, side effects and all."],
-    [8.70,12.40,"One real case: a real API call finished — but the response never came back."],
-    [12.70,16.90,"No check, and the retry does it again. One check, and it stops itself."],
-    [17.20,21.30,"It hadn't worked — so it ran again."],
-    [21.60,25.80,"Save a key first. Find it there, and stop."],
-    [26.10,30.30,"One check. Any external call needs it."],
-    [30.60,33.40,"The setup's in the link in bio."],
-    [33.70,36.30,"Follow for the setup that actually works."]
+    [0.30,5.18,"Your n8n retry doesn't just try again. It can do the exact same thing twice."],
+    [5.60,12.14,"n8n workflows default to trying at least once — a timeout retry replays the whole step, side effects and all."],
+    [12.56,17.56,"One real case: a real API call finished — but the response never came back."],
+    [17.98,21.80,"No check, and the retry does it again. One check, and it stops itself."],
+    [22.65,24.87,"It hadn't worked — so it ran again."],
+    [25.29,28.02,"Save a key first. Find it there, and stop."],
+    [28.44,31.10,"One check. Any external call needs it."],
+    [31.52,33.33,"The setup's in the link in bio."],
+    [34.18,36.39,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
