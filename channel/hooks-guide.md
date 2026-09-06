@@ -123,6 +123,8 @@ last row before writing the next hook, and pick a different type.**
 | 22 | "If it failed right now — would you even know?" | You-Focused Appeal, posed as a question |
 | 23 | "22 episodes. One file keeps us safe." | Expert/Authority (the "After N things, here's what I learned" shape) |
 | 24 | "Editors squeeze the picture to fit the audio. We do the opposite." | Contrarian Open — also built to pass the 4.9.2026 concrete-fact test (states what editors actually do, not a hypothetical) |
+| 25 | "Your n8n retry doesn't just try again. It can do the exact same thing twice." | Shock/Surprise (a familiar tool doing something counterintuitive) |
+| 26 (drafted, not yet built — `channel/episode-26-script.md`) | "This is a real AI model. My WiFi is off." | Product/Outcome Showcase — not used since episodes 18-19, picked deliberately for the gap |
 
 **Rejected drafts for episode 22, both failed the dry-sentence test, kept here so the same
 flat shape doesn't get proposed again as if it were new:**
