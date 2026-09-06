@@ -639,6 +639,37 @@ export const ARTICLES: Article[] = [
       "This channel's own version (retime.py) automates the matching across an entire script at once; doing it manually in a general editor means finding each gap yourself, one at a time.",
     ],
   },
+  {
+    n: 25,
+    title: "Your n8n retry doesn't just try again",
+    standfirst:
+      "n8n workflows default to \"at least once\" delivery: a timeout retry replays the " +
+      "whole step, side effects included. Real case: an API call actually finished, but " +
+      "the response never came back before the timeout — n8n has no way to know that, " +
+      "so the retry fires the same call again. The fix is one idempotency check before " +
+      "any external call, not just this one.",
+    steps: [
+      "Quick term check: an \"idempotency key\" is just a unique ID for one specific attempt at an action. Send it once, and if that same ID shows up again later, you know it's a retry of the same thing — not a new request.",
+      "Open the n8n workflow that calls the external API (the send, email, or payment node) and find the node right before that call.",
+      "Add a new node before it: click the + button and search for \"Code\". This node's job is to build the key, not send anything yet.",
+      "Inside the Code node, build a key from only the data that makes this one attempt unique — for example the order ID, or a hash of the exact request body. The same input must always produce the exact same key, on the first try and on every retry.",
+      "Add an IF node right after the Code node, still before the real API call. This is where the workflow decides: has this exact key already gone out?",
+      "For the actual lookup, use whatever data store this workflow can already reach — a Google Sheets or Airtable node works, or a database node if one is already wired in. Look up a row matching the key in a \"already sent\" sheet or table.",
+      "Wire the IF node's branches: if the key is already found, route to a No Operation (or Stop And Error) node and go no further — it already went out once. If the key is not found, continue on to the real API call node exactly as before.",
+      "Right after the real API call succeeds, add one more node that writes the key into that same \"already sent\" store — an Airtable/Sheets \"Create row\" node works. This is what the next retry, if there is one, will find.",
+      "Test it honestly: run the workflow twice in a row with the exact same input. The first run should reach the real API call as usual. The second should stop at the IF node and never reach it again.",
+    ],
+    changes: [
+      "n8n's default retry behavior replays the whole step on a timeout, side effects and all — it has no built-in way to know the original call actually succeeded before the response was lost.",
+      "The fix isn't specific to n8n or to one node type: any workflow tool that retries on failure needs the same check before any call with a real side effect (sending, charging, creating).",
+      "The key has to be deterministic from the input alone — built from data that's already fixed before the first attempt, never from a timestamp or ID generated fresh on each run.",
+    ],
+    limits: [
+      "This protects against an exact retry of the same input — it does not fix a different, genuine failure elsewhere in the workflow.",
+      "The lookup step needs a real, persistent store (a Sheet, Airtable, or a database) — n8n's own in-memory workflow data isn't guaranteed to survive a restart on every hosting setup.",
+      "Adds one Code node, one IF node, and one write-back node per external call that needs it — it isn't free, and skipping it on even one call leaves that one unprotected.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

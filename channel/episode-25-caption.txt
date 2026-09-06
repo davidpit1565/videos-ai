@@ -1,0 +1,16 @@
+Your n8n retry doesn't just try again. It can do the exact same thing twice.
+
+n8n workflows default to "at least once" delivery — a timeout retry replays the
+whole step, side effects included. Real case: an API call actually finished, but
+the response never came back before the timeout. Without a check, the retry
+fires the same call again. n8n never knows the first one already worked.
+
+The fix is one idempotency check: before the call, save a key that marks it as
+sent. On a retry, check for that key first — if it's already there, stop instead
+of sending again. Any external call needs this, not just n8n's own retry.
+
+Full setup, exact clicks: actually-works.com/e/25
+
+Follow for the setup that actually works.
+
+#n8n #automation #aiagents #nocode #ai
