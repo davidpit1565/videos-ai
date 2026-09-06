@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "plan/agently-hosted-api-concept.html"
+        ],
+        "createdAt": "2026-09-06T20:31:48.756Z",
+        "reason": "Reused verbatim from existing plan/business-model.html's .note component — established house style for this doc family, not a new AI pattern"
+      }
+    ]
+  }
+}
