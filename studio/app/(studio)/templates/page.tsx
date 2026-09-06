@@ -1,5 +1,6 @@
-import { TEMPLATES, MUSIC_MOODS, USED_ACCENTS } from "@/lib/templates";
+import { TEMPLATES, MUSIC_MOODS, USED_ACCENTS, AVATARS } from "@/lib/templates";
 import TemplateThumb from "./lightbox";
+import AvatarThumb from "./avatar-thumb";
 
 export const metadata = { title: "תבניות" };
 
@@ -28,6 +29,21 @@ export default function TemplatesPage() {
                 {t.psychology}
               </p>
             )}
+          </div>
+        ))}
+      </div>
+
+      <h2>אווטארים (D-ID)</h2>
+      <p className="sub">
+        אותה דמות אחת (נשמרת עקבית בין כל עריכות ה-ChatGPT), 32 סצנות — לפי הנושא של הפרק,
+        לא לפי איזו נראית הכי טוב. פירוט מלא: <code>studio/public/avatars/MANIFEST.md</code>.
+      </p>
+      <div className="tplgrid">
+        {AVATARS.map((a) => (
+          <div className="tplcard" key={a.n}>
+            <AvatarThumb src={a.thumb} alt={a.name} num={a.n} />
+            <b>{a.name}</b>
+            <p className="sub">{a.when}</p>
           </div>
         ))}
       </div>
