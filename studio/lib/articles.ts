@@ -670,6 +670,34 @@ export const ARTICLES: Article[] = [
       "Adds one Code node, one IF node, and one write-back node per external call that needs it — it isn't free, and skipping it on even one call leaves that one unprotected.",
     ],
   },
+  {
+    n: 26,
+    title: "This is a real AI model. My WiFi is off.",
+    standfirst:
+      "No account, no subscription, no API key — a real AI model, running fully offline, " +
+      "on a normal laptop with no dedicated graphics card. The tool is Ollama, free and " +
+      "open source, and one command installs it. It won't out-argue the biggest paid " +
+      "models, but for a real, private, offline assistant, it already works.",
+    steps: [
+      "Open a terminal — Mac: Spotlight (magnifying glass, top right) → \"Terminal\"; Windows: Start menu → \"PowerShell\".",
+      "Mac/Linux: paste curl -fsSL https://ollama.com/install.sh | sh and press Enter. Windows: paste powershell -c \"irm https://ollama.com/install.ps1 | iex\" instead and press Enter.",
+      "When it finishes, type ollama run llama3 and press Enter — this downloads the model the first time (needs internet once), then starts a chat, fully offline from then on.",
+      "Optional, to see it prove the claim: turn off WiFi, then run ollama run llama3 again — it still works, because the model already lives on this machine.",
+      "Type a question directly in the terminal and press Enter to see it answer.",
+      "To leave the chat, type /bye and press Enter.",
+      "To try a smaller, faster model instead: ollama run phi3 (smaller and faster, less capable) or ollama run gemma2 (a middle ground) — same two commands, just swap the model name.",
+    ],
+    changes: [
+      "Ollama is free, open source, and actively maintained — confirmed via its own GitHub and release history, not assumed from an old memory of the tool.",
+      "Local use needs no account and no API key at all — the model runs entirely on the machine once downloaded, with nothing to send anywhere.",
+      "A normal laptop with no dedicated graphics card runs a 7B-class model (Llama 3, Gemma 2, Phi-3) at a usable speed — a GPU helps, but this doesn't require one.",
+    ],
+    limits: [
+      "Ollama separately offers optional paid cloud tiers for cloud-hosted inference — this episode is about the free, local, offline path specifically, not Ollama's whole product line.",
+      "A small local model won't match the biggest paid models on hard reasoning tasks — the claim here is a real, private, free, offline assistant, not a like-for-like replacement.",
+      "The first ollama run of any model needs an internet connection to download it once — \"offline\" describes every run after that, not the very first one.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

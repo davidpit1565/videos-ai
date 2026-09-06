@@ -1,0 +1,14 @@
+This is a real AI model. My WiFi is off.
+
+No account. No subscription. No API key. It's called Ollama — free, open source, and
+it runs fully offline once it's installed. One command installs it, one more downloads
+a real model and runs it — no dedicated graphics card required.
+
+It won't out-argue the biggest paid models. But for a real, private, offline assistant,
+this already works, for free.
+
+Full setup, exact clicks: actually-works.com/e/26
+
+Follow for the setup that actually works.
+
+#ai #ollama #localai #privacy #opensource
