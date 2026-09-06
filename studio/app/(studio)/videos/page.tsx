@@ -17,6 +17,9 @@ type IgMedia = {
   shares: number | null;
   likes: number | null;
   comments: number | null;
+  /** Set when the per-media insights call itself failed — a missing/failed value still
+   *  renders as "—" via n(), indistinguishable from a real absence, unless this is shown. */
+  insightsError?: string;
 };
 type IgResp = { connected: boolean; reason?: string; media?: IgMedia[] };
 
@@ -354,7 +357,14 @@ export default function Videos() {
                       )}
                     </td>
                     <td className="num">{m.timestamp?.slice(0, 10) ?? "—"}</td>
-                    <td className="num">{n(m.views ?? m.reach)}</td>
+                    <td className="num">
+                      {n(m.views ?? m.reach)}
+                      {m.insightsError && (
+                        <span title={`נכשלה שליפת הצפיות: ${m.insightsError}`} style={{ marginInlineStart: 4, color: "var(--clay)" }}>
+                          ⚠
+                        </span>
+                      )}
+                    </td>
                     <td className="num">{n(m.saves)}</td>
                     <td>
                       <select

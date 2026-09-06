@@ -28,6 +28,10 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
   }, []);
 
   async function doInstagram() {
+    if (!caption || !caption.trim()) {
+      setIgMsg("אין קובץ כיתוב לריל הזה (episode-NN-caption.txt) — לא מפרסם בלי כיתוב.");
+      return;
+    }
     if (
       !confirm(
         "לפרסם עכשיו — ריל לאינסטגרם, ואם מחובר גם פייסבוק — פומבי, לכל העולם? אין דרך למחוק את זה מכאן.",
@@ -67,6 +71,10 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
    *  published (like episodes 21 and 22, where the Reel went out but Facebook didn't),
    *  so it never needs to re-publish a second, duplicate Reel just to try Facebook again. */
   async function doFacebook() {
+    if (!caption || !caption.trim()) {
+      setFbMsg("אין קובץ כיתוב לריל הזה (episode-NN-caption.txt) — לא מפרסם בלי כיתוב.");
+      return;
+    }
     if (!confirm("לפרסם עכשיו לפייסבוק — פומבי, לכל העולם? אין דרך למחוק את זה מכאן.")) return;
     setFbBusy(true);
     setFbMsg(null);
