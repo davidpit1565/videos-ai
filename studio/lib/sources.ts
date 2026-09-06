@@ -260,9 +260,36 @@ export async function fetchInstagram(): Promise<IgResult> {
           const j = (await ir.json()) as { data?: { name: string; values: { value: number }[] }[] };
           const v: Record<string, number> = {};
           for (const d of j.data ?? []) v[d.name] = d.values?.[0]?.value ?? 0;
+
+          // Instagram's own app shows one combined "Views" number for a Reel that also
+          // got auto-crossposted to the linked Facebook Page — Instagram views plus
+          // Facebook views. The IG media insights endpoint exposes that same combined
+          // total directly as its own metric, crossposted_views — no need to look up
+          // the Facebook Page's copy of the post separately. It 400s for a Reel that
+          // was never crossposted (most of them, if Facebook auto-sharing is off), so
+          // it's fetched in its own best-effort call instead of the metric list above,
+          // where one bad metric would fail the whole request and null out views/reach
+          // for every reel, crossposted or not.
+          let crossposted: number | null = null;
+          if (m.media_type === "REELS") {
+            try {
+              const cr = await timedFetch(
+                `${IG}/${m.id}/insights?metric=crossposted_views&access_token=${token}`,
+                { cache: "no-store" },
+              );
+              if (cr.ok) {
+                const cj = (await cr.json()) as { data?: { name: string; values: { value: number }[] }[] };
+                crossposted = cj.data?.[0]?.values?.[0]?.value ?? null;
+              }
+            } catch {
+              // not crossposted, or Facebook not linked — same as Instagram's own app,
+              // which just shows the Instagram-only number in that case.
+            }
+          }
+
           return {
             ...base,
-            views: v.views ?? null,
+            views: crossposted ?? v.views ?? null,
             reach: v.reach ?? null,
             saves: v.saved ?? null,
             shares: v.shares ?? null,

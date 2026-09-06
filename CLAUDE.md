@@ -54,6 +54,16 @@ been running for days.
 - **Measure, don't guess.** Demand comes from real view counts (`channel/demand-report.md`),
   voice decisions from measurement *and* his ear — and when they disagree, his ear wins and
   the disagreement gets written down.
+- **Every episode's topic is chosen from the data, not picked fresh each time — standing
+  from episode 25 on.** Before writing a script: check `channel/demand-report.md` for
+  measured search demand, `content-memory.md` for which past hooks/formats actually
+  performed (the studio's real view counts, per-episode), and pick the highest-demand,
+  best-fitting angle that hasn't already been covered from that exact angle — not just
+  "what sounds interesting." Decided 5.9.2026 after episode 2 (agent-vs-chatbot,
+  623 views) and episode 7 (n8n agent reliability, 372 views) turned out to be the two
+  strongest performers by a wide margin, both landing on the single highest-demand
+  keyword in the report ("n8n ai agent tutorial," 233k median monthly searches) — the
+  data already pointed at the next topic before anyone had to guess at one.
 - **Secrets live only in Vercel environment variables.** Never in chat, never in git. The
   publication id is public; the API key is not.
 - **Nothing ships untested silently.** If something was built but not run — the n8n workflow,
@@ -231,6 +241,16 @@ every such fix — not just the piece that changed — before the file goes to h
 re-check finds anything, fix it and run the whole check again. Repeat until a full run
 comes back clean, then send. Never send on the strength of the first pass alone once a
 fix has been made after it.
+
+**Standing rule, as of episode 25: `check.sh` passing clean is necessary, not sufficient
+— watch the actual rendered file yourself, twice, before it goes to him.** The automated
+checks measure what they were built to measure; a garbled word, a leaked bit of debug
+text, a layout glitch a viewer would spot in one second can still slip through numbers
+that all read "ok". After `check.sh` passes: watch the rendered video in full, twice.
+Only fully approve — and only then hand it to him — once both viewings come back clean.
+If either viewing finds anything, fix it and watch the file twice again from scratch;
+a fix made after one clean viewing isn't covered by it, the same reasoning as the
+check → fix → re-check rule above.
 
 ## The studio app
 
