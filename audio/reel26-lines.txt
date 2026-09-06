@@ -1,0 +1,9 @@
+This is a real AI model. My WiFi is off.
+No account. No subscription. No API key. It's running right here, on this laptop.
+The tool is called Ollama. It's free, and it's been downloaded enough already that this isn't some obscure hack.
+One command installs it. One more command downloads a real model and runs it — fully offline, from that point on.
+You don't need a gaming PC for this. A normal laptop, no separate graphics card, runs a real model just fine.
+What you get is a private AI that never sends what you type anywhere — because there's nowhere for it to go.
+It's not going to beat the biggest paid models. But for something real, private, and offline — this is free, and it already works.
+The exact setup's in the link in bio.
+Follow for the setup that actually works.
