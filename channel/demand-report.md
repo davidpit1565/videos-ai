@@ -12,6 +12,7 @@
 
 | נושא (שאילתה) | תוצאות | חציון צפיות | אחוזון 90 |
 |---|---|---|---|
+| local ai model tutorial * | 20 | 263,293 | 1,121,719 |
 | n8n ai agent tutorial | 20 | 233,070 | 834,896 |
 | claude code tutorial beginners | 20 | 159,426 | 915,534 |
 | ai automation for business | 20 | 125,777 | 377,760 |
@@ -21,8 +22,15 @@
 | chatgpt agent mode | 20 | 32,128 | 118,328 |
 | custom instructions chatgpt | 20 | 11,880 | 138,576 |
 
+\* נמדד בנפרד, ב-6.9.2026 — בעקבות ריל של יוצר AI-tools (sebintel) על מודל מקומי של
+Meta (Muse Glimmer) שדוד שלח, ולא כחלק ממדידת שמונה השאילתות המקוריות. שלוש שאילתות
+נוספות נבדקו סביב אותו נושא ("run ai offline no internet", "offline ai agent",
+"meta ai model local") וכולן חלשות בהרבה (חציון 13-52 אלף) — הביקוש האמיתי הוא על
+**הרצת מודלים מקומית בכלל** (Ollama וכו'), לא על מוצר ספציפי אחד של Meta.
+
 הסרטון החזק בכל נושא:
 
+- **local ai model tutorial** — host ALL your AI locally · 2,638,961 views · NetworkChuck
 - **n8n ai agent tutorial** — Build & Sell n8n AI Agents (8+ Hour Course, No Code) · 1,826,517 views · Nate Herk | AI Automation
 - **claude code tutorial beginners** — CLAUDE CODE FULL COURSE 4 HOURS: Build & Sell (2026) · 2,297,834 views · Nick Saraev
 - **ai automation for business** — How to Build & Sell AI Automations: Ultimate Beginner’s Guide · 1,003,804 views · Liam Ottley
