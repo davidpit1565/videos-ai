@@ -18,7 +18,7 @@ python3 audio/voice_doctor.py "$VO" --deep ${ACCEPT_WORDS:+--accept "$ACCEPT_WOR
 
 echo
 echo "=== frame layout"
-node export/safe_check.js "$BUILD" --every 0.5 || fail=1
+node export/safe_check.js "$BUILD" --every 0.2 || fail=1
 
 if [ -n "$MP4" ]; then
   echo

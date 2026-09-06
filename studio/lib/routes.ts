@@ -20,7 +20,7 @@ export const STUDIO = [
   // manifest that can be fetched is a manifest that tells a stranger the tool exists
   "/studio.webmanifest",
   "/api/state", "/api/agent", "/api/idea-score", "/api/instagram", "/api/youtube", "/api/beehiiv", "/api/push",
-  "/api/ideas-backlog", "/api/higgsfield",
+  "/api/ideas-backlog", "/api/higgsfield", "/api/facebook",
   // /api/youtube/callback is under /api/youtube, already listed — Google's redirect back
   // from the consent screen is a same-browser top-level GET, so the "studio" cookie (set
   // sameSite:lax) still rides along and the PIN gate passes normally.
