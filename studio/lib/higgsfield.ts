@@ -8,11 +8,12 @@
  *    "type", "jobs"}) come from Higgsfield's own open-source MCP integration
  *    (github.com/QalaLabs/claude-higgsfield-mcp) — the closest thing to a public
  *    reference implementation, since the official docs site isn't scrapable.
- *  - NOT verified: the exact field path to the finished video's URL inside a completed
- *    job-set response. extractVideoUrl() tries the same plausible paths the Python
- *    script did and falls back to the raw JSON — if none of them hit on a real run, open
- *    the raw response, find the real field by hand, and fix this function. One real
- *    completed response is worth more than another guess.
+ *  - Now confirmed (6.9.2026): Higgsfield's official Node/TypeScript SDK
+ *    (github.com/higgsfield-ai/higgsfield-js) documents `job.results.raw.url` as the
+ *    field it normalizes every endpoint's video URL into — matching extractVideoUrl()'s
+ *    first candidate path exactly. Still not the same as a real completed response seen
+ *    with our own eyes; if it falls through to the later guesses on a real run, that's
+ *    the signal this endpoint's shape differs from the SDK's general one.
  *
  *  Submit and poll are split into two functions, not one blocking call: a talking-head
  *  render can run past Vercel's function time limit, so the API route built on top of
