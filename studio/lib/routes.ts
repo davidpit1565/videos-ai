@@ -65,6 +65,11 @@ export const SITE = [
   // silent about the real cause because the failure looks like a bad video, not a locked
   // one. These files are also the ones about to be posted publicly regardless.
   "/reels",
+  // Same reasoning as /reels: D-ID's /talks API fetches source_url/audio_url itself, from
+  // outside any browser — no studio cookie to carry. A portrait photo or narration file
+  // behind the PIN gate would 307 to /unlock and D-ID would fail with a generic fetch
+  // error, not an auth-shaped one.
+  "/avatars", "/audio",
 ];
 
 /** "/" must match only itself — startsWith("/") would publish the entire studio, which is
