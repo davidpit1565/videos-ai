@@ -47,13 +47,18 @@ URL out of it automatically.
   (`Authorization: Key {api_key}:{secret}`), the request body shape, the
   polling endpoint (`GET /v1/job-sets/{id}`), and the submit response's
   top-level shape (`{"id", "type", "jobs"}`).
-- **Not verified — flagging honestly rather than guessing**: the exact
-  field path to the finished video's URL inside a *completed* job-set
-  response. No public source (docs, SDK examples, or the MCP's own test
-  suite) shows a real completed response. `extract_video_url()` tries a
-  few plausible paths and falls back to just saving the raw JSON.
+- **Now confirmed (6.9.2026)**: the official Node/TypeScript SDK
+  (github.com/higgsfield-ai/higgsfield-js) documents the completed
+  response's real shape and shows `job.results.raw.url` as the field it
+  normalizes every endpoint's video URL into — matching this script's own
+  first-guess path exactly. That path is `extract_video_url()`'s first
+  candidate, so it should now hit on a real run rather than falling
+  through to the later guesses. Still not the same as having seen one
+  real completed response ourselves — if it does fall through on the
+  first real run, that's the signal something about this endpoint
+  specifically differs from the SDK's general shape.
 
-**First real run**: if `extract_video_url()` comes up empty, open the
+**First real run**: if `extract_video_url()` still comes up empty, open the
 saved JSON, find the real field by hand, and send it back — that one
 data point fixes the extraction logic for every run after it, instead of
 guessing a second time.
