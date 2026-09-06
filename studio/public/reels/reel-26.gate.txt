@@ -1,0 +1,73 @@
+=== narration
+audio/reel26-narration.wav  51.4s  9 lines
+  medians: ending -33.0 dB · level -18.7 dBFS · S residual +0.8 dB (slope -3.1 dB per sibilant/syllable)
+  flagged below: ending -73.4 dB · S residual -12.2 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  2.72  +0.42  4.41  -20.4  -33.0  -18.7  This is a real AI model. My WiFi is of
+    2  5.18  +0.42  3.86   -3.3  -29.9  -23.3  No account. No subscription. No API ke
+    3  6.39  +0.42  4.38  -13.9  -26.6  -18.7  The tool is called Ollama. It's free, 
+    4  6.51  +0.85  4.15  -16.4  -43.9  -18.1  One command installs it. One more comm
+    5  7.65  +0.42  3.66  -10.0  -45.1  -16.6  You don't need a gaming PC for this. A
+    6  6.37  +0.42   4.4  -11.3  -45.1  -16.5  What you get is a private AI that neve
+    7  6.92  +0.42  4.48  -10.3  -18.7  -18.4  It's not going to beat the biggest pai
+    8  2.12  +0.85  4.72   -7.6  -40.0  -19.4  The exact setup's in the link in bio.
+    9  2.22    —    4.95   -6.7  -21.8  -21.2  Follow for the setup that actually wor
+
+  [note] line  2: harsh S (-3.3 dB, +7.8 against prediction)
+         -> de-esser is under-doing this line
+  [note] line  2: quiet (-23.3 dBFS vs median -18.7)
+         -> level this line before the mix
+
+  per word: 134 words · ending median -25.4 dB · S median -18.4 dB
+  weakest endings:
+     30.40s  fine.          ending -196.0 dB
+      2.70s  off.           ending -149.3 dB
+     22.08s  on.            ending  -99.5 dB
+     40.84s  real,          ending  -52.4 dB
+     28.12s  card,          ending  -52.2 dB
+     11.22s  free           ending  -49.0 dB
+     19.60s  and            ending  -45.8 dB
+     26.36s  laptop,        ending  -45.8 dB
+  held too long (over 0.442s per syllable, median 0.220):
+      0.00s  This           0.580s per syllable (0.58s)
+     32.00s  is             0.520s per syllable (0.52s)
+     40.84s  real,          0.500s per syllable (0.50s)
+     26.88s  no             0.480s per syllable (0.48s)
+     29.92s  just           0.480s per syllable (0.48s)
+  rushed / clipped (under 0.105s per syllable):
+     44.34s  already        0.073s per syllable (0.22s) — likely swallowed, re-roll this line
+     38.70s  beat           0.080s per syllable (0.08s) — likely swallowed, re-roll this line
+     40.60s  something      0.080s per syllable (0.24s) — likely swallowed, re-roll this line
+     43.28s  this           0.080s per syllable (0.08s) — likely swallowed, re-roll this line
+     36.64s  nowhere        0.090s per syllable (0.18s) — likely swallowed, re-roll this line
+     28.12s  card,          S  -34.4 dB
+     19.84s  runs           S  -24.2 dB
+     49.20s  setup          S  -24.2 dB
+     16.20s  command        S  -22.6 dB
+     17.90s  command        S  -19.7 dB
+     27.36s  separate       S  -18.9 dB
+
+=== frame layout
+reel-26-avatar-captions-kar.html  51.45s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  overlaps: none over 10px
+
+=== rendered file
+reel-26.mp4  1080x1920  30fps  51.47s  21.7MB
+  visual change: median 0.07s, longest 1.43s
+  loudness: -13.9 LUFS integrated, peak -2.8 dBFS, LRA 3.6 LU
+  loop seam: first vs last frame differ by 18.3/255
+
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length 51.5s inside 30-90s
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 52.4)
+  ok        visual change every 0.07s median
+  ok        -13.9 LUFS
+  ok        peak -2.8 dBFS
+
+ALL CHECKS PASSED
