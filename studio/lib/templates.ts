@@ -167,3 +167,84 @@ export const MUSIC_MOODS: MusicMood[] = [
   { n: 17, slug: "guitar", name: "Guitar", sample: "/templates/music/guitar.mp3",
     when: "Same synthesis as Piano, tuned warmer and longer-ringing — a chord rings into the next instead of striking and dying. A personal or behind-the-scenes bit, or anything that wants an organic rather than digital feel." },
 ];
+
+export type Avatar = {
+  n: number;
+  slug: string;
+  name: string;
+  thumb: string;
+  when: string;
+};
+
+/** The D-ID avatar wardrobe — one consistent generated face (kept anchored across
+ *  separate ChatGPT image-edit passes, never regenerated from scratch) in 32 scenes, each
+ *  one built for a specific episode topic. "Avatar 9" instead of re-describing "the one
+ *  with the double shadow, for the retry episode" every time. Full detail in
+ *  studio/public/avatars/MANIFEST.md. */
+export const AVATARS: Avatar[] = [
+
+  { n: 1, slug: "amber-default", name: "Amber default", thumb: "/avatars/avatar-01-amber-default.png",
+    when: "The default — most episodes." },
+  { n: 2, slug: "tech-casual", name: "Tech casual", thumb: "/avatars/avatar-02-tech-casual.png",
+    when: "Everyday/casual episodes." },
+  { n: 3, slug: "collared-neutral", name: "Collared neutral", thumb: "/avatars/avatar-03-collared-neutral.png",
+    when: "Slightly more formal than tech-casual, still everyday." },
+  { n: 4, slug: "cool-blue", name: "Cool blue", thumb: "/avatars/avatar-04-cool-blue.png",
+    when: "Bug/failure episodes." },
+  { n: 5, slug: "warm-bright", name: "Warm bright", thumb: "/avatars/avatar-05-warm-bright.png",
+    when: "Success/solution episodes." },
+  { n: 6, slug: "wet-watermarks", name: "Wet", thumb: "/avatars/avatar-06-wet-watermarks.png",
+    when: "Watermark-related topics — a literal visual pun." },
+  { n: 7, slug: "particles-agents", name: "Particles", thumb: "/avatars/avatar-07-particles-agents.png",
+    when: "AI agents / agentic workflows." },
+  { n: 8, slug: "glass-transparency", name: "Glass panel", thumb: "/avatars/avatar-08-glass-transparency.png",
+    when: "Audit / transparency / verification topics." },
+  { n: 9, slug: "double-shadow-retry", name: "Double shadow", thumb: "/avatars/avatar-09-double-shadow-retry.png",
+    when: "Retry/duplicate/idempotency topics — episode 25's own subject." },
+  { n: 10, slug: "chain-workflow", name: "Glowing chain", thumb: "/avatars/avatar-10-chain-workflow.png",
+    when: "Automation / n8n / workflow-chaining topics." },
+  { n: 11, slug: "disintegration-ai-reveal", name: "Disintegration", thumb: "/avatars/avatar-11-disintegration-ai-reveal.png",
+    when: " \"This is AI\" reveal moments." },
+  { n: 12, slug: "gears-efficiency", name: "Blurred gears", thumb: "/avatars/avatar-12-gears-efficiency.png",
+    when: "Speed / efficiency topics." },
+  { n: 13, slug: "bright-eyes-reflection", name: "Bright eyes", thumb: "/avatars/avatar-13-bright-eyes-reflection.png",
+    when: "Code / technical-tool topics." },
+  { n: 14, slug: "red-urgent", name: "Red urgent", thumb: "/avatars/avatar-14-red-urgent.png",
+    when: "Urgent/warning episodes." },
+  { n: 15, slug: "gold-triumphant", name: "Gold triumphant", thumb: "/avatars/avatar-15-gold-triumphant.png",
+    when: "Confident wins." },
+  { n: 16, slug: "suspense-dark", name: "Suspense dark", thumb: "/avatars/avatar-16-suspense-dark.png",
+    when: "Slow-build reveal / suspense cold opens." },
+  { n: 17, slug: "corporate-suit", name: "Corporate suit", thumb: "/avatars/avatar-17-corporate-suit.png",
+    when: "Business/selling-to-clients topics." },
+  { n: 18, slug: "tech-jacket", name: "Tech jacket", thumb: "/avatars/avatar-18-tech-jacket.png",
+    when: "Modern technical topics, between casual and formal." },
+  { n: 19, slug: "plain-tshirt", name: "Plain t-shirt", thumb: "/avatars/avatar-19-plain-tshirt.png",
+    when: "Most casual/accessible episodes." },
+  { n: 20, slug: "1920s-suit", name: "1920s suit", thumb: "/avatars/avatar-20-1920s-suit.png",
+    when: "\"Principles/fundamentals\" episodes." },
+  { n: 21, slug: "coins-cost", name: "Coins bokeh", thumb: "/avatars/avatar-21-coins-cost.png",
+    when: "Pricing / cost-savings topics." },
+  { n: 22, slug: "lock-security", name: "Glowing lock", thumb: "/avatars/avatar-22-lock-security.png",
+    when: "Security / privacy topics." },
+  { n: 23, slug: "motion-blur-speed", name: "Motion blur", thumb: "/avatars/avatar-23-motion-blur-speed.png",
+    when: "Speed / automation topics." },
+  { n: 24, slug: "split-comparison", name: "Split lighting", thumb: "/avatars/avatar-24-split-comparison.png",
+    when: "A-vs-B / this-vs-that comparison topics." },
+  { n: 25, slug: "circuit-api", name: "Circuit lines", thumb: "/avatars/avatar-25-circuit-api.png",
+    when: "API / integration topics." },
+  { n: 26, slug: "soundwave-audio", name: "Soundwave", thumb: "/avatars/avatar-26-soundwave-audio.png",
+    when: "Voice / audio topics." },
+  { n: 27, slug: "second-face-teamwork", name: "Second face", thumb: "/avatars/avatar-27-second-face-teamwork.png",
+    when: "Multi-agent / teamwork topics." },
+  { n: 28, slug: "grid-data", name: "Data grid", thumb: "/avatars/avatar-28-grid-data.png",
+    when: "Data / analytics topics." },
+  { n: 29, slug: "city-bokeh-mobile", name: "City bokeh", thumb: "/avatars/avatar-29-city-bokeh-mobile.png",
+    when: "Mobile / on-the-go topics." },
+  { n: 30, slug: "crack-warning", name: "Crack line", thumb: "/avatars/avatar-30-crack-warning.png",
+    when: "Mistake / warning episodes." },
+  { n: 31, slug: "magnifier-search", name: "Magnifier", thumb: "/avatars/avatar-31-magnifier-search.png",
+    when: "Search / discovery topics." },
+  { n: 32, slug: "sparkle-milestone", name: "Sparkle", thumb: "/avatars/avatar-32-sparkle-milestone.png",
+    when: "Milestone / anniversary episodes." },
+];
