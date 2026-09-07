@@ -679,13 +679,13 @@ export const ARTICLES: Article[] = [
       "open source, and one command installs it. It won't out-argue the biggest paid " +
       "models, but for a real, private, offline assistant, it already works.",
     steps: [
-      "Open a terminal — Mac: Spotlight (magnifying glass, top right) → \"Terminal\"; Windows: Start menu → \"PowerShell\".",
-      "Mac/Linux: paste curl -fsSL https://ollama.com/install.sh | sh and press Enter. Windows: paste powershell -c \"irm https://ollama.com/install.ps1 | iex\" instead and press Enter.",
-      "When it finishes, type ollama run llama3 and press Enter — this downloads the model the first time (needs internet once), then starts a chat, fully offline from then on.",
-      "Optional, to see it prove the claim: turn off WiFi, then run ollama run llama3 again — it still works, because the model already lives on this machine.",
-      "Type a question directly in the terminal and press Enter to see it answer.",
-      "To leave the chat, type /bye and press Enter.",
-      "To try a smaller, faster model instead: ollama run phi3 (smaller and faster, less capable) or ollama run gemma2 (a middle ground) — same two commands, just swap the model name.",
+      "A \"terminal\" is just a plain window where you type text commands instead of clicking icons — every Mac and Windows computer already has one built in, nothing to download for this part. Open it — Mac: click the magnifying glass icon top-right of the screen (Spotlight), type \"Terminal\", press Enter; Windows: click the Start menu (bottom-left), type \"PowerShell\", press Enter. A plain black or white window opens — that's it, that's the terminal.",
+      "Copy this exact line for your system, paste it into that window, and press Enter. Mac/Linux: curl -fsSL https://ollama.com/install.sh | sh — Windows: powershell -c \"irm https://ollama.com/install.ps1 | iex\". This is the official installer from Ollama's own site (ollama.com) — safe to paste. You'll see several lines of text scroll by as it downloads and installs; when the lines stop and you see a new blank line waiting for input, it's finished — that can take a minute or two, depending on your internet.",
+      "Type ollama run llama3 and press Enter. The first time, this downloads the actual AI model (a few gigabytes — needs internet, and can take several minutes depending on your connection). You'll see a progress bar while it downloads. When it's done, the model starts up and the window shows \">>>\" waiting for you to type something — that's it running, fully on this computer.",
+      "Optional, if you want to see the \"offline\" claim for yourself: turn off WiFi (or unplug the cable) now, then run ollama run llama3 again in a new terminal window — it still answers, because the model already lives on this machine and never needs the internet again.",
+      "Type any question directly after the \">>>\" and press Enter — it answers right there in the same window.",
+      "To leave the chat and get your terminal back, type /bye and press Enter.",
+      "To try a smaller, faster model instead of llama3: type ollama run phi3 (smaller and faster, less capable) or ollama run gemma2 (a middle ground) — same steps as above, just that name instead of llama3.",
     ],
     changes: [
       "Ollama is free, open source, and actively maintained — confirmed via its own GitHub and release history, not assumed from an old memory of the tool.",
