@@ -539,6 +539,19 @@ exact Instagram-vs-Facebook split isn't in this entry — worth pulling next tim
 gets a real data update, since Facebook distribution being a real contributor (not just
 Instagram) would itself be worth confirming and possibly leaning into more.
 
+## Episode 24 underperformed, episode 25 also crossed 1,200 (7.9.2026)
+
+**FACT, per David directly (his own read, not independently pulled from `/api/agent`
+this session):** episode 24 ("Editors squeeze the picture to fit the audio. We do the
+opposite." — the `retime.py` episode) did not perform well. Episode 25 (the live
+escalate-until-it-breaks format) also passed **1,200 total views**, matching episode 23's
+mark. Neither is broken down by platform yet, and neither is re-verified against
+`/api/agent` directly — same caveat as the episode 23 entry above. Worth a real pull next
+data-review pass: two 1,200+ episodes back to back (23 and 25) is the start of a pattern
+worth naming, but it's two data points with different formats (Expert/Authority topic vs.
+a live-test format) and no platform breakdown yet, so it stays a note, not a Confirmed
+pattern, until that's checked.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same

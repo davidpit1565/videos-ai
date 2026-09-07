@@ -482,6 +482,118 @@ export async function fetchYouTube(): Promise<YtResult> {
   }
 }
 
+// ───────────────────────── Facebook ─────────────────────────
+// A genuinely separate platform from Instagram, not a side effect of it — see
+// lib/publish.ts's own comment on publishToFacebook: Meta has no Graph API parameter
+// that auto-crossposts an Instagram Reel to a linked Facebook Page (that's a manual
+// toggle inside the Instagram app only). Every episode published here goes to
+// Facebook as its own independent Page video (via POST /{page-id}/videos), with its
+// own video id, so its views have to be pulled separately too — fetchInstagram's
+// crossposted_views metric only covers the in-app auto-crosspost case, not this one.
+const FB_GRAPH = "https://graph.facebook.com/v21.0";
+
+export type FbVideo = {
+  id: string;
+  /** Every description we upload starts with this episode's own line, same convention
+   *  as YouTube's own description/Instagram's own caption — needed to auto-link this
+   *  video back to the episode that names it. */
+  description: string;
+  permalink: string | null;
+  publishedAt: string | null;
+  views: number | null;
+  likes: number | null;
+  comments: number | null;
+};
+
+export type FbResult =
+  | { connected: false; reason: string; detail?: string }
+  | { connected: true; pageName: string | null; followers: number | null; videos: FbVideo[]; checkedAt: string };
+
+export async function fetchFacebook(): Promise<FbResult> {
+  const pageId = process.env.FB_PAGE_ID;
+  const pageToken = process.env.FB_PAGE_ACCESS_TOKEN;
+  if (!pageId) return { connected: false, reason: "FB_PAGE_ID לא מוגדר" };
+  if (!pageToken) return { connected: false, reason: "FB_PAGE_ACCESS_TOKEN לא מוגדר" };
+
+  try {
+    const pr = await timedFetch(
+      `${FB_GRAPH}/${pageId}?fields=name,followers_count&access_token=${pageToken}`,
+      { cache: "no-store" },
+    );
+    if (!pr.ok) {
+      return {
+        connected: false,
+        reason: `פייסבוק החזיר ${pr.status}`,
+        detail: (await pr.text()).slice(0, 300),
+      };
+    }
+    const page = (await pr.json()) as { name?: string; followers_count?: number };
+
+    // Same reasoning as Instagram/YouTube's own media pulls: one page was the whole
+    // account's history at first, so nothing here ever needed a second page — capped
+    // at 4 pages (100 videos) for the same reason, so a runaway account can't turn one
+    // pull into an unbounded chain of requests.
+    type FbVideoRaw = {
+      id: string;
+      description?: string;
+      permalink_url?: string;
+      created_time?: string;
+      likes?: { summary?: { total_count?: number } };
+      comments?: { summary?: { total_count?: number } };
+    };
+    const raw: FbVideoRaw[] = [];
+    let next: string | null =
+      `${FB_GRAPH}/${pageId}/videos?fields=id,description,permalink_url,created_time,likes.summary(true),comments.summary(true)&limit=25&access_token=${pageToken}`;
+    for (let page2 = 0; page2 < 4 && next; page2++) {
+      const vr: Response = await timedFetch(next, { cache: "no-store" });
+      if (!vr.ok) break;
+      const vj: { data?: FbVideoRaw[]; paging?: { next?: string } } = await vr.json();
+      raw.push(...(vj.data ?? []));
+      next = vj.paging?.next ?? null;
+    }
+
+    const videos: FbVideo[] = await Promise.all(
+      raw.map(async (v): Promise<FbVideo> => {
+        const base: FbVideo = {
+          id: v.id,
+          description: v.description ?? "",
+          permalink: v.permalink_url ? `https://www.facebook.com${v.permalink_url}` : null,
+          publishedAt: v.created_time ?? null,
+          views: null,
+          likes: v.likes?.summary?.total_count ?? null,
+          comments: v.comments?.summary?.total_count ?? null,
+        };
+        // Best-effort, its own call: one video with insights temporarily unavailable
+        // must not null out views for every other video in the same pull (the same
+        // reasoning as Instagram's crossposted_views fetch above).
+        try {
+          const ir = await timedFetch(
+            `${FB_GRAPH}/${v.id}/video_insights?metric=total_video_views&access_token=${pageToken}`,
+            { cache: "no-store" },
+          );
+          if (ir.ok) {
+            const ij = (await ir.json()) as { data?: { name: string; values: { value: number }[] }[] };
+            base.views = ij.data?.[0]?.values?.[0]?.value ?? null;
+          }
+        } catch {
+          // insights temporarily unavailable — views stays null, rest of the row is still real
+        }
+        return base;
+      }),
+    );
+
+    return {
+      connected: true,
+      pageName: page.name ?? null,
+      followers: page.followers_count ?? null,
+      videos,
+      checkedAt: new Date().toISOString(),
+    };
+  } catch (e) {
+    return { connected: false, reason: (e as Error).message };
+  }
+}
+
 export type LatestIssue = { title: string; url: string; publishedAt: string } | null;
 
 /** The most recent published issue, for the homepage: someone deciding whether to hand
