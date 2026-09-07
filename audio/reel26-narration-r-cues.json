@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "This is a real AI model. My WiFi is off.",
+  "start": 0.3,
+  "end": 3.02
+ },
+ {
+  "n": 2,
+  "line": "No account. No subscription. No API key. It's running right here, on this laptop.",
+  "start": 3.44,
+  "end": 8.62
+ },
+ {
+  "n": 3,
+  "line": "The tool is called Ollama. It's free, and it's been downloaded enough already that this isn't some obscure hack.",
+  "start": 9.04,
+  "end": 15.43
+ },
+ {
+  "n": 4,
+  "line": "One command installs it. One more command downloads a real model and runs it \u2014 fully offline, from that point on.",
+  "start": 15.85,
+  "end": 22.36
+ },
+ {
+  "n": 5,
+  "line": "You don't need a gaming PC for this. A normal laptop, no separate graphics card, runs a real model just fine.",
+  "start": 23.21,
+  "end": 30.86
+ },
+ {
+  "n": 6,
+  "line": "What you get is a private AI that never sends what you type anywhere \u2014 because there's nowhere for it to go.",
+  "start": 31.28,
+  "end": 37.65
+ },
+ {
+  "n": 7,
+  "line": "It's not going to beat the biggest paid models. But for something real, private, and offline \u2014 this is free, and it already works.",
+  "start": 38.07,
+  "end": 44.99
+ },
+ {
+  "n": 8,
+  "line": "The exact setup's in the link in bio.",
+  "start": 45.41,
+  "end": 47.53
+ },
+ {
+  "n": 9,
+  "line": "Follow for the setup that actually works.",
+  "start": 48.38,
+  "end": 50.6
+ }
+]
