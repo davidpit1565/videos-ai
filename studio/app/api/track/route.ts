@@ -84,6 +84,15 @@ export async function GET(req: Request) {
   const [ig, bee, yt, fb] = await Promise.all([
     fetchInstagram(), fetchBeehiiv(), fetchYouTube(), fetchFacebook(),
   ]);
+  // Temporary diagnostic for the brand-new Facebook integration: readable in Vercel's
+  // own runtime logs, so a connection failure can be root-caused without needing his
+  // PIN to read the JSON response body. Remove once a real pull has been confirmed
+  // connected at least once.
+  console.log(
+    fb.connected
+      ? `[track] facebook: connected (${fb.followers ?? "?"} followers, ${fb.videos.length} videos)`
+      : `[track] facebook: NOT connected — ${fb.reason}${fb.detail ? " — " + fb.detail : ""}`,
+  );
 
   // Tell him the day a connection breaks, not whenever he next opens the studio. This is the
   // half a refresh cannot cover: today's failure is Meta blocking the app, which no token
