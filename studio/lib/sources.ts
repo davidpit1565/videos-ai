@@ -507,7 +507,18 @@ export type FbVideo = {
 
 export type FbResult =
   | { connected: false; reason: string; detail?: string }
-  | { connected: true; pageName: string | null; followers: number | null; videos: FbVideo[]; checkedAt: string };
+  | {
+      connected: true;
+      pageName: string | null;
+      followers: number | null;
+      videos: FbVideo[];
+      /** Set when the /videos edge itself returned an error — otherwise a genuine
+       *  zero-videos account reads identically to a silently-failing fetch. This is
+       *  the personal-profile equivalent of Instagram's own per-media insightsError:
+       *  a real API rejection must not look the same as "nothing to show". */
+      videosError?: string;
+      checkedAt: string;
+    };
 
 export async function fetchFacebook(): Promise<FbResult> {
   const pageId = process.env.FB_PAGE_ID;
@@ -565,11 +576,17 @@ export async function fetchFacebook(): Promise<FbResult> {
       comments?: { summary?: { total_count?: number } };
     };
     const raw: FbVideoRaw[] = [];
+    let videosError: string | undefined;
     let next: string | null =
       `${FB_GRAPH}/${pageId}/videos?fields=id,description,permalink_url,created_time,likes.summary(true),comments.summary(true)&limit=25&access_token=${pageToken}`;
     for (let page2 = 0; page2 < 4 && next; page2++) {
       const vr: Response = await timedFetch(next, { cache: "no-store" });
-      if (!vr.ok) break;
+      if (!vr.ok) {
+        // A real rejection (permissions, deprecated edge) must not read the same as
+        // "this account genuinely has zero videos" — the two look identical without this.
+        videosError = `/videos החזיר ${vr.status}: ${(await vr.text()).slice(0, 300)}`;
+        break;
+      }
       const vj: { data?: FbVideoRaw[]; paging?: { next?: string } } = await vr.json();
       raw.push(...(vj.data ?? []));
       next = vj.paging?.next ?? null;
@@ -610,6 +627,7 @@ export async function fetchFacebook(): Promise<FbResult> {
       pageName: page.name ?? null,
       followers,
       videos,
+      ...(videosError ? { videosError } : {}),
       checkedAt: new Date().toISOString(),
     };
   } catch (e) {
