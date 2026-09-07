@@ -192,6 +192,8 @@ export async function GET() {
       STUDIO_PIN: { set: (process.env.STUDIO_PIN ?? "").length > 0 },
       FB_PAGE_ID: shape(process.env.FB_PAGE_ID),
       FB_PAGE_ACCESS_TOKEN: shape(process.env.FB_PAGE_ACCESS_TOKEN),
+      FB_BUSINESS_PAGE_ID: shape(process.env.FB_BUSINESS_PAGE_ID),
+      FB_BUSINESS_PAGE_ACCESS_TOKEN: shape(process.env.FB_BUSINESS_PAGE_ACCESS_TOKEN),
     },
     // the live verdict from the services themselves, which is the only thing that counts
     live: {

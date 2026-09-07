@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { publishToInstagram, publishToFacebook, SITE_URL } from "@/lib/publish";
+import { publishToInstagram, publishToFacebookBoth, SITE_URL } from "@/lib/publish";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -18,8 +18,11 @@ export async function POST(req: Request) {
     if (!file) return NextResponse.json({ ok: false, reason: "חסר שם קובץ" }, { status: 400 });
     const ig = await publishToInstagram(file, caption ?? "");
     // Facebook only if the Reel itself actually went out — no point cross-posting a
-    // Reel that doesn't exist, and it needs its own credentials regardless.
-    const facebook = ig.reel.ok ? await publishToFacebook(file, caption ?? "") : null;
+    // Reel that doesn't exist, and it needs its own credentials regardless. Publishes to
+    // both real Facebook destinations (see publishToFacebookBoth in lib/publish.ts).
+    const fb = ig.reel.ok ? await publishToFacebookBoth(file, caption ?? "") : null;
+    const facebook = fb?.profile ?? null;
+    const facebookPage = fb?.page ?? null;
     // A publish that lands on the account and nowhere in the studio's own list looks
     // broken even though it worked — the pull that links a post to its episode
     // (/api/track) otherwise only runs on the nightly cron or a manual pull-to-refresh.
@@ -34,7 +37,7 @@ export async function POST(req: Request) {
         headers: { authorization: `Bearer ${process.env.CRON_SECRET}` },
       }).catch(() => {});
     }
-    return NextResponse.json({ ...ig, facebook });
+    return NextResponse.json({ ...ig, facebook, facebookPage });
   } catch (e) {
     return NextResponse.json({ ok: false, reason: e instanceof Error ? e.message : String(e) }, { status: 500 });
   }

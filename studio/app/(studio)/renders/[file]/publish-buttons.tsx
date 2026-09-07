@@ -55,8 +55,13 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
           : null,
         r.facebook
           ? r.facebook.ok
-            ? "פייסבוק ✓"
-            : `פייסבוק: ${r.facebook.reason}`
+            ? "פייסבוק (פרופיל) ✓"
+            : `פייסבוק (פרופיל): ${r.facebook.reason}`
+          : null,
+        r.facebookPage
+          ? r.facebookPage.ok
+            ? "פייסבוק (עמוד) ✓"
+            : `פייסבוק (עמוד): ${r.facebookPage.reason}`
           : null,
       ].filter(Boolean);
       setIgMsg(lines.join(" · "));
@@ -84,7 +89,11 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ file, caption: caption ?? "" }),
       }).then((x) => x.json());
-      setFbMsg(r.facebook?.ok ? "פייסבוק ✓" : `פייסבוק נכשל: ${r.facebook?.reason}`);
+      const lines = [
+        r.facebook?.ok ? "פרופיל ✓" : `פרופיל נכשל: ${r.facebook?.reason}`,
+        r.facebookPage?.ok ? "עמוד ✓" : `עמוד נכשל: ${r.facebookPage?.reason}`,
+      ];
+      setFbMsg(lines.join(" · "));
     } catch (e) {
       setFbMsg(`שגיאה: ${e instanceof Error ? e.message : String(e)}`);
     } finally {
@@ -128,7 +137,7 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
           {igBusy ? "מפרסם…" : "פרסם: ריל + פייסבוק"}
         </button>
         <button className="btn ghost" onClick={doFacebook} disabled={fbBusy}>
-          {fbBusy ? "מפרסם…" : "פרסם: פייסבוק בלבד (נסיון חוזר)"}
+          {fbBusy ? "מפרסם…" : "פרסם: פייסבוק בלבד — פרופיל + עמוד (נסיון חוזר)"}
         </button>
         {ytConnected === false ? (
           <a className="btn ghost" href="/api/youtube/auth">

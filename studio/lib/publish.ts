@@ -129,16 +129,27 @@ export type FbPublishResult =
 /** A genuinely separate platform, not a side effect of the Instagram call — Meta has no
  *  API parameter that cross-posts an Instagram Reel to a Facebook Page automatically
  *  (verified against Meta's own docs; that's a manual toggle inside the Instagram app
- *  only, not exposed to the Graph API). Posting to the Page needs the Page's own token
- *  (`pages_manage_posts` scope) — a separate credential from the Instagram user token,
- *  which is why this reads its own env vars and reports plainly when they're missing
- *  instead of quietly reusing the Instagram one. */
-export async function publishToFacebook(file: string, caption: string): Promise<FbPublishResult> {
-  const pageId = process.env.FB_PAGE_ID;
-  const pageToken = process.env.FB_PAGE_ACCESS_TOKEN;
-  if (!pageId || !pageToken) {
-    return { ok: false, reason: "FB_PAGE_ID / FB_PAGE_ACCESS_TOKEN לא מוגדרים — זה חיבור נפרד מאינסטגרם" };
-  }
+ *  only, not exposed to the Graph API). Posting needs its own token (`pages_manage_posts`
+ *  scope for a Page, the equivalent user-level scope for a personal profile) — a separate
+ *  credential from the Instagram user token, which is why this reads its own env vars
+ *  and reports plainly when they're missing instead of quietly reusing the Instagram one.
+ *
+ *  Two real destinations exist side by side on purpose: `FB_PAGE_ID`/`FB_PAGE_ACCESS_TOKEN`
+ *  is David's personal profile — where the real, existing audience and view history live,
+ *  and where every episode has actually been publishing until now. `FB_BUSINESS_PAGE_ID`/
+ *  `FB_BUSINESS_PAGE_ACCESS_TOKEN` is the separate "Actually works.ai" Page created
+ *  7.9.2026 specifically because Meta's Graph API can only ever read view/follower
+ *  numbers back from a Page, never a personal profile — a platform limitation, not
+ *  something either token's permissions can fix. Publishing to both keeps the personal
+ *  profile's real reach while giving the studio one place it can actually measure. */
+async function publishToFacebookTarget(
+  file: string,
+  caption: string,
+  pageId: string | undefined,
+  pageToken: string | undefined,
+  missingReason: string,
+): Promise<FbPublishResult> {
+  if (!pageId || !pageToken) return { ok: false, reason: missingReason };
   const videoUrl = `${SITE_URL}/reels/${encodeURIComponent(file)}`;
   const u = new URL(`https://graph.facebook.com/v21.0/${pageId}/videos`);
   u.searchParams.set("file_url", videoUrl);
@@ -148,6 +159,38 @@ export async function publishToFacebook(file: string, caption: string): Promise<
   const j = (await r.json()) as { id?: string; error?: { message?: string } };
   if (!r.ok || !j.id) return { ok: false, reason: j.error?.message ?? `הפרסום לפייסבוק נכשל (${r.status})` };
   return { ok: true, postId: j.id };
+}
+
+export async function publishToFacebook(file: string, caption: string): Promise<FbPublishResult> {
+  return publishToFacebookTarget(
+    file,
+    caption,
+    process.env.FB_PAGE_ID,
+    process.env.FB_PAGE_ACCESS_TOKEN,
+    "FB_PAGE_ID / FB_PAGE_ACCESS_TOKEN לא מוגדרים — זה חיבור נפרד מאינסטגרם",
+  );
+}
+
+export async function publishToFacebookBusinessPage(file: string, caption: string): Promise<FbPublishResult> {
+  return publishToFacebookTarget(
+    file,
+    caption,
+    process.env.FB_BUSINESS_PAGE_ID,
+    process.env.FB_BUSINESS_PAGE_ACCESS_TOKEN,
+    "FB_BUSINESS_PAGE_ID / FB_BUSINESS_PAGE_ACCESS_TOKEN לא מוגדרים",
+  );
+}
+
+export type FbBothPublishResult = { profile: FbPublishResult; page: FbPublishResult };
+
+/** Publishes to both real destinations, independently — one failing must never hide or
+ *  block the other succeeding, since they're unrelated credentials and unrelated audiences. */
+export async function publishToFacebookBoth(file: string, caption: string): Promise<FbBothPublishResult> {
+  const [profile, page] = await Promise.all([
+    publishToFacebook(file, caption),
+    publishToFacebookBusinessPage(file, caption),
+  ]);
+  return { profile, page };
 }
 
 // ───────────────────────── YouTube ─────────────────────────
