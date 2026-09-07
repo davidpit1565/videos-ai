@@ -67,7 +67,48 @@ winner yet. A format goes here only after Confirmed patterns has something to po
 
 ## Losing formats
 
-*(Empty for the same reason.)*
+- **FACT, first entry here (7.9.2026) — a production-quality judgment, not an audience-data
+  pattern, so it's not labeled CONFIRMED/HYPOTHESIS the way the sections above are:**
+  a non-lip-synced "talking head" built from a still/idle AI-generated avatar clip (a
+  Gemini image animated into a subtle idle loop, played under narration audio) does not
+  work as a talking-head format. Tried for episode 26 as the free alternative to a paid
+  D-ID avatar. David watched the actual shipped file and called it directly: the avatar
+  never talks while the voice plays, and it "looks stuck" — the fundamental problem is that
+  there is no real lip-sync without a paid plan (D-ID's free/trial tier also has a separate,
+  unrelated blocker: a full-frame tiled watermark). Episode 26 shipped instead in the
+  channel's standard animated-typography format, no avatar. **If a talking-head format is
+  wanted again, the only real path found is a paid D-ID plan (Pro, $16/mo) — it both removes
+  the watermark and gives actual lip-sync** — a non-lip-synced avatar clip is not a viable
+  middle ground, it reads as broken, not as a stylistic choice.
+
+## Process lesson: frame-sampling review misses what continuous playback catches (7.9.2026)
+
+Not a content/audience pattern — a note on how episodes get checked before shipping, kept
+here because it directly caused the episode 26 avatar format above to ship broken the first
+time despite "passing" every automated check and a still-frame visual review.
+
+**What happened:** the avatar version of episode 26 passed `check.sh` (safe-area, loudness,
+resolution, no-frozen-frame) and a review that sampled ~15-20 individual still frames spread
+across the timeline — and still shipped with captions sitting on top of the avatar's face/
+mouth, a caption with no matching audio, and the avatar never visibly speaking. None of those
+are things a discrete still frame can show: a static frame can't reveal "this doesn't move
+for 50 seconds" or "the mouth never syncs to the words," and the caption-without-audio bug
+only surfaced once someone actually listened straight through.
+
+**Separately, and worse:** the exact same episode's real narration audio had a genuine ~3.4s
+silent gap (dropping "No API key. It's running right here, on this laptop." entirely) and a
+word cut off mid-syllable ("off.") — introduced by a mid-session audio-splicing bug, and
+invisible to whole-clip average loudness checks (`volumedetect`'s mean/max over an entire
+clip doesn't reveal that only part of it is real audio). This shipped through *two* separate
+episode-26 releases before David caught it by ear.
+
+**The actual lesson, not just "we found bugs":** still-frame sampling and whole-clip average
+audio stats are both real checks worth keeping, but neither one substitutes for actually
+watching the full render start-to-finish with sound on, and neither one substitutes for a
+full-file fine-grained silence scan (`ffmpeg silencedetect` at a short window, across the
+whole file) when narration audio has been hand-edited/spliced rather than generated in one
+pass. Both are now the standard for any episode involving spliced/patched audio, not just
+episode 26.
 
 ## Open questions
 
