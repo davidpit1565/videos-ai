@@ -4,7 +4,7 @@ I told Claude Code to clean up the test data because it was cluttering everythin
 
 Claude Code comes with a normal Pro plan — $20/month, nothing else to buy.
 
-Full setup, exact clicks: actually-works.com/e/28
+Full setup, exact clicks: https://actually-works.com/e/28
 
 Follow for the setup that actually works.
 

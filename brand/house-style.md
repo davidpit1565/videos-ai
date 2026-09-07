@@ -310,6 +310,34 @@ here) — check all of it, not just the script.
   guaranteed vs. the model choosing to comply) applied one level up: mechanically guaranteed
   vs. **guaranteed for who**.
 
+## 14.5. The caption/description URL needs its protocol, and won't be clickable everywhere anyway
+
+David flagged that `actually-works.com/e/26` showed up as plain text in a YouTube
+description, not a clickable link, and asked for it to actually be a clickable link in
+future reels. Checked before just adding `https://` and calling it fixed:
+
+- **YouTube requires the `https://` prefix to auto-link a URL at all** — a bare domain like
+  `actually-works.com/e/28` never becomes clickable, with or without `www.`. Confirmed via
+  YouTube's own current linking behavior, not assumed from memory.
+- **YouTube Shorts descriptions strip link clickability regardless of format** — Google's
+  own anti-spam policy for Shorts, separate from the `https://` requirement above. Every
+  episode publishes with the `#Shorts` tag (`lib/publish.ts`), so this applies to all of
+  them: no caption-text formatting fixes this, because the platform intentionally disables
+  it for this content type.
+- **Instagram captions have never been clickable, on any post type** — this isn't new and
+  isn't a formatting bug; it's why "the setup's in the link in bio" exists as its own
+  narration line and its own biocard scene in every episode's build.
+- **The one real, always-clickable path is the bio link itself**, which every script already
+  points to. The caption/description URL text is a readable, copy-pasteable reference for
+  someone willing to type it, not a click target — treat it that way, and don't promise
+  "clickable" for a channel-page/description link on either platform.
+
+Going forward: write the caption/description URL with the `https://` prefix regardless
+(`https://actually-works.com/e/N`) — costs nothing, and helps on any surface that isn't a
+YouTube Short or Instagram caption (a long-form repost, a different platform, a direct
+paste). Don't claim it fixes clickability on the two platforms this channel actually
+publishes to.
+
 ## 15. Line count is a real time budget, not a style choice
 
 David asked directly why production had grown from "about fifteen minutes" to nearly an
