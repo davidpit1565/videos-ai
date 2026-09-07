@@ -516,12 +516,17 @@ export async function fetchFacebook(): Promise<FbResult> {
   if (!pageToken) return { connected: false, reason: "FB_PAGE_ACCESS_TOKEN לא מוגדר" };
 
   try {
-    // followers_count 400'd with "(#100) Tried accessing nonexisting field" on this
-    // Page token — confirmed live, not a guess (see the /api/connections diagnostic).
-    // fan_count is the older, less permission-gated field for a Page's own follower
-    // count and is what a plain Page-token integration like this one actually gets.
+    // Both followers_count and fan_count 400'd with the identical "(#100) Tried
+    // accessing nonexisting field" error, on the same object — the field name was
+    // never the actual problem. That error shape (not a permissions error) means the
+    // Graph API doesn't recognize either field on THIS node at all, which points at
+    // FB_PAGE_ID resolving to something other than a plain Page node under this API
+    // version/token. Fetching name-only first (every node type supports it) isolates
+    // whether the connection itself works before asking for a Page-specific field —
+    // and follower count now degrades gracefully (best-effort, like per-video insights
+    // below) instead of failing the whole connection over one optional number.
     const pr = await timedFetch(
-      `${FB_GRAPH}/${pageId}?fields=name,fan_count&access_token=${pageToken}`,
+      `${FB_GRAPH}/${pageId}?fields=id,name&access_token=${pageToken}`,
       { cache: "no-store" },
     );
     if (!pr.ok) {
@@ -531,7 +536,21 @@ export async function fetchFacebook(): Promise<FbResult> {
         detail: (await pr.text()).slice(0, 300),
       };
     }
-    const page = (await pr.json()) as { name?: string; fan_count?: number };
+    const page = (await pr.json()) as { id?: string; name?: string };
+
+    let followers: number | null = null;
+    try {
+      const fr = await timedFetch(
+        `${FB_GRAPH}/${pageId}?fields=fan_count&access_token=${pageToken}`,
+        { cache: "no-store" },
+      );
+      if (fr.ok) {
+        const fj = (await fr.json()) as { fan_count?: number };
+        followers = fj.fan_count ?? null;
+      }
+    } catch {
+      // follower count temporarily unavailable — connection itself still stands
+    }
 
     // Same reasoning as Instagram/YouTube's own media pulls: one page was the whole
     // account's history at first, so nothing here ever needed a second page — capped
@@ -589,7 +608,7 @@ export async function fetchFacebook(): Promise<FbResult> {
     return {
       connected: true,
       pageName: page.name ?? null,
-      followers: page.fan_count ?? null,
+      followers,
       videos,
       checkedAt: new Date().toISOString(),
     };
