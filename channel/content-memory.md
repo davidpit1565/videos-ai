@@ -527,6 +527,18 @@ episodes and three low ones, not a controlled experiment — hook type, topic, a
 context all vary between them too. It's the strongest pattern this file has found so far
 (hence moving it to Confirmed above), not proof that fixing a hook alone guarantees 500+.
 
+## Episode 23 crosses 1,200 total views (7.9.2026)
+
+**FACT, per David directly (his own read of the numbers, not independently pulled from
+`/api/agent` this session):** episode 23 ("22 episodes. One file keeps us safe." —
+Expert/Authority type) passed **1,200 total views in one day, combined across Instagram
+and Facebook.** This is the highest single-day number recorded in this file by a wide
+margin — every previous high-water mark was Instagram-only and topped out at 940 (ep2).
+Not yet broken down by platform or re-verified against `/api/agent` directly, so the
+exact Instagram-vs-Facebook split isn't in this entry — worth pulling next time this file
+gets a real data update, since Facebook distribution being a real contributor (not just
+Instagram) would itself be worth confirming and possibly leaning into more.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
