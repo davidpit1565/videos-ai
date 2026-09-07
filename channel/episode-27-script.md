@@ -65,8 +65,8 @@ not a hypothetical, not something the viewer has to imagine.
 3. "That's the kind of wrong instruction most AI tools just go along with."
 4. "This one didn't. It said the loop wasn't the bug at all."
 5. "The real bug was one line down — dividing correctly, then quietly subtracting one."
-6. "It fixed the actual problem — not the one I described."
-7. "Claude Code comes with a normal Pro plan. Twenty dollars a month, no separate purchase."
+6. "It fixed the actual problem. Not the one I described."
+7. "Claude Code comes with a normal Pro plan. Twenty dollars a month, nothing else to buy."
 8. "The exact setup's in the link in bio."
 9. **(locked outro)** "Follow for the setup that actually works."
 
@@ -116,7 +116,7 @@ recorded in `channel/used-designs.json` automatically by `produce.sh`).
 > It wasn't. It found the real bug instead — an operator-precedence mistake one line down —
 > and fixed that, not what I described.
 >
-> Claude Code comes with a normal Pro plan, $20/month. No separate purchase.
+> Claude Code comes with a normal Pro plan, $20/month. Nothing else to buy.
 >
 > Full setup, exact clicks: actually-works.com/e/27
 >
