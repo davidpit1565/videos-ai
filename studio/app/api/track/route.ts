@@ -2,7 +2,7 @@ import { whole } from "@/lib/whole";
 import { NextResponse } from "next/server";
 import { notify, notifyNewRenders, notifyEpisodeLive } from "@/lib/push";
 import { hasDb, loadState, saveState, subscribersByEpisode } from "@/lib/db";
-import { fetchBeehiiv, fetchInstagram, fetchYouTube, refreshInstagramToken} from "@/lib/sources";
+import { fetchBeehiiv, fetchFacebook, fetchInstagram, fetchYouTube, refreshInstagramToken} from "@/lib/sources";
 import { ActivityEvent, State, uid } from "@/lib/types";
 import { realTitleFor, captionTitleFor, reels } from "@/lib/reels";
 
@@ -81,7 +81,9 @@ export async function GET(req: Request) {
     else console.log(`[track] instagram token not refreshed: ${rt.reason}`);
   }
 
-  const [ig, bee, yt] = await Promise.all([fetchInstagram(), fetchBeehiiv(), fetchYouTube()]);
+  const [ig, bee, yt, fb] = await Promise.all([
+    fetchInstagram(), fetchBeehiiv(), fetchYouTube(), fetchFacebook(),
+  ]);
 
   // Tell him the day a connection breaks, not whenever he next opens the studio. This is the
   // half a refresh cannot cover: today's failure is Meta blocking the app, which no token
@@ -240,6 +242,7 @@ export async function GET(req: Request) {
   // field only ever copied itself forward from the previous day's row (see below), so this
   // number has never actually been recorded, only silently re-saved as null forever.
   if (yt.connected) note("youtube", "עוקבים ביוטיוב", yt.subscribers, prev?.ytSubs);
+  if (fb.connected) note("facebook", "עוקבים בפייסבוק", fb.followers, prev?.fbFollowers);
 
   // per-episode movement, so a video that keeps growing is visible without opening it.
   // Instagram and YouTube used to run this as two separately hand-written blocks — that's
@@ -253,7 +256,7 @@ export async function GET(req: Request) {
     comments: number | null; shares: number | null;
   };
   type PlatformConfig = {
-    key: "instagram" | "youtube";
+    key: "instagram" | "youtube" | "facebook";
     label: string;
     unmatchedPrefix: string;
     getId: (e: State["episodes"][number]) => string | null;
@@ -451,6 +454,35 @@ export async function GET(req: Request) {
     );
   }
 
+  if (fb.connected) {
+    syncPlatform(
+      fb.videos.map((v) => ({
+        id: v.id, text: v.description, permalink: v.permalink,
+        timestamp: v.publishedAt, views: v.views, likes: v.likes, saves: null,
+        comments: v.comments, shares: null,
+      })),
+      {
+        key: "facebook",
+        label: "פייסבוק",
+        unmatchedPrefix: "סרטון לא מקושר בפייסבוק",
+        getId: (e) => e.fbVideoId ?? null,
+        setId: (e, id) => { e.fbVideoId = id; },
+        setPermalinkIfMissing: (e, p) => { if (!e.fbPermalink && p) e.fbPermalink = p; },
+        setPermalink: (e, p) => { e.fbPermalink = p; },
+        viewsNoteLabel: (n) => `ריל ${n} · צפיות בפייסבוק`,
+        savesNoteLabel: null,
+        likesNoteLabel: (n) => `ריל ${n} · לייקים בפייסבוק`,
+        currentViews: (e) => e.fbViews ?? null,
+        currentLikes: (e) => e.fbLikes ?? null,
+        applyMetrics: (e, m) => {
+          e.fbViews = m.views ?? e.fbViews ?? null;
+          e.fbLikes = m.likes ?? e.fbLikes ?? null;
+          e.fbComments = m.comments ?? e.fbComments ?? null;
+        },
+      },
+    );
+  }
+
   // one snapshot a day, so the growth table stays a history and not a log
   const today = now.slice(0, 10);
   // Only an exact count is recorded. Beehiiv's list endpoint has no total, so past one
@@ -462,14 +494,16 @@ export async function GET(req: Request) {
   // response payload and now in the note() call) but never actually reached a snapshot;
   // every day's row just copied yesterday's (permanently null) value forward.
   const ytSubsVal = yt.connected ? yt.subscribers ?? null : prev?.ytSubs ?? null;
+  const fbFollowersVal = fb.connected ? fb.followers ?? null : prev?.fbFollowers ?? null;
   if (prev?.date === today) {
     prev.subscribers = subs;
     prev.igFollowers = fol;
     prev.ytSubs = ytSubsVal;
+    prev.fbFollowers = fbFollowersVal;
   } else {
     state.snapshots.push({
       id: uid(), date: today, subscribers: subs, igFollowers: fol,
-      ytSubs: ytSubsVal, note: "נמדד אוטומטית",
+      ytSubs: ytSubsVal, fbFollowers: fbFollowersVal, note: "נמדד אוטומטית",
     });
   }
 
@@ -561,6 +595,7 @@ export async function GET(req: Request) {
       : undefined,
     beehiiv: bee.connected ? { subscribers: bee.activeSubscribers, exact: bee.exact } : bee,
     youtube: yt.connected ? { subscribers: yt.subscribers, videos: yt.videos.length } : yt,
+    facebook: fb.connected ? { followers: fb.followers, videos: fb.videos.length } : fb,
     newEvents: fresh.length,
     activity: state.activity.slice(0, 40),
     checkedAt: now,

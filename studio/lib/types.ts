@@ -46,6 +46,14 @@ export type Episode = {
   ytViews?: number | null;
   ytLikes?: number | null;
   ytComments?: number | null;
+  /** Facebook Page video id — how metrics get attached to this episode. Kept apart from
+   *  the Instagram/YouTube fields above for the same reason: three platforms writing into
+   *  one shared `views` would silently overwrite each other on every pull. */
+  fbVideoId?: string | null;
+  fbPermalink?: string | null;
+  fbViews?: number | null;
+  fbLikes?: number | null;
+  fbComments?: number | null;
   /** How many subscribers this episode brought. /api/track now fills this in for real,
    *  counting subscribers whose signup happened on this episode's own page (see
    *  subscribersByEpisode() in lib/db.ts) — it only ever overwrites with a real positive
@@ -65,6 +73,8 @@ export type Snapshot = {
   subscribers: number | null;
   igFollowers: number | null;
   ytSubs: number | null;
+  /** Optional so a snapshot saved before this field existed still loads. */
+  fbFollowers?: number | null;
   note: string;
 };
 
@@ -81,7 +91,7 @@ export type RevenueLine = {
 export type ActivityEvent = {
   id: string;
   at: string;
-  source: "instagram" | "beehiiv" | "youtube" | "studio";
+  source: "instagram" | "beehiiv" | "youtube" | "facebook" | "studio";
   label: string;
   value: number | null;
   delta: number | null;
