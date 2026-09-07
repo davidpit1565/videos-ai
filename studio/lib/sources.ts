@@ -516,8 +516,12 @@ export async function fetchFacebook(): Promise<FbResult> {
   if (!pageToken) return { connected: false, reason: "FB_PAGE_ACCESS_TOKEN לא מוגדר" };
 
   try {
+    // followers_count 400'd with "(#100) Tried accessing nonexisting field" on this
+    // Page token — confirmed live, not a guess (see the /api/connections diagnostic).
+    // fan_count is the older, less permission-gated field for a Page's own follower
+    // count and is what a plain Page-token integration like this one actually gets.
     const pr = await timedFetch(
-      `${FB_GRAPH}/${pageId}?fields=name,followers_count&access_token=${pageToken}`,
+      `${FB_GRAPH}/${pageId}?fields=name,fan_count&access_token=${pageToken}`,
       { cache: "no-store" },
     );
     if (!pr.ok) {
@@ -527,7 +531,7 @@ export async function fetchFacebook(): Promise<FbResult> {
         detail: (await pr.text()).slice(0, 300),
       };
     }
-    const page = (await pr.json()) as { name?: string; followers_count?: number };
+    const page = (await pr.json()) as { name?: string; fan_count?: number };
 
     // Same reasoning as Instagram/YouTube's own media pulls: one page was the whole
     // account's history at first, so nothing here ever needed a second page — capped
@@ -585,7 +589,7 @@ export async function fetchFacebook(): Promise<FbResult> {
     return {
       connected: true,
       pageName: page.name ?? null,
-      followers: page.followers_count ?? null,
+      followers: page.fan_count ?? null,
       videos,
       checkedAt: new Date().toISOString(),
     };
