@@ -254,6 +254,7 @@ export async function GET() {
             pageName: facebook.pageName,
             followers: facebook.followers,
             fetchedVideos: facebook.videos.length,
+            videosError: facebook.videosError ?? null,
           }
         : { connected: false, reason: facebook.reason, detail: facebook.detail ?? null },
     },
