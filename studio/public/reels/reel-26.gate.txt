@@ -49,8 +49,8 @@ reel-26-kar.html  51.5s  safe box: x 65-1015, y 269-1248
   overlaps: none over 10px
 
 === rendered file
-reel-26.mp4  1080x1920  30fps  51.50s  6.9MB
-  visual change: median 0.33s, longest 1.20s
+reel-26.mp4  1080x1920  30fps  51.50s  7.4MB
+  visual change: median 0.37s, longest 1.53s
   loudness: -14.0 LUFS integrated, peak -3.1 dBFS, LRA 2.9 LU
   loop seam: first vs last frame differ by 3.6/255
 
@@ -62,7 +62,7 @@ reel-26.mp4  1080x1920  30fps  51.50s  6.9MB
   ok        length matches the build
   ok        no frozen run over 4s
   ok        first frame carries picture (luma 22.3)
-  ok        visual change every 0.33s median
+  ok        visual change every 0.37s median
   ok        -14.0 LUFS
   ok        peak -3.1 dBFS
 
