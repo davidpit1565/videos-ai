@@ -698,6 +698,35 @@ export const ARTICLES: Article[] = [
       "The first ollama run of any model needs an internet connection to download it once — \"offline\" describes every run after that, not the very first one.",
     ],
   },
+  {
+    n: 27,
+    title: "I told Claude Code the wrong bug. On purpose.",
+    standfirst:
+      "A real, unscripted test: fed Claude Code a deliberately false bug description — " +
+      "\"the loop skips one entry, at the top\" — on a script whose real bug was " +
+      "somewhere else entirely. It didn't just patch the described symptom; it found " +
+      "the actual defect (an operator-precedence mistake one line down) and fixed that " +
+      "instead. Comes with a normal Claude Pro plan, $20/month, nothing extra to buy.",
+    steps: [
+      "A \"terminal\" is a plain window for typed commands — every Mac and Windows computer already has one, nothing extra to download for this part. Open it — Mac: click the magnifying glass icon top-right of the screen (Spotlight), type \"Terminal\", press Enter; Windows: click the Start menu (bottom-left), type \"PowerShell\", press Enter.",
+      "Mac/Linux: paste curl -fsSL https://claude.ai/install.sh | bash into that window and press Enter. Windows: paste irm https://claude.ai/install.ps1 | iex instead. This is the official installer from Anthropic's own site — safe to paste. Lines scroll by while it installs; when they stop and you get a new blank prompt, it's done.",
+      "Type claude --version and press Enter. If it prints a version number, the install worked — if you see \"command not found\", close the terminal window and open a fresh one (the first install needs a new window to be recognized).",
+      "Type claude and press Enter inside any project folder. The first time, a browser tab opens asking to log in with the same email and password used for claude.ai.",
+      "Already have a Claude Pro or Max subscription? Nothing else to buy — Claude Code is included at no extra cost. On the free plan, it asks to upgrade before it will run any real request.",
+      "Type a real request in plain English, describing what you think is wrong — for example \"there's a bug in this file: it skips the first item in the loop, fix it\" — and press Enter. It reads the actual file itself rather than only trusting the description, so if the real bug is somewhere else, it can find and fix that instead.",
+      "Optional: the same tool also works inside VS Code, Cursor, and JetBrains IDEs as a built-in extension, not just the terminal — same login, same account, no separate setup.",
+    ],
+    changes: [
+      "Claude Code is included with a normal Claude Pro subscription ($20/month) — confirmed current via Anthropic's own pricing page before this episode was written, not assumed from an older episode.",
+      "It reads the actual file before acting, rather than only trusting a plain-English bug description — a wrong or incomplete description of the symptom doesn't stop it from finding the real defect.",
+      "The demo in this episode was run for real, not scripted: a genuinely broken script, a deliberately false bug description, and the tool's own unedited response as the evidence.",
+    ],
+    limits: [
+      "This one test showed the tool looking past a wrong description on one small, clear-cut bug (an operator-precedence mistake) — it isn't a claim that every wrong description gets caught on every bug, especially subtler or more ambiguous ones.",
+      "Free-plan accounts can't run this at all without upgrading first — the $20/month claim is specifically about Pro-and-up, not every Claude account.",
+      "Needs a real project folder and an actual broken file to point it at — it doesn't diagnose a bug from a description alone with no code to read.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

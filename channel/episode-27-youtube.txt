@@ -1,0 +1,11 @@
+I told Claude Code the wrong bug. On purpose.
+
+I said the loop skipped an entry — right at the top. That wasn't the bug. The real one was an operator-precedence mistake one line down: the average was right, then one got subtracted from it for no reason. It fixed the actual problem, not the one I described.
+
+Claude Code comes with a normal Pro plan — $20/month, no separate purchase.
+
+Full setup, exact clicks: actually-works.com/e/27
+
+Follow for the setup that actually works.
+
+#claudecode #aitools #coding #buildinpublic #debugging
