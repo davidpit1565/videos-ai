@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { BEEHIIV_PUB, fetchInstagram, fetchBeehiiv, fetchYouTube } from "@/lib/sources";
+import { BEEHIIV_PUB, fetchInstagram, fetchBeehiiv, fetchYouTube, fetchFacebook } from "@/lib/sources";
 import { deviceCount, publicKey } from "@/lib/push";
 import { dbVar, loadState } from "@/lib/db";
 
@@ -41,17 +41,18 @@ function shape(v: string | undefined): Shape {
  *  guessed wrong once already — I said a redeploy would fix it and the next build still
  *  came back empty. So: the NAMES of variables that look related, which are not secrets,
  *  and the total count, which distinguishes "wrong project" from "wrong name". */
-const RELATED = /BEEHIIV|BEEHIV|BEHIIV|NEWSLETTER|SUBSCRIB|^IG_|INSTAGRAM|ANTHROPIC|POSTGRES|DATABASE|STUDIO_PIN/i;
+const RELATED = /BEEHIIV|BEEHIV|BEHIIV|NEWSLETTER|SUBSCRIB|^IG_|INSTAGRAM|ANTHROPIC|POSTGRES|DATABASE|STUDIO_PIN|^FB_/i;
 
 function relatedNames(): string[] {
   return Object.keys(process.env).filter((k) => RELATED.test(k)).sort();
 }
 
 export async function GET() {
-  const [instagram, beehiiv, youtube] = await Promise.all([
+  const [instagram, beehiiv, youtube, facebook] = await Promise.all([
     fetchInstagram(),
     fetchBeehiiv(),
     fetchYouTube(),
+    fetchFacebook(),
   ]);
 
   // The one question this endpoint couldn't answer: not "is the connection alive" but
@@ -189,6 +190,8 @@ export async function GET() {
       database: { varName: dbVar(), set: dbVar() !== null },
       ANTHROPIC_API_KEY: shape(process.env.ANTHROPIC_API_KEY),
       STUDIO_PIN: { set: (process.env.STUDIO_PIN ?? "").length > 0 },
+      FB_PAGE_ID: shape(process.env.FB_PAGE_ID),
+      FB_PAGE_ACCESS_TOKEN: shape(process.env.FB_PAGE_ACCESS_TOKEN),
     },
     // the live verdict from the services themselves, which is the only thing that counts
     live: {
@@ -245,6 +248,14 @@ export async function GET() {
             fetchedVideos: youtube.videos.length,
           }
         : { connected: false, reason: youtube.reason, detail: youtube.detail ?? null },
+      facebook: facebook.connected
+        ? {
+            connected: true,
+            pageName: facebook.pageName,
+            followers: facebook.followers,
+            fetchedVideos: facebook.videos.length,
+          }
+        : { connected: false, reason: facebook.reason, detail: facebook.detail ?? null },
     },
   });
 }
