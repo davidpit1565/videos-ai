@@ -117,6 +117,10 @@ swallows the result) — which is exactly why the original framing was wrong.
 topic demand. Topic selection still draws from `demand-report.md` where possible, but
 low-friction match takes priority over raw demand for this specific experiment.
 
+**Primary metric:** save-rate (saves/reach). **Secondary metrics:** share count
+(binary — any vs. none), reach/views (as a guardrail, not the thing being optimized —
+see Win below), engagement-rate (context only, not part of the verdict).
+
 **Baseline:** save-rate 0.74%, share-rate 0%, engagement-rate 4.3% (see above).
 
 **Win:** save-rate ≥1.5% **and/or** shares > 0, **and** reach/views not meaningfully
@@ -130,7 +134,17 @@ near baseline) — a single share out of 26-zero is a real, interesting signal, 
 its own it is not proof; it does not get to "win" the whole experiment by itself.
 **Lose:** save-rate ≤1.0% **and** 0 shares **and** reach/views at or below baseline.
 
-**Result:** [fill in once real numbers are in]
+**When to measure:** not before **7 days** post-publish (matches this file's own
+template guidance above — "give it enough days for saves/views to settle, not the
+first hour"). Record the exact date measured alongside the result.
+
+**Locked 8.9.2026, before production starts on this episode. Do not revise the
+hypothesis, metrics, or Win/Strong win/Inconclusive/Lose thresholds above after
+real numbers are in — if the thresholds turn out wrong in hindsight, say so
+explicitly in Result/Verdict and log the correction as a new dated note, never
+edit the pre-registered thresholds themselves.**
+
+**Result:** [fill in once real numbers are in, no earlier than 7 days post-publish]
 **Verdict:** RUNNING
 **Feeds into:** H1 in `content-memory.md`.
 
@@ -151,7 +165,13 @@ metric.
 topic drawn from the same demand-report.md pool used for other high performers, so
 demand isn't the variable either.
 
-**Baseline:** save-rate 0.74%, share-rate 0%, engagement-rate 4.3%.
+**Primary metric:** reach (views is a secondary read on the same thing — discovery is
+explicitly a reach play, not a save play, per the Engine A rationale). **Secondary
+metrics:** engagement-rate, save-rate (as a guardrail only — a discovery episode isn't
+expected to beat the utility baseline on saves, so a save-rate collapse would just
+confirm the framing is a reach play, not a red flag on its own).
+
+**Baseline:** save-rate 0.74%, share-rate 0%, engagement-rate 4.3%, median reach 138.
 
 **Win:** engagement-rate ≥6% **or** reach/views meaningfully above the 138/217 medians
 (discovery framing is a reach play more than a save play, per the Engine A rationale —
@@ -165,7 +185,15 @@ engagement flat or below) — a mild signal on a single metric, not a verdict ei
 **Lose:** engagement-rate and reach both sit at or below baseline — the discovery
 framing doesn't outperform the failure-framing DNA already in place.
 
-**Result:** [fill in once real numbers are in]
+**When to measure:** not before **7 days** post-publish, same as Experiment 1 — record
+the exact date measured alongside the result.
+
+**Locked 8.9.2026, before production starts on this episode. Do not revise the
+hypothesis, metrics, or Win/Strong win/Inconclusive/Lose thresholds above after real
+numbers are in — log any hindsight correction as a new dated note instead of editing
+the pre-registered thresholds.**
+
+**Result:** [fill in once real numbers are in, no earlier than 7 days post-publish]
 **Verdict:** RUNNING
 **Feeds into:** a new entry in `content-memory.md`'s Current hypotheses (currently
 nothing there addresses discovery-vs-failure framing directly).
