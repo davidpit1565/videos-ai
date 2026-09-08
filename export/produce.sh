@@ -134,6 +134,14 @@ else
 fi
 rm -f /tmp/pick-real-track-${EP}.err
 
+# A real, systematic check that the bed actually sounds present — built after
+# episode 27 and episode 29 each shipped music that measured "fine" (present,
+# correct level) yet still drew "I don't hear background music." Catches a track
+# that's technically nonzero but too quiet or has a dead zone; whether the track's
+# character/arrangement is good is still an ear call this can't make (see the
+# script's own docstring).
+python3 audio/check_music_bed.py "$MUSIC" || exit 1
+
 echo "=== [8/11] render"
 FRAMES=1 ./export/render.sh "$BUILD_K" 1080 1920 "$NEWDUR" "$VO_R" "$MP4" "$MUSIC" || exit 1
 
