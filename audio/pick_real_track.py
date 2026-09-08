@@ -27,6 +27,7 @@ MOODS = {
     "retro":       "nostalgic-memories-piano--alexmorgan.mp3",
     "drive":       "video-editing--alexmorgan.mp3",
     "punchy":      "trending-vibe--alexmorgan.mp3",
+    "suspense":    "suspense-tension-building--arpmedia.mp3",
 }
 
 
