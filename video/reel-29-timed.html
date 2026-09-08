@@ -159,7 +159,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="20.885" data-out="27.57">
+<section class="scene" data-in="20.885" data-out="27.59">
   <div class="pad"><div class="kb">
     <div class="quote" id="quoteCard" style="opacity:0">
       <div class="qk" id="quoteQk">real report — n8n's own community</div>
@@ -168,7 +168,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="27.57" data-out="34.76">
+<section class="scene" data-in="27.59" data-out="34.78">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow lose" id="scoreRowA" style="opacity:0"><span class="lbl">Executions list</span><span class="val">Success ✓</span></div>
@@ -177,27 +177,27 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="34.76" data-out="41.42">
+<section class="scene" data-in="34.78" data-out="41.1">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="34.79">Silently broken<br>for <strong>weeks</strong> —<br>the log said it was fine.</p>
+    <p class="lede b" data-at="34.81">Silently broken<br>for <strong>weeks</strong> —<br>the log said it was fine.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="41.42" data-out="44.175">
+<section class="scene" data-in="41.1" data-out="43.865">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="41.45">One check catches it:<br>look for the <strong>error field</strong>,<br>alert the moment it appears.</p>
+    <p class="lede b" data-at="41.13">One check catches it:<br>look for the <strong>error field</strong>,<br>alert the moment it appears.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="44.175" data-out="45.8">
+<section class="scene" data-in="43.865" data-out="45.485">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="44.205"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="43.895"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="45.8" data-out="47.27">
+<section class="scene" data-in="45.485" data-out="46.95">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="45.812" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="45.497" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -231,7 +231,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=47.72,t=0,playing=false,last=0;
+  var DUR=47.4,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -245,11 +245,11 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [5.25,10.58,"One setting causes it: On Error, set to Continue — built to survive a small hiccup."],
     [11.00,15.38,"But when a node actually fails, n8n doesn't flag the workflow at all."],
     [15.80,20.46,"The Executions list still reads green. Success. Every single time."],
-    [21.31,27.36,"The only place it shows is inside that node's own output — buried in error data nobody opens."],
-    [27.78,34.55,"Real case, from n8n's own community: a workflow silently stopped working for weeks, and the log insisted it was fine."],
-    [34.97,41.21,"One extra step catches it — a branch that checks for the error field, and alerts you the moment it appears."],
-    [41.63,43.75,"The exact setup's in the link in bio."],
-    [44.60,46.82,"Follow for the setup that actually works."]
+    [21.31,27.38,"The only place it shows is inside that node's own output — buried in error data nobody opens."],
+    [27.80,34.57,"Real case, from n8n's own community: a workflow silently stopped working for weeks, and the log insisted it was fine."],
+    [34.99,40.89,"One extra step catches it — a branch that checks for the error field, and alerts you the moment it appears."],
+    [41.31,43.44,"The exact setup's in the link in bio."],
+    [44.29,46.50,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
