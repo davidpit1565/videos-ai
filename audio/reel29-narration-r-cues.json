@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "Your n8n workflow can fail completely \u2014 and still say \"Success.\"",
+  "start": 0.3,
+  "end": 4.83
+ },
+ {
+  "n": 2,
+  "line": "One setting causes it: On Error, set to Continue \u2014 built to survive a small hiccup.",
+  "start": 5.25,
+  "end": 10.58
+ },
+ {
+  "n": 3,
+  "line": "But when a node actually fails, n8n doesn't flag the workflow at all.",
+  "start": 11.0,
+  "end": 15.38
+ },
+ {
+  "n": 4,
+  "line": "The Executions list still reads green. Success. Every single time.",
+  "start": 15.8,
+  "end": 20.46
+ },
+ {
+  "n": 5,
+  "line": "The only place it shows is inside that node's own output \u2014 buried in error data nobody opens.",
+  "start": 21.31,
+  "end": 27.36
+ },
+ {
+  "n": 6,
+  "line": "Real case, from n8n's own community: a workflow silently stopped working for weeks, and the log insisted it was fine.",
+  "start": 27.78,
+  "end": 34.55
+ },
+ {
+  "n": 7,
+  "line": "One extra step catches it \u2014 a branch that checks for the error field, and alerts you the moment it appears.",
+  "start": 34.97,
+  "end": 41.21
+ },
+ {
+  "n": 8,
+  "line": "The exact setup's in the link in bio.",
+  "start": 41.63,
+  "end": 43.75
+ },
+ {
+  "n": 9,
+  "line": "Follow for the setup that actually works.",
+  "start": 44.6,
+  "end": 46.82
+ }
+]
