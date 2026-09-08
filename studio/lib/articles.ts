@@ -757,6 +757,36 @@ export const ARTICLES: Article[] = [
       "Working on a git branch only protects code already in a git repository — it does nothing for a request made directly against a live database or production system with no version control.",
     ],
   },
+  {
+    n: 29,
+    title: "Your n8n workflow can fail completely — and still say 'Success.'",
+    standfirst:
+      "A real, sourced n8n behavior, verified against n8n's own docs and a dated " +
+      "community report: a node's \"On Error\" setting can be set to \"Continue\" so " +
+      "a small hiccup doesn't stop the whole workflow — but when that node genuinely " +
+      "fails, n8n's Executions list still reads Success. The actual error only shows " +
+      "up inside that one node's own output, nowhere else. Free tier and self-hosted " +
+      "behave identically — this isn't gated by plan.",
+    steps: [
+      "Log into n8n (n8n.cloud free tier, or a self-hosted instance — this behaves the same on both) and create a new, empty workflow so nothing real is affected.",
+      "Add a Manual Trigger node (the default starting node on a blank workflow), then add an HTTP Request node connected after it.",
+      "In the HTTP Request node, set the URL to something guaranteed to fail — a domain that doesn't resolve, or any URL ending in a path you know returns a 404.",
+      "Open that same node's Settings tab and find the \"On Error\" field. Change it from \"Stop Workflow\" (the default) to \"Continue\".",
+      "Run the workflow (the \"Execute Workflow\" button). Open the Executions list on the left — it reads Success, in green, even though the request actually failed.",
+      "Click into that one node's output panel — the real error (fields like error and statusCode) is sitting there in the JSON. That is the only place it's visible; nothing on the Executions list itself flags it.",
+      "The actual fix: add an IF node right after the HTTP Request node, checking whether its output contains an error field. Wire the \"true\" branch to a Slack or email node so a real failure sends you an alert instead of vanishing into a green checkmark.",
+    ],
+    changes: [
+      "n8n's \"On Error: Continue\" setting is designed to survive a minor hiccup and keep the rest of the workflow running — that part is a real, useful feature, not a bug.",
+      "The gap is what happens next: a node set to Continue that actually fails does not change the workflow's own Success/Error status at all — the Executions list has no visual difference between \"ran perfectly\" and \"this step silently failed.\"",
+      "This matches a dated, first-person report from n8n's own community forum (May 2026, independently confirmed by a second user in July 2026): a real production workflow stayed silently broken for weeks because the Executions list never stopped reading Success.",
+    ],
+    limits: [
+      "This is about the \"On Error: Continue\" and \"Continue (using error output)\" settings specifically — a node left on the default \"Stop Workflow\" behaves as expected and does flag the workflow as failed.",
+      "The fix shown (an IF node checking for an error field) has to be added to every node you've set to Continue — it isn't a global setting that protects a whole workflow at once.",
+      "Verified against n8n's current official docs and community reports as of this episode, not personally re-tested against every n8n version — if n8n changes this behavior in a future release, re-check before relying on this exact setup.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
