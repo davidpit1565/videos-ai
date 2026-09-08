@@ -11,6 +11,8 @@ node_modules/
 export/*MYVOICE*.mp4
 audio/voice/*.wav
 audio/voice/profile/reference-raw.wav
+# per-line TTS cache — restart-safe resume, not an artifact worth committing
+audio/.voice-cache/
 export/*CLONED*.mp4
 # delivery remux of a render that is already reproducible from render.sh
 export/*INSTAGRAM*.mp4
