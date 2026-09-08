@@ -33,22 +33,28 @@ because it sounds right.
 
 Reasoned predictions, not yet tested against enough published episodes to confirm.
 
-- **HYPOTHESIS, now with a first real number behind it (1.9.2026):** Saves-per-view
-  matters more than views for a "paste this and use it" video — a save means someone
-  kept it to actually use, a view alone means the hook worked and the content didn't.
-  (Already encoded as a rule in the studio's own `/api/agent` system prompt — carrying
-  it here so content decisions use the same standard, not a separate one.) Pulled the
-  real save-rate table from `/api/agent` for the first time: **16 of 18 published
-  episodes have exactly one save each** — at this volume, save counts this low are a
-  floor effect, not a ranking signal, and sorting by save-rate mostly just re-sorts by
-  1/views. The one real outlier: **episode 1, 5 saves on 398 views (1.26%)** — 2.5-5x
-  every other episode's rate. Episode 1 is literally the purest version of this
-  hypothesis' mechanism: its entire content is one ready-to-paste prompt, the most
-  "keep this to use later" thing published so far. Real support for the hypothesis, but
-  still n=1 on the save-rate side — stays a hypothesis, not Confirmed, until a second
-  paste-and-use episode does the same. **Next move worth trying:** identify what
-  else episode 1 has in common structurally (not just "it's a prompt") and build 2-3
-  more episodes that share it, to get the second data point this needs.
+- **HYPOTHESIS, upgraded with a full per-post Instagram export, verified by hand
+  (8.9.2026) — see the Master performance table below for the complete evidence:**
+  Saves-per-reach matters more than views for a "paste this and use it" video — a save
+  means someone kept it to actually use, a view alone means the hook worked and the
+  content didn't. **VERIFIED DATA:** across all 27 published Reels (11.8-7.9.2026),
+  episode 1 (Custom Instructions — one paste-and-use prompt) has 5 saves on 246 reach
+  (2.03%), the highest save-rate in the set, and is **the only one of the 27 with any
+  shares recorded at all** (12 shares; every other episode has exactly 0). Its overall
+  engagement rate (11.38%) is roughly double the second-highest episode (13, 9.38%).
+  **CONFIDENCE LEVEL: Strong Hypothesis, not Confirmed — sample size is n=1** (this
+  file's own bar for Confirmed is two independent episodes sharing the mechanism; only
+  one paste-and-use episode has published so far, so this is one data point, however
+  dramatic). **What would validate it:** a second episode built around the same
+  mechanism (a single, immediately reusable artifact — a prompt, a snippet, a
+  one-paste fix, not a multi-step tutorial) clears a save-rate and share-rate
+  meaningfully above the ~0.5-1.2% save-rate / 0% share-rate baseline the other 26
+  episodes sit at. **What would invalidate it:** a second paste-and-use episode
+  performs like the baseline (≤1% saves, 0 shares) — that would mean episode 1's
+  result was topic-specific (ChatGPT Custom Instructions itself) or a fluke, not the
+  mechanism. **Next move worth trying:** build 2-3 episodes around a single reusable
+  artifact (a CLAUDE.md rule, an n8n node config, a one-line system-prompt fix) and
+  compare their save-rate/share-rate against this same table.
 - **HYPOTHESIS:** Content that shows a real build failure and how it was found/fixed
   (per `channel/episode-ideas.md`'s "$711 number that wasn't real" idea, and the
   `th_check.py`→`burst.py` correction documented in `channel/slate-20.md`) reads as more
@@ -626,6 +632,81 @@ on this channel) hooked as a general claim ("Your n8n workflow can fail complete
 still say 'Success.'"), Shock/Surprise type. Real product verification done live this
 session (n8n's own current docs plus a dated, first-person community report), not assumed
 from an older episode's research.
+
+## Master performance table — all 27 Instagram Reels, verified per-post export (8.9.2026)
+
+**Source and verification, stated plainly:** David exported this directly from Meta
+Business Suite (per-post Insights, 11.8-7.9.2026 window) and ran it through ChatGPT
+first, then handed both the raw CSV files and ChatGPT's summary numbers here for
+independent verification against the actual rows. Every number ChatGPT reported (27
+Reels, median views 217, mean views 215.15, median reach 138, and episode 1's exact
+402 views/246 reach/11 likes/12 shares/5 saves/51s duration) was recomputed by hand from
+the raw CSV and matched exactly — **VERIFIED DATA**, not something either AI invented.
+
+**What this export does and doesn't contain:** views, reach, likes, shares, comments,
+saves, follows, duration — per post. **No retention, no watch-time, no non-follower-
+reach breakdown, no demographic data** is in this export; any statement about those
+stays MISSING DATA until a richer export is pulled. Instagram and YouTube are kept
+separate here on purpose — this table is Instagram only.
+
+**Dataset-level VERIFIED DATA (n=27, recomputed by hand from the raw CSV):**
+- Median views: 217 · mean views: 215.15 · max views: 402 (episode 1)
+- Median reach: 138 · mean reach: 137.78 · max reach: 246 (episode 1)
+
+**CALCULATED METRICS below** (like/share/save/engagement rate — all as a percentage of
+*reach*, not views, per this file's own save-rate convention above) are computed from
+the verified raw counts, not invented:
+
+| Ep | Title | Dur(s) | Views | Reach | Likes | Shares | Comments | Saves | Like% | Share% | Save% | Engagement% |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | One block of text (Custom Instructions) | 51 | 402 | 246 | 11 | 12 | 0 | 5 | 4.47 | 4.88 | 2.03 | 11.38 |
+| 13 | ChatGPT can recall things about you, even in a brand new chat | 39 | 101 | 64 | 5 | 0 | 0 | 1 | 7.81 | 0.00 | 1.56 | 9.38 |
+| 10 | Most leads go cold before anyone even replies | 39 | 123 | 82 | 6 | 0 | 0 | 1 | 7.32 | 0.00 | 1.22 | 8.54 |
+| 7 | Your n8n agent has no idea it's wrong | 30 | 294 | 138 | 9 | 0 | 1 | 1 | 6.52 | 0.00 | 0.72 | 7.97 |
+| 8 | A check said it passed. It lied | 27 | 144 | 101 | 6 | 0 | 1 | 1 | 5.94 | 0.00 | 0.99 | 7.92 |
+| 3 | Your AI agent is already lying to you | 29 | 162 | 93 | 6 | 0 | 0 | 1 | 6.45 | 0.00 | 1.08 | 7.53 |
+| 26 | This is a real AI model. My WiFi is off | 51 | 109 | 55 | 3 | 0 | 0 | 1 | 5.45 | 0.00 | 1.82 | 7.27 |
+| 6 | Three things your AI agent still breaks on | 28 | 201 | 127 | 8 | 0 | 0 | 1 | 6.30 | 0.00 | 0.79 | 7.09 |
+| 9 | This agent can send emails by itself. It never does | 35 | 217 | 133 | 7 | 0 | 1 | 1 | 5.26 | 0.00 | 0.75 | 6.77 |
+| 14 | Everyone's sharing this claim that AI always lies to please you | 35 | 175 | 107 | 6 | 0 | 0 | 1 | 5.61 | 0.00 | 0.93 | 6.54 |
+| 2 | Everyone says agent — almost nobody can tell you where the chatbot ends | 48 | 328 | 193 | 11 | 0 | 0 | 1 | 5.70 | 0.00 | 0.52 | 6.22 |
+| 20 | ChatGPT was going to buy things for you | 49 | 127 | 67 | 3 | 0 | 0 | 1 | 4.48 | 0.00 | 1.49 | 5.97 |
+| 25 | Your n8n retry doesn't just try again | 37 | 167 | 108 | 4 | 0 | 0 | 2 | 3.70 | 0.00 | 1.85 | 5.56 |
+| 12 | Most people think Claude Code is only for programmers | 32 | 198 | 130 | 4 | 0 | 1 | 1 | 3.08 | 0.00 | 0.77 | 4.62 |
+| 22 | If it failed right now, would you even know? | 56 | 158 | 100 | 3 | 0 | 0 | 1 | 3.00 | 0.00 | 1.00 | 4.00 |
+| 21 | An AI browser can do your errands online now | 52 | 190 | 126 | 4 | 0 | 0 | 1 | 3.17 | 0.00 | 0.79 | 3.97 |
+| 15 | Gemini just caught a mistake in this box, before you did | 59 | 239 | 155 | 5 | 0 | 0 | 1 | 3.23 | 0.00 | 0.65 | 3.87 |
+| 19 | Claude keeps your files now. Not just this chat | 41 | 228 | 154 | 4 | 0 | 0 | 1 | 2.60 | 0.00 | 0.65 | 3.25 |
+| 23 | 22 episodes in, one file keeps this from breaking | 54 | 262 | 185 | 5 | 0 | 0 | 1 | 2.70 | 0.00 | 0.54 | 3.24 |
+| 18 | ChatGPT can use a website now. Not read it — click it | 43 | 257 | 157 | 4 | 0 | 0 | 1 | 2.55 | 0.00 | 0.64 | 3.18 |
+| 5 | Your captions are hiding behind Instagram | 34 | 243 | 165 | 4 | 0 | 0 | 1 | 2.42 | 0.00 | 0.61 | 3.03 |
+| 4 | This video almost shipped broken | 30 | 231 | 166 | 4 | 0 | 0 | 1 | 2.41 | 0.00 | 0.60 | 3.01 |
+| 17 | One word broke this video, for someone who already knew the topic | 48 | 243 | 170 | 4 | 0 | 0 | 1 | 2.35 | 0.00 | 0.59 | 2.94 |
+| 16 | We spent 15 videos building one system | 54 | 273 | 174 | 4 | 0 | 0 | 1 | 2.30 | 0.00 | 0.57 | 2.87 |
+| 24 | Editors squeeze the picture to fit the audio | 51 | 216 | 153 | 3 | 0 | 0 | 1 | 1.96 | 0.00 | 0.65 | 2.61 |
+| 11 | AI narration has a flaw you can't consciously name | 40 | 282 | 204 | 4 | 0 | 0 | 1 | 1.96 | 0.00 | 0.49 | 2.45 |
+| 27 | I told Claude Code the wrong bug. On purpose | 37 | 239 | 167 | 2 | 0 | 0 | 1 | 1.20 | 0.00 | 0.60 | 1.80 |
+
+**OBSERVATIONS (pattern, not yet a claim of cause):**
+- Sorted by engagement rate, the top 6 (episodes 1, 13, 10, 7, 8, 3) are all either the
+  paste-and-use mechanism (ep1) or a general, checkable claim about a failure mode
+  (ep13's memory recall, ep10's lead response, ep7/8/3's agent-lying/check-lying
+  claims) — consistent with, not contradicting, the hook-type findings already
+  Confirmed above and in `hooks-guide.md`.
+- **Every single one of the 26 non-ep1 episodes has exactly 0 shares.** This isn't
+  "ep1 has more shares than average" — it's the only nonzero data point that exists.
+  Treat any share-rate claim beyond "ep1 is currently the only episode anyone has
+  shared" as unsupported.
+- 20 of 27 episodes still show exactly 1 save (the same floor-effect problem flagged
+  in the 3.9.2026 entry below still holds) — the save-rate spread above 1 save is
+  thin (episodes 1 and 25 are the only two with more than 1).
+
+**MISSING DATA, explicitly:** retention/watch-time/non-follower-reach for all 27 —
+without it, no claim here can distinguish "the hook got people to tap" from "the video
+held them," and `subsAttributed`/topic tagging gaps already noted in the 3.9.2026 entry
+below still apply. YouTube performance for the same 27 concepts is tracked separately
+(never combined with these Instagram numbers) and hasn't been cross-referenced against
+this table yet — a real next step, not done here.
 
 ## How to update this file
 
