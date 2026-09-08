@@ -159,7 +159,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="20.885" data-out="27.57">
+<section class="scene" data-in="20.885" data-out="27.59">
   <div class="pad"><div class="kb">
     <div class="quote" id="quoteCard" style="opacity:0">
       <div class="qk" id="quoteQk">real report — n8n's own community</div>
@@ -168,7 +168,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="27.57" data-out="34.76">
+<section class="scene" data-in="27.59" data-out="34.78">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow lose" id="scoreRowA" style="opacity:0"><span class="lbl">Executions list</span><span class="val">Success ✓</span></div>
@@ -177,27 +177,27 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="34.76" data-out="41.42">
+<section class="scene" data-in="34.78" data-out="41.1">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="34.79">Silently broken<br>for <strong>weeks</strong> —<br>the log said it was fine.</p>
+    <p class="lede b" data-at="34.81">Silently broken<br>for <strong>weeks</strong> —<br>the log said it was fine.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="41.42" data-out="44.175">
+<section class="scene" data-in="41.1" data-out="43.865">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="41.45">One check catches it:<br>look for the <strong>error field</strong>,<br>alert the moment it appears.</p>
+    <p class="lede b" data-at="41.13">One check catches it:<br>look for the <strong>error field</strong>,<br>alert the moment it appears.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="44.175" data-out="45.8">
+<section class="scene" data-in="43.865" data-out="45.485">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="44.205"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="43.895"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="45.8" data-out="47.27">
+<section class="scene" data-in="45.485" data-out="46.95">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="45.812" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="45.497" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -231,7 +231,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=47.72,t=0,playing=false,last=0;
+  var DUR=47.4,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -245,20 +245,20 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [5.25,10.58,"One setting causes it: On Error, set to Continue — built to survive a small hiccup."],
     [11.00,15.38,"But when a node actually fails, n8n doesn't flag the workflow at all."],
     [15.80,20.46,"The Executions list still reads green. Success. Every single time."],
-    [21.31,27.36,"The only place it shows is inside that node's own output — buried in error data nobody opens."],
-    [27.78,34.55,"Real case, from n8n's own community: a workflow silently stopped working for weeks, and the log insisted it was fine."],
-    [34.97,41.21,"One extra step catches it — a branch that checks for the error field, and alerts you the moment it appears."],
-    [41.63,43.75,"The exact setup's in the link in bio."],
-    [44.60,46.82,"Follow for the setup that actually works."]
+    [21.31,27.38,"The only place it shows is inside that node's own output — buried in error data nobody opens."],
+    [27.80,34.57,"Real case, from n8n's own community: a workflow silently stopped working for weeks, and the log insisted it was fine."],
+    [34.99,40.89,"One extra step catches it — a branch that checks for the error field, and alerts you the moment it appears."],
+    [41.31,43.44,"The exact setup's in the link in bio."],
+    [44.29,46.50,"Follow for the setup that actually works."]
   ];
   var WORDS=[
     [0.3,0.8,"Your",0],
-    [0.8,1.66,"n8n",0],
-    [1.66,2.04,"workflow",0],
+    [0.8,1.68,"n8n",0],
+    [1.68,2.04,"workflow",0],
     [2.04,2.42,"can",1],
     [2.42,2.6,"fail",1],
-    [2.6,3.08,"completely",1],
-    [3.08,3.46,"and",2],
+    [2.6,3.1,"completely",1],
+    [3.1,3.46,"and",2],
     [3.46,3.74,"still",2],
     [3.74,4.08,"say",2],
     [4.4,4.74,"\"Success.\"",3],
@@ -266,112 +266,112 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [5.56,5.8,"setting",4],
     [5.8,6.14,"causes",4],
     [6.14,6.62,"it:",5],
-    [6.7,6.96,"On",6],
-    [6.96,7.16,"Error,",6],
+    [6.7,6.98,"On",6],
+    [6.98,7.16,"Error,",6],
     [7.44,7.6,"set",7],
-    [7.6,8.06,"to",7],
-    [8.06,8.64,"Continue",7],
+    [7.6,8.04,"to",7],
+    [8.04,8.64,"Continue",7],
     [9.0,9.24,"built",8],
     [9.24,9.48,"to",8],
     [9.48,9.78,"survive",8],
-    [9.78,9.94,"a",9],
-    [9.94,10.24,"small",9],
+    [9.78,9.96,"a",9],
+    [9.96,10.24,"small",9],
     [10.24,10.64,"hiccup.",9],
     [11.12,11.38,"But",10],
-    [11.38,11.7,"when",10],
-    [11.7,11.86,"a",10],
+    [11.38,11.72,"when",10],
+    [11.72,11.86,"a",10],
     [11.86,12.0,"node",11],
     [12.0,12.58,"actually",11],
     [12.58,12.96,"fails,",11],
-    [13.24,13.72,"n8n",12],
+    [13.22,13.72,"n8n",12],
     [13.72,14.02,"doesn't",12],
     [14.02,14.3,"flag",12],
     [14.3,14.5,"the",13],
     [14.5,14.78,"workflow",13],
     [14.78,15.12,"at",13],
-    [15.12,15.42,"all.",14],
-    [16.0,16.16,"The",15],
-    [16.16,16.74,"Executions",15],
+    [15.12,15.4,"all.",14],
+    [15.98,16.18,"The",15],
+    [16.18,16.74,"Executions",15],
     [16.74,17.1,"list",15],
     [17.1,17.64,"still",16],
     [17.64,18.04,"reads",16],
     [18.04,18.42,"green.",16],
     [18.7,19.24,"Success.",17],
     [19.24,19.76,"Every",18],
-    [19.76,20.18,"single",18],
-    [20.18,20.48,"time.",18],
-    [21.4,21.52,"The",19],
-    [21.52,21.74,"only",19],
-    [21.74,21.92,"place",19],
-    [21.92,22.14,"it",20],
-    [22.14,22.44,"shows",20],
-    [22.44,22.84,"is",20],
-    [22.84,23.16,"inside",21],
-    [23.16,23.42,"that",21],
-    [23.42,23.78,"node's",21],
-    [23.78,23.98,"own",22],
-    [23.98,24.42,"output",22],
-    [24.9,25.18,"buried",23],
-    [25.18,25.46,"in",23],
-    [25.46,25.62,"error",23],
-    [25.62,26.06,"data",24],
-    [26.48,26.72,"nobody",24],
-    [26.72,27.26,"opens.",24],
-    [27.78,28.14,"Real",25],
-    [28.14,28.52,"case,",25],
-    [28.78,28.96,"from",26],
-    [28.96,29.52,"n8n's",26],
-    [29.52,29.68,"own",26],
-    [29.68,30.14,"community:",27],
-    [30.44,30.58,"a",28],
-    [30.58,30.92,"workflow",28],
-    [30.92,31.54,"silently",28],
-    [31.54,31.88,"stopped",29],
-    [31.88,32.18,"working",29],
+    [19.76,20.2,"single",18],
+    [20.2,20.48,"time.",18],
+    [21.44,21.58,"The",19],
+    [21.58,21.92,"only",19],
+    [21.92,22.14,"place",19],
+    [22.14,22.3,"it",20],
+    [22.3,22.62,"shows",20],
+    [22.62,23.02,"is",20],
+    [23.02,23.46,"inside",21],
+    [23.46,23.7,"that",21],
+    [23.7,24.06,"node's",21],
+    [24.06,24.24,"own",22],
+    [24.24,24.6,"output",22],
+    [25.08,25.36,"buried",23],
+    [25.36,25.64,"in",23],
+    [25.64,25.78,"error",23],
+    [25.78,26.16,"data",24],
+    [26.5,26.72,"nobody",24],
+    [26.72,27.24,"opens.",24],
+    [27.8,28.16,"Real",25],
+    [28.16,28.54,"case,",25],
+    [28.78,28.94,"from",26],
+    [28.94,29.54,"n8n's",26],
+    [29.54,29.7,"own",26],
+    [29.7,30.14,"community:",27],
+    [30.44,30.6,"a",28],
+    [30.6,30.94,"workflow",28],
+    [30.94,31.54,"silently",28],
+    [31.54,31.9,"stopped",29],
+    [31.9,32.18,"working",29],
     [32.18,32.42,"for",29],
     [32.42,32.66,"weeks,",30],
     [32.98,33.1,"and",31],
-    [33.04,33.18,"the",31],
-    [33.18,33.32,"log",31],
-    [33.32,33.74,"insisted",31],
-    [33.74,33.96,"it",31],
-    [33.96,34.18,"was",31],
-    [34.18,34.48,"fine.",32],
-    [35.12,35.38,"One",33],
-    [35.38,35.74,"extra",33],
-    [35.74,35.94,"step",33],
-    [35.94,36.28,"catches",34],
-    [36.28,36.62,"it",34],
-    [36.86,37.02,"a",35],
-    [37.02,37.34,"branch",35],
-    [37.34,37.7,"that",35],
-    [37.7,37.88,"checks",36],
-    [37.88,38.12,"for",36],
-    [38.12,38.3,"the",36],
-    [38.3,38.44,"error",37],
-    [38.44,38.78,"field,",37],
-    [38.78,39.22,"and",38],
-    [39.22,39.56,"alerts",38],
-    [39.56,40.02,"you",38],
-    [40.02,40.28,"the",39],
-    [40.28,40.54,"moment",39],
-    [40.54,40.76,"it",39],
-    [40.76,41.14,"appears.",40],
-    [41.82,42.04,"The",41],
-    [42.04,42.24,"exact",41],
-    [42.24,42.6,"setup's",41],
-    [42.6,42.88,"in",42],
-    [42.88,43.0,"the",42],
-    [43.0,43.16,"link",42],
-    [43.16,43.44,"in",43],
-    [43.44,43.68,"bio.",43],
-    [44.76,44.96,"Follow",44],
-    [44.96,45.2,"for",44],
-    [45.2,45.42,"the",44],
-    [45.42,45.66,"setup",45],
-    [45.66,46.06,"that",45],
-    [46.06,46.42,"actually",45],
-    [46.42,46.72,"works.",46]
+    [33.06,33.2,"the",31],
+    [33.2,33.32,"log",31],
+    [33.32,33.76,"insisted",31],
+    [33.76,33.98,"it",31],
+    [33.98,34.2,"was",31],
+    [34.2,34.58,"fine.",32],
+    [35.36,35.58,"One",33],
+    [35.58,35.88,"extra",33],
+    [35.88,36.18,"step",33],
+    [36.18,36.56,"catches",34],
+    [36.56,36.96,"it",34],
+    [37.18,37.42,"a",35],
+    [37.42,37.64,"branch",35],
+    [37.64,37.9,"that",35],
+    [37.9,38.08,"checks",36],
+    [38.08,38.34,"for",36],
+    [38.34,38.54,"the",36],
+    [38.54,38.66,"error",37],
+    [38.66,39.0,"field,",37],
+    [39.0,39.4,"and",38],
+    [39.4,39.6,"alerts",38],
+    [39.6,39.84,"you",38],
+    [39.84,39.96,"the",39],
+    [39.94,40.22,"moment",39],
+    [40.22,40.42,"it",39],
+    [40.42,40.78,"appears.",40],
+    [41.52,41.72,"The",41],
+    [41.72,41.94,"exact",41],
+    [41.94,42.28,"setup's",41],
+    [42.28,42.56,"in",42],
+    [42.56,42.68,"the",42],
+    [42.68,42.82,"link",42],
+    [42.82,43.12,"in",43],
+    [43.12,43.4,"bio.",43],
+    [44.46,44.64,"Follow",44],
+    [44.64,44.88,"for",44],
+    [44.88,45.1,"the",44],
+    [45.1,45.32,"setup",45],
+    [45.32,45.72,"that",45],
+    [45.72,46.12,"actually",45],
+    [46.12,46.4,"works.",46]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
