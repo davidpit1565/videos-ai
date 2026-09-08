@@ -124,7 +124,18 @@ last row before writing the next hook, and pick a different type.**
 | 23 | "22 episodes. One file keeps us safe." | Expert/Authority (the "After N things, here's what I learned" shape) |
 | 24 | "Editors squeeze the picture to fit the audio. We do the opposite." | Contrarian Open — also built to pass the 4.9.2026 concrete-fact test (states what editors actually do, not a hypothetical) |
 | 25 | "Your n8n retry doesn't just try again. It can do the exact same thing twice." | Shock/Surprise (a familiar tool doing something counterintuitive) |
-| 26 (drafted, not yet built — `channel/episode-26-script.md`) | "This is a real AI model. My WiFi is off." | Product/Outcome Showcase — not used since episodes 18-19, picked deliberately for the gap |
+| 26 | "This is a real AI model. My WiFi is off." | Product/Outcome Showcase — not used since episodes 18-19, picked deliberately for the gap |
+| 27 | "I told Claude Code the wrong bug. On purpose." | Story/Anecdote Teaser ("so this happened when I tried X") — a deliberate-test/Break-the-AI shape, not used since before this log started |
+| 28 | "Four rows in my database started with 'test_'. Only three of them were actually test data." | The Specific Number — first use of this type in the log, built from the demo's own real counts |
+
+**Episode 26 underperformed (under 400 views) despite the highest measured topic demand of
+any episode shipped so far (`local ai model tutorial`, median 263k) — see
+`content-memory.md`'s 8.9.2026 entry ("What separates the two 1,200+ episodes from
+episode 26"). The type itself, not the topic, is the leading suspect: Product/Outcome
+Showcase already underperformed once before (episodes 18-19, both in the 400s) and now
+underperforms again on this channel's own numbers, despite general TikTok research ranking
+it highest-average overall. Avoid reaching for it again until a hypothesis explains why
+it doesn't transfer to this format.**
 
 **Rejected drafts for episode 22, both failed the dry-sentence test, kept here so the same
 flat shape doesn't get proposed again as if it were new:**

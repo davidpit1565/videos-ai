@@ -552,6 +552,50 @@ worth naming, but it's two data points with different formats (Expert/Authority 
 a live-test format) and no platform breakdown yet, so it stays a note, not a Confirmed
 pattern, until that's checked.
 
+## What separates the two 1,200+ episodes from episode 26 (8.9.2026)
+
+David asked directly why episodes 23 and 25 both crossed 1,200 combined views (Instagram +
+Facebook — he said Facebook now carries most of his real views, so this file's future
+"total views" entries should be read as cross-platform unless stated otherwise) while
+episode 26 didn't clear 400. Checked against three real, checkable things — hook type
+(`hooks-guide.md`'s log), the actual opening line, and measured topic demand
+(`channel/demand-report.md`) — rather than guessing.
+
+**FACT, checked against the log:** episode 23 used Expert/Authority ("22 episodes. One
+file keeps us safe."), episode 25 used Shock/Surprise ("Your n8n retry doesn't just try
+again. It can do the exact same thing twice."). Episode 26 used Product/Outcome Showcase
+("This is a real AI model. My WiFi is off.") — the same type episodes 18-19 already used
+back to back at moderate-not-high results (425, 464 views).
+
+**FACT, checked against `demand-report.md`, and this is the part that rules out the obvious
+guess:** episode 26's topic (local/offline AI models, i.e. Ollama) sits at the *highest*
+measured median demand of any topic in the report (263,293) — higher than n8n (233,070,
+episode 25's topic) and higher than Claude Code (159,426, episode 23's topic). **Topic
+demand is not what separated the winners from episode 26** — episode 26 sat on the
+single highest-demand topic measured and still underperformed both lower-demand topics.
+
+**What this leaves as the explanation, at HYPOTHESIS strength (three episodes, not yet the
+two-independent-repeat bar for a topic-specific claim, but the type-level pattern now has
+two separate instances — 18-19 and 26 — pointing the same way):** the hook *type* is doing
+more work than the topic here. Both winners state a surprising or credibility-backed claim
+that creates tension ("a familiar tool secretly does something wrong," "after N episodes,
+here's the mistake caught") — the viewer has something to resolve. Product/Outcome
+Showcase just states a capability plainly ("here's a thing that works") with no tension to
+resolve, even when the capability itself is demonstrably true and the topic is in high
+demand. This matches the general research already logged in `hooks-guide.md` (Product/
+Outcome Showcase is rare specifically in the education genre, common only in
+general/entertainment TikTok) — our own numbers now agree with that genre distinction on
+a second occasion, not just the first.
+
+**Concrete direction for the next hook, not just an observation:** when a demo/capability
+episode is the format (as both 26 and 28 are), the hook should not just showcase the
+capability — it should be framed as a surprising resolution to a stated tension (per
+episode 28's own hook, already built this way: "four rows... only three were actually test
+data" states a number that demands resolution, not just a capability). Keep picking topics
+from measured demand per the standing rule, but treat hook type as at least as load-bearing
+as topic demand until more data says otherwise — don't let a high-demand topic excuse a
+flat Product/Outcome opener again.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
