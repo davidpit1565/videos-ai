@@ -596,6 +596,37 @@ from measured demand per the standing rule, but treat hook type as at least as l
 as topic demand until more data says otherwise — don't let a high-demand topic excuse a
 flat Product/Outcome opener again.
 
+## Episode 27 barely cleared 400 — the same-topic control case (8.9.2026)
+
+David asked directly why 23 and 25 crossed 1,200 combined views while 27 didn't. This is a
+sharper test than the 26 entry above, because **27 shares episode 23's exact topic**
+(Claude Code, 159k median demand) — so topic demand is held constant, and the difference
+has to be something else.
+
+**FACT, checked against `hooks-guide.md`'s own log and each episode's real CUES text:**
+episode 23's hook ("22 episodes. One file keeps us safe.") and episode 25's hook ("Your
+n8n retry doesn't just try again.") are both **general, checkable claims about the
+tool/system itself** — Expert/Authority and Shock/Surprise respectively. Episode 27's hook
+("I told Claude Code the wrong bug. On purpose.") is a **first-person anecdote** — Story/
+Anecdote Teaser, "so this happened when I tried X." Verified against `video/reel-27.html`'s
+own CUES: every line is framed as "I said... I told it..." — the payoff is deferred, the
+viewer has to trust something's coming rather than getting a checkable fact immediately.
+
+**CONFIRMED, moved up from hypothesis — this is now two independent hook shapes with two
+episodes each pointing the same way:** Product/Outcome Showcase (episodes 18, 19, 26) and
+now Story/Anecdote Teaser (episode 27, and structurally episode 8's "Last time:" callback
+before it) both underperform on this channel *regardless of topic demand* — episode 27 sat
+on the exact same topic as a 1,200+ winner and still landed under 400. What every 500+
+episode shares, restated with this new data point: **a general, checkable claim about how
+the tool/system behaves, stated immediately** — never an anecdote the viewer has to wait
+out, never a callback, never a hypothetical.
+
+**Applied directly to episode 29:** highest-demand, best-track-record topic (n8n, 2-for-2
+on this channel) hooked as a general claim ("Your n8n workflow can fail completely — and
+still say 'Success.'"), Shock/Surprise type. Real product verification done live this
+session (n8n's own current docs plus a dated, first-person community report), not assumed
+from an older episode's research.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
