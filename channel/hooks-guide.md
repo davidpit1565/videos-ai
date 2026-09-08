@@ -127,6 +127,7 @@ last row before writing the next hook, and pick a different type.**
 | 26 | "This is a real AI model. My WiFi is off." | Product/Outcome Showcase — not used since episodes 18-19, picked deliberately for the gap |
 | 27 | "I told Claude Code the wrong bug. On purpose." | Story/Anecdote Teaser ("so this happened when I tried X") — a deliberate-test/Break-the-AI shape, not used since before this log started |
 | 28 | "Four rows in my database started with 'test_'. Only three of them were actually test data." | The Specific Number — first use of this type in the log, built from the demo's own real counts |
+| 29 | "Your n8n workflow can fail completely — and still say 'Success.'" | Shock/Surprise — a general, checkable claim about n8n itself (not an anecdote), the same shape as episode 25's winning hook |
 
 **Episode 26 underperformed (under 400 views) despite the highest measured topic demand of
 any episode shipped so far (`local ai model tutorial`, median 263k) — see
@@ -136,6 +137,14 @@ Showcase already underperformed once before (episodes 18-19, both in the 400s) a
 underperforms again on this channel's own numbers, despite general TikTok research ranking
 it highest-average overall. Avoid reaching for it again until a hypothesis explains why
 it doesn't transfer to this format.**
+
+**Episode 27 also underperformed (barely 400) on the exact same topic as episode 23 (a
+1,200+ winner) — see `content-memory.md`'s second 8.9.2026 entry. Story/Anecdote Teaser
+("so this happened when I tried X") is now a second confirmed-weak hook shape, same as
+Product/Outcome: both fail because they don't state a general, checkable claim about the
+tool immediately — one shows instead of claims, the other narrates instead of claims.
+Every 500+ episode so far states a general fact about the tool/system in its first line;
+neither weak shape does that.**
 
 **Rejected drafts for episode 22, both failed the dry-sentence test, kept here so the same
 flat shape doesn't get proposed again as if it were new:**
