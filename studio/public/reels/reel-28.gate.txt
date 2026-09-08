@@ -1,0 +1,73 @@
+=== narration
+audio/reel28-narration-r.wav  41.0s  9 lines
+  medians: ending -36.9 dB · level -19.9 dBFS · S residual +0.3 dB (slope +14.2 dB per sibilant/syllable)
+  flagged below: ending -61.7 dB · S residual -13.4 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  5.02  +0.42  4.18   -7.2  -37.7  -20.2  Four rows in my database started with 
+    2  4.49  +0.42  4.45   -7.8  -47.9  -19.7  I told Claude Code to clean up the tes
+    3  3.71  +0.42  4.85   -8.0  -28.2  -20.7  That's the kind of instruction most to
+    4  4.59  +0.85  3.27  -12.3  -36.9  -19.9  This one didn't. It said one of those 
+    5   5.8  +0.42  4.48  -11.6  -49.8  -19.5  It was a real account, with a real bal
+    6  2.81  +0.42  4.63  -20.9  -30.2  -19.9  So it kept one row, and removed the ot
+    7  4.61  +0.42  4.12  -16.4  -35.1  -18.8  Claude Code comes with a normal Pro pl
+    8  2.41  +0.85  4.15  -11.7  -42.7  -19.3  The exact setup's in the link in bio.
+    9  2.22    —    4.95   -6.7  -22.5  -19.9  Follow for the setup that actually wor
+
+  nothing flagged. every line sits inside his own spread.
+
+  per word: 115 words · ending median -21.4 dB · S median -17.9 dB
+  weakest endings:
+      4.20s  were           ending  -55.0 dB
+      2.54s  tees.          ending  -54.2 dB
+     27.38s  row            ending  -46.3 dB
+     34.04s  buy.           ending  -44.6 dB
+     27.08s  one            ending  -42.0 dB
+     15.16s  one            ending  -41.9 dB
+     13.38s  no             ending  -40.4 dB
+      9.52s  everything.    ending  -40.3 dB
+  held too long (over 0.442s per syllable, median 0.220):
+      0.00s  Four           0.660s per syllable (0.66s)
+     15.58s  didn't.        0.620s per syllable (0.62s)
+     29.64s  Claude         0.560s per syllable (0.56s)
+     17.84s  wasn't         0.540s per syllable (0.54s)
+      2.54s  tees.          0.480s per syllable (0.48s)
+     11.72s  most           0.460s per syllable (0.46s)
+     35.54s  in             0.460s per syllable (0.46s)
+  rushed / clipped (under 0.110s per syllable):
+     28.04s  removed        0.080s per syllable (0.24s) — likely swallowed, re-roll this line
+     28.50s  other          0.080s per syllable (0.16s) — likely swallowed, re-roll this line
+     33.38s  nothing        0.090s per syllable (0.18s) — likely swallowed, re-roll this line
+     30.20s  code           S  -34.0 dB
+      6.68s  code           S  -33.1 dB
+      9.18s  cluttering     S  -29.8 dB
+     38.78s  setup          S  -25.3 dB
+      0.66s  rows           S  -25.0 dB
+     16.70s  said           S  -24.7 dB
+
+  the shipped file, measured:
+    "three": -2.9 dB, absent (accepted by ear, see SUNDAY.md)
+
+=== frame layout
+reel-28-kar.html  41.08s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  overlaps: none over 10px
+
+=== rendered file
+reel-28.mp4  1080x1920  30fps  41.08s  5.3MB
+  visual change: median 0.33s, longest 1.53s
+  loudness: -14.0 LUFS integrated, peak -2.6 dBFS, LRA 1.9 LU
+  loop seam: first vs last frame differ by 5.1/255
+
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length 41.1s inside 30-90s
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 21.8)
+  ok        visual change every 0.33s median
+  ok        -14.0 LUFS
+  ok        peak -2.6 dBFS
+
+ALL CHECKS PASSED
