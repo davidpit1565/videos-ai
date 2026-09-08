@@ -20,7 +20,6 @@ MOODS = {
     "neutral":     "confident-corporate-story--echoes-of-lumen.mp3",
     "corporate":   "confident-corporate-story--echoes-of-lumen.mp3",
     "urgent":      "tense-suspense-rising-dread--alexmorgan.mp3",
-    "tense":       "suspense-tension-building--arpmedia.mp3",
     "triumphant":  "success--paulyudin.mp3",
     "bright":      "upbeat-and-inspiring--atlasaudio.mp3",
     "lofi":        "vibraphone--alexmorgan.mp3",
@@ -34,6 +33,16 @@ MOODS = {
     # throughout, no dead zone) and its dynamic range (17.9 dB) is much closer to
     # episode 26's upbeat-and-inspiring--atlasaudio.mp3 (15.4 dB) — the track David
     # pointed to as "sounds perfect" — than arpmedia's 33.2 dB swings.
+    #
+    # "tense" used to point at arpmedia separately from "suspense" — same failure mode,
+    # different mood key. Episode 29 used "tense" and drew the same "no background
+    # music" complaint a second time, even though every automated measurement of that
+    # render (mean level, peak, integrated LUFS) came back healthy: the track is
+    # technically present but reads as thin/absent to the ear, which measurement alone
+    # doesn't catch (see audio/check_music_bed.py). Rather than maintain two mood keys
+    # that both need the same fix, "tense" now points at the same alexmorgan track as
+    # "suspense" — one fewer place for this exact bug to recur.
+    "tense":       "tense-suspense-rising-dread--alexmorgan.mp3",
     "suspense":    "tense-suspense-rising-dread--alexmorgan.mp3",
 }
 

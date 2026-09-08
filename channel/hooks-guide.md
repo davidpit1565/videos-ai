@@ -40,6 +40,27 @@ the taxonomy below, Direct Address/Question is the strongest type for this genre
 it points at something specific and real, not an imagined scenario the viewer has to
 construct themselves.
 
+## Simple enough to land in one second, and no tangent before the payoff
+
+David flagged episode 27's hook directly (8.9.2026): "I told Claude Code the wrong bug. On
+purpose." was too complicated to parse instantly — a viewer has to stop and work out what it
+means before it can pull on anything, and by then the scroll has already moved on. **A hook
+has to be understood by anyone, immediately, in the first second** — not clever, not layered,
+not requiring the viewer to hold a setup in their head before the point lands. If a hook needs
+a beat of thought to parse, simplify it, even if that costs some of the specificity the tests
+above ask for — an instantly-clear hook that's slightly less sharp beats a sharp one that
+reads as a puzzle.
+
+**Second half of the same note: once the hook has the viewer's attention, the script has to
+spend it immediately on what the hook promised — not on anything else first.** The failure
+mode isn't only in the hook line itself: episode 27 also opened its body by narrating around
+the setup (what was done, why) before getting to the actual interesting content the hook
+pointed at. When someone sees a hook, they're expecting the very next thing they hear to be
+the explanation of *that* — not a preamble, not context-setting, not a different beat first.
+Structure every script so line 2 starts paying off line 1's promise directly; anything that
+delays that payoff (scene-setting, backstory, a tangent) reads as the video not delivering on
+what it just told the viewer to expect, even if that content is genuinely relevant later.
+
 ## The real research (sourced, not invented)
 
 Two independent, cited analyses, both current as of 2026:
