@@ -534,7 +534,6 @@ def main():
             # so a line that already landed right cannot land wrong again just because
             # the surrounding script changed. See CANON_MANIFEST above.
             print(f"      {i:02d}/{len(lines):02d}   locked take (no regeneration): {text}", flush=True)
-            import shutil
             shutil.copyfile(canon, pol)
             with wave.open(pol) as w0:
                 secs0 = w0.getnframes() / w0.getframerate()
