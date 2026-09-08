@@ -166,5 +166,11 @@
     "brass": "#F5A623",
     "ember": "#6C63FF",
     "mood": "drive"
+  },
+  {
+    "episode": 29,
+    "brass": "#2ED573",
+    "ember": "#FF4757",
+    "mood": "tense"
   }
 ]

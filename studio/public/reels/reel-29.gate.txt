@@ -1,0 +1,71 @@
+=== narration
+audio/reel29-narration-r.wav  47.4s  9 lines
+  medians: ending -33.5 dB · level -19.9 dBFS · S residual +0.0 dB (slope +13.5 dB per sibilant/syllable)
+  flagged below: ending -78.0 dB · S residual -7.4 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  4.53  +0.42  3.53  -11.3  -21.5  -19.4  Your n8n workflow can fail completely 
+    2  5.33  +0.42  4.13   -6.3  -33.5  -19.9  One setting causes it: On Error, set t
+    3  4.38  +0.42  3.88  -15.2  -46.7  -19.4  But when a node actually fails, n8n do
+    4  4.66  +0.85  3.43   -6.5  -47.2  -20.5  The Executions list still reads green.
+    5  6.07  +0.42  4.45  -14.9  -23.8  -19.0  The only place it shows is inside that
+    6  6.77  +0.42  4.58  -10.1  -52.6  -18.6  Real case, from n8n's own community: a
+    7   5.9  +0.42  4.41   -9.0  -24.4  -19.9  One extra step catches it — a branch t
+    8  2.13  +0.85  4.69   -7.6  -39.8  -20.0  The exact setup's in the link in bio.
+    9  2.21    —    4.98   -6.7  -17.2  -19.9  Follow for the setup that actually wor
+
+  nothing flagged. every line sits inside his own spread.
+
+  per word: 120 words · ending median -25.0 dB · S median -17.2 dB
+  weakest endings:
+     13.22s  N8n            ending  -53.2 dB
+     17.10s  still          ending  -51.6 dB
+     10.24s  hiccup.        ending  -50.3 dB
+     36.56s  it.            ending  -50.0 dB
+     25.78s  data,          ending  -49.4 dB
+     40.22s  it             ending  -49.2 dB
+     39.94s  moment         ending  -46.4 dB
+     33.76s  it             ending  -45.1 dB
+  held too long (over 0.422s per syllable, median 0.200):
+     27.24s  Real           0.920s per syllable (0.92s)
+      0.00s  Your           0.800s per syllable (0.80s)
+     17.10s  still          0.540s per syllable (0.54s)
+      6.14s  it,            0.480s per syllable (0.48s)
+      0.80s  N8n            0.440s per syllable (0.88s)
+      7.60s  to             0.440s per syllable (0.44s)
+     19.76s  single         0.440s per syllable (0.44s)
+  rushed / clipped (under 0.100s per syllable):
+     38.54s  error          0.060s per syllable (0.12s) — likely swallowed, re-roll this line
+     25.64s  error          0.070s per syllable (0.14s) — likely swallowed, re-roll this line
+     26.50s  nobody         0.073s per syllable (0.22s) — likely swallowed, re-roll this line
+      6.98s  error,         0.090s per syllable (0.18s) — likely swallowed, re-roll this line
+      9.96s  small          S  -30.3 dB
+     39.40s  alerts         S  -27.6 dB
+     45.10s  setup          S  -25.7 dB
+      5.56s  setting        S  -24.9 dB
+      7.44s  set            S  -24.2 dB
+      3.74s  say,           S  -23.5 dB
+
+=== frame layout
+reel-29-kar.html  47.4s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  overlaps: none over 10px
+
+=== rendered file
+reel-29.mp4  1080x1920  30fps  47.40s  5.7MB
+  visual change: median 0.27s, longest 1.30s
+  loudness: -14.0 LUFS integrated, peak -3.3 dBFS, LRA 1.8 LU
+  loop seam: first vs last frame differ by 4.5/255
+
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length 47.4s inside 30-90s
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 21.2)
+  ok        visual change every 0.27s median
+  ok        -14.0 LUFS
+  ok        peak -3.3 dBFS
+
+ALL CHECKS PASSED
