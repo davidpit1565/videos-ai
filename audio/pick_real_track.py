@@ -27,7 +27,14 @@ MOODS = {
     "retro":       "nostalgic-memories-piano--alexmorgan.mp3",
     "drive":       "video-editing--alexmorgan.mp3",
     "punchy":      "trending-vibe--alexmorgan.mp3",
-    "suspense":    "suspense-tension-building--arpmedia.mp3",
+    # tense-suspense-rising-dread, not suspense-tension-building: the latter opens on a
+    # ~5s near-silent fade-in (measured -25 to -52 dB) that a straight from-0 trim landed
+    # right on top of episode 27's hook, the one moment a quiet music bed can't afford to
+    # be inaudible. alexmorgan's track is present from t=0 (measured -4 to -12 dB
+    # throughout, no dead zone) and its dynamic range (17.9 dB) is much closer to
+    # episode 26's upbeat-and-inspiring--atlasaudio.mp3 (15.4 dB) — the track David
+    # pointed to as "sounds perfect" — than arpmedia's 33.2 dB swings.
+    "suspense":    "tense-suspense-rising-dread--alexmorgan.mp3",
 }
 
 
@@ -38,6 +45,33 @@ def probe_duration(path: str) -> float:
         capture_output=True, text=True, check=True,
     ).stdout.strip()
     return float(out)
+
+
+def find_audible_start(path: str, src_dur: float, total: float, max_skip: float = 8.0) -> float:
+    """Where to start the cut so it doesn't land on a quiet intro. A track like
+    suspense-tension-building--arpmedia.mp3 opens on a several-second near-silent
+    fade-in (measured -25 to -52 dB) — trimming from 0 put that dead zone right under
+    episode 27's hook. Finds the first point ffmpeg's silencedetect calls "loud enough"
+    (-24dB) and starts there instead, capped so a track that's genuinely a slow build
+    throughout doesn't get skipped past its own intended intro, and so there's always
+    enough source left to cover `total`."""
+    cap = min(max_skip, max(0.0, src_dur - total))
+    if cap <= 0:
+        return 0.0
+    out = subprocess.run(
+        ["ffmpeg", "-v", "error", "-t", str(cap + 2), "-i", path,
+         "-af", "silencedetect=noise=-24dB:d=0.3", "-f", "null", "-"],
+        capture_output=True, text=True,
+    ).stderr
+    for line in out.splitlines():
+        if "silence_end" in line:
+            # "silence_end: 4.83124 | silence_duration: ..." — the loud point right
+            # after the intro's initial silence, if any is found this early.
+            try:
+                return min(cap, float(line.split("silence_end:")[1].split("|")[0].strip()))
+            except (IndexError, ValueError):
+                pass
+    return 0.0
 
 
 def main():
@@ -61,7 +95,8 @@ def main():
         # loop the short clip enough times to cover the requested length
         cmd += ["-stream_loop", "-1", "-i", src, "-t", str(total)]
     else:
-        cmd += ["-i", src, "-t", str(total)]
+        start = find_audible_start(src, src_dur, total)
+        cmd += (["-ss", str(start)] if start > 0 else []) + ["-i", src, "-t", str(total)]
     cmd += ["-ac", "1", "-ar", "48000", "-af", filt, out]
     subprocess.run(cmd, check=True)
     print(f"wrote {out}  {total:.1f}s  mood={mood}  source={MOODS[mood]}")
