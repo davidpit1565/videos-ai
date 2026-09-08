@@ -159,6 +159,102 @@ export async function subscriberCount(): Promise<number | null> {
  *  mechanism — no Beehiiv field, no UTM parsing, nothing that can drift from what
  *  actually happened. Before this, subsAttributed was a number typed in by hand with
  *  no source at all (see the comment on that field in lib/types.ts). */
+/** Claude Code usage, reported by the Stop hooks running on his own machine
+ *  (~/.claude/hooks/cost-tracker.js) — this app has no other way to see them, they never
+ *  touch a browser. One row per session, upserted on every report so the table stays a
+ *  live snapshot per session rather than growing one row per turn (same reasoning as
+ *  studio_state's single-row snapshot-per-day, not a log). Its own table for the same
+ *  reason `subscribers` has one: a feature that owns high-frequency writes does not belong
+ *  inside the shared JSON state blob. */
+export type ClaudeSession = {
+  sessionId: string;
+  project: string | null;
+  model: string | null;
+  inputTokens: number;
+  outputTokens: number;
+  cacheWriteTokens: number;
+  cacheReadTokens: number;
+  estimatedCostUsd: number;
+  turns: number;
+  ageMinutes: number;
+  firstSeen: string;
+  lastSeen: string;
+};
+
+async function ensureClaudeUsage(p: Pool) {
+  await p.query(`CREATE TABLE IF NOT EXISTS claude_sessions (
+    session_id text PRIMARY KEY,
+    project text,
+    model text,
+    input_tokens bigint NOT NULL DEFAULT 0,
+    output_tokens bigint NOT NULL DEFAULT 0,
+    cache_write_tokens bigint NOT NULL DEFAULT 0,
+    cache_read_tokens bigint NOT NULL DEFAULT 0,
+    estimated_cost_usd numeric NOT NULL DEFAULT 0,
+    turns int NOT NULL DEFAULT 0,
+    age_minutes numeric NOT NULL DEFAULT 0,
+    first_seen timestamptz NOT NULL DEFAULT now(),
+    last_seen timestamptz NOT NULL DEFAULT now()
+  )`);
+}
+
+export async function upsertClaudeSession(row: {
+  sessionId: string;
+  project: string | null;
+  model: string | null;
+  inputTokens: number;
+  outputTokens: number;
+  cacheWriteTokens: number;
+  cacheReadTokens: number;
+  estimatedCostUsd: number;
+  turns: number;
+  ageMinutes: number;
+}): Promise<void> {
+  const p = db();
+  if (!p) throw new Error("no database configured");
+  await ensureClaudeUsage(p);
+  await p.query(
+    `INSERT INTO claude_sessions
+       (session_id, project, model, input_tokens, output_tokens, cache_write_tokens,
+        cache_read_tokens, estimated_cost_usd, turns, age_minutes, last_seen)
+     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10, now())
+     ON CONFLICT (session_id) DO UPDATE SET
+       project = $2, model = $3, input_tokens = $4, output_tokens = $5,
+       cache_write_tokens = $6, cache_read_tokens = $7, estimated_cost_usd = $8,
+       turns = $9, age_minutes = $10, last_seen = now()`,
+    [
+      row.sessionId, row.project, row.model, row.inputTokens, row.outputTokens,
+      row.cacheWriteTokens, row.cacheReadTokens, row.estimatedCostUsd, row.turns, row.ageMinutes,
+    ],
+  );
+}
+
+export async function listClaudeSessions(limit = 200): Promise<ClaudeSession[]> {
+  const p = db();
+  if (!p) return [];
+  await ensureClaudeUsage(p);
+  const r = await p.query(
+    `SELECT session_id, project, model, input_tokens, output_tokens, cache_write_tokens,
+            cache_read_tokens, estimated_cost_usd, turns, age_minutes, first_seen, last_seen
+     FROM claude_sessions ORDER BY last_seen DESC LIMIT $1`,
+    [limit],
+  );
+  return r.rows.map((x) => ({
+    sessionId: x.session_id,
+    project: x.project,
+    model: x.model,
+    inputTokens: Number(x.input_tokens),
+    outputTokens: Number(x.output_tokens),
+    cacheWriteTokens: Number(x.cache_write_tokens),
+    cacheReadTokens: Number(x.cache_read_tokens),
+    estimatedCostUsd: Number(x.estimated_cost_usd),
+    turns: Number(x.turns),
+    ageMinutes: Number(x.age_minutes),
+    firstSeen: x.first_seen instanceof Date ? x.first_seen.toISOString() : String(x.first_seen),
+    lastSeen: x.last_seen instanceof Date ? x.last_seen.toISOString() : String(x.last_seen),
+  }));
+}
+
 export async function subscribersByEpisode(): Promise<Map<number, number>> {
   const p = await ensureSubscribers();
   const out = new Map<number, number>();

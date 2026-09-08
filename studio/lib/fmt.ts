@@ -8,6 +8,10 @@ export const pct = (v: number | null | undefined, digits = 1) =>
 export const eur = (v: number | null | undefined) =>
   v == null ? "—" : "€" + Math.round(v).toLocaleString("en-US");
 
+/** Claude usage costs are billed in USD regardless of where the studio itself runs. */
+export const usd = (v: number | null | undefined) =>
+  v == null ? "—" : "$" + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
 export const today = () => new Date().toISOString().slice(0, 10);
 
 /** Every timestamp in the studio is stored in UTC, and every place that showed one was
