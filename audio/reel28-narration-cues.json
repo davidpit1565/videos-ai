@@ -9,48 +9,48 @@
   "n": 2,
   "line": "I told Claude Code to clean up the test data \u2014 it was cluttering everything.",
   "start": 4.98,
-  "end": 9.68
+  "end": 9.14
  },
  {
   "n": 3,
   "line": "That's the kind of instruction most tools would just follow, no questions asked.",
-  "start": 10.1,
-  "end": 14.0
+  "start": 9.56,
+  "end": 13.46
  },
  {
   "n": 4,
   "line": "This one didn't. It said one of those rows wasn't a fixture at all.",
-  "start": 14.42,
-  "end": 18.51
+  "start": 13.88,
+  "end": 17.97
  },
  {
   "n": 5,
   "line": "It was a real account, with a real balance, and real charges landing on that exact row every time.",
-  "start": 19.36,
-  "end": 25.76
+  "start": 18.82,
+  "end": 25.23
  },
  {
   "n": 6,
   "line": "So it kept one row, and removed the other three.",
-  "start": 26.18,
-  "end": 29.05
+  "start": 25.65,
+  "end": 28.6
  },
  {
   "n": 7,
   "line": "Claude Code comes with a normal Pro plan \u2014 twenty a month, nothing else to buy.",
-  "start": 29.47,
-  "end": 34.27
+  "start": 29.02,
+  "end": 33.61
  },
  {
   "n": 8,
   "line": "The exact setup's in the link in bio.",
-  "start": 34.69,
-  "end": 36.81
+  "start": 34.03,
+  "end": 36.15
  },
  {
   "n": 9,
   "line": "Follow for the setup that actually works.",
-  "start": 37.66,
-  "end": 39.87
+  "start": 37.0,
+  "end": 39.22
  }
 ]
