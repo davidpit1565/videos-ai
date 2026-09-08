@@ -86,6 +86,7 @@ const TABS = [
   { href: "/agent", label: "סוכן" },
   { href: "/higgsfield", label: "Higgsfield" },
   { href: "/d-id", label: "D-ID" },
+  { href: "/claude-usage", label: "מכסת קלוד" },
 ];
 
 /** The funnel pages are public, English and LTR — they must not inherit the studio's
