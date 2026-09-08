@@ -79,33 +79,56 @@ excluded — it's the thing being explained, not the baseline):
 - Share-rate: **0%** on 26 of 26 episodes (zero episodes besides ep1 have any share)
 - Median engagement-rate: **4.3%** ((likes+comments+shares+saves)/reach)
 
-### Experiment 1 — Utility × Topic (isolates utility from "Custom Instructions" itself)
+### Experiment 1 — Immediate Utility Replication (corrected 8.9.2026 after David/ChatGPT's
+review — see below for what changed and why)
 
-**Changed:** build the next single-artifact "paste this and use it" episode on a topic
-that is NOT ChatGPT/Custom Instructions — e.g. one exact n8n node config (the
-idempotency-check fix already shipped as episode 25's *topic*, but reframed here as a
-literal "here's the one node, paste these exact settings" artifact) or one CLAUDE.md
-rule block. Topic should sit on a *stronger* measured-demand keyword than "custom
-instructions chatgpt" (weakest of nine in `demand-report.md`) — n8n or Claude Code,
-both already 2-for-2 on this channel per `hooks-guide.md`.
+**This experiment was originally framed as "Utility × Topic" (swap to a stronger-demand
+topic like n8n/Claude Code) and that framing had a real methodological flaw, caught
+before production started, not after:** swapping to n8n or Claude Code doesn't just
+change the topic — it also changes how much prerequisite knowledge the viewer needs
+and how technical the artifact feels. ChatGPT Custom Instructions is near-zero-friction
+(everyone has used ChatGPT; pasting text into a settings box needs no domain
+knowledge). An n8n node config assumes the viewer already knows what n8n is. If that
+version failed, we wouldn't know whether it was because *utility doesn't replicate*,
+because the *topic is narrower*, because the *tool is too technical*, or because the
+*action isn't actually relevant to a broad audience* — four confounds, not one
+answered question. Corrected framing:
 
-**To test:** H1 from `content-memory.md` — does the *utility mechanism* (single
-paste-and-use artifact) drive save/share behavior independent of the specific topic,
-or was episode 1's result actually about ChatGPT Custom Instructions itself (unlikely,
-given it's the weakest-demand topic measured, but not yet ruled out)?
+**Changed:** build the next episode around a **different specific artifact** that
+preserves every low-friction property episode 1 actually has, not just "utility" as a
+label:
+- one single action (paste, click, or toggle — not a multi-step process)
+- near-zero prerequisite knowledge (the viewer doesn't need to already know what the
+  tool/concept is to use the artifact)
+- an immediate, visible payoff (the viewer can tell it worked right away)
+- genuine save/share potential (something worth keeping or sending to someone, not
+  just informative)
 
-**Held constant:** hook type (general, checkable claim — the Confirmed pattern from
-4.9.2026), duration (~45-55s, matching episode 1's 51s), CTA ("Follow for the setup
-that actually works").
+**To test:** can the *immediate personal utility mechanism* be replicated on a
+different artifact when the low-friction conditions above are held equal — not
+"does utility work in a harder/narrower topic." If a low-friction replica also
+performs near baseline, that's a real strike against H1. If a *harder* topic performs
+near baseline, that tells us nothing about H1 specifically (the friction confound
+swallows the result) — which is exactly why the original framing was wrong.
+
+**Held constant:** hook type (general, checkable claim), duration (~45-55s), CTA
+("Follow for the setup that actually works"), and now explicitly: low-friction level
+(near-zero prerequisite knowledge, one action, immediate visible payoff) — not just
+topic demand. Topic selection still draws from `demand-report.md` where possible, but
+low-friction match takes priority over raw demand for this specific experiment.
 
 **Baseline:** save-rate 0.74%, share-rate 0%, engagement-rate 4.3% (see above).
 
-**Win:** save-rate ≥1.5% (roughly 2x baseline) **or** at least 1 share (breaks the
-26-of-26 zero-share pattern) — either alone counts, both together is a strong win.
-**Lose:** save-rate ≤1.0% and 0 shares — statistically indistinguishable from the
-26-episode baseline, meaning episode 1's result doesn't generalize past its own topic.
-**Inconclusive:** anything between (e.g. save-rate 1.0-1.5%, still 0 shares) — say so,
-don't force a verdict.
+**Win:** save-rate ≥1.5% **and/or** shares > 0, **and** reach/views not meaningfully
+below the 138/217 medians (a save-rate or share win that comes with collapsed reach
+isn't a clean win — it just means fewer people saw it).
+**Strong win:** save-rate ≥1.5% **and** shares > 0 **and** reach/views above the
+138/217 medians — this is the only outcome that would justify calling H1 confirmed
+after a second data point.
+**Inconclusive:** exactly one share with no other improvement (save-rate still at or
+near baseline) — a single share out of 26-zero is a real, interesting signal, but on
+its own it is not proof; it does not get to "win" the whole experiment by itself.
+**Lose:** save-rate ≤1.0% **and** 0 shares **and** reach/views at or below baseline.
 
 **Result:** [fill in once real numbers are in]
 **Verdict:** RUNNING
@@ -130,10 +153,15 @@ demand isn't the variable either.
 
 **Baseline:** save-rate 0.74%, share-rate 0%, engagement-rate 4.3%.
 
-**Win:** engagement-rate ≥6% (meaningfully above baseline, in range of episodes 7/8/3
-which already do this partially) **or** reach/views meaningfully above the 138/217
-medians (discovery framing is a reach play more than a save play, per the ENGINE A
-rationale — so a reach win counts even without a matching save-rate win).
+**Win:** engagement-rate ≥6% **or** reach/views meaningfully above the 138/217 medians
+(discovery framing is a reach play more than a save play, per the Engine A rationale —
+so a reach win counts even without a matching engagement-rate win), **and** neither
+metric collapses well below baseline on the other axis.
+**Strong win:** engagement-rate ≥6% **and** reach/views above the 138/217 medians —
+both axes moving is the only outcome that would justify treating discovery framing as
+a real second pattern, not just noise on one metric.
+**Inconclusive:** one axis improves narrowly (e.g. reach a little above median, but
+engagement flat or below) — a mild signal on a single metric, not a verdict either way.
 **Lose:** engagement-rate and reach both sit at or below baseline — the discovery
 framing doesn't outperform the failure-framing DNA already in place.
 
