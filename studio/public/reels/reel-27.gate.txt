@@ -47,7 +47,7 @@ reel-27-kar.html  37.3s  safe box: x 65-1015, y 269-1248
 === rendered file
 reel-27.mp4  1080x1920  30fps  37.30s  4.8MB
   visual change: median 0.23s, longest 1.67s
-  loudness: -14.0 LUFS integrated, peak -3.0 dBFS, LRA 1.9 LU
+  loudness: -14.0 LUFS integrated, peak -2.7 dBFS, LRA 1.8 LU
   loop seam: first vs last frame differ by 3.1/255
 
   ok        1080x1920
@@ -60,6 +60,6 @@ reel-27.mp4  1080x1920  30fps  37.30s  4.8MB
   ok        first frame carries picture (luma 20.6)
   ok        visual change every 0.23s median
   ok        -14.0 LUFS
-  ok        peak -3.0 dBFS
+  ok        peak -2.7 dBFS
 
 ALL CHECKS PASSED
