@@ -33,28 +33,34 @@ because it sounds right.
 
 Reasoned predictions, not yet tested against enough published episodes to confirm.
 
-- **HYPOTHESIS, upgraded with a full per-post Instagram export, verified by hand
-  (8.9.2026) — see the Master performance table below for the complete evidence:**
-  Saves-per-reach matters more than views for a "paste this and use it" video — a save
-  means someone kept it to actually use, a view alone means the hook worked and the
-  content didn't. **VERIFIED DATA:** across all 27 published Reels (11.8-7.9.2026),
-  episode 1 (Custom Instructions — one paste-and-use prompt) has 5 saves on 246 reach
-  (2.03%), the highest save-rate in the set, and is **the only one of the 27 with any
-  shares recorded at all** (12 shares; every other episode has exactly 0). Its overall
-  engagement rate (11.38%) is roughly double the second-highest episode (13, 9.38%).
-  **CONFIDENCE LEVEL: Strong Hypothesis, not Confirmed — sample size is n=1** (this
-  file's own bar for Confirmed is two independent episodes sharing the mechanism; only
-  one paste-and-use episode has published so far, so this is one data point, however
-  dramatic). **What would validate it:** a second episode built around the same
-  mechanism (a single, immediately reusable artifact — a prompt, a snippet, a
-  one-paste fix, not a multi-step tutorial) clears a save-rate and share-rate
-  meaningfully above the ~0.5-1.2% save-rate / 0% share-rate baseline the other 26
-  episodes sit at. **What would invalidate it:** a second paste-and-use episode
-  performs like the baseline (≤1% saves, 0 shares) — that would mean episode 1's
-  result was topic-specific (ChatGPT Custom Instructions itself) or a fluke, not the
-  mechanism. **Next move worth trying:** build 2-3 episodes around a single reusable
-  artifact (a CLAUDE.md rule, an n8n node config, a one-line system-prompt fix) and
-  compare their save-rate/share-rate against this same table.
+- **H1 (renamed from the earlier "saves-per-view" framing, tightened 8.9.2026 after
+  David/ChatGPT's review of the Master Table below — this exact wording is the
+  claim, not a looser paraphrase): Immediate personal utility may increase save/share
+  behavior. Current evidence: strong signal, n=1.** **VERIFIED DATA:** across all 27
+  published Reels (11.8-7.9.2026), episode 1 (Custom Instructions — one paste-and-use
+  prompt) has 5 saves on 246 reach (2.03%), the highest save-rate in the set, and is
+  **the only one of the 27 with any shares recorded at all** (12 shares; every other
+  episode has exactly 0). Its overall engagement rate (11.38%) is roughly double the
+  second-highest episode (13, 9.38%). **CONFIDENCE LEVEL: Strong Hypothesis, not
+  Confirmed — sample size is n=1** (this file's own bar for Confirmed is two
+  independent episodes sharing the mechanism).
+  **Explicitly NOT proven, because these are confounded in a single data point and
+  the next experiment has to separate them one at a time:** episode 1's result could
+  be driven by its *utility* (a ready-to-paste artifact), its *topic* (ChatGPT Custom
+  Instructions specifically), its *hook*, its *51-second duration*, or its
+  *specificity* (one exact block of text vs. a general method) — or some combination.
+  Nothing in the data so far can tell these apart. Do not read this entry as "utility
+  is confirmed to drive saves/shares" — it isn't, yet.
+  **What would validate it:** a second episode built around the same *utility*
+  mechanism (a single, immediately reusable artifact) but on a **different topic**
+  clears a save-rate and share-rate meaningfully above the ~0.74% median save-rate /
+  0% share-rate baseline the other 26 episodes sit at (see Master Table below for the
+  baseline computation). **What would invalidate it:** that second episode performs
+  like the baseline (≤1% saves, 0 shares) — meaning episode 1's result was
+  topic-specific or a fluke, not the utility mechanism. **Next move:** see "Batch 1
+  experiments" in `channel/experiments.md` — Experiment 1 is built specifically to
+  test this by holding hook-type and duration roughly constant while changing the
+  topic away from ChatGPT/Custom Instructions.
 - **HYPOTHESIS:** Content that shows a real build failure and how it was found/fixed
   (per `channel/episode-ideas.md`'s "$711 number that wasn't real" idea, and the
   `th_check.py`→`burst.py` correction documented in `channel/slate-20.md`) reads as more
