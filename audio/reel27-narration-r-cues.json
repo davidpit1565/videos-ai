@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "I told Claude Code the wrong bug. On purpose.",
+  "start": 0.3,
+  "end": 3.35
+ },
+ {
+  "n": 2,
+  "line": "I said the loop skipped one entry \u2014 right at the top.",
+  "start": 3.77,
+  "end": 7.23
+ },
+ {
+  "n": 3,
+  "line": "That's the kind of wrong instruction most AI tools just go along with.",
+  "start": 7.65,
+  "end": 12.15
+ },
+ {
+  "n": 4,
+  "line": "This one didn't. It said the loop wasn't the bug at all.",
+  "start": 12.57,
+  "end": 16.86
+ },
+ {
+  "n": 5,
+  "line": "The real bug was one line down \u2014 the math was right, then one got subtracted for no reason.",
+  "start": 17.71,
+  "end": 22.66
+ },
+ {
+  "n": 6,
+  "line": "So it fixed the real bug \u2014 not the one I named.",
+  "start": 23.08,
+  "end": 25.98
+ },
+ {
+  "n": 7,
+  "line": "Claude Code comes with a normal Pro plan \u2014 twenty a month. That's the whole cost.",
+  "start": 26.4,
+  "end": 30.8
+ },
+ {
+  "n": 8,
+  "line": "The exact setup's in the link in bio.",
+  "start": 31.22,
+  "end": 33.34
+ },
+ {
+  "n": 9,
+  "line": "Follow for the setup that actually works.",
+  "start": 34.19,
+  "end": 36.4
+ }
+]

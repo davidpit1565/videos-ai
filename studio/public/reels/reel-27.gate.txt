@@ -1,0 +1,65 @@
+=== narration
+audio/reel27-narration-r.wav  37.3s  9 lines
+  medians: ending -33.2 dB · level -19.1 dBFS · S residual -0.1 dB (slope +55.9 dB per sibilant/syllable)
+  flagged below: ending -58.8 dB · S residual -6.0 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  3.05  +0.42  3.28  -22.8  -24.7  -18.9  I told Claude Code the wrong bug. On p
+    2  3.46  +0.42  3.76  -10.4  -33.2  -20.0  I said the loop skipped one entry — ri
+    3   4.5  +0.42  3.56   -8.0  -38.5  -19.3  That's the kind of wrong instruction m
+    4  4.29  +0.85   2.8  -11.8  -37.7  -19.1  This one didn't. It said the loop wasn
+    5  4.95  +0.42  4.24  -12.1  -49.4  -17.9  The real bug was one line down — the m
+    6   2.9  +0.42  4.48  -18.4  -22.7  -19.1  So it fixed the real bug — not the one
+    7   4.4  +0.42  4.09  -14.3  -30.6  -18.7  Claude Code comes with a normal Pro pl
+    8  2.12  +0.85  4.72   -7.6  -40.1  -19.4  The exact setup's in the link in bio.
+    9  2.21    —    4.98  -11.7  -19.9  -19.7  Follow for the setup that actually wor
+
+  nothing flagged. every line sits inside his own spread.
+
+  per word: 104 words · ending median -23.9 dB · S median -18.0 dB
+  weakest endings:
+     13.32s  didn't.        ending  -60.7 dB
+     17.88s  real           ending  -56.7 dB
+      1.34s  the            ending  -51.2 dB
+     18.14s  bug            ending  -50.1 dB
+     24.04s  real           ending  -49.9 dB
+     16.62s  all.           ending  -48.9 dB
+     14.68s  said           ending  -46.0 dB
+     20.26s  right.         ending  -45.5 dB
+  held too long (over 0.484s per syllable, median 0.225):
+     13.32s  didn't.        0.900s per syllable (0.90s)
+      9.54s  most           0.740s per syllable (0.74s)
+      0.00s  I              0.520s per syllable (0.52s)
+      5.30s  one            0.500s per syllable (0.50s)
+  rushed / clipped (under 0.113s per syllable):
+    none — no word is compressed out of line with the rest
+     26.88s  code           S  -38.3 dB
+      1.14s  code           S  -32.4 dB
+     35.00s  setup          S  -30.1 dB
+     26.46s  Claude         S  -25.3 dB
+      0.70s  Claude         S  -23.4 dB
+      4.24s  said           S  -19.4 dB
+
+=== frame layout
+reel-27-kar.html  37.3s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  overlaps: none over 10px
+
+=== rendered file
+reel-27.mp4  1080x1920  30fps  37.30s  4.8MB
+  visual change: median 0.23s, longest 1.67s
+  loudness: -14.0 LUFS integrated, peak -2.6 dBFS, LRA 1.6 LU
+  loop seam: first vs last frame differ by 3.2/255
+
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length 37.3s inside 30-90s
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 20.6)
+  ok        visual change every 0.23s median
+  ok        -14.0 LUFS
+  ok        peak -2.6 dBFS
+
+ALL CHECKS PASSED

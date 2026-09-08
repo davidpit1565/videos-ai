@@ -154,5 +154,11 @@
     "brass": "#5EEAD4",
     "ember": "#FF8A5B",
     "mood": "bright"
+  },
+  {
+    "episode": 27,
+    "brass": "#FF3B6B",
+    "ember": "#3EC6FF",
+    "mood": "suspense"
   }
 ]
