@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "Four rows in my database started with \"test_\". Only three of them were real test data.",
+  "start": 0.3,
+  "end": 5.45
+ },
+ {
+  "n": 2,
+  "line": "I told Claude Code to clean up the test data \u2014 it was cluttering everything.",
+  "start": 5.87,
+  "end": 10.58
+ },
+ {
+  "n": 3,
+  "line": "That's the kind of instruction most tools would just follow, no questions asked.",
+  "start": 11.0,
+  "end": 14.9
+ },
+ {
+  "n": 4,
+  "line": "This one didn't. It said one of those rows wasn't a fixture at all.",
+  "start": 15.32,
+  "end": 19.4
+ },
+ {
+  "n": 5,
+  "line": "It was a real account, with a real balance, and real charges landing on that exact row every time.",
+  "start": 20.25,
+  "end": 26.66
+ },
+ {
+  "n": 6,
+  "line": "So it kept one row, and removed the other three.",
+  "start": 27.08,
+  "end": 29.95
+ },
+ {
+  "n": 7,
+  "line": "Claude Code comes with a normal Pro plan \u2014 twenty a month, nothing else to buy.",
+  "start": 30.37,
+  "end": 35.16
+ },
+ {
+  "n": 8,
+  "line": "The exact setup's in the link in bio.",
+  "start": 35.58,
+  "end": 37.7
+ },
+ {
+  "n": 9,
+  "line": "Follow for the setup that actually works.",
+  "start": 38.55,
+  "end": 40.77
+ }
+]
