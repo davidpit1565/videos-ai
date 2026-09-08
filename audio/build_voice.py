@@ -8,7 +8,7 @@ every time, then laid out on a timeline with controlled gaps.
   python3 build_voice.py --cues video/reel-01-v3.html --out audio/voice/ep02.wav
   python3 build_voice.py --lines script.txt --out out.wav
 """
-import argparse, json, os, re, subprocess, sys, tempfile, wave
+import argparse, hashlib, json, os, re, shutil, subprocess, sys, tempfile, wave
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import burst
@@ -498,6 +498,26 @@ def main():
             print(f"      ending {pick_st:+.1f} st ({mark})", flush=True)
         return pick, best[1]
 
+    # A sandbox restart mid-episode used to throw every already-generated line away,
+    # because the merged output ($VO in produce.sh) is only written once, at the very
+    # end — so a kill on line 7 of 9 cost all of lines 1-6 too, and produce.sh's own
+    # "$VO already exists, reusing" skip never got a chance to apply. Each line's fully
+    # processed take (post speed-fix, the expensive part) is cached here the moment
+    # it lands, keyed to its exact text and every generation param that could change
+    # it — so a restart re-generates only the one line that was actually in flight.
+    CACHE_ROOT = os.path.join("audio", ".voice-cache", os.path.splitext(os.path.basename(a.out))[0])
+    os.makedirs(CACHE_ROOT, exist_ok=True)
+
+    def _line_cache_key(i, text):
+        payload = json.dumps({
+            "text": text, "exaggeration": a.exaggeration, "cfg": a.cfg,
+            "seed": line_seeds.get(i, a.seed), "slow": a.slow, "slow_rate": a.slow_rate,
+            "min_rate": a.min_rate, "max_rate": a.max_rate, "retries": a.retries,
+            "fall": a.fall, "prosody_rolls": a.prosody_rolls, "no_prosody": a.no_prosody,
+            "closes": a.closes,
+        }, sort_keys=True)
+        return hashlib.sha1(payload.encode()).hexdigest()[:16]
+
     tmp = tempfile.mkdtemp()
     LEAD = 0.30
     segs, cues, t = [], [], LEAD
@@ -507,6 +527,8 @@ def main():
     for i, text in enumerate(lines, 1):
         pol = os.path.join(tmp, f"{i:02d}p.wav")
         canon = canonical_line(text)
+        cache_path = None if canon else os.path.join(CACHE_ROOT, f"{i:02d}-{_line_cache_key(i, text)}.wav")
+        generated_fresh = False
         if canon:
             # Locked once, reused byte-for-byte — no generation, no retry, no reroll,
             # so a line that already landed right cannot land wrong again just because
@@ -519,7 +541,14 @@ def main():
             rate0 = syllables(respell(text, phrases, words)) / max(0.3, secs0)
             floor = 0.0  # never stretch a locked take — it already landed at its own pace
             err = 0.0
+        elif os.path.exists(cache_path):
+            print(f"      {i:02d}/{len(lines):02d}   cached take (restart-safe, no regeneration): {text}", flush=True)
+            shutil.copyfile(cache_path, pol)
+            floor = 0.0  # already includes any speed correction from when it was first cached
+            err = 0.0
+            rate0 = 0.0  # unused: floor=0.0 skips the speed-correction block below
         else:
+            generated_fresh = True
             wav, err = say(text, i)
             if err > 0.001:
                 print(f"      ! line {i} best available after {a.retries} retries (score {err:.2f})", flush=True)
@@ -582,6 +611,8 @@ def main():
                 else:
                     print(f"      {rate0:.1f} syl/s, sped up x{f:.2f}", flush=True)
                     pol = fast
+        if generated_fresh and cache_path:
+            shutil.copyfile(pol, cache_path)
         with wave.open(pol) as w:
             s = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
         # trim the silence the model leaves at either end
