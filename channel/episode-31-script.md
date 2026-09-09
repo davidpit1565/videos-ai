@@ -84,16 +84,16 @@ highest-performing hook ever, 940 views). Passes the dry-sentence test (real pul
 unease + curiosity, "wait, is that true?") and the checkable-fact test (the viewer can
 go ask their own chatbot the same question right now).
 
-**"Ask any AI chatbot if it's connected to the internet. It can't actually tell you what
+**"Ask any AI chatbot if it's online right now. It can't actually tell you what
 is true."**
 
 ## Full narration (~40s at natural pace)
 
-1. Ask any AI chatbot if it's connected to the internet. It can't actually tell you what is true.
+1. Ask any AI chatbot if it's online right now. It can't actually tell you what is true.
 2. Here's proof: this one's network connection is completely cut. Not airplane mode — actually disconnected, at the system level.
 3. Ask it anyway, and it still guesses. "I'm a cloud-based model. I can't work without a connection."
-4. It's wrong. It's responding right now, from this laptop, with no connection at all.
-5. The tool doing this is called Ollama — free, open source, built to run real models like Llama with zero internet.
+4. It's wrong. It's responding right now, from this laptop, with the network completely off.
+5. The tool doing this is called Ollama — free, open source, and it needs zero internet to run.
 6. One command downloads the model, once. After that, the network is optional.
 7. It's not a toy demo. Real code, real math, a real conversation — same model, zero internet.
 8. The exact setup's in the link in bio.
@@ -101,7 +101,7 @@ is true."**
 
 ## On-screen text cues
 
-- Hook: "Ask any AI chatbot<br>if it's <span class="box">connected</span><br>to the internet." then reveal "It can't actually tell you what is true."
+- Hook: "Ask any AI chatbot<br>if it's <span class="box">online</span><br>right now." then reveal "It can't actually tell you what is true."
 - Proof scene (terminal-styled box, real captured text): the failed curl line, then
   "NETWORK: disconnected" badge.
 - Quote card (condensed, styled like a wrong/misleading answer): "I'm a cloud-based
