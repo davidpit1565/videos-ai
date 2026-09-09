@@ -69,24 +69,31 @@ const path = require('path');
         // A zoom-through scene transition (motion-recipes.md recipe 4) deliberately
         // scales content past the frame edges while blurring it out — that is the
         // "flies past the camera" effect, not readable text sitting in the UI band.
-        // Blur and scale both ramp off the same transition progress, but scale grows
-        // much faster relative to blur: by the time blur clears a couple of px, the
-        // element has often already scaled up 30%+ (confirmed shipping episode 23 —
-        // an element measured mid-transition at 13.9% scale still had under 1px of
-        // blur). So exempt on scale directly, not just blur, checking the element's
-        // own transform AND every ancestor's (the scene wrapper is what actually
-        // carries the transition's scale, not the text node itself).
+        // Scale alone is NOT a safe exemption signal: episode 30 shipped with a
+        // permanent 132px hook/caption overlap that this checker reported "clean"
+        // on, because MK.multiPhaseCamera (a sharp, sustained hero camera push used
+        // on hook scenes, e.g. reel-30.html's renderHook()) also pushes scale past
+        // 1.05 — for seconds at a time, at full opacity, with zero blur — which used
+        // to exempt the entire hook headline from every check for most of its
+        // on-screen time. A real zoom-through transition always pairs scale with
+        // blur (motion-kit.js's zoomThroughTransition ramps blur=5*progress and
+        // scale=1+0.16*progress together, so blur is already >1.5 by the time scale
+        // clears 1.05); a camera push like multiPhaseCamera never blurs at all. So
+        // scale only exempts when blur is also present — that is what tells apart a
+        // genuinely illegible, mid-flight transition frame from sharp text that is
+        // merely being zoomed in on and must still be checked.
         function scaleOf(style) {
           const m = /matrix\(([-\d.]+),/.exec(style.transform || '');
           return m ? +m[1] : 1;
         }
         const blurOf = (style) => { const m = /blur\(([\d.]+)px\)/.exec(style.filter || ''); return m ? +m[1] : 0; };
-        if (blurOf(cs) > 2 || scaleOf(cs) > 1.05) continue;
+        const exempt = (style) => blurOf(style) > 2 || (scaleOf(style) > 1.05 && blurOf(style) > 1);
+        if (exempt(cs)) continue;
         let hiddenByAncestor = false;
         for (let a = el.parentElement; a; a = a.parentElement) {
           const p = getComputedStyle(a);
           if (p.visibility === 'hidden' || p.display === 'none' || +p.opacity < 0.05) { hiddenByAncestor = true; break; }
-          if (blurOf(p) > 2 || scaleOf(p) > 1.05) { hiddenByAncestor = true; break; }
+          if (exempt(p)) { hiddenByAncestor = true; break; }
         }
         if (hiddenByAncestor) continue;
         const r = el.getBoundingClientRect();

@@ -1,0 +1,13 @@
+AI chats love padding the answer before they actually answer you.
+
+Ask a direct question and you often get a paragraph of hedging before the actual point. One instruction, pasted once into the chat, stops it: "Answer first, in one sentence. Then explain, only if I ask. Skip caveats unless they change the answer."
+
+Same real question, before the paste: a whole breakdown before the actual advice. After the paste: two words. That's it.
+
+It's not a setting. It's just what you tell the AI — works the same in any chat.
+
+Full setup, exact clicks: https://actually-works.com/e/30
+
+Follow for the setup that actually works.
+
+#chatgpt #aitools #promptengineering #productivity #aiforbeginners

@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "AI chats love padding the answer before they actually answer you.",
+  "start": 0.3,
+  "end": 4.41
+ },
+ {
+  "n": 2,
+  "line": "Ask a direct question, and most of the time you get a paragraph of hedging before the actual point.",
+  "start": 4.83,
+  "end": 10.66
+ },
+ {
+  "n": 3,
+  "line": "One instruction, pasted once into the chat, stops it cold.",
+  "start": 11.08,
+  "end": 15.02
+ },
+ {
+  "n": 4,
+  "line": "Answer first, in one sentence. Then explain, only if I ask. Skip caveats unless they change the answer.",
+  "start": 15.44,
+  "end": 22.83
+ },
+ {
+  "n": 5,
+  "line": "Same question, before the paste: headers, a whole breakdown, before the actual advice.",
+  "start": 23.68,
+  "end": 29.22
+ },
+ {
+  "n": 6,
+  "line": "After the paste: two words. \"JavaScript first.\" Nothing else, unless you ask for more.",
+  "start": 29.64,
+  "end": 35.68
+ },
+ {
+  "n": 7,
+  "line": "It's not a setting. It's just what you tell the AI.",
+  "start": 36.1,
+  "end": 39.3
+ },
+ {
+  "n": 8,
+  "line": "The exact setup's in the link in bio.",
+  "start": 39.72,
+  "end": 41.84
+ },
+ {
+  "n": 9,
+  "line": "Follow for the setup that actually works.",
+  "start": 42.69,
+  "end": 44.91
+ }
+]

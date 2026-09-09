@@ -787,6 +787,36 @@ export const ARTICLES: Article[] = [
       "Verified against n8n's current official docs and community reports as of this episode, not personally re-tested against every n8n version — if n8n changes this behavior in a future release, re-check before relying on this exact setup.",
     ],
   },
+  {
+    n: 30,
+    title: "AI chats love padding the answer before they actually answer you.",
+    standfirst:
+      "One instruction, pasted once into any AI chat, stops the hedging: it answers " +
+      "the question directly first, and only explains further if you ask. Verified " +
+      "with a real captured before/after on the same question — before the paste, a " +
+      "multi-paragraph breakdown; after, two words. Not a setting change and not tied " +
+      "to one AI tool — it works the same in ChatGPT, Claude, or Gemini because it's " +
+      "just an instruction the chat follows for the rest of that conversation.",
+    steps: [
+      "Open any AI chat you already use — ChatGPT, Claude, or Gemini, in a browser or the app.",
+      "Ask it something you'd normally ask — any real question with more than a yes/no answer.",
+      "Read the answer. Most models open with a paragraph of context or hedging before the actual point.",
+      "In the same conversation, paste this exact instruction as its own message: \"Answer first, in one sentence. Then explain, only if I ask. Skip caveats unless they change the answer.\"",
+      "Send it. The AI will confirm it understood — that confirmation is not yet a re-answer to your original question.",
+      "Ask your original question again, in the same chat. This time the answer opens with the direct point, not a lead-up.",
+      "This only holds for the rest of this conversation — a new chat starts fresh, so paste it again at the start of any new conversation where you want the same behavior.",
+    ],
+    changes: [
+      "This is a plain instruction-following behavior, not a hidden setting or a feature exclusive to one AI tool — any capable chat model honors it the same way.",
+      "It doesn't make the AI's answers more correct or more complete — it only changes the order and amount of hedging before the actual point arrives.",
+      "Verified with a real captured example on the same question, asked twice in the same chat: before the paste, a multi-paragraph answer with headers and a list; after, a two-word direct answer.",
+    ],
+    limits: [
+      "It resets every new conversation — this is not a persistent account setting like ChatGPT's Custom Instructions, so it has to be pasted again in each new chat.",
+      "For questions that genuinely need nuance (medical, legal, anything where a caveat actually changes what you should do), the instruction already tells the AI to keep caveats that \"change the answer\" — but always read past the first sentence when the topic actually calls for it.",
+      "Not tested identically across every model version — behavior demonstrated on ChatGPT; the underlying mechanism (instruction-following) is standard across current chat models, but exact phrasing sensitivity can vary slightly between them.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
