@@ -817,6 +817,34 @@ export const ARTICLES: Article[] = [
       "Not tested identically across every model version — behavior demonstrated on ChatGPT; the underlying mechanism (instruction-following) is standard across current chat models, but exact phrasing sensitivity can vary slightly between them.",
     ],
   },
+  {
+    n: 31,
+    title: "Ask any AI chatbot if it's connected to the internet. It can't actually tell you what is true.",
+    standfirst:
+      "A real, working AI model, run entirely on your own machine, with the network " +
+      "cut at the system level — not airplane mode, an actual disconnected namespace. " +
+      "Asked directly, the model still guesses wrong that it needs the internet, " +
+      "because nothing about how it works gives it that information. Free, " +
+      "open-source, and it keeps working after the one-time download.",
+    steps: [
+      "Install Ollama: on Mac or Linux, paste curl -fsSL https://ollama.com/install.sh | sh into a terminal and press Enter. On Windows, use PowerShell and paste irm https://ollama.com/install.ps1 | iex instead.",
+      "Once it finishes, download a model with a network connection: type ollama pull llama3.2 and press Enter. This step needs the internet — it's the only one that does.",
+      "Optional, to prove it to yourself: turn off WiFi (or unplug ethernet) once the download finishes.",
+      "Type ollama run llama3.2 and press Enter. It starts and answers with zero network connection.",
+      "Ask it anything — a question, a coding request, a word problem. The answers are real, generated entirely on your machine.",
+      "To try a different model instead: ollama pull phi3 (smaller, faster) or ollama pull gemma2 (a middle ground) — swap the model name in both the pull and run commands.",
+    ],
+    changes: [
+      "This is standard, current Ollama behavior — verified live: v0.32.5 as of this episode, free and open-source (MIT license).",
+      "Only ollama pull and ollama push need a network connection. Once a model is downloaded, ollama serve and every query after it run with no network at all — confirmed in this episode inside an isolated network namespace with a verified-failed outbound connection.",
+      "The model itself has no way to know it's running locally — asked directly whether it's connected to the internet, it answered (wrongly) that it's a cloud-based model that needs one. This isn't a bug specific to one model; language models generally have no built-in way to introspect their own deployment.",
+    ],
+    limits: [
+      "The one-time model download does need real internet — this is an offline-after-setup tool, not a zero-download one.",
+      "A modern laptop with 16GB RAM comfortably runs 7-8B parameter models; larger models (Llama 4, some Qwen 3 variants) need considerably more.",
+      "Model names move fast — this episode uses llama3.2, the current official quick-start model as of this episode; check ollama.com's model library for the current recommended default before assuming an older name (llama3, phi3) is still the best starting point.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

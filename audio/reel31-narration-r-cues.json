@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "Ask any AI chatbot if it's connected to the internet. It can't actually tell you what is true.",
+  "start": 0.3,
+  "end": 6.08
+ },
+ {
+  "n": 2,
+  "line": "Here's proof: this one's network connection is completely cut. Not airplane mode \u2014 actually disconnected, at the system level.",
+  "start": 6.5,
+  "end": 14.03
+ },
+ {
+  "n": 3,
+  "line": "Ask it anyway, and it still guesses. \"I'm a cloud-based model. I can't work without a connection.\"",
+  "start": 14.45,
+  "end": 19.84
+ },
+ {
+  "n": 4,
+  "line": "It's wrong. It's responding right now, from this laptop, with no connection at all.",
+  "start": 20.26,
+  "end": 24.6
+ },
+ {
+  "n": 5,
+  "line": "The tool doing this is called Ollama \u2014 free, open source, built to run real models like Llama with zero internet.",
+  "start": 25.45,
+  "end": 32.86
+ },
+ {
+  "n": 6,
+  "line": "One command downloads the model, once. After that, the network is optional.",
+  "start": 33.28,
+  "end": 38.07
+ },
+ {
+  "n": 7,
+  "line": "It's not a toy demo. Real code, real math, a real conversation \u2014 same model, zero internet.",
+  "start": 38.49,
+  "end": 44.71
+ },
+ {
+  "n": 8,
+  "line": "The exact setup's in the link in bio.",
+  "start": 45.13,
+  "end": 47.25
+ },
+ {
+  "n": 9,
+  "line": "Follow for the setup that actually works.",
+  "start": 48.1,
+  "end": 50.32
+ }
+]

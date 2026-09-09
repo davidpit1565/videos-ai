@@ -1,0 +1,11 @@
+Ask any AI chatbot if it's connected to the internet right now. It can't actually tell you what is true — this one just answered with its network completely cut, not airplane mode, actually disconnected.
+
+Asked directly, it still guessed wrong: "I'm a cloud-based model. I can't work without a connection." It isn't. It's running entirely on this machine.
+
+The tool is called Ollama — free, open source, runs real models like Llama with zero internet. One command downloads the model once; after that the network is optional.
+
+Full setup: https://actually-works.com/e/31
+
+Follow for the setup that actually works.
+
+#ollama #localai #ai #opensource #privacy
