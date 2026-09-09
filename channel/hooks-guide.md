@@ -40,6 +40,19 @@ the taxonomy below, Direct Address/Question is the strongest type for this genre
 it points at something specific and real, not an imagined scenario the viewer has to
 construct themselves.
 
+## Write for a person, not for an AI-literate viewer — the single most important thing here
+
+David said this directly (9.9.2026), calling it the most important point in the whole file,
+for every episode: **the hook and the overall strategy matter more than anything else in the
+video.** When drafting a hook, don't reason like a model checking a category off a list —
+get into the head of an actual person and ask what would genuinely pull *them* in, regardless
+of whether they follow AI, understand the tooling, or know what any of the products do. A
+hook that only works on someone already fluent in this space is too narrow — the pull has to
+land on a general viewer scrolling past, not just on someone who already gets the joke or the
+stakes. Re-read a drafted hook from that outsider's seat before shipping it, every time, not
+just when a hook feels flat on its face — this is a standing check, same as the dry-sentence
+test above, not a one-time note.
+
 ## Simple enough to land in one second, and no tangent before the payoff
 
 David flagged episode 27's hook directly (8.9.2026): "I told Claude Code the wrong bug. On
