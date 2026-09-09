@@ -150,7 +150,7 @@ last row before writing the next hook, and pick a different type.**
 | 28 | "Four rows in my database started with 'test_'. Only three of them were actually test data." | The Specific Number — first use of this type in the log, built from the demo's own real counts |
 | 29 | "Your n8n workflow can fail completely — and still say 'Success.'" | Shock/Surprise — a general, checkable claim about n8n itself (not an anecdote), the same shape as episode 25's winning hook |
 | 30 | "AI chats love padding the answer before they actually answer you." | Contrarian Open — a general, checkable claim about how AI chats behave, softened from an absolute "every" per QA |
-| 31 | "Ask any AI chatbot if it's connected to the internet. It can't actually tell you the truth." | Direct Address/Question — the education-genre-dominant type (66% share per the OpusClip research above), not used since episode 2 (this channel's single highest-performing hook, 940 views) |
+| 31 | "Ask any AI chatbot if it's connected to the internet. It can't actually tell you what is true." | Direct Address/Question — the education-genre-dominant type (66% share per the OpusClip research above), not used since episode 2 (this channel's single highest-performing hook, 940 views) |
 
 **Episode 26 underperformed (under 400 views) despite the highest measured topic demand of
 any episode shipped so far (`local ai model tutorial`, median 263k) — see
