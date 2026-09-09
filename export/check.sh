@@ -17,6 +17,13 @@ echo "=== narration"
 python3 audio/voice_doctor.py "$VO" --deep ${ACCEPT_WORDS:+--accept "$ACCEPT_WORDS"} || fail=1
 
 echo
+echo "=== accent"
+# voice_doctor measures pacing/level/sibilance/endings — none of that is accent. Episode
+# 30's line 6 shipped sounding "a bit Indian" for half its length and nothing above caught
+# it. check_accent.py flags a line whose accent drifts sharply from the rest of the file.
+python3 audio/check_accent.py "$VO" || fail=1
+
+echo
 echo "=== frame layout"
 node export/safe_check.js "$BUILD" --every 0.2 || fail=1
 
