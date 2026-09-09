@@ -13,25 +13,32 @@ absolute sense — it scores David's own clean reference recording as 92% "india
 every normal line in episode 30 splits its top score between "us" and "canada" rather than
 landing cleanly on "us". So a flat "is this line American" threshold does not work.
 
-What it IS reliably good at, on the one real case tested so far: catching a line that is
-a sharp outlier from the rest of the SAME file. Every clean line in episode 30 scored the
-"indian" label at 0.0008-0.0012. The flagged line 6 scored 0.499 — a ~500x jump, not a
-borderline call. So this flags a line only when it stands out from its own episode's own
-baseline by a wide margin, the same "flag relative to this file's own median" approach
-voice_doctor.py already uses for tail energy and sibilance, rather than trusting the
-model's absolute label.
+What it IS reliably good at: catching a line that is a sharp outlier from the rest of
+the SAME file. Every clean line in episode 30 scored the "indian" label at 0.0008-0.0012;
+the flagged line 6 scored 0.499 — a ~500x jump, not a borderline call. So this flags a
+line only when it stands out from its own episode's own baseline by a wide margin, the
+same "flag relative to this file's own median" approach voice_doctor.py already uses for
+tail energy and sibilance, rather than trusting the model's absolute label.
 
-Caveat, stated plainly: this has only ever caught one real case, on the "indian" label.
-Gating on "england"/"australia" too was tried and immediately produced two false-positive
--looking flags on episode 29 — an already-shipped file David watched twice (per the
-check-fix-re-check-send rule) and never once flagged for accent. With no ear-confirmed
-case for those two labels, gating the build on them would be inventing a defect, not
-catching one — exactly what "never fabricate" rules out. So only "indian" fails the
-build; "england"/"australia" still print per line for visibility, in case a real,
-ear-confirmed case for one of them ever turns up to calibrate against. The threshold
-below (NOT_US_FLOOR and the 8x-median rule) is a first cut on n=1, not a validated
-rate — treat a flag as "worth listening to," not as certain, and don't read a long quiet
-stretch as proof it works; it may just mean no line has drifted since.
+Widened 9.9.2026, after a second real case: episode 31's lines 1-2 got flagged by ear
+("almost every T/D still sounds a bit Indian, not American enough") but this checker's
+first version, which gated on the "indian" label alone, missed it — line 1 actually
+scored top=england 0.59 (indian was only 0.048, under the old floor), and line 2 was
+clean by that narrow measure too even though the same ear-flagged quality was present
+across both lines. Gating on "indian" alone was too literal a reading of what David's ear
+reported ("sounds Indian") — the real signal both times was the SAME thing: whatever
+made those lines not sound like his own reference voice, regardless of which foreign-
+accent label the classifier happened to attach to that quality. So this now gates on
+1 - P(us) - P(canada) — how far a line sits from the "sounds like his own voice" bucket
+overall — instead of picking one specific foreign-accent label to chase. Every clean
+line measured so far (episodes 29 and 30) splits its top score between "us" and "canada"
+and keeps this combined total below roughly 0.5-0.6; the two confirmed-bad cases (ep30
+line 6, ep31 lines 1-2) all pushed it well above that.
+
+Caveat, stated plainly: this is now calibrated on two real, ear-confirmed episodes, not
+one — better than the first cut, but still not a validated rate. Treat a flag as "worth
+listening to," not as certain, and don't read a long quiet stretch as proof it works; it
+may just mean no line has drifted since.
 
     python3 audio/check_accent.py audio/reel30-narration-r.wav
 """
@@ -41,15 +48,16 @@ import numpy as np
 warnings.filterwarnings("ignore")
 
 MODEL_ID = "dima806/english_accents_classification"
-# Every non-"us"/"canada" label prints per line for visibility. Only GATED_LABELS fails
-# the build — see the caveat above for why "england"/"australia" are shown, not gated.
+# Printed per line for visibility, alongside the gating metric below.
 OFF_LABELS = ("indian", "england", "australia")
-GATED_LABELS = ("indian",)
-# Absolute floor: below this, a score is noise no matter how it compares to the median
-# (the reference clip itself scored "indian" 0.92, so tiny scores are not unusual here).
-NOT_US_FLOOR = 0.15
-# Multiple of the file's own median for that label before a line counts as an outlier.
-OUTLIER_MULT = 8
+# What actually gates the build: 1 - P(us) - P(canada), i.e. how far a line sits from
+# the "sounds like his own reference voice" bucket, not any one specific foreign-accent
+# label — see the docstring above for why this replaced a narrower "indian only" gate.
+AMERICAN_LABELS = ("us", "canada")
+# Absolute floor: below this, a score is noise no matter how it compares to the median.
+NOT_AMERICAN_FLOOR = 0.45
+# Multiple of the file's own median before a line counts as an outlier.
+OUTLIER_MULT = 4
 
 
 def load_mono(path, sr_target=16000):
@@ -81,18 +89,23 @@ def classify_lines(wav_path, cues):
     return rows
 
 
+def not_american(scores):
+    return 1.0 - scores.get("us", 0.0) - scores.get("canada", 0.0)
+
+
 def verdict(rows):
     issues = []
-    for label in GATED_LABELS:
-        vals = [r["scores"].get(label, 0.0) for r in rows if r["scores"]]
-        if not vals:
+    vals = [not_american(r["scores"]) for r in rows if r["scores"]]
+    if not vals:
+        return issues
+    med = float(np.median(vals))
+    floor = max(NOT_AMERICAN_FLOOR, med * OUTLIER_MULT)
+    for r in rows:
+        if not r["scores"]:
             continue
-        med = float(np.median(vals))
-        floor = max(NOT_US_FLOOR, med * OUTLIER_MULT)
-        for r in rows:
-            s = r["scores"].get(label, 0.0)
-            if s >= floor:
-                issues.append((r["n"], r["line"], label, s, med))
+        na = not_american(r["scores"])
+        if na >= floor:
+            issues.append((r["n"], r["line"], na, med))
     return issues
 
 
@@ -118,14 +131,14 @@ def main():
             print(f"   ln {r['n']}  (too short to classify)")
             continue
         top = max(s, key=s.get)
-        print(f"   ln {r['n']}  top={top} {s[top]:.2f}   "
+        print(f"   ln {r['n']}  top={top} {s[top]:.2f}  not-american={not_american(s):.2f}   "
               f"{ {k: round(v,3) for k,v in s.items() if k in OFF_LABELS} }   "
               f"{r['line'][:44]}")
 
     if issues:
-        print(f"\n  flagged — sounds like a different accent than the rest of this file:")
-        for n, line, label, s, med in issues:
-            print(f"   ln {n}  {label} {s:.2f} (file median {med:.3f})   {line[:60]}")
+        print(f"\n  flagged — sounds less like his own reference voice than the rest of this file:")
+        for n, line, na, med in issues:
+            print(f"   ln {n}  not-american {na:.2f} (file median {med:.3f})   {line[:60]}")
         print(f"\n  this is a heuristic, not a certainty (see the file's own docstring) — "
               f"listen to the flagged line(s) before rerolling.")
         sys.exit(1)
