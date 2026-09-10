@@ -138,15 +138,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="5.29">
+<section class="scene" data-in="0" data-out="5.06">
   <div class="pad"><div class="kb" id="hookKb">
-    <h2 class="punch" id="hookH2">Ask any AI chatbot<br>if it's <span class="box">online</span><br>right now.</h2>
+    <h2 class="punch" id="hookH2">Your AI chatbot<br>can run <span class="box">offline</span><br>right now.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="5.29" data-out="13.23">
+<section class="scene" data-in="5.06" data-out="13.01">
   <div class="pad"><div class="kb">
-    <div class="termbox b" data-at="5.32">
+    <div class="termbox b" data-at="5.09">
       <div class="tk">network status</div>
       <div class="tl">curl: Failed to connect — Couldn't connect to server</div>
       <div class="badge"><span class="dot"></span>disconnected</div>
@@ -154,7 +154,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="13.23" data-out="19.04">
+<section class="scene" data-in="13.01" data-out="18.82">
   <div class="pad"><div class="kb">
     <div class="quote" id="quoteCard" style="opacity:0">
       <div class="qk" id="quoteQk">asked directly — real answer</div>
@@ -163,7 +163,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="19.04" data-out="24.355">
+<section class="scene" data-in="18.82" data-out="24.525">
   <div class="pad"><div class="kb">
     <div class="after" id="afterCard">
       <div class="ak" id="afterAk">it's wrong</div>
@@ -172,24 +172,24 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="24.355" data-out="31.09">
+<section class="scene" data-in="24.525" data-out="31">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="24.385">The tool is called<br><strong>Ollama</strong> — free, open<br>source, zero internet.</p>
+    <p class="lede b" data-at="24.555">The tool is called<br><strong>Ollama</strong> — free, open<br>source, zero internet.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="31.09" data-out="36.3">
+<section class="scene" data-in="31" data-out="36.21">
   <div class="pad"><div class="kb">
-    <div class="termbox b" data-at="31.12">
+    <div class="termbox b" data-at="31.03">
       <div class="tk">one command, once</div>
       <div class="tl">$ ollama pull llama3.2</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="36.3" data-out="42.94">
+<section class="scene" data-in="36.21" data-out="42.85">
   <div class="pad"><div class="kb">
-    <div class="termbox2 b" data-at="36.33">
+    <div class="termbox2 b" data-at="36.24">
       <div class="row">
         <div class="tk">real code, zero internet</div>
         <div class="tl">def reverse_string(s):<br>&nbsp;&nbsp;&nbsp;&nbsp;return s[::-1]</div>
@@ -202,15 +202,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="42.94" data-out="45.705">
+<section class="scene" data-in="42.85" data-out="45.615">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="42.97"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="42.88"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="45.705" data-out="48.64">
+<section class="scene" data-in="45.615" data-out="48.55">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="45.735" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="45.645" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -229,8 +229,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="side">
   <p class="k">Episode 31 — Experiment 2</p>
-  <h1>Ask any AI chatbot if it's <em>online right now</em>.</h1>
-  <p>It can't actually tell you what is true. This model's network was cut at the system
+  <h1>Your AI chatbot can run <em>completely offline</em> — it just doesn't know it can.</h1>
+  <p>This model's network was cut at the system
   level — asked directly, it still guessed "I'm cloud-based, I need the internet." It's
   wrong: it's running entirely on this machine, via Ollama, a free open-source tool that
   runs real models like Llama completely offline. One command downloads the model once;
@@ -242,7 +242,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=49.24,t=0,playing=false,last=0;
+  var DUR=49.15,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -252,143 +252,141 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,5.08,"Ask any AI chatbot if it's online right now. It can't actually tell you what is true."],
-    [5.50,13.02,"Here's proof: this one's network connection is completely cut. Not airplane mode — actually disconnected, at the system level."],
-    [13.44,18.83,"Ask it anyway, and it still guesses. \"I'm a cloud-based model. I can't work without a connection.\""],
-    [19.25,23.93,"It's wrong. It's responding right now, from this laptop, with the network completely off."],
-    [24.78,30.88,"The tool doing this is called Ollama — free, open source, and it needs zero internet to run."],
-    [31.30,36.09,"One command downloads the model, once. After that, the network is optional."],
-    [36.51,42.73,"It's not a toy demo. Real code, real math, a real conversation — same model, zero internet."],
-    [43.15,45.28,"The exact setup's in the link in bio."],
-    [46.13,48.34,"Follow for the setup that actually works."]
+    [0.30,4.85,"Your AI chatbot can run completely offline right now — it just doesn't know it can."],
+    [5.27,12.80,"Here's proof: this one's network connection is completely cut. Not airplane mode — actually disconnected, at the system level."],
+    [13.22,18.61,"Ask it anyway, and it still guesses. \"I'm a cloud-based model. I can't work without a connection.\""],
+    [19.03,24.10,"It's wrong. It's responding right now, from this laptop, with the network completely off."],
+    [24.95,30.79,"The tool doing this is called Ollama — free, open source, and it needs zero internet to run."],
+    [31.21,36.00,"One command downloads the model, once. After that, the network is optional."],
+    [36.42,42.64,"It's not a toy demo. Real code, real math, a real conversation — same model, zero internet."],
+    [43.06,45.19,"The exact setup's in the link in bio."],
+    [46.04,48.25,"Follow for the setup that actually works."]
   ];
   var WORDS=[
-    [0.3,0.7,"Ask",0],
-    [0.7,1.12,"any",0],
-    [1.12,1.42,"AI",0],
-    [1.42,1.88,"chatbot",1],
-    [1.88,2.06,"if",1],
-    [2.06,2.3,"it's",1],
-    [2.3,2.64,"online",2],
-    [2.64,2.9,"right",2],
-    [2.9,3.26,"now.",2],
-    [3.38,3.62,"It",3],
-    [3.62,3.92,"can't",3],
-    [3.92,4.16,"actually",3],
-    [4.16,4.36,"tell",4],
-    [4.36,4.48,"you",4],
-    [4.48,4.62,"what",4],
-    [4.62,4.82,"is",5],
-    [4.82,5.2,"true.",5],
-    [5.62,5.9,"Here's",6],
-    [5.9,6.32,"proof:",6],
-    [6.68,6.8,"this",7],
-    [6.8,7.22,"one's",7],
-    [7.22,7.44,"network",7],
-    [7.44,7.88,"connection",8],
-    [7.88,8.22,"is",8],
-    [8.22,8.74,"completely",8],
-    [8.74,9.06,"cut.",9],
-    [9.5,9.76,"Not",10],
-    [9.76,10.14,"airplane",10],
-    [10.14,10.5,"mode",10],
-    [10.5,11.16,"actually",11],
-    [11.16,11.78,"disconnected,",11],
-    [11.78,12.22,"at",12],
-    [12.22,12.4,"the",12],
-    [12.4,12.66,"system",12],
-    [12.66,13.06,"level.",13],
-    [13.5,13.76,"Ask",14],
-    [13.76,14.0,"it",14],
-    [14.0,14.34,"anyway,",14],
-    [14.34,14.6,"and",15],
-    [14.6,14.82,"it",15],
-    [14.82,15.0,"still",15],
-    [15.0,15.44,"guesses.",16],
-    [15.86,16.12,"\"I'm",17],
-    [16.12,16.24,"a",17],
-    [16.24,16.78,"cloud-based",17],
-    [16.78,17.14,"model.",18],
-    [17.24,17.46,"I",19],
-    [17.46,17.7,"can't",19],
-    [17.7,17.94,"work",19],
-    [17.94,18.18,"without",20],
-    [18.18,18.4,"a",20],
-    [18.4,18.72,"connection.\"",20],
-    [19.28,19.62,"It's",21],
-    [19.62,19.92,"wrong.",21],
-    [20.18,20.48,"It's",22],
-    [20.48,20.78,"responding",22],
-    [20.78,21.1,"right",22],
-    [21.1,21.34,"now,",23],
-    [21.34,21.54,"from",23],
-    [21.54,21.78,"this",23],
-    [21.78,22.18,"laptop,",23],
-    [22.18,22.56,"with",24],
-    [22.56,22.74,"the",24],
-    [22.74,22.96,"network",24],
-    [22.96,23.46,"completely",25],
-    [23.46,23.9,"off.",25],
-    [24.78,25.0,"The",26],
-    [25.0,25.24,"tool",26],
-    [25.24,25.46,"doing",26],
-    [25.46,25.84,"this",27],
-    [25.84,26.08,"is",27],
-    [26.08,26.58,"called",27],
-    [26.58,27.64,"Ollama",28],
-    [27.64,28.16,"free,",29],
-    [28.48,28.66,"open",30],
-    [28.66,29.04,"source,",30],
-    [29.38,29.5,"and",31],
-    [29.38,29.5,"it",31],
-    [29.48,29.7,"needs",31],
-    [29.7,30.02,"zero",31],
-    [30.02,30.38,"internet",31],
-    [30.38,30.62,"to",31],
-    [30.62,30.96,"run.",32],
-    [31.48,31.64,"One",33],
-    [31.64,32.02,"command",33],
-    [32.02,32.58,"downloads",33],
-    [32.58,32.8,"the",34],
-    [32.8,33.04,"model,",34],
-    [33.46,33.72,"once.",35],
-    [34.1,34.4,"After",36],
-    [34.4,34.68,"that,",36],
-    [34.9,35.02,"the",37],
-    [35.02,35.28,"network",37],
-    [35.28,35.62,"is",37],
-    [35.62,36.04,"optional.",38],
-    [36.6,36.88,"It's",39],
-    [36.88,37.06,"not",39],
-    [37.06,37.22,"a",39],
-    [37.22,37.36,"toy",40],
-    [37.36,37.68,"demo.",40],
-    [38.08,38.28,"Real",41],
-    [38.28,38.68,"code,",41],
-    [39.04,39.22,"real",42],
-    [39.22,39.52,"math,",42],
-    [39.82,39.96,"a",43],
-    [39.96,40.12,"real",43],
-    [40.12,40.74,"conversation",43],
-    [41.18,41.34,"same",44],
-    [41.34,41.72,"model,",44],
-    [42.1,42.32,"zero",45],
-    [42.32,42.74,"internet.",45],
-    [43.32,43.56,"The",46],
-    [43.56,43.78,"exact",46],
-    [43.78,44.12,"setup's",46],
-    [44.12,44.4,"in",47],
-    [44.4,44.52,"the",47],
-    [44.52,44.68,"link",47],
-    [44.68,44.96,"in",48],
-    [44.96,45.22,"bio.",48],
-    [46.26,46.46,"Follow",49],
-    [46.46,46.7,"for",49],
-    [46.7,46.94,"the",49],
-    [46.94,47.16,"setup",50],
-    [47.16,47.56,"that",50],
-    [47.56,47.94,"actually",50],
-    [47.94,48.24,"works.",51]
+    [0.3,0.54,"Your",0],
+    [0.54,0.92,"AI",0],
+    [0.92,1.34,"chatbot",0],
+    [1.34,1.54,"can",1],
+    [1.54,1.74,"run",1],
+    [1.74,2.28,"completely",1],
+    [2.28,2.62,"offline",2],
+    [2.62,2.94,"right",2],
+    [2.94,3.36,"now",2],
+    [3.44,3.72,"it",3],
+    [3.72,3.92,"just",3],
+    [3.92,4.18,"doesn't",3],
+    [4.18,4.32,"know",4],
+    [4.32,4.54,"it",4],
+    [4.54,4.86,"can.",4],
+    [5.36,5.7,"Here's",5],
+    [5.7,6.08,"proof:",5],
+    [6.46,6.58,"this",6],
+    [6.58,7.0,"one's",6],
+    [7.0,7.22,"network",6],
+    [7.22,7.66,"connection",7],
+    [7.66,8.0,"is",7],
+    [8.0,8.56,"completely",7],
+    [8.56,8.82,"cut.",8],
+    [9.28,9.52,"Not",9],
+    [9.52,9.92,"airplane",9],
+    [9.92,10.26,"mode",9],
+    [10.26,10.94,"actually",10],
+    [10.94,11.58,"disconnected,",10],
+    [11.58,12.0,"at",11],
+    [12.0,12.16,"the",11],
+    [12.16,12.44,"system",11],
+    [12.44,12.86,"level.",12],
+    [13.3,13.54,"Ask",13],
+    [13.54,13.78,"it",13],
+    [13.78,14.12,"anyway,",13],
+    [14.12,14.36,"and",14],
+    [14.36,14.6,"it",14],
+    [14.6,14.78,"still",14],
+    [14.78,15.2,"guesses.",15],
+    [15.66,15.9,"\"I'm",16],
+    [15.9,16.02,"a",16],
+    [16.0,16.54,"cloud-based",16],
+    [16.54,16.92,"model.",17],
+    [17.04,17.24,"I",18],
+    [17.24,17.48,"can't",18],
+    [17.48,17.72,"work",18],
+    [17.72,17.96,"without",19],
+    [17.96,18.18,"a",19],
+    [18.18,18.48,"connection.\"",19],
+    [19.06,19.4,"It's",20],
+    [19.4,19.76,"wrong.",20],
+    [20.1,20.46,"It's",21],
+    [20.46,20.8,"responding",21],
+    [20.8,21.2,"right",21],
+    [21.2,21.5,"now,",22],
+    [21.5,21.68,"from",22],
+    [21.68,21.9,"this",22],
+    [21.9,22.32,"laptop,",22],
+    [22.32,22.68,"with",23],
+    [22.68,22.9,"the",23],
+    [22.9,23.14,"network",23],
+    [23.14,23.7,"completely",24],
+    [23.7,24.08,"off.",24],
+    [24.95,25.14,"The",25],
+    [25.14,25.44,"tool",25],
+    [25.44,25.68,"doing",25],
+    [25.68,26.04,"this",26],
+    [26.04,26.38,"is",26],
+    [26.38,26.68,"called",26],
+    [26.68,27.6,"Ollama",27],
+    [27.6,28.02,"free,",28],
+    [28.18,28.48,"open",29],
+    [28.48,28.88,"source,",29],
+    [29.16,29.28,"and",30],
+    [29.24,29.38,"it",30],
+    [29.38,29.62,"needs",30],
+    [29.62,29.92,"zero",31],
+    [29.92,30.28,"internet",31],
+    [30.28,30.52,"to",31],
+    [30.52,30.82,"run.",32],
+    [31.38,31.56,"One",33],
+    [31.56,31.9,"command",33],
+    [31.9,32.48,"downloads",33],
+    [32.48,32.7,"the",34],
+    [32.7,32.92,"model,",34],
+    [33.38,33.62,"once.",35],
+    [34.0,34.3,"After",36],
+    [34.3,34.58,"that,",36],
+    [34.8,34.94,"the",37],
+    [34.94,35.2,"network",37],
+    [35.2,35.52,"is",37],
+    [35.52,35.94,"optional.",38],
+    [36.5,36.78,"It's",39],
+    [36.78,36.98,"not",39],
+    [36.98,37.12,"a",39],
+    [37.12,37.26,"toy",40],
+    [37.26,37.58,"demo.",40],
+    [37.98,38.18,"Real",41],
+    [38.18,38.58,"code,",41],
+    [38.92,39.12,"real",42],
+    [39.12,39.42,"math,",42],
+    [39.72,39.86,"a",43],
+    [39.86,40.04,"real",43],
+    [40.04,40.66,"conversation",43],
+    [41.06,41.26,"same",44],
+    [41.26,41.62,"model,",44],
+    [41.98,42.22,"zero",45],
+    [42.22,42.66,"internet.",45],
+    [43.22,43.46,"The",46],
+    [43.46,43.7,"exact",46],
+    [43.7,44.02,"setup's",46],
+    [44.02,44.32,"in",47],
+    [44.32,44.44,"the",47],
+    [44.44,44.6,"link",47],
+    [44.6,44.86,"in",48],
+    [44.86,45.14,"bio.",48],
+    [46.14,46.38,"Follow",49],
+    [46.38,46.62,"for",49],
+    [46.62,46.86,"the",49],
+    [46.86,47.08,"setup",50],
+    [47.08,47.48,"that",50],
+    [47.48,47.84,"actually",50],
+    [47.84,48.14,"works.",51]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}

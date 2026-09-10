@@ -74,6 +74,29 @@ Structure every script so line 2 starts paying off line 1's promise directly; an
 delays that payoff (scene-setting, backstory, a tangent) reads as the video not delivering on
 what it just told the viewer to expect, even if that content is genuinely relevant later.
 
+## Standing rule, confirmed 10.9.2026: the specific claim goes in the FIRST clause, not after it
+
+Real outside feedback (Roni Michaeli, a marketing professional at Videya, on episode 31)
+flagged the same failure mode independently of anything in this file: a hook can be a
+checkable, specific, on-topic claim and still lose the viewer if it takes a *second*
+sentence before the actual interesting thing is said. Episode 31's first draft — "Ask any
+AI chatbot if it's online right now" — needed the follow-up sentence ("It can't actually
+tell you what is true") before the viewer had any reason to keep watching. Checked against
+fresh 2026 research (opus.pro) before acting on this: direct payoff in the opening clause
+beats a curiosity-gap opener in raw view counts, and this channel's own log already showed
+Direct Address/Question as the strongest type here — so the fix isn't a new hook TYPE, it's
+where in the sentence the specific claim lands.
+
+**Applies to every future episode, not just 31: put the surprising, specific, checkable
+claim itself in the first clause of the first sentence — never defer it to a second
+sentence, however short that gap feels while writing it.** Episode 31's fix: "Ask any AI
+chatbot if it's online right now" (claim deferred one sentence) → "Your AI chatbot can run
+completely offline right now — it just doesn't know it can" (claim lands immediately, twist
+still lands seconds later in the same sentence). This does not license reproducing Product/
+Outcome Showcase (still confirmed weak 3-for-3 here, episodes 18, 19, 26) or misnaming a
+product to sound punchier — precision about what the tool actually is stays non-negotiable
+even when tightening the opening clause.
+
 ## The real research (sourced, not invented)
 
 Two independent, cited analyses, both current as of 2026:

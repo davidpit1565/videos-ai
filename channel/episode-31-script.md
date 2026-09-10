@@ -77,19 +77,34 @@ to google.com in that same namespace immediately before the query.
 
 ## Hook — type check against `hooks-guide.md`
 
-Log's last: 30 Contrarian Open, 29 Shock/Surprise. This episode uses **Direct
-Address/Question** — the education-genre-dominant type (66% share per the OpusClip
-research already in `hooks-guide.md`), not used since episode 2 (this channel's single
-highest-performing hook ever, 940 views). Passes the dry-sentence test (real pull: mild
-unease + curiosity, "wait, is that true?") and the checkable-fact test (the viewer can
-go ask their own chatbot the same question right now).
+**Reworked 10.9.2026, after real marketing feedback (Roni Michaeli, Videya) flagged the
+original hook as too indirect — needing a second sentence before the viewer understands
+why it matters — plus fresh research on 2026 hook performance
+(opus.pro's 2026 TikTok-hook data): direct payoff beats a curiosity-gap opener in raw
+view counts, and Direct Address/Question is confirmed both by that external research and
+by this channel's own log (66% share, this channel's #1 episode) as the strongest type
+for this genre.** His diagnosis was right and the type stays **Direct Address/Question**
+— unchanged from the original pick, so this stays inside the experiment's pre-registered
+constraint (hook type held constant). What changed is that the specific, checkable claim
+now lands in the first clause instead of after a second sentence. His literal suggested
+wording ("Did you know Claude can now run fully offline?") was not used: it misnames the
+product (this is Ollama, not Claude — Anthropic's Claude does not run offline) and
+reproduces Product/Outcome Showcase, a hook type already confirmed weak 3-for-3 on this
+channel (episodes 18, 19, 26).
 
-**"Ask any AI chatbot if it's online right now. It can't actually tell you what
-is true."**
+Log's last: 30 Contrarian Open, 29 Shock/Surprise.
+
+**"Your AI chatbot can run completely offline right now — it just doesn't know it
+can."**
+
+Passes the dry-sentence test (real pull: "wait, could mine actually do that?" — mild
+disbelief plus curiosity) and the checkable-fact test (the viewer can go ask their own
+chatbot the same question right now) — and now states the specific, surprising claim in
+the first clause, not the second sentence.
 
 ## Full narration (~40s at natural pace)
 
-1. Ask any AI chatbot if it's online right now. It can't actually tell you what is true.
+1. Your AI chatbot can run completely offline right now — it just doesn't know it can.
 2. Here's proof: this one's network connection is completely cut. Not airplane mode — actually disconnected, at the system level.
 3. Ask it anyway, and it still guesses. "I'm a cloud-based model. I can't work without a connection."
 4. It's wrong. It's responding right now, from this laptop, with the network completely off.
@@ -135,8 +150,8 @@ run llama3.2` and ask it anything — works with zero connection from here on.
 
 ## Caption / YouTube text (draft)
 
-> Ask any AI chatbot if it's connected to the internet right now. It can't actually tell
-> you the truth — this one just answered with its network completely cut, not airplane
+> Your AI chatbot can run completely offline right now — it just doesn't know it can.
+> This one just answered with its network completely cut, not airplane
 > mode, actually disconnected.
 >
 > Asked directly, it still guessed wrong: "I'm a cloud-based model. I need the internet
