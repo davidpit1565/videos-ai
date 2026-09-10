@@ -1,0 +1,13 @@
+78% of customers buy from whichever business responds to them first. This inbox never lets that business be someone else.
+
+Right now, most businesses take 8 to 12 hours to answer a new email — most of those leads are already gone by then. This workflow reads every new email the second it lands, and drafts a real reply, in the business's own voice, before a human even sees it.
+
+It's built on n8n: a Gmail trigger, one AI step, and a reply node. Free to build, running in the background the whole time. The reply sits as a draft, ready in one click, or sends itself for teams that want that.
+
+Either way, the customer who emailed at 2am gets an answer by 2:01.
+
+Full setup, exact clicks: https://actually-works.com/e/32
+
+Follow for the setup that actually works.
+
+#n8n #aiautomation #smallbusiness #buildinpublic #aiagents
