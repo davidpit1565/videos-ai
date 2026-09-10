@@ -1,6 +1,6 @@
-78% of customers buy from whichever business responds to them first. This inbox never lets that business be someone else.
+78% of customers buy from whichever business responds to them first.
 
-Most businesses take 8-12 hours to answer a new email — most of those leads are already gone by then. This workflow reads every new email the second it lands and drafts a real reply, in the business's own voice, before a human even sees it.
+Most businesses take 8-12 hours to answer a new email — most of those leads are already gone by then. This AI agent answers every new email in under a minute, before anyone even opens the inbox.
 
 It's built on n8n: a Gmail trigger, one AI step, and a reply node — free to build. The reply sits as a draft, ready in one click, or sends itself for teams that want that. Either way, the customer who emailed at 2am gets an answer by 2:01.
 

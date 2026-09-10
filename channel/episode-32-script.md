@@ -62,19 +62,28 @@ unanswered email sitting for hours — the draft is already waiting.
 Log's last three: 29 Shock/Surprise, 30 Contrarian Open, 31 Direct Address/Question.
 Using **The Specific Number** (last used episode 28).
 
-**"78% of customers buy from whichever business responds to them first. This inbox
-never lets that business be someone else."**
+**"78% of customers buy from whichever business responds to them first."**
 
 Passes the cold-read test (lands in one pass, no unpacking) and the checkable-fact test
 (a real, sourced, widely-cited figure, not a hypothetical) — states the stakes-bearing
-number in the first clause, per the standing rule from episode 31's rework, not deferred
-to a second sentence.
+number in the first clause, per the standing rule from episode 31's rework.
+
+**Caught on self-review before this went any further, applying the exact lesson from
+episode 31 rather than waiting for someone else to flag it again:** the first draft of
+this hook had a second sentence — "This inbox never lets that business be someone
+else." — that used an undefined referent ("this inbox") and needed a re-read to parse
+("never lets X be someone else" is a double-negative construction). That is the identical
+trap Roni's feedback caught on episode 31 ("your AI chatbot" left the viewer to fill in
+what's being talked about). Fixed by cutting the hook back to the one clean, standalone
+sentence — matching episode 28's actual confirmed-strong hook shape (one factual
+sentence, nothing appended to it) — and moving the concrete reveal to its own later line,
+stated plainly instead of with a vague pronoun.
 
 ## Full narration (~40s at natural pace)
 
-1. 78% of customers buy from whichever business responds to them first. This inbox never lets that business be someone else.
-2. Right now, most businesses take 8 to 12 hours to answer a new email. Most of those leads are already gone by then.
-3. This workflow reads every new email the second it lands, and drafts a real reply — in the business's own voice — before a human even sees it.
+1. 78% of customers buy from whichever business responds to them first.
+2. Most businesses take 8 to 12 hours to answer a new email. Most of those leads are already gone by then.
+3. This AI agent answers every new email in under a minute — before anyone even opens the inbox.
 4. It's built on n8n: a Gmail trigger, one AI step, and a reply node. Free to build, running in the background the whole time.
 5. The reply sits as a draft, ready in one click — or sends itself, for teams that want that.
 6. Either way, the customer who emailed at 2am gets an answer by 2:01.
@@ -83,12 +92,10 @@ to a second sentence.
 
 ## On-screen text cues
 
-- Hook: "78% buy from<br>whoever <span class="box">responds first</span>." then reveal
-  "This inbox never lets that be someone else."
-- Stat card (styled like a real research citation): "78%<br>buy from the first
-  business<br>that responds." — sourced footer, small: "lead-response research, 2026"
+- Hook: "78% buy from<br>whoever <span class="box">responds first</span>."
 - Termbox ("the real gap"): "Average reply time:<br>8-12 hours"
 - Lede: "Most of those leads<br>are already gone<br>by then."
+- Lede (reveal): "This AI answers<br><strong>every email</strong><br>in under a minute."
 - Termbox ("the workflow"): "Gmail Trigger →<br>AI drafts reply →<br>Gmail: Reply"
 - Lede: "Drafted before<br>a human even<br>opens the inbox."
 - Scoreboard: "Sent at" → "2:00 AM" / "Answered by" → "2:01 AM"
@@ -120,9 +127,9 @@ inbox first, never production, before connecting the real one.
 > 78% of customers buy from whichever business responds to them first. Most businesses
 > take 8-12 hours to answer a new email — most of those leads are already gone by then.
 >
-> This workflow reads every new email the second it lands and drafts a real reply, in
-> the business's own voice, before a human even sees it. It's built on n8n: a Gmail
-> trigger, one AI step, and a reply node — free to build.
+> This AI agent answers every new email in under a minute, before anyone even opens the
+> inbox. It's built on n8n: a Gmail trigger, one AI step, and a reply node — free to
+> build.
 >
 > The reply sits as a draft, ready in one click, or sends itself for teams that want
 > that. Either way, the customer who emailed at 2am gets an answer by 2:01.
