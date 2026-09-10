@@ -847,6 +847,36 @@ export const ARTICLES: Article[] = [
   },
 ];
 
+  {
+    n: 32,
+    title: "78% buy from whoever responds first. This AI never lets that be someone else.",
+    standfirst:
+      "Most businesses take 8-12 hours to answer a new email — most of those leads " +
+      "are already gone by then. An n8n workflow reads every new email the second it " +
+      "lands and drafts a real reply, in the business's own voice, before a human " +
+      "even opens the inbox. Free to build, running in the background the whole time.",
+    steps: [
+      "In n8n, create a new workflow and add a Gmail Trigger node — this watches the inbox for new messages.",
+      "In Google Cloud Console, create a project, enable the Gmail API, and create OAuth credentials with the scopes n8n needs; add the n8n redirect URI to the OAuth consent screen.",
+      "Add the Google OAuth credential to the Gmail Trigger node in n8n and confirm it connects.",
+      "Add an AI step (any supported provider — OpenAI, Claude, Gemini, or a local model via Ollama) with a system prompt describing the business's tone and what it should and should not answer on its own.",
+      "Add a Gmail node set to Operation: Reply, wired to the trigger's message ID — n8n handles the reply-threading headers automatically.",
+      "Test the whole workflow on a duplicate or test inbox first — never connect it to a real production inbox before it's been verified end to end.",
+      "Once confirmed, set the Gmail node to post as a draft (safest) or send automatically, depending on how much you trust the drafted tone.",
+    ],
+    changes: [
+      "This is standard, current n8n behavior — verified live this session against n8n's own official Gmail AI Auto-Responder and email-triage workflow templates.",
+      "The AI step is provider-agnostic: n8n's AI Agent node currently supports OpenAI, Anthropic's Claude family, Gemini, and local models via Ollama — no single model is required.",
+      "The reply-threading (so the AI's reply lands in the same email thread, not as a new message) is handled automatically by n8n's Gmail node when using the Reply operation with the trigger's message ID.",
+    ],
+    limits: [
+      "This drafts or sends a reply — it does not replace judgment on anything sensitive, contractual, or high-stakes; the system prompt should tell it what to escalate to a human instead of answering.",
+      "Gmail's OAuth setup is the fiddly part the first time (Google Cloud project, API scopes, consent screen) — budget 15-20 minutes for that step alone before the workflow itself.",
+      "Sending automatically (vs. drafting) is a real decision, not a default — start with drafts until the tone and accuracy are proven on your own inbox.",
+    ],
+  },
+];
+
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
 export const promptFor = (a: Article | null) =>
   a?.promptSlug ? PROMPTS.find((p) => p.slug === a.promptSlug) ?? null : null;

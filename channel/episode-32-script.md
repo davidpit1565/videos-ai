@@ -92,15 +92,17 @@ stated plainly instead of with a vague pronoun.
 
 ## On-screen text cues
 
-- Hook: "78% buy from<br>whoever <span class="box">responds first</span>."
-- Termbox ("the real gap"): "Average reply time:<br>8-12 hours"
-- Lede: "Most of those leads<br>are already gone<br>by then."
-- Lede (reveal): "This AI answers<br><strong>every email</strong><br>in under a minute."
-- Termbox ("the workflow"): "Gmail Trigger →<br>AI drafts reply →<br>Gmail: Reply"
-- Lede: "Drafted before<br>a human even<br>opens the inbox."
-- Scoreboard: "Sent at" → "2:00 AM" / "Answered by" → "2:01 AM"
-- Biocard: link in bio
-- Outro (locked): "Follow for the setup that actually works."
+One scene per narration line, 1:1 (8 scenes):
+
+1. Hook: "78% buy from<br>whoever <span class="box">responds first</span>."
+2. Termbox ("the real gap"): "Average reply time:<br>8-12 hours" + lede beat "Most
+   of those leads<br>are already gone<br>by then."
+3. Lede: "This AI answers<br><strong>every email</strong><br>in under a minute."
+4. Termbox2 ("the workflow"): "Gmail Trigger →" / "AI drafts reply →" / "Gmail: Reply"
+5. Lede: "Sits as a draft,<br>ready in one click —<br>or sends itself."
+6. Scoreboard: "Emailed at" → "2:00 AM" / "Answered by" → "2:01 AM"
+7. Biocard: link in bio
+8. Outro (locked): "Follow for the setup that actually works."
 
 ## Music
 
