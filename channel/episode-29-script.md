@@ -76,7 +76,7 @@ Log's last two: 28 The Specific Number, 27 Story/Anecdote Teaser (the type this 
 own analysis flags as weak). Using **Shock/Surprise** — proven twice already (ep2: 940,
 ep25: 1,200+) — on a **general, checkable claim about n8n itself**, not an anecdote.
 
-Hook: **"Your n8n workflow can fail completely — and still say 'Success.'"**
+Hook: **"Right now, your n8n workflow can fail completely — and still say 'Success.'"**
 
 Passes the dry-sentence test (real pull: a workflow you trust might be lying to you — fear
 plus curiosity) and the checkable-fact test (a viewer could open n8n's own docs and verify
@@ -84,13 +84,13 @@ this claim without watching anything else).
 
 ## Full narration (~40s at natural pace)
 
-1. Your n8n workflow can fail completely — and still say "Success."
+1. Right now, your n8n workflow can fail completely — and still say "Success."
 2. One setting causes it: On Error, set to Continue — built to survive a small hiccup.
 3. But when a node actually fails, n8n doesn't flag the workflow at all.
-4. The Executions list still reads green. Success. Every single time.
-5. The only place it shows is inside that node's own output — buried in error data nobody opens.
+4. The Executions list still reads green. Success — no exceptions.
+5. The only place it shows is inside that node's own output — buried where no one looks.
 6. Real case, from n8n's own community: a workflow silently stopped working for weeks, and the log insisted it was fine.
-7. One extra step catches it — a branch that checks for the error field, and alerts you the moment it appears.
+7. One extra step catches it: a branch that watches for it, then tells you the moment it appears.
 8. The exact setup's in the link in bio.
 9. Follow for the setup that actually works.
 
@@ -129,13 +129,13 @@ Slack/email alert node) — working in a test/duplicate workflow first, never pr
 
 ## Caption / YouTube text (draft)
 
-> Your n8n workflow can fail completely — and still say "Success." One setting causes it:
+> Right now, your n8n workflow can fail completely — and still say "Success." One setting causes it:
 > On Error, set to Continue. When a node actually fails, n8n doesn't flag the workflow — the
 > Executions list still reads green, every time. The only place the failure shows is inside
-> that node's own output, buried in error data nobody opens. Real report from n8n's own
+> that node's own output, buried where no one looks. Real report from n8n's own
 > community: a workflow silently stopped working for weeks, and the log insisted it was fine.
 >
-> One extra step catches it — a branch that checks for the error field, and alerts you the
+> One extra step catches it: a branch that watches for it, then tells you the
 > moment it appears.
 >
 > Full setup, exact clicks: actually-works.com/e/29
