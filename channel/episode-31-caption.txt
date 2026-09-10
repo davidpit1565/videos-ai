@@ -1,4 +1,4 @@
-Your AI chatbot can run completely offline right now — it just doesn't know it can. This one just answered with its network completely cut, not airplane mode, actually disconnected.
+ChatGPT needs the internet to respond. This AI doesn't — and it just proved it: its network was completely cut, not airplane mode, actually disconnected.
 
 Asked directly, it still guessed wrong: "I'm a cloud-based model. I can't work without a connection." It isn't. It's running entirely on this machine.
 

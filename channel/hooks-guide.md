@@ -97,6 +97,19 @@ Outcome Showcase (still confirmed weak 3-for-3 here, episodes 18, 19, 26) or mis
 product to sound punchier — precision about what the tool actually is stays non-negotiable
 even when tightening the opening clause.
 
+**Fixed rule, David 10.9.2026 (voice note, said plainly, more than once): the single
+thing that matters most about a hook is that the viewer does not have to work for it in
+the first seconds — no indirection, no "spoiler-board" build where the point only
+becomes clear after a beat of thought.** His own words: a viewer who has to think, even a
+little, loses it within seconds; if the sentence needs unpacking before it lands, it has
+already failed regardless of how clever, specific, or on-topic it is otherwise. This is
+stricter than "don't defer to a second sentence" above — it is about the FIRST sentence
+itself: if reading it once doesn't land immediately and completely, in one pass, simplify
+it further even if that costs some sharpness. Every hook, before it ships, gets read once
+cold and honestly asked: did that need a second look to understand? If yes, it's not
+ready — this is now a standing, non-negotiable check alongside the dry-sentence test
+above, not a one-time note for episode 31.
+
 ## The real research (sourced, not invented)
 
 Two independent, cited analyses, both current as of 2026:
