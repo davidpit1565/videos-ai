@@ -1,0 +1,577 @@
+<title>Reel 31 — Ask any AI chatbot if it's online right now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@500;600&display=swap">
+<style>
+:root{
+  --ink:#0A0E14;--line:#1F2B3A;
+  --brass:#A78BFA;--brass-hot:#C4B5FD;--ember:#FBBF24;
+  --text:#FFFFFF;--muted:#8AA0B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+  --ui:'Inter','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.bg{position:absolute;inset:0;z-index:0}
+.bg i{position:absolute;display:block;border-radius:50%;will-change:transform;left:0;top:0}
+.bg .b1{width:130cqw;height:130cqw;top:-40cqw;left:-30cqw;background:radial-gradient(circle closest-side,rgba(167,139,250,.22),rgba(167,139,250,0) 70%)}
+.bg .b2{width:150cqw;height:150cqw;top:50cqw;left:-10cqw;background:radial-gradient(circle closest-side,rgba(20,28,40,.6),rgba(20,28,40,0) 70%)}
+.bg .b3{width:120cqw;height:120cqw;top:120cqw;left:20cqw;background:radial-gradient(circle closest-side,rgba(251,191,36,.16),rgba(251,191,36,0) 70%)}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+.vig{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 50%,transparent 40%,rgba(5,7,9,.55) 100%)}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--brass);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(167,139,250,.7)}
+
+.scene{position:absolute;inset:0;z-index:2}
+.pad{position:absolute;inset:0;padding:28cqw 10cqw 65cqw;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:9.4cqw;line-height:1.05;letter-spacing:-.04em;
+  margin:0;text-wrap:balance;position:relative;z-index:2}
+h2 em{font-style:normal;color:var(--brass)}
+h2 .box{background:var(--brass);color:#150A2E;padding:0 1.6cqw;border-radius:1cqw;
+  display:inline-block;position:relative;transform:rotate(-1.2deg)}
+h2 .ebox{background:var(--ember);color:#241A02;padding:0 1.6cqw;border-radius:1cqw;display:inline-block;position:relative}
+.glowbloom{position:absolute;pointer-events:none;opacity:0}
+.wd{position:relative;z-index:1}
+p.lede{font-size:5.6cqw;line-height:1.3;color:#EAF3FB;margin:0;font-weight:700;position:relative;z-index:2}
+p.lede strong{color:var(--brass)}
+
+.quote{background:#fff;border-radius:2.4cqw;padding:5.5cqw 6cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2;text-align:left}
+.quote .qk{font-family:var(--m);font-size:3.6cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#6B7C90;margin:0 0 2.8cqw}
+.quote .qb{font-family:var(--b);font-weight:700;font-size:4.6cqw;line-height:1.35;color:#0D0D0D;position:relative}
+.quote .qb strong{color:#6D28D9}
+
+.after{width:100%;text-align:center;position:relative;z-index:2}
+.after .ak{font-family:var(--m);font-size:3.6cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 3.2cqw}
+.after .ab{font-family:var(--d);font-weight:900;font-size:11.5cqw;line-height:1;color:#fff;
+  letter-spacing:-.03em}
+
+.termbox{background:#0A1420;border:.4cqw solid #2A2148;border-radius:1.6cqw;
+  padding:4cqw 4.6cqw;width:100%;position:relative;z-index:2;text-align:left}
+.termbox .tk{font-family:var(--m);font-size:2.6cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#8C7BB0;margin:0 0 1.8cqw}
+.termbox .tl{font-family:var(--ui);font-weight:500;font-size:4.4cqw;color:#C4B5FD;line-height:1.5}
+.termbox .tl2{font-family:var(--m);font-weight:500;font-size:3.6cqw;color:#7DE0A8;line-height:1.5;margin-top:2.4cqw}
+.badge{display:inline-flex;align-items:center;gap:1.6cqw;background:#241033;border:.35cqw solid #F87171;
+  border-radius:99cqw;padding:1.6cqw 4cqw;margin-top:3cqw;font-family:var(--m);font-size:3.2cqw;
+  letter-spacing:.1em;text-transform:uppercase;color:#F87171}
+.badge .dot{width:2cqw;height:2cqw;border-radius:50%;background:#F87171}
+
+.termbox2{background:#0A1420;border:.4cqw solid #2A2148;border-radius:1.6cqw;
+  padding:4cqw 4.6cqw;width:100%;position:relative;z-index:2;text-align:left}
+.termbox2 .row{margin-bottom:3.4cqw}
+.termbox2 .row:last-child{margin-bottom:0}
+.termbox2 .tk{font-family:var(--m);font-size:2.5cqw;letter-spacing:.12em;text-transform:uppercase;
+  color:#8C7BB0;margin:0 0 1.2cqw}
+.termbox2 .tl{font-family:var(--m);font-weight:500;font-size:3.6cqw;color:#7DE0A8;line-height:1.45}
+
+.subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
+  font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
+  text-transform:uppercase;
+  text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
+.subs em{font-style:normal;background:var(--brass);color:#150A2E;padding:0 1.4cqw;border-radius:.9cqw;
+  display:inline-block;text-shadow:none}
+.subs b{font-weight:800;color:#fff;transition:color .09s linear,transform .09s linear;display:inline-block}
+.subs b.on{color:var(--brass);transform:scale(1.06)}
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#5C7086}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,9,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.biocard{display:inline-flex;align-items:center;gap:2.2cqw;background:#101823;border:.35cqw solid var(--brass);
+  border-radius:99cqw;padding:2.4cqw 5cqw;position:relative;z-index:2}
+.biocard .dot{width:2.6cqw;height:2.6cqw;border-radius:50%;background:var(--brass)}
+.biocard b{font-family:var(--m);font-weight:600;font-size:4.6cqw;letter-spacing:-.01em;color:#fff}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#150A2E;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+.side{flex:1 1 320px;max-width:470px}
+.side .k{font-family:var(--m);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#FBBF24;margin:0 0 8px}
+.side h1{font-family:var(--d);font-weight:900;font-size:clamp(24px,3vw,34px);letter-spacing:-.035em;margin:0 0 12px;line-height:1.03}
+.side h1 em{font-style:normal;color:var(--brass)}
+.side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.62}
+.side strong{color:var(--text)}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .side,body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
+<div class="grain" data-decor></div>
+<div class="vig"></div>
+<div class="prog" id="prog"></div>
+
+<section class="scene" data-in="0" data-out="5.06">
+  <div class="pad"><div class="kb" id="hookKb">
+    <h2 class="punch" id="hookH2">Your AI chatbot<br>can run <span class="box">offline</span><br>right now.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="5.06" data-out="13.01">
+  <div class="pad"><div class="kb">
+    <div class="termbox b" data-at="5.09">
+      <div class="tk">network status</div>
+      <div class="tl">curl: Failed to connect — Couldn't connect to server</div>
+      <div class="badge"><span class="dot"></span>disconnected</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="13.01" data-out="18.82">
+  <div class="pad"><div class="kb">
+    <div class="quote" id="quoteCard" style="opacity:0">
+      <div class="qk" id="quoteQk">asked directly — real answer</div>
+      <div class="qb" id="quoteQb">"I'm a <strong>cloud-based language model</strong>. I can't work without a connection."</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="18.82" data-out="24.525">
+  <div class="pad"><div class="kb">
+    <div class="after" id="afterCard">
+      <div class="ak" id="afterAk">it's wrong</div>
+      <div class="ab" id="afterAb">Zero<br>connection.</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="24.525" data-out="31">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="24.555">The tool is called<br><strong>Ollama</strong> — free, open<br>source, zero internet.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="31" data-out="36.21">
+  <div class="pad"><div class="kb">
+    <div class="termbox b" data-at="31.03">
+      <div class="tk">one command, once</div>
+      <div class="tl">$ ollama pull llama3.2</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="36.21" data-out="42.85">
+  <div class="pad"><div class="kb">
+    <div class="termbox2 b" data-at="36.24">
+      <div class="row">
+        <div class="tk">real code, zero internet</div>
+        <div class="tl">def reverse_string(s):<br>&nbsp;&nbsp;&nbsp;&nbsp;return s[::-1]</div>
+      </div>
+      <div class="row">
+        <div class="tk">real math, zero internet</div>
+        <div class="tl">3pm + (150mi / 60mph) = 5:30pm</div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="42.85" data-out="45.615">
+  <div class="pad"><div class="kb">
+    <div class="biocard b" data-at="42.88"><span class="dot"></span><b>link in bio</b></div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="45.615" data-out="48.55">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="45.645" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+  </div></div>
+</section>
+
+<div class="subs" id="subs"></div>
+<div class="handle" data-decor>@actually_works.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="46.0" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+
+<div class="side">
+  <p class="k">Episode 31 — Experiment 2</p>
+  <h1>Your AI chatbot can run <em>completely offline</em> — it just doesn't know it can.</h1>
+  <p>This model's network was cut at the system
+  level — asked directly, it still guessed "I'm cloud-based, I need the internet." It's
+  wrong: it's running entirely on this machine, via Ollama, a free open-source tool that
+  runs real models like Llama completely offline. One command downloads the model once;
+  after that the network is optional.</p>
+</div>
+</div>
+
+<script src="../export/motion-kit.js"></script>
+<script>
+(function(){
+  var MK=window.MotionKit;
+  var DUR=49.15,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+  var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+
+  var CUES=[
+    [0.30,4.85,"Your AI chatbot can run completely offline right now — it just doesn't know it can."],
+    [5.27,12.80,"Here's proof: this one's network connection is completely cut. Not airplane mode — actually disconnected, at the system level."],
+    [13.22,18.61,"Ask it anyway, and it still guesses. \"I'm a cloud-based model. I can't work without a connection.\""],
+    [19.03,24.10,"It's wrong. It's responding right now, from this laptop, with the network completely off."],
+    [24.95,30.79,"The tool doing this is called Ollama — free, open source, and it needs zero internet to run."],
+    [31.21,36.00,"One command downloads the model, once. After that, the network is optional."],
+    [36.42,42.64,"It's not a toy demo. Real code, real math, a real conversation — same model, zero internet."],
+    [43.06,45.19,"The exact setup's in the link in bio."],
+    [46.04,48.25,"Follow for the setup that actually works."]
+  ];
+  var WORDS=[
+    [0.3,0.54,"Your",0],
+    [0.54,0.92,"AI",0],
+    [0.92,1.34,"chatbot",0],
+    [1.34,1.54,"can",1],
+    [1.54,1.74,"run",1],
+    [1.74,2.28,"completely",1],
+    [2.28,2.62,"offline",2],
+    [2.62,2.94,"right",2],
+    [2.94,3.36,"now",2],
+    [3.44,3.72,"it",3],
+    [3.72,3.92,"just",3],
+    [3.92,4.18,"doesn't",3],
+    [4.18,4.32,"know",4],
+    [4.32,4.54,"it",4],
+    [4.54,4.86,"can.",4],
+    [5.36,5.7,"Here's",5],
+    [5.7,6.08,"proof:",5],
+    [6.46,6.58,"this",6],
+    [6.58,7.0,"one's",6],
+    [7.0,7.22,"network",6],
+    [7.22,7.66,"connection",7],
+    [7.66,8.0,"is",7],
+    [8.0,8.56,"completely",7],
+    [8.56,8.82,"cut.",8],
+    [9.28,9.52,"Not",9],
+    [9.52,9.92,"airplane",9],
+    [9.92,10.26,"mode",9],
+    [10.26,10.94,"actually",10],
+    [10.94,11.58,"disconnected,",10],
+    [11.58,12.0,"at",11],
+    [12.0,12.16,"the",11],
+    [12.16,12.44,"system",11],
+    [12.44,12.86,"level.",12],
+    [13.3,13.54,"Ask",13],
+    [13.54,13.78,"it",13],
+    [13.78,14.12,"anyway,",13],
+    [14.12,14.36,"and",14],
+    [14.36,14.6,"it",14],
+    [14.6,14.78,"still",14],
+    [14.78,15.2,"guesses.",15],
+    [15.66,15.9,"\"I'm",16],
+    [15.9,16.02,"a",16],
+    [16.0,16.54,"cloud-based",16],
+    [16.54,16.92,"model.",17],
+    [17.04,17.24,"I",18],
+    [17.24,17.48,"can't",18],
+    [17.48,17.72,"work",18],
+    [17.72,17.96,"without",19],
+    [17.96,18.18,"a",19],
+    [18.18,18.48,"connection.\"",19],
+    [19.06,19.4,"It's",20],
+    [19.4,19.76,"wrong.",20],
+    [20.1,20.46,"It's",21],
+    [20.46,20.8,"responding",21],
+    [20.8,21.2,"right",21],
+    [21.2,21.5,"now,",22],
+    [21.5,21.68,"from",22],
+    [21.68,21.9,"this",22],
+    [21.9,22.32,"laptop,",22],
+    [22.32,22.68,"with",23],
+    [22.68,22.9,"the",23],
+    [22.9,23.14,"network",23],
+    [23.14,23.7,"completely",24],
+    [23.7,24.08,"off.",24],
+    [24.95,25.14,"The",25],
+    [25.14,25.44,"tool",25],
+    [25.44,25.68,"doing",25],
+    [25.68,26.04,"this",26],
+    [26.04,26.38,"is",26],
+    [26.38,26.68,"called",26],
+    [26.68,27.6,"Ollama",27],
+    [27.6,28.02,"free,",28],
+    [28.18,28.48,"open",29],
+    [28.48,28.88,"source,",29],
+    [29.16,29.28,"and",30],
+    [29.24,29.38,"it",30],
+    [29.38,29.62,"needs",30],
+    [29.62,29.92,"zero",31],
+    [29.92,30.28,"internet",31],
+    [30.28,30.52,"to",31],
+    [30.52,30.82,"run.",32],
+    [31.38,31.56,"One",33],
+    [31.56,31.9,"command",33],
+    [31.9,32.48,"downloads",33],
+    [32.48,32.7,"the",34],
+    [32.7,32.92,"model,",34],
+    [33.38,33.62,"once.",35],
+    [34.0,34.3,"After",36],
+    [34.3,34.58,"that,",36],
+    [34.8,34.94,"the",37],
+    [34.94,35.2,"network",37],
+    [35.2,35.52,"is",37],
+    [35.52,35.94,"optional.",38],
+    [36.5,36.78,"It's",39],
+    [36.78,36.98,"not",39],
+    [36.98,37.12,"a",39],
+    [37.12,37.26,"toy",40],
+    [37.26,37.58,"demo.",40],
+    [37.98,38.18,"Real",41],
+    [38.18,38.58,"code,",41],
+    [38.92,39.12,"real",42],
+    [39.12,39.42,"math,",42],
+    [39.72,39.86,"a",43],
+    [39.86,40.04,"real",43],
+    [40.04,40.66,"conversation",43],
+    [41.06,41.26,"same",44],
+    [41.26,41.62,"model,",44],
+    [41.98,42.22,"zero",45],
+    [42.22,42.66,"internet.",45],
+    [43.22,43.46,"The",46],
+    [43.46,43.7,"exact",46],
+    [43.7,44.02,"setup's",46],
+    [44.02,44.32,"in",47],
+    [44.32,44.44,"the",47],
+    [44.44,44.6,"link",47],
+    [44.6,44.86,"in",48],
+    [44.86,45.14,"bio.",48],
+    [46.14,46.38,"Follow",49],
+    [46.38,46.62,"for",49],
+    [46.62,46.86,"the",49],
+    [46.86,47.08,"setup",50],
+    [47.08,47.48,"that",50],
+    [47.48,47.84,"actually",50],
+    [47.84,48.14,"works.",51]
+  ];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  var hookKb=document.getElementById('hookKb');
+  var hookH2=document.getElementById('hookH2');
+  var hookScene=hookH2.closest('.scene');
+  var hookSplit=MK.splitWordsSafe(hookH2);
+  var hookClimax=null;
+  for(var hi=0;hi<hookSplit.words.length;hi++){
+    var hw=hookSplit.words[hi];
+    if(hw.classList.contains('box')||hw.classList.contains('ebox')){ hookClimax=hw; break; }
+  }
+  var hookClimaxIndex=hookClimax?hookSplit.words.indexOf(hookClimax):-1;
+  var hookGlow=null;
+  if(hookClimax){
+    hookGlow=document.createElement('div');
+    hookGlow.className='glowbloom';
+    hookGlow.style.cssText='position:absolute;inset:-45%;border-radius:50%;z-index:-1;'+
+      'background:radial-gradient(circle,var(--brass) 0%,rgba(0,0,0,0) 70%)';
+    hookClimax.insertBefore(hookGlow,hookClimax.firstChild);
+  }
+
+  var quoteCard=document.getElementById('quoteCard');
+  var quoteScene=quoteCard.closest('.scene');
+  var quoteQkWords=MK.splitWordsSafe(document.getElementById('quoteQk')).words;
+  var quoteQbSplit=MK.splitWordsSafe(document.getElementById('quoteQb'));
+  var quoteQbEl=document.getElementById('quoteQb');
+  var quoteBars=[];
+  function buildQuoteBars(){
+    quoteBars.forEach(function(b){ if(b.parentNode) b.parentNode.removeChild(b); });
+    quoteBars=MK.buildHighlightBars(quoteQbEl,quoteQbSplit.highlighted);
+  }
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(buildQuoteBars);
+  else buildQuoteBars();
+
+  var afterCard=document.getElementById('afterCard');
+  var afterScene=afterCard.closest('.scene');
+  var afterAkWords=MK.splitWordsSafe(document.getElementById('afterAk')).words;
+  var afterAbSplit=MK.splitWordsSafe(document.getElementById('afterAb'));
+
+  function renderHook(){
+    var ht=t-(+hookScene.dataset.in);
+    var START=0.15,GAP=0.10,DUR2=0.30;
+    for(var i=0;i<hookSplit.words.length;i++){
+      var w=hookSplit.words[i],at=START+i*GAP;
+      if(w===hookClimax){
+        MK.animatePop(w,ht,at,DUR2);
+        if(hookGlow) MK.animateGlowBloom(hookGlow,ht,at,DUR2,0.30);
+      } else {
+        var e=MK.smoothIn(MK.clamp01((ht-at)/DUR2));
+        w.style.opacity=String(e);
+        w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+      }
+    }
+    if(hookClimaxIndex>=0){
+      var climaxAt=START+hookClimaxIndex*GAP;
+      var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.96,pushAt:climaxAt,pushDur:0.9,pushTo:1.04});
+      hookKb.style.transform='scale('+camScale.toFixed(4)+')';
+    }
+  }
+
+  function renderQuote(){
+    var qt=t-(+quoteScene.dataset.in);
+    var CARD_DUR=0.4;
+    var le=MK.smoothIn(MK.clamp01(qt/CARD_DUR));
+    quoteCard.style.opacity=String(le);
+    quoteCard.style.transform='translateY('+(36*(1-le)).toFixed(2)+'px)';
+    quoteCard.style.boxShadow='0 '+(10+30*le).toFixed(1)+'px '+(40+60*le).toFixed(1)+'px rgba(0,0,0,'+(0.25*le).toFixed(3)+')';
+
+    var QK_START=0.10,QK_GAP=0.05,QK_DUR=0.22;
+    for(var i=0;i<quoteQkWords.length;i++){
+      var e=MK.smoothIn(MK.clamp01((qt-(QK_START+i*QK_GAP))/QK_DUR));
+      quoteQkWords[i].style.opacity=String(e);
+      quoteQkWords[i].style.transform='translateY('+(10*(1-e)).toFixed(2)+'px)';
+    }
+    var qkEnd=MK.wordsEndAt(quoteQkWords,QK_START,QK_GAP,QK_DUR);
+    var QB_START=qkEnd+0.10,QB_GAP=0.03,QB_DUR=0.22;
+    for(var j=0;j<quoteQbSplit.words.length;j++){
+      var e2=MK.smoothIn(MK.clamp01((qt-(QB_START+j*QB_GAP))/QB_DUR));
+      quoteQbSplit.words[j].style.opacity=String(e2);
+      quoteQbSplit.words[j].style.transform='translateY('+(10*(1-e2)).toFixed(2)+'px)';
+    }
+  }
+
+  function renderAfter(){
+    var at2=t-(+afterScene.dataset.in);
+    var AK_START=0.10,AK_GAP=0.05,AK_DUR=0.22;
+    for(var i=0;i<afterAkWords.length;i++){
+      var e=MK.smoothIn(MK.clamp01((at2-(AK_START+i*AK_GAP))/AK_DUR));
+      afterAkWords[i].style.opacity=String(e);
+      afterAkWords[i].style.transform='translateY('+(10*(1-e)).toFixed(2)+'px)';
+    }
+    var akEnd=MK.wordsEndAt(afterAkWords,AK_START,AK_GAP,AK_DUR);
+    var AB_START=akEnd+0.20,AB_GAP=0.08,AB_DUR=0.3;
+    for(var j=0;j<afterAbSplit.words.length;j++){
+      var e2=MK.smoothIn(MK.clamp01((at2-(AB_START+j*AB_GAP))/AB_DUR));
+      var w=afterAbSplit.words[j];
+      w.style.opacity=String(e2);
+      w.style.transform='scale('+(0.7+0.3*e2).toFixed(3)+')';
+    }
+  }
+
+  var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
+  function renderTransitions(){
+    for(var i=0;i<scenes.length-1;i++){
+      var boundary=+scenes[i].dataset.out;
+      var outStart=boundary-OUT_DUR, inStart=outStart+IN_OFFSET;
+      MK.zoomThroughTransition(scenes[i], scenes[i+1], t, outStart, inStart, OUT_DUR, IN_DUR);
+    }
+  }
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      if(on) active=s;
+    }
+    renderTransitions();
+    if(active){
+      var kbEnd=(+active.dataset.out)-OUT_DUR;
+      var f=t>=kbEnd?0:(t-+active.dataset.in)/(kbEnd-(+active.dataset.in));
+      var kbs=active.querySelectorAll('.kb');
+      for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.06*f).toFixed(4)+')';
+    }
+
+    renderHook();
+    renderQuote();
+    renderAfter();
+
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      e.classList.toggle('snap',t<0.30);
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    b1.style.transform='translate('+(2+14*Math.sin(t*0.3))+'cqw,'+(-4+16*Math.cos(t*0.22))+'cqw)';
+    b2.style.transform='translate('+(18*Math.cos(t*0.18+1.4))+'cqw,'+(16*Math.sin(t*0.24+.6))+'cqw)';
+    b3.style.transform='translate('+(10+18*Math.sin(t*0.15+2.1))+'cqw,'+(-10*Math.cos(t*0.2+1.1))+'cqw)';
+
+    /* The chunk on screen is the one the last spoken word belongs to, and it holds
+       until the next chunk's first word — otherwise the caption blanks for a third of
+       a second between chunks while the voice is still going. It clears only between
+       lines, where the silence is real. */
+    /* The window has to close the ordinary gaps. The scene's own headline is written to
+       disappear before the next one arrives, so a caption that blanks in a 0.42s gap
+       leaves the whole screen textless — measured at eleven places, 0.13s each. Reaching
+       0.32s back and 0.15s forward covers those, and the only remaining blanks fall
+       inside the 0.80s section gaps, where the colour card fills the frame anyway. After
+       the last line the caption holds to the end rather than leaving a blank tail. */
+    var inLine=false;
+    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.32&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    if(t>CUES[CUES.length-1][1]) inLine=true;
+    var here=-1, cur=-1;
+    /* the lit word is the last one that started, not only the one still sounding:
+       Whisper's word boundaries are tight, so gating on the word's own end left the
+       highlight off for 13.4s of the reel */
+    for(i=0;i<WORDS.length;i++) if(WORDS[i][0]<=t+0.08){ here=WORDS[i][3]; cur=i; }
+    var txt='';
+    if(inLine&&here>=0){
+      for(i=0;i<WORDS.length;i++) if(WORDS[i][3]===here)
+        txt+=(i===cur?'<b class="on">':'<b>')+WORDS[i][2]+'</b> ';
+    }
+    subs.innerHTML=txt;
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>
