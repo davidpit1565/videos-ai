@@ -94,17 +94,28 @@ channel (episodes 18, 19, 26).
 
 Log's last: 30 Contrarian Open, 29 Shock/Surprise.
 
-**"Your AI chatbot can run completely offline right now — it just doesn't know it
-can."**
+**Reworked again 10.9.2026, same day**, after a second real reviewer round (shown the
+reworked cut) flagged "your AI chatbot" itself as still too vague — a viewer has to
+guess which chatbot before the claim even lands, and named Claude or Gemini as the kind
+of concrete reference that would fix it. Their literal suggestion couldn't be used as
+given: neither Claude nor Gemini runs offline, so naming either as the subject would be
+a false capability claim, the same trap as Roni's first suggestion. The accurate fix
+that still satisfies "be specific": name the single most globally recognized chatbot
+(ChatGPT) as the point of contrast, in a claim that's true of ChatGPT itself (it does
+require the internet — no false claim), then reveal the different, real tool that
+doesn't.
 
-Passes the dry-sentence test (real pull: "wait, could mine actually do that?" — mild
-disbelief plus curiosity) and the checkable-fact test (the viewer can go ask their own
-chatbot the same question right now) — and now states the specific, surprising claim in
-the first clause, not the second sentence.
+**"ChatGPT needs the internet to respond. This AI doesn't — and it just proved
+it."**
+
+Passes the dry-sentence test (real pull: "wait, mine needs the internet — this doesn't?"
+— mild disbelief plus curiosity) and the checkable-fact test (ChatGPT needing an internet
+connection is true and checkable in one second) — and is now concrete about which
+chatbot, not "your AI chatbot" left for the viewer to guess.
 
 ## Full narration (~40s at natural pace)
 
-1. Your AI chatbot can run completely offline right now — it just doesn't know it can.
+1. ChatGPT needs the internet to respond. This AI doesn't — and it just proved it.
 2. Here's proof: this one's network connection is completely cut. Not airplane mode — actually disconnected, at the system level.
 3. Ask it anyway, and it still guesses. "I'm a cloud-based model. I can't work without a connection."
 4. It's wrong. It's responding right now, from this laptop, with the network completely off.
@@ -150,9 +161,8 @@ run llama3.2` and ask it anything — works with zero connection from here on.
 
 ## Caption / YouTube text (draft)
 
-> Your AI chatbot can run completely offline right now — it just doesn't know it can.
-> This one just answered with its network completely cut, not airplane
-> mode, actually disconnected.
+> ChatGPT needs the internet to respond. This AI doesn't — and it just proved it:
+> its network was completely cut, not airplane mode, actually disconnected.
 >
 > Asked directly, it still guessed wrong: "I'm a cloud-based model. I need the internet
 > to work." It isn't. It's running entirely on this machine.
