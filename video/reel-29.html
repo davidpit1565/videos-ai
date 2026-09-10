@@ -1,4 +1,4 @@
-<title>Reel 29 — Your n8n workflow can fail completely and still say 'Success.'</title>
+<title>Reel 29 — Right now, your n8n workflow can fail completely and still say 'Success.'</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@500;600&display=swap">
@@ -156,7 +156,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <section class="scene" data-in="14.55" data-out="19.35">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="14.58">Still reads green.<br><strong>Success.</strong><br>Every single time.</p>
+    <p class="lede b" data-at="14.58">Still reads green.<br><strong>Success</strong> —<br>no exceptions.</p>
   </div></div>
 </section>
 
@@ -180,7 +180,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <section class="scene" data-in="29.55" data-out="35.55">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="29.58">One check catches it:<br>look for the <strong>error field</strong>,<br>alert the moment it appears.</p>
+    <p class="lede b" data-at="29.58">One extra step catches it:<br>a branch <strong>watches for it</strong>,<br>then tells you the moment it appears.</p>
   </div></div>
 </section>
 
@@ -211,7 +211,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="side">
   <p class="k">Episode 29</p>
-  <h1>Your n8n workflow can <em>fail completely</em> — and still say 'Success.'</h1>
+  <h1>Right now, your n8n workflow can <em>fail completely</em> — and still say 'Success.'</h1>
   <p>A real, sourced n8n behavior: a node's "On Error" setting can be set to "Continue,"
   built to survive a small hiccup — but when the node genuinely fails, n8n doesn't flag
   the workflow at all. The Executions list still reads green. The only place the failure
@@ -236,13 +236,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,4.20,"Your n8n workflow can fail completely — and still say \"Success.\""],
+    [0.30,4.20,"Right now, your n8n workflow can fail completely — and still say \"Success.\""],
     [4.55,9.70,"One setting causes it: On Error, set to Continue — built to survive a small hiccup."],
     [10.05,14.20,"But when a node actually fails, n8n doesn't flag the workflow at all."],
-    [14.55,18.95,"The Executions list still reads green. Success. Every single time."],
-    [19.35,23.80,"The only place it shows is inside that node's own output — buried in error data nobody opens."],
+    [14.55,18.95,"The Executions list still reads green. Success — no exceptions."],
+    [19.35,23.80,"The only place it shows is inside that node's own output — buried where no one looks."],
     [24.15,29.15,"Real case, from n8n's own community: a workflow silently stopped working for weeks, and the log insisted it was fine."],
-    [29.55,35.15,"One extra step catches it — a branch that checks for the error field, and alerts you the moment it appears."],
+    [29.55,35.15,"One extra step catches it: a branch that watches for it, then tells you the moment it appears."],
     [35.55,41.45,"The exact setup's in the link in bio."],
     [41.85,47.40,"Follow for the setup that actually works."]
   ];
