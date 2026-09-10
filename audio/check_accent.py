@@ -40,6 +40,14 @@ one — better than the first cut, but still not a validated rate. Treat a flag 
 listening to," not as certain, and don't read a long quiet stretch as proof it works; it
 may just mean no line has drifted since.
 
+Floor lowered again 10.9.2026, after a third ear-confirmed miss: episode 31's hook line
+("ChatGPT needs the internet to respond...") scored 0.39 — clearly accented to David's
+ear on the very first thing the viewer hears — but sat under the 0.45 floor and shipped
+anyway. Every confirmed-clean line measured so far across two episodes tops out at 0.14
+(both episodes' closing "link in bio" line); 0.39 is nearly 3x that and should never have
+been read as noise. Floor moved to 0.25 — comfortably above the clean ceiling, comfortably
+below every confirmed-bad case (0.39, 0.48, 0.99 across the three real misses so far).
+
     python3 audio/check_accent.py audio/reel30-narration-r.wav
 """
 import argparse, json, os, sys, warnings
@@ -55,7 +63,7 @@ OFF_LABELS = ("indian", "england", "australia")
 # label — see the docstring above for why this replaced a narrower "indian only" gate.
 AMERICAN_LABELS = ("us", "canada")
 # Absolute floor: below this, a score is noise no matter how it compares to the median.
-NOT_AMERICAN_FLOOR = 0.45
+NOT_AMERICAN_FLOOR = 0.25
 # Multiple of the file's own median before a line counts as an outlier.
 OUTLIER_MULT = 4
 

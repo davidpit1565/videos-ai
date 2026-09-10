@@ -138,15 +138,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="6.49">
+<section class="scene" data-in="0" data-out="5.89">
   <div class="pad"><div class="kb" id="hookKb">
     <h2 class="punch" id="hookH2">ChatGPT needs<br>the <span class="box">internet</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="6.49" data-out="14.44">
+<section class="scene" data-in="5.89" data-out="13.84">
   <div class="pad"><div class="kb">
-    <div class="termbox b" data-at="6.52">
+    <div class="termbox b" data-at="5.92">
       <div class="tk">network status</div>
       <div class="tl">curl: Failed to connect — Couldn't connect to server</div>
       <div class="badge"><span class="dot"></span>disconnected</div>
@@ -154,7 +154,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="14.44" data-out="20.25">
+<section class="scene" data-in="13.84" data-out="19.65">
   <div class="pad"><div class="kb">
     <div class="quote" id="quoteCard" style="opacity:0">
       <div class="qk" id="quoteQk">asked directly — real answer</div>
@@ -163,7 +163,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="20.25" data-out="25.955">
+<section class="scene" data-in="19.65" data-out="25.355">
   <div class="pad"><div class="kb">
     <div class="after" id="afterCard">
       <div class="ak" id="afterAk">it's wrong</div>
@@ -172,24 +172,24 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="25.955" data-out="32.63">
+<section class="scene" data-in="25.355" data-out="32.04">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="25.985">The tool is called<br><strong>Ollama</strong> — free, open<br>source, zero internet.</p>
+    <p class="lede b" data-at="25.385">The tool is called<br><strong>Ollama</strong> — free, open<br>source, zero internet.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="32.63" data-out="37.84">
+<section class="scene" data-in="32.04" data-out="37.25">
   <div class="pad"><div class="kb">
-    <div class="termbox b" data-at="32.66">
+    <div class="termbox b" data-at="32.07">
       <div class="tk">one command, once</div>
       <div class="tl">$ ollama pull llama3.2</div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="37.84" data-out="44.48">
+<section class="scene" data-in="37.25" data-out="43.89">
   <div class="pad"><div class="kb">
-    <div class="termbox2 b" data-at="37.87">
+    <div class="termbox2 b" data-at="37.28">
       <div class="row">
         <div class="tk">real code, zero internet</div>
         <div class="tl">def reverse_string(s):<br>&nbsp;&nbsp;&nbsp;&nbsp;return s[::-1]</div>
@@ -202,15 +202,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="44.48" data-out="47.245">
+<section class="scene" data-in="43.89" data-out="46.645">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="44.51"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="43.92"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="47.245" data-out="50.18">
+<section class="scene" data-in="46.645" data-out="49.59">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="47.275" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="46.675" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -242,7 +242,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=50.78,t=0,playing=false,last=0;
+  var DUR=50.19,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -252,15 +252,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,6.28,"ChatGPT needs the internet to respond. This AI doesn't — and it just proved it."],
-    [6.70,14.23,"Here's proof: this one's network connection is completely cut. Not airplane mode — actually disconnected, at the system level."],
-    [14.65,20.04,"Ask it anyway, and it still guesses. \"I'm a cloud-based model. I can't work without a connection.\""],
-    [20.46,25.53,"It's wrong. It's responding right now, from this laptop, with the network completely off."],
-    [26.38,32.42,"The tool doing this is called Ollama — free, open source, and it needs zero internet to run."],
-    [32.84,37.63,"One command downloads the model, once. After that, the network is optional."],
-    [38.05,44.27,"It's not a toy demo. Real code, real math, a real conversation — same model, zero internet."],
-    [44.69,46.82,"The exact setup's in the link in bio."],
-    [47.67,49.88,"Follow for the setup that actually works."]
+    [0.30,5.68,"ChatGPT needs the internet to respond. This AI doesn't — and it just proved it."],
+    [6.10,13.63,"Here's proof: this one's network connection is completely cut. Not airplane mode — actually disconnected, at the system level."],
+    [14.05,19.44,"Ask it anyway, and it still guesses. \"I'm a cloud-based model. I can't work without a connection.\""],
+    [19.86,24.93,"It's wrong. It's responding right now, from this laptop, with the network completely off."],
+    [25.78,31.83,"The tool doing this is called Ollama — free, open source, and it needs zero internet to run."],
+    [32.25,37.04,"One command downloads the model, once. After that, the network is optional."],
+    [37.46,43.68,"It's not a toy demo. Real code, real math, a real conversation — same model, zero internet."],
+    [44.10,46.22,"The exact setup's in the link in bio."],
+    [47.07,49.29,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}

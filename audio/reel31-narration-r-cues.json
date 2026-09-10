@@ -3,54 +3,54 @@
   "n": 1,
   "line": "ChatGPT needs the internet to respond. This AI doesn't \u2014 and it just proved it.",
   "start": 0.3,
-  "end": 6.28
+  "end": 5.68
  },
  {
   "n": 2,
   "line": "Here's proof: this one's network connection is completely cut. Not airplane mode \u2014 actually disconnected, at the system level.",
-  "start": 6.7,
-  "end": 14.23
+  "start": 6.1,
+  "end": 13.63
  },
  {
   "n": 3,
   "line": "Ask it anyway, and it still guesses. \"I'm a cloud-based model. I can't work without a connection.\"",
-  "start": 14.65,
-  "end": 20.04
+  "start": 14.05,
+  "end": 19.44
  },
  {
   "n": 4,
   "line": "It's wrong. It's responding right now, from this laptop, with the network completely off.",
-  "start": 20.46,
-  "end": 25.53
+  "start": 19.86,
+  "end": 24.93
  },
  {
   "n": 5,
   "line": "The tool doing this is called Ollama \u2014 free, open source, and it needs zero internet to run.",
-  "start": 26.38,
-  "end": 32.42
+  "start": 25.78,
+  "end": 31.83
  },
  {
   "n": 6,
   "line": "One command downloads the model, once. After that, the network is optional.",
-  "start": 32.84,
-  "end": 37.63
+  "start": 32.25,
+  "end": 37.04
  },
  {
   "n": 7,
   "line": "It's not a toy demo. Real code, real math, a real conversation \u2014 same model, zero internet.",
-  "start": 38.05,
-  "end": 44.27
+  "start": 37.46,
+  "end": 43.68
  },
  {
   "n": 8,
   "line": "The exact setup's in the link in bio.",
-  "start": 44.69,
-  "end": 46.82
+  "start": 44.1,
+  "end": 46.22
  },
  {
   "n": 9,
   "line": "Follow for the setup that actually works.",
-  "start": 47.67,
-  "end": 49.88
+  "start": 47.07,
+  "end": 49.29
  }
 ]

@@ -819,7 +819,7 @@ export const ARTICLES: Article[] = [
   },
   {
     n: 31,
-    title: "Ask any AI chatbot if it's connected to the internet. It can't actually tell you what is true.",
+    title: "ChatGPT needs the internet to respond. This AI doesn't — and it just proved it.",
     standfirst:
       "A real, working AI model, run entirely on your own machine, with the network " +
       "cut at the system level — not airplane mode, an actual disconnected namespace. " +

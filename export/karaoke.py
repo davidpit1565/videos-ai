@@ -202,7 +202,13 @@ def main():
     var txt='';
     if(inLine&&here>=0){
       for(i=0;i<WORDS.length;i++) if(WORDS[i][3]===here)
-        txt+=(i===cur?'<b class="on">':'<b>')+WORDS[i][2]+'</b> ';
+        /* a plain space between two bold, all-caps <b> words read as glued together
+           on screen (measured: an 8px gap at 1080px width, on top of .subs's own
+           -.01em letter-spacing) — caught on episode 31's "A"/"CLOUD-BASED" pair
+           during the mandatory double-viewing. A non-breaking space in front of the
+           ordinary one can't collapse the way two plain spaces would, and reads as a
+           clearly visible gap instead. */
+        txt+=(i===cur?'<b class="on">':'<b>')+WORDS[i][2]+'</b>  ';
     }
     subs.innerHTML=txt;""")
     open(a.out, "w", encoding="utf-8").write(src)
