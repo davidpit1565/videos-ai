@@ -395,6 +395,7 @@ def main():
 
     words = deep(a.wav, rows) if a.deep else None
     rushed_bad = []
+    held_bad = []
     if words:
         tail_med, tail_floor = mad_floor([w["tail"] for w in words])
         sib_med, sib_floor = mad_floor([w["sib"] for w in words])
@@ -416,12 +417,19 @@ def main():
         # 6-letter word at 0.1s/syllable is the swallowed one. The floor below is
         # built only from words long enough that "fast" is actually informative.
         content_pv = np.array([w["per"] for w in words if len(w["word"]) > 2])
+        # Used to be printed only, never gating — episode 29's hook shipped with "Your"
+        # (the first word) held at 0.80s/syllable, 4x this file's own median, and it
+        # reached David's ear as a hairline pause right after the hook's opening word
+        # before anything caught it. The same robust-outlier fence rushed/clipped
+        # already gates on, mirrored upward: an extreme hold is symmetric with an
+        # extreme compression, same defect class, same "re-roll this line" fix.
         print(f"  held too long (over {ceiling:.3f}s per syllable, median {per_med:.3f}):")
         if not smeared:
             print("    none — no word is held out of line with the rest")
         for w in smeared:
             print(f"    {w['at']:>6.2f}s  {w['word']:<14} {w['per']:.3f}s per syllable "
-                  f"({w['dur']:.2f}s)")
+                  f"({w['dur']:.2f}s) — held out of line with the rest, re-roll this line")
+        held_bad = [w["word"] for w in smeared if w["word"].strip(",.!?—").lower() not in accepted]
         # The opposite defect, and the one that actually reached him first (episode 22:
         # "would" measured 0.08s against neighbors at 0.15-0.4s) — a word compressed
         # far below his own median reads as swallowed/clipped, the same complaint as a
@@ -481,7 +489,7 @@ def main():
                 print(f"  the take-level check runs before the mix; this runs on the file "
                       f"that actually ships. Re-roll the flagged line and rebuild.")
 
-    return 1 if (watch_bad or rushed_bad or any(s == 3 for s, *_ in issues)) else 0
+    return 1 if (watch_bad or rushed_bad or held_bad or any(s == 3 for s, *_ in issues)) else 0
 
 
 if __name__ == "__main__":
