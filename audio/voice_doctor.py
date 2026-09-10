@@ -395,7 +395,7 @@ def main():
 
     words = deep(a.wav, rows) if a.deep else None
     rushed_bad = []
-    held_bad = []
+    open_bad = []
     if words:
         tail_med, tail_floor = mad_floor([w["tail"] for w in words])
         sib_med, sib_floor = mad_floor([w["sib"] for w in words])
@@ -417,19 +417,35 @@ def main():
         # 6-letter word at 0.1s/syllable is the swallowed one. The floor below is
         # built only from words long enough that "fast" is actually informative.
         content_pv = np.array([w["per"] for w in words if len(w["word"]) > 2])
-        # Used to be printed only, never gating — episode 29's hook shipped with "Your"
-        # (the first word) held at 0.80s/syllable, 4x this file's own median, and it
-        # reached David's ear as a hairline pause right after the hook's opening word
-        # before anything caught it. The same robust-outlier fence rushed/clipped
-        # already gates on, mirrored upward: an extreme hold is symmetric with an
-        # extreme compression, same defect class, same "re-roll this line" fix.
         print(f"  held too long (over {ceiling:.3f}s per syllable, median {per_med:.3f}):")
         if not smeared:
             print("    none — no word is held out of line with the rest")
         for w in smeared:
             print(f"    {w['at']:>6.2f}s  {w['word']:<14} {w['per']:.3f}s per syllable "
-                  f"({w['dur']:.2f}s) — held out of line with the rest, re-roll this line")
-        held_bad = [w["word"] for w in smeared if w["word"].strip(",.!?—").lower() not in accepted]
+                  f"({w['dur']:.2f}s)")
+        # This whole section used to be informational only, which is exactly how
+        # episode 29 shipped with its hook's first word, "Your", held at 0.80s/syllable
+        # (4.0x this file's own median) before David's ear caught it. But gating on
+        # the general per-file outlier fence above is too broad: checked against
+        # episode 27 and 30's already-shipped, uncomplained-about audio before this
+        # went live, and at that same ceiling both flip "held too long" on ordinary
+        # words — episode 27's own first word "I" (0.52s, 2.3x median) and episode
+        # 30's "AI" (0.62s, 2.8x median) among them. A first word running a bit slow
+        # is normal prosody, not a defect, and gating that broadly would fail clean
+        # episodes going forward on nothing anyone has ever complained about.
+        # The actual, confirmed defect is narrower: the take's very first word,
+        # specifically, running extreme — not just elevated. 3.5x sits between the
+        # two known-fine cases above (2.3x, 2.8x) and the one confirmed-bad case
+        # (4.0x), so it catches a real repeat without re-flagging either of those.
+        OPEN_WORD_RATIO = 3.5
+        if words[0]["per"] > OPEN_WORD_RATIO * per_med:
+            w0 = words[0]
+            print(f"  opening word held extreme ({w0['per']:.3f}s per syllable, "
+                  f"{w0['per']/per_med:.1f}x this file's own median {per_med:.3f}s) — "
+                  f"reads as a pause right after the hook's first word, re-roll this line:")
+            print(f"    {w0['at']:>6.2f}s  {w0['word']}")
+            if w0["word"].strip(",.!?—").lower() not in accepted:
+                open_bad = [w0["word"]]
         # The opposite defect, and the one that actually reached him first (episode 22:
         # "would" measured 0.08s against neighbors at 0.15-0.4s) — a word compressed
         # far below his own median reads as swallowed/clipped, the same complaint as a
@@ -489,7 +505,7 @@ def main():
                 print(f"  the take-level check runs before the mix; this runs on the file "
                       f"that actually ships. Re-roll the flagged line and rebuild.")
 
-    return 1 if (watch_bad or rushed_bad or held_bad or any(s == 3 for s, *_ in issues)) else 0
+    return 1 if (watch_bad or rushed_bad or open_bad or any(s == 3 for s, *_ in issues)) else 0
 
 
 if __name__ == "__main__":
