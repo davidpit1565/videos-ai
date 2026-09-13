@@ -1,11 +1,11 @@
-<title>Reel 32 — 78% buy from whoever responds first</title>
+<title>Reel 32 — n8n never tells you when a workflow dies</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@500;600&display=swap">
 <style>
 :root{
   --ink:#0A0E14;--line:#1F2B3A;
-  --brass:#16A34A;--brass-hot:#4ADE80;--ember:#EAB308;
+  --brass:#DC2626;--brass-hot:#F87171;--ember:#F59E0B;
   --text:#FFFFFF;--muted:#8AA0B8;
   --d:'Archivo','Helvetica Neue',Arial,sans-serif;
   --b:'Assistant','Segoe UI',system-ui,sans-serif;
@@ -21,15 +21,15 @@ body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-
 
 .bg{position:absolute;inset:0;z-index:0}
 .bg i{position:absolute;display:block;border-radius:50%;will-change:transform;left:0;top:0}
-.bg .b1{width:130cqw;height:130cqw;top:-40cqw;left:-30cqw;background:radial-gradient(circle closest-side,rgba(22,163,74,.22),rgba(22,163,74,0) 70%)}
+.bg .b1{width:130cqw;height:130cqw;top:-40cqw;left:-30cqw;background:radial-gradient(circle closest-side,rgba(220,38,38,.22),rgba(220,38,38,0) 70%)}
 .bg .b2{width:150cqw;height:150cqw;top:50cqw;left:-10cqw;background:radial-gradient(circle closest-side,rgba(20,28,40,.6),rgba(20,28,40,0) 70%)}
-.bg .b3{width:120cqw;height:120cqw;top:120cqw;left:20cqw;background:radial-gradient(circle closest-side,rgba(234,179,8,.16),rgba(234,179,8,0) 70%)}
+.bg .b3{width:120cqw;height:120cqw;top:120cqw;left:20cqw;background:radial-gradient(circle closest-side,rgba(245,158,11,.16),rgba(245,158,11,0) 70%)}
 .grain{position:absolute;inset:0;z-index:1;opacity:.05;
   background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
 .vig{position:absolute;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(120% 90% at 50% 50%,transparent 40%,rgba(5,7,9,.55) 100%)}
 .prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--brass);z-index:14;width:0;
-  box-shadow:0 0 3cqw rgba(22,163,74,.7)}
+  box-shadow:0 0 3cqw rgba(220,38,38,.7)}
 
 .scene{position:absolute;inset:0;z-index:2}
 .pad{position:absolute;inset:0;padding:28cqw 10cqw 65cqw;display:flex;flex-direction:column;
@@ -45,7 +45,7 @@ body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-
 h2{font-family:var(--d);font-weight:900;font-size:9.4cqw;line-height:1.05;letter-spacing:-.04em;
   margin:0;text-wrap:balance;position:relative;z-index:2}
 h2 em{font-style:normal;color:var(--brass)}
-h2 .box{background:var(--brass);color:#052012;padding:0 1.6cqw;border-radius:1cqw;
+h2 .box{background:var(--brass);color:#FFF5F5;padding:0 1.6cqw;border-radius:1cqw;
   display:inline-block;position:relative;transform:rotate(-1.2deg)}
 h2 .ebox{background:var(--ember);color:#241A02;padding:0 1.6cqw;border-radius:1cqw;display:inline-block;position:relative}
 .glowbloom{position:absolute;pointer-events:none;opacity:0}
@@ -53,33 +53,36 @@ h2 .ebox{background:var(--ember);color:#241A02;padding:0 1.6cqw;border-radius:1c
 p.lede{font-size:5.6cqw;line-height:1.3;color:#EAF3FB;margin:0;font-weight:700;position:relative;z-index:2}
 p.lede strong{color:var(--brass)}
 
-.termbox{background:#0A140F;border:.4cqw solid #1F3A27;border-radius:1.6cqw;
+.termbox{background:#160A0A;border:.4cqw solid #3A1F1F;border-radius:1.6cqw;
   padding:4cqw 4.6cqw;width:100%;position:relative;z-index:2;text-align:left}
 .termbox .tk{font-family:var(--m);font-size:2.6cqw;letter-spacing:.14em;text-transform:uppercase;
-  color:#7BAE8C;margin:0 0 1.8cqw}
-.termbox .tl{font-family:var(--ui);font-weight:500;font-size:4.4cqw;color:#4ADE80;line-height:1.5}
-.termbox .tl2{font-family:var(--m);font-weight:500;font-size:3.6cqw;color:#EAB308;line-height:1.5;margin-top:2.4cqw}
+  color:#AE7B7B;margin:0 0 1.8cqw}
+.termbox .tl{font-family:var(--ui);font-weight:500;font-size:4.4cqw;color:#F87171;line-height:1.5}
+.termbox .tl2{font-family:var(--m);font-weight:500;font-size:3.6cqw;color:#F59E0B;line-height:1.5;margin-top:2.4cqw}
+.badge{display:inline-flex;align-items:center;gap:1.6cqw;background:#241010;border:.35cqw solid #F87171;
+  border-radius:99cqw;padding:1.6cqw 4cqw;margin-top:3cqw;font-family:var(--m);font-size:3.2cqw;
+  letter-spacing:.1em;text-transform:uppercase;color:#F87171}
+.badge .dot{width:2cqw;height:2cqw;border-radius:50%;background:#F87171}
 
-.termbox2{background:#0A140F;border:.4cqw solid #1F3A27;border-radius:1.6cqw;
+.termbox2{background:#160A0A;border:.4cqw solid #3A1F1F;border-radius:1.6cqw;
   padding:4cqw 4.6cqw;width:100%;position:relative;z-index:2;text-align:left}
 .termbox2 .row{margin-bottom:3.4cqw}
 .termbox2 .row:last-child{margin-bottom:0}
 .termbox2 .tk{font-family:var(--m);font-size:2.5cqw;letter-spacing:.12em;text-transform:uppercase;
-  color:#7BAE8C;margin:0 0 1.2cqw}
-.termbox2 .tl{font-family:var(--m);font-weight:500;font-size:3.6cqw;color:#4ADE80;line-height:1.45}
+  color:#AE7B7B;margin:0 0 1.2cqw}
+.termbox2 .tl{font-family:var(--m);font-weight:500;font-size:3.6cqw;color:#F59E0B;line-height:1.45}
 
 .scoreboard{display:flex;flex-direction:column;gap:2.6cqw;width:100%;position:relative;z-index:2}
-.scorerow{display:flex;align-items:center;justify-content:space-between;background:#0F1712;
-  border:.3cqw solid #1F3A27;border-radius:1.6cqw;padding:3cqw 4cqw;position:relative}
-.scorerow .lbl{font-family:var(--ui);font-weight:600;font-size:4cqw;color:#CFE0D4;text-align:left}
+.scorerow{display:flex;align-items:center;justify-content:space-between;background:#160A0A;
+  border:.3cqw solid #3A1F1F;border-radius:1.6cqw;padding:3cqw 4cqw;position:relative}
+.scorerow .lbl{font-family:var(--ui);font-weight:600;font-size:4cqw;color:#E0CFCF;text-align:left}
 .scorerow .val{font-family:var(--d);font-weight:900;font-size:6.4cqw;color:var(--brass)}
-.scorerow.win .val{color:var(--brass-hot)}
 
 .subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
   font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
   text-transform:uppercase;
   text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
-.subs em{font-style:normal;background:var(--brass);color:#052012;padding:0 1.4cqw;border-radius:.9cqw;
+.subs em{font-style:normal;background:var(--brass);color:#FFF5F5;padding:0 1.4cqw;border-radius:.9cqw;
   display:inline-block;text-shadow:none}
 .subs b{font-weight:800;color:#fff;transition:color .09s linear,transform .09s linear;display:inline-block}
 .subs b.on{color:var(--brass-hot);transform:scale(1.06)}
@@ -90,7 +93,7 @@ p.lede strong{color:var(--brass)}
 .tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--brass);display:grid;place-items:center}
 .tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
 
-.biocard{display:inline-flex;align-items:center;gap:2.2cqw;background:#0F1712;border:.35cqw solid var(--brass);
+.biocard{display:inline-flex;align-items:center;gap:2.2cqw;background:#160A0A;border:.35cqw solid var(--brass);
   border-radius:99cqw;padding:2.4cqw 5cqw;position:relative;z-index:2}
 .biocard .dot{width:2.6cqw;height:2.6cqw;border-radius:50%;background:var(--brass)}
 .biocard b{font-family:var(--m);font-weight:600;font-size:4.6cqw;letter-spacing:-.01em;color:#fff}
@@ -101,12 +104,12 @@ p.lede strong{color:var(--brass)}
 .ctl input::-moz-range-track{height:3px;background:#1B2735;border-radius:2px}
 .ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
 .ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
-.ctl button{background:var(--brass);color:#052012;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl button{background:var(--brass);color:#FFF5F5;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
 .ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
 button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
 
 .side{flex:1 1 320px;max-width:470px}
-.side .k{font-family:var(--m);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#EAB308;margin:0 0 8px}
+.side .k{font-family:var(--m);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#F59E0B;margin:0 0 8px}
 .side h1{font-family:var(--d);font-weight:900;font-size:clamp(24px,3vw,34px);letter-spacing:-.035em;margin:0 0 12px;line-height:1.03}
 .side h1 em{font-style:normal;color:var(--brass)}
 .side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.62}
@@ -130,23 +133,23 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <section class="scene" data-in="0" data-out="4.5">
   <div class="pad"><div class="kb" id="hookKb">
-    <h2 class="punch" id="hookH2">78% buy from<br>whoever <span class="box">responds first</span>.</h2>
+    <h2 class="punch" id="hookH2">n8n never tells<br>you when a <span class="box">workflow dies</span>.</h2>
   </div></div>
 </section>
 
 <section class="scene" data-in="4.5" data-out="10.0">
   <div class="pad"><div class="kb">
     <div class="termbox b" data-at="4.53">
-      <div class="tk">the real gap</div>
-      <div class="tl">Average reply time: 8-12 hours</div>
+      <div class="tk">execution status</div>
+      <div class="tl">Failed</div>
+      <div class="badge"><span class="dot"></span>no alert sent</div>
     </div>
-    <p class="lede b" data-at="6.8">Most of those leads<br>are already gone<br>by then.</p>
   </div></div>
 </section>
 
 <section class="scene" data-in="10.0" data-out="14.5">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="10.03">This AI answers<br><strong>every email</strong><br>in under a minute.</p>
+    <p class="lede b" data-at="10.03">Nobody notices<br>until something<br>already feels wrong.</p>
   </div></div>
 </section>
 
@@ -154,14 +157,14 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="pad"><div class="kb">
     <div class="termbox2 b" data-at="14.53">
       <div class="row">
-        <div class="tk">the workflow</div>
-        <div class="tl">Gmail Trigger →</div>
+        <div class="tk">the fix</div>
+        <div class="tl">Settings →</div>
       </div>
       <div class="row">
-        <div class="tl">AI drafts reply →</div>
+        <div class="tl">Error Workflow →</div>
       </div>
       <div class="row">
-        <div class="tl">Gmail: Reply</div>
+        <div class="tl">Error Trigger node</div>
       </div>
     </div>
   </div></div>
@@ -169,15 +172,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <section class="scene" data-in="20.0" data-out="25.5">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="20.03">Sits as a draft,<br>ready in one click —<br>or sends itself.</p>
+    <p class="lede b" data-at="20.03">Every future failure<br>tells you immediately —<br>Slack, email, anything.</p>
   </div></div>
 </section>
 
 <section class="scene" data-in="25.5" data-out="31.0">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
-      <div class="scorerow" id="scoreRowA" style="opacity:0"><span class="lbl">Emailed at</span><span class="val">2:00 AM</span></div>
-      <div class="scorerow win" id="scoreRowB" style="opacity:0"><span class="lbl">Answered by</span><span class="val">2:01 AM</span></div>
+      <div class="scorerow" id="scoreRowA" style="opacity:0"><span class="lbl">Hidden feature</span><span class="val">No</span></div>
+      <div class="scorerow" id="scoreRowB" style="opacity:0"><span class="lbl">Turned on by default</span><span class="val">No</span></div>
     </div>
   </div></div>
 </section>
@@ -209,12 +212,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="side">
   <p class="k">Episode 32</p>
-  <h1>78% buy from whoever responds first. <em>This AI never lets that be someone else.</em></h1>
-  <p>Most businesses take 8-12 hours to answer a new email — most of those leads are
-  already gone by then. This AI agent, built on n8n, reads every new email the second
-  it lands and drafts a real reply in the business's own voice before a human even
-  opens the inbox. The reply sits as a draft, ready in one click, or sends itself for
-  teams that want that.</p>
+  <h1>n8n never tells you when a workflow dies. <em>Almost nobody turns on the fix.</em></h1>
+  <p>By default, a failed node just turns red in your execution history — no email, no
+  Slack message, nothing. Most people never open that history until something already
+  feels wrong, by which point it could've been broken for weeks. The fix is one setting:
+  an Error Workflow, wired to an Error Trigger node. n8n even ships their own template
+  for it.</p>
 </div>
 </div>
 
@@ -232,12 +235,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,4.20,"78% of customers buy from whichever business responds to them first."],
-    [4.5,9.70,"Most businesses take 8 to 12 hours to answer a new email. Most of those leads are already gone by then."],
-    [10.0,14.20,"This AI agent answers every new email in under a minute — before anyone even opens the inbox."],
-    [14.5,19.70,"It's built on n8n: a Gmail trigger, one AI step, and a reply node. Free to build, running in the background the whole time."],
-    [20.0,24.70,"The reply sits as a draft, ready in one click — or sends itself, for teams that want that."],
-    [25.5,30.70,"Either way, the customer who emailed at 2am gets an answer by 2:01."],
+    [0.30,4.20,"By default, n8n never tells you when a workflow dies."],
+    [4.5,9.70,"A node fails, the execution turns red in your history — and that's it. No email, no Slack message, nothing."],
+    [10.0,14.20,"Most people never open that history unless something already feels wrong. By then, it could've been broken for weeks."],
+    [14.5,19.70,"The fix is one setting: an Error Workflow, wired to an Error Trigger node."],
+    [20.0,24.70,"Set it once, in Settings, and every workflow that fails from then on tells you immediately — Slack, email, whatever you want."],
+    [25.5,30.70,"It's not a hidden feature. n8n even ships their own template for it. Almost nobody turns it on."],
     [31.0,34.70,"The exact setup's in the link in bio."],
     [35.0,39.70,"Follow for the setup that actually works."]
   ];

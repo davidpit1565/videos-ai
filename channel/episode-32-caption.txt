@@ -1,11 +1,11 @@
-78% of customers buy from whichever business responds to them first.
+By default, n8n never tells you when a workflow dies. A node fails, the execution turns red in your history — and that's it. No email, no Slack message, nothing.
 
-Most businesses take 8-12 hours to answer a new email — most of those leads are already gone by then. This AI agent answers every new email in under a minute, before anyone even opens the inbox.
+Most people never open that history unless something already feels wrong. By then, it could've been broken for weeks. The fix is one setting: an Error Workflow, wired to an Error Trigger node.
 
-It's built on n8n: a Gmail trigger, one AI step, and a reply node — free to build. The reply sits as a draft, ready in one click, or sends itself for teams that want that. Either way, the customer who emailed at 2am gets an answer by 2:01.
+Set it once and every future failure tells you immediately. It's not a hidden feature — n8n even ships their own template for it. Almost nobody turns it on.
 
 Full setup: https://actually-works.com/e/32
 
 Follow for the setup that actually works.
 
-#n8n #aiautomation #smallbusiness #buildinpublic #aiagents
+#n8n #automation #aiagents #buildinpublic #workflowautomation

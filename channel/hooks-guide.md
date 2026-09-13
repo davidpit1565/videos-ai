@@ -175,7 +175,7 @@ check its emotional register — does this actually carry a real, checkable stak
 the viewer could lose, be wrong about, or already be at risk from), or is it neutral
 curiosity dressed up as one of the structural types above?** A hook can be Expert/
 Authority *and* fear-adjacent at once (they're independent axes) — that combination, not
-tried deliberately before, is what episode 33 tests first. This does not license inventing
+tried deliberately before, is what episode 32 tests first. This does not license inventing
 a stake that isn't real, or exaggerating a mild inconvenience into a catastrophe — the
 existing rule against fabrication still applies in full; the stake has to be genuinely
 true of the tool/behavior being described, same as every other hook rule on this page.
