@@ -131,15 +131,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="4.46">
+<section class="scene" data-in="0" data-out="4.55">
   <div class="pad"><div class="kb" id="hookKb">
     <h2 class="punch" id="hookH2">n8n never tells<br>you when a <span class="box">workflow dies</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="4.46" data-out="11.87">
+<section class="scene" data-in="4.55" data-out="11.95">
   <div class="pad"><div class="kb">
-    <div class="termbox b" data-at="4.49">
+    <div class="termbox b" data-at="4.58">
       <div class="tk">execution status</div>
       <div class="tl">Failed</div>
       <div class="badge"><span class="dot"></span>no alert sent</div>
@@ -147,15 +147,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="11.87" data-out="18.87">
+<section class="scene" data-in="11.95" data-out="18.95">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="11.9">Nobody notices<br>until something<br>already feels wrong.</p>
+    <p class="lede b" data-at="11.98">Nobody notices<br>until something<br>already feels wrong.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="18.87" data-out="23.995">
+<section class="scene" data-in="18.95" data-out="24.035">
   <div class="pad"><div class="kb">
-    <div class="termbox2 b" data-at="18.9">
+    <div class="termbox2 b" data-at="18.98">
       <div class="row">
         <div class="tk">the fix</div>
         <div class="tl">Settings →</div>
@@ -170,13 +170,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="23.995" data-out="31.73">
+<section class="scene" data-in="24.035" data-out="32.25">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="24.025">Every future failure<br>tells you immediately —<br>Slack, email, anything.</p>
+    <p class="lede b" data-at="24.065">Every future failure<br>tells you immediately —<br>Slack, email, anything.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="31.73" data-out="38.18">
+<section class="scene" data-in="32.25" data-out="38.77">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow" id="scoreRowA" style="opacity:0"><span class="lbl">Hidden feature</span><span class="val">No</span></div>
@@ -185,15 +185,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="38.18" data-out="41.04">
+<section class="scene" data-in="38.77" data-out="41.53">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="38.21"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="38.8"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="41.04" data-out="43.76">
+<section class="scene" data-in="41.53" data-out="44.25">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="41.07" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="41.56" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -225,7 +225,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=44.36,t=0,playing=false,last=0;
+  var DUR=44.85,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -235,14 +235,14 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,4.25,"By default, n8n never tells you when a workflow dies."],
-    [4.67,11.66,"A node fails, the execution turns red in your history — and that's it. No email, no Slack message, nothing."],
-    [12.08,18.66,"Most people never open that history unless something already feels wrong. By then, it could've been broken for weeks."],
-    [19.08,23.57,"The fix is one setting: an Error Workflow, wired to an Error Trigger node."],
-    [24.42,31.52,"Set it once, in Settings, and every workflow that fails from then on tells you immediately — Slack, email, whatever you want."],
-    [31.94,37.97,"It's not a hidden feature. n8n even ships their own template for it. Almost nobody turns it on."],
-    [38.39,40.83,"The exact setup's in the link in bio."],
-    [41.25,43.46,"Follow for the setup that actually works."]
+    [0.30,4.34,"By default, n8n never tells you when a workflow dies."],
+    [4.76,11.74,"A node fails, the execution turns red in your history — and that's it. No email, no Slack message, nothing."],
+    [12.16,18.74,"Most people never open that history unless something already feels wrong. By then, it could've been broken for weeks."],
+    [19.16,23.61,"The fix is one setting: an Error Workflow, wired to an Error Trigger node."],
+    [24.46,32.04,"Set it once, in Settings, and every workflow that fails from then on tells you immediately — Slack, email, whatever you want."],
+    [32.46,38.56,"It's not a hidden feature. n8n even ships their own template for it. Almost nobody turns it on."],
+    [38.98,41.32,"The exact setup's in the link in bio."],
+    [41.74,43.95,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
