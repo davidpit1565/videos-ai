@@ -131,15 +131,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="4.55">
+<section class="scene" data-in="0" data-out="3.77">
   <div class="pad"><div class="kb" id="hookKb">
     <h2 class="punch" id="hookH2">n8n never tells<br>you when a <span class="box">workflow dies</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="4.55" data-out="11.95">
+<section class="scene" data-in="3.77" data-out="11.18">
   <div class="pad"><div class="kb">
-    <div class="termbox b" data-at="4.58">
+    <div class="termbox b" data-at="3.8">
       <div class="tk">execution status</div>
       <div class="tl">Failed</div>
       <div class="badge"><span class="dot"></span>no alert sent</div>
@@ -147,15 +147,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="11.95" data-out="18.95">
+<section class="scene" data-in="11.18" data-out="18.18">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="11.98">Nobody notices<br>until something<br>already feels wrong.</p>
+    <p class="lede b" data-at="11.21">Nobody notices<br>until something<br>already feels wrong.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="18.95" data-out="24.035">
+<section class="scene" data-in="18.18" data-out="23.525">
   <div class="pad"><div class="kb">
-    <div class="termbox2 b" data-at="18.98">
+    <div class="termbox2 b" data-at="18.21">
       <div class="row">
         <div class="tk">the fix</div>
         <div class="tl">Settings →</div>
@@ -170,13 +170,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="24.035" data-out="32.25">
+<section class="scene" data-in="23.525" data-out="31.74">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="24.065">Every future failure<br>tells you immediately —<br>Slack, email, anything.</p>
+    <p class="lede b" data-at="23.555">Every future failure<br>tells you immediately —<br>Slack, email, anything.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="32.25" data-out="38.77">
+<section class="scene" data-in="31.74" data-out="38.26">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow" id="scoreRowA" style="opacity:0"><span class="lbl">Hidden feature</span><span class="val">No</span></div>
@@ -185,15 +185,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="38.77" data-out="41.41">
+<section class="scene" data-in="38.26" data-out="40.9">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="38.8"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="38.29"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="41.41" data-out="44.14">
+<section class="scene" data-in="40.9" data-out="43.63">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="41.44" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="40.93" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -225,7 +225,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=44.74,t=0,playing=false,last=0;
+  var DUR=44.23,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -235,132 +235,132 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,4.34,"By default, n8n never tells you when a workflow dies."],
-    [4.76,11.74,"A node fails, the execution turns red in your history — and that's it. No email, no Slack message, nothing."],
-    [12.16,18.74,"Most people never open that history unless something already feels wrong. By then, it could've been broken for weeks."],
-    [19.16,23.61,"The fix is one setting: an Error Workflow, wired to an Error Trigger node."],
-    [24.46,32.04,"Set it once, in Settings, and every workflow that fails from then on tells you immediately — Slack, email, whatever you want."],
-    [32.46,38.56,"It's not a hidden feature. n8n even ships their own template for it. Almost nobody turns it on."],
-    [38.98,41.20,"The exact setup's in the link in bio."],
-    [41.62,43.84,"Follow for the setup that actually works."]
+    [0.30,3.56,"By default, n8n never tells you when a workflow dies."],
+    [3.98,10.97,"A node fails, the execution turns red in your history — and that's it. No email, no Slack message, nothing."],
+    [11.39,17.97,"Most people never open that history unless something already feels wrong. By then, it could've been broken for weeks."],
+    [18.39,23.10,"The fix is one setting: an Error Workflow, wired to an Error Trigger node."],
+    [23.95,31.53,"Set it once, in Settings, and every workflow that fails from then on tells you immediately — Slack, email, whatever you want."],
+    [31.95,38.05,"It's not a hidden feature. n8n even ships their own template for it. Almost nobody turns it on."],
+    [38.47,40.69,"The exact setup's in the link in bio."],
+    [41.11,43.33,"Follow for the setup that actually works."]
   ];
   var WORDS=[
-    [0.3,0.56,"By",0],
-    [0.56,1.08,"default,",0],
-    [1.52,2.1,"n8n",1],
-    [2.1,2.68,"never",1],
-    [2.68,2.96,"tells",1],
-    [2.96,3.22,"you",2],
-    [3.22,3.34,"when",2],
-    [3.34,3.54,"a",2],
-    [3.54,3.66,"workflow",3],
-    [3.66,4.08,"dies.",3],
-    [4.82,4.96,"A",4],
-    [4.96,5.12,"node",4],
-    [5.12,5.6,"fails,",4],
-    [5.82,6.02,"the",5],
-    [6.02,6.52,"execution",5],
-    [6.52,6.92,"turns",5],
-    [6.92,7.14,"red",6],
-    [7.14,7.3,"in",6],
-    [7.3,7.44,"your",6],
-    [7.44,7.78,"history",7],
-    [8.4,8.54,"and",8],
-    [8.54,8.76,"that's",8],
-    [8.76,9.18,"it.",8],
-    [9.38,9.58,"No",9],
-    [9.58,10.04,"email,",9],
-    [10.28,10.48,"no",10],
-    [10.48,10.68,"Slack",10],
-    [10.68,11.14,"message,",10],
-    [11.32,11.58,"nothing.",11],
-    [12.2,12.48,"Most",12],
-    [12.48,12.9,"people",12],
-    [12.9,13.28,"never",12],
-    [13.28,13.54,"open",13],
-    [13.54,13.7,"that",13],
-    [13.7,14.2,"history",13],
-    [14.2,14.64,"unless",14],
-    [14.64,15.08,"something",14],
-    [15.08,15.64,"already",14],
-    [15.64,15.92,"feels",15],
-    [15.92,16.36,"wrong.",15],
-    [16.6,16.84,"By",16],
-    [16.84,17.18,"then,",16],
-    [17.38,17.5,"it",17],
-    [17.42,17.72,"could've",17],
-    [17.72,17.84,"been",17],
-    [17.84,18.08,"broken",18],
-    [18.08,18.32,"for",18],
-    [18.32,18.7,"weeks.",18],
-    [19.24,19.44,"The",19],
-    [19.44,19.6,"fix",19],
-    [19.6,19.82,"is",19],
-    [19.82,20.0,"one",20],
-    [20.0,20.34,"setting:",20],
-    [20.6,20.84,"an",21],
-    [20.84,21.02,"Error",21],
-    [21.02,21.56,"Workflow,",21],
-    [22.06,22.28,"wired",22],
-    [22.28,22.52,"to",22],
-    [22.52,22.74,"an",22],
-    [22.74,22.94,"Error",23],
-    [22.94,23.22,"Trigger",23],
-    [23.22,23.62,"node.",23],
-    [24.66,24.78,"Set",24],
-    [24.76,24.96,"it",24],
-    [24.96,25.24,"once,",24],
-    [25.46,25.62,"in",25],
-    [25.62,25.94,"Settings,",25],
-    [26.28,26.46,"and",26],
-    [26.46,26.72,"every",26],
-    [26.72,27.08,"workflow",26],
-    [27.08,27.34,"that",27],
-    [27.34,27.54,"fails",27],
-    [27.54,27.84,"from",27],
-    [27.84,28.0,"then",28],
-    [28.0,28.36,"on",28],
-    [28.36,28.62,"tells",28],
-    [28.62,28.92,"you",29],
-    [28.92,29.48,"immediately",29],
-    [29.48,30.28,"Slack,",30],
-    [30.74,30.98,"email,",31],
-    [31.38,31.58,"whatever",32],
-    [31.58,31.74,"you",32],
-    [31.74,32.06,"want.",32],
-    [32.6,32.8,"It's",33],
-    [32.8,33.0,"not",33],
-    [33.0,33.12,"a",33],
-    [33.12,33.38,"hidden",34],
-    [33.38,33.94,"feature.",34],
-    [34.38,34.96,"n8n",35],
-    [34.96,35.36,"even",35],
-    [35.36,35.54,"ships",35],
-    [35.54,35.84,"their",36],
-    [35.84,36.08,"own",36],
-    [36.08,36.36,"template",36],
-    [36.36,36.58,"for",37],
-    [36.58,36.88,"it.",37],
-    [37.44,37.56,"Almost",38],
-    [37.44,37.82,"nobody",38],
-    [37.82,38.1,"turns",38],
-    [38.1,38.3,"it",39],
-    [38.3,38.74,"on.",39],
-    [39.22,39.48,"The",40],
-    [39.48,39.72,"exact",40],
-    [39.72,40.02,"setup's",40],
-    [40.02,40.28,"in",41],
-    [40.28,40.42,"the",41],
-    [40.42,40.6,"link",41],
-    [40.6,40.92,"in",42],
-    [40.92,41.18,"bio.",42],
-    [41.78,41.98,"Follow",43],
-    [41.98,42.24,"for",43],
-    [42.24,42.44,"the",43],
-    [42.44,42.66,"setup",44],
-    [42.66,43.06,"that",44],
-    [43.06,43.44,"actually",44],
-    [43.44,43.72,"works.",45]
+    [0.3,0.54,"By",0],
+    [0.54,1.0,"default,",0],
+    [1.0,1.8,"n8n",1],
+    [1.8,2.24,"never",1],
+    [2.24,2.5,"tells",1],
+    [2.5,2.64,"you",2],
+    [2.64,2.78,"when",2],
+    [2.78,2.94,"a",2],
+    [2.94,3.1,"workflow",3],
+    [3.1,3.48,"dies.",3],
+    [4.06,4.18,"A",4],
+    [4.18,4.36,"node",4],
+    [4.36,4.78,"fails,",4],
+    [5.02,5.24,"the",5],
+    [5.24,5.74,"execution",5],
+    [5.74,6.16,"turns",5],
+    [6.16,6.36,"red",6],
+    [6.36,6.52,"in",6],
+    [6.52,6.66,"your",6],
+    [6.66,6.96,"history",7],
+    [7.6,7.76,"and",8],
+    [7.76,7.98,"that's",8],
+    [7.98,8.4,"it.",8],
+    [8.6,8.82,"No",9],
+    [8.82,9.22,"email,",9],
+    [9.5,9.68,"no",10],
+    [9.68,9.88,"Slack",10],
+    [9.88,10.34,"message,",10],
+    [10.54,10.78,"nothing.",11],
+    [11.44,11.7,"Most",12],
+    [11.7,12.08,"people",12],
+    [12.08,12.5,"never",12],
+    [12.5,12.76,"open",13],
+    [12.76,12.92,"that",13],
+    [12.92,13.42,"history",13],
+    [13.42,13.86,"unless",14],
+    [13.86,14.32,"something",14],
+    [14.32,14.84,"already",14],
+    [14.84,15.14,"feels",15],
+    [15.14,15.58,"wrong.",15],
+    [15.84,16.06,"By",16],
+    [16.06,16.4,"then,",16],
+    [16.54,16.66,"it",17],
+    [16.64,16.94,"could've",17],
+    [16.94,17.08,"been",17],
+    [17.08,17.32,"broken",18],
+    [17.32,17.54,"for",18],
+    [17.54,17.9,"weeks.",18],
+    [18.7,18.86,"The",19],
+    [18.86,19.02,"fix",19],
+    [19.02,19.3,"is",19],
+    [19.3,19.52,"one",20],
+    [19.52,19.88,"setting:",20],
+    [20.12,20.36,"an",21],
+    [20.36,20.62,"Error",21],
+    [20.62,21.18,"Workflow,",21],
+    [21.56,21.72,"wired",22],
+    [21.72,21.98,"to",22],
+    [21.98,22.24,"an",22],
+    [22.24,22.42,"Error",23],
+    [22.42,22.68,"Trigger",23],
+    [22.68,23.1,"node.",23],
+    [24.16,24.28,"Set",24],
+    [24.26,24.44,"it",24],
+    [24.44,24.72,"once,",24],
+    [24.94,25.1,"in",25],
+    [25.1,25.42,"Settings,",25],
+    [25.74,25.94,"and",26],
+    [25.94,26.22,"every",26],
+    [26.22,26.56,"workflow",26],
+    [26.56,26.82,"that",27],
+    [26.82,27.02,"fails",27],
+    [27.02,27.32,"from",27],
+    [27.32,27.48,"then",28],
+    [27.48,27.8,"on",28],
+    [27.8,28.12,"tells",28],
+    [28.12,28.42,"you",29],
+    [28.42,28.98,"immediately",29],
+    [28.98,29.76,"Slack,",30],
+    [30.24,30.48,"email,",31],
+    [30.88,31.06,"whatever",32],
+    [31.06,31.26,"you",32],
+    [31.26,31.54,"want.",32],
+    [32.08,32.3,"It's",33],
+    [32.3,32.48,"not",33],
+    [32.48,32.64,"a",33],
+    [32.64,32.86,"hidden",34],
+    [32.86,33.4,"feature.",34],
+    [33.88,34.44,"n8n",35],
+    [34.44,34.86,"even",35],
+    [34.86,35.04,"ships",35],
+    [35.04,35.34,"their",36],
+    [35.34,35.58,"own",36],
+    [35.58,35.84,"template",36],
+    [35.84,36.06,"for",37],
+    [36.06,36.34,"it.",37],
+    [36.68,36.94,"Almost",38],
+    [36.94,37.3,"nobody",38],
+    [37.3,37.62,"turns",38],
+    [37.62,37.8,"it",39],
+    [37.8,38.16,"on.",39],
+    [38.7,38.96,"The",40],
+    [38.96,39.22,"exact",40],
+    [39.22,39.5,"setup's",40],
+    [39.5,39.78,"in",41],
+    [39.78,39.92,"the",41],
+    [39.92,40.1,"link",41],
+    [40.1,40.4,"in",42],
+    [40.4,40.64,"bio.",42],
+    [41.28,41.46,"Follow",43],
+    [41.46,41.72,"for",43],
+    [41.72,41.92,"the",43],
+    [41.92,42.12,"setup",44],
+    [42.12,42.56,"that",44],
+    [42.56,42.92,"actually",44],
+    [42.92,43.22,"works.",45]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
