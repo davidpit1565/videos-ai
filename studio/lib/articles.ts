@@ -877,6 +877,35 @@ export const ARTICLES: Article[] = [
   },
 ];
 
+  {
+    n: 33,
+    title: "n8n never tells you when a workflow dies. Almost nobody turns on the fix.",
+    standfirst:
+      "By default, a failed n8n node just turns red in your execution history — no " +
+      "email, no Slack message, nothing. Most people never open that history until " +
+      "something already feels wrong, by which point it could have been broken for " +
+      "weeks. The fix is one setting: an Error Workflow, wired to an Error Trigger node.",
+    steps: [
+      "Create a new, separate workflow — this will be your Error Workflow, not one of your regular automations.",
+      "Add an Error Trigger node as the first (and only required) node in this new workflow.",
+      "Add a notification node after it — a Slack message or Send Email node works well — and reference the Error Trigger's own output fields (workflow name, error message, node that failed) in the message.",
+      "Save and activate this Error Workflow.",
+      "Open each existing workflow you want protected, go to its Settings (the three-dot menu → Settings), and set 'Error Workflow' to the one you just built.",
+      "Test it: deliberately break a duplicate or test workflow (never a production one) and confirm the notification arrives.",
+    ],
+    changes: [
+      "This is standard, current n8n behavior — verified live this session against n8n's own current documentation on error handling.",
+      "By default, a failed execution only shows as a red X in the Executions list — there is no notification of any kind unless an Error Workflow is explicitly configured.",
+      "n8n ships its own official template for exactly this pattern (\"Attach a default error handler to all active workflows\"), confirming this is a recommended, current, and supported setup — not an improvised workaround.",
+    ],
+    limits: [
+      "The Error Workflow has to be set per-workflow (or applied to all active workflows via n8n's own template) — it is not automatically on for every workflow in an account by default.",
+      "This tells you a workflow failed; it doesn't diagnose why on its own — the Error Trigger's output data (the error message, the failing node) is what you use to investigate.",
+      "Test on a duplicate or test workflow first — deliberately breaking a production workflow to test this is not worth the risk.",
+    ],
+  },
+];
+
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
 export const promptFor = (a: Article | null) =>
   a?.promptSlug ? PROMPTS.find((p) => p.slug === a.promptSlug) ?? null : null;

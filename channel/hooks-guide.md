@@ -142,6 +142,44 @@ TikTok overall does).
 a *frequency* stat, not a performance ranking — it says what creators reach for most, not
 what wins most. Don't read popularity as proof.
 
+## A second axis this taxonomy never covered: emotional register, not just structure (13.9.2026)
+
+David asked directly, after episode 31's real result (under 200 combined views, despite
+using this channel's best-performing *structural* type — see `content-memory.md`'s
+13.9.2026 entry): find what's actually missing, not just re-apply the existing rules
+again. Everything above describes hook *structure* — a question, a number, a contrarian
+claim — never the *emotional register* the claim carries. That turned out to be a real,
+separate, measurable axis.
+
+**Source: The Content Labs, 4,000-video 2026 study —
+[thecontentlabs.app/blog/what-goes-viral-in-2026-data-study](https://thecontentlabs.app/blog/what-goes-viral-in-2026-data-study).**
+Hooks built on **Fear** as the primary emotional register averaged 264,031 views; hooks
+built on **Hope** averaged 5,423 — a **49x gap**. Fear, empathy, and outrage together
+outperform other registers by 3-5x. The study states plainly: "most creators default to
+Aspiration or Hope, which rank among the worst performers." The same study also found
+"Hot Take" and "Investigator" hook *archetypes* averaging ~140,000 views against
+"Story" openers (narrative framing, e.g. "so basically…") at 7,127 — a 20x gap that
+independently confirms this channel's own Story/Anecdote Teaser finding (episode 27)
+without either data set having informed the other.
+
+**What this channel's hooks have actually been, checked against the log above:** neutral-
+to-curious in register almost every time — Direct Address, Contrarian, Shock/Surprise are
+all structurally sound but none of them are *written* to carry real stakes. Episode 23
+("22 episodes. One file keeps us safe.") is the closest thing to a fear-adjacent claim
+this channel has shipped (safety, something protecting you) and it's also the channel's
+real all-time high — that's a real, if single, data point in the same direction as the
+external research, not a coincidence to dismiss.
+
+**Standing rule going forward: pick the hook's structural type as before, then separately
+check its emotional register — does this actually carry a real, checkable stake (something
+the viewer could lose, be wrong about, or already be at risk from), or is it neutral
+curiosity dressed up as one of the structural types above?** A hook can be Expert/
+Authority *and* fear-adjacent at once (they're independent axes) — that combination, not
+tried deliberately before, is what episode 33 tests first. This does not license inventing
+a stake that isn't real, or exaggerating a mild inconvenience into a catastrophe — the
+existing rule against fabrication still applies in full; the stake has to be genuinely
+true of the tool/behavior being described, same as every other hook rule on this page.
+
 ## Cross-checked against our own real numbers
 
 `channel/content-memory.md`'s 30.8.2026 grid (real Instagram view counts, our own account) already
