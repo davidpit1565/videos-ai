@@ -3,48 +3,48 @@
   "n": 1,
   "line": "By default, n8n never tells you when a workflow dies.",
   "start": 0.3,
-  "end": 4.34
+  "end": 3.56
  },
  {
   "n": 2,
   "line": "A node fails, the execution turns red in your history \u2014 and that's it. No email, no Slack message, nothing.",
-  "start": 4.76,
-  "end": 11.74
+  "start": 3.98,
+  "end": 10.97
  },
  {
   "n": 3,
   "line": "Most people never open that history unless something already feels wrong. By then, it could've been broken for weeks.",
-  "start": 12.16,
-  "end": 18.74
+  "start": 11.39,
+  "end": 17.97
  },
  {
   "n": 4,
   "line": "The fix is one setting: an Error Workflow, wired to an Error Trigger node.",
-  "start": 19.16,
-  "end": 23.88
+  "start": 18.39,
+  "end": 23.1
  },
  {
   "n": 5,
   "line": "Set it once, in Settings, and every workflow that fails from then on tells you immediately \u2014 Slack, email, whatever you want.",
-  "start": 24.73,
-  "end": 32.31
+  "start": 23.95,
+  "end": 31.53
  },
  {
   "n": 6,
   "line": "It's not a hidden feature. n8n even ships their own template for it. Almost nobody turns it on.",
-  "start": 32.73,
-  "end": 38.83
+  "start": 31.95,
+  "end": 38.05
  },
  {
   "n": 7,
   "line": "The exact setup's in the link in bio.",
-  "start": 39.25,
-  "end": 41.47
+  "start": 38.47,
+  "end": 40.69
  },
  {
   "n": 8,
   "line": "Follow for the setup that actually works.",
-  "start": 41.89,
-  "end": 44.1
+  "start": 41.11,
+  "end": 43.33
  }
 ]
