@@ -21,30 +21,30 @@
   "n": 4,
   "line": "The fix is one setting: an Error Workflow, wired to an Error Trigger node.",
   "start": 18.39,
-  "end": 23.1
+  "end": 22.88
  },
  {
   "n": 5,
   "line": "Set it once, in Settings, and every workflow that fails from then on tells you immediately \u2014 Slack, email, whatever you want.",
-  "start": 23.95,
-  "end": 31.53
+  "start": 23.73,
+  "end": 31.31
  },
  {
   "n": 6,
   "line": "It's not a hidden feature. n8n even ships their own template for it. Almost nobody turns it on.",
-  "start": 31.95,
-  "end": 38.05
+  "start": 31.73,
+  "end": 37.83
  },
  {
   "n": 7,
   "line": "The exact setup's in the link in bio.",
-  "start": 38.47,
-  "end": 40.69
+  "start": 38.25,
+  "end": 40.47
  },
  {
   "n": 8,
   "line": "Follow for the setup that actually works.",
-  "start": 41.11,
-  "end": 43.33
+  "start": 40.89,
+  "end": 43.1
  }
 ]
