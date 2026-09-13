@@ -238,6 +238,7 @@ last row before writing the next hook, and pick a different type.**
 | 29 | "Your n8n workflow can fail completely — and still say 'Success.'" | Shock/Surprise — a general, checkable claim about n8n itself (not an anecdote), the same shape as episode 25's winning hook |
 | 30 | "AI chats love padding the answer before they actually answer you." | Contrarian Open — a general, checkable claim about how AI chats behave, softened from an absolute "every" per QA |
 | 31 | "ChatGPT needs the internet to respond. This AI doesn't — and it just proved it." | Direct Address/Question, reworked twice post-ship on real reviewer feedback (see the 10.9.2026 note above) — final version names a specific, recognizable chatbot instead of "any AI chatbot," landing the checkable claim in the first clause |
+| 32 | "By default, n8n never tells you when a workflow dies." | Expert/Authority (rotated off 31's Direct Address/Question), deliberately paired with a fear-adjacent stake (a workflow silently broken for weeks) per the 13.9.2026 emotional-register axis — first episode to combine a proven structural type with an explicit stake on purpose, checkable claim lands in the first clause, no vague referent |
 
 **Episode 26 underperformed (under 400 views) despite the highest measured topic demand of
 any episode shipped so far (`local ai model tutorial`, median 263k) — see
