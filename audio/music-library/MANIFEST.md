@@ -30,3 +30,10 @@ a fade-out, the same contract `build_music.py` already has.
 These mood labels are a first-pass guess from the track titles and a quick
 listen — re-tag any of them if they land differently once actually cut under
 a real narration.
+
+**TODO (13.9.2026, David):** add more tracks — right now there's exactly one
+option per mood, so `pick_real_track.py` never actually chooses between
+anything. More "drawers" of music per mood would give real variety instead of
+the same track repeating whenever two episodes land in the same mood. Only
+pull tracks that genuinely fit — same Pixabay-only, real-musician standard as
+the rest of this library, not filler for the sake of a bigger list.
