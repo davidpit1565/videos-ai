@@ -1,0 +1,50 @@
+[
+ {
+  "n": 1,
+  "line": "Your n8n AI agent isn't broken. It's forgetting on purpose \u2014 every 5 messages.",
+  "start": 0.3,
+  "end": 6.98
+ },
+ {
+  "n": 2,
+  "line": "That number, 5, is the Agent node's default memory window. Nobody sets it \u2014 it just ships that way.",
+  "start": 7.4,
+  "end": 12.88
+ },
+ {
+  "n": 3,
+  "line": "Ask it a question. Follow up six messages later, and it has no idea what you're talking about.",
+  "start": 13.3,
+  "end": 18.28
+ },
+ {
+  "n": 4,
+  "line": "To whoever's talking to it, that looks like your bot forgot the conversation two seconds in.",
+  "start": 18.7,
+  "end": 23.46
+ },
+ {
+  "n": 5,
+  "line": "The fix: raise the context window \u2014 20 to 50 exchanges covers a normal conversation.",
+  "start": 24.31,
+  "end": 29.33
+ },
+ {
+  "n": 6,
+  "line": "And if you're running queue mode, Simple Memory doesn't even survive across workers \u2014 switch to Postgres or Redis memory instead.",
+  "start": 29.75,
+  "end": 36.94
+ },
+ {
+  "n": 7,
+  "line": "The exact setup's in the link in bio.",
+  "start": 37.36,
+  "end": 39.79
+ },
+ {
+  "n": 8,
+  "line": "Follow for the setup that actually works.",
+  "start": 40.21,
+  "end": 42.43
+ }
+]
