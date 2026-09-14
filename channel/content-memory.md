@@ -810,6 +810,33 @@ above) may be partly explained by this same audibility/energy gap rather than on
 music-silence bug already found — both music and delivery read as "off" to him well after
 the technical bugs were fixed. Not enough evidence to state this as fact.
 
+## Delivery energy/tone — a second, separate ear complaint (14.9.2026)
+
+David watched the re-rendered episode 34 and flagged two more things, distinct from the
+music level itself: the word "node" (this channel's single most-repeated n8n term)
+sometimes comes out sounding accented — logged with real detail in
+`audio/voice/profile/pronunciation.json`'s notes, not yet measured or fixed, so the next
+session doesn't have to re-discover it from scratch. And separately: **the voice's tone
+needs to be genuinely captivating/exciting, in a way that holds an audience** — not just
+technically correct (right words, right pacing) but emotionally engaging. This is a
+delivery-energy note, not a script-writing one; nothing in this repo currently measures
+or targets it (`voice_doctor.py` checks pacing/level/sibilance/endings, none of that is
+"does this sound exciting"). Standing rule: keep this in mind for future episodes' voice
+generation — likely means testing higher `--exaggeration` and/or a different reference
+take for high-energy lines (the hook, the CTA), not something the current pipeline
+already does automatically.
+
+## Episode 33's hook is too long, per his direct feedback (14.9.2026)
+
+He confirmed episode 33 ships as-is (not being redone), but flagged independently that
+its hook doesn't hold the viewer — too long before it lands. This is a different failure
+than the "claim in the first clause" fixes already made to episode 34's hook this
+session; episode 33's hook was written and shipped before that discipline was applied
+here. Standing note for `channel/hooks-guide.md`'s rotation log and every future
+script: re-check hook length/pacing against the "lands in the first ~2 seconds, no
+indirection" rule even for episodes that already cleared the wording-level checks —
+episode 33 is a real example of a hook that was factually fine but still too slow.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
