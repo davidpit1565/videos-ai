@@ -872,6 +872,33 @@ export const ARTICLES: Article[] = [
       "Test on a duplicate or test workflow first — deliberately breaking a production workflow to test this is not worth the risk.",
     ],
   },
+  {
+    n: 33,
+    title: "Your n8n AI agent isn't broken. It's forgetting on purpose.",
+    standfirst:
+      "The Agent node's memory window defaults to 5 exchanges — nobody sets " +
+      "it, it just ships that way. Ask a follow-up question six messages " +
+      "later and the agent has no idea what you're talking about. To " +
+      "whoever's talking to it, that reads as broken, not smart.",
+    steps: [
+      "Open the workflow with your AI Agent node and click into its Memory sub-node (Simple Memory, Postgres Chat Memory, or Redis Chat Memory, whichever is wired in).",
+      "Find the 'Context Window Length' field — this is the number of past exchanges replayed into the prompt on every message. Confirm it's still the default (5).",
+      "Raise it to a number that fits a real conversation — 20 to 50 exchanges covers most customer-facing use cases without over-stuffing the prompt.",
+      "If you're running n8n in queue mode, do not use Simple Memory — its context does not follow across workers, so a conversation can silently reset mid-session.",
+      "Switch to Postgres Chat Memory or Redis Chat Memory instead — both persist to an external store that survives both restarts and queue-mode worker switches.",
+      "Test with a real back-and-forth that crosses your old window size (e.g., ask something, then ask a follow-up 6-10 messages later) to confirm the agent still remembers.",
+    ],
+    changes: [
+      "This is standard, current n8n behavior — verified live this session against current n8n Agent node memory documentation and setup guides.",
+      "The context window is a sliding cap on what gets replayed into the prompt, not on what's stored — older messages stay saved per session, they just stop being sent to the model once the window fills.",
+      "Simple Memory's per-worker limitation in queue mode is a real, documented gotcha, not an edge case — any queue-mode deployment with Simple Memory is affected.",
+    ],
+    limits: [
+      "A larger context window means a longer, more expensive prompt on every message — there's a real cost/quality tradeoff, not just 'bigger is always better.'",
+      "This fixes forgetting within the configured window; it does not give the agent persistent memory across completely separate sessions unless the memory node itself is set up for that.",
+      "Postgres/Redis memory requires that datastore to already be reachable from your n8n instance — this is a bigger setup step than Simple Memory's zero-config default.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
