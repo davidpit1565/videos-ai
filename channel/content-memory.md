@@ -788,6 +788,28 @@ David reported this directly, not pulled from the studio's tracked `/api/track` 
   forward (episode 33 onward). No further action on episode 32 itself — it already
   shipped to Instagram and can't be swapped after the fact.
 
+## Episode 34 — David's direct ear-based feedback after watching it (14.9.2026)
+
+FACT, his own words, not measured: the background music "really disappeared" and there's
+no cohesion between his voice/tone and the bed; he also called the delivery "boring." This
+is despite `qa.py` measuring 15.2dB separation on this exact file — inside the tool's own
+pass range (14-26dB), the same range episode 33 also shipped in (20.8dB there). **His ear
+overrides the measurement, per this repo's own standing rule** — logged here so the next
+session doesn't re-trust "qa.py passed" as proof the mix actually reads as audible. Pushed
+`MUSIC_VOL` from 0.07 to 0.14 (render.sh) as a direct response — retested against episodes
+32/33's real stems, lands at 14.2-14.8dB, the loud edge of the pass range rather than the
+middle. Not yet re-verified against his ear on a new render; if 14dB-ish still reads as
+gone, the fix is qa.py's own target/floor, not another volume bump.
+
+He also flagged, separately, that episode 34's vocabulary and content density are too high
+for a simple/general viewer — logged as a standing rule in `channel/hooks-guide.md` ("The
+same rule applies to the whole script, not just the hook"), not just here.
+
+**HYPOTHESIS, not yet confirmed**: episodes 32/33's early view numbers (see the 32 entry
+above) may be partly explained by this same audibility/energy gap rather than only the
+music-silence bug already found — both music and delivery read as "off" to him well after
+the technical bugs were fixed. Not enough evidence to state this as fact.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
