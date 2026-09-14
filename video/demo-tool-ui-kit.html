@@ -1,0 +1,51 @@
+<title>Tool UI kit demo — n8n / ChatGPT / Claude</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=IBM+Plex+Mono:wght@700&display=swap">
+<link rel="stylesheet" href="../export/tool-ui-kit.css">
+<style>
+body{margin:0;background:#0a0a0a;font-family:sans-serif;color:#fff;padding:24px}
+.row{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.frame{width:340px;aspect-ratio:9/16;container-type:inline-size;background:#111;border-radius:12px;
+  overflow:hidden;display:flex;align-items:center;justify-content:center;padding:6cqw}
+h2{font-size:14px;color:#999;text-transform:uppercase;letter-spacing:.08em}
+</style>
+
+<div class="row">
+<div>
+<h2>n8n</h2>
+<div class="frame"><div class="tuk-n8n" style="width:100%">
+  <div class="n8n-node">
+    <div class="n8n-icon trigger">▶</div>
+    <div><div class="n8n-label">Gmail Trigger</div><div class="n8n-sub">On new email</div></div>
+  </div>
+  <div class="n8n-node">
+    <div class="n8n-icon ai">✦</div>
+    <div><div class="n8n-label">AI Agent</div><div class="n8n-sub">Memory: 5 exchanges</div></div>
+    <div class="n8n-badge">!</div>
+  </div>
+  <div class="n8n-node">
+    <div class="n8n-icon http">→</div>
+    <div><div class="n8n-label">Gmail Reply</div><div class="n8n-sub">Draft</div></div>
+  </div>
+</div></div>
+</div>
+
+<div>
+<h2>ChatGPT</h2>
+<div class="frame"><div class="tuk-chatgpt" style="width:100%">
+  <div class="gpt-title">Settings</div>
+  <div class="gpt-row"><span><span class="gpt-icon">⚙</span>General</span><span class="gpt-chev">›</span></div>
+  <div class="gpt-row"><span><span class="gpt-icon">🔔</span>Notifications</span><span class="gpt-chev">›</span></div>
+  <div class="gpt-row"><span><span class="gpt-icon">✎</span>Custom instructions</span><span class="gpt-chev">›</span></div>
+</div></div>
+</div>
+
+<div>
+<h2>Claude</h2>
+<div class="frame"><div class="tuk-claude" style="width:100%">
+  <div class="claude-tag">memory window</div>
+  <div class="claude-bubble">contextWindowLength: <b>5</b><br>the default nobody changes</div>
+</div></div>
+</div>
+</div>
