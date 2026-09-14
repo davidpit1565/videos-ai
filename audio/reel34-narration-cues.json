@@ -1,0 +1,50 @@
+[
+ {
+  "n": 1,
+  "line": "Your n8n node runs once for every item you send it \u2014 not once, total.",
+  "start": 0.3,
+  "end": 5.84
+ },
+ {
+  "n": 2,
+  "line": "That's n8n's real model: every node takes in a list of items, and runs its whole logic once per item on that list.",
+  "start": 6.26,
+  "end": 13.63
+ },
+ {
+  "n": 3,
+  "line": "Send an HTTP Request node 40 rows, and it doesn't make one call with 40 rows in it \u2014 it makes 40 real calls.",
+  "start": 14.05,
+  "end": 21.04
+ },
+ {
+  "n": 4,
+  "line": "That's why a workflow that \"ran fine\" on a handful of test items can rate-limit without warning, or blow through a bill, the moment it hits 300.",
+  "start": 21.46,
+  "end": 29.61
+ },
+ {
+  "n": 5,
+  "line": "The fix isn't more nodes \u2014 it's the Loop Over Items node \u2014 Split in Batches by its older name \u2014 grouping items ahead of the expensive step.",
+  "start": 30.46,
+  "end": 38.8
+ },
+ {
+  "n": 6,
+  "line": "Once you see it as items flowing through one at a time, not one batch of data, the whole canvas makes sense.",
+  "start": 39.22,
+  "end": 45.61
+ },
+ {
+  "n": 7,
+  "line": "The exact setup's in the link in bio.",
+  "start": 46.03,
+  "end": 48.46
+ },
+ {
+  "n": 8,
+  "line": "Follow for the setup that actually works.",
+  "start": 48.88,
+  "end": 51.09
+ }
+]

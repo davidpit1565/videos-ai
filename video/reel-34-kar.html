@@ -1,0 +1,529 @@
+<title>Reel 34 — your n8n node ran once per item, not once</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@500;600;700;800&display=swap">
+<link rel="stylesheet" href="../export/tool-ui-kit.css">
+<style>
+:root{
+  --ink:#14110A;--line:#3A2E1B;
+  --brass:#EAB308;--brass-hot:#FDE047;--ember:#2563EB;
+  --text:#FFFFFF;--muted:#B8A98A;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+  --ui:'Inter','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#0A0805;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.bg{position:absolute;inset:0;z-index:0}
+.bg i{position:absolute;display:block;border-radius:50%;will-change:transform;left:0;top:0}
+.bg .b1{width:130cqw;height:130cqw;top:-40cqw;left:-30cqw;background:radial-gradient(circle closest-side,rgba(234,179,8,.22),rgba(234,179,8,0) 70%)}
+.bg .b2{width:150cqw;height:150cqw;top:50cqw;left:-10cqw;background:radial-gradient(circle closest-side,rgba(30,25,15,.6),rgba(30,25,15,0) 70%)}
+.bg .b3{width:120cqw;height:120cqw;top:120cqw;left:20cqw;background:radial-gradient(circle closest-side,rgba(37,99,235,.16),rgba(37,99,235,0) 70%)}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+.vig{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 50%,transparent 40%,rgba(10,8,5,.55) 100%)}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--brass);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(234,179,8,.7)}
+
+.scene{position:absolute;inset:0;z-index:2}
+.pad{position:absolute;inset:0;padding:28cqw 10cqw 65cqw;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:9.4cqw;line-height:1.05;letter-spacing:-.04em;
+  margin:0;text-wrap:balance;position:relative;z-index:2}
+h2 em{font-style:normal;color:var(--brass)}
+h2 .box{background:var(--brass);color:#241A02;padding:0 1.6cqw;border-radius:1cqw;
+  display:inline-block;position:relative;transform:rotate(-1.2deg)}
+h2 .ebox{background:var(--ember);color:#EAF1FF;padding:0 1.6cqw;border-radius:1cqw;display:inline-block;position:relative}
+.glowbloom{position:absolute;pointer-events:none;opacity:0}
+.wd{position:relative;z-index:1}
+p.lede{font-size:5.6cqw;line-height:1.3;color:#FFF8E5;margin:0;font-weight:700;position:relative;z-index:2}
+p.lede strong{color:var(--brass)}
+
+.scoreboard{display:flex;flex-direction:column;gap:2.6cqw;width:100%;position:relative;z-index:2}
+.scorerow{display:flex;align-items:center;justify-content:space-between;background:#1A1509;
+  border:.3cqw solid #3A2E1B;border-radius:1.6cqw;padding:3cqw 4cqw;position:relative}
+.scorerow .lbl{font-family:var(--ui);font-weight:600;font-size:4cqw;color:#E5D9BC;text-align:left}
+.scorerow .val{font-family:var(--d);font-weight:900;font-size:6.4cqw;color:var(--brass)}
+
+.subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
+  font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
+  text-transform:uppercase;
+  text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
+.subs em{font-style:normal;background:var(--brass);color:#241A02;padding:0 1.4cqw;border-radius:.9cqw;
+  display:inline-block;text-shadow:none}
+.subs b{font-weight:800;color:#fff;transition:color .09s linear,transform .09s linear;display:inline-block}
+.subs b.on{color:var(--brass-hot);transform:scale(1.06)}
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#6B5D3E}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(10,8,5,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.biocard{display:inline-flex;align-items:center;gap:2.2cqw;background:#1A1509;border:.35cqw solid var(--brass);
+  border-radius:99cqw;padding:2.4cqw 5cqw;position:relative;z-index:2}
+.biocard .dot{width:2.6cqw;height:2.6cqw;border-radius:50%;background:var(--brass)}
+.biocard b{font-family:var(--m);font-weight:600;font-size:4.6cqw;letter-spacing:-.01em;color:#fff}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#241D10;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#241D10;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#241A02;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+.side{flex:1 1 320px;max-width:470px}
+.side .k{font-family:var(--m);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#2563EB;margin:0 0 8px}
+.side h1{font-family:var(--d);font-weight:900;font-size:clamp(24px,3vw,34px);letter-spacing:-.035em;margin:0 0 12px;line-height:1.03}
+.side h1 em{font-style:normal;color:var(--brass)}
+.side p,.side li{color:var(--muted);font-size:14.5px;line-height:1.62}
+.side strong{color:var(--text)}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .side,body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
+<div class="grain" data-decor></div>
+<div class="vig"></div>
+<div class="prog" id="prog"></div>
+
+<section class="scene" data-in="0" data-out="6.05">
+  <div class="pad"><div class="kb" id="hookKb">
+    <h2 class="punch" id="hookH2">Runs <span class="box">once per item</span>.<br>Not once, total.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="6.05" data-out="13.84">
+  <div class="pad"><div class="kb">
+    <div class="tuk-n8n b" data-at="6.08" style="width:100%">
+      <div class="n8n-node">
+        <div class="n8n-icon http">→</div>
+        <div><div class="n8n-label">HTTP Request</div><div class="n8n-sub">runs once per item</div></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="13.84" data-out="21.25">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="13.87">40 rows in.<br><strong>40 real calls</strong> out.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="21.25" data-out="30.035">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="21.28">Fine on 3 test items.<br>Rate-limited at 300.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="30.035" data-out="39.01">
+  <div class="pad"><div class="kb">
+    <div class="tuk-n8n b" data-at="30.065" style="width:100%">
+      <div class="n8n-node">
+        <div class="n8n-icon" style="background:#EAB308">↻</div>
+        <div><div class="n8n-label">Loop Over Items</div><div class="n8n-sub">Split in Batches</div></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="39.01" data-out="45.82">
+  <div class="pad"><div class="kb">
+    <div class="scoreboard" id="scoreBoard">
+      <div class="scorerow" id="scoreRowA" style="opacity:0"><span class="lbl">Items flowing one at a time</span><span class="val">Yes</span></div>
+      <div class="scorerow" id="scoreRowB" style="opacity:0"><span class="lbl">One batch of data</span><span class="val">No</span></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="45.82" data-out="48.67">
+  <div class="pad"><div class="kb">
+    <div class="biocard b" data-at="45.85"><span class="dot"></span><b>link in bio</b></div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="48.67" data-out="51.39">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="48.7" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+  </div></div>
+</section>
+
+<div class="subs" id="subs"></div>
+<div class="handle" data-decor>@actually_works.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="40.0" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+
+<div class="side">
+  <p class="k">Episode 34</p>
+  <h1>Your n8n node runs once for every item you send it <em>— not once, total.</em></h1>
+  <p>n8n's real execution model: a node runs once per item in the array it receives,
+  not once per workflow. An HTTP Request node on 40 rows makes 40 real calls — not one
+  call with 40 rows in it. The fix is the Loop Over Items node (Split in Batches),
+  which groups items before they hit the expensive step.</p>
+</div>
+</div>
+
+<script src="../export/motion-kit.js"></script>
+<script>
+(function(){
+  var MK=window.MotionKit;
+  var DUR=51.99,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+  var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+
+  var CUES=[
+    [0.30,5.84,"Your n8n node runs once for every item you send it — not once, total."],
+    [6.26,13.63,"That's n8n's real model: every node takes in a list of items, and runs its whole logic once per item on that list."],
+    [14.05,21.04,"Send an HTTP Request node 40 rows, and it doesn't make one call with 40 rows in it — it makes 40 real calls."],
+    [21.46,29.61,"That's why a workflow that \"ran fine\" on a handful of test items can rate-limit without warning, or blow through a bill, the moment it hits 300."],
+    [30.46,38.80,"The fix isn't more nodes — it's the Loop Over Items node — Split in Batches by its older name — grouping items ahead of the expensive step."],
+    [39.22,45.61,"Once you see it as items flowing through one at a time, not one batch of data, the whole canvas makes sense."],
+    [46.03,48.46,"The exact setup's in the link in bio."],
+    [48.88,51.09,"Follow for the setup that actually works."]
+  ];
+  var WORDS=[
+    [0.3,0.68,"Your",0],
+    [0.68,1.68,"n8n",0],
+    [1.68,1.98,"node",0],
+    [1.98,2.5,"runs",1],
+    [2.5,2.74,"once",1],
+    [2.74,2.98,"for",1],
+    [2.98,3.28,"every",2],
+    [3.28,3.48,"item",2],
+    [3.48,3.74,"you",2],
+    [3.74,3.92,"send",3],
+    [3.92,4.34,"it",3],
+    [4.46,4.78,"not",4],
+    [4.78,5.26,"once,",4],
+    [5.28,5.74,"total.",5],
+    [6.54,7.1,"That's",6],
+    [7.1,7.66,"n8n's",6],
+    [7.66,7.82,"real",6],
+    [7.82,8.2,"model:",7],
+    [8.5,8.82,"every",8],
+    [8.82,9.02,"node",8],
+    [9.02,9.28,"takes",8],
+    [9.28,9.5,"in",9],
+    [9.5,9.62,"a",9],
+    [9.52,9.76,"list",9],
+    [9.76,10.06,"of",10],
+    [10.06,10.34,"items,",10],
+    [10.34,10.78,"and",11],
+    [10.78,11.0,"runs",11],
+    [11.0,11.28,"its",11],
+    [11.28,11.48,"whole",12],
+    [11.48,11.92,"logic",12],
+    [11.92,12.38,"once",12],
+    [12.38,12.58,"per",13],
+    [12.58,12.82,"item",13],
+    [12.82,13.02,"on",13],
+    [13.02,13.24,"that",14],
+    [13.24,13.62,"list.",14],
+    [14.18,14.48,"Send",15],
+    [14.48,14.76,"an",15],
+    [14.76,15.1,"HTTP",15],
+    [15.1,15.6,"Request",16],
+    [15.6,15.96,"node",16],
+    [15.96,16.32,"40",16],
+    [16.32,16.64,"rows,",17],
+    [16.64,17.08,"and",17],
+    [17.08,17.26,"it",17],
+    [17.26,17.48,"doesn't",17],
+    [17.48,17.7,"make",18],
+    [17.7,17.96,"one",18],
+    [17.96,18.26,"call",18],
+    [18.26,18.58,"with",19],
+    [18.58,18.86,"40",19],
+    [18.86,19.08,"rows",19],
+    [19.08,19.22,"in",20],
+    [19.22,19.48,"it",20],
+    [19.6,19.8,"it",21],
+    [19.8,20.04,"makes",21],
+    [20.04,20.36,"40",21],
+    [20.36,20.6,"real",22],
+    [20.6,20.96,"calls.",22],
+    [21.58,21.94,"That's",23],
+    [21.94,22.1,"why",23],
+    [22.1,22.32,"a",23],
+    [22.32,22.68,"workflow",24],
+    [22.68,23.08,"that",24],
+    [23.08,23.32,"\"ran",24],
+    [23.32,23.68,"fine\"",25],
+    [23.68,24.02,"on",25],
+    [24.02,24.18,"a",25],
+    [24.18,24.4,"handful",26],
+    [24.4,24.64,"of",26],
+    [24.64,24.8,"test",26],
+    [24.8,25.2,"items",27],
+    [25.2,25.6,"can",27],
+    [25.6,26.06,"rate-limit",27],
+    [26.06,26.38,"without",28],
+    [26.38,26.78,"warning,",28],
+    [26.78,27.2,"or",29],
+    [27.2,27.4,"blow",29],
+    [27.4,27.6,"through",29],
+    [27.6,27.74,"a",30],
+    [27.74,27.94,"bill,",30],
+    [27.94,28.26,"the",30],
+    [28.26,28.56,"moment",30],
+    [28.56,28.74,"it",30],
+    [28.74,29.0,"hits",31],
+    [29.0,29.54,"300.",31],
+    [30.66,30.92,"The",32],
+    [30.92,31.14,"fix",32],
+    [31.14,31.5,"isn't",32],
+    [31.5,31.74,"more",33],
+    [31.74,32.06,"nodes",33],
+    [32.48,32.68,"it's",34],
+    [32.68,32.84,"the",34],
+    [32.84,33.06,"Loop",34],
+    [33.06,33.36,"Over",35],
+    [33.36,33.66,"Items",35],
+    [33.66,34.1,"node",35],
+    [34.34,34.66,"Split",36],
+    [34.66,34.94,"in",36],
+    [34.94,35.52,"Batches",36],
+    [35.52,35.7,"by",37],
+    [35.7,35.86,"its",37],
+    [35.86,36.18,"older",37],
+    [36.18,36.54,"name",38],
+    [36.9,37.08,"grouping",39],
+    [37.08,37.46,"items",39],
+    [37.46,37.74,"ahead",39],
+    [37.74,37.88,"of",40],
+    [37.88,38.0,"the",40],
+    [37.98,38.4,"expensive",40],
+    [38.4,38.76,"step.",41],
+    [39.3,39.54,"Once",42],
+    [39.54,39.74,"you",42],
+    [39.74,39.88,"see",42],
+    [39.88,40.0,"it",43],
+    [40.0,40.28,"as",43],
+    [40.28,40.66,"items",43],
+    [40.66,41.0,"flowing",44],
+    [41.0,41.36,"through",44],
+    [41.36,41.56,"one",44],
+    [41.56,41.72,"at",45],
+    [41.72,41.88,"a",45],
+    [41.88,42.22,"time,",45],
+    [42.62,42.82,"not",46],
+    [42.82,43.14,"one",46],
+    [43.14,43.32,"batch",46],
+    [43.32,43.58,"of",47],
+    [43.58,43.8,"data,",47],
+    [44.14,44.32,"the",48],
+    [44.32,44.52,"whole",48],
+    [44.52,44.86,"canvas",48],
+    [44.86,45.18,"makes",49],
+    [45.18,45.6,"sense.",49],
+    [46.28,46.46,"The",50],
+    [46.46,46.7,"exact",50],
+    [46.7,46.96,"setup's",50],
+    [46.96,47.28,"in",51],
+    [47.28,47.44,"the",51],
+    [47.44,47.64,"link",51],
+    [47.64,48.06,"in",52],
+    [48.06,48.42,"bio.",52],
+    [49.0,49.22,"Follow",53],
+    [49.22,49.48,"for",53],
+    [49.48,49.7,"the",53],
+    [49.7,49.92,"setup",54],
+    [49.92,50.32,"that",54],
+    [50.32,50.7,"actually",54],
+    [50.7,50.98,"works.",55]
+  ];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  var hookKb=document.getElementById('hookKb');
+  var hookH2=document.getElementById('hookH2');
+  var hookScene=hookH2.closest('.scene');
+  var hookSplit=MK.splitWordsSafe(hookH2);
+  var hookClimax=null;
+  for(var hi=0;hi<hookSplit.words.length;hi++){
+    var hw=hookSplit.words[hi];
+    if(hw.classList.contains('box')||hw.classList.contains('ebox')){ hookClimax=hw; break; }
+  }
+  var hookClimaxIndex=hookClimax?hookSplit.words.indexOf(hookClimax):-1;
+  var hookGlow=null;
+  if(hookClimax){
+    hookGlow=document.createElement('div');
+    hookGlow.className='glowbloom';
+    hookGlow.style.cssText='position:absolute;inset:-45%;border-radius:50%;z-index:-1;'+
+      'background:radial-gradient(circle,var(--brass) 0%,rgba(0,0,0,0) 70%)';
+    hookClimax.insertBefore(hookGlow,hookClimax.firstChild);
+  }
+
+  var scoreBoard=document.getElementById('scoreBoard');
+  var scoreScene=scoreBoard.closest('.scene');
+  var scoreRowA=document.getElementById('scoreRowA'), scoreRowB=document.getElementById('scoreRowB');
+  var scoreGlow=document.createElement('div');
+  scoreGlow.className='glowbloom';
+  scoreGlow.style.cssText='position:absolute;inset:-16%;border-radius:1.6cqw;z-index:-1;'+
+    'background:radial-gradient(circle,var(--brass-hot) 0%,rgba(0,0,0,0) 70%)';
+  scoreRowB.insertBefore(scoreGlow,scoreRowB.firstChild);
+
+  function renderHook(){
+    var ht=t-(+hookScene.dataset.in);
+    var START=0.15,GAP=0.10,DUR2=0.30;
+    for(var i=0;i<hookSplit.words.length;i++){
+      var w=hookSplit.words[i],at=START+i*GAP;
+      if(w===hookClimax){
+        MK.animatePop(w,ht,at,DUR2);
+        if(hookGlow) MK.animateGlowBloom(hookGlow,ht,at,DUR2,0.30);
+      } else {
+        var e=MK.smoothIn(MK.clamp01((ht-at)/DUR2));
+        w.style.opacity=String(e);
+        w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+      }
+    }
+    if(hookClimaxIndex>=0){
+      var climaxAt=START+hookClimaxIndex*GAP;
+      var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.96,pushAt:climaxAt,pushDur:0.9,pushTo:1.04});
+      hookKb.style.transform='scale('+camScale.toFixed(4)+')';
+    }
+  }
+
+  function renderScoreboard(){
+    var st=t-(+scoreScene.dataset.in);
+    var A_AT=0.10,A_DUR=0.32,B_AT=0.65,B_DUR=0.32;
+    var ae=MK.smoothIn(MK.clamp01((st-A_AT)/A_DUR));
+    scoreRowA.style.opacity=String(ae);
+    scoreRowA.style.transform='scale('+ae.toFixed(3)+')';
+    var be=MK.smoothIn(MK.clamp01((st-B_AT)/B_DUR));
+    scoreRowB.style.opacity=String(be);
+    scoreRowB.style.transform='scale('+be.toFixed(3)+')';
+    MK.animateGlowBloom(scoreGlow,st,B_AT,B_DUR,0.30);
+    var shakeX=MK.impactShake(st,B_AT,0.22,6);
+    scoreBoard.style.transform='translateX('+shakeX.toFixed(2)+'px)';
+  }
+
+  var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
+  function renderTransitions(){
+    for(var i=0;i<scenes.length-1;i++){
+      var boundary=+scenes[i].dataset.out;
+      var outStart=boundary-OUT_DUR, inStart=outStart+IN_OFFSET;
+      MK.zoomThroughTransition(scenes[i], scenes[i+1], t, outStart, inStart, OUT_DUR, IN_DUR);
+    }
+  }
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      if(on) active=s;
+    }
+    renderTransitions();
+    if(active){
+      var kbEnd=(+active.dataset.out)-OUT_DUR;
+      var f=t>=kbEnd?0:(t-+active.dataset.in)/(kbEnd-(+active.dataset.in));
+      var kbs=active.querySelectorAll('.kb');
+      for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.06*f).toFixed(4)+')';
+    }
+
+    renderHook();
+    renderScoreboard();
+
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      e.classList.toggle('snap',t<0.30);
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    b1.style.transform='translate('+(2+14*Math.sin(t*0.3))+'cqw,'+(-4+16*Math.cos(t*0.22))+'cqw)';
+    b2.style.transform='translate('+(18*Math.cos(t*0.18+1.4))+'cqw,'+(16*Math.sin(t*0.24+.6))+'cqw)';
+    b3.style.transform='translate('+(10+18*Math.sin(t*0.15+2.1))+'cqw,'+(-10*Math.cos(t*0.2+1.1))+'cqw)';
+
+    /* The chunk on screen is the one the last spoken word belongs to, and it holds
+       until the next chunk's first word — otherwise the caption blanks for a third of
+       a second between chunks while the voice is still going. It clears only between
+       lines, where the silence is real. */
+    /* The window has to close the ordinary gaps. The scene's own headline is written to
+       disappear before the next one arrives, so a caption that blanks in a 0.42s gap
+       leaves the whole screen textless — measured at eleven places, 0.13s each. Reaching
+       0.32s back and 0.15s forward covers those, and the only remaining blanks fall
+       inside the 0.80s section gaps, where the colour card fills the frame anyway. After
+       the last line the caption holds to the end rather than leaving a blank tail. */
+    var inLine=false;
+    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.32&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    if(t>CUES[CUES.length-1][1]) inLine=true;
+    var here=-1, cur=-1;
+    /* the lit word is the last one that started, not only the one still sounding:
+       Whisper's word boundaries are tight, so gating on the word's own end left the
+       highlight off for 13.4s of the reel */
+    for(i=0;i<WORDS.length;i++) if(WORDS[i][0]<=t+0.08){ here=WORDS[i][3]; cur=i; }
+    var txt='';
+    if(inLine&&here>=0){
+      for(i=0;i<WORDS.length;i++) if(WORDS[i][3]===here)
+        /* a plain space between two bold, all-caps <b> words read as glued together
+           on screen (measured: an 8px gap at 1080px width, on top of .subs's own
+           -.01em letter-spacing) — caught on episode 31's "A"/"CLOUD-BASED" pair
+           during the mandatory double-viewing. A non-breaking space in front of the
+           ordinary one can't collapse the way two plain spaces would, and reads as a
+           clearly visible gap instead. */
+        txt+=(i===cur?'<b class="on">':'<b>')+WORDS[i][2]+'</b>  ';
+    }
+    subs.innerHTML=txt;
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing = false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>
