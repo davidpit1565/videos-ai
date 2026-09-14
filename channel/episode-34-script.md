@@ -45,8 +45,8 @@ June 2026) — not just "SplitInBatches," which is its old/internal name only.
 1. Your n8n node runs once for every item you send it — not once, total.
 2. That's n8n's real model: every node takes in a list of items, and runs its whole logic once per item on that list.
 3. Send an HTTP Request node 40 rows, and it doesn't make one call with 40 rows in it — it makes 40 real calls.
-4. That's why a workflow that "ran fine" on 3 test items can quietly rate-limit or blow through a bill the moment it hits 300.
-5. The fix isn't more nodes — it's the Loop Over Items node, officially called Split in Batches, grouping items before they hit the expensive step.
+4. That's why a workflow that "ran fine" on a handful of test items can rate-limit without warning, or blow through a bill, the moment it hits 300.
+5. The fix isn't more nodes — it's the Loop Over Items node — Split in Batches by its older name — grouping items ahead of the expensive step.
 6. Once you see it as items flowing through one at a time, not one batch of data, the whole canvas makes sense.
 7. The exact setup's in the link in bio.
 8. Follow for the setup that actually works.
