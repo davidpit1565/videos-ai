@@ -15,7 +15,19 @@ the free one — the full reasoning is in `plan/business-model.html`.
 - **Say the honest thing once, then do the work.** He acts on straight answers; he has
   redirected several times when told a plan would not hold.
 
-## Say it out loud when the work turns mechanical
+## Instagram/TikTok/YouTube links he pastes
+
+**Never fetch these with `curl`, `WebFetch`, or any generic HTTP call — always use the
+`video-download` skill (full video, not just metadata), then `video-analysis` or `breakdown`
+on top of it.** A plain fetch against Instagram/TikTok returns a 200 with an empty shell or,
+at best, thin JSON metadata (follower count, a caption fragment) — never the actual video,
+frames, or burned-in captions, because these platforms require a real browser session to
+serve content. A session that tries curl first, notices it got "200 but no real content,"
+and then reasons about the thin metadata as if it were the post is working from the wrong
+data entirely — the fix is not to interpret the metadata harder, it's to switch to
+`video-download` (yt-dlp-based) immediately. This has already gone wrong once in a fresh
+session that didn't reach for the skill on its own — if it happens again, that's the
+regression to fix, not a one-off.
 
 He asked to be reminded, so this is the reminder and it is not optional: **when a stretch of
 work is mechanical, tell him to switch to Sonnet 5 for it — before starting, in one line.**

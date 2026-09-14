@@ -92,6 +92,28 @@ this exact genre (Direct Address/Question, Contrarian). The weakest is confounde
 credit the hook type alone for that one. Still: two independent signals pointing the same
 direction is the strongest thing in this file.
 
+## A body-structure worth borrowing (not the opener) — found 9.9.2026
+
+Broke down a Hebrew growth-hack reel (creator: unnamed personal-brand consultant) teaching a
+universal "OUTCOME → 3 PAIN POINTS → INTRO TO SOLUTION" structure, proven across three
+unrelated lifestyle niches (hair care 1.6M views, dog training 2.3M, home bakery 416K) and
+applied by the creator himself to a real 9K-follower personal-branding account.
+
+**Don't copy the opening line shape** — "OUTCOME: [desired result]" is structurally
+Product/Outcome Showcase, which this file's own sourced research (the education-genre study,
+89,939 clips) already flags as **rare in education specifically**, unlike general TikTok
+where it's the highest-average-views type. Copying it as our literal hook line would be
+fighting our own genre's data.
+
+**Do borrow the middle act**: three concrete, specific pain points stated in a row, right
+after the hook and before the demo/verdict. This maps to this file's existing
+Problem/Solution Setup category (5% share, directly names the viewer's pain point) and slots
+naturally into the "AI vs. Reality" and "Impossible Test" shapes already in
+`content-memory.md` — e.g., a Direct Address/Question or Contrarian Open hook (our two
+best-performing types per the table above), *then* three pain points about the tool being
+tested, *then* the live test/verdict. Worth trying on the next agentic-coding or
+verify-AI-claim episode as the body structure, not the opener.
+
 ## Picking a hook for a specific episode — by content shape
 
 `content-memory.md`'s "Pattern shapes worth trying" already names the story shapes this
