@@ -31,11 +31,13 @@ async function createAndPublishIgMedia(
   videoUrl: string,
   caption?: string,
   timeoutMs = 45_000,
+  thumbOffsetMs?: number,
 ): Promise<IgPublishResult> {
   const createUrl = new URL(`${host}/${user}/media`);
   createUrl.searchParams.set("media_type", mediaType);
   createUrl.searchParams.set("video_url", videoUrl);
   if (caption) createUrl.searchParams.set("caption", caption);
+  if (thumbOffsetMs != null) createUrl.searchParams.set("thumb_offset", String(thumbOffsetMs));
   createUrl.searchParams.set("access_token", token);
   const created = await fetch(createUrl, { method: "POST", cache: "no-store" });
   const createdBody = (await created.json()) as { id?: string; error?: { message?: string } };
@@ -100,6 +102,15 @@ export type IgFullPublishResult = {
   story: IgPublishResult | null;
 };
 
+/** Every reel's hook plays the same word-by-word reveal (`START=0.15, GAP=0.10` per
+ *  word, a 0.30s pop-in) before the first scene's static text has fully landed — frame
+ *  0, which Instagram uses as the cover by default, is just the background with no
+ *  caption on it yet. 1.8s clears that reveal for hooks up to ~10 words (the longest
+ *  used so far) without yet reaching the scene's 4.5s-4.08s exit transition, so the
+ *  cover Instagram picks shows the same fully-formed hook text every episode, without
+ *  a manual "Edit thumbnail" step after each upload. */
+const REEL_COVER_OFFSET_MS = 1800;
+
 /** Publishes the Reel only. This used to also publish the same raw video file as a
  *  second, independent Story right after — technically real, but visibly worse than
  *  what he'd get by hand: Meta's Content Publishing API has no way to make the
@@ -116,7 +127,9 @@ export async function publishToInstagram(file: string, caption: string): Promise
   if (!user) return { reel: { ok: false, reason: "IG_USER_ID לא מוגדר" }, story: null };
 
   const videoUrl = `${SITE_URL}/reels/${encodeURIComponent(file)}`;
-  const reel = await createAndPublishIgMedia(host, user, token, "REELS", videoUrl, caption, 75_000);
+  const reel = await createAndPublishIgMedia(
+    host, user, token, "REELS", videoUrl, caption, 75_000, REEL_COVER_OFFSET_MS,
+  );
   return { reel, story: null };
 }
 
