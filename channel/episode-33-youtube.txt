@@ -1,4 +1,4 @@
-Nothing's wrong with your n8n AI agent. It's forgetting on purpose — once every 5 messages.
+Nothing's wrong with your n8n AI agent. It's forgetting on purpose — once per 5 messages.
 
 That number, 5, is the Agent node's default memory window. No one sets it — it just ships that way. Ask it a question. Follow up six messages later, and it has no idea what you're talking about. To whoever's talking to it, that looks like your bot forgot the conversation two seconds in.
 
