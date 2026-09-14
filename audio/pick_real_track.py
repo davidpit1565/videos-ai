@@ -19,6 +19,11 @@ LIB = os.path.join(os.path.dirname(__file__), "music-library")
 MOODS = {
     "neutral":     "confident-corporate-story--echoes-of-lumen.mp3",
     "corporate":   "confident-corporate-story--echoes-of-lumen.mp3",
+    # "confident" is literally in this track's own filename and MANIFEST.md's suggested
+    # mood for it — missing here meant produce.sh's mood='confident' (episodes 32 and 33)
+    # silently fell back to synthesized music instead of this real track, which is
+    # exactly the "not what I sent you" complaint David raised after hearing episode 33.
+    "confident":   "confident-corporate-story--echoes-of-lumen.mp3",
     "urgent":      "tense-suspense-rising-dread--alexmorgan.mp3",
     "triumphant":  "success--paulyudin.mp3",
     "bright":      "upbeat-and-inspiring--atlasaudio.mp3",

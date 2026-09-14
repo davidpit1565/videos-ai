@@ -105,6 +105,16 @@ ACTUAL_DUR="$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$OUT")
 # that actually reaches the file. limit=0.75 (~-2.5dBFS sample peak) still leaves
 # real margin for the aresample + AAC encode after it to reconstruct a peak slightly
 # higher than any discrete sample alimiter saw.
+#
+# Found 14.9.2026, re-verifying episode 33's music fix: alimiter is a *lookahead*
+# limiter with its own internal buffering delay, and `latency` (compensate that delay)
+# defaults to false. Left off, the filter's output is time-shifted from its input by
+# its own lookahead window — inaudible on its own, but enough to desync the render
+# from the original narration/music stems, which broke qa.py's --music separation
+# check completely (measured -3.3dB, an apparent near-total gating bug, on audio that
+# was actually fine — confirmed by disabling the alimiter entirely and getting a clean
+# ~20dB reading). `latency=true` compensates the delay so the shipped file stays
+# sample-aligned with the stems this pipeline measures it against.
 GAIN_DB="$(python3 -c "print(-14 - (${MEAS_I}))")"
 
 # Shipping episode 24 found a third failure mode on top of the two above: a take
@@ -132,7 +142,7 @@ LIMIT=0.75
 PASS=0
 for ATTEMPT in 1 2 3 4; do
   ffmpeg -hide_banner -loglevel error -y -i "$OUT" -c:v copy \
-    -af "volume=${GAIN_DB}dB,alimiter=limit=${LIMIT}:attack=5:release=50:level=disabled,aresample=48000" \
+    -af "volume=${GAIN_DB}dB,alimiter=limit=${LIMIT}:attack=5:release=50:level=disabled:latency=true,aresample=48000" \
     -c:a aac -b:a 192k -ar 48000 -ac 2 -t "$ACTUAL_DUR" "$TMP/corrected.mp4"
   ffmpeg -hide_banner -i "$TMP/corrected.mp4" -af loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json \
     -f null - 2> "$TMP/verify.log"

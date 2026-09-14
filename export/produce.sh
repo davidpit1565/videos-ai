@@ -121,18 +121,15 @@ except Exception: ep = 0
 print(roots[ep % len(roots)])
 ")
 echo "=== [7/11] music bed at ${NEWDUR}s, ${BPM} bpm, ${MOOD}, key ${KEY}Hz"
-# Real, licensed tracks (audio/music-library/, see MANIFEST.md) beat the synthesized
-# bed whenever one is mapped for this mood — "real songs in the background, real
-# melodies, not something AI" was the explicit ask (6.9.2026). Only moods with no
-# real-track mapping fall back to the synthesized generator.
-if python3 audio/pick_real_track.py "$NEWDUR" "$MUSIC" --mood "$MOOD" 2>/tmp/pick-real-track-${EP}.err; then
-  cat /tmp/pick-real-track-${EP}.err >&2
-else
-  cat /tmp/pick-real-track-${EP}.err >&2
-  echo "  no real track mapped for mood '$MOOD' — using the synthesized bed"
-  python3 audio/build_music.py "$NEWDUR" "$MUSIC" --bpm "$BPM" --mood "$MOOD" --key "$KEY" || exit 1
-fi
-rm -f /tmp/pick-real-track-${EP}.err
+# Real, licensed tracks (audio/music-library/, see MANIFEST.md) ONLY — standing rule
+# since 14.9.2026, after episodes 32 and 33 both silently fell back to the synthesized
+# generator (mood 'confident' wasn't in pick_real_track.py's map, even though its own
+# MANIFEST names that exact track "confident") and David heard the difference and
+# flagged it directly: never ship self-generated music, only what he actually supplied.
+# A mood with no real-track mapping is now a hard failure, not a silent fallback — add
+# the mood to pick_real_track.py's MOODS (or add a new track to the library) instead of
+# letting this fall through to build_music.py.
+python3 audio/pick_real_track.py "$NEWDUR" "$MUSIC" --mood "$MOOD" || exit 1
 
 # A real, systematic check that the bed actually sounds present — built after
 # episode 27 and episode 29 each shipped music that measured "fine" (present,
