@@ -899,6 +899,33 @@ export const ARTICLES: Article[] = [
       "Postgres/Redis memory requires that datastore to already be reachable from your n8n instance — this is a bigger setup step than Simple Memory's zero-config default.",
     ],
   },
+  {
+    n: 34,
+    title: "That n8n node you built didn't run once. It ran once for every item.",
+    standfirst:
+      "n8n's real execution model: a node doesn't run once per workflow, it runs once " +
+      "per item in the array it receives. That's why an HTTP Request node on 40 rows " +
+      "makes 40 real calls, not one call with 40 rows in it — and why a workflow that " +
+      "\"ran fine\" on 3 test items can quietly rate-limit or blow through a bill at 300.",
+    steps: [
+      "Open any node in your workflow and check its input — n8n shows it as a list of items, not one blob of data.",
+      "Run the workflow with a small test set (2-3 items) and watch the node execute once per item in the Executions panel — this is normal, not a bug.",
+      "Before an expensive or rate-limited step (an HTTP Request to a paid API, for example), add a Loop Over Items node — officially named 'Split in Batches' in n8n's own docs.",
+      "Set the batch size on the Loop Over Items node to however many items you want processed together per pass, rather than one at a time.",
+      "Wire the expensive node inside the loop, and any per-batch waiting (a Wait node, for a rate limit) inside the same loop.",
+      "Test again with a larger set (dozens of items) to confirm the batching actually slows the expensive step down the way you intended.",
+    ],
+    changes: [
+      "This is standard, current n8n behavior — verified live this session against current n8n documentation and community threads on per-item execution.",
+      "The Loop Over Items node's current official name is 'Loop Over Items (Split in Batches)' per n8n's own docs (updated June 2026) — 'Split in Batches' alone is its older/internal name.",
+      "Per-item execution is the core of n8n's data model, not an edge case — every node in every workflow works this way, whether or not a Loop node is present.",
+    ],
+    limits: [
+      "This explains and manages per-item execution; it doesn't remove real per-call cost or rate limits — batching controls the pace, it doesn't make the calls free.",
+      "Batch size is a real tradeoff: too large risks hitting a rate limit anyway, too small barely helps — the right number depends on the specific API's own limits.",
+      "Test with a set close to your real production volume before trusting a workflow at scale — 3 test items behaving fine says nothing about 300.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

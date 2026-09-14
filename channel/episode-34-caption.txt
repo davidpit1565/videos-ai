@@ -1,0 +1,11 @@
+That n8n node you built didn't run once. It ran once for every item you sent it. That's n8n's real model: every node takes in a list of items, and runs its whole logic once per item on that list.
+
+Send an HTTP Request node 40 rows, and it doesn't make one call with 40 rows in it — it makes 40 real calls. That's why a workflow that "ran fine" on 3 test items can quietly rate-limit or blow through a bill the moment it hits 300.
+
+The fix: the Loop Over Items node (officially Split in Batches) groups items before they hit the expensive step. Once you see it as items flowing through one at a time, the whole canvas makes sense.
+
+Full setup: https://actually-works.com/e/34
+
+Follow for the setup that actually works.
+
+#n8n #automation #aiagents #buildinpublic #nocode
