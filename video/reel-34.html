@@ -115,7 +115,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <section class="scene" data-in="0" data-out="4.5">
   <div class="pad"><div class="kb" id="hookKb">
-    <h2 class="punch" id="hookH2">Didn't run once.<br>Ran <span class="box">once per item</span>.</h2>
+    <h2 class="punch" id="hookH2">Runs <span class="box">once per item</span>.<br>Not once, total.</h2>
   </div></div>
 </section>
 
@@ -189,7 +189,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="side">
   <p class="k">Episode 34</p>
-  <h1>That n8n node you built didn't run once. <em>It ran once for every item.</em></h1>
+  <h1>Your n8n node runs once for every item you send it <em>— not once, total.</em></h1>
   <p>n8n's real execution model: a node runs once per item in the array it receives,
   not once per workflow. An HTTP Request node on 40 rows makes 40 real calls — not one
   call with 40 rows in it. The fix is the Loop Over Items node (Split in Batches),
@@ -211,7 +211,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,4.20,"That n8n node you built didn't run once. It ran once for every item you sent it."],
+    [0.30,4.20,"Your n8n node runs once for every item you send it — not once, total."],
     [4.5,9.70,"That's n8n's real model: every node takes in a list of items, and runs its whole logic once per item on that list."],
     [10.0,14.20,"Send an HTTP Request node 40 rows, and it doesn't make one call with 40 rows in it — it makes 40 real calls."],
     [14.5,19.70,"That's why a workflow that \"ran fine\" on 3 test items can quietly rate-limit or blow through a bill the moment it hits 300."],

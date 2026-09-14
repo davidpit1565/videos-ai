@@ -25,16 +25,24 @@ June 2026) — not just "SplitInBatches," which is its old/internal name only.
 - **Type rotation**: 30 Contrarian Open, 31 Direct Address/Question, 32 Expert/
   Authority, 33 You-Focused Appeal + Specific Number. This one is **Shock/Surprise**
   (not used since episode 29) — a genuine surprise about how the tool actually works,
-  not an anecdote.
-- **Cold-read test**: "That n8n node you built didn't run once. It ran once for every
-  item you sent it." Clear in one pass, checkable claim in the first two sentences, no
-  vague referent.
+  not an anecdote or a named viewer mistake (that's You-Focused, already used in 33).
+- **Corrected 14.9.2026** — the first draft ("That n8n node you built didn't run once.
+  It ran once for every item you sent it.") shipped as two sentences, and David caught
+  it live: the actual claim didn't land until partway into the *second* sentence, which
+  is exactly the "specific claim goes in the FIRST clause" failure this file already
+  warns about — a viewer needs the payoff inside the first ~2 seconds, not after a
+  scene-setting first sentence. Fixed to one sentence with the surprising fact in the
+  first clause: **"Your n8n node runs once for every item you send it — not once,
+  total."** The trailing "not once, total" is a 3-word contrast, not a second sentence
+  to wait through.
+- **Cold-read test**: one clause, checkable claim (per-item execution), no vague
+  referent, lands before the sentence even finishes.
 - **Emotional register**: real, checkable stake — surprise API charges and rate-limit
   failures that only appear at real-world scale are genuine, common costs of not
   knowing this, not an invented worst case.
 
 ## Narration (8 lines)
-1. That n8n node you built didn't run once. It ran once for every item you sent it.
+1. Your n8n node runs once for every item you send it — not once, total.
 2. That's n8n's real model: every node takes in a list of items, and runs its whole logic once per item on that list.
 3. Send an HTTP Request node 40 rows, and it doesn't make one call with 40 rows in it — it makes 40 real calls.
 4. That's why a workflow that "ran fine" on 3 test items can quietly rate-limit or blow through a bill the moment it hits 300.
@@ -42,6 +50,9 @@ June 2026) — not just "SplitInBatches," which is its old/internal name only.
 6. Once you see it as items flowing through one at a time, not one batch of data, the whole canvas makes sense.
 7. The exact setup's in the link in bio.
 8. Follow for the setup that actually works.
+
+(Only line 1 changed from the original draft — lines 2-8 unchanged, so the build's
+existing scene timings in `video/reel-34.html` still line up 1:1 with each line.)
 
 ## Verification notes
 - Per-item node execution confirmed live against current n8n docs and community
