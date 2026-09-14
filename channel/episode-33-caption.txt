@@ -1,6 +1,6 @@
 Your n8n AI agent isn't broken. It's forgetting on purpose — every 5 messages. That number is the Agent node's default memory window, and nobody sets it — it just ships that way.
 
-Ask it something, then follow up six messages later, and it has no idea what you're talking about. To whoever's talking to it, that looks like your bot forgot the conversation two seconds in.
+Ask it a question. Follow up six messages later, and it has no idea what you're talking about. To whoever's talking to it, that looks like your bot forgot the conversation two seconds in.
 
 The fix: raise the context window — 20 to 50 exchanges covers a normal conversation. Running queue mode? Simple Memory doesn't survive across workers — switch to Postgres or Redis memory instead.
 
