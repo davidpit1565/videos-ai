@@ -149,6 +149,14 @@ export const TOOL_UI_KITS: ToolUiKit[] = [
     when: "Any Claude / Claude Code episode. Built ahead of need, so the next Claude episode doesn't start from scratch.",
     sourced: "Anthropic's shipped design tokens (cream #F0ECE0, terracotta #C96442, ink #141413) + a real screenshot at anthropic.com/news/projects — confirmed the serif heading font and the blue (not terracotta) link/action color, which the tokens alone didn't cover.",
   },
+  {
+    n: 4,
+    slug: "tuk-gemini",
+    name: "Gemini",
+    thumb: "/templates/n-tool-gemini.png",
+    when: "Any Gemini episode. Built 14.9.2026 from real screenshots David sent directly — not guessed from Google's general Material look.",
+    sourced: "Two real screenshots of David's own gemini.google.com (empty state + a live chat) — near-black background, a ChatGPT-shaped rounded pill input, the 4-point rainbow spark logo, a blue Upgrade pill, dark-grey bubble language shared with ChatGPT's dark mode. Colors estimated by eye (no file on disk to pixel-sample a pasted screenshot).",
+  },
 ];
 
 /** Every accent pair (and music mood) an episode has actually shipped with, read from

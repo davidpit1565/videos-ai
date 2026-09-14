@@ -28,13 +28,14 @@ panels on the same dark canvas with lighter `#5B5C5F` input/dropdown fields. The
 pink still shows up — active tabs, links, the trigger icon — just not as the canvas
 or card color the first version assumed.
 
-**ChatGPT** (`.tuk-chatgpt`) — still reused from episode 1's own build
-(`video/reel-01-v25.html`), which recreated the real Settings menu and Custom
-Instructions panel before this kit existed and was itself checked against the live
-app before shipping. **Not re-verified this round** — WebFetch on
-`help.openai.com/en/articles/8096356` and `openai.com/academy/personalization/` both
-403'd; no new screenshot was actually viewed, so this entry still rests on episode 1's
-original check, not a fresh one.
+**ChatGPT** (`.tuk-chatgpt`) — light variant still reused from episode 1's own build
+(`video/reel-01-v25.html`). **A dark variant added 14.9.2026** from two real
+screenshots David sent directly (his own chatgpt.com, dark mode — the app's other
+real default state, not a rare setting): near-black page background, a fully rounded
+pill-shaped input/textbox (not a boxy rectangle), quick-action rows as rounded pills
+with an icon, and message bubbles as dark-grey rounded rectangles rather than
+full-width rows. Colors estimated by eye from the screenshots — no file existed on
+disk to sample with PIL, unlike the n8n/Claude corrections above. Use `.tuk-chatgpt.dark`.
 
 **Claude** (`.tuk-claude`) — Anthropic's own shipped design tokens (cream `#F0ECE0`,
 terracotta `#C96442`, coral `#D97757`, ink `#141413`), **plus a real screenshot viewed
@@ -47,22 +48,34 @@ chips) is a plain blue `#2C84DB`, not the terracotta; terracotta/coral are brand
 not the color doing UI work. Every gray still carries the same warm/olive undertone,
 never a neutral cool gray.
 
-**Gemini** — requested 14.9.2026, not yet built. One real screenshot was located
-(`commons.wikimedia.org/wiki/File:Google_Gemini_Screenshot_(2026).png`, third-party but
-dated) confirming sidebar structure ("My Stuff," "Temporary Chats") and bottom input
-placement, but no color/font/corner-radius detail was verified from it yet — next
-session's work, not started.
+**Gemini** (`.tuk-gemini`) — **built 14.9.2026**, replacing the earlier "requested,
+not built" state. Two real screenshots David sent directly (his own gemini.google.com:
+the empty "Let's jump in" state, and a live chat with a generated-video reply) gave
+real, current facts a third-party wikimedia screenshot couldn't: near-black background
+(not Google's usual white Material look) with a subtle radial gradient, a rounded pill
+input almost identical in shape to ChatGPT's, a 4-point rainbow "spark" glyph as the
+logo, a solid blue "Upgrade" pill top-right, and message bubbles using the same
+dark-grey rounded-rectangle language as ChatGPT's dark mode — not a distinct bubble
+style of its own. Colors estimated by eye, same caveat as the ChatGPT dark variant.
+
+**n8n** also gained two shapes this round from a third real screenshot (n8n.io's own
+homepage, embedding a real workflow: a form trigger → AI Agent → "Is a manager?"
+branch → two Slack nodes, with Anthropic/Postgres/Entra-ID/Jira hanging off the Agent
+as small circular icons): a diamond-shaped true/false branch node (`.n8n-diamond`),
+and a row of small circular sub-connection icons under a node (`.n8n-subrow` /
+`.n8n-subicon`) for the model/memory/tool pattern every AI Agent node shows.
 
 ## Status
 
-Wired into `studio/lib/templates.ts` / the studio's `/templates` page. n8n and Claude
-were corrected against real, viewed screenshots this round (sourced above); ChatGPT
-still rests on episode 1's original build, unverified again this session; Gemini is
-requested but not built. `video/reel-34.html` uses `.tuk-n8n` and inherits today's
-corrected (dark) version automatically since it targets the class, not a hardcoded
-color.
+Wired into `studio/lib/templates.ts` / the studio's `/templates` page. All four kits
+(n8n, ChatGPT, Claude, Gemini) now rest on at least one real, directly-viewed
+screenshot. `video/reel-34.html` uses `.tuk-n8n` and inherits today's corrected (dark)
+version automatically since it targets the class, not a hardcoded color.
 
 Sources: n8n.io/brandguidelines; `blog.n8n.io/how-to-build-ai-agent/` (2 real
-screenshots fetched and viewed, colors sampled with PIL); this session's own review of
+screenshots fetched and viewed, colors sampled with PIL); n8n.io's own homepage (1 real
+screenshot, provided directly by David); this session's own review of
 `video/reel-01-v25.html`; `anthropic.com/news/projects` (1 real screenshot fetched and
-viewed); `commons.wikimedia.org` (1 third-party Gemini screenshot, structure only).
+viewed); chatgpt.com and gemini.google.com (4 real screenshots total, provided directly
+by David — colors estimated by eye, not pixel-sampled, since pasted images aren't saved
+to a path this session can run PIL against).
