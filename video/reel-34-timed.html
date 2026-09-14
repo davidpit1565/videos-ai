@@ -113,15 +113,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="6.05">
+<section class="scene" data-in="0" data-out="5.6">
   <div class="pad"><div class="kb" id="hookKb">
     <h2 class="punch" id="hookH2">Runs <span class="box">once per item</span>.<br>Not once, total.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="6.05" data-out="13.84">
+<section class="scene" data-in="5.6" data-out="13.77">
   <div class="pad"><div class="kb">
-    <div class="tuk-n8n b" data-at="6.08" style="width:100%">
+    <div class="tuk-n8n b" data-at="5.63" style="width:100%">
       <div class="n8n-node">
         <div class="n8n-icon http">→</div>
         <div><div class="n8n-label">HTTP Request</div><div class="n8n-sub">runs once per item</div></div>
@@ -130,21 +130,21 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="13.84" data-out="21.25">
+<section class="scene" data-in="13.77" data-out="21.18">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="13.87">40 rows in.<br><strong>40 real calls</strong> out.</p>
+    <p class="lede b" data-at="13.8">40 rows in.<br><strong>40 real calls</strong> out.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="21.25" data-out="30.035">
+<section class="scene" data-in="21.18" data-out="29.975">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="21.28">Fine on 3 test items.<br>Rate-limited at 300.</p>
+    <p class="lede b" data-at="21.21">Fine on 3 test items.<br>Rate-limited at 300.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="30.035" data-out="39.01">
+<section class="scene" data-in="29.975" data-out="38.94">
   <div class="pad"><div class="kb">
-    <div class="tuk-n8n b" data-at="30.065" style="width:100%">
+    <div class="tuk-n8n b" data-at="30.005" style="width:100%">
       <div class="n8n-node">
         <div class="n8n-icon" style="background:#EAB308">↻</div>
         <div><div class="n8n-label">Loop Over Items</div><div class="n8n-sub">Split in Batches</div></div>
@@ -153,7 +153,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="39.01" data-out="45.82">
+<section class="scene" data-in="38.94" data-out="45.75">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow" id="scoreRowA" style="opacity:0"><span class="lbl">Items flowing one at a time</span><span class="val">Yes</span></div>
@@ -162,15 +162,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="45.82" data-out="48.67">
+<section class="scene" data-in="45.75" data-out="48.61">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="45.85"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="45.78"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="48.67" data-out="51.39">
+<section class="scene" data-in="48.61" data-out="51.33">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="48.7" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="48.64" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -201,7 +201,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=51.99,t=0,playing=false,last=0;
+  var DUR=51.93,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -211,14 +211,14 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,5.84,"Your n8n node runs once for every item you send it — not once, total."],
-    [6.26,13.63,"That's n8n's real model: every node takes in a list of items, and runs its whole logic once per item on that list."],
-    [14.05,21.04,"Send an HTTP Request node 40 rows, and it doesn't make one call with 40 rows in it — it makes 40 real calls."],
-    [21.46,29.61,"That's why a workflow that \"ran fine\" on a handful of test items can rate-limit without warning, or blow through a bill, the moment it hits 300."],
-    [30.46,38.80,"The fix isn't more nodes — it's the Loop Over Items node — Split in Batches by its older name — grouping items ahead of the expensive step."],
-    [39.22,45.61,"Once you see it as items flowing through one at a time, not one batch of data, the whole canvas makes sense."],
-    [46.03,48.46,"The exact setup's in the link in bio."],
-    [48.88,51.09,"Follow for the setup that actually works."]
+    [0.30,5.39,"Your n8n node runs once for every item you send it — not once, total."],
+    [5.81,13.56,"That's n8n's real model: every node takes in a list of items, and runs its whole logic once per item on that list."],
+    [13.98,20.97,"Send an HTTP Request node 40 rows, and it doesn't make one call with 40 rows in it — it makes 40 real calls."],
+    [21.39,29.55,"That's why a workflow that \"ran fine\" on a handful of test items can rate-limit without warning, or blow through a bill, the moment it hits 300."],
+    [30.40,38.73,"The fix isn't more nodes — it's the Loop Over Items node — Split in Batches by its older name — grouping items ahead of the expensive step."],
+    [39.15,45.54,"Once you see it as items flowing through one at a time, not one batch of data, the whole canvas makes sense."],
+    [45.96,48.40,"The exact setup's in the link in bio."],
+    [48.82,51.03,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
