@@ -190,5 +190,11 @@
     "brass": "#DC2626",
     "ember": "#F59E0B",
     "mood": "tense"
+  },
+  {
+    "episode": 33,
+    "brass": "#0D9488",
+    "ember": "#FBBF24",
+    "mood": "confident"
   }
 ]
