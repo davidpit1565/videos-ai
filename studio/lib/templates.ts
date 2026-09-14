@@ -109,6 +109,48 @@ export const TEMPLATES: Template[] = [
   },
 ];
 
+export type ToolUiKit = {
+  n: number;
+  slug: string;
+  name: string;
+  thumb: string;
+  when: string;
+  /** where the colors/layout facts came from — never invented, per CLAUDE.md's own rule */
+  sourced: string;
+};
+
+/** Real-tool UI recreations — `export/tool-ui-kit.css`'s `.tuk-*` classes — instead of
+ *  the old generic dark "termbox" reused regardless of which tool an episode is about.
+ *  Decided 14.9.2026 after comparing episode 1 (666 views, our best performer, which
+ *  recreated ChatGPT's real settings menu) against the generic box episodes 32/33 used.
+ *  Full sourcing for each kit's colors: channel/tool-ui-kit.md. */
+export const TOOL_UI_KITS: ToolUiKit[] = [
+  {
+    n: 1,
+    slug: "tuk-n8n",
+    name: "n8n",
+    thumb: "/templates/k-tool-n8n.png",
+    when: "Any n8n episode — this channel's most-covered tool (episodes 2, 7, 25, 29, 32, 33). A node card, not a claim about one.",
+    sourced: "n8n.io/brandguidelines (Mandy pink/red #EA4B71, Brand Black #101330) + n8n's own docs (light dotted-grid canvas, white node cards).",
+  },
+  {
+    n: 2,
+    slug: "tuk-chatgpt",
+    name: "ChatGPT",
+    thumb: "/templates/l-tool-chatgpt.png",
+    when: "Any ChatGPT episode (settings, custom instructions, features). Reused from episode 1's own already-verified build.",
+    sourced: "video/reel-01-v25.html — checked against the live app before that episode shipped.",
+  },
+  {
+    n: 3,
+    slug: "tuk-claude",
+    name: "Claude",
+    thumb: "/templates/m-tool-claude.png",
+    when: "Any Claude / Claude Code episode. Built ahead of need, so the next Claude episode doesn't start from scratch.",
+    sourced: "Anthropic's own shipped design tokens: cream #F0ECE0, terracotta #C96442, coral #D97757, ink #141413.",
+  },
+];
+
 /** Every accent pair (and music mood) an episode has actually shipped with, read from
  *  the same file export/produce.sh writes to and checks against before shipping a new
  *  one — a real enforcement now, not a table someone has to remember to consult. This
