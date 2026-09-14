@@ -146,7 +146,7 @@ echo "=== [8/11] render"
 FRAMES=1 ./export/render.sh "$BUILD_K" 1080 1920 "$NEWDUR" "$VO_R" "$MP4" "$MUSIC" || exit 1
 
 echo "=== [9/11] gate"
-ACCEPT_WORDS="$ACCEPT" ./export/check.sh "$BUILD_K" "$VO_R" "$MP4" 2>&1 | tee "$GATE"
+ACCEPT_WORDS="$ACCEPT" ./export/check.sh "$BUILD_K" "$VO_R" "$MP4" "$MUSIC" 2>&1 | tee "$GATE"
 PASSED=$(grep -c "ALL CHECKS PASSED" "$GATE" || true)
 
 if [ "$PASSED" -eq 0 ]; then
