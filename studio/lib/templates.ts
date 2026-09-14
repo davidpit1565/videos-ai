@@ -131,7 +131,7 @@ export const TOOL_UI_KITS: ToolUiKit[] = [
     name: "n8n",
     thumb: "/templates/k-tool-n8n.png",
     when: "Any n8n episode — this channel's most-covered tool (episodes 2, 7, 25, 29, 32, 33). A node card, not a claim about one.",
-    sourced: "n8n.io/brandguidelines (Mandy pink/red #EA4B71, Brand Black #101330) + n8n's own docs (light dotted-grid canvas, white node cards).",
+    sourced: "n8n.io/brandguidelines (pink #EA4B71) + real screenshots from blog.n8n.io/how-to-build-ai-agent/, colors sampled from the actual PNGs — the dark canvas/dark node cards are what the real editor looks like; an earlier version of this kit assumed a light canvas from a docs page and was wrong.",
   },
   {
     n: 2,
@@ -147,7 +147,7 @@ export const TOOL_UI_KITS: ToolUiKit[] = [
     name: "Claude",
     thumb: "/templates/m-tool-claude.png",
     when: "Any Claude / Claude Code episode. Built ahead of need, so the next Claude episode doesn't start from scratch.",
-    sourced: "Anthropic's own shipped design tokens: cream #F0ECE0, terracotta #C96442, coral #D97757, ink #141413.",
+    sourced: "Anthropic's shipped design tokens (cream #F0ECE0, terracotta #C96442, ink #141413) + a real screenshot at anthropic.com/news/projects — confirmed the serif heading font and the blue (not terracotta) link/action color, which the tokens alone didn't cover.",
   },
 ];
 

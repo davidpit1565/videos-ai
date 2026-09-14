@@ -28,7 +28,20 @@ h2{font-size:14px;color:#999;text-transform:uppercase;letter-spacing:.08em}
     <div class="n8n-icon http">→</div>
     <div><div class="n8n-label">Gmail Reply</div><div class="n8n-sub">Draft</div></div>
   </div>
+  <div class="n8n-note" style="margin-top:3.2cqw">
+    <b>Google Gemini AI model</b>
+    Picked for the context window and speed. <span class="link">See the docs</span>
+  </div>
 </div></div>
+</div>
+
+<div>
+<h2>n8n — node panel</h2>
+<div class="frame"><div class="tuk-n8n" style="width:100%"><div class="n8n-panel">
+  <span class="n8n-tab active">Parameters</span><span class="n8n-tab">Settings</span>
+  <div style="margin-top:2.6cqw">Prompt (User Message)</div>
+  <div class="n8n-field">{{ $json.chatInput }}</div>
+</div></div></div>
 </div>
 
 <div>
@@ -44,6 +57,9 @@ h2{font-size:14px;color:#999;text-transform:uppercase;letter-spacing:.08em}
 <div>
 <h2>Claude</h2>
 <div class="frame"><div class="tuk-claude" style="width:100%">
+  <div class="claude-serif" style="margin-bottom:3cqw">New hire onboarding</div>
+  <div class="claude-action" style="margin-bottom:3cqw">+ Set custom instructions</div>
+  <div class="claude-file" style="margin-bottom:1.6cqw"><span class="ext">PDF</span>A guide to performance cycles</div>
   <div class="claude-tag">memory window</div>
   <div class="claude-bubble">contextWindowLength: <b>5</b><br>the default nobody changes</div>
 </div></div>
