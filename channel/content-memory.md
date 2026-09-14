@@ -637,6 +637,52 @@ out, never a callback, never a hypothetical.
 on this channel) hooked as a general claim ("Your n8n workflow can fail completely — and
 still say 'Success.'"), Shock/Surprise type. Real product verification done live this
 session (n8n's own current docs plus a dated, first-person community report), not assumed
+
+## Episode 31 breaks the "it's the hook type, not the topic" hypothesis (13.9.2026)
+
+**FACT, per David directly:** episode 31 (local AI models / Ollama offline capability)
+shipped after three separate rounds of hook fixes — reworded per Roni's real marketing
+feedback, then reworked again to name a specific chatbot (ChatGPT) instead of a vague
+"any AI chatbot," then had a genuine accent-drift defect fixed on top of that. The final
+hook, "ChatGPT needs the internet to respond. This AI doesn't — and it just proved it.,"
+uses **Direct Address/Question — this channel's single best-performing hook type**
+(episode 2's 940 views, its all-time high). It still landed under 200 total views
+combined across Instagram and Facebook — David's own words: "יצא לנו ממש ממש גרוע"
+(came out really, really bad). This is below every other episode's number in this file,
+including the previously-weakest ones (episode 8: 139, episode 22: 119).
+
+**Why this matters, stated plainly: it breaks the standing explanation.** The 8.9.2026
+entry above concluded hook *type* was the load-bearing variable, not topic — because
+episode 26 (Product/Outcome Showcase, a confirmed-weak type) failed on this exact same
+topic while episode 23/25 (different types, different topics) succeeded. Episode 31 was
+supposed to be the clean test that confirmed this: same weak topic, but this channel's
+*strongest* type instead. If the hypothesis were right, fixing the hook type should have
+been enough to save it. It wasn't — episode 31 scored below episode 26 despite a
+provably stronger hook by every standing rule in `hooks-guide.md`.
+
+**What this actually leaves us with — two topic-level data points now, not one, and
+different hook types on both:** local AI models / Ollama has failed twice on this channel
+(episode 26: Product/Outcome Showcase, under 400; episode 31: Direct Address/Question,
+under 200) using two different hook types that don't share a common weakness. The
+simplest explanation consistent with both facts: **this specific topic may not have real
+pull with this channel's actual audience, regardless of how the hook is written** — not
+something `hooks-guide.md`'s rules can fix, because those rules are about hook
+construction, and this data point held hook construction excellent and still lost.
+
+**Explicitly not yet a Confirmed pattern (this file's own bar: two independent episodes
+sharing the *mechanism*, not just two episodes on the same topic) — but strong enough to
+change direction now rather than wait for a third data point on a topic already
+showing 2/2 losses:** stop picking local AI / Ollama as a topic for the near future.
+Every topic with an actual win on this channel (n8n: episodes 7, 25, 29 — 2 confirmed
+wins; Claude Code: episode 23 — 1 confirmed win, episode 27 lost on hook type not topic)
+stays the safer choice until this file has real evidence local-AI can work here.
+
+**What this does NOT mean:** that hook-writing discipline (cold-read test, checkable
+claim in the first clause, no vague referents) was wasted work — episode 26 and 31 are
+not directly comparable on hook quality (31's hook is genuinely better by every written
+rule), and a bad topic can sink even a well-built hook. The lesson is about topic
+selection, not about abandoning the hook rules already confirmed by real data elsewhere
+(episodes 23, 25, 28, 29 all still stand as real wins built on those same rules).
 from an older episode's research.
 
 ## Master performance table — all 27 Instagram Reels, verified per-post export (8.9.2026)

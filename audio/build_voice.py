@@ -258,6 +258,11 @@ def main():
                          'take being locked per line and nothing implemented it — the '
                          'whole build had one seed, so fixing one bad word meant '
                          'rerolling every other line with it.')
+    ap.add_argument("--line-exaggeration", default="",
+                    help='per-line energy overrides, "1:0.68,8:0.62". The whole file '
+                         'reads at one flat energy otherwise — a human narrator punches '
+                         'the hook and the CTA harder than the calm explanation lines in '
+                         'between, and nothing in this build could do that until now.')
     ap.add_argument("--retries", type=int, default=3,
                     help="regenerate a line this many times if it is misheard")
     ap.add_argument("--min-rate", type=float, default=4.6,
@@ -326,6 +331,16 @@ def main():
             line_seeds[int(k.strip())] = int(v.strip())
     if line_seeds:
         print(f"      per-line seeds: {line_seeds}", flush=True)
+    line_exagg = {}
+    for part in a.line_exaggeration.split(","):
+        if ":" in part:
+            k, v = part.split(":", 1)
+            line_exagg[int(k.strip())] = float(v.strip())
+    if line_exagg:
+        print(f"      per-line exaggeration: {line_exagg}", flush=True)
+
+    def exagg_for(idx):
+        return line_exagg.get(idx, a.exaggeration)
 
     # Only words with ground-truth rows behind them. Watching a word the metric was never
     # calibrated for would reroll takes on a reading that means nothing — /s/ measures like a
@@ -369,7 +384,7 @@ def main():
         for attempt in range(a.retries + 1):
             base = line_seeds.get(idx, a.seed)
             torch.manual_seed(base + attempt * 1000 + idx)
-            wav = m.generate(spoken, audio_prompt_path=REF, exaggeration=a.exaggeration,
+            wav = m.generate(spoken, audio_prompt_path=REF, exaggeration=exagg_for(idx),
                              cfg_weight=a.cfg, temperature=0.75)
             rate = syl / max(0.3, wav.shape[-1] / m.sr)
             if asr is None:
@@ -476,7 +491,7 @@ def main():
             return pick, best[1]
         for roll in range(a.prosody_rolls):
             torch.manual_seed(line_seeds.get(idx, a.seed) + 7777 + roll * 131 + idx)
-            cand = m.generate(spoken, audio_prompt_path=REF, exaggeration=a.exaggeration,
+            cand = m.generate(spoken, audio_prompt_path=REF, exaggeration=exagg_for(idx),
                               cfg_weight=a.cfg, temperature=0.75)
             st = lands(cand)
             if st is None:
@@ -510,7 +525,7 @@ def main():
 
     def _line_cache_key(i, text):
         payload = json.dumps({
-            "text": text, "exaggeration": a.exaggeration, "cfg": a.cfg,
+            "text": text, "exaggeration": exagg_for(i), "cfg": a.cfg,
             "seed": line_seeds.get(i, a.seed), "slow": a.slow, "slow_rate": a.slow_rate,
             "min_rate": a.min_rate, "max_rate": a.max_rate, "retries": a.retries,
             "fall": a.fall, "prosody_rolls": a.prosody_rolls, "no_prosody": a.no_prosody,

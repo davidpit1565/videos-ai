@@ -142,6 +142,44 @@ TikTok overall does).
 a *frequency* stat, not a performance ranking — it says what creators reach for most, not
 what wins most. Don't read popularity as proof.
 
+## A second axis this taxonomy never covered: emotional register, not just structure (13.9.2026)
+
+David asked directly, after episode 31's real result (under 200 combined views, despite
+using this channel's best-performing *structural* type — see `content-memory.md`'s
+13.9.2026 entry): find what's actually missing, not just re-apply the existing rules
+again. Everything above describes hook *structure* — a question, a number, a contrarian
+claim — never the *emotional register* the claim carries. That turned out to be a real,
+separate, measurable axis.
+
+**Source: The Content Labs, 4,000-video 2026 study —
+[thecontentlabs.app/blog/what-goes-viral-in-2026-data-study](https://thecontentlabs.app/blog/what-goes-viral-in-2026-data-study).**
+Hooks built on **Fear** as the primary emotional register averaged 264,031 views; hooks
+built on **Hope** averaged 5,423 — a **49x gap**. Fear, empathy, and outrage together
+outperform other registers by 3-5x. The study states plainly: "most creators default to
+Aspiration or Hope, which rank among the worst performers." The same study also found
+"Hot Take" and "Investigator" hook *archetypes* averaging ~140,000 views against
+"Story" openers (narrative framing, e.g. "so basically…") at 7,127 — a 20x gap that
+independently confirms this channel's own Story/Anecdote Teaser finding (episode 27)
+without either data set having informed the other.
+
+**What this channel's hooks have actually been, checked against the log above:** neutral-
+to-curious in register almost every time — Direct Address, Contrarian, Shock/Surprise are
+all structurally sound but none of them are *written* to carry real stakes. Episode 23
+("22 episodes. One file keeps us safe.") is the closest thing to a fear-adjacent claim
+this channel has shipped (safety, something protecting you) and it's also the channel's
+real all-time high — that's a real, if single, data point in the same direction as the
+external research, not a coincidence to dismiss.
+
+**Standing rule going forward: pick the hook's structural type as before, then separately
+check its emotional register — does this actually carry a real, checkable stake (something
+the viewer could lose, be wrong about, or already be at risk from), or is it neutral
+curiosity dressed up as one of the structural types above?** A hook can be Expert/
+Authority *and* fear-adjacent at once (they're independent axes) — that combination, not
+tried deliberately before, is what episode 32 tests first. This does not license inventing
+a stake that isn't real, or exaggerating a mild inconvenience into a catastrophe — the
+existing rule against fabrication still applies in full; the stake has to be genuinely
+true of the tool/behavior being described, same as every other hook rule on this page.
+
 ## Cross-checked against our own real numbers
 
 `channel/content-memory.md`'s 30.8.2026 grid (real Instagram view counts, our own account) already
@@ -199,7 +237,9 @@ last row before writing the next hook, and pick a different type.**
 | 28 | "Four rows in my database started with 'test_'. Only three of them were actually test data." | The Specific Number — first use of this type in the log, built from the demo's own real counts |
 | 29 | "Your n8n workflow can fail completely — and still say 'Success.'" | Shock/Surprise — a general, checkable claim about n8n itself (not an anecdote), the same shape as episode 25's winning hook |
 | 30 | "AI chats love padding the answer before they actually answer you." | Contrarian Open — a general, checkable claim about how AI chats behave, softened from an absolute "every" per QA |
-| 31 | "Ask any AI chatbot if it's connected to the internet. It can't actually tell you what is true." | Direct Address/Question — the education-genre-dominant type (66% share per the OpusClip research above), not used since episode 2 (this channel's single highest-performing hook, 940 views) |
+| 31 | "ChatGPT needs the internet to respond. This AI doesn't — and it just proved it." | Direct Address/Question, reworked twice post-ship on real reviewer feedback (see the 10.9.2026 note above) — final version names a specific, recognizable chatbot instead of "any AI chatbot," landing the checkable claim in the first clause |
+| 32 | "By default, n8n never tells you when a workflow dies." | Expert/Authority (rotated off 31's Direct Address/Question), deliberately paired with a fear-adjacent stake (a workflow silently broken for weeks) per the 13.9.2026 emotional-register axis — first episode to combine a proven structural type with an explicit stake on purpose, checkable claim lands in the first clause, no vague referent |
+| 33 | "Nothing's wrong with your n8n AI agent. It's forgetting on purpose — once every 5 messages." | You-Focused Appeal + The Specific Number (rotated off 32's Expert/Authority), same fear-adjacent register as 32 (a customer-facing agent that appears to forget reads as broken) but a genuinely different mechanism (memory/context, not error-handling) so it doesn't repeat episodes 7/25/32's angle on the same topic — the number 5 is n8n's real, current default, verified live, not invented for effect. Reworded twice post-draft, both times for the voice not the claim: the opener ("Your" -> "Nothing's wrong with your") after the voice failed its opening-word timing across three seeds, and "every" -> "once every" after it was flagged rushed across six seeds — same hook, same checkable claim, different words the voice could actually land |
 
 **Episode 26 underperformed (under 400 views) despite the highest measured topic demand of
 any episode shipped so far (`local ai model tutorial`, median 263k) — see

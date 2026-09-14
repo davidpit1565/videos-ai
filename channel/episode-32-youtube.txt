@@ -1,0 +1,13 @@
+By default, n8n never tells you when a workflow dies.
+
+A node fails, the execution turns red in your history — and that's it. No email, no Slack message, nothing. Most people never open that history unless something already feels wrong. By then, it could've been broken for weeks.
+
+The fix is one setting: an Error Workflow, wired to an Error Trigger node. Set it once, and every workflow that fails from then on tells you immediately — Slack, email, whatever you want.
+
+It's not a hidden feature. n8n even ships their own template for it. Almost nobody turns it on.
+
+Full setup, exact clicks: https://actually-works.com/e/32
+
+Follow for the setup that actually works.
+
+#n8n #automation #aiagents #buildinpublic #workflowautomation
