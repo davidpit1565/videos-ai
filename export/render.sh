@@ -3,11 +3,16 @@
 #   ./render.sh <html> <width> <height> <seconds> <narration.wav> <out.mp4> [music.wav]
 set -euo pipefail
 HTML="$1"; W="$2"; H="$3"; DUR="$4"; VO="$5"; OUT="$6"; MUS="${7:-}"
-# Decomposing the mix against both stems: at 0.34 the bed sat 11.2 dB under the voice
-# during speech and rose to about voice level in the gaps. The target is 18-20 dB under,
-# so the bed comes down ~8 dB. (Comparing gap level to speech level directly is
-# misleading here — the gaps are louder than the ducked bed under the voice.)
-MUSIC_VOL="${MUSIC_VOL:-0.135}"
+# Decomposed the mix against both stems directly (episode 32's stems, this exact filter
+# graph): at 0.135 the bed measured only 10.9 dB under the voice during speech — inside
+# qa.py's own "too loud, fighting the narration" range (<14), not the "barely audible"
+# episode 32 actually shipped with. Whatever produced that file didn't go through this
+# formula as it stands; check.sh never passed --music, so nothing caught either version.
+# 0.08 measured 15.4 dB under, comfortably inside the 14-26 pass range and toward the
+# louder end of it, per his ask that the bed actually be heard next to the narration —
+# re-verify with a real render before trusting this number again if the voice chain,
+# the ducking filter, or either stem's mastering changes.
+MUSIC_VOL="${MUSIC_VOL:-0.08}"
 # FRAMES=1 captures frame by frame instead of recording playback: slower, but the
 # timeline cannot drift, which matters when narration is cut to authored times.
 FRAMES="${FRAMES:-0}"
