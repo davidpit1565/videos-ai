@@ -760,6 +760,34 @@ below still apply. YouTube performance for the same 27 concepts is tracked separ
 (never combined with these Instagram numbers) and hasn't been cross-referenced against
 this table yet — a real next step, not done here.
 
+## Episode 32 — early signal, 7 hours in (14.9.2026)
+
+David reported this directly, not pulled from the studio's tracked `/api/track` data:
+**~250 combined Instagram + Facebook views, 7 hours after posting** — his own words,
+"that's not what this was supposed to be." Logging this as what it is, not more:
+
+- **UNKNOWN, not FACT**: this is a single early checkpoint, not a final number. Several
+  episodes in the master table above (e.g. episode 9: 217, episode 6: 201) sit in a
+  similar range as a *final* count after the view window closes — so 250 at 7 hours
+  could still be tracking toward a normal-range or even above-average final result. No
+  claim of underperformance is supportable yet from this one data point.
+- Real per-episode view/engagement numbers live in the studio's own tracked state, not
+  this file (per the standing rule above) — this entry exists only because he reported
+  a live number directly; it should be reconciled against `/api/track`'s real number
+  once the window closes, not treated as the record of truth itself.
+- Episode 32 was the first episode built on the new `.tuk-n8n` real-tool UI kit
+  (since corrected once already, 14.9.2026, after the CSS-recreation approach was
+  flagged as looking fake) and the first episode where the music/narration mix bug
+  (silently un-gated by `check.sh`, fixed 14.9.2026) is confirmed to have shipped with
+  the bed essentially inaudible. Both are real, plausible confounds for a soft early
+  number — genuinely different from prior episodes in two ways at once — but neither
+  is confirmed as the cause. **Do not treat this as proof either fix mattered until the
+  final number is in and, ideally, a second episode without both confounds is compared
+  against it.**
+- Action taken, not deferred: the two known defects above are already fixed going
+  forward (episode 33 onward). No further action on episode 32 itself — it already
+  shipped to Instagram and can't be swapped after the fact.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same

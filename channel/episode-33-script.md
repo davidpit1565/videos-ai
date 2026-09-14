@@ -33,7 +33,7 @@ broken, not smart — a real, checkable business risk, not an invented one.
   behavior, not an exaggerated worst case.
 
 ## Narration (8 lines)
-1. Nothing's wrong with your n8n AI agent. It's forgetting on purpose — once every 5 messages.
+1. Nothing's wrong with your n8n AI agent. It's forgetting on purpose — once per 5 messages.
 2. That number, 5, is the Agent node's default memory window. No one sets it — it just ships that way.
 3. Ask it a question. Follow up six messages later, and it has no idea what you're talking about.
 4. To whoever's talking to it, that looks like your bot forgot the conversation two seconds in.

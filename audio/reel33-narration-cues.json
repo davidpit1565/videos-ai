@@ -1,50 +1,50 @@
 [
  {
   "n": 1,
-  "line": "Nothing's wrong with your n8n AI agent. It's forgetting on purpose \u2014 once every 5 messages.",
+  "line": "Nothing's wrong with your n8n AI agent. It's forgetting on purpose \u2014 once per 5 messages.",
   "start": 0.3,
-  "end": 7.25
+  "end": 5.91
  },
  {
   "n": 2,
   "line": "That number, 5, is the Agent node's default memory window. No one sets it \u2014 it just ships that way.",
-  "start": 7.67,
-  "end": 13.49
+  "start": 6.33,
+  "end": 12.14
  },
  {
   "n": 3,
   "line": "Ask it a question. Follow up six messages later, and it has no idea what you're talking about.",
-  "start": 13.91,
-  "end": 18.88
+  "start": 12.56,
+  "end": 17.54
  },
  {
   "n": 4,
   "line": "To whoever's talking to it, that looks like your bot forgot the conversation two seconds in.",
-  "start": 19.3,
-  "end": 24.06
+  "start": 17.96,
+  "end": 22.72
  },
  {
   "n": 5,
   "line": "The fix: raise the context window \u2014 20 to 50 exchanges covers a normal conversation.",
-  "start": 24.91,
-  "end": 30.83
+  "start": 23.57,
+  "end": 28.59
  },
  {
   "n": 6,
   "line": "And if you're running queue mode, Simple Memory doesn't even survive across workers \u2014 switch to Postgres or Redis memory instead.",
-  "start": 31.25,
-  "end": 38.21
+  "start": 29.01,
+  "end": 36.2
  },
  {
   "n": 7,
   "line": "The exact setup's in the link in bio.",
-  "start": 38.63,
-  "end": 40.85
+  "start": 36.62,
+  "end": 39.02
  },
  {
   "n": 8,
   "line": "Follow for the setup that actually works.",
-  "start": 41.27,
-  "end": 43.49
+  "start": 39.44,
+  "end": 41.65
  }
 ]

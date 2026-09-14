@@ -131,15 +131,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="7.46">
+<section class="scene" data-in="0" data-out="6.12">
   <div class="pad"><div class="kb" id="hookKb">
     <h2 class="punch" id="hookH2">Not broken.<br>Just <span class="box">forgetting on purpose</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="7.46" data-out="13.7">
+<section class="scene" data-in="6.12" data-out="12.35">
   <div class="pad"><div class="kb">
-    <div class="termbox b" data-at="7.49">
+    <div class="termbox b" data-at="6.15">
       <div class="tk">agent node</div>
       <div class="tl">Memory window</div>
       <div class="badge"><span class="dot"></span>default: 5</div>
@@ -147,21 +147,21 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="13.7" data-out="19.09">
+<section class="scene" data-in="12.35" data-out="17.75">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="13.73">Six messages later —</p>
+    <p class="lede b" data-at="12.38">Six messages later —</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="19.09" data-out="24.485">
+<section class="scene" data-in="17.75" data-out="23.145">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="19.12">No idea what you asked.</p>
+    <p class="lede b" data-at="17.78">No idea what you asked.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="24.485" data-out="31.04">
+<section class="scene" data-in="23.145" data-out="28.8">
   <div class="pad"><div class="kb">
-    <div class="termbox2 b" data-at="24.515">
+    <div class="termbox2 b" data-at="23.175">
       <div class="row">
         <div class="tk">the fix</div>
         <div class="tl">Context Window Length →</div>
@@ -173,7 +173,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="31.04" data-out="38.42">
+<section class="scene" data-in="28.8" data-out="36.41">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow" id="scoreRowA" style="opacity:0"><span class="lbl">Simple Memory</span><span class="val">No</span></div>
@@ -182,15 +182,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="38.42" data-out="41.06">
+<section class="scene" data-in="36.41" data-out="39.26">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="38.45"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="36.44"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="41.06" data-out="43.79">
+<section class="scene" data-in="39.26" data-out="41.99">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="41.09" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="39.29" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -221,7 +221,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=44.39,t=0,playing=false,last=0;
+  var DUR=42.59,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -231,133 +231,133 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,7.25,"Nothing's wrong with your n8n AI agent. It's forgetting on purpose — once every 5 messages."],
-    [7.67,13.49,"That number, 5, is the Agent node's default memory window. No one sets it — it just ships that way."],
-    [13.91,18.88,"Ask it a question. Follow up six messages later, and it has no idea what you're talking about."],
-    [19.30,24.06,"To whoever's talking to it, that looks like your bot forgot the conversation two seconds in."],
-    [24.91,30.83,"The fix: raise the context window — 20 to 50 exchanges covers a normal conversation."],
-    [31.25,38.21,"And if you're running queue mode, Simple Memory doesn't even survive across workers — switch to Postgres or Redis memory instead."],
-    [38.63,40.85,"The exact setup's in the link in bio."],
-    [41.27,43.49,"Follow for the setup that actually works."]
+    [0.30,5.91,"Nothing's wrong with your n8n AI agent. It's forgetting on purpose — once per 5 messages."],
+    [6.33,12.14,"That number, 5, is the Agent node's default memory window. No one sets it — it just ships that way."],
+    [12.56,17.54,"Ask it a question. Follow up six messages later, and it has no idea what you're talking about."],
+    [17.96,22.72,"To whoever's talking to it, that looks like your bot forgot the conversation two seconds in."],
+    [23.57,28.59,"The fix: raise the context window — 20 to 50 exchanges covers a normal conversation."],
+    [29.01,36.20,"And if you're running queue mode, Simple Memory doesn't even survive across workers — switch to Postgres or Redis memory instead."],
+    [36.62,39.05,"The exact setup's in the link in bio."],
+    [39.47,41.69,"Follow for the setup that actually works."]
   ];
   var WORDS=[
-    [0.3,0.92,"Nothing's",0],
-    [0.92,1.28,"wrong",0],
-    [1.28,1.58,"with",0],
-    [1.58,1.9,"your",1],
-    [1.9,2.9,"n8n",1],
-    [2.9,3.22,"AI",1],
-    [3.22,3.64,"agent.",2],
-    [4.1,4.32,"It's",3],
-    [4.32,4.66,"forgetting",3],
-    [4.66,4.92,"on",3],
-    [4.92,5.42,"purpose",4],
-    [5.82,6.08,"once",5],
-    [6.08,6.34,"every",5],
-    [6.34,6.64,"5",5],
-    [6.64,7.22,"messages.",6],
-    [7.86,8.02,"That",7],
-    [8.02,8.4,"number,",7],
-    [8.46,8.9,"5,",8],
-    [9.06,9.28,"is",9],
-    [9.28,9.48,"the",9],
-    [9.48,9.74,"Agent",9],
-    [9.74,10.22,"node's",10],
-    [10.22,10.56,"default",10],
-    [10.56,10.92,"memory",10],
-    [10.92,11.24,"window.",11],
-    [11.68,11.82,"No",12],
-    [11.82,12.02,"one",12],
-    [12.02,12.18,"sets",12],
-    [12.18,12.5,"it",13],
-    [12.56,12.72,"it",13],
-    [12.72,12.9,"just",13],
-    [12.9,13.02,"ships",13],
-    [13.02,13.28,"that",14],
-    [13.28,13.56,"way.",14],
-    [13.98,14.22,"Ask",15],
-    [14.22,14.44,"it",15],
-    [14.44,14.56,"a",15],
-    [14.48,14.98,"question.",16],
-    [15.4,15.6,"Follow",17],
-    [15.6,15.84,"up",17],
-    [15.84,16.1,"six",17],
-    [16.1,16.52,"messages",18],
-    [16.52,16.92,"later,",18],
-    [16.92,17.28,"and",19],
-    [17.28,17.44,"it",19],
-    [17.44,17.56,"has",19],
-    [17.54,17.78,"no",20],
-    [17.78,18.02,"idea",20],
-    [18.02,18.14,"what",20],
-    [18.14,18.3,"you're",21],
-    [18.3,18.56,"talking",21],
-    [18.56,19.0,"about.",21],
-    [19.38,19.5,"To",22],
-    [19.5,19.98,"whoever's",22],
-    [19.98,20.26,"talking",22],
-    [20.26,20.48,"to",23],
-    [20.48,20.82,"it,",23],
-    [20.94,21.1,"that",24],
-    [21.1,21.3,"looks",24],
-    [21.3,21.52,"like",24],
-    [21.52,21.72,"your",25],
-    [21.72,21.88,"bot",25],
-    [21.88,22.2,"forgot",25],
-    [22.2,22.42,"the",26],
-    [22.42,23.1,"conversation",26],
-    [23.1,23.4,"two",26],
-    [23.4,23.72,"seconds",27],
-    [23.72,24.12,"in.",27],
-    [24.91,25.38,"The",28],
-    [25.38,25.7,"fix:",28],
-    [26.02,26.24,"raise",29],
-    [26.24,26.5,"the",29],
-    [26.5,26.86,"context",29],
-    [26.86,27.28,"window",30],
-    [27.74,27.94,"20",31],
-    [27.94,28.08,"to",31],
-    [28.08,28.46,"50",31],
-    [28.46,28.98,"exchanges",32],
-    [28.98,29.48,"covers",32],
-    [29.48,29.74,"a",32],
-    [29.74,30.04,"normal",33],
-    [30.04,30.66,"conversation.",33],
-    [31.36,31.48,"And",34],
-    [31.48,31.6,"if",34],
-    [31.6,31.82,"you're",34],
-    [31.82,32.02,"running",35],
-    [32.02,32.32,"queue",35],
-    [32.32,32.66,"mode,",35],
-    [33.02,33.14,"Simple",36],
-    [33.14,33.54,"Memory",36],
-    [33.54,33.9,"doesn't",36],
-    [33.9,34.16,"even",37],
-    [34.16,34.58,"survive",37],
-    [34.58,34.98,"across",37],
-    [34.98,35.42,"workers",38],
-    [35.76,36.04,"switch",39],
-    [36.04,36.28,"to",39],
-    [36.28,36.74,"Postgres",39],
-    [36.74,37.06,"or",40],
-    [37.06,37.32,"Redis",40],
-    [37.32,37.66,"memory",40],
-    [37.66,38.2,"instead.",41],
-    [38.92,39.08,"The",42],
-    [39.08,39.36,"exact",42],
-    [39.36,39.66,"setup's",42],
-    [39.66,39.92,"in",43],
-    [39.92,40.08,"the",43],
-    [40.08,40.24,"link",43],
-    [40.24,40.54,"in",44],
-    [40.54,40.82,"bio.",44],
-    [41.36,41.62,"Follow",45],
-    [41.62,41.86,"for",45],
-    [41.86,42.08,"the",45],
-    [42.08,42.28,"setup",46],
-    [42.28,42.7,"that",46],
-    [42.7,43.1,"actually",46],
-    [43.1,43.38,"works.",47]
+    [0.3,0.84,"Nothing's",0],
+    [0.84,1.06,"wrong",0],
+    [1.06,1.22,"with",0],
+    [1.22,1.52,"your",1],
+    [1.52,2.08,"n8n",1],
+    [2.08,2.42,"AI",1],
+    [2.42,2.84,"agent.",2],
+    [3.32,3.52,"It's",3],
+    [3.52,3.76,"forgetting",3],
+    [3.76,4.04,"on",3],
+    [4.04,4.44,"purpose",4],
+    [4.44,4.92,"once",4],
+    [4.92,5.12,"per",4],
+    [5.12,5.36,"5",4],
+    [5.36,5.98,"messages.",5],
+    [6.54,6.66,"That",6],
+    [6.66,7.04,"number,",6],
+    [7.04,7.52,"5,",7],
+    [7.52,7.94,"is",8],
+    [7.94,8.16,"the",8],
+    [8.16,8.36,"Agent",8],
+    [8.36,8.96,"node's",9],
+    [8.96,9.22,"default",9],
+    [9.22,9.56,"memory",9],
+    [9.56,9.92,"window.",10],
+    [10.38,10.5,"No",11],
+    [10.48,10.68,"one",11],
+    [10.68,10.82,"sets",11],
+    [10.82,11.12,"it",12],
+    [11.14,11.36,"it",12],
+    [11.36,11.56,"just",12],
+    [11.56,11.68,"ships",12],
+    [11.68,11.94,"that",13],
+    [11.94,12.14,"way.",13],
+    [12.64,12.88,"Ask",14],
+    [12.88,13.1,"it",14],
+    [13.1,13.22,"a",14],
+    [13.18,13.6,"question.",15],
+    [14.0,14.26,"Follow",16],
+    [14.26,14.5,"up",16],
+    [14.5,14.78,"six",16],
+    [14.78,15.18,"messages",17],
+    [15.18,15.56,"later,",17],
+    [15.56,15.96,"and",18],
+    [15.96,16.08,"it",18],
+    [16.08,16.2,"has",18],
+    [16.2,16.44,"no",19],
+    [16.44,16.68,"idea",19],
+    [16.68,16.8,"what",19],
+    [16.8,16.98,"you're",20],
+    [16.98,17.2,"talking",20],
+    [17.2,17.62,"about.",20],
+    [18.02,18.18,"To",21],
+    [18.18,18.68,"whoever's",21],
+    [18.68,18.9,"talking",21],
+    [18.9,19.14,"to",22],
+    [19.14,19.46,"it,",22],
+    [19.64,19.78,"that",23],
+    [19.78,19.96,"looks",23],
+    [19.96,20.18,"like",23],
+    [20.18,20.36,"your",24],
+    [20.36,20.54,"bot",24],
+    [20.54,20.84,"forgot",24],
+    [20.84,21.12,"the",25],
+    [21.12,21.74,"conversation",25],
+    [21.74,22.06,"two",25],
+    [22.06,22.36,"seconds",26],
+    [22.36,22.8,"in.",26],
+    [23.78,24.08,"The",27],
+    [24.08,24.34,"fix:",27],
+    [24.56,24.76,"raise",28],
+    [24.76,24.98,"the",28],
+    [24.98,25.22,"context",28],
+    [25.22,25.56,"window",29],
+    [25.9,26.26,"20",30],
+    [26.26,26.38,"to",30],
+    [26.38,26.64,"50",30],
+    [26.64,27.1,"exchanges",31],
+    [27.1,27.56,"covers",31],
+    [27.56,27.74,"a",31],
+    [27.74,27.96,"normal",32],
+    [27.96,28.5,"conversation.",32],
+    [29.03,29.34,"And",33],
+    [29.34,29.5,"if",33],
+    [29.5,29.68,"you're",33],
+    [29.68,29.88,"running",34],
+    [29.88,30.18,"queue",34],
+    [30.18,30.58,"mode,",34],
+    [30.9,31.02,"Simple",35],
+    [31.02,31.42,"Memory",35],
+    [31.42,31.76,"doesn't",35],
+    [31.76,31.92,"even",36],
+    [31.92,32.28,"survive",36],
+    [32.28,32.66,"across",36],
+    [32.66,33.12,"workers",37],
+    [33.62,33.86,"switch",38],
+    [33.86,34.08,"to",38],
+    [34.08,34.54,"Postgres",38],
+    [34.54,34.86,"or",39],
+    [34.86,35.14,"Redis",39],
+    [35.14,35.52,"memory",39],
+    [35.52,36.16,"instead.",40],
+    [36.92,37.04,"The",41],
+    [37.02,37.28,"exact",41],
+    [37.28,37.58,"setup's",41],
+    [37.58,37.88,"in",42],
+    [37.88,38.02,"the",42],
+    [38.02,38.22,"link",42],
+    [38.22,38.64,"in",43],
+    [38.64,39.02,"bio.",43],
+    [39.62,39.82,"Follow",44],
+    [39.82,40.06,"for",44],
+    [40.06,40.28,"the",44],
+    [40.28,40.5,"setup",45],
+    [40.5,40.92,"that",45],
+    [40.92,41.3,"actually",45],
+    [41.3,41.58,"works.",46]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}

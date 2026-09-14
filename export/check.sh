@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Everything that has to pass before a reel is sent to him.
-#   ./export/check.sh <build.html> <narration.wav> [rendered.mp4]
+#   ./export/check.sh <build.html> <narration.wav> [rendered.mp4] [music.wav]
 #   ACCEPT_WORDS=three ./export/check.sh ...   — words he has already approved by ear
 #                                                 (voice_doctor.py --accept), so the gate
 #                                                 doesn't keep failing him on his own call
 set -uo pipefail
 cd "$(dirname "$0")/.."
-BUILD="$1"; VO="$2"; MP4="${3:-}"
+BUILD="$1"; VO="$2"; MP4="${3:-}"; MUS="${4:-}"
 fail=0
 
 echo "=== narration"
@@ -30,7 +30,7 @@ node export/safe_check.js "$BUILD" --every 0.2 || fail=1
 if [ -n "$MP4" ]; then
   echo
   echo "=== rendered file"
-  python3 export/qa.py "$MP4" --build "$BUILD" --vo "$VO" || fail=1
+  python3 export/qa.py "$MP4" --build "$BUILD" --vo "$VO" ${MUS:+--music "$MUS"} || fail=1
 fi
 
 echo

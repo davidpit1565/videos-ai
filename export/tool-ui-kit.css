@@ -1,0 +1,242 @@
+/* Real-tool UI kit — faithful recreations of the actual apps this channel covers, instead
+ * of one generic dark "termbox" reused regardless of which tool the episode is about.
+ * Colors and layout facts below are sourced, not invented — see channel/tool-ui-kit.md
+ * for the citations behind each one. Each kit is self-contained (its own bg/text/accent),
+ * so it can sit inside any episode's own brass/ember scene chrome without a clash — the
+ * outer scene stays "us," the inner screen looks like the real product.
+ *
+ * Usage: wrap the recreated screen in the kit's root class (.tuk-n8n / .tuk-chatgpt /
+ * .tuk-claude), sized to the pad's width like any other termbox. Nothing here animates on
+ * its own — reveal it the same way every other scene element reveals, with the existing
+ * .b/.on classes and motion-kit.js.
+ */
+
+/* ───────────────────────── n8n ─────────────────────────
+ * CORRECTED 14.9.2026 — the previous version below was built from n8n's brand
+ * guidelines + a docs page describing a light canvas. Pulled two real, current
+ * screenshots instead (n8n's own blog, blog.n8n.io/how-to-build-ai-agent/, fetched and
+ * viewed directly, colors sampled with PIL from the actual PNGs) and the real editor
+ * is DARK, not light: canvas #3A3A3A with a lighter dot grid, node cards #494A4B with
+ * white/light-grey text, sticky-note annotations in an olive-brown (#5A4F25 body /
+ * #746855 banner) with white heading text and orange-red links, node parameter panels
+ * on the same #3A3A3A with lighter #5B5C5F input/dropdown fields. Brand pink #EA4B71
+ * (n8n.io/brandguidelines) still shows up as the accent — active tabs, links, the
+ * trigger bolt — just not as the canvas or card color the old version assumed.
+ * See channel/tool-ui-kit.md for the exact source images. */
+.tuk-n8n{
+  --n8n-pink:#EA4B71; --n8n-canvas:#3A3A3A; --n8n-dot:#4E4E4E;
+  --n8n-card:#494A4B; --n8n-card-line:#5A5B5C; --n8n-ink:#F2F2F3; --n8n-sub:#B8B8BA;
+  --n8n-note:#5A4F25; --n8n-note-ink:#F5EFDD; --n8n-field:#5B5C5F; --n8n-wire:#7A7B7D;
+  background:
+    radial-gradient(var(--n8n-dot) 1.4px, transparent 1.4px) 0 0/22px 22px,
+    var(--n8n-canvas);
+  border-radius:1.6cqw; padding:5cqw 4.5cqw; position:relative; overflow:hidden;
+  font-family:'Inter','Segoe UI',system-ui,sans-serif;
+}
+.tuk-n8n .n8n-node{
+  background:var(--n8n-card); border:1px solid var(--n8n-card-line); border-radius:1.1cqw;
+  padding:2.6cqw 3.2cqw; display:flex; align-items:center; gap:2.4cqw;
+  box-shadow:0 .6cqw 1.6cqw rgba(0,0,0,.35); position:relative;
+}
+.tuk-n8n .n8n-node + .n8n-node{ margin-top:3.2cqw }
+.tuk-n8n .n8n-icon{
+  width:8cqw; height:8cqw; border-radius:.9cqw; flex:0 0 auto;
+  display:grid; place-items:center; font-size:4cqw; color:#fff;
+  background:var(--n8n-icon,#6B7280);
+}
+.tuk-n8n .n8n-icon.trigger{ background:var(--n8n-pink); border-radius:50% .9cqw .9cqw 50% }
+.tuk-n8n .n8n-icon.ai{ background:#DFDFE1; color:#3A3A3A }
+.tuk-n8n .n8n-icon.http{ background:#2E7CF6 }
+.tuk-n8n .n8n-label{ font-weight:700; font-size:4.2cqw; color:var(--n8n-ink) }
+.tuk-n8n .n8n-sub{ font-size:3cqw; color:var(--n8n-sub); margin-top:.4cqw }
+.tuk-n8n .n8n-badge{
+  position:absolute; top:-1.6cqw; right:-1.6cqw; width:5.2cqw; height:5.2cqw; border-radius:50%;
+  background:var(--n8n-pink); color:#fff; display:grid; place-items:center;
+  font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:3cqw;
+  box-shadow:0 0 0 .5cqw var(--n8n-canvas);
+}
+.tuk-n8n .n8n-wire{ stroke:var(--n8n-wire); stroke-width:2.5; fill:none }
+.tuk-n8n .n8n-wire.active{ stroke:var(--n8n-pink) }
+/* the sticky-note annotation boxes real n8n workflows are covered in — an olive card
+ * with a bold white heading and orange-red inline links, not a node itself */
+.tuk-n8n .n8n-note{
+  background:var(--n8n-note); color:var(--n8n-note-ink); border-radius:.8cqw;
+  padding:3cqw 3.4cqw; font-size:3.4cqw; line-height:1.5;
+}
+.tuk-n8n .n8n-note b{ display:block; font-size:4.4cqw; margin-bottom:1.2cqw }
+.tuk-n8n .n8n-note a, .tuk-n8n .n8n-note .link{ color:#FF8A65 }
+/* the node parameter panel (double-click a node) — same dark canvas bg, lighter field wells */
+.tuk-n8n .n8n-panel{
+  background:var(--n8n-canvas); border-radius:1cqw; padding:3.4cqw;
+  color:var(--n8n-ink); font-size:3.2cqw;
+}
+.tuk-n8n .n8n-panel .n8n-field{
+  background:var(--n8n-field); border-radius:.7cqw; padding:2cqw 2.4cqw;
+  margin-top:1cqw; color:var(--n8n-ink); font-family:'IBM Plex Mono',monospace; font-size:3cqw;
+}
+.tuk-n8n .n8n-panel .n8n-tab{ color:var(--n8n-sub); font-weight:700; margin-inline-end:3cqw }
+.tuk-n8n .n8n-panel .n8n-tab.active{ color:var(--n8n-pink); border-bottom:2px solid var(--n8n-pink) }
+/* ADDED 14.9.2026, from a real screenshot David sent directly (n8n.io's own homepage,
+ * embedding a real workflow: form-trigger → AI Agent → "Is a manager?" branching to two
+ * Slack nodes, with Anthropic/Postgres/Entra-ID/Jira nodes hanging off the Agent as small
+ * circular icons). Two shapes the blog-screenshot version didn't cover: a diamond
+ * true/false branch node, and a row of small circular sub-connection icons under a node
+ * (model/memory/tool). Colors here are estimated by eye from that screenshot, not
+ * PIL-sampled (no file on disk for a pasted image) — good enough for shape/layout,
+ * revisit with real sampling if a saved copy turns up. */
+.tuk-n8n .n8n-diamond{
+  width:14cqw; height:14cqw; background:var(--n8n-card); border:1px solid var(--n8n-card-line);
+  border-radius:2cqw; transform:rotate(45deg); display:grid; place-items:center;
+  box-shadow:0 .6cqw 1.6cqw rgba(0,0,0,.35);
+}
+.tuk-n8n .n8n-diamond span{ transform:rotate(-45deg); font-size:2.6cqw; font-weight:700; color:var(--n8n-ink); text-align:center }
+.tuk-n8n .n8n-subrow{ display:flex; gap:3.4cqw; margin-top:3cqw; justify-content:center }
+.tuk-n8n .n8n-subicon{ display:flex; flex-direction:column; align-items:center; gap:.8cqw }
+.tuk-n8n .n8n-subicon i{
+  width:7cqw; height:7cqw; border-radius:50%; display:grid; place-items:center;
+  font-size:3.2cqw; font-style:normal; color:#fff; background:var(--n8n-sub-bg,#6B7280);
+}
+.tuk-n8n .n8n-subicon b{ font-size:2.2cqw; font-weight:500; color:var(--n8n-sub); text-align:center }
+
+/* ───────────────────────── ChatGPT ─────────────────────────
+ * Light UI, real menu chrome. Verified against episode 1's own build (video/reel-01-v25.html),
+ * itself checked against the real app before shipping. */
+.tuk-chatgpt{
+  --gpt-bg:#FFFFFF; --gpt-ink:#0D0D0D; --gpt-sub:#6E6E80; --gpt-line:#E5E5E8; --gpt-accent:#10A37F;
+  background:var(--gpt-bg); border-radius:1.6cqw; padding:4.6cqw; position:relative;
+  font-family:'Inter','Segoe UI',system-ui,sans-serif; box-shadow:0 1cqw 3cqw rgba(0,0,0,.18);
+}
+.tuk-chatgpt .gpt-row{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:2.6cqw 0; border-bottom:1px solid var(--gpt-line); color:var(--gpt-ink);
+  font-size:4.2cqw; font-weight:600;
+}
+.tuk-chatgpt .gpt-row:last-child{ border-bottom:0 }
+.tuk-chatgpt .gpt-row .gpt-icon{ margin-right:2.6cqw; font-size:4.4cqw; opacity:.7 }
+.tuk-chatgpt .gpt-row .gpt-chev{ color:#C7C7CE; font-size:4cqw }
+.tuk-chatgpt .gpt-title{ font-size:5.4cqw; font-weight:800; color:var(--gpt-ink); margin:0 0 2cqw }
+.tuk-chatgpt .gpt-box{
+  background:#F7F7F8; border:1px solid var(--gpt-line); border-radius:1cqw;
+  padding:3cqw 3.4cqw; font-size:3.8cqw; color:var(--gpt-ink); line-height:1.5; min-height:14cqw;
+}
+/* ADDED 14.9.2026, real screenshot David sent directly (his own chatgpt.com, dark mode —
+ * not a rare setting, this is one of the two real states the app ships in and the
+ * previous version of this kit only covered the light one). Near-black page, a fully
+ * rounded pill input/textbox, message bubbles as dark-grey rounded rectangles rather
+ * than full-width rows. Colors estimated by eye from the screenshot (no file on disk to
+ * sample), not brand-page recall. Use `.tuk-chatgpt.dark` for a dark-mode scene. */
+.tuk-chatgpt.dark{
+  --gpt-bg:#0F0F10; --gpt-ink:#ECECEC; --gpt-sub:#A8A8AD; --gpt-line:#2A2A2E; --gpt-bubble:#2F2F30;
+  box-shadow:none;
+}
+.tuk-chatgpt.dark .gpt-row{ border-bottom-color:var(--gpt-line) }
+.tuk-chatgpt.dark .gpt-box{ background:#212123; border-color:#2A2A2E; color:var(--gpt-ink) }
+.tuk-chatgpt .gpt-pill{
+  display:inline-flex; align-items:center; gap:1.8cqw; background:#2A2A2C; color:#ECECEC;
+  border-radius:99cqw; padding:1.8cqw 3.2cqw; font-size:3.4cqw; font-weight:600; margin:0 0 1.8cqw;
+}
+.tuk-chatgpt .gpt-input{
+  display:flex; align-items:center; gap:2cqw; background:#2A2A2C; color:#8E8EA0;
+  border-radius:99cqw; padding:2.6cqw 3.6cqw; font-size:3.6cqw;
+}
+.tuk-chatgpt .gpt-bubble{
+  background:var(--gpt-bubble,#2F2F30); color:var(--gpt-ink); border-radius:1.6cqw;
+  padding:2.6cqw 3.2cqw; font-size:3.6cqw; line-height:1.5; align-self:flex-end;
+  max-width:78%; margin-inline-start:auto;
+}
+
+/* ───────────────────────── Claude ─────────────────────────
+ * Warm cream/terracotta, sourced from Anthropic's shipped design tokens: cream #F0ECE0,
+ * terracotta accent #C96442, coral #D97757, near-black ink #141413 — every gray here
+ * carries the same warm undertone rather than a neutral gray, which is the whole
+ * visual signature; a cool gray reads as wrong immediately.
+ * CORRECTED 14.9.2026 — viewed a real, current Anthropic marketing screenshot
+ * (anthropic.com/news/projects, the "Project knowledge" panel) directly. Two facts
+ * the color tokens alone missed: chat prompts/headings render in a SERIF face (a
+ * Copernicus-style serif, not Inter) — this is a real, distinctive part of Claude's
+ * look, not a generic sans UI like the other three kits; and the real accent color
+ * doing the work in the UI (link text, the "+" on an action row, file-type chips) is
+ * a plain blue, not the terracotta — terracotta/coral show up as brand color, not as
+ * the interactive-element color. Both used below. */
+.tuk-claude{
+  --claude-bg:#F0ECE0; --claude-ink:#141413; --claude-sub:#8A8478; --claude-accent:#C96442; --claude-coral:#D97757;
+  --claude-card:#FAF8F2; --claude-line:#E3DDCB; --claude-link:#2C84DB;
+  background:var(--claude-bg); border-radius:1.6cqw; padding:4.6cqw; position:relative;
+  font-family:'Inter','Segoe UI',system-ui,sans-serif;
+}
+.tuk-claude .claude-bubble{
+  background:var(--claude-card); border:1px solid var(--claude-line); border-radius:1.4cqw;
+  padding:3.2cqw 3.6cqw; font-size:4cqw; color:var(--claude-ink); line-height:1.55;
+}
+.tuk-claude .claude-bubble + .claude-bubble{ margin-top:2.6cqw }
+.tuk-claude .claude-tag{
+  display:inline-block; background:var(--claude-accent); color:#FFF6EE;
+  border-radius:99cqw; padding:.8cqw 2.6cqw; font-size:2.8cqw; font-weight:700;
+  letter-spacing:.04em; margin-bottom:2cqw;
+}
+/* the serif prompt/heading line — what a real chat title or project name looks like */
+.tuk-claude .claude-serif{
+  font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;
+  color:var(--claude-ink); font-size:5.6cqw; line-height:1.3;
+}
+/* a dashed-border action row, e.g. "+ Set custom instructions" */
+.tuk-claude .claude-action{
+  display:flex; align-items:center; gap:1.6cqw; border:1.5px dashed var(--claude-line);
+  border-radius:1cqw; padding:2.6cqw 3cqw; color:var(--claude-link); font-weight:700; font-size:3.6cqw;
+}
+/* a DOCX/PDF file chip in a knowledge/attachment list */
+.tuk-claude .claude-file{ display:flex; align-items:center; gap:2.2cqw; font-size:3.4cqw; color:var(--claude-ink) }
+.tuk-claude .claude-file .ext{
+  width:7cqw; height:7cqw; border-radius:.6cqw; background:#fff; border:1.5px solid var(--claude-link);
+  color:var(--claude-link); display:grid; place-items:center; font-size:2.2cqw; font-weight:800;
+}
+
+/* ───────────────────────── Gemini ─────────────────────────
+ * BUILT 14.9.2026 from real screenshots David sent directly (his own gemini.google.com,
+ * both the empty-state "Let's jump in" screen and a live chat with a generated-video
+ * reply) — the previous state of this kit was "requested, not built," with only a
+ * structure-only third-party screenshot to go on. Real facts from this round: near-black
+ * background (not Google's usual white Material look), a fully rounded pill input
+ * matching ChatGPT's pill shape almost exactly, a 4-point rainbow "spark" glyph as the
+ * logo (red→purple→blue→green gradient), a solid blue "Upgrade" pill top-right, and
+ * message bubbles as dark-grey rounded rectangles — same bubble language as ChatGPT's
+ * dark mode, not a distinct visual signature of its own. Colors estimated by eye from
+ * the screenshots (no file on disk to pixel-sample). */
+.tuk-gemini{
+  --gem-bg:#101319; --gem-bg2:#0B0E14; --gem-ink:#ECEDF0; --gem-sub:#9AA0AC;
+  --gem-field:#1B1F29; --gem-blue:#4C8DF6; --gem-bubble:#262B36;
+  background:radial-gradient(120% 90% at 50% 0%, var(--gem-bg2), var(--gem-bg));
+  border-radius:1.6cqw; padding:4.6cqw; position:relative;
+  font-family:'Inter','Segoe UI',system-ui,sans-serif; color:var(--gem-ink);
+}
+.tuk-gemini .gem-spark{
+  width:6cqw; height:6cqw; display:inline-block;
+  background:conic-gradient(from 200deg, #E94B3C, #B24BF3, #4C8DF6, #34C759, #E94B3C);
+  clip-path:polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%);
+}
+.tuk-gemini .gem-greet{ font-size:5.6cqw; color:var(--gem-ink); text-align:center; margin:4cqw 0 }
+.tuk-gemini .gem-input{
+  display:flex; align-items:center; gap:2cqw; background:var(--gem-field); color:var(--gem-sub);
+  border-radius:99cqw; padding:2.6cqw 3.6cqw; font-size:3.6cqw;
+}
+.tuk-gemini .gem-input .gem-model{
+  margin-inline-start:auto; background:#262B36; color:var(--gem-ink); border-radius:99cqw;
+  padding:.8cqw 2.4cqw; font-size:2.8cqw; font-weight:700;
+}
+.tuk-gemini .gem-upgrade{
+  position:absolute; top:3cqw; right:3cqw; background:var(--gem-blue); color:#fff;
+  border-radius:99cqw; padding:1.4cqw 3.2cqw; font-size:3cqw; font-weight:800;
+}
+.tuk-gemini .gem-bubble{
+  background:var(--gem-bubble); color:var(--gem-ink); border-radius:1.6cqw;
+  padding:2.6cqw 3.2cqw; font-size:3.6cqw; line-height:1.5;
+  max-width:78%; margin-inline-start:auto;
+}
+.tuk-gemini .gem-media{
+  position:relative; border-radius:1.4cqw; overflow:hidden; margin-top:2.4cqw;
+  background:#1B1F29; aspect-ratio:4/5; display:grid; place-items:center;
+}
+.tuk-gemini .gem-media .play{
+  width:9cqw; height:9cqw; border-radius:50%; background:rgba(0,0,0,.45);
+  display:grid; place-items:center; color:#fff; font-size:4cqw;
+}

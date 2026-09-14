@@ -131,15 +131,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="7.46">
+<section class="scene" data-in="0" data-out="6.12">
   <div class="pad"><div class="kb" id="hookKb">
     <h2 class="punch" id="hookH2">Not broken.<br>Just <span class="box">forgetting on purpose</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="7.46" data-out="13.7">
+<section class="scene" data-in="6.12" data-out="12.35">
   <div class="pad"><div class="kb">
-    <div class="termbox b" data-at="7.49">
+    <div class="termbox b" data-at="6.15">
       <div class="tk">agent node</div>
       <div class="tl">Memory window</div>
       <div class="badge"><span class="dot"></span>default: 5</div>
@@ -147,21 +147,21 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="13.7" data-out="19.09">
+<section class="scene" data-in="12.35" data-out="17.75">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="13.73">Six messages later —</p>
+    <p class="lede b" data-at="12.38">Six messages later —</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="19.09" data-out="24.485">
+<section class="scene" data-in="17.75" data-out="23.145">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="19.12">No idea what you asked.</p>
+    <p class="lede b" data-at="17.78">No idea what you asked.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="24.485" data-out="31.04">
+<section class="scene" data-in="23.145" data-out="28.8">
   <div class="pad"><div class="kb">
-    <div class="termbox2 b" data-at="24.515">
+    <div class="termbox2 b" data-at="23.175">
       <div class="row">
         <div class="tk">the fix</div>
         <div class="tl">Context Window Length →</div>
@@ -173,7 +173,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="31.04" data-out="38.42">
+<section class="scene" data-in="28.8" data-out="36.41">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow" id="scoreRowA" style="opacity:0"><span class="lbl">Simple Memory</span><span class="val">No</span></div>
@@ -182,15 +182,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="38.42" data-out="41.06">
+<section class="scene" data-in="36.41" data-out="39.26">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="38.45"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="36.44"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="41.06" data-out="43.79">
+<section class="scene" data-in="39.26" data-out="41.99">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="41.09" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="39.29" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -221,7 +221,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=44.39,t=0,playing=false,last=0;
+  var DUR=42.59,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -231,14 +231,14 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,7.25,"Nothing's wrong with your n8n AI agent. It's forgetting on purpose — once every 5 messages."],
-    [7.67,13.49,"That number, 5, is the Agent node's default memory window. No one sets it — it just ships that way."],
-    [13.91,18.88,"Ask it a question. Follow up six messages later, and it has no idea what you're talking about."],
-    [19.30,24.06,"To whoever's talking to it, that looks like your bot forgot the conversation two seconds in."],
-    [24.91,30.83,"The fix: raise the context window — 20 to 50 exchanges covers a normal conversation."],
-    [31.25,38.21,"And if you're running queue mode, Simple Memory doesn't even survive across workers — switch to Postgres or Redis memory instead."],
-    [38.63,40.85,"The exact setup's in the link in bio."],
-    [41.27,43.49,"Follow for the setup that actually works."]
+    [0.30,5.91,"Nothing's wrong with your n8n AI agent. It's forgetting on purpose — once per 5 messages."],
+    [6.33,12.14,"That number, 5, is the Agent node's default memory window. No one sets it — it just ships that way."],
+    [12.56,17.54,"Ask it a question. Follow up six messages later, and it has no idea what you're talking about."],
+    [17.96,22.72,"To whoever's talking to it, that looks like your bot forgot the conversation two seconds in."],
+    [23.57,28.59,"The fix: raise the context window — 20 to 50 exchanges covers a normal conversation."],
+    [29.01,36.20,"And if you're running queue mode, Simple Memory doesn't even survive across workers — switch to Postgres or Redis memory instead."],
+    [36.62,39.05,"The exact setup's in the link in bio."],
+    [39.47,41.69,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}

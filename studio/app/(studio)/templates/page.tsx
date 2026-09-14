@@ -1,4 +1,4 @@
-import { TEMPLATES, MUSIC_MOODS, USED_ACCENTS, AVATARS } from "@/lib/templates";
+import { TEMPLATES, MUSIC_MOODS, USED_ACCENTS, AVATARS, TOOL_UI_KITS } from "@/lib/templates";
 import TemplateThumb from "./lightbox";
 import AvatarThumb from "./avatar-thumb";
 
@@ -15,6 +15,26 @@ export default function TemplatesPage() {
         לפני שסוגרים על ריל חדש: "תבנית 3, מוזיקה 2" — במקום לתאר מחדש איך זה אמור להיראות
         בכל פעם.
       </p>
+
+      <h2>ממשקי כלים אמיתיים (חדש)</h2>
+      <p className="sub">
+        שחזור נאמן לממשק האמיתי של הכלי עצמו — לא קופסה כהה גנרית שאנחנו ממציאים לכל פרק.
+        פרק 1 (666 צפיות, השיא שלנו) כבר שחזר את תפריט ה-Settings האמיתי של ChatGPT; זה מרחיב
+        את זה לכל כלי שאנחנו מסקרים. כל צבע וכל פרט מאומת מול המקור — לא ניחוש.
+      </p>
+      <div className="tplgrid">
+        {TOOL_UI_KITS.map((k) => (
+          <div className="tplcard" key={k.n}>
+            <TemplateThumb src={k.thumb} alt={k.name} num={k.n} />
+            <b>{k.name}</b>
+            <p className="sub">{k.when}</p>
+            <p className="sub" style={{ color: "var(--brass)" }}>
+              <b>מקור: </b>
+              {k.sourced}
+            </p>
+          </div>
+        ))}
+      </div>
 
       <h2>תבניות עיצוב</h2>
       <div className="tplgrid">
