@@ -21,17 +21,20 @@ broken, not smart — a real, checkable business risk, not an invented one.
 - **Type rotation**: episode 32 was Expert/Authority. This one is
   **You-Focused Appeal** combined with **The Specific Number** (5) — a
   different structural type, not a repeat.
-- **Cold-read test**: "Your n8n AI agent isn't broken. It's forgetting on
-  purpose — every 5 messages." Clear in one pass, checkable claim (the number
-  5) lands in the first two sentences, no vague referent.
+- **Cold-read test**: "Nothing's wrong with your n8n AI agent. It's forgetting
+  on purpose — every 5 messages." Clear in one pass, checkable claim (the
+  number 5) lands in the first two sentences, no vague referent. (Reworded
+  14.9.2026 — the original "Your n8n AI agent isn't broken" opened with a
+  monosyllabic first word that the voice failed on across three different
+  seeds; this keeps the same claim with a first word the voice handles.)
 - **Emotional register**: real, checkable stake — a customer-facing agent
   that appears to forget mid-conversation reads as broken to whoever is
   talking to it. Not fabricated: this is the literal, documented default
   behavior, not an exaggerated worst case.
 
 ## Narration (8 lines)
-1. Your n8n AI agent isn't broken. It's forgetting on purpose — every 5 messages.
-2. That number, 5, is the Agent node's default memory window. Nobody sets it — it just ships that way.
+1. Nothing's wrong with your n8n AI agent. It's forgetting on purpose — every 5 messages.
+2. That number, 5, is the Agent node's default memory window. No one sets it — it just ships that way.
 3. Ask it a question. Follow up six messages later, and it has no idea what you're talking about.
 4. To whoever's talking to it, that looks like your bot forgot the conversation two seconds in.
 5. The fix: raise the context window — 20 to 50 exchanges covers a normal conversation.
