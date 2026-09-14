@@ -3,16 +3,20 @@
 #   ./render.sh <html> <width> <height> <seconds> <narration.wav> <out.mp4> [music.wav]
 set -euo pipefail
 HTML="$1"; W="$2"; H="$3"; DUR="$4"; VO="$5"; OUT="$6"; MUS="${7:-}"
-# Decomposed the mix against both stems directly (episode 32's stems, this exact filter
-# graph): at 0.135 the bed measured only 10.9 dB under the voice during speech — inside
-# qa.py's own "too loud, fighting the narration" range (<14), not the "barely audible"
-# episode 32 actually shipped with. Whatever produced that file didn't go through this
-# formula as it stands; check.sh never passed --music, so nothing caught either version.
-# 0.08 measured 15.4 dB under, comfortably inside the 14-26 pass range and toward the
-# louder end of it, per his ask that the bed actually be heard next to the narration —
-# re-verify with a real render before trusting this number again if the voice chain,
-# the ducking filter, or either stem's mastering changes.
-MUSIC_VOL="${MUSIC_VOL:-0.08}"
+# Decomposed the mix against real stems from TWO episodes (32 and 33), not one — the
+# first pass here (MUSIC_VOL=0.08, ratio=9) measured fine on episode 32 (15.4dB under)
+# but on episode 33's actual narration the same ratio=9 sidechain gated the music to
+# near-total silence (mix RMS barely above voice-only, regardless of MUSIC_VOL) — the
+# exact "barely audible" failure this was supposed to fix, just triggered by a
+# different voice track. ratio=9 is unstable: how hard it gates depends on that
+# episode's specific voice dynamics, not just the volume knob.
+# ratio=4 measured cleanly on both: episode 32 at 15.5dB under, episode 33 at 20.8dB
+# under (both comfortably inside the 14-26 pass range). Still re-verify with a real
+# render before trusting these numbers again if the voice chain, the ducking filter,
+# or either stem's mastering changes — and ideally check against a third episode's
+# stems before assuming this generalizes for good.
+MUSIC_VOL="${MUSIC_VOL:-0.07}"
+SIDECHAIN_RATIO="${SIDECHAIN_RATIO:-4}"
 # FRAMES=1 captures frame by frame instead of recording playback: slower, but the
 # timeline cannot drift, which matters when narration is cut to authored times.
 FRAMES="${FRAMES:-0}"
@@ -49,7 +53,7 @@ if [ -n "$MUS" ]; then
     -filter_complex "$VCHAIN;$VOCHAIN;\
 [2:a]aresample=48000,volume=${MUSIC_VOL}[mus];\
 [vo]asplit=2[vo1][key];\
-[mus][key]sidechaincompress=threshold=0.05:ratio=9:attack=12:release=420[duck];\
+[mus][key]sidechaincompress=threshold=0.05:ratio=${SIDECHAIN_RATIO}:attack=12:release=420[duck];\
 [vo1][duck]amix=inputs=2:duration=first:dropout_transition=0:normalize=0,\
 loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000,apad[a]" \
     -map "[v]" -map "[a]" -t "$DUR" \
