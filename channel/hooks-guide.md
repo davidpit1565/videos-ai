@@ -53,6 +53,26 @@ stakes. Re-read a drafted hook from that outsider's seat before shipping it, eve
 just when a hook feels flat on its face — this is a standing check, same as the dry-sentence
 test above, not a one-time note.
 
+## The same rule applies to the whole script, not just the hook (14.9.2026)
+
+David flagged episode 34 directly after watching it: the vocabulary is too high-level for a
+simple, general viewer, and the content itself ("that's n8n's real model," "the Loop Over
+Items node," "grouping items before the expensive step") is too dense/technical for the
+audience this channel is actually trying to reach. This is the same "write for a person, not
+an AI-literate viewer" rule above — it just wasn't being applied past the opening line. A
+script can clear the hook test and still lose a simple, general viewer three sentences later
+if the body keeps using tool-internal names and mechanism-level explanation as if the viewer
+already has the mental model.
+
+**Standing rule going forward, for every future script's body, not just its hook**: write
+every line for someone with zero background in the tool being discussed. Before shipping a
+script, reread the whole thing (not just line 1) from that same outsider's seat used for the
+hook check above — if a sentence needs the viewer to already know what a "node," an "agent,"
+or a specific product's internal terminology means, simplify it or add the one-clause
+explanation inline, don't assume it lands. Precision about what the tool actually is/does
+still matters (per the "never fabricate" rule) — simplifying the language is not the same as
+simplifying away accuracy.
+
 ## Simple enough to land in one second, and no tangent before the payoff
 
 David flagged episode 27's hook directly (8.9.2026): "I told Claude Code the wrong bug. On

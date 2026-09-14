@@ -10,12 +10,19 @@ HTML="$1"; W="$2"; H="$3"; DUR="$4"; VO="$5"; OUT="$6"; MUS="${7:-}"
 # exact "barely audible" failure this was supposed to fix, just triggered by a
 # different voice track. ratio=9 is unstable: how hard it gates depends on that
 # episode's specific voice dynamics, not just the volume knob.
-# ratio=4 measured cleanly on both: episode 32 at 15.5dB under, episode 33 at 20.8dB
-# under (both comfortably inside the 14-26 pass range). Still re-verify with a real
-# render before trusting these numbers again if the voice chain, the ducking filter,
-# or either stem's mastering changes — and ideally check against a third episode's
-# stems before assuming this generalizes for good.
-MUSIC_VOL="${MUSIC_VOL:-0.07}"
+#
+# ratio=4 at MUSIC_VOL=0.07 measured cleanly on both (15.5dB / 20.8dB under, inside the
+# pass range) and shipped on episodes 33 and 34 — and David said directly, after
+# actually watching 34, that the music "really disappeared" and there's no cohesion
+# between his voice and the bed. His ear overrides the measurement here (the standing
+# rule in this repo): qa.py's own "target 18-20dB" was already wrong per his 32
+# complaint, and 15-21dB measured-and-passing still read as gone to him. Retested
+# against the same two episodes' stems and moved to the loud edge of the pass range
+# instead of the middle — 0.14 lands at 14.2dB (ep32) / 14.8dB (ep33), a couple tenths
+# inside the floor rather than 6-8dB clear of it. If this still reads as too quiet once
+# he hears a real render, the next move is probably raising qa.py's own floor/target,
+# not just the volume knob again.
+MUSIC_VOL="${MUSIC_VOL:-0.14}"
 SIDECHAIN_RATIO="${SIDECHAIN_RATIO:-4}"
 # FRAMES=1 captures frame by frame instead of recording playback: slower, but the
 # timeline cannot drift, which matters when narration is cut to authored times.
