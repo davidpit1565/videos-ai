@@ -48,7 +48,7 @@ June 2026) — not just "SplitInBatches," which is its old/internal name only.
 4. That's why a workflow that "ran fine" on a handful of test items can rate-limit without warning, or blow through a bill, the moment it hits 300.
 5. The fix isn't more nodes — it's the Loop Over Items node — Split in Batches by its older name — grouping items ahead of the expensive step.
 6. Once you see it as items flowing through one at a time, not one batch of data, the whole canvas makes sense.
-7. The exact setup's in the link in bio.
+7. The setup's in the link in bio.
 8. Follow for the setup that actually works.
 
 (Only line 1 changed from the original draft — lines 2-8 unchanged, so the build's
