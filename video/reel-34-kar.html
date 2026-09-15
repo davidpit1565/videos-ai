@@ -162,15 +162,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="45.75" data-out="48.61">
+<section class="scene" data-in="45.75" data-out="47.99">
   <div class="pad"><div class="kb">
     <div class="biocard b" data-at="45.78"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="48.61" data-out="51.33">
+<section class="scene" data-in="47.99" data-out="50.71">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="48.64" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="48.02" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -201,7 +201,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=51.93,t=0,playing=false,last=0;
+  var DUR=51.31,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -217,13 +217,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [21.39,29.55,"That's why a workflow that \"ran fine\" on a handful of test items can rate-limit without warning, or blow through a bill, the moment it hits 300."],
     [30.40,38.73,"The fix isn't more nodes — it's the Loop Over Items node — Split in Batches by its older name — grouping items ahead of the expensive step."],
     [39.15,45.54,"Once you see it as items flowing through one at a time, not one batch of data, the whole canvas makes sense."],
-    [45.96,48.40,"The exact setup's in the link in bio."],
-    [48.82,51.03,"Follow for the setup that actually works."]
+    [45.96,47.78,"The setup's in the link in bio."],
+    [48.20,50.41,"Follow for the setup that actually works."]
   ];
   var WORDS=[
     [0.3,0.7,"Your",0],
-    [0.7,1.38,"n8n",0],
-    [1.38,1.68,"node",0],
+    [0.7,1.4,"n8n",0],
+    [1.4,1.68,"node",0],
     [1.68,2.12,"runs",1],
     [2.12,2.42,"once",1],
     [2.42,2.64,"for",1],
@@ -231,18 +231,18 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [2.94,3.18,"item",2],
     [3.18,3.42,"you",2],
     [3.42,3.58,"send",3],
-    [3.58,4.04,"it",3],
+    [3.58,3.94,"it",3],
     [4.16,4.44,"not",4],
-    [4.44,4.82,"once,",4],
-    [4.94,5.3,"total.",5],
+    [4.44,4.8,"once,",4],
+    [4.92,5.3,"total.",5],
     [6.62,7.18,"That's",6],
     [7.18,7.74,"n8n's",6],
     [7.74,7.9,"real",6],
     [7.9,8.24,"model:",7],
     [8.54,8.84,"every",8],
     [8.84,9.2,"node",8],
-    [9.2,9.64,"takes",8],
-    [9.64,9.84,"in",9],
+    [9.2,9.62,"takes",8],
+    [9.62,9.84,"in",9],
     [9.84,9.96,"a",9],
     [9.84,10.04,"list",9],
     [10.04,10.3,"of",9],
@@ -250,15 +250,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [10.56,10.86,"and",10],
     [10.86,11.08,"runs",10],
     [11.08,11.34,"its",10],
-    [11.34,11.5,"whole",11],
-    [11.5,11.88,"logic",11],
+    [11.34,11.52,"whole",11],
+    [11.52,11.88,"logic",11],
     [11.88,12.24,"once",11],
-    [12.24,12.48,"per",12],
-    [12.48,12.68,"item",12],
-    [12.68,12.82,"on",12],
-    [12.82,12.98,"that",13],
-    [12.98,13.4,"list.",13],
-    [14.12,14.42,"Send",14],
+    [12.24,12.46,"per",12],
+    [12.46,12.68,"item",12],
+    [12.68,12.8,"on",12],
+    [12.8,13.0,"that",13],
+    [13.0,13.4,"list.",13],
+    [14.14,14.42,"Send",14],
     [14.42,14.68,"an",14],
     [14.68,15.04,"HTTP",14],
     [15.04,15.54,"Request",15],
@@ -267,8 +267,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [16.24,16.58,"rows,",16],
     [16.58,17.0,"and",16],
     [17.0,17.2,"it",16],
-    [17.2,17.4,"doesn't",16],
-    [17.4,17.64,"make",17],
+    [17.2,17.42,"doesn't",16],
+    [17.42,17.64,"make",17],
     [17.64,17.9,"one",17],
     [17.9,18.18,"call",17],
     [18.18,18.52,"with",18],
@@ -278,14 +278,14 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [19.16,19.42,"it",19],
     [19.54,19.74,"it",20],
     [19.74,19.98,"makes",20],
-    [19.98,20.3,"40",20],
-    [20.3,20.54,"real",21],
-    [20.54,20.9,"calls.",21],
-    [21.52,21.86,"That's",22],
-    [21.86,22.04,"why",22],
+    [19.98,20.28,"40",20],
+    [20.28,20.54,"real",21],
+    [20.54,20.92,"calls.",21],
+    [21.52,21.88,"That's",22],
+    [21.88,22.04,"why",22],
     [22.04,22.24,"a",22],
-    [22.24,22.64,"workflow",23],
-    [22.64,23.0,"that",23],
+    [22.24,22.62,"workflow",23],
+    [22.62,23.0,"that",23],
     [23.0,23.26,"\"ran",23],
     [23.26,23.6,"fine\"",24],
     [23.6,23.96,"on",24],
@@ -293,8 +293,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [24.1,24.34,"handful",25],
     [24.34,24.58,"of",25],
     [24.58,24.76,"test",25],
-    [24.76,25.16,"items",26],
-    [25.16,25.54,"can",26],
+    [24.76,25.14,"items",26],
+    [25.14,25.54,"can",26],
     [25.54,26.0,"rate-limit",26],
     [26.0,26.3,"without",27],
     [26.3,26.7,"warning,",27],
@@ -319,7 +319,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [32.98,33.3,"Over",34],
     [33.3,33.6,"Items",34],
     [33.6,34.02,"node",34],
-    [34.4,34.6,"Split",35],
+    [34.42,34.6,"Split",35],
     [34.6,34.88,"in",35],
     [34.88,35.46,"Batches",35],
     [35.46,35.62,"by",36],
@@ -331,7 +331,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [37.4,37.66,"ahead",38],
     [37.66,37.82,"of",39],
     [37.82,37.94,"the",39],
-    [37.92,38.32,"expensive",39],
+    [37.94,38.32,"expensive",39],
     [38.32,38.7,"step.",40],
     [39.24,39.48,"Once",41],
     [39.48,39.66,"you",41],
@@ -342,8 +342,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [40.6,40.94,"flowing",43],
     [40.94,41.3,"through",43],
     [41.3,41.48,"one",43],
-    [41.48,41.66,"at",44],
-    [41.66,41.82,"a",44],
+    [41.48,41.64,"at",44],
+    [41.64,41.82,"a",44],
     [41.82,42.16,"time,",44],
     [42.56,42.76,"not",45],
     [42.76,43.08,"one",45],
@@ -354,22 +354,21 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [44.26,44.46,"whole",47],
     [44.46,44.78,"canvas",47],
     [44.78,45.12,"makes",48],
-    [45.12,45.56,"sense.",48],
-    [46.22,46.4,"The",49],
-    [46.4,46.62,"exact",49],
-    [46.62,46.9,"setup's",49],
-    [46.9,47.22,"in",50],
-    [47.22,47.38,"the",50],
-    [47.38,47.58,"link",50],
-    [47.58,48.0,"in",51],
-    [48.0,48.42,"bio.",51],
-    [48.92,49.16,"Follow",52],
-    [49.16,49.4,"for",52],
-    [49.4,49.64,"the",52],
-    [49.64,49.86,"setup",53],
-    [49.86,50.26,"that",53],
-    [50.26,50.64,"actually",53],
-    [50.64,50.92,"works.",54]
+    [45.12,45.5,"sense.",48],
+    [46.12,46.34,"The",49],
+    [46.34,46.7,"setup's",49],
+    [46.7,46.82,"in",49],
+    [46.82,46.96,"the",50],
+    [46.96,47.16,"link",50],
+    [47.16,47.48,"in",50],
+    [47.48,47.78,"bio.",51],
+    [48.3,48.54,"Follow",52],
+    [48.54,48.78,"for",52],
+    [48.78,49.0,"the",52],
+    [49.0,49.22,"setup",53],
+    [49.22,49.64,"that",53],
+    [49.64,50.02,"actually",53],
+    [50.02,50.3,"works.",54]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
