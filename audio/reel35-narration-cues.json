@@ -1,0 +1,50 @@
+[
+ {
+  "n": 1,
+  "line": "An automation built in n8n can already say \"done\" \u2014 and still go do the exact same thing again.",
+  "start": 0.3,
+  "end": 6.57
+ },
+ {
+  "n": 2,
+  "line": "Here's why: it waits for the whole thing to finish, and only then replies.",
+  "start": 6.99,
+  "end": 11.19
+ },
+ {
+  "n": 3,
+  "line": "If it takes more than a few seconds, it looks like the message never arrived \u2014 and gets sent again.",
+  "start": 11.61,
+  "end": 17.75
+ },
+ {
+  "n": 4,
+  "line": "It has no memory of ever seeing that one. It just runs the entire automation again, real actions included.",
+  "start": 18.17,
+  "end": 24.57
+ },
+ {
+  "n": 5,
+  "line": "That's how one real event turns into two real emails, or two real charges \u2014 from a system that never once said it failed.",
+  "start": 25.42,
+  "end": 32.07
+ },
+ {
+  "n": 6,
+  "line": "The fix: reply right away, then do the real work after \u2014 nothing ever sits long enough to be sent twice.",
+  "start": 32.49,
+  "end": 39.32
+ },
+ {
+  "n": 7,
+  "line": "The setup's in the link in bio.",
+  "start": 39.74,
+  "end": 41.55
+ },
+ {
+  "n": 8,
+  "line": "Follow for the setup that actually works.",
+  "start": 41.97,
+  "end": 44.19
+ }
+]
