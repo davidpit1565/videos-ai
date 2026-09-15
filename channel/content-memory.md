@@ -837,6 +837,28 @@ script: re-check hook length/pacing against the "lands in the first ~2 seconds, 
 indirection" rule even for episodes that already cleared the wording-level checks —
 episode 33 is a real example of a hook that was factually fine but still too slow.
 
+## Episode 34's "node" accent drift — fixed by seed search, not respelling (14.9.2026)
+
+Following up on the delivery-tone note above: he later narrowed the complaint to one
+specific word, "node" (this channel's most-repeated n8n word), on episode 34 — "sounds
+sometimes like Indian." Measured before guessing, same discipline as every entry in
+`pronunciation.json`: `check_accent.py` had flagged exactly lines 1 and 2 (not-american
+0.53 / 0.25 vs file median 0.014) — the two lines where "node" sits right after "n8n"
+(respelled "en-eight-en"). Tested whether n8n was bleeding accent into node by scoring
+several respellings ("nohd", "nowd", a paced comma after n8n) across 4 seeds each with
+the same accent classifier — no respelling reliably beat baseline; single-seed wins
+reversed on the next seed every time. **Conclusion: this was never a spelling problem,
+it's seed variance** — `build_voice.py`'s retry loop only scores WER/rate/burst, never
+accent, so a good- or bad-sounding take ships by chance depending on which one happens to
+transcribe exactly right. Fix: searched candidate seeds per line for one where WER lands
+at exactly 0.00 (so the retry loop has no reason to reroll away from it) AND the accent
+classifier reads clean — found `--line-seeds 1:42,2:10` for episode 34, rebuilt, verified
+clean (0.04 / 0.01), reshipped. Full detail and the exact numbers are in
+`pronunciation.json`'s "node" note. Episode 33 was explicitly left untouched per his
+instruction ("33 tashir" — it stays as shipped). **Standing takeaway for future episodes:
+an accent-flagged line is a bad-take problem, not a spelling problem — search seeds with
+the accent classifier + WER==0, don't reach for a respelling.**
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
