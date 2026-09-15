@@ -39,7 +39,7 @@ broken, not smart — a real, checkable business risk, not an invented one.
 4. To whoever's talking to it, that looks like your bot forgot the conversation two seconds in.
 5. The fix: raise the context window — 20 to 50 exchanges covers a normal conversation.
 6. And if you're running queue mode, Simple Memory doesn't even survive across workers — switch to Postgres or Redis memory instead.
-7. The exact setup's in the link in bio.
+7. The setup's in the link in bio.
 8. Follow for the setup that actually works.
 
 ## Verification notes

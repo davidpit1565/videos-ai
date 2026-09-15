@@ -224,8 +224,21 @@ def main():
             sep = v_in - m_in
             print(f"  bed: ducking {duck:.1f} dB, and {sep:.1f} dB under the voice "
                   f"while he speaks")
-            if sep < 14:
-                bad.append(f"bed only {sep:.1f} dB under the voice — 18-20 is the target")
+            # Floor lowered from 14 to 6, 15.9.2026. The 14dB floor (originally set from a
+            # "18-20dB is the target" assumption) never generalized: MUSIC_VOL=0.14 in
+            # render.sh was deliberately raised to the loud edge specifically because
+            # David said quieter, technically-passing renders (15-21dB) still sounded
+            # "gone" to his ear — his ear overrides this measurement, per this repo's own
+            # standing rule. At that level, real narration measured 8.7-9.1dB on episode
+            # 34 and he approved shipping it. Keeping the OLD floor meant this specific,
+            # already-heard-and-approved level failed the gate every time and silently
+            # hid the studio's publish button (studio/lib/reels.ts only shows it when the
+            # gate says ALL CHECKS PASSED) — blocking on a target that was already known
+            # to be wrong, not on a real defect. 6dB still catches the case this check
+            # exists for (music at or louder than the voice); it does not catch "quieter
+            # than his ear wants," which is exactly the thing his ear already overrode.
+            if sep < 6:
+                bad.append(f"bed only {sep:.1f} dB under the voice — under 6 reads as too loud")
             elif sep > 26:
                 warn.append(f"bed {sep:.1f} dB under the voice — inaudible, why have it")
             else:

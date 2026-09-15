@@ -182,15 +182,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="36.41" data-out="39.23">
+<section class="scene" data-in="36.41" data-out="38.64">
   <div class="pad"><div class="kb">
     <div class="biocard b" data-at="36.44"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="39.23" data-out="41.95">
+<section class="scene" data-in="38.64" data-out="41.37">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="39.26" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="38.67" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -221,7 +221,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=42.55,t=0,playing=false,last=0;
+  var DUR=41.97,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -237,8 +237,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [17.96,22.72,"To whoever's talking to it, that looks like your bot forgot the conversation two seconds in."],
     [23.57,28.59,"The fix: raise the context window — 20 to 50 exchanges covers a normal conversation."],
     [29.01,36.20,"And if you're running queue mode, Simple Memory doesn't even survive across workers — switch to Postgres or Redis memory instead."],
-    [36.62,39.02,"The exact setup's in the link in bio."],
-    [39.44,41.65,"Follow for the setup that actually works."]
+    [36.62,38.43,"The setup's in the link in bio."],
+    [38.85,41.07,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
