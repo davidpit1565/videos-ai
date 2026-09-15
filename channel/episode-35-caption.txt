@@ -1,0 +1,13 @@
+An automation built in n8n can already say "done" — and still go do the exact same thing again. Here's why: the Webhook node's default setting waits for the whole automation to finish before it replies.
+
+If that takes more than a few seconds, it looks like the message never arrived — so it gets sent again. n8n has no memory of "I already saw this one." It just runs the entire thing a second time, real actions included.
+
+That's how one real event turns into two real emails, or two real charges — from a system that never once said it failed.
+
+The fix: reply "got it" right when the event arrives, then do the real work next. Nothing sits long enough to be sent twice.
+
+Full setup: https://actually-works.com/e/35
+
+Follow for the setup that actually works.
+
+#n8n #automation #aiagents #buildinpublic #nocode

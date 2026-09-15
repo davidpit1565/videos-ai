@@ -926,6 +926,35 @@ export const ARTICLES: Article[] = [
       "Test with a set close to your real production volume before trusting a workflow at scale — 3 test items behaving fine says nothing about 300.",
     ],
   },
+  {
+    n: 35,
+    title: "Your n8n automation can say \"done\" — and still do it twice.",
+    standfirst:
+      "n8n's Webhook node, on its default setting, waits until the whole automation " +
+      "finishes before replying back. If that takes more than a few seconds, whatever " +
+      "sent the original event has no way to know it's still being handled — so it " +
+      "sends the exact same event again, and n8n runs the entire automation a second " +
+      "time, real actions included.",
+    steps: [
+      "Open your workflow's Webhook (trigger) node and check its 'Respond' setting — if it says 'When Last Node Finishes', the reply is held until every node in the workflow completes.",
+      "Time a real run in the Executions panel. If it regularly takes more than a few seconds, whatever calls this webhook may already be timing out and retrying on its own.",
+      "Change the Webhook node's 'Respond' setting to 'Using \\'Respond to Webhook\\' Node'.",
+      "Add a 'Respond to Webhook' node immediately after the trigger, before any real work (sending an email, creating an order, calling another API) — this sends the reply the instant the event arrives.",
+      "Move every node that does real, side-effect-causing work to run AFTER the Respond to Webhook node, not before it.",
+      "Re-run a real test and confirm in the Executions panel that the response fires immediately, while the rest of the workflow still completes normally afterward.",
+      "(Optional) If the sender still shows retry attempts in its own logs, add simple de-duplication (checking an incoming ID against a short-lived store) as a second layer, not a replacement for responding fast.",
+    ],
+    changes: [
+      "This is standard, current n8n behavior — verified live this session against n8n's own Webhook and Respond to Webhook node docs and a live Community forum thread describing this exact failure mode.",
+      "n8n Cloud also hard-cuts an unanswered webhook at 100 seconds (a 524 response) — moving the reply earlier avoids that limit entirely, it isn't just about the caller's own timeout.",
+      "This is a different failure than a node's own retry setting replaying one step (see episode 25) — here the TRIGGER fires the whole workflow again from outside, because nothing told it the first attempt was received.",
+    ],
+    limits: [
+      "This stops duplicate runs caused by a slow reply; it does not protect against a sender that retries for a different reason (e.g. its own network error) — de-duplication is the real fix for that, not response timing alone.",
+      "Moving the reply earlier means the caller can no longer see the workflow's own output in that response — if the caller genuinely needs the result synchronously, this tradeoff needs a different design (e.g. polling a status endpoint).",
+      "This does not undo damage from duplicate runs that already happened — check for and clean up any real double-sends before assuming the fix alone is enough.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
