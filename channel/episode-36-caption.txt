@@ -1,8 +1,8 @@
-Every private thing you've ever typed into ChatGPT trains its next model — and that's the default. Not just chat history: the files you upload and the answers you get back too.
+Every private thing you've ever typed into ChatGPT trains its next model — and that's the default. Not just chat history: the files you upload and the replies you get back too.
 
-Turn it off, and everything you type after that stays out of training completely. But it only protects what happens after — nothing you already sent ever gets pulled back out.
+Switch it off, and every new conversation stays out of training for good. One catch: it only protects what happens after — nothing already sent gets pulled back out.
 
-There's also a separate mode that skips training and chat history completely, every single chat, with nothing to remember.
+There's also a separate mode ("Temporary Chat") that skips training and history completely, every single chat, with nothing to remember.
 
 Takes about ten seconds, one time.
 

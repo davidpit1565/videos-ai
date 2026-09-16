@@ -130,54 +130,36 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="5.6" data-out="11.0">
+<section class="scene" data-in="5.6" data-out="13.0">
   <div class="pad"><div class="kb">
-    <div class="setrow b" data-at="5.63" style="width:100%">
+    <p class="lede b" data-at="5.63">Not just chat history —<br><strong>files and replies too</strong>.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="13.0" data-out="21.0">
+  <div class="pad"><div class="kb">
+    <div class="setrow b" data-at="13.03" style="width:100%">
       <div class="lbl">Improve the model<br>for everyone</div>
-      <div class="toggle"><div class="dot"></div></div>
-    </div>
-  </div></div>
-</section>
-
-<section class="scene" data-in="11.0" data-out="19.0">
-  <div class="pad"><div class="kb">
-    <p class="lede b" data-at="11.03">Turn it off —<br><strong>new chats stay out</strong> completely.</p>
-  </div></div>
-</section>
-
-<section class="scene" data-in="19.0" data-out="26.0">
-  <div class="pad"><div class="kb">
-    <div class="scoreboard" id="scoreBoard">
-      <div class="scorerow bad" id="scoreRowA" style="opacity:0"><span class="lbl">Already sent</span><span class="val">Stays in</span></div>
-      <div class="scorerow good" id="scoreRowB" style="opacity:0"><span class="lbl">Sent after you turn it off</span><span class="val">Stays out</span></div>
-    </div>
-  </div></div>
-</section>
-
-<section class="scene" data-in="26.0" data-out="34.0">
-  <div class="pad"><div class="kb">
-    <div class="setrow b" data-at="26.03" style="width:100%">
-      <div class="lbl">Temporary Chat<br>skips this every time</div>
       <div class="toggle off"><div class="dot"></div></div>
     </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="34.0" data-out="43.5">
+<section class="scene" data-in="21.0" data-out="29.0">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="34.03" style="font-size:6.2cqw">Ten seconds.<br><strong>One time.</strong></p>
+    <p class="lede b" data-at="21.03" style="font-size:6.2cqw">Ten seconds.<br><strong>One time.</strong></p>
   </div></div>
 </section>
 
-<section class="scene" data-in="43.5" data-out="47.5">
+<section class="scene" data-in="29.0" data-out="33.0">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="43.53"><span class="dot"></span><b>link in bio</b></div>
+    <div class="biocard b" data-at="29.03"><span class="dot"></span><b>link in bio</b></div>
   </div></div>
 </section>
 
-<section class="scene" data-in="47.5" data-out="52.5">
+<section class="scene" data-in="33.0" data-out="38.0">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="47.53" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="33.03" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -189,7 +171,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="52.5" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="38.0" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -209,7 +191,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=52.5,t=0,playing=false,last=0;
+  var DUR=38.0,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -220,13 +202,11 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
   var CUES=[
     [0.30,5.40,"Every private thing you've ever typed into ChatGPT trains its next model — and that's the default."],
-    [5.6,10.80,"It's not just chat history. The files you upload and the replies you get back become training data too."],
-    [11.0,18.80,"Switch it off, and every new conversation stays out of training for good."],
-    [19.0,25.80,"But it only protects what happens after. Nothing you already sent ever gets pulled back out."],
-    [26.0,33.80,"There's a separate mode that skips training and history every time, with nothing left to keep track of."],
-    [34.0,42.80,"It takes about ten seconds, one time, to switch on."],
-    [43.5,47.30,"The setup's in the link in bio."],
-    [47.5,52.30,"Follow for the setup that actually works."]
+    [5.6,12.80,"It's not just chat history. The files you upload and the replies you get back become training data too."],
+    [13.0,20.80,"Switch it off, and every new conversation stays out of training for good."],
+    [21.0,28.80,"It takes about ten seconds, one time, to switch on."],
+    [29.0,32.80,"The setup's in the link in bio."],
+    [33.0,37.80,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
@@ -250,15 +230,6 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     hookClimax.insertBefore(hookGlow,hookClimax.firstChild);
   }
 
-  var scoreBoard=document.getElementById('scoreBoard');
-  var scoreScene=scoreBoard.closest('.scene');
-  var scoreRowA=document.getElementById('scoreRowA'), scoreRowB=document.getElementById('scoreRowB');
-  var scoreGlow=document.createElement('div');
-  scoreGlow.className='glowbloom';
-  scoreGlow.style.cssText='position:absolute;inset:-16%;border-radius:1.6cqw;z-index:-1;'+
-    'background:radial-gradient(circle,#4ADE80 0%,rgba(0,0,0,0) 70%)';
-  scoreRowB.insertBefore(scoreGlow,scoreRowB.firstChild);
-
   function renderHook(){
     var ht=t-(+hookScene.dataset.in);
     var START=0.15,GAP=0.09,DUR2=0.30;
@@ -278,20 +249,6 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.96,pushAt:climaxAt,pushDur:0.9,pushTo:1.04});
       hookKb.style.transform='scale('+camScale.toFixed(4)+')';
     }
-  }
-
-  function renderScoreboard(){
-    var st=t-(+scoreScene.dataset.in);
-    var A_AT=0.10,A_DUR=0.32,B_AT=0.65,B_DUR=0.32;
-    var ae=MK.smoothIn(MK.clamp01((st-A_AT)/A_DUR));
-    scoreRowA.style.opacity=String(ae);
-    scoreRowA.style.transform='scale('+ae.toFixed(3)+')';
-    var be=MK.smoothIn(MK.clamp01((st-B_AT)/B_DUR));
-    scoreRowB.style.opacity=String(be);
-    scoreRowB.style.transform='scale('+be.toFixed(3)+')';
-    MK.animateGlowBloom(scoreGlow,st,B_AT,B_DUR,0.30);
-    var shakeX=MK.impactShake(st,B_AT,0.22,6);
-    scoreBoard.style.transform='translateX('+shakeX.toFixed(2)+'px)';
   }
 
   var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
@@ -318,7 +275,6 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     }
 
     renderHook();
-    renderScoreboard();
 
     for(i=0;i<beats.length;i++){
       e=beats[i];

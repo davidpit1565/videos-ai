@@ -61,15 +61,20 @@ episode is about the two consumer settings (Free/Plus/Pro) most people have neve
   curiosity — real stake (your own private words being used to train a product), not an
   invented worst case.
 
-## Narration (8 lines)
+## Narration (6 lines — cut from 8, see "Density fix" below)
 1. Every private thing you've ever typed into ChatGPT trains its next model — and that's the default.
 2. It's not just chat history. The files you upload and the replies you get back become training data too.
 3. Switch it off, and every new conversation stays out of training for good.
-4. But it only protects what happens after. Nothing you already sent ever gets pulled back out.
-5. There's a separate mode that skips training and history every time, with nothing left to keep track of.
-6. It takes about ten seconds, one time, to switch on.
-7. The setup's in the link in bio.
-8. Follow for the setup that actually works.
+4. It takes about ten seconds, one time, to switch on.
+5. The setup's in the link in bio.
+6. Follow for the setup that actually works.
+
+**Cut entirely from spoken narration (moved to caption + `/e/36` setup guide only):**
+"But it only protects what happens after — nothing you already sent ever gets pulled
+back out" (the non-retroactive caveat) and "there's a separate mode that skips training
+and history every time" (Temporary Chat). Both are true and still documented in the
+caption/setup guide for a viewer who wants the full picture — they just don't belong in
+a 30-40 second spoken track alongside the main claim and the fix.
 
 (Lines 2, 3, 5, 6 were reworded once against `audio/script_lint.py`'s flags before any
 voice generation — "answers," "turn," "completely," "single," and "remember" all carry
@@ -86,8 +91,37 @@ that stays out of training for good" → "Switch it off, and every new conversat
 stays out of training for good," removing the flagged word entirely and cutting the
 line's length so it needs less speed correction in the first place.)
 
-(Lines 7-8 are the locked, pre-approved outro clips — see
+(Lines 5-6 are the locked, pre-approved outro clips — see
 `audio/voice/profile/canonical-lines.json` — used byte-for-byte, no regeneration.)
+
+## Density fix, after David's real feedback on the first shipped cut (16.9.2026)
+
+He watched the shipped file and said directly: he had to really concentrate to follow
+it, it didn't flow smoothly, and it didn't pull him toward watching to the end — despite
+every line individually being jargon-free per the simplicity check above. Root cause,
+once actually counted rather than assumed: the 8-line version packed **six distinct
+ideas** into 38 seconds (the training claim, files/replies included, the toggle, a
+non-retroactive caveat, a wholly separate Temporary Chat mode, and the CTA). Plain
+vocabulary was never the same thing as low cognitive load — this channel's own real
+top performers (episode 2, episode 1) state exactly **one** claim and stop. Fixed by
+cutting the caveat and the Temporary Chat mode out of the spoken track entirely (kept in
+the caption/setup guide), down to four ideas: stakes → mechanism → one fix → one action.
+Full reasoning and the new standing rule this creates are logged in
+`content-memory.md`'s 16.9.2026 "Episode 36" entry — check idea count, not just
+vocabulary, before shipping the next one.
+
+## Music-level fix, same feedback pass (16.9.2026)
+
+He also said the background music sat "a bit too high, even though it's subtle."
+Root-caused against `render.sh`/`qa.py`, not guessed: the shipped file measured 8.6dB
+separation (bed under voice) — technically inside `qa.py`'s pass range (6-26dB) and
+close to episode 34's approved 8.7-9.1dB, but episode 36 used a different, punchier
+track (`trending-vibe--alexmorgan.mp3`, mood `punchy`) than episode 34's smoother bed.
+**New finding: the same measured dB separation does not read as equally present across
+different music tracks** — a percussive/rhythmic track likely masks speech more at an
+identical measured level. Fixed by lowering `MUSIC_VOL` specifically for this re-render
+(see the production log below for the exact value used) rather than changing the
+global default off one data point on one track.
 
 ## Simplicity check (per hooks-guide.md's standing rule)
 Reread for a viewer with zero AI-tool background: "trains itself," "everything you've

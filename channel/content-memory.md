@@ -954,6 +954,53 @@ The stakes-escalation hook framing lines up with the Fear/personal-stakes resear
 already logged in `hooks-guide.md` (13.9.2026) — a third independent source now agreeing
 with the same direction.
 
+## Episode 36 — David's direct feedback catches two real, distinct problems (16.9.2026)
+
+He watched the real shipped file and said plainly: the background music is "a bit too
+high, even though it's subtle"; and separately, despite the whole reach-first/plain-
+language pivot this session, the content "still isn't that clear" — he had to really
+concentrate to follow it, it doesn't flow smoothly, and it didn't pull him toward
+watching to the end. He called this explicitly urgent and said not to miss this class
+of problem again.
+
+**Problem 1 — music, root-caused against the actual code, not guessed:** `render.sh`'s
+`MUSIC_VOL=0.14` was set specifically to the *loud edge* of the pass range, measured
+against episodes 32/33's own stems (14.2-14.8dB separation there). Episode 36 used a
+different, punchier track (`trending-vibe--alexmorgan.mp3`, mood `punchy`) and measured
+only **8.6dB** separation in the shipped file — right at `qa.py`'s 6dB floor, and
+nearly identical to episode 34's approved 8.7-9.1dB (a *different* track). **New
+finding, not previously documented: the same measured dB-under-voice separation does
+not read as equally present across different music tracks** — a percussive/rhythmic
+track (`trending-vibe`) likely masks speech and reads as "present" more than a smooth
+corporate-bed track at an identical measured number, for real psychoacoustic reasons
+(more competing mid/high-frequency transient energy), not a bug in the measurement
+itself. **Consequence: `MUSIC_VOL=0.14` is not a fixed constant that generalizes across
+moods/tracks — it needs re-verified by ear per track character, especially for
+punchier/rhythmic moods, not assumed safe because a smoother track passed at that level
+before.** Fixed for episode 36 by lowering `MUSIC_VOL` for this specific render
+(see the re-ship below) — not changed globally in `render.sh`, since this is one data
+point on one track, not yet grounds to move the whole channel's default.
+
+**Problem 2 — a real, previously-undocumented axis: idea density, separate from
+jargon.** The whole 16.9.2026 pivot was about vocabulary (no unexplained tool terms) —
+but episode 36's narration, while genuinely jargon-free line by line, packs **six
+distinct ideas** into 38 seconds: (1) the training-on-everything claim, (2) files/
+replies included too, (3) a toggle to turn it off, (4) a caveat that it isn't
+retroactive, (5) a wholly separate "Temporary Chat" mode, (6) a call to action. This
+channel's own actual top performers (episode 2's 940 views, episode 1's 662) state
+**one** claim and stop — plain language was necessary but not sufficient; **cognitive
+load (how many separate facts a viewer must hold at once) is a distinct axis from
+vocabulary, and this file had never separated them before.** Fixed by cutting the
+caveat and the Temporary Chat mode entirely out of the spoken narration (they still
+live in the caption and the `/e/36` setup guide, for a viewer who wants more depth) —
+down to one arc: stakes → mechanism → one fix → one action.
+
+**Standing rule from this, going forward:** before shipping any future episode, check
+not just "is every line jargon-free" but "how many separate facts does a first-time
+viewer have to hold to follow this end to end" — if it's more than roughly 3-4, a
+caveat or secondary detail almost always belongs in the setup guide/caption, not in the
+spoken 30-45 seconds.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
