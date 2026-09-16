@@ -200,6 +200,44 @@ a stake that isn't real, or exaggerating a mild inconvenience into a catastrophe
 existing rule against fabrication still applies in full; the stake has to be genuinely
 true of the tool/behavior being described, same as every other hook rule on this page.
 
+## A real reference account Roni sent, and his direct note (16.9.2026)
+
+Roni Michaeli (Videya) sent a screenshot of another creator's Reels grid as a concrete
+example of what he means by "accessible" — his own words, typed directly, not
+paraphrased: **"Tsarich et ha-hooks sheli arbe yoter accessible, pashut, hooking, safa
+pshuta"** ("my hooks need to be much more accessible, simple, hooking, simple
+language"). This follows his episode-32 feedback already logged in
+`content-memory.md`'s 16.9.2026 entry, and lands the same day David set the explicit
+goal for this channel as maximum reach/virality over funnel-fit.
+
+**What the reference grid actually shows, read plainly, not just "it's popular":** a
+face-to-camera creator whose hook titles are all personal-benefit or curiosity-secret
+framed, in plain consumer language, zero tool/developer jargon — "5 Secret Codes for
+ChatGPT," "ChatGPT can find your unclaimed money," "ChatGPT can find your leaked
+passwords," "ChatGPT is now free for students," "How to make ChatGPT sound like a
+human," "ChatGPT can turn into a $1M marketing team," "Claude started leaving hidden
+watermarks," "Craziest use cases for GPT-6 Astra." Every one of these is understandable
+to someone who has never opened an automation tool in their life — the opposite end of
+the spectrum from "n8n never tells you when a workflow dies."
+
+**What actually transfers to this channel's format, stated honestly — not everything
+does:** this channel doesn't do face-to-camera and shouldn't start pretending to be a
+different format just because a reference account uses one. What transfers is the
+**hook-content pattern**, not the delivery mechanism: personal stakes ("your money,"
+"your passwords," "free for you specifically") stated in plain consumer language, with
+a secret/reveal framing, over developer-facing or workflow-internals framing. This is
+the same direction as the emotional-register research above (Fear/personal-stakes beats
+neutral curiosity) and the same direction as `content-memory.md`'s own real data
+(general, jargon-free claims are this channel's actual all-time top performers) — three
+independent signals now pointing the same way, not just Roni's opinion alone.
+
+**Concrete standing rule from this, effective now:** when picking a hook for a new
+episode, actively prefer a personal-stakes/secret-reveal framing in plain language over
+a tool-internals framing, even when the tool-internals topic has higher measured
+YouTube search demand (`demand-report.md`) — reach is now the stated priority (per
+`content-memory.md`'s 16.9.2026 decision), and that means optimizing for the viewer who
+has never heard of the tool, every time, not just when convenient.
+
 ## Cross-checked against our own real numbers
 
 `channel/content-memory.md`'s 30.8.2026 grid (real Instagram view counts, our own account) already

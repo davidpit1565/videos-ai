@@ -859,6 +859,55 @@ instruction ("33 tashir" — it stays as shipped). **Standing takeaway for futur
 an accent-flagged line is a bad-take problem, not a spelling problem — search seeds with
 the accent classifier + WER==0, don't reach for a respelling.**
 
+## Real outside feedback from Roni Michaeli (Videya) on episode 32, and David's explicit goal (16.9.2026)
+
+**FACT, direct feedback, screenshotted:** Roni Michaeli (owner of Videya, a marketing
+professional already credited for real feedback on episode 31's hook in
+`hooks-guide.md`) reviewed episode 32 ("n8n never tells you when a workflow dies") and
+said directly: the hook assumes the viewer already knows what n8n is — this is
+bottom-funnel content aimed at people already advanced in AI, not the general public.
+"No business owner connects with 'hedging in n8n' — that's not the language they
+speak." He confirmed n8n content could be right *if* the target audience is AI
+technicians specifically, but flagged it as a mismatch for broad reach.
+
+**Checked against our own real data, not accepted or dismissed on say-so:**
+- The 28.8.2026 jargon audit already independently flagged "n8n" as unexplained
+  brand-name jargon in episodes 7 and 10 — Roni's critique of episode 32 is the same
+  finding, a second time, from an outside professional.
+- The verified per-post Instagram export (Master performance table, 8.9.2026) shows
+  n8n-topic episodes sitting mid-to-low on engagement rate (ep7: 7.97%, rank 4 of 27;
+  ep25: 5.56%, rank 13 of 27) — not the top of the real, verified table. The channel's
+  actual highest performers by real engagement (ep1, ep13, ep10, ep3) and by the
+  "500+ club" analysis (ep2's 940, ep1's 662) are all **general, checkable claims any
+  viewer can follow with zero prior AI/tool knowledge** — not n8n-specific, not
+  jargon-dependent.
+- Countervailing point from `demand-report.md`, stated so it isn't lost: n8n is the
+  single highest measured search-demand topic, and its audience specifically overlaps
+  with people who buy automation services (the word "sell" appeared 5x more often in
+  the top-quartile results) — a real, separate reason n8n content existed here, tied to
+  the paid-services engine, not to raw reach.
+
+**David's explicit decision, asked directly and answered directly (16.9.2026): the goal
+is maximum virality — followers, views, likes, reach, as much as possible, full stop.**
+This resolves the tension above in one direction: reach beats funnel-fit. Consequence for
+topic selection going forward: **prioritize general-audience-accessible topics and hooks
+over jargon-heavy/insider ones**, even when the jargon-heavy topic has higher measured
+YouTube search demand — the real Instagram engagement data already supports this
+(general claims outperform n8n-specific ones in the actual verified export), and it now
+also matches David's explicitly stated goal, not just this file's read of the numbers.
+This doesn't retroactively make n8n content wrong to have made (episodes 7/25/29 were
+built on real, then-current reasoning) — it changes what "highest-demand, best-fitting
+angle" (the channel's own standing topic-selection rule) should optimize for next: reach
+first, service-lead-gen second, when the two point in different directions.
+
+**Not yet decided, flagged so it isn't silently dropped:** this is a real tradeoff
+against the two-engine business model in `plan/business-model.html` (the paid engine
+feeding the free one) — pure-virality content aimed at a general audience may convert to
+paying clients less directly than n8n/automation content aimed at business owners
+already searching for that exact service. David made the reach-first call explicitly;
+worth revisiting together once there's real data on whether general-audience virality
+still produces paid leads, rather than assuming it does or doesn't.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
