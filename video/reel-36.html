@@ -147,19 +147,28 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <section class="scene" data-in="21.0" data-out="29.0">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="21.03" style="font-size:6.2cqw">Ten seconds.<br><strong>One time.</strong></p>
+    <div class="setrow b" data-at="21.03" style="width:100%">
+      <div class="lbl">Temporary Chat<br>skips this every time</div>
+      <div class="toggle"><div class="dot"></div></div>
+    </div>
   </div></div>
 </section>
 
-<section class="scene" data-in="29.0" data-out="33.0">
+<section class="scene" data-in="29.0" data-out="37.0">
   <div class="pad"><div class="kb">
-    <div class="biocard b" data-at="29.03"><span class="dot"></span><b>link in bio</b></div>
+    <p class="lede b" data-at="29.03" style="font-size:6.2cqw">Ten seconds.<br><strong>One time.</strong></p>
   </div></div>
 </section>
 
-<section class="scene" data-in="33.0" data-out="38.0">
+<section class="scene" data-in="37.0" data-out="41.0">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="33.03" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <div class="biocard b" data-at="37.03"><span class="dot"></span><b>link in bio</b></div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="41.0" data-out="46.0">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="41.03" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -171,7 +180,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="38.0" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="46.0" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -191,7 +200,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=38.0,t=0,playing=false,last=0;
+  var DUR=46.0,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -204,9 +213,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [0.30,5.40,"Every private thing you've ever typed into ChatGPT trains its next model — and that's the default."],
     [5.6,12.80,"It's not just chat history. The files you upload and the replies you get back become training data too."],
     [13.0,20.80,"Switch it off, and future conversations stay out of training for good."],
-    [21.0,28.80,"It takes ten seconds, once, to switch on."],
-    [29.0,32.80,"The setup's in the link in bio."],
-    [33.0,37.80,"Follow for the setup that actually works."]
+    [21.0,28.80,"There's a separate mode that skips training and history every time, with nothing left to keep track of."],
+    [29.0,36.80,"It takes ten seconds, once, to switch on."],
+    [37.0,40.80,"The setup's in the link in bio."],
+    [41.0,45.80,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}

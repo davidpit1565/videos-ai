@@ -61,20 +61,21 @@ episode is about the two consumer settings (Free/Plus/Pro) most people have neve
   curiosity — real stake (your own private words being used to train a product), not an
   invented worst case.
 
-## Narration (6 lines — cut from 8, see "Density fix" below)
+## Narration (7 lines — cut from 8, then one restored, see "Density fix" and "Length fix" below)
 1. Every private thing you've ever typed into ChatGPT trains its next model — and that's the default.
 2. It's not just chat history. The files you upload and the replies you get back become training data too.
 3. Switch it off, and future conversations stay out of training for good.
-4. It takes ten seconds, once, to switch on.
-5. The setup's in the link in bio.
-6. Follow for the setup that actually works.
+4. There's a separate mode that skips training and history every time, with nothing left to keep track of.
+5. It takes ten seconds, once, to switch on.
+6. The setup's in the link in bio.
+7. Follow for the setup that actually works.
 
-**Cut entirely from spoken narration (moved to caption + `/e/36` setup guide only):**
+**Still cut entirely from spoken narration (moved to caption + `/e/36` setup guide only):**
 "But it only protects what happens after — nothing you already sent ever gets pulled
-back out" (the non-retroactive caveat) and "there's a separate mode that skips training
-and history every time" (Temporary Chat). Both are true and still documented in the
-caption/setup guide for a viewer who wants the full picture — they just don't belong in
-a 30-40 second spoken track alongside the main claim and the fix.
+back out" (the non-retroactive caveat). True and documented in the caption/setup guide
+for a viewer who wants the full picture — it's a limiting caveat, not an action, and
+doesn't earn its place back in the spoken track the way the Temporary Chat mode did
+(see "Length fix" below for why that one line came back).
 
 (Lines 2, 3, 5, 6 were reworded once against `audio/script_lint.py`'s flags before any
 voice generation — "answers," "turn," "completely," "single," and "remember" all carry
@@ -129,7 +130,18 @@ seconds, one time, to switch on" → "It takes ten seconds, once, to switch on" 
 "about" and shortens "one time" to "once," meaningfully cutting syllable count so the
 line needs less speed correction.
 
-## Music-level fix, same feedback pass (16.9.2026)
+## Length fix — cutting density undershot the channel's own minimum (16.9.2026)
+
+The 6-line, 4-idea version rendered at **25.5 seconds** — `qa.py` flagged it as outside
+the 30-90s band, and `CLAUDE.md`'s own standing rule is explicit: "Do not go under
+30s" (per Buffer's 1.1M-video study and Socialinsider's 11M-post set, both cited there).
+Cutting two ideas for density fixed the concentration problem but overshot into a real,
+separate length violation. Fixed by restoring **one** of the two cut ideas — the
+Temporary Chat mode, not the non-retroactive caveat — since it's an actionable
+alternative a viewer can actually use, not a limiting caveat that mostly adds a "but."
+Back to 5 ideas (stakes → mechanism → fix → alternative → action) instead of 4 or the
+original 6 — a real middle point between "too dense to follow" and "too short to meet
+the channel's own format standard," not a return to the original problem.
 
 He also said the background music sat "a bit too high, even though it's subtle."
 Root-caused against `render.sh`/`qa.py`, not guessed: the shipped file measured 8.6dB

@@ -1001,6 +1001,14 @@ viewer have to hold to follow this end to end" — if it's more than roughly 3-4
 caveat or secondary detail almost always belongs in the setup guide/caption, not in the
 spoken 30-45 seconds.
 
+**Immediate follow-up, same episode: cutting density can overshoot into a length
+violation.** After trimming episode 36 from 6 ideas to 4, the render came in at 25.5s —
+under `CLAUDE.md`'s own standing 30s floor. Fixed by restoring one idea (5 total), not
+by padding the existing lines with filler. **The actual standing rule is a range, not
+just a ceiling: roughly 4-5 ideas in 30-45+ seconds, not "cut until it feels simple" —
+idea count and runtime have to be checked together, not one at a time,** because fixing
+one axis in isolation can break the other.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
