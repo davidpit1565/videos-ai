@@ -174,48 +174,59 @@ export type MusicMood = {
   slug: string;
   name: string;
   when: string;
-  /** an actual 8s render of the mood, built with audio/build_music.py, so a mood can be
-   *  heard here instead of imagined from a text description */
-  sample: string;
+  /** whether audio/pick_real_track.py's MOODS actually maps this slug to a real,
+   *  licensed track. produce.sh calls pick_real_track.py only — never
+   *  audio/build_music.py's synthesized generator (standing rule since 14.9.2026,
+   *  see produce.sh's own comment) — so passing a mood with real=false to
+   *  produce.sh is a hard failure, not a fallback. */
+  real: boolean;
 };
 
-/** Mirrors audio/build_music.py's MOODS exactly — the real, working options, not a
- *  wishlist. If a mood is added there, add its row here too. */
+/** These used to preview an actual synthesized clip per mood (built with
+ *  audio/build_music.py). That generator is no longer what ships: produce.sh has
+ *  called audio/pick_real_track.py exclusively since 14.9.2026, and a mood with no
+ *  real track mapped there now fails the build instead of silently falling back to
+ *  a synthesized one. The old preview files (studio/public/templates/music/*.mp3)
+ *  were deleted 16.9.2026 for being stale — they no longer represent what an
+ *  episode actually sounds like. See audio/music-library/MANIFEST.md for the real,
+ *  licensed tracks and which moods currently have one. */
 export const MUSIC_MOODS: MusicMood[] = [
-  { n: 1, slug: "neutral", name: "Neutral", sample: "/templates/music/neutral.mp3",
+  { n: 1, slug: "neutral", name: "Neutral", real: true,
     when: "The default — even, unresolved. Works for most explainer content." },
-  { n: 2, slug: "urgent", name: "Urgent", sample: "/templates/music/urgent.mp3",
+  { n: 2, slug: "urgent", name: "Urgent", real: true,
     when: "Minor, restless, never lands on the root. For exposés and warnings." },
-  { n: 3, slug: "bright", name: "Bright", sample: "/templates/music/bright.mp3",
+  { n: 3, slug: "bright", name: "Bright", real: true,
     when: "Major, resolves every four bars. For wins, fixes, things that work." },
-  { n: 4, slug: "tense", name: "Tense", sample: "/templates/music/tense.mp3",
+  { n: 4, slug: "tense", name: "Tense", real: true,
     when: "Minor, an 8-chord cycle so it doesn't feel like \"urgent\" transposed. For a slow-build reveal or an escalating warning." },
-  { n: 5, slug: "drive", name: "Drive", sample: "/templates/music/drive.mp3",
+  { n: 5, slug: "drive", name: "Drive", real: true,
     when: "Major, forward-moving, a faster harmonic rhythm than \"bright\". For a fix that unfolds in real time rather than one single win." },
-  { n: 6, slug: "sparse", name: "Sparse", sample: "/templates/music/sparse.mp3",
+  { n: 6, slug: "sparse", name: "Sparse", real: false,
     when: "Almost nothing playing — sub bass and a slow chime, no arp, no percussion. A minimalist reveal or a single-fact explainer with nothing fighting for attention under it." },
-  { n: 7, slug: "playful", name: "Playful", sample: "/templates/music/playful.mp3",
+  { n: 7, slug: "playful", name: "Playful", real: false,
     when: "Short plucky notes instead of a held pad, bouncy and major. Lighthearted or beginner-friendly content." },
-  { n: 8, slug: "corporate", name: "Corporate", sample: "/templates/music/corporate.mp3",
+  { n: 8, slug: "corporate", name: "Corporate", real: true,
     when: "Clean, steady, no arpeggio, barely-there percussion. Confident rather than moody — for \"sell this to a business\" content." },
-  { n: 9, slug: "glitch", name: "Glitch", sample: "/templates/music/glitch.mp3",
+  { n: 9, slug: "glitch", name: "Glitch", real: false,
     when: "Irregular and dissonant, a mechanical stutter under it. For an agent-failure cold open only — never a whole episode." },
-  { n: 10, slug: "cinematic", name: "Cinematic", sample: "/templates/music/cinematic.mp3",
+  { n: 10, slug: "cinematic", name: "Cinematic", real: false,
     when: "One chord per two bars, a huge slow pad swell, no percussion at all. A big reveal or a stakes-setting cold open." },
-  { n: 11, slug: "lofi", name: "Lo-fi", sample: "/templates/music/lofi.mp3",
+  { n: 11, slug: "lofi", name: "Lo-fi", real: true,
     when: "Warm, filtered, a slow swung arp. A wind-down or a calmer explainer that doesn't need \"neutral\"'s full room." },
-  { n: 12, slug: "retro", name: "Retro", sample: "/templates/music/retro.mp3",
+  { n: 12, slug: "retro", name: "Retro", real: true,
     when: "Fast triangle-wave sixteenth arpeggio, bright, almost no pad swell. A \"remember when\" or tools-through-time bit." },
-  { n: 13, slug: "suspense", name: "Suspense", sample: "/templates/music/suspense.mp3",
+  { n: 13, slug: "suspense", name: "Suspense", real: true,
     when: "Sparse minor-second dissonance with a fast tremolo swell — slow-build dread rather than \"tense\"'s escalating warning. Use sparingly." },
-  { n: 14, slug: "triumphant", name: "Triumphant", sample: "/templates/music/triumphant.mp3",
+  { n: 14, slug: "triumphant", name: "Triumphant", real: true,
     when: "Full pad, arp, and a kick on every beat instead of two — the only mood that resolves and hits hard at once. A genuine \"it works, and here's the proof\" close." },
-  { n: 15, slug: "clockwork", name: "Clockwork", sample: "/templates/music/clockwork.mp3",
+  { n: 15, slug: "clockwork", name: "Clockwork", real: false,
     when: "A steady mechanical sixteenth-note pulse with no swell and no rubato. Automation/workflow content where the point is that the machine doesn't waver." },
-  { n: 16, slug: "piano", name: "Piano", sample: "/templates/music/piano.mp3",
+  { n: 16, slug: "piano", name: "Piano", real: false,
     when: "Plucked-string synthesis (Karplus-Strong, not a sample), struck once per bar and left to decay rather than held. Bright, fast decay. A calm walkthrough or skills explainer that wants warmth without a full pad bed." },
-  { n: 17, slug: "guitar", name: "Guitar", sample: "/templates/music/guitar.mp3",
+  { n: 17, slug: "guitar", name: "Guitar", real: false,
     when: "Same synthesis as Piano, tuned warmer and longer-ringing — a chord rings into the next instead of striking and dying. A personal or behind-the-scenes bit, or anything that wants an organic rather than digital feel." },
+  { n: 18, slug: "scary", name: "Scary / Horror", real: true,
+    when: "A genuinely new mood (16.9.2026) — dread, cold-open reveals about something the viewer didn't know was tracking them." },
 ];
 
 export type Avatar = {

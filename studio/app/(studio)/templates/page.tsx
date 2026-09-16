@@ -76,7 +76,7 @@ export default function TemplatesPage() {
               <th>#</th>
               <th>שם</th>
               <th>מתי משתמשים</th>
-              <th>שמיעה</th>
+              <th>מציאותי?</th>
             </tr>
           </thead>
           <tbody>
@@ -85,9 +85,7 @@ export default function TemplatesPage() {
                 <td className="num">{m.n}</td>
                 <td>{m.name}</td>
                 <td>{m.when}</td>
-                <td>
-                  <audio controls preload="none" src={m.sample} style={{ height: 32, maxWidth: 200 }} />
-                </td>
+                <td>{m.real ? "✓ יש טראק אמיתי" : "✗ אין עדיין — ייכשל ב-produce.sh"}</td>
               </tr>
             ))}
           </tbody>
@@ -107,14 +105,18 @@ export default function TemplatesPage() {
             <p className="sub" style={{ margin: "0 0 10px" }}>
               {m.when}
             </p>
-            <audio controls preload="none" src={m.sample} style={{ width: "100%" }} />
+            <p className="sub" style={{ color: m.real ? "var(--brass)" : "var(--clay)" }}>
+              {m.real ? "✓ יש טראק אמיתי בספרייה" : "✗ אין טראק אמיתי עדיין — ייכשל ב-produce.sh"}
+            </p>
           </div>
         ))}
       </div>
       <p className="sub">
         המספר כאן הוא בדיוק ה-<code>--mood</code> שמועבר ל-<code>produce.sh</code> — לא רשימה
-        נפרדת שיכולה להתפספס. הקטע ששומעים הוא 8 שניות אמיתיות שנוצרו עם{" "}
-        <code>audio/build_music.py</code>, לא תיאור.
+        נפרדת שיכולה להתפספס. מאז 14.9.2026 <code>produce.sh</code> קורא רק ל-
+        <code>audio/pick_real_track.py</code> (טראקים אמיתיים ומורשים מ-Pixabay, לא מוזיקה
+        מסונתזת) — מצב &quot;✗&quot; פה אומר שהפקה עם ה-mood הזה תיכשל עד שיתווסף לו טראק אמיתי.
+        רשימת הטראקים האמיתיים והמיפוי המלא: <code>audio/music-library/MANIFEST.md</code>.
       </p>
 
       <h2>צבעים שכבר שימשו</h2>
