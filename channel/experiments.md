@@ -144,6 +144,12 @@ real numbers are in — if the thresholds turn out wrong in hindsight, say so
 explicitly in Result/Verdict and log the correction as a new dated note, never
 edit the pre-registered thresholds themselves.**
 
+**Assigned to episode 36** (16.9.2026) — episodes 26-35 all shipped as n8n/tool failure-mode
+content, none of them ran this experiment, so it was still unstarted as of this date. Artifact
+chosen, current-product-verified, and scripted in `channel/episode-36-script.md`: a single
+reusable prompt block that turns any AI chat into a fact-checker for pasted text. Production
+(voice/render/QA) has not started yet — this is the script-writing step only.
+
 **Result:** [fill in once real numbers are in, no earlier than 7 days post-publish]
 **Verdict:** RUNNING
 **Feeds into:** H1 in `content-memory.md`.
