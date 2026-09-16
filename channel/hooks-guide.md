@@ -200,6 +200,81 @@ a stake that isn't real, or exaggerating a mild inconvenience into a catastrophe
 existing rule against fabrication still applies in full; the stake has to be genuinely
 true of the tool/behavior being described, same as every other hook rule on this page.
 
+## A real reference account Roni sent, and his direct note (16.9.2026)
+
+Roni Michaeli (Videya) sent a screenshot of another creator's Reels grid as a concrete
+example of what he means by "accessible" — his own words, typed directly, not
+paraphrased: **"Tsarich et ha-hooks sheli arbe yoter accessible, pashut, hooking, safa
+pshuta"** ("my hooks need to be much more accessible, simple, hooking, simple
+language"). This follows his episode-32 feedback already logged in
+`content-memory.md`'s 16.9.2026 entry, and lands the same day David set the explicit
+goal for this channel as maximum reach/virality over funnel-fit.
+
+**What the reference grid actually shows, read plainly, not just "it's popular":** a
+face-to-camera creator whose hook titles are all personal-benefit or curiosity-secret
+framed, in plain consumer language, zero tool/developer jargon — "5 Secret Codes for
+ChatGPT," "ChatGPT can find your unclaimed money," "ChatGPT can find your leaked
+passwords," "ChatGPT is now free for students," "How to make ChatGPT sound like a
+human," "ChatGPT can turn into a $1M marketing team," "Claude started leaving hidden
+watermarks," "Craziest use cases for GPT-6 Astra." Every one of these is understandable
+to someone who has never opened an automation tool in their life — the opposite end of
+the spectrum from "n8n never tells you when a workflow dies."
+
+**What actually transfers to this channel's format, stated honestly — not everything
+does:** this channel doesn't do face-to-camera and shouldn't start pretending to be a
+different format just because a reference account uses one. What transfers is the
+**hook-content pattern**, not the delivery mechanism: personal stakes ("your money,"
+"your passwords," "free for you specifically") stated in plain consumer language, with
+a secret/reveal framing, over developer-facing or workflow-internals framing. This is
+the same direction as the emotional-register research above (Fear/personal-stakes beats
+neutral curiosity) and the same direction as `content-memory.md`'s own real data
+(general, jargon-free claims are this channel's actual all-time top performers) — three
+independent signals now pointing the same way, not just Roni's opinion alone.
+
+**Concrete standing rule from this, effective now:** when picking a hook for a new
+episode, actively prefer a personal-stakes/secret-reveal framing in plain language over
+a tool-internals framing, even when the tool-internals topic has higher measured
+YouTube search demand (`demand-report.md`) — reach is now the stated priority (per
+`content-memory.md`'s 16.9.2026 decision), and that means optimizing for the viewer who
+has never heard of the tool, every time, not just when convenient.
+
+## Standing reference creators — a living list, checked before writing a new episode (16.9.2026)
+
+David asked directly what the rpn/mavgpt research (see `content-memory.md`'s 16.9.2026
+entries) means going forward: these aren't one-time research dumps, they're **standing
+references to check against when picking a hook or format for a new episode**, the same
+way `demand-report.md` gets checked for topic demand. The rule stays the same as
+everywhere else in this file: **extract structure and formula, never copy script text.**
+
+- **@rpn (Roberto Nickson, ~900K followers, AI news/culture):** 5-format rotation
+  (Breakdown/Case Study/Skits/Tutorial/Listicle — this channel's own "live test" format
+  already matches his highest-performing Case Study shape), a stakes-escalation hook
+  formula ("X new thing" reframed as "billions of people are unprepared for what happens
+  next"), and a stated ~2-3-use lifespan per hook formula before it needs rotating.
+- **@mavgpt (Maverick Maltin, 250 views → 3M+ followers in ~15 months):** explicitly
+  targets a **non-technical general audience** ("your mom who wants to use ChatGPT," "a
+  small business owner who keeps hearing about AI") — the same plain-language,
+  jargon-free direction this file already committed to. His stated process: write the
+  **hook first**, before building anything else, and a content-mix ratio across a
+  30-day calendar — **40% educational, 30% storytelling, 20% engagement, 10%
+  promotional** — worth checking this channel's own topic/format spread against, since
+  nothing here currently tracks that ratio at all.
+  Source: [mavgpt.ai/about](https://mavgpt.ai/about) and coverage of his growth story.
+
+**What this changes about how a new episode gets planned, concretely:** before writing a
+hook, check it against rpn's stakes-escalation formula and confirm it isn't reusing a
+formula already used 2-3 times running (see the Hook-type log below); before picking a
+format, check whether a Skits-style creative angle (genuinely untried on this channel)
+fits instead of another Breakdown/Case-Study; and periodically compare this channel's own
+recent output against mavgpt's 40/30/20/10 mix to see if it's drifted entirely into one
+bucket (this channel's actual output so far is almost entirely educational/breakdown —
+worth naming plainly, not something to force-correct on the next single episode).
+
+**Add to this list, don't replace it, when a new reference account comes up** (from
+David, from Roni, or found independently) — the value is in accumulating real, sourced
+structural patterns over time, the same discipline `content-memory.md` already applies
+to this channel's own data.
+
 ## Cross-checked against our own real numbers
 
 `channel/content-memory.md`'s 30.8.2026 grid (real Instagram view counts, our own account) already
