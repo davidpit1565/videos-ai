@@ -64,7 +64,7 @@ episode is about the two consumer settings (Free/Plus/Pro) most people have neve
 ## Narration (6 lines — cut from 8, see "Density fix" below)
 1. Every private thing you've ever typed into ChatGPT trains its next model — and that's the default.
 2. It's not just chat history. The files you upload and the replies you get back become training data too.
-3. Switch it off, and every new conversation stays out of training for good.
+3. Switch it off, and future conversations stay out of training for good.
 4. It takes about ten seconds, one time, to switch on.
 5. The setup's in the link in bio.
 6. Follow for the setup that actually works.
@@ -109,6 +109,15 @@ the caption/setup guide), down to four ideas: stakes → mechanism → one fix �
 Full reasoning and the new standing rule this creates are logged in
 `content-memory.md`'s 16.9.2026 "Episode 36" entry — check idea count, not just
 vocabulary, before shipping the next one.
+
+## Third swallowed-word round (16.9.2026)
+
+Re-running after the density/music fixes hit the same failure class a third time —
+"every" in the (re-timed) line 3 flagged rushed/clipped at 0.080s/syllable. Same fix
+pattern as before: shortened/reworded rather than re-rolling seeds — "Switch it off, and
+every new conversation stays out of training for good" → "Switch it off, and future
+conversations stay out of training for good" (also a small clarity win: "future"
+signals the not-retroactive point implicitly, without needing the cut caveat line).
 
 ## Music-level fix, same feedback pass (16.9.2026)
 
