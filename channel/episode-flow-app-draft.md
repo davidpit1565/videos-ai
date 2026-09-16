@@ -1,11 +1,14 @@
-# Episode 36 (draft, ON HOLD) — Flow, the app David built
+# Episode (number TBD, draft, ON HOLD) — Flow, the app David built
 
 **Status: DO NOT PRODUCE OR SHIP.** Per David's own instruction (15.9.2026): prepare the
 topic and script groundwork here first, but the actual build/render/publish only happens
 once `fin-flow` is live on the App Store — it isn't yet (still needs the Apple Developer
 account enrollment + a Mac/Xcode build, per that repo's own `APP_STORE_SUBMISSION.md`).
 This file exists so the topic is locked and ready the moment it ships — not so it gets
-produced early.
+produced early. **Not episode 36** — that number went to a different episode (produced
+16.9.2026, general-audience/personal-stakes topic per the reach-first pivot) since this
+one is still blocked. Whatever number is next-available when this actually ships is its
+real number.
 
 ## What the app actually is (read from `davidpit1565/fin-flow`, not assumed)
 

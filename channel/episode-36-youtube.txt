@@ -1,0 +1,11 @@
+ChatGPT trains itself on everything you've ever typed to it — and that's turned on by default.
+
+It's not just your chat history. The files you upload and the answers you get back become training data too, unless you turn one setting off (Settings → Data Controls → "Improve the model for everyone"). Turn it off, and everything you type after that stays out of training completely — but it only protects what happens after; nothing you already sent ever gets pulled back out. There's also a separate mode ("Temporary Chat") that skips training and chat history completely, every single chat, with nothing to remember.
+
+Takes about ten seconds, one time, to turn on.
+
+Full setup, exact clicks: https://actually-works.com/e/36
+
+Follow for the setup that actually works.
+
+#chatgpt #aiprivacy #dataprivacy #openai #techtips
