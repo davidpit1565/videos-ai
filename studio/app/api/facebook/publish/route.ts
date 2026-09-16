@@ -11,17 +11,16 @@ export const maxDuration = 60;
  *  without this — clicking the combined button again would re-publish a second, duplicate
  *  Reel just to retry the platform that actually failed.
  *
- *  Publishes to both real Facebook destinations by default (see publishToFacebookBoth's
- *  own comment in lib/publish.ts): the personal profile, where the real audience and view
- *  history live, and the separate "Actually works.ai" business Page, the only destination
- *  Meta's Graph API can ever read view/follower numbers back from. One failing never hides
- *  or blocks the other — they're unrelated credentials and unrelated audiences, reported
- *  separately below.
+ *  Publishes via publishToFacebookBoth by default (see its own comment in lib/publish.ts):
+ *  FB_PAGE_ID and FB_BUSINESS_PAGE_ID turned out to be the same Facebook Page (confirmed
+ *  16.9.2026 — there's exactly one Page, "Actually works.ai"; a separate "personal
+ *  profile" destination never existed), so that function now posts once and mirrors the
+ *  result into both `facebook`/`facebookPage` fields below instead of genuinely
+ *  double-posting the same video to the same Page.
  *
- *  `target: "page"` restricts this to the business Page only — added 15.9.2026 to
- *  backfill episodes 2-33 onto the Page without touching the personal profile a second
- *  time (those episodes already went to the personal profile when they first shipped).
- *  Every new episode from here on uses the default (both), same as always. */
+ *  `target: "page"` restricts this to a single explicit call to the business Page —
+ *  added 15.9.2026 to backfill episodes 2-34 without relying on the (at the time,
+ *  broken) default path. Every new episode from here on uses the default. */
 export async function POST(req: Request) {
   try {
     const { file, caption, target } = (await req.json()) as {

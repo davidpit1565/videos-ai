@@ -197,8 +197,20 @@ export async function publishToFacebookBusinessPage(file: string, caption: strin
 export type FbBothPublishResult = { profile: FbPublishResult; page: FbPublishResult };
 
 /** Publishes to both real destinations, independently — one failing must never hide or
- *  block the other succeeding, since they're unrelated credentials and unrelated audiences. */
+ *  block the other succeeding, since they're unrelated credentials and unrelated audiences.
+ *
+ *  FB_PAGE_ID and FB_BUSINESS_PAGE_ID turned out to be the same Facebook Page (confirmed
+ *  16.9.2026 — Business Settings and facebook.com/pages/?category=your_pages both list
+ *  exactly one Page, "Actually works.ai"; the "personal profile" destination this env
+ *  var pair was named for never existed as a separate Page). Posting the same video
+ *  twice to the same Page isn't "both destinations," it's a duplicate — so this checks
+ *  for that exact case first and posts once, mirroring the one real result into both
+ *  fields rather than genuinely calling the Graph API twice for the same upload. */
 export async function publishToFacebookBoth(file: string, caption: string): Promise<FbBothPublishResult> {
+  if (process.env.FB_PAGE_ID && process.env.FB_PAGE_ID === process.env.FB_BUSINESS_PAGE_ID) {
+    const page = await publishToFacebookBusinessPage(file, caption);
+    return { profile: page, page };
+  }
   const [profile, page] = await Promise.all([
     publishToFacebook(file, caption),
     publishToFacebookBusinessPage(file, caption),

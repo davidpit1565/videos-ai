@@ -18,8 +18,9 @@ export async function POST(req: Request) {
     if (!file) return NextResponse.json({ ok: false, reason: "חסר שם קובץ" }, { status: 400 });
     const ig = await publishToInstagram(file, caption ?? "");
     // Facebook only if the Reel itself actually went out — no point cross-posting a
-    // Reel that doesn't exist, and it needs its own credentials regardless. Publishes to
-    // both real Facebook destinations (see publishToFacebookBoth in lib/publish.ts).
+    // Reel that doesn't exist, and it needs its own credentials regardless.
+    // publishToFacebookBoth (lib/publish.ts) posts once to the one real Facebook Page —
+    // FB_PAGE_ID and FB_BUSINESS_PAGE_ID are the same Page, confirmed 16.9.2026.
     const fb = ig.reel.ok ? await publishToFacebookBoth(file, caption ?? "") : null;
     const facebook = fb?.profile ?? null;
     const facebookPage = fb?.page ?? null;
