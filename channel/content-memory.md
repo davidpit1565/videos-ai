@@ -908,6 +908,52 @@ already searching for that exact service. David made the reach-first call explic
 worth revisiting together once there's real data on whether general-audience virality
 still produces paid leads, rather than assuming it does or doesn't.
 
+## Roberto Nickson (@rpn) — a real, sourced creator breakdown, not a copy-paste source (16.9.2026)
+
+David asked to research a specific creator (@rpn, 904K followers, an AI-news/culture
+account) after Roni pointed at him and after David sent one of his reels directly (a
+GPT-5.6/Codex product-update reel). **Explicitly not treated as a script source** — per
+the earlier standing decision this same day, copying another creator's script word-for-
+word is real copyright/reputational risk and against this channel's own premise; this
+entry extracts structure only, from a real third-party analysis, not from watching and
+transcribing his content ourselves.
+
+**Source: [blog.sandcastles.ai's creator breakdown of @rpn](https://blog.sandcastles.ai/p/creatorbreakdowns-rpn),
+cross-checked against his own Beehiiv/podcast presence for background.** Concrete,
+checkable tactics, not vague praise:
+- **Topic selection, 5 pillars:** AI model launches, culture/creators, creative tools,
+  hardware/devices, emerging AI agents — breaking model-launch news covered within ~24
+  hours, treated as his primary content driver, not an occasional angle.
+- **Posting cadence:** 8-9 posts/month, 574K average views, 4.5% engagement (the
+  analysis's own highest-measured account in its series) — notably not high-frequency
+  posting; fewer, higher-effort posts.
+- **Five video formats, not one:** *Breakdowns* (~50% of output, "this tool is
+  powerful" translation for a lay audience), *Case Studies* (his highest performers —
+  "watch this tool BE powerful in real time," a live demonstration, not a description),
+  *Skits* (non-news creative angles, 2x+ baseline performance — one example, "POV Life
+  With Claude," hit 2.7M views, a 10.5x outlier), *Tutorials* (packaged as a reaction or
+  movie-moment framing, not a generic how-to), *Listicles* (the exact same angle, e.g.
+  "creators worth following," reframed differently each time it's reused).
+- **Hook formula:** stakes escalation — reframing "a new model dropped" as "billions of
+  people are unprepared for what happens next," not just stating the update. The
+  analysis notes a formula has a ~2-3 iteration lifespan before the audience adapts and a
+  fresh angle is needed — matches this file's own repeated finding that a winning hook
+  type eventually needs rotation, not infinite reuse.
+- **Stated differentiator:** speed (within 24h of real news) combined with cinematic
+  visual production — the analysis calls this combination "1 of 1," not any single
+  element alone.
+
+**What's actually transferable to this channel, stated plainly so this doesn't become a
+copy-the-creator exercise:** the *Case Study* format (show the tool actually doing the
+thing, live, rather than describing it) is the closest match to this channel's own
+existing standing format ("live test / escalate until it breaks," decided episode 21) —
+external confirmation that this shape works elsewhere too, not a new idea to import. The
+*Skits* format (a creative, non-news angle massively outperforming baseline) is genuinely
+new territory for this channel, worth a real, deliberate experiment rather than assumed.
+The stakes-escalation hook framing lines up with the Fear/personal-stakes research
+already logged in `hooks-guide.md` (13.9.2026) — a third independent source now agreeing
+with the same direction.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
