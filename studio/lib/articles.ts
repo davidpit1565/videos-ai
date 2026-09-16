@@ -955,6 +955,33 @@ export const ARTICLES: Article[] = [
       "This does not undo damage from duplicate runs that already happened — check for and clean up any real double-sends before assuming the fix alone is enough.",
     ],
   },
+  {
+    n: 36,
+    title: "ChatGPT trains itself on everything you've ever typed to it.",
+    standfirst:
+      "That's turned on by default for Free, Plus and Pro accounts — and it's not just " +
+      "chat history. The files you upload and the answers you get back become " +
+      "training data too, unless you turn one setting off.",
+    steps: [
+      "Open ChatGPT on the web or the app, and open Settings (click your name/profile in the bottom-left on web, or the profile icon in the app).",
+      "Go to the 'Data Controls' section of Settings.",
+      "Find the toggle labeled 'Improve the model for everyone' — if it's on (the default for Free/Plus/Pro accounts), your conversations, uploaded files and the answers you receive are being used to train future models.",
+      "Switch that toggle off.",
+      "Understand what this does and doesn't do: every conversation you have AFTER turning it off stays out of training completely. It does NOT retroactively remove anything already sent before you turned it off — once a conversation entered the training pipeline, this toggle can't pull it back out.",
+      "(Optional, for a single sensitive conversation) Instead of relying on the toggle, start a 'Temporary Chat' (the toggle/icon near the message box, or a dedicated button depending on your app version) — it never enters your chat history and is never used for training, automatically, every time, with nothing to remember to turn off.",
+      "Confirm the change stuck: open a new regular chat afterward and check Settings → Data Controls again — the toggle should still read off.",
+    ],
+    changes: [
+      "Verified live (16.9.2026) against OpenAI's own Help Center articles: 'How your data is used to improve model performance' and 'What if I want to keep my history on but disable model training?' — this is current, documented behavior, not assumed from an older version of ChatGPT.",
+      "Default state confirmed as ON for Free/Plus/Pro accounts, and OFF by default for Temporary Chats and Business plans, per the same source.",
+      "This is a plain-language, personal-privacy topic — a deliberate exception to this channel's usual demand-report-driven topic selection, made explicitly per the 16.9.2026 reach-first content decision (see channel/content-memory.md).",
+    ],
+    limits: [
+      "Turning the toggle off is not retroactive — anything sent before you turned it off may already be part of a training run and cannot be pulled back out by this setting.",
+      "Temporary Chat still stores the conversation on OpenAI's servers for up to 30 days for safety monitoring before permanent deletion — it skips history and training, not all server-side storage.",
+      "This episode covers OpenAI's ChatGPT specifically; other AI tools (Claude, Gemini, etc.) have their own separate data-training settings, not covered here.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

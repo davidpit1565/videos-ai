@@ -1,0 +1,13 @@
+Every private thing you've ever typed into ChatGPT trains its next model — and that's the default. Not just chat history: the files you upload and the replies you get back too.
+
+Switch it off, and every new conversation stays out of training for good. One catch: it only protects what happens after — nothing already sent gets pulled back out.
+
+There's also a separate mode ("Temporary Chat") that skips training and history completely, every single chat, with nothing to remember.
+
+Takes about ten seconds, one time.
+
+Full setup: https://actually-works.com/e/36
+
+Follow for the setup that actually works.
+
+#chatgpt #aiprivacy #dataprivacy #openai #techtips

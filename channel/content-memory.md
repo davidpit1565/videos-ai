@@ -859,6 +859,156 @@ instruction ("33 tashir" — it stays as shipped). **Standing takeaway for futur
 an accent-flagged line is a bad-take problem, not a spelling problem — search seeds with
 the accent classifier + WER==0, don't reach for a respelling.**
 
+## Real outside feedback from Roni Michaeli (Videya) on episode 32, and David's explicit goal (16.9.2026)
+
+**FACT, direct feedback, screenshotted:** Roni Michaeli (owner of Videya, a marketing
+professional already credited for real feedback on episode 31's hook in
+`hooks-guide.md`) reviewed episode 32 ("n8n never tells you when a workflow dies") and
+said directly: the hook assumes the viewer already knows what n8n is — this is
+bottom-funnel content aimed at people already advanced in AI, not the general public.
+"No business owner connects with 'hedging in n8n' — that's not the language they
+speak." He confirmed n8n content could be right *if* the target audience is AI
+technicians specifically, but flagged it as a mismatch for broad reach.
+
+**Checked against our own real data, not accepted or dismissed on say-so:**
+- The 28.8.2026 jargon audit already independently flagged "n8n" as unexplained
+  brand-name jargon in episodes 7 and 10 — Roni's critique of episode 32 is the same
+  finding, a second time, from an outside professional.
+- The verified per-post Instagram export (Master performance table, 8.9.2026) shows
+  n8n-topic episodes sitting mid-to-low on engagement rate (ep7: 7.97%, rank 4 of 27;
+  ep25: 5.56%, rank 13 of 27) — not the top of the real, verified table. The channel's
+  actual highest performers by real engagement (ep1, ep13, ep10, ep3) and by the
+  "500+ club" analysis (ep2's 940, ep1's 662) are all **general, checkable claims any
+  viewer can follow with zero prior AI/tool knowledge** — not n8n-specific, not
+  jargon-dependent.
+- Countervailing point from `demand-report.md`, stated so it isn't lost: n8n is the
+  single highest measured search-demand topic, and its audience specifically overlaps
+  with people who buy automation services (the word "sell" appeared 5x more often in
+  the top-quartile results) — a real, separate reason n8n content existed here, tied to
+  the paid-services engine, not to raw reach.
+
+**David's explicit decision, asked directly and answered directly (16.9.2026): the goal
+is maximum virality — followers, views, likes, reach, as much as possible, full stop.**
+This resolves the tension above in one direction: reach beats funnel-fit. Consequence for
+topic selection going forward: **prioritize general-audience-accessible topics and hooks
+over jargon-heavy/insider ones**, even when the jargon-heavy topic has higher measured
+YouTube search demand — the real Instagram engagement data already supports this
+(general claims outperform n8n-specific ones in the actual verified export), and it now
+also matches David's explicitly stated goal, not just this file's read of the numbers.
+This doesn't retroactively make n8n content wrong to have made (episodes 7/25/29 were
+built on real, then-current reasoning) — it changes what "highest-demand, best-fitting
+angle" (the channel's own standing topic-selection rule) should optimize for next: reach
+first, service-lead-gen second, when the two point in different directions.
+
+**Not yet decided, flagged so it isn't silently dropped:** this is a real tradeoff
+against the two-engine business model in `plan/business-model.html` (the paid engine
+feeding the free one) — pure-virality content aimed at a general audience may convert to
+paying clients less directly than n8n/automation content aimed at business owners
+already searching for that exact service. David made the reach-first call explicitly;
+worth revisiting together once there's real data on whether general-audience virality
+still produces paid leads, rather than assuming it does or doesn't.
+
+## Roberto Nickson (@rpn) — a real, sourced creator breakdown, not a copy-paste source (16.9.2026)
+
+David asked to research a specific creator (@rpn, 904K followers, an AI-news/culture
+account) after Roni pointed at him and after David sent one of his reels directly (a
+GPT-5.6/Codex product-update reel). **Explicitly not treated as a script source** — per
+the earlier standing decision this same day, copying another creator's script word-for-
+word is real copyright/reputational risk and against this channel's own premise; this
+entry extracts structure only, from a real third-party analysis, not from watching and
+transcribing his content ourselves.
+
+**Source: [blog.sandcastles.ai's creator breakdown of @rpn](https://blog.sandcastles.ai/p/creatorbreakdowns-rpn),
+cross-checked against his own Beehiiv/podcast presence for background.** Concrete,
+checkable tactics, not vague praise:
+- **Topic selection, 5 pillars:** AI model launches, culture/creators, creative tools,
+  hardware/devices, emerging AI agents — breaking model-launch news covered within ~24
+  hours, treated as his primary content driver, not an occasional angle.
+- **Posting cadence:** 8-9 posts/month, 574K average views, 4.5% engagement (the
+  analysis's own highest-measured account in its series) — notably not high-frequency
+  posting; fewer, higher-effort posts.
+- **Five video formats, not one:** *Breakdowns* (~50% of output, "this tool is
+  powerful" translation for a lay audience), *Case Studies* (his highest performers —
+  "watch this tool BE powerful in real time," a live demonstration, not a description),
+  *Skits* (non-news creative angles, 2x+ baseline performance — one example, "POV Life
+  With Claude," hit 2.7M views, a 10.5x outlier), *Tutorials* (packaged as a reaction or
+  movie-moment framing, not a generic how-to), *Listicles* (the exact same angle, e.g.
+  "creators worth following," reframed differently each time it's reused).
+- **Hook formula:** stakes escalation — reframing "a new model dropped" as "billions of
+  people are unprepared for what happens next," not just stating the update. The
+  analysis notes a formula has a ~2-3 iteration lifespan before the audience adapts and a
+  fresh angle is needed — matches this file's own repeated finding that a winning hook
+  type eventually needs rotation, not infinite reuse.
+- **Stated differentiator:** speed (within 24h of real news) combined with cinematic
+  visual production — the analysis calls this combination "1 of 1," not any single
+  element alone.
+
+**What's actually transferable to this channel, stated plainly so this doesn't become a
+copy-the-creator exercise:** the *Case Study* format (show the tool actually doing the
+thing, live, rather than describing it) is the closest match to this channel's own
+existing standing format ("live test / escalate until it breaks," decided episode 21) —
+external confirmation that this shape works elsewhere too, not a new idea to import. The
+*Skits* format (a creative, non-news angle massively outperforming baseline) is genuinely
+new territory for this channel, worth a real, deliberate experiment rather than assumed.
+The stakes-escalation hook framing lines up with the Fear/personal-stakes research
+already logged in `hooks-guide.md` (13.9.2026) — a third independent source now agreeing
+with the same direction.
+
+## Episode 36 — David's direct feedback catches two real, distinct problems (16.9.2026)
+
+He watched the real shipped file and said plainly: the background music is "a bit too
+high, even though it's subtle"; and separately, despite the whole reach-first/plain-
+language pivot this session, the content "still isn't that clear" — he had to really
+concentrate to follow it, it doesn't flow smoothly, and it didn't pull him toward
+watching to the end. He called this explicitly urgent and said not to miss this class
+of problem again.
+
+**Problem 1 — music, root-caused against the actual code, not guessed:** `render.sh`'s
+`MUSIC_VOL=0.14` was set specifically to the *loud edge* of the pass range, measured
+against episodes 32/33's own stems (14.2-14.8dB separation there). Episode 36 used a
+different, punchier track (`trending-vibe--alexmorgan.mp3`, mood `punchy`) and measured
+only **8.6dB** separation in the shipped file — right at `qa.py`'s 6dB floor, and
+nearly identical to episode 34's approved 8.7-9.1dB (a *different* track). **New
+finding, not previously documented: the same measured dB-under-voice separation does
+not read as equally present across different music tracks** — a percussive/rhythmic
+track (`trending-vibe`) likely masks speech and reads as "present" more than a smooth
+corporate-bed track at an identical measured number, for real psychoacoustic reasons
+(more competing mid/high-frequency transient energy), not a bug in the measurement
+itself. **Consequence: `MUSIC_VOL=0.14` is not a fixed constant that generalizes across
+moods/tracks — it needs re-verified by ear per track character, especially for
+punchier/rhythmic moods, not assumed safe because a smoother track passed at that level
+before.** Fixed for episode 36 by lowering `MUSIC_VOL` for this specific render
+(see the re-ship below) — not changed globally in `render.sh`, since this is one data
+point on one track, not yet grounds to move the whole channel's default.
+
+**Problem 2 — a real, previously-undocumented axis: idea density, separate from
+jargon.** The whole 16.9.2026 pivot was about vocabulary (no unexplained tool terms) —
+but episode 36's narration, while genuinely jargon-free line by line, packs **six
+distinct ideas** into 38 seconds: (1) the training-on-everything claim, (2) files/
+replies included too, (3) a toggle to turn it off, (4) a caveat that it isn't
+retroactive, (5) a wholly separate "Temporary Chat" mode, (6) a call to action. This
+channel's own actual top performers (episode 2's 940 views, episode 1's 662) state
+**one** claim and stop — plain language was necessary but not sufficient; **cognitive
+load (how many separate facts a viewer must hold at once) is a distinct axis from
+vocabulary, and this file had never separated them before.** Fixed by cutting the
+caveat and the Temporary Chat mode entirely out of the spoken narration (they still
+live in the caption and the `/e/36` setup guide, for a viewer who wants more depth) —
+down to one arc: stakes → mechanism → one fix → one action.
+
+**Standing rule from this, going forward:** before shipping any future episode, check
+not just "is every line jargon-free" but "how many separate facts does a first-time
+viewer have to hold to follow this end to end" — if it's more than roughly 3-4, a
+caveat or secondary detail almost always belongs in the setup guide/caption, not in the
+spoken 30-45 seconds.
+
+**Immediate follow-up, same episode: cutting density can overshoot into a length
+violation.** After trimming episode 36 from 6 ideas to 4, the render came in at 25.5s —
+under `CLAUDE.md`'s own standing 30s floor. Fixed by restoring one idea (5 total), not
+by padding the existing lines with filler. **The actual standing rule is a range, not
+just a ceiling: roughly 4-5 ideas in 30-45+ seconds, not "cut until it feels simple" —
+idea count and runtime have to be checked together, not one at a time,** because fixing
+one axis in isolation can break the other.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same

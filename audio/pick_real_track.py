@@ -12,25 +12,39 @@ is the one 22s case); a longer one is trimmed from its start. Either way the
 same fade-in/fade-out as build_music.py's own output, so the two are
 interchangeable in render.sh without retuning levels.
 """
-import subprocess, sys, os
+import random, subprocess, sys, os
 
 LIB = os.path.join(os.path.dirname(__file__), "music-library")
 
+# Each mood maps to a LIST of candidate files — pick_real_track.py chooses randomly
+# among them (see main()) so two episodes landing on the same mood don't always get
+# the identical track. Most moods still only have one real option; add more as
+# David listens to and picks real tracks for them (see MANIFEST.md's TODO).
 MOODS = {
-    "neutral":     "confident-corporate-story--echoes-of-lumen.mp3",
-    "corporate":   "confident-corporate-story--echoes-of-lumen.mp3",
+    "neutral":     ["confident-corporate-story--echoes-of-lumen.mp3"],
+    "corporate":   ["confident-corporate-story--echoes-of-lumen.mp3"],
     # "confident" is literally in this track's own filename and MANIFEST.md's suggested
     # mood for it — missing here meant produce.sh's mood='confident' (episodes 32 and 33)
     # silently fell back to synthesized music instead of this real track, which is
     # exactly the "not what I sent you" complaint David raised after hearing episode 33.
-    "confident":   "confident-corporate-story--echoes-of-lumen.mp3",
-    "urgent":      "tense-suspense-rising-dread--alexmorgan.mp3",
-    "triumphant":  "success--paulyudin.mp3",
-    "bright":      "upbeat-and-inspiring--atlasaudio.mp3",
-    "lofi":        "vibraphone--alexmorgan.mp3",
-    "retro":       "nostalgic-memories-piano--alexmorgan.mp3",
-    "drive":       "video-editing--alexmorgan.mp3",
-    "punchy":      "trending-vibe--alexmorgan.mp3",
+    "confident":   ["confident-corporate-story--echoes-of-lumen.mp3"],
+    "urgent":      ["tense-suspense-rising-dread--alexmorgan.mp3"],
+    "triumphant":  ["success--paulyudin.mp3"],
+    "bright":      [
+        "upbeat-and-inspiring--atlasaudio.mp3",
+        "upbeat-energetic--maksymmalko.mp3",
+        "energetic--atlasaudio-2.mp3",
+        "upbeat-energetic--lnplusmusic.mp3",
+        "energetic--ikoliksaj.mp3",
+        "upbeat-energetic--ikoliksaj-2.mp3",
+    ],
+    "lofi":        ["vibraphone--alexmorgan.mp3"],
+    "retro":       ["nostalgic-memories-piano--alexmorgan.mp3"],
+    "drive":       ["video-editing--alexmorgan.mp3"],
+    "punchy":      ["trending-vibe--alexmorgan.mp3"],
+    # New 16.9.2026 — a genuinely new mood, not a relabeling of an existing one.
+    "scary":       ["scary-horror--arpmedia.mp3"],
+    "horror":      ["scary-horror--arpmedia.mp3"],
     # tense-suspense-rising-dread, not suspense-tension-building: the latter opens on a
     # ~5s near-silent fade-in (measured -25 to -52 dB) that a straight from-0 trim landed
     # right on top of episode 27's hook, the one moment a quiet music bed can't afford to
@@ -47,8 +61,8 @@ MOODS = {
     # doesn't catch (see audio/check_music_bed.py). Rather than maintain two mood keys
     # that both need the same fix, "tense" now points at the same alexmorgan track as
     # "suspense" — one fewer place for this exact bug to recur.
-    "tense":       "tense-suspense-rising-dread--alexmorgan.mp3",
-    "suspense":    "tense-suspense-rising-dread--alexmorgan.mp3",
+    "tense":       ["tense-suspense-rising-dread--alexmorgan.mp3"],
+    "suspense":    ["tense-suspense-rising-dread--alexmorgan.mp3"],
 }
 
 
@@ -95,7 +109,8 @@ def main():
     if mood not in MOODS:
         sys.exit(f"no real track mapped for mood '{mood}' — pick one of: {', '.join(sorted(MOODS))}")
 
-    src = os.path.join(LIB, MOODS[mood])
+    choice = random.choice(MOODS[mood])
+    src = os.path.join(LIB, choice)
     if not os.path.exists(src):
         sys.exit(f"missing track file: {src}")
 
@@ -113,7 +128,7 @@ def main():
         cmd += (["-ss", str(start)] if start > 0 else []) + ["-i", src, "-t", str(total)]
     cmd += ["-ac", "1", "-ar", "48000", "-af", filt, out]
     subprocess.run(cmd, check=True)
-    print(f"wrote {out}  {total:.1f}s  mood={mood}  source={MOODS[mood]}")
+    print(f"wrote {out}  {total:.1f}s  mood={mood}  source={choice}")
 
 
 if __name__ == "__main__":
