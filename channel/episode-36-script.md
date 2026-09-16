@@ -65,7 +65,7 @@ episode is about the two consumer settings (Free/Plus/Pro) most people have neve
 1. Every private thing you've ever typed into ChatGPT trains its next model — and that's the default.
 2. It's not just chat history. The files you upload and the replies you get back become training data too.
 3. Switch it off, and future conversations stay out of training for good.
-4. It takes about ten seconds, one time, to switch on.
+4. It takes ten seconds, once, to switch on.
 5. The setup's in the link in bio.
 6. Follow for the setup that actually works.
 
@@ -118,6 +118,16 @@ pattern as before: shortened/reworded rather than re-rolling seeds — "Switch i
 every new conversation stays out of training for good" → "Switch it off, and future
 conversations stay out of training for good" (also a small clarity win: "future"
 signals the not-retroactive point implicitly, without needing the cut caveat line).
+
+## Fourth swallowed-word round (16.9.2026)
+
+"takes" in line 4 flagged rushed/clipped (0.090s/syllable) on the third rebuild, on a
+line that hadn't changed text and was sped up x1.20 — likely alignment jitter right at
+the 0.100s threshold rather than a real change, but treated the same way regardless per
+this repo's discipline (don't chase seeds, shorten instead): "It takes about ten
+seconds, one time, to switch on" → "It takes ten seconds, once, to switch on" — drops
+"about" and shortens "one time" to "once," meaningfully cutting syllable count so the
+line needs less speed correction.
 
 ## Music-level fix, same feedback pass (16.9.2026)
 
