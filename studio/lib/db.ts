@@ -269,3 +269,40 @@ export async function subscribersByEpisode(): Promise<Map<number, number>> {
   }
   return out;
 }
+
+/** Which /health findings a human has already looked at and dismissed — its own table,
+ *  not a field on the finding itself, because the finding is recomputed from a fresh
+ *  scan every time (see lib/health.ts) and has nowhere durable to carry a flag. Mirrors
+ *  personal-work-studio's own rule: a finding a human marked resolved must never come
+ *  back from the same source text being seen again in a later scan. */
+async function ensureHealthResolved(p: Pool) {
+  await p.query(`CREATE TABLE IF NOT EXISTS health_resolved (
+    finding_id text PRIMARY KEY,
+    resolved_at timestamptz NOT NULL DEFAULT now()
+  )`);
+}
+
+export async function getResolvedHealthIds(): Promise<Set<string>> {
+  const p = db();
+  if (!p) return new Set();
+  await ensureHealthResolved(p);
+  const r = await p.query<{ finding_id: string }>("SELECT finding_id FROM health_resolved");
+  return new Set(r.rows.map((x) => x.finding_id));
+}
+
+export async function resolveHealthFinding(findingId: string): Promise<void> {
+  const p = db();
+  if (!p) throw new Error("no database configured");
+  await ensureHealthResolved(p);
+  await p.query(
+    "INSERT INTO health_resolved (finding_id) VALUES ($1) ON CONFLICT (finding_id) DO NOTHING",
+    [findingId],
+  );
+}
+
+export async function unresolveHealthFinding(findingId: string): Promise<void> {
+  const p = db();
+  if (!p) return;
+  await ensureHealthResolved(p);
+  await p.query("DELETE FROM health_resolved WHERE finding_id = $1", [findingId]);
+}
