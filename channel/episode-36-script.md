@@ -64,7 +64,7 @@ episode is about the two consumer settings (Free/Plus/Pro) most people have neve
 ## Narration (8 lines)
 1. Every private thing you've ever typed into ChatGPT trains its next model — and that's the default.
 2. It's not just chat history. The files you upload and the replies you get back become training data too.
-3. Switch it off, and everything you type after that stays out of training for good.
+3. Switch it off, and every new conversation stays out of training for good.
 4. But it only protects what happens after. Nothing you already sent ever gets pulled back out.
 5. There's a separate mode that skips training and history every time, with nothing left to keep track of.
 6. It takes about ten seconds, one time, to switch on.
@@ -74,7 +74,17 @@ episode is about the two consumer settings (Free/Plus/Pro) most people have neve
 (Lines 2, 3, 5, 6 were reworded once against `audio/script_lint.py`'s flags before any
 voice generation — "answers," "turn," "completely," "single," and "remember" all carry
 endings this voice measurably swallows; reworded around them per this repo's own
-"swapping the word costs nothing" rule, not respelled.)
+"swapping the word costs nothing" rule, not respelled.
+
+Second round, first production attempt: the gate flagged "everything" in line 3 as
+rushed/clipped — 0.090s/syllable, well under the 0.100s floor, "likely swallowed."
+Same known failure class as episode 35's line 6/4 swallows: `build_voice.py`'s own
+per-line speed-up correction (this line sped up x1.12) compresses word durations
+further than the raw take. Fixed the same way episode 35's notes prescribe — shortened
+the line rather than re-rolling seeds: "Switch it off, and everything you type after
+that stays out of training for good" → "Switch it off, and every new conversation
+stays out of training for good," removing the flagged word entirely and cutting the
+line's length so it needs less speed correction in the first place.)
 
 (Lines 7-8 are the locked, pre-approved outro clips — see
 `audio/voice/profile/canonical-lines.json` — used byte-for-byte, no regeneration.)
