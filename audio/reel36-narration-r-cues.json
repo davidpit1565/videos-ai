@@ -1,0 +1,38 @@
+[
+ {
+  "n": 1,
+  "line": "Every private thing you've ever typed into ChatGPT trains its next model \u2014 and that's the default.",
+  "start": 0.3,
+  "end": 5.59
+ },
+ {
+  "n": 2,
+  "line": "It's not just chat history. The files you upload and the replies you get back become training data too.",
+  "start": 6.01,
+  "end": 11.89
+ },
+ {
+  "n": 3,
+  "line": "Switch it off, and every new conversation stays out of training for good.",
+  "start": 12.31,
+  "end": 16.48
+ },
+ {
+  "n": 4,
+  "line": "It takes about ten seconds, one time, to switch on.",
+  "start": 16.9,
+  "end": 19.96
+ },
+ {
+  "n": 5,
+  "line": "The setup's in the link in bio.",
+  "start": 20.81,
+  "end": 22.62
+ },
+ {
+  "n": 6,
+  "line": "Follow for the setup that actually works.",
+  "start": 23.04,
+  "end": 25.25
+ }
+]
