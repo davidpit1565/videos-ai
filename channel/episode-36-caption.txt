@@ -1,4 +1,4 @@
-ChatGPT trains itself on everything you've ever typed to it — and that's turned on by default. Not just chat history: the files you upload and the answers you get back too.
+Every private thing you've ever typed into ChatGPT trains its next model — and that's the default. Not just chat history: the files you upload and the answers you get back too.
 
 Turn it off, and everything you type after that stays out of training completely. But it only protects what happens after — nothing you already sent ever gets pulled back out.
 

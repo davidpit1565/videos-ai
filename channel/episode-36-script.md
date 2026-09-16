@@ -39,22 +39,30 @@ episode is about the two consumer settings (Free/Plus/Pro) most people have neve
   ("everything you've ever typed") — last used episode 33, not back-to-back, and it's
   the type this channel's own research ties most directly to personal stakes.
 - **Personal-stakes/plain-language check (16.9.2026 standing rule):** hook names no
-  developer tool, no jargon — "trains itself," "everything you've typed," "turned on by
-  default" are all plain consumer language. Matches Roni's reference-account examples
-  structurally ("ChatGPT can find your leaked passwords" — personal stakes, secret
-  framing, plain language).
+  developer tool, no jargon — "trains," "typed into ChatGPT," "the default" are all
+  plain consumer language. Matches Roni's reference-account examples structurally
+  ("ChatGPT can find your leaked passwords" — personal stakes, secret framing, plain
+  language).
+- **Stakes-escalation pass (16.9.2026, per the @rpn reference-creator formula logged in
+  `hooks-guide.md`):** first draft was "ChatGPT trains itself on everything you've ever
+  typed to it" — accurate but flat, describing the mechanism rather than the stake.
+  Reworded to lead with "every **private** thing" — the same underlying fact (ChatGPT
+  trains on your input by default), but naming the actual stake (privacy, something
+  specific and personal) instead of the neutral word "everything." Nothing invented or
+  exaggerated: the setting genuinely applies to every conversation regardless of
+  content, so "private" is accurate, not embellished.
 - **Cold-read test**: one clause, a real and checkable claim (this AI trains on your own
   conversations, on by default), no vague referent, nothing hypothetical — this is
   current, real, default behavior, verified against OpenAI's own documentation.
-- **Specific claim in the first clause**: the surprising part ("and that's turned on by
-  default") is in the same sentence as the setup, not deferred.
+- **Specific claim in the first clause**: the surprising part ("and that's the default")
+  is in the same sentence as the setup, not deferred.
 - **Emotional register**: privacy/personal-stakes, closer to the Fear end of the
   register research already logged in `hooks-guide.md` (13.9.2026 entry) than to neutral
-  curiosity — real stake (your own words being used to train a product), not an invented
-  worst case.
+  curiosity — real stake (your own private words being used to train a product), not an
+  invented worst case.
 
 ## Narration (8 lines)
-1. ChatGPT trains itself on everything you've ever typed to it — and that's turned on by default.
+1. Every private thing you've ever typed into ChatGPT trains its next model — and that's the default.
 2. It's not just chat history. The files you upload and the replies you get back become training data too.
 3. Switch it off, and everything you type after that stays out of training for good.
 4. But it only protects what happens after. Nothing you already sent ever gets pulled back out.

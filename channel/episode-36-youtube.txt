@@ -1,4 +1,4 @@
-ChatGPT trains itself on everything you've ever typed to it — and that's turned on by default.
+Every private thing you've ever typed into ChatGPT trains its next model — and that's the default.
 
 It's not just your chat history. The files you upload and the answers you get back become training data too, unless you turn one setting off (Settings → Data Controls → "Improve the model for everyone"). Turn it off, and everything you type after that stays out of training completely — but it only protects what happens after; nothing you already sent ever gets pulled back out. There's also a separate mode ("Temporary Chat") that skips training and chat history completely, every single chat, with nothing to remember.
 
