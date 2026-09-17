@@ -1035,6 +1035,33 @@ export const ARTICLES: Article[] = [
       "This episode covers the voice-cloning phone-scam pattern specifically, not broader AI-deepfake risks (video, images) which use different mechanisms and defenses.",
     ],
   },
+  {
+    n: 39,
+    title: "Your smart TV is watching what you watch.",
+    standfirst:
+      "Most smart TVs run Automatic Content Recognition (ACR) by default: the TV " +
+      "periodically fingerprints what's on screen — from any device plugged into it, not " +
+      "just its own apps — and sends that back to build an ad profile. A real, per-brand " +
+      "setting turns it off.",
+    steps: [
+      "Samsung: open Settings, go to 'Device Preferences' (or 'General' on some models), then 'Usage & Diagnostics', and turn off the data-reporting toggles there — this disables Samsung's ACR/Samba integration.",
+      "LG: open Settings (the gear icon), find 'Live Plus' (LG's ACR feature) and switch it off; nearby, also turn on 'Limit Ad Tracking' to reduce ad profiling further.",
+      "Vizio: open the TV's menu, go to 'System' then 'Reset & Admin', and turn 'Viewing Data' off — this disables Vizio's ACR and viewing logs.",
+      "Roku (built into many TVs and Roku streaming devices): from the Roku home screen, go to Settings, then 'Privacy', and turn off 'Personalize ads' — this stops interest-based ad tracking tied to your device.",
+      "Don't have one of these exact brands? Look in your TV's settings for anything named 'Viewing Data', 'ACR', 'Live Plus', 'Interest-Based Ads', or 'Usage & Diagnostics' — the feature exists under a different name on most smart TVs.",
+      "Understand what this does and doesn't do: turning this off stops the TV from reporting what's on your screen going forward. It doesn't delete data already collected, and it doesn't turn off ads themselves — only the profile-building behind them.",
+    ],
+    changes: [
+      "Verified live (17.9.2026) against multiple independent 2026 consumer-tech and cybersecurity sources, cross-referenced: how ACR works, its typical check-in frequency (Samsung roughly once a minute, LG roughly every 15 seconds), and the real per-brand opt-out menu paths.",
+      "Backed by active, current 2026 legal action confirming this is a live issue, not stale: Texas's Attorney General sued Samsung, Sony, LG, Hisense, and TCL over ACR data collection (Samsung settled February 2026); Kentucky passed the first state law requiring opt-in consent for ACR in March 2026.",
+      "A plain-language, personal-privacy topic — a deliberate exception to this channel's usual demand-report-driven topic selection, made explicitly per the 16.9.2026 reach-first content decision (see channel/content-memory.md), same reasoning as episodes 36-38.",
+    ],
+    limits: [
+      "Exact menu wording and location can vary by TV model year and firmware version — this guide describes what to look for, not a guaranteed identical screen for every viewer.",
+      "Turning ACR off does not delete data already collected and reported before you changed the setting.",
+      "This episode covers ACR specifically, not other data a smart TV or its apps may collect (account data, app usage inside a streaming app, voice assistant recordings), which have their own separate settings.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
