@@ -164,14 +164,53 @@ async function publishToFacebookTarget(
 ): Promise<FbPublishResult> {
   if (!pageId || !pageToken) return { ok: false, reason: missingReason };
   const videoUrl = `${SITE_URL}/reels/${encodeURIComponent(file)}`;
-  const u = new URL(`https://graph.facebook.com/v21.0/${pageId}/videos`);
-  u.searchParams.set("file_url", videoUrl);
-  u.searchParams.set("description", caption);
-  u.searchParams.set("access_token", pageToken);
-  const r = await fetch(u, { method: "POST", cache: "no-store" });
-  const j = (await r.json()) as { id?: string; error?: { message?: string } };
-  if (!r.ok || !j.id) return { ok: false, reason: j.error?.message ?? `הפרסום לפייסבוק נכשל (${r.status})` };
-  return { ok: true, postId: j.id };
+
+  // Episode 38 shipped through the plain `/{page-id}/videos` endpoint below and landed
+  // 10 views on a Page with one follower, against David's own "usually hundreds" baseline
+  // — while the same file's Instagram Reel tracked right along Instagram's own "typical
+  // reel" line. A plain Page video post only ever reaches roughly its follower count; a
+  // real Facebook Reel gets pushed through Facebook's separate Reels distribution
+  // regardless of follower count, the same way Instagram's own Reels algorithm doesn't
+  // require followers either. Meta's Reels Publishing API (verified against Meta's own
+  // docs and its official Postman sample collection, 17.9.2026) is a genuinely different,
+  // three-step endpoint — start a session, hand it the hosted file over rupload's own
+  // host via a `file_url` header (no local bytes to hold in a serverless function),
+  // then finish/publish — not a parameter on the endpoint already in use.
+  const startUrl = new URL(`https://graph.facebook.com/v21.0/${pageId}/video_reels`);
+  startUrl.searchParams.set("upload_phase", "start");
+  startUrl.searchParams.set("access_token", pageToken);
+  const startRes = await fetch(startUrl, { method: "POST", cache: "no-store" });
+  const startBody = (await startRes.json()) as {
+    video_id?: string;
+    error?: { message?: string };
+  };
+  if (!startRes.ok || !startBody.video_id) {
+    return { ok: false, reason: startBody.error?.message ?? `אתחול הריל נכשל (${startRes.status})` };
+  }
+  const videoId = startBody.video_id;
+
+  const uploadRes = await fetch(`https://rupload.facebook.com/video-upload/v21.0/${videoId}`, {
+    method: "POST",
+    headers: { Authorization: `OAuth ${pageToken}`, file_url: videoUrl },
+    cache: "no-store",
+  });
+  if (!uploadRes.ok) {
+    const uploadBody = (await uploadRes.json().catch(() => ({}))) as { error?: { message?: string } };
+    return { ok: false, reason: uploadBody.error?.message ?? `העלאת הריל נכשלה (${uploadRes.status})` };
+  }
+
+  const finishUrl = new URL(`https://graph.facebook.com/v21.0/${pageId}/video_reels`);
+  finishUrl.searchParams.set("upload_phase", "finish");
+  finishUrl.searchParams.set("video_id", videoId);
+  finishUrl.searchParams.set("video_state", "PUBLISHED");
+  finishUrl.searchParams.set("description", caption);
+  finishUrl.searchParams.set("access_token", pageToken);
+  const finishRes = await fetch(finishUrl, { method: "POST", cache: "no-store" });
+  const finishBody = (await finishRes.json()) as { success?: boolean; error?: { message?: string } };
+  if (!finishRes.ok || finishBody.success !== true) {
+    return { ok: false, reason: finishBody.error?.message ?? `פרסום הריל נכשל (${finishRes.status})` };
+  }
+  return { ok: true, postId: videoId };
 }
 
 export async function publishToFacebook(file: string, caption: string): Promise<FbPublishResult> {
