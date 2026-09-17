@@ -1008,6 +1008,33 @@ export const ARTICLES: Article[] = [
       "This episode covers Google Photos' Ask Photos specifically, not Google's broader AI/Gemini data policies across its other products.",
     ],
   },
+  {
+    n: 38,
+    title: "Ten seconds of your voice is all AI needs to clone it now.",
+    standfirst:
+      "Scammers only need a few seconds of your real voice — from a public video, a social " +
+      "post, or a voicemail greeting — to clone it with current AI tools, then call someone " +
+      "you love pretending to be you, asking for money. The real defense isn't a setting in " +
+      "an app: it's a shared safe word only your loved ones know.",
+    steps: [
+      "Get the people who'd ever need to reach you in an emergency together — in person, or a group chat everyone's already in. This doesn't work if only one person knows it.",
+      "Agree on two random, unrelated words nobody could guess or find online — not a pet's name, not a birthday, not an inside joke you've ever posted. Example: a made-up pairing like 'lighthouse-pretzel'.",
+      "Say the words out loud together once, so everyone has actually heard them spoken, not just read them in a text.",
+      "Save it somewhere each person can find later without asking out loud in the moment — a private note on your phone, not just memory.",
+      "Agree on the rule: if anyone calls sounding distressed and asking for money, gift cards, or crypto, the other person asks for the safe word before doing anything else.",
+      "Agree on the fallback: if the caller can't give it, hang up and call that person back on the number already saved in your phone — never the number that just called, since caller ID can be faked.",
+      "Test it once, on purpose, in a calm moment — not during a real scare — so everyone actually knows the drill when it matters.",
+    ],
+    changes: [
+      "Verified live (17.9.2026) against multiple independent 2026 cybersecurity/consumer-safety and voice-cloning-industry sources, cross-referenced rather than relying on a single outlet: current instant-cloning APIs (e.g. Gradium, Cartesia) specify a 10-second minimum sample; the caller-ID-spoofing mechanic and the safe-word defense are also current and consistent across sources.",
+      "A plain-language, personal-safety topic — a deliberate exception to this channel's usual demand-report-driven topic selection, made explicitly per the 16.9.2026 reach-first content decision (see channel/content-memory.md), same reasoning as episodes 36 and 37.",
+    ],
+    limits: [
+      "A safe word stops the specific 'fake emergency call' scam pattern described here — it doesn't protect against every kind of scam or fraud.",
+      "This only works if it's actually agreed upon in advance and everyone involved remembers it exists — it protects nothing if only one person set it up.",
+      "This episode covers the voice-cloning phone-scam pattern specifically, not broader AI-deepfake risks (video, images) which use different mechanisms and defenses.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
