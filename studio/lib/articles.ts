@@ -1062,6 +1062,34 @@ export const ARTICLES: Article[] = [
       "This episode covers ACR specifically, not other data a smart TV or its apps may collect (account data, app usage inside a streaming app, voice assistant recordings), which have their own separate settings.",
     ],
   },
+  {
+    n: 40,
+    title: "Do you know who's already grading how you drive?",
+    standfirst:
+      "Most new cars have built-in tech that tracks your speed, braking, and location " +
+      "automatically. Automakers have sold that data to companies that build reports " +
+      "insurers use to help set your rate — California settled with GM for $12.75 million " +
+      "over exactly this in May 2026. A real setting turns off the sharing, and you have a " +
+      "free legal right to see what's already been collected on you.",
+    steps: [
+      "Open your car's own mobile app (e.g. myGM/OnStar, FordPass, Toyota app, or your manufacturer's equivalent) and sign in.",
+      "Look in the app's Settings or Privacy section for something named 'Connected Services', 'Data Sharing', 'Smart Driver', or 'Driving Data' — wording varies by brand.",
+      "Turn off any toggle that shares your driving behavior or location data with third parties — this is usually separate from turning off safety features like crash notification, which you likely want to keep.",
+      "If you can't find it in the app, check your car's own touchscreen settings menu for a similar 'Connected Services' or 'Data Privacy' section — some brands only expose it there.",
+      "Request your own free consumer disclosure report from LexisNexis Risk Solutions: go to consumer.risk.lexisnexis.com and submit a request (needs your name, address, and date of birth), or call 1-800-456-6004. This is a real, federal right (FCRA) — the same law that lets you request a free credit report — and it shows you what's actually been collected under your name.",
+      "Understand what this does and doesn't do: turning off the sharing setting stops new data from being sent going forward. It does not delete or undo data already shared with brokers or insurers before you changed it.",
+    ],
+    changes: [
+      "Verified live (17.9.2026) against multiple independent 2026 auto-industry, insurance-trade, and privacy sources, cross-referenced: California's Attorney General's $12.75M settlement with GM (May 2026, over selling OnStar Smart Driver data to LexisNexis and Verisk); that as of March 2026 GM stopped that specific data-sharing pipeline; and that the broader industry practice (91% of new US cars have telematics, multiple manufacturers still share with brokers) continues.",
+      "LexisNexis's own consumer disclosure process (free report request under federal law) verified directly against LexisNexis's own site (consumer.risk.lexisnexis.com).",
+      "A plain-language, personal-stakes topic — a deliberate exception to this channel's usual demand-report-driven topic selection, made explicitly per the 16.9.2026 reach-first content decision (see channel/content-memory.md), same reasoning as episodes 36-39.",
+    ],
+    limits: [
+      "Exact app menu wording and location vary by car manufacturer and model year — this guide describes what to look for, not a guaranteed identical screen for every viewer.",
+      "The GM-to-LexisNexis/Verisk pipeline specifically was already shut down by GM as of March 2026 — this guide is about the ongoing, broader industry practice at other manufacturers, and about your standing right to check your own file regardless of which company held it.",
+      "Verisk's current, active involvement in collecting driving data is unclear in available sources — this guide treats LexisNexis as the primary, confirmed contact for a consumer disclosure request.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
