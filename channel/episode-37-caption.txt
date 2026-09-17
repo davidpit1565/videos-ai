@@ -1,0 +1,9 @@
+Every photo you've ever taken in Google Photos has already been looked at by AI — before you ever asked it to. It can already tell you things like the best shot from every trip you've taken, just from what it's already seen.
+
+By default, people can review the questions you ask it, to help improve the feature. One setting keeps those questions between you and the AI, nothing else.
+
+Full setup: https://actually-works.com/e/37
+
+Follow for the setup that actually works.
+
+#googlephotos #aiprivacy #gemini #dataprivacy #techtips

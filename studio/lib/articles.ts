@@ -982,6 +982,32 @@ export const ARTICLES: Article[] = [
       "This episode covers OpenAI's ChatGPT specifically; other AI tools (Claude, Gemini, etc.) have their own separate data-training settings, not covered here.",
     ],
   },
+  {
+    n: 37,
+    title: "Google's AI has already looked at every photo you've ever taken.",
+    standfirst:
+      "Ask Photos (powered by Gemini) can already answer questions like \"find the best " +
+      "shot from every trip I've taken\" — which means it already analyzed every photo " +
+      "in your library, not just the ones you search for. One setting controls whether " +
+      "people can review the questions you ask it.",
+    steps: [
+      "Open the Google Photos app on your phone (or photos.google.com on the web).",
+      "Tap your profile picture in the top-right corner, then tap 'Photos settings' (on web: Settings via the gear icon).",
+      "Look for the Ask Photos / 'Ask Photos' section (may also appear under a general 'AI features' or 'Gemini' heading, depending on your app version and region).",
+      "Find the toggle for allowing your questions to be reviewed by people to improve the feature — wording varies by version, but it's the one governing human review of your Ask Photos queries.",
+      "Switch it off if you don't want your questions reviewed by anyone besides the automated system.",
+      "Understand what this does and doesn't do: this controls who can review the QUESTIONS you type into Ask Photos. It does not stop the AI from having already analyzed the content of your photo library — that's the feature working as designed, on by default.",
+    ],
+    changes: [
+      "Verified live (17.9.2026) against Google's own Ask Photos support page and independent 2026 coverage of the feature's rollout and its privacy-toggle mechanic.",
+      "A plain-language, personal-privacy topic — a deliberate exception to this channel's usual demand-report-driven topic selection, made explicitly per the 16.9.2026 reach-first content decision (see channel/content-memory.md), same reasoning as episode 36.",
+    ],
+    limits: [
+      "The exact toggle wording and menu path can vary by app version, region, and account type (personal vs. Workspace) — this guide describes what to look for, not a guaranteed identical screen for every viewer.",
+      "Turning off human review of your queries does not delete or undo the AI's existing analysis of your photo library — there is currently no publicly documented Google Photos setting that reverses that.",
+      "This episode covers Google Photos' Ask Photos specifically, not Google's broader AI/Gemini data policies across its other products.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
