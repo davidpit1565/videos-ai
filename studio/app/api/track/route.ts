@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { notify, notifyNewRenders, notifyEpisodeLive } from "@/lib/push";
 import { hasDb, loadState, saveState, subscribersByEpisode } from "@/lib/db";
 import { fetchBeehiiv, fetchFacebook, fetchInstagram, fetchYouTube, refreshInstagramToken} from "@/lib/sources";
+import { publishToFacebookBusinessPage } from "@/lib/publish";
 import { ActivityEvent, State, uid } from "@/lib/types";
 import { realTitleFor, captionTitleFor, reels } from "@/lib/reels";
 
@@ -490,6 +491,35 @@ export async function GET(req: Request) {
         },
       },
     );
+  }
+
+  // Auto-mirror to the Facebook business Page — asked for 17.9.2026 after Instagram's own
+  // native cross-post (Accounts Center → Automatically Share) turned out to be wired to
+  // his personal Facebook account, not the "Actually works.ai" Page, and there was no way
+  // to repoint it there. He now uploads reels straight from Instagram's own app, bypassing
+  // the studio's publish button entirely, so this is the only place left that ever sees a
+  // reel go live and can react. Runs every pull (cron or manual), scoped to episodes the
+  // Instagram sync just linked or re-confirmed (igMediaId set) that have no Facebook video
+  // yet (fbVideoId null) — an episode already mirrored, by this or by the old manual
+  // backfill, is never touched again, so a real API failure here just retries on the next
+  // pull instead of double-posting on a rerun.
+  const fbMirrorCandidates = state.episodes.filter((e) => e.igMediaId && !e.fbVideoId);
+  for (const e of fbMirrorCandidates) {
+    const r = reels().find((x) => x.episode === e.number && x.kind === "video" && x.gate?.passed);
+    if (!r) continue;
+    const igMedia = ig.connected ? ig.media.find((m) => m.id === e.igMediaId) : undefined;
+    const caption = r.caption || igMedia?.caption || "";
+    const result = await publishToFacebookBusinessPage(r.file, caption);
+    if (result.ok) {
+      e.fbVideoId = result.postId;
+      fresh.push({
+        id: uid(), at: now, source: "facebook",
+        label: `ריל ${e.number} שוקף אוטומטית לפייסבוק (עמוד) אחרי שפורסם ישירות באינסטגרם`,
+        value: null, delta: null,
+      });
+    } else {
+      console.log(`[track] auto-mirror to facebook failed for episode ${e.number}: ${result.reason}`);
+    }
   }
 
   // one snapshot a day, so the growth table stays a history and not a log
