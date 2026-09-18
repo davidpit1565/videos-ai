@@ -1,0 +1,13 @@
+Your phone might already have an AI that can catch a scammer mid-call — it's just turned off.
+
+Google built a real feature called Scam Detection. It runs an AI model right on your phone during a live call, listening for the exact patterns scammers use — urgency, requests for gift cards or passwords, someone claiming to be your bank or the government. If it's suspicious, your phone alerts you with a sound and a notification, right in the middle of the call.
+
+It's fully on-device — nothing about the call, no audio, no transcript, is ever sent to Google.
+
+One setting turns it on. It's off by default, and right now it only works on certain Pixel phones — check your own settings to see if you have it.
+
+Full setup, exact steps: https://actually-works.com/e/42
+
+Follow for the setup that actually works.
+
+#scamalert #android #pixel #ai #onlinesafety
