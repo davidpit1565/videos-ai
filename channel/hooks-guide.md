@@ -340,6 +340,18 @@ last row before writing the next hook, and pick a different type.**
 | 36 | "Every private thing you've typed — training data." (real shipped hook — `video/reel-36.html`'s own H2; a spoken/caption version reads "Every private thing you've ever typed into ChatGPT trains its next model — and that's the default," reworded from a flatter first draft to lead with the stake per the @rpn stakes-escalation formula) | You-Focused Appeal — correctly rotated off 35's Shock/Surprise (breaking the accidental 34-35 back-to-back streak), last used episode 33; first episode built under the 16.9.2026 reach-first/plain-language standing decision (general audience over jargon-heavy insider topics, even against higher measured YouTube demand) |
 | 37 | "Google's AI already saw your photos." | Shock/Surprise (last used episode 34) — leads with "Google's," not "you," a hidden-capability reveal rather than a repeat of 36's You-Focused type; second episode under the 16.9.2026 reach-first standing decision (Google Photos' Ask Photos, not covered by demand-report.md, chosen for personal-stakes fit) |
 | 38 | "Ten seconds of your voice is all AI needs." | The Specific Number (last used episode 33, a 5-episode gap) — not a repeat of 35/36/37's types; third episode under the 16.9.2026 reach-first standing decision (AI voice-cloning scams, not covered by demand-report.md, chosen for personal-stakes fit — money and a loved one's safety) |
+| 39 | "Your TV is watching you watch it." | Contrarian Open (last used episode 32, a 6-episode gap) — not a repeat of 36/37/38's types; fourth episode under the 16.9.2026 reach-first standing decision (smart-TV ACR tracking, not covered by demand-report.md, chosen for personal-stakes fit) |
+| 40 | "Do you know who's already grading how you drive, every time you get in the car?" | Direct Address/Question (last used episode 31, a 8-episode gap) — not a repeat of 37/38/39's types; fifth episode under the 16.9.2026 reach-first standing decision (connected-car data brokering, not covered by demand-report.md, chosen for personal-stakes fit — a real dollar outcome, insurance rate) |
+| 41 | "ChatGPT can now see every subscription that's draining your bank account behind your back." | Shock/Surprise (last used episode 37, a 3-episode gap) — not a repeat of 38/39/40's types; sixth episode under the 16.9.2026 reach-first standing decision, and the **first to correct the AI-relevance gap David flagged directly (17.9.2026)** — a real, current, named ChatGPT feature (Finances) at the literal center of the claim, not a generic privacy/tech angle merely adjacent to AI, matching the exact "ChatGPT can find your unclaimed money" pattern from Roni's own reference grid |
+
+**Standing rule added 17.9.2026, after David directly flagged that episodes 39 (weak AI
+relevance — ACR is signal fingerprinting, not "AI" the way a viewer understands the term) and
+40 (zero AI content — connected-car telematics/insurance data has nothing to do with AI) had
+drifted away from this channel's own premise while chasing reach: every future reach-first
+topic must have a genuine, named AI product or capability at the literal center of the claim,
+not just a tech/privacy angle that happens to sound viral. Reach and AI-relevance are not
+alternatives to trade off — a topic only qualifies for the reach-first slot if it clears both.
+Episode 41 is the first episode built under this corrected rule.**
 
 **Episode 26 underperformed (under 400 views) despite the highest measured topic demand of
 any episode shipped so far (`local ai model tutorial`, median 263k) — see

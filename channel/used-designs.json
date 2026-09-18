@@ -238,5 +238,11 @@
     "brass": "#F59E0B",
     "ember": "#38BDF8",
     "mood": "drive"
+  },
+  {
+    "episode": 41,
+    "brass": "#22C55E",
+    "ember": "#A855F7",
+    "mood": "triumphant"
   }
 ]

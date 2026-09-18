@@ -1090,6 +1090,33 @@ export const ARTICLES: Article[] = [
       "Verisk's current, active involvement in collecting driving data is unclear in available sources — this guide treats LexisNexis as the primary, confirmed contact for a consumer disclosure request.",
     ],
   },
+  {
+    n: 41,
+    title: "ChatGPT can now see every subscription draining your bank account",
+    standfirst:
+      "ChatGPT has a real feature called Finances: connect your actual bank accounts, cards, " +
+      "and investments through Plaid, and it lays out your spending, every recurring " +
+      "subscription, and what's coming up — all in one dashboard. It's read-only: it can't " +
+      "move money, pay anything, or place a trade.",
+    steps: [
+      "In ChatGPT, open 'Finances' from the left sidebar and select 'Get started' — or type '@Finances, connect my accounts' in any conversation.",
+      "Follow the secure Plaid flow to log into your bank, card, or brokerage account (12,000+ institutions supported, including Chase, Amex, Schwab, Fidelity, Robinhood, and Capital One).",
+      "Wait a few minutes while ChatGPT syncs and categorizes your accounts, then open the Finances dashboard to see spending, subscriptions, upcoming payments, and portfolio performance.",
+      "Look specifically at the subscriptions view — it consolidates every recurring charge across your connected accounts in one place, including ones you may have forgotten you're paying for.",
+      "To disconnect at any time: go to Settings → Apps → Finances and remove the connection. OpenAI states your synced data is deleted from ChatGPT within 30 days.",
+      "You can also view and delete ChatGPT's saved financial 'memories' directly from the Finances page, separately from disconnecting the account link itself.",
+    ],
+    changes: [
+      "Verified live (17.9.2026) directly against OpenAI's own product announcement (openai.com/index/personal-finance-chatgpt) plus independent press (TechCrunch, MacRumors, gHacks), cross-referenced: what the Finances dashboard shows, that it's explicitly read-only (can't move money, pay bills, or place trades), and the exact enable/disconnect steps.",
+      "A real, current, named ChatGPT feature at the center of the claim — not a generic tech/privacy angle — per the 17.9.2026 standing rule added to channel/hooks-guide.md after episodes 39-40 drifted toward weak or zero AI relevance while chasing reach.",
+      "A plain-language, personal-stakes topic under the 16.9.2026 reach-first content decision (see channel/content-memory.md), same reasoning as episodes 36-40.",
+    ],
+    limits: [
+      "As of this recording, Finances is live for ChatGPT Plus and Pro subscribers in the United States only — not the Free tier, and not yet available globally.",
+      "It launched as a Pro-only US preview on 15.5.2026 and was reported to expand to Plus users by around 25.6.2026 — availability by plan may keep changing as OpenAI continues the rollout.",
+      "It cannot move money, pay bills, or place trades — it only reads and displays data from accounts you've connected; it does not replace a budgeting app that can act on your behalf.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

@@ -1,0 +1,15 @@
+ChatGPT can now see every subscription that's draining your bank account behind your back.
+
+It has a real feature called Finances — connect your actual bank account, cards, and investments through Plaid, and it lays out your spending, every recurring subscription, and what's coming up next, all in one dashboard.
+
+It can't move your money or pay for anything. It only reads what's already there — no trades, no payments, nothing sent anywhere.
+
+Turning it on takes one step: open Finances in ChatGPT's sidebar and connect your accounts. You can disconnect any time, and OpenAI says your synced data is gone from ChatGPT within thirty days.
+
+Note: as of this recording it's live for ChatGPT Plus and Pro subscribers in the US.
+
+Full setup, exact steps: https://actually-works.com/e/41
+
+Follow for the setup that actually works.
+
+#chatgpt #personalfinance #moneytips #ai #subscriptions
