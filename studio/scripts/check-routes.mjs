@@ -47,7 +47,23 @@ const under = (path, l) => l.some((p) =>
 
 const sample = (r) => r.replace(/\[\[?\.\.\.[^\]]+\]\]?/g, "x").replace(/\[[^\]]+\]/g, "x");
 
-const routes = [...new Set(walk(APP))].sort();
+/** /api/[...path] is one physical file dispatching to every real API endpoint (see its
+ *  own top comment — Vercel's Hobby plan caps a deployment at 12 Serverless Functions,
+ *  so every /api/* route's logic moved into a shared dispatcher instead of one function
+ *  per endpoint). The filesystem walk above only sees that one folder; expanding it back
+ *  into the real endpoints it serves keeps this script's actual guarantee — every real
+ *  API path is classified — instead of only checking the dispatcher's own folder name. */
+function apiDispatchTargets() {
+  const file = new URL("../app/api/[...path]/route.ts", import.meta.url).pathname;
+  const text = readFileSync(file, "utf8");
+  const m = text.match(/const ROUTES: Record<string, Handlers> = \{([^}]*)\}/s);
+  if (!m) throw new Error("app/api/[...path]/route.ts: could not find its ROUTES map");
+  return [...m[1].matchAll(/"([^"]+)"/g)].map((x) => "/api/" + x[1]);
+}
+
+const routes = [...new Set(walk(APP))]
+  .flatMap((r) => (r === "/api/[...path]" ? apiDispatchTargets() : [r]))
+  .sort();
 const unclassified = routes.filter((r) => {
   const s = sample(r);
   return !under(s, SITE) && !under(s, STUDIO) && !under(s, CRON);
