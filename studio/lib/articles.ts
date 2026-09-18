@@ -1117,6 +1117,33 @@ export const ARTICLES: Article[] = [
       "It cannot move money, pay bills, or place trades — it only reads and displays data from accounts you've connected; it does not replace a budgeting app that can act on your behalf.",
     ],
   },
+  {
+    n: 42,
+    title: "Your phone might already have an AI that can catch a scammer mid-call",
+    standfirst:
+      "Google's Phone app has a real feature called Scam Detection: an on-device AI model " +
+      "(Gemini Nano) that listens to a live call for the patterns scammers use — urgency, " +
+      "gift cards, someone claiming to be your bank — and alerts you mid-call if it's " +
+      "suspicious. It's fully on-device and private. It's off by default.",
+    steps: [
+      "Make sure your Phone app is updated to the latest version.",
+      "Open the Phone app, tap 'More', then 'Settings', then 'Scam Detection'.",
+      "Turn on 'Scam Detection'.",
+      "During a live call, if the risk is high, you'll get a notification, sound, and vibration — an audible beep also plays at the start of the call and periodically through it.",
+      "You can dismiss a false alarm by selecting 'Not a scam', or end a suspicious call immediately.",
+      "To turn it off for one call only: tap 'More' then 'Scam Detection' during that call. To turn it off for all calls: Phone app → More → Settings → Scam Detection → toggle off.",
+    ],
+    changes: [
+      "Verified live (18.9.2026) directly against Google's own support documentation (support.google.com/phoneapp/answer/15654065) plus independent press (Android Police, Tom's Guide, Bleeping Computer), cross-referenced: exactly what the feature listens for, that it's fully on-device ('No conversation audio or transcription is stored on the device, sent to Google servers or anywhere else'), and the exact on/off steps.",
+      "A real, current, named AI model (Gemini Nano) at the center of the claim — per the 17.9.2026 standing rule added to channel/hooks-guide.md, and deliberately a different company/product from episode 41's ChatGPT topic per David's direct note to vary which AI product gets featured.",
+      "A plain-language, personal-stakes topic under the 16.9.2026 reach-first content decision (see channel/content-memory.md), same reasoning as episodes 36-41 — anchored to a real, dated stake (FTC: $2.95B in reported 2024 impersonation-scam losses).",
+    ],
+    limits: [
+      "Pixel-only, and only specific models: in the US, Pixel 6 and later plus Pixel 9a/10a; internationally (Australia, Canada, France, Germany, India, Ireland, Italy, Japan, Mexico, Singapore, Spain, UK), Pixel 9 and later, with a SIM and device location in one of those countries.",
+      "This is a different feature from Google's separate spoofed-caller-ID detection (which works across Samsung/OnePlus but only flags number spoofing, not conversation content) — this guide covers Scam Detection specifically.",
+      "It's off by default — it does nothing until you turn it on in Settings.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

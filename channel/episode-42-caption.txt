@@ -1,0 +1,9 @@
+Your phone might already have an AI that can catch a scammer mid-call — it's just turned off. It listens for the exact patterns scammers use: urgency, gift cards, someone claiming to be your bank.
+
+It runs right on your phone — nothing about the call is ever sent anywhere. One setting turns it on. It only works on certain Pixel phones right now.
+
+Full setup: https://actually-works.com/e/42
+
+Follow for the setup that actually works.
+
+#scamalert #android #pixel #ai #onlinesafety
