@@ -34,8 +34,12 @@ export const STUDIO = [
  *  /api/claude-usage joins it for the same reason: its POST caller is a Stop hook running
  *  on his own machine, no browser and no PIN cookie — same shape as the cron, checked by
  *  hand inside the route with its own secret (its GET, called from the studio page itself,
- *  is checked the same way /api/track checks a non-cron caller: the PIN cookie by hand). */
-export const CRON = ["/api/track", "/api/health-check", "/api/claude-usage"];
+ *  is checked the same way /api/track checks a non-cron caller: the PIN cookie by hand).
+ *
+ *  /api/jarvis joins it for the same reason again: its caller is his separate personal-
+ *  assistant project, a server-to-server caller with no browser and no PIN cookie either —
+ *  checked by hand inside each jarvis/* route against JARVIS_STUDIO_SECRET. */
+export const CRON = ["/api/track", "/api/health-check", "/api/claude-usage", "/api/jarvis"];
 
 /** the public funnel, plus the endpoints those pages call */
 export const SITE = [

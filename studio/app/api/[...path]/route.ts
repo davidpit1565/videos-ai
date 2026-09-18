@@ -36,6 +36,9 @@ import * as ideaScore from "../idea-score/impl";
 import * as ideasBacklog from "../ideas-backlog/impl";
 import * as instagram from "../instagram/impl";
 import * as instagramPublish from "../instagram/publish/impl";
+import * as jarvisInstagram from "../jarvis/instagram/impl";
+import * as jarvisPublish from "../jarvis/publish/impl";
+import * as jarvisReels from "../jarvis/reels/impl";
 import * as pushSubscribe from "../push/subscribe/impl";
 import * as pushTest from "../push/test/impl";
 import * as state from "../state/impl";
@@ -73,6 +76,9 @@ const ROUTES: Record<string, Handlers> = {
   "ideas-backlog": ideasBacklog,
   "instagram": instagram,
   "instagram/publish": instagramPublish,
+  "jarvis/instagram": jarvisInstagram,
+  "jarvis/publish": jarvisPublish,
+  "jarvis/reels": jarvisReels,
   "push/subscribe": pushSubscribe,
   "push/test": pushTest,
   "state": state,
