@@ -15,7 +15,12 @@
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 60;
+// The highest maxDuration any individual endpoint declared before consolidation
+// (instagram/publish, uploading and processing real video). One function now serves every
+// endpoint, so it needs the longest deadline any of them needs — capping this at a lower
+// number (60, matching most other routes) is exactly what broke Instagram publishing on
+// 18.9.2026: it timed out mid-upload where the old per-route function had 120s to work with.
+export const maxDuration = 120;
 
 import * as agent from "../agent/impl";
 import * as beehiiv from "../beehiiv/impl";
