@@ -46,6 +46,7 @@ import * as jarvisPublish from "../jarvis/publish/impl";
 import * as jarvisReels from "../jarvis/reels/impl";
 import * as pushSubscribe from "../push/subscribe/impl";
 import * as pushTest from "../push/test/impl";
+import * as scheduledPublish42 from "../scheduled-publish-42/impl";
 import * as state from "../state/impl";
 import * as streamCheck from "../stream-check/impl";
 import * as subscribe from "../subscribe/impl";
@@ -86,6 +87,7 @@ const ROUTES: Record<string, Handlers> = {
   "jarvis/reels": jarvisReels,
   "push/subscribe": pushSubscribe,
   "push/test": pushTest,
+  "scheduled-publish-42": scheduledPublish42,
   "state": state,
   "stream-check": streamCheck,
   "subscribe": subscribe,
