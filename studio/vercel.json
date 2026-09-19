@@ -9,6 +9,10 @@
     {
       "path": "/api/health-check",
       "schedule": "10 18 * * *"
+    },
+    {
+      "path": "/api/scheduled-publish-42",
+      "schedule": "0 8 21 9 *"
     }
   ],
   "git": {

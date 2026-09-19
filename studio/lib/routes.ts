@@ -38,8 +38,15 @@ export const STUDIO = [
  *
  *  /api/jarvis joins it for the same reason again: its caller is his separate personal-
  *  assistant project, a server-to-server caller with no browser and no PIN cookie either —
- *  checked by hand inside each jarvis/* route against JARVIS_STUDIO_SECRET. */
-export const CRON = ["/api/track", "/api/health-check", "/api/claude-usage", "/api/jarvis"];
+ *  checked by hand inside each jarvis/* route against JARVIS_STUDIO_SECRET.
+ *
+ *  /api/scheduled-publish-42 is a one-off (19.9.2026): a real Vercel cron entry in
+ *  vercel.json fires it Monday 11:00 Israel time (08:00 UTC), Yom Kippur, when he won't
+ *  touch his phone. Checked by hand the same way /api/track and /api/health-check
+ *  already are — Vercel's own x-vercel-cron header, or CRON_SECRET for anything else —
+ *  plus its own idempotency (a no-op once episode 42 already has an igMediaId). Remove
+ *  this line, the vercel.json entry and the route itself once it's shipped. */
+export const CRON = ["/api/track", "/api/health-check", "/api/claude-usage", "/api/jarvis", "/api/scheduled-publish-42"];
 
 /** the public funnel, plus the endpoints those pages call */
 export const SITE = [
