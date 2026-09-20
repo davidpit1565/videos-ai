@@ -1,0 +1,15 @@
+Windows can now take a screenshot of your entire screen every few seconds — and save it.
+
+Microsoft built a real feature called Recall. It's an AI model that turns every one of those screenshots into a searchable history of everything you've ever done on your PC — every app, every chat, every website.
+
+It's off by default on Copilot+ PCs, and Microsoft locks it behind Windows Hello — your face or fingerprint, re-checked every time you open it.
+
+But this April, a security researcher published a free tool, TotalRecall Reloaded, that walks right past that lock and pulls every screenshot Recall has ever taken off the machine.
+
+One setting in Windows tells you if it's already turned on, and how to check what it's actually saved.
+
+Full setup, exact steps: https://actually-works.com/e/43
+
+Follow for the setup that actually works.
+
+#windows #ai #privacy #recall #onlinesafety

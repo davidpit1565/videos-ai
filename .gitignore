@@ -111,3 +111,12 @@ studio/public/build-info.json
 # a rendered reel's real home is studio/public/reels/ (the !studio/public/reels/*.mp4
 # exception), never video/. Regenerable from the tracked build + render.sh either way.
 video/*.mp4
+
+# Per-episode voice/music intermediates from export/produce.sh — regenerable from the
+# tracked build HTML plus audio/build_voice.py and audio/build_music.py. Every past
+# episode's shipping commit already left these out (only the -kar/-timed builds, the
+# shipped mp4, and its gate/built-at files were ever committed); naming the pattern once
+# here instead of relying on that being remembered by hand each time.
+audio/reel*-narration*.wav
+audio/reel*-narration*-cues.json
+audio/reel*-music.wav
