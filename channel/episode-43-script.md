@@ -72,9 +72,9 @@ referenced:
 
 ## Narration (final, 7 lines)
 1. "Windows can now take a screenshot of your entire screen every few seconds — and save it."
-2. "It's a real feature called Recall — an AI that turns your whole screen history into something you can search."
+2. "It's a real feature called Recall — an AI that lets you search your whole screen history."
 3. "It's off by default, and Microsoft locks it with your face or fingerprint."
-4. "But this April, someone published a tool that walks right past that lock and pulls every screenshot off the machine."
+4. "But this April, a tool showed up that walks right past that lock and pulls every screenshot off the machine."
 5. "One setting in Windows tells you if it's already turned on."
 6. "The setup's in the link in bio."
 7. "Follow for the setup that actually works."
@@ -98,6 +98,14 @@ something you can search") to drop the word entirely rather than keep chasing it
 also went through several seeds for accent drift (default and two others flagged
 "sounds Indian"/"not-american" by `audio/check_accent.py`); seed 41 cleared both the
 accent check and the rushed-word check earlier and was reused.)
+
+(Reworded lines 2 and 4 a fourth time, same day: "something" (line 2's own replacement
+word) and "someone" (line 4, flagged intermittently across several different seeds —
+apparently not fixable by reseeding alone) both kept landing swallowed. Same fix as
+every prior round: drop the vague filler word rather than keep reseeding around it.
+Line 2 tightened to "an AI that lets you search your whole screen history"; line 4's
+"someone published a tool" became "a tool showed up" — same fact, no named subject to
+swallow.)
 
 ## Density check
 5 distinct ideas across the 7 lines (the two CTA lines don't count as content ideas): (1) the
