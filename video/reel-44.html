@@ -139,7 +139,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="19.50" data-out="27.50">
+<section class="scene" data-in="19.50" data-out="25.50">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="19.60">It's rolling out in<br>the US in English —<br><strong>more countries are coming</strong>.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="25.50" data-out="33.00">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow lose" id="scoreRowA" style="opacity:0"><span class="lbl">Message Summaries</span><span class="val">OFF</span></div>
@@ -148,21 +154,21 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="27.50" data-out="34.00">
+<section class="scene" data-in="33.00" data-out="39.50">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="27.60">Nobody else in the chat<br>can tell<br><strong>you used it</strong>.</p>
-  </div></div>
-</section>
-
-<section class="scene" data-in="34.00" data-out="39.50">
-  <div class="pad"><div class="kb">
-    <p class="lede b" data-at="34.10">The setup's in<br>the link in bio.</p>
+    <p class="lede b" data-at="33.10">No one else in the chat<br>can tell<br><strong>you used it</strong>.</p>
   </div></div>
 </section>
 
 <section class="scene" data-in="39.50" data-out="45.00">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="39.60" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="39.60">The setup's in<br>the link in bio.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="45.00" data-out="50.50">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="45.10" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -174,7 +180,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="45.00" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="50.50" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -184,7 +190,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=45.00,t=0,playing=false,last=0;
+  var DUR=50.50,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -197,10 +203,11 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [0.30,5.40,"AI can already read your private messages."],
     [5.70,12.80,"A real feature called Message Summaries uses Meta AI to catch you up in one tap."],
     [13.10,19.30,"It's off by default, and Meta says its AI never sees your real messages while doing it."],
-    [19.60,27.30,"One setting turns it on."],
-    [27.60,33.80,"No one else in the chat can tell you used it."],
-    [34.10,39.30,"The setup's in the link in bio."],
-    [39.60,44.80,"Follow for the setup that actually works."]
+    [19.60,25.30,"It's rolling out in the US in English, with more countries on the way."],
+    [25.60,32.80,"One setting turns it on."],
+    [33.10,38.80,"No one else in the chat can tell you used it."],
+    [39.10,44.30,"The setup's in the link in bio."],
+    [44.60,49.80,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}

@@ -71,21 +71,30 @@ cross-referenced:
   messages is a new surface/mechanism versus 41 (financial data), 42 (live call audio), 43
   (screen recording).
 
-## Narration (final, 7 lines)
+## Narration (final, 8 lines)
 1. "AI can already read your private messages."
 2. "A real feature called Message Summaries uses Meta AI to catch you up in one tap."
 3. "It's off by default, and Meta says its AI never sees your real messages while doing it."
-4. "One setting turns it on."
-5. "No one else in the chat can tell you used it."
-6. "The setup's in the link in bio."
-7. "Follow for the setup that actually works."
+4. "It's rolling out in the US in English, with more countries on the way."
+5. "One setting turns it on."
+6. "No one else in the chat can tell you used it."
+7. "The setup's in the link in bio."
+8. "Follow for the setup that actually works."
+
+(Line 4 added post-gate, 20.9.2026: the first fully-clean render came in at 25.3s, under
+`CLAUDE.md`'s standing 30s floor — `export/qa.py` only warns on this, it doesn't fail the
+gate, but the floor is a hard rule regardless of what the automated check enforces. Added
+a real fact already in the written setup guide (the rollout's current market/language
+limit) rather than padding with filler, keeping the density check honest.)
 
 ## Density check
-5 distinct ideas across the 7 lines (the two CTA lines don't count as content ideas): (1)
-the core question/capability (AI reads your unread messages), (2) what the real feature is
-called and does, (3) it's off by default plus Meta's own privacy claim, (4) how to turn it
-on, (5) it's invisible to other chat participants. Within the standing "roughly 4-5 ideas"
-range (`content-memory.md`, episode 36 finding).
+6 distinct ideas across the 8 lines (the two CTA lines don't count as content ideas): (1)
+the core capability (AI reads your unread messages), (2) what the real feature is called
+and does, (3) it's off by default plus Meta's own privacy claim, (4) its current
+market/language rollout limit, (5) how to turn it on, (6) it's invisible to other chat
+participants. Slightly above the standing "roughly 4-5 ideas" range (`content-memory.md`,
+episode 36 finding), but idea 4 is a real limitation the setup guide already states, not
+padding for its own sake.
 
 ## Simplicity/length check
 Plain consumer language throughout — "Private Processing" and "Meta AI" kept to a minimum
