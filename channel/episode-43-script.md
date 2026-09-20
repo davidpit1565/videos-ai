@@ -72,7 +72,7 @@ referenced:
 
 ## Narration (final, 7 lines)
 1. "Windows can now take a screenshot of your entire screen every few seconds — and save it."
-2. "It's a real feature called Recall — an AI that lets you search back through screenshots of everything it's ever seen on your PC."
+2. "It's a real feature called Recall — an AI that turns your whole screen history into something you can search."
 3. "It's off by default, and Microsoft locks it with your face or fingerprint."
 4. "But this April, someone published a tool that walks right past that lock and pulls every screenshot off the machine."
 5. "One setting in Windows tells you if it's already turned on."
@@ -90,6 +90,14 @@ different seeds each — not a one-off roll, a structural pacing problem with th
 words in that sentence position. Reworded to drop them ("every screenshot" →
 "screenshots of everything"; "locks it behind" → "locks it with") rather than keep
 re-rolling seeds against the same wall.)
+
+(Reworded line 2 a third time, same day: "everything" — the word that replaced "every" —
+also kept swallowing across two more seeds. Rewrote the whole clause ("search back through
+screenshots of everything it's ever seen" → "turns your whole screen history into
+something you can search") to drop the word entirely rather than keep chasing it. Line 3
+also went through several seeds for accent drift (default and two others flagged
+"sounds Indian"/"not-american" by `audio/check_accent.py`); seed 41 cleared both the
+accent check and the rushed-word check earlier and was reused.)
 
 ## Density check
 5 distinct ideas across the 7 lines (the two CTA lines don't count as content ideas): (1) the
