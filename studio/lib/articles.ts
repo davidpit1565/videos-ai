@@ -1172,6 +1172,33 @@ export const ARTICLES: Article[] = [
       "This guide is Windows/Recall only — it does not cover any other AI feature's own screen-recording or activity-history behavior on macOS, ChromeOS, or other platforms.",
     ],
   },
+  {
+    n: 44,
+    title: "AI can already read your private messages",
+    standfirst:
+      "WhatsApp has a real feature called Message Summaries: Meta AI reads your unread " +
+      "messages in a chat and gives you a bulleted summary, so you can catch up without " +
+      "reading everything yourself. It's off by default, and Meta says its own AI never " +
+      "sees your real messages while generating the summary.",
+    steps: [
+      "Make sure WhatsApp is updated to the latest version.",
+      "Open WhatsApp, go to Settings, then 'Chats', then 'Private Processing'.",
+      "Turn on 'Private Processing features'.",
+      "Open any chat with unread messages, and tap the '(Number) unread messages' divider.",
+      "Select 'Summarize privately' to see a bulleted summary of what you missed.",
+      "To turn it off: go back to Settings → Chats → Private Processing and turn the toggle off.",
+    ],
+    changes: [
+      "Verified live (20.9.2026) directly against WhatsApp's own blog (blog.whatsapp.com) and Help Center (faq.whatsapp.com) plus independent press (TechCrunch, 9to5Mac, GSMArena), cross-referenced: what Message Summaries does, the exact settings path, and Meta's own 'Private Processing' privacy claim, stated here as Meta's claim rather than an independently confirmed fact.",
+      "A real, current, named AI feature (Message Summaries, built on Meta AI) at the literal center of the claim — per the 17.9.2026 standing rule added to channel/hooks-guide.md — and a fourth distinct company from episodes 41 (OpenAI/ChatGPT), 42 (Google/Android) and 43 (Microsoft/Windows), per David's direct note to vary which company gets featured.",
+      "A plain-language, personal-stakes topic under the 16.9.2026 reach-first content decision (see channel/content-memory.md): an AI reading the content of your private messages needs no technical background to feel the stake.",
+    ],
+    limits: [
+      "Rollout is limited to select markets, starting with the US in English — Meta states it is expanding to more countries and languages, with no fixed date given.",
+      "Meta's own materials acknowledge a generated summary 'might be inappropriate or inaccurate' — treat it as a starting point, not a substitute for reading anything you need to act on.",
+      "This guide covers Message Summaries specifically, not any other Meta AI feature inside WhatsApp, Instagram, or Facebook.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
