@@ -71,11 +71,11 @@ cross-referenced:
   (screen recording).
 
 ## Narration (final, 7 lines)
-1. "Is AI already reading your unread private messages?"
+1. "Is AI already reading your unread private messages right now?"
 2. "A real feature called Message Summaries uses Meta AI to catch you up in one tap."
 3. "It's off by default, and Meta says its AI never sees your real messages while doing it."
 4. "One setting turns it on."
-5. "Nobody else in the chat can tell you used it."
+5. "No one else in the chat can tell you used it."
 6. "The setup's in the link in bio."
 7. "Follow for the setup that actually works."
 
@@ -115,6 +115,14 @@ messages?") — the on-screen H2 was updated to match (so the big title and the 
 track don't disagree), and the app name is instead named visually, unspoken, in the quote
 card scene's qk label ("whatsapp · meta ai") and qb text ("A real feature on WhatsApp
 called Message Summaries..."), which never goes through TTS at all.
+
+Two more rounds after that: line 1's ending word "messages?" swallowed on the default seed
+(seed 12 fixed that but broke accent again, 0.98 not-american — clearly not a stable fix),
+and line 5's opening word "Nobody" swallowed across two seeds. Fixed both by rewording
+rather than reseeding again: line 1 gained a trailing "right now?" so "messages" is no
+longer the sentence-final word; line 5's "Nobody" became "No one" (two words instead of one
+compound), reverting line 1's seed back to the default (which had clean accent both times
+it was tried) and dropping line 5's seed override entirely.
 
 ## Build notes
 - Palette: fresh combo for episode 44, distinct from episode 43's violet/orange —
