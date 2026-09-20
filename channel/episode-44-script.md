@@ -75,7 +75,7 @@ cross-referenced:
 1. "AI can already read your private messages."
 2. "A real feature called Message Summaries uses Meta AI to catch you up in one tap."
 3. "It's off by default, and Meta says its AI never sees your real messages while doing it."
-4. "It's rolling out in the US in English, with more countries on the way."
+4. "It's out now in the US in English, and more countries are coming soon."
 5. "One setting turns it on."
 6. "No one else in the chat can tell you used it."
 7. "The setup's in the link in bio."
@@ -85,7 +85,10 @@ cross-referenced:
 `CLAUDE.md`'s standing 30s floor — `export/qa.py` only warns on this, it doesn't fail the
 gate, but the floor is a hard rule regardless of what the automated check enforces. Added
 a real fact already in the written setup guide (the rollout's current market/language
-limit) rather than padding with filler, keeping the density check honest.)
+limit) rather than padding with filler, keeping the density check honest. That render
+also came in barely under 30s again (29.7s) with "rolling" swallowed on the new line —
+reworded "It's rolling out in..." to "It's out now in..." to fix the swallow and buy a
+little more length at the same time.)
 
 ## Density check
 6 distinct ideas across the 8 lines (the two CTA lines don't count as content ideas): (1)
