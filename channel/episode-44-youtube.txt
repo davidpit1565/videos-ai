@@ -1,0 +1,15 @@
+AI can already read your private messages.
+
+Meta built a real feature on WhatsApp called Message Summaries. Tap the "X unread messages" divider in any chat and select "Summarize privately" — Meta AI reads what you missed and gives you a bulleted summary, so you can catch up without reading every message yourself.
+
+It's off by default, and Meta's own "Private Processing" claim says its AI generates the summary without Meta or WhatsApp ever seeing your real messages or the summary itself.
+
+One setting turns it on: Settings → Chats → Private Processing. And nobody else in the chat can tell you used it.
+
+The rollout is still limited to select markets, starting with the US in English — Meta says it's expanding to more countries and languages.
+
+Full setup, exact steps: https://actually-works.com/e/44
+
+Follow for the setup that actually works.
+
+#whatsapp #ai #privacy #meta #onlinesafety
