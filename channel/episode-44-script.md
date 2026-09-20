@@ -72,7 +72,7 @@ cross-referenced:
 
 ## Narration (final, 7 lines)
 1. "Is AI already reading your unread WhatsApp messages?"
-2. "A real feature called Message Summaries uses Meta AI to sum up what you missed in one tap."
+2. "A real feature called Message Summaries uses Meta AI to catch you up in one tap."
 3. "It's off by default, and Meta says its AI never sees your real messages while doing it."
 4. "One setting turns it on."
 5. "Nobody else in the chat can tell you used it."
@@ -98,6 +98,12 @@ First `export/produce.sh` run failed the gate: lines 1 and 3 flagged hard for ac
 seed, and "everything" (line 2) landed swallowed per `audio/voice_doctor.py --deep`'s
 per-word check — same failure pattern as episode 43. Reworded line 2 to drop "everything"
 ("sum up everything you missed" → "sum up what you missed") and reseeded lines 1 and 3.
+Line 3 cleared on the first reseed. Line 1 ("Is AI already reading your unread WhatsApp
+messages?") kept flagging hard for accent drift across three different seeds in a row
+(0.99 → 0.96 → 0.88 not-american, trending down but never clean) — the word "WhatsApp"
+itself looks like the trigger. Also "missed" (line 2's own replacement word) swallowed on
+the third round. Reworded line 2 again ("sum up what you missed" → "catch you up") and
+tried a fourth seed for line 1 before considering rewording the hook itself.
 
 ## Build notes
 - Palette: fresh combo for episode 44, distinct from episode 43's violet/orange —
