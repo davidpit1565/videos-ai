@@ -30,10 +30,11 @@ states summaries can be "inappropriate or inaccurate."
   articles plus independent press — not assumed from memory or from the feature's original
   June 2025 US-only announcement (checked for what has and hasn't changed since).
 - **Hook-type rotation** (per `hooks-guide.md`'s log): 41 Shock/Surprise, 42 You-Focused
-  Appeal, 43 Contrarian Open. This one is **Direct Address/Question** (last used episode 40,
-  a 4-episode gap) — not a repeat of the last three types, and per the file's own note,
-  historically the strongest-performing type for this genre when it points at something
-  specific and real (episode 2's 940-view all-time high used this type).
+  Appeal, 43 Contrarian Open. Originally drafted as **Direct Address/Question** (last used
+  episode 40) but rewritten as a plain declarative after eight production rounds couldn't
+  land the question form cleanly (see Production notes below) — final type is
+  **Shock/Surprise** (last used episode 41, a 3-episode gap), still not a repeat of the
+  last three episodes' types.
 
 ## Verification (live web search, 20.9.2026)
 Checked directly against WhatsApp's own blog (blog.whatsapp.com) and Help Center
@@ -71,7 +72,7 @@ cross-referenced:
   (screen recording).
 
 ## Narration (final, 7 lines)
-1. "Is AI already reading your unread private messages right now?"
+1. "AI can already read your private messages."
 2. "A real feature called Message Summaries uses Meta AI to catch you up in one tap."
 3. "It's off by default, and Meta says its AI never sees your real messages while doing it."
 4. "One setting turns it on."
@@ -123,6 +124,17 @@ rather than reseeding again: line 1 gained a trailing "right now?" so "messages"
 longer the sentence-final word; line 5's "Nobody" became "No one" (two words instead of one
 compound), reverting line 1's seed back to the default (which had clean accent both times
 it was tried) and dropping line 5's seed override entirely.
+
+**Line 1 rewritten a third and fourth time, abandoning the question form.** The default
+seed then flagged accent again with the "right now?" tail (0.98), and a further reseed
+(seed 3) fixed accent but swallowed "messages" — eight total attempts on this one line
+without ever landing clean, a clear sign the "Is AI already reading..." construction itself
+was the problem, not any single seed. Rewrote it as a plain declarative claim instead:
+"AI can already read your private messages." This moves the hook off **Direct
+Address/Question** and onto **Shock/Surprise** (last used episode 41, a 3-episode gap —
+still not a repeat of 42/43's types), still a checkable, specific, first-clause claim, just
+phrased as a statement instead of a question. `channel/hooks-guide.md`'s log entry updated
+to match.
 
 ## Build notes
 - Palette: fresh combo for episode 44, distinct from episode 43's violet/orange —
