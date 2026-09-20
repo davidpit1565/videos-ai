@@ -1144,6 +1144,34 @@ export const ARTICLES: Article[] = [
       "It's off by default — it does nothing until you turn it on in Settings.",
     ],
   },
+  {
+    n: 43,
+    title: "Windows is already screenshotting your whole screen",
+    standfirst:
+      "Windows 11 has a real feature called Recall: an AI model that saves a screenshot of " +
+      "your screen every few seconds and turns the whole history into something you can " +
+      "search, in plain language. It's off by default and locked behind Windows Hello — but " +
+      "a published tool can already walk past that lock.",
+    steps: [
+      "Open Settings (Win+I), then go to 'Privacy & security'.",
+      "Select 'Recall & snapshots'.",
+      "Check the toggle next to 'Save snapshots' — if it's off, Recall is already off and saving nothing; skip the rest of these steps.",
+      "If it's on: select 'Open Recall' (or search 'Recall' in the Start menu) to see and search the history it's already saved.",
+      "To turn it off completely: on the same 'Recall & snapshots' page, turn the 'Save snapshots' toggle off, then select 'Delete all snapshots' to remove anything already stored.",
+      "Optional — to keep Recall on but limit what it sees: on the same page, open 'Filter app content' and turn off snapshots for specific apps (e.g. banking, password managers) individually.",
+    ],
+    changes: [
+      "Verified live (20.9.2026) directly against Microsoft's own Learn/Support documentation plus independent press (Computerworld, XDA Developers, the maintained Wikipedia timeline), cross-referenced: that Recall is opt-in and off by default (a real correction from its original 2024 opt-out design, stated as the current state, not the old one), the Windows Hello + 'proof of presence' lock, and the exact settings path.",
+      "A real, current, named AI feature (Recall) at the literal center of the claim — per the 17.9.2026 standing rule added to channel/hooks-guide.md — and a third distinct company from episodes 41 (OpenAI/ChatGPT) and 42 (Google/Android), per David's direct note to vary which company gets featured.",
+      "A plain-language, personal-stakes topic under the 16.9.2026 reach-first content decision (see channel/content-memory.md): a searchable record of everything you've ever done on your PC needs no technical background to feel the stake.",
+      "The bypass tool named in the hook and script (TotalRecall Reloaded, published 9.4.2026 by security researcher Alexander Hagenah) is a real, dated, named incident — not a hypothetical risk — stated plainly rather than smoothed over.",
+    ],
+    limits: [
+      "Recall requires a Copilot+ PC (specific NPU-equipped hardware) and a supported Windows 11 build — it is not available on every Windows PC, even if the toggle exists in Settings on some machines it will do nothing without the right hardware.",
+      "Turning the setting off does not undo whatever a bypass tool may have already copied before you turned it off — this setup only controls whether Recall keeps saving snapshots going forward, and lets you delete what it's already stored.",
+      "This guide is Windows/Recall only — it does not cover any other AI feature's own screen-recording or activity-history behavior on macOS, ChromeOS, or other platforms.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
