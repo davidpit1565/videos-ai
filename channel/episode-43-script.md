@@ -72,8 +72,8 @@ referenced:
 
 ## Narration (final, 7 lines)
 1. "Windows can now take a screenshot of your entire screen every few seconds — and save it."
-2. "It's a real feature called Recall — an AI that lets you search back through every screenshot it's ever taken of your PC."
-3. "It's off by default, and Microsoft locks it behind your face or fingerprint."
+2. "It's a real feature called Recall — an AI that lets you search back through screenshots of everything it's ever seen on your PC."
+3. "It's off by default, and Microsoft locks it with your face or fingerprint."
 4. "But this April, someone published a tool that walks right past that lock and pulls every screenshot off the machine."
 5. "One setting in Windows tells you if it's already turned on."
 6. "The setup's in the link in bio."
@@ -83,6 +83,13 @@ referenced:
 "yours" (R+cluster) all flagged by `audio/script_lint.py` — none have a stock respelling
 fix, so each line was rephrased to drop the risky word rather than fight the model with a
 respelling, per the standing rule in `CLAUDE.md`.)
+
+(Reworded again post-gate, 20.9.2026: "every" in line 2 and "behind" in line 3 kept landing
+swallowed/clipped per `audio/voice_doctor.py --deep`'s per-word check, across three
+different seeds each — not a one-off roll, a structural pacing problem with those two
+words in that sentence position. Reworded to drop them ("every screenshot" →
+"screenshots of everything"; "locks it behind" → "locks it with") rather than keep
+re-rolling seeds against the same wall.)
 
 ## Density check
 5 distinct ideas across the 7 lines (the two CTA lines don't count as content ideas): (1) the
