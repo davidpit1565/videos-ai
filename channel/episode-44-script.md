@@ -72,7 +72,7 @@ cross-referenced:
 
 ## Narration (final, 7 lines)
 1. "Is AI already reading your unread WhatsApp messages?"
-2. "A real feature called Message Summaries uses Meta AI to sum up everything you missed in one tap."
+2. "A real feature called Message Summaries uses Meta AI to sum up what you missed in one tap."
 3. "It's off by default, and Meta says its AI never sees your real messages while doing it."
 4. "One setting turns it on."
 5. "Nobody else in the chat can tell you used it."
@@ -91,6 +91,13 @@ Plain consumer language throughout — "Private Processing" and "Meta AI" kept t
 on camera (only named once each, no deeper technical explanation spoken; full mechanism
 explained in the written setup guide where precision matters more than brevity). Length
 target: 30-45s per `CLAUDE.md`'s standing floor.
+
+## Production notes (post-gate, 20.9.2026)
+First `export/produce.sh` run failed the gate: lines 1 and 3 flagged hard for accent drift
+("sounds Indian", not-american 0.99 and 0.98 against a file median of 0.12) on the default
+seed, and "everything" (line 2) landed swallowed per `audio/voice_doctor.py --deep`'s
+per-word check — same failure pattern as episode 43. Reworded line 2 to drop "everything"
+("sum up everything you missed" → "sum up what you missed") and reseeded lines 1 and 3.
 
 ## Build notes
 - Palette: fresh combo for episode 44, distinct from episode 43's violet/orange —
