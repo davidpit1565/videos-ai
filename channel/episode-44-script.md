@@ -71,7 +71,7 @@ cross-referenced:
   (screen recording).
 
 ## Narration (final, 7 lines)
-1. "Is AI already reading your unread WhatsApp messages?"
+1. "Is AI already reading your unread private messages?"
 2. "A real feature called Message Summaries uses Meta AI to catch you up in one tap."
 3. "It's off by default, and Meta says its AI never sees your real messages while doing it."
 4. "One setting turns it on."
@@ -104,6 +104,17 @@ messages?") kept flagging hard for accent drift across three different seeds in 
 itself looks like the trigger. Also "missed" (line 2's own replacement word) swallowed on
 the third round. Reworded line 2 again ("sum up what you missed" → "catch you up") and
 tried a fourth seed for line 1 before considering rewording the hook itself.
+
+Fourth seed also failed (0.95 not-american) — four different seeds, all flagged hard, is
+the same signature that meant a structural problem in episode 43 (not a bad roll). The
+word "WhatsApp" itself is the likely trigger (plausibly a training-data association biasing
+the model toward an Indian-accented rendering of that specific brand name, independent of
+seed). Rather than keep reseeding, removed "WhatsApp" from the spoken line entirely
+("Is AI already reading your unread WhatsApp messages?" → "...your unread private
+messages?") — the on-screen H2 was updated to match (so the big title and the caption
+track don't disagree), and the app name is instead named visually, unspoken, in the quote
+card scene's qk label ("whatsapp · meta ai") and qb text ("A real feature on WhatsApp
+called Message Summaries..."), which never goes through TTS at all.
 
 ## Build notes
 - Palette: fresh combo for episode 44, distinct from episode 43's violet/orange —
