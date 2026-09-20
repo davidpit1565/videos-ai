@@ -131,13 +131,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="12.72" data-out="17.4">
+<section class="scene" data-in="12.72" data-out="17.15">
   <div class="pad"><div class="kb">
     <p class="lede b" data-at="12.75">It's off by default,<br>locked behind<br><strong>your face or fingerprint</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="17.4" data-out="24.325">
+<section class="scene" data-in="17.15" data-out="24.075">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow win" id="scoreRowA" style="opacity:0"><span class="lbl">Windows Hello lock</span><span class="val">ON</span></div>
@@ -146,21 +146,21 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="24.325" data-out="28.13">
+<section class="scene" data-in="24.075" data-out="28.01">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="24.355">One setting in Windows<br>tells you if it's<br><strong>already turned on</strong>.</p>
+    <p class="lede b" data-at="24.105">One setting in Windows<br>tells you if it's<br><strong>already turned on</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="28.13" data-out="30.37">
+<section class="scene" data-in="28.01" data-out="30.25">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="28.16">The setup's in<br>the link in bio.</p>
+    <p class="lede b" data-at="28.04">The setup's in<br>the link in bio.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="30.37" data-out="32.99">
+<section class="scene" data-in="30.25" data-out="32.87">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="30.4" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="30.28" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -182,7 +182,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=33.69,t=0,playing=false,last=0;
+  var DUR=33.57,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -194,11 +194,11 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var CUES=[
     [0.30,5.58,"Windows can now take a screenshot of your entire screen every few seconds — and save it."],
     [6.00,12.51,"It's a real feature called Recall — an AI that lets you search back through every screenshot it's ever taken of your PC."],
-    [12.93,17.19,"It's off by default, and Microsoft locks it behind your face or fingerprint."],
-    [17.61,23.90,"But this April, someone published a tool that walks right past that lock and pulls every screenshot off the machine."],
-    [24.75,27.92,"One setting in Windows tells you if it's already turned on."],
-    [28.34,30.16,"The setup's in the link in bio."],
-    [30.58,32.79,"Follow for the setup that actually works."]
+    [12.93,16.94,"It's off by default, and Microsoft locks it behind your face or fingerprint."],
+    [17.36,23.65,"But this April, someone published a tool that walks right past that lock and pulls every screenshot off the machine."],
+    [24.50,27.80,"One setting in Windows tells you if it's already turned on."],
+    [28.22,30.04,"The setup's in the link in bio."],
+    [30.46,32.67,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
