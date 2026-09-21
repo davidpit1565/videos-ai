@@ -11,8 +11,8 @@
       "schedule": "10 18 * * *"
     },
     {
-      "path": "/api/scheduled-publish-42",
-      "schedule": "0 8 21 9 *"
+      "path": "/api/scheduled-publish",
+      "schedule": "0 16 * * *"
     }
   ],
   "git": {

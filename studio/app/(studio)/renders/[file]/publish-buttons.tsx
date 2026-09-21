@@ -1,13 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useStudio } from "../../../providers";
 
-type Props = { file: string; caption: string | null; youtube: string | null };
+type Props = { file: string; caption: string | null; youtube: string | null; episode: number | null };
 
 /** Real publish buttons — not a preview of what publishing would look like. Each one is a
  *  single, real, irreversible HTTP call to a live public account, so nothing here fires on
- *  its own; a person presses it. */
-export default function PublishButtons({ file, caption, youtube }: Props) {
+ *  its own; a person presses it. The one exception is the "queue for auto-publish"
+ *  checkbox below: it doesn't publish anything itself, it only ticks `queuedForPublish`,
+ *  which `/api/scheduled-publish`'s daily cron checks at one fixed hour (see
+ *  channel/content-memory.md, 21.9.2026, and that route's own comment). */
+export default function PublishButtons({ file, caption, youtube, episode }: Props) {
+  const { state, update } = useStudio();
+  const ep = episode != null ? state?.episodes.find((e) => e.number === episode) : undefined;
   const [igBusy, setIgBusy] = useState(false);
   const [igMsg, setIgMsg] = useState<string | null>(null);
   const [fbBusy, setFbBusy] = useState(false);
@@ -132,6 +138,24 @@ export default function PublishButtons({ file, caption, youtube }: Props) {
   return (
     <div className="note" style={{ marginTop: 14 }}>
       <p className="section-label">פרסום</p>
+      {ep && ep.status === "testing" && (
+        <label style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+          <input
+            type="checkbox"
+            checked={!!ep.queuedForPublish}
+            onChange={(e) => {
+              const checked = e.target.checked;
+              update((s) => {
+                const row = s.episodes.find((x) => x.number === episode);
+                if (row) row.queuedForPublish = checked;
+              });
+            }}
+          />
+          <span>
+            תור לפרסום אוטומטי — יפורסם לבד בשעה הקבועה (בקרון היומי), בלי לחיצה ידנית
+          </span>
+        </label>
+      )}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
         <button className="btn" onClick={doInstagram} disabled={igBusy}>
           {igBusy ? "מפרסם…" : "פרסם: ריל + פייסבוק"}
