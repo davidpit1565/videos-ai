@@ -2,6 +2,8 @@
  *  nightly tracker all see exactly the same numbers. */
 
 import { sharedPool } from "./db";
+import type { MetricStatus } from "./types";
+import { statusFromErrorBody } from "./insights";
 
 /** Every external call in this file used to be a bare fetch() with no deadline. A
  *  connection that opens but never finishes responding never rejects and never
@@ -57,6 +59,20 @@ export type IgMedia = {
    *  numbers just aren't moving" whether the real cause is a stale token, a metric
    *  the API rejected, or Instagram itself. See /api/connections' live.instagram. */
   insightsError?: string;
+  /** AVAILABLE/NOT_AVAILABLE per base metric this pull, derived from whether Instagram's
+   *  insights response actually named that metric — not from whether the whole request
+   *  succeeded. A metric can be individually absent from a successful response (e.g. an
+   *  image has no `shares`) without the request itself failing. */
+  metricStatus?: Partial<Record<"views" | "reach" | "saves" | "shares", MetricStatus>>;
+  /** best-effort, `reach` with `breakdown=follow_type` — see fetchInstagram. */
+  reachByFollowerType?: { followers: number | null; nonFollowers: number | null };
+  reachByFollowerTypeStatus?: MetricStatus;
+  /** best-effort Reels watch-time/retention metrics — see fetchInstagram. */
+  watchAvgSeconds?: number | null;
+  watchTotalSeconds?: number | null;
+  watchReplays?: number | null;
+  watchPlays?: number | null;
+  watchStatus?: MetricStatus;
 };
 
 export type IgResult =
@@ -260,6 +276,15 @@ export async function fetchInstagram(): Promise<IgResult> {
           const j = (await ir.json()) as { data?: { name: string; values: { value: number }[] }[] };
           const v: Record<string, number> = {};
           for (const d of j.data ?? []) v[d.name] = d.values?.[0]?.value ?? 0;
+          // A metric can be individually absent from an otherwise-successful response
+          // (an image has no `shares`) — present in `data` is AVAILABLE, absent is
+          // NOT_AVAILABLE, regardless of whether the whole request came back 200.
+          const metricStatus: IgMedia["metricStatus"] = {
+            views: v.views !== undefined ? "AVAILABLE" : "NOT_AVAILABLE",
+            reach: v.reach !== undefined ? "AVAILABLE" : "NOT_AVAILABLE",
+            saves: v.saved !== undefined ? "AVAILABLE" : "NOT_AVAILABLE",
+            shares: v.shares !== undefined ? "AVAILABLE" : "NOT_AVAILABLE",
+          };
 
           // Instagram's own app shows one combined "Views" number for a Reel that also
           // got auto-crossposted to the linked Facebook Page — Instagram views plus
@@ -287,12 +312,95 @@ export async function fetchInstagram(): Promise<IgResult> {
             }
           }
 
+          // reach split by whether the viewer already followed the account —
+          // Instagram's own `breakdown=follow_type` parameter on the `reach` metric.
+          // Its own request, best-effort: an account/media/API-version combination that
+          // doesn't support the breakdown must not null out the plain metrics above,
+          // same reasoning as crossposted_views. Never derived by subtracting from
+          // plain reach — Instagram doesn't document the two as guaranteed to add up.
+          let reachByFollowerType: IgMedia["reachByFollowerType"];
+          let reachByFollowerTypeStatus: MetricStatus = "NOT_REQUESTED";
+          if (m.media_type === "REELS" || m.media_type === "VIDEO") {
+            reachByFollowerTypeStatus = "UNKNOWN";
+            try {
+              const br = await timedFetch(
+                `${IG}/${m.id}/insights?metric=reach&breakdown=follow_type&access_token=${token}`,
+                { cache: "no-store" },
+              );
+              if (br.ok) {
+                const bj = (await br.json()) as {
+                  data?: {
+                    name: string;
+                    total_value?: { breakdowns?: { results?: { dimension_values?: string[]; value?: number }[] }[] };
+                  }[];
+                };
+                const results = bj.data?.[0]?.total_value?.breakdowns?.[0]?.results ?? [];
+                let followers: number | null = null;
+                let nonFollowers: number | null = null;
+                for (const r of results) {
+                  const dim = r.dimension_values?.[0]?.toLowerCase();
+                  if (dim === "follower") followers = r.value ?? null;
+                  else if (dim === "non_follower") nonFollowers = r.value ?? null;
+                }
+                reachByFollowerType = { followers, nonFollowers };
+                reachByFollowerTypeStatus = followers !== null || nonFollowers !== null ? "AVAILABLE" : "NOT_AVAILABLE";
+              } else {
+                reachByFollowerTypeStatus = statusFromErrorBody((await br.text()).slice(0, 300));
+              }
+            } catch {
+              reachByFollowerTypeStatus = "API_ERROR";
+            }
+          }
+
+          // Reels watch-time/retention metrics — its own best-effort call for the same
+          // reason as the two above: a metric name this API version/account doesn't
+          // support must not null out views/reach/likes/etc for the whole media item.
+          // Real metric names as of Graph API v21's Reels media insights; confirmed or
+          // rejected per this account by the actual response (watchStatus), not assumed
+          // from documentation — see INSTAGRAM_INSIGHTS.md.
+          let watchAvgSeconds: number | null = null;
+          let watchTotalSeconds: number | null = null;
+          let watchReplays: number | null = null;
+          let watchPlays: number | null = null;
+          let watchStatus: MetricStatus = "NOT_REQUESTED";
+          if (m.media_type === "REELS") {
+            watchStatus = "UNKNOWN";
+            try {
+              const wr = await timedFetch(
+                `${IG}/${m.id}/insights?metric=ig_reels_avg_watch_time,ig_reels_video_view_total_time,clips_replays_count,ig_reels_aggregated_all_plays_count&access_token=${token}`,
+                { cache: "no-store" },
+              );
+              if (wr.ok) {
+                const wj = (await wr.json()) as { data?: { name: string; values: { value: number }[] }[] };
+                const wv: Record<string, number> = {};
+                for (const d of wj.data ?? []) wv[d.name] = d.values?.[0]?.value ?? 0;
+                watchAvgSeconds = wv.ig_reels_avg_watch_time ?? null;
+                watchTotalSeconds = wv.ig_reels_video_view_total_time ?? null;
+                watchReplays = wv.clips_replays_count ?? null;
+                watchPlays = wv.ig_reels_aggregated_all_plays_count ?? null;
+                watchStatus = Object.keys(wv).length > 0 ? "AVAILABLE" : "NOT_AVAILABLE";
+              } else {
+                watchStatus = statusFromErrorBody((await wr.text()).slice(0, 300));
+              }
+            } catch {
+              watchStatus = "API_ERROR";
+            }
+          }
+
           return {
             ...base,
             views: crossposted ?? v.views ?? null,
             reach: v.reach ?? null,
             saves: v.saved ?? null,
             shares: v.shares ?? null,
+            metricStatus,
+            reachByFollowerType,
+            reachByFollowerTypeStatus,
+            watchAvgSeconds,
+            watchTotalSeconds,
+            watchReplays,
+            watchPlays,
+            watchStatus,
           };
         } catch (err) {
           return { ...base, insightsError: err instanceof Error ? err.message : String(err) };
@@ -315,6 +423,86 @@ export async function fetchInstagram(): Promise<IgResult> {
     };
   } catch (e) {
     return { connected: false, reason: (e as Error).message, via };
+  }
+}
+
+export type AccountInsightsResult =
+  | { attempted: false }
+  | {
+      attempted: true;
+      periodDays: number;
+      accountsReached: number | null;
+      accountsReachedStatus: MetricStatus;
+      profileVisits: number | null;
+      profileVisitsStatus: MetricStatus;
+      websiteClicks: number | null;
+      websiteClicksStatus: MetricStatus;
+      follows: number | null;
+      unfollows: number | null;
+      followsStatus: MetricStatus;
+    };
+
+/** Account-wide Instagram Insights — reach, profile visits, website clicks, follows —
+ *  attempted best-effort, in its own request, gated so it can be switched off without a
+ *  deploy (INSTAGRAM_INSIGHTS_ENABLED=false) if it ever misbehaves against a real account.
+ *  Unlike fetchInstagram() above, nothing before 22.9.2026 ever called this endpoint at
+ *  all — followers_count was the only account-level number this app ever read. A failure
+ *  here is a real, useful answer (NOT_AVAILABLE/PERMISSION_REQUIRED/API_ERROR), never a
+ *  reason to fail /api/track's pull; the caller always gets a result to store.
+ *
+ *  Instagram's `follows_and_unfollows` metric is a single combined count, not a
+ *  follows/unfollows split — this never invents that split. A real per-direction number
+ *  would need the same `breakdown=follow_type`-style parameter fetchInstagram() uses for
+ *  reach, which is not attempted here; unfollows stays null until it is. */
+export async function fetchInstagramAccountInsights(): Promise<AccountInsightsResult> {
+  if (process.env.INSTAGRAM_INSIGHTS_ENABLED === "false") return { attempted: false };
+  const token = await igToken();
+  if (!token) return { attempted: false };
+  const { host, via } = igRoute(token);
+  const user = process.env.IG_USER_ID || (via === "instagram-login" ? "me" : "");
+  if (!user) return { attempted: false };
+
+  const periodDays = 1;
+  const metrics = "reach,profile_views,website_clicks,follows_and_unfollows";
+  try {
+    const r = await timedFetch(
+      `${host}/${user}/insights?metric=${metrics}&period=day&metric_type=total_value&access_token=${token}`,
+      { cache: "no-store" },
+    );
+    if (!r.ok) {
+      const status = statusFromErrorBody((await r.text()).slice(0, 300));
+      return {
+        attempted: true, periodDays,
+        accountsReached: null, accountsReachedStatus: status,
+        profileVisits: null, profileVisitsStatus: status,
+        websiteClicks: null, websiteClicksStatus: status,
+        follows: null, unfollows: null, followsStatus: status,
+      };
+    }
+    const j = (await r.json()) as { data?: { name: string; total_value?: { value?: number } }[] };
+    const v: Record<string, number> = {};
+    for (const d of j.data ?? []) if (d.total_value?.value !== undefined) v[d.name] = d.total_value.value;
+    return {
+      attempted: true,
+      periodDays,
+      accountsReached: v.reach ?? null,
+      accountsReachedStatus: v.reach !== undefined ? "AVAILABLE" : "NOT_AVAILABLE",
+      profileVisits: v.profile_views ?? null,
+      profileVisitsStatus: v.profile_views !== undefined ? "AVAILABLE" : "NOT_AVAILABLE",
+      websiteClicks: v.website_clicks ?? null,
+      websiteClicksStatus: v.website_clicks !== undefined ? "AVAILABLE" : "NOT_AVAILABLE",
+      follows: v.follows_and_unfollows ?? null,
+      unfollows: null,
+      followsStatus: v.follows_and_unfollows !== undefined ? "AVAILABLE" : "NOT_AVAILABLE",
+    };
+  } catch {
+    return {
+      attempted: true, periodDays,
+      accountsReached: null, accountsReachedStatus: "API_ERROR",
+      profileVisits: null, profileVisitsStatus: "API_ERROR",
+      websiteClicks: null, websiteClicksStatus: "API_ERROR",
+      follows: null, unfollows: null, followsStatus: "API_ERROR",
+    };
   }
 }
 

@@ -1,3 +1,23 @@
+/** One vocabulary for "we don't have this metric," used everywhere instead of five
+ *  different unlabeled spellings (a bare null, a missing key, a silently-substituted
+ *  fallback value). Each meaning is distinct and never interchangeable:
+ *  - AVAILABLE — Instagram returned a real value for this metric this pull.
+ *  - NOT_AVAILABLE — Instagram's API doesn't support this metric here (wrong media
+ *    type, wrong account type, or the metric plain doesn't exist for this account).
+ *  - PERMISSION_REQUIRED — the API told us, specifically, that the token lacks the
+ *    permission this metric needs.
+ *  - API_ERROR — a request failed for some other/temporary reason (network, 5xx,
+ *    rate limit) — try again next pull, not a verdict about whether the metric exists.
+ *  - NOT_REQUESTED — our own code never asked for this metric at all.
+ *  - UNKNOWN — we haven't determined which of the above applies yet. */
+export type MetricStatus =
+  | "AVAILABLE"
+  | "NOT_AVAILABLE"
+  | "PERMISSION_REQUIRED"
+  | "API_ERROR"
+  | "NOT_REQUESTED"
+  | "UNKNOWN";
+
 export type Channel = "ig" | "tiktok" | "yt" | "ytlong";
 export const CHANNELS: Channel[] = ["ig", "tiktok", "yt", "ytlong"];
 export const CHANNEL_HE: Record<Channel, string> = {
@@ -65,6 +85,41 @@ export type Episode = {
   publishOn?: string | null;
   /** where it goes out. One build, several platforms, no extra work. */
   channels?: Channel[];
+  /** Instagram's own `reach` metric — kept entirely separate from `views`, never a
+   *  fallback for it. Before 22.9.2026 /api/track wrote `views: m.views ?? m.reach`,
+   *  so a real reach number could silently become the displayed "views" whenever
+   *  Instagram's views metric itself came back empty — see reachStatus below and
+   *  studio/INSTAGRAM_INSIGHTS.md. Never resurrect that fallback. */
+  reach?: number | null;
+  reachStatus?: MetricStatus;
+  /** Instagram's `reach` metric with `breakdown=follow_type` — whether the viewer
+   *  already followed the account when they saw this Reel. Fetched in its own
+   *  best-effort request (see fetchInstagram); not guaranteed available for every
+   *  account/media/API version, so reachByFollowerTypeStatus is the real answer, not
+   *  "both fields present". Never derived as `reach - followers` — Instagram doesn't
+   *  document that the two are guaranteed to add up, so we don't invent the subtraction. */
+  reachByFollowerType?: { followers: number | null; nonFollowers: number | null };
+  reachByFollowerTypeStatus?: MetricStatus;
+  /** Reels watch-time/retention metrics, attempted best-effort against Instagram's media
+   *  insights endpoint (ig_reels_avg_watch_time, ig_reels_video_view_total_time,
+   *  clips_replays_count, ig_reels_aggregated_all_plays_count — the real metric names as
+   *  of API v21; confirmed or rejected per account by the actual response, watchStatus
+   *  is that real answer, not an assumption from documentation). */
+  watchAvgSeconds?: number | null;
+  watchTotalSeconds?: number | null;
+  watchReplays?: number | null;
+  watchPlays?: number | null;
+  watchStatus?: MetricStatus;
+  /** Exact ISO-8601 publish timestamp straight from the platform's own API field.
+   *  `publishedAt` above stays untouched (plain YYYY-MM-DD) for every existing reader
+   *  that expects that shape — this is additive, never a replacement, and every writer
+   *  of it already has the full timestamp on hand (Instagram/YouTube/Facebook's own
+   *  media objects all return one), so this can and does backfill retroactively for
+   *  already-linked episodes on their next pull. NOT_AVAILABLE only for a row whose
+   *  underlying media is gone before this field existed and never gets pulled again —
+   *  the studio never invents a time. */
+  publishedAtPrecise?: string | null;
+  publishedAtPreciseStatus?: MetricStatus;
   /** Opt-in flag: this tested-but-not-yet-live episode should be published automatically
    *  by /api/scheduled-publish's daily cron, at the one fixed hour set in vercel.json,
    *  instead of waiting for a manual press of the studio's publish button. Exists
@@ -86,6 +141,57 @@ export type Snapshot = {
   /** Optional so a snapshot saved before this field existed still loads. */
   fbFollowers?: number | null;
   note: string;
+};
+
+/** One point-in-time reading of a single Reel's Instagram metrics, kept forever — unlike
+ *  the fields on Episode above, which only ever hold the latest value and get overwritten
+ *  on every pull. This is what lets us later ask "how many views did episode 40 have 24
+ *  hours after it went live" without having already thrown that answer away. Written by
+ *  /api/track, deduplicated (see lib/insights.ts's shouldSnapshot) so a daily cron and a
+ *  manual pull don't produce hundreds of near-identical rows — but never overwritten or
+ *  deleted once written. snapshotType distinguishes a snapshot taken while the episode
+ *  was actually live and current ("live") from one produced by a one-time backfill run
+ *  against an episode's current numbers on some later day ("backfill") — a backfill
+ *  snapshot's collectedAt is the day it was run, never the episode's publish day. */
+export type ReelInsightSnapshot = {
+  id: string;
+  episodeNumber: number;
+  collectedAt: string;
+  source: "instagram";
+  snapshotType: "live" | "backfill";
+  views: number | null;
+  reach: number | null;
+  likes: number | null;
+  comments: number | null;
+  saves: number | null;
+  shares: number | null;
+  watchAvgSeconds: number | null;
+  watchTotalSeconds: number | null;
+  watchReplays: number | null;
+};
+
+/** One day's account-wide Instagram reading beyond the follower count the existing
+ *  Snapshot type above already tracks. followersCount/mediaCount are point-in-time;
+ *  accountsReached/profileVisits/websiteClicks/follows/unfollows (when Instagram
+ *  provides them at all — see the *Status fields) are totals over periodDays, and the
+ *  two kinds are never conflated as if they meant the same thing. Attempted on every
+ *  /api/track pull, best-effort — a status of NOT_AVAILABLE/PERMISSION_REQUIRED/
+ *  API_ERROR here is itself a real, useful recorded answer, not a failed pull. */
+export type AccountInsightSnapshot = {
+  id: string;
+  collectedAt: string;
+  followersCount: number | null;
+  mediaCount: number | null;
+  periodDays: number | null;
+  accountsReached: number | null;
+  accountsReachedStatus: MetricStatus;
+  profileVisits: number | null;
+  profileVisitsStatus: MetricStatus;
+  websiteClicks: number | null;
+  websiteClicksStatus: MetricStatus;
+  follows: number | null;
+  unfollows: number | null;
+  followsStatus: MetricStatus;
 };
 
 export type RevenueLine = {
@@ -145,6 +251,11 @@ export type State = {
    *  limit runs well under the general range, so the studio warns before a second
    *  same-day attempt instead of letting it fail live against the platform. */
   lastYoutubeUploadAt?: string | null;
+  /** History /api/track has been writing since 22.9.2026 — see ReelInsightSnapshot and
+   *  AccountInsightSnapshot above. Optional so a state saved before this existed still
+   *  loads; missing/empty means "not collected yet", never "zero activity". */
+  reelInsightSnapshots?: ReelInsightSnapshot[];
+  accountInsightSnapshots?: AccountInsightSnapshot[];
   updatedAt: string;
 };
 

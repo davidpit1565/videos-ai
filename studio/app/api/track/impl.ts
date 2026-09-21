@@ -2,10 +2,14 @@ import { whole } from "@/lib/whole";
 import { NextResponse } from "next/server";
 import { notify, notifyNewRenders, notifyEpisodeLive } from "@/lib/push";
 import { hasDb, loadState, saveState, subscribersByEpisode } from "@/lib/db";
-import { fetchBeehiiv, fetchFacebook, fetchInstagram, fetchYouTube, refreshInstagramToken} from "@/lib/sources";
+import {
+  fetchBeehiiv, fetchFacebook, fetchInstagram, fetchInstagramAccountInsights,
+  fetchYouTube, refreshInstagramToken,
+} from "@/lib/sources";
 import { publishToFacebookBusinessPage } from "@/lib/publish";
-import { ActivityEvent, State, uid } from "@/lib/types";
+import { ActivityEvent, AccountInsightSnapshot, MetricStatus, ReelInsightSnapshot, State, uid } from "@/lib/types";
 import { realTitleFor, captionTitleFor, reels } from "@/lib/reels";
+import { shouldSnapshot } from "@/lib/insights";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -82,8 +86,8 @@ export async function GET(req: Request) {
     else console.log(`[track] instagram token not refreshed: ${rt.reason}`);
   }
 
-  const [ig, bee, yt, fb] = await Promise.all([
-    fetchInstagram(), fetchBeehiiv(), fetchYouTube(), fetchFacebook(),
+  const [ig, bee, yt, fb, igAccount] = await Promise.all([
+    fetchInstagram(), fetchBeehiiv(), fetchYouTube(), fetchFacebook(), fetchInstagramAccountInsights(),
   ]);
   // Temporary diagnostic for the brand-new Facebook integration: readable in Vercel's
   // own runtime logs, so a connection failure can be root-caused without needing his
@@ -264,6 +268,14 @@ export async function GET(req: Request) {
     id: string; text: string; permalink: string | null; timestamp: string | null;
     views: number | null; likes: number | null; saves: number | null;
     comments: number | null; shares: number | null;
+    // Instagram-only extras — undefined for YouTube/Facebook, which never set them.
+    reach?: number | null;
+    reachByFollowerType?: { followers: number | null; nonFollowers: number | null };
+    reachByFollowerTypeStatus?: MetricStatus;
+    watchAvgSeconds?: number | null;
+    watchTotalSeconds?: number | null;
+    watchReplays?: number | null;
+    watchStatus?: MetricStatus;
   };
   type PlatformConfig = {
     key: "instagram" | "youtube" | "facebook";
@@ -308,6 +320,15 @@ export async function GET(req: Request) {
       // the episode page's embed needs, the media id alone can't build a URL.
       cfg.setPermalinkIfMissing(e, m.permalink);
       if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
+      // Additive, precise counterpart to the date-only publishedAt above — every
+      // platform's media object already carries a full ISO timestamp, so this
+      // backfills retroactively for episodes linked before this field existed, not
+      // just newly-linked ones. Never overwrites a value with an identical one (keeps
+      // this out of the activity feed's noise), but does correct a stale one.
+      if (m.timestamp && e.publishedAtPrecise !== m.timestamp) {
+        e.publishedAtPrecise = m.timestamp;
+        e.publishedAtPreciseStatus = "AVAILABLE";
+      }
       if (e.status !== "live") { e.status = "live"; newlyLive.push(e.number); }
     }
 
@@ -342,6 +363,10 @@ export async function GET(req: Request) {
         cfg.setPermalink(e, m.permalink);
         cfg.applyMetrics(e, m);
         if (!e.publishedAt && m.timestamp) e.publishedAt = m.timestamp.slice(0, 10);
+        if (m.timestamp && e.publishedAtPrecise !== m.timestamp) {
+          e.publishedAtPrecise = m.timestamp;
+          e.publishedAtPreciseStatus = "AVAILABLE";
+        }
         if (e.status !== "live") { e.status = "live"; newlyLive.push(e.number); }
         linked.add(m.id);
         fresh.push({
@@ -408,8 +433,19 @@ export async function GET(req: Request) {
     syncPlatform(
       ig.media.map((m) => ({
         id: m.id, text: m.caption, permalink: m.permalink, timestamp: m.timestamp,
-        views: m.views ?? m.reach, likes: m.likes, saves: m.saves,
+        // views and reach used to be folded together here (`views: m.views ?? m.reach`)
+        // — a real reach number could silently become the displayed "views" whenever
+        // Instagram's own views metric came back empty. Never again: they're two
+        // entirely separate fields below, on the episode as much as here.
+        views: m.views, likes: m.likes, saves: m.saves,
         comments: m.comments, shares: m.shares,
+        reach: m.reach,
+        reachByFollowerType: m.reachByFollowerType,
+        reachByFollowerTypeStatus: m.reachByFollowerTypeStatus,
+        watchAvgSeconds: m.watchAvgSeconds,
+        watchTotalSeconds: m.watchTotalSeconds,
+        watchReplays: m.watchReplays,
+        watchStatus: m.watchStatus,
       })),
       {
         key: "instagram",
@@ -430,9 +466,51 @@ export async function GET(req: Request) {
           e.saves = m.saves ?? e.saves;
           e.comments = m.comments ?? e.comments;
           e.shares = m.shares ?? e.shares;
+          // Additive Instagram-only metrics — see LinkableMedia's comment above.
+          if (m.reach !== undefined) {
+            e.reach = m.reach;
+            e.reachStatus = m.reach != null ? "AVAILABLE" : (e.reachStatus ?? "UNKNOWN");
+          }
+          if (m.reachByFollowerType !== undefined) e.reachByFollowerType = m.reachByFollowerType;
+          if (m.reachByFollowerTypeStatus !== undefined) e.reachByFollowerTypeStatus = m.reachByFollowerTypeStatus;
+          if (m.watchStatus !== undefined) {
+            e.watchAvgSeconds = m.watchAvgSeconds ?? null;
+            e.watchTotalSeconds = m.watchTotalSeconds ?? null;
+            e.watchReplays = m.watchReplays ?? null;
+            e.watchStatus = m.watchStatus;
+          }
         },
       },
     );
+
+    // Historical Reel insight snapshots — one point-in-time reading per episode, kept
+    // forever (see ReelInsightSnapshot in types.ts), so a later question like "views
+    // after 24 hours" can be answered without having overwritten the answer on the next
+    // pull. Runs after syncPlatform above has already applied this pull's fresh numbers
+    // onto each episode, so e.views/e.reach/etc. here are this moment's real values.
+    // Deduplicated (shouldSnapshot) so the daily cron and a manual pull together don't
+    // produce dozens of identical rows, but nothing here ever overwrites or deletes a
+    // snapshot already written.
+    const dedupeWindowMinutes = Number(process.env.INSTAGRAM_INSIGHTS_SNAPSHOT_DEDUPE_WINDOW ?? 360);
+    state.reelInsightSnapshots = state.reelInsightSnapshots ?? [];
+    for (const e of state.episodes) {
+      if (!e.igMediaId) continue;
+      const forEpisode = state.reelInsightSnapshots.filter((s) => s.episodeNumber === e.number);
+      const last = forEpisode.at(-1);
+      const next = {
+        views: e.views ?? null, reach: e.reach ?? null, likes: e.likes ?? null,
+        comments: e.comments ?? null, saves: e.saves ?? null, shares: e.shares ?? null,
+        watchAvgSeconds: e.watchAvgSeconds ?? null, watchTotalSeconds: e.watchTotalSeconds ?? null,
+        watchReplays: e.watchReplays ?? null,
+      };
+      if (shouldSnapshot(last, next, dedupeWindowMinutes, now)) {
+        const snapshot: ReelInsightSnapshot = {
+          id: uid(), episodeNumber: e.number, collectedAt: now,
+          source: "instagram", snapshotType: "live", ...next,
+        };
+        state.reelInsightSnapshots.push(snapshot);
+      }
+    }
   }
 
   if (yt.connected) {
@@ -546,6 +624,36 @@ export async function GET(req: Request) {
     });
   }
 
+  // Account-wide Instagram Insights (reach/profile visits/website clicks/follows),
+  // kept apart from the follower-count-only Snapshot above — a genuinely new kind of
+  // data this app never collected before 22.9.2026 (see fetchInstagramAccountInsights).
+  // One entry a day, same "update if today already has one" pattern as the Snapshot
+  // above; a not-yet-available metric is still worth recording as a real, dated
+  // NOT_AVAILABLE/PERMISSION_REQUIRED/API_ERROR answer, not silently skipped.
+  if (igAccount.attempted) {
+    state.accountInsightSnapshots = state.accountInsightSnapshots ?? [];
+    const prevAcc = state.accountInsightSnapshots.at(-1);
+    const sameDay = prevAcc?.collectedAt.slice(0, 10) === today;
+    const entry: AccountInsightSnapshot = {
+      id: sameDay && prevAcc ? prevAcc.id : uid(),
+      collectedAt: now,
+      followersCount: fol,
+      mediaCount: ig.connected ? ig.mediaCount : null,
+      periodDays: igAccount.periodDays,
+      accountsReached: igAccount.accountsReached,
+      accountsReachedStatus: igAccount.accountsReachedStatus,
+      profileVisits: igAccount.profileVisits,
+      profileVisitsStatus: igAccount.profileVisitsStatus,
+      websiteClicks: igAccount.websiteClicks,
+      websiteClicksStatus: igAccount.websiteClicksStatus,
+      follows: igAccount.follows,
+      unfollows: igAccount.unfollows,
+      followsStatus: igAccount.followsStatus,
+    };
+    if (sameDay) state.accountInsightSnapshots[state.accountInsightSnapshots.length - 1] = entry;
+    else state.accountInsightSnapshots.push(entry);
+  }
+
   // An episode can end up marked "live" without ever really being one — a manual
   // status edit in /videos, or an auto-link that later got its igMediaId cleared.
   // The homepage's "N episodes live" count and this page's own "already published"
@@ -626,12 +734,44 @@ export async function GET(req: Request) {
   // IgMedia.insightsError for what's actually being reported here.
   const igInsightsFailures = ig.connected ? ig.media.filter((m) => m.insightsError) : [];
 
+  // Debug summary for the new Instagram Insights layer — status tallies only, never a
+  // token/header/raw payload. This is what a real production pull actually got back for
+  // the follower-type breakdown, watch-time metrics, and account-level insights — the
+  // only honest way to confirm whether Instagram supports them for this account/API
+  // version, per this project's "don't assume, verify" rule.
+  const tally = (values: (string | undefined)[]) => {
+    const out: Record<string, number> = {};
+    for (const v of values) out[v ?? "NOT_REQUESTED"] = (out[v ?? "NOT_REQUESTED"] ?? 0) + 1;
+    return out;
+  };
+  const igInsightsDebug = ig.connected
+    ? {
+        reachByFollowerTypeStatus: tally(ig.media.map((m) => m.reachByFollowerTypeStatus)),
+        watchStatus: tally(ig.media.map((m) => m.watchStatus)),
+      }
+    : undefined;
+  console.log(`[instagram-insights] account insights: ${igAccount.attempted
+    ? `reach=${igAccount.accountsReachedStatus} profileVisits=${igAccount.profileVisitsStatus} websiteClicks=${igAccount.websiteClicksStatus} follows=${igAccount.followsStatus}`
+    : "not attempted (no token or disabled)"}`);
+  if (igInsightsDebug) {
+    console.log(`[instagram-insights] reel metrics: ${JSON.stringify(igInsightsDebug)}`);
+  }
+
   return NextResponse.json({
     ok: true,
     instagram: ig.connected ? { followers: ig.followers, posts: ig.media.length } : ig,
     igInsightsFailures: igInsightsFailures.length
       ? { count: igInsightsFailures.length, sample: igInsightsFailures[0].insightsError }
       : undefined,
+    igInsightsDebug,
+    igAccountInsights: igAccount.attempted
+      ? {
+          accountsReachedStatus: igAccount.accountsReachedStatus,
+          profileVisitsStatus: igAccount.profileVisitsStatus,
+          websiteClicksStatus: igAccount.websiteClicksStatus,
+          followsStatus: igAccount.followsStatus,
+        }
+      : { attempted: false },
     beehiiv: bee.connected ? { subscribers: bee.activeSubscribers, exact: bee.exact } : bee,
     youtube: yt.connected ? { subscribers: yt.subscribers, videos: yt.videos.length } : yt,
     facebook: fb.connected ? { followers: fb.followers, videos: fb.videos.length } : fb,

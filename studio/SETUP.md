@@ -34,6 +34,8 @@ Vercel → Project → Settings → Environment Variables. אף אחד מהם ל
 | `BEEHIIV_API_KEY` | מספר הנרשמים | Beehiiv → Settings → API |
 | `IG_ACCESS_TOKEN` | צפיות, שמירות, שיתופים לכל פרק | לפי `publish/SETUP.md` — אותו טוקן של הפרסום |
 | `IG_USER_ID` | מזהה חשבון האינסטגרם המקצועי | שם, באותו תהליך |
+| `INSTAGRAM_INSIGHTS_ENABLED` | אופציונלי — `false` מכבה את קריאות ה-Insights הנוספות (reach לפי follower/non-follower, watch time, account insights) בלי דיפלוי חדש, אם משהו מהן מתנהג לא צפוי מול Instagram | לא חובה — ברירת המחדל דלוקה |
+| `INSTAGRAM_INSIGHTS_SNAPSHOT_DEDUPE_WINDOW` | אופציונלי — כמה דקות בין snapshot היסטורי אחד לשני לאותו ריל כשכלום לא השתנה (ברירת מחדל 360 = 6 שעות) | לא חובה |
 
 `BEEHIIV_PUBLICATION_ID` כבר בקוד (הוא מזהה ציבורי, לא סוד). אם תפתח פרסום אחר,
 אפשר לדרוס אותו במשתנה סביבה באותו שם.
