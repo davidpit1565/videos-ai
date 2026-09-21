@@ -65,6 +65,16 @@ export type Episode = {
   publishOn?: string | null;
   /** where it goes out. One build, several platforms, no extra work. */
   channels?: Channel[];
+  /** Opt-in flag: this tested-but-not-yet-live episode should be published automatically
+   *  by /api/scheduled-publish's daily cron, at the one fixed hour set in vercel.json,
+   *  instead of waiting for a manual press of the studio's publish button. Exists
+   *  because same-day double-posting and an inconsistent posting hour both measurably
+   *  hurt reach (see channel/content-memory.md, 21.9.2026) — a single daily cron at a
+   *  fixed hour structurally fixes both at once: at most one auto-publish a day, always
+   *  at the same time. Cleared automatically once the cron actually publishes it (the
+   *  episode still needs a human to check "tested" and tick this box first — it never
+   *  auto-selects an episode nobody approved). */
+  queuedForPublish?: boolean;
 };
 
 export type Snapshot = {

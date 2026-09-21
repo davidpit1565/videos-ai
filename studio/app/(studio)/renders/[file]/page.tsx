@@ -65,7 +65,7 @@ export default async function RenderDetail({ params }: { params: Promise<{ file:
             couldn't find it. The button he's looking for belongs where his eyes land
             right after watching, not after two unrelated sections. */}
         {r.kind === "video" && r.gate?.passed && (
-          <PublishButtons file={r.file} caption={r.caption} youtube={r.youtube} />
+          <PublishButtons file={r.file} caption={r.caption} youtube={r.youtube} episode={r.episode} />
         )}
 
         {r.gate && (
