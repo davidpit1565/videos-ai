@@ -21,6 +21,8 @@ const LISTS: Required<{ [K in ListKeys<State>]: true }> = {
   revenue: true,
   ideas: true,
   activity: true,
+  reelInsightSnapshots: true,
+  accountInsightSnapshots: true,
 };
 
 export function whole(s: State): State {

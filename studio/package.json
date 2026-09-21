@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "check:routes": "node scripts/check-routes.mjs",
-    "prebuild": "node scripts/check-routes.mjs && node scripts/write-build-info.mjs"
+    "prebuild": "node scripts/check-routes.mjs && node scripts/write-build-info.mjs",
+    "test": "node --experimental-strip-types --test lib/*.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.118.0",
