@@ -52,6 +52,9 @@ export const CRON = ["/api/track", "/api/health-check", "/api/claude-usage", "/a
 export const SITE = [
   "/", "/e", "/p", "/join", "/about", "/prompts", "/search", "/unlock", "/episodes",
   "/skills", "/s", "/failure-modes",
+  // the Instagram/YouTube bio-link target — always redirects to whichever episode is
+  // currently newest (see app/latest/route.ts). No studio cookie, so it belongs here.
+  "/latest",
   "/api/subscribe", "/api/clientlog", "/api/stream-check", "/api/connections",
   "/api/unlock", "/api/site",
   // a visitor's own "notify me about new episodes" device registration — a separate path

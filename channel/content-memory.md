@@ -18,6 +18,22 @@ because it sounds right.
 
 ## Confirmed patterns
 
+- **CONFIRMED (21.9.2026), promoting H1 below out of n=1:** a copyable/configurable
+  mechanism a viewer can act on immediately (paste this prompt, flip this n8n setting)
+  outperforms a pure "here's a scary/surprising reveal" episode on saves, even when the
+  reveal gets comparable or more views. Four independent episodes built around a real,
+  followable mechanism (25, 34, 35, 36 — all n8n paste/configure episodes) save at
+  0.86-1.85%; two independent reveal-only "AI is watching you" episodes (28: 194 views,
+  **0 saves**; 39: 278 views, the most views in the 38-42 group, **0 saves**, 0.72%
+  engagement) save at 0%. This is the same axis as H1 below, now past this file's own
+  two-episode bar in both directions at once. **Consequence for episodes 43 and 44**
+  (Windows Recall, WhatsApp Message Summaries — both built, both still `testing`,
+  neither published as of 21.9.2026): both are reveal-plus-toggle in the same shape as
+  28/39, not the paste/configure shape that actually saves. Flagging this to David
+  before he decides whether to publish them as-is or ask for a rework of the second
+  half toward something more concretely actionable in the moment (a real caveat, a
+  "check this specific thing right now" beat), per his own studio-agent's read of the
+  same numbers.
 - **CONFIRMED (4.9.2026):** a hook that states one concrete, checkable fact outperforms a
   hook that poses a hypothetical or asks the viewer to imagine something. Every episode
   that cleared 500+ views states something specific and already true in its first line —
@@ -1008,6 +1024,51 @@ by padding the existing lines with filler. **The actual standing rule is a range
 just a ceiling: roughly 4-5 ideas in 30-45+ seconds, not "cut until it feels simple" —
 idea count and runtime have to be checked together, not one at a time,** because fixing
 one axis in isolation can break the other.
+
+## Root-caused: why subsAttributed has been null since 3.9.2026 (21.9.2026)
+
+David asked directly why growth stalled — subscribers sat at exactly 11 from 16.9 to
+21.9.2026 while nine reels shipped and Instagram followers grew 105→111 — and asked for
+real research into why, not a guess.
+
+**FACT, from the studio's own agent, real numbers:** views for the last five published
+episodes are falling (38: 145 · 39: 278 · 40: 134 · 41: 64 · 42: 34), save rate is
+0-2.94% (mostly noise at these view counts — a single save on 42's 34 views reads as
+"2.94%," the best-looking number in the group, off n=1), and `subsAttributed` is null
+for every episode in this window (same gap first flagged 3.9.2026, still unresolved 18
+days later — worth root-causing rather than re-flagging as "not enough data" again).
+
+**HYPOTHESIS going in, CONFIRMED by reading the actual code, not assumed:** the
+attribution code itself (`api/subscribe/impl.ts`, `signup.tsx`, `lib/db.ts`'s
+`subscribersByEpisode()`) is correct and consistent — a signup made *on an episode's own
+page* (`/e/N`) is correctly tagged `episode-N` and would show up in `subsAttributed`.
+The actual gap is upstream of that code: `channel/launch-plan.md` explicitly set the
+Instagram bio link to "a single landing page, not a link-tree wall" — the homepage,
+`app/page.tsx` — and that page's own signup form was hardcoded `source="home"`, with no
+episode number, ever. Every episode's own script promises "the setup's in the link in
+bio," but the actual link in bio has never pointed at that episode's own page — it goes
+to the homepage, one extra click and one page away from the specific setup the viewer
+was just told to expect, and any signup made there could never be attributed to the
+episode that drove it. This isn't a data-collection bug; the funnel itself sends
+traffic to the wrong page.
+
+**Fixed, both halves:**
+1. Added `studio/app/latest/route.ts` — a 307 redirect to whichever episode is
+   currently newest. Meant to be the Instagram/YouTube bio link's actual, permanent
+   target: David sets it once to `https://www.actually-works.com/latest`, and it never
+   goes stale or needs hand-updating per episode again. (307, not a permanent 308 — a
+   cached permanent redirect would freeze "latest" at whatever episode was live the
+   first time a browser or CDN saw it.)
+2. `app/page.tsx`'s own signup form now passes `episode={heroEpisode?.n}` (the same
+   newest-episode record the homepage already computes for its hero section) instead of
+   a bare `source="home"` — so a signup made on the homepage itself, from whatever
+   traffic still lands there directly, is now attributed too.
+
+**What this does NOT fix, stated plainly:** it doesn't change the content-side pattern
+just above (reveal-only episodes not saving) — that's a separate, real problem on its
+own axis, not caused by the routing gap. And **David still has to actually change the
+Instagram bio link to `/latest` himself** — nothing in this codebase can do that, it's
+an Instagram account setting.
 
 ## How to update this file
 

@@ -123,7 +123,11 @@ export default async function Home() {
               <span className="ititle">{latestIssue.title}</span>
             </a>
           ) : null}
-          <Signup source="home" />
+          {/* Attributed to the featured hero episode when there is one, instead of
+              the generic "home" bucket — this is the same page most Instagram bio-link
+              traffic actually lands on (see app/latest/route.ts), and a signup here is
+              really a response to that episode, not to the homepage in the abstract. */}
+          <Signup source="home" episode={heroEpisode?.n} />
           <SiteNotify />
         </div>
         {heroSelfHosted ? (
