@@ -41,12 +41,15 @@ export const STUDIO = [
  *  checked by hand inside each jarvis/* route against JARVIS_STUDIO_SECRET.
  *
  *  /api/scheduled-publish (21.9.2026, replacing the one-off /api/scheduled-publish-42):
- *  a daily Vercel cron (vercel.json, one fixed hour) that publishes whichever queued
- *  episode is next, so posting happens at a consistent time instead of whenever a human
- *  gets to the button — same reasoning /api/track and /api/health-check already use.
- *  Checked by hand the same way — Vercel's own x-vercel-cron header, or CRON_SECRET for
- *  anything else. It only ever acts on an episode a human already marked `tested` and
- *  explicitly queued (`queuedForPublish`); this route decides *when*, never *whether*. */
+ *  a daily Vercel cron (vercel.json, one fixed hour — 19:00 Belgium time, David's actual
+ *  home timezone) that publishes whichever queued episode is next, so posting happens at
+ *  a consistent time instead of whenever a human gets to the button — same reasoning
+ *  /api/track and /api/health-check already use. Checked by hand the same way — Vercel's
+ *  own x-vercel-cron header, or CRON_SECRET for anything else. It only ever acts on an
+ *  episode a human already marked `tested` and explicitly queued (`queuedForPublish`);
+ *  this route decides *when*, never *whether*. Vercel cron is fixed UTC and ignores DST,
+ *  so the schedule needs a manual one-hour bump each time Belgium's clocks change (see
+ *  the comment on the route itself). */
 export const CRON = ["/api/track", "/api/health-check", "/api/claude-usage", "/api/jarvis", "/api/scheduled-publish"];
 
 /** the public funnel, plus the endpoints those pages call */
