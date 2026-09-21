@@ -1070,6 +1070,50 @@ own axis, not caused by the routing gap. And **David still has to actually chang
 Instagram bio link to `/latest` himself** — nothing in this codebase can do that, it's
 an Instagram account setting.
 
+## Views "collapse" (41: 65, 42: 63) — corrected read after pulling the real state directly (21.9.2026)
+
+David reported the studio-agent numbers (episodes 38-42, paraphrased) and I initially told
+him this looked like the reach-first pivot failing on its own stated goal, comparing 41/42
+against a "300 views within a day" bar from the 4.9.2026 entry above. **That was
+overstated — corrected here after fetching `/api/state` directly (David gave the studio PIN
+so this session could check on its own) and reading every live episode's real, current
+`views`/`publishedAt`, not a paraphrase:**
+
+- **The "reaches 300 within a day" bar from 4.9.2026 does not hold across the full
+  history** — checked directly: 12 of 40 mature episodes never reach 300 at all (e.g. ep13:
+  101 final, ep8: 144, ep10: 123, ep29: 118). That bar was true for the specific episodes
+  visible on David's screen that day, not a channel-wide floor — using it as one now was a
+  mistake.
+- **VERIFIED DATA, real per-block averages:** episodes 1-27 mean 219.8/median 228; episodes
+  28-35 mean 156.2/median 146.5; episodes 36-42 (reach-first) mean 149/median 145; **36-40
+  alone (excluding the two newest, still-maturing episodes) mean 183/median 162.**
+  **The real step-down starts at episode 28, not at the reach-first pivot (36) — and the
+  reach-first block's own *mature* episodes (36-40) sit close to, not below, the block that
+  preceded it.** Reach-first isn't confirmed to be underperforming its own goal; it inherited
+  an already-lower baseline.
+- **Episodes 41 (65 views) and 42 (63 views) are genuinely too young to compare to other
+  episodes' final totals** — 41 published 20.9 (about a day old when checked), 42 published
+  21.9 (hours old). Re-check both in 2-3 days before drawing any conclusion about them
+  specifically.
+- **A real, distinct, checkable candidate for episode 41 specifically:** it was the *second*
+  episode posted the same day (40 and 41 both went out 20.9). Checked every same-day double-
+  post in the account's history (8 pairs) — the second post of the day underperforms the
+  first in 6 of 8, often by 20-50% (e.g. 34→35: 232→125; 27→28: 278→194; 19→20: 228→130).
+  Not 8-for-8, so not fully confirmed, but a real, recurring pattern worth acting on: **avoid
+  posting two episodes the same day where avoidable** — spread across days instead.
+- **Retention/watch-time/completion rate is not a "not enough credit to check" gap — it does
+  not exist anywhere in the schema.** Checked `studio/lib/types.ts`'s `Episode` type directly:
+  no such field exists, and Instagram's own basic Insights export (per the 8.9.2026 Master
+  Table entry) never included it either. This diagnostic stays unavailable regardless of
+  access; not worth asking the agent for again until it's actually collected somewhere.
+
+**What's still a real, open, unexplained question:** why the per-episode average stepped
+down about 30% starting around episode 28 (219.8 → ~150-180) and never recovered. Candidates,
+none confirmed: a distribution/Explore-placement change unrelated to topic (per the
+1.9.2026 "trickle, not a curve" framework), audience/follower saturation, or something
+account-level rather than content-level. The reach-first content pivot (36+) is not shown by
+this data to be the cause — don't reach for that explanation again without new evidence.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
