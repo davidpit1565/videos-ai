@@ -1114,6 +1114,52 @@ none confirmed: a distribution/Explore-placement change unrelated to topic (per 
 account-level rather than content-level. The reach-first content pivot (36+) is not shown by
 this data to be the cause — don't reach for that explanation again without new evidence.
 
+## The real problem is reach, not content — engagement rate held steady while views fell (21.9.2026)
+
+Continued the investigation above by pulling every field the studio actually tracks
+(likes, saves, comments, shares, `activity` log timestamps) directly from `/api/state`,
+not just `views`. Checked `topic`/`format` again — still empty/uniform on every episode,
+confirmed still a real, unfixed data gap from 3.9.2026.
+
+**VERIFIED DATA, engagement rate ((likes+saves+comments+shares)/views) by block:**
+episodes 1-27: mean 3.26%, median 3.02%. Episodes 28-35: mean 4.43%, median 2.96%.
+Episodes 36-42 (reach-first): mean 4.18%, median 3.45%. **Engagement rate has not
+declined alongside views — if anything it's held steady or slightly improved.** This
+is the clearest evidence yet against a content-quality explanation for the views drop:
+if hooks or scripts were landing worse, the people who *do* see a reach-first episode
+would be expected to engage less than they used to, and they aren't. **The problem
+looks like reach/distribution (fewer people being shown the video at all), not the
+content itself losing people once shown.**
+
+**Two real, checkable, actionable candidates found, neither the whole explanation on
+its own:**
+1. Same-day double-posting (already logged above): the second post of a same-day pair
+   underperforms the first in 6 of 8 historical instances.
+2. **New finding: posting time is not consistent.** The studio's own `activity` log has
+   real UTC timestamps for the last 6 auto-linked posts: ep37 23:57, ep38 13:30, ep39
+   19:57, ep40 04:20, ep41 16:12, ep42 20:09 — no fixed window, swinging from the
+   middle of the night (Israel time) to mid-afternoon to late evening. Only 6 data
+   points (this activity-log format is new), so this can't be compared against older
+   episodes' actual post times, but as a standing practice, posting whenever the
+   pipeline finishes rather than at one deliberate, consistent time is a real,
+   fixable candidate for uneven reach — Instagram's own distribution rewards posting
+   when an account's specific audience is actually online, consistently.
+
+**Still genuinely open:** neither of these two candidates has been checked against
+enough episodes to confirm as *the* cause of the ~28-onward step-down in views (see
+entry above) — they're real, checkable practices worth fixing regardless of whether
+they turn out to be the full explanation. A self check-in is scheduled for ~23.9.2026
+to re-pull episodes 41/42's views once they've had 2-3 full days, per David's request.
+
+**Recommended next actions, concrete:**
+1. Stop posting two episodes the same day where avoidable — spread across separate
+   days.
+2. Pick one consistent posting time (e.g. a fixed evening hour, Israel time) and post
+   at that time going forward, rather than whenever a render finishes.
+3. Once 41/42 have matured, re-run this same block-average comparison to see whether
+   they land back in the ~150-220 range other mature episodes sit in, or genuinely stay
+   low — that result will matter more than anything reasoned here today.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
