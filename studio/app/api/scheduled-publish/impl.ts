@@ -15,6 +15,14 @@ export const maxDuration = 120;
  *  spanning 04:20-23:57 UTC). A single daily cron, at one fixed hour, structurally fixes
  *  both at once — at most one auto-publish a day, always at the same time.
  *
+ *  The fixed hour lives in vercel.json as a UTC cron string, set for Belgium time (his
+ *  actual home timezone — David corrected an initial Israel-time assumption on 21.9.2026).
+ *  Vercel cron schedules are fixed UTC and do not follow DST: 17:00 UTC is 19:00 Belgium
+ *  time while Belgium is on CEST (UTC+2, through late October), but becomes 18:00 local
+ *  once Belgium falls back to CET (UTC+1). The schedule needs a manual one-hour bump at
+ *  each DST transition to keep the real local hour at 19:00 — nothing here does that
+ *  automatically.
+ *
  *  Never picks an episode on its own: a human still has to mark it `tested` (the normal
  *  pipeline gate) AND tick "queue for auto-publish" in the studio (`queuedForPublish`) —
  *  this route only decides *when* to press the button that's already been approved, never

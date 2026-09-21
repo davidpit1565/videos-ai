@@ -12,7 +12,7 @@
     },
     {
       "path": "/api/scheduled-publish",
-      "schedule": "0 16 * * *"
+      "schedule": "0 17 * * *"
     }
   ],
   "git": {
