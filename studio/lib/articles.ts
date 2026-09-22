@@ -1199,6 +1199,32 @@ export const ARTICLES: Article[] = [
       "This guide covers Message Summaries specifically, not any other Meta AI feature inside WhatsApp, Instagram, or Facebook.",
     ],
   },
+  {
+    n: 45,
+    title: "Is your phone carrier already screening your calls?",
+    standfirst:
+      "Verizon, AT&T, and T-Mobile all run network-level systems that identify or block " +
+      "suspected spam and scam calls. T-Mobile says its network-level Scam ID automatically " +
+      "labels a suspicious call 'Scam Likely,' and Scam Block can stop it before it reaches " +
+      "the phone. Each carrier also gives you a way to check it in its own app — though the " +
+      "protection itself runs on the network, not the app.",
+    steps: [
+      "AT&T: open the myAT&T or ActiveArmor app, or go to Features → Call filtering → Call Protect, accept the terms, and toggle it on.",
+      "Verizon: install the Call Filter app, or check/manage it inside My Verizon — the free tier is included on standard and prepaid plans with a compatible device.",
+      "T-Mobile: open the T-Life app to see Scam ID and Scam Block — Scam ID's network-level labeling runs automatically and does not require the app to work.",
+      "None of these require you to do anything for the protection itself to run — the app is for checking and managing it, not turning on the underlying network-level detection.",
+    ],
+    changes: [
+      "Verified live (22.9.2026), and revised twice after two source-by-source red-teams: the first draft's claim ('AI scores every incoming call, before it rings') was stronger than any of the three carriers' own pages state, and was softened to what Verizon, AT&T, and T-Mobile actually say (network-level detection; T-Mobile's own 'Scam ID' name).",
+      "A deliberately narrow scope: three named US carriers, not a universal claim about every phone company or every country — the same scope-matching fix identified as missing in episode 42.",
+      "The first reach-first-era episode built explicitly as an experiment pilot (1 of 4): testing whether a natural-recipient line, embedded as content rather than an imperative share instruction, changes sends/reach against this account's own baseline.",
+    ],
+    limits: [
+      "US carriers only — Verizon, AT&T, and T-Mobile. Not a claim about carriers in other countries, or about carriers not named here.",
+      "None of these systems catch every unwanted or fraudulent call — a scammer calling from a real, verified number can still get through.",
+      "STIR/SHAKEN is a separate system from the scam-detection covered here. It authenticates that a caller ID hasn't been spoofed; it does not determine whether the caller's intent is legitimate, and this guide does not present caller-ID authentication as proof a call is safe.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
