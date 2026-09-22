@@ -122,13 +122,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="6.31">
+<section class="scene" data-in="0" data-out="5.21">
   <div class="pad"><div class="kb" id="hookKb">
-    <h2 class="punch" id="hookH2">Carriers already flag scam <span class="box">calls</span>.</h2>
+    <h2 class="punch" id="hookH2">Your carrier's been screening your <span class="box">calls</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="6.31" data-out="11.57">
+<section class="scene" data-in="5.21" data-out="10.47">
   <div class="pad"><div class="kb">
     <div class="quote" id="quoteCard" style="opacity:0">
       <div class="qk" id="quoteQk">t-mobile · scam id</div>
@@ -137,19 +137,19 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="11.57" data-out="15.11">
+<section class="scene" data-in="10.47" data-out="14.01">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="11.6">T-Mobile can block it,<br>so it <strong>never reaches your phone</strong>.</p>
+    <p class="lede b" data-at="10.5">T-Mobile can block it,<br>so it <strong>never reaches your phone</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="15.11" data-out="20.265">
+<section class="scene" data-in="14.01" data-out="19.165">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="15.14">It's not perfect —<br><strong>none of these systems catch every call</strong>.</p>
+    <p class="lede b" data-at="14.04">It's not perfect —<br><strong>none of these systems catch every unwanted call</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="20.265" data-out="25.89">
+<section class="scene" data-in="19.165" data-out="24.79">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow lose" id="scoreRowA" style="opacity:0"><span class="lbl">Carrier app</span><span class="val">VIEW ONLY</span></div>
@@ -158,21 +158,21 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="25.89" data-out="30.14">
+<section class="scene" data-in="24.79" data-out="29.04">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="25.92">Send this to someone<br>about to answer <strong>a call they don't recognize</strong>.</p>
+    <p class="lede b" data-at="24.82">Send this to someone<br>about to answer <strong>a call they don't recognize</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="30.14" data-out="32.37">
+<section class="scene" data-in="29.04" data-out="31.27">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="30.17">The setup's in<br>the link in bio.</p>
+    <p class="lede b" data-at="29.07">The setup's in<br>the link in bio.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="32.37" data-out="35.5">
+<section class="scene" data-in="31.27" data-out="34.4">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="32.4" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="31.3" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -194,7 +194,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=35.7,t=0,playing=false,last=0;
+  var DUR=34.6,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -204,112 +204,114 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,6.10,"Verizon, AT&T, and T-Mobile all run network-level systems to catch spam and scam calls."],
-    [6.52,11.36,"That exact label? T-Mobile's own network adds it the moment a scam call comes in."],
-    [11.78,14.90,"T-Mobile can block it, so it never reaches your phone."],
-    [15.32,19.84,"It's not perfect — none of these systems catch every unwanted call."],
-    [20.69,25.68,"You can check it inside each carrier's app, though the system itself runs on the network, not the app."],
-    [26.10,29.93,"Send this to someone about to pick up a call they don't recognize."],
-    [30.35,32.16,"The setup's in the link in bio."],
-    [32.58,34.80,"Follow for the setup that actually works."]
+    [0.30,5.00,"Your carrier has been screening your calls for scams this whole time — you just never knew."],
+    [5.42,10.26,"That exact label? T-Mobile's own network adds it the moment a scam call comes in."],
+    [10.68,13.80,"T-Mobile can block it, so it never reaches your phone."],
+    [14.22,18.74,"It's not perfect — none of these systems catch every unwanted call."],
+    [19.59,24.58,"You can check it inside each carrier's app, though the system itself runs on the network, not the app."],
+    [25.00,28.83,"Send this to someone about to pick up a call they don't recognize."],
+    [29.25,31.06,"The setup's in the link in bio."],
+    [31.48,33.70,"Follow for the setup that actually works."]
   ];
   var WORDS=[
-    [0.3,0.92,"Verizon,",0],
-    [0.92,2.12,"AT&T,",1],
-    [2.12,2.28,"and",2],
-    [2.28,2.66,"T-Mobile",2],
-    [2.66,3.08,"all",2],
-    [3.08,3.26,"run",3],
-    [3.26,3.82,"network-level",3],
-    [3.82,4.16,"systems",3],
-    [4.16,4.4,"to",4],
-    [4.4,4.58,"catch",4],
-    [4.58,5.0,"spam",4],
-    [5.0,5.38,"and",5],
-    [5.38,5.62,"scam",5],
-    [5.62,6.08,"calls.",5],
-    [6.7,6.9,"That",6],
-    [6.9,7.22,"exact",6],
-    [7.22,7.58,"label?",6],
-    [7.58,8.62,"T-Mobile's",7],
-    [8.62,8.78,"own",7],
-    [8.78,9.16,"network",7],
-    [9.3,9.56,"adds",8],
-    [9.56,9.72,"it",8],
-    [9.72,9.84,"the",8],
-    [9.82,10.08,"moment",9],
-    [10.08,10.34,"a",9],
-    [10.34,10.48,"scam",9],
-    [10.48,10.68,"call",10],
-    [10.68,10.92,"comes",10],
-    [10.92,11.4,"in.",10],
-    [12.5,12.62,"T-Mobile",11],
-    [12.5,12.9,"can",11],
-    [12.9,13.14,"block",11],
-    [13.14,13.5,"it,",12],
-    [13.5,13.64,"so",12],
-    [13.64,13.86,"it",12],
-    [13.86,14.06,"never",12],
-    [14.06,14.36,"reaches",13],
-    [14.36,14.56,"your",13],
-    [14.56,14.84,"phone.",13],
-    [15.46,15.86,"It's",14],
-    [15.86,16.14,"not",14],
-    [16.14,16.62,"perfect",14],
-    [16.98,17.2,"none",15],
-    [17.2,17.38,"of",15],
-    [17.38,17.6,"these",15],
-    [17.6,18.0,"systems",16],
-    [18.0,18.52,"catch",16],
-    [18.52,19.04,"every",16],
-    [19.04,19.42,"unwanted",17],
-    [19.42,19.8,"call.",17],
-    [20.69,20.9,"You",18],
-    [20.9,21.06,"can",18],
-    [21.06,21.26,"check",18],
-    [21.26,21.46,"it",19],
-    [21.46,21.76,"inside",19],
-    [21.76,22.06,"each",19],
-    [22.06,22.44,"carrier's",20],
-    [22.44,22.7,"app,",20],
-    [22.84,23.02,"though",21],
-    [23.02,23.2,"the",21],
-    [23.2,23.46,"system",21],
-    [23.46,23.82,"itself",22],
-    [23.82,24.04,"runs",22],
-    [24.04,24.26,"on",22],
-    [24.26,24.38,"the",23],
-    [24.38,24.7,"network,",23],
-    [24.92,25.22,"not",24],
-    [25.22,25.4,"the",24],
-    [25.4,25.68,"app.",24],
-    [26.1,26.5,"Send",25],
-    [26.5,26.74,"this",25],
-    [26.74,26.86,"to",25],
-    [26.86,27.28,"someone",26],
-    [27.28,27.58,"about",26],
-    [27.58,27.84,"to",26],
-    [27.84,27.98,"pick",27],
-    [27.98,28.12,"up",27],
-    [28.12,28.28,"a",27],
-    [28.28,28.52,"call",28],
-    [28.52,28.96,"they",28],
-    [28.96,29.26,"don't",28],
-    [29.26,29.86,"recognize.",29],
-    [30.54,30.7,"The",30],
-    [30.7,31.08,"setup's",30],
-    [31.08,31.26,"in",30],
-    [31.26,31.38,"the",31],
-    [31.34,31.54,"link",31],
-    [31.54,31.88,"in",31],
-    [31.88,32.12,"bio.",32],
-    [32.68,32.94,"Follow",33],
-    [32.94,33.18,"for",33],
-    [33.18,33.4,"the",33],
-    [33.4,33.64,"setup",34],
-    [33.64,34.02,"that",34],
-    [34.02,34.44,"actually",34],
-    [34.44,34.72,"works.",35]
+    [0.3,0.52,"Your",0],
+    [0.52,0.88,"carrier",0],
+    [0.88,1.14,"has",0],
+    [1.14,1.34,"been",1],
+    [1.34,1.6,"screening",1],
+    [1.6,1.9,"your",1],
+    [1.9,2.06,"calls",2],
+    [2.06,2.32,"for",2],
+    [2.32,2.62,"scams",2],
+    [2.62,2.86,"this",3],
+    [2.86,3.14,"whole",3],
+    [3.14,3.52,"time",3],
+    [3.76,3.92,"you",4],
+    [3.92,4.32,"just",4],
+    [4.32,4.62,"never",4],
+    [4.62,5.0,"knew.",5],
+    [5.62,5.78,"That",6],
+    [5.78,6.12,"exact",6],
+    [6.12,6.58,"label?",6],
+    [6.58,7.52,"T-Mobile's",7],
+    [7.52,7.66,"own",7],
+    [7.66,8.04,"network",7],
+    [8.2,8.44,"adds",8],
+    [8.44,8.62,"it",8],
+    [8.62,8.74,"the",8],
+    [8.7,8.98,"moment",9],
+    [8.98,9.22,"a",9],
+    [9.22,9.38,"scam",9],
+    [9.38,9.56,"call",10],
+    [9.56,9.8,"comes",10],
+    [9.8,10.42,"in.",10],
+    [11.4,11.52,"T-Mobile",11],
+    [11.4,11.8,"can",11],
+    [11.8,12.02,"block",11],
+    [12.02,12.4,"it,",12],
+    [12.4,12.52,"so",12],
+    [12.52,12.76,"it",12],
+    [12.76,12.98,"never",12],
+    [12.98,13.26,"reaches",13],
+    [13.26,13.46,"your",13],
+    [13.46,13.72,"phone.",13],
+    [14.38,14.76,"It's",14],
+    [14.76,15.02,"not",14],
+    [15.02,15.58,"perfect",14],
+    [15.88,16.1,"none",15],
+    [16.1,16.28,"of",15],
+    [16.28,16.46,"these",15],
+    [16.46,16.9,"systems",16],
+    [16.9,17.44,"catch",16],
+    [17.44,17.94,"every",16],
+    [17.94,18.3,"unwanted",17],
+    [18.3,18.7,"call.",17],
+    [19.59,19.78,"You",18],
+    [19.78,19.96,"can",18],
+    [19.96,20.14,"check",18],
+    [20.14,20.36,"it",19],
+    [20.36,20.66,"inside",19],
+    [20.66,20.94,"each",19],
+    [20.94,21.34,"carrier's",20],
+    [21.34,21.56,"app,",20],
+    [21.76,21.9,"though",21],
+    [21.9,22.1,"the",21],
+    [22.1,22.34,"system",21],
+    [22.34,22.7,"itself",22],
+    [22.7,22.94,"runs",22],
+    [22.94,23.14,"on",22],
+    [23.14,23.26,"the",23],
+    [23.26,23.62,"network,",23],
+    [23.84,24.1,"not",24],
+    [24.1,24.32,"the",24],
+    [24.32,24.58,"app.",24],
+    [25.14,25.38,"Send",25],
+    [25.38,25.64,"this",25],
+    [25.64,25.76,"to",25],
+    [25.74,26.18,"someone",26],
+    [26.18,26.48,"about",26],
+    [26.48,26.72,"to",26],
+    [26.72,26.88,"pick",27],
+    [26.88,27.02,"up",27],
+    [27.02,27.18,"a",27],
+    [27.18,27.4,"call",28],
+    [27.4,27.84,"they",28],
+    [27.84,28.14,"don't",28],
+    [28.14,28.7,"recognize.",29],
+    [29.25,29.5,"The",30],
+    [29.5,30.0,"setup's",30],
+    [30.0,30.14,"in",30],
+    [30.14,30.26,"the",31],
+    [30.24,30.46,"link",31],
+    [30.46,30.78,"in",31],
+    [30.78,31.04,"bio.",32],
+    [31.66,31.82,"Follow",33],
+    [31.82,32.1,"for",33],
+    [32.1,32.28,"the",33],
+    [32.28,32.66,"setup",34],
+    [32.66,32.92,"that",34],
+    [32.92,33.3,"actually",34],
+    [33.3,33.58,"works.",35]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
