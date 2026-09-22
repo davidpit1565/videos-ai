@@ -92,7 +92,20 @@ FCC's own description supports.
 - **Cold-read test**: checkable directly by opening the relevant carrier app.
 
 ## Narration (draft — subject to the usual voice/accent/pacing revision rounds before shipping)
-1. "Verizon, AT&T, and T-Mobile all run network-level systems to catch spam and scam calls."
+
+**Line 1 rewritten 22.9.2026, after David watched the shipped cut and flagged the hook
+directly: the first two seconds didn't make him want to keep watching or follow the
+account.** The original line ("Verizon, AT&T, and T-Mobile all run network-level systems to
+catch spam and scam calls.") is exactly the flat, informational shape `hooks-guide.md`'s
+dry-sentence test warns against — a true, on-topic sentence with no pull (no stakes,
+identity, or curiosity). Rewritten as a You-Focused Appeal (rotated off episode 44's
+Shock/Surprise, last used episode 42): the specific, checkable claim ("your carrier has
+been screening your calls for scams") lands in the first clause, personal register ("your,"
+"you"), and the twist ("you just never noticed") is the same secret-reveal shape as the
+Roni reference grid, without inventing anything the fact-checked script doesn't already
+support (the "always on, no user action needed" claim is the scoreboard scene's own verified
+point).
+1. "Your carrier's already been screening your calls for scams — you just never noticed it running."
 2. "That 'Scam Likely' label? T-Mobile says its own network labels it automatically — before you even see the call."
 3. "T-Mobile can even block it before it reaches your phone."
 4. "It's not perfect — none of these systems catch every unwanted call."
