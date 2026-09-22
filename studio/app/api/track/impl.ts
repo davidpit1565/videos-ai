@@ -672,6 +672,30 @@ export async function GET(req: Request) {
     }
   }
 
+  // He asked directly (22.9.2026) for an automatic nudge so a gate-passed, tested
+  // episode never just sits unpublished because he forgot — episodes 43/44 had done
+  // exactly that with no error anywhere to explain it. Repeats once a day (not once
+  // ever, unlike notifyNewRenders below) for as long as the episode stays untouched,
+  // because "remind me if I forget" means the reminder has to outlast one missed day.
+  // Stops the moment a human either publishes it or ticks queuedForPublish — this never
+  // publishes anything itself, only says so.
+  const REMINDER_HOURS = Number(process.env.PUBLISH_REMINDER_HOURS ?? 48);
+  const staleUnpublished: { number: number; title: string; hoursSinceReady: number }[] = [];
+  for (const e of state.episodes) {
+    if (e.status === "live" || !e.tested || e.queuedForPublish) continue;
+    const reel = reels().find((r) => r.kind === "video" && r.episode === e.number && r.gate?.passed);
+    if (!reel) continue;
+    const hoursSinceReady = (Date.parse(now) - Date.parse(reel.builtAt)) / 3_600_000;
+    if (hoursSinceReady < REMINDER_HOURS) continue;
+    const label = `תזכורת: ריל ${e.number} מוכן ${Math.floor(hoursSinceReady / 24)} ימים ולא פורסם ולא בתור לפרסום אוטומטי`;
+    // Once a day, not once a pull — a manual refresh five minutes later must not
+    // re-fire the same nudge, same dedupe shape as the mismatch notices above.
+    const saidToday = feed.some((f) => f.label === label && f.at.slice(0, 10) === today);
+    if (saidToday) continue;
+    fresh.push({ id: uid(), at: now, source: "studio", label, value: null, delta: null });
+    staleUnpublished.push({ number: e.number, title: e.title, hoursSinceReady });
+  }
+
   state.activity = [...fresh, ...feed].slice(0, 300);
   state.updatedAt = now;
   // Guarded against the cron and a manual pull genuinely overlapping — both start from
@@ -726,6 +750,18 @@ export async function GET(req: Request) {
     const e = state.episodes.find((x) => x.number === num);
     const title = realTitleFor(num) || e?.title || `Episode ${num}`;
     void notifyEpisodeLive(num, title).catch(() => {});
+  }
+
+  // The actual push for the "don't let me forget" reminder computed above — one per
+  // day per stale episode, not bundled into the generic "עדכון חדש" notice above so it
+  // reads as its own thing and can't get lost inside "3 עדכונים: ...".
+  for (const s of staleUnpublished) {
+    void notify({
+      title: `ריל ${s.number} עדיין לא פורסם`,
+      body: `${s.title} — מוכן כבר ${Math.floor(s.hoursSinceReady / 24)} ימים. סמן "תור לפרסום אוטומטי" או פרסם ידנית.`,
+      url: "/renders",
+      tag: `stale-${s.number}`,
+    }).catch(() => {});
   }
 
   // How many of this pull's Instagram posts came back with no fresh metrics because
