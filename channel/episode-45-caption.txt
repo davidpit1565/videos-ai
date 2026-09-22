@@ -1,0 +1,15 @@
+Your phone carrier is already screening calls before you answer.
+
+Verizon, AT&T, and T-Mobile all run network-level systems to catch suspected spam and scam calls. T-Mobile says its own network-level "Scam ID" automatically labels a suspicious call "Scam Likely" — and Scam Block can stop it before it ever reaches your phone.
+
+It's not perfect. None of these systems catch every unwanted call — a scammer calling from a real, verified number can still get through.
+
+Each carrier also gives you a way to check it in its own app (Call Filter, ActiveArmor, or Scam Shield/T-Life) — though the protection itself runs on the network, not the app.
+
+Send this to whoever's about to pick up a call they don't recognize.
+
+Full setup, exact steps: https://actually-works.com/e/45
+
+Follow for the setup that actually works.
+
+#scamalert #robocalls #phonesecurity #verizon #tmobile
