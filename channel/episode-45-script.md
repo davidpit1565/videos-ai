@@ -104,8 +104,11 @@ been screening your calls for scams") lands in the first clause, personal regist
 "you"), and the twist ("you just never noticed") is the same secret-reveal shape as the
 Roni reference grid, without inventing anything the fact-checked script doesn't already
 support (the "always on, no user action needed" claim is the scoreboard scene's own verified
-point).
-1. "Your carrier's already been screening your calls for scams — you just never noticed it running."
+point). First take of the rewrite ("...you just never noticed it running.") flagged both
+"already" and "noticed" as swallowed regardless of position in the sentence — reworded to
+drop both words rather than reseed, per the documented pattern that some words swallow
+independent of seed.
+1. "Your carrier has been screening your calls for scams this whole time — you just never knew."
 2. "That 'Scam Likely' label? T-Mobile says its own network labels it automatically — before you even see the call."
 3. "T-Mobile can even block it before it reaches your phone."
 4. "It's not perfect — none of these systems catch every unwanted call."
