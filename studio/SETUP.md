@@ -36,6 +36,7 @@ Vercel → Project → Settings → Environment Variables. אף אחד מהם ל
 | `IG_USER_ID` | מזהה חשבון האינסטגרם המקצועי | שם, באותו תהליך |
 | `INSTAGRAM_INSIGHTS_ENABLED` | אופציונלי — `false` מכבה את קריאות ה-Insights הנוספות (reach לפי follower/non-follower, watch time, account insights) בלי דיפלוי חדש, אם משהו מהן מתנהג לא צפוי מול Instagram | לא חובה — ברירת המחדל דלוקה |
 | `INSTAGRAM_INSIGHTS_SNAPSHOT_DEDUPE_WINDOW` | אופציונלי — כמה דקות בין snapshot היסטורי אחד לשני לאותו ריל כשכלום לא השתנה (ברירת מחדל 360 = 6 שעות) | לא חובה |
+| `PUBLISH_REMINDER_HOURS` | אופציונלי — כמה שעות אחרי שריל מוכן (עבר גייט) בלי שפורסם או סומן לתור, לפני שהתזכורת היומית מתחילה (ברירת מחדל 48 = יומיים) | לא חובה |
 
 `BEEHIIV_PUBLICATION_ID` כבר בקוד (הוא מזהה ציבורי, לא סוד). אם תפתח פרסום אחר,
 אפשר לדרוס אותו במשתנה סביבה באותו שם.
