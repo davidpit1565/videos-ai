@@ -744,9 +744,13 @@ export async function GET(req: Request) {
     for (const v of values) out[v ?? "NOT_REQUESTED"] = (out[v ?? "NOT_REQUESTED"] ?? 0) + 1;
     return out;
   };
+  const reachByFollowerTypeSample = ig.connected
+    ? ig.media.find((m) => m.reachByFollowerTypeDebug)?.reachByFollowerTypeDebug
+    : undefined;
   const igInsightsDebug = ig.connected
     ? {
         reachByFollowerTypeStatus: tally(ig.media.map((m) => m.reachByFollowerTypeStatus)),
+        reachByFollowerTypeSample,
         watchStatus: tally(ig.media.map((m) => m.watchStatus)),
       }
     : undefined;
