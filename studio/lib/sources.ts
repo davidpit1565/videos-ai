@@ -67,6 +67,10 @@ export type IgMedia = {
   /** best-effort, `reach` with `breakdown=follow_type` — see fetchInstagram. */
   reachByFollowerType?: { followers: number | null; nonFollowers: number | null };
   reachByFollowerTypeStatus?: MetricStatus;
+  /** Only set when reachByFollowerTypeStatus isn't AVAILABLE — the raw (truncated, no
+   *  token) response body or error, so a real "Instagram has no breakdown for this
+   *  media" can be told apart from "our parsing expected the wrong response shape". */
+  reachByFollowerTypeDebug?: string;
   /** best-effort Reels watch-time/retention metrics — see fetchInstagram. */
   watchAvgSeconds?: number | null;
   watchTotalSeconds?: number | null;
@@ -320,6 +324,7 @@ export async function fetchInstagram(): Promise<IgResult> {
           // plain reach — Instagram doesn't document the two as guaranteed to add up.
           let reachByFollowerType: IgMedia["reachByFollowerType"];
           let reachByFollowerTypeStatus: MetricStatus = "NOT_REQUESTED";
+          let reachByFollowerTypeDebug: string | undefined;
           if (m.media_type === "REELS" || m.media_type === "VIDEO") {
             reachByFollowerTypeStatus = "UNKNOWN";
             try {
@@ -328,7 +333,8 @@ export async function fetchInstagram(): Promise<IgResult> {
                 { cache: "no-store" },
               );
               if (br.ok) {
-                const bj = (await br.json()) as {
+                const bodyText = await br.text();
+                const bj = JSON.parse(bodyText) as {
                   data?: {
                     name: string;
                     total_value?: { breakdowns?: { results?: { dimension_values?: string[]; value?: number }[] }[] };
@@ -344,11 +350,21 @@ export async function fetchInstagram(): Promise<IgResult> {
                 }
                 reachByFollowerType = { followers, nonFollowers };
                 reachByFollowerTypeStatus = followers !== null || nonFollowers !== null ? "AVAILABLE" : "NOT_AVAILABLE";
+                // ok HTTP status but no usable breakdown — keep the raw body (truncated,
+                // no token in it) so it's possible to tell "Instagram genuinely has no
+                // breakdown for this media" apart from "our parsing expected the wrong
+                // shape", instead of both reading identically as NOT_AVAILABLE forever.
+                if (reachByFollowerTypeStatus === "NOT_AVAILABLE") {
+                  reachByFollowerTypeDebug = bodyText.slice(0, 300);
+                }
               } else {
-                reachByFollowerTypeStatus = statusFromErrorBody((await br.text()).slice(0, 300));
+                const bodyText = await br.text();
+                reachByFollowerTypeStatus = statusFromErrorBody(bodyText);
+                reachByFollowerTypeDebug = bodyText.slice(0, 300);
               }
-            } catch {
+            } catch (e) {
               reachByFollowerTypeStatus = "API_ERROR";
+              reachByFollowerTypeDebug = e instanceof Error ? e.message : String(e);
             }
           }
 
@@ -363,7 +379,13 @@ export async function fetchInstagram(): Promise<IgResult> {
           let watchReplays: number | null = null;
           let watchPlays: number | null = null;
           let watchStatus: MetricStatus = "NOT_REQUESTED";
-          if (m.media_type === "REELS") {
+          // Confirmed against a real production pull (22.9.2026): this account's media
+          // list reports every Reel as media_type "VIDEO", not "REELS" — the same
+          // reason the base views/reach request above already guards on both. Gating
+          // this on "REELS" alone silently skipped every episode (NOT_REQUESTED, not a
+          // real answer about Instagram's support) — exactly the kind of blind
+          // assumption this task said not to make.
+          if (m.media_type === "REELS" || m.media_type === "VIDEO") {
             watchStatus = "UNKNOWN";
             try {
               const wr = await timedFetch(
@@ -396,6 +418,7 @@ export async function fetchInstagram(): Promise<IgResult> {
             metricStatus,
             reachByFollowerType,
             reachByFollowerTypeStatus,
+            reachByFollowerTypeDebug,
             watchAvgSeconds,
             watchTotalSeconds,
             watchReplays,
