@@ -1,25 +1,29 @@
 # Episode 45 — script, ready to produce
 
 ## Topic
-US phone carriers (Verizon, AT&T, T-Mobile) each run network-level systems that identify or
-block suspected spam and scam calls, before the user answers. T-Mobile states directly that
-its "Scam Likely" label comes from Scam ID running in its network. Each carrier has a free
-app (Verizon Call Filter, AT&T ActiveArmor/Call Protect, T-Mobile Scam Shield) that lets a
-user see and manage it directly. It does not catch everything — a scammer calling from a
-legitimately-registered, cryptographically-signed number (STIR/SHAKEN only authenticates
-that the caller ID isn't spoofed, a separate system from the scam-detection above, and it
-says nothing about the caller's actual intent) can still get through clean.
+US phone carriers including Verizon, AT&T, and T-Mobile use network-level systems to
+identify or block suspected spam and scam calls. Verizon Call Filter uses evolving
+analytics and databases to detect spam calls and can automatically send high-risk spam to
+voicemail. AT&T ActiveArmor automatically blocks fraud calls and can label or route spam
+calls. T-Mobile says its network-level Scam ID automatically labels suspected scam calls
+"Scam Likely," while Scam Block can block those calls before they reach the phone.
 
-**Revised 22.9.2026 after a second, source-by-source red-team.** The original claim —
-"real-time AI scoring on every incoming call, before it rings," and "'Scam Likely' is that
-AI's output, not a static blocklist" — bundled three separate factual claims (every call /
-AI specifically / pre-ring timing) into one sentence stronger than any single source
-supports. Verizon's own language is "analytics and databases that are constantly evolving";
-T-Mobile's is network-level behavioral detection with an explicit "Scam ID" name; none of
-the three carriers' own pages assert "AI" scores "every" call. Softened to what each source
-actually says, and STIR/SHAKEN is now explicitly named as a *separate* system from the
-detection itself, not a component of it — the earlier draft's phrasing risked implying
-STIR/SHAKEN was "the AI's brain," which it is not.
+Customers can view or manage these protections through the carriers' apps or account
+tools, although the network-level protection itself does not necessarily depend on the
+app. Important limitation: these systems do not catch every unwanted or fraudulent call.
+
+STIR/SHAKEN is a separate system. It helps authenticate caller ID information; it does not
+determine whether the caller's intent is legitimate. Caller-ID authentication is not
+presented as proof that a call is safe.
+
+**Revised 22.9.2026, twice, after two source-by-source red-teams.** Round 1 removed "AI
+scoring on every incoming call, before it rings" (three bundled claims stronger than any
+source states). Round 2 tightened further: "before the user answers" implied a single
+timing for all three carriers, when only T-Mobile's Scam Block is sourced as stopping calls
+before they reach the phone; "Each carrier has a free app" was corrected since network-level
+protection doesn't require the app; the STIR/SHAKEN limitation no longer includes an invented
+scenario ("a scammer calling from a legitimately-registered, signed number") beyond what the
+FCC's own description supports.
 
 ## Why this topic, why now
 - This is the first reach-first-era episode built from a **Phase 1/Phase 2 forensic
@@ -41,28 +45,37 @@ STIR/SHAKEN was "the AI's brain," which it is not.
   Windows/screenshots, 44 was WhatsApp/message summaries).
 - **Not yet covered** — checked against every existing episode script and caption (1-44).
 
-## Verification (live web search, 22.9.2026 — re-checked, second pass, same day)
-First pass checked each carrier's own current support documentation and concluded "AI
-scoring on every incoming call, before it rings." A second, source-by-source red-team
-(same day) found that phrasing stronger than what any single source actually states, and
-it was revised. What each source actually supports:
-- **What it does**: network-level systems that identify or block suspected spam/scam calls
-  before the user answers. Verizon's own wording is "analytics and databases that are
-  constantly evolving"; T-Mobile explicitly names its system "Scam ID," running in-network.
-  None of the three carriers' own pages say "AI" scores "every" call — that specific
-  combination is not sourced, so the script no longer claims it.
-- **AT&T**: Call Protect / ActiveArmor — enabled via Features → Call filtering → Call
-  Protect (accept terms, toggle on), or managed in the myAT&T / ActiveArmor app.
-- **Verizon**: Call Filter — included free on standard/prepaid plans with a compatible
-  device; managed via the Call Filter app or My Verizon.
-- **T-Mobile**: Scam Shield / Scam ID — free tier includes Scam Likely labeling, Scam
-  Block, Caller ID, and spam-to-voicemail; managed via the T-Life app.
-- **Real, stated limitation, not smoothed over**: STIR/SHAKEN authenticates that a caller
-  ID isn't spoofed — it is a **separate system** from the scam-detection above, not part of
-  it, and it does NOT verify the caller's actual intent. A scammer calling from a
-  legitimately-registered, signed number still gets through clean.
-- **Scope, stated plainly**: US carriers only. Not a claim about carriers in other
-  countries, and not a claim that every scam call gets caught.
+### Scope (hard limits for this script — do not widen)
+- US carriers only.
+- Verizon, AT&T, and T-Mobile only.
+- Do not claim that every carrier uses AI.
+- Do not claim that every incoming call is scored.
+- Do not claim that every call is screened before ringing.
+- Do not imply that STIR/SHAKEN is the scam-detection system.
+- Do not imply that caller-ID authentication proves a caller is legitimate.
+- Do not imply that the carrier systems catch every scam call.
+- If showing a carrier app on screen, make clear the network-level protection can operate
+  independently of the app, where the carrier states this.
+
+## Verification (live web search, 22.9.2026 — three passes, same day)
+- **Verizon Call Filter**: uses "analytics and databases that are constantly evolving" to
+  detect spam; can automatically route high-risk spam to voicemail. Free tier on
+  standard/prepaid plans with a compatible device; managed via the Call Filter app or My
+  Verizon — but the network-level detection itself is not stated as requiring the app.
+- **AT&T ActiveArmor / Call Protect**: automatically blocks fraud calls; can label or route
+  spam calls; AT&T states real-time protection. Managed via myAT&T/ActiveArmor.
+- **T-Mobile Scam ID / Scam Block**: Scam ID is explicitly network-level and automatically
+  labels suspected scam calls "Scam Likely" (T-Mobile's own wording, not paraphrased into
+  "AI output"). Scam Block can block those calls before they reach the phone — this
+  before-the-phone timing is sourced specifically to T-Mobile, not asserted for all three
+  carriers. Managed via T-Life, but the network-level protection does not require the app.
+- **STIR/SHAKEN**: the FCC describes it as a caller-ID authentication framework, one part of
+  the broader anti-robocall effort — a **separate system** from the scam-detection above,
+  not a component of it. It authenticates that caller ID information hasn't been spoofed; it
+  does not determine whether the caller's intent is legitimate. The script does not go
+  further than this (no invented "signed number gets through clean" scenario).
+- **Scope, stated plainly**: US carriers only — specifically Verizon, AT&T, and T-Mobile, not
+  every carrier or every country. Not a claim that every scam/unwanted call is caught.
 
 ## Hook rules check (against `channel/hooks-guide.md`)
 - **Type**: Contrarian Open. **Checked against the file's actual rule (not a guess):**
@@ -72,18 +85,18 @@ it was revised. What each source actually supports:
   so 45 does not break the rule as written. Flagging this explicitly since it was raised as
   a question, rather than silently assuming it's fine.
 - **Specific, checkable claim in the first clause**: names the real, current mechanism
-  (AI scoring incoming calls) and, within the first three lines, the real named carriers —
-  no vague "your phone company."
+  (network-level scam/spam detection) and, within the first line, the three real named
+  carriers — no vague "your phone company," and no unsourced "AI" claim.
 - **Personal-stakes, plain language**: scam calls are a near-universal fear; zero jargon
   needed to feel the stake.
 - **Cold-read test**: checkable directly by opening the relevant carrier app.
 
 ## Narration (draft — subject to the usual voice/accent/pacing revision rounds before shipping)
-1. "Your phone carrier may already be screening calls before you even answer."
-2. "Verizon, AT&T, and T-Mobile all run network-level systems that flag suspected spam and scam calls."
-3. "That 'Scam Likely' label? T-Mobile says it comes from Scam ID, running in its own network."
-4. "It doesn't catch everything — a scammer calling from a real, verified number still gets through."
-5. "Each carrier has its own free app — Call Filter, ActiveArmor, or Scam Shield — where you can see it working."
+1. "Verizon, AT&T, and T-Mobile all run network-level systems to catch spam and scam calls."
+2. "That 'Scam Likely' label? T-Mobile says its own network labels it automatically — before you even see the call."
+3. "T-Mobile can even block it before it reaches your phone."
+4. "It's not perfect — none of these systems catch every unwanted call."
+5. "You can see it working in each carrier's app — but the protection itself runs on the network, not the app."
 6. "Send this to whoever's going to answer the next call they don't recognize."
 7. "The setup's in the link in bio."
 8. "Follow for the setup that actually works."
@@ -94,21 +107,21 @@ share because they were told to, they share because mid-video they already thoug
 someone. This replaces the earlier, rejected "who would you send this to" framing.)
 
 ## Density check
-6 distinct ideas across 8 lines (2 locked CTA lines excluded): (1) the core mechanism
-(network-level screening, not "AI scores every call"), (2) which three carriers, (3) the
-"Scam Likely" label's real, named source (T-Mobile's Scam ID), (4) the real limitation
-(a verified number still gets through — STIR/SHAKEN named as a separate system), (5) how
-to see/manage it yourself, (6) the natural-recipient line. Slightly above the ~4-5 idea
-range this account's own data associates with better save/engagement performance — kept
-anyway because the STIR/SHAKEN separation (idea 4) exists specifically to prevent a
-factual misunderstanding the second red-team flagged, not as padding.
+5 distinct ideas across 8 lines (2 locked CTA lines excluded): (1) which three carriers run
+network-level detection, (2) the "Scam Likely" label's real, named source (T-Mobile's Scam
+ID) and its timing, (3) T-Mobile's before-the-phone blocking (sourced only to T-Mobile, not
+generalized), (4) the real limitation (not every call is caught), (5) how to see it in each
+carrier's app while noting the protection itself isn't app-dependent. Within the ~4-5 idea
+range this account's own data associates with better save/engagement performance.
 
 ## Simplicity/length check
 No jargon beyond the carrier product names themselves (Call Filter, ActiveArmor, Scam
-Shield), each named once. STIR/SHAKEN is deliberately NOT named on camera — the limitation
-is stated in plain consequence language ("a scammer using a real, verified number") rather
-than the technical standard's name, keeping it inside the channel's plain-language rule.
-Length target: 30-45s per the standing floor.
+Shield), each named once. Neither "AI" nor "STIR/SHAKEN" is named on camera — the word "AI"
+because no source supports it as the mechanism's name, and STIR/SHAKEN because its
+limitation is stated in plain consequence language ("none of these systems catch every
+unwanted call") rather than the technical standard's name, keeping both inside the
+channel's plain-language rule and the scope list above. Length target: 30-45s per the
+standing floor.
 
 ## Experiment status — Pilot #1, not proof
 This episode is **experiment pilot #1 of 4**, testing whether a natural-recipient line
