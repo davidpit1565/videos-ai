@@ -34,6 +34,14 @@ export default function PublishButtons({ file, caption, youtube, episode }: Prop
   }, []);
 
   async function doInstagram() {
+    if (episode == null) {
+      setIgMsg("אין מספר פרק לריל הזה — לא ניתן לפרסם דרך הנתיב המוגן.");
+      return;
+    }
+    if (ep?.status === "live" && ep.igMediaId) {
+      setIgMsg(`הפרק הזה כבר פורסם — ${ep.igPermalink ?? "(אין קישור שמור)"}. לא שולח שוב.`);
+      return;
+    }
     if (!caption || !caption.trim()) {
       setIgMsg("אין קובץ כיתוב לריל הזה (episode-NN-caption.txt) — לא מפרסם בלי כיתוב.");
       return;
@@ -50,8 +58,16 @@ export default function PublishButtons({ file, caption, youtube, episode }: Prop
       const r = await fetch("/api/instagram/publish", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ file, caption: caption ?? "" }),
+        body: JSON.stringify({ episode }),
       }).then((x) => x.json());
+      if (!r.ok && r.reason) {
+        setIgMsg(`נחסם: ${r.reason}`);
+        return;
+      }
+      if (r.alreadyPublished) {
+        setIgMsg(`הפרק הזה כבר היה מפורסם — ${r.reel?.permalink ?? ""}`);
+        return;
+      }
       const lines = [
         r.reel?.ok ? `ריל ✓${r.reel.permalink ? ` — ${r.reel.permalink}` : ""}` : `ריל נכשל: ${r.reel?.reason}`,
         r.story
@@ -157,8 +173,12 @@ export default function PublishButtons({ file, caption, youtube, episode }: Prop
         </label>
       )}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-        <button className="btn" onClick={doInstagram} disabled={igBusy}>
-          {igBusy ? "מפרסם…" : "פרסם: ריל + פייסבוק"}
+        <button
+          className="btn"
+          onClick={doInstagram}
+          disabled={igBusy || (ep?.status === "live" && !!ep.igMediaId)}
+        >
+          {igBusy ? "מפרסם…" : ep?.status === "live" && ep.igMediaId ? "כבר פורסם ✓" : "פרסם: ריל + פייסבוק"}
         </button>
         <button className="btn ghost" onClick={doFacebook} disabled={fbBusy}>
           {fbBusy ? "מפרסם…" : "פרסם: פייסבוק בלבד — פרופיל + עמוד (נסיון חוזר)"}

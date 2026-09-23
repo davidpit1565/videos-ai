@@ -5,9 +5,10 @@
  *  OAuth-authenticated upload, which a read-only YOUTUBE_API_KEY can never do — uploading
  *  as the channel owner requires a consent grant, once, from a human. */
 
-import { sharedPool } from "./db";
+import { sharedPool, loadState, saveState } from "./db";
 import { igRoute, igToken } from "./sources";
 import { SITE_URL } from "./site";
+import { reels } from "./reels";
 
 export { SITE_URL };
 
@@ -255,6 +256,83 @@ export async function publishToFacebookBoth(file: string, caption: string): Prom
     publishToFacebookBusinessPage(file, caption),
   ]);
   return { profile, page };
+}
+
+// ───────────────────────── The one guarded entry point ─────────────────────────
+
+export type EpisodePublishResult =
+  | { ok: false; reason: string }
+  | { ok: true; alreadyPublished: true; igPermalink: string | null }
+  | {
+      ok: true;
+      alreadyPublished: false;
+      reel: IgPublishResult;
+      facebook: FbPublishResult | null;
+      facebookPage: FbPublishResult | null;
+    };
+
+/** The single path both the manual "פרסם" button and the daily cron now go through —
+ *  built 23.9.2026 after a real incident: a manual test call to the old bare
+ *  file+caption endpoint published episode 45 a second time, with an empty caption,
+ *  minutes after the legitimate daily cron had already published it correctly. Two
+ *  separate code paths (the manual route and the cron route) each did their own
+ *  version of "check caption, check gate, publish, maybe update state" — they'd
+ *  already drifted (only the cron route cleared `queuedForPublish` or touched
+ *  `status`/`igMediaId` at all; the manual route published and left the studio to
+ *  find out later, best-effort, via the next /api/track pull matching on caption
+ *  text — which is exactly the fragile link that let today's empty-caption post go
+ *  untracked and the real one get confused for it).
+ *
+ *  Every real safety check lives here now, once: a gate-passed render must exist, a
+ *  real caption must exist, and — the one that was missing entirely — an episode
+ *  already marked `live` with a real `igMediaId` is refused outright rather than
+ *  quietly published again. State is updated in the same request that publishes,
+ *  not left for a later best-effort pull to reconstruct by matching text. */
+export async function publishEpisode(episodeNumber: number): Promise<EpisodePublishResult> {
+  const state = await loadState();
+  if (!state) return { ok: false, reason: "אין מסד נתונים מוגדר" };
+  const row = state.episodes.find((e) => e.number === episodeNumber);
+  if (!row) return { ok: false, reason: `פרק ${episodeNumber} לא קיים בסטייט` };
+
+  // The idempotency guard itself — this is the check today's incident shows was missing.
+  if (row.status === "live" && row.igMediaId) {
+    return { ok: true, alreadyPublished: true, igPermalink: row.igPermalink ?? null };
+  }
+
+  const reel = reels().find((r) => r.kind === "video" && r.episode === episodeNumber && r.gate?.passed);
+  if (!reel) return { ok: false, reason: `אין רנדר שעבר את השער לפרק ${episodeNumber}` };
+  if (!reel.caption?.trim()) return { ok: false, reason: `אין קובץ כיתוב לפרק ${episodeNumber} — לא מפרסם בלי כיתוב` };
+
+  const ig = await publishToInstagram(reel.file, reel.caption);
+  const fb = ig.reel.ok ? await publishToFacebookBoth(reel.file, reel.caption) : null;
+
+  // Write the real outcome into state from the same request that published, rather than
+  // waiting on the next /api/track pull to reconstruct it by matching caption text —
+  // that match is best-effort and is exactly what mis-linked today's incident. A save
+  // conflict here (the cron and a manual click racing each other) is safe to drop: the
+  // platform-side publish already happened either way, and the next /api/track pull
+  // still backfills anything this request's write loses the race on.
+  const loadedAt = state.updatedAt;
+  const freshRow = state.episodes.find((e) => e.number === episodeNumber);
+  if (freshRow) {
+    if (ig.reel.ok) {
+      freshRow.status = "live";
+      freshRow.igMediaId = ig.reel.mediaId;
+      freshRow.igPermalink = ig.reel.permalink;
+      freshRow.publishedAt = new Date().toISOString().slice(0, 10);
+    }
+    freshRow.queuedForPublish = false;
+  }
+  state.updatedAt = new Date().toISOString();
+  await saveState(state, loadedAt).catch(() => {});
+
+  if (ig.reel.ok && process.env.CRON_SECRET) {
+    await fetch(`${SITE_URL}/api/track`, {
+      headers: { authorization: `Bearer ${process.env.CRON_SECRET}` },
+    }).catch(() => {});
+  }
+
+  return { ok: true, alreadyPublished: false, reel: ig.reel, facebook: fb?.profile ?? null, facebookPage: fb?.page ?? null };
 }
 
 // ───────────────────────── YouTube ─────────────────────────

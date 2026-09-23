@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import { publishToInstagram, publishToFacebookBoth, SITE_URL } from "@/lib/publish";
-import { loadState, saveState } from "@/lib/db";
-import { reels } from "@/lib/reels";
+import { publishEpisode } from "@/lib/publish";
+import { loadState } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,7 +26,17 @@ export const maxDuration = 120;
  *  pipeline gate) AND tick "queue for auto-publish" in the studio (`queuedForPublish`) —
  *  this route only decides *when* to press the button that's already been approved, never
  *  *whether* to. Guarded the same way /api/track and /api/health-check already are
- *  (Vercel's own x-vercel-cron header, or CRON_SECRET for anything else). */
+ *  (Vercel's own x-vercel-cron header, or CRON_SECRET for anything else).
+ *
+ *  Rebuilt 23.9.2026 to go through the same `publishEpisode` (lib/publish.ts) the manual
+ *  button now uses, instead of its own separate copy of the gate/caption checks and its
+ *  own separate, thinner state update (this route used to only ever clear
+ *  `queuedForPublish` — never `status`, `igMediaId`, or `igPermalink` — leaving the studio
+ *  to reconstruct those later, best-effort, from /api/track matching post text against
+ *  captions). Two copies of "publish and update state" had already drifted enough that a
+ *  manual test against the other route republished an episode this one had already
+ *  correctly published minutes earlier, with no idempotency check catching it either
+ *  side. One function, one set of guards, used by both callers now. */
 export async function GET(req: Request) {
   const secret = process.env.CRON_SECRET;
   const auth = req.headers.get("authorization");
@@ -44,34 +53,17 @@ export async function GET(req: Request) {
     const ep = queued[0];
     if (!ep) return NextResponse.json({ ok: true, skipped: true, reason: "nothing queued" });
 
-    const reel = reels().find((r) => r.kind === "video" && r.episode === ep.number && r.gate?.passed);
-    if (!reel) {
-      return NextResponse.json(
-        { ok: false, reason: `episode ${ep.number} is queued but has no gate-passed render` },
-        { status: 404 },
-      );
+    const result = await publishEpisode(ep.number);
+    if (!result.ok) return NextResponse.json({ episode: ep.number, ...result }, { status: 400 });
+    if (result.alreadyPublished) {
+      return NextResponse.json({ episode: ep.number, ok: true, alreadyPublished: true, igPermalink: result.igPermalink });
     }
-    if (!reel.caption?.trim()) {
-      return NextResponse.json({ ok: false, reason: `episode ${ep.number} has no caption file` }, { status: 400 });
-    }
-
-    const ig = await publishToInstagram(reel.file, reel.caption);
-    const fb = ig.reel.ok ? await publishToFacebookBoth(reel.file, reel.caption) : null;
-
-    // Clear the flag regardless of outcome: a failed attempt should surface (the
-    // caller can check /videos and its own activity feed) and get a fresh look, not
-    // silently retry every day at the same hour with the same result.
-    const row = state.episodes.find((e) => e.id === ep.id);
-    if (row) row.queuedForPublish = false;
-    await saveState(state);
-
-    if (ig.reel.ok && process.env.CRON_SECRET) {
-      await fetch(`${SITE_URL}/api/track`, {
-        headers: { authorization: `Bearer ${process.env.CRON_SECRET}` },
-      }).catch(() => {});
-    }
-
-    return NextResponse.json({ episode: ep.number, ...ig, facebook: fb?.profile ?? null, facebookPage: fb?.page ?? null });
+    return NextResponse.json({
+      episode: ep.number,
+      reel: result.reel,
+      facebook: result.facebook,
+      facebookPage: result.facebookPage,
+    });
   } catch (e) {
     return NextResponse.json({ ok: false, reason: e instanceof Error ? e.message : String(e) }, { status: 500 });
   }
