@@ -122,13 +122,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="vig"></div>
 <div class="prog" id="prog"></div>
 
-<section class="scene" data-in="0" data-out="6.60">
+<section class="scene" data-in="0" data-out="5.93">
   <div class="pad"><div class="kb" id="hookKb">
     <h2 class="punch" id="hookH2">Your Copilot chats don't <span class="box">vanish</span>.</h2>
   </div></div>
 </section>
 
-<section class="scene" data-in="6.60" data-out="12.40">
+<section class="scene" data-in="5.93" data-out="13.1">
   <div class="pad"><div class="kb">
     <div class="quote" id="quoteCard" style="opacity:0">
       <div class="qk" id="quoteQk">microsoft · activity history</div>
@@ -137,19 +137,19 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="12.40" data-out="16.60">
+<section class="scene" data-in="13.1" data-out="20.79">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="12.50">Your company can keep that copy<br><strong>up to a year</strong> — sometimes even more.</p>
+    <p class="lede b" data-at="13.13">Your company can keep that copy<br><strong>up to a year</strong> — sometimes even more.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="16.60" data-out="21.60">
+<section class="scene" data-in="20.79" data-out="27.605">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="16.70">It's not just any boss —<br><strong>reading it needs a specific permission</strong>.</p>
+    <p class="lede b" data-at="20.82">It's not just any boss —<br><strong>reading it needs a specific permission</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="21.60" data-out="27.20">
+<section class="scene" data-in="27.605" data-out="34.02">
   <div class="pad"><div class="kb">
     <div class="scoreboard" id="scoreBoard">
       <div class="scorerow lose" id="scoreRowA" style="opacity:0"><span class="lbl">Your account</span><span class="val">VIEW ONLY</span></div>
@@ -158,21 +158,21 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="27.20" data-out="31.90">
+<section class="scene" data-in="34.02" data-out="38.45">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="27.30">Five hidden AI features so far.<br>This one makes <strong>six</strong>.</p>
+    <p class="lede b" data-at="34.05">Five hidden AI features so far.<br>This one makes <strong>six</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="31.90" data-out="34.20">
+<section class="scene" data-in="38.45" data-out="40.69">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="32.00">The setup's in<br>the link in bio.</p>
+    <p class="lede b" data-at="38.48">The setup's in<br>the link in bio.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="34.20" data-out="37.20">
+<section class="scene" data-in="40.69" data-out="43.71">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="34.30" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="40.72" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -194,7 +194,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=37.20,t=0,playing=false,last=0;
+  var DUR=44.01,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -204,14 +204,137 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
   var CUES=[
-    [0.30,6.20,"Your Copilot chats at work don't vanish when you close the tab — someone else can still read them."],
-    [6.60,12.00,"Microsoft's own privacy page is direct about it — your prompts and its reply get saved to your own history of it."],
-    [12.40,16.20,"Your company's own IT side can keep that same copy for up to a year — sometimes even more, based on what they've set."],
-    [16.60,21.20,"It's not just any boss. Reading the actual chat needs a specific compliance permission, not just being an admin."],
-    [21.60,26.80,"You can check your own copy right now — your account, Privacy, Copilot activity history."],
-    [27.20,31.50,"Five hidden AI features so far this year. This one makes six."],
-    [31.90,33.80,"The setup's in the link in bio."],
-    [34.20,36.60,"Follow for the setup that actually works."]
+    [0.30,5.72,"Your Copilot chats at work don't vanish when you close the tab — someone else can still read them."],
+    [6.14,12.89,"Microsoft's own privacy page is direct about it — your prompts and its reply get saved to your own history of it."],
+    [13.31,20.58,"Your company's own IT side can keep that same copy for up to a year — sometimes even more, based on what they've set."],
+    [21.00,27.18,"It's not just any boss. Reading the actual chat needs a specific compliance permission, not just being an admin."],
+    [28.03,33.81,"You can check your own copy right now — your account, Privacy, Copilot activity history."],
+    [34.23,38.24,"Five hidden AI features so far this year. This one makes six."],
+    [38.66,40.48,"The setup's in the link in bio."],
+    [40.90,43.11,"Follow for the setup that actually works."]
+  ];
+  var WORDS=[
+    [0.3,0.58,"Your",0],
+    [0.58,1.06,"Copilot",0],
+    [1.06,1.34,"chats",0],
+    [1.34,1.62,"at",1],
+    [1.62,2.02,"work",1],
+    [2.02,2.5,"don't",1],
+    [2.5,2.88,"vanish",2],
+    [2.88,3.08,"when",2],
+    [3.08,3.26,"you",2],
+    [3.26,3.46,"close",3],
+    [3.46,3.64,"the",3],
+    [3.64,3.94,"tab",3],
+    [4.42,4.64,"someone",4],
+    [4.64,4.84,"else",4],
+    [4.84,5.06,"can",4],
+    [5.06,5.26,"still",5],
+    [5.26,5.46,"read",5],
+    [5.46,6.02,"them.",5],
+    [6.5,7.06,"Microsoft's",6],
+    [7.06,7.3,"own",6],
+    [7.3,7.68,"privacy",6],
+    [7.68,7.98,"page",7],
+    [7.98,8.48,"is",7],
+    [8.48,8.92,"direct",7],
+    [8.92,9.22,"about",8],
+    [9.22,9.4,"it",8],
+    [9.78,9.98,"your",9],
+    [9.98,10.34,"prompts",9],
+    [10.34,10.76,"and",9],
+    [10.76,10.94,"its",10],
+    [10.94,11.26,"reply",10],
+    [11.26,11.5,"get",10],
+    [11.5,11.78,"saved",11],
+    [11.78,11.96,"to",11],
+    [11.96,12.12,"your",11],
+    [12.12,12.32,"own",12],
+    [12.32,12.64,"history",12],
+    [12.64,12.82,"of",12],
+    [12.82,12.96,"it.",13],
+    [13.38,13.6,"Your",14],
+    [13.6,14.22,"company's",14],
+    [14.22,14.44,"own",14],
+    [14.44,14.82,"IT",15],
+    [14.82,15.08,"side",15],
+    [15.08,15.44,"can",15],
+    [15.44,15.64,"keep",16],
+    [15.64,15.94,"that",16],
+    [15.94,16.1,"same",16],
+    [16.1,16.52,"copy",17],
+    [16.52,16.96,"for",17],
+    [16.96,17.14,"up",17],
+    [17.14,17.36,"to",18],
+    [17.36,17.54,"a",18],
+    [17.54,17.84,"year",18],
+    [18.06,18.5,"sometimes",19],
+    [18.5,18.82,"even",19],
+    [18.82,19.2,"more,",19],
+    [19.2,19.64,"based",20],
+    [19.64,19.78,"on",20],
+    [19.78,19.94,"what",20],
+    [19.94,20.3,"they've",21],
+    [20.3,20.52,"set.",21],
+    [21.08,21.22,"It's",22],
+    [21.22,21.4,"not",22],
+    [21.4,21.62,"just",22],
+    [21.62,21.86,"any",23],
+    [21.86,22.18,"boss.",23],
+    [22.54,22.8,"Reading",24],
+    [22.8,23.12,"the",24],
+    [23.12,23.44,"actual",24],
+    [23.44,23.82,"chat",25],
+    [23.82,24.22,"needs",25],
+    [24.22,24.46,"a",25],
+    [24.46,24.84,"specific",26],
+    [24.84,25.2,"compliance",26],
+    [25.2,25.74,"permission,",26],
+    [25.92,26.16,"not",27],
+    [26.16,26.34,"just",27],
+    [26.34,26.6,"being",27],
+    [26.6,26.84,"an",28],
+    [26.84,27.08,"admin.",28],
+    [28.03,28.18,"You",29],
+    [28.18,28.42,"can",29],
+    [28.42,28.6,"check",29],
+    [28.6,28.82,"your",30],
+    [28.82,29.04,"own",30],
+    [29.04,29.3,"copy",30],
+    [29.3,29.6,"right",31],
+    [29.6,30.2,"now",31],
+    [30.42,30.6,"your",32],
+    [30.6,31.58,"account,",32],
+    [31.58,31.94,"Privacy,",33],
+    [32.54,32.94,"Copilot",34],
+    [32.94,33.36,"activity",34],
+    [33.36,33.78,"history.",34],
+    [34.38,34.64,"Five",35],
+    [34.64,34.92,"hidden",35],
+    [34.92,35.24,"AI",35],
+    [35.24,35.58,"features",36],
+    [35.58,35.86,"so",36],
+    [35.86,36.02,"far",36],
+    [36.02,36.24,"this",37],
+    [36.24,36.44,"year.",37],
+    [36.86,37.0,"This",38],
+    [37.0,37.26,"one",38],
+    [37.26,37.56,"makes",38],
+    [37.56,38.08,"six.",39],
+    [38.76,39.02,"The",40],
+    [39.02,39.38,"setup's",40],
+    [39.38,39.52,"in",40],
+    [39.52,39.66,"the",41],
+    [39.66,39.86,"link",41],
+    [39.86,40.18,"in",41],
+    [40.18,40.46,"bio.",42],
+    [41.02,41.24,"Follow",43],
+    [41.24,41.5,"for",43],
+    [41.5,41.72,"the",43],
+    [41.72,41.94,"setup",44],
+    [41.94,42.34,"that",44],
+    [42.34,42.72,"actually",44],
+    [42.72,43.0,"works.",45]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
@@ -357,7 +480,35 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     b2.style.transform='translate('+(18*Math.cos(t*0.18+1.4))+'cqw,'+(16*Math.sin(t*0.24+.6))+'cqw)';
     b3.style.transform='translate('+(10+18*Math.sin(t*0.15+2.1))+'cqw,'+(-10*Math.cos(t*0.2+1.1))+'cqw)';
 
-    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
+    /* The chunk on screen is the one the last spoken word belongs to, and it holds
+       until the next chunk's first word — otherwise the caption blanks for a third of
+       a second between chunks while the voice is still going. It clears only between
+       lines, where the silence is real. */
+    /* The window has to close the ordinary gaps. The scene's own headline is written to
+       disappear before the next one arrives, so a caption that blanks in a 0.42s gap
+       leaves the whole screen textless — measured at eleven places, 0.13s each. Reaching
+       0.32s back and 0.15s forward covers those, and the only remaining blanks fall
+       inside the 0.80s section gaps, where the colour card fills the frame anyway. After
+       the last line the caption holds to the end rather than leaving a blank tail. */
+    var inLine=false;
+    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.32&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    if(t>CUES[CUES.length-1][1]) inLine=true;
+    var here=-1, cur=-1;
+    /* the lit word is the last one that started, not only the one still sounding:
+       Whisper's word boundaries are tight, so gating on the word's own end left the
+       highlight off for 13.4s of the reel */
+    for(i=0;i<WORDS.length;i++) if(WORDS[i][0]<=t+0.08){ here=WORDS[i][3]; cur=i; }
+    var txt='';
+    if(inLine&&here>=0){
+      for(i=0;i<WORDS.length;i++) if(WORDS[i][3]===here)
+        /* a plain space between two bold, all-caps <b> words read as glued together
+           on screen (measured: an 8px gap at 1080px width, on top of .subs's own
+           -.01em letter-spacing) — caught on episode 31's "A"/"CLOUD-BASED" pair
+           during the mandatory double-viewing. A non-breaking space in front of the
+           ordinary one can't collapse the way two plain spaces would, and reads as a
+           clearly visible gap instead. */
+        txt+=(i===cur?'<b class="on">':'<b>')+WORDS[i][2]+'</b>  ';
+    }
     subs.innerHTML=txt;
     prog.style.width=(t/DUR*100)+'%';
     seek.value=t; cur2.textContent=fmt(t);
