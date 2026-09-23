@@ -1160,6 +1160,92 @@ to re-pull episodes 41/42's views once they've had 2-3 full days, per David's re
    they land back in the ~150-220 range other mature episodes sit in, or genuinely stay
    low — that result will matter more than anything reasoned here today.
 
+## The real gate is "sends," not the hook — confirmed against Instagram's own stated mechanism (23.9.2026)
+
+David pushed past "improve the hooks" directly: after ~50 episodes, follower growth is
+~20-30 total, and most of those followed David personally (friends), not the content —
+"this is a very very big problem." He asked to find the real weak points, comparing to
+outside channels if it helps, and go further than another hook rewrite.
+
+**VERIFIED, from our own `/api/state` + `/api/instagram` data, pulled live 23.9.2026:**
+- **Reach has never once exceeded follower count on any recent episode** (episode 45:
+  reach 51 vs. 114 followers). This is not "growth is slow" — it means Instagram has
+  never distributed a single one of these ~50 episodes beyond the account's own
+  existing follower base. No Explore/non-follower reach has ever fired.
+- **Saves are 0-1 on effectively every episode. Shares are 0 on 44 of 45 episodes** —
+  the single exception is **episode 1** (12 shares, and separately the highest views
+  [406] and reach [249] of any episode ever shipped, including all 44 since).
+- **Comments total 8 across all 45 episodes.** Near-total absence of the platform's
+  second engagement signal, on every episode, not just some.
+- **Engagement is declining by cohort, not flat:** episodes 1-10 averaged 235 views /
+  7.2 likes; episodes 41-45 averaged 152 views / 3.4 likes — likes per episode roughly
+  halved. Consistent with David's own read: newer followers (mostly personal friends)
+  dilute the average engagement rate the algorithm measures, which then further
+  suppresses distribution — the opposite direction from what more episodes and more
+  process iteration should produce.
+
+**The mechanism, sourced directly from Instagram's own head of product (Adam Mosseri,
+on record, Mixed Signals podcast Dec 2025, independently reported by exchange4media and
+Search Engine Journal — not a vendor blog):** Instagram ranks "connected reach"
+(existing followers) and "unconnected reach" (non-followers, Explore) with **different
+signals**. Connected reach weighs likes most. **Unconnected reach is gated primarily by
+sends-per-reach (DM shares) — more than likes or watch time.** Every post gets an
+initial "audition" to a small sample *regardless of follower count* — Mosseri states
+follower count does not gate this — and only expands to non-followers if that sample's
+early signals (sends, saves) are strong. **Our data (shares=0 on 44/45 episodes) means
+every episode has been failing this exact audition, on the exact signal that gates it,**
+every single time. This is the most load-bearing, most sourced finding to date — treat
+it as CONFIRMED, not a hypothesis, given it's the platform's own stated mechanism plus
+our own measured shares/saves data lining up with it directly.
+
+**Episode 1's anomaly, explained by the same mechanism:** its caption is not a
+hook-then-link-out — it's a complete, ready-to-forward artifact (the full custom-
+instructions prompt) sitting directly in the caption, usable by the recipient with zero
+extra steps. Every episode from 21 onward instead sends the viewer to an external setup
+page. Mosseri separately confirmed (on record, IG video + LinkedIn-reported, 2025) that
+"link in bio" phrasing does not itself penalize reach ranking — so the mechanism isn't a
+reach penalty for linking out. It's friction-to-forward: a self-contained artifact can
+be sent to one specific person as-is; a link-out cannot, without the recipient taking an
+extra step. This directly explains why episode 1 is the only one with real shares.
+
+**External research (23.9.2026), real accounts, sources cited, confidence flagged
+per source — see the session's own research for full citations:**
+- Every real, independently-sourced breakout account found used paid boosting (if at
+  all) **after** organic validation of a working format, never before, and never as a
+  substitute for finding one. **Do not reach for paid ads yet — no format on this
+  account has been organically validated at all.**
+- One verified account (Amy / @Samoan_Scientist, 8K→25.9K followers in 8 months) credits
+  the unlock to **posting-volume and format-iteration speed** (3x/day during the
+  experimentation phase, testing different shapes fast), not a single hook mechanic —
+  worth testing here: a short burst of higher frequency *paired with real format
+  variation*, not just faster hook rewrites of the same shape.
+- One verified account (Lucy Bedewi, copywriting service) keeps her funnel **inside**
+  Instagram — a specific comment/DM keyword instead of a link-out — converting without
+  ever sending the viewer off-platform. A third option worth testing, distinct from both
+  "link out" and "cram the whole artifact into the caption."
+- Instagram lowered the **Trial Reels** threshold to accounts with as few as 200
+  followers as of mid-2026 (independently reported) — Trial Reels show a new post to
+  non-followers first, before existing followers see it, letting a hook get tested
+  without risking the existing following. Our account (114 followers) may not yet
+  qualify — worth checking directly in the app/Meta Business Suite, which needs
+  David's own login, not something checkable via the Graph API this project uses.
+
+**Concrete standing rules, effective immediately (23.9.2026):**
+1. **The sendability test, mandatory before any episode ships**: would a specific,
+   real person actually forward this — the caption, the artifact, the core payoff —
+   to one specific other person, without needing to click anything first? If the
+   honest answer is no, the episode is not ready, independent of whether the hook
+   itself passes `hooks-guide.md`'s existing tests.
+2. **Every future episode needs an explicit comment-inviting element** — a real
+   question, a debatable claim, or a comment-to-DM funnel (per Lucy Bedewi above) —
+   not just a CTA to follow. Comments have been at effectively zero for 45 episodes
+   straight; this has never been tried.
+3. **Do not add paid ad spend as a fix** until at least one format is shown to work
+   organically first — every real external example found did it in that order, never
+   the reverse.
+4. Check Trial Reels eligibility directly in the app when the account crosses 200
+   followers, if not already eligible.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
