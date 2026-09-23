@@ -1225,6 +1225,34 @@ export const ARTICLES: Article[] = [
       "STIR/SHAKEN is a separate system from the scam-detection covered here. It authenticates that a caller ID hasn't been spoofed; it does not determine whether the caller's intent is legitimate, and this guide does not present caller-ID authentication as proof a call is safe.",
     ],
   },
+  {
+    n: 46,
+    title: "Your Copilot chats at work don't vanish when you close the tab",
+    standfirst:
+      "Microsoft's own privacy page says it plainly: your prompts and Copilot's answers " +
+      "are saved as your activity history — viewable and deletable by you, from your own " +
+      "account. Separately, your employer's own IT side can keep that same copy for up to " +
+      "a year or longer, and under a formal compliance process, someone with the right " +
+      "permission (not just any manager or admin) can read it.",
+    steps: [
+      "Sign in to myaccount.microsoft.com with your work or school account.",
+      "Go to 'Privacy', then open 'Data and privacy'.",
+      "Open 'Copilot activity history' to see your own saved prompts and Copilot's answers.",
+      "From here you can delete your own activity history — this clears your personal copy, not your organization's separately-retained one.",
+      "Optional: ask your IT/compliance team directly how long your organization keeps Copilot chat data and who can access it — Microsoft's own documentation states this varies by license and by what the organization has configured, not one fixed answer for everyone.",
+    ],
+    changes: [
+      "Verified live (23.9.2026) directly against Microsoft's own Learn and Support pages: Copilot activity history (the personal, deletable view), Purview's retention policies for Copilot and AI apps (which state retention up to about a year, or indefinite, depending on license/configuration), and Purview's audit/eDiscovery documentation, which states plainly that reading prompt/response content needs specific permissions beyond general admin or manager status.",
+      "A real, current, named AI feature (Microsoft 365 Copilot / Copilot Chat) at the literal center of the claim, per the 17.9.2026 standing rule in channel/hooks-guide.md — the sixth distinct company/system in this reach-first run, and the first built around a workplace-admin-visibility angle rather than a personal-device feature (concept 2 of the same Phase 2 four-concept list episode 45 opened).",
+      "Built directly in response to David's 23.9.2026 note on episode 45: a separate, explicit follow-problem fix ('Five hidden AI features so far this year. This one makes six.', stated truthfully against this channel's own real episode count) was added before the locked outro line, on top of the usual hook-quality checks — see channel/episode-46-script.md's 'Solving for follow, not just watch-through' section.",
+    ],
+    limits: [
+      "Covers Microsoft 365 Copilot / Copilot Chat on a work or school account only — not the free consumer Copilot, and not every workplace AI tool in general.",
+      "Not every manager or IT admin can read an employee's actual chat content — Microsoft's own documentation states that reading prompt/response text needs specific Purview permissions (such as eDiscovery or Communication Compliance roles), not general admin or manager status.",
+      "This is not live monitoring. The documented capability is retention plus access under a formal compliance or legal process, not someone watching chats in real time.",
+      "Retention length is not one fixed number — it depends on the organization's own configuration and license; deleting your own activity history in My Account does not necessarily remove your organization's separately-retained copy, and this guide does not claim that it does.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

@@ -1,0 +1,13 @@
+Your Copilot chats at work don't vanish when you close the tab.
+
+Microsoft's own privacy page states that interacting with Copilot stores your prompts and its responses as your activity history — viewable and deletable by you from myaccount.microsoft.com → Privacy → Data and privacy → Copilot activity history.
+
+Separately, Microsoft's Purview documentation describes how organizations can retain that same Copilot chat data under their own retention policies — Microsoft states retention can run up to about a year, or indefinitely, depending on the organization's license and configuration. Under a formal compliance or legal process (eDiscovery), someone holding the right Purview permission can read the actual prompt and response content — but Microsoft's own documentation states this requires specific permissions beyond general admin or manager status, not something every IT person or manager can do by default.
+
+This is not live monitoring, and deleting your own activity history does not necessarily remove your organization's separately-retained copy.
+
+Full setup, exact steps: https://actually-works.com/e/46
+
+Follow for the setup that actually works.
+
+#microsoftcopilot #workplaceprivacy #dataprivacy #microsoft365 #aiprivacy
