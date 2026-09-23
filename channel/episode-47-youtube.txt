@@ -1,0 +1,11 @@
+An AI agent already texts you before your forgotten trial turns into a real charge.
+
+Rocket Money launched Rowan on August 25, 2026 — an AI agent that watches a user's connected accounts in the background and reaches out by text the moment it finds something: a free trial about to convert to a paid charge, a price increase, a duplicate subscription, a bill it can negotiate down. Reply in plain language and Rowan carries out the action — cancelling a subscription, negotiating a bill, or pursuing a refund — then confirms once it's done. A sourced example from the launch coverage: if you sign up for a free trial and never use it, Rowan texts you about three weeks later asking whether to cancel before the first real charge hits.
+
+Rowan is not open to every user yet. It's a limited rollout inside Rocket Money's new Premium+ tier ($15/month), with a waitlist for everyone else and no announced date for a wider release. Rocket Money's older, free tier already shows every recurring subscription it finds, and the standard Premium tier (pay-what-you-think-is-fair, roughly $7-$14/month) already offers non-AI cancellation — Rowan is the new AI layer on top of both.
+
+Full setup, exact steps: https://actually-works.com/e/47
+
+Follow for the setup that actually works.
+
+#rocketmoney #subscriptions #aiagent #moneytips #personalfinance
