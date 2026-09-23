@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { publishToInstagram, publishToFacebookBoth, SITE_URL } from "@/lib/publish";
+import { publishEpisode } from "@/lib/publish";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -11,34 +11,39 @@ export const maxDuration = 120;
  *  one can genuinely succeed while another fails or isn't configured. The Story used
  *  to be a third automatic publish here; see the comment on publishToInstagram in
  *  lib/publish.ts for why that's gone — he shares the Reel to his Story by hand now,
- *  since Instagram's own "Share to Story" makes the version the API physically cannot. */
+ *  since Instagram's own "Share to Story" makes the version the API physically cannot.
+ *
+ *  Rebuilt 23.9.2026 to go through `publishEpisode` (lib/publish.ts) — the same
+ *  gate-passed/caption/idempotency checks and state update the daily cron already used,
+ *  now shared instead of duplicated. Before this, this route took a bare `{file,
+ *  caption}` with no gate check, no idempotency check, and no state update of its own —
+ *  a stray or repeated call (a manual test against this endpoint, a double-click, a
+ *  retry) republished the same episode with no guard against it, which is exactly what
+ *  happened to episode 45 minutes after the legitimate cron had already published it. */
 export async function POST(req: Request) {
   try {
-    const { file, caption } = (await req.json()) as { file?: string; caption?: string };
-    if (!file) return NextResponse.json({ ok: false, reason: "חסר שם קובץ" }, { status: 400 });
-    const ig = await publishToInstagram(file, caption ?? "");
-    // Facebook only if the Reel itself actually went out — no point cross-posting a
-    // Reel that doesn't exist, and it needs its own credentials regardless.
-    // publishToFacebookBoth (lib/publish.ts) posts once to the one real Facebook Page —
-    // FB_PAGE_ID and FB_BUSINESS_PAGE_ID are the same Page, confirmed 16.9.2026.
-    const fb = ig.reel.ok ? await publishToFacebookBoth(file, caption ?? "") : null;
-    const facebook = fb?.profile ?? null;
-    const facebookPage = fb?.page ?? null;
-    // A publish that lands on the account and nowhere in the studio's own list looks
-    // broken even though it worked — the pull that links a post to its episode
-    // (/api/track) otherwise only runs on the nightly cron or a manual pull-to-refresh.
-    // This has to be awaited, not fired-and-forgotten: a serverless function can be torn
-    // down the instant its response is sent, killing an un-awaited fetch before it ever
-    // reaches Instagram — which is exactly why the first version of this never actually
-    // synced anything. Instagram's own post-processing takes a few seconds after
-    // publish_id returns, so this can still race it — a miss here just waits for the
-    // next cron/pull, same as before this existed.
-    if (ig.reel.ok && process.env.CRON_SECRET) {
-      await fetch(`${SITE_URL}/api/track`, {
-        headers: { authorization: `Bearer ${process.env.CRON_SECRET}` },
-      }).catch(() => {});
+    const { episode } = (await req.json()) as { episode?: number };
+    if (!episode) return NextResponse.json({ ok: false, reason: "חסר מספר פרק" }, { status: 400 });
+    const result = await publishEpisode(episode);
+    if (!result.ok) return NextResponse.json(result, { status: 400 });
+    // Same response shape the frontend (renders/[file]/publish-buttons.tsx) already
+    // expects: {reel, story, facebook, facebookPage}. `story` stays null — see the
+    // comment above on why the API-made Story publish was dropped.
+    if (result.alreadyPublished) {
+      return NextResponse.json({
+        reel: { ok: true, mediaId: null, permalink: result.igPermalink },
+        story: null,
+        facebook: null,
+        facebookPage: null,
+        alreadyPublished: true,
+      });
     }
-    return NextResponse.json({ ...ig, facebook, facebookPage });
+    return NextResponse.json({
+      reel: result.reel,
+      story: null,
+      facebook: result.facebook,
+      facebookPage: result.facebookPage,
+    });
   } catch (e) {
     return NextResponse.json({ ok: false, reason: e instanceof Error ? e.message : String(e) }, { status: 500 });
   }
