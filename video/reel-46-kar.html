@@ -1,0 +1,533 @@
+<title>Reel 46 — Your Copilot chats at work don't vanish</title>
+<!--
+  Episode 46 — palette: amber/indigo ("tense" mood — a real audio/pick_real_track.py
+  MOODS key), distinct from episode 45's emerald/red (urgent) and episode 44's
+  sky-blue/pink (neutral) — see channel/used-designs.json. Built from
+  video/reel-45.html (zoom-through transitions wired in, recipe 4 of
+  channel/motion-recipes.md, already verified against export/safe_check.js and check.sh).
+  Recipes 1-3 (word-by-word/highlight/scoreboard-stagger) still not markup-safe yet — same
+  as every other episode — so unchanged from what ships.
+
+  Content note: "Purview," "eDiscovery," and "retention policy" are never spoken —
+  see channel/episode-46-script.md's Simplicity/length check for the plain-language
+  substitutions used instead.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@500;600&display=swap">
+<style>
+:root{
+  --ink:#0A0E14;--line:#1F2B3A;
+  --brass:#FACC15;--brass-hot:#FDE047;--ember:#4338CA;
+  --text:#FFFFFF;--muted:#8AA0B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+  --ui:'Inter','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.bg{position:absolute;inset:0;z-index:0}
+.bg i{position:absolute;display:block;border-radius:50%;will-change:transform;left:0;top:0}
+.bg .b1{width:130cqw;height:130cqw;top:-40cqw;left:-30cqw;background:radial-gradient(circle closest-side,rgba(250,204,21,.24),rgba(250,204,21,0) 70%)}
+.bg .b2{width:150cqw;height:150cqw;top:50cqw;left:-10cqw;background:radial-gradient(circle closest-side,rgba(20,28,40,.6),rgba(20,28,40,0) 70%)}
+.bg .b3{width:120cqw;height:120cqw;top:120cqw;left:20cqw;background:radial-gradient(circle closest-side,rgba(67,56,202,.20),rgba(67,56,202,0) 70%)}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+.vig{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 50%,transparent 40%,rgba(5,7,9,.55) 100%)}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--brass);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(250,204,21,.7)}
+
+.scene{position:absolute;inset:0;z-index:2}
+.pad{position:absolute;inset:0;padding:28cqw 10cqw 65cqw;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:12.6cqw;line-height:.98;letter-spacing:-.045em;
+  margin:0;text-wrap:balance;position:relative;z-index:2}
+h2 em{font-style:normal;color:var(--brass)}
+h2 .box{background:var(--brass);color:#0A0E14;padding:0 1.6cqw;border-radius:1cqw;
+  display:inline-block;position:relative;transform:rotate(-1.2deg)}
+h2 .ebox{background:var(--ember);color:#fff;padding:0 1.6cqw;border-radius:1cqw;display:inline-block;position:relative}
+.glowbloom{position:absolute;pointer-events:none;opacity:0}
+.wd{position:relative;z-index:1}
+p.lede{font-size:5.6cqw;line-height:1.3;color:#EAF3FB;margin:0;font-weight:700;position:relative;z-index:2}
+p.lede strong{color:var(--brass)}
+
+.quote{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2;text-align:left}
+.quote .qk{font-family:var(--m);font-size:2.8cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#6B7C90;margin:0 0 2.4cqw}
+.quote .qb{font-family:var(--b);font-weight:700;font-size:5cqw;line-height:1.4;color:#0D0D0D;position:relative}
+.quote .qb strong{color:#3730A3}
+
+.scoreboard{display:flex;flex-direction:column;gap:2.6cqw;width:100%;position:relative;z-index:2}
+.scorerow{display:flex;align-items:center;justify-content:space-between;background:#101823;
+  border:.3cqw solid #1E3348;border-radius:1.6cqw;padding:3cqw 4cqw;position:relative}
+.scorerow .lbl{font-family:var(--ui);font-weight:600;font-size:4cqw;color:#CFE0F0;text-align:left}
+.scorerow .val{font-family:var(--d);font-weight:900;font-size:6.4cqw;color:var(--brass)}
+.scorerow.win .val{color:#FDE047}
+.scorerow.lose .val{color:var(--ember)}
+
+.subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
+  font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
+  text-transform:uppercase;
+  text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
+.subs em{font-style:normal;background:var(--brass);color:#0A0E14;padding:0 1.4cqw;border-radius:.9cqw;
+  display:inline-block;text-shadow:none}
+.subs b{font-weight:800;color:#fff;transition:color .09s linear,transform .09s linear;display:inline-block}
+.subs b.on{color:var(--brass);transform:scale(1.06)}
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#5C7086}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,9,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#0A0E14;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
+<div class="grain" data-decor></div>
+<div class="vig"></div>
+<div class="prog" id="prog"></div>
+
+<section class="scene" data-in="0" data-out="5.93">
+  <div class="pad"><div class="kb" id="hookKb">
+    <h2 class="punch" id="hookH2">Your Copilot chats don't <span class="box">vanish</span>.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="5.93" data-out="13.1">
+  <div class="pad"><div class="kb">
+    <div class="quote" id="quoteCard" style="opacity:0">
+      <div class="qk" id="quoteQk">microsoft · activity history</div>
+      <div class="qb" id="quoteQb">Their own privacy page is direct about it: your prompts and its reply get saved to <strong>your own history of it</strong>.</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="13.1" data-out="20.79">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="13.13">Your company can keep that copy<br><strong>up to a year</strong> — sometimes even more.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="20.79" data-out="27.605">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="20.82">It's not just any boss —<br><strong>reading it needs a specific permission</strong>.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="27.605" data-out="34.02">
+  <div class="pad"><div class="kb">
+    <div class="scoreboard" id="scoreBoard">
+      <div class="scorerow lose" id="scoreRowA" style="opacity:0"><span class="lbl">Your account</span><span class="val">VIEW ONLY</span></div>
+      <div class="scorerow win" id="scoreRowB" style="opacity:0"><span class="lbl">Company's copy</span><span class="val">CAN BE KEPT</span></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="34.02" data-out="38.45">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="34.05">Five hidden AI features so far.<br>This one makes <strong>six</strong>.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="38.45" data-out="40.69">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="38.48">The setup's in<br>the link in bio.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="40.69" data-out="43.71">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="40.72" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+  </div></div>
+</section>
+
+<div class="subs" id="subs"></div>
+<div class="handle" data-decor>@actually_works.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="37.20" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+</div>
+
+<script src="../export/motion-kit.js"></script>
+<script>
+(function(){
+  var MK=window.MotionKit;
+  var DUR=44.01,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+  var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+
+  var CUES=[
+    [0.30,5.72,"Your Copilot chats at work don't vanish when you close the tab — someone else can still read them."],
+    [6.14,12.89,"Microsoft's own privacy page is direct about it — your prompts and its reply get saved to your own history of it."],
+    [13.31,20.58,"Your company's own IT side can keep that same copy for up to a year — sometimes even more, based on what they've set."],
+    [21.00,27.18,"It's not just any boss. Reading the actual chat needs a specific compliance permission, not just being an admin."],
+    [28.03,33.81,"You can check your own copy right now — your account, Privacy, Copilot activity history."],
+    [34.23,38.24,"Five hidden AI features so far this year. This one makes six."],
+    [38.66,40.48,"The setup's in the link in bio."],
+    [40.90,43.11,"Follow for the setup that actually works."]
+  ];
+  var WORDS=[
+    [0.3,0.58,"Your",0],
+    [0.58,1.06,"Copilot",0],
+    [1.06,1.34,"chats",0],
+    [1.34,1.62,"at",1],
+    [1.62,2.02,"work",1],
+    [2.02,2.5,"don't",1],
+    [2.5,2.88,"vanish",2],
+    [2.88,3.08,"when",2],
+    [3.08,3.26,"you",2],
+    [3.26,3.46,"close",3],
+    [3.46,3.64,"the",3],
+    [3.64,3.94,"tab",3],
+    [4.42,4.64,"someone",4],
+    [4.64,4.84,"else",4],
+    [4.84,5.06,"can",4],
+    [5.06,5.26,"still",5],
+    [5.26,5.46,"read",5],
+    [5.46,6.02,"them.",5],
+    [6.5,7.06,"Microsoft's",6],
+    [7.06,7.3,"own",6],
+    [7.3,7.68,"privacy",6],
+    [7.68,7.98,"page",7],
+    [7.98,8.48,"is",7],
+    [8.48,8.92,"direct",7],
+    [8.92,9.22,"about",8],
+    [9.22,9.4,"it",8],
+    [9.78,9.98,"your",9],
+    [9.98,10.34,"prompts",9],
+    [10.34,10.76,"and",9],
+    [10.76,10.94,"its",10],
+    [10.94,11.26,"reply",10],
+    [11.26,11.5,"get",10],
+    [11.5,11.78,"saved",11],
+    [11.78,11.96,"to",11],
+    [11.96,12.12,"your",11],
+    [12.12,12.32,"own",12],
+    [12.32,12.64,"history",12],
+    [12.64,12.82,"of",12],
+    [12.82,12.96,"it.",13],
+    [13.38,13.6,"Your",14],
+    [13.6,14.22,"company's",14],
+    [14.22,14.44,"own",14],
+    [14.44,14.82,"IT",15],
+    [14.82,15.08,"side",15],
+    [15.08,15.44,"can",15],
+    [15.44,15.64,"keep",16],
+    [15.64,15.94,"that",16],
+    [15.94,16.1,"same",16],
+    [16.1,16.52,"copy",17],
+    [16.52,16.96,"for",17],
+    [16.96,17.14,"up",17],
+    [17.14,17.36,"to",18],
+    [17.36,17.54,"a",18],
+    [17.54,17.84,"year",18],
+    [18.06,18.5,"sometimes",19],
+    [18.5,18.82,"even",19],
+    [18.82,19.2,"more,",19],
+    [19.2,19.64,"based",20],
+    [19.64,19.78,"on",20],
+    [19.78,19.94,"what",20],
+    [19.94,20.3,"they've",21],
+    [20.3,20.52,"set.",21],
+    [21.08,21.22,"It's",22],
+    [21.22,21.4,"not",22],
+    [21.4,21.62,"just",22],
+    [21.62,21.86,"any",23],
+    [21.86,22.18,"boss.",23],
+    [22.54,22.8,"Reading",24],
+    [22.8,23.12,"the",24],
+    [23.12,23.44,"actual",24],
+    [23.44,23.82,"chat",25],
+    [23.82,24.22,"needs",25],
+    [24.22,24.46,"a",25],
+    [24.46,24.84,"specific",26],
+    [24.84,25.2,"compliance",26],
+    [25.2,25.74,"permission,",26],
+    [25.92,26.16,"not",27],
+    [26.16,26.34,"just",27],
+    [26.34,26.6,"being",27],
+    [26.6,26.84,"an",28],
+    [26.84,27.08,"admin.",28],
+    [28.03,28.18,"You",29],
+    [28.18,28.42,"can",29],
+    [28.42,28.6,"check",29],
+    [28.6,28.82,"your",30],
+    [28.82,29.04,"own",30],
+    [29.04,29.3,"copy",30],
+    [29.3,29.6,"right",31],
+    [29.6,30.2,"now",31],
+    [30.42,30.6,"your",32],
+    [30.6,31.58,"account,",32],
+    [31.58,31.94,"Privacy,",33],
+    [32.54,32.94,"Copilot",34],
+    [32.94,33.36,"activity",34],
+    [33.36,33.78,"history.",34],
+    [34.38,34.64,"Five",35],
+    [34.64,34.92,"hidden",35],
+    [34.92,35.24,"AI",35],
+    [35.24,35.58,"features",36],
+    [35.58,35.86,"so",36],
+    [35.86,36.02,"far",36],
+    [36.02,36.24,"this",37],
+    [36.24,36.44,"year.",37],
+    [36.86,37.0,"This",38],
+    [37.0,37.26,"one",38],
+    [37.26,37.56,"makes",38],
+    [37.56,38.08,"six.",39],
+    [38.76,39.02,"The",40],
+    [39.02,39.38,"setup's",40],
+    [39.38,39.52,"in",40],
+    [39.52,39.66,"the",41],
+    [39.66,39.86,"link",41],
+    [39.86,40.18,"in",41],
+    [40.18,40.46,"bio.",42],
+    [41.02,41.24,"Follow",43],
+    [41.24,41.5,"for",43],
+    [41.5,41.72,"the",43],
+    [41.72,41.94,"setup",44],
+    [41.94,42.34,"that",44],
+    [42.34,42.72,"actually",44],
+    [42.72,43.0,"works.",45]
+  ];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  var hookKb=document.getElementById('hookKb');
+  var hookH2=document.getElementById('hookH2');
+  var hookScene=hookH2.closest('.scene');
+  var hookSplit=MK.splitWordsSafe(hookH2);
+  var hookClimax=null;
+  for(var hi=0;hi<hookSplit.words.length;hi++){
+    var hw=hookSplit.words[hi];
+    if(hw.classList.contains('box')||hw.classList.contains('ebox')){ hookClimax=hw; break; }
+  }
+  var hookClimaxIndex=hookClimax?hookSplit.words.indexOf(hookClimax):-1;
+  var hookGlow=null;
+  if(hookClimax){
+    hookGlow=document.createElement('div');
+    hookGlow.className='glowbloom';
+    hookGlow.style.cssText='position:absolute;inset:-45%;border-radius:50%;z-index:-1;'+
+      'background:radial-gradient(circle,var(--brass) 0%,rgba(0,0,0,0) 70%)';
+    hookClimax.insertBefore(hookGlow,hookClimax.firstChild);
+  }
+
+  var quoteCard=document.getElementById('quoteCard');
+  var quoteScene=quoteCard.closest('.scene');
+  var quoteQkWords=MK.splitWordsSafe(document.getElementById('quoteQk')).words;
+  var quoteQbSplit=MK.splitWordsSafe(document.getElementById('quoteQb'));
+  var quoteQbEl=document.getElementById('quoteQb');
+  var quoteBars=[];
+  function buildQuoteBars(){
+    quoteBars.forEach(function(b){ if(b.parentNode) b.parentNode.removeChild(b); });
+    quoteBars=MK.buildHighlightBars(quoteQbEl,quoteQbSplit.highlighted);
+  }
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(buildQuoteBars);
+  else buildQuoteBars();
+
+  var scoreBoard=document.getElementById('scoreBoard');
+  var scoreScene=scoreBoard.closest('.scene');
+  var scoreRowA=document.getElementById('scoreRowA'), scoreRowB=document.getElementById('scoreRowB');
+  var scoreGlow=document.createElement('div');
+  scoreGlow.className='glowbloom';
+  scoreGlow.style.cssText='position:absolute;inset:-16%;border-radius:1.6cqw;z-index:-1;'+
+    'background:radial-gradient(circle,#FDE047 0%,rgba(0,0,0,0) 70%)';
+  scoreRowB.insertBefore(scoreGlow,scoreRowB.firstChild);
+
+  function renderHook(){
+    var ht=t-(+hookScene.dataset.in);
+    var START=0.15,GAP=0.10,DUR=0.30;
+    for(var i=0;i<hookSplit.words.length;i++){
+      var w=hookSplit.words[i],at=START+i*GAP;
+      if(w===hookClimax){
+        MK.animatePop(w,ht,at,DUR);
+        if(hookGlow) MK.animateGlowBloom(hookGlow,ht,at,DUR,0.30);
+      } else {
+        var e=MK.smoothIn(MK.clamp01((ht-at)/DUR));
+        w.style.opacity=String(e);
+        w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+      }
+    }
+    if(hookClimaxIndex>=0){
+      var climaxAt=START+hookClimaxIndex*GAP;
+      var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.96,pushAt:climaxAt,pushDur:0.9,pushTo:1.08});
+      hookKb.style.transform='scale('+camScale.toFixed(4)+')';
+    }
+  }
+
+  function renderQuote(){
+    var qt=t-(+quoteScene.dataset.in);
+    var CARD_DUR=0.4;
+    var le=MK.smoothIn(MK.clamp01(qt/CARD_DUR));
+    quoteCard.style.opacity=String(le);
+    quoteCard.style.transform='translateY('+(36*(1-le)).toFixed(2)+'px)';
+    quoteCard.style.boxShadow='0 '+(10+30*le).toFixed(1)+'px '+(40+60*le).toFixed(1)+'px rgba(0,0,0,'+(0.25*le).toFixed(3)+')';
+
+    var QK_START=0.10,QK_GAP=0.05,QK_DUR=0.22;
+    for(var i=0;i<quoteQkWords.length;i++){
+      var e=MK.smoothIn(MK.clamp01((qt-(QK_START+i*QK_GAP))/QK_DUR));
+      quoteQkWords[i].style.opacity=String(e);
+      quoteQkWords[i].style.transform='translateY('+(10*(1-e)).toFixed(2)+'px)';
+    }
+    var qkEnd=MK.wordsEndAt(quoteQkWords,QK_START,QK_GAP,QK_DUR);
+    var QB_START=qkEnd+0.10,QB_GAP=0.06,QB_DUR=0.26;
+    for(var j=0;j<quoteQbSplit.words.length;j++){
+      var e2=MK.smoothIn(MK.clamp01((qt-(QB_START+j*QB_GAP))/QB_DUR));
+      quoteQbSplit.words[j].style.opacity=String(e2);
+      quoteQbSplit.words[j].style.transform='translateY('+(10*(1-e2)).toFixed(2)+'px)';
+    }
+    var qbEnd=MK.wordsEndAt(quoteQbSplit.words,QB_START,QB_GAP,QB_DUR);
+    MK.animateHighlightBars(quoteBars,qt,qbEnd+0.05,0.22,0.06);
+  }
+
+  function renderScoreboard(){
+    var st=t-(+scoreScene.dataset.in);
+    var A_AT=0.10,A_DUR=0.32,B_AT=0.65,B_DUR=0.32;
+    var ae=MK.smoothIn(MK.clamp01((st-A_AT)/A_DUR));
+    scoreRowA.style.opacity=String(ae);
+    scoreRowA.style.transform='scale('+ae.toFixed(3)+')';
+    var be=MK.smoothIn(MK.clamp01((st-B_AT)/B_DUR));
+    scoreRowB.style.opacity=String(be);
+    scoreRowB.style.transform='scale('+be.toFixed(3)+')';
+    MK.animateGlowBloom(scoreGlow,st,B_AT,B_DUR,0.30);
+    var shakeX=MK.impactShake(st,B_AT,0.22,6);
+    scoreBoard.style.transform='translateX('+shakeX.toFixed(2)+'px)';
+  }
+
+  var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
+  function renderTransitions(){
+    for(var i=0;i<scenes.length-1;i++){
+      var boundary=+scenes[i].dataset.out;
+      var outStart=boundary-OUT_DUR, inStart=outStart+IN_OFFSET;
+      MK.zoomThroughTransition(scenes[i], scenes[i+1], t, outStart, inStart, OUT_DUR, IN_DUR);
+    }
+  }
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      if(on) active=s;
+    }
+    renderTransitions();
+    if(active){
+      var kbEnd=(+active.dataset.out)-OUT_DUR;
+      var f=t>=kbEnd?0:(t-+active.dataset.in)/(kbEnd-(+active.dataset.in));
+      var kbs=active.querySelectorAll('.kb');
+      for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.06*f).toFixed(4)+')';
+    }
+
+    renderHook();
+    renderQuote();
+    renderScoreboard();
+
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      e.classList.toggle('snap',t<0.30);
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    b1.style.transform='translate('+(2+14*Math.sin(t*0.3))+'cqw,'+(-4+16*Math.cos(t*0.22))+'cqw)';
+    b2.style.transform='translate('+(18*Math.cos(t*0.18+1.4))+'cqw,'+(16*Math.sin(t*0.24+.6))+'cqw)';
+    b3.style.transform='translate('+(10+18*Math.sin(t*0.15+2.1))+'cqw,'+(-10*Math.cos(t*0.2+1.1))+'cqw)';
+
+    /* The chunk on screen is the one the last spoken word belongs to, and it holds
+       until the next chunk's first word — otherwise the caption blanks for a third of
+       a second between chunks while the voice is still going. It clears only between
+       lines, where the silence is real. */
+    /* The window has to close the ordinary gaps. The scene's own headline is written to
+       disappear before the next one arrives, so a caption that blanks in a 0.42s gap
+       leaves the whole screen textless — measured at eleven places, 0.13s each. Reaching
+       0.32s back and 0.15s forward covers those, and the only remaining blanks fall
+       inside the 0.80s section gaps, where the colour card fills the frame anyway. After
+       the last line the caption holds to the end rather than leaving a blank tail. */
+    var inLine=false;
+    for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]-0.32&&t<=CUES[i][1]+0.15){inLine=true;break;}
+    if(t>CUES[CUES.length-1][1]) inLine=true;
+    var here=-1, cur=-1;
+    /* the lit word is the last one that started, not only the one still sounding:
+       Whisper's word boundaries are tight, so gating on the word's own end left the
+       highlight off for 13.4s of the reel */
+    for(i=0;i<WORDS.length;i++) if(WORDS[i][0]<=t+0.08){ here=WORDS[i][3]; cur=i; }
+    var txt='';
+    if(inLine&&here>=0){
+      for(i=0;i<WORDS.length;i++) if(WORDS[i][3]===here)
+        /* a plain space between two bold, all-caps <b> words read as glued together
+           on screen (measured: an 8px gap at 1080px width, on top of .subs's own
+           -.01em letter-spacing) — caught on episode 31's "A"/"CLOUD-BASED" pair
+           during the mandatory double-viewing. A non-breaking space in front of the
+           ordinary one can't collapse the way two plain spaces would, and reads as a
+           clearly visible gap instead. */
+        txt+=(i===cur?'<b class="on">':'<b>')+WORDS[i][2]+'</b>  ';
+    }
+    subs.innerHTML=txt;
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>

@@ -1,0 +1,15 @@
+Your Copilot chats at work don't vanish when you close the tab.
+
+Microsoft's own privacy page says it plainly: your prompts and Copilot's answers are saved as your activity history — you can view and delete your own copy anytime. Separately, your employer's own IT side can keep that same copy for up to a year, sometimes longer, depending on what they've set up. It's not every manager — reading the actual chat needs a specific compliance permission, not just being an admin.
+
+You can check your own copy right now: Microsoft account → Privacy → Copilot activity history.
+
+This is the sixth hidden AI feature we've found running on people this month.
+
+Send this to the coworker who assumes it's private.
+
+Full setup, exact steps: https://actually-works.com/e/46
+
+Follow for the setup that actually works.
+
+#microsoftcopilot #workplaceprivacy #dataprivacy #microsoft365 #aiprivacy
