@@ -1225,6 +1225,32 @@ export const ARTICLES: Article[] = [
       "STIR/SHAKEN is a separate system from the scam-detection covered here. It authenticates that a caller ID hasn't been spoofed; it does not determine whether the caller's intent is legitimate, and this guide does not present caller-ID authentication as proof a call is safe.",
     ],
   },
+  {
+    n: 47,
+    title: "An AI is already texting people before their trial charges them",
+    standfirst:
+      "Rocket Money's new AI agent, Rowan, watches your connected accounts and texts you " +
+      "the moment it spots something — a forgotten free trial about to convert, a price " +
+      "increase, a duplicate subscription. Reply and tell it to cancel, negotiate, or chase " +
+      "a refund, and it does that too. It's not open to everyone yet.",
+    steps: [
+      "Open the Rocket Money app (or install it from the App Store / Google Play if you don't have it) and connect an account — this shows your recurring subscriptions today, on the free tier, no AI required.",
+      "Go to Recurring or Subscriptions in the app to see every charge it found — this part works right now, for anyone.",
+      "To get Rowan specifically: go to Settings → Premium+ (or the upgrade prompt in the app) — Premium+ is $15/month and is what unlocks the AI agent.",
+      "Optional: if Rowan shows as a waitlist rather than an immediate toggle, join the waitlist from inside Premium+ — launch coverage states it's a limited rollout, not open to every subscriber yet.",
+      "Once active, Rowan reaches you by text — reply in plain language ('cancel this,' 'negotiate my bill') to have it act; it does not act without your reply.",
+    ],
+    changes: [
+      "Verified live (23.9.2026): Rocket Companies' own press release plus PYMNTS, The Paypers, Nasdaq, and Yahoo Finance wire coverage of Rowan's 25.8.2026 launch — about one month old as of this episode, not stale.",
+      "A different company and mechanism from episode 41 (ChatGPT's own read-only 'Finances' dashboard) — Rowan is Rocket Money's product, and it acts (cancels, negotiates, texts you first) rather than only displaying a dashboard.",
+      "The sourced example used almost verbatim: a forgotten free trial gets a text from Rowan about three weeks in, before the first real charge lands.",
+    ],
+    limits: [
+      "Rowan is a limited rollout with a waitlist as of this episode's verification — it is not available to every Rocket Money user today, and no public full-rollout date has been announced.",
+      "Rowan requires Rocket Money's Premium+ tier, $15/month — it is not part of the free tier or the older, standard Premium tier (which already offers non-AI subscription cancellation on a pay-what-you-think-is-fair basis, roughly $7-$14/month).",
+      "Every sourced action Rowan takes — cancelling, negotiating, chasing a refund — happens after the user replies to its text. It is not described anywhere in the sourcing as acting on its own without that reply.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
