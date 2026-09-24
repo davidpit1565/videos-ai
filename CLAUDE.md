@@ -89,6 +89,17 @@ been running for days.
   not just state a fact. `hooks-guide.md` has the sourced taxonomy, the dry-sentence test
   itself, a log of which type each recent episode used, and the two rejected drafts that
   failed this exact check — read those before assuming a new draft clears the bar.
+- **Every episode must be fully understandable, to literally anyone, from the first second
+  — not just to a viewer already into AI, and not only by the time the video ends.**
+  Decided 24.9.2026, David's own words: this applies to every future video from now on, not
+  just one episode. The hook itself has to carry enough plain-language context that someone
+  with zero prior exposure to the topic, the company, or AI in general immediately knows
+  what's being claimed — a named feature or product gets explained in the same breath it's
+  named, never assumed familiar. This is a stricter, standing version of the comprehension
+  check already described in `hooks-guide.md`'s dry-sentence test: check the *entire* script
+  against it, not just the opening line, and check it from second one, not "does it resolve
+  by the end." A script that only makes sense in hindsight, or only to a technical/AI-literate
+  viewer, fails this regardless of how strong its hook or claim otherwise is.
 
 ## The voice
 
