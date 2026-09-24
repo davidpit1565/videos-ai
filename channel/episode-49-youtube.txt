@@ -1,0 +1,13 @@
+Google now puts an AI-written answer above your search results — the way most people search the internet just changed, and it's wrong more often than you'd think.
+
+It's called AI Overviews (Gemini-powered), and it now runs on the majority of Google searches. An independent New York Times analysis found it's correct roughly 90% of the time — meaning about 1 in 10 answers is wrong, across an estimated five trillion searches a year, with nothing in the interface telling you which specific answer fell in that 10%.
+
+This isn't hypothetical: a German court (Munich Regional Court, ruling reported 28.5.2026) already held Google can be directly, legally liable for a false AI Overview — in that case, it invented a connection between real publishing companies and fraudulent business practices that never existed, and Google didn't correct it even after a cease-and-desist letter. A related U.S. defamation claim against Google over an AI Overview survived dismissal on September 14, 2026.
+
+The real, currently-working fix: Google's own "Web" search filter — a tab under the search box (sometimes hidden under "More" on a narrow screen) — strips the AI Overview entirely and returns the plain, traditional list of links. No account setting, no signup, and it's free. It resets every search, so you tap it each time.
+
+Full setup, exact steps: https://actually-works.com/e/49
+
+Follow for the setup that actually works.
+
+#googlesearch #aioverviews #googleai #misinformation #factcheck #aiaccuracy

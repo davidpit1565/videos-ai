@@ -1,0 +1,22 @@
+Google now puts an AI-written answer above your search results. It's wrong about 1 in 10 times — and nothing on the page tells you which one.
+
+It's called AI Overviews. A German court already ruled Google can be sued over it, after it faked fraud claims about a real company that never happened. It's not reading the whole web live — it just guesses, and it sounds just as confident either time.
+
+There's a real fix, and it works right now:
+1. Run any Google search like normal.
+2. Look at the row of tabs under the search box (All, Images, News, Videos, Shopping) — tap "More" first if your screen is narrow.
+3. Tap "Web." The AI summary disappears. What's left is the plain, traditional list of links.
+4. It resets each search — tap "Web" again next time. It's a per-search filter, not a saved setting.
+
+That's it — that's the entire fix, right there, no app, no signup.
+
+Have you ever caught Google's AI answer being flat wrong? Comment YES if you have and only realized it after, or NO if you always check twice.
+Comment WEB and I'll send you a screenshot of exactly where the button is.
+
+Send this to anyone who trusts the first answer Google gives them.
+
+Full setup, sourced exactly: https://actually-works.com/e/49
+
+Follow for the setup that actually works.
+
+#googlesearch #aioverviews #googleai #factcheck #misinformation #techtips #aiaccuracy

@@ -1250,6 +1250,45 @@ per source — see the session's own research for full citations:**
 own "Sendability test" and "Where the comment-inviting element lives" sections for how it
 was applied concretely, not just referenced.
 
+## Episode 49 — the whole-audience pivot, applied (24.9.2026)
+
+Direct follow-through on the addressable-audience-ceiling read above: episode 48 (Apple
+Communication Safety) is real, verified, and well-built, but its addressable audience —
+parents of under-13 kids on iPhone — is a subgroup of this channel's audience, the same
+structural shape identified as the likely reason episode 1 (a universal, reusable ChatGPT
+prompt, relevant to the entire AI-tool audience) remains this account's best-ever episode
+(406 views, 249 reach, 12 shares — still the only episode with any recorded shares at
+all). Episode 49 was picked specifically to test the opposite: a topic where **both** the
+emotional hook and the practical payoff reach nearly the whole audience, not a subgroup.
+
+**Topic chosen: Google's AI Overviews being wrong ~1 in 10 times (NYT analysis), with a
+real German court ruling (Munich Regional Court, 28.5.2026) that Google can be sued over
+a false one, and a genuinely reusable one-tap fix (Google's own "Web" search filter).**
+Addressable audience: everyone who has ever used Google Search — broader than any prior
+episode's, including the reach-first batch's carrier/Windows/WhatsApp/Apple topics.
+
+**Two live-verified rejections, per the standing verify-before-writing rule**: OpenAI's
+Sora app (shut down entirely, March 2026 — would have been a script about a dead
+product, the exact episode-18 "ChatGPT agent mode" mistake) and ChatGPT Pulse (retired
+June 2026, replaced by Scheduled Tasks). Full comparison of all four candidates
+considered is in `channel/episode-49-script.md`'s "Candidates compared" section.
+
+**New standing rule this same day, already codified into `CLAUDE.md` (commit 739d4b8,
+merged into this branch)**: every episode must be fully understandable to literally
+anyone from the first second, not just by the end — a named feature explained in the
+same breath it's named. Episode 49's first hook draft ("One in ten answers Google's AI
+now gives you is wrong") was rewritten specifically because it named "Google's AI"
+without explaining it in the same breath, even though it already passed the sendability
+and dry-sentence tests on their own — see `channel/hooks-guide.md`'s episode 49 log row
+for the exact before/after.
+
+**HYPOTHESIS, not yet confirmed — this is the actual test, not a foregone conclusion**:
+a whole-audience topic combining real emotional stakes (a court liability finding) with
+a universally reusable technique (the "Web" filter) will show real non-follower reach
+and/or shares, unlike every subgroup-audience reach-first episode (45-48) so far.
+Confirms or rejects only once real numbers come in — do not treat this as proven by the
+act of shipping it.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
