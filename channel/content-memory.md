@@ -1246,6 +1246,10 @@ per source — see the session's own research for full citations:**
 4. Check Trial Reels eligibility directly in the app when the account crosses 200
    followers, if not already eligible.
 
+**Episode 48 is the first built under this gate** — see `channel/episode-48-script.md`'s
+own "Sendability test" and "Where the comment-inviting element lives" sections for how it
+was applied concretely, not just referenced.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same

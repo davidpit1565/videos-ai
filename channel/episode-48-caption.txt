@@ -1,0 +1,23 @@
+Your kid's phone can now blur nudity and violence for them. It will never tell you when it does.
+
+It's called Communication Safety, and Apple just expanded it (14.9.2026) to catch gore and violence too, not just nudity, in Messages and FaceTime. It runs entirely on the device — Apple's own page says it never sees the photo, and no signal leaves the phone. Not to you. Not to Apple.
+
+Go check it right now, on your own phone:
+1. Settings → your name at the top → Family
+2. Tap your kid's name → Screen Time
+3. Find Communication Safety — confirm it's ON (it's on by default for a Child Account, but confirm it, don't assume it)
+4. Set a Screen Time Passcode only you know, if you haven't already — under 13, they need it from you before they can look past the blur
+5. Know the real limit: it only covers Messages and FaceTime. Not WhatsApp. Not Snapchat. Not any other app.
+
+That's it — that's the entire setting, right there, nothing else to click.
+
+If Apple's filter caught something on your kid's phone this week, would you actually know? Comment YES if you'd want a heads-up, or NO if you're fine not knowing.
+Comment CHECK and I'll send you the exact screen to open tonight.
+
+Send this to a parent who thinks their kid's phone would just tell them.
+
+Full setup, sourced exactly: https://actually-works.com/e/48
+
+Follow for the setup that actually works.
+
+#parentalcontrols #screentime #applesupport #onlinesafety #kidsonlinesafety #parentingtips #digitalparenting

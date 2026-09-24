@@ -1279,6 +1279,35 @@ export const ARTICLES: Article[] = [
       "Every sourced action Rowan takes — cancelling, negotiating, chasing a refund — happens after the user replies to its text. It is not described anywhere in the sourcing as acting on its own without that reply.",
     ],
   },
+  {
+    n: 48,
+    title: "Apple's new nudity-and-gore filter never tells you when it fires",
+    standfirst:
+      "Apple's Communication Safety now blurs nudity, gore, and violence in Messages and " +
+      "FaceTime on a kid's iPhone — expanded and shipped this month, 14.9.2026, in iOS 27. " +
+      "It runs entirely on the device, and Apple's own support page states it plainly: " +
+      "Apple doesn't get the photo, and the app doesn't send off the device any signal " +
+      "that something was even flagged. Under 13, the child needs your Screen Time " +
+      "passcode to see it anyway — but nothing pings you when it happens.",
+    steps: [
+      "On your own iPhone: open Settings, tap your name at the top, then tap Family.",
+      "Tap your child's name in the family group, then tap Screen Time.",
+      "Under Communication Safety, confirm the toggle is on — it's on by default for a Child Account under 18, but confirm it, don't assume it.",
+      "If it isn't already set, tap Screen Time Passcode (still inside your child's Screen Time page) and set one only you know — this is the passcode a child under 13 needs from you before they can view anything Communication Safety blurred.",
+      "Know what this does not do: it will not notify you, text you, or show up anywhere in your own Screen Time app when it actually blurs something on your kid's phone — the only way you find out is by asking your kid, or by them needing your passcode to look past it.",
+    ],
+    changes: [
+      "Verified live (23.9.2026) directly against Apple's own newsroom post (apple.com/newsroom, 14.9.2026, 'Apple's new child safety features now available') and Apple Support article 105069 ('About Communication Safety on your child's Apple device') — not from memory or an older episode's assumptions, per the standing verify-before-writing rule.",
+      "Concept 3 of the original four-concept reach-first list (a parental-control gap), the last of the four to ship — episodes 45, 46, and 47 covered concepts 1, 2, and 4.",
+      "A genuinely current feature, not a stale one: Communication Safety itself existed before 2026, but the gore/violence detection and the live-FaceTime-call coverage are new this month, expanded from photo/video-only nudity detection.",
+    ],
+    limits: [
+      "Requires your child to be signed in with a Child Account inside your Family Sharing group — it does not work on an adult Apple ID, and a teenager signed in with their own adult-converted Apple ID can turn it off themselves.",
+      "It only inspects photos and videos sent or received in Messages and FaceTime video calls on Apple devices — it does not scan third-party apps (WhatsApp, Snapchat, Instagram DMs, etc.), text-only messages, or web content.",
+      "It does not notify a parent when it blurs something, by Apple's own design — the analysis and the block happen entirely on the child's device, and no signal leaves that device, even to Apple itself.",
+      "The Screen Time passcode gate described above is specifically what Apple's support page states for children under 13 — Apple's own documentation notes that age requirements and defaults vary by state, country, or region, so don't assume the exact same gate applies identically to an older teen without checking your own child's device.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

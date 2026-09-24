@@ -1,0 +1,13 @@
+Your kid's phone can now blur nudity and violence for them. It will never tell you when it does.
+
+Apple's Communication Safety, part of Screen Time on a Child Account, uses on-device machine learning to detect and blur nudity, gore, and violence in photos and videos sent or received through Messages and FaceTime video calls. Apple expanded it on September 14, 2026 (iOS 27, iPadOS 27, macOS 27) to catch gore and violence, not just nudity, and to cover live FaceTime calls as well. Apple's own support documentation states the analysis happens entirely on the device: Apple does not receive the photo or video, and no signal — not even an indication that something was flagged — leaves the device, to anyone, including Apple itself.
+
+For a child under 13, viewing content Communication Safety has blurred requires a parent or guardian to enter the family's Screen Time passcode — that's the one real, parent-facing check built into the system. It's on by default for a Child Account under 18 inside Family Sharing, though Apple's own page notes age defaults vary by region.
+
+The real limit: it only covers Messages and FaceTime on Apple devices. It does not scan WhatsApp, Snapchat, Instagram DMs, or any other app.
+
+Full setup, exact steps: https://actually-works.com/e/48
+
+Follow for the setup that actually works.
+
+#parentalcontrols #screentime #applesupport #onlinesafety #kidsonlinesafety #digitalparenting
