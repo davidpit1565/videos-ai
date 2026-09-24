@@ -9,6 +9,43 @@ memory. Read this before writing any episode's first line.
 Pick deliberately from the categories below, based on what this specific episode's content
 actually is — not whichever type got used last.
 
+## Standing rule, 23.9.2026: every test below is a hard STOP, not a reference to consult
+
+David flagged, after episode 45's hook shipped and had to be rewritten, then again after
+episodes 46/47's hooks: this file's own rules (dry-sentence test, one-second comprehension,
+emotional-register check, claim-in-first-clause) were already correct — they were being
+read and then **not enforced** before production started. A hook that technically violates
+"understood in one read" (episode 47: "An AI agent already catches a forgotten trial weeks
+before the real charge" — genuinely hard to parse cold) or that reads as *reassuring*
+instead of carrying real stakes (episode 45's first shipped draft: "your carrier's already
+screening for scams" — something good protecting you, not something to lose) still went
+into full production before anyone caught it, because the checks were treated as a
+checklist to satisfy in hindsight, not a gate that blocks starting.
+
+**Before any script gets written, and again before any production run starts, actually do
+this, out loud, on the exact candidate line — don't just recall that the rule exists:**
+1. Read it once, cold, at normal speed. Did it land completely on the first pass, with zero
+   backtracking? If it needed a second look, it fails — full stop, reword before anything
+   else happens, per the 10.9.2026 rule below.
+2. Name the emotional register honestly: does this feel like something the viewer could
+   lose, be wrong about, or is already at risk from — or does it feel reassuring/neutral/
+   positive? A hook that reads as "something is already protecting you" is the reassurance
+   trap — reframe around the risk/gap the topic actually contains (per the 13.9.2026
+   emotional-register section below), don't ship it as-is.
+3. **The sendability test (added 23.9.2026, see `content-memory.md`'s 23.9.2026 entry for
+   the full sourcing): would a specific, real person actually forward this — the hook, the
+   caption, the core payoff — to one specific other person, with zero extra clicks needed?**
+   This is now a required check alongside the dry-sentence test, not a separate, optional
+   nice-to-have — our own data (episode 1's 12 shares vs. zero on 44 other episodes) plus
+   Instagram's own stated ranking mechanism (unconnected/non-follower reach is gated
+   primarily by sends-per-reach, more than likes or watch time — Adam Mosseri, on record,
+   Dec 2025) make this the single most load-bearing test in this file now, not an
+   afterthought CTA line.
+
+If a candidate hook fails any of the three checks above, it does not ship, and production
+does not start — reword and re-check, the same discipline the dry-sentence test already
+established, just actually applied this time before the pipeline runs, not after.
+
 ## The dry-sentence test — required before a hook ships
 
 He said it plainly, twice now (2.9.2026): a hook is not just a true, on-topic first
