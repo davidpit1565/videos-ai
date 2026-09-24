@@ -352,6 +352,44 @@ last row before writing the next hook, and pick a different type.**
 
 | 47 | "An AI agent already catches a forgotten trial weeks before the real charge." | **Planned as The Specific Number, shipped as Contrarian Open** — the exact cardinal number ("three weeks," then "twenty-one days") had to be dropped from the spoken line during production after it reproducibly tripped a consonant-burst artifact and a separate accent-drift flag in this voice (not a seed fluke — confirmed across multiple independent fresh takes); the shipped line overturns the assumed default (you only find out about a surprise charge after it hits) instead of leading with a bare figure, which is what makes Contrarian Open the honest label. Rotation still holds — last used episode 43, a real gap, not a repeat of episode 45 (You-Focused Appeal), episode 44 (Shock/Surprise), or the parallel episode 46 (expected Direct Address/Question). Built after David flagged episode 45's first hook draft directly: it didn't make him want to keep watching *or* follow — a distinct, unsolved "why follow" problem this file's dry-sentence test doesn't itself cover. The real product (Rocket Money's Rowan, a genuinely different company/mechanism from episode 41's ChatGPT Finances) lands in the first clause, and the precise sourced figure ("about three weeks") still appears exactly as before in the on-screen quote card, caption, and setup guide. The CTA leans on the account's existing "Follow for the setup that actually works" promise rather than inventing a new gimmick, so the hook's own specificity is what has to earn that promise. |
 
+| 48 | "Your kid's phone can now blur nudity and violence for them — and it will never tell you when it does." | Shock/Surprise (last used episode 44, a 3-episode gap) — not a repeat of 45 (You-Focused Appeal), 46 (Direct Address), or 47 (Contrarian Open). Eighth distinct company/system in the reach-first run (Apple/Communication Safety, after OpenAI/41, Google/42, Microsoft-Recall/43, Meta/44, carriers/45, Microsoft-Copilot/46, Rocket Money/47). **Built under a new standing hard gate, confirmed 23.9.2026, after a full growth forensic audit found reach has never once exceeded follower count across ~50 episodes, shares are 0 on 44 of 45 episodes, and Instagram's own head of product has stated sends-per-reach gates non-follower distribution more than likes or watch time.** Every future hook and caption now has to clear the sendability test below before shipping, not just the dry-sentence test. |
+
+## The sendability test — hard gate, added 23.9.2026 after the full growth-forensic audit
+
+Confirmed via a full audit of every episode's real numbers (David, 23.9.2026): reach has
+never once exceeded follower count on any of ~50 episodes (no Explore/non-follower reach
+has ever fired), shares are 0 on 44 of 45 episodes (the one exception, episode 1, is also
+this account's highest-views/highest-reach episode ever — 406 views, 249 reach, 12 shares),
+comments total 8 across all 45 episodes, and engagement has been declining by cohort
+(episodes 1-10: 235 avg views/7.2 avg likes → episodes 41-45: 152 avg views/3.4 avg likes).
+Independently, Instagram's own head of product (Adam Mosseri, on record) has stated that
+non-follower/"unconnected" reach is gated primarily by sends-per-reach (DM shares), more
+than likes or watch time — every post gets a small initial "audition" regardless of
+follower count, and this account's posts have been failing that audition on the exact
+signal that gates it, every single time.
+
+Episode 1's caption is the one data point this account actually has of a caption doing the
+job right: the entire usable artifact (a complete, copy-pasteable prompt) sits directly in
+the caption body, not behind a link-out to a setup page — a stranger could forward just the
+caption and the recipient could use it immediately.
+
+**The gate, applied before any hook or caption ships, from episode 48 on:** would a
+specific, real person actually forward the hook line, or the caption, to one specific other
+person, with zero extra clicks needed? If the honest answer is no, redesign until it is —
+this is now checked explicitly, the same way the dry-sentence test above is, not left
+implicit. Two structural consequences, both standing from episode 48 on:
+1. The caption needs a genuinely complete, forward-as-is artifact in its body — not just a
+   feature description with a link to the setup guide. The setup guide link is a bonus for
+   more detail, never the only way to get value from the caption.
+2. Every caption adds a real, specific comment-inviting element — a debatable claim, a
+   specific question, or a comment-to-DM funnel — not just "follow for more." Comments have
+   sat at essentially zero across every episode so far; this is the first deliberate attempt
+   to change that, not an assumption it already works.
+
+No paid promotion or ads until a format is validated organically first, per the same
+23.9.2026 decision — the sendability gate is meant to test whether fixing the actual
+distribution mechanism (not hook wording, not spend) changes anything.
+
 **Standing rule added 17.9.2026, after David directly flagged that episodes 39 (weak AI
 relevance — ACR is signal fingerprinting, not "AI" the way a viewer understands the term) and
 40 (zero AI content — connected-car telematics/insurance data has nothing to do with AI) had

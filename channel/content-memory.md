@@ -1160,6 +1160,37 @@ to re-pull episodes 41/42's views once they've had 2-3 full days, per David's re
    they land back in the ~150-220 range other mature episodes sit in, or genuinely stay
    low — that result will matter more than anything reasoned here today.
 
+## Full growth forensic audit — reach has never once exceeded followers (23.9.2026)
+
+David ran a complete audit of every episode shipped so far. Real, verified findings, not
+guesses:
+
+- **Reach has never exceeded follower count on any of ~50 episodes** — no Explore/
+  non-follower reach has ever fired for this account.
+- **Shares are 0 on 44 of 45 episodes.** The one exception, episode 1, is also the
+  highest-views/highest-reach episode ever shipped (406 views, 249 reach, 12 shares) — its
+  caption puts the entire usable artifact (a complete, copy-pasteable prompt) directly in
+  the caption body, not behind a link-out, unlike every episode since #21.
+- **Comments total 8 across all 45 episodes** — near-total absence.
+- **Engagement is declining by cohort**: episodes 1-10 averaged 235 views/7.2 likes;
+  episodes 41-45 averaged 152 views/3.4 likes.
+- **Sourced independently**: Instagram's own head of product (Adam Mosseri, on record) has
+  stated non-follower/"unconnected" reach is gated primarily by sends-per-reach (DM shares),
+  more than likes or watch time — every post gets a small initial "audition" regardless of
+  follower count, and this account has been failing that specific audition every time.
+
+**What this changes, standing from episode 48 on** (mirrored in `hooks-guide.md`'s own new
+sendability-test section): every caption must carry a genuinely complete forward-as-is
+artifact in its body (not just a link to the setup guide), and a real, specific
+comment-inviting element (a debatable question or a comment-to-DM funnel), and every
+hook/caption is checked against a explicit sendability test — would a specific real person
+forward this to one specific other person, with zero extra clicks — before it ships. No
+paid promotion until this is validated organically first.
+
+**Episode 48 is the first built under this gate** — see `channel/episode-48-script.md`'s
+own "Sendability test" and "Where the comment-inviting element lives" sections for how it
+was applied concretely, not just referenced.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
