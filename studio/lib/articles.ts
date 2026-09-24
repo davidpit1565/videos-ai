@@ -1308,6 +1308,34 @@ export const ARTICLES: Article[] = [
       "The Screen Time passcode gate described above is specifically what Apple's support page states for children under 13 — Apple's own documentation notes that age requirements and defaults vary by state, country, or region, so don't assume the exact same gate applies identically to an older teen without checking your own child's device.",
     ],
   },
+  {
+    n: 49,
+    title: "Google's AI answer at the top of your search is wrong 1 in 10 times",
+    standfirst:
+      "Google now puts an AI-written summary (AI Overviews) above the normal list of links " +
+      "on almost every search. An independent analysis found it's right about 90% of the " +
+      "time — wrong roughly 1 in 10 — with nothing in the page telling you which answer is " +
+      "one of the wrong ones. A German court has already ruled Google can be sued over a " +
+      "false one. There's a real, one-tap way to skip it and see the plain links instead.",
+    steps: [
+      "Run any Google search like you normally would, on your phone or computer.",
+      "Look at the row of filter tabs just under the search box (All, Images, News, Videos, Shopping) — on a narrow phone screen, tap 'More' first if you don't see the full row.",
+      "Tap 'Web.' The page reloads instantly with the AI summary gone — just the plain, traditional list of links, straight from the actual sites.",
+      "This resets on your next search — tap 'Web' again each time you want to skip the AI summary, since it's a per-search filter, not a permanent setting.",
+      "Optional, for a more permanent fix on desktop Chrome: open Google Search Labs (the flask icon, top right), find 'AI Overviews and more,' and toggle it off — Google's own fine print says this doesn't remove AI Overviews everywhere, so 'Web' is still the one that reliably works every time.",
+    ],
+    changes: [
+      "Verified live (24.9.2026): AI Overviews' real-world accuracy rate (New York Times analysis, ~90% correct, cited across multiple 2026 outlets), the Munich Regional Court ruling (28.5.2026, reported by the Library of Congress Global Legal Monitor and others) holding Google can be directly liable for a false AI Overview, a related U.S. defamation case surviving dismissal (14.9.2026), and the 'Web' filter's current, working behavior (multiple independent 2026 sources).",
+      "Two other candidate topics were checked live and rejected as stale before this one was chosen: OpenAI's Sora app (shut down entirely, March 2026) and ChatGPT Pulse (retired, June 2026, replaced by Scheduled Tasks) — see channel/episode-49-script.md for the full comparison.",
+      "Deliberately the broadest-audience topic this channel has shipped: not a subgroup (parents, Windows users, one carrier's customers) but effectively every person who has ever used Google Search.",
+    ],
+    limits: [
+      "This is about Google Search's AI Overviews specifically — not a claim about every AI product, every search engine, or every other Google product.",
+      "The 'Web' filter removes the AI Overview for that one search only — it is not a permanent account setting, and it has to be tapped again on the next search.",
+      "The ~90%/1-in-10 figure is an average from one independent analysis, not a claim that any specific answer you personally see is wrong — there's no way, from inside the page, to know which answers fall in that 10%.",
+      "The Search Labs toggle (the optional step above) is real but incomplete by Google's own stated fine print — it does not fully disable AI Overviews outside of Labs, so don't rely on it alone.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
