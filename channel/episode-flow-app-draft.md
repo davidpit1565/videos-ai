@@ -67,16 +67,37 @@ narration/build/render pipeline (`export/produce.sh`) like every other episode.
 
 ---
 
-## SCRIPT DRAFT — prepared 25.9.2026, per David's direct instruction
+## SCRIPT DRAFT — rewritten 27.9.2026 around David's approved hook, still pre-production
 
-**Status: script only, still on hold.** Per David's message today and this file's own
-standing instruction above: the App Store listing is confirmed still not live (verified
-just now — `APP_STORE_SUBMISSION.md` sections 6-7 are still open: no Apple Developer
-account enrolled yet, no Mac/Xcode build, so no submission has happened; the earlier
-"submitted, awaiting review" framing was corrected — it's actually not submitted yet).
-No render, voice generation, build, or publish happens until it's actually live and there's
-a real link for the setup guide. This section only prepares the script and the research
-that feeds it, so production can start the moment it's unblocked.
+**Status: script finalized around the approved hook; this is a checkpoint deliverable, not
+a go-ahead to produce.** David approved the exact hook line below and asked specifically
+for a real-screen-recording production approach (not the usual `reel-template.html` motion
+graphics) plus a genuine attempt at MusicGen instead of the default synth. Per his explicit
+instruction this round: prepare (a) the finalized script, (b) a short real screen-recording
+sample, and (c) a short music sample, then **stop before any voice generation, full render,
+`produce.sh` run, watch-twice pass, git branch/commit, or PR** — he wants to see the
+direction before a long production run on what he's called the most important episode this
+channel has made.
+
+### App Store status — checked live, 27.9.2026 (per this round's instruction)
+Searched live for "Flow: Budget & Subscriptions" and for the bundle id `com.davidpit.flow`
+on the App Store: **no listing found under either.** No app titled "Flow: Budget &
+Subscriptions," "FLOW: Personal Finance," or any close variant traced back to this bundle
+id or to David's name/developer account turned up in App Store search results as of this
+check. This is a **"not found live"** result, not a confirmed rejection or a confirmed
+still-in-review status — this session has no access to App Store Connect, so it cannot see
+whether Apple's review is in progress, still queued, or something else entirely happened
+after the 26.9.2026 submission David mentioned. Report this to David plainly: **the app is
+not publicly visible on the App Store right now**, whatever its internal review state is.
+Line 5 of the script below ("It's finished. Right now it's just waiting to go up on the App
+Store.") is still the honest, accurate thing to say based on what's externally verifiable —
+it does not claim a review outcome that hasn't happened, and does not imply it's already
+downloadable. If David confirms it went live between this check and actual production, that
+line is the one to update first.
+
+### Fin-flow repo status — verified 27.9.2026
+Re-checked `/home/user/davidpit1565/fin-flow`: still cloned, `git status` clean, `main` up
+to date with `origin/main` — no re-clone was needed.
 
 ### Real screenshots confirmed usable — no Playwright needed
 `ios/fastlane/screenshots/en-US/iphone_6.9/` (in `davidpit1565/fin-flow`, cloned read-only
@@ -107,51 +128,59 @@ Checked myself, independently of `APP_STORE_SUBMISSION.md`'s own claim:
 as of today (25.9.2026)** — not just asserted in the submission doc. Safe to use as the
 hook's core checkable claim.
 
-### Hook type — chosen against the real rotation log in `channel/hooks-guide.md`
-Last six episodes' types, in order: 44 Shock/Surprise, 45 You-Focused Appeal,
-46 Direct Address, 47 Contrarian Open, 48 Shock/Surprise, 49 The Specific Number.
-**Chosen type: Problem/Solution Setup** ("Struggling with X? Try this instead" —
-`hooks-guide.md`'s table) — not used anywhere in the last six episodes, so this both
-rotates cleanly off 49 and doesn't repeat any recent type. Genuinely earned by the content:
-the real problem (every mainstream budgeting app wants a bank login) and the real,
-checkable solution (this one structurally cannot ask) is exactly what this type is for,
-not a forced fit.
+### Hook — David's approved line, replacing the earlier draft hook (27.9.2026)
+**David reviewed the earlier "Every budgeting app out there wants your bank password..."
+draft and approved a different, final hook instead — do not revert to the old one.**
 
-**Hook line**: *"Every budgeting app out there wants your bank password. This one can't
-even ask — there's nowhere for it to send it."*
-- **Dry-sentence test**: real pull, not just informative — it names a genuine, familiar
-  risk (handing a bank password to an app) before revealing the twist in the same
-  sentence, per the 10.9.2026 first-clause rule.
-- **One-pass/cold-read test**: read once, lands immediately — no setup, no hypothetical,
-  no second sentence needed to understand the claim.
-- **Real stake, not reassurance-trap**: the stake (your bank password going somewhere) is
-  named plainly before the relief comes in the second clause — checked directly against
-  the failure mode episode 45's first draft fell into.
-- **Comprehension test (24.9.2026 standing rule)**: no jargon — "bank password," "send it,"
-  nothing assumes prior AI/tech literacy. Deliberately avoids the word "server," even
-  though that's the technically precise term, in favor of "nowhere to send it," so the
-  claim lands for a viewer who has never heard the word "backend" or "server" used this way.
+**FINAL HOOK, locked**: *"You have no idea how much you're actually paying in subscriptions
+right now."*
+- **Type**: reads as You-Focused Appeal / Direct Address (last used 45/46 respectively, a
+  few episodes back — not an immediate repeat of 48 Shock/Surprise or 49 The Specific
+  Number). Rotation isn't the deciding factor here since David approved this exact line
+  directly; noting the type for the log, not re-litigating the choice.
+- **Dry-sentence / one-pass test**: lands immediately, no setup — a direct, personal claim
+  about the viewer's own money, not a hypothetical.
+- **Real stake, not reassurance**: names something the viewer is plausibly already wrong
+  about, not something already protecting them — the opposite of the reassurance-trap
+  failure mode.
+- **Comprehension test (24.9.2026 standing rule)**: zero jargon, no named product or
+  feature in the hook itself — pure plain language, understandable to literally anyone
+  from the first second, before "Flow" is even named.
 
-### Full narration draft
-1. "Every budgeting app out there wants your bank password. This one can't even ask —
-   there's nowhere for it to send it."
+The privacy/no-backend claim — independently verified from source (see above, unchanged
+from the earlier draft) — **no longer opens the script.** Per this round's instruction it
+moves to a mid-script reveal (line 4 below): the hook earns attention on the universal
+subscription-blindness problem first, then the checkable, differentiating mechanism lands
+once the viewer already cares what app is being described.
+
+### Full narration draft — rewritten around the approved hook (27.9.2026)
+1. **"You have no idea how much you're actually paying in subscriptions right now."**
 2. "It's called Flow. It tracks your spending, your budgets, and every subscription you're
    paying for, all in one place."
-3. "Everything stays only on your phone. No account, no login, no company on the other
-   end — I checked the code myself, there isn't one line in it that sends your data
-   anywhere."
-4. "A real survey found 89% of people underestimate what they actually pay every month in
+3. "A real survey found 89% of people underestimate what they actually pay every month in
    subscriptions — most guessed around $86, the real number came back near $219."
+4. "Everything in Flow stays only on your phone. No account, no login, no company on the
+   other end — I checked the code myself, there isn't one line in it that sends your data
+   anywhere."
 5. "It's finished. Right now it's just waiting to go up on the App Store."
 6. "Comment FLOW and I'll DM you the second it's live."
-7. "Follow, so you don't miss it."
+7. "Send this to someone who has no idea what they're actually paying every month."
+8. "Follow, so you don't miss it."
 
-**Density check**: 4 distinct ideas across the 5 non-CTA lines (the risk/solution claim,
-what the app does, the privacy mechanism verified from source, the real subscription-spend
-stat), within the account's usual 4-5 idea range.
-**Not-live disclosure, stated plainly, per the never-fabricate rule**: line 5 says exactly
-what's true right now (finished, not yet listed) — never implies it's already downloadable,
-never invents an install count, rating, or review-status detail that hasn't happened.
+**Density check**: 5 distinct ideas across lines 1-5 (the subscription-blindness hook claim,
+what the app does, the real survey stat, the privacy mechanism verified from source, the
+honest not-live status) — at the top of, not past, the account's usual 4-5 idea range;
+nothing was added beyond re-sequencing what the prior draft already had.
+**Not-live disclosure, unchanged and re-checked**: line 5 says exactly what's true right now
+per this round's live App Store check above (not found live) — never implies it's already
+downloadable, never invents an install count, rating, or review-status detail that hasn't
+happened.
+**Comprehension check on the full script, not just the hook (24.9.2026 standing rule)**:
+read start to finish as a viewer with zero prior context — "Flow" is named and explained in
+the same breath (line 2), the privacy claim explains its own mechanism in plain words ("no
+company on the other end," not "no backend"), the survey stat is self-contained (states both
+numbers, no external context assumed). Nothing depends on having watched to the end to make
+sense of an earlier line.
 
 ### Sourced research used in the script (not invented)
 - **West Monroe subscription-spend survey** (cited across multiple 2026 outlets,
@@ -187,6 +216,48 @@ people are off by over a hundred dollars."* This is answerable from real persona
 experience (not hypothetical), and creates a natural second reason to comment beyond the
 FLOW keyword itself.
 
+### Triple-CTA cap — confirmed, three asks total, no more (27.9.2026 instruction)
+Per this round's explicit instruction, the ask count is capped at exactly three:
+1. **Comment FLOW** → DM funnel (narration line 6 + caption).
+2. **"Send this to..."** → forward-as-is line, exact 48/49 pattern (narration line 7 +
+   caption): *"Send this to someone who has no idea what they're actually paying every
+   month."*
+3. **The subscription-guess question** → comment-inviting debate line, caption only (above).
+
+"Follow, so you don't miss it" (narration line 8) is the standing sign-off every episode
+closes on, not counted as a fourth ask — same treatment as episodes 48/49, which both also
+close on "Follow for the setup that actually works" after their own triple-shaped CTA block.
+
+### Caption draft (27.9.2026) — no App Store link anywhere, per David's explicit decision
+```
+You have no idea how much you're actually paying in subscriptions right now.
+
+It's called Flow — an app that tracks your spending, your budgets, and every subscription
+you're paying for, all in one place. A real survey found 89% of people underestimate their
+real monthly subscription spend: most guess around $86, the real number comes back near
+$219. Everything in Flow stays only on your phone — no account, no login, no company on
+the other end. I checked the code myself: there isn't one line in it that sends your data
+anywhere.
+
+It's finished. Right now it's just waiting to go up on the App Store.
+
+Guess before you check: how much do you actually spend on subscriptions every month?
+Comment your number — most people are off by over a hundred dollars.
+Comment FLOW and I'll DM you the second it's live.
+
+Send this to someone who has no idea what they're actually paying every month.
+
+Follow, so you don't miss it.
+
+#budgeting #subscriptions #personalfinance #moneytips #privacy #fintech #budgetapp
+```
+No App Store link is printed in the caption or spoken in the video, by design (David's
+explicit decision, restated in this round's instruction) — this is unlike every other
+episode's standing "full setup path" rule, which is deliberately not applied here yet since
+there is no real link to give a viewer until the app is actually live. Once it ships, this
+caption and the setup-guide page (`/e/N`) both need the real link added — flagged again in
+"what's still not done" below.
+
 ### Organic app marketing research — real case studies, not guesses (live search, 25.9.2026)
 - **TikTok's own stated mechanism**: a video is tested in a small interest pool regardless
   of follower count or account age — a brand-new account can reach non-followers on day
@@ -214,7 +285,97 @@ FLOW keyword itself.
   episode's actual performance goes into `content-memory.md` after it ships, same as every
   other episode, not assumed in advance from someone else's numbers.
 
+### NEW production approach — real screen recording, not `reel-template.html` (27.9.2026)
+Per this round's explicit instruction, this episode does not use the usual
+`video/reel-template.html` motion-graphics build. The visual backbone is genuine
+screen-recorded footage of the real Flow web build in motion, driven by Playwright.
+
+**How it was done, and verified working:**
+1. `cd /home/user/davidpit1565/fin-flow && bun install && bun run dev` — the app is Vite +
+   React (no backend needed for the web build), served at `http://127.0.0.1:5173`.
+2. Playwright's own MCP browser tool couldn't launch here (`Running as root without
+   --no-sandbox is not supported`), so recording used the project's own
+   `node_modules/playwright-core` directly, launched with `--no-sandbox`, in a standalone
+   Node script (not `scripts/gen-screenshots.ts`, which takes stills, not video) —
+   `chromium.launch({ headless: true, args: ['--no-sandbox'] })`, a context with
+   `recordVideo: { dir, size }` at a 430x932 CSS viewport (iPhone-width), `deviceScaleFactor:
+   2`. `npx playwright install chrome` (for the MCP tool) and `npx playwright install
+   --with-deps chromium` (for the standalone script) were both needed since neither browser
+   was preinstalled.
+3. Reused `scripts/gen-screenshots.ts`'s own onboarding-completion and realistic-data-seeding
+   logic (real clicks: `Continue` x3 → `Get started`, then real form fills for income,
+   expenses, and five subscriptions including Netflix/Spotify/iCloud+/Disney+/ChatGPT Plus —
+   genuinely relevant sample data for this episode's own hook) so the on-camera tour shows a
+   populated, realistic app, not an empty first-run state.
+4. The recorded, on-camera tour itself (after seeding) is real clicks/scrolls, no synthetic
+   playback: Home (with a scroll up/down) → Subscriptions (with a scroll) → Insights → back
+   to Home → tap "Add transaction" → type a real amount, tap a category, type a real
+   merchant name into the actual form. ~15.5s of real on-camera interaction, captured as
+   Playwright's native WebM video, then re-encoded to H.264 MP4 with `ffmpeg` (`-c:v libx264
+   -pix_fmt yuv420p -movflags +faststart`).
+5. **Verified it plays back and isn't blank/corrupt**: extracted 1 frame/second with
+   `ffmpeg -vf fps=1` and visually inspected them — every frame shows real, correct app UI
+   (Home with the seeded income/expenses/subscriptions, Subscriptions list with real
+   amounts, Insights with a real financial-health score and spending chart, the Add
+   Transaction sheet mid-fill with "24.90" / "Food" / "Corner Bakery"). Not blank, not
+   corrupted, not a static freeze-frame.
+
+**Checkpoint sample delivered**: `tour_full.mp4` (~15.4s, 430x932, H.264) plus 15
+one-per-second extracted stills (`frames/f_01.png` … `f_15.png`) — see file paths in the
+handback. This is the full on-camera tour segment (seeding is trimmed out, since that part
+is setup, not the actual visual backbone the episode uses).
+
+### Caption/text-placement rule for THIS episode — stricter than the usual safe-area check
+The usual Instagram safe-area rule (`channel/motion-recipes.md` / `export/safe_check.js` —
+top 14%/269px, bottom 35%/672px, 6% sides on a 1080x1920 canvas) is necessary but not
+sufficient here, because unlike a `reel-template.html` build, this footage has **its own
+real, functional UI already on screen** — Flow's own header, tab bar, buttons, and content
+are not decoration, they're the actual thing the episode is proving is real. A caption
+box can be inside Instagram's safe area and still sit on top of Flow's own nav bar or a
+real button, which would look like a broken screen recording, not a clean overlay.
+Reviewing the actual captured frames (at the app's own 430x932 layout, before scaling to a
+1080x1920 canvas):
+- **Home / Subscriptions / Insights**: each screen has a genuinely calm, empty band between
+  its own header/hero area and its content list (e.g. Subscriptions: content ends around
+  y≈650 of 932, the tab bar starts around y≈860 — roughly 200px of real dead space above the
+  tab bar, not overlapping any live element). Captions for these screens belong in that
+  native dead zone, or in the narrow strip above the app's own header (the very top, above
+  "Good evening" / above the screen title) — never across the tab bar itself, never across
+  the "Coming up" / subscriptions list rows, which are the real content being shown off.
+- **Add Transaction sheet**: the sheet covers most of the screen deliberately (that's the
+  real UI). The calm zones here are the drag-handle strip at the very top of the sheet and
+  the dimmed, faded background above the sheet (the real Home screen behind it, intentionally
+  out of focus) — captions should not cover the form fields, the category grid, or the
+  "Add expense" button, since those are exactly what proves this is a real, working screen.
+- This is a per-screen judgment call on the actual captured footage, not a fixed pixel
+  rule like the usual safe-area box — **re-check this against the final stitched build once
+  it exists**, the same way `safe_check.js` re-checks every build; this section is the
+  reasoning, not a substitute for a real visual check on the final cut.
+
+### Music — MusicGen attempted for real, not the default synth (27.9.2026)
+David said the default `audio/build_music.py` synth ("tom tom tom tom") isn't good enough
+for this episode. Used the `audiocraft-audio-generation` skill's HuggingFace Transformers
+path (`facebook/musicgen-small`, CPU-only in this environment — no GPU available, and
+`audiocraft` itself isn't installed/importable here, but `transformers`' own
+`MusicgenForConditionalGeneration` wraps the same model and ran successfully) to generate
+two ~14s variations aimed at a calm-but-confident financial-app mood:
+1. `v1_calm_confident.wav` — prompt: "calm confident modern fintech app background music,
+   warm analog synth pads, soft plucked marimba melody, gentle steady pulse, minimal and
+   optimistic, no vocals, smooth and reassuring, mid tempo."
+2. `v2_minimal_pulse.wav` — prompt: "minimal ambient corporate track, soft warm piano
+   chords, subtle deep bass pulse, light airy pads, hopeful and clean, no drums, calm modern
+   technology mood, no vocals."
+
+See the handback for exact file paths and which one (if either) actually sounds usable —
+that's a judgment call for David's ear, per this repo's own standing rule that his ear wins
+disagreements with measurement. If neither clears the bar, the fallback is
+`audio/build_music.py`'s synth as before, but only after a real MusicGen attempt, which this
+was.
+
 ### What's still not done, and must happen before this can produce
+- **This is a checkpoint, not a go-ahead** — per this round's explicit instruction, nothing
+  past this point happens without David's review: no voice generation, no full render, no
+  `export/produce.sh` run, no watch-twice pass, no git branch/commit, no PR.
 - App Store listing is still not live — Apple Developer enrollment and the Xcode build
   (`APP_STORE_SUBMISSION.md` sections 6-7) are still open. No render/voice/build/publish
   starts until that's done and there's a real install link.
