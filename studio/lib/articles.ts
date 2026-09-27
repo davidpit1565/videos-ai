@@ -1336,6 +1336,36 @@ export const ARTICLES: Article[] = [
       "The Search Labs toggle (the optional step above) is real but incomplete by Google's own stated fine print — it does not fully disable AI Overviews outside of Labs, so don't rely on it alone.",
     ],
   },
+  {
+    n: 50,
+    title: "You have no idea how much you're actually paying in subscriptions",
+    standfirst:
+      "A real survey (West Monroe) found 89% of people underestimate their own monthly " +
+      "subscription spend — most guess around $86, the real itemized total comes back " +
+      "near $219. Flow is a budgeting app built to track that exact number, entirely on " +
+      "your own phone: no account, no login, no backend at all — checked directly against " +
+      "its own source code, not just its own claim. It's finished and waiting to go up on " +
+      "the App Store; this page covers the one thing you can actually do right now, on " +
+      "your own phone, without waiting for that: see your own real number.",
+    steps: [
+      "On an iPhone: open Settings, tap your name/Apple Account at the very top, then tap Subscriptions.",
+      "Wait a moment for the page to load — it shows three groups: Active, Expired, and Recently Canceled.",
+      "For each active subscription, note its price and its next billing date, then add every active price together for your real monthly total.",
+      "Know the real limit of this built-in list: it only shows subscriptions billed through Apple's own in-app purchase system — a subscription billed directly by the company itself (common for streaming and software) on your card, not through Apple, will not appear here, so your real total is likely higher than this screen shows.",
+      "Alternative path, same destination: open the App Store app, tap your profile picture (top right), then tap Subscriptions.",
+    ],
+    changes: [
+      "Verified live (27.9.2026): the exact current Settings path (Settings → your name → Subscriptions) for iOS in 2026, and the App Store app's own equivalent path, cross-checked across multiple current how-to sources rather than assumed from an older iOS version's menu wording.",
+      "App Store status checked live the same day: 'Flow: Budget & Subscriptions' / bundle id com.davidpit.flow was not found live on the App Store under either name — this page will be updated with the real install link the moment that changes, and no placeholder or guessed link is used here in the meantime.",
+      "The privacy claim (no account, no login, no backend) was checked directly against Flow's own source code — its dependencies, and a full grep of its code for any network call — not taken from its own App Store listing or submission notes alone.",
+    ],
+    limits: [
+      "This page's walkthrough (checking your own subscriptions) works today, on any iPhone, regardless of Flow's own App Store status — it is not a Flow-specific feature.",
+      "Apple's own Subscriptions screen only lists subscriptions billed through Apple's in-app purchase system — it will miss anything billed directly by the company (a common setup for services like Netflix or Spotify), so treat its total as a floor, not the full picture.",
+      "Flow itself is not yet installable — it's finished and waiting to go up on the App Store as of this writing (27.9.2026). No install link exists yet, and none is guessed at here.",
+      "The 89%/$86-vs-$219 figures are a survey average (West Monroe), not a claim about any one specific person's real spend — your own number, from the steps above, is the one that actually matters.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

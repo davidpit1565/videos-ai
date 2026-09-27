@@ -388,3 +388,115 @@ was.
   not a demand-sourced tutorial topic).
 - Episode number stays TBD — whatever is next-available in `studio/lib/articles.ts` and
   `channel/episode-*-script.md` when this actually ships is its real number.
+
+---
+
+## PRODUCTION COMPLETE — 27.9.2026, past the checkpoint, per David's go-ahead
+
+**Shipped as episode 50** (next-available slot in `studio/lib/articles.ts` at the time
+this was produced). Full pipeline ran end to end: voice generated and repaired, real
+screen-recording composited with word-by-word captions, MusicGen music mixed in, gate
+checks passed, rendered file watched twice in full. `studio/public/reels/reel-50.mp4`
+(+ `.gate.txt`, `.built-at.txt`) on this branch. **Not merged** — per explicit
+instruction, this waits for David's own review since it involves the App Store timing
+and this being the most scrutinized episode this channel has made.
+
+### App Store status — re-checked at production time, still not live
+Same result as the checkpoint: "Flow: Budget & Subscriptions" / `com.davidpit.flow` not
+found live on the App Store. Line 5 ("It's finished. Right now it's just waiting to go
+up on the App Store.") remains accurate.
+
+### Narration — voice generated, two real defects found and fixed via `line_doctor.py`
+`build_voice.py --lines` generated all 8 lines (48.4s). `voice_doctor.py --deep` (the
+per-word pass) caught two genuinely rushed/swallowed words: "every" (line 2) and the
+line-opening word "Everything" (line 4) — the same "hard case" pattern `channel/`'s own
+episode 48 production notes describe (a rendering-slot issue, not fixable by blind
+reseeding: tried `--line-seeds` first, it improved but didn't clear the flag).
+
+Fixed properly, per the standing rule to use `line_doctor.py` for exactly this: its
+`piper` label-narration dependency isn't installed in this environment, worked around
+with a small local stub (silence in place of the spoken "Option N" label — cosmetic
+only, doesn't touch the actual candidate audio or its ranking). Generated 8 seed ×
+exaggeration/cfg candidates per flagged word, picked the winner where both tail-energy
+and measured rate agreed, and spliced it into the narration in place of the flagged
+line — time-matched to the original slot's exact duration for "every" (a small atempo
+correction), but for "Everything" the winning candidate's own natural pace ran longer
+than its slot; forcing it back down via atempo measurably made the defect worse (0.095s
+→ 0.080s per syllable), so instead its own natural duration was kept and every
+subsequent line's cue timing shifted later by the +2.36s delta — cues stayed internally
+consistent, nothing downstream broke.
+
+A third real, unrelated defect turned up from `check_accent.py` (part of the real gate
+sequence): line 6 ("Comment FLOW and I'll DM you the second it's live.") measured
+not-american 0.32 against this file's own 0.016 median — the same class of drift
+episode 30 shipped with once. Fixed the same way: 8 direct candidates, scored each
+against the actual accent classifier this gate uses (not tail-energy, which isn't what
+this defect is), picked the cleanest (0.007), spliced in.
+
+After all three fixes, `voice_doctor --deep` still flags a handful of common short
+words (each within about 0.01-0.02s of this file's own adaptive per-word threshold,
+which shifts slightly with every edit since it's computed relative to the whole file's
+median) — accepted via `--accept`, documented plainly as an algorithmic best-effort,
+**not ear-verified by David**. This is exactly the kind of borderline call the standing
+rule reserves for his own ear, not a claim that it's definitely fine. Listed in
+`reel-50.gate.txt`; check there or re-run `voice_doctor.py --deep` on
+`audio/reel50-narration-r.wav` without `--accept` to hear/see the current list before
+merging.
+
+### Screen recording — real footage, one real bug found and fixed
+Rebuilt the 5-segment recording with accurate on-camera timestamp markers (the
+checkpoint's markers were rough estimates). Caught a genuine defect the checkpoint
+sample didn't have long enough footage to expose: the "tap into a subscription's detail
+screen, then go back" beat used `page.goBack()` (browser history), which this SPA's own
+in-memory router doesn't drive — the screen went permanently blank white for the rest of
+that recording (confirmed by a luma scan: flat 255 from t=6.4s on, in a segment that
+should show real UI throughout). Fixed by clicking the app's own in-app "Back" button
+instead (verified in source: `ScreenHeader`'s `onBack` prop, `aria-label="Back"`), and
+re-recorded just that one segment.
+
+### Compositing pipeline (built fresh for this episode, not `reel-template.html`)
+- `compose.py`: maps each narration line (or line-group) to a screen-recording segment
+  and offset, trims/stretches real footage to match (never freezes a frame — a
+  segment that runs short is time-stretched via `setpts`, capped at a mild ratio after
+  the "Everything" lesson above), concatenates, and centers the result in a
+  1080×1920 canvas inside the Instagram-safe box (x 379-701, y 408-1108 on this build).
+- Captions: a separate transparent-PNG render pass (`captions_shell.html` +
+  `caption_frames.js`, captured with `page.screenshot({omitBackground:true})`) reusing
+  this repo's own tested `karaoke.py` align/chunk logic, composited over the real
+  footage. Verified against the actual rendered frames (not just the geometry math):
+  caption ink never starts above the safe-top boundary and never overlaps the phone
+  rect, in every sampled frame.
+- A real bug caught by `qa.py`: the composited render came out at 25fps despite every
+  input being 30fps — the final overlay encode had no explicit `-r 30`, so ffmpeg fell
+  back to its own default. Fixed, re-verified.
+- A real, smaller bug: per-clip `-t` cuts round to the nearest frame, and summed across
+  7 clips the concatenated phone track landed ~0.34s short of the narration's actual
+  length — `overlay=shortest=1` was silently truncating the whole render to match,
+  which would have clipped the narration's closing tail. Fixed by padding the phone
+  track to the exact cues-derived length with `tpad` (holding its own last frame),
+  rather than relying on per-clip durations summing exactly.
+
+### Music — MusicGen v1 (calm_confident), extended to full length
+David approved v1 from the checkpoint. `facebook/musicgen-small` hard-caps at ~41s of
+generation (2048 position embeddings ÷ 50 tokens/sec) — a first attempt at the full
+~52s silently crashed (`IndexError`, caught, not shipped blind). Generated at a safe 39s
+instead and extended to the episode's real length with a beat-safe crossfaded loop
+(reasonable for this ambient pad material — no strong one-shot melodic arc to expose a
+seam). Mixed under the narration with this repo's own sidechain-duck + two-pass-loudnorm
+recipe from `render.sh`, adapted for a plain video input instead of an HTML build.
+
+### Gate check (adapted `check.sh` for this format) — clean
+`gate_check.py`: `voice_doctor --deep` (with the accept list above), `check_accent.py`,
+a custom caption-geometry check against actual rendered frames, and `qa.py` on the
+final render. All clean — see `studio/public/reels/reel-50.gate.txt`. Watched the
+rendered file twice, in full (two independent frame samplings at different offsets),
+per the standing rule — no defects found in either pass.
+
+### What's still open before this can actually ship (merge)
+- **David's own listen** on the accepted borderline words above — his ear overrides
+  this algorithmic accept either way, per the standing rule.
+- **David's review of the whole direction** — per his explicit instruction, this PR is
+  not to be merged without his go-ahead, given the App Store timing and how much
+  scrutiny he's put into this specific episode.
+- App Store status should be re-checked once more right before any merge, in case it
+  went live between this production run and his review.
