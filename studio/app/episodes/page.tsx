@@ -39,7 +39,6 @@ export default async function EpisodesPage() {
       )}
       <footer className="sfoot">
         <Link href="/">Home</Link>
-        <Link href="/prompts">Prompts</Link>
         <Link href="/search">Search</Link>
         <Link href="/join">Email list</Link>
       </footer>

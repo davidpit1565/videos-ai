@@ -246,7 +246,6 @@ export default async function Home() {
 
       <footer className="sfoot">
         <Link href="/episodes">Episodes</Link>
-        <Link href="/prompts">All prompts</Link>
         <Link href="/search">Search</Link>
         <Link href="/about">About</Link>
         <Link href="/join">Email list</Link>

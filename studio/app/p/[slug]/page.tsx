@@ -55,7 +55,6 @@ export default async function PromptPage({ params }: { params: Promise<{ slug: s
       </div>
       <footer className="sfoot">
         <Link href="/">Episodes</Link>
-        <Link href="/prompts">All prompts</Link>
         <Link href="/search">Search</Link>
         <Link href="/about">About</Link>
       </footer>

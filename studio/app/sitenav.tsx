@@ -16,8 +16,6 @@ export default function SiteNav({ here }: { here?: string }) {
     { href: "/", label: "Home" },
     { href: "/episodes", label: "Episodes" },
     { href: "/failure-modes", label: "Failure modes" },
-    { href: "/prompts", label: "Prompts" },
-    { href: "/skills", label: "Skills" },
     { href: "/search", label: "Search" },
     { href: "/about", label: "About" },
   ];

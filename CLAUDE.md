@@ -119,6 +119,16 @@ Already shipped this way: `explain-steps` (its own content post), `voice_doctor.
 We do the opposite."). Nothing currently queued and unshipped as of episode 24 — the next
 tool or skill this repo builds goes on this list the same day it's finished, not after.
 
+The public `/skills` and `/prompts` browsing pages on the site were removed (28.9.2026,
+David's direct instruction): they listed every skill and prompt the repo had ever built, but
+nothing kept that list current per episode, so it drifted out of sync with what was actually
+still true — the same "stale content presented as current" problem the "never fabricate"
+rule exists to prevent. This does not change the rule above: a new skill or tool still
+becomes an episode, angle written the same day it ships. It only means there is no longer a
+standing site page that browses the full list — the episode itself, not a catalogue page,
+is where it gets shown. (The per-episode detail pages, `/p/[slug]` and `/s/[slug]`, are
+unaffected and still serve the individual prompt/skill an episode actually points to.)
+
 ## Content memory — the weekly loop
 
 Two files carry this, deliberately kept to two: `channel/content-memory.md` (patterns,
