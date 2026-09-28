@@ -117,7 +117,7 @@ SCENES = [
     # animated on top of it -- real product context around the number,
     # without fabricating motion the source footage doesn't actually have.
     {"lines": [3], "type": "stat_still", "still_src": "segC_insights", "still_at": 44.0,
-     "stat_overlay": True},
+     "stat_overlay": True, "zoom": 0.12},
     # Line 4 was one continuous ~14.9s footage stretch. Reviewer feedback (with
     # David watching the actual cut): too much unbroken screen-recording back
     # to back, reading as monotonous even though each beat shows a different
@@ -412,7 +412,17 @@ def build_stat_still_scene(idx, spec, dur):
          "-frames:v", "1", raw])
     out = f"{WORK}/s{idx}.mp4"
     frames = max(2, round(dur * FPS))
-    zoomexpr = f"1+0.04*min(1,on/{frames})"
+    # David watched this hold (Insights/donut-chart, ~10.8s ahead of the
+    # $86->$219 reveal) and flagged it as reading like a frozen screenshot --
+    # confirmed by qa.py's own "longest 10.80s" visual-change gap, since a
+    # 0.04 zoom over 10.8s moves too few pixels per frame to register as
+    # "change" at all under its low-res diff. Raised to a real Ken-Burns push
+    # (0.12, matching the card scenes' own zoom magnitude) instead of the
+    # small settle-zoom used elsewhere, since this hold is several times
+    # longer than any other single beat and needs correspondingly more motion
+    # to read as alive rather than static.
+    zoom_amount = spec.get("zoom", 0.04)
+    zoomexpr = f"1+{zoom_amount}*min(1,on/{frames})"
     run(["ffmpeg", "-y", "-loop", "1", "-i", raw, "-t", f"{dur:.3f}", "-vf",
          (f"scale={W}:2340:flags=lanczos,"
           f"zoompan=z='{zoomexpr}':d=1:s={W}x2340:fps={FPS},"
@@ -474,6 +484,7 @@ WrapStyle: 2
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Card,{FONT},96,&H00FFFFFF&,&H00FFFFFF&,&H00000000&,&H00000000&,-1,0,0,0,100,100,0,0,1,9,5,5,80,80,80,1
+Style: HookCap,{FONT},88,&H00FFFFFF&,&H00FFFFFF&,&H00000000&,&H20{BG_DARK}&,-1,0,0,0,100,100,0,0,3,24,0,5,60,60,0,1
 Style: Caption,{FONT},50,&H00FFFFFF&,&H00FFFFFF&,&H00000000&,&H{{chip}}&,-1,0,0,0,100,100,0,0,3,14,0,2,60,60,190,1
 Style: Stat,{FONT},108,&H00FFFFFF&,&H00FFFFFF&,&H00000000&,&H00000000&,-1,0,0,0,100,100,0,0,1,10,7,5,60,60,0,1
 
@@ -544,12 +555,32 @@ def build_ass(bounds, all_words):
         chip = "80" + BG_DARK if spec["type"] == "footage" else None
         for ci, chunk in enumerate(chunks):
             c_start = chunk[0][0]
-            c_end = min(chunk[-1][1] + 0.15, t1)
+            # 2 native frames of safety margin before the scene's own cut:
+            # a caption that runs exactly to t1 risks outliving its own
+            # scene's video by a frame or two once ffmpeg's own encode/concat
+            # rounding is layered on top of the (now frame-accurate) python-
+            # side duration math -- confirmed real: "no login," measurably
+            # sat over the next scene's real footage before this margin.
+            c_end = min(chunk[-1][1] + 0.15, t1 - 2 / FPS)
             if c_end <= c_start:
                 continue
             hi = ass_color(spec.get("hi", ACCENT)) if spec["type"] == "card" else ass_color(ACCENT)
             base = ass_color(spec.get("fg", "ffffff")) if spec["type"] == "card" else ass_color("ffffff")
-            style = "Card" if spec["type"] == "card" else "Caption"
+            # A caption sitting over real footage (currently only the hook)
+            # gets a solid scrim bar behind it (HookCap), not the plain
+            # outlined text the flat-colour cards use -- structural, not a
+            # per-frame guess: this is why a fixed band works regardless of
+            # what's on screen underneath it, rather than needing a new
+            # "clear spot" found by eye for every different frame of footage
+            # that might ever sit behind it. Two rounds of finding-then-
+            # re-finding a clear pixel position (Spotify row, twice) is what
+            # this replaces.
+            if spec["type"] == "card" and spec.get("footage_bg"):
+                style = "HookCap"
+            elif spec["type"] == "card":
+                style = "Card"
+            else:
+                style = "Caption"
             pieces = [(ws, we, word) for ws, we, word, _ln in chunk]
             # one Dialogue event per word-window within the chunk, so the
             # highlighted word visibly advances as the voice speaks it, while the
@@ -574,16 +605,21 @@ def build_ass(bounds, all_words):
                 w_e = min(pieces[si + 1][0] if si + 1 < len(pieces) else pieces[si][1], c_end)
                 if w_e <= w_s:
                     continue
+                # Matches karaoke.py's own actual behaviour exactly (read
+                # directly, not approximated): the chunk's words are all
+                # redrawn every frame, steady on screen, and only the
+                # currently-spoken word's colour changes -- no scale/rotate
+                # "punch" on the word, no re-entrance per chunk. An earlier
+                # version here invented its own per-word pop animation when
+                # this pipeline was built from scratch for real screen-
+                # recording, which reads as a new isolated caption flashing in
+                # every 1-2 words instead of one held block with a moving
+                # highlight -- a real drift from the channel's own established
+                # look, not a deliberate stylistic choice.
                 text_parts = []
                 for wj, (_, _, word) in enumerate(pieces):
                     col = hi if wj == si else base
-                    if wj == si:
-                        pop = ("{\\fscx122\\fscy122\\frz-2\\t(0,140,\\fscx100\\fscy100\\frz0)}"
-                               if style == "Card" else
-                               "{\\fscx116\\fscy116\\t(0,110,\\fscx100\\fscy100)}")
-                    else:
-                        pop = ""
-                    text_parts.append(f"{{\\c{col}}}{pop}{word}")
+                    text_parts.append(f"{{\\c{col}}}{word}")
                 text = " ".join(text_parts)
                 # footage captions sit near the TOP of the safe zone: the bottom of
                 # these screens (subscription rows, the add-transaction form) is the
@@ -610,9 +646,26 @@ def main():
     bounds, track_end = scene_bounds(cues)
     words = build_word_list(cues)
 
+    # Frame-accurate cumulative durations, not independent per-scene rounding.
+    # Real bug found this round: a caption ("no login," on the card right
+    # before this beat) was still visible over the NEXT scene's real footage
+    # for a few frames -- the card's own video (built from round(dur*FPS),
+    # each scene rounding independently) came up a few milliseconds short of
+    # its ASS caption's own end time, and with 11 scenes now (up from 8) that
+    # per-scene rounding compounds into a large enough gap to actually see.
+    # Rounding the RUNNING total instead of each scene's own local duration
+    # keeps every scene's frame count exact against the same clock the ASS
+    # timestamps use, so no scene boundary can drift from its own caption's
+    # cutoff by more than a single native frame.
+    running = 0.0
+    frame_at = [0]
+    for (t0, t1) in bounds:
+        running += (t1 - t0)
+        frame_at.append(round(running * FPS))
+
     seg_files = []
     for idx, (spec, (t0, t1)) in enumerate(zip(SCENES, bounds)):
-        dur = round(t1 - t0, 3)
+        dur = round((frame_at[idx + 1] - frame_at[idx]) / FPS, 4)
         print(f"scene {idx+1}: lines {spec['lines']} type={spec['type']} dur={dur:.2f}s")
         seg_files.append(build_scene(idx, spec, dur))
 
@@ -628,17 +681,46 @@ def main():
     run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", listfile, "-r", str(FPS),
          "-pix_fmt", "yuv420p", "-video_track_timescale", "30000", full_bg])
 
+    # Real bug found this round, frame-extraction-confirmed: the concatenated
+    # video's own timeline starts at scene 0's own local zero, which is
+    # bounds[0][0] (0.3s here -- the hook's cue doesn't start at the very top
+    # of the track) -- but it is muxed against the FULL narration wav, which
+    # plays from true time 0. Every scene's picture therefore lands 0.3s
+    # EARLIER in the output than the caption/audio position it is meant to
+    # depict, constant across the whole file, not compounding -- invisible
+    # most places, but enough to let a footage cut arrive before its card
+    # caption had finished (the "no login," card caption still on screen
+    # over the next scene's real Subscriptions footage, confirmed on the
+    # extracted frame at 27.2-27.5s -- qa.py's own card-glitch blocker at
+    # 27.50-27.67s is this same bug, not a new one). The old pad-to-length
+    # step below was quietly absorbing almost exactly this missing lead-in
+    # by cloning the LAST frame at the END to reach track_end -- which pads
+    # the wrong side: the deficit is a missing 0.3s at the START, not the
+    # END. Padding a clone of frame 0 there (not the old stop-side pad)
+    # shifts the whole concatenated timeline to start at true time 0 (a
+    # frozen hold of the hook's own first frame while its narration lead-in
+    # plays), which is what actually re-anchors it against the ASS
+    # captions' own absolute cue-time stamps.
+    lead = bounds[0][0]
+    full_bg_led = f"{WORK}/full_bg_led.mp4"
+    if lead > 0:
+        run(["ffmpeg", "-y", "-i", full_bg, "-vf",
+             f"tpad=start_mode=clone:start_duration={lead:.3f}",
+             "-r", str(FPS), full_bg_led])
+    else:
+        full_bg_led = full_bg
+
     # pad/trim the concatenated background to the cues-derived length exactly,
     # rather than trusting summed per-clip durations (the episode's own already-
     # fixed bug: per-clip -t cuts round to the nearest frame and drift adds up)
-    real_dur = ffprobe_dur(full_bg)
+    real_dur = ffprobe_dur(full_bg_led)
     full_bg_fixed = f"{WORK}/full_bg_fixed.mp4"
     if real_dur < track_end:
-        run(["ffmpeg", "-y", "-i", full_bg, "-vf",
+        run(["ffmpeg", "-y", "-i", full_bg_led, "-vf",
              f"tpad=stop_mode=clone:stop_duration={track_end - real_dur:.3f}",
              "-r", str(FPS), full_bg_fixed])
     else:
-        run(["ffmpeg", "-y", "-i", full_bg, "-t", f"{track_end:.3f}", "-r", str(FPS), full_bg_fixed])
+        run(["ffmpeg", "-y", "-i", full_bg_led, "-t", f"{track_end:.3f}", "-r", str(FPS), full_bg_fixed])
 
     ass_path = f"{WORK}/captions.ass"
     open(ass_path, "w", encoding="utf-8").write(build_ass(bounds, words))
