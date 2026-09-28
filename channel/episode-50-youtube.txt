@@ -4,6 +4,8 @@ Flow is a budgeting app built to track exactly that: your spending, your budgets
 
 Everything in Flow stays on your own phone. No account, no login, no company on the other end — checked directly against its own source code, not just its own claim: no analytics SDK, no crash reporting, no network calls anywhere in it.
 
+I don't code. I gave Claude a few simple prompts, and it built this entire app.
+
 It's finished. Right now it's just waiting to go up on the App Store.
 
 See your own real subscription total right now, on your own phone, no app required: https://actually-works.com/e/50

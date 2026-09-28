@@ -134,12 +134,23 @@ SCENES = [
     {"lines": [4], "type": "footage",
      "clips": [("segA_subscriptions", 46.0, 5.28), ("segD_addtx", 41.866, None)],
      "start_at": 27.56},
-    {"lines": [5], "type": "footage", "clips": [("segE_home_close", 40.786, None)]},
-    {"lines": [6], "type": "card",    "bg": BG_DARK,  "fg": "ffffff", "hi": ACCENT,
-     "zoom": 1.12},
+    # New reveal/contradiction beat, David-approved wording and placement:
+    # "I don't code. I gave Claude a few simple prompts, and it built this
+    # entire app." -- a genuinely new narration line, spliced into the
+    # existing track (not regenerated), gated the same way every other line
+    # is (voice_doctor --deep, check_accent.py, both clean). Card style's own
+    # per-chunk-on-punctuation split already gives this its staggered reveal
+    # for free: "I don't code." lands as its own beat, then the actual answer
+    # bursts in across the next two chunks -- the contradiction technique
+    # motion-recipes.md documents, not a new one-off.
+    {"lines": [5], "type": "card", "bg": BG_DARK, "fg": "ffffff", "hi": ACCENT,
+     "zoom": 1.14},
+    {"lines": [6], "type": "footage", "clips": [("segE_home_close", 40.786, None)]},
     {"lines": [7], "type": "card",    "bg": BG_DARK,  "fg": "ffffff", "hi": ACCENT,
      "zoom": 1.12},
-    {"lines": [8], "type": "footage", "clips": [("segD_addtx", 44.0, None)]},
+    {"lines": [8], "type": "card",    "bg": BG_DARK,  "fg": "ffffff", "hi": ACCENT,
+     "zoom": 1.12},
+    {"lines": [9], "type": "footage", "clips": [("segD_addtx", 44.0, None)]},
 ]
 MAX_STRETCH = 1.4
 # How much of the scaled 430->1080-wide image (now 2340 tall) to crop off
