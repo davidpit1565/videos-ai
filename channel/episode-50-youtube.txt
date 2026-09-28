@@ -6,7 +6,7 @@ Everything in Flow stays on your own phone. No account, no login, no company on 
 
 I don't code. I gave Claude a few simple prompts, and it built this entire app.
 
-It's finished. Right now it's just waiting to go up on the App Store.
+It's finished.
 
 See your own real subscription total right now, on your own phone, no app required: https://actually-works.com/e/50
 
