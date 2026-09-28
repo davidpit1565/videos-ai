@@ -1,7 +1,15 @@
-=== REDO of PR #359, first cut (VISUALS ONLY — audio/voice/music unchanged) ===
-Rebuilt via export/flow_compose.py -- hybrid caption-card / full-bleed-footage
-structure, replacing the small-phone-in-a-void composite. See handback for the
-full reasoning; this file records the same gate checks every episode runs.
+=== REDO round 2 -- reviewer-confirmed defects, second pass ===
+Same narration/music as before (untouched). Fixes this round:
+ - stat line (86/219) was a 10.8s flat card with zero footage -> real
+   screenshot backdrop + animated overlay reveal
+ - hook was a flat-colour card with no footage -> real Flow footage
+   (Subscriptions screen) visible behind the text from frame 0
+ - crop was clipping the Home screen's own title -> CROP_TOP adjusted
+ - stat chip was a plain flat black box -> outlined/shadowed text,
+   no box, matching researched premium caption treatment
+ - typography switched to Montserrat (downloaded + installed), the
+   researched benchmark caption face for fintech short-form content
+ - every word now pops individually (not just first-of-chunk)
 
 audio/reel50-narration-r.wav  52.5s  8 lines
   medians: ending -45.0 dB · level -18.0 dBFS · S residual -0.3 dB (slope +38.9 dB per sibilant/syllable)
@@ -60,24 +68,24 @@ audio/reel50-narration-r.wav  8 lines — accent check (dima806/english_accents_
   nothing stands out from this file's own baseline.
 
 === qa.py (final render) ===
-reel-50.mp4  1080x1920  30fps  52.59s  5.0MB
-  card spacing: [21.9, 1.8, 4.7, 16.5, 0.9]
+reel-50.mp4  1080x1920  30fps  52.59s  6.0MB
+  card spacing: [18.3, 5.6, 4.8, 16.5]
   visual change: median 0.07s, longest 10.80s
   loudness: -14.0 LUFS integrated, peak -3.2 dBFS, LRA 2.3 LU
-  loop seam: first vs last frame differ by 219.7/255
+  loop seam: first vs last frame differ by 20.0/255
 
-  [warn]    picture nearly still 2.17s at 22.27-24.43s
-  [warn]    picture nearly still 2.10s at 30.67-32.77s
-  [warn]    picture nearly still 3.77s at 33.07-36.83s
-  [warn]    picture nearly still 2.03s at 38.93-40.97s
+  [warn]    picture nearly still 2.00s at 22.40-24.40s
+  [warn]    picture nearly still 2.10s at 30.63-32.73s
+  [warn]    picture nearly still 3.77s at 33.03-36.80s
+  [warn]    picture nearly still 2.03s at 38.90-40.93s
   ok        1080x1920
   ok        yuv420p
   ok        30fps
   ok        48kHz stereo
   ok        length 52.6s inside 30-90s
   ok        no frozen run over 4s
-  ok        first frame carries picture (luma 27.0)
-  ok        6 colour cards, 0.73-20.13s each
+  ok        first frame carries picture (luma 242.3)
+  ok        5 colour cards, 0.67-8.20s each
   ok        visual change every 0.07s median
   ok        -14.0 LUFS
   ok        peak -3.2 dBFS

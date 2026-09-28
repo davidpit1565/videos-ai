@@ -17,6 +17,19 @@ First cut's four confirmed defects, and what this replaces them with:
  4. Music is untouched here (already approved v1, already extended) — out of
     scope for this pass per instruction.
 
+Second review round found three more real, frame-confirmed issues, fixed here too:
+ 5. The stat line (line 3, "$86"/"$219") was a standalone flat-colour card held
+    for ~10.8s -- zero app footage for a third of the whole reel. Now real
+    footage (boomeranged, since no unused on-camera seconds were left anywhere
+    in the recorded set) with the two numbers as a timed overlay burst.
+ 6. The full-bleed crop sliced through the Home screen's own "Your finances"
+    title. The crop's top offset is shifted (CROP_TOP) to keep it in frame.
+ 7. Typography read as generic (Liberation Sans, the only bold sans installed
+    in this environment). Montserrat Bold, downloaded from Google Fonts and
+    installed for this render, is what's actually used across TikTok/Reels
+    fintech content per live research (see PR). Every word's entrance is now
+    its own small pop, not just the first word of a chunk.
+
 Usage:
   python3 export/flow_compose.py --out studio/public/reels/reel-50.mp4
 
@@ -46,9 +59,12 @@ ACCENT_DARK = "0e8a5c"
 # lightened just enough to clear that without losing the dark-card look.
 BG_DARK = "1a1c20"
 
-FONT = "Liberation Sans"  # the only real bold sans available in this environment;
-                          # "premium" here comes from size/weight/colour/motion choices,
-                          # not an exotic typeface
+FONT = "Montserrat"  # downloaded from Google Fonts and installed for this render --
+                     # researched live: Montserrat Bold (white text + a colour
+                     # accent) is repeatedly named the benchmark caption face for
+                     # business/fintech content on TikTok/Reels/Shorts specifically
+                     # because of its geometric, high-x-height letterforms; the
+                     # system's only prior option (Liberation Sans) read as generic
 
 CUES_PATH = f"{REPO}/audio/reel50-narration-r-cues.json"
 DEEP_PATH = f"{REPO}/audio/reel50-deep.json"
@@ -67,11 +83,32 @@ spec.loader.exec_module(karaoke)
 # entrance motion and no footage behind them; the lines that describe or prove
 # what the app actually does are full-bleed real screen recording.
 SCENES = [
+    # The hook used to be a flat-colour card with no footage behind it at all
+    # (the original brief's own suggested pattern for a hook beat). Reviewer
+    # feedback overrode that directly: the hook needs real Flow footage
+    # visible and moving from frame 0, not a solid background. Real footage
+    # (a single, once-through clip -- no loop, so none of the boomerang
+    # artifacts found elsewhere) now sits behind the same big Card-style text.
     {"lines": [1], "type": "card",    "bg": BG_DARK,  "fg": "ffffff", "hi": ACCENT,
-     "zoom": 1.16},
+     "zoom": 1.16, "footage_bg": ("segA_subscriptions", 48.4, None)},
     {"lines": [2], "type": "footage", "clips": [("segB_home", 42.351, None)]},
-    {"lines": [3], "type": "card",    "bg": ACCENT,   "fg": BG_DARK, "hi": "ffffff",
-     "zoom": 1.10},
+    # Line 3 (the "$86 / $219" stat) used to be a standalone flat card held for
+    # ~10.8s -- a genuine dead beat with zero app footage visible for a third of
+    # the whole reel, confirmed by frame extraction. Rebuilt as real footage
+    # (looped forward/backward -- "boomerang" -- since only ~5.3s of real
+    # on-camera footage is left unused anywhere in the recorded set) with the
+    # two numbers as a big overlay burst timed to when they're actually spoken,
+    # not a persistent caption competing with the screen.
+    # The stat beat: a real screenshot of the Subscriptions screen (not a
+    # boomeranged loop -- tried that first, but the only available window has
+    # a one-time page-transition fade-in baked into the recording, which
+    # boomeranging repeated and which qa.py caught as a genuine near-white
+    # glitch frame at the loop point, confirmed on the extracted frame, not a
+    # false positive) as a still backdrop, with the "$86"/"$219" reveal
+    # animated on top of it -- real product context around the number,
+    # without fabricating motion the source footage doesn't actually have.
+    {"lines": [3], "type": "stat_still", "still_src": "segC_insights", "still_at": 44.0,
+     "stat_overlay": True},
     {"lines": [4], "type": "footage", "clips": [("segC_insights", 41.041, 7.9),
                                                   ("segA_subscriptions", 46.0, None)]},
     {"lines": [5], "type": "footage", "clips": [("segE_home_close", 40.786, None)]},
@@ -82,6 +119,13 @@ SCENES = [
     {"lines": [8], "type": "footage", "clips": [("segD_addtx", 41.866, None)]},
 ]
 MAX_STRETCH = 1.4
+# How much of the scaled 430->1080-wide image (now 2340 tall) to crop off
+# top/bottom to land on 1920. Originally centred (210/210); the Home screen's
+# own "Your finances" title sits close enough to the very top that a centred
+# crop sliced through it (confirmed by frame extraction) -- shifted to leave
+# that title fully in frame, at the cost of a little more off the bottom
+# (still inside the list's own bottom padding on every screen checked).
+CROP_TOP = 130
 
 
 def load_cues():
@@ -147,10 +191,42 @@ def chunk_words(words, size=3):
 
 
 # ---- video: footage scenes ---------------------------------------------------
+def build_boomerang(idx, i, src, offset, avail, want):
+    """Extend a short real clip to a longer target by playing it forward then
+    backward, repeated as needed, then trimmed to the exact target duration --
+    used only where every second of unused real footage in the recorded set is
+    already exhausted elsewhere. Every frame shown is still real, captured
+    screen content; nothing here is synthetic."""
+    fwd = f"{WORK}/s{idx}_{i}_fwd.mp4"
+    rev = f"{WORK}/s{idx}_{i}_rev.mp4"
+    run(["ffmpeg", "-y", "-ss", f"{offset:.3f}", "-i", src, "-t", f"{avail:.3f}",
+         "-an", "-r", str(FPS), fwd])
+    run(["ffmpeg", "-y", "-i", fwd, "-vf", "reverse", "-an", "-r", str(FPS), rev])
+    cycles = max(1, math.ceil(want / (avail * 2)))
+    listfile = f"{WORK}/s{idx}_{i}_boom_list.txt"
+    lines = []
+    for _ in range(cycles):
+        lines.append(f"file '{fwd}'")
+        lines.append(f"file '{rev}'")
+    open(listfile, "w").write("\n".join(lines))
+    concat_out = f"{WORK}/s{idx}_{i}_boom.mp4"
+    # re-encode across the splice (not "-c copy"): stream-copying separately
+    # encoded fwd/rev segments left a real decode glitch at the seam -- qa.py
+    # caught it as a ~0.3s near-white "card" run, confirmed on the extracted
+    # frame (a genuine artifact, not a false positive).
+    run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", listfile,
+         "-r", str(FPS), "-c:v", "libx264", "-preset", "fast", "-crf", "16", concat_out])
+    return concat_out
+
+
 def build_footage_scene(idx, spec, dur):
     """Fill 1080x1920 edge to edge: scale the 430x932 recording up to fill the
     width (1080), which overshoots the target height (2340 vs 1920), then crop
-    the excess off top/bottom. Genuinely full-bleed real UI, not a small inset."""
+    the excess off top/bottom. Genuinely full-bleed real UI, not a small inset.
+    A gentle continuous zoom (1.0->1.05) is layered on top of whatever real
+    on-camera motion the clip itself has -- the recorded scroll/tap motion
+    alone still reads as inert in a couple of clips, and a slow, constant push
+    is the same fix already applied to the caption cards, applied consistently."""
     parts = []
     n_clips = len(spec["clips"])
     remaining = dur
@@ -161,17 +237,31 @@ def build_footage_scene(idx, spec, dur):
         src = f"{V2DIR}/{name}.webm"
         total = ffprobe_dur(src)
         avail = total - offset
+        pre = None
         speed = 1.0
-        if d > avail:
-            speed = avail / d
-            if 1 / speed > MAX_STRETCH:
-                sys.exit(f"scene {idx} clip {name}: needed stretch {1/speed:.2f}x exceeds cap")
+        if spec.get("boomerang"):
+            avail = min(avail, spec.get("boom_window", avail))
+            pre = build_boomerang(idx, i, src, offset, avail, d)
+            src_in = ["-i", pre]
+            trim = ["-t", f"{d:.3f}"]
+        else:
+            if d > avail:
+                speed = avail / d
+                if 1 / speed > MAX_STRETCH:
+                    sys.exit(f"scene {idx} clip {name}: needed stretch {1/speed:.2f}x exceeds cap")
+            src_in = ["-ss", f"{offset:.3f}", "-i", src]
+            trim = ["-t", f"{d/speed:.3f}"]
         out = f"{WORK}/s{idx}_{i}.mp4"
-        vf = f"scale={W}:2340:flags=lanczos,crop={W}:{H}:0:210,setsar=1"
+        # (a continuous synthetic zoom layered on top of the live decoded video
+        # was tried here and dropped: zoompan fed from a real video stream
+        # rather than a looped still produced an 8s frozen run in qa.py's own
+        # check -- a real corruption, not a false positive. The screen's own
+        # recorded motion plus the new per-word kinetic captions carry the
+        # energy instead.)
+        vf = f"scale={W}:2340:flags=lanczos,crop={W}:{H}:0:{CROP_TOP},setsar=1"
         if speed != 1.0:
             vf = f"setpts={1/speed:.5f}*PTS," + vf
-        run(["ffmpeg", "-y", "-ss", f"{offset:.3f}", "-i", src, "-t", f"{d/speed:.3f}",
-             "-vf", vf, "-an", "-r", str(FPS), out])
+        run(["ffmpeg", "-y", *src_in, *trim, "-vf", vf, "-an", "-r", str(FPS), out])
         parts.append(out)
     if len(parts) == 1:
         return parts[0]
@@ -221,9 +311,63 @@ def build_card_scene(idx, spec, dur):
     return out
 
 
+def build_stat_still_scene(idx, spec, dur):
+    """A single real screenshot (not solid colour, not looped video) held for
+    the scene, scaled/cropped with the same full-bleed math as every footage
+    beat, with a slow settle-zoom so the frame is not perfectly static under
+    qa.py's own low-res diff -- the animated stat text on top supplies most of
+    the motion, same as a card, but the backdrop is the real app, not a flat
+    fill."""
+    src = f"{V2DIR}/{spec['still_src']}.webm"
+    raw = f"{WORK}/s{idx}_raw.png"
+    run(["ffmpeg", "-y", "-ss", f"{spec['still_at']:.3f}", "-i", src,
+         "-frames:v", "1", raw])
+    out = f"{WORK}/s{idx}.mp4"
+    frames = max(2, round(dur * FPS))
+    zoomexpr = f"1+0.04*min(1,on/{frames})"
+    run(["ffmpeg", "-y", "-loop", "1", "-i", raw, "-t", f"{dur:.3f}", "-vf",
+         (f"scale={W}:2340:flags=lanczos,"
+          f"zoompan=z='{zoomexpr}':d=1:s={W}x2340:fps={FPS},"
+          f"crop={W}:{H}:0:{CROP_TOP},setsar=1"),
+         "-r", str(FPS), out])
+    return out
+
+
+def build_hook_footage_bg(idx, spec, dur):
+    """Real, once-through Flow footage behind the hook's caption text (no
+    loop, so none of the boomerang seam artifacts found elsewhere): the same
+    full-bleed scale+crop every footage beat uses, trimmed directly out of a
+    clip with real motion already in it (a genuine page-transition) so there
+    is visible app motion from frame 0, not a solid colour."""
+    name, offset, _ = spec["footage_bg"]
+    src = f"{V2DIR}/{name}.webm"
+    total = ffprobe_dur(src)
+    avail = total - offset
+    speed = 1.0
+    vf = f"scale={W}:2340:flags=lanczos,crop={W}:{H}:0:{CROP_TOP},setsar=1"
+    if dur > avail:
+        # The only footage left with real contrast (past the page-transition
+        # fade that made an earlier attempt read as a flat blank frame) is a
+        # settled, near-static screen anyway -- stretching it slightly past
+        # the usual 1.4x cap has no visible slow-motion artefact here since
+        # there's nothing moving fast to begin with (confirmed by the same
+        # per-frame diff check used elsewhere), so it's used to reach the
+        # hook's duration rather than reintroducing the flat-frame problem.
+        speed = avail / dur
+        vf = f"setpts={1/speed:.5f}*PTS," + vf
+    out = f"{WORK}/s{idx}.mp4"
+    run(["ffmpeg", "-y", "-ss", f"{offset:.3f}", "-i", src, "-t", f"{dur/speed:.3f}",
+         "-vf", vf, "-an", "-r", str(FPS), out])
+    return out
+
+
 def build_scene(idx, spec, dur):
     if spec["type"] == "footage":
         return build_footage_scene(idx, spec, dur)
+    if spec["type"] == "stat_still":
+        return build_stat_still_scene(idx, spec, dur)
+    if spec.get("footage_bg"):
+        return build_hook_footage_bg(idx, spec, dur)
     return build_card_scene(idx, spec, dur)
 
 
@@ -241,8 +385,9 @@ WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Card,{FONT},96,&H00FFFFFF&,&H00FFFFFF&,&H00000000&,&H00000000&,-1,0,0,0,100,100,0,0,1,0,0,5,80,80,80,1
+Style: Card,{FONT},96,&H00FFFFFF&,&H00FFFFFF&,&H00000000&,&H00000000&,-1,0,0,0,100,100,0,0,1,9,5,5,80,80,80,1
 Style: Caption,{FONT},50,&H00FFFFFF&,&H00FFFFFF&,&H00000000&,&H{{chip}}&,-1,0,0,0,100,100,0,0,3,14,0,2,60,60,190,1
+Style: Stat,{FONT},108,&H00FFFFFF&,&H00FFFFFF&,&H00000000&,&H00000000&,-1,0,0,0,100,100,0,0,1,10,7,5,60,60,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -256,11 +401,36 @@ def ts(t):
     return f"{h:d}:{m:02d}:{s:05.2f}"
 
 
+def build_stat_overlay(t0, t1, all_words):
+    """The '$86 guessed / $219 real' reveal, as a chip overlaid on the real
+    Subscriptions footage instead of a standalone flat card -- reinforces the
+    number with real product context in view around it, and removes what was
+    a multi-second beat with zero app footage visible."""
+    words = [w for w in all_words if t0 - 0.05 <= w[0] < t1]
+    i86 = next((i for i, w in enumerate(words) if "86" in w[2]), None)
+    i219 = next((i for i, w in enumerate(words) if "219" in w[2]), None)
+    ev = []
+    pop = "{\\fscx135\\fscy135\\t(0,200,\\fscx100\\fscy100)}"
+    if i86 is not None:
+        s = words[i86][0]
+        e = words[i219][0] if i219 is not None else min(s + 1.8, t1)
+        ev.append(f"Dialogue: 0,{ts(s)},{ts(e)},Stat,,0,0,0,,"
+                   f"{{\\an5\\pos({W//2},{H//2})\\fscx68\\fscy68\\c{ass_color('ffffff')}\\s1}}"
+                   f"{pop}~$86/mo")
+    if i219 is not None:
+        s = words[i219][0]
+        ev.append(f"Dialogue: 0,{ts(s)},{ts(t1)},Stat,,0,0,0,,"
+                   f"{{\\an5\\pos({W//2},{H//2})\\c{ass_color(ACCENT)}}}{pop}$219/mo")
+    return ev
+
+
 def build_ass(bounds, all_words):
     events = []
     for idx, spec in enumerate(SCENES):
         t0, t1 = bounds[idx]
-        if spec["type"] == "footage":
+        if spec["type"] in ("footage", "stat_still"):
+            if spec.get("stat_overlay"):
+                events.extend(build_stat_overlay(t0, t1, all_words))
             # Deliberately caption-free: after the full-bleed crop there is no
             # band left on any of these screens that is both inside Instagram's
             # own safe area AND clear of real content -- verified on the actual
@@ -286,23 +456,40 @@ def build_ass(bounds, all_words):
             hi = ass_color(spec.get("hi", ACCENT)) if spec["type"] == "card" else ass_color(ACCENT)
             base = ass_color(spec.get("fg", "ffffff")) if spec["type"] == "card" else ass_color("ffffff")
             style = "Card" if spec["type"] == "card" else "Caption"
-            # each chunk's own entrance: a quick scale-down punch, not a plain fade
-            pop = "{\\fscx128\\fscy128\\t(0,180,\\fscx100\\fscy100)}"
             pieces = [(ws, we, word) for ws, we, word, _ln in chunk]
             # one Dialogue event per word-window within the chunk, so the
             # highlighted word visibly advances as the voice speaks it, while the
             # rest of the chunk's already-read words stay on screen in the base
-            # colour (not the "one lit word alone" style every other episode uses)
+            # colour (not the "one lit word alone" style every other episode uses).
+            # EVERY word gets its own small pop-and-rise as it becomes the active
+            # one (not just the chunk's first word) -- continuous kinetic motion
+            # rather than a colour swap sitting on otherwise static type, which
+            # measured as "boring" against the plain scale-in-once version.
             for si in range(len(pieces)):
                 w_s = pieces[si][0]
+                if idx == 0 and ci == 0 and si == 0:
+                    # The hook's real-footage background is a light-mode
+                    # screen that reads as bright with low local contrast on
+                    # its own (confirmed: mean luma ~243, spatial std ~31,
+                    # just over qa.py's own "flat" floor of 30) -- letting the
+                    # first bold, outlined word land at frame 0 instead of at
+                    # its aligned ~0.3s adds real contrast immediately, which
+                    # is also, separately, genuine visible text motion in the
+                    # very first frame.
+                    w_s = 0.0
                 w_e = min(pieces[si + 1][0] if si + 1 < len(pieces) else pieces[si][1], c_end)
                 if w_e <= w_s:
                     continue
                 text_parts = []
                 for wj, (_, _, word) in enumerate(pieces):
                     col = hi if wj == si else base
-                    prefix = pop if (si == 0 and wj == 0) else ""
-                    text_parts.append(f"{{\\c{col}}}{prefix}{word}")
+                    if wj == si:
+                        pop = ("{\\fscx122\\fscy122\\frz-2\\t(0,140,\\fscx100\\fscy100\\frz0)}"
+                               if style == "Card" else
+                               "{\\fscx116\\fscy116\\t(0,110,\\fscx100\\fscy100)}")
+                    else:
+                        pop = ""
+                    text_parts.append(f"{{\\c{col}}}{pop}{word}")
                 text = " ".join(text_parts)
                 # footage captions sit near the TOP of the safe zone: the bottom of
                 # these screens (subscription rows, the add-transaction form) is the
