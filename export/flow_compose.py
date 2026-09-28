@@ -89,8 +89,15 @@ SCENES = [
     # visible and moving from frame 0, not a solid background. Real footage
     # (a single, once-through clip -- no loop, so none of the boomerang
     # artifacts found elsewhere) now sits behind the same big Card-style text.
+    # text_y=610 lands the caption on the "Add subscription" button's own
+    # band -- checked against the actual still frame: the recurring-cost card
+    # above it (ending ~y540) and the Netflix/Spotify/... list below it
+    # (starting ~y705) both carry real prices, the button band between them
+    # doesn't. An earlier version centred the text at the frame's true middle
+    # and it landed squarely on the Spotify row, covering "$10.99" -- confirmed
+    # on the extracted frame, this is the fix, not a style tweak.
     {"lines": [1], "type": "card",    "bg": BG_DARK,  "fg": "ffffff", "hi": ACCENT,
-     "zoom": 1.16, "footage_bg": ("segA_subscriptions", 48.4, None)},
+     "zoom": 1.16, "footage_bg": ("segA_subscriptions", 48.4, None), "text_y": 610},
     {"lines": [2], "type": "footage", "clips": [("segB_home", 42.351, None)]},
     # Line 3 (the "$86 / $219" stat) used to be a standalone flat card held for
     # ~10.8s -- a genuine dead beat with zero app footage visible for a third of
@@ -109,14 +116,28 @@ SCENES = [
     # without fabricating motion the source footage doesn't actually have.
     {"lines": [3], "type": "stat_still", "still_src": "segC_insights", "still_at": 44.0,
      "stat_overlay": True},
-    {"lines": [4], "type": "footage", "clips": [("segC_insights", 41.041, 7.9),
-                                                  ("segA_subscriptions", 46.0, None)]},
+    # Line 4 was one continuous ~14.9s footage stretch. Reviewer feedback (with
+    # David watching the actual cut): too much unbroken screen-recording back
+    # to back, reading as monotonous even though each beat shows a different
+    # screen -- real app-promo Reels alternate footage with short clean
+    # graphic/text beats for rhythm, the same non-negotiable-transitions
+    # principle motion-recipes.md already applies to scene cuts. Split into
+    # footage / a short punchy text card / footage, landing the card exactly
+    # on "No account, no login" (its own real word timing, not guessed) --
+    # words already aligned show that clause running 25.88-27.56s.
+    {"lines": [4], "type": "footage", "clips": [("segC_insights", 41.041, None)],
+     "start_at": 22.35},
+    {"lines": [4], "type": "card", "bg": BG_DARK, "fg": "ffffff", "hi": ACCENT,
+     "zoom": 1.06, "start_at": 25.88},
+    {"lines": [4], "type": "footage",
+     "clips": [("segA_subscriptions", 46.0, 5.28), ("segD_addtx", 41.866, None)],
+     "start_at": 27.56},
     {"lines": [5], "type": "footage", "clips": [("segE_home_close", 40.786, None)]},
     {"lines": [6], "type": "card",    "bg": BG_DARK,  "fg": "ffffff", "hi": ACCENT,
      "zoom": 1.12},
     {"lines": [7], "type": "card",    "bg": BG_DARK,  "fg": "ffffff", "hi": ACCENT,
      "zoom": 1.12},
-    {"lines": [8], "type": "footage", "clips": [("segD_addtx", 41.866, None)]},
+    {"lines": [8], "type": "footage", "clips": [("segD_addtx", 44.0, None)]},
 ]
 MAX_STRETCH = 1.4
 # How much of the scaled 430->1080-wide image (now 2340 tall) to crop off
@@ -147,7 +168,11 @@ def run(cmd):
 def scene_bounds(cues):
     starts = []
     for sc in SCENES:
-        starts.append(cues[sc["lines"][0]]["start"])
+        # "start_at" lets one narration line be split across more than one
+        # SCENES entry (a footage/card/footage rhythm-break within a single
+        # line's own span) with an explicit cut point instead of the line's
+        # own cue start.
+        starts.append(sc.get("start_at", cues[sc["lines"][0]]["start"]))
     track_end = max(c["end"] for c in cues.values()) + 0.9
     bounds = []
     for i, s in enumerate(starts):
@@ -261,7 +286,7 @@ def build_footage_scene(idx, spec, dur):
         vf = f"scale={W}:2340:flags=lanczos,crop={W}:{H}:0:{CROP_TOP},setsar=1"
         if speed != 1.0:
             vf = f"setpts={1/speed:.5f}*PTS," + vf
-        run(["ffmpeg", "-y", *src_in, *trim, "-vf", vf, "-an", "-r", str(FPS), out])
+        run(["ffmpeg", "-y", *src_in, *trim, "-vf", vf, "-an", "-r", str(FPS), "-pix_fmt", "yuv420p", out])
         parts.append(out)
     if len(parts) == 1:
         return parts[0]
@@ -307,7 +332,7 @@ def build_card_scene(idx, spec, dur):
     else:
         vf = f"zoompan=z='{z}':d=1:s={W}x{H}:fps={FPS}"
     run(["ffmpeg", "-y", "-loop", "1", "-i", still, "-t", f"{dur:.3f}",
-         "-vf", vf, "-r", str(FPS), out])
+         "-vf", vf, "-r", str(FPS), "-pix_fmt", "yuv420p", out])
     return out
 
 
@@ -329,7 +354,7 @@ def build_stat_still_scene(idx, spec, dur):
          (f"scale={W}:2340:flags=lanczos,"
           f"zoompan=z='{zoomexpr}':d=1:s={W}x2340:fps={FPS},"
           f"crop={W}:{H}:0:{CROP_TOP},setsar=1"),
-         "-r", str(FPS), out])
+         "-r", str(FPS), "-pix_fmt", "yuv420p", out])
     return out
 
 
@@ -357,7 +382,7 @@ def build_hook_footage_bg(idx, spec, dur):
         vf = f"setpts={1/speed:.5f}*PTS," + vf
     out = f"{WORK}/s{idx}.mp4"
     run(["ffmpeg", "-y", "-ss", f"{offset:.3f}", "-i", src, "-t", f"{dur/speed:.3f}",
-         "-vf", vf, "-an", "-r", str(FPS), out])
+         "-vf", vf, "-an", "-r", str(FPS), "-pix_fmt", "yuv420p", out])
     return out
 
 
@@ -419,7 +444,13 @@ def build_stat_overlay(t0, t1, all_words):
                    f"{pop}~$86/mo")
     if i219 is not None:
         s = words[i219][0]
-        ev.append(f"Dialogue: 0,{ts(s)},{ts(t1)},Stat,,0,0,0,,"
+        # ends a little before the scene's own cut (not exactly at t1): the
+        # last ~0.3s at a scene boundary measured a wash-out artefact in qa.py
+        # that traces to the concat/mux stage, not this scene's own render --
+        # not showing text through the very last instant of the beat sidesteps
+        # it without needing the exact mux-level cause pinned down further.
+        e = max(s + 0.3, t1 - 0.3)
+        ev.append(f"Dialogue: 0,{ts(s)},{ts(e)},Stat,,0,0,0,,"
                    f"{{\\an5\\pos({W//2},{H//2})\\c{ass_color(ACCENT)}}}{pop}$219/mo")
     return ev
 
@@ -497,7 +528,12 @@ def build_ass(bounds, all_words):
                 # goes there -- a plain fixed pixel rule would have put it right on
                 # top of that content after the full-bleed crop, verified by looking
                 # at the actual rendered frames, not assumed from geometry alone
-                pos = f"{{\\an8\\pos({W//2},{SAFE_TOP+80})}}" if style == "Caption" else ""
+                if style == "Caption":
+                    pos = f"{{\\an8\\pos({W//2},{SAFE_TOP+80})}}"
+                elif spec.get("text_y"):
+                    pos = f"{{\\an5\\pos({W//2},{spec['text_y']})}}"
+                else:
+                    pos = ""
                 events.append(f"Dialogue: 0,{ts(w_s)},{ts(w_e)},{style},,0,0,0,,{pos}{text}")
     return ASS_HEADER.replace("{chip}", "C0" + BG_DARK) + "\n".join(events) + "\n"
 
@@ -520,8 +556,14 @@ def main():
     listfile = f"{WORK}/full_list.txt"
     open(listfile, "w").write("\n".join(f"file '{p}'" for p in seg_files))
     full_bg = f"{WORK}/full_bg.mp4"
+    # Every per-scene clip is encoded yuv420p now (added after a real bug: a
+    # brief wash-out/blend frame at one scene boundary traced to a pix_fmt
+    # mismatch between a looped-still scene and a real-footage scene meeting
+    # at the concat boundary, confirmed by the fact that neither scene's own
+    # standalone render showed it). -pix_fmt here too so the concat's own
+    # re-encode never has to guess a format across the splice.
     run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", listfile, "-r", str(FPS),
-         "-video_track_timescale", "30000", full_bg])
+         "-pix_fmt", "yuv420p", "-video_track_timescale", "30000", full_bg])
 
     # pad/trim the concatenated background to the cues-derived length exactly,
     # rather than trusting summed per-clip durations (the episode's own already-
