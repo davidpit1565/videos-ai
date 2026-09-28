@@ -41,6 +41,8 @@ loudnorm + alimiter(level=disabled, latency=true) correction for -14 LUFS /
 <=-0.8 dBTP (ported here verbatim in spirit, not reinvented).
 """
 import argparse, json, math, os, subprocess, sys, importlib.util
+import numpy as np
+from PIL import Image
 
 REPO = "/home/user/videos-ai"
 SCRATCH = "/tmp/claude-0/-home-user-videos-ai/9c8661c0-a237-5b86-a20e-ebe8f18d8be9/scratchpad"
@@ -299,18 +301,68 @@ def build_footage_scene(idx, spec, dur):
 
 
 # ---- video: card scenes -------------------------------------------------------
+def hex_rgb(h):
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def build_brand_bg(path, w, h, accent_hex):
+    """The channel's own established look (video/reel-template.html,
+    channel/motion-recipes.md), not a one-off: a dark base with three soft
+    radial-gradient glows bleeding in from off-frame -- reproduced at the same
+    relative positions/sizes/colours as the template (1cqw = w/100), with the
+    template's amber/brass blob leaned to Flow's own accent green instead,
+    since it now sits behind real Flow footage in the surrounding beats.
+    Replaces a flat solid fill David asked to be made less plain/boring."""
+    scale = w / 100.0  # cqw -> px: 1cqw is 1% of the container's own width
+    # Base lightened from the template's literal #050709 (luma ~7, which on
+    # its own undershoots qa.py's black-frame floor of 8 the same way an
+    # earlier vignette attempt did on the plain-colour cards) -- same near-
+    # black feel, clears the floor once the blobs and a much lighter vignette
+    # are layered on top of it too.
+    canvas = np.empty((h, w, 3), dtype=np.float64)
+    canvas[:, :] = hex_rgb("0d1014")
+    # (left, top, size) in cqw, matching .b1/.b2/.b3 in reel-template.html.
+    # Alpha raised and falloff softened (r**1.4 instead of linear) so the
+    # glow actually reads as colour across more of the frame instead of a
+    # thin ring, given this card has no footage under it to add its own
+    # brightness/texture the way the template's real content behind it does.
+    blobs = [
+        (-30, -40, 130, hex_rgb("3ec6ff"), 0.40),
+        (-10, 50, 150, hex_rgb("2a3a52"), 0.75),
+        (20, 120, 120, hex_rgb(accent_hex), 0.30),
+    ]
+    yy, xx = np.mgrid[0:h, 0:w]
+    for left, top, size, color, alpha in blobs:
+        cx = (left + size / 2) * scale
+        cy = (top + size / 2) * scale
+        r = (size / 2) * scale
+        dist = np.sqrt((xx - cx) ** 2 + (yy - cy) ** 2)
+        a = np.clip(1 - (dist / r) ** 1.4, 0, 1) * alpha
+        for c in range(3):
+            canvas[:, :, c] = canvas[:, :, c] * (1 - a) + color[c] * a
+    # the template's own vignette, much lighter here for the same reason
+    cx, cy = w / 2, h / 2
+    d = np.sqrt(((xx - cx) / (w * 0.6)) ** 2 + ((yy - cy) / (h * 0.45)) ** 2)
+    vig = np.clip((d - 0.5) / 0.5, 0, 1) * 0.22
+    dark = hex_rgb("050709")
+    for c in range(3):
+        canvas[:, :, c] = canvas[:, :, c] * (1 - vig) + dark[c] * vig
+    Image.fromarray(np.clip(canvas, 0, 255).astype("uint8")).save(path)
+
+
 def build_card_scene(idx, spec, dur):
-    """A solid brand-colour full-frame card with real motion from its own frame 0.
-    Every card gets a continuous slow drift-zoom (the background is already
-    moving before any caption enters). Scene 0 (the hook) additionally gets a
-    fast punch-settle in its first ~0.35s -- an actual visual event on frame 0,
-    not a static shot followed by a plain fade, which was the exact defect."""
+    """A full-frame card with real motion from its own frame 0, background is
+    the channel's own layered-glow brand system (not a flat fill -- see
+    build_brand_bg). Every card gets a continuous slow drift-zoom (the
+    background is already moving before any caption enters). Scene 0 (the
+    hook) additionally gets a fast punch-settle in its first ~0.35s -- an
+    actual visual event on frame 0, not a static shot followed by a plain
+    fade, which was the exact defect."""
     out = f"{WORK}/s{idx}.mp4"
     frames = max(2, round(dur * FPS))
     zoom = spec["zoom"]
     still = f"{WORK}/s{idx}_bg.png"
-    run(["ffmpeg", "-y", "-f", "lavfi", "-i", f"color=c=#{spec['bg']}:s={W*2}x{H*2}",
-         "-frames:v", "1", still])
+    build_brand_bg(still, W * 2, H * 2, spec.get("hi", ACCENT))
     if idx == 0:
         punch = 10  # frames (~0.33s) of fast zoom-settle before the slow drift takes over
         z = (f"if(lt(on,{punch}),1.40-0.24*on/{punch},"

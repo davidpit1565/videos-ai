@@ -1,15 +1,10 @@
-=== REDO round 3 -- David watched, flagged captions-over-prices + pacing ===
-Fixes this round:
- - hook caption repositioned off the Spotify/$10.99 row onto the
-   Add-subscription button band (the only band in the safe box clear of
-   any price/name text on this screen, verified on the actual frame)
- - inserted a real footage/card/footage split within line 4 (previously
-   one continuous ~14.9s footage stretch): a short 1.68s 'No account,
-   no login' text card, word-timed to its own real alignment, breaking
-   up the unbroken screen-recording rhythm David flagged
- - fixed a pix_fmt mismatch across the scene concat (yuv444 card clips
-   vs yuv420 footage clips) and a wash-out artifact at one scene cut,
-   both confirmed on extracted frames
+=== REDO round 4 -- brand background polish on the clean text-card beats ===
+Cards (the 'No account, no login' pacing-break beat, and the two closing
+CTA cards) now use the channel's own established layered-glow system
+(video/reel-template.html / channel/motion-recipes.md) instead of a flat
+fill: same relative blob positions/sizes as the template, brass leaned
+to Flow's own accent green. Footage, caption positioning, and pacing
+timing untouched per instruction.
 
 audio/reel50-narration-r.wav  52.5s  8 lines
   medians: ending -45.0 dB · level -18.0 dBFS · S residual -0.3 dB (slope +38.9 dB per sibilant/syllable)
@@ -68,7 +63,7 @@ audio/reel50-narration-r.wav  8 lines — accent check (dima806/english_accents_
   nothing stands out from this file's own baseline.
 
 === qa.py (final render) ===
-reel-50.mp4  1080x1920  30fps  52.59s  5.8MB
+reel-50.mp4  1080x1920  30fps  52.59s  6.8MB
   card spacing: [17.9, 7.4, 7.5]
   visual change: median 0.07s, longest 10.80s
   loudness: -14.0 LUFS integrated, peak -3.2 dBFS, LRA 2.3 LU
