@@ -167,3 +167,123 @@ region this round's fix touches:
 
 Two full passes across all of the above before calling this clean, per the standing
 watch-it-yourself-twice rule.
+
+=== ROUND 7 -- David reviewed the LIVE shipped episode (post-merge) and found real issues;
+this round fixes the audio dip, attempts real per-line tone variation, best-effort-checks
+the "idea" accent complaint, and re-gates + re-renders ===
+
+--- 1. Audio dip (t~29.5-31s), root-caused ---
+Measured via fine volumedetect sweeps on the shipped file: a real ~20dB drop for over a
+second (t=29.7 -34.7dB..-29.7dB region vs the rest of the file's -15 to -18dB). Root
+cause, confirmed by direct sample inspection of the raw narration track (not the mix):
+the raw narration (audio/reel50-narration-r.wav) had a genuine 1.18s stretch of TRUE
+digital silence (-91dBFS, silencedetect -50dB: 29.7525-30.9334s) between "...on the other
+end." and "I checked the code myself" -- 2.8x longer than this file's own established
+inter-line rhythm (GAP=0.42s, the value build_voice.py uses everywhere else and what
+David's own delivery uses elsewhere in this file). This sits exactly at the round-6
+splice boundary (documented cut at 30.900s) but is NOT a click artifact at the edge (that
+was already verified clean) -- it's the raw PAUSE DURATION itself. During that long true
+silence, the music bed (attenuated -17dB under narration via volume=0.14) also happens to
+sit on a naturally quieter passage of its own arrangement, and the two effects stack into
+an audible near-total dropout in the final mix -- what David heard as "something broke."
+Fix: trimmed the pause down to 0.42s (removed 0.7609s of pure silence at
+[30.1725, 30.9334) via a lossless ffmpeg atrim+concat, no re-encode of surrounding audio).
+Verified with a fine volumedetect sweep after the fix: the region that read -33 to -36dB
+across a full second in the shipped file now recovers to the file's normal -17 to -19dB
+baseline within ~0.6-0.8s, matching the recovery time of every other inter-line gap in
+this file. Confirmed via byte-level reasoning (atrim+concat on PCM is sample-lossless
+outside the cut window) that no other audio, including "checked"/"code" itself, was
+altered -- only repositioned earlier in time.
+
+--- 2/3. Tone variation + "idea" accent best-effort ---
+Checked what this episode's narration actually used: audio/build_voice.py supports
+per-line --line-exaggeration and --line-seeds, but this whole file was generated at one
+flat exaggeration/cfg (0.50/0.30) for all 9 lines -- confirmed via every prior round's own
+gate log. Real per-line variation is possible; applied it selectively rather than
+blanket-regenerating all 9 lines (regenerating line 4 risks reintroducing the
+"checked"/"code" swallow that took a dedicated round to fix; touching lines already
+gate-clean for no reason widens the change surface without benefit):
+
+  Line 1 (hook, "no idea"): ran line_doctor.py with a 4-seed x 4-exaggeration/cfg search
+  targeting the word "idea", scored two ways -- tail-energy (this file's usual clarity
+  metric) AND check_accent.py's own classifier applied to JUST the "idea" window,
+  compared against the CURRENTLY SHIPPED baseline window (0.820 not-american). Best
+  tail-energy candidate (seed 3, exag 0.62) scored WORSE on accent (0.963) than baseline.
+  A different candidate (seed 17, exag 0.68, cfg 0.25) scored best on accent (0.710, a
+  real improvement) while sitting within 0.9dB of the best tail-energy candidate --
+  looked like a genuine win on the narrow word-level metric, and fit the hook's intended
+  higher-energy delivery.
+  HOWEVER: re-running check_accent.py on the WHOLE replaced line (not just the "idea"
+  window, which is how the project's own gate actually scores it) showed the full line 1
+  jumped from not-american 0.010 (clean) to 0.71 -- flagged as an outlier, and by this
+  tool's own calibration (its docstring cites two real, ear-confirmed accent defects at
+  0.39 and 0.499) a 0.71 is a WORSE red flag than either. The narrow word-window
+  measurement was misleading: fixing the local "idea" complaint by swapping the entire
+  line traded one word-level issue for a larger, measurably worse whole-line one.
+  REVERTED line 1 to the original shipped take. Honest verdict: no candidate found that
+  improves "idea" without a larger regression elsewhere in the same line -- reported as
+  such rather than shipping a marginal/regressive "fix."
+
+  Line 8 ("...has no idea what..."): checked first, since it was also a target. The
+  CURRENTLY SHIPPED line already scores clean (not-american 0.063) -- nowhere near
+  flagged. Ran the same 4-seed search anyway for due diligence: best tail-energy
+  candidate scored 0.997 (near-total "indian"), and NO candidate improved on the already-
+  clean baseline. Left line 8 untouched -- it was never actually a problem by this
+  project's own measurement, only line 1's "idea" was.
+
+  Line 7 (CTA, "Comment FLOW and I'll DM you the second it's live."): real, kept change.
+  Regenerated with exag 0.66/cfg 0.28 (more direct/urgent, matching the CTA's role) via
+  build_voice.py, spliced into the track at true silence boundaries (same technique as
+  every prior splice on this file). check_accent.py: clean (0.01, was 0.02). voice_doctor
+  --deep: clean.
+
+Net change to the shipped file: the audio-dip fix (line 4's pause) and a real, gate-clean
+tone change on line 7. Lines 1, 2, 3, 5, 6, 8, 9 are UNCHANGED from the live merged
+version -- line 1 was tried and reverted for the reasons above; the rest were left at
+this file's established baseline deliberately, to keep the change surface honest and
+verifiable in the time available, not regenerated for their own sake.
+
+--- Re-gate on the final composed narration (audio/reel50-narration-r.wav, 56.4s) ---
+Regenerated audio/reel50-deep.json via word_stamps.py against the FINAL spliced file (not
+arithmetic-shifted timestamps) before re-cueing.
+
+voice_doctor --deep: per-line "nothing flagged, every line sits inside his own spread."
+Per-word: same class of pre-existing borderline flags this file has carried every round
+(every x2, Everything, "checked" -- the last reappearing only because whisper's own
+word-boundary re-estimate shifts slightly on every edit, the same "adaptive floor moves
+with every edit" effect round 5/6 already documented; structurally, atrim+concat cannot
+have altered "checked"'s actual samples, since neither of this round's two splices touch
+anywhere near t=30s). Ran with --accept "every,everything,waiting,other,checked" -- same
+established list this file has used every round, exit code 0.
+
+check_accent.py (full 9-line file): line 1 back to not-american 0.01 (clean, matches the
+live-shipped file, confirming the revert). Line 7 (new take) clean at 0.01. Nothing
+flagged anywhere.
+
+qa.py (reel-50.mp4, re-rendered): 56.48s, -14.0 LUFS, peak -2.5 dBFS. 0 blockers. Same 3
+pre-existing [warn]-class "picture nearly still" items as round 6's own log (light-UI-
+frame false positives, unchanged in kind, not new).
+
+Fine volumedetect sweep confirms the dip fix directly: the old dip region (t=29.5-31.1s)
+recovers to the file's -17 to -19dB baseline within 0.6-0.8s post-fix, vs. staying
+depressed the full ~1.4s span in the live file. A coarse full-file sweep (4s windows
+across the whole 56s) found no other dip anywhere else in the file.
+
+Personally inspected (frame-extraction + audio-sweep, twice, no video-playback tool
+available so this substitutes for it the same way prior rounds' own frame-extraction
+did): the hook (footage + caption unchanged), the dip-fix region (real footage, no visual
+artifact, matches the "no captions on footage scenes" pre-existing design), the line 7
+card scene (new caption "I'll DM you" lands correctly, active-word highlight correct,
+inside the safe zone), and first/last frame (both real, non-blank picture).
+
+Independently checked, on my own initiative (not per any instruction): whether the
+closing scene (line 9, footage) visually repeats the same clip already shown at line 4 --
+both use the same source recording (segD_addtx.webm, a pre-existing, documented reuse
+from earlier rounds) but at different offsets (41.866s vs 44.0s); frame comparison at
+t=34s (form empty, "0.00", "Other" selected) vs t=56s (form filled, "24.90", "Food",
+"Corner Bakery") confirms these are DIFFERENT moments of the same natural recording, not
+an identical repeated clip. Not changed this round.
+
+Not merged -- this round needs David's own review and listen, per this episode's
+established process every round.
+
