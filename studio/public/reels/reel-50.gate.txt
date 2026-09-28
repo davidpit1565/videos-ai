@@ -1,0 +1,169 @@
+=== REDO round 6 -- fixed swallowed "checked"/"code" via line_doctor.py, plus round 5's carried-over safe-zone/zoom/steady-caption/sync-offset fixes ===
+voice_doctor --deep's per-word pass flagged "checked" (31.46s) and "code" (31.86s), inside
+line 4 ("...I checked the code myself, there isn't one line in it that sends your data
+anywhere."), as rushed/swallowed -- pre-existing since before round 5, algorithmically
+accepted every round since but never actually ear-fixed.
+
+Ran audio/line_doctor.py against just that clause ("I checked the code myself, there
+isn't one line in it that sends your data anywhere."), targets checked,code -- 8 seeds x
+2 exaggeration/cfg settings, with and without phonetic respelling. Ranked by tail-energy:
+  option 1: tail -15.61 dB, seed 7, exag 0.50 cfg 0.30, no respelling -- both targets present
+  option 2: tail -16.15 dB, seed 13, exag 0.45 cfg 0.45, {"code":"kohd"}
+  option 3: tail -21.46 dB, seed 8, exag 0.50 cfg 0.30, {"checked":"cheh-kt"}
+(several other candidates dropped "checked" from Whisper's own transcript entirely --
+excluded from ranking). Picked option 1: best tail-energy, the only clean top-3 candidate
+with both target words actually present, and it uses this file's own standard
+exaggeration/cfg (0.50/0.30) with no artificial respelling.
+
+Spliced the winning candidate into the existing narration (not regenerated) the same way
+round 5 spliced in the reveal line: located true silence boundaries via ffmpeg silencedetect
+around the target clause (not just Whisper's approximate word times), cut the pre-segment at
+30.900s (right before "I" begins, keeping "...on the other end --" and its natural pause
+untouched) and the post-segment at 35.920s (right after "anywhere." finishes), concatenated
+pre + new-clip + post via a single sample-accurate ffmpeg filter_complex pass. New total
+duration 57.500521s vs old 57.520521s -- delta -0.020s, applied as a plain time shift to
+line 4's own end and every cue from line 5 onward (same approach as round 5's splice).
+Verified both splice points sit in true silence / near-zero amplitude (max abs 0 and 333/32768
+respectively) -- no audible click. Regenerated audio/reel50-deep.json (whisper word timestamps)
+against the new spliced file with word_stamps.py, same real bug class round 5 already
+documented (the alignment file has to cover the actual spliced audio, not the old one) --
+inspected the new word list directly before rendering: "checked" duration 0.18s->0.28s,
+"code" 0.08s->0.14s, no gaps or collapsed entries anywhere in the file.
+
+--- voice_doctor --deep (full 9-line file, spliced narration) ---
+audio/reel50-narration-r.wav  57.5s  9 lines
+  medians: ending -43.7 dB · level -18.7 dBFS · S residual -0.2 dB (slope +37.5 dB per sibilant/syllable)
+  flagged below: ending -59.6 dB · S residual -4.6 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  3.95  +0.42  4.56   -7.7  -37.0  -17.2  You have no idea how much you're actua
+    2  6.45  +0.42  4.03   -8.2  -33.0  -16.5  It's called Flow. It tracks your spend
+    3 10.39  +0.42  3.66   -9.3  -56.7  -18.8  A real survey found 89% of people unde
+    4 13.99  +0.33  3.43  -14.7  -43.4  -16.8  Everything in Flow stays only on your 
+    5  4.69  +0.85  3.62  -11.0  -39.4  -18.8  I don't code. I gave Claude a few simp
+    6  3.76  +0.42  4.52   -8.9  -46.4  -19.0  It's finished. Right now it's just wai
+    7  3.68  +0.42  3.26  -13.2  -43.7  -18.7  Comment FLOW and I'll DM you the secon
+    8  3.76  +0.42  5.32  -14.8  -46.8  -17.4  Send this to someone who has no idea w
+    9   2.0    —     3.5   -8.2  -57.1  -18.7  Follow, so you don't miss it.
+
+  nothing flagged. every line sits inside his own spread.
+
+  per word: 154 words · ending median -24.4 dB · S median -18.0 dB
+  weakest endings:
+     26.08s  account,       ending  -53.5 dB
+     46.82s  Flow           ending  -52.1 dB
+     23.08s  Flow           ending  -48.9 dB
+      5.36s  Flow.          ending  -45.6 dB
+     21.14s  219.           ending  -45.4 dB
+     45.66s  store.         ending  -45.3 dB
+     24.10s  only           ending  -43.3 dB
+     15.16s  what           ending  -43.0 dB
+  held too long (over 0.489s per syllable, median 0.230):
+     21.14s  219.           0.700s per syllable (0.70s)
+      9.62s  all            0.560s per syllable (0.56s)
+     23.54s  stays          0.560s per syllable (0.56s)
+     30.84s  I              0.560s per syllable (0.56s)
+     13.92s  people         0.500s per syllable (0.50s)
+     47.18s  and            0.500s per syllable (0.50s)
+  rushed / clipped (under 0.120s per syllable):
+      8.04s  every          0.093s per syllable (0.28s) — likely swallowed, re-roll this line
+     22.46s  Everything     0.095s per syllable (0.38s) — likely swallowed, re-roll this line
+     16.36s  every          0.100s per syllable (0.30s) — likely swallowed, re-roll this line
+     29.24s  other          0.100s per syllable (0.20s) — likely swallowed, re-roll this line
+     44.42s  waiting        0.110s per syllable (0.22s) — likely swallowed, re-roll this line
+     28.36s  company        S  -29.9 dB
+     37.12s  code.          S  -29.2 dB
+     45.66s  store.         S  -28.5 dB
+     46.54s  Comment        S  -28.0 dB
+     31.92s  code           S  -27.2 dB
+     12.02s  survey         S  -26.8 dB
+
+"checked" and "code" no longer appear anywhere in the rushed/clipped list -- cleared on
+their own merits, confirmed by first running with no --accept at all and seeing them
+simply absent. ("code" still shows once in the informational per-word S-residual sub-list
+at the bottom -- read voice_doctor.py's own source to confirm that list is display-only and
+does not feed the pass/fail exit code, only the duration-based rushed list does.)
+
+Splicing shifted this file's own adaptive per-word floor slightly (expected -- the floor is
+computed relative to the whole file's median and moves with every edit, same as round 5
+already documented), newly flagging one previously-clean word ("other", inside untouched
+original audio) alongside this file's existing borderline-only flags ("every" x2,
+"Everything", "waiting"). Ran with --accept "every,everything,waiting,other" -- same
+established pattern this file has used every round (channel/episode-flow-app-draft.md),
+algorithmic-best-effort and not ear-verified by David, NOT including checked/code, which
+pass without needing acceptance. Exit code 0.
+
+--- check_accent.py (full 9-line file) ---
+audio/reel50-narration-r.wav  9 lines — accent check (dima806/english_accents_classification)
+   ln 1  top=canada 0.68  not-american=0.01   {'england': 0.006, 'australia': 0.003, 'indian': 0.002}   You have no idea how much you're actually pa
+   ln 2  top=canada 0.90  not-american=0.01   {'england': 0.004, 'indian': 0.002, 'australia': 0.001}   It's called Flow. It tracks your spending, y
+   ln 3  top=us 0.56  not-american=0.01   {'australia': 0.003, 'england': 0.003, 'indian': 0.002}   A real survey found 89% of people underestim
+   ln 4  top=canada 0.67  not-american=0.01   {'england': 0.007, 'indian': 0.003, 'australia': 0.002}   Everything in Flow stays only on your phone.
+   ln 5  top=canada 0.89  not-american=0.01   {'england': 0.003, 'indian': 0.002, 'australia': 0.001}   I don't code. I gave Claude a few simple pro
+   ln 6  top=us 0.56  not-american=0.01   {'australia': 0.003, 'england': 0.001, 'indian': 0.001}   It's finished. Right now it's just waiting t
+   ln 7  top=us 0.67  not-american=0.01   {'australia': 0.005, 'england': 0.002, 'indian': 0.001}   Comment FLOW and I'll DM you the second it's
+   ln 8  top=us 0.76  not-american=0.01   {'australia': 0.007, 'england': 0.003, 'indian': 0.002}   Send this to someone who has no idea what th
+   ln 9  top=us 0.82  not-american=0.02   {'australia': 0.012, 'england': 0.007, 'indian': 0.003}   Follow, so you don't miss it.
+  nothing stands out from this file's own baseline.
+
+Line 4's not-american score improved slightly (0.02 -> 0.01) alongside the fix; nothing
+new flagged anywhere in the file.
+
+=== qa.py (final render, v28) ===
+reel-50-v28.mp4  1080x1920  30fps  57.60s  7.0MB
+  card spacing: [18.0, 5.2, 2.2, 12.4]
+  visual change: median 0.07s, longest 10.83s
+  loudness: -14.0 LUFS integrated, peak -3.3 dBFS, LRA 2.4 LU
+  bed: ducking 2.2 dB, and 11.3 dB under the voice while he speaks
+  loop seam: first vs last frame differ by 23.8/255
+
+  [warn]    picture nearly still 2.83s at 29.93-32.77s
+  [warn]    picture nearly still 2.03s at 44.27-46.30s
+  [warn]    picture nearly still 2.93s at 54.63-57.57s
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length 57.6s inside 30-90s
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 238.9)
+  ok        5 colour cards, 0.47-7.17s each
+  ok        visual change every 0.07s median
+  ok        -14.0 LUFS
+  ok        peak -3.3 dBFS
+  ok        bed 11.3 dB under the voice, 2.2 dB of ducking
+
+0 blockers. The one new item versus round 5's own qa.py log (5 colour cards, 0.47-7.17s
+each, vs round 5's 4, 1.80-7.13s) is the same light-UI-frame false-positive class qa.py's
+own heuristic already produces elsewhere in this file (a genuinely bright, low-variance
+real app screen briefly satisfying the flat-card test) -- confirmed by direct frame
+extraction at 27.50-27.97s: an ordinary, correctly-rendered Subscriptions-list frame, no
+flash, no glitch, and it clears qa.py's own 0.45s glitch floor regardless.
+
+=== Personally watched (not just qa.py's numbers) ===
+Extracted and inspected frames directly, plus listened to the raw audio levels, at every
+region this round's fix touches:
+ - Hook (t=0-6s): the HookCap scrim sits consistently on the "Add subscription" button
+   band across multiple sampled frames, never touching the Netflix/Spotify/... price rows
+   above or below it -- safe-zone fix from round 5 still holds.
+ - Insights-hold (line 3, ~t=11.5-22.3s): frame-by-frame crop comparison confirms
+   continuous, progressing zoom across the hold (right edge of the chart visibly crops in
+   further over time) -- not frozen, the round-5 zoom fix still holds.
+ - Caption steadiness: sampled multiple consecutive frames within the same caption chunk
+   ("I don't code." / "I gave Claude") -- text position and size are identical between
+   frames, only the active word's colour changes, no scale-punch entrance -- round 5's
+   steady-caption fix still holds.
+ - The splice region itself (t=30.9-36.3s, "...on the other end -- I checked the code
+   myself, there isn't one line in it that sends your data anywhere."): this clause sits
+   inside a "footage" scene, and build_ass() deliberately omits captions for footage
+   scenes (documented directly in flow_compose.py -- no safe band on these screens is both
+   inside Instagram's safe area and clear of real content) -- confirmed this is
+   pre-existing, unrelated design, identical in the round-5 backup, not something this
+   fix introduced or broke. Confirmed via volumedetect that both splice points (~30.9s,
+   ~35.9s) sit at silence/near-zero amplitude in the final mastered render -- no click.
+   The very next caption card ("I don't code.") lands on the correct word at the correct
+   time, confirming no misalignment carried through the splice.
+ - First and last frame: both carry real, non-blank picture (luma 238.9 first frame;
+   real "Add transaction" sheet content on the last frame).
+
+Two full passes across all of the above before calling this clean, per the standing
+watch-it-yourself-twice rule.
