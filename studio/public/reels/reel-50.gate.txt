@@ -287,3 +287,92 @@ an identical repeated clip. Not changed this round.
 Not merged -- this round needs David's own review and listen, per this episode's
 established process every round.
 
+=== ROUND 8 -- CTA caption text fix, and the closing-scene footage-reuse bug round 7 checked and got wrong ===
+
+--- 1/2. CTA caption text (David's own explicit instruction) ---
+David asked directly: the CTA should not say "the second it's live" -- it should just be
+"comment the word FLOW and I'll send you the link." This is post/description text only
+(channel/episode-50-caption.txt), not the spoken narration -- line 7 of the audio track
+("Comment FLOW and I'll DM you the second it's live.") is unchanged, on purpose: changing
+it would mean re-splicing narration for no reason this instruction gave. Changed line 10 of
+channel/episode-50-caption.txt from "Comment FLOW and I'll DM you the second it's live." to
+"Comment FLOW and I'll send you the link." Checked channel/episode-50-youtube.txt for the
+same/similar line: it doesn't have one (its own CTA reads differently, no "DM"/"live"
+phrasing at all) -- left untouched, nothing to fix there. No audio/video rebuild needed for
+this half of the round.
+
+--- 2/2. Closing-scene footage reuse (line 9) -- round 7's own note above was wrong ---
+Round 7's log (immediately above) checked this same question and concluded the two
+segD_addtx uses (line 4 at offset 41.866s, line 9 at offset 44.0s) were "different moments
+of the same natural recording, not an identical repeated clip," citing t=34s (empty form)
+vs t=56s (filled form, "Corner Bakery"). Re-checked this round with a finer frame sweep
+(0.1-0.5s steps) around both beats on the THEN-current rendered file, before making any
+change: at t=35.6s (line 4's beat, not t=34s) the merchant field reads "Corner |"
+(mid-typing, cursor visible) -- not empty -- and at t=55.0s (line 9's old beat) it reads
+"Corner Bakery" (fully typed), same amount (24.90), same category (Food), same date
+(09/27/2026). These are NOT two different moments a viewer would read as fresh footage --
+they're ~2.1s apart in the same take, and the viewer sees the SAME transaction typed
+partway at ~35.6s and then sees it again, further along, at ~55s -- 19 seconds later. Round
+7's "different moments" framing was technically true (different timestamps) but understated
+the actual defect: no new information reaches the viewer, it reads as the same clip
+recycled onto the episode's own closing CTA line, not a deliberate callback. Confirmed via
+direct frame extraction this round (ffmpeg -ss <t> -frames:v 1), not by re-reading round 7's
+own claim.
+
+Also confirmed: every other footage source clip in this episode (segA_subscriptions
+51.28s, segB_home 48.16s, segC_insights 46.76s, segE_home_close 43.88s) is already
+consumed by its own scene(s) elsewhere in SCENES -- and segD_addtx's own usable tail
+(41.866s to its actual end at 48.12s) is already fully played, slowed down, during line 4's
+third footage scene (start_at 27.56, duration 8.354s > the 6.254s of clip left, so
+build_footage_scene stretches it across the full remaining 6.254s of the source). There is
+no unused window left in segD_addtx's own tail to give line 9 a second, different real
+moment from the same recording.
+
+Fix: converted line 9 from a footage scene to a card scene in export/flow_compose.py's
+SCENES list, matching lines 1/5/7/8's existing card style (bg=BG_DARK, fg=ffffff, hi=ACCENT,
+zoom=1.12 -- an exact copy of line 7's spec). This also fixes a second, related problem
+this same scene had: per this file's own design (build_ass), a footage scene gets no
+caption at all -- so line 9, the episode's actual closing spoken CTA ("Follow, so you don't
+miss it."), was carrying neither an original clip nor a caption. Card scenes already get
+their captions for free from build_word_list()'s existing alignment (audio untouched, so
+reel50-deep.json's word timestamps for line 9 needed no regeneration).
+
+Rebuilt: python3 export/flow_compose.py --out studio/public/reels/reel-50.mp4 (full
+recompose, ~4m45s). Same 56.48s duration as before this round (audio/cue timing untouched,
+only the one scene's TYPE changed) -- confirmed via ffprobe.
+
+qa.py (reel-50.mp4, re-rendered): 56.48s, 1080x1920, 30fps, 48kHz stereo, -14.0 LUFS
+integrated, -2.5 dBFS peak, bed 11.9 dB under voice with 2.7 dB ducking, loop seam 202.3/255.
+0 blockers. 2 [warn]-class "picture nearly still" items (29.93-32.77s, 43.50-45.50s) -- same
+pre-existing light-UI-frame false-positive class every prior round's own log documents, not
+new; one fewer than round 7's 3, plausibly because line 9 is no longer a static-ish footage
+hold. "5 colour cards, 0.47-7.17s each" reported the same as before -- not independently
+re-verified whether the new line-9 card is counted in that figure or not; qa.py treats it as
+informational (not a blocker either way) and nothing else in its output changed in kind.
+
+voice_doctor --deep (audio/reel50-narration-r.wav, unchanged file, re-run for due diligence
+since this round touches the render pipeline even though not the audio): same accept list
+this file has used since round 6/7 ("every,everything,waiting,other,checked"), exit code 0,
+nothing flagged beyond the file's own established borderline list. Confirms this round's
+video-only change didn't touch audio (expected, since flow_compose.py's SCENES edit affects
+only which clip/style backs a line, not the narration track).
+
+Personally inspected (frame-extraction, twice, full pass across the whole file each time,
+no video-playback tool available -- same substitution prior rounds used): first pass sampled
+26 timestamps across the full 56.5s including a fine sweep of the new line-9 card scene
+(53.569-56.469s per scene_bounds()) -- confirmed captions "Follow," / "so you don't" /
+"miss it." appear correctly timed and positioned (roughly frame-centre, well inside the
+1080x1920 safe box), no footage visible behind them, first/last frame both real non-blank
+picture. Spot-checked lines 1-8 (hook, subscriptions footage, insights stat, home footage,
+reveal card, home-close footage, both earlier CTA cards) -- all unchanged from the live
+merged file, nothing regressed. Second pass used a different, denser set of timestamps
+around every scene boundary (0.1s steps near 53.6-56.4s specifically) -- same result, no new
+defect found, card scene end fades to the same clean background (no artifact) the caption's
+own end-of-scene trim already produces on every other card in this file.
+
+Net change to the shipped file this round: line 9 (closing CTA) is now a card scene with its
+own caption and no recycled footage; audio track and every other scene are byte-for-byte the
+same as round 7's shipped state; the caption/description text file also changed (post-only,
+not the video). Not merged -- needs David's own review and listen, per this episode's
+established process every round.
+

@@ -150,7 +150,24 @@ SCENES = [
      "zoom": 1.12},
     {"lines": [8], "type": "card",    "bg": BG_DARK,  "fg": "ffffff", "hi": ACCENT,
      "zoom": 1.12},
-    {"lines": [9], "type": "footage", "clips": [("segD_addtx", 44.0, None)]},
+    # Line 9 used to be footage reusing segD_addtx at offset 44.0 -- the same
+    # clip already shown at line 4's third scene (offset 41.866, stretched to
+    # play through to the clip's own end at 48.12s -- there is no unused
+    # window left in this clip after that). Frame-confirmed real bug, not a
+    # style choice: at line 4's beat the merchant field reads "Corner |"
+    # (mid-typing); at line 9's old offset the SAME form (24.90, Food,
+    # 09/27/2026) reads "Corner Bakery" -- the exact same recorded take,
+    # ~2.1s further in, already fully visible during line 4. The episode's
+    # actual closing CTA line ("Follow, so you don't miss it.") was landing on
+    # recycled footage the viewer had already seen ~19s earlier. Per this
+    # episode's own footage-scene design (see build_ass), a footage scene also
+    # carries no caption -- so the single most important CTA beat had neither
+    # a caption nor original footage. Converted to a card scene, matching the
+    # other CTA beats (lines 1, 5, 7, 8) in this same list: gets its own
+    # caption (words already aligned from reel50-deep.json/build_word_list,
+    # audio unchanged) and no recycled clip behind it.
+    {"lines": [9], "type": "card", "bg": BG_DARK, "fg": "ffffff", "hi": ACCENT,
+     "zoom": 1.12},
 ]
 MAX_STRETCH = 1.4
 # How much of the scaled 430->1080-wide image (now 2340 tall) to crop off
