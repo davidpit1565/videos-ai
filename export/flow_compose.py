@@ -114,8 +114,35 @@ SCENES = [
     # established fix for that splice) instead of stretching: every frame
     # still plays at its own recorded speed, just repeats/reverses once the
     # scene's own duration needs more than the 5.809s of real footage left.
+    #
+    # ROUND 10: David flagged this exact scene as sitting still with nothing
+    # changing and no caption -- and qa.py's own "picture nearly still 2.33s
+    # at 9.20-11.53s" is precisely this scene's last 2.33s (11.53 minus this
+    # scene's 4.67s start-time), which is the near-static ~1.16s tail
+    # (47.0-48.16s, already documented above) played TWICE: once at the very
+    # end of the forward pass, then again immediately as the FIRST ~1.16s of
+    # the reverse pass (reverse of the tail is still the tail). Re-verified
+    # with a finer 0.1s-step frame-diff sweep (42.351-48.16s): every frame up
+    # to 46.9s still shows real motion (delta 11-15 at each scroll-snap), and
+    # from 47.0s to the clip's own end (48.16s) delta stays under 0.32 for
+    # every sample -- genuinely frozen, not a measurement artifact. Captions
+    # were considered instead (build_ass's own footage-caption-free rule is
+    # scene-specific, not blanket -- see its comment) but frame-checked here
+    # too: this screen's own safe-zone band (output y 269-1248, i.e. native
+    # y 159-549 at this crop/scale) is packed edge-to-edge with the
+    # Expenses/Subscriptions/Upcoming tiles and the entire Netflix-through-
+    # ChatGPT-Plus "Coming up" list on every sampled frame -- no gap in that
+    # band is wider than a thin row divider (~15-20 native px = under 50
+    # output px, too thin for a legible chip), and the one real ~30px native
+    # gap that exists (before "Where your money goes") maps to output
+    # y~1264-1352, past the 1248 safe-bottom line into Instagram's own UI
+    # band. So the fix here is the boomerang window itself, per this file's
+    # existing boom_window cap: capped to 4.649s (42.351-47.0s only, the
+    # confirmed-dynamic portion), so neither the forward nor the reverse
+    # pass ever touches the frozen 47.0-48.16s tail -- the whole scene now
+    # shows real, continuous scroll motion, forward and back.
     {"lines": [2], "type": "footage",
-     "clips": [("segB_home", 42.351, None)], "boomerang": True},
+     "clips": [("segB_home", 42.351, None)], "boomerang": True, "boom_window": 4.649},
     # Line 3 (the "$86 / $219" stat) used to be a standalone flat card held for
     # ~10.8s -- a genuine dead beat with zero app footage visible for a third of
     # the whole reel, confirmed by frame extraction. Rebuilt as real footage
