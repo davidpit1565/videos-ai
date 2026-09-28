@@ -54,8 +54,8 @@ export const CRON = ["/api/track", "/api/health-check", "/api/claude-usage", "/a
 
 /** the public funnel, plus the endpoints those pages call */
 export const SITE = [
-  "/", "/e", "/p", "/join", "/about", "/prompts", "/search", "/unlock", "/episodes",
-  "/skills", "/s", "/failure-modes",
+  "/", "/e", "/p", "/join", "/about", "/search", "/unlock", "/episodes",
+  "/s", "/failure-modes",
   // the Instagram/YouTube bio-link target — always redirects to whichever episode is
   // currently newest (see app/latest/route.ts). No studio cookie, so it belongs here.
   "/latest",

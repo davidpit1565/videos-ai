@@ -71,7 +71,6 @@ export default async function Join({
       </div>
       <footer className="sfoot">
         <Link href="/">Episodes</Link>
-        <Link href="/prompts">All prompts</Link>
         <Link href="/search">Search</Link>
         <Link href="/about">About</Link>
       </footer>

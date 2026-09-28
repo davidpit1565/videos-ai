@@ -52,7 +52,6 @@ export default async function SkillPage({ params }: { params: Promise<{ slug: st
       </div>
       <footer className="sfoot">
         <Link href="/">Episodes</Link>
-        <Link href="/skills">All skills</Link>
         <Link href="/search">Search</Link>
         <Link href="/about">About</Link>
       </footer>
