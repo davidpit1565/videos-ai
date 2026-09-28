@@ -376,3 +376,212 @@ same as round 7's shipped state; the caption/description text file also changed 
 not the video). Not merged -- needs David's own review and listen, per this episode's
 established process every round.
 
+=== ROUND 9 -- $219 recolored red, real footage-stretch fix (boomerang), scene-variety cut,
+App Store line rewritten + CTA re-recorded, line 5/6 tone/accent fixes, music clipping fixed ===
+
+David gave detailed new feedback after watching round 8. Two items (an App Store wording
+question and a visual-variety/mockup direction question) were resolved directly with David
+by the coordinating session and handed to this round as confirmed instructions, not left
+ambiguous -- noted per item below.
+
+--- 1. $219 recolored red (export/flow_compose.py, build_stat_overlay) ---
+$219 is the real, higher, unwelcome number (people underestimate their actual spend) -- it
+was rendering in ACCENT, Flow's own positive brand green, the same colour as the app's own
+positive UI. Changed to a soft warning red (ff4d4d, not a harsh pure ff0000, to read as
+intentional against the dark 1a1c20 card background) -- see build_stat_overlay's own updated
+comment. $86 (the guessed, lower number) stays white, unchanged.
+
+--- 2. Footage stretch-to-slow-motion bug, root-caused and fixed (build_footage_scene) ---
+Confirmed by direct measurement before assigning: two scenes were being played back SLOWER
+than real time (setpts stretch) because their scene duration exceeded the real footage left
+in that clip past its own onCamStart -- segE_home_close (line 6, was 1.341x slow, right
+against this file's own MAX_STRETCH=1.4 cap) and segB_home (line 2, was 1.183x slow).
+Checked whether more usable footage exists before either clip's own onCamStart first (per
+its .oncam.json): frame-extraction on both confirms the pre-onCamStart footage is a
+DIFFERENT screen entirely (segE_home_close's pre-40.786s footage is the Subscriptions screen
+with a "Subscription added" toast, not Home) -- not usable padding, so option (a) from the
+brief was genuinely unavailable for both, not skipped for convenience. Used option (b)
+instead: added "boomerang": True to both SCENES entries (real forward playback, then the
+same real footage in reverse, both at their own recorded 1x speed, via the file's own
+existing build_boomerang() -- previously written but never actually wired into any SCENES
+entry, despite an earlier code comment implying it already was; corrected that comment too).
+Frame-diff confirmed real, continuous scroll motion in both clips' available windows (not a
+static hold that would have made stretching harmless), so this was a real, not cosmetic, fix.
+
+--- 3. Scene variety in the footage-heavy middle stretch (lines 2-4), research-backed ---
+David's complaint: too much repetition/same handful of screens. Live research (not guessed):
+TikTok Business/Demand Curve materials on ad-creative best practice say cut every 2-3s,
+treat the piece as a highlight reel, and layer text/graphics ON TOP of real footage rather
+than swapping it out -- real screen-recording UI already outperforms generic creative, the
+fix for "repetitive" is more cuts, not less real product. Applied concretely: the $86/$219
+stat beat (line 3) was a single 10.81s still hold -- by far the longest unbroken shot in the
+whole episode. Split into two real stills at a genuine clause break (17.5s, right before
+"Most guessed around $86" -- word-timing confirmed): first half unchanged (segC_insights),
+second half cuts to a frame of segA_subscriptions ($63.46/mo, the real populated list) from
+a window of that same clip that is genuinely UNUSED elsewhere in SCENES (42.0-46.0s of its
+own timeline, frame-checked, not the empty-subscriptions moment that sits before that clip's
+own onCamStart). No fabricated UI -- both stills are real, already-captured footage; the
+second is simply a different real moment of a clip already in the project. Did not also
+split scene 1 (segB_home, line 2) or force a further cut into the line-4 footage stretch:
+the former was addressed this round by task 2's own boomerang fix, the latter already carries
+an internal footage/card/footage cut from an earlier round -- adding a further cut there
+would have been filler for its own sake, so it was left alone; said so honestly rather than
+manufacturing more variety than the footage set actually supports.
+
+--- 4. App Store line rewritten, CTA re-recorded (resolved with David directly, not guessed) ---
+Per the coordinator's resolution with David: the spoken line still said "It's finished.
+Right now it's just waiting to go up on the App Store" / "Comment FLOW and I'll DM you the
+second it's live" -- round 8 had only updated the CAPTION text, not the actual narration, a
+real caption/narration mismatch. New spoken content (David gave the gist, wording is this
+round's own): line 6 -> "It's finished." (no App Store mention at all); line 7 -> "Comment
+FLOW and I'll send you the link to the app." (no "DM", no "the second it's live").
+Recorded via audio/build_voice.py (profile default exag 0.50/cfg 0.30, matching this file's
+established voice), both lines landing/verified clean on generation (prosody gate: line 6
+-3.6st, lands; line 7 landed on its first take). Spliced into the existing narration at true
+silence boundaries (envelope-measured, not just Whisper's approximate word times: 35.105s
+lead-in preserved verbatim from the original file, 48.865s trailing boundary before line 8's
+own already-clean lead-in) -- 6ms linear crossfades at every join, confirmed sample-diff
+clean (max abs delta 0.0037 across all splice points, no audible click). New total duration
+delta -3.885s applied as a plain shift to every cue from line 6 onward (line 8: 49.389 ->
+45.364, line 9: 53.569 -> 49.544) -- not re-estimated from scratch. Regenerated
+audio/reel50-deep.json (word_stamps.py) against the final spliced file; re-ran voice_doctor
+--deep and check_accent.py after (see below). Updated channel/episode-50-caption.txt and
+channel/episode-50-youtube.txt line 6/7 text to match (removed the same App Store mention);
+left caption.txt's own line 10 ("...send you the link.") and youtube.txt's line 13 alone
+where each already matched or was out of this item's scope, per instruction not to
+blind-overwrite -- youtube.txt's "Follow, so you don't miss it when Flow goes live" also
+carried the same stale not-live framing this round removes everywhere else in the spoken
+track, so that one line was updated too (to plain "Follow, so you don't miss it," matching
+the actual spoken line 9).
+
+--- 5. Line 5 tone fix: "I don't code." full-stop delivery (line_doctor.py + measured) ---
+David's complaint: "I don't code." ran into the next clause without landing as a real full
+stop. Measured first, not just re-rolled blind: pitch-tracked (librosa.pyin) the shipped
+take's own "code." tail -- it RISES from ~104Hz to ~178Hz across its last ~150ms, i.e. open/
+continuing intonation, the opposite of a falling full stop; the inter-clause gap itself was
+already at this file's own established 0.42s norm, so gap length was never the actual
+defect, confirmed by measurement rather than assumed. Ran line_doctor.py (3 seeds x 3
+exag/cfg settings) targeting "code" -- ALL THREE candidates showed a genuine falling tail
+(delta -10.9 to -23.3Hz head-to-tail), unlike the shipped take; picked the one best on BOTH
+metrics simultaneously (seed 11, exag 0.50/cfg 0.30 -- this file's own default profile: tail-
+energy -26.04dB, the best of the three, AND the largest pitch fall). Regenerated via
+build_voice.py with that exact seed/profile, confirmed the falling contour survived the
+production pipeline's own speed-correction (final take: 122Hz -> 99Hz over its last ~250ms,
+smooth monotonic fall) before splicing. Spliced in at envelope-measured true-silence
+boundaries (35.105-35.960s lead-in preserved verbatim, matching the original file's own
+established LONG=0.85s section-gap character). New duration 4.82s vs old ~4.69s -- absorbed
+by the same splice math as item 4 above (line 5's own new end, 40.78s, is the anchor line 6
+now starts from).
+
+--- 6. Line 6 accent flag, found and fixed (check_accent.py) ---
+check_accent.py on the newly-spliced file flagged line 6 ("It's finished.", the new short
+line from item 4): not-american 0.48 against a file median of 0.010 -- by this tool's own
+calibration (two real, ear-confirmed defects at 0.39 and 0.499 in its own docstring), a 0.48
+is a real flag, not noise. Generated two alternate takes (seed 13 and seed 21, same exag/cfg
+0.55/0.32) via build_voice.py and re-scored each in isolation: seed 13 measured 0.018 (clean,
+a ~27x improvement), seed 21 measured 0.367 (still bad -- confirms this was a real,
+seed-dependent drift, not a fluke of the specific splice). Shipped seed 13: spliced in at
+envelope-measured boundaries (correcting an earlier same-round mistake -- a first attempt at
+this slice cut into the leading "It's" itself and produced a mis-heard "Finish." on
+transcript-check; re-measured the envelope and re-cut with a wider lead margin, verified via
+transcript before shipping). Re-ran check_accent.py on the full file after: line 6 now 0.06,
+"nothing stands out from this file's own baseline." Duration delta from the corrected slice
+(-0.14s) applied as the same kind of plain shift to lines 7-9.
+
+Honest note on this same take: voice_doctor --deep's rushed-word heuristic flags "finished."
+(0.093s/syllable, under its 0.110s floor) as "likely swallowed." Checked this by ear-proxy
+before shipping anyway: this take's own tail-energy for "finished." (-10.4dB) is the
+STRONGEST ending in the entire file (every other line's ending sits -25 to -57dB) -- the
+opposite signature of a swallowed consonant, which reads as a short-but-crisp delivery, not
+an unclear one, on the measurements available here. Flagging this honestly rather than
+quietly adding "finished" to the accept list: worth David's own ear-check, not asserted as
+definitely fine.
+
+--- 7. Lines 8/9 tone (attempted, not shipped -- honest result, not a silent skip) ---
+Line 9 ("Follow, so you don't miss it.") was the priority per instruction ("really really not
+good"). Real search performed: line_doctor.py candidates (seeds 9/27/15, exag 0.50-0.62)
+measured clearly more melodic than the shipped take (f0_range up to 105Hz vs the shipped
+34.5Hz, i.e. 2-3x more pitch variation) while candidate seed 9 (exag 0.55/cfg 0.32) also
+showed the best falling tail of the three by a coarse head/tail-mean measure. But when
+actually regenerated through the real production pipeline (build_voice.py, not the isolated
+line_doctor candidate path) at that same exag/cfg across four different seeds (9, 44, 101,
+and a direct seed-8 reproduction of line_doctor's own exact seed-9 call), prosody.py's own
+final_drop measured every single one as RISING (+5.4st, +2.1st, +3.0st, +8.9st) -- worse
+than the shipped take's own -3.4st fall, not better. The isolated line_doctor score and the
+actual shippable production take disagreed, and the production pipeline's own measurement is
+the one that matters for what actually ships. Concluded this specific exag/cfg profile
+resists landing as a complete statement through this file's real pipeline, and did not find
+a genuinely better, confirmed-landing, more melodic take in the time available. Line 9 is
+UNCHANGED from round 8's shipped audio. Line 8 ("Send this to someone...") tone search was
+started (line_doctor.py queued) but stopped before completion to free CPU for line 9's own
+search, given line 9 was the explicit priority; not resumed given the line 9 result above.
+voice_doctor --deep's own dull-S note on line 8 (-14.7dB, -4.4 against what its own
+sibilants predict) is a real, measured, pre-existing observation -- reported here, line 8
+itself left unchanged rather than re-rolled without a confirmed-better candidate in hand.
+
+--- 8. Music clipping, found and fixed (audio/reel50-music.wav) ---
+David said some part of the music didn't sound good/fit well, no timestamp given. Investigated
+directly: volumedetect swept the full 52.6s track in 0.25s windows. Found a real, specific,
+measurable defect: from ~30.5s to ~37.25s the track's RMS jumps from its normal -20 to -33dB
+baseline up to -3 to -14dB, with PEAK PINNED AT EXACTLY 0.0dBFS (hard digital clipping) for
+the full ~6.75s span -- confirmed via a direct sample scan (12,411 samples at or above 0.999
+amplitude, none anywhere else in the file). build_music.py's own final step normalizes the
+whole track to a single global peak of 0.82 by construction, so a shipped file with hard
+0.0dBFS clipping could not have come from a clean run of the CURRENT script as-is -- this
+region was almost certainly over-driven during this file's own prior "already extended"
+mixing pass (per flow_compose.py's own docstring), not a defect in today's generator. This
+region lands under narration lines 3/4 (the survey-stat/privacy-explanation stretch) -- a
+harsh, distorted swell under a calm explanatory line, matching "doesn't fit well." Did NOT
+regenerate the whole track (would risk changing its character throughout, and the brief
+warned against blind regeneration) -- instead applied a targeted, smoothly-ramped (0.3s
+edges) -8dB gain reduction to just that window via ffmpeg's volume filter, verified after:
+zero clipped samples remaining anywhere in the file, peak in that window now -8.0dB, in line
+with the surrounding sections' own dynamics. Re-rendered the full episode against this
+corrected music file.
+
+--- Full re-render, re-gate ---
+python3 export/flow_compose.py --out studio/public/reels/reel-50.mp4 (full recompose,
+~4-5 min, twice this round -- once before the music fix, once after, to avoid shipping on a
+stale render).
+
+voice_doctor --deep (final spliced narration, 52.3s, 9 lines, accept list unchanged:
+"every,everything,waiting,other,checked"): "nothing flagged. every line sits inside his own
+spread." Line 6's own dull-tail/rushed note is discussed honestly in item 6 above rather than
+silently accepted.
+
+check_accent.py (final file, 9 lines): "nothing stands out from this file's own baseline" --
+line 6 (the item-6 fix) now 0.06, everything else unchanged from its own established level.
+
+qa.py (reel-50.mp4, final render after the music fix): 52.46s, 1080x1920, 30fps, 48kHz
+stereo, -14.0 LUFS integrated, -2.6 dBFS peak, LRA 2.3 LU. 0 blockers. 2 [warn]-class
+"picture nearly still" items (9.20-11.53s -- the new boomerang scene's own natural
+reversal-point deceleration, expected of that motion; 29.97-32.80s -- inside the line-4
+footage stretch, same pre-existing light-UI-frame class every prior round's log documents),
+neither a blocker.
+
+Personally inspected (frame-extraction, twice, full passes across the whole file each time,
+no video-playback tool available -- same substitution every prior round used): first pass
+covered the hook, the boomerang scene (confirmed real continuous scroll motion, not a stall,
+at both a mid-scroll and near-the-turn frame), the new stat-still split (confirmed the cut
+at 17.5s lands on a genuinely different real screen -- Insights, then Subscriptions -- with
+the $86/$219 overlay correctly in white/red respectively over real content), the line 5/6/7
+splice region (confirmed "It's finished." plays over real Home footage with no caption, by
+this file's own footage-scene design; "Comment FLOW and I'll send you the link to the app."
+renders correctly as a card with correct word-by-word highlight), and first/last frame (both
+real, non-blank picture, matching qa.py's own luma reading). Second pass re-checked every
+scene-cut boundary at finer (0.05-0.1s) steps specifically for the audio-only splice region
+(lines 5-9): confirmed the actual video scene cuts land within a single native frame of the
+recomputed cue boundaries (frame_at's own established rounding-tolerance design, unchanged
+this round), not a new drift. No new visual defect found on either pass.
+
+Net change to the shipped file this round: $219 is red; segE_home_close (line 6) and
+segB_home (line 2) footage scenes now boomerang instead of playing in slow motion; the line-3
+stat beat is two real stills instead of one long static hold; lines 5, 6 and 7's narration
+are new/re-recorded audio (line 5 re-recorded for a proper falling full stop, line 6 content
+rewritten and re-recorded twice -- once for content, once for a real accent-drift fix --
+line 7 content rewritten and recorded once), with lines 8 and 9's cue timing shifted to
+match but their own audio untouched; the background music has a targeted de-clip fix in one
+6.75s window. Lines 8 and 9's own tone/delivery are UNCHANGED -- searched, not confirmed
+improved, reported honestly rather than shipped speculatively. Not merged -- needs David's
+own review and listen, per this episode's established process every round.
+

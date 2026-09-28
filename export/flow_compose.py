@@ -100,7 +100,22 @@ SCENES = [
     # on the extracted frame, this is the fix, not a style tweak.
     {"lines": [1], "type": "card",    "bg": BG_DARK,  "fg": "ffffff", "hi": ACCENT,
      "zoom": 1.16, "footage_bg": ("segA_subscriptions", 48.4, None), "text_y": 610},
-    {"lines": [2], "type": "footage", "clips": [("segB_home", 42.351, None)]},
+    # segB_home's own onCamStart (42.351, from segB_home.oncam.json) is the
+    # earliest real Home-screen footage in this clip -- checked by frame
+    # extraction, before that point the recording is still on a different
+    # screen, so there is no earlier real window to pull from. This scene
+    # needs 6.87s but only 5.809s of the clip is left (offset to its 48.16s
+    # end) -- previously handled with a uniform 1.183x slow-motion stretch
+    # (setpts) across the WHOLE clip, including its own real scroll motion
+    # (frame-diff confirmed: mean per-frame luma delta ~13 from 42.351-47.0s,
+    # settling to ~0.4 -- essentially static -- for the last ~1.16s), which
+    # read as sluggish. Boomerang (real real-time forward, then real-time
+    # reverse, both re-encoded across the seam per build_boomerang's own
+    # established fix for that splice) instead of stretching: every frame
+    # still plays at its own recorded speed, just repeats/reverses once the
+    # scene's own duration needs more than the 5.809s of real footage left.
+    {"lines": [2], "type": "footage",
+     "clips": [("segB_home", 42.351, None)], "boomerang": True},
     # Line 3 (the "$86 / $219" stat) used to be a standalone flat card held for
     # ~10.8s -- a genuine dead beat with zero app footage visible for a third of
     # the whole reel, confirmed by frame extraction. Rebuilt as real footage
@@ -116,8 +131,29 @@ SCENES = [
     # false positive) as a still backdrop, with the "$86"/"$219" reveal
     # animated on top of it -- real product context around the number,
     # without fabricating motion the source footage doesn't actually have.
+    # Split into two real stills, David's own "too repetitive/dated" note plus
+    # live research on app-promo Reels best practice (TikTok Business /
+    # Demand Curve: cut every 2-3s, treat it as a highlight reel, never one
+    # dead hold): this was a SINGLE still held 10.81s -- by far the longest
+    # unbroken shot in the whole episode, over a third of it with only a
+    # slow zoom for motion. Cut it into two real screens instead of one:
+    # the setup half (the survey claim itself) stays on the existing Insights
+    # still; the reveal half (where "$86"/"$219" actually land) cuts to a
+    # frame of the real Subscriptions screen -- thematically the right
+    # screen for a subscription-spend number, and a genuinely UNUSED window
+    # of that same clip (42.0-46.0s of segA_subscriptions.webm, frame-
+    # checked: the populated $63.46/mo list, static/held, not the empty-
+    # subscriptions moment that sits before this clip's own onCamStart) --
+    # every other second of segA_subscriptions is already spoken for
+    # elsewhere in SCENES (46.0-51.28 by line 4, 48.4-51.28, stretched, by
+    # the hook). No new capture, no fabricated UI -- two real moments
+    # instead of one static one. Cut lands at 17.5s, right before "Most
+    # guessed around $86" (word-timing confirmed: "subscriptions." ends
+    # 17.58s, "Most" starts 17.98s) -- a real clause break, not mid-sentence.
     {"lines": [3], "type": "stat_still", "still_src": "segC_insights", "still_at": 44.0,
-     "stat_overlay": True, "zoom": 0.12},
+     "zoom": 0.08},
+    {"lines": [3], "type": "stat_still", "still_src": "segA_subscriptions", "still_at": 44.0,
+     "stat_overlay": True, "zoom": 0.10, "start_at": 17.5},
     # Line 4 was one continuous ~14.9s footage stretch. Reviewer feedback (with
     # David watching the actual cut): too much unbroken screen-recording back
     # to back, reading as monotonous even though each beat shows a different
@@ -145,7 +181,25 @@ SCENES = [
     # motion-recipes.md documents, not a new one-off.
     {"lines": [5], "type": "card", "bg": BG_DARK, "fg": "ffffff", "hi": ACCENT,
      "zoom": 1.14},
-    {"lines": [6], "type": "footage", "clips": [("segE_home_close", 40.786, None)]},
+    # segE_home_close's own onCamStart (40.786, from segE_home_close.oncam.json)
+    # is the earliest real Home-screen footage in this clip -- frame-checked
+    # (segE_pre_*.png): before 40.786s the recording is still showing the
+    # Subscriptions screen with its "Subscription added" toast, a different
+    # screen entirely, not usable "off-camera" padding -- so there is no room
+    # to start this clip earlier. This was the worse of the two stretch
+    # bugs: 4.149s needed, only 3.094s of real footage left (offset to the
+    # clip's own 43.88s end), forced a 1.341x setpts slow-motion stretch,
+    # right against this file's own MAX_STRETCH=1.4 cap -- confirmed
+    # frame-by-frame (segE_avail_*.png, 0.4s steps) as a real, continuous
+    # scroll of the Home screen's "Where your money goes" section, still
+    # moving all the way to the clip's own last available frame, i.e.
+    # exactly the kind of real motion that reads as unnaturally slow when
+    # played back at 3/4 speed. Boomerang instead of stretching: real
+    # forward scroll, then the same real footage in reverse, both at their
+    # own recorded 1x speed -- repeats/reverses to fill 4.149s instead of
+    # slowing down to fill it.
+    {"lines": [6], "type": "footage",
+     "clips": [("segE_home_close", 40.786, None)], "boomerang": True},
     {"lines": [7], "type": "card",    "bg": BG_DARK,  "fg": "ffffff", "hi": ACCENT,
      "zoom": 1.12},
     {"lines": [8], "type": "card",    "bg": BG_DARK,  "fg": "ffffff", "hi": ACCENT,
@@ -541,8 +595,16 @@ def build_stat_overlay(t0, t1, all_words):
         # not showing text through the very last instant of the beat sidesteps
         # it without needing the exact mux-level cause pinned down further.
         e = max(s + 0.3, t1 - 0.3)
+        # $219 is the REAL, higher, unwelcome number (people underestimate
+        # their actual spend) -- David's own point: it should read as a
+        # warning, not the app's own positive brand green ($86, the guessed
+        # number, stays white; ACCENT stays reserved for the app's own
+        # positive brand moments elsewhere). A soft warning red rather than a
+        # pure #ff0000, which reads harsh/alarm-siren against the dark
+        # (1a1c20) card background.
+        WARN_RED = "ff4d4d"
         ev.append(f"Dialogue: 0,{ts(s)},{ts(e)},Stat,,0,0,0,,"
-                   f"{{\\an5\\pos({W//2},{H//2})\\c{ass_color(ACCENT)}}}{pop}$219/mo")
+                   f"{{\\an5\\pos({W//2},{H//2})\\c{ass_color(WARN_RED)}}}{pop}$219/mo")
     return ev
 
 

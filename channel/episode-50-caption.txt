@@ -4,7 +4,7 @@ It's called Flow — an app that tracks your spending, your budgets, and every s
 
 I don't code. I gave Claude a few simple prompts, and it built this entire app.
 
-It's finished. Right now it's just waiting to go up on the App Store.
+It's finished.
 
 Guess before you check: how much do you actually spend on subscriptions every month? Comment your number — most people are off by over a hundred dollars.
 Comment FLOW and I'll send you the link.
