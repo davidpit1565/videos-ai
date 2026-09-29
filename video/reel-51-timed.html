@@ -1,0 +1,460 @@
+<title>Reel 51 — AI is wrong about your health and money most of the time.</title>
+<!--
+  Episode 51 — palette: crimson/amber ("urgent" mood — a real audio/pick_real_track.py
+  MOODS key, distinct track from episode 49's "drive" and episode 48's "urgent"-but-
+  violet/amber). Hex distinct from episode 49 (burnt-orange #C2410C / cyan #0891B2).
+  Built from video/reel-49.html (closest structural analog: same 8-line shape, same
+  whole-audience-pivot era, same sourced-stat + fix-technique structure).
+
+  Content note: this episode's topic is AI chatbots answering health and financial
+  questions wrong most of the time without ever flagging uncertainty. Three sources,
+  verified live 28.9.2026 (see channel/episode-51-script.md):
+    - BMJ Open, 14 April 2026 (UCLA/Alberta/Wake Forest): 250 real health questions,
+      5 chatbots, 49.6% problematic (30% somewhat, 19.6% highly).
+    - Saturn "Artificial Authority" report, 2026 (UK fintech): 121 financial questions,
+      4 chatbots x5 each, 10,000+ responses, 57% wrong/incomplete overall, 88% on
+      complex queries.
+    - A separate, distinct news-source-attribution test: ChatGPT wrong 134/200 times,
+      admitted uncertainty only 15 of those 134 times.
+  Payoff is a single copy-paste confidence-disclosure prompt (line 5) — the episode's
+  core forwardable artifact, given its own dedicated hero scene (5) with real visual
+  emphasis, same treatment episode 49 gave "tap Web."
+
+  Screenshot note: a real screenshot of the BMJ Open study page was attempted via the
+  Playwright browser tool and failed at the infrastructure level (Chromium sandboxing
+  broken running as root in this container) — not attempted again per instruction.
+  Uses the channel's established sourced-citation-card style (source name + date as
+  on-screen text) instead, same pattern as episode 49's Munich court citation.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@500;600&display=swap">
+<style>
+:root{
+  --ink:#0A0E14;--line:#1F2B3A;
+  --brass:#E11D2E;--brass-hot:#FF4D5E;--ember:#F59E0B;
+  --text:#FFFFFF;--muted:#8AA0B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+  --ui:'Inter','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.bg{position:absolute;inset:0;z-index:0}
+.bg i{position:absolute;display:block;border-radius:50%;will-change:transform;left:0;top:0}
+.bg .b1{width:130cqw;height:130cqw;top:-40cqw;left:-30cqw;background:radial-gradient(circle closest-side,rgba(225,29,46,.26),rgba(124,58,237,0) 70%)}
+.bg .b2{width:150cqw;height:150cqw;top:50cqw;left:-10cqw;background:radial-gradient(circle closest-side,rgba(20,28,40,.6),rgba(20,28,40,0) 70%)}
+.bg .b3{width:120cqw;height:120cqw;top:120cqw;left:20cqw;background:radial-gradient(circle closest-side,rgba(245,158,11,.16),rgba(245,158,11,0) 70%)}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+.vig{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 50%,transparent 40%,rgba(5,7,9,.55) 100%)}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--brass);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(225,29,46,.7)}
+
+.scene{position:absolute;inset:0;z-index:2}
+.pad{position:absolute;inset:0;padding:28cqw 10cqw 65cqw;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:12.6cqw;line-height:.98;letter-spacing:-.045em;
+  margin:0;text-wrap:balance;position:relative;z-index:2}
+h2 em{font-style:normal;color:var(--brass)}
+h2 .box{background:var(--brass);color:#fff;padding:0 1.6cqw;border-radius:1cqw;
+  display:inline-block;position:relative;transform:rotate(-1.2deg)}
+h2 .ebox{background:var(--ember);color:#0A0E14;padding:0 1.6cqw;border-radius:1cqw;display:inline-block;position:relative}
+.glowbloom{position:absolute;pointer-events:none;opacity:0}
+.wd{position:relative;z-index:1}
+p.lede{font-size:5.6cqw;line-height:1.3;color:#EAF3FB;margin:0;font-weight:700;position:relative;z-index:2}
+p.lede strong{color:var(--brass)}
+
+.quote{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2;text-align:left}
+.quote .qk{font-family:var(--m);font-size:2.8cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#6B7C90;margin:0 0 2.4cqw}
+.quote .qb{font-family:var(--b);font-weight:700;font-size:5cqw;line-height:1.4;color:#0D0D0D;position:relative}
+#quoteQb strong{color:#DC2626}
+.quote.hero{border-top:1cqw solid var(--brass)}
+#quoteQb2 strong{color:#B91C1C}
+
+.scoreboard{display:flex;flex-direction:column;gap:2.6cqw;width:100%;position:relative;z-index:2}
+.scorerow{display:flex;align-items:center;justify-content:space-between;background:#101823;
+  border:.3cqw solid #1E3348;border-radius:1.6cqw;padding:3cqw 4cqw;position:relative}
+.scorerow .lbl{font-family:var(--ui);font-weight:600;font-size:4cqw;color:#CFE0F0;text-align:left}
+.scorerow .val{font-family:var(--d);font-weight:900;font-size:6.4cqw;color:var(--ember)}
+.scorerow.worse .val{color:#FF4D4D;font-size:7.2cqw;text-shadow:0 0 2cqw rgba(255,77,77,.55)}
+.cite{font-family:var(--m);font-size:2.8cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#8AA0B8;margin-top:1.4cqw;text-align:center;position:relative;z-index:2}
+
+.subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
+  font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
+  text-transform:uppercase;
+  text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
+.subs em{font-style:normal;background:var(--brass);color:#fff;padding:0 1.4cqw;border-radius:.9cqw;
+  display:inline-block;text-shadow:none}
+.subs b{font-weight:800;color:#fff;transition:color .09s linear,transform .09s linear;display:inline-block}
+.subs b.on{color:var(--brass);transform:scale(1.06)}
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#5C7086}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,9,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#fff;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
+<div class="grain" data-decor></div>
+<div class="vig"></div>
+<div class="prog" id="prog"></div>
+
+<section class="scene" data-in="0" data-out="5.04">
+  <div class="pad"><div class="kb" id="hookKb">
+    <h2 class="punch" id="hookH2">AI never tells you<br>when it's just <span class="box">guessing</span>.</h2>
+    <p class="lede" id="hookLede2" style="font-size:5cqw;opacity:0">Not your health.<br>Not your money.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="5.04" data-out="14">
+  <div class="pad"><div class="kb">
+    <div class="quote" id="quoteCard" style="opacity:0">
+      <div class="qk" id="quoteQk">bmj open · april 2026</div>
+      <div class="qb" id="quoteQb">Five AI chatbots were tested on real health questions — <strong>49.6%</strong> of the answers were wrong or misleading.</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="14" data-out="23.7">
+  <div class="pad" style="padding-bottom:76cqw"><div class="kb">
+    <div class="scoreboard" id="scoreBoard">
+      <div class="scorerow" id="scoreRowA" style="opacity:0"><span class="lbl">Money questions</span><span class="val">57% WRONG</span></div>
+      <div class="scorerow worse" id="scoreRowB" style="opacity:0"><span class="lbl">Complex ones</span><span class="val">88% WRONG</span></div>
+    </div>
+    <p class="cite b" data-at="14.03">saturn, "artificial authority" · 2026</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="23.7" data-out="31.655">
+  <div class="pad" style="padding-bottom:76cqw"><div class="kb">
+    <div class="scoreboard" id="scoreBoard2">
+      <div class="scorerow" id="scoreRowC" style="opacity:0"><span class="lbl">Wrong answers</span><span class="val">134 / 200</span></div>
+      <div class="scorerow worse" id="scoreRowD" style="opacity:0"><span class="lbl">Said "not sure"</span><span class="val">ONLY 15</span></div>
+    </div>
+    <p class="cite b" data-at="23.73">separate news-source test · 2026</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="31.655" data-out="39.3">
+  <div class="pad"><div class="kb">
+    <div class="quote hero" id="quoteCard2" style="opacity:0">
+      <div class="qk" id="quoteQk2">copy this · paste it after any answer</div>
+      <div class="qb" id="quoteQb2">"Rate your confidence in this answer, <strong>0 to 100</strong>, and tell me <strong>exactly what could make it wrong</strong> or outdated."</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="39.3" data-out="42.26">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="39.33">Forward this<br>to <strong>someone right now</strong>.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="42.26" data-out="44.49">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="42.29">The setup's in<br>the link in bio.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="44.49" data-out="47.32">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="44.52" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+  </div></div>
+</section>
+
+<div class="subs" id="subs"></div>
+<div class="handle" data-decor>@actually_works.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="50.60" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+</div>
+
+<script src="../export/motion-kit.js"></script>
+<script>
+(function(){
+  var MK=window.MotionKit;
+  var DUR=47.82,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+  var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+
+  var CUES=[
+    [0.30,4.83,"AI never tells you when it's just guessing. Not about your health. Not about your money."],
+    [5.25,13.79,"A 2026 medical study tested five AI chatbots on real health questions. Almost half the answers were wrong or misleading."],
+    [14.21,23.49,"A separate test ran the same chatbots on ten thousand money questions. More than half were wrong too, and it got wrong even more often as things got complicated."],
+    [23.91,31.23,"In a third test, it was wrong 134 times out of 200 — and admitted it wasn't sure only 15 of those times."],
+    [32.08,39.09,"Next time it answers you, paste this first, then rate your confidence, zero to a hundred, and tell me what could make this wrong."],
+    [39.51,42.05,"Forward this to someone right now."],
+    [42.47,44.28,"The setup's in the link in bio."],
+    [44.70,46.92,"Follow for the setup that actually works."]
+  ];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  var hookKb=document.getElementById('hookKb');
+  var hookH2=document.getElementById('hookH2');
+  var hookScene=hookH2.closest('.scene');
+  var hookSplit=MK.splitWordsSafe(hookH2);
+  var hookClimax=null;
+  for(var hi=0;hi<hookSplit.words.length;hi++){
+    var hw=hookSplit.words[hi];
+    if(hw.classList.contains('box')||hw.classList.contains('ebox')){ hookClimax=hw; break; }
+  }
+  var hookClimaxIndex=hookClimax?hookSplit.words.indexOf(hookClimax):-1;
+  var hookGlow=null;
+  if(hookClimax){
+    hookGlow=document.createElement('div');
+    hookGlow.className='glowbloom';
+    hookGlow.style.cssText='position:absolute;inset:-45%;border-radius:50%;z-index:-1;'+
+      'background:radial-gradient(circle,var(--brass) 0%,rgba(0,0,0,0) 70%)';
+    hookClimax.insertBefore(hookGlow,hookClimax.firstChild);
+  }
+  // Second hook beat ("Not your health. Not your money.") — deliberately NOT a
+  // generic [data-at] beat: retime.py's "a scene must have something on screen the
+  // instant the flash lifts" rule treats the first data-at element it finds in a
+  // scene as that scene's opening beat and pulls it onto the cut (t=0) if nothing
+  // else in the scene carries a data-at — which is exactly what happened here, since
+  // hookH2's word-by-word reveal is driven entirely by this custom renderHook()
+  // function and carries no data-at of its own. The retimed build showed the "not
+  // your health/money" line appearing at the same instant as "AI never tells you",
+  // stacked on top of the still-building headline and the karaoke captions below it
+  // — caught on the mandatory post-render frame-extraction viewing, not by any
+  // automated check (safe_check.js only measures pixel overlap, not narrative
+  // sequencing). Fixed by giving it its own scene-relative timing here, anchored to
+  // when the hook's own word reveal actually finishes, so retime.py never sees a
+  // data-at to touch.
+  var hookLede2=document.getElementById('hookLede2');
+  var HOOK_WORDS_START=0.15,HOOK_WORDS_GAP=0.10,HOOK_WORDS_DUR=0.30;
+  var hookWordsEnd=MK.wordsEndAt(hookSplit.words,HOOK_WORDS_START,HOOK_WORDS_GAP,HOOK_WORDS_DUR);
+  var LEDE2_AT=hookWordsEnd+0.20,LEDE2_DUR=0.32;
+
+  // Scene 2 — health-stat citation card (BMJ Open / 49.6%)
+  var quoteCard=document.getElementById('quoteCard');
+  var quoteScene=quoteCard.closest('.scene');
+  var quoteQkWords=MK.splitWordsSafe(document.getElementById('quoteQk')).words;
+  var quoteQbSplit=MK.splitWordsSafe(document.getElementById('quoteQb'));
+  var quoteQbEl=document.getElementById('quoteQb');
+  var quoteBars=[];
+  function buildQuoteBars(){
+    quoteBars.forEach(function(b){ if(b.parentNode) b.parentNode.removeChild(b); });
+    quoteBars=MK.buildHighlightBars(quoteQbEl,quoteQbSplit.highlighted);
+    quoteBars.forEach(function(b){ b.style.background='#DC2626'; }); // warning red, not celebratory — this is a bad number
+  }
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(buildQuoteBars);
+  else buildQuoteBars();
+
+  // Scene 3 — money-stat scoreboard (57% / 88%)
+  var scoreBoard=document.getElementById('scoreBoard');
+  var scoreScene=scoreBoard.closest('.scene');
+  var scoreRowA=document.getElementById('scoreRowA'), scoreRowB=document.getElementById('scoreRowB');
+  var scoreGlow=document.createElement('div');
+  scoreGlow.className='glowbloom';
+  scoreGlow.style.cssText='position:absolute;inset:-16%;border-radius:1.6cqw;z-index:-1;'+
+    'background:radial-gradient(circle,#FF4D4D 0%,rgba(0,0,0,0) 70%)';
+  scoreRowB.insertBefore(scoreGlow,scoreRowB.firstChild);
+
+  // Scene 4 — confidence-disclosure scoreboard (134/200 wrong, only 15 unsure)
+  var scoreBoard2=document.getElementById('scoreBoard2');
+  var scoreScene2=scoreBoard2.closest('.scene');
+  var scoreRowC=document.getElementById('scoreRowC'), scoreRowD=document.getElementById('scoreRowD');
+  var scoreGlow2=document.createElement('div');
+  scoreGlow2.className='glowbloom';
+  scoreGlow2.style.cssText='position:absolute;inset:-16%;border-radius:1.6cqw;z-index:-1;'+
+    'background:radial-gradient(circle,#FF4D4D 0%,rgba(0,0,0,0) 70%)';
+  scoreRowD.insertBefore(scoreGlow2,scoreRowD.firstChild);
+
+  // Scene 5 — the confidence-check prompt itself, the episode's core forwardable
+  // artifact. Same quote-card mechanism as scene 2, given its own hero styling (.hero).
+  var quoteCard2=document.getElementById('quoteCard2');
+  var quoteScene2=quoteCard2.closest('.scene');
+  var quoteQk2Words=MK.splitWordsSafe(document.getElementById('quoteQk2')).words;
+  var quoteQb2Split=MK.splitWordsSafe(document.getElementById('quoteQb2'));
+  var quoteQb2El=document.getElementById('quoteQb2');
+  var quoteBars2=[];
+  function buildQuoteBars2(){
+    quoteBars2.forEach(function(b){ if(b.parentNode) b.parentNode.removeChild(b); });
+    quoteBars2=MK.buildHighlightBars(quoteQb2El,quoteQb2Split.highlighted);
+    quoteBars2.forEach(function(b){ b.style.background='#F59E0B'; }); // the fix — amber, not the warning red used for bad stats
+  }
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(buildQuoteBars2);
+  else buildQuoteBars2();
+
+  function renderHook(){
+    var ht=t-(+hookScene.dataset.in);
+    var START=0.15,GAP=0.10,DUR=0.30;
+    for(var i=0;i<hookSplit.words.length;i++){
+      var w=hookSplit.words[i],at=START+i*GAP;
+      if(w===hookClimax){
+        MK.animatePop(w,ht,at,DUR);
+        if(hookGlow) MK.animateGlowBloom(hookGlow,ht,at,DUR,0.30);
+      } else {
+        var e=MK.smoothIn(MK.clamp01((ht-at)/DUR));
+        w.style.opacity=String(e);
+        w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+      }
+    }
+    if(hookClimaxIndex>=0){
+      var climaxAt=START+hookClimaxIndex*GAP;
+      var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.96,pushAt:climaxAt,pushDur:0.9,pushTo:1.08});
+      hookKb.style.transform='scale('+camScale.toFixed(4)+')';
+    }
+    var le2=MK.smoothIn(MK.clamp01((ht-LEDE2_AT)/LEDE2_DUR));
+    hookLede2.style.opacity=String(le2);
+    hookLede2.style.transform='translateY('+(14*(1-le2)).toFixed(2)+'px)';
+  }
+
+  function renderQuoteGeneric(scene,card,qkWords,qbSplit,bars,cardDur){
+    var qt=t-(+scene.dataset.in);
+    var CARD_DUR=cardDur||0.4;
+    var le=MK.smoothIn(MK.clamp01(qt/CARD_DUR));
+    card.style.opacity=String(le);
+    card.style.transform='translateY('+(36*(1-le)).toFixed(2)+'px)';
+    card.style.boxShadow='0 '+(10+30*le).toFixed(1)+'px '+(40+60*le).toFixed(1)+'px rgba(0,0,0,'+(0.25*le).toFixed(3)+')';
+
+    var QK_START=0.10,QK_GAP=0.05,QK_DUR=0.22;
+    for(var i=0;i<qkWords.length;i++){
+      var e=MK.smoothIn(MK.clamp01((qt-(QK_START+i*QK_GAP))/QK_DUR));
+      qkWords[i].style.opacity=String(e);
+      qkWords[i].style.transform='translateY('+(10*(1-e)).toFixed(2)+'px)';
+    }
+    var qkEnd=MK.wordsEndAt(qkWords,QK_START,QK_GAP,QK_DUR);
+    var QB_START=qkEnd+0.10,QB_GAP=0.05,QB_DUR=0.24;
+    for(var j=0;j<qbSplit.words.length;j++){
+      var e2=MK.smoothIn(MK.clamp01((qt-(QB_START+j*QB_GAP))/QB_DUR));
+      qbSplit.words[j].style.opacity=String(e2);
+      qbSplit.words[j].style.transform='translateY('+(10*(1-e2)).toFixed(2)+'px)';
+    }
+    var qbEnd=MK.wordsEndAt(qbSplit.words,QB_START,QB_GAP,QB_DUR);
+    MK.animateHighlightBars(bars,qt,qbEnd+0.05,0.22,0.06);
+  }
+
+  function renderScoreboardGeneric(scene,rowA,rowB,glow){
+    var st=t-(+scene.dataset.in);
+    var A_AT=0.10,A_DUR=0.32,B_AT=0.65,B_DUR=0.32;
+    var ae=MK.smoothIn(MK.clamp01((st-A_AT)/A_DUR));
+    rowA.style.opacity=String(ae);
+    rowA.style.transform='scale('+ae.toFixed(3)+')';
+    var be=MK.smoothIn(MK.clamp01((st-B_AT)/B_DUR));
+    rowB.style.opacity=String(be);
+    rowB.style.transform='scale('+be.toFixed(3)+')';
+    MK.animateGlowBloom(glow,st,B_AT,B_DUR,0.30);
+    var shakeX=MK.impactShake(st,B_AT,0.22,6);
+    rowB.parentElement.style.transform='translateX('+shakeX.toFixed(2)+'px)';
+  }
+
+  var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
+  function renderTransitions(){
+    for(var i=0;i<scenes.length-1;i++){
+      var boundary=+scenes[i].dataset.out;
+      var outStart=boundary-OUT_DUR, inStart=outStart+IN_OFFSET;
+      MK.zoomThroughTransition(scenes[i], scenes[i+1], t, outStart, inStart, OUT_DUR, IN_DUR);
+    }
+  }
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      if(on) active=s;
+    }
+    renderTransitions();
+    if(active){
+      var kbEnd=(+active.dataset.out)-OUT_DUR;
+      var f=t>=kbEnd?0:(t-+active.dataset.in)/(kbEnd-(+active.dataset.in));
+      var kbs=active.querySelectorAll('.kb');
+      for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.06*f).toFixed(4)+')';
+    }
+
+    renderHook();
+    renderQuoteGeneric(quoteScene,quoteCard,quoteQkWords,quoteQbSplit,quoteBars);
+    renderScoreboardGeneric(scoreScene,scoreRowA,scoreRowB,scoreGlow);
+    renderScoreboardGeneric(scoreScene2,scoreRowC,scoreRowD,scoreGlow2);
+    renderQuoteGeneric(quoteScene2,quoteCard2,quoteQk2Words,quoteQb2Split,quoteBars2,0.45);
+
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      e.classList.toggle('snap',t<0.30);
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    b1.style.transform='translate('+(2+14*Math.sin(t*0.3))+'cqw,'+(-4+16*Math.cos(t*0.22))+'cqw)';
+    b2.style.transform='translate('+(18*Math.cos(t*0.18+1.4))+'cqw,'+(16*Math.sin(t*0.24+.6))+'cqw)';
+    b3.style.transform='translate('+(10+18*Math.sin(t*0.15+2.1))+'cqw,'+(-10*Math.cos(t*0.2+1.1))+'cqw)';
+
+    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
+    subs.innerHTML=txt;
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>
