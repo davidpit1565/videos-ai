@@ -1366,6 +1366,35 @@ export const ARTICLES: Article[] = [
       "The 89%/$86-vs-$219 figures are a survey average (West Monroe), not a claim about any one specific person's real spend — your own number, from the steps above, is the one that actually matters.",
     ],
   },
+  {
+    n: 51,
+    title: "AI never tells you when it's just guessing about your health or money",
+    standfirst:
+      "A 2026 study in BMJ Open tested five major AI chatbots on 250 real health questions " +
+      "and found 49.6% of the answers were problematic. A separate UK report (Saturn, " +
+      "\"Artificial Authority\") ran the same chatbots on over 10,000 financial questions — " +
+      "57% were wrong or incomplete, 88% on complex ones. A third, distinct test found a " +
+      "chatbot admitted uncertainty only 15 out of 134 times it was actually wrong. None of " +
+      "this fixes the accuracy problem — but one free, copy-paste prompt forces the chatbot " +
+      "to disclose its own confidence instead of answering everything with the same flat " +
+      "certainty.",
+    steps: [
+      "Ask any AI chatbot (ChatGPT, Gemini, Claude, Copilot, or any other) a real health or money question, the same way you normally would.",
+      "Read its answer once, all the way through, like you normally would.",
+      "In the same chat, right under that answer, paste this exact prompt: \"Rate your confidence in this answer, 0 to 100, and tell me exactly what could make it wrong or outdated.\"",
+      "Read the number it gives back, and read the specific things it says could make it wrong — a genuinely useful answer names real, specific gaps (a recent price change, a policy update, a study it might not know about); a vague one just repeats \"I could be wrong\" with nothing underneath.",
+      "Optional, for a real answer instead of a vague one: if its list of what could make it wrong is generic, ask a direct follow-up — \"Which one of those is most likely to actually apply here?\" — before you act on the original answer.",
+    ],
+    changes: [
+      "Verified live (28.9.2026): the BMJ Open study (14 April 2026, UCLA/University of Alberta/Wake Forest, 49.6% problematic — 30% somewhat, 19.6% highly) corroborated across at least nine independent outlets; the Saturn \"Artificial Authority\" report (2026, 121 financial questions x5 each, 10,000+ responses, 57%/88%) corroborated across at least eight independent outlets; the separate news-source-attribution test (134/200 wrong, uncertainty expressed only 15 of those times) kept explicitly distinct from the other two studies' own figures, not merged with them.",
+      "Continues the 24.9.2026 whole-audience-pivot direction (episode 49): health and money questions are asked by close to everyone who has ever opened an AI chatbot, not a subgroup.",
+    ],
+    limits: [
+      "This is about general-purpose AI chatbots answering health and financial questions specifically — not a claim about every AI product or every possible use case.",
+      "The confidence-check prompt does not make the underlying answer more accurate. It only makes the chatbot state a confidence level and name specific risks instead of answering with flat, undifferentiated certainty — verify anything health- or money-related that actually matters through a real professional or primary source regardless of what number it gives back.",
+      "The 49.6%/57%/88%/134-out-of-200 figures are study and test averages from the specific sources above, not a claim about what any one specific answer you personally receive will be.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

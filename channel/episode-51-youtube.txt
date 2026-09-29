@@ -1,0 +1,19 @@
+AI never tells you when it's just guessing — not about your health, not about your money.
+
+A 2026 study published in BMJ Open (researchers from UCLA, University of Alberta, and Wake Forest) tested 5 major AI chatbots — Gemini, DeepSeek, Meta AI, ChatGPT, and Grok — on 250 real health questions covering cancer, vaccines, stem cells, nutrition, and athletic performance. 49.6% of the answers were problematic; 19.6% were the kind that could plausibly lead someone toward ineffective or dangerous treatment.
+
+A separate report from Saturn, a UK fintech firm ("Artificial Authority," 2026), tested ChatGPT, Gemini, Claude, and Copilot on 121 real financial questions — debt, mortgages, pensions, tax, savings, student loans — each asked 5 times for consistency, over 10,000 total responses. 57% were incorrect or incomplete overall; 88% on complex questions. Free-tier models did worse (63% wrong) than paid ones (49% wrong).
+
+In a separate test on news-source questions, ChatGPT gave incorrect answers 134 out of 200 times, and only expressed uncertainty in 15 of those wrong answers. It sounds exactly as confident whether it's right or wrong.
+
+The fix that actually works, free, right now: after any answer you're not fully sure about, paste this —
+
+"Rate your confidence in this answer, 0 to 100, and tell me exactly what could make it wrong or outdated."
+
+This doesn't make the AI more accurate. It stops it from hiding when it's guessing, and forces it to show you exactly where it might be wrong.
+
+See the full setup, sourced exactly: https://actually-works.com/e/51
+
+Follow for the setup that actually works.
+
+#chatgpt #aiaccuracy #factcheck #aihealth #personalfinance #techtips #aitools
