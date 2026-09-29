@@ -1395,6 +1395,35 @@ export const ARTICLES: Article[] = [
       "The 49.6%/57%/88%/134-out-of-200 figures are study and test averages from the specific sources above, not a claim about what any one specific answer you personally receive will be.",
     ],
   },
+  {
+    n: 52,
+    title: "ChatGPT has been quietly building a profile on you — even offline",
+    standfirst:
+      "In June 2026 OpenAI rebuilt ChatGPT's memory system and named it, on its own blog: " +
+      "\"Dreaming\" — a background process that reads your past conversations and rewrites " +
+      "what it remembers about you, without you asking it to save anything. OpenAI's own " +
+      "help docs also state the visible memory summary does not necessarily include " +
+      "everything Memory actually references. One sentence, typed into any chat, shows you " +
+      "what it actually has.",
+    steps: [
+      "Open ChatGPT — the app or chatgpt.com, any plan, free or paid — and start or continue any chat.",
+      "Type exactly: \"What do you remember about me?\" and send it.",
+      "Read the summary it gives back in full before reacting to any one detail in it.",
+      "Then check the visible list yourself: Settings > Personalization > Memory (some accounts see a further \"Manage\" step) shows the editable memory summary and, separately, any individually saved memories.",
+      "Optional, to see more of what it's actually drawing on: ask a direct follow-up, \"Is there anything else you know about me that isn't in that summary?\" — OpenAI's own help docs say the visible summary can be incomplete, so this sometimes surfaces more.",
+      "If anything in what it says back is wrong, outdated, or something you don't want remembered, use the same Settings > Personalization > Memory screen to edit or delete it directly — you don't need a special prompt to remove something.",
+    ],
+    changes: [
+      "Verified live (29.9.2026): \"Dreaming\" confirmed directly on OpenAI's own blog (openai.com/index/chatgpt-memory-dreaming/, published 4 June 2026), corroborated by multiple independent outlets with consistent details; the memory-summary-is-incomplete claim confirmed against OpenAI's own Help Center content, not inferred; the current Settings > Personalization > Memory path and the \"What do you remember about me?\" prompt itself both confirmed working today across multiple independent 2026 sources.",
+      "Checked against every prior episode script and build for a repeat angle: no earlier episode on this channel covers ChatGPT memory/profiling specifically — this is a new mechanism and a new claim, not a rehash.",
+      "A real screenshot of the live Settings > Personalization > Memory screen was attempted (headless Chrome, retried this session) and blocked at the infrastructure level (403 from openai.com and help.openai.com through this environment's proxy) — the same class of failure episode 51 hit for a different reason. The real ChatGPT logo mark used in the video was sourced directly from Wikimedia Commons as an actual downloadable image file, not a screenshot; the interface itself is shown as a labeled recreation of the verified real path, not presented as a literal capture.",
+    ],
+    limits: [
+      "This is about ChatGPT's Memory system specifically (Dreaming plus the visible summary) — not a claim about every AI product's memory behavior.",
+      "The exact wording, detail, and accuracy of what comes back varies by account, plan, region, and how much history exists — OpenAI's own rollout was staged by plan and country starting June 2026, so exactly what you see may differ from what's shown here.",
+      "Asking the prompt shows you a summary of what the model has inferred and retained — it is not guaranteed to be a complete, itemized list of every underlying data point OpenAI's systems hold about you.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

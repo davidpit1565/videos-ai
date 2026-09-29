@@ -1,0 +1,22 @@
+ChatGPT has been quietly building a profile on you — even when you're not talking to it.
+
+OpenAI calls it Dreaming. It's a real background process (confirmed on OpenAI's own blog) that keeps reading your past conversations and rewriting what it remembers about you, on its own — you don't have to tell it to save anything.
+
+Here's the part OpenAI itself admits, in its own help docs: the memory summary you're shown when you check Settings > Personalization > Memory does NOT include everything it actually has on you.
+
+So check it. Right now, in any ChatGPT chat, type:
+
+"What do you remember about me?"
+
+Read what comes back. It's a real, working prompt — not a trick, not a jailbreak, just a sentence.
+
+Did what it said back surprise you? Comment YES if it knew something you didn't expect, or NO if it was basically nothing.
+Comment MEMORY and I'll send you two more prompts that go even further.
+
+If someone you know has never checked, send them this.
+
+Full setup, sourced exactly: https://actually-works.com/e/52
+
+Follow for the setup that actually works.
+
+#chatgpt #openai #aiprivacy #chatgptmemory #techtips #aitools #privacy

@@ -1,0 +1,17 @@
+ChatGPT has been quietly building a profile on you — even when you're not talking to it.
+
+In June 2026, OpenAI rebuilt how ChatGPT's memory works and gave the new system a name, confirmed on its own blog: "Dreaming." It's a background process that reads across your past conversations and continuously rewrites what ChatGPT remembers about you — without you asking it to save anything. Source: openai.com/index/chatgpt-memory-dreaming/.
+
+Separately, OpenAI's own Help Center documentation states plainly that the memory summary you see under Settings > Personalization > Memory does not necessarily include everything Memory actually references — meaning what you're shown when you check is smaller than what's really stored and used, by OpenAI's own admission.
+
+The fix that actually works, free, right now, on any ChatGPT plan: open any chat and type —
+
+"What do you remember about me?"
+
+This is a real, confirmed-working prompt (corroborated across multiple independent 2026 sources testing it directly) that returns an actual summary of what the model has inferred and retained about you — no settings change, no link, no account change required.
+
+See the full setup, sourced exactly: https://actually-works.com/e/52
+
+Follow for the setup that actually works.
+
+#chatgpt #openai #aiprivacy #chatgptmemory #techtips #aitools #privacy

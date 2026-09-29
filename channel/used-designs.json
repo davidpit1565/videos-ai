@@ -298,5 +298,11 @@
     "brass": "#E11D2E",
     "ember": "#F59E0B",
     "mood": "urgent"
+  },
+  {
+    "episode": 52,
+    "brass": "#DC2626",
+    "ember": "#FBBF24",
+    "mood": "tense"
   }
 ]

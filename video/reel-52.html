@@ -1,0 +1,422 @@
+<title>Reel 52 — ChatGPT has been quietly building a profile on you.</title>
+<!--
+  Episode 52 — new build, new topic (ChatGPT's "Dreaming" background memory system and
+  the "What do you remember about me?" payoff prompt). See channel/episode-52-script.md
+  for full verification, comprehension-test, hook-rotation and sendability notes.
+
+  Design notes (David asked this one be designed beautifully, not autopiloted off 51):
+  - New palette, distinct hex from episode 51's exact --brass/--ember (design-variety
+    check compares exact hex): --brass:#DC2626 (still warning red for the alarming/bad
+    fact, same convention as 51) / --ember:#FBBF24 (still amber for the fix/payoff).
+  - New mood: tense (last used episode 46; episode 51 used urgent).
+  - Real ChatGPT logo mark, inlined as raw SVG paths — downloaded directly as a real
+    image file from Wikimedia Commons
+    (upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg), OpenAI's actual
+    published mark, not a screenshot and not a fabrication. Used once, in scene 2, with
+    a slow breathing glow to read as "a background process, always on."
+  - A real screen capture of the live Settings > Personalization > Memory screen was
+    attempted this session (headless Chrome, retried per instructions) and blocked at
+    the infrastructure level — both openai.com and help.openai.com returned HTTP 403
+    through this environment's proxy to both curl and a browser UA. Same class of
+    infra failure as episode 51 (that one was a Chromium sandbox crash; this one is a
+    403/bot-block), not a judgment call to skip capturing it. Scene 4's chat-input
+    recreation is disclosed here, honestly, as a labeled recreation of the verified
+    real prompt/path, not presented as a literal screenshot.
+  - Scene 3 (the "undersell" fact) is built as two stacked bars, one much shorter than
+    the other ("what you're shown" vs "what it actually has") — a genuine visual
+    metaphor for partial visibility, not just another citation card, so the build
+    doesn't lean on the same single "quote card" shape for every stat scene the way a
+    fast pattern-reuse pass would.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@500;600&display=swap">
+<style>
+:root{
+  --ink:#0A0E14;--line:#1F2B3A;
+  --brass:#DC2626;--brass-hot:#FF6B6B;--ember:#FBBF24;
+  --text:#FFFFFF;--muted:#8AA0B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+  --ui:'Inter','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.bg{position:absolute;inset:0;z-index:0}
+.bg i{position:absolute;display:block;border-radius:50%;will-change:transform;left:0;top:0}
+.bg .b1{width:130cqw;height:130cqw;top:-40cqw;left:-30cqw;background:radial-gradient(circle closest-side,rgba(220,38,38,.24),rgba(124,58,237,0) 70%)}
+.bg .b2{width:150cqw;height:150cqw;top:50cqw;left:-10cqw;background:radial-gradient(circle closest-side,rgba(20,28,40,.6),rgba(20,28,40,0) 70%)}
+.bg .b3{width:120cqw;height:120cqw;top:120cqw;left:20cqw;background:radial-gradient(circle closest-side,rgba(251,191,36,.14),rgba(245,158,11,0) 70%)}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+.vig{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 50%,transparent 40%,rgba(5,7,9,.55) 100%)}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--brass);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(220,38,38,.7)}
+
+.scene{position:absolute;inset:0;z-index:2}
+.pad{position:absolute;inset:0;padding:28cqw 10cqw 65cqw;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:10.8cqw;line-height:1.02;letter-spacing:-.04em;
+  margin:0;text-wrap:balance;position:relative;z-index:2}
+h2 em{font-style:normal;color:var(--brass)}
+h2 .box{background:var(--brass);color:#fff;padding:0 1.6cqw;border-radius:1cqw;
+  display:inline-block;position:relative;transform:rotate(-1.2deg)}
+h2 .ebox{background:var(--ember);color:#0A0E14;padding:0 1.6cqw;border-radius:1cqw;display:inline-block;position:relative}
+.glowbloom{position:absolute;pointer-events:none;opacity:0}
+.wd{position:relative;z-index:1}
+p.lede{font-size:5.6cqw;line-height:1.3;color:#EAF3FB;margin:0;font-weight:700;position:relative;z-index:2}
+p.lede strong{color:var(--brass)}
+
+.quote{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2;text-align:left}
+.quote .qk{font-family:var(--m);font-size:2.8cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#6B7C90;margin:0 0 2.4cqw}
+.quote .qb{font-family:var(--b);font-weight:700;font-size:5cqw;line-height:1.4;color:#0D0D0D;position:relative}
+.quote.hero{border-top:1cqw solid var(--brass)}
+
+/* Scene 2 — logo + background-process visual */
+.logowrap{position:relative;width:38cqw;height:38cqw;display:flex;align-items:center;justify-content:center;z-index:2}
+.logowrap .ring{position:absolute;inset:0;border-radius:50%;border:.5cqw solid rgba(116,170,156,.35)}
+.logowrap svg{width:60%;height:60%;position:relative;z-index:2;filter:drop-shadow(0 1cqw 3cqw rgba(0,0,0,.5))}
+.logowrap .pulse{position:absolute;inset:-20%;border-radius:50%;background:radial-gradient(circle,rgba(116,170,156,.55) 0%,rgba(116,170,156,0) 70%);opacity:0}
+.dreamlabel{font-family:var(--m);font-size:3.2cqw;letter-spacing:.18em;text-transform:uppercase;color:#74AA9C;margin-top:3cqw;position:relative;z-index:2}
+.dreamsub{font-family:var(--b);font-weight:700;font-size:5.4cqw;line-height:1.32;color:#EAF3FB;margin-top:2.4cqw;position:relative;z-index:2}
+.dreamsub strong{color:var(--brass)}
+
+/* Scene 3 — visibility bars */
+.visbars{width:100%;display:flex;flex-direction:column;gap:5cqw;position:relative;z-index:2}
+.visrow{text-align:left}
+.visrow .vl{font-family:var(--ui);font-weight:600;font-size:3.8cqw;color:#CFE0F0;margin-bottom:1.6cqw}
+.vbartrack{width:100%;height:9cqw;background:#101823;border:.3cqw solid #1E3348;border-radius:2cqw;overflow:hidden;position:relative}
+.vbarfill{height:100%;border-radius:1.6cqw;width:0%;position:relative}
+.vbarfill.shown{background:linear-gradient(90deg,#3B4A5E,#5C7086)}
+.vbarfill.actual{background:linear-gradient(90deg,var(--brass),var(--brass-hot))}
+.viscap{font-family:var(--m);font-size:2.7cqw;letter-spacing:.1em;text-transform:uppercase;color:#8AA0B8;margin-top:1.2cqw}
+
+/* Scene 4 — chat input recreation (labeled recreation, not a screenshot) */
+.chatcard{width:100%;background:#101823;border:.3cqw solid #23344a;border-radius:3.2cqw;
+  padding:5cqw 5.5cqw;position:relative;z-index:2;box-shadow:0 3cqw 9cqw rgba(0,0,0,.55)}
+.chatcard .cc-k{font-family:var(--m);font-size:2.6cqw;letter-spacing:.14em;text-transform:uppercase;color:#5C7086;margin:0 0 2.8cqw}
+.chatinput{display:flex;align-items:center;gap:2.6cqw;background:#0A1119;border:.3cqw solid #2A3D54;
+  border-radius:99cqw;padding:3.2cqw 4cqw}
+.chatinput .txt{font-family:var(--ui);font-weight:600;font-size:4.6cqw;color:#fff;flex:1;text-align:left}
+.chatinput .send{width:8cqw;height:8cqw;border-radius:50%;background:var(--brass);flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center}
+.chatinput .send::after{content:"";border-left:2.6cqw solid #fff;border-top:1.6cqw solid transparent;border-bottom:1.6cqw solid transparent;margin-left:.6cqw}
+.recreationtag{font-family:var(--m);font-size:2.2cqw;letter-spacing:.1em;text-transform:uppercase;color:#5C7086;margin-top:2.4cqw;text-align:center;position:relative;z-index:2}
+
+.cite{font-family:var(--m);font-size:2.8cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#8AA0B8;margin-top:1.4cqw;text-align:center;position:relative;z-index:2}
+
+.subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
+  font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
+  text-transform:uppercase;
+  text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
+.subs em{font-style:normal;background:var(--brass);color:#fff;padding:0 1.4cqw;border-radius:.9cqw;
+  display:inline-block;text-shadow:none}
+.subs b{font-weight:800;color:#fff;transition:color .09s linear,transform .09s linear;display:inline-block}
+.subs b.on{color:var(--brass);transform:scale(1.06)}
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#5C7086}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,9,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#fff;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
+<div class="grain" data-decor></div>
+<div class="vig"></div>
+<div class="prog" id="prog"></div>
+
+<section class="scene" data-in="0" data-out="6.50">
+  <div class="pad" style="padding-bottom:74cqw"><div class="kb" id="hookKb">
+    <h2 class="punch" id="hookH2" style="font-size:9.6cqw">ChatGPT has a <span class="box">hidden profile</span> on you.<br>Even when you're not talking to it.</h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="6.50" data-out="15.50">
+  <div class="pad"><div class="kb">
+    <div class="logowrap b" data-at="6.60">
+      <div class="pulse" id="logoPulse"></div>
+      <div class="ring"></div>
+      <svg viewBox="0 0 2406 2406" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M1 578.4C1 259.5 259.5 1 578.4 1h1249.1c319 0 577.5 258.5 577.5 577.4V2406H578.4C259.5 2406 1 2147.5 1 1828.6V578.4z" fill="#74aa9c"/>
+        <path id="chatgptA" d="M1107.3 299.1c-197.999 0-373.9 127.3-435.2 315.3L650 743.5v427.9c0 21.4 11 40.4 29.4 51.4l344.5 198.515V833.3h.1v-27.9L1372.7 604c33.715-19.52 70.44-32.857 108.47-39.828L1447.6 450.3C1361 353.5 1237.1 298.5 1107.3 299.1zm0 117.5-.6.6c79.699 0 156.3 27.5 217.6 78.4-2.5 1.2-7.4 4.3-11 6.1L952.8 709.3c-18.4 10.4-29.4 30-29.4 51.4V1248l-155.1-89.4V755.8c-.1-187.099 151.601-338.9 339-339.2z" fill="#fff"/>
+        <use xlink:href="#chatgptA" transform="rotate(60 1203 1203)"/>
+        <use xlink:href="#chatgptA" transform="rotate(120 1203 1203)"/>
+        <use xlink:href="#chatgptA" transform="rotate(180 1203 1203)"/>
+        <use xlink:href="#chatgptA" transform="rotate(240 1203 1203)"/>
+        <use xlink:href="#chatgptA" transform="rotate(300 1203 1203)"/>
+      </svg>
+    </div>
+    <div class="dreamlabel b" data-at="6.60">openai.com · june 2026 · "dreaming"</div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="15.50" data-out="24.00">
+  <div class="pad" style="padding-bottom:76cqw"><div class="kb">
+    <div class="visbars b" data-at="15.60">
+      <div class="visrow">
+        <div class="vl">What you're shown</div>
+        <div class="vbartrack"><div class="vbarfill shown" id="barShown"></div></div>
+      </div>
+      <div class="visrow">
+        <div class="vl">What it actually has</div>
+        <div class="vbartrack"><div class="vbarfill actual" id="barActual"></div></div>
+      </div>
+    </div>
+    <div class="viscap b" data-at="16.50">openai's own help docs: the summary isn't everything</div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="24.00" data-out="32.50">
+  <div class="pad"><div class="kb">
+    <div class="chatcard" id="chatCard" style="opacity:0">
+      <div class="cc-k">try this right now · any chatgpt chat</div>
+      <div class="chatinput"><span class="txt" id="chatTxt"></span><span class="send"></span></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="32.50" data-out="37.00">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="32.60">If this surprised you,<br><strong>send it</strong> to someone who's never checked.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="37.00" data-out="40.00">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="37.10">The setup's in<br>the link in bio.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="40.00" data-out="43.00">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="40.10" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+  </div></div>
+</section>
+
+<div class="subs" id="subs"></div>
+<div class="handle" data-decor>@actually_works.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="43.00" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+</div>
+
+<script src="../export/motion-kit.js"></script>
+<script>
+(function(){
+  var MK=window.MotionKit;
+  var DUR=43.00,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+  var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+
+  var CUES=[
+    [0.30,6.10,"ChatGPT has been building a hidden profile on you. Even when you're not talking to it."],
+    [6.60,15.10,"OpenAI calls it Dreaming. It's a background process that keeps reading your past chats and updates what it knows about you, on its own."],
+    [15.60,23.60,"OpenAI's own help docs admit it: what you're shown isn't everything it still knows about you."],
+    [24.10,32.10,"Try this right now, in any chat. Type: what do you remember about me. And read what comes back."],
+    [32.60,36.60,"If it surprises you, send this to someone who's never checked."],
+    [37.10,39.60,"The setup's in the link in bio."],
+    [40.10,42.70,"Follow for the setup that actually works."]
+  ];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  // Scene 1 — hook
+  var hookKb=document.getElementById('hookKb');
+  var hookH2=document.getElementById('hookH2');
+  var hookScene=hookH2.closest('.scene');
+  var hookSplit=MK.splitWordsSafe(hookH2);
+  var hookClimax=null;
+  for(var hi=0;hi<hookSplit.words.length;hi++){
+    var hw=hookSplit.words[hi];
+    if(hw.classList.contains('box')||hw.classList.contains('ebox')){ hookClimax=hw; break; }
+  }
+  var hookClimaxIndex=hookClimax?hookSplit.words.indexOf(hookClimax):-1;
+  var hookGlow=null;
+  if(hookClimax){
+    hookGlow=document.createElement('div');
+    hookGlow.className='glowbloom';
+    hookGlow.style.cssText='position:absolute;inset:-45%;border-radius:50%;z-index:-1;'+
+      'background:radial-gradient(circle,var(--brass) 0%,rgba(0,0,0,0) 70%)';
+    hookClimax.insertBefore(hookGlow,hookClimax.firstChild);
+  }
+
+  function renderHook(){
+    var ht=t-(+hookScene.dataset.in);
+    var START=0.15,GAP=0.10,DUR=0.30;
+    for(var i=0;i<hookSplit.words.length;i++){
+      var w=hookSplit.words[i],at=START+i*GAP;
+      if(w===hookClimax){
+        MK.animatePop(w,ht,at,DUR);
+        if(hookGlow) MK.animateGlowBloom(hookGlow,ht,at,DUR,0.30);
+      } else {
+        var e=MK.smoothIn(MK.clamp01((ht-at)/DUR));
+        w.style.opacity=String(e);
+        w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+      }
+    }
+    if(hookClimaxIndex>=0){
+      var climaxAt=START+hookClimaxIndex*GAP;
+      var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.96,pushAt:climaxAt,pushDur:0.9,pushTo:1.08});
+      hookKb.style.transform='scale('+camScale.toFixed(4)+')';
+    }
+  }
+
+  // Scene 2 — logo / Dreaming
+  var logoScene=document.getElementById('logoPulse').closest('.scene');
+  var logoPulse=document.getElementById('logoPulse');
+  function renderLogo(){
+    var lt=t-(+logoScene.dataset.in);
+    if(lt<0)return;
+    // slow breathing pulse, reads as "a background process, always on"
+    var cycle=(lt%2.6)/2.6;
+    var pulseScale=1+0.28*Math.sin(cycle*Math.PI*2)*0.5+0.14;
+    var pulseOp=0.22+0.18*Math.sin(cycle*Math.PI*2);
+    logoPulse.style.opacity=String(Math.max(0,Math.min(1,pulseOp)));
+    logoPulse.style.transform='scale('+pulseScale.toFixed(3)+')';
+  }
+
+  // Scene 3 — visibility bars
+  var barScene=document.getElementById('barShown').closest('.scene');
+  var barShown=document.getElementById('barShown'), barActual=document.getElementById('barActual');
+  function renderBars(){
+    var bt=t-(+barScene.dataset.in);
+    var A_AT=0.15,A_DUR=0.7,B_AT=0.55,B_DUR=0.7;
+    var ae=MK.smoothIn(MK.clamp01((bt-A_AT)/A_DUR));
+    var be=MK.smoothIn(MK.clamp01((bt-B_AT)/B_DUR));
+    barShown.style.width=(ae*22)+"%";
+    barActual.style.width=(be*94)+"%";
+  }
+
+  // Scene 4 — chat input recreation, typed on
+  var chatCard=document.getElementById('chatCard');
+  var chatScene=chatCard.closest('.scene');
+  var chatTxt=document.getElementById('chatTxt');
+  var CHAT_STR="What do you remember about me?";
+  function renderChat(){
+    var qt=t-(+chatScene.dataset.in);
+    var CARD_DUR=0.4;
+    var le=MK.smoothIn(MK.clamp01(qt/CARD_DUR));
+    chatCard.style.opacity=String(le);
+    chatCard.style.transform='translateY('+(30*(1-le)).toFixed(2)+'px)';
+    var TYPE_START=0.35,TYPE_CPS=16;
+    var chars=Math.max(0,Math.min(CHAT_STR.length,Math.floor((qt-TYPE_START)*TYPE_CPS)));
+    var shown=CHAT_STR.slice(0,chars);
+    if(qt>=TYPE_START && chars<CHAT_STR.length && Math.floor(qt*4)%2===0) shown+="|";
+    chatTxt.textContent=shown;
+  }
+
+  var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
+  function renderTransitions(){
+    for(var i=0;i<scenes.length-1;i++){
+      var boundary=+scenes[i].dataset.out;
+      var outStart=boundary-OUT_DUR, inStart=outStart+IN_OFFSET;
+      MK.zoomThroughTransition(scenes[i], scenes[i+1], t, outStart, inStart, OUT_DUR, IN_DUR);
+    }
+  }
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      if(on) active=s;
+    }
+    renderTransitions();
+    if(active){
+      var kbEnd=(+active.dataset.out)-OUT_DUR;
+      var f=t>=kbEnd?0:(t-+active.dataset.in)/(kbEnd-(+active.dataset.in));
+      var kbs=active.querySelectorAll('.kb');
+      for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.06*f).toFixed(4)+')';
+    }
+
+    renderHook();
+    renderLogo();
+    renderBars();
+    renderChat();
+
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      e.classList.toggle('snap',t<0.30);
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    b1.style.transform='translate('+(2+14*Math.sin(t*0.3))+'cqw,'+(-4+16*Math.cos(t*0.22))+'cqw)';
+    b2.style.transform='translate('+(18*Math.cos(t*0.18+1.4))+'cqw,'+(16*Math.sin(t*0.24+.6))+'cqw)';
+    b3.style.transform='translate('+(10+18*Math.sin(t*0.15+2.1))+'cqw,'+(-10*Math.cos(t*0.2+1.1))+'cqw)';
+
+    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
+    subs.innerHTML=txt;
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>
