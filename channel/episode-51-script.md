@@ -169,3 +169,24 @@ Script only as of this point. Voice generation, retiming, captions, render, gate
 publish happen next. The three sources above are current as of 28.9.2026 and should be
 re-checked if this episode sits unproduced for more than a few weeks, per the standing
 verify-before-writing rule.
+
+## Post-production revision (29.9.2026) — third stat cut, hook rebuilt
+David watched the first shipped cut and rejected it as unclear and unconvincing, and
+named two real root causes directly: (1) the news-source-attribution stat (134/200
+wrong, "not sure" only 15 times) is neither health nor money — citing it broke the
+hook's own promise ("not about your health, not about your money") with evidence from
+an unrelated third domain, a real comprehension break, not a taste issue; (2) the hook
+scene stacked three independent text layers (headline, a separate "not your health/
+money" line, captions) in the open two seconds — real visual clutter.
+
+Both fixed at the root: the news-source stat is cut from the video, caption, and
+YouTube description entirely (kept only in this file as a record of what was
+researched and considered — see "Verification" above — not published anywhere). The
+hook is now a single continuous headline with no separate on-screen fragment; the full
+spoken line still carries "not about your health, not about your money" via narration
+and the standard karaoke captions. Line 6 ("Forward this to someone right now.") also
+read badly to David's ear (staccato/cold) and was rewritten warmer: "If someone you
+know needs this, send it to them." The script above (Narration, Density check, Length
+check) reflects the ORIGINAL 8-line draft; the shipped build is the revised 7-line
+version — see `video/reel-51.html`'s own header comment for the current, real
+narration and structure.
