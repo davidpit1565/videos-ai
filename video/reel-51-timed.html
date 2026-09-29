@@ -1,30 +1,49 @@
-<title>Reel 51 — AI is wrong about your health and money most of the time.</title>
+<title>Reel 51 — AI never tells you when it's just guessing.</title>
 <!--
-  Episode 51 — palette: crimson/amber ("urgent" mood — a real audio/pick_real_track.py
-  MOODS key, distinct track from episode 49's "drive" and episode 48's "urgent"-but-
-  violet/amber). Hex distinct from episode 49 (burnt-orange #C2410C / cyan #0891B2).
-  Built from video/reel-49.html (closest structural analog: same 8-line shape, same
-  whole-audience-pivot era, same sourced-stat + fix-technique structure).
+  Episode 51 — REBUILT after David watched the first shipped cut and rejected it
+  (translated): "content isn't clear at all, the hook doesn't pull you in and isn't
+  clear either, there's a visual problem in the hook with two small unrelated
+  sentences that hurt it, the closing lines have bad tone." He named two real root
+  causes himself, both fixed here, not cosmetically patched:
 
-  Content note: this episode's topic is AI chatbots answering health and financial
-  questions wrong most of the time without ever flagging uncertainty. Three sources,
-  verified live 28.9.2026 (see channel/episode-51-script.md):
-    - BMJ Open, 14 April 2026 (UCLA/Alberta/Wake Forest): 250 real health questions,
-      5 chatbots, 49.6% problematic (30% somewhat, 19.6% highly).
-    - Saturn "Artificial Authority" report, 2026 (UK fintech): 121 financial questions,
-      4 chatbots x5 each, 10,000+ responses, 57% wrong/incomplete overall, 88% on
-      complex queries.
-    - A separate, distinct news-source-attribution test: ChatGPT wrong 134/200 times,
-      admitted uncertainty only 15 of those 134 times.
-  Payoff is a single copy-paste confidence-disclosure prompt (line 5) — the episode's
-  core forwardable artifact, given its own dedicated hero scene (5) with real visual
-  emphasis, same treatment episode 49 gave "tap Web."
+  1. The first cut cited a THIRD study (a news-source-attribution accuracy test,
+     134/200 wrong, "not sure" only 15 times) that is neither health nor money —
+     breaking the hook's own promise ("not about your health, not about your
+     money") with evidence from an unrelated domain mid-video. That stat is now
+     CUT from the video, caption and YouTube description entirely. Only the two
+     on-topic, on-promise studies remain: BMJ Open (health) and Saturn's
+     "Artificial Authority" (money). The build goes straight from the money stat
+     into the confidence-check-prompt payoff.
+  2. The hook scene used to stack three independent text layers in the open two
+     seconds (the h2 headline, a separate <p> lede fading in right after it, plus
+     karaoke captions below) — real visual clutter, not just a taste call. Fixed
+     by cutting the separate lede paragraph entirely: the hook is now ONE short,
+     clear headline (word-by-word, single continuous read), and the full spoken
+     line (including "not about your health, not about your money") is carried by
+     the narration + the same karaoke captions every other line already uses —
+     no redundant on-screen fragment competing with it.
+  3. Line 6 ("Forward this to someone right now.") read badly to David's own ear —
+     staccato imperative, cold. Rewritten warmer/more natural: "If someone you
+     know needs this, send it to them." Re-verified at its real new line index
+     (the confidence-disclosure stat's removal shifts every line after it) via
+     script_lint, voice_doctor's deep pass, and check_accent.py — a proxy for
+     hearing it, not a substitute for actually hearing it; flagged honestly.
 
-  Screenshot note: a real screenshot of the BMJ Open study page was attempted via the
-  Playwright browser tool and failed at the infrastructure level (Chromium sandboxing
-  broken running as root in this container) — not attempted again per instruction.
-  Uses the channel's established sourced-citation-card style (source name + date as
-  on-screen text) instead, same pattern as episode 49's Munich court citation.
+  Two sources remain (verified live 28.9.2026, channel/episode-51-script.md):
+    - BMJ Open, 14 April 2026 (UCLA/Alberta/Wake Forest): 250 real health
+      questions, 5 chatbots, 49.6% problematic (30% somewhat, 19.6% highly).
+    - Saturn "Artificial Authority" report, 2026 (UK fintech): 121 financial
+      questions, 4 chatbots x5 each, 10,000+ responses, 57% wrong/incomplete
+      overall, 88% on complex queries.
+  Payoff is the same single copy-paste confidence-disclosure prompt, now scene 4
+  of 7 (was scene 5 of 8) — the episode's core forwardable artifact, still given
+  its own dedicated hero scene with real visual emphasis.
+
+  Screenshot note (unchanged from the first cut): a real screenshot of the BMJ
+  Open study page was attempted via the Playwright browser tool and failed at the
+  infrastructure level (Chromium sandboxing broken running as root in this
+  container) — not attempted again. Uses the channel's established sourced-
+  citation-card style (source name + date as on-screen text) instead.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -141,8 +160,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <section class="scene" data-in="0" data-out="5.04">
   <div class="pad"><div class="kb" id="hookKb">
-    <h2 class="punch" id="hookH2">AI never tells you<br>when it's just <span class="box">guessing</span>.</h2>
-    <p class="lede" id="hookLede2" style="font-size:5cqw;opacity:0">Not your health.<br>Not your money.</p>
+    <h2 class="punch" id="hookH2">AI would rather guess<br>than say <span class="box">"I don't know."</span></h2>
   </div></div>
 </section>
 
@@ -165,17 +183,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="23.7" data-out="31.655">
-  <div class="pad" style="padding-bottom:76cqw"><div class="kb">
-    <div class="scoreboard" id="scoreBoard2">
-      <div class="scorerow" id="scoreRowC" style="opacity:0"><span class="lbl">Wrong answers</span><span class="val">134 / 200</span></div>
-      <div class="scorerow worse" id="scoreRowD" style="opacity:0"><span class="lbl">Said "not sure"</span><span class="val">ONLY 15</span></div>
-    </div>
-    <p class="cite b" data-at="23.73">separate news-source test · 2026</p>
-  </div></div>
-</section>
-
-<section class="scene" data-in="31.655" data-out="39.3">
+<section class="scene" data-in="23.7" data-out="31.635">
   <div class="pad"><div class="kb">
     <div class="quote hero" id="quoteCard2" style="opacity:0">
       <div class="qk" id="quoteQk2">copy this · paste it after any answer</div>
@@ -184,21 +192,21 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<section class="scene" data-in="39.3" data-out="42.26">
+<section class="scene" data-in="31.635" data-out="34.79">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="39.33">Forward this<br>to <strong>someone right now</strong>.</p>
+    <p class="lede b" data-at="31.665">If someone you know<br>needs this, <strong>send it to them</strong>.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="42.26" data-out="44.49">
+<section class="scene" data-in="34.79" data-out="37.02">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="42.29">The setup's in<br>the link in bio.</p>
+    <p class="lede b" data-at="34.82">The setup's in<br>the link in bio.</p>
   </div></div>
 </section>
 
-<section class="scene" data-in="44.49" data-out="47.32">
+<section class="scene" data-in="37.02" data-out="39.94">
   <div class="pad"><div class="kb">
-    <p class="lede b" data-at="44.52" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+    <p class="lede b" data-at="37.05" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
   </div></div>
 </section>
 
@@ -210,7 +218,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="50.60" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="43.00" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -220,7 +228,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=47.82,t=0,playing=false,last=0;
+  var DUR=40.34,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
@@ -229,15 +237,18 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var tap=document.getElementById('tap'),prog=document.getElementById('prog');
   var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
 
+  // 7 lines now (was 8) — the confidence-disclosure/news-source stat (old line 4)
+  // is cut entirely: it broke the hook's own promise ("not about your health, not
+  // about your money") with evidence from an unrelated third domain. The build
+  // goes straight from the money stat into the fix.
   var CUES=[
     [0.30,4.83,"AI never tells you when it's just guessing. Not about your health. Not about your money."],
     [5.25,13.79,"A 2026 medical study tested five AI chatbots on real health questions. Almost half the answers were wrong or misleading."],
     [14.21,23.49,"A separate test ran the same chatbots on ten thousand money questions. More than half were wrong too, and it got wrong even more often as things got complicated."],
-    [23.91,31.23,"In a third test, it was wrong 134 times out of 200 — and admitted it wasn't sure only 15 of those times."],
-    [32.08,39.09,"Next time it answers you, paste this first, then rate your confidence, zero to a hundred, and tell me what could make this wrong."],
-    [39.51,42.05,"Forward this to someone right now."],
-    [42.47,44.28,"The setup's in the link in bio."],
-    [44.70,46.92,"Follow for the setup that actually works."]
+    [23.91,31.21,"Next time it answers you, paste this first, then rate your confidence, zero to a hundred, and tell me what could make this wrong."],
+    [32.06,34.58,"If someone you know needs this, send it to them."],
+    [35.00,36.81,"The setup's in the link in bio."],
+    [37.23,39.44,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
@@ -260,24 +271,16 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       'background:radial-gradient(circle,var(--brass) 0%,rgba(0,0,0,0) 70%)';
     hookClimax.insertBefore(hookGlow,hookClimax.firstChild);
   }
-  // Second hook beat ("Not your health. Not your money.") — deliberately NOT a
-  // generic [data-at] beat: retime.py's "a scene must have something on screen the
-  // instant the flash lifts" rule treats the first data-at element it finds in a
-  // scene as that scene's opening beat and pulls it onto the cut (t=0) if nothing
-  // else in the scene carries a data-at — which is exactly what happened here, since
-  // hookH2's word-by-word reveal is driven entirely by this custom renderHook()
-  // function and carries no data-at of its own. The retimed build showed the "not
-  // your health/money" line appearing at the same instant as "AI never tells you",
-  // stacked on top of the still-building headline and the karaoke captions below it
-  // — caught on the mandatory post-render frame-extraction viewing, not by any
-  // automated check (safe_check.js only measures pixel overlap, not narrative
-  // sequencing). Fixed by giving it its own scene-relative timing here, anchored to
-  // when the hook's own word reveal actually finishes, so retime.py never sees a
-  // data-at to touch.
-  var hookLede2=document.getElementById('hookLede2');
-  var HOOK_WORDS_START=0.15,HOOK_WORDS_GAP=0.10,HOOK_WORDS_DUR=0.30;
-  var hookWordsEnd=MK.wordsEndAt(hookSplit.words,HOOK_WORDS_START,HOOK_WORDS_GAP,HOOK_WORDS_DUR);
-  var LEDE2_AT=hookWordsEnd+0.20,LEDE2_DUR=0.32;
+  // No second hook beat this round. The first cut's separate "Not your health.
+  // Not your money." <p> (a) got pulled onto the cut by retime.py's "no blank
+  // frame after a cut" heuristic since it was the scene's only [data-at]
+  // element, and (b) was real visual clutter even once that timing bug was
+  // fixed — three independent text layers (h2, the lede, karaoke captions) in
+  // the open two seconds, flagged directly by David as "two small unrelated
+  // sentences that hurt it." Fixed at the root this time, not patched: the hook
+  // is a single short headline now, and the full spoken line (including "not
+  // about your health, not about your money") is carried by the narration and
+  // the same karaoke captions every other line already uses.
 
   // Scene 2 — health-stat citation card (BMJ Open / 49.6%)
   var quoteCard=document.getElementById('quoteCard');
@@ -304,18 +307,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     'background:radial-gradient(circle,#FF4D4D 0%,rgba(0,0,0,0) 70%)';
   scoreRowB.insertBefore(scoreGlow,scoreRowB.firstChild);
 
-  // Scene 4 — confidence-disclosure scoreboard (134/200 wrong, only 15 unsure)
-  var scoreBoard2=document.getElementById('scoreBoard2');
-  var scoreScene2=scoreBoard2.closest('.scene');
-  var scoreRowC=document.getElementById('scoreRowC'), scoreRowD=document.getElementById('scoreRowD');
-  var scoreGlow2=document.createElement('div');
-  scoreGlow2.className='glowbloom';
-  scoreGlow2.style.cssText='position:absolute;inset:-16%;border-radius:1.6cqw;z-index:-1;'+
-    'background:radial-gradient(circle,#FF4D4D 0%,rgba(0,0,0,0) 70%)';
-  scoreRowD.insertBefore(scoreGlow2,scoreRowD.firstChild);
-
-  // Scene 5 — the confidence-check prompt itself, the episode's core forwardable
-  // artifact. Same quote-card mechanism as scene 2, given its own hero styling (.hero).
+  // Scene 4 (was scene 5) — the confidence-check prompt itself, the episode's
+  // core forwardable artifact. Same quote-card mechanism as scene 2, given its
+  // own hero styling (.hero). Now follows the money stat directly.
   var quoteCard2=document.getElementById('quoteCard2');
   var quoteScene2=quoteCard2.closest('.scene');
   var quoteQk2Words=MK.splitWordsSafe(document.getElementById('quoteQk2')).words;
@@ -349,9 +343,6 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.96,pushAt:climaxAt,pushDur:0.9,pushTo:1.08});
       hookKb.style.transform='scale('+camScale.toFixed(4)+')';
     }
-    var le2=MK.smoothIn(MK.clamp01((ht-LEDE2_AT)/LEDE2_DUR));
-    hookLede2.style.opacity=String(le2);
-    hookLede2.style.transform='translateY('+(14*(1-le2)).toFixed(2)+'px)';
   }
 
   function renderQuoteGeneric(scene,card,qkWords,qbSplit,bars,cardDur){
@@ -419,7 +410,6 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     renderHook();
     renderQuoteGeneric(quoteScene,quoteCard,quoteQkWords,quoteQbSplit,quoteBars);
     renderScoreboardGeneric(scoreScene,scoreRowA,scoreRowB,scoreGlow);
-    renderScoreboardGeneric(scoreScene2,scoreRowC,scoreRowD,scoreGlow2);
     renderQuoteGeneric(quoteScene2,quoteCard2,quoteQk2Words,quoteQb2Split,quoteBars2,0.45);
 
     for(i=0;i<beats.length;i++){

@@ -2,7 +2,7 @@ AI never tells you when it's just guessing. Not about your health. Not about you
 
 A 2026 medical study (BMJ Open) tested 5 major AI chatbots on real health questions. Almost half the answers were wrong or misleading. A separate UK test ran the same chatbots on 10,000 money questions — more than half were wrong there too, worse the more complicated it got.
 
-It never once says "I'm not sure." A different test found it was wrong 134 times out of 200 — and only admitted doubt 15 of those times. It sounds exactly as confident either way.
+It never once says "I'm not sure." It sounds exactly as confident either way.
 
 Here's the actual fix. Copy this, paste it after any answer you're not 100% sure about:
 
@@ -13,7 +13,7 @@ That's it. It won't make the AI more accurate — but it stops it from hiding wh
 Have you ever made a real decision based on an AI's health or money answer, and only found out later it was wrong? Comment YES or NO.
 Comment CHECK and I'll send you the exact prompt, formatted and ready to paste.
 
-Forward this to someone right now.
+If someone you know needs this, send it to them.
 
 Full setup, sourced exactly: https://actually-works.com/e/51
 
