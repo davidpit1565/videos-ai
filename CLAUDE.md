@@ -51,6 +51,20 @@ been running for days.
   or an old episode's assumptions can be stale within weeks. A live web search for the
   current name, current behavior and current limits comes before the first line is written,
   not after a version is already built.
+- **Every app, site, or product an episode names gets its real logo or icon on screen —
+  standing, every episode, whichever visual style it uses.** Decided 30.9.2026, David's
+  direct instruction, pointing at episode 52's real ChatGPT icon as the example: a small
+  detail, but it visibly lifted that episode and should not have been situational — it
+  applies every time a script names something with a real, findable brand mark, not just
+  when it happens to come up. This holds whether or not the episode uses background
+  screenshots or real-photo compositing — a fully synthetic scene still gets the real logo,
+  not a drawn stand-in. Sourcing is not guesswork: search the web and pull the actual current
+  logo/icon (official site, Wikimedia Commons, the product's own press/brand page) the same
+  way episode 52's ChatGPT SVG was sourced — never invent, redraw, or approximate a brand
+  mark from memory. When a real product screenshot is the more natural fit than a logo alone
+  (showing an actual interface, not just naming a brand), get that screenshot directly —
+  live web search, open the real page or app, capture the actual screen — rather than
+  treating a generic AI-generated stand-in as good enough.
 - **Measure, don't guess.** Demand comes from real view counts (`channel/demand-report.md`),
   voice decisions from measurement *and* his ear — and when they disagree, his ear wins and
   the disagreement gets written down.
