@@ -133,13 +133,31 @@ ignored:
   (`canon-follow.wav`); `build_voice.py` loads the pre-polished clip byte-for-byte instead of
   regenerating it, exactly per CLAUDE.md's standing rule, so this flag is expected and does
   not block production.
-- **"fingers"** on line 4 (R + cluster, no stock alternative offered) — unavoidable given the
-  trick is literally "three fingers"; every other flagged word on every other line was
-  rewritten with a same-meaning substitute that cleared the linter (e.g. "hers" → "real",
-  "cyber expert"/"scammer"/"exactly" → "an expert"/"scam call"/dropped, "filters" →
-  "overlays", "number" → "contact"). This one word could not be swapped without losing the
-  actual claim, so it is flagged here for `audio/voice_doctor.py`/`line_doctor.py` review and,
-  if it comes back BAD, for seed-reroll per line rather than a blind whole-file reroll.
+- **"fingers"** on line 4 (R + cluster, no stock alternative offered) — kept; every other
+  flagged word on every other line was rewritten with a same-meaning substitute that cleared
+  the linter (e.g. "hers" → "real", "cyber expert"/"scammer"/"exactly" → "an expert"/"scam
+  call"/dropped, "filters" → "overlays", "number" → "contact").
+
+**"three" — removed from the spoken line, kept everywhere written, same fix pattern as
+episode 38's "three seconds" → "ten seconds":** `build_voice.py`'s own shipped-file consonant
+check (`audio/burst.py`, in scope specifically for this word) flagged "three" as a hard
+onset-consonant burst, not frication, on the first take (+34.1 dB against an 18 dB burst
+floor) — the same class of defect episode 38 hit on this exact word. A second full reroll
+(`--seed 4242`) improved it but did not clear it (+27.1 dB). A third, line-4-only reroll
+(`--line-seeds 4:777`, using the per-line cache so lines 1-3/5-8 didn't need regenerating)
+barely moved it (+27.6 dB) — two independent seeds plateauing well above the burst threshold,
+not converging the way episode 53's accent reroll did. Per episode 38's own documented
+precedent (three reroll attempts including a reworded sentence position still failed on this
+exact word with this exact voice profile), this reads as a real limitation of the voice
+profile on this specific word, not bad luck on the seed draw. **Fix: the spoken line now says
+"a few fingers" instead of "three fingers"** — the underlying mechanism (a hand/fingers
+occluding part of the face breaks a flat-surface face-map) doesn't depend on the exact count,
+so this isn't a different claim, just a claim that doesn't require this voice to pronounce
+"three." The exact, specific "three fingers" instruction is preserved everywhere a viewer
+would actually need it precisely: the Instagram caption, the YouTube description, and the
+`/e/54` setup guide in `studio/lib/articles.ts` all say "three fingers" in writing, unaffected
+by TTS. `video/reel-54.html`'s scene-4 `h2` (on-screen text, spoken-word-aligned) and its CUES
+array were both updated to "a few fingers" to match what's actually said.
 
 ## Photo sourcing and the mandatory face-detection QA gate — full account
 
