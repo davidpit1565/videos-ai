@@ -1424,6 +1424,38 @@ export const ARTICLES: Article[] = [
       "Asking the prompt shows you a summary of what the model has inferred and retained — it is not guaranteed to be a complete, itemized list of every underlying data point OpenAI's systems hold about you.",
     ],
   },
+  {
+    n: 53,
+    title: "Software reads your resume before a person does — here's the real problem",
+    standfirst:
+      "Most employers (78% per HR.com's 2025-26 survey, 97.4% of Fortune 500 per Jobscan) " +
+      "now run resume-screening software (an ATS) before a person opens your application. " +
+      "The popular \"it auto-rejects 75% of resumes\" claim is unsupported — it traces to a " +
+      "2012 marketing claim from a company that closed in 2013, and current research finds " +
+      "most applications are in fact reviewed by a human. The real, current problem: tables, " +
+      "columns, headers and graphics genuinely break how that software reads your resume, " +
+      "and the recruiter who opens it next only spends about 6-10 seconds deciding. Here's " +
+      "the exact, currently-recommended formatting fix.",
+    steps: [
+      "Use a single-column, reverse-chronological layout — no tables, no multi-column design, no sidebar. ATS parsers read left-to-right, row by row, and a multi-column layout gets merged into unreadable \"word salad.\"",
+      "Use plain, standard section headings: Experience, Education, Skills. Avoid creative headers like \"My Journey\" or \"What I Bring\" — the parser is matching against a small set of expected words.",
+      "Put your name, phone number and email in the body of the document, not in a header or footer box — many ATS parsers skip headers/footers entirely, which can silently strip your own contact info from the parsed record.",
+      "Work the job posting's own exact words into your resume (its skill names, its job title, its key phrases) — the software is matching your text against that posting's language, not judging intent.",
+      "Remove photos, icons, skill-level bar graphics and text boxes — these are invisible to ATS parsers, and some parsers flag an embedded image as an error requiring manual handling.",
+      "Save and send it as a .docx, or a true text-layer PDF exported directly from a word processor — never a flattened image/scan, and never a PDF exported from a heavily designed template, since some design tools export text as embedded curves the parser can't read at all.",
+    ],
+    changes: [
+      "Verified live (30.9.2026): ATS adoption (HR.com's 2025-26 survey: 78%, up from 66%; Jobscan's 2026 Fortune 500 usage report: 97.4%, 487 of 500; Resume Genius's 2026 Hiring Insights Report: 71% — cited as a range, not cherry-picked to the highest figure).",
+      "The widely-repeated \"75% auto-rejected\" claim was checked and found unsupported: it traces to a 2012 marketing claim by Preptel, a resume-services company that closed in 2013, with no study or methodology ever found behind it. Current, contradicting research: a 2025 study of 25 US recruiters across 10+ ATS platforms found 92% do not configure auto-rejection rules based on resume content; researchers interviewing recruiters at Amazon, Google and Microsoft report none of the major ATS platforms automatically reject or hide resumes from recruiters. This page does not use the 75% figure.",
+      "The parsing-failure mechanism (tables/columns merging into unreadable text, headers/footers being skipped, images being invisible to parsers) is sourced from Jobscan and multiple independent 2026 ATS-formatting guides, cross-checked rather than taken from a single source.",
+      "Recruiter review time: The Ladders' original eye-tracking study (2012, ~6 seconds), their 2018 follow-up (7.4 seconds), and current 2025-26 surveys (42% of HR professionals under 10 seconds) — cited as a range since sources vary, not a single invented precise number.",
+    ],
+    limits: [
+      "This is about ATS resume-parsing specifically — not a claim that formatting is the only reason any single application doesn't get a response, or that every employer's ATS behaves identically.",
+      "The 78%/97.4%/71% adoption figures and the recruiter-review-time figures are averages from the cited surveys and studies, not a claim about any one specific employer's actual process.",
+      "Fixing formatting makes a resume parse correctly and reach a person intact — it does not guarantee a job offer, and does not fix an underlying mismatch between a candidate's real qualifications and a role's requirements.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

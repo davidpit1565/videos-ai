@@ -1,0 +1,416 @@
+<title>Reel 53 — Your resume was read by software first.</title>
+<!--
+  Episode 53 — new build, new topic (ATS resume-screening software, the debunked "75%
+  auto-reject" myth, the real parsing-failure mechanism, and a concrete formatting fix).
+  See channel/episode-53-script.md for full verification, comprehension-test, hook-rotation
+  and sendability notes.
+
+  Replaces an earlier locked topic (AI voice-cloning safe words) that was caught, before
+  any script was written, as a duplicate of already-shipped episode 38 — see
+  channel/episode-38-script.md. This is the corrected topic, built under real time pressure
+  (David asleep, wants this live in ~5 hours) without skipping verification.
+
+  Design notes:
+  - New palette, distinct hex from every prior episode in channel/used-designs.json:
+    --brass:#E63946 (alarm red, for the felt problem / the myth) / --ember:#2A9D8F
+    (teal, for the real fix — a genuinely different pairing from episode 52's
+    DC2626/FBBF24 or episode 51's E11D2E/F59E0B).
+  - Mood: urgent (last used episode 48, a real gap since episode 52's "tense").
+  - No product logo: this topic is about a general mechanism (ATS software broadly), not
+    one named, specific product — per the standing logo rule's own "only if a specific
+    real product/app is actually named on screen" carve-out, no logo is forced in here.
+  - Visual style: synthetic (video/reel-template lineage), not the real-photo-composite
+    style. Considered and rejected for this specific content: the photo style fits a
+    single person's felt moment (a phone, a face), and this script's core visual need is
+    showing an abstract mechanism (software misreading a document's structure) that a
+    stock photo of "someone on their phone" would not actually depict — the honest call,
+    not a default to the newest tool.
+  - Scene 4 (the parsing-failure mechanism) reuses the verified two-bar "visibility"
+    metaphor from episode 52 (what's shown vs. what's actually there), re-skinned here as
+    "what you sent" vs. "what the system could actually read" — the same real, already-
+    frame-capture-verified mechanic, applied to new content rather than inventing an
+    unverified new one under time pressure.
+  - Scene 3 (the myth) adds a rotated "MYTH" stamp overlay on the quote card — a new,
+    small, low-risk CSS addition (a single rotated bordered label), not a new animation
+    mechanic.
+  - Scene 6 (the fix) is a staggered checklist reveal, the same staggered-list beat
+    mechanic already used elsewhere in this codebase (four items, each fading/sliding in
+    on its own data-at beat) — not a new mechanic either.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@500;600&display=swap">
+<style>
+:root{
+  --ink:#0A0E14;--line:#1F2B3A;
+  --brass:#E63946;--brass-hot:#FF6B6B;--ember:#2A9D8F;
+  --text:#FFFFFF;--muted:#8AA0B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+  --ui:'Inter','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.bg{position:absolute;inset:0;z-index:0}
+.bg i{position:absolute;display:block;border-radius:50%;will-change:transform;left:0;top:0}
+.bg .b1{width:130cqw;height:130cqw;top:-40cqw;left:-30cqw;background:radial-gradient(circle closest-side,rgba(230,57,70,.24),rgba(124,58,237,0) 70%)}
+.bg .b2{width:150cqw;height:150cqw;top:50cqw;left:-10cqw;background:radial-gradient(circle closest-side,rgba(20,28,40,.6),rgba(20,28,40,0) 70%)}
+.bg .b3{width:120cqw;height:120cqw;top:120cqw;left:20cqw;background:radial-gradient(circle closest-side,rgba(42,157,143,.16),rgba(42,157,143,0) 70%)}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+.vig{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 50%,transparent 40%,rgba(5,7,9,.55) 100%)}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--brass);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(230,57,70,.7)}
+
+.scene{position:absolute;inset:0;z-index:2}
+.pad{position:absolute;inset:0;padding:28cqw 10cqw 65cqw;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:10.8cqw;line-height:1.02;letter-spacing:-.04em;
+  margin:0;text-wrap:balance;position:relative;z-index:2}
+h2 em{font-style:normal;color:var(--brass)}
+h2 .box{background:var(--brass);color:#fff;padding:0 1.6cqw;border-radius:1cqw;
+  display:inline-block;position:relative;transform:rotate(-1.2deg)}
+h2 .ebox{background:var(--ember);color:#0A0E14;padding:0 1.6cqw;border-radius:1cqw;display:inline-block;position:relative}
+.glowbloom{position:absolute;pointer-events:none;opacity:0}
+.wd{position:relative;z-index:1}
+p.lede{font-size:5.6cqw;line-height:1.3;color:#EAF3FB;margin:0;font-weight:700;position:relative;z-index:2}
+p.lede strong{color:var(--brass)}
+
+.quote{background:#fff;border-radius:2.4cqw;padding:5cqw 5.5cqw;width:100%;
+  box-shadow:0 3cqw 9cqw rgba(0,0,0,.6);position:relative;z-index:2;text-align:left}
+.quote .qk{font-family:var(--m);font-size:2.8cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#6B7C90;margin:0 0 2.4cqw}
+.quote .qb{font-family:var(--b);font-weight:700;font-size:5cqw;line-height:1.4;color:#0D0D0D;position:relative}
+.quote.hero{border-top:1cqw solid var(--brass)}
+
+.stamp{position:relative;display:inline-block;margin-top:4cqw;font-family:var(--d);font-weight:900;font-size:5.4cqw;
+  letter-spacing:.06em;color:var(--brass);border:.6cqw solid var(--brass);border-radius:1.2cqw;
+  padding:.6cqw 2.2cqw;transform:rotate(-9deg);opacity:0;z-index:3;background:rgba(255,255,255,.94)}
+
+/* visibility-style two-bar metaphor, reused from episode 52's verified mechanic */
+.visbars{width:100%;display:flex;flex-direction:column;gap:5cqw;position:relative;z-index:2}
+.visrow{text-align:left}
+.visrow .vl{font-family:var(--ui);font-weight:600;font-size:3.8cqw;color:#CFE0F0;margin-bottom:1.6cqw}
+.vbartrack{width:100%;height:9cqw;background:#101823;border:.3cqw solid #1E3348;border-radius:2cqw;overflow:hidden;position:relative}
+.vbarfill{height:100%;border-radius:1.6cqw;width:0%;position:relative}
+.vbarfill.shown{background:linear-gradient(90deg,#3B4A5E,#5C7086)}
+.vbarfill.actual{background:linear-gradient(90deg,var(--brass),var(--brass-hot))}
+.viscap{font-family:var(--m);font-size:2.7cqw;letter-spacing:.1em;text-transform:uppercase;color:#8AA0B8;margin-top:1.2cqw}
+
+/* fix checklist card */
+.fixcard{width:100%;background:#101823;border:.3cqw solid #23344a;border-radius:3.2cqw;
+  padding:5cqw 5.5cqw;position:relative;z-index:2;box-shadow:0 3cqw 9cqw rgba(0,0,0,.55);text-align:left}
+.fixcard .cc-k{font-family:var(--m);font-size:2.6cqw;letter-spacing:.14em;text-transform:uppercase;color:#5C7086;margin:0 0 3.2cqw}
+.fixrow{display:flex;align-items:center;gap:2.6cqw;margin-bottom:3cqw}
+.fixrow:last-child{margin-bottom:0}
+.fixrow .dot{width:5.2cqw;height:5.2cqw;border-radius:50%;background:var(--ember);flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center}
+.fixrow .dot::after{content:"\2713";color:#0A0E14;font-weight:900;font-size:3.2cqw}
+.fixrow .txt{font-family:var(--ui);font-weight:600;font-size:4.3cqw;color:#EAF3FB;line-height:1.25}
+
+.cite{font-family:var(--m);font-size:2.8cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:#8AA0B8;margin-top:1.4cqw;text-align:center;position:relative;z-index:2}
+
+.subs{position:absolute;left:6.5cqw;right:6.5cqw;bottom:63cqw;text-align:center;z-index:11;
+  font-family:var(--b);font-weight:800;font-size:7.4cqw;line-height:1.12;letter-spacing:-.01em;
+  text-transform:uppercase;
+  text-shadow:0 .5cqw 1.6cqw rgba(0,0,0,.95),0 0 3cqw rgba(0,0,0,.9)}
+.subs em{font-style:normal;background:var(--brass);color:#fff;padding:0 1.4cqw;border-radius:.9cqw;
+  display:inline-block;text-shadow:none}
+.subs b{font-weight:800;color:#fff;transition:color .09s linear,transform .09s linear;display:inline-block}
+.subs b.on{color:var(--brass);transform:scale(1.06)}
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#5C7086}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,9,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--brass);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--brass);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--brass);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--brass)}
+.ctl button{background:var(--brass);color:#fff;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="bg"><i class="b1" id="b1"></i><i class="b2" id="b2"></i><i class="b3" id="b3"></i></div>
+<div class="grain" data-decor></div>
+<div class="vig"></div>
+<div class="prog" id="prog"></div>
+
+<section class="scene" data-in="0" data-out="7.42">
+  <div class="pad" style="padding-bottom:74cqw"><div class="kb" id="hookKb">
+    <h2 class="punch" id="hookH2" style="font-size:9.6cqw">That job you never heard back from?<br><span class="box">A program read it already.</span></h2>
+  </div></div>
+</section>
+
+<section class="scene" data-in="7.42" data-out="15.37">
+  <div class="pad" style="padding-bottom:84cqw"><div class="kb">
+    <div class="quote hero b" data-at="7.45">
+      <p class="qk">it's called an ATS</p>
+      <p class="qb">A program that scans applications ahead of any person. Most companies, about eight in ten, use one now.</p>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="15.37" data-out="24.47">
+  <div class="pad" style="padding-bottom:80cqw"><div class="kb" style="position:relative">
+    <div class="quote hero b" id="mythCard" data-at="15.4">
+      <p class="qk">the claim you've heard</p>
+      <p class="qb">"It auto-rejects 75% of resumes."</p>
+      <div class="stamp" id="mythStamp">FALSE</div>
+    </div>
+    <div class="cite b" data-at="18.821">no real study was ever behind that number — traces to a defunct 2012 marketing claim</div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="24.47" data-out="35.865">
+  <div class="pad" style="padding-bottom:76cqw"><div class="kb">
+    <div class="visbars b" data-at="24.5">
+      <div class="visrow">
+        <div class="vl">What you sent</div>
+        <div class="vbartrack"><div class="vbarfill shown" id="barShown"></div></div>
+      </div>
+      <div class="visrow">
+        <div class="vl">What the system could read</div>
+        <div class="vbartrack"><div class="vbarfill actual" id="barActual"></div></div>
+      </div>
+    </div>
+    <div class="viscap b" data-at="25.85">jobscan.co · tables, columns, headers often vanish</div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="35.865" data-out="43.97">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="35.895">The next person spends about<br><strong>seven seconds</strong> deciding.<br>No time to notice something's missing.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="43.97" data-out="54.867">
+  <div class="pad" style="padding-bottom:82cqw"><div class="kb">
+    <div class="fixcard b" data-at="44">
+      <div class="cc-k">the fix</div>
+      <div class="fixrow b" data-at="44.385"><div class="dot"></div><div class="txt">One column, not a designed template</div></div>
+      <div class="fixrow b" data-at="45.817"><div class="dot"></div><div class="txt">Plain section titles: Experience, Education, Skills</div></div>
+      <div class="fixrow b" data-at="47.454"><div class="dot"></div><div class="txt">Exact language from the job post</div></div>
+      <div class="fixrow b" data-at="49.5"><div class="dot"></div><div class="txt">Send as .docx or a real text PDF — not an image</div></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="scene" data-in="54.867" data-out="59.45">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="54.897">Send this to anyone<br><strong>job hunting</strong> right now<br>who has no idea this is happening.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="59.45" data-out="61.895">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="59.48">The setup's in<br>the link in bio.</p>
+  </div></div>
+</section>
+
+<section class="scene" data-in="61.895" data-out="64.93">
+  <div class="pad"><div class="kb">
+    <p class="lede b" data-at="61.925" style="font-size:6.2cqw">Follow for the setup<br>that <strong>actually works</strong>.</p>
+  </div></div>
+</section>
+
+<div class="subs" id="subs"></div>
+<div class="handle" data-decor>@actually_works.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="62.00" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+</div>
+
+<script src="../export/motion-kit.js"></script>
+<script>
+(function(){
+  var MK=window.MotionKit;
+  var DUR=65.43,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var beats=[].slice.call(frame.querySelectorAll('[data-at]'));
+  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+  var b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+
+  var CUES=[
+    [0.30,7.21,"That job you never heard back from? A program already read your resume — and it may not have understood a word of it."],
+    [7.63,15.16,"It's called an ATS — a program that scans applications ahead of any person. Most companies, about eight in ten, use one now."],
+    [15.58,24.26,"You've heard it auto-rejects most resumes. That number's fake — it traces to a company that closed over a decade ago, with no real study behind it."],
+    [24.68,35.44,"The real problem: that program can't read tables, columns, or a fancy layout. Your name, your dates, your whole work history — can come out as scrambled nonsense on the other side."],
+    [36.29,43.76,"And the person who opens it next spends about seven seconds deciding. Nobody's stopping to notice something's gone missing."],
+    [44.18,53.90,"The fix: one column, plain section titles like Experience and Skills, the exact language from the job post — send it as a real dot-docx or a text PDF, not an image."],
+    [54.32,59.24,"Send this to anyone job hunting right now who has no idea this is happening."],
+    [59.66,61.47,"The setup's in the link in bio."],
+    [62.32,64.53,"Follow for the setup that actually works."]
+  ];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  // Scene 1 — hook
+  var hookKb=document.getElementById('hookKb');
+  var hookH2=document.getElementById('hookH2');
+  var hookScene=hookH2.closest('.scene');
+  var hookSplit=MK.splitWordsSafe(hookH2);
+  var hookClimax=null;
+  for(var hi=0;hi<hookSplit.words.length;hi++){
+    var hw=hookSplit.words[hi];
+    if(hw.classList.contains('box')||hw.classList.contains('ebox')){ hookClimax=hw; break; }
+  }
+  var hookClimaxIndex=hookClimax?hookSplit.words.indexOf(hookClimax):-1;
+  var hookGlow=null;
+  if(hookClimax){
+    hookGlow=document.createElement('div');
+    hookGlow.className='glowbloom';
+    hookGlow.style.cssText='position:absolute;inset:-45%;border-radius:50%;z-index:-1;'+
+      'background:radial-gradient(circle,var(--brass) 0%,rgba(0,0,0,0) 70%)';
+    hookClimax.insertBefore(hookGlow,hookClimax.firstChild);
+  }
+
+  function renderHook(){
+    var ht=t-(+hookScene.dataset.in);
+    var START=0.15,GAP=0.10,DUR=0.30;
+    for(var i=0;i<hookSplit.words.length;i++){
+      var w=hookSplit.words[i],at=START+i*GAP;
+      if(w===hookClimax){
+        MK.animatePop(w,ht,at,DUR);
+        if(hookGlow) MK.animateGlowBloom(hookGlow,ht,at,DUR,0.30);
+      } else {
+        var e=MK.smoothIn(MK.clamp01((ht-at)/DUR));
+        w.style.opacity=String(e);
+        w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+      }
+    }
+    if(hookClimaxIndex>=0){
+      var climaxAt=START+hookClimaxIndex*GAP;
+      var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.96,pushAt:climaxAt,pushDur:0.9,pushTo:1.08});
+      hookKb.style.transform='scale('+camScale.toFixed(4)+')';
+    }
+  }
+
+  // Scene 3 — myth stamp
+  var mythStamp=document.getElementById('mythStamp');
+  var mythScene=mythStamp.closest('.scene');
+  function renderMyth(){
+    var mt=t-(+mythScene.dataset.in);
+    var AT=1.1,DUR=0.5;
+    var e=MK.clamp01((mt-AT)/DUR);
+    var pop=e<1?(1-Math.pow(1-e,3)):1;
+    mythStamp.style.opacity=String(MK.clamp01((mt-AT)/0.2));
+    mythStamp.style.transform='rotate(-9deg) scale('+(0.6+0.4*pop).toFixed(3)+')';
+  }
+
+  // Scene 4 — visibility bars (what sent vs what could be read)
+  var barScene=document.getElementById('barShown').closest('.scene');
+  var barShown=document.getElementById('barShown'), barActual=document.getElementById('barActual');
+  function renderBars(){
+    var bt=t-(+barScene.dataset.in);
+    var A_AT=0.15,A_DUR=0.7,B_AT=0.55,B_DUR=0.7;
+    var ae=MK.smoothIn(MK.clamp01((bt-A_AT)/A_DUR));
+    var be=MK.smoothIn(MK.clamp01((bt-B_AT)/B_DUR));
+    barShown.style.width=(ae*96)+"%";
+    barActual.style.width=(be*34)+"%";
+  }
+
+  var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
+  function renderTransitions(){
+    for(var i=0;i<scenes.length-1;i++){
+      var boundary=+scenes[i].dataset.out;
+      var outStart=boundary-OUT_DUR, inStart=outStart+IN_OFFSET;
+      MK.zoomThroughTransition(scenes[i], scenes[i+1], t, outStart, inStart, OUT_DUR, IN_DUR);
+    }
+  }
+
+  function render(){
+    var i,e,active=null;
+    for(i=0;i<scenes.length;i++){
+      var s=scenes[i],on=t>=+s.dataset.in&&t<+s.dataset.out;
+      if(on) active=s;
+    }
+    renderTransitions();
+    if(active){
+      var kbEnd=(+active.dataset.out)-OUT_DUR;
+      var f=t>=kbEnd?0:(t-+active.dataset.in)/(kbEnd-(+active.dataset.in));
+      var kbs=active.querySelectorAll('.kb');
+      for(i=0;i<kbs.length;i++) kbs[i].style.transform='scale('+(1+0.06*f).toFixed(4)+')';
+    }
+
+    renderHook();
+    renderMyth();
+    renderBars();
+
+    for(i=0;i<beats.length;i++){
+      e=beats[i];
+      var sc=e.closest('.scene'),until=e.dataset.until?+e.dataset.until:Infinity;
+      var vis=sc&&t>=+sc.dataset.in&&t<+sc.dataset.out&&t>=+e.dataset.at&&t<until;
+      e.classList.toggle('snap',t<0.30);
+      if(vis){ if(e.classList.contains('gone')){e.classList.remove('gone');void e.offsetWidth;} e.classList.add('on'); }
+      else { e.classList.remove('on'); e.classList.add('gone'); }
+    }
+
+    b1.style.transform='translate('+(2+14*Math.sin(t*0.3))+'cqw,'+(-4+16*Math.cos(t*0.22))+'cqw)';
+    b2.style.transform='translate('+(18*Math.cos(t*0.18+1.4))+'cqw,'+(16*Math.sin(t*0.24+.6))+'cqw)';
+    b3.style.transform='translate('+(10+18*Math.sin(t*0.15+2.1))+'cqw,'+(-10*Math.cos(t*0.2+1.1))+'cqw)';
+
+    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
+    subs.innerHTML=txt;
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing = false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  beats.forEach(function(e){e.classList.add('gone')});
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>
