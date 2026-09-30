@@ -191,6 +191,16 @@ honest about what we actually know.
   waiting to be asked. This applies to episode-shipping PRs and routine site fixes alike;
   still ask first for anything that's actually a judgment call (a design direction with no
   clear right answer, a change to what an episode claims).
+- **Standing authorization exists — don't re-ask for something already approved.** Said
+  directly 30.9.2026, after repeated rounds of stopping mid-iteration to check in again on
+  work whose direction he'd already signed off on: once he's approved a direction (a visual
+  style, a fix, a feature), keep iterating and verifying it on your own — real checks, real
+  screenshots, honest disclosure of what still doesn't work — without pausing each round to
+  ask again. Bring it back to him only for an actual new judgment call (a real creative
+  decision, a genuinely ambiguous tradeoff, something no automated check can settle) or once
+  it's ready to actually ship. Don't confuse this with permission to skip disclosure — a
+  found problem still gets reported plainly — it removes the need to ask "can I continue?"
+  when nothing new is actually being decided.
 - **`export/produce.sh <episode> <build.html> <duration> [accept_words] [bpm] [mood]` is the
   one pipeline entry point**, script_lint through render, gate, captions-must-exist, the
   design-variety check against the last episode's palette, and shipping the file itself to
