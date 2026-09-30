@@ -262,13 +262,67 @@ highlight, per the one-accent-per-episode rule. Checked against every hex in
 entry (`brass`/`ember` both set to this single accent, since the photo-composite style has
 only one `--accent` variable, not a separate pair; mood: tense).
 
-## Production status — what has and hasn't run, plainly
+## Production status — finished, full account
 
-- Narration: generation via `audio/build_voice.py --cues video/reel-54.html` was started
-  this session (CPU-only Chatterbox TTS, no GPU available in this environment) — see this
-  session's final report for whether it completed, and if so, the `voice_doctor.py --deep`
-  and `check_accent.py` results, in particular on the flagged "fingers" line.
-- Render/QA pipeline (`export/produce.sh`, `export/render.sh`, `export/check.sh`,
-  `export/safe_check.js`, `export/karaoke.py`): status reported in the same place — this file
-  documents the script and photo/QA decisions regardless of how far the render pipeline got
-  in this session, per the standing rule that nothing ships silently unverified.
+Picked up from the handback above (CPU-only Chatterbox TTS finished, ~37 CPU-minutes for
+the full narration). What happened from there, plainly:
+
+- **The "three" burst defect, confirmed and fixed**: `build_voice.py`'s shipped-file
+  consonant check (`audio/burst.py`, calibrated specifically for this word after episode 1's
+  real defect) flagged "three" as a hard onset-consonant burst on every seed tried — full
+  reroll (+34.1dB), another full reroll (+27.1dB), a line-4-only reroll (+27.6dB) — never
+  converging, the same failure pattern episode 38 already hit on this exact word with this
+  exact voice profile (see episode 38's own script doc: three attempts including a reworded
+  sentence position still failed). Fix: the spoken line says "a few fingers" instead of
+  "three fingers" — same mechanism, no TTS-breaking word. The exact "three fingers"
+  instruction stays precise everywhere a viewer needs it in writing: the caption, the
+  YouTube description, and the `/e/54` setup guide.
+- **A real repeat-offender word-swallowing pattern, separate from the burst check**:
+  `voice_doctor.py --deep`'s per-word rushed/clipped check flagged "begging"/"called"/
+  "already" (used twice)/"contact"/"front" consistently across 3+ independent seeds — reworded
+  each one out rather than continuing to reroll blindly (same fix class as episode 53's
+  past-tense -ED words). "camera" (also used twice) and "saved" then recurred across 2 more
+  seeds once the first batch cleared — reworded those too. A few genuinely one-off flags
+  ("asking" recurred 3 times before being reworded to "wanting"/"needs"; "tears" was
+  rejected by `script_lint` itself before shipping; "Hang", "them", "faking", "happened"
+  each appeared once and cleared on the next line-targeted reroll) were treated as normal
+  seed variance, not systemic, and resolved without further rewording.
+- **`check_accent.py`**: line 5's first take (after its headline was shortened, see below)
+  flagged as non-American (0.40 vs the file's own 0.031 median) — cleared on the next
+  line-targeted reroll (0.07–0.09, back in range).
+- **A real, previously-undiscovered `safe_check.js` violation, found and fixed twice**:
+  scene 4's headline had grown to 153 characters through the reword passes above — nearly
+  double every other scene's ~80–110 — wrapping to 7 lines and visually overlapping the
+  word-by-word captions underneath it. Shortened it back down. Separately, scenes 5 and 6
+  each rested with only ~10px margin above the 269px top safe line — safe at rest, but the
+  same universal zoom-through exit transition every scene uses scales the frame up ~4% as
+  it fades out, and at the specific instant this session's blur/scale exemption doesn't yet
+  cover (blur ~1.3px, just under its >2 threshold), that scale-up pushed the headline 19px
+  past the line for a fraction of a second. Real fix, not a tolerance bump: shortened both
+  headlines for genuine margin, verified with real `getBoundingClientRect()`/
+  `getComputedStyle()` measurements at 0.2s steps through each scene's own duration, not
+  guessed. `export/safe_check.js` final run: clean, only two informational "within
+  tolerance" notes (7px, 6px), no failures.
+- **A real `export/retime.py` gap, this style's first real run through it**: the coverage
+  check that catches an unmapped timing attribute didn't know the photo-composite style's
+  own per-scene visual config (`data-grad-alpha`, `data-kb-scale`, `data-kb-x`, `data-kb-y`)
+  isn't timing — hard-failed retime outright. Added an explicit `NON_TIMING` allowlist;
+  re-verified clean against both this build and a real shipped synthetic episode
+  (reel-53), no regression.
+- **Render**: `FRAMES=1 ./export/render.sh` — one loudness-correction pass, converged
+  cleanly (-14.02 LUFS, -2.98 dBTP), no repeat of episode 53's overcorrection bug.
+- **`./export/check.sh` — ALL CHECKS PASSED** on the first full run after all fixes above
+  were already in place: narration (deep+accent), frame layout, and the rendered file
+  itself (1080x1920, 30fps, yuv420p, 48kHz stereo, 37.2s inside the 30-90s band, -14.0 LUFS,
+  -3.0 dBFS peak, no frozen runs, first frame carries picture, loop seam clean).
+- **Runtime, honestly flagged**: 37.2s spoken, comfortably clear of CLAUDE.md's hard 30s
+  floor and inside `qa.py`'s real 30-90s gate, but short of the 45-75s preferred range —
+  a direct consequence of shortening several headlines for real margin/rushed-word fixes
+  rather than padding the script back out artificially. Not silently shipped as "the right
+  length" — noted here as the actual tradeoff made.
+- **Personally watched the final rendered file twice, in full** (via full-duration frame
+  extraction at two different sampling densities plus a waveform check for dead air/
+  clipping) — both passes clean: full 1080x1920 frame with no letterboxing, captions
+  legible and in sync, headline/caption text never colliding, the three-finger-test scene
+  showing the exact right photo (a hand blocking part of a face) at the exact right
+  moment, no frozen frames, no garbled or leaked text, clean hook and clean CTA.
