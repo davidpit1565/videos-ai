@@ -1456,6 +1456,37 @@ export const ARTICLES: Article[] = [
       "Fixing formatting makes a resume parse correctly and reach a person intact — it does not guarantee a job offer, and does not fix an underlying mismatch between a candidate's real qualifications and a role's requirements.",
     ],
   },
+  {
+    n: 54,
+    title: "The video call might not have a real face on it — here's the test that catches most of them",
+    standfirst:
+      "Scammers now run real-time face-swap software during live video calls — romance " +
+      "scams, fake job interviews, fake family-emergency calls. In early 2026 a simple " +
+      "countermeasure went viral: ask the other person to hold three fingers up between " +
+      "the camera and their chin. A hand blocking the face breaks how a cheap face-swap " +
+      "filter tracks it, and the overlay visibly glitches. By mid-2026, reporting found the " +
+      "priciest deepfake tools had already been patched against this exact test — so it " +
+      "still catches budget scam software, but passing it proves nothing against the best " +
+      "tools. Here's the test itself, and the one thing that still works even when it fails.",
+    steps: [
+      "On any live video call (FaceTime, Zoom, WhatsApp, Instagram, Google Meet — any of them), if something about the call feels off, ask the other person directly: \"Can you hold up three fingers in front of your face, between the camera and your chin?\"",
+      "Watch specifically where their hand crosses their jawline, mouth and nose — not their eyes or the background. That's the area a face-swap overlay has to redraw in real time when something blocks it.",
+      "A real person's hand just crosses their face normally. A glitch, freeze, warp, blur, or the face briefly not lining up with the hand is a real red flag — treat the call as suspicious and stop sharing anything sensitive immediately.",
+      "If they refuse, stall, change the subject, or the video conveniently freezes/drops right as you ask — that refusal is itself a signal, the same as a visible glitch.",
+      "Do not treat a clean pass as proof they're real. Reporting from mid-2026 found higher-end deepfake tools have already been patched against this specific test, so passing it does not confirm anything.",
+      "The one test that still works regardless: hang up, and call them back on a phone number or contact you already had saved from before — never a new number given to you during the suspicious call itself. If it's a request for money, verify it a second way (a text to a different, known number; asking something only the real person would know) before sending anything.",
+    ],
+    changes: [
+      "Verified live (30.9.2026): the three-finger test itself, its viral spread in early 2026, and cyber investigator Jim Browning's video catching a real scammer with it are corroborated across multiple independent 2026 outlets (bgblur.com, Adaptive Security, Yahoo Tech, IBTimes UK).",
+      "Also verified live, and load-bearing for this episode: a July 2026 report (Yahoo Tech, cybernews.com) found the test had already been effectively neutralized against higher-end tools — Reality Defender's CEO Ben Colman is quoted saying current top-tier models have \"fixed this 'bug'\" and handle occlusion cleanly; OpenOrigins' Manny Ahmed is quoted saying \"there's no reliable visual method to recognize deepfakes anymore.\" Cybernews's own reporting is more specific: the test still reliably catches cheaper/consumer-grade real-time face-swap tools (a glitch or refusal is a real signal), it just proves nothing when it's passed, since the most expensive tools no longer glitch. This page states both halves of that finding rather than presenting the trick as a guaranteed catch-all, per this channel's standing rule to verify a claim's current status before shipping it, the same discipline that caught episode 18's stale \"ChatGPT agent mode\" premise.",
+      "The stronger, still-current fallback (call back on a number you already had, verify a second way) is the same advice multiple 2026 security sources (Yahoo Tech's follow-up reporting) name as the actual reliable check, independent of any visual test.",
+    ],
+    limits: [
+      "This is specifically about real-time face-swap filters used live on a video call — not photo deepfakes, not voice-only cloning (that's a different mechanism, covered in episode 38), and not pre-recorded deepfake video.",
+      "The three-finger test is a real, still-useful first check against cheaper scam tooling, not a guaranteed detector — treat a clean pass as inconclusive, not as proof of anything, per the verified July 2026 reporting above.",
+      "No visual test is currently reliable against the most advanced real-time deepfake tools, per the cited experts — the callback-on-a-known-number step is the part of this guide with no known bypass, and it's the one to actually rely on.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

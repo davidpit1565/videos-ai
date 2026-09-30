@@ -1,0 +1,15 @@
+Your mom calling you on video, crying, begging you to send money right now — that crying face might not be real.
+
+It's called a real-time deepfake — software that swaps a scammer's own face for someone else's, live, while they're talking to you on a video call. Romance scams, fake job interviews, fake family-emergency calls and business fraud are all now being run this way. It's already happened publicly: cyber investigator Jim Browning caught a real scammer doing exactly this, live, on a video call, and the clip went viral (corroborated across multiple independent 2026 outlets).
+
+The trick that went viral in early 2026: ask the other person to hold three fingers up, right between the camera and their chin. A hand crossing the face breaks how a cheap, real-time face-swap filter tracks facial landmarks — the overlay visibly glitches, warps, freezes, or briefly falls apart.
+
+The honest update, verified live this week: by mid-2026, reporting (Yahoo Tech, cybernews.com) found the priciest, most advanced deepfake tools had already been patched against this exact test — Reality Defender's CEO is on record saying current top-tier models "fixed this bug" and handle it cleanly. So the test still reliably catches cheaper, budget scam software (a glitch or a refusal is still a real red flag), but passing it proves nothing against the best tools — no visual test currently does, per the same sources.
+
+The one thing that still works regardless: hang up, then call the person back on a phone number or contact you already had saved from before — never a new number given to you during the suspicious call itself. If it's a request for money, verify it a second way before sending anything.
+
+Full setup, sourced exactly, with the exact steps to try this on your own next video call: https://actually-works.com/e/54
+
+Follow for the setup that actually works.
+
+#deepfake #scamalert #aiscam #videocallscam #onlinesafety #cybersecurity #familyemergencyscam

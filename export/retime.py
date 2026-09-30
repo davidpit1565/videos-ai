@@ -187,8 +187,15 @@ def main():
     # and it surfaced three tools downstream as a layout fault. So the check is on
     # coverage: every timing attribute in the source must be one this file remaps.
     REMAPPED = {"at", "until", "in", "out"}
+    # Photo-composite scenes (video/reel-template-photo.html) carry their own numeric
+    # data-* attributes that are per-scene visual config, not timing on this file's
+    # timeline — a Ken Burns direction/scale and the gradient's alpha, set once per
+    # scene and never remapped by anything. The coverage check below exists to catch
+    # a genuine timing attribute this file doesn't know how to move (see the comment
+    # above); it must not also fire on a numeric attribute that was never a time.
+    NON_TIMING = {"grad-alpha", "kb-scale", "kb-x", "kb-y"}
     unknown = {m.group(1) for m in re.finditer(r'data-([a-z-]+)="[0-9.]+"', original)
-               } - REMAPPED
+               } - REMAPPED - NON_TIMING
     if unknown:
         raise SystemExit("retime: these timing attributes are not remapped, so they "
                          "would stay on the old timeline: "
