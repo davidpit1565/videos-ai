@@ -1,0 +1,19 @@
+That job you never heard back from? Software read your resume first — and it might not have actually understood a word of it.
+
+It's called an ATS (Applicant Tracking System) — resume-screening software most employers now use before a person ever opens your application. HR.com's 2025-26 survey puts adoption at 78% of employers overall; Jobscan's 2026 Fortune 500 report puts it at 97.4% (487 of 500 companies).
+
+You've probably heard the popular claim that it auto-rejects 75% of resumes before a human ever sees them. That specific number is unsupported: it traces to a 2012 marketing claim from a resume-services company (Preptel) that closed in 2013, with no study or methodology ever found behind it. Current 2025-26 research (a study of 25 recruiters across 10+ ATS platforms, plus interviews with recruiters at Amazon, Google and Microsoft) finds the opposite of the popular claim — most ATS platforms rank and sort applications rather than auto-rejecting them, and the large majority of applications are in fact reviewed by a human eventually.
+
+The real, still-current problem is different: ATS software parses a resume into fields (name, dates, job titles, skills) so a person can search and sort it — and real, current formatting choices genuinely break that parsing. Tables and multi-column layouts get read row-by-row and merge into unreadable "word salad." Headers, footers and text boxes are frequently skipped entirely, sometimes dropping name and contact info outright. Photos, icons and skill-bar graphics are invisible to the parser. So a "technically reviewed" application can still reach a recruiter as broken, incomplete data (sourced across multiple 2026 Jobscan/ATS-formatting guides). Recruiters spend roughly 6-10 seconds on that first screen (The Ladders' original 2012 eye-tracking study measured 6 seconds; their 2018 follow-up measured 7.4; current 2025-26 surveys put 42% of HR professionals under 10 seconds) — nowhere near enough time to notice information is missing and go looking for it.
+
+The fix that actually works, free, right now:
+— One column, not a designed template
+— Plain section titles: Experience, Education, Skills
+— The exact language from the job posting
+— Send it as a real .docx or a text-layer PDF — never a flattened image
+
+See the full setup, sourced exactly: https://actually-works.com/e/53
+
+Follow for the setup that actually works.
+
+#jobsearch #resume #ats #careertips #jobhunting #resumetips #careeradvice
