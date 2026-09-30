@@ -89,6 +89,16 @@ been running for days.
   not just state a fact. `hooks-guide.md` has the sourced taxonomy, the dry-sentence test
   itself, a log of which type each recent episode used, and the two rejected drafts that
   failed this exact check — read those before assuming a new draft clears the bar.
+- **The viewer has to feel the problem in the first 3 seconds, not just understand it.**
+  Decided 30.9.2026, David's own words: understanding a claim intellectually is not the
+  same as feeling it — the hook has to land as something the viewer recognizes happening
+  to their own body/life/people they care about, right away, or there's no real reason not
+  to keep scrolling. This is the actual mechanism behind "create real pull" in the rule
+  above and the "sendability" test elsewhere in this file: a viewer who feels the problem
+  is the one who stops, watches for the solution, and is the one who forwards it to a
+  specific person it could actually happen to. Check every hook against this before
+  assuming a checkable-fact opener (per the "500+ club" finding) is automatically enough —
+  a checkable fact that doesn't land in the gut still isn't a strong hook.
 - **Every episode must be fully understandable, to literally anyone, from the first second
   — not just to a viewer already into AI, and not only by the time the video ends.**
   Decided 24.9.2026, David's own words: this applies to every future video from now on, not
