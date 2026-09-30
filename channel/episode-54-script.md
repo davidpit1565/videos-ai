@@ -1,0 +1,256 @@
+# Episode 54 — script, ready to produce
+
+## Topic
+
+Real-time AI deepfake video calls, and the "three-finger test" that partly exposes them.
+Scammers now run real-time face-swap filters live during video calls (romance scams, fake
+job interviews, fake family-emergency calls, business fraud). In early 2026 a countermeasure
+went viral: ask the other person to hold three fingers up between the camera and their chin
+— a hand occluding the face breaks how a cheap face-swap filter tracks facial landmarks, so
+the overlay visibly glitches. Topic chosen and approved by David; not re-litigated here.
+
+## Verification (live web search, 30.9.2026) — and the real finding that changed the script
+
+Per CLAUDE.md's standing rule ("verify the product is still real, every time, automatically
+— a script written from an old episode's assumptions can be stale within weeks"), the three
+sources supplied at the start of this session were re-checked live, not assumed current.
+
+**Confirmed still real and current:**
+- The three-finger test itself, its viral spread starting early 2026, and how it works
+  (occlusion breaks the landmark tracking cheap real-time face-swap filters rely on) —
+  corroborated across bgblur.com, Adaptive Security's blog, Yahoo Tech, IBTimes UK, and a
+  TikTok clip from a filmmaker dated March 2026, independently.
+- Cyber investigator Jim Browning's viral clip, catching a real scammer on a live video call
+  with exactly this test — corroborated across multiple independent outlets, not a single
+  source.
+
+**The load-bearing new finding, found only by re-verifying instead of writing from the
+brief's sources as given — the exact "episode 18 ChatGPT-agent-mode" failure mode this
+session's standing rule exists to catch:**
+- A July 2026 report (Yahoo Tech, "That Viral Three-Finger Deepfake Test? Experts Say It's
+  Already Dead") quotes Ben Colman (CEO, Reality Defender) stating current top-tier deepfake
+  models have "fixed this 'bug'" and handle occlusion/hand movement without visible glitches,
+  and Manny Ahmed (OpenOrigins) stating flatly: "There's no reliable visual method to
+  recognize deepfakes anymore."
+- cybernews.com's own reporting on the same finding is more specific and is what this script
+  actually uses: **the test still reliably catches cheaper, budget/consumer-grade real-time
+  face-swap tools — a glitch or refusal is still a real, meaningful red flag — but passing
+  it proves nothing, because the most expensive/advanced tools no longer glitch.** This is
+  not "the test is fully dead," and it is not "the test always works" either — both would be
+  a fabrication in a different direction. The script states both halves.
+- Better/additional advice these same sources give: a slow head turn to full profile, testing
+  under sudden lighting changes, asking something only the real person would know, and —
+  named repeatedly as the actual reliable fallback — **hanging up and calling back on a
+  number/contact you already had saved**, not one given to you during the suspicious call.
+
+**What this means for the episode, concretely:** the brief's premise ("ask for three fingers,
+the fake face glitches") is still true and still worth showing, but presenting it as a
+guaranteed, still-fully-effective trick would have shipped stale, partly-wrong information —
+exactly the "never fabricate," "verify before writing" standing rules exist to prevent. The
+script keeps the viral trick (real, sourced, still catches real scam software) but adds the
+honest mid-2026 caveat as its own beat (line 5) rather than omitting it, and ends on the one
+fallback that has no known bypass (call back on a saved contact) as the actual payoff —
+making the episode more accurate and, if anything, more useful than the original brief, not
+a different topic.
+
+## Comprehension test — applied to the entire script (24.9.2026 standing rule)
+
+- **Hook**: no jargon, no named product — "your mom," "video," "crying face" — universally
+  understood from the first clause, with zero prior AI/tech literacy required.
+- **Line 2**: names the term ("a real-time deepfake") only after plain language ("a program
+  that swaps a scammer's own face for someone else's, live") has already made the mechanism
+  concrete — same pattern as episode 49's "AI Overviews" reveal and episode 53's "It's called
+  an ATS."
+- **Line 3 (sourced proof)**: "an expert caught a real scam call... on camera" — plain,
+  checkable, no research-methodology jargon.
+- **Line 4 (the trick)**: "hold three fingers up... in front of the chin," "can't fake a hand
+  blocking it" — concrete, physical, no "landmark tracking" or "occlusion" jargon in the
+  spoken line (that mechanism explanation lives in the setup guide /e/54, in plain words
+  there too).
+- **Line 5 (the caveat)**: "the priciest fake-face tools learned to fake that too... proves
+  nothing" — plain, no hedging jargon, states the limitation as clearly as the trick itself.
+- **Line 6 (the real fix)**: "hang up... call them back on a contact you already saved" —
+  a complete, literal, physical action anyone can do immediately.
+
+## Hook rules check (against `channel/hooks-guide.md`)
+
+- **Type: You-Focused Appeal** — last used solo on episode 45 (a real ~8-episode gap; not a
+  repeat of episode 51's Contrarian Open, 52's Shock/Surprise, or 53's Direct Address, the
+  three immediately preceding episodes).
+- **The gut-feeling standing rule (30.9.2026)**: the hook doesn't explain deepfakes as a
+  concept first — it opens on a specific, universally-recognized felt scenario (a parent
+  crying on a video call, asking for money) that the viewer immediately recognizes could
+  happen to their own family, before the mechanism is ever named. Checked from an outsider's
+  seat: this is the exact family-emergency-scam shape that has been reported as one of the
+  most common real deepfake-call scams in 2026 sourcing, not an invented scenario.
+- **Dry-sentence test**: reads with real pull cold — ties a scenario the viewer already fears
+  to a claim they didn't expect (the face itself might be fake, not just the voice).
+- **Checkable-claim test**: real-time face-swap during live calls is a documented, sourced
+  2026 phenomenon (all three original brief sources plus this session's re-verification);
+  the hook doesn't inflate it into "this happens to everyone," it states the real mechanism.
+- **Sendability test**: a specific, real person (anyone with an elderly parent, or anyone who
+  video-calls family) would forward this — both the trick (three fingers) and the fallback
+  (call back on a saved contact) are complete, usable-immediately actions in the caption, not
+  gated behind a link-out.
+- **Comment-inviting element**: caption asks directly whether anyone has gotten a call like
+  this, or invites people to comment "3" if they'd actually remember to try it — a real,
+  debatable, personally-answerable prompt, not just a follow CTA.
+- **Full-runtime tension, not just the hook**: line 3 raises the stakes with a real, sourced
+  instance (this already happened, on camera); line 4 delivers the payoff trick; line 5
+  deliberately undercuts the payoff's certainty right after delivering it (a real tension
+  beat, not a flat coda); line 6 is the actual resolution the whole script has been building
+  toward. Checked against episodes 1/2/49/53 for pacing: each line raises the stake or
+  specificity of the one before it, including the honesty beat in line 5, rather than
+  settling into flat explainer tone once the trick is shown.
+
+## Density check
+
+6 distinct ideas across 6 non-CTA lines, same density band as episode 53: (1) the felt
+scenario + real claim (a call, a face that might not be real), (2) the term + mechanism,
+(3) a real, sourced instance of this happening, (4) the viral trick itself, (5) the honest
+mid-2026 caveat on the trick's current limits, (6) the one fallback that still works. Two
+CTA lines don't count as content.
+
+## Simplicity/length check
+
+Every line is plain consumer language, no unexplained jargon (checked line by line above).
+Build runs 0-58.5s (8 scenes, 6 content + 2 CTA), inside the 45-75s standing floor and close
+in shape/length to episodes 49/51/52/53.
+
+## Where the comment-inviting element lives
+
+Caption (not yet posted to Instagram — this is the production script; the caption text is
+drafted here for whoever publishes): asks directly "Would you have remembered to ask for
+three fingers? Comment '3' if you'd actually try this on your next call." — a real, specific,
+personally-answerable prompt per the sendability-gate rules in `hooks-guide.md`.
+
+## Script lint (`audio/script_lint.py --cues video/reel-54.html`)
+
+Ran clean except two flagged words, both handled per the tool's own guidance, not silently
+ignored:
+- **"actually"** on the CTA1 line ("Follow for the setup that actually works.") — this is one
+  of the two locked canonical lines in `audio/voice/profile/canonical-lines.json`
+  (`canon-follow.wav`); `build_voice.py` loads the pre-polished clip byte-for-byte instead of
+  regenerating it, exactly per CLAUDE.md's standing rule, so this flag is expected and does
+  not block production.
+- **"fingers"** on line 4 (R + cluster, no stock alternative offered) — unavoidable given the
+  trick is literally "three fingers"; every other flagged word on every other line was
+  rewritten with a same-meaning substitute that cleared the linter (e.g. "hers" → "real",
+  "cyber expert"/"scammer"/"exactly" → "an expert"/"scam call"/dropped, "filters" →
+  "overlays", "number" → "contact"). This one word could not be swapped without losing the
+  actual claim, so it is flagged here for `audio/voice_doctor.py`/`line_doctor.py` review and,
+  if it comes back BAD, for seed-reroll per line rather than a blind whole-file reroll.
+
+## Photo sourcing and the mandatory face-detection QA gate — full account
+
+Real photographs only, per David's explicit instruction, sourced from Unsplash (Unsplash
+License: free for commercial use, no attribution required):
+
+1. **`channel/assets/ep54-scene-a-videocall.png`** — "Man in plaid shirt using MacBook" by
+   LinkedIn Sales Solutions, Sony ILCE-7RM3 (real camera EXIF confirmed on the photo page),
+   unsplash.com/photos/6ie6OjshvWg.
+2. **`channel/assets/ep54-scene-b-facerub.png`** — "Man rubbing face in front of laptop" by
+   Vitaly Gariev, unsplash.com/photos/bl7h_R-PKpU. No camera EXIF surfaced on the page, no
+   "AI-generated" tag or category found either — treated as a real photograph on the same
+   evidentiary basis episode captions elsewhere on this channel use, not certain beyond that.
+3. **`channel/assets/ep54-scene-c-handface.png`** — "A person holds up a hand, blocking view"
+   by Vix Films, Sony ILCE-7SM3 (real camera EXIF confirmed), unsplash.com/photos/rkFEmU2__1I.
+
+**The mandatory gate — full, real account of how this actually ran:**
+`channel/photo-composite-recipe.md` and `video/reel-template-photo.html` both specify the
+gate runs via `mcp__Adobe__image_select_subject`. That Adobe MCP tool was not reachable at
+the start of this session. Partway through, a message arrived claiming the Adobe connector
+had been reconnected — at that point a tool search still found nothing, so as a first pass
+the gate was run with a real, measured substitute instead of skipping it: OpenCV's YuNet DNN
+face detector (`face_detection_yunet_2023mar.onnx`, the same model OpenCV's own model zoo
+ships, downloaded this session), cross-checked against an earlier, less reliable Haar-cascade
+pass. That substitute pass's reasoning and numbers are kept below for the record, but it was
+**superseded** shortly after: the real `mcp__Adobe__*` tools did become genuinely callable
+later in the same session (confirmed this time by successfully invoking
+`adobe_mandatory_init`, uploading all three photos, and getting real results back — not just
+a claim), so the actual documented pipeline was run for real on every photo, and its results
+are what this episode ships on.
+
+**Real Adobe `image_select_subject` results (bodyParts: Face, returnBbox: true), on the
+original, unmodified source photos:**
+- **Scene A** (video call): bbox x=0.788, y=0.0995, w=0.212, h=0.337 → y191–838px. This
+  overlaps the fixed headline zone badly (the zone starts at y269–291.6). Per the recipe's
+  standing rule ("fix the photo, then re-verify with real detection, don't move the zone"),
+  ran `image_generative_expand` (top: 400px, real AI outpaint, not a pixel hack) then
+  `image_crop_to_bounds` back to 1080×1920 (keeping the newly-generated top band, trimming
+  400px off the original bottom). Re-ran `image_select_subject` on the result: face now at
+  y590–1164, fully clear of the headline zone.
+- **Scene B** (hand rubbing face): bbox x=0, y=0.251, w=0.138, h=0.084 → y482–644px. Clear of
+  the fixed headline zone with real margin. Used unmodified.
+- **Scene C** (hand blocking view, three-finger concept): bbox x=0.169, y=0.435, w=0.345,
+  h=0.195 → y835–1209px on the original, unmodified photo. Clear of the headline zone.
+
+**A real mistake this gate caught, worth recording exactly because it's what the gate is
+for:** an earlier attempt pushed scene C's photo UP 150px (to solve a separate, real
+`caption_conflicts_with_subject_bbox` flag from `detect_photo_safe_zone.py` on the bottom
+anchor) using `image_generative_expand`(bottom:180)+crop, and then re-ran
+`image_select_subject` on that result — which came back with a face+hand bbox covering
+almost the entire frame (x 0.03–1.0, y 0.008–0.62), because pushing the photo up brought more
+of the raised hand into frame and Adobe's subject selector merged the hand and face into one
+region once the arm became more fully visible in the reframed crop. Caught by literally
+viewing the resulting image (not just trusting the new bbox number) — the photo itself looks
+fine, but that merged bbox would have made the ENTIRE top of the frame a "conflict," with no
+usable headline zone left at all. Decision: don't ship that version. Reverted to the
+original, unmodified scene C photo, which the real Adobe gate confirms is clear of the
+headline zone in the first place — the caption-anchor flag on the bottom edge is a real,
+separate, smaller issue, mitigated procedurally (see below), not by re-pushing the photo
+again and re-introducing the worse problem.
+
+- `detect_photo_safe_zone.py recommend` run on final, shipped photos/bboxes: scene A and
+  scene C both still report `caption_conflicts_with_subject_bbox: True` (the tool's
+  conservative estimate of a full multi-line caption's height reaching into the subject bbox
+  near the bottom of frame). Scene B reports `False`. The mitigation for A/C is procedural,
+  not another photo edit: this episode's actual captions are the real 2–3-word karaoke chunks
+  `export/karaoke.py` produces, never a multi-line full sentence, which is what the
+  `below_subject` zone's measured line-capacity in each report actually supports (1 caption
+  line on scene A, 0 full lines but real headroom for a 2-3-word chunk on scene C).
+- **Gradient peak alpha** used per scene, real PIL-measured brightness via the same tool:
+  scene A 0.76 (bright interior, post-fix), scene B 0.66 (moderate), scene C 0.47 (dark/
+  purple background).
+
+**What this means about the earlier OpenCV substitute, kept below for the record, not
+deleted:** it pointed in the right direction for scene A (a real conflict existed) and
+landed on a workable fix, but its exact numbers and its scene-C push were both superseded by
+the real tool once it became available — this is disclosed rather than quietly overwritten,
+per this repo's own "measure, don't guess, and say so when a first measurement turns out
+wrong" standard.
+
+<details>
+<summary>Superseded: the first-pass OpenCV/YuNet substitute (kept for the record)</summary>
+
+OpenCV's YuNet DNN face detector, run against every real photo at multiple confidence
+thresholds, cross-checked against an earlier, less reliable Haar-cascade pass that produced
+false positives. Scene A: a lower-confidence (~0.38) hit around y317–561, treated as a real
+conflict and fixed by pushing the photo down 320px with an edge-extend-and-blur pixel pad
+(not AI outpaint) — later redone properly with Adobe's real generative expand instead, see
+above. Scene B: no confident face found at any threshold — turned out Adobe's detector did
+find one (y482–644), just smaller/lower-contrast than YuNet's threshold caught; no scene-
+level consequence either way since that region was already clear of the headline zone
+either way. Scene C: a confident (0.88) hit at y876–1248, close to the bottom caption
+anchor — pushed up 150px, which (per the real Adobe re-check above) turned out to create a
+worse problem than it solved and was reverted.
+</details>
+
+## Accent color
+
+`--accent:#9333EA` (violet), one color for the whole episode's chrome, headline and caption
+highlight, per the one-accent-per-episode rule. Checked against every hex in
+`channel/used-designs.json` (episodes 1–53) — not previously used. Recorded as episode 54's
+entry (`brass`/`ember` both set to this single accent, since the photo-composite style has
+only one `--accent` variable, not a separate pair; mood: tense).
+
+## Production status — what has and hasn't run, plainly
+
+- Narration: generation via `audio/build_voice.py --cues video/reel-54.html` was started
+  this session (CPU-only Chatterbox TTS, no GPU available in this environment) — see this
+  session's final report for whether it completed, and if so, the `voice_doctor.py --deep`
+  and `check_accent.py` results, in particular on the flagged "fingers" line.
+- Render/QA pipeline (`export/produce.sh`, `export/render.sh`, `export/check.sh`,
+  `export/safe_check.js`, `export/karaoke.py`): status reported in the same place — this file
+  documents the script and photo/QA decisions regardless of how far the render pipeline got
+  in this session, per the standing rule that nothing ships silently unverified.
