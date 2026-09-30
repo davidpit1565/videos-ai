@@ -101,10 +101,10 @@ const path = require('path');
         // an element marked data-decor is allowed in the platform's UI band: it is
         // there to be lost, and flagging it every run trains you to ignore the report
         if (el.closest('[data-decor]')) continue;
-        boxes.push({ el, id: el.id || el.className || el.tagName, text: own.slice(0, 24),
-                     t: r.top, b: r.bottom, l: r.left, r: r.right,
-                     z: +getComputedStyle(el).zIndex || 0,
-                     full: r.width > 1000 && r.height > 1700 });
+        // Margin (safe-area) checks use the full bounding rect on purpose: the worst
+        // extent across every wrapped line is exactly what a safe-margin check needs
+        // — a single line poking past the platform's UI band is a real violation even
+        // if a sibling line inside the same element is clean.
         const over = {
           top: Math.max(0, S.top - r.top),
           bottom: Math.max(0, r.bottom - (1920 - S.bottom)),
@@ -118,6 +118,36 @@ const path = require('path');
                        .sort((a, b) => b[1] - a[1])[0][0],
                      rect: [Math.round(r.top), Math.round(r.bottom)] });
         }
+        // Clash (overlap-with-a-sibling) checks use PER-LINE fragments
+        // (getClientRects()), not the bounding-box union getBoundingClientRect()
+        // returns. Found diagnosing a real flag on the photo-composite hook scenes:
+        // the hook's boxed climax phrase (e.g. "more than your messages") is one
+        // atomic element for animation purposes (motion-kit.js's splitWordsSafe
+        // treats .box as a single climax unit — see channel/motion-recipes.md
+        // recipe 2's "never draw one highlight across a wrapped phrase" for the
+        // same principle applied to highlight bars), but when that phrase wraps
+        // across two lines its getBoundingClientRect() union spans BOTH lines' full
+        // x-range — which reads as overlapping a sibling word that shares only the
+        // FIRST of those two lines, even when the two elements' actual glyphs never
+        // touch. Verified with real screenshots and per-fragment
+        // getClientRects() coordinates on test-photo-composite-v3/v4.html at the
+        // exact flagged timestamp: the reported "108px overlap" between the hook's
+        // last plain word and the boxed phrase was entirely this union-rect
+        // artifact — the boxed phrase's actual line-1 fragment sat to the RIGHT of
+        // the plain word with real whitespace between them, and its line-2 fragment
+        // sat a full line below with no vertical overlap either. Splitting into one
+        // rect per rendered line, exactly like buildHighlightBars() already does
+        // for the quote card's highlight bars, fixes the false positive without
+        // hiding a genuine same-line collision, which would still show up on a
+        // fragment-by-fragment basis.
+        const fragRects = [...el.getClientRects()];
+        for (const fr of fragRects) {
+          if (fr.width < 2 || fr.height < 2) continue;
+          boxes.push({ el, id: el.id || el.className || el.tagName, text: own.slice(0, 24),
+                       t: fr.top, b: fr.bottom, l: fr.left, r: fr.right,
+                       z: +getComputedStyle(el).zIndex || 0,
+                       full: r.width > 1000 && r.height > 1700 });
+        }
       }
       // two text blocks on top of each other is its own defect: moving a caption
       // into the safe area is no good if it lands on the scene's own headline
@@ -125,7 +155,10 @@ const path = require('path');
       for (let i = 0; i < boxes.length; i++)
         for (let j = i + 1; j < boxes.length; j++) {
           const a = boxes[i], c = boxes[j];
-          // nesting is not a collision, and a full-screen card is meant to cover
+          // nesting is not a collision, and a full-screen card is meant to cover.
+          // el.contains(el) is true for two fragments of the SAME element, so this
+          // also correctly skips a wrapped element's own lines being compared
+          // against each other.
           if (a.el.contains(c.el) || c.el.contains(a.el)) continue;
           if (a.full || c.full) continue;
           const fa = a.el.closest('#flash'), fc = c.el.closest('#flash');

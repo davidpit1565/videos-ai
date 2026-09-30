@@ -189,6 +189,36 @@
     }
   }
 
+  // ===== Real-photo composite: Ken Burns (subtle pan/zoom on a still photo) =====
+  // Drives a background photo layer's transform over the FULL scene duration — meant
+  // to feel like a living photograph, not a zoom transition. Keep toScale within
+  // ~1.06-1.12 and the pan (toX/toY) within ~1-2% or it reads as a documentary-cliché
+  // fast pan instead of a slow drift. `t` is scene-relative time, `dur` the scene's
+  // full duration (or a shorter window if a scene wants the motion to settle early).
+  // fromX/toX/fromY/toY are in %, applied as translate() on the SAME element that is
+  // being scaled — because the layer must already overscan the frame (scale > 1) for
+  // any pan to have overscan margin to reveal, keep translate magnitudes well under
+  // half of (toScale-1)*100 to avoid exposing the layer's edge.
+  // Sign convention: positive X reveals more of the image's LEFT side (crops right);
+  // positive Y reveals more of the image's TOP (crops bottom). Pick fromX/toX/fromY/
+  // toY so the pan drifts toward wherever THIS photo's focal subject actually sits
+  // (read the image, don't copy a previous scene's values) — see call sites in
+  // test-photo-composite-v2/v3/v4.html for the reasoning per photo.
+  function kenBurns(t, dur, opts) {
+    opts = opts || {};
+    var fromScale = opts.fromScale == null ? 1.0 : opts.fromScale;
+    var toScale = opts.toScale == null ? 1.08 : opts.toScale;
+    var fromX = opts.fromX == null ? 0 : opts.fromX;
+    var toX = opts.toX == null ? 0 : opts.toX;
+    var fromY = opts.fromY == null ? 0 : opts.fromY;
+    var toY = opts.toY == null ? 0 : opts.toY;
+    var p = smoothIn(clamp01(dur > 0 ? t / dur : 1));
+    var scale = fromScale + (toScale - fromScale) * p;
+    var x = fromX + (toX - fromX) * p;
+    var y = fromY + (toY - fromY) * p;
+    return 'scale(' + scale.toFixed(4) + ') translate(' + x.toFixed(3) + '%,' + y.toFixed(3) + '%)';
+  }
+
   // ===== Recipe 4: zoom-through scene transition =====
   // outEl/inEl are the two <section class="scene"> (or equivalent) elements. Call every
   // frame during the transition window; harmless to call outside it (it clamps to the
@@ -294,7 +324,7 @@
     splitWords: splitWords, splitWordsSafe: splitWordsSafe, animateWords: animateWords, wordsEndAt: wordsEndAt,
     buildHighlightBars: buildHighlightBars, animateHighlightBars: animateHighlightBars,
     animatePop: animatePop, animateGlowBloom: animateGlowBloom, impactShake: impactShake,
-    multiPhaseCamera: multiPhaseCamera,
+    multiPhaseCamera: multiPhaseCamera, kenBurns: kenBurns,
     zoomThroughTransition: zoomThroughTransition, transitionFlash: transitionFlash,
     buildShatter: buildShatter,
   };
