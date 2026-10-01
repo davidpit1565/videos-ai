@@ -406,3 +406,46 @@ the full narration). What happened from there, plainly:
   legible and in sync, headline/caption text never colliding, the three-finger-test scene
   showing the exact right photo (a hand blocking part of a face) at the exact right
   moment, no frozen frames, no garbled or leaked text, clean hook and clean CTA.
+
+## Fourth round — a real regression (no music) plus three more direct notes
+
+David watched the word-sync round's picture and, in Hebrew, flagged four things at once:
+no background music at all, the closing photo still not reading as deliberately "locked"
+to this episode, the words not popping enough, and the climax phrase still popping in as
+one block. All four checked out as real — none dismissed, none argued with.
+
+- **No background music — a genuine regression, not a style choice.** `audio/reel54-music.wav`
+  existed in the repo (generated before this session's retiming work) but every render this
+  session — three shipped rounds — omitted `render.sh`'s `[music.wav]` argument entirely.
+  Confirmed via `ffprobe` (video had exactly one audio stream, the narration) and by
+  measuring narration-gap audio levels in the earlier shipped file (near-silence, no ducked
+  bed). The existing music file was also the wrong length (37.15s, generated before this
+  episode's duration settled at 36.65s) — regenerated fresh at the exact current duration
+  (`python3 audio/build_music.py 36.65 audio/reel54-music.wav --mood tense`) rather than
+  reused stale. Confirmed present in the new render by measuring the same narration-gap
+  windows: levels around -27 to -33 dBFS (a ducked bed), not the -46 to -50 dBFS of true
+  silence (the pre/post-roll). New standing note in CLAUDE.md so this specific omission
+  doesn't recur silently again.
+- **The closing photo was the wrong kind of "fixed."** The previous round's fix (PR #375)
+  introduced `channel/assets/canon-closing-photo.png` as a single file meant to be reused
+  identically across every future episode forever. David's correction: that's "the same
+  thing, not according to the video" — the two closing scenes must still be locked to
+  *this* episode, not a franchise slate. Removed the cross-episode asset; episode 54's
+  closing scenes now point directly at its own `ep54-scene-a-videocall.png` (the same photo
+  scene 1 opens on, a deliberate bookend). CLAUDE.md's standing rule rewritten: pick a
+  fitting photo per episode, lock it across both closing scenes, never a hardcoded file.
+- **Climax phrases popping in as one block, and weak per-word pops generally** — see
+  `channel/motion-recipes.md` recipe 6's fourth-round entry for the full account:
+  `MK.splitWordsSafe({explodeBoxes:true})` makes a multi-word climax phrase build word by
+  word instead of appearing as a slab; the per-word entrance became a real scale pop
+  (0.82→1) instead of a 14px fade; and a real safe-area violation this surfaced (a word's
+  entrance scale, the camera-push beat, and the spoken-word emphasis pop all landing on the
+  same climax word at once, 11px over the top tolerance) was fixed by never applying the
+  spoken-word emphasis to an already-distinct `.box` word.
+
+Re-ran the full pipeline after all four fixes (no new narration needed — the spoken text
+never changed, only the picture, music, and caption mechanism): `retime.py` →
+`headline_sync.py` → `safe_check.js` (clean) → `render.sh` (with music this time) →
+`check.sh` (ALL CHECKS PASSED) → watched twice in full, specifically re-confirming the
+climax phrase now builds progressively, the closing scenes share this episode's own
+bookend photo, and the previously-violating word sits cleanly inside the safe area.

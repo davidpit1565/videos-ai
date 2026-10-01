@@ -58,12 +58,24 @@
   //     lines needs one bar per word, never one stretched bar (see recipe 2).
   // Returns {words: [...in document order...], highlighted: [the .hl subset]} —
   // `words` feeds animateWords()/wordsEndAt(), `highlighted` feeds buildHighlightBars().
+  // opts.explodeBoxes (default false, backward compatible): a .box/.ebox phrase
+  // that contains MORE THAN ONE WORD is built word-by-word like the rest of the
+  // sentence instead of popping in as one instant block. Added after episode 54's
+  // own climax phrases ran 8-11 words long inside the box — a single atomic pop on
+  // that much text reads as a slab appearing all at once, not a climax. A
+  // single-word box (the short climax-word case recipe 1 was built for) is left
+  // alone either way: splitting one word into "one word" changes nothing, so the
+  // option only ever affects multi-word phrases. Each exploded word still gets the
+  // .box class (so the existing `h2 .box` CSS color/weight still applies per word)
+  // and is also collected into the returned `boxWords` array, so a caller can still
+  // find "the climax" (its first word) to time a camera push or similar beat off of.
   function splitWordsSafe(container, opts) {
     opts = opts || {};
     var hlTag = (opts.highlightTag || 'STRONG').toUpperCase();
-    var words = [], highlighted = [];
+    var explodeBoxes = !!opts.explodeBoxes;
+    var words = [], highlighted = [], boxWords = [];
     function isWhitespace(s) { return /^\s*$/.test(s); }
-    function walk(node, insideHl) {
+    function walk(node, insideHl, insideBox) {
       var kids = [].slice.call(node.childNodes);
       kids.forEach(function (child) {
         if (child.nodeType === 3) {
@@ -72,28 +84,34 @@
           parts.forEach(function (p) {
             if (isWhitespace(p)) { frag.appendChild(document.createTextNode(p)); return; }
             var span = document.createElement('span');
-            span.className = 'wd' + (insideHl ? ' hl' : '');
+            span.className = 'wd' + (insideHl ? ' hl' : '') + (insideBox ? ' box' : '');
             span.style.cssText = 'display:inline-block;opacity:0';
             span.textContent = p;
             frag.appendChild(span);
             words.push(span);
             if (insideHl) highlighted.push(span);
+            if (insideBox) boxWords.push(span);
           });
           node.replaceChild(frag, child);
         } else if (child.nodeType === 1) {
           if (child.tagName === 'BR') return;
           if (child.classList.contains('box') || child.classList.contains('ebox')) {
+            if (explodeBoxes && /\s/.test(child.textContent.trim())) {
+              walk(child, insideHl, true);
+              return;
+            }
             child.classList.add('wd');
             if (!child.style.opacity) child.style.opacity = '0';
             words.push(child);
+            boxWords.push(child);
             return;
           }
-          walk(child, insideHl || child.tagName === hlTag);
+          walk(child, insideHl || child.tagName === hlTag, insideBox);
         }
       });
     }
-    walk(container, false);
-    return { words: words, highlighted: highlighted };
+    walk(container, false, false);
+    return { words: words, highlighted: highlighted, boxWords: boxWords };
   }
 
   // Animate the words already built by splitWords() for the given frame time `t`.

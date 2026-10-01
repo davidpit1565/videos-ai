@@ -348,3 +348,46 @@ over from the template demo:
 Re-verified end to end on the real episode: `headline_sync.py` run against real Whisper
 alignment (53 headline words across 8 scenes, 0 unmatched), `safe_check.js` clean, full
 `check.sh` gate ALL CHECKS PASSED, and watched twice in full before shipping.
+
+**A fourth round, same night, after David watched this version too and gave three more
+real notes in Hebrew — all confirmed correct before fixing, none argued with:**
+
+- **A multi-word climax phrase popping in as one instant block still didn't feel like
+  real emphasis — it read as a slab of text appearing, not a climax.** Several of this
+  episode's own `.box` phrases run 8-11 words (`"a program that swaps a scammer's own
+  face for someone else's, live."`). Fixed by adding `opts.explodeBoxes` to
+  `MK.splitWordsSafe()`: a multi-word box now builds word-by-word like the rest of the
+  sentence (each word still tagged `.box` so the existing CSS color/weight still
+  applies), instead of appearing all at once. A single-word box — the short climax-word
+  case recipe 1 was originally built for — is untouched either way, since splitting one
+  word changes nothing. The camera-push beat still times off the phrase's first word.
+- **The per-word entrance itself read as too gentle — "it only pops a little."** The
+  original entrance was a plain opacity fade with a 14px rise, no scale change at all.
+  Replaced with a real scale pop (0.82→1, same no-overshoot power3-out curve, no
+  bounce). A first attempt combined scale with the translateY rise and pushed a
+  near-the-safe-line word 11px past the top tolerance (`safe_check.js` caught it,
+  "Call" in scene 6) — transform functions compose, and the rise and the scale were
+  interacting in a way that pushed the word higher than either alone. Fixed by dropping
+  translateY entirely and using scale alone for the pop.
+- **Exploding box words into individual spans then collided with the existing
+  spoken-word emphasis** (recipe 6 above): the climax word's own entrance scale, the
+  camera-push beat, AND a spoken-word emphasis pop could all land on the same word at
+  once, compounding past the safe-area line again. Fixed by never applying
+  `animateWordEmphasis` to a `.box` word — it's already visually distinct (accent
+  color) and already gets its own camera-push beat, so it doesn't need a second,
+  separate pulse once it's spoken.
+
+Re-verified again end to end after all three fixes: `safe_check.js` clean (the "Call"
+overflow gone), full `check.sh` gate ALL CHECKS PASSED, watched twice in full — once
+confirming the box phrase now visibly builds word by word instead of popping as a
+block, and once confirming "Call" sits cleanly inside the safe area at its own peak
+scale.
+
+**A separate, unrelated bug found in the same round, worth recording because nothing
+caught it automatically**: three consecutive shipped rounds of this episode had no
+background music at all. `render.sh`'s `[music.wav]` argument is the last positional
+argument and every re-render in this session's earlier rounds simply omitted it — no
+check in `check.sh` verifies a music track is present, so it shipped silently clean
+three times. A stale music file also existed in `audio/` from before the episode's
+duration was re-timed (37.15s vs. the current 36.65s build) and would have been the
+wrong length if reused as-is. See CLAUDE.md's new standing note on this.

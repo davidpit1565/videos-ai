@@ -290,18 +290,17 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
   // Hook word-by-word reveal + climax spotlight — same mechanism as
   // test-photo-composite-v2/v3/v4.html and photo-composite-demo.html's makeHook().
-  // MK.splitWordsSafe() walks the h2's live DOM instead of retyping it as a string,
-  // so the .box climax phrase survives as one atomic unit (never split, never
-  // unwrapped) while every other word gets its own reveal span.
+  // MK.splitWordsSafe() walks the h2's live DOM instead of retyping it as a string.
+  // explodeBoxes:true — a multi-word climax phrase builds word by word like the
+  // rest of the sentence instead of popping in as one instant block; real feedback
+  // on episode 54 was that an 8-11 word box phrase popping in all at once reads as
+  // a slab appearing, not a climax. A single-word box is unaffected either way.
   function makeHook(kbId,h2Id,sceneIdx){
     var kb=document.getElementById(kbId);
     var h2=document.getElementById(h2Id);
     var scene=h2.closest('.scene');
-    var split=MK.splitWordsSafe(h2);
-    var climax=null;
-    for(var i=0;i<split.words.length;i++){
-      if(split.words[i].classList.contains('box')){ climax=split.words[i]; break; }
-    }
+    var split=MK.splitWordsSafe(h2,{explodeBoxes:true});
+    var climax=split.boxWords[0]||null;
     var climaxIndex=climax?split.words.indexOf(climax):-1;
     var windows=WORD_WINDOWS[sceneIdx]||[];
     return function render(){
@@ -311,13 +310,20 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
         var w=split.words[i],at=START+i*GAP;
         var entranceT=(ht-at)/WDUR;
         if(entranceT<1){
-          if(w===climax){
-            MK.animatePop(w,ht,at,WDUR);
-          } else {
-            var e=MK.smoothIn(MK.clamp01(entranceT));
-            w.style.opacity=String(e);
-            w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
-          }
+          // A bigger, snappier pop than a plain fade — pure scale (no translateY:
+          // combining it with scale pushed a near-the-safe-line word 11px past the
+          // top tolerance, caught by safe_check.js). Same no-overshoot power3-out
+          // curve, just a wider scale range (0.82->1) to read as a real "pop."
+          var e=MK.smoothIn(MK.clamp01(entranceT));
+          w.style.opacity=String(e);
+          w.style.transform='scale('+(0.82+0.18*e).toFixed(3)+')';
+        } else if(w.classList.contains('box')){
+          // A box word is already visually distinct (accent color) and the
+          // climax word already gets its own camera-push beat below — stacking
+          // the spoken-word emphasis scale on top of that push compounded past
+          // the safe-area line on episode 54's own render. Hold it at rest.
+          w.style.opacity='1';
+          w.style.transform='scale(1)';
         } else {
           // Entrance is done — hold the word fully revealed and let its own matched
           // narration window (if any) pop/brighten it in place. This is what replaces
