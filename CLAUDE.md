@@ -308,6 +308,41 @@ honest about what we actually know.
   shipped in a real episode yet; the next synthetic-style episode built from
   `reel-template.html` is their first real test end to end, per `motion-recipes.md`'s
   own standing.
+- **Standing rule, effective episode 55 (1.10.2026, David's direct instruction): every
+  future episode uses real photo backgrounds — `video/reel-template-photo.html`'s style,
+  not the plain synthetic template — whichever topic or format.** Source photos by web
+  search (Unsplash, licensed for commercial use, no attribution required — the same way
+  episode 54's photos were sourced) or Pinterest, or generate them with the tools
+  available, never a drawn/CSS stand-in. Save every photo used under
+  `channel/assets/ep<N>-scene-*.jpg`, one file per scene, so the library of real photos
+  grows episode over episode — don't discard them after rendering. The template's own
+  mandatory face-detection pre-check (`mcp__Adobe__image_select_subject` +
+  `export/detect_photo_safe_zone.py`) is not optional — run it for real on every photo
+  with a person in it before finalizing headline placement, the same way
+  `check_setup_guide.py` is a hard gate, not a suggestion. If a photo's detected face
+  genuinely conflicts with the template's fixed headline zone and a re-crop can't clear
+  it, the template's own documented exception (move that one scene's zone to the tool's
+  own measured recommendation, never a guessed number) is the fix — see episode 55's
+  `channel/episode-55-script.md` for a full worked example, including a second,
+  independent bug the same round: a logo badge built as an absolutely-positioned bottom
+  element landed in the platform's own unsafe bottom band — the template's existing
+  in-flow citation-label pattern (episode 52's `.dreamlabel`, inside `.pad`'s normal
+  flow) is what actually keeps this kind of element safe; copying the visual idea
+  without the structural placement reintroduces a bug already solved once. Always
+  finish with `node export/safe_check.js` — a photo-composite build is not exempt from
+  the same safe-area gate every other build runs.
+- **Standing rule, effective episode 55 (1.10.2026, David's direct instruction): keep
+  every spoken line in plain, natural, everyday language — not elevated or formal
+  wording — across every future episode, not just when a line feels obviously stiff.**
+  This is a sharper, standing version of `hooks-guide.md`'s existing "write for a
+  person, not an AI-literate viewer" rule: it applies to word choice and sentence shape
+  throughout the whole script, not only to jargon/comprehension. Before a script ships,
+  reread every line and ask whether a person would actually say it out loud this way —
+  if a word or phrase reads like it belongs in an article rather than a sentence a
+  friend would say, simplify it, the same discipline already applied to jargon. This
+  does not license losing precision or dropping a real caveat — episode 55's "send it to
+  anyone who still has one of these in their kitchen" → "send it to someone you know who
+  has one" is the shape of the fix: shorter, plainer, same claim.
 - Reels render with `FRAMES=1 ./export/render.sh <build> 1080 1920 <seconds> <vo.wav> <out.mp4> [music.wav]`
   — frame-by-frame capture, because recorded playback drifted up to two seconds.
 - **Music for a shipped episode always comes from the real licensed library

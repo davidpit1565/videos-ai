@@ -1,0 +1,21 @@
+Every word you say to Alexa goes straight to Amazon now.
+
+Until March 2025, some Echo devices could process your voice on the device itself and never send it anywhere. Amazon shut that setting off for good — in its own email to customers, the reason given was that Alexa's new AI features need cloud processing power. There's no toggle left that keeps your voice request off Amazon's servers. The only thing that still blocks it completely is the physical mute button.
+
+But there is a real fix for what happens after you talk: in the Alexa app, turn on "Enable Deletion by Voice" once. After that, saying "Alexa, delete everything I said today" actually deletes it. Skip that toggle and the voice command does nothing — it just fails silently.
+
+Try this today:
+— Open the Alexa app → Settings → Alexa Privacy → Manage Your Alexa Data → Voice Recordings
+— Turn on "Enable Deletion by Voice"
+— Say "Alexa, delete everything I said today" whenever you want it gone
+— The mute button is still the only way to stop it being sent in the first place
+
+Did you know Amazon removed the on-device option? Comment "mute" if you're hitting that button more now.
+
+Send this to someone you know who has an Echo.
+
+Full setup, sourced exactly: https://actually-works.com/e/55
+
+Follow for the setup that actually works.
+
+#alexa #amazonecho #privacy #smartspeaker #voiceassistant #datadeletion #smarthome

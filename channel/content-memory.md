@@ -1289,6 +1289,21 @@ and/or shares, unlike every subgroup-audience reach-first episode (45-48) so far
 Confirms or rejects only once real numbers come in — do not treat this as proven by the
 act of shipping it.
 
+**Episode 55 (1.10.2026) — two standing-rule changes applied, not yet a performance
+signal.** Topic: Amazon discontinuing the on-device "Do Not Send Voice Recordings"
+setting (March 2025), still true as of May 2026, with the real fix being the
+Alexa-app "Enable Deletion by Voice" toggle. Universal-audience, continuing the
+24.9.2026 whole-audience pivot (same shape as 49/51). Two production changes apply to
+every episode from here on, per David's direct instruction the same day: (1) every
+future episode uses real photo backgrounds (`video/reel-template-photo.html`'s style),
+sourced and saved per-episode to `channel/assets/`, never a drawn/CSS stand-in — see
+`CLAUDE.md`'s "Building and rendering" section for the full rule and the mandatory
+Adobe face-detection gate; (2) spoken language across every future script should read
+plainer and more natural, same claim, shorter/simpler wording — worked example in the
+same CLAUDE.md entry. Episode 55 is the first episode built under both. **UNKNOWN,
+not yet measurable**: whether either change moves real numbers (views, saves, shares) —
+too early to call a pattern from one episode; revisit once studio data comes in.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
