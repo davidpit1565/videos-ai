@@ -184,7 +184,7 @@
     opts = opts || {};
     var attack = opts.attack == null ? 0.07 : opts.attack;
     var decay = opts.decay == null ? 0.16 : opts.decay;
-    var peakScale = opts.peakScale == null ? 1.12 : opts.peakScale;
+    var peakScale = opts.peakScale == null ? 1.08 : opts.peakScale;
     var peakBright = opts.peakBright == null ? 1.35 : opts.peakBright;
     var e = 0;
     if (winStart != null && winEnd != null) {

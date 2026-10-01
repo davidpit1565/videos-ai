@@ -153,6 +153,14 @@ been running for days.
   lines always render over this same fixed photo, so they never compete with each other or
   with the episode's own color/mood choice, and never repeat whatever an earlier scene
   already used.
+- **A photo-composite scene reusing the SAME photo file as the scene right before it holds
+  Ken Burns fully static (scale 1.00, no pan) — never re-zoom/re-pan on a photo that never
+  actually changed.** Decided 1.10.2026, David's own words after watching episode 54's
+  picture a second time: a second independent Ken Burns animation on an unchanged photo
+  reads as the photo resetting/jumping, not continuing — confirmed on episode 54's two
+  repeated-photo pairs (scenes 2→3 and 5→6, both reusing the same file back to back) before
+  fixing it. Only a scene whose photo is actually new relative to the one before it gets its
+  own entrance motion.
 - `audio/speak_language.py` does the same voice in 23 languages. Flemish needs its own
   reference recording — `record/flemish-script.md`.
 
@@ -274,9 +282,15 @@ honest about what we actually know.
   `<span class="box">`) instead of mangling it. **`video/reel-template-photo.html`**
   (the real-photo-composite style) has no separate caption track at all — recipe 6
   drives the fixed headline's own words from real spoken-word timing
-  (`export/headline_sync.py`) instead, so the headline is never shown twice. Neither
-  template has shipped a real episode with recipes 1-3/6 yet; the next episode built
-  from each is the first real test end to end, per `motion-recipes.md`'s own standing.
+  (`export/headline_sync.py`) instead, so the headline is never shown twice. **Recipe 6
+  shipped for real on episode 54** (1.10.2026) — see `motion-recipes.md` for the two
+  real bugs applying it to a live episode surfaced (a word-overlap glue at peak
+  emphasis, fixed with a smaller peak scale plus permanent word spacing) and the known,
+  accepted tradeoff (a long, slow-Ken-Burns scene can read as a `qa.py` "nearly still"
+  warning once the old caption's incidental motion is gone — a measurement artifact at
+  native frame rate, not a motion deficit). Recipes 1-3 have not shipped in a real
+  episode yet; the next synthetic-style episode built from `reel-template.html` is
+  their first real test end to end, per `motion-recipes.md`'s own standing.
 - Reels render with `FRAMES=1 ./export/render.sh <build> 1080 1920 <seconds> <vo.wav> <out.mp4> [music.wav]`
   — frame-by-frame capture, because recorded playback drifted up to two seconds.
 - Music is generated to the exact length: `python3 audio/build_music.py <seconds> <out.wav>`.

@@ -282,7 +282,7 @@ of building a second caption track from it.
 // entrance animation has finished. winStart/winEnd are absolute seconds (same clock
 // as data-in/data-out); null means "no matched narration word," and the word just
 // holds at rest. A short attack/decay (0.07s/0.16s default) means the pop never
-// snaps — it's a scale (1 -> ~1.12) and a brightness filter (never a color swap,
+// snaps — it's a scale (1 -> ~1.08) and a brightness filter (never a color swap,
 // which would need a second color to tween through and read as a flash).
 if (entranceDone) {
   w.style.opacity = '1';
@@ -319,8 +319,32 @@ collapsed `.box` window spanning multiple spoken words correctly.
 
 **Status: real, tested code (`MK.animateWordEmphasis` in `export/motion-kit.js`,
 `export/headline_sync.py`), wired into `video/reel-template-photo.html` — which also
-no longer has a `.subs` div or any caption-track code at all for this style.** Not yet
-used in a shipped episode; episode 54 itself was not re-rendered with this change in
-the same round it was requested (a fourth re-ship of that episode wasn't part of what
-was asked). The next real photo-composite episode built from the template is the
-first real test of it end to end, the same standing applied to recipes 1-3 above.
+no longer has a `.subs` div or any caption-track code at all for this style.**
+
+**Shipped for real on episode 54 the same night**, after David watched the first round's
+picture and flagged, in Hebrew, that he'd asked for this in English by mistake and that
+the duplicate caption was still there — he hadn't misread anything; the fix had only
+been built and verified on the template, not applied to the actual episode. Applying it
+to the real shipped file surfaced two more real bugs this recipe's own text didn't carry
+over from the template demo:
+
+- **Two adjacent words could visually overlap and read as one glued word** at the exact
+  frame a word's emphasis pop peaked — "fake-face" and "tools" read as "fake-facetools"
+  in a still frame, because a `transform:scale()` pop expands past a `display:inline-block`
+  span's own edges without pushing its neighbor away. Fixed two ways together: `peakScale`
+  dropped from 1.12 to 1.08, and a small permanent `h2 .wd{margin:0 .08em}` gives every
+  word breathing room regardless of scale.
+- **Removing the duplicate caption also removed its incidental visual churn**, which used
+  to help the render pass `qa.py`'s frame-to-frame "picture nearly still" check between
+  word-pops. A scene with a long duration and a subtle, by-the-book Ken Burns drift can
+  legitimately read as a multi-second near-still stretch at 30fps frame-to-frame diffing,
+  even though the photo is visibly panning over its full length — this is a measurement
+  artifact of sampling at native frame rate, not a motion deficit a reasonable Ken Burns
+  bump can fix without breaking the "slow, subtle drift" convention (`kenBurns()`'s own
+  ~1.06-1.12 scale guidance). `check.sh` treats it as a warning, not a failure, for exactly
+  this reason — accepted as a known, honest tradeoff of dropping the duplicate caption, not
+  chased into over-animating the photo.
+
+Re-verified end to end on the real episode: `headline_sync.py` run against real Whisper
+alignment (53 headline words across 8 scenes, 0 unmatched), `safe_check.js` clean, full
+`check.sh` gate ALL CHECKS PASSED, and watched twice in full before shipping.
