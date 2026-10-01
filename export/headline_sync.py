@@ -72,11 +72,15 @@ def main():
             scenes_out.append([None] * len(toks))
             continue
         spans = align([(w, li) for w in toks], window)
-        if bend > bstart:
-            box_spans = [s for s in spans[bstart:bend] if s]
-            if box_spans:
-                collapsed = (min(s[0] for s in box_spans), max(s[1] for s in box_spans))
-                spans = spans[:bstart] + [collapsed] + spans[bend:]
+        # One window per token, box words included — never collapsed into one. The
+        # runtime (reel-54.html, reel-template-photo.html) now calls
+        # MK.splitWordsSafe({explodeBoxes:true}), which gives every box WORD its own
+        # entry in split.words, not one atomic entry for the whole phrase. A collapsed
+        # window array here used to be one entry shorter per multi-word box than
+        # split.words actually is at runtime — every word after the box then read a
+        # window meant for a different word, which is why words were popping early,
+        # late, or not at all. (bstart/bend are unused now except by tokenize_headline
+        # itself; kept for clarity of what toks[bstart:bend] means.)
         scenes_out.append([list(s) if s else None for s in spans])
 
     # Line-anchored on purpose, not a dotall .*? across the whole file: this template's

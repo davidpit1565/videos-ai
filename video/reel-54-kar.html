@@ -90,11 +90,19 @@ body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-
 h2{font-family:var(--d);font-weight:900;font-size:8.4cqw;line-height:1.14;letter-spacing:-.02em;
   margin:0;text-wrap:balance;position:relative;z-index:2;color:var(--text);
   text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.92),0 .15cqw .4cqw rgba(0,0,0,.95),0 0 5cqw rgba(0,0,0,.5)}
-/* Breathing room so a word mid-emphasis-pop (MK.animateWordEmphasis scales it up in
-   place) never visually touches its neighbor — caught on episode 54's own render:
-   "fake-face" and "tools" read as the single glued word "fake-facetools" in a still
-   frame at the exact instant "fake-face" was at peak scale. */
-h2 .wd{margin:0 .08em}
+/* Breathing room — kept even though the emphasis pop is color-only now (not scale),
+   because a word's entrance pop (0.82->1 scale) still runs before this margin would
+   matter and could otherwise touch its neighbor at peak. */
+h2 .wd{margin:0 .08em;transition:color .09s linear}
+/* Spoken-word emphasis (MK.animateWordEmphasis) — a plain color toggle, same
+   mechanism export/karaoke.py's classic caption track has always used
+   (.subs b.on{color:accent}), per David's direct correction: scale compounded with
+   other effects on the same word and pushed it past the safe-area line once
+   already (episode 54, scene 6, "Call"). A plain word lights up accent; a .box
+   word (already accent at rest) flips to white instead, so both still visibly
+   "pop" when their matched narration word plays. */
+h2 .wd.spoken{color:var(--accent)!important}
+h2 .wd.box.spoken{color:#fff!important}
 h2 .box{color:var(--accent);font-weight:900;background:none;border:0;padding:0;
   border-radius:0;display:inline;transform:none;text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.95),0 0 4cqw rgba(0,0,0,.6)}
 
@@ -266,7 +274,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   // Per-scene, per-headline-word [start,end] narration windows — export/headline_sync.py
   // fills this from real Whisper alignment. All-null placeholder so this file still
   // runs standalone before the real pipeline has touched it.
-  var WORD_WINDOWS=[[[0.0, 0.48], [0.48, 0.86], [1.12, 1.32], [1.32, 1.48], [1.48, 1.56], [1.56, 1.88], [1.88, 2.14], [2.4, 2.64], [2.64, 2.98], [2.98, 3.16], [3.16, 3.42], [3.42, 3.82], [3.82, 4.04], [4.04, 5.94]], [[6.42, 6.66], [6.66, 6.72], [6.72, 7.193], [7.193, 7.667], [7.667, 8.14], [8.14, 11.76]], [[12.3, 12.52], [12.52, 12.78], [12.78, 13.16], [13.16, 13.58], [13.58, 17.46]], [[17.96, 18.16], [18.16, 18.38], [18.38, 18.6], [18.6, 18.8], [18.8, 18.98], [18.98, 19.1], [19.1, 19.44], [19.44, 19.74], [19.74, 19.96], [19.96, 20.2], [20.2, 20.4], [20.4, 23.64]], [[23.92, 23.98], [23.98, 24.5], [24.5, 24.98], [24.98, 25.36], [25.36, 25.82], [25.82, 26.1], [26.1, 26.48], [26.48, 26.74], [27.0, 28.14]], [[28.72, 28.94], [28.94, 29.3], [29.3, 31.32]], [[31.96, 33.6]], [[34.2, 34.38], [34.38, 34.62], [34.62, 36.14]]];
+  var WORD_WINDOWS=[[[0.0, 0.48], [0.48, 0.86], [1.12, 1.32], [1.32, 1.48], [1.48, 1.56], [1.56, 1.88], [1.88, 2.14], [2.4, 2.64], [2.64, 2.98], [2.98, 3.16], [3.16, 3.42], [3.42, 3.82], [3.82, 4.04], [4.04, 4.26], [4.26, 4.56], [4.56, 4.88], [4.88, 5.24], [5.24, 5.42], [5.42, 5.6], [5.6, 5.94]], [[6.42, 6.66], [6.66, 6.72], [6.72, 7.193], [7.193, 7.667], [7.667, 8.14], [8.14, 8.32], [8.32, 8.6], [8.6, 8.88], [8.88, 9.12], [9.12, 9.32], [9.32, 9.7], [9.7, 9.9], [9.9, 10.1], [10.1, 10.28], [10.28, 10.6], [10.6, 11.38], [11.38, 11.76]], [[12.3, 12.52], [12.52, 12.78], [12.78, 13.16], [13.16, 13.58], [13.58, 13.76], [13.76, 14.08], [14.08, 14.36], [14.36, 14.54], [14.54, 14.82], [14.82, 15.08], [15.08, 15.44], [15.44, 15.92], [15.92, 16.18], [16.18, 16.34], [16.34, 16.7], [16.7, 17.06], [17.06, 17.46]], [[17.96, 18.16], [18.16, 18.38], [18.38, 18.6], [18.6, 18.8], [18.8, 18.98], [18.98, 19.1], [19.1, 19.44], [19.44, 19.74], [19.74, 19.96], [19.96, 20.2], [20.2, 20.4], [20.4, 21.46], [21.46, 22.02], [22.02, 22.38], [22.38, 22.58], [22.58, 23.64]], [[23.92, 23.98], [23.98, 24.5], [24.5, 24.98], [24.98, 25.36], [25.36, 25.82], [25.82, 26.1], [26.1, 26.48], [26.48, 26.74], [27.0, 27.48], [27.48, 27.74], [27.74, 28.14]], [[28.72, 28.94], [28.94, 29.3], [29.3, 29.76], [29.76, 29.96], [29.96, 30.18], [30.18, 30.38], [30.38, 30.58], [30.58, 30.82], [30.82, 31.32]], [[31.96, 32.14], [32.14, 32.52], [32.52, 32.66], [32.66, 32.8], [32.8, 33.0], [33.0, 33.32], [33.32, 33.6]], [[34.2, 34.38], [34.38, 34.62], [34.62, 34.82], [34.82, 35.22], [35.22, 35.48], [35.48, 35.86], [35.86, 36.14]]];
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
 
   // Set up each scene's real photo background + gradient (per-scene measured
@@ -308,19 +316,14 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
           var e=MK.smoothIn(MK.clamp01(entranceT));
           w.style.opacity=String(e);
           w.style.transform='scale('+(0.82+0.18*e).toFixed(3)+')';
-        } else if(w.classList.contains('box')){
-          // A box word is already visually distinct (accent color) and the
-          // climax word already gets its own camera-push beat below — stacking
-          // the spoken-word emphasis scale on TOP of that push compounded past
-          // the safe-area line (measured: 11px over, "Call" in scene 6, both
-          // scales landing on the same beat). Hold it at rest instead.
-          w.style.opacity='1';
-          w.style.transform='scale(1)';
         } else {
           // Entrance done — hold revealed, let the real spoken-word window (if
-          // any) pop/brighten it in place. Replaces the old duplicate caption
-          // track (see MK.animateWordEmphasis, motion-recipes.md recipe 6).
+          // any) light it up in place via a plain color toggle (see
+          // MK.animateWordEmphasis's header — color-only on purpose, so it's
+          // safe to apply the same way to every word, .box included). Replaces
+          // the old duplicate caption track (motion-recipes.md recipe 6).
           w.style.opacity='1';
+          w.style.transform='scale(1)';
           var win=windows[i];
           MK.animateWordEmphasis(w,t,win?win[0]:null,win?win[1]:null);
         }

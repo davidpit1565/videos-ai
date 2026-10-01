@@ -391,3 +391,55 @@ check in `check.sh` verifies a music track is present, so it shipped silently cl
 three times. A stale music file also existed in `audio/` from before the episode's
 duration was re-timed (37.15s vs. the current 36.65s build) and would have been the
 wrong length if reused as-is. See CLAUDE.md's new standing note on this.
+
+**A fifth round, same night: David watched again and said this was still wrong, in
+two real ways, plus one real timing bug his report led straight to.**
+
+- **"The blue text doesn't pop at all"** — correct, and a direct regression from the
+  previous round's safe-area fix: excluding `.box` words from `animateWordEmphasis`
+  entirely (to stop the scale pop compounding with the camera-push) also meant a
+  `.box` word never did ANYTHING when spoken — no emphasis at all, which reads as
+  "frozen," exactly as reported.
+- **"Make it the simplest thing — like every other video we've made"**: his own
+  description of what he wanted was, word for word, `export/karaoke.py`'s classic
+  caption mechanism (`.subs b.on{color:accent}`) — a word turns color exactly while
+  it's spoken, nothing else. Not a new idea; the simplest version already existed
+  elsewhere in this repo and this recipe had drifted from it by adding scale,
+  brightness-filter, and attack/decay easing that the classic version never needed.
+  Fixed by rewriting `MK.animateWordEmphasis` to be exactly that: `el.classList.
+  toggle('spoken', t is inside its window)`, with the actual color change done in
+  CSS (`h2 .wd.spoken{color:accent}`, `h2 .wd.box.spoken{color:#fff}` — a plain word
+  lights up accent, a box word, already accent at rest, flips to white instead).
+  Color has no layout effect at all, so there is no scale-compounding risk left, and
+  the exclusion on `.box` words was removed — every word, box or not, now gets the
+  same simple treatment.
+- **"It's still missing some words, or popping too early or too late"** — a real bug,
+  not an exaggeration. `export/headline_sync.py` was still collapsing a multi-word
+  `.box` phrase's individual Whisper-aligned windows down into ONE combined window
+  (a leftover from before `explodeBoxes` existed, when the box really was one atomic
+  DOM element). At runtime, with `explodeBoxes:true`, a multi-word box is N separate
+  entries in `split.words`, not one — so `WORD_WINDOWS[scene]` was one entry shorter
+  per box phrase than `split.words` actually is, and every word positioned after a
+  box in that scene read a window meant for a different word, one position off. This
+  is exactly "missing some words, popping early or late": not a perception issue, an
+  index misalignment. Fixed by never collapsing — one window per token, always,
+  matching `split.words` 1:1. Episode 54's own count went from "53 headline words"
+  (wrongly collapsed) to a verified "104 headline words, 0 unmatched" (one per actual
+  token), matching a plain whitespace-split word count of the same headlines exactly.
+
+Re-verified end to end a third time: `safe_check.js` clean, full `check.sh` gate ALL
+CHECKS PASSED (and this time with zero `qa.py` "nearly still" warnings at all — the
+uniform color-toggle, now applied to every word including box ones, happens to
+provide enough frame-to-frame visual churn on its own). Watched twice in full,
+checking specifically that words light up in the right place at the right moment
+relative to the spoken line, and that `.box` phrases now visibly flash white
+word-by-word as they're said rather than sitting static.
+
+**On the standing closing-photo direction (separate note, not acted on yet):** this
+same round, David clarified he does still want *some* standing, cross-episode
+treatment for the two closing-CTA scenes specifically — not literally the one
+hardcoded file the previous round removed, but some consistent direction/design for
+those two sentences across every episode, still to be figured out. Explicit
+instruction: don't touch episode 54's current closing scenes (they're fine as
+shipped), think about what that standing direction could be, and apply it to a
+future episode once decided. Tracked, not yet designed.

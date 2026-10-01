@@ -158,10 +158,14 @@ body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-
 h2{font-family:var(--d);font-weight:900;font-size:8.4cqw;line-height:1.14;letter-spacing:-.02em;
   margin:0;text-wrap:balance;position:relative;z-index:2;color:var(--text);
   text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.92),0 .15cqw .4cqw rgba(0,0,0,.95),0 0 5cqw rgba(0,0,0,.5)}
-/* Breathing room so a word mid-emphasis-pop (MK.animateWordEmphasis scales it up in
-   place) never visually touches its neighbor — see video/reel-54.html's own header
-   for the real glued-word defect this fixes. */
-h2 .wd{margin:0 .08em}
+/* Breathing room — kept even though the emphasis pop is color-only now (not scale),
+   because a word's entrance pop still runs before this margin would matter. */
+h2 .wd{margin:0 .08em;transition:color .09s linear}
+/* Spoken-word emphasis (MK.animateWordEmphasis) — a plain color toggle, same
+   mechanism export/karaoke.py's classic caption track has always used. A plain
+   word lights up accent; a .box word (already accent at rest) flips to white. */
+h2 .wd.spoken{color:var(--accent)!important}
+h2 .wd.box.spoken{color:#fff!important}
 /* Emphasis = color+weight shift only, no background shape, no border, no rotation —
    this is the "no opaque box" fix that made the photo style actually read as a real
    photo (see channel/photo-composite-recipe.md). Still named .box so
@@ -317,19 +321,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
           var e=MK.smoothIn(MK.clamp01(entranceT));
           w.style.opacity=String(e);
           w.style.transform='scale('+(0.82+0.18*e).toFixed(3)+')';
-        } else if(w.classList.contains('box')){
-          // A box word is already visually distinct (accent color) and the
-          // climax word already gets its own camera-push beat below — stacking
-          // the spoken-word emphasis scale on top of that push compounded past
-          // the safe-area line on episode 54's own render. Hold it at rest.
-          w.style.opacity='1';
-          w.style.transform='scale(1)';
         } else {
           // Entrance is done — hold the word fully revealed and let its own matched
-          // narration window (if any) pop/brighten it in place. This is what replaces
-          // the separate word-by-word caption track for this style (see
-          // MK.animateWordEmphasis's header and channel/motion-recipes.md recipe 6).
+          // narration window (if any) light it up via a plain color toggle (see
+          // MK.animateWordEmphasis's header — color-only, safe to apply the same
+          // way to every word including .box ones). This is what replaces the
+          // separate word-by-word caption track for this style (see
+          // channel/motion-recipes.md recipe 6).
           w.style.opacity='1';
+          w.style.transform='scale(1)';
           var win=windows[i];
           MK.animateWordEmphasis(w,t,win?win[0]:null,win?win[1]:null);
         }

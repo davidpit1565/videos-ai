@@ -449,3 +449,47 @@ never changed, only the picture, music, and caption mechanism): `retime.py` →
 `check.sh` (ALL CHECKS PASSED) → watched twice in full, specifically re-confirming the
 climax phrase now builds progressively, the closing scenes share this episode's own
 bookend photo, and the previously-violating word sits cleanly inside the safe area.
+
+## Fifth round — the real timing bug his report actually pointed to, and getting simple
+
+David watched this round's picture too and said, plainly: the blue text still doesn't
+pop at all, the timing still misses or mistimes words, and it needed to be the simplest
+version of this we've ever shipped — not a new idea, just what every other episode
+already does. All three checked out, and the middle one led to a real, confirmed bug.
+
+- **Blue (`.box`) words popping at all was a direct regression from the previous
+  round's own safe-area fix** — excluding `.box` words from `animateWordEmphasis`
+  entirely (to stop a scale pop compounding with the camera-push) also meant they
+  never did anything when spoken. Correct to flag; not acceptable as a permanent
+  tradeoff.
+- **"Simplest thing, like every other video" was, almost word for word,
+  `export/karaoke.py`'s own classic caption mechanism** (`.subs b.on{color:accent}`):
+  a word just changes color exactly while it's spoken. `MK.animateWordEmphasis` had
+  drifted from that into scale, brightness, and easing it never needed. Rewritten to
+  a plain class toggle; the actual color swap moved to CSS (`h2 .wd.spoken{color:
+  accent}`, `h2 .wd.box.spoken{color:#fff}`). Color has no layout effect, so the
+  safe-area risk that caused the exclusion in the first place is gone — every word,
+  `.box` included, now gets the identical simple treatment.
+- **The mistimed/missing words were a real index-misalignment bug, not a perception
+  issue**: `export/headline_sync.py` was still collapsing a multi-word `.box`
+  phrase's per-word timing windows into one combined window, a leftover from before
+  `explodeBoxes` existed. At runtime a multi-word box is N separate entries in
+  `split.words`, so the collapsed `WORD_WINDOWS` array was shorter than `split.words`
+  by (N-1) per box phrase — every word positioned after a box in that scene read a
+  window meant for a different word. Fixed by never collapsing: one window per
+  token, always. Episode 54's own word count went from 53 (wrongly collapsed) to a
+  verified 104, 0 unmatched, confirmed against a plain word-count of the same
+  headlines.
+
+Re-verified a third time: `safe_check.js` clean, full `check.sh` gate ALL CHECKS
+PASSED with zero `qa.py` "nearly still" warnings this time (the uniform color toggle
+now applied to every word provides its own visual churn), watched twice in full
+checking specifically that words light up at the right moment and that `.box`
+phrases now visibly flash white word-by-word rather than sitting static.
+
+**Separately, David clarified the closing-photo direction**: he does still want some
+standing, cross-episode treatment for the two closing scenes — not the literal
+hardcoded file the previous round removed, but a consistent design still to be
+figured out. Explicit instruction: don't touch episode 54's current closing scenes,
+think about the direction, apply it starting from a future episode. Tracked in
+CLAUDE.md, not acted on.
