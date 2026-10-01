@@ -310,7 +310,26 @@ honest about what we actually know.
   own standing.
 - Reels render with `FRAMES=1 ./export/render.sh <build> 1080 1920 <seconds> <vo.wav> <out.mp4> [music.wav]`
   — frame-by-frame capture, because recorded playback drifted up to two seconds.
-- Music is generated to the exact length: `python3 audio/build_music.py <seconds> <out.wav>`.
+- **Music for a shipped episode always comes from the real licensed library
+  (`audio/music-library/` + `audio/pick_real_track.py --mood <mood>`), never from
+  `audio/build_music.py`'s synthesized output.** David said so directly, more than
+  once, because the real tracks (Pixabay, free to use, no attribution, downloaded and
+  listened to by him — see `audio/music-library/MANIFEST.md`) are more professional;
+  `build_music.py` only exists for quick local iteration before a real track is picked,
+  never for what actually ships. This is the THIRD documented incident of this same
+  mistake shipping anyway: episodes 32/33 (a missing `MOODS` entry silently fell back
+  to synthesized audio), episode 29 (the real track picked for "tense" read as
+  thin/absent to the ear despite healthy loudness numbers — fixed by pointing "tense"
+  and "suspense" at the same already-vetted track), and episode 54 round 2 (several
+  re-renders used `build_music.py` directly out of habit, never touching the real
+  library at all — caught only because David heard it and said so). Verify a music bed
+  both ways before shipping: `audio/check_music_bed.py <music.wav>` (mean dB, peak dB,
+  longest quiet stretch — catches "technically present but reads as absent") AND which
+  script actually produced the file — a healthy loudness reading from
+  `build_music.py` output is still the wrong file.
+- Music is generated to the exact length: `python3 audio/pick_real_track.py <seconds> <out.wav> --mood <mood>`
+  (same output contract as `build_music.py` — exact duration, fades, mono 48kHz — so
+  it drops into `render.sh` the same way).
   **`render.sh`'s `[music.wav]` argument is the last positional argument and easy to
   silently drop** — confirmed the hard way on episode 54's own iteration rounds: every
   re-render across several rounds of fixes omitted it, so three shipped versions in a

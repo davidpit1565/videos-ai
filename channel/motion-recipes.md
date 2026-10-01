@@ -443,3 +443,59 @@ those two sentences across every episode, still to be figured out. Explicit
 instruction: don't touch episode 54's current closing scenes (they're fine as
 shipped), think about what that standing direction could be, and apply it to a
 future episode once decided. Tracked, not yet designed.
+
+**Round 3 — a second, different cause of the same "pops too early/late" symptom,
+plus the music-source mistake it arrived alongside.** David reported two things
+together: the real music library wasn't being used (see CLAUDE.md's new standing
+rule on `pick_real_track.py` vs `build_music.py` — a separate mistake, not a motion
+one), and the word-sync was "much better... but still not 100% accurate," with the
+explicit comparison that synthetic-style episodes had this "automatically perfect."
+Measured, not assumed: dumped every scene's `WORD_WINDOWS` alongside each word's
+duration and found two outlier-long windows in scene 3, both roughly 1.06s against
+a ~0.22s median. Checked each against the raw Whisper word stamps before concluding
+anything:
+- `"it."` at `[22.58, 23.64]` — genuinely correct. Whisper itself has `{'word':
+  'it.', 'at': 22.58, 'dur': 1.06}`; the narrator actually held the word that long
+  (also flagged, independently, by `voice_doctor.py`'s own "held too long" check
+  back when the narration was first generated). A long window is not automatically
+  a bug — check it against the source before treating it as one.
+- `"Fake-face"` at `[20.4, 21.46]` — a real bug. Whisper transcribed the single
+  hyphenated script word as TWO separate tokens (`{'word': 'Fake', 'at': 20.94}`,
+  `{'word': 'face', 'at': 21.12, 'dur': 0.34}`, true span 20.94-21.46), but
+  `tokenize_headline()` kept "Fake-face" as one whitespace-split token. `align()`
+  (SequenceMatcher-based, in `karaoke.py`) can't match one script token against two
+  heard tokens, so the match failed at that position and `align()`'s own gap-fill
+  logic stretched the window back to the END of the PRECEDING matched word ("chin."
+  at 20.2-20.4) instead of the real start — the word would have visually lit up
+  ~0.5s before it was actually said. Same root shape as every alignment bug in this
+  file: a mismatch between how the DOM splits a word and how Whisper splits the
+  same audio.
+  Fixed in `export/headline_sync.py`: for the alignment pass only, split any
+  hyphenated displayed word into its hyphen-parts (so "Fake-face" aligns as "Fake"
+  and "face", matching Whisper's own granularity) via an `owner[]` array that
+  tracks which original displayed-word index each alignment unit belongs to; after
+  `align()` returns, collapse each hyphenated word's sub-token spans back into ONE
+  window (min start, max end) before writing `WORD_WINDOWS`, so the array stays
+  exactly one entry per displayed word — the same invariant the box-collapsing fix
+  above exists to protect, this time scoped to splitting-and-rejoining within a
+  single displayed word, never across separate ones. Checked the rest of the
+  episode's headlines for the same risk (any other hyphenated compound): "real-time"
+  in scene 1 and "fake-face" in scene 4 both came back matching their raw Whisper
+  spans exactly after the fix, with no regression in word count (still 104, 0
+  unmatched against the correctly re-timed `reel-54-timed.html`).
+  One real near-miss worth recording: the first re-run of `headline_sync.py` this
+  round was pointed at the wrong source file (`video/reel-54.html`, the pre-retime
+  build with CUES still running to 58s) instead of `video/reel-54-timed.html` (the
+  actual 36.65s retimed build the render pipeline uses) — produced "23 unmatched"
+  immediately, which is what caught it. Always confirm which build file a CUES
+  array's own duration matches the render's actual duration before trusting a
+  headline_sync run's word count.
+  Verified against the real rendered output, not just the generated HTML: extracted
+  exact frames by frame index (not `-ss`, which can land on the wrong frame near a
+  seek point) around both "Fake-face" and "real-time," sampled pixel color over the
+  text region across consecutive frames, and confirmed each one flips color within
+  one video frame (~33ms) of its real Whisper timestamp. Full `check.sh` gate ALL
+  CHECKS PASSED; watched the final render in full twice, checking specifically for
+  the previously-wrong word and for the real music track's continuous presence
+  (confirmed via `check_music_bed.py` run against the actual rendered file's own
+  audio track, not just the input wav).
