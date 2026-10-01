@@ -159,6 +159,13 @@ been running for days.
   was removed. Pick a fitting photo per episode, lock it across both closing
   scenes (still static Ken Burns per the rule below — they're one continuous shot),
   and never repeat whatever an earlier scene in that same episode already used.
+  **Open, not yet designed**: David then clarified (same night) he does still want
+  some standing, cross-episode treatment for these two scenes specifically — not the
+  literal same photo file, but a consistent direction/design still to be figured out.
+  Explicit instruction: leave episode 54's current closing scenes alone (they're
+  fine as shipped), think about what that standing direction could be, apply it
+  starting from a future episode once actually decided. Not a task to pick up
+  casually — a real design call that needs his input, not a guess.
 - **A photo-composite scene reusing the SAME photo file as the scene right before it holds
   Ken Burns fully static (scale 1.00, no pan) — never re-zoom/re-pan on a photo that never
   actually changed.** Decided 1.10.2026, David's own words after watching episode 54's
@@ -289,14 +296,18 @@ honest about what we actually know.
   (the real-photo-composite style) has no separate caption track at all — recipe 6
   drives the fixed headline's own words from real spoken-word timing
   (`export/headline_sync.py`) instead, so the headline is never shown twice. **Recipe 6
-  shipped for real on episode 54** (1.10.2026) — see `motion-recipes.md` for the two
-  real bugs applying it to a live episode surfaced (a word-overlap glue at peak
-  emphasis, fixed with a smaller peak scale plus permanent word spacing) and the known,
-  accepted tradeoff (a long, slow-Ken-Burns scene can read as a `qa.py` "nearly still"
-  warning once the old caption's incidental motion is gone — a measurement artifact at
-  native frame rate, not a motion deficit). Recipes 1-3 have not shipped in a real
-  episode yet; the next synthetic-style episode built from `reel-template.html` is
-  their first real test end to end, per `motion-recipes.md`'s own standing.
+  shipped for real on episode 54** (1.10.2026) — see `motion-recipes.md` for the full
+  account across its rounds, including a real index-misalignment bug in
+  `headline_sync.py` once `.box` phrases started building word by word (never caught
+  by eye, only by David reporting words popping early/late/missing) and the final,
+  deliberately simple mechanism: `MK.animateWordEmphasis` is a plain color toggle —
+  the exact same thing `karaoke.py`'s classic caption track has always done
+  (`.subs b.on{color:accent}`) — applied uniformly to every word including `.box`
+  ones, with no scale or brightness involved, on David's own direct instruction that
+  it should be "the simplest thing, like every other video." Recipes 1-3 have not
+  shipped in a real episode yet; the next synthetic-style episode built from
+  `reel-template.html` is their first real test end to end, per `motion-recipes.md`'s
+  own standing.
 - Reels render with `FRAMES=1 ./export/render.sh <build> 1080 1920 <seconds> <vo.wav> <out.mp4> [music.wav]`
   — frame-by-frame capture, because recorded playback drifted up to two seconds.
 - Music is generated to the exact length: `python3 audio/build_music.py <seconds> <out.wav>`.

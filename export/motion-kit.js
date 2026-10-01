@@ -190,31 +190,28 @@
   // For a style where the on-screen headline already shows the whole line for the
   // whole scene (the real-photo-composite template), a separate word-by-word caption
   // underneath it just repeats the same sentence a second time — David's direct
-  // feedback on episode 54. This replaces that duplicate: each headline word (already
-  // built in by animateWords/splitWordsSafe) pops and brightens only while its real,
-  // Whisper-aligned narration window is playing, using the exact same per-word timing
-  // export/headline_sync.py derives from the narration — the two can never drift
-  // apart because there is only one timing source. Call this once the word's own
-  // entrance has finished (don't fight animatePop/animateWords for the same frame);
-  // winStart/winEnd are absolute (same clock as data-in/data-out), null means "no
-  // matched narration word" and the function just holds the word at rest.
-  function animateWordEmphasis(el, t, winStart, winEnd, opts) {
-    opts = opts || {};
-    var attack = opts.attack == null ? 0.07 : opts.attack;
-    var decay = opts.decay == null ? 0.16 : opts.decay;
-    var peakScale = opts.peakScale == null ? 1.08 : opts.peakScale;
-    var peakBright = opts.peakBright == null ? 1.35 : opts.peakBright;
-    var e = 0;
-    if (winStart != null && winEnd != null) {
-      if (t < winStart) { e = 0; }
-      else if (t < winStart + attack) { e = smoothIn(clamp01((t - winStart) / attack)); }
-      else if (t < winEnd) { e = 1; }
-      else if (t < winEnd + decay) { e = 1 - smoothIn(clamp01((t - winEnd) / decay)); }
-      else { e = 0; }
-    }
-    el.style.transform = 'scale(' + (1 + (peakScale - 1) * e).toFixed(4) + ')';
-    el.style.filter = e > 0.002 ? 'brightness(' + (1 + (peakBright - 1) * e).toFixed(3) + ')' : '';
-    return e;
+  // feedback on episode 54. This replaces that duplicate: each headline word lights
+  // up in place exactly while its real, Whisper-aligned narration window is playing,
+  // using the exact same per-word timing export/headline_sync.py derives from the
+  // narration — the two can never drift apart because there is only one timing
+  // source. winStart/winEnd are absolute (same clock as data-in/data-out), null means
+  // "no matched narration word" and the function just holds the word at rest.
+  //
+  // Deliberately a plain color toggle, NOT scale/brightness — the same mechanism
+  // export/karaoke.py's classic caption track has always used (.subs b.on{color:
+  // accent}), on David's own direct correction: a scale pop on the spoken word
+  // compounded with this same word's own entrance pop AND the climax camera-push
+  // beat and pushed it 11px past the safe-area line (episode 54, scene 6, "Call").
+  // Color has no layout/bounding-box effect at all, so it can never do that,
+  // regardless of what else is animating the same word at the same instant — which
+  // is also why, unlike the old scale version, this is safe to apply uniformly to
+  // EVERY word including .box ones (a scale pop on a .box word was excluded for
+  // exactly that compounding reason; a color toggle carries no such risk and
+  // removing the exclusion is what makes the box phrase "pop" again at all).
+  // Call this once the word's own entrance has finished.
+  function animateWordEmphasis(el, t, winStart, winEnd) {
+    var on = winStart != null && winEnd != null && t >= winStart && t <= winEnd;
+    el.classList.toggle('spoken', on);
   }
 
   // ===== Recipe 1 & 4: multi-phase camera (pull-back -> hold -> push) =====
