@@ -168,6 +168,37 @@
     return Math.sin(sp * 70) * amp * (1 - sp / dur);
   }
 
+  // ===== Recipe 6: spoken-word emphasis on a fixed headline =====
+  // For a style where the on-screen headline already shows the whole line for the
+  // whole scene (the real-photo-composite template), a separate word-by-word caption
+  // underneath it just repeats the same sentence a second time — David's direct
+  // feedback on episode 54. This replaces that duplicate: each headline word (already
+  // built in by animateWords/splitWordsSafe) pops and brightens only while its real,
+  // Whisper-aligned narration window is playing, using the exact same per-word timing
+  // export/headline_sync.py derives from the narration — the two can never drift
+  // apart because there is only one timing source. Call this once the word's own
+  // entrance has finished (don't fight animatePop/animateWords for the same frame);
+  // winStart/winEnd are absolute (same clock as data-in/data-out), null means "no
+  // matched narration word" and the function just holds the word at rest.
+  function animateWordEmphasis(el, t, winStart, winEnd, opts) {
+    opts = opts || {};
+    var attack = opts.attack == null ? 0.07 : opts.attack;
+    var decay = opts.decay == null ? 0.16 : opts.decay;
+    var peakScale = opts.peakScale == null ? 1.12 : opts.peakScale;
+    var peakBright = opts.peakBright == null ? 1.35 : opts.peakBright;
+    var e = 0;
+    if (winStart != null && winEnd != null) {
+      if (t < winStart) { e = 0; }
+      else if (t < winStart + attack) { e = smoothIn(clamp01((t - winStart) / attack)); }
+      else if (t < winEnd) { e = 1; }
+      else if (t < winEnd + decay) { e = 1 - smoothIn(clamp01((t - winEnd) / decay)); }
+      else { e = 0; }
+    }
+    el.style.transform = 'scale(' + (1 + (peakScale - 1) * e).toFixed(4) + ')';
+    el.style.filter = e > 0.002 ? 'brightness(' + (1 + (peakBright - 1) * e).toFixed(3) + ')' : '';
+    return e;
+  }
+
   // ===== Recipe 1 & 4: multi-phase camera (pull-back -> hold -> push) =====
   // Replaces a flat linear zoom with a real phase curve. `t` is the scene-relative time;
   // pushAt/pushDur should usually be timed to land ON a content beat (e.g. the climax
@@ -324,6 +355,7 @@
     splitWords: splitWords, splitWordsSafe: splitWordsSafe, animateWords: animateWords, wordsEndAt: wordsEndAt,
     buildHighlightBars: buildHighlightBars, animateHighlightBars: animateHighlightBars,
     animatePop: animatePop, animateGlowBloom: animateGlowBloom, impactShake: impactShake,
+    animateWordEmphasis: animateWordEmphasis,
     multiPhaseCamera: multiPhaseCamera, kenBurns: kenBurns,
     zoomThroughTransition: zoomThroughTransition, transitionFlash: transitionFlash,
     buildShatter: buildShatter,

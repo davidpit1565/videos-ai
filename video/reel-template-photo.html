@@ -31,17 +31,20 @@
       photo scene, resolved PER SCENE from its own in/out transition windows (the
       approach photo-composite-demo.html landed on after an earlier pairwise version
       clobbered the middle scene's resting state — see renderScene() below).
-    - Real word-by-word karaoke captions via export/karaoke.py: this file only
-      defines CUES (a full-sentence caption per line, exactly like reel-template.html)
-      and the literal render block karaoke.py's regex replaces — it holds NO
-      hand-authored WORDS=[[start,end,word,chunk]] array. A real episode always runs
-      the real pipeline (export/produce.sh -> audio/word_stamps.py -> export/
-      karaoke.py) against real Whisper alignment, never a hand-typed timestamp guess
-      — the test files this session built (test-photo-composite-v2/v3/v4.html,
-      photo-composite-demo.html) used hand-authored WORDS arrays and said so plainly
-      in their own comments; that was fine for a same-session comparison demo with no
-      real narration to align against, but it is explicitly NOT the contract this
-      starter template follows.
+    - No separate caption track — the fixed headline IS the caption. Standing rule
+      since episode 54's third round of direct feedback: a full static headline and a
+      second word-by-word caption underneath it just show the same sentence twice at
+      once. This template has no .subs div. Instead each headline word pops/brightens
+      in place exactly when its narration word is spoken
+      (MotionKit.animateWordEmphasis), driven by export/headline_sync.py, which
+      derives the same per-word timing export/karaoke.py uses from real Whisper
+      alignment — never a hand-typed timestamp guess. This file only defines CUES (a
+      full-sentence line per scene, same contract as reel-template.html, used for the
+      alignment window) and a placeholder per-scene WORD_WINDOWS array (all nulls)
+      headline_sync.py's regex replaces; it holds no hand-authored window data. A
+      real episode always
+      runs the real pipeline (export/produce.sh -> audio/word_stamps.py ->
+      export/headline_sync.py) against real Whisper alignment.
 
   ================================================================================
   MANDATORY PRE-CHECK — DO NOT SKIP, same standing as check_setup_guide.py's gate
@@ -88,9 +91,9 @@
   1080x1920 photos, no crop needed if sourced at that aspect).
 
   Same technical contract as every reel in this repo: .pad/.b/.b.on/.b.gone,
-  [data-in]/[data-out]/[data-at], .subs word-lit karaoke captions, window.MotionKit,
-  window.__reel, safe-area conventions (top 14%/269px, bottom 35%/672px, sides
-  6%/65px on 1080x1920) — verify with `node export/safe_check.js <this file>`.
+  [data-in]/[data-out]/[data-at], window.MotionKit, window.__reel, safe-area
+  conventions (top 14%/269px, bottom 35%/672px, sides 6%/65px on 1080x1920) — verify
+  with `node export/safe_check.js <this file>`.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -163,14 +166,6 @@ h2{font-family:var(--d);font-weight:900;font-size:8.4cqw;line-height:1.14;letter
 h2 .box{color:var(--accent);font-weight:900;background:none;border:0;padding:0;
   border-radius:0;display:inline;transform:none;text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.95),0 0 4cqw rgba(0,0,0,.6)}
 
-/* Plain-subtitle captions — sentence case, color-shift-only highlight, no caption-
-   card look. Font-size matches this codebase's real production convention
-   (export/karaoke.py's shipped .subs block, e.g. reel-52-kar.html: 7.4cqw). */
-.subs{position:absolute;left:8cqw;right:8cqw;bottom:62cqw;text-align:center;z-index:11;
-  font-family:var(--b);font-weight:600;font-size:7.4cqw;line-height:1.22;letter-spacing:0;
-  text-shadow:0 .4cqw 1.2cqw rgba(0,0,0,.95),0 0 2.4cqw rgba(0,0,0,.9)}
-.subs b{font-weight:700;color:#fff;transition:color .09s linear;display:inline}
-.subs b.on{color:var(--accent)}
 .handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
   font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#CBD5E1;
   text-shadow:0 .3cqw 1cqw rgba(0,0,0,.9)}
@@ -235,7 +230,6 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<div class="subs" id="subs"></div>
 <div class="handle" data-decor>@actually_works.ai</div>
 <button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
 </div>
@@ -256,22 +250,24 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var DUR=22.50,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
-  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var seek=document.getElementById('seek');
   var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
   var tap=document.getElementById('tap'),prog=document.getElementById('prog');
 
-  // Placeholder full-sentence captions — replace per episode, same contract as every
-  // other reel's CUES array (see video/reel-template.html). This is ALL the caption
-  // data this file defines: no hand-authored WORDS array. export/karaoke.py reads
-  // this CUES array and the exact render block at the bottom of render() below,
-  // replacing it with the real word-by-word karaoke render built from actual
-  // Whisper word stamps (audio/word_stamps.py) — run the real pipeline
-  // (export/produce.sh) rather than hand-typing timestamps for a real episode.
+  // Placeholder full-sentence lines — replace per episode, same contract as every
+  // other reel's CUES array (see video/reel-template.html). This is the alignment
+  // window export/headline_sync.py matches real Whisper word stamps against; it is
+  // NOT a caption track (this style has none — the headline itself is the caption).
   var CUES=[
     [0.30,3.80,"Replace me — scene A caption line."],
     [7.80,11.30,"Replace me — scene B caption line."],
     [15.30,18.80,"Replace me — scene C caption line."]
   ];
+  // Per-scene, per-headline-word [start,end] narration windows — replace per episode.
+  // export/headline_sync.py fills this from real Whisper alignment; the placeholder
+  // below (all null) just holds every word at rest with no emphasis, so this file
+  // still runs standalone before the real pipeline has touched it.
+  var WORD_WINDOWS=[[null,null,null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null]];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
 
@@ -293,7 +289,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   // MK.splitWordsSafe() walks the h2's live DOM instead of retyping it as a string,
   // so the .box climax phrase survives as one atomic unit (never split, never
   // unwrapped) while every other word gets its own reveal span.
-  function makeHook(kbId,h2Id){
+  function makeHook(kbId,h2Id,sceneIdx){
     var kb=document.getElementById(kbId);
     var h2=document.getElementById(h2Id);
     var scene=h2.closest('.scene');
@@ -303,17 +299,29 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       if(split.words[i].classList.contains('box')){ climax=split.words[i]; break; }
     }
     var climaxIndex=climax?split.words.indexOf(climax):-1;
+    var windows=WORD_WINDOWS[sceneIdx]||[];
     return function render(){
       var ht=t-(+scene.dataset.in);
       var START=0.15,GAP=0.10,WDUR=0.30;
       for(var i=0;i<split.words.length;i++){
         var w=split.words[i],at=START+i*GAP;
-        if(w===climax){
-          MK.animatePop(w,ht,at,WDUR);
+        var entranceT=(ht-at)/WDUR;
+        if(entranceT<1){
+          if(w===climax){
+            MK.animatePop(w,ht,at,WDUR);
+          } else {
+            var e=MK.smoothIn(MK.clamp01(entranceT));
+            w.style.opacity=String(e);
+            w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+          }
         } else {
-          var e=MK.smoothIn(MK.clamp01((ht-at)/WDUR));
-          w.style.opacity=String(e);
-          w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+          // Entrance is done — hold the word fully revealed and let its own matched
+          // narration window (if any) pop/brighten it in place. This is what replaces
+          // the separate word-by-word caption track for this style (see
+          // MK.animateWordEmphasis's header and channel/motion-recipes.md recipe 6).
+          w.style.opacity='1';
+          var win=windows[i];
+          MK.animateWordEmphasis(w,t,win?win[0]:null,win?win[1]:null);
         }
       }
       if(climaxIndex>=0){
@@ -323,9 +331,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       }
     };
   }
-  var renderHookA=makeHook('hookKbA','hookH2A');
-  var renderHookB=makeHook('hookKbB','hookH2B');
-  var renderHookC=makeHook('hookKbC','hookH2C');
+  var renderHookA=makeHook('hookKbA','hookH2A',0);
+  var renderHookB=makeHook('hookKbB','hookH2B',1);
+  var renderHookC=makeHook('hookKbC','hookH2C',2);
 
   // Zoom-through transition (motion-recipes.md recipe 4) between every scene,
   // resolved PER SCENE from its own in/out transition windows — NOT as
@@ -383,12 +391,6 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     photobgB.style.transform=MK.kenBurns(t-(+scenes[1].dataset.in),+scenes[1].dataset.out-(+scenes[1].dataset.in),KB_B);
     photobgC.style.transform=MK.kenBurns(t-(+scenes[2].dataset.in),+scenes[2].dataset.out-(+scenes[2].dataset.in),KB_C);
 
-    // ---- karaoke.py's exact target block — do not reformat this, its regex/string
-    // replace in export/karaoke.py matches this literally, character for character,
-    // same as video/reel-template.html's own copy of it. ----
-    var i;
-    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
-    subs.innerHTML=txt;
     prog.style.width=(t/DUR*100)+'%';
     seek.value=t; cur2.textContent=fmt(t);
   }

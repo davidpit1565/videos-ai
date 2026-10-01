@@ -299,10 +299,21 @@ the closing-only asset.
 
 David's same message also raised the on-screen headline duplicating the word-by-word
 caption track below it (the same sentence visible twice at once) and proposed a single
-fixed headline with per-word pop emphasis instead — agreed as correct in direction, but
-this is the markup-safe word-splitter CLAUDE.md's own `motion-recipes.md` already flags as
-a known, not-yet-built gap (recipes 1-3), not a quick fix. Not done in this round; sized as
-real follow-on engineering work, tracked separately from this episode's ship.
+fixed headline with per-word pop emphasis instead — agreed as correct in direction, sized
+as real follow-on engineering work rather than a quick fix, and tracked separately from
+this episode's ship.
+
+**Built the same session, after episode 54 itself shipped**: `channel/motion-recipes.md`
+recipe 6 (spoken-word emphasis), `MK.animateWordEmphasis` in `export/motion-kit.js`, and
+`export/headline_sync.py` — a new script parallel to `karaoke.py` that aligns each
+scene's own headline text against real Whisper word stamps and drives the headline's
+words directly, with no second caption track. Wired into `video/reel-template-photo.html`
+(which no longer has a `.subs` div at all for this style) and verified with a standalone
+test build: safe-area clean, and each word's actual computed style read back at several
+timestamps to confirm it emphasizes only inside its own matched window. **Not applied to
+this episode's own shipped file** — episode 54 was not re-rendered a fourth time in this
+round; the next real photo-composite episode built from the template is the first real
+test of this recipe end to end, per `motion-recipes.md`'s own standing for new recipes.
 
 ## Production status — finished, full account
 
