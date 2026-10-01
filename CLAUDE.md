@@ -145,14 +145,20 @@ been running for days.
   shipped with these reversed — a real bug, caught by David watching the picture, not by
   any automated check. Verify the CUES order and the matching scene text before shipping,
   the same way the handle text gets checked against this file rather than the last episode.
-- **The two closing-CTA scenes share one locked background photo,
-  `channel/assets/canon-closing-photo.png`, standing across every future episode —
-  mirroring the locked-audio-clip pattern above.** Decided 30.9.2026 after episode 54
-  first shipped with its ending repeating one scene's photo three times running: rotate
-  whatever photo the rest of that episode uses for every other scene, but the two closing
-  lines always render over this same fixed photo, so they never compete with each other or
-  with the episode's own color/mood choice, and never repeat whatever an earlier scene
-  already used.
+- **The two closing-CTA scenes always share ONE locked background photo — but that
+  photo is chosen per episode, from that episode's own real photos (or newly
+  sourced to fit), never a single file hardcoded across every future episode.**
+  Decided 30.9.2026 after episode 54 first shipped with its ending repeating one
+  scene's photo three times running — fixed first with a dedicated cross-episode
+  asset (`channel/assets/canon-closing-photo.png`), which David then corrected
+  (1.10.2026, his own words): a fixed file reused identically forever is "the same
+  thing, not according to the video" — the two closing scenes must still read as
+  this episode's own ending, not a franchise slate. Episode 54 now points its
+  closing scenes straight at its own `ep54-scene-a-videocall.png` (the same photo
+  scene 1 opens on — a deliberate bookend, not a leftover default); the canon file
+  was removed. Pick a fitting photo per episode, lock it across both closing
+  scenes (still static Ken Burns per the rule below — they're one continuous shot),
+  and never repeat whatever an earlier scene in that same episode already used.
 - **A photo-composite scene reusing the SAME photo file as the scene right before it holds
   Ken Burns fully static (scale 1.00, no pan) — never re-zoom/re-pan on a photo that never
   actually changed.** Decided 1.10.2026, David's own words after watching episode 54's
@@ -294,6 +300,13 @@ honest about what we actually know.
 - Reels render with `FRAMES=1 ./export/render.sh <build> 1080 1920 <seconds> <vo.wav> <out.mp4> [music.wav]`
   — frame-by-frame capture, because recorded playback drifted up to two seconds.
 - Music is generated to the exact length: `python3 audio/build_music.py <seconds> <out.wav>`.
+  **`render.sh`'s `[music.wav]` argument is the last positional argument and easy to
+  silently drop** — confirmed the hard way on episode 54's own iteration rounds: every
+  re-render across several rounds of fixes omitted it, so three shipped versions in a
+  row had no music at all, and `check.sh` has no check that catches a silent music
+  track, so nothing flagged it. If a build's duration changes (a re-time, a re-cut), the
+  existing music file is now the WRONG LENGTH too — regenerate it at the new exact
+  duration before the next render, don't reuse a stale file or skip it.
 - Nothing with his voice in it is delivered before `audio/voice_doctor.py` runs on it, and a
   `BAD` finding blocks the delivery. `--repair` levels and evens sibilance, iterating until
   a pass finds nothing.

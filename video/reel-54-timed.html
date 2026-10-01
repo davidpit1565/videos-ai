@@ -204,7 +204,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
      fully static (same as S8): the two closing scenes are one locked shot, not two
      independent zooms on the same photo. -->
 <section class="scene" data-in="31.59" data-out="33.82"
-  data-photo="channel/assets/canon-closing-photo.png" data-grad-alpha="0.76"
+  data-photo="channel/assets/ep54-scene-a-videocall.png" data-grad-alpha="0.76"
   data-kb-scale="1.00" data-kb-x="0" data-kb-y="0">
   <div class="photobg"></div>
   <div class="grain" data-decor></div>
@@ -214,7 +214,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <!-- S8 CTA2 — the true final line. -->
 <section class="scene" data-in="33.82" data-out="36.65"
-  data-photo="channel/assets/canon-closing-photo.png" data-grad-alpha="0.76"
+  data-photo="channel/assets/ep54-scene-a-videocall.png" data-grad-alpha="0.76"
   data-kb-scale="1.00" data-kb-x="0" data-kb-y="0">
   <div class="photobg"></div>
   <div class="grain" data-decor></div>
@@ -286,11 +286,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var hookRenderers=scenes.map(function(scene,sceneIdx){
     var h2=scene.querySelector('[data-hook]');
     var kb=scene.querySelector('.kb');
-    var split=MK.splitWordsSafe(h2);
-    var climax=null;
-    for(var i=0;i<split.words.length;i++){
-      if(split.words[i].classList.contains('box')){ climax=split.words[i]; break; }
-    }
+    // explodeBoxes:true — a multi-word climax phrase builds word by word like the
+    // rest of the sentence instead of popping in as one instant block. Real
+    // feedback on this episode's own render: several scenes' box phrases run
+    // 8-11 words, and a single atomic pop on that much text reads as a slab
+    // appearing all at once, not a climax. See motion-kit.js's splitWordsSafe().
+    var split=MK.splitWordsSafe(h2,{explodeBoxes:true});
+    var climax=split.boxWords[0]||null;
     var climaxIndex=climax?split.words.indexOf(climax):-1;
     var windows=WORD_WINDOWS[sceneIdx]||[];
     return function render(){
@@ -300,13 +302,21 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
         var w=split.words[i],at=START+i*GAP;
         var entranceT=(ht-at)/WDUR;
         if(entranceT<1){
-          if(w===climax){
-            MK.animatePop(w,ht,at,WDUR);
-          } else {
-            var e=MK.smoothIn(MK.clamp01(entranceT));
-            w.style.opacity=String(e);
-            w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
-          }
+          // A bigger, snappier pop than a plain fade — pure scale (no translateY:
+          // combining it with scale pushed a near-the-safe-line word 11px past the
+          // top tolerance, caught by safe_check.js). Same no-overshoot power3-out
+          // curve, just a wider scale range (0.82->1) to read as a real "pop."
+          var e=MK.smoothIn(MK.clamp01(entranceT));
+          w.style.opacity=String(e);
+          w.style.transform='scale('+(0.82+0.18*e).toFixed(3)+')';
+        } else if(w.classList.contains('box')){
+          // A box word is already visually distinct (accent color) and the
+          // climax word already gets its own camera-push beat below — stacking
+          // the spoken-word emphasis scale on TOP of that push compounded past
+          // the safe-area line (measured: 11px over, "Call" in scene 6, both
+          // scales landing on the same beat). Hold it at rest instead.
+          w.style.opacity='1';
+          w.style.transform='scale(1)';
         } else {
           // Entrance done — hold revealed, let the real spoken-word window (if
           // any) pop/brighten it in place. Replaces the old duplicate caption
