@@ -258,20 +258,25 @@ honest about what we actually know.
   then `export/retime.py <build> <cues.json> --out <build>-paced.html` moves every timing
   in the build to match. `--fit` on build_voice is only for a cut that genuinely may not
   move; using it for pacing is what produced seven overlapping lines in episode 02.
-- **`channel/motion-recipes.md` has five verified motion upgrades — word-by-word builds,
+- **`channel/motion-recipes.md` has six verified motion upgrades — word-by-word builds,
   a per-word text highlight (fixes a real line-wrap bug in the naive one-box version),
   a staggered contradiction reveal, zoom-through scene transitions (every episode today
   hard-cuts between scenes with zero transition, which `hyperframes-animation`'s own
-  rules call a non-negotiable gap), and one GPU-tier fragment-shatter hero beat reserved
-  for a single real reveal per episode.** Verified in isolated demos David approved one
-  at a time, then extracted into a real shared module, `export/motion-kit.js`
-  (`window.MotionKit`), re-verified with its own frame capture. **`video/reel-template.html`**
-  is the real starter build to copy for a new episode — it wires in recipe 4
-  (zoom-through transitions) universally, verified clean end-to-end with
-  `export/safe_check.js`. Recipes 1-3 (hook word-by-word, quote highlight, scoreboard
-  stagger) are still NOT wired into it — they need a word-splitter that preserves
-  existing inline markup (`<br>`, `<span class="box">`) instead of mangling it, which
-  doesn't exist yet. Don't claim a future episode uses recipes 1-3 until that lands.
+  rules call a non-negotiable gap), one GPU-tier fragment-shatter hero beat reserved
+  for a single real reveal per episode, and spoken-word emphasis on a fixed headline.**
+  Verified in isolated demos David approved one at a time, then extracted into a real
+  shared module, `export/motion-kit.js` (`window.MotionKit`), re-verified with its own
+  frame capture. **`video/reel-template.html`** is the real starter build to copy for a
+  new synthetic-style episode — recipes 1-3 (hook word-by-word, quote highlight,
+  scoreboard stagger) and recipe 4 (zoom-through transitions) are all wired in and
+  verified clean end-to-end with `export/safe_check.js`, via a markup-safe word-splitter
+  (`MK.splitWordsSafe`) that preserves existing inline markup (`<br>`,
+  `<span class="box">`) instead of mangling it. **`video/reel-template-photo.html`**
+  (the real-photo-composite style) has no separate caption track at all — recipe 6
+  drives the fixed headline's own words from real spoken-word timing
+  (`export/headline_sync.py`) instead, so the headline is never shown twice. Neither
+  template has shipped a real episode with recipes 1-3/6 yet; the next episode built
+  from each is the first real test end to end, per `motion-recipes.md`'s own standing.
 - Reels render with `FRAMES=1 ./export/render.sh <build> 1080 1920 <seconds> <vo.wav> <out.mp4> [music.wav]`
   — frame-by-frame capture, because recorded playback drifted up to two seconds.
 - Music is generated to the exact length: `python3 audio/build_music.py <seconds> <out.wav>`.

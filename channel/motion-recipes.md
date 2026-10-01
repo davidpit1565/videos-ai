@@ -253,3 +253,74 @@ safe-area or overlap violations. The same pass also carried over episode 23's `.
 transition-compounding fix (drop the per-scene push-in to 0 once the scene's own
 outgoing transition begins) into this template, so a new episode built from it doesn't
 have to rediscover that bug.
+
+---
+
+## 6. Spoken-word emphasis — replaces a duplicate caption for a fixed headline
+
+**Use for:** the real-photo-composite style (`video/reel-template-photo.html`), where
+the on-screen headline already shows the full line for the whole scene.
+
+**The real bug this fixes:** episode 54 shipped with the full headline on screen AND a
+separate word-by-word caption underneath it running the same sentence a second time —
+David's direct feedback, third round, after the episode was otherwise live. His
+proposed fix: one fixed headline, each spoken word pops/grows in place, no second
+caption track. Verified correct before building it: `grep`ping `reel-53.html` showed
+the same headline+caption duplication exists in the all-CSS synthetic style too, but
+it reads as more redundant in the photo style specifically, which is where this
+recipe is scoped for now.
+
+This was the "missing word-splitter" gap this file used to flag as not built — it
+turned out the splitter (`MK.splitWordsSafe`) already existed and was already wired
+into `video/reel-template.html`'s hook/quote/scoreboard scenes (see the "Rewiring"
+section above, step three). The actual missing piece was narrower: a way to drive
+emphasis on an ALREADY-VISIBLE headline word from the real spoken-word timing, instead
+of building a second caption track from it.
+
+```js
+// MK.animateWordEmphasis(el, t, winStart, winEnd, opts) — called once a word's own
+// entrance animation has finished. winStart/winEnd are absolute seconds (same clock
+// as data-in/data-out); null means "no matched narration word," and the word just
+// holds at rest. A short attack/decay (0.07s/0.16s default) means the pop never
+// snaps — it's a scale (1 -> ~1.12) and a brightness filter (never a color swap,
+// which would need a second color to tween through and read as a flash).
+if (entranceDone) {
+  w.style.opacity = '1';
+  MK.animateWordEmphasis(w, t, win ? win[0] : null, win ? win[1] : null);
+}
+```
+
+The timing data itself comes from `export/headline_sync.py`, a new script parallel to
+`export/karaoke.py`: it tokenizes each scene's own headline (keeping the `.box` climax
+phrase as ONE collapsed window — start of its first spoken word to end of its last —
+the same atomic-unit rule `splitWordsSafe` already applies at runtime), aligns those
+tokens against real Whisper word stamps with the exact same `align()` function
+`karaoke.py` uses, and writes the result into a `WORD_WINDOWS` array the template
+reads. One timing source feeds both the word that's lit and the word that's spoken —
+they cannot drift apart.
+
+**A real bug found building this, not a hypothetical one:** the first version of
+`headline_sync.py`'s regex for finding the `WORD_WINDOWS` placeholder was `.*?` across
+the whole file (dotall), and the template's own header comment happens to mention the
+literal text `WORD_WINDOWS=` in passing — the regex matched there instead, consuming
+everything up to some unrelated `];` much further down and silently corrupting the
+file. Fixed by anchoring the match to a whole line (`^\s*var WORD_WINDOWS=\[.*\];\s*$`
+with `re.M`, no dotall) — prose about the variable can no longer pretend to be the
+assignment itself.
+
+**Verified with a real alignment run, not just eyeballed:** built a standalone test
+copy of the template with real placeholder photos wired in, generated fake-but-
+text-matching Whisper stamps for its placeholder headlines, ran `headline_sync.py`
+against it, confirmed via `node export/safe_check.js` the result is still safe-area
+clean, and read back each word's actual computed `transform`/`filter` at several
+timestamps straight from the page (not a screenshot) to confirm each word emphasizes
+only inside its own matched window and sits at rest outside it, including the
+collapsed `.box` window spanning multiple spoken words correctly.
+
+**Status: real, tested code (`MK.animateWordEmphasis` in `export/motion-kit.js`,
+`export/headline_sync.py`), wired into `video/reel-template-photo.html` — which also
+no longer has a `.subs` div or any caption-track code at all for this style.** Not yet
+used in a shipped episode; episode 54 itself was not re-rendered with this change in
+the same round it was requested (a fourth re-ship of that episode wasn't part of what
+was asked). The next real photo-composite episode built from the template is the
+first real test of it end to end, the same standing applied to recipes 1-3 above.
