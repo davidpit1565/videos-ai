@@ -1,0 +1,423 @@
+<title>Reel 55 — Every word you say to Alexa goes straight to Amazon now.</title>
+<!--
+  Episode 55 — real-photo composite style (video/reel-template-photo.html), per
+  David's direct instruction (1.10.2026): every future episode uses real photo
+  backgrounds like episode 54, sourced via web search or generated, saved per
+  episode under channel/assets/. Second instruction applied here: simplified,
+  more natural spoken language throughout (see channel/episode-55-script.md's
+  "Language simplification pass" section).
+
+  Photos (all free, Unsplash License, no attribution required):
+  - channel/assets/ep55-scene-a-echodot.jpg — "3rd gen. black Amazon echo dot
+    speaker" by Lazar Gugleta (unsplash.com/photos/Ub4CggGYf2o). No face — ran
+    detect_photo_safe_zone.py directly (no Adobe call needed, no subject to
+    conflict with the headline zone). Used in scenes 1, 2 (adjacent reuse,
+    static Ken Burns per the standing rule) and scene 5 (non-adjacent reuse,
+    normal Ken Burns).
+  - channel/assets/ep55-scene-c-couch.jpg — "woman looking at her smartphone
+    on a couch" by Vitaly Gariev (unsplash.com/photos/qAuSGkePHV0). Used once,
+    scene 3. REAL FACE-DETECTION EXCEPTION, documented per this template's own
+    mandatory-pre-check header: ran the full Adobe pipeline
+    (image_select_subject, bodyParts:Face) — real bbox x=0.258,y=0.130,
+    w=0.497,h=0.368 (face spans y 250-957px), which conflicts with the
+    template's fixed headline zone (padding-top:27cqw ≈ 518px). Tried an
+    alternate top-weighted crop (crop=top) — the photo is a tight headshot and
+    the face still dominates the same region; re-crop could not clear the
+    conflict. Per detect_photo_safe_zone.py's own measured recommendation,
+    this ONE scene's headline zone is moved to the real "below_subject" zone
+    (padding-top overridden to 88.6cqw, matching the tool's measured y=957px
+    subject bottom) — not guessed, the exact number the tool reported. Scene
+    3's spoken line is short (2 short sentences) specifically because this
+    reduced zone only fits 2 lines at the default font.
+  - channel/assets/ep55-scene-d-grayecho.jpg — "gray Amazon Echo portable
+    speaker" by Grant Ritchie (unsplash.com/photos/n_wXNttWVGs). No face. Used
+    in scene 4.
+
+  Real Amazon Alexa logo (same SVG sourced for the previous round's build,
+  Wikimedia Commons, upload.wikimedia.org/wikipedia/commons/5/5c/
+  Amazon_Alexa_Logo_2024.svg) appears as a small badge in scene 2, positioned
+  in the lower safe area — never overlapping the headline zone.
+
+  One accent for the whole episode per this template's standing rule:
+  --accent:#EA580C (burnt orange) — distinct from every dated entry in
+  channel/used-designs.json within the last 7 days (only episode 54's
+  #06B6D4 is dated). Mood: urgent (last used solo episode 53).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ink:#0A0E14;--line:#1F2B3A;
+  --accent:#EA580C;
+  --text:#FFFFFF;--muted:#8AA0B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.scene{position:absolute;inset:0;z-index:2;will-change:opacity,transform,filter}
+.photobg{position:absolute;inset:0;z-index:0;transform-origin:center center;will-change:transform;
+  background-size:cover;background-position:center;background-repeat:no-repeat}
+@media (prefers-reduced-motion:reduce){.photobg{transition:none!important}}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;pointer-events:none;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+
+.photogradient{position:absolute;inset:0;z-index:1;pointer-events:none}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--accent);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(234,88,12,.7)}
+
+.pad{position:absolute;inset:0;z-index:2;padding:27cqw 10cqw 0;display:flex;flex-direction:column;
+  justify-content:flex-start;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:8.4cqw;line-height:1.14;letter-spacing:-.02em;
+  margin:0;text-wrap:balance;position:relative;z-index:2;color:var(--text);
+  text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.92),0 .15cqw .4cqw rgba(0,0,0,.95),0 0 5cqw rgba(0,0,0,.5)}
+h2 .wd{margin:0 .08em;transition:color .09s linear}
+h2 .wd.spoken{color:var(--accent)!important}
+h2 .wd.box.spoken{color:#fff!important}
+h2 .box{color:var(--accent);font-weight:900;background:none;border:0;padding:0;
+  border-radius:0;display:inline;transform:none;text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.95),0 0 4cqw rgba(0,0,0,.6)}
+
+/* Alexa logo badge — scene 2 only, flows naturally inside the headline's own
+   safe-zone container (.kb), right below the headline text, same pattern as
+   episode 52's .dreamlabel (in-flow, not absolutely bottom-anchored — an
+   absolute bottom position landed it in the platform's own unsafe bottom
+   band, caught by safe_check.js). */
+.logobadge{width:100%;display:flex;justify-content:center;margin-top:4cqw;
+  opacity:0;transition:opacity .3s ease}
+.logobadge.on{opacity:1}
+.logobadge svg{width:38cqw;filter:drop-shadow(0 .6cqw 2cqw rgba(0,0,0,.6))}
+.logolabel{width:100%;text-align:center;margin-top:2cqw;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.16em;text-transform:uppercase;color:#9FD6EC;
+  opacity:0;transition:opacity .3s ease}
+.logolabel.on{opacity:1}
+
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#CBD5E1;
+  text-shadow:0 .3cqw 1cqw rgba(0,0,0,.9)}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,9,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--accent);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--accent);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--accent)}
+.ctl button{background:var(--accent);color:#fff;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="prog" id="prog"></div>
+
+<!-- Scene 1 — hook. Echo Dot, no face, standard zone. -->
+<section class="scene" data-in="0" data-out="5.54">
+  <div class="photobg" id="photobgA" style="background-image:url('../channel/assets/ep55-scene-a-echodot.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.48) 0%, rgba(4,4,4,.40) 12%, rgba(4,4,4,.22) 24%, rgba(4,4,4,.06) 34%, transparent 40%, transparent 50%, rgba(4,4,4,.12) 57%, rgba(4,4,4,.42) 66%, rgba(4,4,4,.66) 76%, rgba(4,4,4,.74) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbA">
+    <h2 id="hookH2A">Every word you say to Alexa goes <span class="box">straight to Amazon</span> now.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 2 — mechanism. Same Echo Dot photo (adjacent reuse, static Ken Burns), + real Alexa logo badge. -->
+<section class="scene" data-in="5.54" data-out="10.47">
+  <div class="photobg" id="photobgB" style="background-image:url('../channel/assets/ep55-scene-a-echodot.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.48) 0%, rgba(4,4,4,.40) 12%, rgba(4,4,4,.22) 24%, rgba(4,4,4,.06) 34%, transparent 40%, transparent 50%, rgba(4,4,4,.12) 57%, rgba(4,4,4,.42) 66%, rgba(4,4,4,.66) 76%, rgba(4,4,4,.74) 100%)"></div>
+  <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbB">
+    <h2 id="hookH2B">Your Echo used to keep your voice at home. <span class="box">In 2025, Amazon took that away.</span></h2>
+  <div class="logobadge" id="logoBadge">
+    <svg viewBox="0 0 242.67062 155.19994" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(14.228931,-67.520972)" fill="#008bd6">
+        <path d="m 6.4105675,171.40025 c -0.967366,0.76383 -1.1710532,2.03637 -0.6109651,3.81864 0.5091284,1.57837 1.7055858,3.53818 3.5893996,5.88037 7.585912,9.36831 16.623052,17.15777 27.111255,23.36934 10.488202,6.21156 21.714859,10.79354 33.679501,13.74642 12.015368,3.00407 24.285355,4.50589 36.809932,4.50589 16.03789,0 31.31195,-2.34172 45.82219,-7.02613 14.51023,-4.63318 26.62754,-11.15009 36.3524,-19.55069 3.41088,-3.00361 5.11656,-5.39653 5.11656,-7.17879 0,-0.66188 -0.27997,-1.32378 -0.8399,-1.98565 -0.76383,-0.76335 -1.68034,-1.01795 -2.74948,-0.76335 -1.06916,0.25413 -2.57097,0.89065 -4.50589,1.90908 -9.31711,4.88779 -20.67059,8.78252 -34.06094,11.68468 -13.33915,2.95286 -27.26408,4.4293 -41.7743,4.4293 -17.972332,0 -35.333976,-2.44365 -52.084475,-7.33146 -16.750499,-4.88779 -31.591918,-12.52459 -44.523788,-22.91084 -1.883704,-1.47644 -3.411351,-2.41878 -4.5822114,-2.82606 -1.1200798,-0.40727 -2.0365275,-0.3307 -2.7492881,0.22925 z"/>
+        <path d="m 176.10176,175.2232 c -1.06916,1.01842 -1.34913,2.08759 -0.83991,3.20795 0.35655,0.81455 1.04379,1.27256 2.06223,1.3745 1.01794,0.15267 2.46902,0.0507 4.35273,-0.30533 3.05482,-0.66189 6.23694,-1.12037 9.54635,-1.37499 3.30942,-0.20339 6.1862,-0.15266 8.62985,0.15267 2.44414,0.35655 3.97132,0.9677 4.58246,1.83299 0.91649,1.37498 0.58532,4.27663 -0.99306,8.70643 -1.52716,4.42931 -3.61476,8.73132 -6.26229,12.9065 -1.01843,1.67982 -1.6291,3.0036 -1.83298,3.9713 -0.2034,0.96721 0.0513,1.78177 0.76381,2.44365 0.45801,0.45801 0.96722,0.68725 1.52717,0.68725 1.47692,0 3.61523,-1.2984 6.41545,-3.89473 5.04046,-4.37857 8.57864,-9.5717 10.6155,-15.57939 1.1199,-3.10602 1.80715,-6.36423 2.06175,-9.7756 0.25461,-3.41088 -0.12729,-5.85501 -1.14574,-7.33145 -0.96722,-1.4257 -3.10554,-2.59681 -6.41496,-3.51282 -3.25821,-0.91649 -6.54226,-1.37497 -9.85168,-1.37497 -6.46618,0 -12.60116,1.52764 -18.40497,4.58246 -2.13831,1.17109 -3.74206,2.26563 -4.81171,3.28358 z"/>
+        <path d="m 3.937473,153.05945 c -10.8276585,0 -18.166404,-7.69967 -18.166404,-19.12887 0,-13.83534 10.8276584,-22.49745 27.91129,-22.49745 3.007682,0 4.812294,0.12027 6.255973,0.48123 v -1.4437 c 0,-7.94027 -2.76706,-11.669805 -8.541816,-11.669805 -4.571672,0 -7.8199627,2.646765 -9.0230328,7.338745 -0.3609334,1.44369 -1.2030838,2.16553 -2.40615396,1.92492 L -10.619707,106.1396 c -1.443692,-0.24061 -2.045221,-1.20307 -1.684301,-2.64676 2.6467626,-10.707349 11.66980908,-16.722714 24.783297,-16.722714 15.519628,0 23.700524,8.541816 23.700524,24.542684 v 38.37802 c 0,1.20308 -0.842151,2.04523 -1.92491,2.04523 h -9.985508 c -1.20307,0 -1.924909,-0.72185 -2.165532,-2.04523 l -1.563989,-7.09812 h -0.72184 c -2.887385,6.7372 -8.541815,10.46674 -15.880561,10.46674 z m 6.255973,-12.15104 c 6.376284,0 9.744886,-5.77475 9.744886,-16.48209 v -3.84984 c -1.20307,-0.24062 -2.526452,-0.36093 -3.97013,-0.36093 -8.3012075,0 -13.4744214,4.45137 -13.4744214,11.79012 0,5.41382 3.0076822,8.90274 7.6996654,8.90274 z"/>
+        <path d="M 47.713164,67.520972 H 60.22511 c 1.082773,0 1.924923,0.962459 1.924923,2.16553 v 80.004328 c 0,1.20308 -0.84215,2.04523 -1.924923,2.04523 H 47.713164 c -1.082773,0 -1.804612,-0.84215 -1.804612,-2.04523 V 69.686502 c 0,-1.203071 0.721839,-2.16553 1.804612,-2.16553 z"/>
+        <path d="m 97.640672,86.770126 c 15.519628,0 26.226978,13.594734 26.226978,32.723584 v 3.12799 c 0,1.32339 -0.84215,2.04522 -1.92491,2.04522 H 86.93333 c 0.721839,10.34643 4.210752,15.63994 10.707342,15.63994 4.691978,0 8.421508,-2.16551 9.744888,-8.06058 0.24061,-1.32338 0.96245,-1.8046 2.16553,-1.56399 l 11.42919,2.52645 c 1.20307,0.24062 1.80461,1.08277 1.32338,2.40614 -3.84984,11.30889 -12.75257,17.44457 -24.662988,17.44457 -16.482098,0 -27.670676,-13.2338 -27.670676,-32.72359 0,-19.48978 11.4292,-33.565734 27.670676,-33.565734 z m 9.744888,27.189454 c -0.84215,-9.50428 -4.09046,-14.436872 -9.744888,-14.436872 -5.534142,0 -9.383961,5.173202 -10.587045,14.436872 z"/>
+        <path d="m 139.65129,151.73606 c 0.72185,0 1.6843,-0.60154 1.92492,-1.20308 l 9.14335,-20.0913 h 0.48123 l 9.02304,19.73038 c 0.36092,0.84215 1.4437,1.564 2.40616,1.564 h 12.51194 c 1.4437,0 2.16554,-1.08277 1.4437,-2.40615 l -15.27902,-29.8362 14.55716,-28.75344 c 0.72186,-1.443678 0,-2.526451 -1.56399,-2.526451 h -11.91041 c -0.84215,0 -1.68431,0.601542 -2.04523,1.323381 l -8.54181,18.52732 h -0.48123 l -8.54182,-18.647631 c -0.24061,-0.601528 -1.20307,-1.20307 -1.92491,-1.20307 h -12.99319 c -1.56399,0 -2.28584,1.082773 -1.56399,2.526451 l 14.43687,28.63313 -15.15872,29.83621 c -0.72184,1.32337 0,2.52645 1.564,2.52645 z"/>
+        <path d="m 196.19936,153.05945 c -10.82766,0 -18.1664,-7.69967 -18.1664,-19.12887 0,-13.83534 10.82765,-22.49745 27.91129,-22.49745 3.00768,0 4.81228,0.12027 6.25597,0.48123 v -1.4437 c 0,-7.94027 -2.76708,-11.669805 -8.54182,-11.669805 -4.57167,0 -7.81997,2.646765 -9.02304,7.338745 -0.36092,1.44369 -1.20307,2.16553 -2.40614,1.92492 l -10.58704,-1.92492 c -1.44369,-0.24061 -2.04523,-1.20307 -1.6843,-2.64676 2.64675,-10.707349 11.66979,-16.722714 24.78328,-16.722714 15.51964,0 23.70054,8.541816 23.70054,24.542684 v 38.37802 c 0,1.20308 -0.84215,2.04523 -1.92492,2.04523 h -9.9855 c -1.20307,0 -1.92492,-0.72185 -2.16553,-2.04523 l -1.56399,-7.09812 h -0.72185 c -2.88737,6.7372 -8.54182,10.46674 -15.88055,10.46674 z m 6.25597,-12.15104 c 6.37629,0 9.74489,-5.77475 9.74489,-16.48209 v -3.84984 c -1.20307,-0.24062 -2.52645,-0.36093 -3.97015,-0.36093 -8.30119,0 -13.4744,4.45137 -13.4744,11.79012 0,5.41382 3.00768,8.90274 7.69966,8.90274 z"/>
+      </g>
+    </svg>
+  </div>
+  <div class="logolabel" id="logoLabel">amazon.com · march 2025 · alexa</div>
+  </div></div>
+</section>
+
+<!-- Scene 3 — before/after. Couch-woman photo. DOCUMENTED EXCEPTION: padding-top
+     overridden to 88.6cqw (measured below_subject zone start, not guessed) because
+     this photo's real detected face (y 250-957px) conflicts with the standard
+     27cqw zone and a re-crop attempt could not clear it (see file header). -->
+<section class="scene" data-in="10.47" data-out="16.29">
+  <div class="photobg" id="photobgC" style="background-image:url('../channel/assets/ep55-scene-c-couch.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.30) 0%, rgba(4,4,4,.22) 30%, rgba(4,4,4,.10) 45%, transparent 55%, rgba(4,4,4,.30) 75%, rgba(4,4,4,.62) 88%, rgba(4,4,4,.78) 100%)"></div>
+  <div class="pad" style="padding-top:88.6cqw"><div class="kb" id="hookKbC">
+    <h2 id="hookH2C" style="font-size:7.6cqw">Until 2025, you could switch this off. <span class="box">Now, you can't.</span></h2>
+  </div></div>
+</section>
+
+<!-- Scene 4 — the fix. Gray Echo (real Amazon logo visible on fabric), no face, standard zone. -->
+<section class="scene" data-in="16.29" data-out="22.775">
+  <div class="photobg" id="photobgD" style="background-image:url('../channel/assets/ep55-scene-d-grayecho.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.68) 0%, rgba(4,4,4,.58) 12%, rgba(4,4,4,.34) 24%, rgba(4,4,4,.10) 34%, transparent 40%, transparent 50%, rgba(4,4,4,.18) 57%, rgba(4,4,4,.56) 66%, rgba(4,4,4,.82) 76%, rgba(4,4,4,.88) 100%)"></div>
+  <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbD">
+    <h2 id="hookH2D" style="font-size:7.2cqw">Switch on voice deletion in the Alexa app. Then say: <span class="box">Alexa, delete everything I said today.</span></h2>
+  </div></div>
+</section>
+
+<!-- Scene 5 — send-it. Echo Dot photo again (non-adjacent reuse, normal Ken Burns). -->
+<section class="scene" data-in="22.775" data-out="27.27">
+  <div class="photobg" id="photobgE" style="background-image:url('../channel/assets/ep55-scene-a-echodot.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.48) 0%, rgba(4,4,4,.40) 12%, rgba(4,4,4,.22) 24%, rgba(4,4,4,.06) 34%, transparent 40%, transparent 50%, rgba(4,4,4,.12) 57%, rgba(4,4,4,.42) 66%, rgba(4,4,4,.66) 76%, rgba(4,4,4,.74) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbE">
+    <h2 id="hookH2E">If this is new to you, <span class="box">send it</span> to someone you know who has an Echo.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 6 — CTA1 (locked line). Reuses gray Echo photo, static look. -->
+<section class="scene" data-in="27.27" data-out="29.5">
+  <div class="photobg" id="photobgF" style="background-image:url('../channel/assets/ep55-scene-d-grayecho.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.68) 0%, rgba(4,4,4,.58) 12%, rgba(4,4,4,.34) 24%, rgba(4,4,4,.10) 34%, transparent 40%, transparent 50%, rgba(4,4,4,.18) 57%, rgba(4,4,4,.56) 66%, rgba(4,4,4,.82) 76%, rgba(4,4,4,.88) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbF">
+    <h2 id="hookH2F">The setup's in the link in bio.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 7 — CTA2 (locked line). Same photo as scene 6 (adjacent reuse, static Ken Burns). -->
+<section class="scene" data-in="29.5" data-out="32.13">
+  <div class="photobg" id="photobgG" style="background-image:url('../channel/assets/ep55-scene-d-grayecho.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.68) 0%, rgba(4,4,4,.58) 12%, rgba(4,4,4,.34) 24%, rgba(4,4,4,.10) 34%, transparent 40%, transparent 50%, rgba(4,4,4,.18) 57%, rgba(4,4,4,.56) 66%, rgba(4,4,4,.82) 76%, rgba(4,4,4,.88) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbG">
+    <h2 id="hookH2G">Follow for the setup that <span class="box">actually works</span>.</h2>
+  </div></div>
+</section>
+
+<div class="handle" data-decor>@actually_works.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="34.00" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+</div>
+
+<script src="../export/motion-kit.js"></script>
+<script>
+(function(){
+  var MK=window.MotionKit;
+  var DUR=32.43,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+
+  var CUES=[
+    [0.30,5.33,"Every word you say to Alexa goes straight to Amazon now. You can't keep it private."],
+    [5.75,10.26,"Your Echo used to keep your voice at home. In 2025, Amazon took that away."],
+    [10.68,16.08,"Until 2025, you could switch this off. Now, you can't. It's just how Alexa works."],
+    [16.50,22.35,"Switch on voice deletion in the Alexa app. Then say: Alexa, delete everything I said today."],
+    [23.20,27.06,"If this is new to you, send it to someone you know who has an Echo."],
+    [27.48,29.29,"The setup's in the link in bio."],
+    [29.71,31.93,"Follow for the setup that actually works."]
+  ];
+  var WORD_WINDOWS=[
+    new Array(11).fill(null),
+    new Array(17).fill(null),
+    new Array(10).fill(null),
+    new Array(18).fill(null),
+    new Array(15).fill(null),
+    new Array(7).fill(null),
+    new Array(7).fill(null)
+  ];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  var photobgA=document.getElementById('photobgA');
+  var photobgB=document.getElementById('photobgB');
+  var photobgC=document.getElementById('photobgC');
+  var photobgD=document.getElementById('photobgD');
+  var photobgE=document.getElementById('photobgE');
+  var photobgF=document.getElementById('photobgF');
+  var photobgG=document.getElementById('photobgG');
+  // Scene 2 reuses scene 1's exact photo (adjacent) -> fully static, no pan/zoom,
+  // per the standing rule (a second Ken Burns on an unchanged photo reads as a
+  // reset/jump, not a continuation). Scene 7 reuses scene 6's exact photo
+  // (adjacent) -> same rule, static.
+  var KB_A={toScale:1.08,toX:0,toY:0.6};
+  var KB_B={toScale:1.00,toX:0,toY:0};
+  var KB_C={toScale:1.06,toX:0.3,toY:-0.4};
+  var KB_D={toScale:1.20,toX:0,toY:1.3};
+  var KB_E={toScale:1.08,toX:-0.3,toY:0.4};
+  var KB_F={toScale:1.05,toX:0,toY:0.3};
+  var KB_G={toScale:1.00,toX:0,toY:0};
+
+  function makeHook(kbId,h2Id,sceneIdx){
+    var kb=document.getElementById(kbId);
+    var h2=document.getElementById(h2Id);
+    var scene=h2.closest('.scene');
+    var split=MK.splitWordsSafe(h2,{explodeBoxes:true});
+    var climax=split.boxWords[0]||null;
+    var climaxIndex=climax?split.words.indexOf(climax):-1;
+    var windows=WORD_WINDOWS[sceneIdx]||[];
+    return function render(){
+      var ht=t-(+scene.dataset.in);
+      var START=0.15,GAP=0.10,WDUR=0.30;
+      for(var i=0;i<split.words.length;i++){
+        var w=split.words[i],at=START+i*GAP;
+        var entranceT=(ht-at)/WDUR;
+        if(entranceT<1){
+          var e=MK.smoothIn(MK.clamp01(entranceT));
+          w.style.opacity=String(e);
+          w.style.transform='scale('+(0.82+0.18*e).toFixed(3)+')';
+        } else {
+          w.style.opacity='1';
+          w.style.transform='scale(1)';
+          var win=windows[i];
+          MK.animateWordEmphasis(w,t,win?win[0]:null,win?win[1]:null);
+        }
+      }
+      if(climaxIndex>=0){
+        var climaxAt=START+climaxIndex*GAP;
+        var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.98,pushAt:climaxAt,pushDur:0.9,pushTo:1.05});
+        kb.style.transform='scale('+camScale.toFixed(4)+')';
+      }
+    };
+  }
+  var renderHookA=makeHook('hookKbA','hookH2A',0);
+  var renderHookB=makeHook('hookKbB','hookH2B',1);
+  var renderHookC=makeHook('hookKbC','hookH2C',2);
+  var renderHookD=makeHook('hookKbD','hookH2D',3);
+  var renderHookE=makeHook('hookKbE','hookH2E',4);
+  var renderHookF=makeHook('hookKbF','hookH2F',5);
+  var renderHookG=makeHook('hookKbG','hookH2G',6);
+
+  var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
+  function renderScene(i){
+    var scene=scenes[i];
+    var prev=i>0?scenes[i-1]:null;
+    var next=i<scenes.length-1?scenes[i+1]:null;
+    var outTime=+scene.dataset.out;
+    var inStart=-Infinity, inEndsAt=-Infinity;
+    if(prev){
+      var prevOutStart=+prev.dataset.out-OUT_DUR;
+      inStart=prevOutStart+IN_OFFSET;
+      inEndsAt=inStart+IN_DUR;
+    }
+    var outStart=next?outTime-OUT_DUR:Infinity;
+
+    var opacity,scale,blur;
+    if(prev && t<inStart){
+      opacity=0; scale=0.94; blur=5;
+    } else if(prev && t<inEndsAt){
+      var ie=MK.smoothIn(MK.clamp01((t-inStart)/IN_DUR));
+      opacity=ie; scale=0.94+0.06*ie; blur=5*(1-ie);
+    } else if(next && t>=outStart && t<outTime){
+      var oe=MK.smoothIn(MK.clamp01((t-outStart)/OUT_DUR));
+      opacity=1-oe; scale=1+0.16*oe; blur=5*oe;
+    } else if(next && t>=outTime){
+      opacity=0; scale=1.16; blur=5;
+    } else {
+      opacity=1; scale=1; blur=0;
+    }
+    scene.style.opacity=String(opacity);
+    scene.style.transform='scale('+scale.toFixed(4)+')';
+    scene.style.filter='blur('+blur.toFixed(1)+'px)';
+  }
+  function renderTransitions(){
+    for(var i=0;i<scenes.length;i++) renderScene(i);
+  }
+
+  var logoBadge=document.getElementById('logoBadge'), logoLabel=document.getElementById('logoLabel');
+  var logoScene=logoBadge.closest('.scene');
+  function renderLogo(){
+    var lt=t-(+logoScene.dataset.in);
+    var on=lt>=1.0 && t<+logoScene.dataset.out;
+    logoBadge.classList.toggle('on',on);
+    logoLabel.classList.toggle('on',on);
+  }
+
+  function render(){
+    renderTransitions();
+    renderHookA();renderHookB();renderHookC();renderHookD();renderHookE();renderHookF();renderHookG();
+    renderLogo();
+
+    photobgA.style.transform=MK.kenBurns(t-(+scenes[0].dataset.in),+scenes[0].dataset.out-(+scenes[0].dataset.in),KB_A);
+    photobgB.style.transform=MK.kenBurns(t-(+scenes[1].dataset.in),+scenes[1].dataset.out-(+scenes[1].dataset.in),KB_B);
+    photobgC.style.transform=MK.kenBurns(t-(+scenes[2].dataset.in),+scenes[2].dataset.out-(+scenes[2].dataset.in),KB_C);
+    // Scene D uses a plain LINEAR zoom/pan instead of MK.kenBurns()'s eased curve.
+    // kenBurns()'s smoothIn ease has near-zero velocity by the end of its own
+    // duration — fine for a short scene, but scene D runs ~6.5s (more words than
+    // any other scene here), long enough that the eased tail sat still for a real
+    // ~4s, caught as [BLOCKER] picture frozen by export/qa.py. qa.py measures at a
+    // downscaled 160x284 (not full 1080x1920) specifically to judge *perceptible*
+    // motion, not pixel-level noise — verified directly: the eased version measured
+    // 0.15-0.26 mean diff there (below its 0.35 floor) despite being 0.6-0.9 at full
+    // res. A constant-velocity linear ramp keeps that downscaled diff enough across
+    // the whole scene, tail included, instead of decaying to near-zero.
+    (function(){
+      var dIn=+scenes[3].dataset.in, dOut=+scenes[3].dataset.out;
+      var raw=MK.clamp01((t-dIn)/(dOut-dIn));
+      var scale=1.0+0.34*raw, y=2.6*raw;
+      photobgD.style.transform='scale('+scale.toFixed(4)+') translate(0%,'+y.toFixed(3)+'%)';
+    })();
+    photobgE.style.transform=MK.kenBurns(t-(+scenes[4].dataset.in),+scenes[4].dataset.out-(+scenes[4].dataset.in),KB_E);
+    photobgF.style.transform=MK.kenBurns(t-(+scenes[5].dataset.in),+scenes[5].dataset.out-(+scenes[5].dataset.in),KB_F);
+    photobgG.style.transform=MK.kenBurns(t-(+scenes[6].dataset.in),+scenes[6].dataset.out-(+scenes[6].dataset.in),KB_G);
+
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>

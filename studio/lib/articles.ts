@@ -1487,6 +1487,35 @@ export const ARTICLES: Article[] = [
       "No visual test is currently reliable against the most advanced real-time deepfake tools, per the cited experts — the callback-on-a-known-number step is the part of this guide with no known bypass, and it's the one to actually rely on.",
     ],
   },
+  {
+    n: 55,
+    title: "Amazon shut off the setting that kept your Echo's voice off its servers — here's the one fix that's left",
+    standfirst:
+      "Until March 28, 2025, some Echo devices had a setting called \"Do Not Send Voice " +
+      "Recordings\" that kept voice processing on the device itself. Amazon discontinued it " +
+      "outright, in its own words, to free up cloud power for Alexa's new AI features — and " +
+      "as of May 2026 there is still no setting that keeps a voice request off Amazon's " +
+      "servers. There is a real, current fix for what happens to recordings afterward: one " +
+      "toggle in the Alexa app that makes \"Alexa, delete everything I said today\" actually work.",
+    steps: [
+      "Open the Alexa app on your phone (אפליקציית Alexa). Tap More (עוד) in the bottom-right corner, then Settings (הגדרות).",
+      "Tap Alexa Privacy (פרטיות Alexa), then Manage Your Alexa Data (ניהול הנתונים שלך ב-Alexa), then Voice Recordings (הקלטות קוליות).",
+      "Find \"Enable Deletion by Voice\" (אפשר מחיקה בקול) and turn the toggle on. This is the step that actually matters — without it, the voice command below does nothing.",
+      "From then on, any time you want that day's recordings gone, just say it out loud to any Echo device: \"Alexa, delete everything I said today.\" You can also say \"Alexa, delete what I just said\" for a single request, or \"Alexa, delete my entire voice history\" to clear everything on file.",
+      "Optional: in the same Voice Recordings screen, set an auto-delete window (3 months or 18 months) so recordings clear themselves going forward, instead of relying on remembering to say the command.",
+      "There is no app setting that stops the recording from reaching Amazon's servers in the first place — the only control that does that is the physical mute button on top of the device, which disables the microphone entirely.",
+    ],
+    changes: [
+      "Verified live (1.10.2026): Amazon's discontinuation of \"Do Not Send Voice Recordings,\" effective March 28, 2025, is Amazon's own wording in a customer email, quoted directly by Gizmodo (March 2025) — \"we have decided to no longer support this feature,\" citing the cloud processing power Alexa's generative-AI features require.",
+      "Checked for staleness, not assumed current from a 2025 source alone: a May 2026 source (ghostshield.ai) describing today's Alexa privacy controls lists only auto-delete windows and opting out of human review as available — no on-device or cloud-block option, because none exists anymore.",
+      "The deletion-by-voice fix itself was cross-checked across Amazon's own customer-service page and independent how-tos (TechRadar, ExpressVPN, Tom's Guide) rather than a single source, specifically because the command does nothing at all until the toggle is turned on first — a viewer who skipped that step would reasonably conclude the whole trick doesn't work.",
+    ],
+    limits: [
+      "This does not stop your voice request from being sent to Amazon's servers — that capability was removed in March 2025 and nothing in the app restores it. It only lets you delete recordings after the fact.",
+      "The voice-delete commands only work after \"Enable Deletion by Voice\" has been turned on in the app. Said before that, they're just ignored.",
+      "The physical mute button is the only thing that blocks a recording from being made (and sent) in the first place — it is not a substitute for the deletion toggle, and vice versa.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

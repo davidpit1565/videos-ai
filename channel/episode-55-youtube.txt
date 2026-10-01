@@ -1,0 +1,11 @@
+Every word you say to Alexa goes straight to Amazon now.
+
+Until March 28, 2025, some Echo devices (Echo Dot, Echo Show 10, Echo Show 15) had a setting called "Do Not Send Voice Recordings" that kept voice processing on the device itself. Amazon discontinued it outright — in its own email to customers, quoted by Gizmodo, Amazon said: "we have decided to no longer support this feature," pointing to the cloud processing power Alexa's new generative-AI features need. As of May 2026 sources describing current Alexa privacy controls, there is still no setting that keeps a voice request off Amazon's servers — only auto-delete windows and opting out of human review. The one control that still blocks it completely is the physical mute button.
+
+There is a real, current fix for what happens to recordings after the fact, verified across Amazon's own customer-service page and independent how-tos (TechRadar, ExpressVPN, Tom's Guide): in the Alexa app, under Settings → Alexa Privacy → Manage Your Alexa Data → Voice Recordings, turn on "Enable Deletion by Voice" once. After that toggle is on, saying "Alexa, delete everything I said today" (or "delete what I just said," or "delete my entire voice history") actually deletes those recordings. Without enabling that toggle first, the voice command does nothing — it fails silently, which is why the video says to turn it on first rather than skipping straight to the command.
+
+Full setup, sourced exactly, with the exact steps to try this yourself: https://actually-works.com/e/55
+
+Follow for the setup that actually works.
+
+#alexa #amazonecho #privacy #smartspeaker #voiceassistant #datadeletion #smarthome
