@@ -256,11 +256,32 @@ worse problem than it solved and was reverted.
 
 ## Accent color
 
-`--accent:#9333EA` (violet), one color for the whole episode's chrome, headline and caption
-highlight, per the one-accent-per-episode rule. Checked against every hex in
-`channel/used-designs.json` (episodes 1–53) — not previously used. Recorded as episode 54's
-entry (`brass`/`ember` both set to this single accent, since the photo-composite style has
-only one `--accent` variable, not a separate pair; mood: tense).
+**Revised after shipping, per David's direct visual feedback.** The original choice,
+`--accent:#9333EA` (violet), checked clean against every prior hex in
+`channel/used-designs.json` and against the immediately prior episode's palette — but
+David watched the actual rendered frames (not the audio, just the picture) and called it
+out directly: muddy and hard to read specifically against this episode's warm-toned real
+photos (the hand-blocking-face and face-rub shots). Verified by re-rendering test frames
+at the same timestamps with the color swapped: violet (hue ~271°) sits close to
+complementary against warm skin tones (hue ~25°) with too little value contrast in this
+photo's midtones, and reads as desaturated/dull there even though it's legible on the
+episode's cooler office-background scenes. A second attempt, a warm amber (`#D97706`),
+made this *worse* — too close in hue to the skin tones, nearly blending into the photo
+rather than popping.
+
+**Final: `--accent:#06B6D4` (cyan)** — re-verified against real rendered frames from both
+the warm hand-blocking-face scene and the cool office scene, clean legible contrast on
+both, and thematically it fits a screens/digital-deception topic better than an arbitrary
+rotation would. Recorded in `channel/used-designs.json` with a `"date": "2026-09-30"`
+field (a new field, going forward, so the design-variety check can enforce "not the same
+color within 7 days," not just "not the same as the immediately prior episode" — see the
+new CLAUDE.md standing rule this same feedback produced).
+
+Separately, David flagged that scenes 4 and 5 (the trick, then the honest caveat) reused
+the exact same photo back to back and read as static — scene 5 now uses
+`ep54-scene-b-facerub.png` (already QA'd clear of the headline zone earlier in this same
+file) instead of repeating `ep54-scene-c-handface.png`, which scene 4 keeps for the trick
+itself.
 
 ## Production status — finished, full account
 

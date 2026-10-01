@@ -73,12 +73,20 @@ echo "=== [6/11] design variety check"
 DESIGNS="channel/used-designs.json"
 BRASS=$(grep -o -- '--brass:#[0-9A-Fa-f]\{6\}' "$BUILD_K" | head -1 | cut -d: -f2)
 EMBER=$(grep -o -- '--ember:#[0-9A-Fa-f]\{6\}' "$BUILD_K" | head -1 | cut -d: -f2)
+# The photo-composite style (video/reel-template-photo.html) has only one --accent
+# variable, not a --brass/--ember pair — fall back to reading that instead of skipping
+# the whole check for this style, same real coverage either way.
 if [ -z "$BRASS" ] || [ -z "$EMBER" ]; then
-  echo "  could not find --brass/--ember in $BUILD_K — skipping this check for this run"
+  ACCENT=$(grep -o -- '--accent:#[0-9A-Fa-f]\{6\}' "$BUILD_K" | head -1 | cut -d: -f2)
+  BRASS="$ACCENT"; EMBER="$ACCENT"
+fi
+if [ -z "$BRASS" ] || [ -z "$EMBER" ]; then
+  echo "  could not find --brass/--ember or --accent in $BUILD_K — skipping this check for this run"
 else
-  python3 - "$DESIGNS" "$EP" "$BRASS" "$EMBER" "$MOOD" <<'PYEOF' || exit 1
-import json, sys
-path, ep, brass, ember, mood = sys.argv[1:6]
+  TODAY=$(date -u +%Y-%m-%d)
+  python3 - "$DESIGNS" "$EP" "$BRASS" "$EMBER" "$MOOD" "$TODAY" <<'PYEOF' || exit 1
+import datetime, json, sys
+path, ep, brass, ember, mood, today = sys.argv[1:7]
 try:
     with open(path) as f:
         designs = json.load(f)
@@ -94,14 +102,34 @@ others = [d for d in designs if d["episode"] != int(ep)]
 if others:
     last = others[-1]
     if last["brass"].lower() == brass.lower() and last["ember"].lower() == ember.lower():
-        print(f"DESIGN REPEAT: episode {ep} would use the exact same brass/ember as "
+        print(f"DESIGN REPEAT: episode {ep} would use the exact same brass/ember/accent as "
               f"episode {last['episode']} ({brass}/{ember}). Change the palette before shipping.")
         sys.exit(1)
     if last.get("mood") and last["mood"] == mood:
         print(f"DESIGN REPEAT: episode {ep} would use the same music mood "
               f"('{mood}') as episode {last['episode']}. Pick a different --mood.")
         sys.exit(1)
-print(f"  ok — {brass}/{ember}, mood '{mood}', distinct from episode {others[-1]['episode'] if others else 'none shipped yet'}")
+# Decided 30.9.2026, David's own words, after episode 54's accent (violet) read as
+# muddy against that episode's own real photos: the color has to actually suit the
+# episode's content/photos, not just avoid repeating the immediately prior episode —
+# and separately, the same exact color should not come back within the same week even
+# if an episode or two used something else in between. Only entries carrying a "date"
+# (added going forward from episode 54) are checked; older undated rows are silently
+# skipped rather than guessed at.
+cutoff = datetime.date.fromisoformat(today) - datetime.timedelta(days=7)
+for d in others:
+    ds = d.get("date")
+    if not ds:
+        continue
+    if datetime.date.fromisoformat(ds) < cutoff:
+        continue
+    if d["brass"].lower() == brass.lower() and d["ember"].lower() == ember.lower():
+        print(f"DESIGN REPEAT: episode {ep}'s color ({brass}) was already used by episode "
+              f"{d['episode']} on {ds}, within the last 7 days. Pick a different color even "
+              f"though it is not the immediately prior episode.")
+        sys.exit(1)
+print(f"  ok — {brass}/{ember}, mood '{mood}', distinct from episode {others[-1]['episode'] if others else 'none shipped yet'}, "
+      f"and not reused from any dated entry in the last 7 days")
 PYEOF
 fi
 

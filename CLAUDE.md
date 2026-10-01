@@ -211,6 +211,26 @@ honest about what we actually know.
   it's ready to actually ship. Don't confuse this with permission to skip disclosure — a
   found problem still gets reported plainly — it removes the need to ask "can I continue?"
   when nothing new is actually being decided.
+- **An episode's accent color has to actually suit that episode's content and its real
+  photos/scenes — not just avoid repeating the immediately prior episode, and not the
+  same exact color twice in one week even with other episodes in between.** Decided
+  30.9.2026, David's own words, after episode 54 shipped with a violet accent
+  (`#9333EA`) that looked muddy and hard to read specifically against that episode's own
+  warm-toned real photos — legible by the numbers, but visually wrong, and only caught
+  because he looked at the actual frames, not because any automated check flagged it.
+  Before locking a color: look at it rendered against every real photo/background the
+  episode actually uses (photo-composite's warm skin tones read very differently than a
+  cool office backdrop, and a color that pops on one can go dead on the other), not just
+  its contrast ratio against the fixed text color. Pick something that suits the topic's
+  actual tone too, not a rotation for its own sake. `export/produce.sh`'s design-variety
+  check enforces the mechanical half of this: it still fails on an exact repeat of the
+  immediately prior shipped episode's color/mood, and now separately fails if the same
+  exact color appears in any *dated* `channel/used-designs.json` entry from the last 7
+  days, even with a different episode in between — add a `"date"` field (`YYYY-MM-DD`,
+  UTC) to every new entry going forward so that check has something to compare against;
+  older undated rows are skipped, not guessed at. The check cannot judge whether a color
+  actually suits the content or a given photo's tones — that part is still a real look,
+  every time, not a box to check off after the fact.
 - **`export/produce.sh <episode> <build.html> <duration> [accept_words] [bpm] [mood]` is the
   one pipeline entry point**, script_lint through render, gate, captions-must-exist, the
   design-variety check against the last episode's palette, and shipping the file itself to
