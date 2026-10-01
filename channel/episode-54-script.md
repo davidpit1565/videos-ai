@@ -283,6 +283,27 @@ the exact same photo back to back and read as static — scene 5 now uses
 file) instead of repeating `ep54-scene-c-handface.png`, which scene 4 keeps for the trick
 itself.
 
+**Third round of direct feedback, after the above shipped**: David flagged the two closing
+lines were in the wrong order, and that the ending repeated one photo three scenes running.
+Both verified true, not just taken on faith — grepped the cue order in episodes 49/51/52/53
+and confirmed all four put "The setup's in the link in bio." before "Follow for the setup
+that actually works." as the true final line; episode 54 had them reversed. And `grep -n
+"data-photo="` on the build showed `ep54-scene-a-videocall.png` used in 4 of 8 scenes,
+three of them back to back at the end. Fixed: scenes 7/8 (the two closing-CTA scenes) now
+render over one new standing asset, `channel/assets/canon-closing-photo.png` (copied from
+the already-licensed `ep54-scene-a-videocall.png`, Unsplash License, "Man in plaid shirt
+using MacBook" by LinkedIn Sales Solutions) — a locked photo for these two lines going
+forward, mirroring the existing locked-audio-clip pattern, now written up as a standing
+rule in CLAUDE.md. Scene 6 moved to `ep54-scene-b-facerub.png` so photo A is free to be
+the closing-only asset.
+
+David's same message also raised the on-screen headline duplicating the word-by-word
+caption track below it (the same sentence visible twice at once) and proposed a single
+fixed headline with per-word pop emphasis instead — agreed as correct in direction, but
+this is the markup-safe word-splitter CLAUDE.md's own `motion-recipes.md` already flags as
+a known, not-yet-built gap (recipes 1-3), not a quick fix. Not done in this round; sized as
+real follow-on engineering work, tracked separately from this episode's ship.
+
 ## Production status — finished, full account
 
 Picked up from the handback above (CPU-only Chatterbox TTS finished, ~37 CPU-minutes for

@@ -179,9 +179,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="pad"><div class="kb"><h2 data-hook>The priciest fake-face tools now fake that too. <span class="box">Passing proves nothing.</span></h2></div></div>
 </section>
 
-<!-- S6 THE REAL FIX — photo A returns -->
+<!-- S6 THE REAL FIX — photo B, not A: A is now locked for S7/S8 only, so it never
+     repeats 3 scenes running the way the first cut of this episode did. -->
 <section class="scene" data-in="41.00" data-out="50.50"
-  data-photo="channel/assets/ep54-scene-a-videocall.png" data-grad-alpha="0.76"
+  data-photo="channel/assets/ep54-scene-b-facerub.png" data-grad-alpha="0.66"
   data-kb-scale="1.06" data-kb-x="0" data-kb-y="-0.5">
   <div class="photobg"></div>
   <div class="grain" data-decor></div>
@@ -189,24 +190,25 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="pad"><div class="kb"><h2 data-hook>Hang up. <span class="box">Call them back through your own contacts.</span></h2></div></div>
 </section>
 
-<!-- S7 CTA1 -->
+<!-- S7 CTA1 — "The setup's in the link in bio." comes first here, "Follow for..."
+     is the true final line, matching every real shipped episode (49/51/52/53). -->
 <section class="scene" data-in="50.50" data-out="55.00"
-  data-photo="channel/assets/ep54-scene-a-videocall.png" data-grad-alpha="0.76"
+  data-photo="channel/assets/canon-closing-photo.png" data-grad-alpha="0.76"
   data-kb-scale="1.03" data-kb-x="0" data-kb-y="0">
   <div class="photobg"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient"></div>
-  <div class="pad"><div class="kb"><h2 data-hook>Follow for <span class="box">the setup that actually works.</span></h2></div></div>
+  <div class="pad"><div class="kb"><h2 data-hook><span class="box">The setup's in the link in bio.</span></h2></div></div>
 </section>
 
-<!-- S8 CTA2 -->
+<!-- S8 CTA2 — the true final line. -->
 <section class="scene" data-in="55.00" data-out="58.50"
-  data-photo="channel/assets/ep54-scene-a-videocall.png" data-grad-alpha="0.76"
+  data-photo="channel/assets/canon-closing-photo.png" data-grad-alpha="0.76"
   data-kb-scale="1.00" data-kb-x="0" data-kb-y="0">
   <div class="photobg"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient"></div>
-  <div class="pad"><div class="kb"><h2 data-hook><span class="box">The setup's in the link in bio.</span></h2></div></div>
+  <div class="pad"><div class="kb"><h2 data-hook>Follow for <span class="box">the setup that actually works.</span></h2></div></div>
 </section>
 
 <div class="subs" id="subs"></div>
@@ -248,8 +250,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [23.80,32.60,"Ask them to hold a few fingers up near the chin. Fake-face overlays can't hide it."],
     [33.30,40.60,"The priciest fake-face tools now fake that too. Passing proves nothing."],
     [41.30,50.10,"Hang up. Call them back through your own contacts."],
-    [50.80,54.60,"Follow for the setup that actually works."],
-    [55.30,58.10,"The setup's in the link in bio."]
+    [50.80,54.60,"The setup's in the link in bio."],
+    [55.30,58.10,"Follow for the setup that actually works."]
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}

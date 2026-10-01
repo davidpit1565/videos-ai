@@ -139,6 +139,20 @@ been running for days.
   regenerating, for every episode. Both closing lines ("Follow for the setup that
   actually works." and "The setup's in the link in bio.") are locked this way already —
   add a new line to the manifest the same way once he approves a take for it.
+- **Standing order for the two locked closing lines, every episode: "The setup's in the
+  link in bio." always comes second-to-last, "Follow for the setup that actually works."
+  is always the true final line.** Confirmed from episodes 49/51/52/53; episode 54 first
+  shipped with these reversed — a real bug, caught by David watching the picture, not by
+  any automated check. Verify the CUES order and the matching scene text before shipping,
+  the same way the handle text gets checked against this file rather than the last episode.
+- **The two closing-CTA scenes share one locked background photo,
+  `channel/assets/canon-closing-photo.png`, standing across every future episode —
+  mirroring the locked-audio-clip pattern above.** Decided 30.9.2026 after episode 54
+  first shipped with its ending repeating one scene's photo three times running: rotate
+  whatever photo the rest of that episode uses for every other scene, but the two closing
+  lines always render over this same fixed photo, so they never compete with each other or
+  with the episode's own color/mood choice, and never repeat whatever an earlier scene
+  already used.
 - `audio/speak_language.py` does the same voice in 23 languages. Flemish needs its own
   reference recording — `record/flemish-script.md`.
 
