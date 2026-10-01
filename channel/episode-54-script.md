@@ -309,11 +309,38 @@ recipe 6 (spoken-word emphasis), `MK.animateWordEmphasis` in `export/motion-kit.
 scene's own headline text against real Whisper word stamps and drives the headline's
 words directly, with no second caption track. Wired into `video/reel-template-photo.html`
 (which no longer has a `.subs` div at all for this style) and verified with a standalone
-test build: safe-area clean, and each word's actual computed style read back at several
-timestamps to confirm it emphasizes only inside its own matched window. **Not applied to
-this episode's own shipped file** — episode 54 was not re-rendered a fourth time in this
-round; the next real photo-composite episode built from the template is the first real
-test of this recipe end to end, per `motion-recipes.md`'s own standing for new recipes.
+test build first.
+
+**David then watched this round's picture and, in Hebrew, caught three more real things**:
+the closing photo still didn't read as deliberately locked (traced to the repeated-photo
+scenes each re-running their own Ken Burns zoom/pan independently — a jarring "reset," not
+a continuation); the caption still showed twice (because the fix above had only been
+proven on the template, not applied to this episode's own shipped file); and the real
+build-vs-template gap meant nothing he'd actually see had changed. Fixed for real this
+round, directly on `video/reel-54.html`:
+
+- **Ken Burns held fully static on every scene that reuses the immediately-prior scene's
+  exact photo** (scenes 3 and 6, both back-to-back repeats of scene 2's and scene 5's
+  photo respectively; scene 7 also held static to match scene 8, since the two closing
+  scenes are meant to read as one locked shot). Now a standing CLAUDE.md rule.
+- **`export/headline_sync.py` run against this episode's real Whisper alignment** (53
+  headline words across 8 scenes, 0 unmatched) and wired into the real render — the
+  duplicate caption is actually gone from the shipped file now, not just the template.
+- **A word-overlap glue bug found watching the real render, not the template demo**:
+  "fake-face" and "tools" read as "fake-facetools" in a still frame at the instant
+  "fake-face" peaked its emphasis pop. Fixed with a smaller peak scale (1.12→1.08) and a
+  small permanent word-margin, both in the shared `MK.animateWordEmphasis`/CSS so every
+  future episode gets the fix too.
+- **One scene's Ken Burns bumped slightly** (scene 2, the longest single-photo scene)
+  after removing the duplicate caption revealed it reading as a `qa.py` "nearly still"
+  warning over its 9s span — a known, disclosed, non-blocking tradeoff of dropping that
+  caption's incidental motion, not fully resolved by the bump (see `motion-recipes.md`).
+
+Re-ran the full pipeline against the real narration (no re-recording needed — the spoken
+text didn't change, only the picture and caption mechanism did): `retime.py` →
+`headline_sync.py` → `safe_check.js` (clean) → `render.sh` → `check.sh` (ALL CHECKS
+PASSED) → watched twice in full, specifically re-checking the exact frame the glued-word
+bug was caught at. Shipped.
 
 ## Production status — finished, full account
 

@@ -158,6 +158,10 @@ body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-
 h2{font-family:var(--d);font-weight:900;font-size:8.4cqw;line-height:1.14;letter-spacing:-.02em;
   margin:0;text-wrap:balance;position:relative;z-index:2;color:var(--text);
   text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.92),0 .15cqw .4cqw rgba(0,0,0,.95),0 0 5cqw rgba(0,0,0,.5)}
+/* Breathing room so a word mid-emphasis-pop (MK.animateWordEmphasis scales it up in
+   place) never visually touches its neighbor — see video/reel-54.html's own header
+   for the real glued-word defect this fixes. */
+h2 .wd{margin:0 .08em}
 /* Emphasis = color+weight shift only, no background shape, no border, no rotation —
    this is the "no opaque box" fix that made the photo style actually read as a real
    photo (see channel/photo-composite-recipe.md). Still named .box so

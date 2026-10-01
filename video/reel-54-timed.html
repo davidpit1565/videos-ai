@@ -90,14 +90,14 @@ body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-
 h2{font-family:var(--d);font-weight:900;font-size:8.4cqw;line-height:1.14;letter-spacing:-.02em;
   margin:0;text-wrap:balance;position:relative;z-index:2;color:var(--text);
   text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.92),0 .15cqw .4cqw rgba(0,0,0,.95),0 0 5cqw rgba(0,0,0,.5)}
+/* Breathing room so a word mid-emphasis-pop (MK.animateWordEmphasis scales it up in
+   place) never visually touches its neighbor — caught on episode 54's own render:
+   "fake-face" and "tools" read as the single glued word "fake-facetools" in a still
+   frame at the exact instant "fake-face" was at peak scale. */
+h2 .wd{margin:0 .08em}
 h2 .box{color:var(--accent);font-weight:900;background:none;border:0;padding:0;
   border-radius:0;display:inline;transform:none;text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.95),0 0 4cqw rgba(0,0,0,.6)}
 
-.subs{position:absolute;left:8cqw;right:8cqw;bottom:62cqw;text-align:center;z-index:11;
-  font-family:var(--b);font-weight:600;font-size:7.4cqw;line-height:1.22;letter-spacing:0;
-  text-shadow:0 .4cqw 1.2cqw rgba(0,0,0,.95),0 0 2.4cqw rgba(0,0,0,.9)}
-.subs b{font-weight:700;color:#fff;transition:color .09s linear;display:inline}
-.subs b.on{color:var(--accent)}
 .handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
   font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#CBD5E1;
   text-shadow:0 .3cqw 1cqw rgba(0,0,0,.9)}
@@ -139,20 +139,28 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="pad"><div class="kb"><h2 data-hook>Your mom, crying on a video call, needs money sent right now — <span class="box">that crying face might not be real.</span></h2></div></div>
 </section>
 
-<!-- S2 TERM + MECHANISM — photo B (hand over face), no confident face detected, safe -->
+<!-- S2 TERM + MECHANISM — photo B (hand over face), no confident face detected, safe.
+     This is the longest single-photo scene (9s) with its own real Ken Burns motion
+     (not one of the held-static repeats) — qa.py's visual-change check flagged it as
+     reading near-still once the old duplicate caption (which used to add its own
+     motion) was removed. Bumped the pan so the same 9s reads as live, still inside
+     motion-kit.js's own ~1.06-1.12 scale / ~1-2% pan convention. -->
 <section class="scene" data-in="6.16" data-out="12.05"
   data-photo="channel/assets/ep54-scene-b-facerub.png" data-grad-alpha="0.66"
-  data-kb-scale="1.07" data-kb-x="0" data-kb-y="-0.5">
+  data-kb-scale="1.12" data-kb-x="0" data-kb-y="-1.0">
   <div class="photobg"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient"></div>
   <div class="pad"><div class="kb"><h2 data-hook>It's a real-time deepfake — <span class="box">a program that swaps a scammer's own face for someone else's, live.</span></h2></div></div>
 </section>
 
-<!-- S3 SOURCED FACT — photo B continues -->
+<!-- S3 SOURCED FACT — same photo as S2, back to back. Ken Burns held static here —
+     a second independent zoom/pan on the SAME image reads as the image resetting,
+     not continuing, per David's direct feedback on episode 54's third round. Only a
+     scene that actually SWITCHES photos gets its own entrance motion. -->
 <section class="scene" data-in="12.05" data-out="17.62"
   data-photo="channel/assets/ep54-scene-b-facerub.png" data-grad-alpha="0.66"
-  data-kb-scale="1.10" data-kb-x="0.3" data-kb-y="0">
+  data-kb-scale="1.00" data-kb-x="0" data-kb-y="0">
   <div class="photobg"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient"></div>
@@ -179,11 +187,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="pad"><div class="kb"><h2 data-hook>The priciest fake-face tools now fake that too. <span class="box">Passing proves nothing.</span></h2></div></div>
 </section>
 
-<!-- S6 THE REAL FIX — photo B, not A: A is now locked for S7/S8 only, so it never
-     repeats 3 scenes running the way the first cut of this episode did. -->
+<!-- S6 THE REAL FIX — same photo as S5, back to back: Ken Burns held static for the
+     same reason as S3 above. Photo B, not A: A is now locked for S7/S8 only, so it
+     never repeats 3 scenes running the way the first cut of this episode did. -->
 <section class="scene" data-in="28.43" data-out="31.59"
   data-photo="channel/assets/ep54-scene-b-facerub.png" data-grad-alpha="0.66"
-  data-kb-scale="1.06" data-kb-x="0" data-kb-y="-0.5">
+  data-kb-scale="1.00" data-kb-x="0" data-kb-y="0">
   <div class="photobg"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient"></div>
@@ -191,10 +200,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- S7 CTA1 — "The setup's in the link in bio." comes first here, "Follow for..."
-     is the true final line, matching every real shipped episode (49/51/52/53). -->
+     is the true final line, matching every real shipped episode (49/51/52/53). Held
+     fully static (same as S8): the two closing scenes are one locked shot, not two
+     independent zooms on the same photo. -->
 <section class="scene" data-in="31.59" data-out="33.82"
   data-photo="channel/assets/canon-closing-photo.png" data-grad-alpha="0.76"
-  data-kb-scale="1.03" data-kb-x="0" data-kb-y="0">
+  data-kb-scale="1.00" data-kb-x="0" data-kb-y="0">
   <div class="photobg"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient"></div>
@@ -211,7 +222,6 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="pad"><div class="kb"><h2 data-hook>Follow for <span class="box">the setup that actually works.</span></h2></div></div>
 </section>
 
-<div class="subs" id="subs"></div>
 <div class="handle" data-decor>@actually_works.ai</div>
 <button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
 </div>
@@ -233,16 +243,16 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var DUR=+scenes[scenes.length-1].dataset.out;
   var t=0,playing=false,last=0;
-  var subs=document.getElementById('subs'),seek=document.getElementById('seek');
+  var seek=document.getElementById('seek');
   var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
   var tap=document.getElementById('tap'),prog=document.getElementById('prog');
   seek.max=DUR;
 
-  // Real, sourced (Whisper-aligned) karaoke captions replace this once
-  // export/karaoke.py runs against the real narration — see
-  // channel/episode-54-script.md for why these placeholders match the
-  // spoken lines 1:1 (same text, no paraphrase) so the regex/word-timing
-  // substitution has a clean full-sentence anchor per cue.
+  // These lines are the alignment window export/headline_sync.py matches real
+  // Whisper word stamps against — NOT a caption track. This style has no .subs
+  // div; the headline's own words carry the emphasis (see WORD_WINDOWS below and
+  // channel/motion-recipes.md recipe 6). Match the spoken lines 1:1 (same text,
+  // no paraphrase) so the alignment has a clean full-sentence anchor per cue.
   var CUES=[
     [0.30,5.95,"Your mom, crying on a video call, needs money sent right now — that crying face might not be real."],
     [6.37,11.84,"It's a real-time deepfake — a program that swaps a scammer's own face for someone else's, live."],
@@ -253,6 +263,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [31.80,33.61,"The setup's in the link in bio."],
     [34.03,36.25,"Follow for the setup that actually works."]
   ];
+  // Per-scene, per-headline-word [start,end] narration windows — export/headline_sync.py
+  // fills this from real Whisper alignment. All-null placeholder so this file still
+  // runs standalone before the real pipeline has touched it.
+  var WORD_WINDOWS=[[],[],[],[],[],[],[],[]];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
 
@@ -269,7 +283,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   // Hook word-by-word reveal + climax spotlight, generalized over every
   // scene's [data-hook] h2 — same mechanism as reel-template-photo.html's
   // makeHook(), just driven by data attributes instead of hardcoded IDs.
-  var hookRenderers=scenes.map(function(scene){
+  var hookRenderers=scenes.map(function(scene,sceneIdx){
     var h2=scene.querySelector('[data-hook]');
     var kb=scene.querySelector('.kb');
     var split=MK.splitWordsSafe(h2);
@@ -278,17 +292,28 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       if(split.words[i].classList.contains('box')){ climax=split.words[i]; break; }
     }
     var climaxIndex=climax?split.words.indexOf(climax):-1;
+    var windows=WORD_WINDOWS[sceneIdx]||[];
     return function render(){
       var ht=t-(+scene.dataset.in);
       var START=0.15,GAP=0.10,WDUR=0.30;
       for(var i=0;i<split.words.length;i++){
         var w=split.words[i],at=START+i*GAP;
-        if(w===climax){
-          MK.animatePop(w,ht,at,WDUR);
+        var entranceT=(ht-at)/WDUR;
+        if(entranceT<1){
+          if(w===climax){
+            MK.animatePop(w,ht,at,WDUR);
+          } else {
+            var e=MK.smoothIn(MK.clamp01(entranceT));
+            w.style.opacity=String(e);
+            w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+          }
         } else {
-          var e=MK.smoothIn(MK.clamp01((ht-at)/WDUR));
-          w.style.opacity=String(e);
-          w.style.transform='translateY('+(14*(1-e)).toFixed(2)+'px)';
+          // Entrance done — hold revealed, let the real spoken-word window (if
+          // any) pop/brighten it in place. Replaces the old duplicate caption
+          // track (see MK.animateWordEmphasis, motion-recipes.md recipe 6).
+          w.style.opacity='1';
+          var win=windows[i];
+          MK.animateWordEmphasis(w,t,win?win[0]:null,win?win[1]:null);
         }
       }
       if(climaxIndex>=0){
@@ -339,10 +364,6 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       var kbOpt={toScale:+scene.dataset.kbScale,toX:+scene.dataset.kbX,toY:+scene.dataset.kbY};
       bg.style.transform=MK.kenBurns(t-(+scene.dataset.in), (+scene.dataset.out)-(+scene.dataset.in), kbOpt);
     });
-    // ---- karaoke.py's exact target block ----
-    var i;
-    var txt=''; for(i=0;i<CUES.length;i++) if(t>=CUES[i][0]&&t<=CUES[i][1]){txt=CUES[i][2];break;}
-    subs.innerHTML=txt;
     prog.style.width=(t/DUR*100)+'%';
     seek.value=t; cur2.textContent=fmt(t);
   }
