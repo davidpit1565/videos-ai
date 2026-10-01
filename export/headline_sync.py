@@ -11,10 +11,21 @@ the same per-word timing export/karaoke.py derives from Whisper's alignment, so 
 on-screen word and the spoken word can never drift apart. There is no separate caption
 track for this style; this script does not touch #subs because the template has none.
 
-The hook's climax phrase (<span class="box">...</span>) stays ONE atomic unit at
-runtime (MotionKit.splitWordsSafe's own rule) even when it spans several words, so its
-several Whisper windows collapse into one covering the start of its first spoken word
-to the end of its last.
+Each `.box` word gets its own window too — box/non-box both go through the same
+one-window-per-displayed-word path below (explodeBoxes:true at runtime means a
+multi-word box is N separate DOM words, not one, so it needs N separate windows).
+
+A hyphenated script word (e.g. "Fake-face") is one displayed DOM word but Whisper
+often transcribes it as two separate tokens ("Fake", "face") with a real gap between
+them. Matching the whole hyphenated string against two separate heard tokens fails,
+so the aligner falls back to interpolating across the hole — which can stretch that
+one word's window across part of the SILENCE before or after it too, not just its own
+real spoken duration (caught on episode 54: "Fake-face" read 1.06s, versus its two
+Whisper sub-words actually spanning 20.94-21.46, 0.52s — the window included part of
+the pause after the previous word). Fixed by splitting on hyphens for alignment only:
+each displayed word is aligned as its hyphen-separated parts (matching Whisper's own
+granularity), then those parts collapse back into the one window the single displayed
+word actually gets.
 
   python3 export/headline_sync.py video/reel-54.html deep.json --out video/reel-54-hs.html
 """
@@ -71,7 +82,17 @@ def main():
         if not window:
             scenes_out.append([None] * len(toks))
             continue
-        spans = align([(w, li) for w in toks], window)
+        # Split any hyphenated displayed word into its hyphen-parts for alignment —
+        # Whisper transcribes "Fake-face" as two separate tokens, and align() can't
+        # match one script token against two heard ones. owner[] tracks which
+        # original displayed-word index each alignment unit belongs to.
+        align_units, owner = [], []
+        for ti, w in enumerate(toks):
+            parts = w.split("-") if "-" in w else [w]
+            for p in parts:
+                align_units.append(p)
+                owner.append(ti)
+        spans = align([(w, li) for w in align_units], window)
         # One window per token, box words included — never collapsed into one. The
         # runtime (reel-54.html, reel-template-photo.html) now calls
         # MK.splitWordsSafe({explodeBoxes:true}), which gives every box WORD its own
@@ -81,7 +102,21 @@ def main():
         # window meant for a different word, which is why words were popping early,
         # late, or not at all. (bstart/bend are unused now except by tokenize_headline
         # itself; kept for clarity of what toks[bstart:bend] means.)
-        scenes_out.append([list(s) if s else None for s in spans])
+        #
+        # Collapse hyphen-split spans back into one window per displayed word
+        # (min start, max end across its parts) — this is a WITHIN-one-displayed-word
+        # merge only, scoped by owner[], never across separate displayed words (that
+        # was the bug this replaced: collapsing a whole multi-word box into one window).
+        merged = [None] * len(toks)
+        for ti, s in zip(owner, spans):
+            if not s:
+                continue
+            if merged[ti] is None:
+                merged[ti] = [s[0], s[1]]
+            else:
+                merged[ti][0] = min(merged[ti][0], s[0])
+                merged[ti][1] = max(merged[ti][1], s[1])
+        scenes_out.append(merged)
 
     # Line-anchored on purpose, not a dotall .*? across the whole file: this template's
     # own header prose mentions "WORD_WINDOWS" in passing, and a dotall match starting
