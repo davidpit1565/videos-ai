@@ -190,3 +190,43 @@ kitchen-couple photo.
 Filled in below as each pipeline stage actually runs (photo sourcing + face-detection
 results, voice rounds, any accent-drift or swallowed-word findings, render fixes) — same
 discipline as `episode-55-script.md`, so nothing here gets asserted before it's real.
+
+## Round 2 — David's direct feedback after watching the shipped v4 render (2.10.2026)
+
+Three notes, all real, all addressed:
+
+1. **Scene 1's headline covered the phone in her hand** — the one meaningful detail in
+   that photo (she's actively using it, which is the whole point of the hook). Measured
+   the real conflict: the phone (source y≈1070-1170) sat inside the documented
+   face-exception text zone (803-1248px). Fixed with a large centered zoom (no pan) on
+   `ep56-scene-e-walking.jpg` for both scenes 1 and 5 — a pure zoom from the frame's own
+   center (960px) moves content differentially by distance from center, so her face
+   (above center) moves up clear of the text while the phone (below center) moves down
+   past the platform's own unsafe-bottom line (1248px, already hidden by Instagram's UI).
+   Verified by rendering real test frames across the whole scene before touching the
+   real pipeline, not assumed from the math alone.
+2. **"live" (real-time) read as "live" (to live)** — a genuine homograph mispronunciation,
+   not a one-off. Fixed by removing the ambiguous word entirely: "...translate for you,
+   live" → "...translate for you, in real time" (also clearer to a viewer with zero
+   context, per the standing comprehension rule).
+3. **Voice energy — "like Nas Daily," real enthusiasm per word, not flat narration.**
+   Raised `build_voice.py`'s `--exaggeration` from the locked default (0.50) to
+   0.70-0.78 across most lines (0.7 is the tool's own "animated" point on its 0.3/0.5/0.7
+   scale), heaviest on the hook. **David's own standing order on this**: this should
+   become a permanent rule for every future episode, but he is withholding final
+   confirmation until he actually watches this episode and hears that it reads the way
+   he means (real per-word enthusiasm, not just a louder flat read) — remind him of this
+   explicitly when this episode is handed over, don't assume approval before then.
+
+**Real, honest finding from raising the energy**: higher exaggeration made two specific
+words swallow repeatedly — "something" (line 2) and "languages" (line 3) — across
+multiple independent seeds, at multiple energy levels (0.72, 0.60, 0.58), while every
+other line cleared fine. Confirmed this was an energy-induced effect, not a pre-existing
+profile limitation (the original, pre-energy-boost takes never flagged either word):
+pulling just these two lines' exaggeration back down (line 3 to 0.52, near the locked
+baseline; line 2 reworded to drop "something" entirely — "...turned any headphones into
+something that can..." → "...can now use any headphones to...") cleared both cleanly,
+while the rest of the file kept its higher energy. `voice_doctor --deep` and
+`check_accent.py` both came back clean after. Full re-render and `check.sh` re-run in
+progress; two full viewings to be redone from scratch per the standing rule, since this
+is a materially different build (new voice throughout, new framing, reworded line).
