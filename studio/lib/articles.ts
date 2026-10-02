@@ -1516,6 +1516,35 @@ export const ARTICLES: Article[] = [
       "The physical mute button is the only thing that blocks a recording from being made (and sent) in the first place — it is not a substitute for the deletion toggle, and vice versa.",
     ],
   },
+  {
+    n: 56,
+    title: "Your headphones can already translate anyone talking to you — here's the exact setup",
+    standfirst:
+      "On March 26, 2026, Google expanded its Translate app's \"Live Translate with " +
+      "headphones\" feature from an Android-only beta to iPhone as well, powered by Gemini " +
+      "2.5 Flash Native Audio — Google's own AI model built specifically for live " +
+      "speech-to-speech translation. It supports 70+ languages and works with any Bluetooth " +
+      "headphones you already own, on both iPhone and Android — unlike Apple's competing " +
+      "AirPods feature, which needs specific $249+ hardware and isn't available in the EU.",
+    steps: [
+      "Make sure you have the latest version of the Google Translate app (אפליקציית Google Translate) installed, and connect your Bluetooth headphones to your phone as you normally would.",
+      "Open the Google Translate app. At the bottom of the screen, tap \"Live Translate\" (תרגום חי).",
+      "Choose a mode: \"Conversation\" (שיחה) for back-and-forth with another person through your headphones or speaker, \"Listening\" (האזנה) for one-way translation of someone speaking near you (headphones must stay connected for this mode), or \"Text only\" (טקסט בלבד) to read translations without audio.",
+      "Pick the two languages involved — your own, and the other person's.",
+      "Just start talking. The app also shows an on-screen transcript of both sides of the conversation as it translates, so you can follow along even in a noisy room.",
+      "Optional: tap any line of the transcript to hear that specific translation played back again, or use the Speak button to pause and resume translation mid-conversation.",
+    ],
+    changes: [
+      "Verified live (2.10.2026): the March 26, 2026 iOS expansion and the Gemini 2.5 Flash Native Audio model behind it, corroborated across MacRumors, 9to5Mac, iPhoneinCanada and chromeunboxed, and cross-checked against Google's own blog post announcing it.",
+      "The exact current steps and menu labels above were verified directly against Google's own support page (support.google.com/translate/answer/6142474, iOS version), fetched live rather than assumed from the announcement alone.",
+      "The country list (US, India, Mexico, Germany, Spain, France, Nigeria, Italy, UK, Japan, Bangladesh, Thailand — 12 as of the March 2026 expansion) and the Apple AirPods comparison (hardware-locked, EU-excluded at launch) were each checked against multiple independent outlets, not a single source, specifically because the comparison is this episode's own central claim.",
+    ],
+    limits: [
+      "Available in 12 countries so far, per Google's own March 2026 announcement — not the whole world yet. Check the Google Translate Help page for the current list before assuming your country is covered.",
+      "This is a real-time conversational aid, not a substitute for a human interpreter in anything high-stakes — legal proceedings, medical consultations, or anywhere a mistranslation carries real consequences.",
+      "Live Translate performance in practice (speed, accuracy in noisy environments, handling of accents) was not independently tested by this channel — the claims above are sourced to Google's own announcement and independent reporting, not a first-hand demo.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

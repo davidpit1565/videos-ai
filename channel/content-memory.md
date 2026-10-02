@@ -1304,6 +1304,33 @@ same CLAUDE.md entry. Episode 55 is the first episode built under both. **UNKNOW
 not yet measurable**: whether either change moves real numbers (views, saves, shares) —
 too early to call a pattern from one episode; revisit once studio data comes in.
 
+**Episode 56 (2.10.2026) — real AI-relevance correction, after episode 55's was flagged
+weak.** David directly flagged episode 55's topic (Alexa voice-recording deletion) as the
+same weak-AI-relevance failure already named in `hooks-guide.md`'s 17.9.2026 standing rule
+(episodes 39/40): AI was a background reason, not the demoed capability. Instructed to find
+a universal human problem where AI genuinely is the solution. Topic: Google Translate's
+"Live Translate with headphones" (Gemini 2.5 Flash Native Audio), expanded to iPhone +
+12 countries in March 2026 — the AI model IS the thing doing the translating, live, as the
+hook's own claim, not a cited reason. Universal audience (not understanding someone who
+speaks a different language touches literally everyone), continuing the 24.9.2026
+whole-audience pivot. Built under the same real-photo/plain-language rules as episode 55.
+Real production lessons this round, kept honest: (1) a second, DISTINCT frozen-picture
+mechanism found beyond episode 55's eased-tail one — a photo whose motion path crosses
+mostly-uniform content (heavy camera bokeh) can read as frozen at qa.py's downscaled
+measurement resolution REGARDLESS of how large the geometric motion is; fixed by swapping
+the photo, not by increasing magnitude further (confirmed empirically — doubling the
+motion on the same photo did not clear the check). (2) A real, non-text-box defect that
+none of the automated checks catch: a logo badge visually overlapping a photo's human
+subject (safe_check.js only checks text boxes and platform safe-area, not image-over-photo
+overlap) — caught only by the standing two-full-viewings rule, confirmed again why that
+rule exists independent of a passing gate. (3) A voice-profile word/phrase (first
+"everywhere," then "every," both in the same sentence position) that stayed
+rushed/swallowed across 5 independent seeds regardless of the exact word chosen —
+resolved by restructuring the sentence's rhythm entirely rather than reseeding further or
+reaching for `--accept`. **UNKNOWN, not yet measurable**: whether the corrected
+AI-relevance topic performs differently from episode 55; too early to call from one
+episode, revisit once studio data comes in.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
