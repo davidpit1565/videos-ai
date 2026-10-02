@@ -1,0 +1,15 @@
+Your headphones can already translate anyone talking to you — out loud, as they speak.
+
+On March 26, 2026, Google expanded its Translate app's "Live Translate with headphones" feature from an Android-only beta (US, Mexico, India) to iOS as well, and to more countries. It's powered by Gemini 2.5 Flash Native Audio, Google's own voice-first AI model built specifically for live speech-to-speech translation — not text translated and read aloud, but a model that processes and produces live speech directly. It supports more than 70 languages for this live mode.
+
+The honest comparison, verified directly rather than assumed: Apple has its own competing feature, AirPods Live Translation, but it only works on specific recent AirPods models (Pro 3, Pro 2, or 4 with ANC) paired with an iPhone 15 Pro or newer on iOS 26, and per multiple reports it is not available in the EU at launch. Google's version works with any Bluetooth headphones you already own, on both iPhone and Android, and its current country list (US, India, Mexico, Germany, Spain, France, Nigeria, Italy, the UK, Japan, Bangladesh, Thailand) already includes several EU countries Apple's version excludes.
+
+The exact current steps, verified directly against Google's own support page: open the Google Translate app with headphones connected, tap "Live Translate," choose a mode — Listening (one-way, needs headphones connected), Conversation (two-way, turn-taking, works through speakers or headphones), or Text only — pick your two languages, then just talk. The app also shows an on-screen transcript.
+
+Said plainly, not hidden: this is available in 12 countries so far, not the whole world yet, and it isn't a replacement for a human interpreter in anything high-stakes (legal, medical).
+
+Full setup, sourced exactly, with the exact steps to try this yourself: https://actually-works.com/e/56
+
+Follow for the setup that actually works.
+
+#googletranslate #ai #translation #travel #languagelearning #gemini #airpods
