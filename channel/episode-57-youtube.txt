@@ -1,0 +1,13 @@
+Google quietly turned your phone's camera into a live AI you can talk to — point it at anything, and it answers you back, right away.
+
+On March 26, 2026, Google confirmed Search Live — point your phone's camera at something and have a real-time, voice-based back-and-forth conversation with Google's AI about it — had expanded globally to all 200+ countries and languages where AI Mode is available (Google's own blog post, "Search Live expands globally," corroborated independently by TechCrunch, the-decoder.com, ppc.land, and Manila Bulletin). It runs on Google's newest live audio/voice model (widely reported as Gemini 3.1 Flash Live).
+
+It's built into the regular, free Google app on both iPhone and Android — no separate download, no sign-up required for the base feature. The exact current steps, verified directly against Google's own support page (support.google.com/websearch/answer/16329036): open the Google app, tap "Live" below the search bar, tap the camera icon to turn video on, and start talking. Tap "Wave" to interrupt and add a follow-up, "Mute" to mute your mic, "Exit" to end the session.
+
+Said plainly, not hidden: Search Live is not independently tested for accuracy by this channel — the claims here are sourced to Google's own announcement and independent reporting. It isn't a substitute for expert judgment on anything high-stakes (medical, legal, safety-critical), and some newer additions inside AI Mode are gated to Google AI Ultra subscribers even though the base Live feature itself is free.
+
+Full setup, sourced exactly, with the exact steps to try this yourself: https://actually-works.com/e/57
+
+Follow for the setup that actually works.
+
+#google #ai #googlesearch #tech #gemini #searchlive
