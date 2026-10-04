@@ -1331,6 +1331,67 @@ reaching for `--accept`. **UNKNOWN, not yet measurable**: whether the corrected
 AI-relevance topic performs differently from episode 55; too early to call from one
 episode, revisit once studio data comes in.
 
+**Episode 56, round 2 (2.10.2026) — David's direct feedback after watching the shipped
+v4, three real issues, all fixed.** (1) The hook scene's headline text covered the one
+meaningful detail in that photo (the phone in her hand) — fixed with a large centered
+zoom (no pan): a pure zoom moves content differentially by distance from the frame's
+own center, so a face above center and an object below center can be pushed apart
+(out of the text zone and past the platform's unsafe-bottom line respectively) with a
+single transform, verified with real test frames before touching the production
+pipeline. (2) The word "live" was read as the verb ("to live") instead of real-time —
+fixed not by fighting pronunciation but by rewording the line to remove the ambiguous
+word ("...translate for you, live" → "...translate for you, in real time"). (3) David
+asked for the voice to sound far more animated/enthusiastic, citing Nas Daily's
+delivery style by name as the reference — raised `build_voice.py --exaggeration`
+toward 0.70-0.78 per line (locked baseline is 0.50). This surfaced a real,
+confirmed-repeatable finding: raising exaggeration this much increases the risk of
+specific words rushing/swallowing, confirmable as energy-induced (not a pre-existing
+profile limit) by comparing against a pre-energy-boost baseline that never flagged the
+same words — fixed via rewording where a clean rewrite existed, otherwise pulling just
+that one line's energy back toward baseline while keeping the rest of the file boosted.
+**Open and important, not yet settled:** David said the "raise energy like Nas Daily"
+direction should become a standing rule for all future episodes, but made his final
+confirmation of it explicitly conditional on watching this corrected episode first and
+agreeing it actually reads the way he intends — not yet confirmed as of this entry.
+Applied again, proactively, to episode 57 below per his direction, but still pending
+his sign-off before it's written into `CLAUDE.md` as a permanent standing rule.
+
+**Episode 57 (4.10.2026) — Google's Search Live, built fully autonomously while David
+was away for Shabbat/chag, with explicit standing pre-authorization to ship without
+waiting for approval.** Topic: point your phone's camera at anything and have a live,
+spoken conversation about it (Gemini's native-audio model) — universal audience, AI is
+the literal demoed capability, continuing the whole-audience pivot and the post-55/56
+AI-relevance correction. Built with the raised-energy voice direction per the still-
+pending Nas Daily rule above (applied again at David's explicit request for this round,
+independent of whether it ever becomes a permanent CLAUDE.md rule). **Real, hard-won
+production findings, logged honestly because this took far more iteration than any
+prior episode:**
+- **Voice took 20 rounds.** Several different words (across different lines) failed
+  the swallowed-word check in rotation across many seeds and energy levels, never
+  converging — a real escalation of the pattern first seen on episode 56. Root-caused
+  by testing the plain locked baseline energy directly: two of the recurring failures
+  (an unnaturally long opening word, one swallowed word) reproduced identically at
+  baseline, proving they were seed-sensitive artifacts of this exact wording, not
+  energy-induced at all. Energy level was restored to the full raised setting once the
+  real offending words were identified and removed by rewording — the fix was never
+  "give up on the energy," it was "find the actual cause before reaching for the
+  energy dial."
+- **A second, independent instance of the uniform-texture frozen-picture failure
+  mode** (first documented on episode 56) — two different photos, not one. Directly
+  re-tested whether increasing Ken Burns motion magnitude alone would fix it (tripled
+  the scale/translate values, re-rendered) — it did not meaningfully clear the
+  BLOCKER, reconfirming episode 56's finding on an independent pair of photos. Fixed
+  by swapping both photos for ones with real, distributed texture — found via live
+  web search, verified with real frame-diff measurement before committing to the swap,
+  not assumed from eyeballing alone.
+- Mandatory Adobe face-detection re-run cleanly on both replacement photos before
+  use, per the standing rule.
+**UNKNOWN, not yet measurable:** whether this topic or the raised-energy voice
+performs differently from episodes 55/56; too early to call from one episode, revisit
+once studio data comes in. Also unresolved: David has not yet watched/listened to this
+episode, so the Nas-Daily-energy standing-rule question (opened at episode 56) is
+still open after this second application of it.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
