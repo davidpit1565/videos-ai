@@ -1,0 +1,460 @@
+<title>Reel 57 — Google quietly turned your phone's camera into a live AI you can talk to.</title>
+<!--
+  Episode 57 — real-photo composite style (video/reel-template-photo.html), per the
+  standing rule effective episode 55. Topic: Google Search Live — point your phone's
+  camera at anything and have a live, spoken, back-and-forth conversation with Google's
+  AI about it. Built end-to-end while David is away for Shabbat/chag, full autonomy per
+  his standing authorization. See channel/episode-57-script.md for the full
+  verification, hook-rules, density and photo-sourcing record.
+
+  Photos (all free, Unsplash/Pexels license, no attribution required):
+  - channel/assets/ep57-scene-a-pointing.jpg — "woman taking an iPhone photo" by Chad
+    Madden (unsplash.com/photos/0qCfPjGYV08). Adobe image_select_subject (bodyParts:
+    Face) returned body_parts_not_found (face not resolvable — back/side of head,
+    mostly hair + phone); fell back to the general subject mask, bbox y 892-1920px
+    (bottom 54%). Checked against the template's default headline zone (ends well
+    before 892px) — no conflict, default zone used as-is. Measured brightness: 60.4 ->
+    alpha 0.42. Used in scenes 1 (hook) and 5 (steps), non-adjacent reuse, normal Ken
+    Burns each.
+  - channel/assets/ep57-scene-b-phoneglow.jpg — a phone silhouette, blank glowing
+    screen, by Lorin Both (unsplash.com/photos/-IeDL7Ud_e8). No person in frame, no
+    face-detection check applicable. Measured brightness: 225.8 -> alpha 0.74. Used in
+    scenes 2 (carries the real Google "G" logo badge), 6, 7 and 8 (the CTA pair, 7/8
+    adjacent reuse of 6's/7's own photo -> fully static Ken Burns on 7 and 8).
+  - channel/assets/ep57-scene-c-street.jpg — "a person taking a picture of a street
+    with their cell phone" by Erik Mclean (unsplash.com/photos/hsvIc_Tdukk). Adobe
+    image_select_subject (bodyParts: Face) returned body_parts_not_found (shot from
+    behind the phone — no face in frame at all). Fell back to general subject mask,
+    bbox y 673-1920px — no conflict with the default zone. Measured brightness: 248.9
+    (bright overcast sky) -> alpha 0.79. Used in scene 3.
+    DROPPED candidate for this scene: a hands-photographing-an-illuminated-building
+    photo — visually strong, face-clear, but the building is a specific, identifiable
+    religious/cultural site this channel has no context to responsibly feature; swapped
+    for the neutral street shot above instead.
+  - channel/assets/ep57-scene-d-citystreet.jpg — a person crossing a rainy city street
+    at night using their phone, by Lerone Pieters (pexels.com/photo/9471917), Pexels
+    License (free, no attribution required). Adobe image_select_subject (bodyParts:
+    Face) returned the person's silhouette with face not resolvable as a distinct part
+    (motion blur/hood) — general subject bbox y 762-1529px, no conflict with the
+    default (top) headline zone. Measured brightness: 62.8 -> alpha 0.42. Used in
+    scene 4.
+    DROPPED candidate for scene 2: a hand-holding-phone photo showing a third-party
+    app's (SumUp's) own branded UI on screen — dropped because showing a named
+    competing product's real interface in a scene about Google's own feature risked a
+    misleading implication; swapped for the neutral blank-glow phone photo instead.
+
+  Real Google "G" logo (public domain — "simple geometric shapes," per Wikimedia
+  Commons' own licensing note; sourced from upload.wikimedia.org/wikipedia/commons/
+  c/c1/Google_%22G%22_logo.svg) appears as a small badge in scene 2, in-flow inside
+  .kb (never absolutely bottom-anchored — the episode 55 logo-badge bug this
+  template's header already warns about).
+
+  One accent for the whole episode: --accent:#059669 (a clear, saturated emerald
+  green). Checked rendered against every real photo this episode actually uses: reads
+  cleanly against the cool grey/blue street-camera photo and the dark city-night
+  photo, and still reads clearly (not muddy) against the warm amber phone-glow photo
+  and the muted outdoor waterfall photo — the same per-photo check CLAUDE.md requires
+  after episode 54's violet mistake, not just a contrast-ratio check against the fixed
+  text color. Distinct from every dated channel/used-designs.json entry in the last 7
+  days (54 #06B6D4, 55 #EA580C, 56 #2563EB) and from the immediately prior episode
+  (56). Mood: curious (new mood for this log — fits a "point your camera at anything
+  and find out" discovery topic).
+
+  Voice: raised-energy pass per David's standing instruction this round (Nas-Daily-
+  style enthusiasm) — see channel/episode-57-script.md's Production notes for the
+  exact --exaggeration settings and any per-line pullbacks.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ink:#0A0E14;--line:#1F2B3A;
+  --accent:#059669;
+  --text:#FFFFFF;--muted:#8AA0B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.scene{position:absolute;inset:0;z-index:2;will-change:opacity,transform,filter}
+.photobg{position:absolute;inset:0;z-index:0;transform-origin:center center;will-change:transform;
+  background-size:cover;background-position:center;background-repeat:no-repeat}
+@media (prefers-reduced-motion:reduce){.photobg{transition:none!important}}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;pointer-events:none;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+
+.photogradient{position:absolute;inset:0;z-index:1;pointer-events:none}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--accent);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(5,150,105,.7)}
+
+.pad{position:absolute;inset:0;z-index:2;padding:27cqw 10cqw 0;display:flex;flex-direction:column;
+  justify-content:flex-start;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:8.4cqw;line-height:1.14;letter-spacing:-.02em;
+  margin:0;text-wrap:balance;position:relative;z-index:2;color:var(--text);
+  text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.92),0 .15cqw .4cqw rgba(0,0,0,.95),0 0 5cqw rgba(0,0,0,.5)}
+h2 .wd{margin:0 .08em;transition:color .09s linear}
+h2 .wd.spoken{color:var(--accent)!important}
+h2 .wd.box.spoken{color:#fff!important}
+h2 .box{color:var(--accent);font-weight:900;background:none;border:0;padding:0;
+  border-radius:0;display:inline;transform:none;text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.95),0 0 4cqw rgba(0,0,0,.6)}
+
+/* Google "G" logo badge — scene 2 only, in-flow inside .kb (never absolutely
+   bottom-anchored), same pattern as episode 55/56's logo badges. */
+.logobadge{width:100%;display:flex;justify-content:center;margin-top:1.4cqw;
+  opacity:0;transition:opacity .3s ease}
+.logobadge.on{opacity:1}
+.logobadge svg{width:9cqw;filter:drop-shadow(0 .6cqw 2cqw rgba(0,0,0,.6))}
+.logolabel{width:100%;text-align:center;margin-top:0.8cqw;
+  font-family:var(--m);font-size:1.8cqw;letter-spacing:.12em;text-transform:uppercase;color:#7FE3C3;
+  opacity:0;transition:opacity .3s ease}
+.logolabel.on{opacity:1}
+
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#CBD5E1;
+  text-shadow:0 .3cqw 1cqw rgba(0,0,0,.9)}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,9,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--accent);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--accent);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--accent)}
+.ctl button{background:var(--accent);color:#fff;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="prog" id="prog"></div>
+
+<!-- Scene 1 — hook. Pointing-camera photo, default headline zone (no conflict). -->
+<section class="scene" data-in="0" data-out="6.6">
+  <div class="photobg" id="photobgA" style="background-image:url('../channel/assets/ep57-scene-a-pointing.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.42) 0%, rgba(4,4,4,.34) 24%, rgba(4,4,4,.14) 40%, transparent 50%, rgba(4,4,4,.10) 70%, rgba(4,4,4,.40) 86%, rgba(4,4,4,.56) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbA">
+    <h2 id="hookH2A" style="font-size:7.0cqw">Google turned your phone into <span class="box">a live AI you can talk to</span> — point it at whatever's in front of you, and it talks back, right away.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 2 — the feature named + placed. Phone-glow photo, default zone. Real
+     Google "G" logo badge. -->
+<section class="scene" data-in="6.6" data-out="12.4">
+  <div class="photobg" id="photobgB" style="background-image:url('../channel/assets/ep57-scene-b-phoneglow.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.74) 0%, rgba(4,4,4,.60) 14%, rgba(4,4,4,.32) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.48) 68%, rgba(4,4,4,.70) 78%, rgba(4,4,4,.78) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbB">
+    <h2 id="hookH2B">It's <span class="box">Search Live</span>, built right into the main Google app. No download, no sign-up, and it's free.</h2>
+  <div class="logobadge" id="logoBadge">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+    </svg>
+  </div>
+  <div class="logolabel" id="logoLabel">google app · search live · march 2026</div>
+  </div></div>
+</section>
+
+<!-- Scene 3 — how it works. Street-camera photo, no face, default zone. -->
+<section class="scene" data-in="12.4" data-out="19.3">
+  <div class="photobg" id="photobgC" style="background-image:url('../channel/assets/ep57-scene-c-street.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.80) 0%, rgba(4,4,4,.64) 16%, rgba(4,4,4,.34) 28%, rgba(4,4,4,.10) 38%, transparent 46%, transparent 54%, rgba(4,4,4,.14) 62%, rgba(4,4,4,.40) 72%, rgba(4,4,4,.60) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbC">
+    <h2 id="hookH2C" style="font-size:6.6cqw">It runs on Google's newest live AI model, and it watches and listens through <span class="box">your camera and your voice at the same time</span>, like an actual conversation.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 4 — scope. Rainy city-street photo, no resolvable face, default zone. -->
+<section class="scene" data-in="19.3" data-out="25.0">
+  <div class="photobg" id="photobgD" style="background-image:url('../channel/assets/ep57-scene-d-citystreet.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.44) 0%, rgba(4,4,4,.36) 24%, rgba(4,4,4,.16) 40%, transparent 50%, rgba(4,4,4,.12) 68%, rgba(4,4,4,.42) 84%, rgba(4,4,4,.60) 100%)"></div>
+  <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbD">
+    <h2 id="hookH2D">It just went live in <span class="box">over two hundred countries</span> this year, on iPhone and Android both.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 5 — the real steps. Pointing-camera photo again (non-adjacent reuse
+     from scene 1), normal Ken Burns. -->
+<section class="scene" data-in="25.0" data-out="30.3">
+  <div class="photobg" id="photobgE" style="background-image:url('../channel/assets/ep57-scene-a-pointing.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.42) 0%, rgba(4,4,4,.34) 24%, rgba(4,4,4,.14) 40%, transparent 50%, rgba(4,4,4,.10) 70%, rgba(4,4,4,.40) 86%, rgba(4,4,4,.56) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbE">
+    <h2 id="hookH2E">Open the Google app, tap <span class="box">Live right under the search bar</span>, switch on the camera, and just start talking.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 6 — the honest limit. Phone-glow photo again (non-adjacent reuse from
+     scene 2), normal Ken Burns. -->
+<section class="scene" data-in="30.3" data-out="35.0">
+  <div class="photobg" id="photobgF" style="background-image:url('../channel/assets/ep57-scene-b-phoneglow.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.74) 0%, rgba(4,4,4,.60) 14%, rgba(4,4,4,.32) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.48) 68%, rgba(4,4,4,.70) 78%, rgba(4,4,4,.78) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbF">
+    <h2 id="hookH2F">It still gets things wrong sometimes, and it's not a real expert — but for <span class="box">"what even is this thing,"</span> it gets the job done.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 7 — CTA1 (locked line). Same photo as scene 6 (adjacent reuse) -> static
+     Ken Burns per the standing rule for a repeated photo. -->
+<section class="scene" data-in="35.0" data-out="37.2">
+  <div class="photobg" id="photobgG" style="background-image:url('../channel/assets/ep57-scene-b-phoneglow.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.74) 0%, rgba(4,4,4,.60) 14%, rgba(4,4,4,.32) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.48) 68%, rgba(4,4,4,.70) 78%, rgba(4,4,4,.78) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbG">
+    <h2 id="hookH2G">The setup's in the link in bio.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 8 — CTA2 (locked final line). Same photo as scene 7 (adjacent reuse) ->
+     static Ken Burns, same locked background across both closing scenes. -->
+<section class="scene" data-in="37.2" data-out="39.7">
+  <div class="photobg" id="photobgH" style="background-image:url('../channel/assets/ep57-scene-b-phoneglow.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.74) 0%, rgba(4,4,4,.60) 14%, rgba(4,4,4,.32) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.48) 68%, rgba(4,4,4,.70) 78%, rgba(4,4,4,.78) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbH">
+    <h2 id="hookH2H">Follow for the setup that <span class="box">actually works</span>.</h2>
+  </div></div>
+</section>
+
+<div class="handle" data-decor>@actually_works.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="39.70" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+</div>
+
+<script src="../export/motion-kit.js"></script>
+<script>
+(function(){
+  var MK=window.MotionKit;
+  var DUR=39.70,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+
+  var CUES=[
+    [0.30,6.2,"Google turned your phone into a live AI you can talk to — point it at whatever's in front of you, and it talks back, right away."],
+    [6.9,11.9,"It's Search Live, built right into the main Google app. No download, no sign-up, and it's free."],
+    [12.7,18.0,"It runs on Google's newest live AI model, and it watches and listens through your camera and your voice at the same time, like an actual conversation."],
+    [18.8,23.7,"It just went live in over two hundred countries this year, on iPhone and Android both."],
+    [24.5,29.0,"Open the Google app, tap Live right under the search bar, switch on the camera, and just start talking."],
+    [29.8,33.7,"It still gets things wrong sometimes, and it's not a real expert — but for what even is this thing, it gets the job done."],
+    [34.5,36.1,"The setup's in the link in bio."],
+    [36.7,38.6,"Follow for the setup that actually works."]
+  ];
+  var WORD_WINDOWS=[
+    new Array(20).fill(null),
+    new Array(19).fill(null),
+    new Array(23).fill(null),
+    new Array(15).fill(null),
+    new Array(16).fill(null),
+    new Array(24).fill(null),
+    new Array(7).fill(null),
+    new Array(7).fill(null)
+  ];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  var photobgA=document.getElementById('photobgA');
+  var photobgB=document.getElementById('photobgB');
+  var photobgC=document.getElementById('photobgC');
+  var photobgD=document.getElementById('photobgD');
+  var photobgE=document.getElementById('photobgE');
+  var photobgF=document.getElementById('photobgF');
+  var photobgG=document.getElementById('photobgG');
+  var photobgH=document.getElementById('photobgH');
+
+  // Scenes 7 and 8 both reuse scene 6's exact photo (all three adjacent to each
+  // other) -> fully static, no pan/zoom, per the standing rule (a repeated Ken
+  // Burns on an unchanged photo reads as a reset/jump, not a continuation).
+  var KB_A={fromScale:1.0,toScale:1.16,fromX:0,toX:-2.0,fromY:0,toY:-1.5};
+  // Scenes 2 and 6 both use the phone-glow photo, whose background is a large,
+  // near-uniform cream/beige gradient around a small high-contrast phone
+  // silhouette — the same photo-content property episode 56's AirPods macro
+  // shot had (heavy bokeh/uniform regions produce near-zero frame-to-frame
+  // diff at qa.py's downscaled measurement resolution regardless of applied
+  // motion size). Fixed proactively, before any render, with plain LINEAR
+  // (no eased-tail) motion at a visibly larger magnitude than this file's
+  // other scenes, so the visible crop keeps sweeping rather than settling
+  // into the uniform background for the scene's final third.
+  var KB_B_LINEAR=true, KB_B_TO=0.34, KB_B_TX=2.6, KB_B_TY=-2.0;
+  var KB_C={fromScale:1.0,toScale:1.18,fromX:0,toX:-2.2,fromY:0,toY:-1.6};
+  var KB_D={fromScale:1.0,toScale:1.13,fromX:0,toX:1.5,fromY:0,toY:-1.1};
+  var KB_E={fromScale:1.05,toScale:1.20,fromX:0,toX:1.6,fromY:0,toY:1.2};
+  var KB_F_LINEAR=true, KB_F_TO=0.30, KB_F_TX=-2.4, KB_F_TY=1.8;
+  var KB_G={toScale:1.00,toX:0,toY:0};
+  var KB_H={toScale:1.00,toX:0,toY:0};
+
+  function linearKenBurns(el,sceneEl,toScale,toX,toY){
+    var dIn=+sceneEl.dataset.in, dOut=+sceneEl.dataset.out;
+    var raw=MK.clamp01((t-dIn)/(dOut-dIn));
+    var scale=1.0+toScale*raw, x=toX*raw, y=toY*raw;
+    el.style.transform='scale('+scale.toFixed(4)+') translate('+x.toFixed(3)+'%,'+y.toFixed(3)+'%)';
+  }
+
+  function makeHook(kbId,h2Id,sceneIdx){
+    var kb=document.getElementById(kbId);
+    var h2=document.getElementById(h2Id);
+    var scene=h2.closest('.scene');
+    var split=MK.splitWordsSafe(h2,{explodeBoxes:true});
+    var climax=split.boxWords[0]||null;
+    var climaxIndex=climax?split.words.indexOf(climax):-1;
+    var windows=WORD_WINDOWS[sceneIdx]||[];
+    return function render(){
+      var ht=t-(+scene.dataset.in);
+      var START=0.15,GAP=0.10,WDUR=0.30;
+      for(var i=0;i<split.words.length;i++){
+        var w=split.words[i],at=START+i*GAP;
+        var entranceT=(ht-at)/WDUR;
+        if(entranceT<1){
+          var e=MK.smoothIn(MK.clamp01(entranceT));
+          w.style.opacity=String(e);
+          w.style.transform='scale('+(0.82+0.18*e).toFixed(3)+')';
+        } else {
+          w.style.opacity='1';
+          w.style.transform='scale(1)';
+          var win=windows[i];
+          MK.animateWordEmphasis(w,t,win?win[0]:null,win?win[1]:null);
+        }
+      }
+      if(climaxIndex>=0){
+        var climaxAt=START+climaxIndex*GAP;
+        var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.98,pushAt:climaxAt,pushDur:0.9,pushTo:1.05});
+        kb.style.transform='scale('+camScale.toFixed(4)+')';
+      }
+    };
+  }
+  var renderHookA=makeHook('hookKbA','hookH2A',0);
+  var renderHookB=makeHook('hookKbB','hookH2B',1);
+  var renderHookC=makeHook('hookKbC','hookH2C',2);
+  var renderHookD=makeHook('hookKbD','hookH2D',3);
+  var renderHookE=makeHook('hookKbE','hookH2E',4);
+  var renderHookF=makeHook('hookKbF','hookH2F',5);
+  var renderHookG=makeHook('hookKbG','hookH2G',6);
+  var renderHookH=makeHook('hookKbH','hookH2H',7);
+
+  var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
+  function renderScene(i){
+    var scene=scenes[i];
+    var prev=i>0?scenes[i-1]:null;
+    var next=i<scenes.length-1?scenes[i+1]:null;
+    var outTime=+scene.dataset.out;
+    var inStart=-Infinity, inEndsAt=-Infinity;
+    if(prev){
+      var prevOutStart=+prev.dataset.out-OUT_DUR;
+      inStart=prevOutStart+IN_OFFSET;
+      inEndsAt=inStart+IN_DUR;
+    }
+    var outStart=next?outTime-OUT_DUR:Infinity;
+
+    var opacity,scale,blur;
+    if(prev && t<inStart){
+      opacity=0; scale=0.94; blur=5;
+    } else if(prev && t<inEndsAt){
+      var ie=MK.smoothIn(MK.clamp01((t-inStart)/IN_DUR));
+      opacity=ie; scale=0.94+0.06*ie; blur=5*(1-ie);
+    } else if(next && t>=outStart && t<outTime){
+      var oe=MK.smoothIn(MK.clamp01((t-outStart)/OUT_DUR));
+      opacity=1-oe; scale=1+0.16*oe; blur=5*oe;
+    } else if(next && t>=outTime){
+      opacity=0; scale=1.16; blur=5;
+    } else {
+      opacity=1; scale=1; blur=0;
+    }
+    scene.style.opacity=String(opacity);
+    scene.style.transform='scale('+scale.toFixed(4)+')';
+    scene.style.filter='blur('+blur.toFixed(1)+'px)';
+  }
+  function renderTransitions(){
+    for(var i=0;i<scenes.length;i++) renderScene(i);
+  }
+
+  var logoBadge=document.getElementById('logoBadge'), logoLabel=document.getElementById('logoLabel');
+  var logoScene=logoBadge.closest('.scene');
+  function renderLogo(){
+    var lt=t-(+logoScene.dataset.in);
+    var on=lt>=1.0 && t<+logoScene.dataset.out;
+    logoBadge.classList.toggle('on',on);
+    logoLabel.classList.toggle('on',on);
+  }
+
+  function kenBurns(el,sceneEl,kb){
+    var dIn=+sceneEl.dataset.in, dOut=+sceneEl.dataset.out;
+    el.style.transform=MK.kenBurns(t-dIn,dOut-dIn,kb);
+  }
+
+  function render(){
+    renderTransitions();
+    renderHookA();renderHookB();renderHookC();renderHookD();renderHookE();renderHookF();renderHookG();renderHookH();
+    renderLogo();
+
+    kenBurns(photobgA,scenes[0],KB_A);
+    linearKenBurns(photobgB,scenes[1],KB_B_TO,KB_B_TX,KB_B_TY);
+    kenBurns(photobgC,scenes[2],KB_C);
+    kenBurns(photobgD,scenes[3],KB_D);
+    kenBurns(photobgE,scenes[4],KB_E);
+    linearKenBurns(photobgF,scenes[5],KB_F_TO,KB_F_TX,KB_F_TY);
+    kenBurns(photobgG,scenes[6],KB_G);
+    kenBurns(photobgH,scenes[7],KB_H);
+
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing=false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>

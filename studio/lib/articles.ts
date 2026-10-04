@@ -1545,6 +1545,35 @@ export const ARTICLES: Article[] = [
       "Live Translate performance in practice (speed, accuracy in noisy environments, handling of accents) was not independently tested by this channel — the claims above are sourced to Google's own announcement and independent reporting, not a first-hand demo.",
     ],
   },
+  {
+    n: 57,
+    title: "Google quietly turned your phone's camera into a live AI you can talk to",
+    standfirst:
+      "On March 26, 2026, Google confirmed its \"Search Live\" feature — point your phone's " +
+      "camera at something and have a real-time, voice-based back-and-forth conversation " +
+      "with Google's AI about it — had expanded globally to all 200+ countries and " +
+      "languages where AI Mode is available. It's free, built into the regular Google app " +
+      "on iPhone and Android, no sign-up required, and runs on Google's newest live " +
+      "audio/voice model (widely reported as Gemini 3.1 Flash Live).",
+    steps: [
+      "Make sure you have the Google app (אפליקציית Google) installed and updated — it's the regular Google Search app, not a separate download.",
+      "Open the Google app. Below the search bar, tap \"Live\" (חי).",
+      "Follow the on-screen instructions if this is your first time using it.",
+      "Tap the camera/video icon to turn your camera on, so Search Live can see what you're pointing at, not just hear you.",
+      "Just start talking — ask about whatever you're pointing the camera at. It answers out loud, in real time, and you can keep going back and forth.",
+      "While it's running: tap \"Wave\" (נפנוף) to interrupt it and add a follow-up question or change the subject, \"Mute\" (השתקה) to mute your microphone, or \"Exit\" (יציאה) to end the session.",
+    ],
+    changes: [
+      "Verified live (2.10.2026): the March 26, 2026 global expansion to 200+ countries, confirmed directly on Google's own blog (\"Search Live expands globally\") and independently corroborated by TechCrunch (\"Google is launching Search Live globally\"), the-decoder.com, ppc.land, Manila Bulletin, and digitalapplied.com.",
+      "The exact current steps and button labels above were verified directly against Google's own support page (support.google.com/websearch/answer/16329036), fetched live rather than assumed from the announcement alone.",
+      "The underlying model name (reported across multiple outlets as Gemini 3.1 Flash Live) and the free/no-sign-up status of the base Live feature were each cross-checked against more than one independent source before being stated in the episode.",
+    ],
+    limits: [
+      "Search Live's real-world accuracy (handling of ambiguous objects, noisy environments, less common languages) was not independently tested by this channel — the claims here are sourced to Google's own announcement and independent reporting, not a first-hand demo.",
+      "It is not a substitute for expert judgment on anything high-stakes — a medical symptom, a legal document, a safety-critical repair. Treat it as a fast first look, not a final answer.",
+      "Some newer additions inside Google's AI Mode (described in press coverage as \"information agents\") are gated to Google AI Ultra subscribers — the base Search Live feature itself is free, but not every future AI Mode feature necessarily will be.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
