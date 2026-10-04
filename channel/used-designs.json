@@ -338,5 +338,12 @@
     "ember": "#059669",
     "mood": "bright",
     "date": "2026-10-04"
+  },
+  {
+    "episode": 58,
+    "brass": "#0D9488",
+    "ember": "#0D9488",
+    "mood": "confident",
+    "date": "2026-10-04"
   }
 ]

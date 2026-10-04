@@ -1,0 +1,13 @@
+That photo in your WhatsApp chat right now — type one sentence, and Meta's AI will redraw it for you, before you even hit send.
+
+WhatsApp's "Photo Touch-Up" launched worldwide in March 2026 (itechguides.com, techpoint.africa, greentick.ai, cross-checked independently). It puts a Meta-AI-powered photo editor directly inside the chat composer, before you send an image: remove something from the frame, swap the background, change the whole mood, or reimagine the photo from a text prompt — the AI rebuilds the image to match, without leaving WhatsApp or opening a separate app.
+
+The exact current steps: open a chat, pick a photo the usual way, tap the new edit button, and type what you want changed.
+
+Said plainly, not hidden: this feature is not independently tested for accuracy by this channel — the claims here are sourced to WhatsApp's own rollout and independent reporting, not a first-hand benchmark. It still gets some details wrong and it's not a substitute for a real photo-editing app — it's a fast in-chat fix, not a replacement for one.
+
+Full setup, sourced exactly, with the exact steps to try this yourself: https://actually-works.com/e/58
+
+Follow for the setup that actually works.
+
+#whatsapp #meta #ai #phototips #lifehacks
