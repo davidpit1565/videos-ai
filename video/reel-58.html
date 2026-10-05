@@ -211,9 +211,22 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<!-- Scene 7 — CTA1 (locked line). Same photo as scene 6 (adjacent reuse) -> static
+<!-- Scene 7 — bridge/connector line (David's direct instruction, 5.10.2026): a
+     sentence that connects the content to the locked CTA lines instead of
+     cutting straight into them. Same photo as scene 6 (adjacent reuse) -> static
      Ken Burns per the standing rule for a repeated photo. -->
-<section class="scene" data-in="53.2" data-out="55.4">
+<section class="scene" data-in="53.2" data-out="56.6">
+  <div class="photobg" id="photobgBridge" style="background-image:url('../channel/assets/ep58-scene-b-deskforest.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.58) 0%, rgba(4,4,4,.46) 14%, rgba(4,4,4,.24) 26%, rgba(4,4,4,.08) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.14) 58%, rgba(4,4,4,.40) 68%, rgba(4,4,4,.58) 78%, rgba(4,4,4,.66) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbBridge">
+    <h2 id="hookH2Bridge">Send this to someone you know who's about to send a photo they want to change.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 8 — CTA1 (locked line). Same photo as the bridge scene (adjacent
+     reuse) -> static Ken Burns. -->
+<section class="scene" data-in="56.6" data-out="58.8">
   <div class="photobg" id="photobgG" style="background-image:url('../channel/assets/ep58-scene-b-deskforest.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.58) 0%, rgba(4,4,4,.46) 14%, rgba(4,4,4,.24) 26%, rgba(4,4,4,.08) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.14) 58%, rgba(4,4,4,.40) 68%, rgba(4,4,4,.58) 78%, rgba(4,4,4,.66) 100%)"></div>
@@ -222,9 +235,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<!-- Scene 8 — CTA2 (locked final line). Same photo as scene 7 (adjacent reuse) ->
-     static Ken Burns, same locked background across both closing scenes. -->
-<section class="scene" data-in="55.4" data-out="57.9">
+<!-- Scene 9 — CTA2 (locked final line). Same photo as scenes 6/7/8 (adjacent
+     reuse) -> static Ken Burns, same locked background across both closing
+     scenes. -->
+<section class="scene" data-in="58.8" data-out="61.3">
   <div class="photobg" id="photobgH" style="background-image:url('../channel/assets/ep58-scene-b-deskforest.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.58) 0%, rgba(4,4,4,.46) 14%, rgba(4,4,4,.24) 26%, rgba(4,4,4,.08) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.14) 58%, rgba(4,4,4,.40) 68%, rgba(4,4,4,.58) 78%, rgba(4,4,4,.66) 100%)"></div>
@@ -264,8 +278,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [29.1,35.0,"Meta launched this everywhere, right inside the WhatsApp you already have — no extra download needed."],
     [35.7,42.2,"Open a chat and pick a picture the usual way. Then tap the new touch-up button, and type what you want to see."],
     [42.9,52.5,"It still gets some details wrong sometimes, and it won't replace a real photo app — but for a fast fix right there in the chat, it gets the job done."],
-    [53.2,54.8,"The setup's in the link in bio."],
-    [55.4,57.3,"Follow for the setup that actually works."]
+    [53.2,56.3,"Send this to someone you know who's about to send a photo they want to change."],
+    [57.0,58.6,"The setup's in the link in bio."],
+    [59.2,61.1,"Follow for the setup that actually works."]
   ];
   var WORD_WINDOWS=[
     new Array(27).fill(null),
@@ -339,8 +354,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var renderHookD=makeHook('hookKbD','hookH2D',3);
   var renderHookE=makeHook('hookKbE','hookH2E',4);
   var renderHookF=makeHook('hookKbF','hookH2F',5);
-  var renderHookG=makeHook('hookKbG','hookH2G',6);
-  var renderHookH=makeHook('hookKbH','hookH2H',7);
+  var renderHookBridge=makeHook('hookKbBridge','hookH2Bridge',6);
+  var renderHookG=makeHook('hookKbG','hookH2G',7);
+  var renderHookH=makeHook('hookKbH','hookH2H',8);
 
   var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
   function renderScene(i){
@@ -394,7 +410,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
   function render(){
     renderTransitions();
-    renderHookA();renderHookB();renderHookC();renderHookD();renderHookE();renderHookF();renderHookG();renderHookH();
+    renderHookA();renderHookB();renderHookC();renderHookD();renderHookE();renderHookF();renderHookBridge();renderHookG();renderHookH();
     renderLogo();
 
     kenBurns(photobgA,scenes[0],KB_A);

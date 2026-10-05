@@ -227,9 +227,22 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<!-- Scene 7 — CTA1 (locked line). Same photo as scene 6 (adjacent reuse) -> static
+<!-- Scene 7 — bridge/connector line (David's direct instruction, 5.10.2026): a
+     sentence that connects the content to the locked CTA lines instead of
+     cutting straight into them. Same photo as scene 6 (adjacent reuse) -> static
      Ken Burns per the standing rule for a repeated photo. -->
-<section class="scene" data-in="35.0" data-out="36.5">
+<section class="scene" data-in="35.0" data-out="38.2">
+  <div class="photobg" id="photobgBridge" style="background-image:url('../channel/assets/ep57-scene-b-phoneglow.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.74) 0%, rgba(4,4,4,.60) 14%, rgba(4,4,4,.32) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.48) 68%, rgba(4,4,4,.70) 78%, rgba(4,4,4,.78) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbBridge">
+    <h2 id="hookH2Bridge">Send this to someone you know who's always Googling something mid-conversation.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 8 — CTA1 (locked line). Same photo as the bridge scene (adjacent
+     reuse) -> static Ken Burns. -->
+<section class="scene" data-in="38.2" data-out="39.7">
   <div class="photobg" id="photobgG" style="background-image:url('../channel/assets/ep57-scene-b-phoneglow.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.74) 0%, rgba(4,4,4,.60) 14%, rgba(4,4,4,.32) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.48) 68%, rgba(4,4,4,.70) 78%, rgba(4,4,4,.78) 100%)"></div>
@@ -238,9 +251,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<!-- Scene 8 — CTA2 (locked final line). Same photo as scene 7 (adjacent reuse) ->
-     static Ken Burns, same locked background across both closing scenes. -->
-<section class="scene" data-in="36.5" data-out="39.7">
+<!-- Scene 9 — CTA2 (locked final line). Same photo as scenes 6/7/8 (adjacent
+     reuse) -> static Ken Burns, same locked background across both closing
+     scenes. -->
+<section class="scene" data-in="39.7" data-out="42.2">
   <div class="photobg" id="photobgH" style="background-image:url('../channel/assets/ep57-scene-b-phoneglow.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.74) 0%, rgba(4,4,4,.60) 14%, rgba(4,4,4,.32) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.48) 68%, rgba(4,4,4,.70) 78%, rgba(4,4,4,.78) 100%)"></div>
@@ -280,8 +294,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [18.8,23.7,"It just went live in over two hundred countries this year, on iPhone and Android both."],
     [24.5,29.0,"Open the Google app, tap Live right under the search bar, switch on the camera, and just start talking."],
     [29.8,33.7,"It still gets things wrong sometimes, and it's not a real expert — but for what even is this thing, it gets the job done."],
-    [34.5,36.1,"The setup's in the link in bio."],
-    [36.7,38.6,"Follow for the setup that actually works."]
+    [34.2,37.3,"Send this to someone you know who's always Googling something mid-conversation."],
+    [38.0,39.6,"The setup's in the link in bio."],
+    [40.2,42.1,"Follow for the setup that actually works."]
   ];
   var WORD_WINDOWS=[
     new Array(20).fill(null),
@@ -371,8 +386,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var renderHookD=makeHook('hookKbD','hookH2D',3);
   var renderHookE=makeHook('hookKbE','hookH2E',4);
   var renderHookF=makeHook('hookKbF','hookH2F',5);
-  var renderHookG=makeHook('hookKbG','hookH2G',6);
-  var renderHookH=makeHook('hookKbH','hookH2H',7);
+  var renderHookBridge=makeHook('hookKbBridge','hookH2Bridge',6);
+  var renderHookG=makeHook('hookKbG','hookH2G',7);
+  var renderHookH=makeHook('hookKbH','hookH2H',8);
 
   var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
   function renderScene(i){
@@ -426,7 +442,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
   function render(){
     renderTransitions();
-    renderHookA();renderHookB();renderHookC();renderHookD();renderHookE();renderHookF();renderHookG();renderHookH();
+    renderHookA();renderHookB();renderHookC();renderHookD();renderHookE();renderHookF();renderHookBridge();renderHookG();renderHookH();
     renderLogo();
 
     kenBurns(photobgA,scenes[0],KB_A);
