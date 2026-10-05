@@ -8,12 +8,14 @@
   density and photo-sourcing record.
 
   Photos (all free, Unsplash License, no attribution required):
-  - channel/assets/ep58-scene-a-patio.jpg — woman using her phone on a brick patio with
-    greenery, by Helena Lopes (unsplash.com/photos/jRn5ebWQOZo). Adobe
-    image_select_subject (bodyParts: Face) found the face at bbox x 0.521-0.591,
-    y 0.183-0.316 (source 1600x1067) — no conflict with the default headline zone once
-    mapped through the cover-crop. Used in scenes 1 (hook) and 5 (steps), non-adjacent
-    reuse, normal Ken Burns each.
+  - channel/assets/ep58-scene-a-shopping-milan.jpg — a busy Milan street scene, person with
+    a prosthetic leg checking his phone in the foreground, real texture/people throughout
+    (deliberately re-sourced, 5.10.2026, to clear the frozen-picture BLOCKER the original
+    patio photo produced — see episode-58-script.md production notes). By Simonetta
+    Pugnaghi (unsplash.com/photos/a-man-uses-his-phone-on-a-busy-street-qkiMaUkbnF8).
+    Adobe image_select_subject (bodyParts: Face) found a background face at bbox
+    x 0.348-0.756, y 0-0.116 (source 2400x1600) — top-of-frame, clear of the headline
+    zone. Used in scenes 1 (hook) and 5 (steps), non-adjacent reuse, normal Ken Burns each.
   - channel/assets/ep58-scene-b-deskforest.jpg — a phone lying on a wood desk next to a
     coffee cup, showing a forest-path PHOTO on its own screen (not an app) — real,
     distributed texture across the whole frame (wood grain, forest detail, coffee cup),
@@ -21,13 +23,14 @@
     episodes 55-57. No person in frame, no face-detection check applicable. Carries the
     real WhatsApp logo badge in scene 2. Used in scenes 2 (feature named), 6 (limit) —
     both non-adjacent — and 7+8 (the CTA pair, adjacent reuse -> fully static Ken Burns).
-  - channel/assets/ep58-scene-c-balcony.jpg — a man checking his phone on a balcony, city
-    buildings behind him (real texture, not heavy bokeh). Adobe image_select_subject
-    (bodyParts: Face) found the face at bbox x 0.436-0.559, y 0.194-0.294 (source
-    1600x2400) — DOES conflict with the default headline zone once mapped through the
-    cover-crop (face lands ~y 365-557px of 1920px). Applied the template's documented
-    exception: this scene's .pad uses padding-top:52cqw instead of the default, clearing
-    the measured face bbox rather than guessing. Used in scene 3 only.
+  - channel/assets/ep58-scene-c-paris-park.jpg — a wide shot in a Paris park (Tuileries),
+    person in a long coat walking while checking their phone, dense crowd and trees in
+    sharp focus throughout the frame (re-sourced, 5.10.2026, to clear the frozen-picture
+    BLOCKER the original balcony photo produced). By ALLAN LAINEZ
+    (unsplash.com/photos/a-man-walking-down-a-street-while-looking-at-his-cell-phone-QdkyQPeCVT4).
+    Adobe image_select_subject (bodyParts: Face) found the face at bbox x 0.528-0.558,
+    y 0.207-0.266 (source 2400x1350) — small, upper-frame, checked against the headline
+    zone via safe_check.js rather than assumed. Used in scene 3 only.
   - channel/assets/ep58-scene-d-cafe.jpg — top-down hand holding a phone over a wood cafe
     table (coffee grinder, mug, a generic unrelated coffee-shop checkout screen in
     Czech — not WhatsApp, kept low-key by the scene's own darkening gradient). No face in
@@ -141,7 +144,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <!-- Scene 1 — hook. Patio photo, default headline zone (no conflict). -->
 <section class="scene" data-in="0" data-out="9.9">
-  <div class="photobg" id="photobgA" style="background-image:url('../channel/assets/ep58-scene-a-patio.jpg')"></div>
+  <div class="photobg" id="photobgA" style="background-image:url('../channel/assets/ep58-scene-a-shopping-milan.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.48) 0%, rgba(4,4,4,.38) 24%, rgba(4,4,4,.16) 40%, transparent 50%, rgba(4,4,4,.10) 70%, rgba(4,4,4,.40) 86%, rgba(4,4,4,.58) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbA">
@@ -171,7 +174,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <!-- Scene 3 — how it works. Balcony photo, face zone conflict -> moved padding-top. -->
 <section class="scene" data-in="17.2" data-out="29.1">
-  <div class="photobg" id="photobgC" style="background-image:url('../channel/assets/ep58-scene-c-balcony.jpg')"></div>
+  <div class="photobg" id="photobgC" style="background-image:url('../channel/assets/ep58-scene-c-paris-park.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.30) 0%, rgba(4,4,4,.22) 20%, rgba(4,4,4,.10) 34%, transparent 46%, transparent 54%, rgba(4,4,4,.16) 64%, rgba(4,4,4,.42) 76%, rgba(4,4,4,.62) 100%)"></div>
   <div class="pad" style="padding-top:52cqw"><div class="kb" id="hookKbC">
@@ -192,7 +195,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <!-- Scene 5 — the real steps. Patio photo again (non-adjacent reuse from scene 1),
      normal Ken Burns. -->
 <section class="scene" data-in="35.7" data-out="42.9">
-  <div class="photobg" id="photobgE" style="background-image:url('../channel/assets/ep58-scene-a-patio.jpg')"></div>
+  <div class="photobg" id="photobgE" style="background-image:url('../channel/assets/ep58-scene-a-shopping-milan.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.48) 0%, rgba(4,4,4,.38) 24%, rgba(4,4,4,.16) 40%, transparent 50%, rgba(4,4,4,.10) 70%, rgba(4,4,4,.40) 86%, rgba(4,4,4,.58) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbE">
