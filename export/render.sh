@@ -53,6 +53,16 @@ fi
 VCHAIN="[0:v]fps=30,scale=${W}:${H}:flags=lanczos,setpts=PTS-STARTPTS[v]"
 VOCHAIN="[1:a]aresample=48000,highpass=f=85,acompressor=threshold=-18dB:ratio=3:attack=8:release=180[vo]"
 
+if [ -z "$MUS" ]; then
+  # Confirmed repeatedly (episode 54): this is the LAST positional argument, so it's
+  # the easiest one to drop during a quick re-render, and a musicless render otherwise
+  # looks completely normal — nothing else here would catch it. A real ship always has
+  # music (CLAUDE.md); check.sh refuses to gate a rendered file without one. This is
+  # only a visible warning, not a hard failure, because a musicless render is also the
+  # legitimate quick-iteration path before a real track is picked.
+  echo "[render.sh] WARNING: no music argument given — rendering with NO music bed. This file cannot ship as-is." >&2
+fi
+
 if [ -n "$MUS" ]; then
   # music ducks under the voice rather than sitting at a fixed level, so the bed
   # is audible in the gaps and never fights the narration

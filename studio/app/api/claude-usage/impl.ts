@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { hasDb, listClaudeSessions, upsertClaudeSession } from "@/lib/db";
+import { hashPin } from "@/lib/pin";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -9,25 +10,28 @@ export const dynamic = "force-dynamic";
  *  touch a browser. Classified CRON in lib/routes.ts (bypasses the PIN middleware, same as
  *  /api/track), so both callers are checked here by hand: the hook's own secret, or the
  *  studio's own PIN cookie for the page's GET. */
-function callerKind(req: Request): "hook" | "studio" | null {
+async function callerKind(req: Request): Promise<"hook" | "studio" | null> {
   const secret = process.env.CLAUDE_USAGE_SECRET;
   const auth = req.headers.get("authorization");
   if (secret && auth === `Bearer ${secret}`) return "hook";
   const pin = process.env.STUDIO_PIN;
   if (pin) {
-    const cookiePin = req.headers
+    // The cookie holds hashPin(STUDIO_PIN), not the PIN itself (see lib/pin.ts) —
+    // middleware.ts and /api/unlock both set/check it this way since the PIN cookie
+    // used to carry the real secret verbatim.
+    const cookieHash = req.headers
       .get("cookie")
       ?.split(";")
       .map((c) => c.trim())
       .find((c) => c.startsWith("studio="))
       ?.slice("studio=".length);
-    if (cookiePin === pin) return "studio";
+    if (cookieHash && cookieHash === (await hashPin(pin))) return "studio";
   }
   return null;
 }
 
 export async function POST(req: Request) {
-  if (!callerKind(req)) return NextResponse.json({ ok: false, reason: "locked" }, { status: 401 });
+  if (!(await callerKind(req))) return NextResponse.json({ ok: false, reason: "locked" }, { status: 401 });
   if (!hasDb()) return NextResponse.json({ ok: false, reason: "no database configured" });
 
   let body: Record<string, unknown>;
@@ -63,7 +67,7 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-  if (!callerKind(req)) return NextResponse.json({ ok: false, reason: "locked" }, { status: 401 });
+  if (!(await callerKind(req))) return NextResponse.json({ ok: false, reason: "locked" }, { status: 401 });
   if (!hasDb()) return NextResponse.json({ ok: true, sessions: [] });
   const sessions = await listClaudeSessions();
   return NextResponse.json({ ok: true, sessions });

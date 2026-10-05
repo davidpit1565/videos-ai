@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { hashPin } from "@/lib/pin";
 
 export const runtime = "nodejs";
 
@@ -10,7 +11,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false }, { status: 401 });
   }
   const res = NextResponse.json({ ok: true });
-  res.cookies.set("studio", pin, {
+  res.cookies.set("studio", await hashPin(pin), {
     httpOnly: true,
     sameSite: "lax",
     secure: true,

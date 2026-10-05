@@ -10,6 +10,7 @@ import { publishToFacebookBusinessPage } from "@/lib/publish";
 import { ActivityEvent, AccountInsightSnapshot, MetricStatus, ReelInsightSnapshot, State, uid } from "@/lib/types";
 import { realTitleFor, captionTitleFor, reels } from "@/lib/reels";
 import { shouldSnapshot } from "@/lib/insights";
+import { hashPin } from "@/lib/pin";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -35,13 +36,14 @@ export async function GET(req: Request) {
   // cookie, so require it here for every call that isn't the real cron.
   const pin = process.env.STUDIO_PIN;
   if (!fromCron && pin) {
-    const cookiePin = req.headers
+    // The cookie holds hashPin(STUDIO_PIN), not the PIN itself — see lib/pin.ts.
+    const cookieHash = req.headers
       .get("cookie")
       ?.split(";")
       .map((c) => c.trim())
       .find((c) => c.startsWith("studio="))
       ?.slice("studio=".length);
-    if (cookiePin !== pin) {
+    if (cookieHash !== (await hashPin(pin))) {
       return NextResponse.json({ ok: false, reason: "locked" }, { status: 401 });
     }
   }

@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { isCron, isSite } from "@/lib/routes";
+import { hashPin } from "@/lib/pin";
 
 /** The studio holds the whole business. Its URL is unguessable but not private, so when
  *  STUDIO_PIN is set every private page needs the PIN once per device. The public funnel
@@ -9,14 +10,15 @@ import { isCron, isSite } from "@/lib/routes";
  *  live here as well as in app/shell.tsx, the two drifted, and /prompts and /search ended
  *  up public but wearing the studio's chrome. */
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const pin = process.env.STUDIO_PIN;
   if (!pin) return NextResponse.next();
 
   const { pathname } = req.nextUrl;
   if (isSite(pathname) || isCron(pathname)) return NextResponse.next();
 
-  if (req.cookies.get("studio")?.value === pin) return NextResponse.next();
+  const cookie = req.cookies.get("studio")?.value;
+  if (cookie && cookie === (await hashPin(pin))) return NextResponse.next();
 
   // A gated API answers with JSON and a status, never with a login page. Redirecting
   // /api/state to /unlock made every caller's r.json() throw on HTML, and the catch
