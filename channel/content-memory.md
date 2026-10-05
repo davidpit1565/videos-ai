@@ -1392,6 +1392,72 @@ once studio data comes in. Also unresolved: David has not yet watched/listened t
 episode, so the Nas-Daily-energy standing-rule question (opened at episode 56) is
 still open after this second application of it.
 
+**Episodes 56/57, round 3 (5.10.2026) — David actually watched both this round and
+gave real, specific feedback live, which led to measured fixes rather than guesses.**
+Done while he was still away, under the same standing pre-authorization as episode 57's
+first ship.
+- **Episode 57: the final CTA scene appeared ~0.58s after its own line's narration had
+  already started**, confirmed against the original authored build (which led its
+  audio by ~0.2s everywhere else) rather than assumed — fixed by moving the scene 7/8
+  cut point to restore that lead.
+- **Episode 57: short spoken words (under ~0.1s) gave the on-screen word-by-word color
+  pop too little time to read, looking like "fast typing" instead of a pop** (his own
+  words) — fixed in `export/headline_sync.py` itself (not just this one episode) by
+  flooring every word's lit window at 0.22s, capped by the next word's own start so two
+  words are never lit together. This is a real code fix, not a per-file patch.
+- **A new standing rule, his direct instruction: every episode gets one connector
+  sentence between the content and the two locked CTA lines** (e.g. "send this to
+  someone who...") instead of cutting straight into them, varied per episode rather
+  than a repeated template line. Applied retroactively to 56 and 57 (both already
+  shipped) per his explicit follow-up ask, and to 58 going forward.
+- **Episode 56: "...most of the planet doesn't, yet." measured with a rising pitch at
+  the line's end (+1.6 semitones against a -1.5 threshold)** — exactly his complaint
+  that it "sounds like I'm still going." Reworded to two complete falling sentences
+  ("Twelve countries have it so far. Most of the planet still doesn't.") instead of a
+  trailing one-word tag.
+- **A systemic finding, bigger than either episode: the locked canonical clip for "The
+  setup's in the link in bio." — reused byte-for-byte in every episode via
+  `audio/voice/profile/canonical-lines.json` — itself rises instead of falls** (+9.4 st
+  measured on episode 56's copy, +3.6 st on episode 57's, both from the identical
+  locked file). This has been shipping in every episode that uses it. A measured
+  replacement candidate (fresh seed, -3.2 st, properly landing) is ready but the harness
+  blocked overwriting the shared locked asset even with a backup — needs David's own
+  hands or explicit real-time approval to apply, not something this session could push
+  through alone.
+- **Full line-by-line pitch-fall audit on both episodes, not just the lines he named**,
+  per his explicit instruction to fix "the rest of the issues too." Both episodes'
+  final shipped takes land a proper falling pitch on every content line except the
+  still-blocked locked clip. Took many more regeneration rounds than expected because
+  a line that landed in isolated single-line testing didn't always land inside the
+  full multi-line build — the actual per-line seed is `base + attempt*1000 + idx`, not
+  the raw seed value, and ASR-verification retries can silently change which attempt
+  number actually gets used round to round. Isolated candidate testing has to replicate
+  that exact formula to be predictive.
+
+**Episode 58 (5.10.2026) — WhatsApp's Photo Touch-Up, built fully autonomously while
+David was away, under the same standing pre-authorization as episode 57.** Topic: type
+a sentence in the WhatsApp chat composer and Meta's AI redraws the photo before you
+send it — universal audience, AI is the literal demoed capability. First episode to
+carry the two rules decided mid-production on 56/57 (bridge line before the locked
+CTAs, full pitch-fall audit on every line) from the start rather than retrofitted.
+- **A genuinely fragile mid-sentence word, confirmed and fixed properly**: "a" (in
+  "pick a picture"/"choose a photo") held 1.4-1.5s per syllable at the same relative
+  position in line 5 across three different wordings and three different seeds — not
+  seed noise, a real text-level artifact. Fixed by removing the indefinite article
+  entirely ("choose any photo") rather than continuing to reword around it.
+- **The same uniform-texture frozen-picture BLOCKER as episodes 55-57, on two
+  different photos this time** (a shallow-DOF patio shot and a balcony shot with a
+  blurred city background) — fixed the same proven way: swapped both for genuinely
+  different, full-frame-texture photos (a busy Milan street, a wide Paris park shot)
+  via live Unsplash search, Adobe face-detection re-verified on both before use.
+  Motion-magnitude increases were not even attempted this time, since episodes 56/57
+  already closed that question.
+**UNKNOWN, not yet measurable:** performance data; too early, and this episode's topic/
+energy/bridge-line choices are all new variables at once, so don't attribute any single
+cause to a performance difference once data exists — treat the bridge-line and full-audit
+changes as channel-wide process improvements, not something to A/B against this one
+episode's number.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same

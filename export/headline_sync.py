@@ -116,6 +116,19 @@ def main():
             else:
                 merged[ti][0] = min(merged[ti][0], s[0])
                 merged[ti][1] = max(merged[ti][1], s[1])
+        # A short function word's real spoken span can be under 0.1s — too brief for
+        # the 0.09s color transition to read as a pop rather than a flicker. Floor
+        # every window at MIN_HOLD, capped by the next word's own start so two words
+        # are never both lit at once.
+        MIN_HOLD = 0.22
+        for ti in range(len(merged)):
+            if merged[ti] is None:
+                continue
+            start, end = merged[ti]
+            if end - start < MIN_HOLD:
+                cap = merged[ti + 1][0] if ti + 1 < len(merged) and merged[ti + 1] else None
+                new_end = start + MIN_HOLD
+                merged[ti][1] = min(new_end, cap) if cap is not None else new_end
         scenes_out.append(merged)
 
     # Line-anchored on purpose, not a dotall .*? across the whole file: this template's

@@ -1574,6 +1574,36 @@ export const ARTICLES: Article[] = [
       "Some newer additions inside Google's AI Mode (described in press coverage as \"information agents\") are gated to Google AI Ultra subscribers — the base Search Live feature itself is free, but not every future AI Mode feature necessarily will be.",
     ],
   },
+  {
+    n: 58,
+    title: "WhatsApp can already redraw your photo with AI — before you even hit send",
+    standfirst:
+      "In March 2026, Meta rolled out \"Photo Touch-Up\" worldwide inside WhatsApp — a " +
+      "Meta-AI-powered photo editor built directly into the chat composer. Type a sentence " +
+      "describing what you want changed (remove something, swap the background, change the " +
+      "whole mood, or reimagine the photo entirely) and the AI rebuilds the image to match, " +
+      "without leaving WhatsApp or opening a separate app. It's free, built into the " +
+      "WhatsApp you already have, on both iPhone and Android.",
+    steps: [
+      "Make sure you have the latest version of WhatsApp (אפליקציית WhatsApp) installed.",
+      "Open a chat like you normally would, and tap the photo/attachment icon to pick a photo — the same way you'd normally send one.",
+      "Before sending, look for the new edit button (עריכה) in the photo composer screen.",
+      "Type a sentence describing what you want changed — for example, \"remove the bag in the background\" or \"make it look like sunset.\"",
+      "Wait a few seconds while the AI rebuilds the photo to match what you typed.",
+      "Review the result. If it's not right, you can usually type a follow-up instruction to adjust it again before sending.",
+      "Optional: if you're happy with the original, just skip the edit button entirely and send the photo like you always have — this step is not mandatory.",
+    ],
+    changes: [
+      "Verified live (4.10.2026): the March 2026 worldwide rollout of WhatsApp's Photo Touch-Up, corroborated across itechguides.com (\"Meta AI on WhatsApp: Features, Privacy and Limits in 2026\"), techpoint.africa, and greentick.ai's 2026 WhatsApp AI features guide — cross-checked, not a single source.",
+      "Two other live-searched candidate topics were checked and rejected before writing this episode: ChatGPT group chats (confirmed wound down starting 9.7.2026) and ChatGPT Instant Checkout (confirmed retired March 2026, six months after its September 2025 launch) — both would have been scripts about dead features, the exact episode-18 \"ChatGPT agent mode\" mistake this channel checks for every time.",
+      "The exact in-app flow above (edit button inside the photo composer, before sending) is sourced to the independent reporting above rather than a first-hand Meta support-page citation — flagged honestly in Limits below, the same way episode 57 distinguished a sourced claim from a first-hand demo.",
+    ],
+    limits: [
+      "This feature's real-world accuracy (how well it follows a specific instruction, how it handles complex edits) was not independently tested by this channel — the claims here are sourced to WhatsApp's own rollout and independent reporting, not a first-hand benchmark.",
+      "It's a fast in-chat touch-up, not a replacement for a real photo-editing app — for anything beyond a quick fix before sending, use a dedicated editing tool.",
+      "Exact menu labels and button placement can shift between WhatsApp app versions — if you don't see the edit button described above, make sure your app is fully up to date first.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

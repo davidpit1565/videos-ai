@@ -261,7 +261,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.30) 0%, rgba(4,4,4,.22) 30%, rgba(4,4,4,.10) 45%, transparent 55%, rgba(4,4,4,.26) 75%, rgba(4,4,4,.56) 88%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:74.4cqw"><div class="kb" id="hookKbE">
-    <h2 id="hookH2E" style="font-size:6.8cqw">Open the app, tap Live Translate, <span class="box">pick your languages</span>, and just talk.</h2>
+    <h2 id="hookH2E" style="font-size:6.8cqw">Open the app, tap Live Translate, <span class="box">and just start talking</span>.</h2>
   </div></div>
 </section>
 
@@ -272,19 +272,26 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.56) 0%, rgba(4,4,4,.46) 12%, rgba(4,4,4,.26) 24%, rgba(4,4,4,.08) 34%, transparent 40%, transparent 50%, rgba(4,4,4,.14) 57%, rgba(4,4,4,.46) 66%, rgba(4,4,4,.70) 76%, rgba(4,4,4,.78) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbF">
-    <h2 id="hookH2F"><span class="box">Twelve countries</span> have it so far — most of the planet doesn't, yet.</h2>
+    <h2 id="hookH2F"><span class="box">Twelve countries</span> have it so far. Most of the planet still doesn't.</h2>
   </div></div>
 </section>
 
-<!-- Scene 7 — CTA1+2 share one photo per the standing rule; this file uses the
-     7-scene convention (locked lines are scenes 6-ish split differently from
-     episode 55: here scene 6 carries the honest-limit line and scene 7 pairs the
-     two locked CTA lines across its own two beats is NOT used — instead this
-     episode's locked lines occupy scenes 6 and 7 is avoided to keep the honest
-     limit as its own beat). Scene 7a/7b below are the two locked CTA scenes,
-     sharing the SAME photo as scene 6 (adjacent-to-scene-6 photo repeat for 7,
-     and 7-to-8 adjacent repeat too) -> static Ken Burns for both. -->
-<section class="scene" data-in="35.6" data-out="37.8">
+<!-- Scene 7 — bridge/connector line (David's direct instruction, 5.10.2026): a
+     sentence that connects the content to the locked CTA lines instead of
+     cutting straight into them. Same photo as scene 6 (adjacent reuse) -> static
+     Ken Burns per the standing rule. -->
+<section class="scene" data-in="35.6" data-out="39.0">
+  <div class="photobg" id="photobgBridge" style="background-image:url('../channel/assets/ep56-scene-b-earbudscity.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.56) 0%, rgba(4,4,4,.46) 12%, rgba(4,4,4,.26) 24%, rgba(4,4,4,.08) 34%, transparent 40%, transparent 50%, rgba(4,4,4,.14) 57%, rgba(4,4,4,.46) 66%, rgba(4,4,4,.70) 76%, rgba(4,4,4,.78) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbBridge">
+    <h2 id="hookH2Bridge">Send this to anyone you know who's about to travel somewhere they don't speak the language.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 8 — CTA1 (locked line). Same photo as the bridge scene (adjacent
+     reuse) -> static Ken Burns. -->
+<section class="scene" data-in="39.0" data-out="41.2">
   <div class="photobg" id="photobgG" style="background-image:url('../channel/assets/ep56-scene-b-earbudscity.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.56) 0%, rgba(4,4,4,.46) 12%, rgba(4,4,4,.26) 24%, rgba(4,4,4,.08) 34%, transparent 40%, transparent 50%, rgba(4,4,4,.14) 57%, rgba(4,4,4,.46) 66%, rgba(4,4,4,.70) 76%, rgba(4,4,4,.78) 100%)"></div>
@@ -293,9 +300,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   </div></div>
 </section>
 
-<!-- Scene 8 — CTA2 (locked final line). Same photo as scenes 6/7 (adjacent reuse
-     from scene 7 -> fully static Ken Burns, per the standing rule). -->
-<section class="scene" data-in="37.8" data-out="40.3">
+<!-- Scene 9 — CTA2 (locked final line). Same photo as scenes 6/7/8 (adjacent reuse
+     from scene 8 -> fully static Ken Burns, per the standing rule). -->
+<section class="scene" data-in="41.2" data-out="43.7">
   <div class="photobg" id="photobgH" style="background-image:url('../channel/assets/ep56-scene-b-earbudscity.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.56) 0%, rgba(4,4,4,.46) 12%, rgba(4,4,4,.26) 24%, rgba(4,4,4,.08) 34%, transparent 40%, transparent 50%, rgba(4,4,4,.14) 57%, rgba(4,4,4,.46) 66%, rgba(4,4,4,.70) 76%, rgba(4,4,4,.78) 100%)"></div>
@@ -333,10 +340,11 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [6.7,12.8,"Google's translate app can now use any headphones to translate for you, in real time."],
     [13.7,18.6,"It understands over seventy languages, and it just came to iPhone too, in March this year."],
     [19.4,27.0,"Apple's own version only works on their newest AirPods, and it's blocked in Europe. Google's version works with headphones you already own — even there."],
-    [27.9,31.1,"Open the app, tap Live Translate, pick your languages, and just talk."],
-    [31.9,34.8,"Twelve countries have it so far — most of the planet doesn't, yet."],
-    [35.9,37.5,"The setup's in the link in bio."],
-    [38.1,40.0,"Follow for the setup that actually works."]
+    [27.9,31.1,"Open the app, tap Live Translate, and just start talking."],
+    [31.9,34.8,"Twelve countries have it so far. Most of the planet still doesn't."],
+    [35.3,38.5,"Send this to anyone you know who's about to travel somewhere they don't speak the language."],
+    [39.2,40.8,"The setup's in the link in bio."],
+    [41.4,43.3,"Follow for the setup that actually works."]
   ];
   var WORD_WINDOWS=[
     new Array(13).fill(null),
@@ -420,8 +428,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var renderHookD=makeHook('hookKbD','hookH2D',3);
   var renderHookE=makeHook('hookKbE','hookH2E',4);
   var renderHookF=makeHook('hookKbF','hookH2F',5);
-  var renderHookG=makeHook('hookKbG','hookH2G',6);
-  var renderHookH=makeHook('hookKbH','hookH2H',7);
+  var renderHookBridge=makeHook('hookKbBridge','hookH2Bridge',6);
+  var renderHookG=makeHook('hookKbG','hookH2G',7);
+  var renderHookH=makeHook('hookKbH','hookH2H',8);
 
   var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
   function renderScene(i){
@@ -496,7 +505,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
   function render(){
     renderTransitions();
-    renderHookA();renderHookB();renderHookC();renderHookD();renderHookE();renderHookF();renderHookG();renderHookH();
+    renderHookA();renderHookB();renderHookC();renderHookD();renderHookE();renderHookF();renderHookBridge();renderHookG();renderHookH();
     renderLogo();
 
     photobgA.style.transform=MK.kenBurns(t-(+scenes[0].dataset.in),+scenes[0].dataset.out-(+scenes[0].dataset.in),KB_A);
