@@ -106,10 +106,6 @@ h2 .box{color:var(--accent);font-weight:900;background:none;border:0;padding:0;
   opacity:0;transition:opacity .3s ease}
 .logobadge.on{opacity:1}
 .logobadge svg{width:9cqw;filter:drop-shadow(0 .6cqw 2cqw rgba(0,0,0,.6))}
-.logolabel{width:100%;text-align:center;margin-top:0.8cqw;
-  font-family:var(--m);font-size:1.8cqw;letter-spacing:.12em;text-transform:uppercase;color:#7FE3C3;
-  opacity:0;transition:opacity .3s ease}
-.logolabel.on{opacity:1}
 
 .handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
   font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#CBD5E1;
@@ -168,7 +164,6 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       <path fill="#fff" fill-rule="evenodd" d="M68.772 55.603c-1.378-3.061-2.828-3.123-4.137-3.176l-3.524-.043c-1.226 0-3.218.46-4.902 2.3s-6.435 6.287-6.435 15.332 6.588 17.785 7.506 19.013 12.718 20.381 31.405 27.75c15.529 6.124 18.689 4.906 22.061 4.6s10.877-4.447 12.408-8.74 1.532-7.971 1.073-8.74-1.685-1.226-3.525-2.146-10.877-5.367-12.562-5.981-2.91-.919-4.137.921-4.746 5.979-5.819 7.206-2.144 1.381-3.984.462-7.76-2.861-14.784-9.124c-5.465-4.873-9.154-10.891-10.228-12.73s-.114-2.835.808-3.751c.825-.824 1.838-2.147 2.759-3.22s1.224-1.84 1.836-3.065.307-2.301-.153-3.22-4.032-10.011-5.666-13.647"/>
     </svg>
   </div>
-  <div class="logolabel" id="logoLabel">whatsapp · photo touch-up · march 2026</div>
   </div></div>
 </section>
 
@@ -188,7 +183,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.56) 0%, rgba(4,4,4,.44) 24%, rgba(4,4,4,.20) 40%, transparent 50%, rgba(4,4,4,.14) 68%, rgba(4,4,4,.42) 84%, rgba(4,4,4,.58) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbD">
-    <h2 id="hookH2D">Meta launched this everywhere, right inside the WhatsApp you already have — <span class="box">no extra download needed</span>.</h2>
+    <h2 id="hookH2D">This is already live worldwide, built right into the WhatsApp you already have — <span class="box">nothing extra to download</span>.</h2>
   </div></div>
 </section>
 
@@ -278,7 +273,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [0.30,7.83,"Your photo in a WhatsApp chat right now — type one sentence, and Meta's AI will redraw it for you, right up to the second you hit send."],
     [8.25,14.26,"It's Photo Touch-Up, built right into the chat box in WhatsApp. No extra app, and it's free."],
     [14.68,23.13,"You type what you want changed — remove something, swap the background, change the whole mood — and the AI rebuilds the picture to match, right as you hit send."],
-    [23.55,29.68,"Meta launched this everywhere, right inside the WhatsApp you already have — no extra download needed."],
+    [23.55,29.68,"This is already live worldwide, built right into the WhatsApp you already have — nothing extra to download."],
     [30.53,36.72,"Open any chat, choose any photo the usual way, then tap the new touch-up button, and type in your request."],
     [37.14,45.35,"It still gets some details wrong sometimes, and it won't replace a real photo app — but for a fast fix right there in the chat, it gets the job done."],
     [45.77,50.14,"Send this to someone you know who's about to send a photo they want to change."],
@@ -398,13 +393,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     for(var i=0;i<scenes.length;i++) renderScene(i);
   }
 
-  var logoBadge=document.getElementById('logoBadge'), logoLabel=document.getElementById('logoLabel');
+  var logoBadge=document.getElementById('logoBadge');
   var logoScene=logoBadge.closest('.scene');
   function renderLogo(){
     var lt=t-(+logoScene.dataset.in);
     var on=lt>=1.0 && t<+logoScene.dataset.out;
     logoBadge.classList.toggle('on',on);
-    logoLabel.classList.toggle('on',on);
   }
 
   function kenBurns(el,sceneEl,kb){

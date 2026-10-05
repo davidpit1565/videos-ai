@@ -102,6 +102,25 @@ Passed `audio/script_lint.py` clean except the two locked outro lines (handled b
   WhatsApp you already have, starting in twenty twenty-six.", also swapping "rolled this
   out" for "launched this" since "rolled" was itself one of the swallowed words). All
   six non-locked lines re-passed `script_lint.py` clean before regenerating.
+- **Round 4** (5.10.2026, David's feedback after watching the shipped file): line 4's
+  wording had drifted further from round 3's own documented text by the time it
+  actually shipped ("Meta launched this worldwide..." became "Meta launched this
+  everywhere..." somewhere after round 3, undocumented) — "everywhere" is itself one
+  of the fragile words confirmed independently the same day in a separate reseed run,
+  and David flagged the line's tone as too formal/written regardless. Reworded to
+  "This is already live worldwide, built right into the WhatsApp you already have —
+  nothing extra to download." — drops "Meta launched"/"rolled" (both previously
+  fragile) and "everywhere" (currently fragile), shorter and more conversational.
+  Also removed the `.logolabel` caption text under the WhatsApp logo badge (see
+  CLAUDE.md's standing logo rule, updated same day) from all three build variants.
+  **Not yet re-verified**: `script_lint.py` passes clean on the new line, but this
+  session has no `torch`/`chatterbox`/`ffmpeg` — the voice for this line was never
+  regenerated, retimed, re-captioned or re-rendered here. The shipped
+  `studio/public/reels/reel-58.mp4` still has the OLD voice line and the OLD logo
+  caption baked in; only the HTML/CUES source changed. Needs a full
+  `produce.sh`-style pass (voice → doctor → retime → captions → render → check.sh)
+  on a machine that has the audio/render toolchain before this actually reaches
+  viewers.
 
 ## Photos (all free, Unsplash License, no attribution required)
 
