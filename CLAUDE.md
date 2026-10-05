@@ -65,6 +65,15 @@ been running for days.
   (showing an actual interface, not just naming a brand), get that screenshot directly —
   live web search, open the real page or app, capture the actual screen — rather than
   treating a generic AI-generated stand-in as good enough.
+- **A logo badge is the icon alone — never a text caption underneath it.** Decided
+  5.10.2026, David's direct instruction, after episode 58 shipped with a small
+  uppercase label ("whatsapp · photo touch-up · march 2026") under the WhatsApp logo
+  badge — a pattern copied as-is into episodes 55, 56 and 57 too, none of which were
+  asked for a caption either. The logo mark itself already identifies the product; the
+  text underneath it is restating what the viewer can already see. Fixed in episode
+  58's build (the `.logolabel` div/CSS/JS removed from `reel-58.html/-timed/-kar`) —
+  episodes 55-57 were not touched retroactively, since that wasn't asked for, but they
+  carry the same pattern and are candidates if he wants it applied there too.
 - **Measure, don't guess.** Demand comes from real view counts (`channel/demand-report.md`),
   voice decisions from measurement *and* his ear — and when they disagree, his ear wins and
   the disagreement gets written down.
