@@ -1434,6 +1434,30 @@ first ship.
   number actually gets used round to round. Isolated candidate testing has to replicate
   that exact formula to be predictive.
 
+**Episode 58 (5.10.2026) — WhatsApp's Photo Touch-Up, built fully autonomously while
+David was away, under the same standing pre-authorization as episode 57.** Topic: type
+a sentence in the WhatsApp chat composer and Meta's AI redraws the photo before you
+send it — universal audience, AI is the literal demoed capability. First episode to
+carry the two rules decided mid-production on 56/57 (bridge line before the locked
+CTAs, full pitch-fall audit on every line) from the start rather than retrofitted.
+- **A genuinely fragile mid-sentence word, confirmed and fixed properly**: "a" (in
+  "pick a picture"/"choose a photo") held 1.4-1.5s per syllable at the same relative
+  position in line 5 across three different wordings and three different seeds — not
+  seed noise, a real text-level artifact. Fixed by removing the indefinite article
+  entirely ("choose any photo") rather than continuing to reword around it.
+- **The same uniform-texture frozen-picture BLOCKER as episodes 55-57, on two
+  different photos this time** (a shallow-DOF patio shot and a balcony shot with a
+  blurred city background) — fixed the same proven way: swapped both for genuinely
+  different, full-frame-texture photos (a busy Milan street, a wide Paris park shot)
+  via live Unsplash search, Adobe face-detection re-verified on both before use.
+  Motion-magnitude increases were not even attempted this time, since episodes 56/57
+  already closed that question.
+**UNKNOWN, not yet measurable:** performance data; too early, and this episode's topic/
+energy/bridge-line choices are all new variables at once, so don't attribute any single
+cause to a performance difference once data exists — treat the bridge-line and full-audit
+changes as channel-wide process improvements, not something to A/B against this one
+episode's number.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
