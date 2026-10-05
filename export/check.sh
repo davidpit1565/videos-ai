@@ -30,7 +30,19 @@ node export/safe_check.js "$BUILD" --every 0.2 || fail=1
 if [ -n "$MP4" ]; then
   echo
   echo "=== rendered file"
-  python3 export/qa.py "$MP4" --build "$BUILD" --vo "$VO" ${MUS:+--music "$MUS"} || fail=1
+  # A real ship always has music (CLAUDE.md), and this exact gap — the 4th argument
+  # silently omitted, qa.py's --music check silently skipping, check.sh still printing
+  # "ALL CHECKS PASSED" — is what let episode 54 ship three versions in a row with no
+  # music at all. A rendered file is checked here specifically so it can ship; a
+  # musicless render for quick local iteration should call check.sh with no $MP4 at all,
+  # not pass one through with the 4th argument dropped.
+  if [ -z "$MUS" ]; then
+    echo "MUSIC ARGUMENT MISSING — refusing to gate a rendered file with no music check." >&2
+    echo "Pass the music bed as the 4th argument, or omit \$MP4 entirely if this is not a shippable render." >&2
+    fail=1
+  else
+    python3 export/qa.py "$MP4" --build "$BUILD" --vo "$VO" --music "$MUS" || fail=1
+  fi
 fi
 
 echo
