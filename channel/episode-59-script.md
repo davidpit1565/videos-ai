@@ -36,7 +36,7 @@ episode 60 (Meta AI chats and Instagram ads) and uses the revised flowing format
 
 ## Hook rules check
 
-- Hook: "Your LinkedIn profile is already teaching an AI — and nobody asked you." (12 words)
+- Hook: "Your LinkedIn profile is already teaching an AI — and no one asked you." (12 words)
 - Type: Shock/Surprise (last used solo: episode 57; episode 58 was Direct Address, so not
   a back-to-back repeat).
 - Understandable from second one: LinkedIn is named with "profile" next to it, "teaching an
@@ -46,8 +46,8 @@ episode 60 (Meta AI chats and Instagram ads) and uses the revised flowing format
 
 ## Spoken script (plain language, ~60s)
 
-1. Your LinkedIn profile is already teaching an AI — and nobody asked you.
-2. LinkedIn has an option that lets it train its AI on your profile and your posts. And it's on by default.
+1. Your LinkedIn profile is already teaching an AI — and no one asked you.
+2. It has an option that lets it train its AI on your profile and your posts. And it's on by default.
 3. Your job titles, your skills, your summary, your comments — all of it can be used. Your login and your bank info stay out of it.
 4. Turning it off takes under a minute. Open LinkedIn, tap your photo, then Settings, then Data privacy.
 5. Tap the one that says Generative AI, and flip the switch off.

@@ -1,4 +1,4 @@
-Your LinkedIn profile is already teaching an AI — and nobody asked you.
+Your LinkedIn profile is already teaching an AI — and no one asked you.
 
 LinkedIn has a setting called "Data for Generative AI Improvement." When it's on, LinkedIn can use your profile, your posts and your comments to train the AI that writes content. It's on by default, so you have to switch it off yourself. Your login and your bank info stay out of it.
 
