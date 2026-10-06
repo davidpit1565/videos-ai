@@ -1,5 +1,4 @@
-import { readdirSync, statSync, readFileSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import manifest from "./reels-manifest.json";
 
 /** The reels waiting for his approval, read from the filesystem at request time.
  *
@@ -42,17 +41,19 @@ export const SEQUEL_FOR: Record<number, number> = Object.fromEntries(
   Object.entries(SEQUEL_OF).map(([part2, original]) => [original, Number(part2)]),
 );
 
-const DIR = join(process.cwd(), "public", "reels");
-const CAPTIONS = join(process.cwd(), "..", "channel");
+/** Everything below reads lib/reels-manifest.json, written by scripts/write-reels-manifest.mjs
+ *  before each build — no file is read at request time. Reading public/reels/ here made Next
+ *  pack every video into every function that imported this file (the 162 GB that got the
+ *  Vercel team paused, 6.10.2026). */
+type Manifest = {
+  reels: { file: string; bytes: number; builtAt: string; gate: { passed: boolean; text: string } | null }[];
+  texts: { caption: Record<string, string>; youtube: Record<string, string> };
+};
+const M = manifest as Manifest;
 
-function textFor(n: number | null, suffix: string): string | null {
+function textFor(n: number | null, suffix: "caption" | "youtube"): string | null {
   if (n === null) return null;
-  const p = join(CAPTIONS, `episode-${String(n).padStart(2, "0")}-${suffix}.txt`);
-  try {
-    return existsSync(p) ? readFileSync(p, "utf8").trim() : null;
-  } catch {
-    return null;
-  }
+  return M.texts[suffix][String(n)] ?? null;
 }
 
 export const captionFor = (n: number | null) => textFor(n, "caption");
@@ -80,34 +81,6 @@ export function captionTitleFor(n: number | null): string | null {
   return cap.split("\n").find((l) => l.trim())?.trim() || null;
 }
 
-/** The filesystem mtime does not survive a git checkout reliably — Vercel's own build
- *  showed every reel dated 2018-10-20, which is not a date that has ever been true for
- *  this repo. produce.sh now writes the real ship moment to a sidecar file; this reads
- *  that when present and only falls back to mtime for anything shipped before it existed. */
-function builtAtFor(file: string, fallback: Date): string {
-  const p = join(DIR, file.replace(/\.(mp4|m4a|wav)$/, ".built-at.txt"));
-  try {
-    if (existsSync(p)) {
-      const v = readFileSync(p, "utf8").trim();
-      if (v) return v;
-    }
-  } catch {
-    /* fall through to the filesystem's own timestamp */
-  }
-  return fallback.toISOString();
-}
-
-function gateFor(file: string): Reel["gate"] {
-  const p = join(DIR, file.replace(/\.mp4$/, ".gate.txt"));
-  try {
-    if (!existsSync(p)) return null;
-    const text = readFileSync(p, "utf8").trim();
-    return { passed: /ALL CHECKS PASSED/.test(text), text };
-  } catch {
-    return null;
-  }
-}
-
 export function reelByFile(file: string): Reel | null {
   return reels().find((r) => r.file === file) ?? null;
 }
@@ -117,25 +90,18 @@ export function reels(): Reel[] {
   // line's tone is wrong, and the only way to settle it is for him to hear the candidates.
   // Rebuilding a whole narration and re-rendering to ask one question costs forty minutes;
   // playing six takes costs thirty seconds.
-  let names: string[];
-  try {
-    names = readdirSync(DIR).filter((f) => /\.(mp4|m4a|wav)$/.test(f));
-  } catch {
-    return [];
-  }
-  return names
-    .map((file) => {
-      const st = statSync(join(DIR, file));
-      const m = file.match(/(\d+)/);
+  return M.reels
+    .map((r) => {
+      const m = r.file.match(/(\d+)/);
       const episode = m ? Number(m[1]) : null;
       return {
-        src: `/reels/${file}`,
-        kind: /\.mp4$/.test(file) ? ("video" as const) : ("audio" as const),
-        file,
+        src: `/reels/${r.file}`,
+        kind: /\.mp4$/.test(r.file) ? ("video" as const) : ("audio" as const),
+        file: r.file,
         episode,
-        bytes: st.size,
-        builtAt: builtAtFor(file, st.mtime),
-        gate: gateFor(file),
+        bytes: r.bytes,
+        builtAt: r.builtAt,
+        gate: r.gate,
         caption: captionFor(episode),
         youtube: youtubeFor(episode),
         // realTitleFor() alone left every episode shipped before a youtube.txt existed

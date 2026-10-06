@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { readFileSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import { SITE_URL } from "@/lib/site";
 import { publishToYoutube } from "@/lib/publish";
 import { loadState, saveState } from "@/lib/db";
 
@@ -21,9 +20,11 @@ export async function POST(req: Request) {
     if (file.includes("/") || file.includes("..")) {
       return NextResponse.json({ ok: false, reason: "שם קובץ לא חוקי" }, { status: 400 });
     }
-    const p = join(process.cwd(), "public", "reels", file);
-    if (!existsSync(p)) return NextResponse.json({ ok: false, reason: "הקובץ לא נמצא" }, { status: 404 });
-    const bytes = readFileSync(p);
+    // Fetched from the site's own /reels/ folder instead of read off the function's disk:
+    // reading it from disk made every function carry every video (see lib/reels.ts).
+    const res = await fetch(`${SITE_URL}/reels/${encodeURIComponent(file)}`);
+    if (!res.ok) return NextResponse.json({ ok: false, reason: "הקובץ לא נמצא" }, { status: 404 });
+    const bytes = Buffer.from(await res.arrayBuffer());
     const r = await publishToYoutube(bytes, title, description ?? "");
     // Best-effort — a real upload that just succeeded should never be reported as failed
     // because this bookkeeping write hiccuped.
