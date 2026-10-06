@@ -223,6 +223,26 @@ results (running two more in parallel now would confound which batch caused what
 
 ## Log
 
+### 6.10.2026 — next episodes after 58: "everyday packaging, AI inside" — RUNNING
+
+**Changed:** every episode is packaged as an everyday thing already happening to the
+viewer (a product nearly everyone uses + a short ~7-12-word hook about something
+happening to them now), with AI as the real content. See CLAUDE.md's rule of the same date.
+**To test:** whether this gets episode 55's non-follower second wave (views keep climbing
+past hour 6 instead of flattening) while staying on-topic enough to actually *convert* —
+the part 55 failed at.
+**Baseline (equal-age, from the studio's hourly snapshots):** typical run — ~85-100 views
+at 7h, flattening by 6-8h, ~110-140 at 24h (episodes 51/52/56). Episode 55 (off-topic
+outlier): 153 at 7h, 250 at 20h — but 0 followers gained (123 → 122). Followers overall
+flat for a week at 122-123 regardless of views.
+**Measure two things, not one:** views at 7h/24h (reach) AND followers gained in the 48h
+after each publish (from the daily `snapshots`). A version that only wins on views repeats
+55's problem.
+**Result:** [fill in after at least 3 episodes built this way]
+**Verdict:** —
+**Feeds into:** content-memory.md's episode-55 entry (moves the topic/hook hypothesis to
+Confirmed or REJECTED).
+
 ### NOT AN EXPERIMENT — Reel 13, "ChatGPT remembers you, even in a new chat"
 
 David confirmed: Reel 13 went out as a normal upload through the studio, not through the

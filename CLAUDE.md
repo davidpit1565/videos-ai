@@ -122,6 +122,18 @@ been running for days.
   specific person it could actually happen to. Check every hook against this before
   assuming a checkable-fact opener (per the "500+ club" finding) is automatically enough —
   a checkable fact that doesn't land in the gut still isn't a strong hook.
+- **Package every episode as an everyday thing that's already happening to the viewer —
+  with AI as the substance inside it, never swapped out for a non-AI topic.** Decided
+  6.10.2026, David's go-ahead after the episode 55 analysis (`content-memory.md`): 55
+  (Alexa/Amazon — not really an AI topic, shipped by mistake) got 260 views, ~2x the
+  run's median, from a second wave of non-followers — but gained 0 followers, 0 shares,
+  0 saves. Reach from an off-topic video builds an audience that doesn't want what this
+  channel or the business offers. So take the packaging, not the topic: a product nearly
+  everyone owns or uses (phone, WhatsApp, Google, a smart speaker, their kid's phone), a
+  short hook (~7-12 words) stating something that is already happening to them right now,
+  and the AI mechanism as the actual content. Episodes 44 and 48 (177/185, both AI) were
+  already built this way. This is a working direction, not a confirmed pattern — one
+  outlier episode is not proof; `channel/experiments.md` tracks the test.
 - **Every episode must be fully understandable, to literally anyone, from the first second
   — not just to a viewer already into AI, and not only by the time the video ends.**
   Decided 24.9.2026, David's own words: this applies to every future video from now on, not
