@@ -1458,6 +1458,30 @@ cause to a performance difference once data exists — treat the bridge-line and
 changes as channel-wide process improvements, not something to A/B against this one
 episode's number.
 
+**Episode 58, round 5 (5-6.10.2026) — full local toolchain stood up inside a cloud
+session, and a real re-ship off the back of David's direct feedback on the shipped
+file.** Two infrastructure/process findings worth keeping:
+- **The audio/render toolchain (ffmpeg, torch, chatterbox-tts, faster-whisper) installs
+  cleanly in a bare cloud container** (apt + pip, no GPU needed — `build_voice.py`
+  already hardcodes `device="cpu"`), and Playwright+Chromium were already preinstalled.
+  This means a cloud session is not actually blocked from doing real voice/render work
+  — it just wasn't set up yet. Worth remembering before assuming "can't do this here."
+- **A relative, whole-file statistical threshold (voice_doctor's per-word
+  rushed/clipped check) will re-flag different words every time ANY line's duration
+  changes**, even on byte-identical cached audio — confirmed directly against
+  `build_voice.py`'s own "cached take (restart-safe, no regeneration)" log lines. Don't
+  chase every new flag from this list as if it were a new defect; cross-check against
+  what actually changed before reseeding or rewording.
+- **A Ken Burns freeze can come from the easing curve alone, not just a uniform-texture
+  photo.** `motion-kit.js`'s `smoothIn` (`1-(1-p)^3`) visually completes ~85-99% of its
+  motion by 50-70% of a scene's duration — invisible at a scene's original length, but
+  a retime that shortens scenes can push the long, nearly-static tail past the
+  freeze-detector's threshold. Confirmed by extracting and comparing actual frames at
+  both ends of the flagged window, not by assumption. Fixed per-scene by increasing
+  that scene's own Ken Burns magnitude — a legitimately different root cause from the
+  uniform-texture failure documented above, so the "magnitude doesn't fix it" lesson
+  from episodes 55-57 does NOT generalize to this failure mode.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
