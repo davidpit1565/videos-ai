@@ -343,12 +343,14 @@
     "episode": 58,
     "brass": "#0D9488",
     "ember": "#0D9488",
-    "mood": "confident"
+    "mood": "confident",
+    "date": "2026-10-04"
   },
   {
     "episode": 59,
     "brass": "#F59E0B",
     "ember": "#F59E0B",
-    "mood": "urgent"
+    "mood": "urgent",
+    "date": "2026-10-06"
   }
 ]
