@@ -1482,6 +1482,33 @@ file.** Two infrastructure/process findings worth keeping:
   uniform-texture failure documented above, so the "magnitude doesn't fix it" lesson
   from episodes 55-57 does NOT generalize to this failure mode.
 
+**Episode 55's spike (260 views) vs 54/56 — checked 6.10.2026 against the studio's own
+hourly snapshots, compared at equal age since publish, not at whatever age each had when
+asked.**
+- **FACT — photos are not the cause.** The first real-photo episode was 54, not 55, and 54
+  was the weakest of the run (43 views at 7h). 56 also uses real photos and sits exactly on
+  the normal curve (85 at 7h vs 51: 84, 52: 88). 55 is the outlier, not the format.
+- **FACT — 55 and 56 started identically.** Hour 1: 53 vs 52 views; hour 2: 80 vs 69. The
+  first push (to followers) was the same. 55 broke away between hours 4 and 6 (100 → 149)
+  and kept climbing to 250 by hour 20, while every other recent episode flattens out after
+  ~6-8 hours. Reach/views ratio 0.76 vs ~0.55-0.6 on the others — more unique people, i.e.
+  Instagram handed it a second wave of non-followers.
+- **FACT — the usual engagement signals do NOT explain it.** 0 shares, 0 saves, 0 comments,
+  5 likes — no better than episodes that didn't take off. The metric Instagram most likely
+  rewarded (watch time / completion) is NOT_AVAILABLE in our data, so the real cause is
+  unmeasured.
+- **HYPOTHESIS (one data point, unconfirmed):** the topic/hook — Alexa/Amazon, a product
+  nearly everyone owns or knows, a short concrete claim about something already happening
+  to the viewer ("Every word you say to Alexa goes straight to Amazon now," 10 words — the
+  shortest hook in the run). Partial support: 44 ("AI can already read your private
+  messages," 7 words) is also one of the higher ones (177). Against: 45/46 are short too and
+  stayed average.
+- **UNKNOWN:** luck/timing — 55 went out Sunday evening; the only other recent Sunday post,
+  48 (27.9), is the second-highest of the run (185) — worth watching, still two points. With ~12 comparable
+  episodes and one outlier, this can't be separated from chance yet. Needs a second
+  episode built the same way (universal brand + short "it's already happening to you"
+  claim) before it moves out of hypotheses.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
