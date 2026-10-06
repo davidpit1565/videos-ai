@@ -236,12 +236,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <!-- Scene 9 — CTA2 (locked final line). Same photo as scenes 6/7/8 (adjacent
      reuse) -> static Ken Burns, same locked background across both closing
      scenes. -->
-<section class="scene" data-in="53.375" data-out="56.21">
+<section class="scene" data-in="53.375" data-out="59.11">
   <div class="photobg" id="photobgH" style="background-image:url('../channel/assets/ep58-scene-b-deskforest.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.58) 0%, rgba(4,4,4,.46) 14%, rgba(4,4,4,.24) 26%, rgba(4,4,4,.08) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.14) 58%, rgba(4,4,4,.40) 68%, rgba(4,4,4,.58) 78%, rgba(4,4,4,.66) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbH">
-    <h2 id="hookH2H">Follow for the setup that <span class="box">actually works</span>.</h2>
+    <h2 id="hookH2H">Tomorrow, I'll show you what <span class="box">LinkedIn</span> is doing with your profile. Follow, so you don't miss it.</h2>
   </div></div>
 </section>
 
@@ -262,7 +262,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=56.91,t=0,playing=false,last=0;
+  var DUR=59.71,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var seek=document.getElementById('seek');
@@ -278,7 +278,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [37.33,45.85,"It still gets some details wrong sometimes, and it won't replace a real photo app — but for a fast fix right there in the chat, it gets the job done."],
     [46.27,50.72,"Send this to someone you know who's about to send a photo they want to change."],
     [51.14,52.95,"The setup's in the link in bio."],
-    [53.80,56.01,"Follow for the setup that actually works."]
+    [53.80,58.81,"Tomorrow, I'll show you what LinkedIn is doing with your profile. Follow, so you don't miss it."]
   ];
   var WORD_WINDOWS=[
     new Array(27).fill(null),
@@ -288,7 +288,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     new Array(19).fill(null),
     new Array(28).fill(null),
     new Array(7).fill(null),
-    new Array(7).fill(null)
+    new Array(17).fill(null)
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
