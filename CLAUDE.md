@@ -166,9 +166,15 @@ been running for days.
   hasn't been published yet).** The research behind it (`content-memory.md`, 6.10.2026):
   a generic "follow for more" barely converts; a line pointing at one concrete next thing
   converts several times better, and this channel was gaining ~1 organic follower a month.
-  Shape: `Tomorrow: <next episode's topic, in plain words>. Follow so you see it.` — short,
-  plain, the topic said the way a friend would say it, not the hook copied. It is NOT
-  locked: it's generated and checked like any other line (script_lint, voice_doctor,
+  Shape (revised 6.10.2026 — David called the first wording, `Tomorrow: <topic>. Follow so
+  you see it.`, "childish and not professional", and asked for something fluent that pulls
+  like Nas Daily's sign-off): one flowing spoken sentence that names tomorrow's topic as a
+  promise, then a short follow clause that gives a reason — `Tomorrow, I'll show you what
+  <company> does with <the thing>. Follow, so you get the full story.` No "Tomorrow:" label, no
+  colon. Research behind it: Nas Daily's fixed sign-off ("That's one minute, see you
+  tomorrow") works as a signature plus curiosity about the next video, and short-form
+  sources rank open-loop teasers above a generic "follow for more" (vendor blogs — trust the
+  direction, not the numbers). It is NOT locked: it's generated and checked like any other line (script_lint, voice_doctor,
   accent), every episode. **This means episode N+1's script is written — topic chosen from
   the data, product verified live — before episode N ships**, so N's last line can name it.
   The promise is binding (never-fabricate rule): if N+1's topic changes or doesn't publish
