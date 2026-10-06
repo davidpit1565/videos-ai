@@ -1,0 +1,42 @@
+# The three daily jobs that used to run as Vercel crons (studio/vercel.json), run from
+# GitHub Actions instead, which is free. Each calls the same route with the same
+# `Authorization: Bearer <CRON_SECRET>` header the routes already accept for callers that
+# are not Vercel's own cron.
+#
+# One-time setup (see studio/NETLIFY.md): repo Settings -> Secrets and variables -> Actions:
+#   Secret   CRON_SECRET  (copy the value from the old Vercel environment variables)
+#   Variable SITE_URL     https://www.actually-works.com
+name: studio-cron
+on:
+  schedule:
+    - cron: "10 6 * * *"    # /api/track
+    - cron: "10 18 * * *"   # /api/health-check
+    - cron: "0 17 * * *"    # /api/scheduled-publish
+  workflow_dispatch:
+    inputs:
+      path:
+        description: "Route to call by hand, e.g. /api/track"
+        required: true
+        default: /api/track
+jobs:
+  call:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call the studio route
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          SCHEDULE: ${{ github.event.schedule }}
+          MANUAL_PATH: ${{ github.event.inputs.path }}
+        run: |
+          set -eu
+          case "${SCHEDULE:-}" in
+            "10 6 * * *")  P=/api/track ;;
+            "10 18 * * *") P=/api/health-check ;;
+            "0 17 * * *")  P=/api/scheduled-publish ;;
+            *)             P="${MANUAL_PATH:-/api/track}" ;;
+          esac
+          echo "calling $P"
+          code=$(curl -sS -o /tmp/out.txt -w "%{http_code}" -H "authorization: Bearer ${CRON_SECRET}" "${SITE_URL}${P}")
+          head -c 600 /tmp/out.txt; echo
+          test "$code" -lt 400

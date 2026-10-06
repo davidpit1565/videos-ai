@@ -1,0 +1,9 @@
+# Netlify build settings for the studio (the free alternative to Vercel, added 6.10.2026
+# after Vercel paused the whole team for exceeding the Hobby limits).
+# In Netlify set "Base directory" to `studio`; this file then applies as-is.
+# Secrets are NEVER put here — they go in Netlify's Environment variables screen.
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
