@@ -49,9 +49,9 @@ episode 60 (Meta AI chats and Instagram ads) and uses the revised flowing format
 1. Your LinkedIn profile is already teaching an AI — and no one asked you.
 2. It has an option that lets it train its AI on your profile and your posts. And it's on by default.
 3. Your job titles, your skills, your summary, your comments — all of it can be used. Your login and your bank info stay out of it.
-4. Turning it off takes under a minute. Open LinkedIn, tap your photo, then Settings, then Data privacy.
+4. Switching it off takes under a minute. Open LinkedIn, tap your photo, then Settings, then Data privacy.
 5. Tap the one that says Generative AI, and flip the switch off.
-6. One honest catch. Turning it off only works from now on. What it already learned, it keeps.
+6. One honest catch. Switching it off only works from now on. What it already learned, it keeps.
 7. Send this to a friend who's looking for a job.
 8. The setup's in the link in bio. (locked)
 9. Tomorrow, I'll show you what Instagram does with the questions you ask its AI. Follow, so you get the full story.
