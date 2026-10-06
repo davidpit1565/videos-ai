@@ -1,0 +1,13 @@
+Your LinkedIn profile is already teaching an AI — and nobody asked you.
+
+LinkedIn's "Data for Generative AI Improvement" setting lets it use your profile, posts and comments to train the AI that writes content. Per LinkedIn's own help page it uses profile information, posts and comments, job-related answers and feedback on its AI features, and leaves out login credentials, payment information and salary data. Independent coverage (Malwarebytes, Windows Latest) says it is on by default.
+
+To switch it off: LinkedIn app > your profile photo > Settings > Data privacy > Data for Generative AI Improvement > turn off "Use my data for training content creation AI models". On a computer: linkedin.com/mypreferences/d/settings/data-for-ai-improvement.
+
+Said plainly: this channel did not test the toggle on a live account for this episode — the steps come from LinkedIn's own help page and independent guides, and menu wording can differ by language and app version. Turning it off applies from now on and does not undo training that already happened.
+
+Full setup, sourced exactly: https://actually-works.com/e/59
+
+Tomorrow, I'll show you what Instagram does with the questions you ask its AI. Follow, so you don't miss it.
+
+#linkedin #ai #privacy #jobsearch #careertips

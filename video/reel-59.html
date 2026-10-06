@@ -1,55 +1,9 @@
-<title>Reel 58 — That photo in your WhatsApp chat right now — Meta's AI can redraw it.</title>
+<title>Reel 59 — Your LinkedIn profile is already teaching an AI.</title>
 <!--
-  Episode 58 — real-photo composite style (video/reel-template-photo.html), per the
-  standing rule effective episode 55. Topic: WhatsApp's "Photo Touch-Up" — type a
-  sentence in the chat composer and Meta's AI redraws your photo before you send it.
-  Built end-to-end while David is away for Shabbat/chag, full autonomy per his standing
-  authorization. See channel/episode-58-script.md for the full verification, hook-rules,
-  density and photo-sourcing record.
-
-  Photos (all free, Unsplash License, no attribution required):
-  - channel/assets/ep58-scene-a-shopping-milan.jpg — a busy Milan street scene, person with
-    a prosthetic leg checking his phone in the foreground, real texture/people throughout
-    (deliberately re-sourced, 5.10.2026, to clear the frozen-picture BLOCKER the original
-    patio photo produced — see episode-58-script.md production notes). By Simonetta
-    Pugnaghi (unsplash.com/photos/a-man-uses-his-phone-on-a-busy-street-qkiMaUkbnF8).
-    Adobe image_select_subject (bodyParts: Face) found a background face at bbox
-    x 0.348-0.756, y 0-0.116 (source 2400x1600) — top-of-frame, clear of the headline
-    zone. Used in scenes 1 (hook) and 5 (steps), non-adjacent reuse, normal Ken Burns each.
-  - channel/assets/ep58-scene-b-deskforest.jpg — a phone lying on a wood desk next to a
-    coffee cup, showing a forest-path PHOTO on its own screen (not an app) — real,
-    distributed texture across the whole frame (wood grain, forest detail, coffee cup),
-    chosen specifically to avoid the uniform-texture frozen-picture failure documented on
-    episodes 55-57. No person in frame, no face-detection check applicable. Carries the
-    real WhatsApp logo badge in scene 2. Used in scenes 2 (feature named), 6 (limit) —
-    both non-adjacent — and 7+8 (the CTA pair, adjacent reuse -> fully static Ken Burns).
-  - channel/assets/ep58-scene-c-paris-park.jpg — a wide shot in a Paris park (Tuileries),
-    person in a long coat walking while checking their phone, dense crowd and trees in
-    sharp focus throughout the frame (re-sourced, 5.10.2026, to clear the frozen-picture
-    BLOCKER the original balcony photo produced). By ALLAN LAINEZ
-    (unsplash.com/photos/a-man-walking-down-a-street-while-looking-at-his-cell-phone-QdkyQPeCVT4).
-    Adobe image_select_subject (bodyParts: Face) found the face at bbox x 0.528-0.558,
-    y 0.207-0.266 (source 2400x1350) — small, upper-frame, checked against the headline
-    zone via safe_check.js rather than assumed. Used in scene 3 only.
-  - channel/assets/ep58-scene-d-cafe.jpg — top-down hand holding a phone over a wood cafe
-    table (coffee grinder, mug, a generic unrelated coffee-shop checkout screen in
-    Czech — not WhatsApp, kept low-key by the scene's own darkening gradient). No face in
-    frame. Used in scene 4 only.
-
-  Real WhatsApp logo (public domain — simple geometric shapes/gradient, sourced from
-  upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg) appears as a small badge in
-  scene 2, in-flow inside .kb (never absolutely bottom-anchored).
-
-  One accent for the whole episode: --accent:#0D9488 (saturated teal). Checked rendered
-  against every real photo this episode uses — reads cleanly against the cool green
-  patio foliage, the warm balcony sky, and both wood-desk photos. Distinct from every
-  dated channel/used-designs.json entry in the last 7 days (54 #06B6D4, 55 #EA580C,
-  56 #2563EB, 57 #059669) and from the immediately prior episode (57). Music mood passed
-  to produce.sh: confident (not "bright", which episode 57 used immediately before this
-  one — the design-variety check hard-fails on repeating the prior episode's music mood).
-
-  Voice: raised-energy pass per David's standing instruction this round (Nas-Daily-style
-  enthusiasm, still provisional) — see channel/episode-58-script.md's Production notes.
+  Episode 59 — real-photo composite style (video/reel-template-photo.html). Topic: LinkedIn's
+  "Data for Generative AI Improvement" setting (on by default). See channel/episode-59-script.md
+  for verification, hook rules, photo sourcing. Photos: channel/assets/ep59-scene-*.jpg (Unsplash
+  License). LinkedIn icon: channel/assets/ep59-linkedin-logo.svg (Wikimedia Commons).
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,7 +11,7 @@
 <style>
 :root{
   --ink:#0A0E14;--line:#1F2B3A;
-  --accent:#0D9488;
+  --accent:#F59E0B;
   --text:#FFFFFF;--muted:#8AA0B8;
   --d:'Archivo','Helvetica Neue',Arial,sans-serif;
   --b:'Assistant','Segoe UI',system-ui,sans-serif;
@@ -100,7 +54,7 @@ h2 .wd.box.spoken{color:#fff!important}
 h2 .box{color:var(--accent);font-weight:900;background:none;border:0;padding:0;
   border-radius:0;display:inline;transform:none;text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.95),0 0 4cqw rgba(0,0,0,.6)}
 
-/* WhatsApp logo badge — scene 2 only, in-flow inside .kb (never absolutely
+/* LinkedIn logo badge — scene 2 only, in-flow inside .kb (never absolutely
    bottom-anchored), same pattern as episode 55/56/57's logo badges. */
 .logobadge{width:100%;display:flex;justify-content:center;margin-top:1.4cqw;
   opacity:0;transition:opacity .3s ease}
@@ -139,73 +93,66 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- Scene 1 — hook. Patio photo, default headline zone (no conflict). -->
-<section class="scene" data-in="0" data-out="9.9">
-  <div class="photobg" id="photobgA" style="background-image:url('../channel/assets/ep58-scene-a-shopping-milan.jpg')"></div>
+<section class="scene" data-in="0" data-out="6.30">
+  <div class="photobg" id="photobgA" style="background-image:url('../channel/assets/ep59-scene-a-typing.jpg')"></div>
   <div class="grain" data-decor></div>
-  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.48) 0%, rgba(4,4,4,.38) 24%, rgba(4,4,4,.16) 40%, transparent 50%, rgba(4,4,4,.10) 70%, rgba(4,4,4,.40) 86%, rgba(4,4,4,.58) 100%)"></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbA">
-    <h2 id="hookH2A" style="font-size:7.2cqw">Your photo in a WhatsApp chat right now — type one sentence, and <span class="box">Meta's AI will redraw it for you</span>, right up to the second you hit send.</h2>
+    <h2 id="hookH2A">Your LinkedIn profile is <span class="box">already teaching an AI</span> — and nobody asked you.</h2>
   </div></div>
 </section>
 
 <!-- Scene 2 — the feature named + placed. Desk/forest-wallpaper photo, default zone.
-     Real WhatsApp logo badge. -->
-<section class="scene" data-in="9.9" data-out="17.2">
-  <div class="photobg" id="photobgB" style="background-image:url('../channel/assets/ep58-scene-b-deskforest.jpg')"></div>
+     Real LinkedIn logo badge. -->
+<section class="scene" data-in="6.30" data-out="16.25">
+  <div class="photobg" id="photobgB" style="background-image:url('../channel/assets/ep59-scene-c-phonelaptop.jpg')"></div>
   <div class="grain" data-decor></div>
-  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.58) 0%, rgba(4,4,4,.46) 14%, rgba(4,4,4,.24) 26%, rgba(4,4,4,.08) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.14) 58%, rgba(4,4,4,.40) 68%, rgba(4,4,4,.58) 78%, rgba(4,4,4,.66) 100%)"></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbB">
-    <h2 id="hookH2B">It's <span class="box">Photo Touch-Up</span>, built right into the chat box in WhatsApp. No extra app, and it's free.</h2>
-  <div class="logobadge" id="logoBadge">
-    <svg viewBox="0 0 175.216 175.552" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="wa-b" x1="85.915" x2="86.535" y1="32.567" y2="137.092" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#57d163"/><stop offset="1" stop-color="#23b33a"/></linearGradient></defs>
-      <path fill="#fff" d="m12.966 161.238 10.439-38.114a73.42 73.42 0 0 1-9.821-36.772c.017-40.556 33.021-73.55 73.578-73.55 19.681.01 38.154 7.669 52.047 21.572s21.537 32.383 21.53 52.037c-.018 40.553-33.027 73.553-73.578 73.553h-.032c-12.313-.005-24.412-3.094-35.159-8.954z"/>
-      <path fill="url(#wa-b)" d="M87.184 25.227c-33.733 0-61.166 27.423-61.178 61.13a60.98 60.98 0 0 0 9.349 32.535l1.455 2.313-6.179 22.558 23.146-6.069 2.235 1.324c9.387 5.571 20.15 8.517 31.126 8.523h.023c33.707 0 61.14-27.426 61.153-61.135a60.75 60.75 0 0 0-17.895-43.251 60.75 60.75 0 0 0-43.235-17.928z"/>
-      <path fill="#fff" fill-rule="evenodd" d="M68.772 55.603c-1.378-3.061-2.828-3.123-4.137-3.176l-3.524-.043c-1.226 0-3.218.46-4.902 2.3s-6.435 6.287-6.435 15.332 6.588 17.785 7.506 19.013 12.718 20.381 31.405 27.75c15.529 6.124 18.689 4.906 22.061 4.6s10.877-4.447 12.408-8.74 1.532-7.971 1.073-8.74-1.685-1.226-3.525-2.146-10.877-5.367-12.562-5.981-2.91-.919-4.137.921-4.746 5.979-5.819 7.206-2.144 1.381-3.984.462-7.76-2.861-14.784-9.124c-5.465-4.873-9.154-10.891-10.228-12.73s-.114-2.835.808-3.751c.825-.824 1.838-2.147 2.759-3.22s1.224-1.84 1.836-3.065.307-2.301-.153-3.22-4.032-10.011-5.666-13.647"/>
-    </svg>
-  </div>
+    <h2 id="hookH2B" style="font-size:6.2cqw">There's a setting on LinkedIn that lets it train its AI on your profile and your posts. It's <span class="box">switched on by default</span>.</h2>
+  <div class="logobadge" id="logoBadge"><svg  viewBox="0 0 72 72"  xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z" fill="#007EBB"/><path d="M62,62 L51.315625,62 L51.315625,43.8021149 C51.315625,38.8127542 49.4197917,36.0245323 45.4707031,36.0245323 C41.1746094,36.0245323 38.9300781,38.9261103 38.9300781,43.8021149 L38.9300781,62 L28.6333333,62 L28.6333333,27.3333333 L38.9300781,27.3333333 L38.9300781,32.0029283 C38.9300781,32.0029283 42.0260417,26.2742151 49.3825521,26.2742151 C56.7356771,26.2742151 62,30.7644705 62,40.051212 L62,62 Z M16.349349,22.7940133 C12.8420573,22.7940133 10,19.9296567 10,16.3970067 C10,12.8643566 12.8420573,10 16.349349,10 C19.8566406,10 22.6970052,12.8643566 22.6970052,16.3970067 C22.6970052,19.9296567 19.8566406,22.7940133 16.349349,22.7940133 Z M11.0325521,62 L21.769401,62 L21.769401,27.3333333 L11.0325521,27.3333333 L11.0325521,62 Z" fill="#FFF"/></g></svg></div>
   </div></div>
 </section>
 
 <!-- Scene 3 — how it works. Balcony photo, face zone conflict -> moved padding-top. -->
-<section class="scene" data-in="17.2" data-out="29.1">
-  <div class="photobg" id="photobgC" style="background-image:url('../channel/assets/ep58-scene-c-paris-park.jpg')"></div>
+<section class="scene" data-in="16.25" data-out="28.20">
+  <div class="photobg" id="photobgC" style="background-image:url('../channel/assets/ep59-scene-d-laptopdesk.jpg')"></div>
   <div class="grain" data-decor></div>
-  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.30) 0%, rgba(4,4,4,.22) 20%, rgba(4,4,4,.10) 34%, transparent 46%, transparent 54%, rgba(4,4,4,.16) 64%, rgba(4,4,4,.42) 76%, rgba(4,4,4,.62) 100%)"></div>
-  <div class="pad" style="padding-top:52cqw"><div class="kb" id="hookKbC">
-    <h2 id="hookH2C" style="font-size:5.3cqw">You type what you want changed — remove something, swap the background, change the whole mood — and <span class="box">the AI rebuilds the picture to match</span>, right as you hit send.</h2>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbC">
+    <h2 id="hookH2C" style="font-size:6.2cqw">Your job titles, your skills, what you wrote about yourself, your comments — <span class="box">all of it can be used</span>. Your login and your bank info stay out of it.</h2>
   </div></div>
 </section>
 
 <!-- Scene 4 — scope/date. Cafe top-down photo, default zone. -->
-<section class="scene" data-in="29.1" data-out="35.7">
-  <div class="photobg" id="photobgD" style="background-image:url('../channel/assets/ep58-scene-d-cafe.jpg')"></div>
+<section class="scene" data-in="28.20" data-out="36.15">
+  <div class="photobg" id="photobgD" style="background-image:url('../channel/assets/ep59-scene-b-darkroom.jpg')"></div>
   <div class="grain" data-decor></div>
-  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.56) 0%, rgba(4,4,4,.44) 24%, rgba(4,4,4,.20) 40%, transparent 50%, rgba(4,4,4,.14) 68%, rgba(4,4,4,.42) 84%, rgba(4,4,4,.58) 100%)"></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbD">
-    <h2 id="hookH2D">This is already live worldwide — it's right inside the WhatsApp you already have, <span class="box">nothing extra to download</span>.</h2>
+    <h2 id="hookH2D" style="font-size:6.2cqw">Turning it off takes <span class="box">under a minute</span>. Open LinkedIn, tap your photo, then Settings, then Data privacy.</h2>
   </div></div>
 </section>
 
 <!-- Scene 5 — the real steps. Patio photo again (non-adjacent reuse from scene 1),
      normal Ken Burns. -->
-<section class="scene" data-in="35.7" data-out="42.9">
-  <div class="photobg" id="photobgE" style="background-image:url('../channel/assets/ep58-scene-a-shopping-milan.jpg')"></div>
+<section class="scene" data-in="36.15" data-out="41.70">
+  <div class="photobg" id="photobgE" style="background-image:url('../channel/assets/ep59-scene-c-phonelaptop.jpg')"></div>
   <div class="grain" data-decor></div>
-  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.48) 0%, rgba(4,4,4,.38) 24%, rgba(4,4,4,.16) 40%, transparent 50%, rgba(4,4,4,.10) 70%, rgba(4,4,4,.40) 86%, rgba(4,4,4,.58) 100%)"></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbE">
-    <h2 id="hookH2E">Open any chat, choose any photo the usual way, then tap <span class="box">the new touch-up button</span>, and type in your request.</h2>
+    <h2 id="hookH2E">Tap Data for Generative AI Improvement, and <span class="box">flip the switch off</span>.</h2>
   </div></div>
 </section>
 
 <!-- Scene 6 — the honest limit. Desk/forest photo again (non-adjacent reuse from
      scene 2), normal Ken Burns. -->
-<section class="scene" data-in="42.9" data-out="53.2">
-  <div class="photobg" id="photobgF" style="background-image:url('../channel/assets/ep58-scene-b-deskforest.jpg')"></div>
+<section class="scene" data-in="41.70" data-out="49.65">
+  <div class="photobg" id="photobgF" style="background-image:url('../channel/assets/ep59-scene-d-laptopdesk.jpg')"></div>
   <div class="grain" data-decor></div>
-  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.58) 0%, rgba(4,4,4,.46) 14%, rgba(4,4,4,.24) 26%, rgba(4,4,4,.08) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.14) 58%, rgba(4,4,4,.40) 68%, rgba(4,4,4,.58) 78%, rgba(4,4,4,.66) 100%)"></div>
-  <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbF">
-    <h2 id="hookH2F" style="font-size:7.0cqw">It still gets some details wrong sometimes, and it won't replace a real photo app — but for <span class="box">a fast fix right there in the chat</span>, it gets the job done.</h2>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbF">
+    <h2 id="hookH2F">One honest catch. Turning it off only works <span class="box">from now on</span>. What it already learned, it keeps.</h2>
   </div></div>
 </section>
 
@@ -213,21 +160,21 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
      sentence that connects the content to the locked CTA lines instead of
      cutting straight into them. Same photo as scene 6 (adjacent reuse) -> static
      Ken Burns per the standing rule for a repeated photo. -->
-<section class="scene" data-in="53.2" data-out="56.6">
-  <div class="photobg" id="photobgBridge" style="background-image:url('../channel/assets/ep58-scene-b-deskforest.jpg')"></div>
+<section class="scene" data-in="49.65" data-out="54.80">
+  <div class="photobg" id="photobgBridge" style="background-image:url('../channel/assets/ep59-scene-a-typing.jpg')"></div>
   <div class="grain" data-decor></div>
-  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.58) 0%, rgba(4,4,4,.46) 14%, rgba(4,4,4,.24) 26%, rgba(4,4,4,.08) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.14) 58%, rgba(4,4,4,.40) 68%, rgba(4,4,4,.58) 78%, rgba(4,4,4,.66) 100%)"></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbBridge">
-    <h2 id="hookH2Bridge">Send this to someone you know who's about to send a photo they want to change.</h2>
+    <h2 id="hookH2Bridge">Send this to a friend who's looking for a job.</h2>
   </div></div>
 </section>
 
 <!-- Scene 8 — CTA1 (locked line). Same photo as the bridge scene (adjacent
      reuse) -> static Ken Burns. -->
-<section class="scene" data-in="56.6" data-out="58.8">
-  <div class="photobg" id="photobgG" style="background-image:url('../channel/assets/ep58-scene-b-deskforest.jpg')"></div>
+<section class="scene" data-in="54.80" data-out="57.05">
+  <div class="photobg" id="photobgG" style="background-image:url('../channel/assets/ep59-scene-b-darkroom.jpg')"></div>
   <div class="grain" data-decor></div>
-  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.58) 0%, rgba(4,4,4,.46) 14%, rgba(4,4,4,.24) 26%, rgba(4,4,4,.08) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.14) 58%, rgba(4,4,4,.40) 68%, rgba(4,4,4,.58) 78%, rgba(4,4,4,.66) 100%)"></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbG">
     <h2 id="hookH2G">The setup's in the link in bio.</h2>
   </div></div>
@@ -236,12 +183,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <!-- Scene 9 — CTA2 (locked final line). Same photo as scenes 6/7/8 (adjacent
      reuse) -> static Ken Burns, same locked background across both closing
      scenes. -->
-<section class="scene" data-in="58.8" data-out="66.3">
-  <div class="photobg" id="photobgH" style="background-image:url('../channel/assets/ep58-scene-b-deskforest.jpg')"></div>
+<section class="scene" data-in="57.05" data-out="67.20">
+  <div class="photobg" id="photobgH" style="background-image:url('../channel/assets/ep59-scene-b-darkroom.jpg')"></div>
   <div class="grain" data-decor></div>
-  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.58) 0%, rgba(4,4,4,.46) 14%, rgba(4,4,4,.24) 26%, rgba(4,4,4,.08) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.14) 58%, rgba(4,4,4,.40) 68%, rgba(4,4,4,.58) 78%, rgba(4,4,4,.66) 100%)"></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbH">
-    <h2 id="hookH2H">Tomorrow, I'll show you what <span class="box">LinkedIn</span> is doing with your profile. Follow, so you don't miss it.</h2>
+    <h2 id="hookH2H" style="font-size:6.2cqw">Tomorrow, I'll show you what <span class="box">Instagram</span> does with the questions you ask its AI. Follow, so you don't miss it.</h2>
   </div></div>
 </section>
 
@@ -252,7 +199,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="57.90" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="66.9" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -262,7 +209,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=66.30,t=0,playing=false,last=0;
+  var DUR=66.9,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var seek=document.getElementById('seek');
@@ -270,25 +217,26 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var tap=document.getElementById('tap'),prog=document.getElementById('prog');
 
   var CUES=[
-    [0.30,9.2,"Your photo in a WhatsApp chat right now — type one sentence, and Meta's AI will redraw it for you, right up to the second you hit send."],
-    [9.9,16.5,"It's Photo Touch-Up, built right into the chat box in WhatsApp. No extra app, and it's free."],
-    [17.2,28.4,"You type what you want changed — remove something, swap the background, change the whole mood — and the AI rebuilds the picture to match, right as you hit send."],
-    [29.1,35.0,"This is already live worldwide — it's right inside the WhatsApp you already have, nothing extra to download."],
-    [35.7,42.2,"Open any chat, choose any photo the usual way, then tap the new touch-up button, and type in your request."],
-    [42.9,52.5,"It still gets some details wrong sometimes, and it won't replace a real photo app — but for a fast fix right there in the chat, it gets the job done."],
-    [53.2,56.3,"Send this to someone you know who's about to send a photo they want to change."],
-    [57.0,58.6,"The setup's in the link in bio."],
-    [59.2,66.0,"Tomorrow, I'll show you what LinkedIn is doing with your profile. Follow, so you don't miss it."]
+    [0.3,6.0,"Your LinkedIn profile is already teaching an AI — and nobody asked you."],
+    [6.65,15.95,"There's a setting on LinkedIn that lets it train its AI on your profile and your posts. It's switched on by default."],
+    [16.6,27.9,"Your job titles, your skills, what you wrote about yourself, your comments — all of it can be used. Your login and your bank info stay out of it."],
+    [28.55,35.85,"Turning it off takes under a minute. Open LinkedIn, tap your photo, then Settings, then Data privacy."],
+    [36.5,41.4,"Tap the one that says Generative AI, and flip the switch off."],
+    [42.05,49.35,"One honest catch. Turning it off only works from now on. What it already learned, it keeps."],
+    [50.0,54.5,"Send this to a friend who's looking for a job."],
+    [55.15,56.75,"The setup's in the link in bio."],
+    [57.4,65.9,"Tomorrow, I'll show you what Instagram does with the questions you ask its AI. Follow, so you don't miss it."]
   ];
   var WORD_WINDOWS=[
+    new Array(13).fill(null),
+    new Array(22).fill(null),
     new Array(27).fill(null),
-    new Array(19).fill(null),
-    new Array(33).fill(null),
     new Array(17).fill(null),
-    new Array(19).fill(null),
-    new Array(28).fill(null),
+    new Array(11).fill(null),
+    new Array(17).fill(null),
+    new Array(10).fill(null),
     new Array(7).fill(null),
-    new Array(17).fill(null)
+    new Array(20).fill(null)
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
@@ -301,16 +249,18 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var photobgF=document.getElementById('photobgF');
   var photobgG=document.getElementById('photobgG');
   var photobgH=document.getElementById('photobgH');
+  var photobgBridge=document.getElementById('photobgBridge');
 
   // Scenes 7 and 8 both reuse scene 6's exact photo (all three adjacent to each
   // other) -> fully static, no pan/zoom, per the standing rule (a repeated Ken
   // Burns on an unchanged photo reads as a reset/jump, not a continuation).
-  var KB_A={fromScale:1.0,toScale:1.15,fromX:0,toX:-1.8,fromY:0,toY:-1.4};
-  var KB_B={fromScale:1.0,toScale:1.17,fromX:0,toX:1.6,fromY:0,toY:-1.8};
-  var KB_C={fromScale:1.0,toScale:1.14,fromX:0,toX:-1.6,fromY:0,toY:1.2};
-  var KB_D={fromScale:1.0,toScale:1.16,fromX:0,toX:1.8,fromY:0,toY:-1.3};
+  var KB_A={fromScale:1.0,toScale:1.16,fromX:0,toX:-1.6,fromY:0,toY:1.0};
+  var KB_B={fromScale:1.0,toScale:1.18,fromX:0,toX:1.4,fromY:0,toY:-1.6};
+  var KB_C={fromScale:1.0,toScale:1.16,fromX:0,toX:-1.8,fromY:0,toY:1.0};
+  var KB_D={fromScale:1.0,toScale:1.24,fromX:0,toX:1.8,fromY:0,toY:-2.2};
   var KB_E={fromScale:1.05,toScale:1.20,fromX:0,toX:1.6,fromY:0,toY:1.2};
-  var KB_F={fromScale:1.0,toScale:1.34,fromX:0,toX:-3.8,fromY:0,toY:-2.8};
+  var KB_F={fromScale:1.0,toScale:1.30,fromX:0,toX:-3.0,fromY:0,toY:-2.0};
+  var KB_Bridge={fromScale:1.0,toScale:1.16,fromX:0,toX:1.6,fromY:0,toY:-1.2};
   var KB_G={toScale:1.00,toX:0,toY:0};
   var KB_H={toScale:1.00,toX:0,toY:0};
 
@@ -416,8 +366,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     kenBurns(photobgD,scenes[3],KB_D);
     kenBurns(photobgE,scenes[4],KB_E);
     kenBurns(photobgF,scenes[5],KB_F);
-    kenBurns(photobgG,scenes[6],KB_G);
-    kenBurns(photobgH,scenes[7],KB_H);
+    kenBurns(photobgBridge,scenes[6],KB_Bridge);
+    kenBurns(photobgG,scenes[7],KB_G);
+    kenBurns(photobgH,scenes[8],KB_H);
 
     prog.style.width=(t/DUR*100)+'%';
     seek.value=t; cur2.textContent=fmt(t);
