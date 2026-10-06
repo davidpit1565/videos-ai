@@ -157,15 +157,25 @@ been running for days.
   left in the last 90 ms of the target word. The approved take is genuinely locked per
   line — `audio/voice/profile/canonical-lines.json` maps a line's exact text to a
   pre-polished clip, and `build_voice.py` loads that clip byte-for-byte instead of
-  regenerating, for every episode. Both closing lines ("Follow for the setup that
-  actually works." and "The setup's in the link in bio.") are locked this way already —
-  add a new line to the manifest the same way once he approves a take for it.
-- **Standing order for the two locked closing lines, every episode: "The setup's in the
-  link in bio." always comes second-to-last, "Follow for the setup that actually works."
-  is always the true final line.** Confirmed from episodes 49/51/52/53; episode 54 first
-  shipped with these reversed — a real bug, caught by David watching the picture, not by
-  any automated check. Verify the CUES order and the matching scene text before shipping,
-  the same way the handle text gets checked against this file rather than the last episode.
+  regenerating, for every episode. "The setup's in the link in bio." is locked this way —
+  add a new line to the manifest the same way once he approves a take for it. ("Follow
+  for the setup that actually works." is also still in the manifest, but is retired as the
+  final line — see the next rule.)
+- **The final line names tomorrow's episode — decided 6.10.2026, David's choice, replacing
+  the locked "Follow for the setup that actually works." from episode 59 on (58 too, if it
+  hasn't been published yet).** The research behind it (`content-memory.md`, 6.10.2026):
+  a generic "follow for more" barely converts; a line pointing at one concrete next thing
+  converts several times better, and this channel was gaining ~1 organic follower a month.
+  Shape: `Tomorrow: <next episode's topic, in plain words>. Follow so you see it.` — short,
+  plain, the topic said the way a friend would say it, not the hook copied. It is NOT
+  locked: it's generated and checked like any other line (script_lint, voice_doctor,
+  accent), every episode. **This means episode N+1's script is written — topic chosen from
+  the data, product verified live — before episode N ships**, so N's last line can name it.
+  The promise is binding (never-fabricate rule): if N+1's topic changes or doesn't publish
+  the next day, re-render N's final line before N goes out. Standing order stays: "The
+  setup's in the link in bio." second-to-last, the tomorrow line is the true final line —
+  episode 54 once shipped these reversed, caught only by David watching. Verify the CUES
+  order and the matching scene text before shipping.
 - **The two closing-CTA scenes always share ONE locked background photo — but that
   photo is chosen per episode, from that episode's own real photos (or newly
   sourced to fit), never a single file hardcoded across every future episode.**

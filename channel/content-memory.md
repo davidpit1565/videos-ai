@@ -1509,6 +1509,25 @@ asked.**
   episode built the same way (universal brand + short "it's already happening to you"
   claim) before it moves out of hypotheses.
 
+**Follower conversion — research + our real number (6.10.2026).**
+- **FACT (studio data):** ~30 episodes in the last month reached roughly 3,000 accounts and
+  produced ~1 organic follower (David: the rest of the 114 → 123 rise was people who know
+  him). That's ~0.03% — the problem is conversion, not reach.
+- **External, mixed quality — labeled by source:** creator-blog benchmarks put a healthy
+  view-to-follow rate at ~0.3-1.5% and a generic "follow for more" at ~0.1%, vs ~0.5-1.2%
+  for a CTA that names a concrete next thing (imarkinfotech, getreelyze, wavevision — vendor
+  blogs, not peer-reviewed; trust the direction, not the decimals). One 556-Reel study
+  (Espoladore, 2026) found saves and shares — not comments — predict follows after
+  controlling for reach; ours are ~0-1 saves and 0 shares per episode. Several sources say
+  faceless accounts convert more slowly and need a recurring format/identity to compensate.
+- **Timing (not the fix):** studies disagree on Sunday (Sprout: worst day; Virev 2.6M posts and
+  Sociality 335K, both comparing each post to the creator's own baseline: Sunday night best)
+  — but the best-vs-worst window gap is ~5.5%, nowhere near the 3x between episodes 55 and 56.
+  Don't reschedule for it.
+- **Acted on:** the final line now names tomorrow's episode (CLAUDE.md, 6.10.2026). Open, not
+  yet checked: the Instagram bio — David to paste it; line one should say what the account is
+  and for whom, line two what following gets you.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
