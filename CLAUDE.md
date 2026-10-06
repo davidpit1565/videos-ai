@@ -170,7 +170,7 @@ been running for days.
   you see it.`, "childish and not professional", and asked for something fluent that pulls
   like Nas Daily's sign-off): one flowing spoken sentence that names tomorrow's topic as a
   promise, then a short follow clause that gives a reason — `Tomorrow, I'll show you what
-  <company> does with <the thing>. Follow, so you don't miss it.` No "Tomorrow:" label, no
+  <company> does with <the thing>. Follow, so you get the full story.` No "Tomorrow:" label, no
   colon. Research behind it: Nas Daily's fixed sign-off ("That's one minute, see you
   tomorrow") works as a signature plus curiosity about the next video, and short-form
   sources rank open-loop teasers above a generic "follow for more" (vendor blogs — trust the

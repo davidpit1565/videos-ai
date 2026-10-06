@@ -54,7 +54,7 @@ episode 60 (Meta AI chats and Instagram ads) and uses the revised flowing format
 6. One honest catch. Turning it off only works from now on. What it already learned, it keeps.
 7. Send this to a friend who's looking for a job.
 8. The setup's in the link in bio. (locked)
-9. Tomorrow, I'll show you what Instagram does with the questions you ask its AI. Follow, so you don't miss it.
+9. Tomorrow, I'll show you what Instagram does with the questions you ask its AI. Follow, so you get the full story.
 
 `script_lint.py` clean (0 risky words) after rewording "payment info", "Improvement", "turn".
 Lines 5's spoken label is shortened on purpose: the exact label "Data for Generative AI
