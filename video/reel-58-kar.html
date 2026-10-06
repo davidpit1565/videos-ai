@@ -495,7 +495,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   // Closing pair (CTA + tomorrow line) = ONE continuous shot on one photo. A static hold
   // is no longer possible: the tomorrow line made the pair run past qa.py's 4s frozen
   // limit (6.10.2026). One slow drift spans both scenes, so nothing resets at the cut.
-  var KB_GH={fromScale:1.0,toScale:1.22,fromX:0,toX:-2.4,fromY:0,toY:-1.6};
+  var KB_GH={fromScale:1.0,toScale:1.30,fromX:0,toX:-3.2,fromY:0,toY:-2.0};
+  // LINEAR on purpose: kenBurns()'s ease-out front-loads the motion and left a 4.4s still tail.
+  function driftGH(t0,t1){var p=Math.max(0,Math.min(1,(t-t0)/(t1-t0)));var k=KB_GH;
+    return 'scale('+(k.fromScale+(k.toScale-k.fromScale)*p).toFixed(4)+') translate('+(k.toX*p).toFixed(3)+'%,'+(k.toY*p).toFixed(3)+'%)';}
 
   function makeHook(kbId,h2Id,sceneIdx){
     var kb=document.getElementById(kbId);
@@ -600,8 +603,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     kenBurns(photobgE,scenes[4],KB_E);
     kenBurns(photobgF,scenes[5],KB_F);
     var ghIn=+scenes[7].dataset.in, ghOut=+scenes[8].dataset.out;
-    photobgG.style.transform=MK.kenBurns(t-ghIn,ghOut-ghIn,KB_GH);
-    photobgH.style.transform=MK.kenBurns(t-ghIn,ghOut-ghIn,KB_GH);
+    photobgG.style.transform=driftGH(ghIn,ghOut);
+    photobgH.style.transform=driftGH(ghIn,ghOut);
 
     prog.style.width=(t/DUR*100)+'%';
     seek.value=t; cur2.textContent=fmt(t);
