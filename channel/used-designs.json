@@ -352,5 +352,12 @@
     "ember": "#F59E0B",
     "mood": "urgent",
     "date": "2026-10-06"
+  },
+  {
+    "episode": 60,
+    "brass": "#F43F8E",
+    "ember": "#F43F8E",
+    "mood": "tense",
+    "date": "2026-10-07"
   }
 ]
