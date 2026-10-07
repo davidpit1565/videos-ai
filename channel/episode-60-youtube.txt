@@ -1,0 +1,13 @@
+Anything you type to Instagram's AI chat can come back as an ad.
+
+Since 16 December 2025 Meta uses interactions with its AI (voice or text) to personalize the content and ads you see on Facebook and Instagram. Per Meta's own announcement there is no full opt-out — you can adjust ads with Ads Preferences and feed controls — and sensitive topics (religious views, sexual orientation, political views, health, racial or ethnic origin, philosophical beliefs, trade union membership) are not used for ads. Meta says the change is rolling out in "most regions"; news reports say the EU, the UK and South Korea are left out.
+
+What you can do: in the Meta AI app, Menu > Settings > Data & privacy > Manage your information > Delete all chats and media > Delete all (Meta's help page gives steps for the Meta AI app only). Meta does not say whether deleting chats changes the ads you see.
+
+Said plainly: this channel did not test this on a live account; the country list comes from news reports, not from Meta's own page, and nothing newer than the October 2025 announcement was found.
+
+Full setup, sourced exactly: https://actually-works.com/e/60
+
+Tomorrow, I'll show you who can read your chats with Google's Gemini. Follow, so you get the full story.
+
+#meta #instagram #ai #privacy #ads

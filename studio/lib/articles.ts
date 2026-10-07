@@ -1634,6 +1634,36 @@ export const ARTICLES: Article[] = [
       "The setting controls generative-AI training only. LinkedIn also uses member data for other things (ads, recommendations, job matching) that this switch does not govern.",
     ],
   },
+  {
+    n: 60,
+    title: "Instagram's AI chat can feed your ads — and there is no off switch",
+    standfirst:
+      "Since 16 December 2025, Meta (the company behind Instagram and Facebook) uses what you say " +
+      "to its AI — by voice or text — to personalize the ads and posts you see, the same way it " +
+      "uses a like or a search. Meta says sensitive topics such as religion, political views and " +
+      "health are not used for ads. There is no full opt-out: Meta points to Ads Preferences and " +
+      "feed controls. News reports say the EU, the UK and South Korea are left out; Meta's own " +
+      "page only says \"most regions\".",
+    steps: [
+      "Work out where you talk to Meta AI: the Meta AI app, or the Meta AI chat inside Instagram, Facebook or Messenger. This is what the personalization looks at.",
+      "To clear the Meta AI app's history: open the Meta AI app (אפליקציית Meta AI) and tap Menu (תפריט) at the top left.",
+      "Tap Settings (הגדרות) at the bottom left, then under App settings tap Data & privacy.",
+      "Tap Manage your information, then tap Delete all chats and media, then tap Delete all to confirm.",
+      "Optional: Meta says its Ads Preferences tool and feed controls let you adjust the ads and content you see. Meta's announcement does not give click-by-click steps for them, so none are claimed here.",
+      "Optional: from now on, treat the AI chat like a search box — do not type anything you would not want an ad about.",
+    ],
+    changes: [
+      "Verified live (7.10.2026) against Meta's own announcement (about.fb.com, October 2025) and Meta's help page on removing chats from Meta AI. The help page gives deletion steps for the Meta AI app only — none for chats inside Instagram, Facebook, Messenger or WhatsApp.",
+      "Meta's announcement says changes start 16 December 2025, in \"most regions\", without a full opt-out. Sensitive topics (religious views, sexual orientation, political views, health, racial or ethnic origin, philosophical beliefs, trade union membership) are not used for ads.",
+      "Where it applies: news coverage (Tom's Guide, PPC Land and others) reports the EU, the UK and South Korea are left out. That country list comes from reports, not from Meta's own page.",
+      "Topic chosen from the studio's own numbers: the best recent episodes are all \"something is already happening to your data\" (Alexa 447, ChatGPT hidden profile 414), and episode 59 promised this one.",
+    ],
+    limits: [
+      "This channel did not test this on a live account. Nothing newer than the October 2025 announcement was found, so it may have changed since.",
+      "Meta does not say whether deleting your chats changes the ads you see. The video says so and does not promise it.",
+      "If you are in the EU, the UK or South Korea, reports say this does not apply to you — check your own app's notices.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
