@@ -1548,6 +1548,17 @@ by David. Values are read off the picture by eye, so treat them as approximate (
 - **UNKNOWN:** how this curve compares with weaker episodes (56, 57, 58) — asked David for the same
   graph for two or three of them. Average watch time is still not in our tracked data.
 
+## Growth audit against outside skills.sh skills (7.10.2026)
+
+Full write-up: `channel/growth-audit-7-10.md`. Short version: run in the order the outside
+Reels-diagnosis skill gives, the earliest failure that matches "views without follows"
+(episode 55: 260+ views, 0 follows) is **topic legibility**: there's no single promise, bio,
+or named series telling a stranger what following gets them. The hook cliff is the second
+failure, and the episode-60 test already covers it. HYPOTHESES, not confirmed: our 45-75s
+length rule conflicts with every skill read (15-35s), and so does our three-beat ending
+(they say one CTA). The account has no human face and does no outbound engagement or
+collabs. The proposed tests are listed there and none has run yet.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same
