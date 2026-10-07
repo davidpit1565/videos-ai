@@ -1604,6 +1604,36 @@ export const ARTICLES: Article[] = [
       "Exact menu labels and button placement can shift between WhatsApp app versions — if you don't see the edit button described above, make sure your app is fully up to date first.",
     ],
   },
+  {
+    n: 59,
+    title: "Your LinkedIn profile is already teaching an AI — here's the switch that stops it",
+    standfirst:
+      "LinkedIn has a setting called \"Data for Generative AI Improvement\". When it is on, " +
+      "LinkedIn can use what you put on the site — your profile (job titles, skills, " +
+      "education), your posts and comments, and what you give its AI features — to train the " +
+      "AI models that write content. It is on by default; you have to switch it off yourself. " +
+      "Login details and payment information are excluded. Switching it off only applies " +
+      "from now on — it does not undo training that already happened.",
+    steps: [
+      "On your phone, open the LinkedIn app (אפליקציית LinkedIn) and tap your profile photo at the top left.",
+      "Tap Settings (הגדרות) — at the bottom of the menu that slides out.",
+      "Tap Data privacy, then tap Data for Generative AI Improvement. Menu wording can differ slightly by language and app version.",
+      "Switch off the toggle \"Use my data for training content creation AI models\".",
+      "Shortcut on a computer: sign in and open linkedin.com/mypreferences/d/settings/data-for-ai-improvement — the same toggle, one click away. Or click Me (אני) → Settings & Privacy → Data privacy → Data for Generative AI Improvement.",
+      "Optional: if you manage a company page or a client's account, repeat the same steps while signed in as that account — the setting belongs to each account separately.",
+    ],
+    changes: [
+      "Verified live (6.10.2026): the setting name and the toggle label match LinkedIn's own help page on data used to train content-generating AI, plus independent coverage (Malwarebytes, Windows Latest). LinkedIn's help page lists what it uses (profile information, posts, articles, comments, poll responses, resumes and job-related answers, group activity, feedback on its AI features) and what it leaves out (login credentials, payment information, salary data).",
+      "The same help page says opting out applies \"going forward\" and \"does not affect training that has already taken place\" — this is the honest catch said in the video.",
+      "Where it applies: LinkedIn's own page treats EU/UK members and some other designated countries differently (for example, personal information is not shared with affiliates such as Microsoft for this training without further notice), and members under 18 are excluded even if the setting appears on. Sources disagree on exactly which regions have the setting on by default — check the toggle on your own account rather than assuming.",
+      "Topic chosen from the studio's own numbers: the three best recent episodes are all \"something is already happening to your data\" (Alexa 447, ChatGPT hidden profile 414, the resume-screening software 385 views).",
+    ],
+    limits: [
+      "This channel did not test the toggle on a live LinkedIn account for this episode — the path above comes from LinkedIn's own help page and independent step-by-step guides, and menu labels move between app versions and languages.",
+      "Switching it off does not delete anything already used for training, and LinkedIn's help page does not say how much of any one person's data that is.",
+      "The setting controls generative-AI training only. LinkedIn also uses member data for other things (ads, recommendations, job matching) that this switch does not govern.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
