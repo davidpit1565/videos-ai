@@ -1664,6 +1664,34 @@ export const ARTICLES: Article[] = [
       "If you are in the EU, the UK or South Korea, reports say this does not apply to you — check your own app's notices.",
     ],
   },
+  {
+    n: 61,
+    title: "Google's reviewers can read some Gemini chats — even after you delete them",
+    standfirst:
+      "Google's own Gemini Apps Privacy Hub says a subset of Gemini chats is reviewed by human " +
+      "reviewers, after the chat is disconnected from your Google Account. Reviewed chats are kept " +
+      "for up to three years, and deleting your activity does not remove a chat that was already " +
+      "reviewed. There is a real switch for new chats: Keep Activity.",
+    steps: [
+      "Open gemini.google.com in a browser on a computer and sign in to the Google Account you use with Gemini.",
+      "Click Settings & help at the bottom left, then click Activity. You can also open myactivity.google.com/product/gemini directly.",
+      "Near the top of the Activity page, click On.",
+      "Choose Turn off to stop new chats from being kept in your activity and picked for review. Or choose Turn off and delete activity to also delete what is there now.",
+      "Optional: still on the Activity page, click Choose an auto-delete option and pick 3, 18 or 36 months (the default is 18). This shortens how long your activity is kept, but it does not remove a chat that was already picked for review.",
+      "Optional: if you want to send something sensitive anyway, treat it like a search box — Google says chats made with Keep Activity off are held for 72 hours and not reviewed unless you send feedback.",
+    ],
+    changes: [
+      "Verified live (8.10.2026) against Google's Gemini Apps Privacy Hub (support.google.com/gemini/answer/13594961, last updated 24 September 2026) and Google's Gemini activity help page (support.google.com/gemini/answer/13278892).",
+      "Google says a subset of chats is reviewed by human reviewers, disconnected from your account first, and that reviewed chats are retained for up to three years and are not deleted when you delete your activity.",
+      "With Keep Activity off, and for Temporary Chats, Google says chats are retained for 72 hours, not used to train its models, and not reviewed unless you send feedback.",
+      "Topic chosen because episode 60 promised it on air, and because the best recent episodes are all \"something is already happening to your data\".",
+    ],
+    limits: [
+      "This channel did not test this on a live account. Google does not say how many chats are picked — only \"a subset\".",
+      "The steps above are for the Gemini website. Google's activity page links a separate article for Android and iPhone that this channel did not read, so no phone steps are claimed.",
+      "The Turn off button labels come from Google's help page; the interface may differ slightly by country or account type (for example a work or school account).",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
