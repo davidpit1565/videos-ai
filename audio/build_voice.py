@@ -534,7 +534,9 @@ def main():
         return hashlib.sha1(payload.encode()).hexdigest()[:16]
 
     tmp = tempfile.mkdtemp()
-    LEAD = 0.30
+    # 8.10.2026, David: the voice must grab in the first fraction of a second. 0.30 s of room
+    # tone before the hook was a lead-in nobody asked for; 0.08 s only avoids a click at t=0.
+    LEAD = 0.08
     segs, cues, t = [], [], LEAD
     if not a.fit:
         segs.append(np.zeros(int(LEAD * SR_MIX), dtype=np.float32))
