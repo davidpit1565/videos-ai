@@ -6,7 +6,7 @@
  *  anything. Runs after write-reels-manifest.mjs, so the list of reels stays complete; an
  *  old reel's page still lists it, its video file just isn't served from the deployment.
  *  Publishing only ever uses a recent reel, so KEEP covers it with room to spare. */
-import { readdirSync, statSync, readFileSync, existsSync, rmSync } from "node:fs";
+import { readdirSync, statSync, readFileSync, existsSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -27,4 +27,15 @@ const videos = readdirSync(DIR).filter((f) => f.endsWith(".mp4")).map((f) => ({ 
 videos.sort((a, b) => b.t.localeCompare(a.t));
 const drop = videos.slice(KEEP);
 for (const { f } of drop) rmSync(join(DIR, f));
+// Tell the app which videos are no longer in this deployment, so a reel page shows a plain
+// "archived" note instead of a black player with a crossed-out play button (8.10.2026).
+const MANIFEST = join(fileURLToPath(new URL("..", import.meta.url)), "lib", "reels-manifest.json");
+try {
+  const gone = new Set(drop.map((d) => d.f));
+  const m = JSON.parse(readFileSync(MANIFEST, "utf8"));
+  for (const r of m.reels) r.archived = gone.has(r.file) ? true : undefined;
+  writeFileSync(MANIFEST, JSON.stringify(m));
+} catch (e) {
+  console.log("prune-old-reels: could not mark archived reels in the manifest:", e.message);
+}
 console.log(`prune-old-reels: kept ${Math.min(KEEP, videos.length)}, removed ${drop.length}`);
