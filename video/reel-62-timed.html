@@ -139,18 +139,18 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
      sentence that connects the content to the locked CTA lines instead of
      cutting straight into them. Same photo as scene 6 (adjacent reuse) -> static
      Ken Burns per the standing rule for a repeated photo. -->
-<section class="scene" data-in="25.725" data-out="29.46">
+<section class="scene" data-in="25.725" data-out="29.23">
   <div class="photobg" id="photobgBridge" style="filter:brightness(.55);background-image:url('../channel/assets/ep62-scene-a.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbBridge">
-    <h2 id="hookH2Bridge">Send this to someone who tells ChatGPT everything.</h2>
+    <h2 id="hookH2Bridge">Show this to someone who tells ChatGPT everything.</h2>
   </div></div>
 </section>
 
 <!-- Scene 8 — CTA1 (locked line). Same photo as the bridge scene (adjacent
      reuse) -> static Ken Burns. -->
-<section class="scene" data-in="29.46" data-out="31.69">
+<section class="scene" data-in="29.23" data-out="31.46">
   <div class="photobg" id="photobgG" style="filter:brightness(.72);background-image:url('../channel/assets/ep62-scene-d.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -162,7 +162,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <!-- Scene 9 — CTA2 (locked final line). Same photo as scenes 6/7/8 (adjacent
      reuse) -> static Ken Burns, same locked background across both closing
      scenes. -->
-<section class="scene" data-in="31.69" data-out="38.59">
+<section class="scene" data-in="31.46" data-out="38.37">
   <div class="photobg" id="photobgH" style="filter:brightness(.72);background-image:url('../channel/assets/ep62-scene-d.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -188,7 +188,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=38.59,t=0,playing=false,last=0;
+  var DUR=38.37,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var seek=document.getElementById('seek');
@@ -200,9 +200,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [5.01,12.56,"ChatGPT is OpenAI's AI chat. It erases the chats you delete from its systems within 30 days, with some legal exceptions."],
     [12.98,20.34,"In 2025, a judge made OpenAI keep even erased chats for a news lawsuit. Reports say that ended that year."],
     [20.76,25.30,"To wipe your chats, open Settings, then Data controls, then Delete all chats."],
-    [26.15,29.25,"Send this to someone who tells ChatGPT everything."],
-    [29.67,31.48,"The setup's in the link in bio."],
-    [31.90,37.69,"Tomorrow, I'll show you which AI chat is the riskiest for your privacy. Follow, so you get the full story."]
+    [26.15,29.02,"Show this to someone who tells ChatGPT everything."],
+    [29.44,31.25,"The setup's in the link in bio."],
+    [31.67,37.47,"Tomorrow, I'll show you which AI chat is the riskiest for your privacy. Follow, so you get the full story."]
   ];
   var WORD_WINDOWS=[
     new Array(15).fill(null),

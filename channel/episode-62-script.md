@@ -46,7 +46,7 @@ views, completion and shares per `channel/experiments.md`.
 2. ChatGPT is OpenAI's AI chat. It erases the chats you delete from its systems within 30 days, with some legal exceptions.
 3. In 2025, a judge made OpenAI keep even erased chats for a news lawsuit. Reports say that ended that year.
 4. To wipe your chats, open Settings, then Data controls, then Delete all chats.
-5. Send this to someone who tells ChatGPT everything.
+5. Show this to someone who tells ChatGPT everything.
 6. The setup's in the link in bio. (locked)
 7. Tomorrow, I'll show you which AI chat is the riskiest for your privacy. Follow, so you get the full story.
 

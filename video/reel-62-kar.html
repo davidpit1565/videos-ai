@@ -139,18 +139,18 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
      sentence that connects the content to the locked CTA lines instead of
      cutting straight into them. Same photo as scene 6 (adjacent reuse) -> static
      Ken Burns per the standing rule for a repeated photo. -->
-<section class="scene" data-in="25.725" data-out="29.46">
+<section class="scene" data-in="25.725" data-out="29.23">
   <div class="photobg" id="photobgBridge" style="filter:brightness(.55);background-image:url('../channel/assets/ep62-scene-a.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad"><div class="kb" id="hookKbBridge">
-    <h2 id="hookH2Bridge">Send this to someone who tells ChatGPT everything.</h2>
+    <h2 id="hookH2Bridge">Show this to someone who tells ChatGPT everything.</h2>
   </div></div>
 </section>
 
 <!-- Scene 8 — CTA1 (locked line). Same photo as the bridge scene (adjacent
      reuse) -> static Ken Burns. -->
-<section class="scene" data-in="29.46" data-out="31.69">
+<section class="scene" data-in="29.23" data-out="31.46">
   <div class="photobg" id="photobgG" style="filter:brightness(.72);background-image:url('../channel/assets/ep62-scene-d.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -162,7 +162,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <!-- Scene 9 — CTA2 (locked final line). Same photo as scenes 6/7/8 (adjacent
      reuse) -> static Ken Burns, same locked background across both closing
      scenes. -->
-<section class="scene" data-in="31.69" data-out="38.59">
+<section class="scene" data-in="31.46" data-out="38.37">
   <div class="photobg" id="photobgH" style="filter:brightness(.72);background-image:url('../channel/assets/ep62-scene-d.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -188,7 +188,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=38.59,t=0,playing=false,last=0;
+  var DUR=38.37,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var seek=document.getElementById('seek');
@@ -200,9 +200,9 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [5.01,12.56,"ChatGPT is OpenAI's AI chat. It erases the chats you delete from its systems within 30 days, with some legal exceptions."],
     [12.98,20.34,"In 2025, a judge made OpenAI keep even erased chats for a news lawsuit. Reports say that ended that year."],
     [20.76,25.30,"To wipe your chats, open Settings, then Data controls, then Delete all chats."],
-    [26.15,29.25,"Send this to someone who tells ChatGPT everything."],
-    [29.67,31.48,"The setup's in the link in bio."],
-    [31.90,37.69,"Tomorrow, I'll show you which AI chat is the riskiest for your privacy. Follow, so you get the full story."]
+    [26.15,29.02,"Show this to someone who tells ChatGPT everything."],
+    [29.44,31.25,"The setup's in the link in bio."],
+    [31.67,37.47,"Tomorrow, I'll show you which AI chat is the riskiest for your privacy. Follow, so you get the full story."]
   ];
   var WORDS=[
     [0.3,0.8,"Delete",0],
@@ -222,10 +222,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [4.18,4.78,"days.",4],
     [5.98,6.1,"ChatGPT",5],
     [5.98,6.16,"is",5],
-    [6.16,7.26,"OpenAI's",5],
-    [7.26,7.5,"AI",6],
-    [7.5,7.82,"chat.",6],
-    [8.12,8.26,"It",7],
+    [6.16,7.24,"OpenAI's",5],
+    [7.24,7.48,"AI",6],
+    [7.48,7.82,"chat.",6],
+    [8.14,8.26,"It",7],
     [8.26,8.64,"erases",7],
     [8.64,8.94,"the",7],
     [8.94,9.12,"chats",8],
@@ -236,15 +236,15 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [9.96,10.28,"systems",9],
     [10.28,10.58,"within",10],
     [10.58,10.84,"30",10],
-    [10.84,11.24,"days,",10],
-    [11.24,11.48,"with",11],
-    [11.48,11.7,"some",11],
+    [10.84,11.26,"days,",10],
+    [11.26,11.5,"with",11],
+    [11.5,11.7,"some",11],
     [11.7,11.98,"legal",11],
     [11.98,12.44,"exceptions.",12],
-    [13.08,13.2,"In",13],
-    [13.18,13.78,"2025,",13],
-    [14.28,14.46,"a",14],
-    [14.46,14.62,"judge",14],
+    [13.1,13.22,"In",13],
+    [13.18,13.82,"2025,",13],
+    [14.28,14.44,"a",14],
+    [14.44,14.62,"judge",14],
     [14.62,14.86,"made",14],
     [14.86,15.62,"OpenAI",15],
     [15.62,16.02,"keep",15],
@@ -252,19 +252,19 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [16.28,16.7,"erased",16],
     [16.7,17.04,"chats",16],
     [17.04,17.34,"for",16],
-    [17.34,17.48,"a",17],
-    [17.48,17.64,"news",17],
+    [17.34,17.5,"a",17],
+    [17.5,17.64,"news",17],
     [17.64,18.06,"lawsuit.",17],
-    [18.6,18.86,"Reports",18],
+    [18.62,18.86,"Reports",18],
     [18.86,19.16,"say",18],
     [19.16,19.52,"that",18],
     [19.52,19.78,"ended",19],
     [19.78,20.04,"that",19],
     [20.04,20.34,"year.",19],
-    [20.84,21.0,"To",20],
+    [20.82,21.0,"To",20],
     [21.0,21.12,"wipe",20],
-    [21.12,21.38,"your",20],
-    [21.38,21.6,"chats,",21],
+    [21.12,21.36,"your",20],
+    [21.36,21.58,"chats,",21],
     [21.96,22.18,"open",22],
     [22.18,22.62,"Settings,",22],
     [22.96,23.1,"then",23],
@@ -273,42 +273,42 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [24.06,24.18,"then",24],
     [24.18,24.54,"Delete",24],
     [24.54,24.94,"all",24],
-    [24.94,25.26,"chats.",25],
-    [26.24,26.46,"Send",26],
-    [26.46,26.7,"this",26],
-    [26.7,26.82,"to",26],
+    [24.94,25.24,"chats.",25],
+    [26.26,26.48,"Show",26],
+    [26.48,26.68,"this",26],
+    [26.68,26.8,"to",26],
     [26.76,27.08,"someone",27],
-    [27.08,27.32,"who",27],
-    [27.32,27.64,"tells",27],
-    [27.64,28.7,"ChatGPT",28],
-    [28.7,29.16,"everything.",28],
-    [29.67,29.94,"The",29],
-    [29.94,30.4,"setup's",29],
-    [30.4,30.56,"in",29],
-    [30.56,30.68,"the",30],
-    [30.66,30.86,"link",30],
-    [30.86,31.2,"in",30],
-    [31.2,31.46,"bio.",31],
-    [32.08,32.4,"Tomorrow,",32],
-    [32.7,32.82,"I'll",33],
-    [32.82,33.02,"show",33],
-    [33.02,33.28,"you",33],
-    [33.28,33.58,"which",34],
-    [33.58,33.84,"AI",34],
-    [33.84,34.04,"chat",34],
-    [34.04,34.24,"is",35],
-    [34.24,34.42,"the",35],
-    [34.42,34.82,"riskiest",35],
-    [34.82,34.96,"for",36],
-    [34.96,35.14,"your",36],
-    [35.14,35.5,"privacy.",36],
-    [36.1,36.36,"Follow,",37],
-    [36.36,36.64,"so",37],
-    [36.64,36.8,"you",37],
-    [36.8,36.92,"get",37],
-    [36.92,37.06,"the",38],
-    [37.06,37.26,"full",38],
-    [37.26,37.58,"story.",38]
+    [27.08,27.34,"who",27],
+    [27.34,27.56,"tells",27],
+    [27.56,28.44,"ChatGPT",28],
+    [28.44,28.9,"everything.",28],
+    [29.44,29.66,"The",29],
+    [29.66,30.18,"setup's",29],
+    [30.18,30.32,"in",29],
+    [30.32,30.44,"the",30],
+    [30.44,30.62,"link",30],
+    [30.62,30.96,"in",30],
+    [30.96,31.22,"bio.",31],
+    [31.86,32.18,"Tomorrow,",32],
+    [32.48,32.6,"I'll",33],
+    [32.6,32.8,"show",33],
+    [32.8,33.06,"you",33],
+    [33.06,33.36,"which",34],
+    [33.36,33.6,"AI",34],
+    [33.6,33.82,"chat",34],
+    [33.82,34.02,"is",35],
+    [34.02,34.2,"the",35],
+    [34.2,34.6,"riskiest",35],
+    [34.6,34.74,"for",36],
+    [34.74,34.9,"your",36],
+    [34.9,35.3,"privacy.",36],
+    [35.88,36.14,"Follow,",37],
+    [36.14,36.42,"so",37],
+    [36.42,36.56,"you",37],
+    [36.56,36.7,"get",37],
+    [36.7,36.82,"the",38],
+    [36.82,37.04,"full",38],
+    [37.04,37.36,"story.",38]
   ];
   var WORD_WINDOWS=[
     new Array(15).fill(null),
