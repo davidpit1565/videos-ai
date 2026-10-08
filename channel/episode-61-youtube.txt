@@ -1,0 +1,13 @@
+Someone at Google can read your chats with Gemini, even after you delete them.
+
+Per Google's own Gemini Apps Privacy Hub (last updated 24 September 2026): "A subset of chats are reviewed by human reviewers", disconnected from your Google Account first. Reviewed chats are retained for up to three years, and deleting your activity does not remove chats that were already reviewed.
+
+What you can do (Google's activity help page, website steps): gemini.google.com > Settings & help > Activity > click On near the top > Turn off (or Turn off and delete activity). With Keep Activity off, Google says chats are kept for 72 hours to run the service, are not used to train its models, and are not reviewed unless you send feedback. Auto-delete options on the same page: 3, 18 or 36 months (default 18).
+
+Said plainly: Google does not say how many chats are picked ("a subset"). Phone steps for Android and iPhone are on a separate Google page that this channel did not read, so none are given. Not tested on a live account.
+
+Full setup, sourced exactly: https://actually-works.com/e/61
+
+Tomorrow, I'll show you where a ChatGPT chat goes when you wipe it. Follow, so you get the full story.
+
+#gemini #google #ai #privacy #chatgpt

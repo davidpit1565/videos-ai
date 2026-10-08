@@ -1,0 +1,15 @@
+Delete a ChatGPT chat, and OpenAI can still keep it for up to 30 days.
+
+Per OpenAI's help center: when you delete a chat it is removed from your account immediately and scheduled for permanent deletion from OpenAI's systems within 30 days, unless it was already de-identified or OpenAI must keep it longer for security or legal reasons. Temporary Chats are automatically deleted within 30 days. Files saved to your Library are not deleted with the chat.
+
+In May 2025 a court in the New York Times v. OpenAI case ordered OpenAI to preserve output logs that would otherwise be deleted. Press reports (for example Engadget, 11 October 2025) say a 9 October 2025 order ended that duty going forward, from 26 September 2025; logs saved under the order stay accessible, and data on accounts the Times flagged is still kept.
+
+What you can do (web): profile picture > Settings > Data controls > Delete all chats > confirm. Phone: menu > profile > Settings > Data controls.
+
+Said plainly: OpenAI's own page about the lawsuit could not be opened in this research (HTTP 403), so the court details come from press reports, not from OpenAI. Not tested on a live account.
+
+Full setup, sourced exactly: https://actually-works.com/e/62
+
+Tomorrow, I'll show you which AI chat is the riskiest for your privacy. Follow, so you get the full story.
+
+#chatgpt #openai #ai #privacy #gemini

@@ -1604,6 +1604,122 @@ export const ARTICLES: Article[] = [
       "Exact menu labels and button placement can shift between WhatsApp app versions — if you don't see the edit button described above, make sure your app is fully up to date first.",
     ],
   },
+  {
+    n: 59,
+    title: "Your LinkedIn profile is already teaching an AI — here's the switch that stops it",
+    standfirst:
+      "LinkedIn has a setting called \"Data for Generative AI Improvement\". When it is on, " +
+      "LinkedIn can use what you put on the site — your profile (job titles, skills, " +
+      "education), your posts and comments, and what you give its AI features — to train the " +
+      "AI models that write content. It is on by default; you have to switch it off yourself. " +
+      "Login details and payment information are excluded. Switching it off only applies " +
+      "from now on — it does not undo training that already happened.",
+    steps: [
+      "On your phone, open the LinkedIn app (אפליקציית LinkedIn) and tap your profile photo at the top left.",
+      "Tap Settings (הגדרות) — at the bottom of the menu that slides out.",
+      "Tap Data privacy, then tap Data for Generative AI Improvement. Menu wording can differ slightly by language and app version.",
+      "Switch off the toggle \"Use my data for training content creation AI models\".",
+      "Shortcut on a computer: sign in and open linkedin.com/mypreferences/d/settings/data-for-ai-improvement — the same toggle, one click away. Or click Me (אני) → Settings & Privacy → Data privacy → Data for Generative AI Improvement.",
+      "Optional: if you manage a company page or a client's account, repeat the same steps while signed in as that account — the setting belongs to each account separately.",
+    ],
+    changes: [
+      "Verified live (6.10.2026): the setting name and the toggle label match LinkedIn's own help page on data used to train content-generating AI, plus independent coverage (Malwarebytes, Windows Latest). LinkedIn's help page lists what it uses (profile information, posts, articles, comments, poll responses, resumes and job-related answers, group activity, feedback on its AI features) and what it leaves out (login credentials, payment information, salary data).",
+      "The same help page says opting out applies \"going forward\" and \"does not affect training that has already taken place\" — this is the honest catch said in the video.",
+      "Where it applies: LinkedIn's own page treats EU/UK members and some other designated countries differently (for example, personal information is not shared with affiliates such as Microsoft for this training without further notice), and members under 18 are excluded even if the setting appears on. Sources disagree on exactly which regions have the setting on by default — check the toggle on your own account rather than assuming.",
+      "Topic chosen from the studio's own numbers: the three best recent episodes are all \"something is already happening to your data\" (Alexa 447, ChatGPT hidden profile 414, the resume-screening software 385 views).",
+    ],
+    limits: [
+      "This channel did not test the toggle on a live LinkedIn account for this episode — the path above comes from LinkedIn's own help page and independent step-by-step guides, and menu labels move between app versions and languages.",
+      "Switching it off does not delete anything already used for training, and LinkedIn's help page does not say how much of any one person's data that is.",
+      "The setting controls generative-AI training only. LinkedIn also uses member data for other things (ads, recommendations, job matching) that this switch does not govern.",
+    ],
+  },
+  {
+    n: 60,
+    title: "Instagram's AI chat can feed your ads — and there is no off switch",
+    standfirst:
+      "Since 16 December 2025, Meta (the company behind Instagram and Facebook) uses what you say " +
+      "to its AI — by voice or text — to personalize the ads and posts you see, the same way it " +
+      "uses a like or a search. Meta says sensitive topics such as religion, political views and " +
+      "health are not used for ads. There is no full opt-out: Meta points to Ads Preferences and " +
+      "feed controls. News reports say the EU, the UK and South Korea are left out; Meta's own " +
+      "page only says \"most regions\".",
+    steps: [
+      "Work out where you talk to Meta AI: the Meta AI app, or the Meta AI chat inside Instagram, Facebook or Messenger. This is what the personalization looks at.",
+      "To clear the Meta AI app's history: open the Meta AI app (אפליקציית Meta AI) and tap Menu (תפריט) at the top left.",
+      "Tap Settings (הגדרות) at the bottom left, then under App settings tap Data & privacy.",
+      "Tap Manage your information, then tap Delete all chats and media, then tap Delete all to confirm.",
+      "Optional: Meta says its Ads Preferences tool and feed controls let you adjust the ads and content you see. Meta's announcement does not give click-by-click steps for them, so none are claimed here.",
+      "Optional: from now on, treat the AI chat like a search box — do not type anything you would not want an ad about.",
+    ],
+    changes: [
+      "Verified live (7.10.2026) against Meta's own announcement (about.fb.com, October 2025) and Meta's help page on removing chats from Meta AI. The help page gives deletion steps for the Meta AI app only — none for chats inside Instagram, Facebook, Messenger or WhatsApp.",
+      "Meta's announcement says changes start 16 December 2025, in \"most regions\", without a full opt-out. Sensitive topics (religious views, sexual orientation, political views, health, racial or ethnic origin, philosophical beliefs, trade union membership) are not used for ads.",
+      "Where it applies: news coverage (Tom's Guide, PPC Land and others) reports the EU, the UK and South Korea are left out. That country list comes from reports, not from Meta's own page.",
+      "Topic chosen from the studio's own numbers: the best recent episodes are all \"something is already happening to your data\" (Alexa 447, ChatGPT hidden profile 414), and episode 59 promised this one.",
+    ],
+    limits: [
+      "This channel did not test this on a live account. Nothing newer than the October 2025 announcement was found, so it may have changed since.",
+      "Meta does not say whether deleting your chats changes the ads you see. The video says so and does not promise it.",
+      "If you are in the EU, the UK or South Korea, reports say this does not apply to you — check your own app's notices.",
+    ],
+  },
+  {
+    n: 61,
+    title: "Google's reviewers can read some Gemini chats — even after you delete them",
+    standfirst:
+      "Google's own Gemini Apps Privacy Hub says a subset of Gemini chats is reviewed by human " +
+      "reviewers, after the chat is disconnected from your Google Account. Reviewed chats are kept " +
+      "for up to three years, and deleting your activity does not remove a chat that was already " +
+      "reviewed. There is a real switch for new chats: Keep Activity.",
+    steps: [
+      "Open gemini.google.com in a browser on a computer and sign in to the Google Account you use with Gemini.",
+      "Click Settings & help at the bottom left, then click Activity. You can also open myactivity.google.com/product/gemini directly.",
+      "Near the top of the Activity page, click On.",
+      "Choose Turn off to stop new chats from being kept in your activity and picked for review. Or choose Turn off and delete activity to also delete what is there now.",
+      "Optional: still on the Activity page, click Choose an auto-delete option and pick 3, 18 or 36 months (the default is 18). This shortens how long your activity is kept, but it does not remove a chat that was already picked for review.",
+      "Optional: if you want to send something sensitive anyway, treat it like a search box — Google says chats made with Keep Activity off are held for 72 hours and not reviewed unless you send feedback.",
+    ],
+    changes: [
+      "Verified live (8.10.2026) against Google's Gemini Apps Privacy Hub (support.google.com/gemini/answer/13594961, last updated 24 September 2026) and Google's Gemini activity help page (support.google.com/gemini/answer/13278892).",
+      "Google says a subset of chats is reviewed by human reviewers, disconnected from your account first, and that reviewed chats are retained for up to three years and are not deleted when you delete your activity.",
+      "With Keep Activity off, and for Temporary Chats, Google says chats are retained for 72 hours, not used to train its models, and not reviewed unless you send feedback.",
+      "Topic chosen because episode 60 promised it on air, and because the best recent episodes are all \"something is already happening to your data\".",
+    ],
+    limits: [
+      "This channel did not test this on a live account. Google does not say how many chats are picked — only \"a subset\".",
+      "The steps above are for the Gemini website. Google's activity page links a separate article for Android and iPhone that this channel did not read, so no phone steps are claimed.",
+      "The Turn off button labels come from Google's help page; the interface may differ slightly by country or account type (for example a work or school account).",
+    ],
+  },
+  {
+    n: 62,
+    title: "Delete a ChatGPT chat — and OpenAI can still keep it for up to 30 days",
+    standfirst:
+      "OpenAI's help center says a deleted ChatGPT chat leaves your account right away but is only " +
+      "scheduled for permanent deletion from OpenAI's systems within 30 days — and can be kept longer " +
+      "for security or legal reasons. In 2025 a court also made OpenAI preserve chats that would " +
+      "otherwise have been deleted, in the New York Times lawsuit; press reports say that duty ended " +
+      "the same year.",
+    steps: [
+      "Open chatgpt.com in a browser and sign in. (On the phone app, tap the menu icon, then your profile, then Settings, then Data controls.)",
+      "Click your profile picture or name at the bottom left, then click Settings.",
+      "Click Data controls.",
+      "Click Delete all chats and confirm. Deleting cannot be undone, and OpenAI says it still takes up to 30 days to be erased from its systems.",
+      "Optional: for a chat you do not want kept at all, start it as a Temporary Chat. OpenAI says Temporary Chats are also deleted from its systems within 30 days.",
+      "Optional: deleting chats does not stop future chats from being used for training — that is a separate setting in the same Data controls area. Its exact name can differ by account.",
+    ],
+    changes: [
+      "Verified live (8.10.2026) against OpenAI's help center articles on deleting chats and on chat and file retention (help.openai.com): removed from your account immediately, permanently deleted from OpenAI systems within 30 days, unless de-identified or retained for security or legal reasons.",
+      "The court order: a May 2025 order in New York Times v. OpenAI required OpenAI to preserve output logs. Press reports (Engadget, 11 October 2025) say a 9 October 2025 order ended that duty going forward, from 26 September 2025, while logs already saved stay accessible and data on accounts the Times flagged is still kept.",
+      "Topic chosen because episode 61 promised it on air, and because the best recent episodes are all \"something is already happening to your data\".",
+    ],
+    limits: [
+      "This channel did not test this on a live account. OpenAI's own page about the lawsuit could not be opened (HTTP 403), so the court details come from press reports, not from OpenAI.",
+      "OpenAI does not say, in the pages read, whether Delete all chats also removes archived chats. Deleting a chat does not delete files saved to your Library.",
+      "Menu names are taken from OpenAI's help pages and public guides; your screen may differ slightly.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

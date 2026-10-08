@@ -1528,6 +1528,37 @@ asked.**
   yet checked: the Instagram bio — David to paste it; line one should say what the account is
   and for whom, line two what following gets you.
 
+## Retention curve of the strongest episode (Alexa, ep 55) — from David's own Insights screenshot (6.10.2026)
+
+Source: Instagram "How long people watched your reel" graph for episode 55 (32s long), pasted
+by David. Values are read off the picture by eye, so treat them as approximate (±3 points).
+
+- **FACT (approx, one episode):** ~65% still watching at 1s, ~40% at 2s, ~25% at 4s, ~17% at 6s,
+  ~12% at 10s, ~8% at 17s, ~3-4% at the end. About 60% of viewers are gone before the hook
+  sentence (10 words, ~3.5s spoken) finishes.
+- **FACT:** views came 51% from the Reels tab (cold audience), 25% Stories, 18.5% Feed, 4.6% Explore.
+- **Consequence (arithmetic, not a guess):** anything placed in the last seconds — including the
+  "Tomorrow, I'll show you…" follow line — is seen by roughly 3-4% of viewers on our best episode.
+  The follow-conversion bet in the 6.10.2026 closing-line rule rests on completion that this
+  curve does not show.
+- **HYPOTHESIS (untested):** the fight is the first 1-2 seconds, not video length. Possible levers:
+  hook payoff inside ~2s (shorter hook, ~6 words), hook text fully on screen at frame 0 instead of
+  building word by word at 0.1s per word, an early "what you get" promise in seconds 2-4, and
+  moving the follow/tomorrow tease to ~15-20s or earlier.
+- **UNKNOWN:** how this curve compares with weaker episodes (56, 57, 58) — asked David for the same
+  graph for two or three of them. Average watch time is still not in our tracked data.
+
+## Growth audit against outside skills.sh skills (7.10.2026)
+
+Full write-up: `channel/growth-audit-7-10.md`. Short version: run in the order the outside
+Reels-diagnosis skill gives, the earliest failure that matches "views without follows"
+(episode 55: 260+ views, 0 follows) is **topic legibility**: there's no single promise, bio,
+or named series telling a stranger what following gets them. The hook cliff is the second
+failure, and the episode-60 test already covers it. HYPOTHESES, not confirmed: our 45-75s
+length rule conflicts with every skill read (15-35s), and so does our three-beat ending
+(they say one CTA). The account has no human face and does no outbound engagement or
+collabs. The proposed tests are listed there and none has run yet.
+
 ## How to update this file
 
 After reviewing real numbers (via the studio, or `/api/agent`'s data), if the same

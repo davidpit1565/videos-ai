@@ -260,8 +260,41 @@ the studio instead, same as every other episode so far. Its real numbers are an 
 data point for `content-memory.md`, not a Trial Reel result — don't compare it against a
 "trial baseline" that never existed.
 
+
+### PLANNED (6.10.2026) — Episode 60: the first 3 seconds only
+
+**Why:** David's Insights screenshot of the Alexa episode (our strongest) shows ~65% still watching
+at 1s, ~40% at 2s, ~25% at 4s, ~3-4% at the end; he says the other episodes' curves look about the
+same (his words, not measured by us). See `content-memory.md`, 6.10.2026.
+**Change (one thing):** the opening 3 seconds. (1) the whole hook sentence is on screen from frame 0
+instead of building word by word at 0.1s per word; (2) the voice starts at 0.0s; (3) the hook is at
+most ~6 words, with its payoff inside ~2 seconds. Everything else — photos, voice energy, caption,
+setup guide, closing lines, length — built exactly as episodes 58/59.
+**Quality bar (David, 6.10.2026):** it must stay as professional as the rest of the channel, not
+become plainer to chase retention. Concretely: real photo backgrounds, real logo, the accent color
+checked against every photo, the full frame looked at (not only the part being changed) before it ships.
+**Measure:** the same Instagram "How long people watched your reel" graph: % still watching at 1s,
+2s and 5s, compared with ~65% / ~40% / ~20% on earlier episodes (read by eye from screenshots, ±3
+points); plus views at equal age and followers gained in 48h, as in the episode-55 test.
+**Result:** [fill in]
+**Verdict:** — (one episode is one data point; do not generalise from it)
+
 *(No other deliberate experiment has been run yet. The next candidate after these two,
 once episode volume is high enough to have a real baseline to test against, is probably
 the hook-type test already flagged as a hypothesis in content-memory.md: a
 build-failure-first episode vs. a clean-demo episode on the same tool, holding everything
 else constant.)*
+
+
+### PLANNED (8.10.2026) — Episode 62: a SHORT cut (length experiment)
+
+**Why:** the 7.10 growth audit (`growth-audit-7-10.md`) found three short-form skills recommend 15-35s;
+our standing rule (45-75s) rests on Buffer and Socialinsider studies that say the opposite. Neither is
+about this account. David (8.10.2026): "if you think it's better, do it" — so a test, not a rule change.
+**Change (one thing):** episode 62 is ~35s (7 lines) instead of ~46s (9 lines): the same format, photos,
+voice, closing lines and setup guide, with the least important sentences cut.
+**Measure:** views at equal age, % still watching at 5s/10s/end, shares, followers gained in 48h —
+against 61 (46s) and 60 (66s). Different topics, so a signal, not proof; repeat on 2-3 episodes before
+changing the standing length rule.
+**Result:** [fill in]
+**Verdict:** —

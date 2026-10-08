@@ -1,0 +1,13 @@
+Delete a ChatGPT chat, and OpenAI can still keep it for up to 30 days.
+
+ChatGPT is OpenAI's AI chat. OpenAI says it erases the chats you delete from its systems within 30 days, with some exceptions for legal and security reasons. In 2025 a judge also made OpenAI keep even erased chats for a news lawsuit — reports say that ended the same year.
+
+What you can do: open ChatGPT, then Settings, then Data controls, then Delete all chats. Remember that deleted chats can still sit on OpenAI's systems for up to 30 days.
+
+Know someone who tells ChatGPT everything? Send them this.
+
+Full setup, sourced exactly: https://actually-works.com/e/62
+
+Tomorrow, I'll show you which AI chat is the riskiest for your privacy. Follow, so you get the full story.
+
+#chatgpt #openai #ai #privacy #gemini
