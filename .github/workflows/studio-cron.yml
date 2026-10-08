@@ -30,6 +30,11 @@ jobs:
           MANUAL_PATH: ${{ github.event.inputs.path }}
         run: |
           set -eu
+          # Not configured yet (see studio/NETLIFY.md): skip quietly instead of failing every day.
+          if [ -z "${CRON_SECRET:-}" ] || [ -z "${SITE_URL:-}" ]; then
+            echo "CRON_SECRET or SITE_URL is not set yet - skipping (nothing is broken)."
+            exit 0
+          fi
           case "${SCHEDULE:-}" in
             "10 6 * * *")  P=/api/track ;;
             "10 18 * * *") P=/api/health-check ;;
