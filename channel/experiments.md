@@ -284,3 +284,17 @@ once episode volume is high enough to have a real baseline to test against, is p
 the hook-type test already flagged as a hypothesis in content-memory.md: a
 build-failure-first episode vs. a clean-demo episode on the same tool, holding everything
 else constant.)*
+
+
+### PLANNED (8.10.2026) — Episode 62: a SHORT cut (length experiment)
+
+**Why:** the 7.10 growth audit (`growth-audit-7-10.md`) found three short-form skills recommend 15-35s;
+our standing rule (45-75s) rests on Buffer and Socialinsider studies that say the opposite. Neither is
+about this account. David (8.10.2026): "if you think it's better, do it" — so a test, not a rule change.
+**Change (one thing):** episode 62 is ~35s (7 lines) instead of ~46s (9 lines): the same format, photos,
+voice, closing lines and setup guide, with the least important sentences cut.
+**Measure:** views at equal age, % still watching at 5s/10s/end, shares, followers gained in 48h —
+against 61 (46s) and 60 (66s). Different topics, so a signal, not proof; repeat on 2-3 episodes before
+changing the standing length rule.
+**Result:** [fill in]
+**Verdict:** —
