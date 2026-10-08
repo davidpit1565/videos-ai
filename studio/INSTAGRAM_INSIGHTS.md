@@ -64,7 +64,11 @@ across the board for one of them, the fix is a Meta permission grant, not more c
 
 ## Historical snapshots
 
-- `state.reelInsightSnapshots[]` — one entry per episode per meaningful change (or every
+- Table `reel_insight_snapshots` (moved out of `studio_state` on 8.10.2026 — as an array in
+  the single state row it was 1 MB of the row's 1.1 MB, re-downloaded on every page load
+  and cron run, which was ~9 GB of Supabase egress in one billing cycle against a 5 GB
+  free quota; `lib/db.ts` copies the old array into the table on first load, in one
+  transaction, and then drops it from the row). One row per episode per meaningful change (or every
   `INSTAGRAM_INSIGHTS_SNAPSHOT_DEDUPE_WINDOW` minutes, default 360, if nothing changed).
   Never overwritten or deleted. `snapshotType: "backfill"` marks an entry produced by a
   one-time backfill run rather than an ordinary pull — its `collectedAt` is the day the

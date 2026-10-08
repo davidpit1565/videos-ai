@@ -1,5 +1,5 @@
 import { Pool } from "pg";
-import { State } from "./types";
+import { ReelInsightSnapshot, State } from "./types";
 import { seed } from "./seed";
 
 /** Every provider names it differently — Supabase's Vercel integration sets POSTGRES_URL
@@ -64,11 +64,99 @@ async function ensure(p: Pool) {
   )`);
 }
 
+/** Reel insight history has its own table, same reasoning as `subscribers` and
+ *  `claude_sessions` above: it grows with every metric change (3,482 rows in the first
+ *  three weeks, ~1 MB), and while it lived inside studio_state every page load, poll and
+ *  cron run downloaded all of it — 9.35 GB of Supabase egress against a 5 GB free quota.
+ *  Nothing is ever overwritten or deleted here either (see ReelInsightSnapshot). */
+async function ensureSnapshots(p: Pool) {
+  await p.query(`CREATE TABLE IF NOT EXISTS reel_insight_snapshots (
+    id text PRIMARY KEY,
+    episode_number int NOT NULL,
+    collected_at timestamptz NOT NULL,
+    data jsonb NOT NULL
+  )`);
+  await p.query(
+    `CREATE INDEX IF NOT EXISTS reel_insight_snapshots_ep
+     ON reel_insight_snapshots (episode_number, collected_at DESC)`,
+  );
+}
+
+let migrated = false;
+
+/** One-time move of the old in-row array into the table. Idempotent (ON CONFLICT DO
+ *  NOTHING) and transactional: the array is only removed from the row in the same
+ *  transaction that copied it, so a failure leaves the old data exactly where it was.
+ *  Never throws — loadState must keep working even if this has to be retried. */
+async function migrateSnapshots(p: Pool) {
+  if (migrated) return;
+  const c = await p.connect();
+  try {
+    await ensureSnapshots(p);
+    await c.query("BEGIN");
+    await c.query(
+      `INSERT INTO reel_insight_snapshots (id, episode_number, collected_at, data)
+       SELECT COALESCE(s->>'id', md5(s::text)),
+              COALESCE((s->>'episodeNumber')::int, 0),
+              COALESCE((s->>'collectedAt')::timestamptz, 'epoch'::timestamptz),
+              s
+       FROM studio_state, jsonb_array_elements(data->'reelInsightSnapshots') AS s
+       WHERE studio_state.id = 1 AND jsonb_typeof(data->'reelInsightSnapshots') = 'array'
+       ON CONFLICT (id) DO NOTHING`,
+    );
+    await c.query(
+      `UPDATE studio_state SET data = data - 'reelInsightSnapshots'
+       WHERE id = 1 AND data ? 'reelInsightSnapshots'`,
+    );
+    await c.query("COMMIT");
+    migrated = true;
+  } catch (err) {
+    await c.query("ROLLBACK").catch(() => {});
+    console.error("reel_insight_snapshots migration failed, will retry:", err);
+  } finally {
+    c.release();
+  }
+}
+
+/** The newest stored snapshot for each episode — all /api/track needs to decide whether a
+ *  new one is worth writing (see shouldSnapshot). */
+export async function lastSnapshotsByEpisode(): Promise<Map<number, ReelInsightSnapshot>> {
+  const p = db();
+  const out = new Map<number, ReelInsightSnapshot>();
+  if (!p) return out;
+  await ensureSnapshots(p);
+  const r = await p.query<{ data: ReelInsightSnapshot }>(
+    `SELECT DISTINCT ON (episode_number) data FROM reel_insight_snapshots
+     ORDER BY episode_number, collected_at DESC`,
+  );
+  for (const row of r.rows) out.set(row.data.episodeNumber, row.data);
+  return out;
+}
+
+export async function appendReelSnapshots(list: ReelInsightSnapshot[]): Promise<void> {
+  if (list.length === 0) return;
+  const p = db();
+  if (!p) throw new Error("no database configured");
+  await ensureSnapshots(p);
+  for (const s of list) {
+    await p.query(
+      `INSERT INTO reel_insight_snapshots (id, episode_number, collected_at, data)
+       VALUES ($1, $2, $3, $4) ON CONFLICT (id) DO NOTHING`,
+      [s.id, s.episodeNumber, s.collectedAt, JSON.stringify(s)],
+    );
+  }
+}
+
 export async function loadState(): Promise<State | null> {
   const p = db();
   if (!p) return null;
   await ensure(p);
-  const r = await p.query<{ data: State }>("SELECT data FROM studio_state WHERE id = 1");
+  await migrateSnapshots(p);
+  // `data - 'key'` is evaluated inside Postgres, so a row that still carries the old
+  // array (migration not run yet) never sends it over the wire either.
+  const r = await p.query<{ data: State }>(
+    "SELECT data - 'reelInsightSnapshots' AS data FROM studio_state WHERE id = 1",
+  );
   if (r.rowCount === 0) {
     const s = seed();
     await p.query("INSERT INTO studio_state (id, data) VALUES (1, $1)", [JSON.stringify(s)]);
@@ -92,18 +180,27 @@ export async function saveState(
   const p = db();
   if (!p) throw new Error("no database configured");
   await ensure(p);
+  // The save below replaces the whole row, so the old in-row history must already be in
+  // its table. If the move has not succeeded, refuse the write rather than drop 3,000+
+  // snapshots on the floor.
+  await migrateSnapshots(p);
+  if (!migrated) throw new Error("reel_insight_snapshots migration pending - state not saved");
+  // History lives in reel_insight_snapshots now; never write it back into the hot row.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { reelInsightSnapshots: _history, ...slim } = s;
+  const body = JSON.stringify(slim);
   if (expectedUpdatedAt !== undefined) {
     const r = await p.query(
       `UPDATE studio_state SET data = $1, updated_at = now()
        WHERE id = 1 AND (data->>'updatedAt') IS NOT DISTINCT FROM $2`,
-      [JSON.stringify(s), expectedUpdatedAt],
+      [body, expectedUpdatedAt],
     );
     return r.rowCount === 0 ? { ok: false, conflict: true } : { ok: true };
   }
   await p.query(
     `INSERT INTO studio_state (id, data, updated_at) VALUES (1, $1, now())
      ON CONFLICT (id) DO UPDATE SET data = $1, updated_at = now()`,
-    [JSON.stringify(s)],
+    [body],
   );
   return { ok: true };
 }
