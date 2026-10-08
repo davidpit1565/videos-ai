@@ -45,7 +45,7 @@ no "Tomorrow:" label (CLAUDE.md, 6.10.2026).
 3. Google cuts the chat off from your account, then keeps it for up to three years.
 4. Here's the catch. Wiping your history does not remove a chat that was already picked.
 5. You can stop it for new chats. On the Gemini website, open Settings, then Activity, click On, and choose Turn off.
-6. Google still holds new chats for three days, but says they're not read.
+6. Google still holds new chats for a few days, but says they're not read.  (Google says 72 hours; spoken "a few days" because the voice bursts on "three".)
 7. Send this to someone who tells Gemini everything.
 8. The setup's in the link in bio. (locked)
 9. Tomorrow, I'll show you what happens to a ChatGPT chat after you delete it. Follow, so you get the full story.
