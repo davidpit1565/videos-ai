@@ -163,9 +163,9 @@ export async function GET() {
     // Which deployment answered. A variable saved for Production only is simply absent
     // here when a preview URL answers, and that looked identical to "I never saved it".
     deployment: {
-      env: process.env.VERCEL_ENV ?? "local",
-      branch: process.env.VERCEL_GIT_COMMIT_REF ?? null,
-      commit: (process.env.VERCEL_GIT_COMMIT_SHA ?? "").slice(0, 7) || null,
+      env: process.env.VERCEL_ENV ?? process.env.CONTEXT ?? "local", // CONTEXT = Netlify
+      branch: process.env.VERCEL_GIT_COMMIT_REF ?? process.env.BRANCH ?? null,
+      commit: (process.env.VERCEL_GIT_COMMIT_SHA ?? process.env.COMMIT_REF ?? "").slice(0, 7) || null,
     },
     push,
     // names only, never values — this is what tells a typo apart from a wrong environment

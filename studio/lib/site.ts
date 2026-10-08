@@ -20,6 +20,7 @@ const KNOWN_DOMAIN = "www.actually-works.com";
 export const SITE_URL = `https://${(
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+  process.env.URL || // Netlify: the site's main URL
   KNOWN_DOMAIN
 ).replace(/^https?:\/\//, "")}`;
 
