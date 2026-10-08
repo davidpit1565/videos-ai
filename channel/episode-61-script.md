@@ -1,7 +1,7 @@
 # Episode 61 — People at Google can read your Gemini chats, even after you delete them
 
 Built 8.10.2026. Episode 60's last line promises this episode on air (binding). Final line
-points at episode 62 (what happens to a ChatGPT chat after you delete it) — flowing format,
+points at episode 62 (where a ChatGPT chat goes when you wipe it) — flowing format,
 no "Tomorrow:" label (CLAUDE.md, 6.10.2026).
 
 ## Topic choice (from the data, not picked fresh)
@@ -41,18 +41,18 @@ no "Tomorrow:" label (CLAUDE.md, 6.10.2026).
 ## Spoken script (plain language, ~60s)
 
 1. Someone at Google can read your chats with Gemini, even after you delete them.
-2. Gemini is Google's AI chat. Google says a small part of the chats get picked for real people to read.
+2. Gemini is Google's AI chat. Google says a small part of the chats get chosen for real people to read.
 3. Google cuts the chat off from your account, then can keep it for years.  (Google says up to three years; spoken "for years" because the voice bursts on "three" — the exact figure stays in the caption and on /e/61.)
-4. Here's the catch. Wiping your history does not remove a chat that was already picked.
+4. Here's the catch. Wiping your history does not remove a chat that was already chosen.
 5. You can stop it for new chats. On the Gemini website, open Settings, then Activity, click On, and choose Turn off.
 6. Google still holds new chats for a few days, but says they're not read.  (Google says 72 hours; spoken "a few days" because the voice bursts on "three".)
 7. Send this to someone who tells Gemini everything.
 8. The setup's in the link in bio. (locked)
-9. Tomorrow, I'll show you what happens to a ChatGPT chat after you delete it. Follow, so you get the full story.
+9. Tomorrow, I'll show you where a ChatGPT chat goes when you wipe it. Follow, so you get the full story.
 
 ## Binding promise
 
-Line 9 promises episode 62 tomorrow: what happens to a ChatGPT chat after you delete it.
+Line 9 promises episode 62 tomorrow: where a ChatGPT chat goes when you wipe it.
 Source: OpenAI help center "Deleting and archiving chats" (help.openai.com/en/articles/8809935):
 removed from the account at once, scheduled for permanent deletion within 30 days, exceptions
 for de-identified data and for security/legal retention; Temporary Chats auto-deleted within
