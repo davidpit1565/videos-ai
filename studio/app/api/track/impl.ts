@@ -1,7 +1,7 @@
 import { whole } from "@/lib/whole";
 import { NextResponse } from "next/server";
 import { notify, notifyNewRenders, notifyEpisodeLive } from "@/lib/push";
-import { hasDb, loadState, saveState, subscribersByEpisode } from "@/lib/db";
+import { appendReelSnapshots, hasDb, lastSnapshotsByEpisode, loadState, saveState, subscribersByEpisode } from "@/lib/db";
 import {
   fetchBeehiiv, fetchFacebook, fetchInstagram, fetchInstagramAccountInsights,
   fetchYouTube, refreshInstagramToken,
@@ -63,6 +63,7 @@ export async function GET(req: Request) {
   const loadedAt = state.updatedAt;
 
   const feed: ActivityEvent[] = state.activity ?? [];
+  const newSnapshots: ReelInsightSnapshot[] = [];
   const last = feed[0];
   // Was 20 minutes, then 3 — he asked to shorten it after a fix he needed to see reflected
   // sat behind the cooldown for most of that window. Moved back up to 10: with view-count
@@ -494,11 +495,12 @@ export async function GET(req: Request) {
     // produce dozens of identical rows, but nothing here ever overwrites or deletes a
     // snapshot already written.
     const dedupeWindowMinutes = Number(process.env.INSTAGRAM_INSIGHTS_SNAPSHOT_DEDUPE_WINDOW ?? 360);
-    state.reelInsightSnapshots = state.reelInsightSnapshots ?? [];
+    // The history is its own table (lib/db.ts) — only the newest row per episode is read,
+    // and new rows are written after the state save below succeeds.
+    const lastByEpisode = await lastSnapshotsByEpisode();
     for (const e of state.episodes) {
       if (!e.igMediaId) continue;
-      const forEpisode = state.reelInsightSnapshots.filter((s) => s.episodeNumber === e.number);
-      const last = forEpisode.at(-1);
+      const last = lastByEpisode.get(e.number);
       const next = {
         views: e.views ?? null, reach: e.reach ?? null, likes: e.likes ?? null,
         comments: e.comments ?? null, saves: e.saves ?? null, shares: e.shares ?? null,
@@ -510,7 +512,7 @@ export async function GET(req: Request) {
           id: uid(), episodeNumber: e.number, collectedAt: now,
           source: "instagram", snapshotType: "live", ...next,
         };
-        state.reelInsightSnapshots.push(snapshot);
+        newSnapshots.push(snapshot);
       }
     }
   }
@@ -737,6 +739,8 @@ export async function GET(req: Request) {
       activity: feed.slice(0, 40),
     });
   }
+  // Same rule as before: a run whose state write was discarded writes no history either.
+  await appendReelSnapshots(newSnapshots);
 
   // He asked for a push on every new addition/pull, not just connection failures — a
   // pull that found nothing still ran, but only a pull that found something is news.
