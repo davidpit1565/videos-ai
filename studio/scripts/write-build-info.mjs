@@ -10,6 +10,7 @@ import { writeFileSync } from "node:fs";
 
 function commitSha() {
   if (process.env.VERCEL_GIT_COMMIT_SHA) return process.env.VERCEL_GIT_COMMIT_SHA;
+  if (process.env.COMMIT_REF) return process.env.COMMIT_REF; // Netlify
   try {
     return execSync("git rev-parse HEAD", { cwd: new URL("..", import.meta.url) }).toString().trim();
   } catch {
