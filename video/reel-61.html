@@ -260,13 +260,13 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var KB_B={fromScale:1.0,toScale:1.32,fromX:0,toX:2.6,fromY:0,toY:-3.0};
   var KB_C={fromScale:1.0,toScale:1.55,fromX:0,toX:-6.0,fromY:0,toY:5.0};
   var KB_D={fromScale:1.0,toScale:1.34,fromX:0,toX:3.0,fromY:0,toY:-3.4};
-  var KB_E={fromScale:1.05,toScale:1.34,fromX:0,toX:3.0,fromY:0,toY:2.4};
+  var KB_E={fromScale:1.0,toScale:1.8,fromX:0,toX:-10.0,fromY:0,toY:6.0};
   var KB_F={fromScale:1.0,toScale:1.36,fromX:0,toX:-4.0,fromY:0,toY:-3.0};
   var KB_Bridge={fromScale:1.0,toScale:1.30,fromX:0,toX:3.0,fromY:0,toY:-2.2};
   // Closing pair (CTA + tomorrow line) = ONE continuous shot on one photo. A static hold
   // is no longer possible: the tomorrow line made the pair run past qa.py's 4s frozen
   // limit (6.10.2026). One slow drift spans both scenes, so nothing resets at the cut.
-  var KB_GH={fromScale:1.0,toScale:1.65,fromX:0,toX:-8.0,fromY:0,toY:-6.0};
+  var KB_GH={fromScale:1.0,toScale:1.85,fromX:0,toX:-14.0,fromY:0,toY:-10.0};
   // LINEAR on purpose: kenBurns()'s ease-out front-loads the motion and left a 4.4s still tail.
   function driftGH(t0,t1){var p=Math.max(0,Math.min(1,(t-t0)/(t1-t0)));var k=KB_GH;
     return 'scale('+(k.fromScale+(k.toScale-k.fromScale)*p).toFixed(4)+') translate('+(k.toX*p).toFixed(3)+'%,'+(k.toY*p).toFixed(3)+'%)';}
