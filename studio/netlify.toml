@@ -1,0 +1,18 @@
+# Netlify build settings for the studio (the free alternative to Vercel, added 6.10.2026
+# after Vercel paused the whole team for exceeding the Hobby limits).
+# In Netlify set "Base directory" to `studio`; this file then applies as-is.
+# Secrets are NEVER put here — they go in Netlify's Environment variables screen.
+#
+# 8.10.2026: the first deploys built but every page answered 404. The site's UI had "Publish
+# directory" = `studio/`, which is the wrong place for a Next.js app (Netlify's Next runtime
+# wants the build output folder, `.next`, relative to the base directory). A value in this file
+# overrides the UI, so it is pinned here, and the official Next.js runtime is named explicitly.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
