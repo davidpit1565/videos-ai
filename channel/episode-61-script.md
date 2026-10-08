@@ -42,7 +42,7 @@ no "Tomorrow:" label (CLAUDE.md, 6.10.2026).
 
 1. Someone at Google can read your chats with Gemini, even after you delete them.
 2. Gemini is Google's AI chat. Google says a small part of the chats get picked for real people to read.
-3. Google cuts the chat off from your account, then keeps it for up to three years.
+3. Google cuts the chat off from your account, then can keep it for years.  (Google says up to three years; spoken "for years" because the voice bursts on "three" — the exact figure stays in the caption and on /e/61.)
 4. Here's the catch. Wiping your history does not remove a chat that was already picked.
 5. You can stop it for new chats. On the Gemini website, open Settings, then Activity, click On, and choose Turn off.
 6. Google still holds new chats for a few days, but says they're not read.  (Google says 72 hours; spoken "a few days" because the voice bursts on "three".)
