@@ -1,0 +1,405 @@
+<title>Reel 60 — Whatever you type to Instagram's AI chat, an ad can come back about it.</title>
+<!--
+  Episode 60 — real-photo composite style (video/reel-template-photo.html). Topic: Meta using chats
+  with Meta AI to personalize ads (from 16.12.2025, no opt-out, reportedly not in EU/UK/South Korea).
+  See channel/episode-60-script.md. Photos: channel/assets/ep60-scene-*.jpg (Unsplash License).
+  Logos: Instagram, Meta, Gemini (Wikimedia Commons), icons only.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ink:#0A0E14;--line:#1F2B3A;
+  --accent:#F43F8E;
+  --text:#FFFFFF;--muted:#8AA0B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.scene{position:absolute;inset:0;z-index:2;will-change:opacity,transform,filter}
+.photobg{position:absolute;inset:0;z-index:0;transform-origin:center center;will-change:transform;
+  background-size:cover;background-position:center;background-repeat:no-repeat}
+@media (prefers-reduced-motion:reduce){.photobg{transition:none!important}}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;pointer-events:none;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+
+.photogradient{position:absolute;inset:0;z-index:1;pointer-events:none}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--accent);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(13,148,136,.7)}
+
+.pad{position:absolute;inset:0;z-index:2;padding:27cqw 10cqw 0;display:flex;flex-direction:column;
+  justify-content:flex-start;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:8.4cqw;line-height:1.14;letter-spacing:-.02em;
+  margin:0;text-wrap:balance;position:relative;z-index:2;color:var(--text);
+  text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.92),0 .15cqw .4cqw rgba(0,0,0,.95),0 0 5cqw rgba(0,0,0,.5)}
+h2 .wd{margin:0 .08em;transition:color .09s linear}
+h2 .wd.spoken{color:var(--accent)!important}
+h2 .wd.box.spoken{color:#fff!important}
+h2 .box{color:var(--accent);font-weight:900;background:none;border:0;padding:0;
+  border-radius:0;display:inline;transform:none;text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.95),0 0 4cqw rgba(0,0,0,.6)}
+
+/* LinkedIn logo badge — scene 2 only, in-flow inside .kb (never absolutely
+   bottom-anchored), same pattern as episode 55/56/57's logo badges. */
+.logobadge{width:100%;display:flex;justify-content:center;margin-top:1.4cqw;
+  opacity:0;transition:opacity .3s ease}
+.logobadge.on{opacity:1}
+.logobadge{gap:3cqw;align-items:center}
+.logobadge img{width:9cqw;height:auto;filter:drop-shadow(0 .6cqw 2cqw rgba(0,0,0,.6))}
+
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#CBD5E1;
+  text-shadow:0 .3cqw 1cqw rgba(0,0,0,.9)}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,9,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--accent);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--accent);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--accent)}
+.ctl button{background:var(--accent);color:#fff;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="prog" id="prog"></div>
+
+<!-- Scene 1 — hook. Patio photo, default headline zone (no conflict). -->
+<section class="scene" data-in="0" data-out="4.46">
+  <div class="photobg" id="photobgA" style="filter:brightness(.5);background-image:url('../channel/assets/ep60-scene-a-voicechat.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbA">
+    <h2 id="hookH2A">Anything you type to <span class="box">Instagram's AI chat</span> can come back as an ad.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 2 — the feature named + placed. Desk/forest-wallpaper photo, default zone.
+     Real LinkedIn logo badge. -->
+<section class="scene" data-in="4.46" data-out="11.64">
+  <div class="photobg" id="photobgB" style="background-image:url('../channel/assets/ep60-scene-b-metaapps.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbB">
+    <h2 id="hookH2B" style="font-size:6.0cqw">Since late 2025, <span class="box">Meta</span> — the company behind Instagram — uses your chats with its AI to pick your ads and posts.</h2>
+  <div class="logobadge" id="logoBadge"><img src="../channel/assets/ep60-instagram-logo.svg" alt=""><img src="../channel/assets/ep60-meta-logo.svg" alt="" style="width:11cqw"></div>
+  </div></div>
+</section>
+
+<!-- Scene 3 — how it works. Balcony photo, face zone conflict -> moved padding-top. -->
+<section class="scene" data-in="11.64" data-out="19.14">
+  <div class="photobg" id="photobgC" style="background-image:url('../channel/assets/ep60-scene-c-typing.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbC">
+    <h2 id="hookH2C" style="font-size:6.0cqw">Ask about a trip, and <span class="box">trip ads can follow.</span> Meta says sensitive topics, like religion or politics, stay out of ads.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 4 — scope/date. Cafe top-down photo, default zone. -->
+<section class="scene" data-in="19.14" data-out="25.485">
+  <div class="photobg" id="photobgD" style="background-image:url('../channel/assets/ep60-scene-d-hands.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbD">
+    <h2 id="hookH2D" style="font-size:6.0cqw">Here's the catch. <span class="box">No switch can stop it.</span> Reports say Europe and the UK are left out. Most places aren't.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 5 — the real steps. Patio photo again (non-adjacent reuse from scene 1),
+     normal Ken Burns. -->
+<section class="scene" data-in="25.485" data-out="32.81">
+  <div class="photobg" id="photobgE" style="background-image:url('../channel/assets/ep60-scene-b-metaapps.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbE">
+    <h2 id="hookH2E" style="font-size:6.0cqw">If you use the Meta AI app, you can wipe your chats: Menu, Settings, Data and privacy, then <span class="box">Delete all chats.</span></h2>
+  </div></div>
+</section>
+
+<!-- Scene 6 — the honest limit. Desk/forest photo again (non-adjacent reuse from
+     scene 2), normal Ken Burns. -->
+<section class="scene" data-in="32.81" data-out="39.02">
+  <div class="photobg" id="photobgF" style="background-image:url('../channel/assets/ep60-scene-c-typing.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbF">
+    <h2 id="hookH2F" style="font-size:6.0cqw">Meta doesn't say if that changes your ads. So <span class="box">pause, then type.</span> Treat it like a search box.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 7 — bridge/connector line (David's direct instruction, 5.10.2026): a
+     sentence that connects the content to the locked CTA lines instead of
+     cutting straight into them. Same photo as scene 6 (adjacent reuse) -> static
+     Ken Burns per the standing rule for a repeated photo. -->
+<section class="scene" data-in="39.02" data-out="42.08">
+  <div class="photobg" id="photobgBridge" style="filter:brightness(.5);background-image:url('../channel/assets/ep60-scene-a-voicechat.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbBridge">
+    <h2 id="hookH2Bridge">Send this to someone who chats with Instagram's AI.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 8 — CTA1 (locked line). Same photo as the bridge scene (adjacent
+     reuse) -> static Ken Burns. -->
+<section class="scene" data-in="42.08" data-out="44.525">
+  <div class="photobg" id="photobgG" style="background-image:url('../channel/assets/ep60-scene-c-typing.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbG">
+    <h2 id="hookH2G">The setup's in the link in bio.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 9 — CTA2 (locked final line). Same photo as scenes 6/7/8 (adjacent
+     reuse) -> static Ken Burns, same locked background across both closing
+     scenes. -->
+<section class="scene" data-in="44.525" data-out="50.89">
+  <div class="photobg" id="photobgH" style="background-image:url('../channel/assets/ep60-scene-c-typing.jpg')"></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad"><div class="kb" id="hookKbH">
+    <h2 id="hookH2H" style="font-size:6.0cqw">Tomorrow, I'll show you who can read your chats with <span class="box">Google's Gemini.</span> Follow, so you get the full story.</h2>
+  <div class="logobadge" id="logoBadge2"><img src="../channel/assets/ep60-gemini-logo.svg" alt=""></div>
+  </div></div>
+</section>
+
+<div class="handle" data-decor>@actually_works.ai</div>
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="66.9" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+</div>
+
+<script src="../export/motion-kit.js"></script>
+<script>
+(function(){
+  var MK=window.MotionKit;
+  var DUR=51.49,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+
+  var CUES=[
+    [0.30,4.25,"Anything you type to Instagram's AI chat can come back as an ad."],
+    [4.67,11.43,"Since late 2025, Meta — the company behind Instagram — uses your chats with its AI to pick your ads and posts."],
+    [11.85,18.93,"Ask about a trip, and trip ads can follow. Meta says sensitive topics, like religion or politics, stay out of ads."],
+    [19.35,25.06,"Here's the catch. No switch can stop it. Reports say Europe and the UK are left out. Most places aren't."],
+    [25.91,32.60,"If you use the Meta AI app, you can wipe your chats: Menu, Settings, Data and privacy, then Delete all chats."],
+    [33.02,38.81,"Meta doesn't say if that changes your ads. So pause, then type. Treat it like a search box."],
+    [39.23,41.87,"Send this to someone who chats with Instagram's AI."],
+    [42.29,44.10,"The setup's in the link in bio."],
+    [44.95,50.59,"Tomorrow, I'll show you who can read your chats with Google's Gemini. Follow, so you get the full story."]
+  ];
+  var WORD_WINDOWS=[
+    new Array(13).fill(null),
+    new Array(22).fill(null),
+    new Array(21).fill(null),
+    new Array(19).fill(null),
+    new Array(21).fill(null),
+    new Array(18).fill(null),
+    new Array(9).fill(null),
+    new Array(7).fill(null),
+    new Array(19).fill(null)
+  ];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  var photobgA=document.getElementById('photobgA');
+  var photobgB=document.getElementById('photobgB');
+  var photobgC=document.getElementById('photobgC');
+  var photobgD=document.getElementById('photobgD');
+  var photobgE=document.getElementById('photobgE');
+  var photobgF=document.getElementById('photobgF');
+  var photobgG=document.getElementById('photobgG');
+  var photobgH=document.getElementById('photobgH');
+  var photobgBridge=document.getElementById('photobgBridge');
+
+  // Scenes 7 and 8 both reuse scene 6's exact photo (all three adjacent to each
+  // other) -> fully static, no pan/zoom, per the standing rule (a repeated Ken
+  // Burns on an unchanged photo reads as a reset/jump, not a continuation).
+  var KB_A={fromScale:1.0,toScale:1.30,fromX:0,toX:-3.0,fromY:0,toY:2.0};
+  var KB_B={fromScale:1.0,toScale:1.32,fromX:0,toX:2.6,fromY:0,toY:-3.0};
+  var KB_C={fromScale:1.0,toScale:1.55,fromX:0,toX:-6.0,fromY:0,toY:5.0};
+  var KB_D={fromScale:1.0,toScale:1.34,fromX:0,toX:3.0,fromY:0,toY:-3.4};
+  var KB_E={fromScale:1.05,toScale:1.34,fromX:0,toX:3.0,fromY:0,toY:2.4};
+  var KB_F={fromScale:1.0,toScale:1.36,fromX:0,toX:-4.0,fromY:0,toY:-3.0};
+  var KB_Bridge={fromScale:1.0,toScale:1.30,fromX:0,toX:3.0,fromY:0,toY:-2.2};
+  // Closing pair (CTA + tomorrow line) = ONE continuous shot on one photo. A static hold
+  // is no longer possible: the tomorrow line made the pair run past qa.py's 4s frozen
+  // limit (6.10.2026). One slow drift spans both scenes, so nothing resets at the cut.
+  var KB_GH={fromScale:1.0,toScale:1.65,fromX:0,toX:-8.0,fromY:0,toY:-6.0};
+  // LINEAR on purpose: kenBurns()'s ease-out front-loads the motion and left a 4.4s still tail.
+  function driftGH(t0,t1){var p=Math.max(0,Math.min(1,(t-t0)/(t1-t0)));var k=KB_GH;
+    return 'scale('+(k.fromScale+(k.toScale-k.fromScale)*p).toFixed(4)+') translate('+(k.toX*p).toFixed(3)+'%,'+(k.toY*p).toFixed(3)+'%)';}
+
+  function makeHook(kbId,h2Id,sceneIdx){
+    var kb=document.getElementById(kbId);
+    var h2=document.getElementById(h2Id);
+    var scene=h2.closest('.scene');
+    var split=MK.splitWordsSafe(h2,{explodeBoxes:true});
+    var climax=split.boxWords[0]||null;
+    var climaxIndex=climax?split.words.indexOf(climax):-1;
+    var windows=WORD_WINDOWS[sceneIdx]||[];
+    return function render(){
+      var ht=t-(+scene.dataset.in);
+      var START=0.15,GAP=0.10,WDUR=0.30;
+      for(var i=0;i<split.words.length;i++){
+        var w=split.words[i],at=START+i*GAP;
+        var entranceT=(ht-at)/WDUR;
+        if(entranceT<1){
+          var e=MK.smoothIn(MK.clamp01(entranceT));
+          w.style.opacity=String(e);
+          w.style.transform='scale('+(0.82+0.18*e).toFixed(3)+')';
+        } else {
+          w.style.opacity='1';
+          w.style.transform='scale(1)';
+          var win=windows[i];
+          MK.animateWordEmphasis(w,t,win?win[0]:null,win?win[1]:null);
+        }
+      }
+      if(climaxIndex>=0){
+        var climaxAt=START+climaxIndex*GAP;
+        var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.98,pushAt:climaxAt,pushDur:0.9,pushTo:1.05});
+        kb.style.transform='scale('+camScale.toFixed(4)+')';
+      }
+    };
+  }
+  var renderHookA=makeHook('hookKbA','hookH2A',0);
+  var renderHookB=makeHook('hookKbB','hookH2B',1);
+  var renderHookC=makeHook('hookKbC','hookH2C',2);
+  var renderHookD=makeHook('hookKbD','hookH2D',3);
+  var renderHookE=makeHook('hookKbE','hookH2E',4);
+  var renderHookF=makeHook('hookKbF','hookH2F',5);
+  var renderHookBridge=makeHook('hookKbBridge','hookH2Bridge',6);
+  var renderHookG=makeHook('hookKbG','hookH2G',7);
+  var renderHookH=makeHook('hookKbH','hookH2H',8);
+
+  var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
+  function renderScene(i){
+    var scene=scenes[i];
+    var prev=i>0?scenes[i-1]:null;
+    var next=i<scenes.length-1?scenes[i+1]:null;
+    var outTime=+scene.dataset.out;
+    var inStart=-Infinity, inEndsAt=-Infinity;
+    if(prev){
+      var prevOutStart=+prev.dataset.out-OUT_DUR;
+      inStart=prevOutStart+IN_OFFSET;
+      inEndsAt=inStart+IN_DUR;
+    }
+    var outStart=next?outTime-OUT_DUR:Infinity;
+
+    var opacity,scale,blur;
+    if(prev && t<inStart){
+      opacity=0; scale=0.94; blur=5;
+    } else if(prev && t<inEndsAt){
+      var ie=MK.smoothIn(MK.clamp01((t-inStart)/IN_DUR));
+      opacity=ie; scale=0.94+0.06*ie; blur=5*(1-ie);
+    } else if(next && t>=outStart && t<outTime){
+      var oe=MK.smoothIn(MK.clamp01((t-outStart)/OUT_DUR));
+      opacity=1-oe; scale=1+0.16*oe; blur=5*oe;
+    } else if(next && t>=outTime){
+      opacity=0; scale=1.16; blur=5;
+    } else {
+      opacity=1; scale=1; blur=0;
+    }
+    scene.style.opacity=String(opacity);
+    scene.style.transform='scale('+scale.toFixed(4)+')';
+    scene.style.filter='blur('+blur.toFixed(1)+'px)';
+  }
+  function renderTransitions(){
+    for(var i=0;i<scenes.length;i++) renderScene(i);
+  }
+
+  var logoBadges=[].slice.call(document.querySelectorAll('.logobadge'));
+  function renderLogo(){
+    logoBadges.forEach(function(b){
+      var sc=b.closest('.scene');
+      var lt=t-(+sc.dataset.in);
+      b.classList.toggle('on', lt>=1.0 && t<+sc.dataset.out);
+    });
+  }
+
+  // LINEAR drift (not MK.kenBurns' ease-out): on long scenes the ease-out left 4s+ still tails
+  // that qa.py flags as frozen picture (episode 59, 6.10.2026).
+  function kenBurns(el,sceneEl,kb){
+    var dIn=+sceneEl.dataset.in, dOut=+sceneEl.dataset.out;
+    var p=Math.max(0,Math.min(1,(t-dIn)/(dOut-dIn)));
+    var fs=kb.fromScale==null?1:kb.fromScale;
+    el.style.transform='scale('+(fs+(kb.toScale-fs)*p).toFixed(4)+') translate('+((kb.toX||0)*p).toFixed(3)+'%,'+((kb.toY||0)*p).toFixed(3)+'%)';
+  }
+
+  function render(){
+    renderTransitions();
+    renderHookA();renderHookB();renderHookC();renderHookD();renderHookE();renderHookF();renderHookBridge();renderHookG();renderHookH();
+    renderLogo();
+
+    kenBurns(photobgA,scenes[0],KB_A);
+    kenBurns(photobgB,scenes[1],KB_B);
+    kenBurns(photobgC,scenes[2],KB_C);
+    kenBurns(photobgD,scenes[3],KB_D);
+    kenBurns(photobgE,scenes[4],KB_E);
+    kenBurns(photobgF,scenes[5],KB_F);
+    kenBurns(photobgBridge,scenes[6],KB_Bridge);
+    var ghIn=+scenes[7].dataset.in, ghOut=+scenes[8].dataset.out;
+    photobgG.style.transform=driftGH(ghIn,ghOut);
+    photobgH.style.transform=driftGH(ghIn,ghOut);
+
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing = false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>
