@@ -1692,6 +1692,34 @@ export const ARTICLES: Article[] = [
       "The Turn off button labels come from Google's help page; the interface may differ slightly by country or account type (for example a work or school account).",
     ],
   },
+  {
+    n: 62,
+    title: "Delete a ChatGPT chat — and OpenAI can still keep it for up to 30 days",
+    standfirst:
+      "OpenAI's help center says a deleted ChatGPT chat leaves your account right away but is only " +
+      "scheduled for permanent deletion from OpenAI's systems within 30 days — and can be kept longer " +
+      "for security or legal reasons. In 2025 a court also made OpenAI preserve chats that would " +
+      "otherwise have been deleted, in the New York Times lawsuit; press reports say that duty ended " +
+      "the same year.",
+    steps: [
+      "Open chatgpt.com in a browser and sign in. (On the phone app, tap the menu icon, then your profile, then Settings, then Data controls.)",
+      "Click your profile picture or name at the bottom left, then click Settings.",
+      "Click Data controls.",
+      "Click Delete all chats and confirm. Deleting cannot be undone, and OpenAI says it still takes up to 30 days to be erased from its systems.",
+      "Optional: for a chat you do not want kept at all, start it as a Temporary Chat. OpenAI says Temporary Chats are also deleted from its systems within 30 days.",
+      "Optional: deleting chats does not stop future chats from being used for training — that is a separate setting in the same Data controls area. Its exact name can differ by account.",
+    ],
+    changes: [
+      "Verified live (8.10.2026) against OpenAI's help center articles on deleting chats and on chat and file retention (help.openai.com): removed from your account immediately, permanently deleted from OpenAI systems within 30 days, unless de-identified or retained for security or legal reasons.",
+      "The court order: a May 2025 order in New York Times v. OpenAI required OpenAI to preserve output logs. Press reports (Engadget, 11 October 2025) say a 9 October 2025 order ended that duty going forward, from 26 September 2025, while logs already saved stay accessible and data on accounts the Times flagged is still kept.",
+      "Topic chosen because episode 61 promised it on air, and because the best recent episodes are all \"something is already happening to your data\".",
+    ],
+    limits: [
+      "This channel did not test this on a live account. OpenAI's own page about the lawsuit could not be opened (HTTP 403), so the court details come from press reports, not from OpenAI.",
+      "OpenAI does not say, in the pages read, whether Delete all chats also removes archived chats. Deleting a chat does not delete files saved to your Library.",
+      "Menu names are taken from OpenAI's help pages and public guides; your screen may differ slightly.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
