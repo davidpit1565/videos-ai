@@ -1,0 +1,13 @@
+Is that Amazon sale price real?
+
+Amazon's help page "How to check Amazon price history" says: "Customers can now see 30, 90, and 365 days of price history." and "Click the price history link directly on any product detail page (right next to the price)." Price history "is currently available to all customers in the U.S., UK, Canada, and India"; the 365-day view is still rolling out in the U.S., UK and India. "On May 13, 2026, Rufus was renamed Alexa for Shopping." Source: https://www.aboutamazon.com/news/retail/how-to-check-amazon-price-history
+
+Amazon's guide to its shopping assistant says it will "complete your purchase using your default payment method" when an item reaches your price target (example: "Buy these headphones when they're 30% off"). The pages read do not state a spending limit or a confirmation step. Source: https://www.aboutamazon.com/news/retail/how-to-use-amazon-shopping-ai-assistant
+
+Said plainly: this video shows where Amazon's own price history is; it does not test whether a particular deal is real, and it does not claim the history is accurate.
+
+Full setup, sourced exactly: https://actually-works.com/e/66
+
+Tomorrow, I'll show you how YouTube guesses your age. Follow, so you get the full story.
+
+#amazon #deals #shopping #pricehistory #ai

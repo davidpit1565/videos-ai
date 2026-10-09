@@ -1,0 +1,15 @@
+Is that Amazon sale price real?
+
+Amazon's own help pages say its shopping assistant (called Rufus until 13 May 2026, now Alexa for Shopping) can show 30, 90 and 365 days of price history. To find it: open any product and click the price history link, right next to the price. Price history is available to customers in the U.S., UK, Canada and India, and the 365-day view is still rolling out in the U.S., UK and India.
+
+The same assistant can buy for you when a price reaches a number you set (Amazon's example: "Buy these headphones when they're 30% off"), using your default payment method. The pages we read don't mention a spending limit.
+
+Keep in mind: this video shows where Amazon's own price history is. It doesn't test whether any particular deal is real.
+
+Know someone who loves a sale? Show them this.
+
+Full setup, sourced exactly: https://actually-works.com/e/66
+
+Tomorrow, I'll show you how YouTube guesses your age. Follow, so you get the full story.
+
+#amazon #deals #shopping #pricehistory #ai
