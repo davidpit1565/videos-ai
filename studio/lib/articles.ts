@@ -1774,6 +1774,31 @@ export const ARTICLES: Article[] = [
       "This channel did not test the switch on a live account. Menu names are taken from Microsoft's help pages; your screen may differ slightly.",
     ],
   },
+  {
+    n: 65,
+    title: "Can Gmail's AI write your replies? What Google's own help page says",
+    standfirst:
+      "Google's Gmail Help page says Gemini in Gmail can write a new email or refine a draft you already " +
+      "wrote. It also says the feature requires an eligible Google Workspace or Google AI plan, with a " +
+      "trusted-tester program for personal accounts. The page never says Gemini sends emails for you.",
+    steps: [
+      "On a computer, open Gmail (mail.google.com) and sign in.",
+      "At the top right, click Ask Gemini. If you do not see it, your account may not have an eligible Google Workspace or Google AI plan yet.",
+      "Type what you want in the box, for example: Write a short reply saying I can meet on Tuesday. Then click Submit.",
+      "Read what Gemini wrote and change anything you want. Then send it yourself with Gmail's normal Send button. Google's page describes Gemini drafting text; it does not describe it sending emails.",
+      "Optional: Gemini does not delete, archive, label, or mark emails as read until you explicitly confirm. After you confirm an action, Google says you have 60 seconds to undo it.",
+      "Optional: if you use a personal account, Google says the feature is available through Google Workspace Experiments, a trusted tester program. Availability can change, so check Google's page.",
+    ],
+    changes: [
+      "Verified live twice on 9.10.2026 against Google's own Gmail Help page, Collaborate with Gemini in Gmail (support.google.com/mail/answer/14199860): the quotes about drafting, the eligible plan requirement, the Ask Gemini button, the explicit-confirmation rule and the trusted tester program.",
+      "Topic chosen because episode 64 promised it on air, and to move from privacy topics to a plainer everyday question: what does your own Gmail's AI actually do.",
+    ],
+    limits: [
+      "Exact plan names and prices were not checked, and the video does not say them. Whether a free personal account has access outside the trusted tester program was not confirmed.",
+      "The ChatGPT Gmail connector, Smart Reply and Smart Compose are separate features not covered here.",
+      "This channel did not test the feature on a live account. Button names are taken from Google's page; your screen may differ slightly.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
