@@ -399,6 +399,7 @@ last row before writing the next hook, and pick a different type.**
 | 60 | "Anything you type to Instagram's AI chat can come back as an ad." | Stakes/Consequence warning (59 was Shock, 58 Direct Address) — the viewer's own typed question turning into an ad; Meta explained in line 2 ("the company behind Instagram"). |
 | 61 | "Someone at Google can read your chats with Gemini, even after you delete them." | Shock/Surprise (60 was Stakes/Consequence, 59 Shock — not consecutive) — the viewer's own deleted chat still being readable; Gemini explained in line 2 ("Google's AI chat"). Promised on air by episode 60. |
 | 62 | "Delete a ChatGPT chat, and OpenAI can still keep it for up to 30 days." | The Specific Number (61 was Shock, 60 Stakes, 59 Shock — a new type in the run) — a checkable number tied to the viewer's own deleted chat; ChatGPT and OpenAI explained in line 2. Promised on air by episode 61. Also the first deliberately SHORT cut (~35s) as a length experiment. |
+| 63 | "Is the AI chat you use one of the risky ones?" | Question / curiosity gap (62 was The Specific Number, 61 Shock, 60 Stakes, 58 Direct Address — a new type in the run) — asks about the chat the viewer is using right now; Incogni, the 13 chats and examples explained in lines 2-3. Delivery: hard onset in the first fraction of a second (David, 8.10.2026) — the hook take is chosen for onset energy. |
 
 ## The sendability test — hard gate, added 23.9.2026 after the full growth-forensic audit
 

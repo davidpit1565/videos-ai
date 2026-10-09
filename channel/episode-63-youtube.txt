@@ -1,0 +1,13 @@
+Is the AI chat you use one of the risky ones?
+
+Incogni's "Gen AI and LLM Data Privacy Ranking 2026" scored 13 AI platforms on 11 criteria in three groups: what happens to your data, how transparent the platform is, and what data it collects and shares. Mistral's Vibe (formerly Le Chat) and ChatGPT scored lowest risk; Microsoft Copilot, Meta AI and Moonshot's Kimi scored highest risk. Source: https://blog.incogni.com/gen-ai-llm-privacy-ranking-2026/
+
+Said plainly: the ranking scores what each company states in its own policies and public documents, not what it does behind the scenes, and Incogni is a company that sells personal-data removal, so it has a commercial interest in the topic. Exact per-platform scores were not read for this video; only who sits at the two ends of the list is claimed.
+
+What you can do (ChatGPT, web): account menu > Settings > Data controls > "Improve the model for everyone" > turn it off > Done. Phone: sidebar > profile icon > Settings > Data controls. OpenAI says new conversations are then not used to train its models; they can still appear in your chat history. Source: https://help.openai.com/en/articles/7730893-data-controls-in-chatgpt
+
+Full setup, sourced exactly: https://actually-works.com/e/63
+
+Tomorrow, I'll show you what Microsoft's Copilot does with your chats. Follow, so you get the full story.
+
+#ai #privacy #chatgpt #copilot #metaai

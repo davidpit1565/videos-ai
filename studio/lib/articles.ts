@@ -1720,6 +1720,33 @@ export const ARTICLES: Article[] = [
       "Menu names are taken from OpenAI's help pages and public guides; your screen may differ slightly.",
     ],
   },
+  {
+    n: 63,
+    title: "Which AI chat is riskiest for your privacy? One company ranked 13 of them",
+    standfirst:
+      "Incogni, a company that sells personal-data removal, scored 13 AI chats on 11 privacy " +
+      "criteria in its 2026 ranking. Mistral's Vibe and ChatGPT scored lowest risk; Microsoft's " +
+      "Copilot, Meta AI and Kimi scored highest. The ranking only judges what each company writes " +
+      "in its own policies — and in ChatGPT there is one switch you can turn off today.",
+    steps: [
+      "Open chatgpt.com in a browser and sign in. (On the phone app, tap the sidebar icon, then your profile icon, then Settings.)",
+      "Click your profile picture or name, then click Settings.",
+      "Click Data controls.",
+      "Find the switch called Improve the model for everyone and turn it off, then click Done. OpenAI says new conversations are then not used to train its models; they can still appear in your chat history.",
+      "Optional: this only covers new chats from now on. It does not remove anything already used. For chats you do not want kept, see episode 62 (Delete all chats and Temporary Chats).",
+      "Optional: to read the ranking yourself, open blog.incogni.com/gen-ai-llm-privacy-ranking-2026 — look at which criteria it scored, then check the privacy page of any chat you use a lot.",
+    ],
+    changes: [
+      "Verified live (8.10.2026) against Incogni's own write-up (blog.incogni.com/gen-ai-llm-privacy-ranking-2026): 13 platforms, 11 criteria in three groups; Mistral's Vibe and ChatGPT lowest risk, Copilot, Meta AI and Kimi highest risk.",
+      "Verified live (8.10.2026) against OpenAI's help center, Data controls in ChatGPT (help.openai.com/en/articles/7730893): the setting is called Improve the model for everyone, under Settings, then Data controls.",
+      "Topic chosen because episode 62 promised it on air, and because the best recent episodes are all \"something is already happening to your data\".",
+    ],
+    limits: [
+      "The ranking scores what each company says in its own policies, not what it does. Incogni sells personal-data removal, so it has a commercial interest in the topic. Exact per-platform scores were not read here; only who sits at the two ends is claimed.",
+      "Older Incogni studies (9 platforms) and one article placing DeepSeek at the bottom do not match this 2026 ranking and are not used.",
+      "This channel did not test the switch on a live account. Menu names are taken from OpenAI's help page; your screen may differ slightly, and the phone app's path is slightly different from the web.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

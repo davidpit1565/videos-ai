@@ -1,0 +1,15 @@
+Is the AI chat you use one of the risky ones?
+
+A company called Incogni checked 13 AI chats, like ChatGPT, Copilot and Meta AI, on 11 things: what data they collect, who gets it, and how open they are about it. Mistral's Vibe scored safest and ChatGPT came second. Copilot, Meta AI and Kimi got the highest risk scores.
+
+Keep in mind: it only scores what each company writes in its own policy, not what it really does — and Incogni sells data removal.
+
+What you can do in ChatGPT: open Settings, then Data controls, and turn off "Improve the model for everyone". New chats then aren't used to train OpenAI's models.
+
+Know someone who uses Copilot every day? Show them this.
+
+Full setup, sourced exactly: https://actually-works.com/e/63
+
+Tomorrow, I'll show you what Microsoft's Copilot does with your chats. Follow, so you get the full story.
+
+#ai #privacy #chatgpt #copilot #metaai
