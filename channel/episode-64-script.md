@@ -29,7 +29,7 @@ still to be chosen by David (see bottom).
 
 ## Hook rules check
 
-- Hook: "Copilot can use your chats to pick your ads." (9 words — content-memory's 6.10 hypothesis:
+- Hook: "Your Copilot chats can shape your ads." (6 words — content-memory's 6.10 hypothesis:
   payoff inside ~2 s)
 - Type: Stakes/Consequence (63 was Question, 62 Specific Number, 61 Shock, 60 Stakes — not consecutive).
 - Understandable from second one: line 2 says what Copilot is, in plain words.
@@ -37,7 +37,7 @@ still to be chosen by David (see bottom).
 
 ## Spoken script (plain language)
 
-1. Copilot can use your chats to pick your ads.
+1. Your Copilot chats can shape your ads.
 2. Copilot is Microsoft's AI chat, the one built into Windows and Edge.
 3. Microsoft's own privacy page, updated in September, says Copilot uses what you type to improve its services, including the ads you see.
 4. It also says Microsoft may use your data to train its AI.
@@ -51,3 +51,14 @@ still to be chosen by David (see bottom).
 ## Binding promise
 
 Line 10 names episode 65 — written and verified before 64 ships.
+
+## Episode 65 topic — research 9.10.2026 (not decided; line 10 stays blank until it is)
+
+David rejected WhatsApp for 65. Candidate "an AI agent that answers your email for you" checked live and
+**does not hold as an everyday claim** — do not promise it on air as-is:
+- Google's own Gmail Help page: Gemini in Gmail drafts/refines emails, requires "an eligible Google Workspace
+  or Google AI plan"; personal accounts only via Workspace Experiments. It never says Gemini sends on its own.
+- ChatGPT's Gmail connector (third-party reports only, OpenAI page not read): needs a paid plan, send needs your
+  approval each time, reportedly unavailable in the UK/EU/EEA.
+So the honest version is narrower ("Gmail's AI can draft your replies, but only on paid plans, and never sends").
+Hook choice 1 applied per David's "continue" (9.10.2026).
