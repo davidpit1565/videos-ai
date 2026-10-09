@@ -39,18 +39,18 @@ still to be chosen by David (see bottom).
 
 1. Your Copilot chats can shape your ads.
 2. Copilot is Microsoft's AI chat, the one built into Windows and Edge.
-3. Microsoft's own privacy page, updated in September, says Copilot uses what you type to improve its services, including the ads you see.
+3. Microsoft's own privacy page says Copilot uses what you type to improve its services, including the ads you see.
 4. It also says Microsoft may use your data to train its AI.
 5. That's why one privacy ranking put Copilot among the riskiest AI chats.
 6. It's what the policy allows, not proof of what happens to every chat.
 7. In Copilot, open Settings, then Personalization, and switch off Allow ads personalization.
 8. Show this to someone who uses Copilot on their own laptop.
 9. The setup's in the link in bio. (locked)
-10. Tomorrow, I'll show you <65 topic>. Follow, so you get the full story.
+10. Tomorrow, I'll show you what Gmail's AI can do with your email. Follow, so you get the full story.
 
 ## Binding promise
 
-Line 10 names episode 65 — written and verified before 64 ships.
+Line 10 promises episode 65: what Gmail's AI can do with your email (drafts replies on paid plans, does not send by itself — verified 9.10.2026 on Google's own Gmail Help page). Chosen by Claude under David's 'do what you are most sure of' (9.10.2026); he can swap it. Episode 65's script must exist and be live-verified before 64 ships.
 
 ## Episode 65 topic — research 9.10.2026 (not decided; line 10 stays blank until it is)
 
