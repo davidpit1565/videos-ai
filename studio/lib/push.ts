@@ -14,7 +14,9 @@ import { sharedPool } from "./db";
  *  to the wrong environment, the toggle nobody mentioned. A step that cannot be skipped is a
  *  step that cannot be got wrong. */
 
-const SUBJECT = "mailto:davidpit2008@gmail.com";
+// The site address, not a personal inbox: this file is in a public repo, and an address
+// here is one any scraper can read (a cold sales email arrived this way, 8.10.2026).
+const SUBJECT = "https://www.actually-works.com";
 
 async function db() {
   const p = sharedPool();

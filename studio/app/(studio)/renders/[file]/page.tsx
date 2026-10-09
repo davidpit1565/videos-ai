@@ -46,7 +46,11 @@ export default async function RenderDetail({ params }: { params: Promise<{ file:
           )}
         </div>
 
-        {r.kind === "video" ? (
+        {r.archived ? (
+          <p className="meta">
+            הסרטון הישן הוסר מהאתר כדי לחסוך נפח. הוא שמור ב-git, ואם פורסם גם באינסטגרם וביוטיוב.
+          </p>
+        ) : r.kind === "video" ? (
           <video className="player" src={r.src} controls preload="metadata" playsInline />
         ) : (
           <audio className="aplayer" src={r.src} controls preload="metadata" />
@@ -55,9 +59,11 @@ export default async function RenderDetail({ params }: { params: Promise<{ file:
         <div className="meta">
           <span className="num">{(r.bytes / 1e6).toFixed(1)} MB</span>
           <span className="num">{localDT(r.builtAt)}</span>
-          <a href={r.src} download>
-            הורדה
-          </a>
+          {!r.archived && (
+            <a href={r.src} download>
+              הורדה
+            </a>
+          )}
         </div>
 
         {/* Right after the player, before anything else — this used to sit at the very
