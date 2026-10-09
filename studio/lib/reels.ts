@@ -31,6 +31,9 @@ export type Reel = {
   youtube: string | null;
   /** the real, already-approved title, when one exists — see realTitleFor() below */
   title: string | null;
+  /** true when the video file was dropped from this deployment (prune-old-reels.mjs keeps
+   *  only the newest few) — the page still lists it, but there is nothing to play */
+  archived: boolean;
 };
 
 /** Episodes that are a direct "part 2" of an earlier one: recap the earlier episode's
@@ -46,7 +49,7 @@ export const SEQUEL_FOR: Record<number, number> = Object.fromEntries(
  *  pack every video into every function that imported this file (the 162 GB that got the
  *  Vercel team paused, 6.10.2026). */
 type Manifest = {
-  reels: { file: string; bytes: number; builtAt: string; gate: { passed: boolean; text: string } | null }[];
+  reels: { file: string; bytes: number; builtAt: string; gate: { passed: boolean; text: string } | null; archived?: boolean }[];
   texts: { caption: Record<string, string>; youtube: Record<string, string> };
 };
 const M = manifest as Manifest;
@@ -102,6 +105,7 @@ export function reels(): Reel[] {
         bytes: r.bytes,
         builtAt: r.builtAt,
         gate: r.gate,
+        archived: r.archived === true,
         caption: captionFor(episode),
         youtube: youtubeFor(episode),
         // realTitleFor() alone left every episode shipped before a youtube.txt existed
