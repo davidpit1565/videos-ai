@@ -1,0 +1,13 @@
+Your Copilot chats can shape your ads.
+
+Microsoft's privacy statement (last updated September 2026) says Microsoft Copilot "also uses prompts and related data to provide and improve services, including relevant advertising", and that Microsoft "may use your data to develop, train, and fine-tune our AI models". Source: https://www.microsoft.com/en-us/privacy/privacystatement
+
+Said plainly: this is what the policy allows, not proof of what happens to any one chat. Microsoft's support pages say work and school accounts and signed-in users under 18 are treated differently, so this video is about a personal Microsoft account.
+
+What you can do (new Copilot app): Settings > Personalization > turn off "Allow ads personalization". Source: https://support.microsoft.com/en-US/Privacy/microsoft-copilot/privacy-controls
+
+Full setup, sourced exactly: https://actually-works.com/e/64
+
+Tomorrow, I'll show you what Gmail's AI can do with your email. Follow, so you get the full story.
+
+#ai #privacy #copilot #microsoft #ads

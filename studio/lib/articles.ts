@@ -1747,6 +1747,33 @@ export const ARTICLES: Article[] = [
       "This channel did not test the switch on a live account. Menu names are taken from OpenAI's help page; your screen may differ slightly, and the phone app's path is slightly different from the web.",
     ],
   },
+  {
+    n: 64,
+    title: "Can Microsoft's Copilot use your chats to pick your ads? What its privacy statement says",
+    standfirst:
+      "Microsoft's privacy statement, last updated in September 2026, says Copilot uses your prompts " +
+      "and related data to provide and improve its services, including relevant advertising, and that " +
+      "Microsoft may use data to train its AI models. That is what the policy allows, not proof of what " +
+      "happens to any one chat. There is one switch in the Copilot app that controls ad personalization.",
+    steps: [
+      "Open the Copilot app (copilot.microsoft.com in a browser, or the Copilot app on your computer or phone) and sign in with your personal Microsoft account.",
+      "Open Settings. (In the app, tap your profile picture or name first to find it.)",
+      "Click Personalization.",
+      "Find the switch called Allow ads personalization and turn it off.",
+      "Optional: in the same place, turn off Saved memories if you do not want Copilot to keep details from your chats. This does not delete memories already saved. Use Manage to delete those.",
+      "Optional: for Microsoft's account-wide ad setting, open account.microsoft.com/privacy/ad-settings and switch off See ads that interest you. This page comes from Microsoft's help article for the older Copilot app, so check that the label matches your screen.",
+    ],
+    changes: [
+      "Verified live (9.10.2026) against the Microsoft Privacy Statement, last updated September 2026 (microsoft.com/en-us/privacy/privacystatement): Copilot uses prompts and related data to provide and improve services, including relevant advertising; Microsoft may use data to train AI models.",
+      "Verified live (9.10.2026) against Microsoft's Copilot privacy controls help page for the new Copilot app, available from 18 August 2026 (support.microsoft.com/en-US/Privacy/microsoft-copilot/privacy-controls): Settings, Personalization, the toggles Saved memories and Allow ads personalization. Copilot does not show personalized ads to users under 18.",
+      "Topic chosen because episode 63 promised it on air, and because the best recent episodes are all \"something is already happening to your data\".",
+    ],
+    limits: [
+      "Not said in the video because it could not be confirmed for the new Copilot app: whether chats are used for training by default, the Training on conversation activity toggle, the 18-month retention, and human review of some chats. Microsoft's pages that describe them say they apply only to the older Copilot app.",
+      "Work or school accounts and Microsoft 365 apps for home are treated differently by Microsoft (prompts are not used to train foundation models), so this guide is for a personal Microsoft account.",
+      "This channel did not test the switch on a live account. Menu names are taken from Microsoft's help pages; your screen may differ slightly.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
