@@ -1826,6 +1826,33 @@ export const ARTICLES: Article[] = [
       "This channel did not test the feature on a live account. Link names are taken from Amazon's pages; your screen may differ slightly.",
     ],
   },
+  {
+    n: 67,
+    title: "Does YouTube ignore the birthday you typed? What its help page says about the AI age guess",
+    standfirst:
+      "YouTube's help page says an AI model estimates whether an account belongs to someone over or under 18, " +
+      "\"regardless of the birthdate in their account\". If it decides a user is under 18, teen protections " +
+      "are applied automatically. The page also says how to fix a wrong guess. It does not say which signals " +
+      "the model uses or how accurate it is.",
+    steps: [
+      "On a computer, open myaccount.google.com/privacy and sign in with the Google account you use for YouTube.",
+      "Click Personal info, then click Birthday, and look at the date. This is the birthday YouTube's AI estimate ignores: the help page says the model decides regardless of the birthdate in the account.",
+      "If YouTube treats you as under 18 by mistake, the help page says you can verify your age by submitting your government ID, credit card or selfie through a verification process in your Google Account. The page does not give exact clicks for it, so look for the age verification prompt in your Google Account or in YouTube.",
+      "Optional: if you use m.youtube.com, Google's page says you may need to sign out and sign back in after verifying your age.",
+      "Optional: parents can read the list of what changes for an account identified as under 18: age-restricted videos blocked, break and bedtime reminders on by default, extra safeguards on recommendations and search results, and non-personalized ads. The list is on YouTube's help page.",
+      "Optional: the page names the countries where the model is used: Australia, Brazil, Canada, Indonesia, Malaysia, Singapore, Switzerland, Turkey, the United Arab Emirates, the United Kingdom, the US, and countries in the European Economic Area. It does not say anything about a specific country beyond that list.",
+    ],
+    changes: [
+      "Verified live (9.10.2026) against YouTube's Help page on age estimation (support.google.com/youtube/answer/16422785): the quote about the birthdate, the country list, the protections, the ID, credit card or selfie fix. The page has no date, only a 2026 copyright.",
+      "Verified live (9.10.2026) against YouTube Help page 3159776: myaccount.google.com/privacy, Personal info, Birthday; the sign-out note for m.youtube.com. That page does not mention the AI estimate.",
+      "Topic chosen because episode 66 promised it on air, and to move away from privacy-of-chats topics to a myth-bust with a family angle.",
+    ],
+    limits: [
+      "Not said in the video because the help page does not say it: which signals the model uses, how accurate it is, how many accounts it flags, and whether users get a notification. YouTube's July 2025 blog mentions signals such as the types of videos searched and watched; that is not repeated here.",
+      "Whether Belgium or any single country is covered was not checked beyond the list on the page.",
+      "This channel did not test this on a live account. Page names are taken from Google's help pages; your screen may differ slightly.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

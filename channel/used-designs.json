@@ -401,5 +401,11 @@
     "ember": "#FDE047",
     "mood": "bright",
     "date": "2026-10-09"
+  },
+  {
+    "episode": 67,
+    "brass": "#34D399",
+    "ember": "#34D399",
+    "mood": "urgent"
   }
 ]
