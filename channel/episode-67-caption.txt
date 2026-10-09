@@ -1,0 +1,15 @@
+YouTube ignores the birthday you typed.
+
+YouTube's own help page says it uses an AI model to estimate whether an account belongs to someone over or under 18, "regardless of the birthdate in their account". If it decides a user is under 18, teen protections are applied automatically: age-restricted videos are blocked, break and bedtime reminders are on by default, recommendations and search results get extra safeguards, and ads are non-personalized.
+
+If YouTube gets it wrong, the page says you can verify your age by submitting a government ID, credit card or selfie through a verification process in your Google Account. It lists the US, UK, Canada, Australia, Brazil, Indonesia, Malaysia, Singapore, Switzerland, Turkey, the UAE and countries in the European Economic Area.
+
+Keep in mind: the help page doesn't say which signals the model uses, how accurate it is, or whether you get a notification. We didn't check your country specifically.
+
+Know someone with kids? Show them this.
+
+Full setup, sourced exactly: https://actually-works.com/e/67
+
+Tomorrow, I'll show you how to make a Spotify playlist just by typing. Follow, so you get the full story.
+
+#youtube #ai #parenting #teens #google
