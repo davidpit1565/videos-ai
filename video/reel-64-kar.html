@@ -157,7 +157,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 7 -->
-<section class="scene" data-in="28.35" data-out="35.04">
+<section class="scene" data-in="28.35" data-out="34.91">
   <div class="photobg" id="photobgG" style="filter:brightness(.75);background-image:url('../channel/assets/ep64-scene-c.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -168,7 +168,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 8 -->
-<section class="scene" data-in="35.04" data-out="39.015">
+<section class="scene" data-in="34.91" data-out="38.875">
   <div class="photobg" id="photobgH" style="filter:brightness(0.8);background-image:url('../channel/assets/ep64-scene-b.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -178,7 +178,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 9 -->
-<section class="scene" data-in="39.015" data-out="41.46">
+<section class="scene" data-in="38.875" data-out="41.33">
   <div class="photobg" id="photobgI" style="filter:brightness(0.8);background-image:url('../channel/assets/ep64-scene-d.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -188,7 +188,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 10 -->
-<section class="scene" data-in="41.46" data-out="47.57">
+<section class="scene" data-in="41.33" data-out="47.44">
   <div class="photobg" id="photobgJ" style="filter:brightness(0.8);background-image:url('../channel/assets/ep64-scene-d.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -215,7 +215,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=48.07,t=0,playing=false,last=0;
+  var DUR=47.94,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var seek=document.getElementById('seek');
@@ -229,32 +229,32 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [15.04,19.16,"It also says Microsoft may use your data to train its AI."],
     [20.01,24.09,"That's why one privacy ranking put Copilot among the riskiest AI chats."],
     [24.51,28.14,"It's what the policy allows, not proof of what happens to every chat."],
-    [28.56,34.83,"In Copilot, open Settings, then Personalization, and switch off Allow ads personalization."],
-    [35.25,38.59,"Show this to someone who uses Copilot on their own laptop."],
-    [39.44,41.25,"The setup's in the link in bio."],
-    [41.67,47.17,"Tomorrow, I'll show you what Gmail's AI can do with your email. Follow, so you get the full story."]
+    [28.56,34.70,"In Copilot, open Settings, then Personalization, and switch off Allow ads personalization."],
+    [35.12,38.45,"Show this to someone who uses Copilot on their own laptop."],
+    [39.30,41.12,"The setup's in the link in bio."],
+    [41.54,47.04,"Tomorrow, I'll show you what Gmail's AI can do with your email. Follow, so you get the full story."]
   ];
   var WORDS=[
     [0.08,0.32,"Your",0],
     [0.32,0.7,"Copilot",0],
     [0.7,1.02,"chats",0],
     [1.02,1.48,"can",1],
-    [1.48,1.78,"shape",1],
-    [1.78,2.04,"your",1],
+    [1.48,1.8,"shape",1],
+    [1.8,2.04,"your",1],
     [2.04,2.4,"ads.",2],
     [3.02,3.46,"Copilot",3],
     [3.46,3.7,"is",3],
     [3.7,4.44,"Microsoft's",3],
     [4.44,4.64,"AI",4],
     [4.64,4.98,"chat,",4],
-    [5.18,5.3,"the",5],
-    [5.28,5.44,"one",5],
+    [5.2,5.32,"the",5],
+    [5.3,5.44,"one",5],
     [5.44,5.68,"built",5],
     [5.68,5.96,"into",6],
     [5.96,6.36,"Windows",6],
     [6.36,6.64,"and",6],
     [6.64,6.9,"Edge.",7],
-    [7.9,8.36,"Microsoft's",8],
+    [7.92,8.36,"Microsoft's",8],
     [8.36,8.56,"own",8],
     [8.56,8.92,"privacy",8],
     [8.92,9.28,"page",9],
@@ -285,10 +285,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [18.3,18.5,"train",18],
     [18.5,18.8,"its",18],
     [18.8,19.08,"AI.",18],
-    [20.08,20.34,"That's",19],
+    [20.06,20.34,"That's",19],
     [20.34,20.52,"why",19],
-    [20.52,20.74,"one",19],
-    [20.74,21.16,"privacy",20],
+    [20.52,20.76,"one",19],
+    [20.76,21.16,"privacy",20],
     [21.16,21.5,"ranking",20],
     [21.5,21.76,"put",20],
     [21.76,22.32,"Copilot",21],
@@ -296,69 +296,69 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [22.66,22.92,"the",21],
     [22.92,23.32,"riskiest",22],
     [23.32,23.64,"AI",22],
-    [23.64,24.0,"chats.",22],
-    [24.58,24.74,"It's",23],
+    [23.64,23.98,"chats.",22],
+    [24.64,24.76,"It's",23],
     [24.74,24.88,"what",23],
     [24.88,25.12,"the",23],
     [25.12,25.42,"policy",24],
-    [25.42,25.96,"allows,",24],
+    [25.42,25.94,"allows,",24],
     [26.36,26.5,"not",25],
     [26.5,26.7,"proof",25],
     [26.7,26.9,"of",25],
-    [26.9,27.06,"what",26],
-    [27.06,27.32,"happens",26],
+    [26.9,27.04,"what",26],
+    [27.04,27.32,"happens",26],
     [27.32,27.6,"to",26],
     [27.6,27.78,"every",27],
     [27.78,28.1,"chat.",27],
-    [28.56,28.84,"In",28],
-    [28.84,29.34,"Copilot,",28],
-    [29.7,29.84,"open",29],
-    [29.84,30.24,"Settings,",29],
-    [30.58,30.74,"then",30],
-    [30.74,31.54,"Personalization,",30],
-    [31.54,31.96,"and",31],
-    [31.96,32.2,"switch",31],
-    [32.2,32.62,"off",31],
-    [33.16,33.32,"Allow",32],
-    [33.32,33.7,"ads",32],
-    [34.06,34.88,"personalization.",32],
-    [35.4,35.62,"Show",33],
-    [35.62,35.8,"this",33],
-    [35.8,36.06,"to",33],
-    [36.06,36.4,"someone",34],
-    [36.4,36.68,"who",34],
-    [36.68,36.94,"uses",34],
-    [36.94,37.46,"Copilot",35],
-    [37.46,37.64,"on",35],
-    [37.64,37.9,"their",35],
-    [37.9,38.12,"own",36],
-    [38.12,38.58,"laptop.",36],
-    [39.62,39.8,"The",37],
-    [39.8,40.16,"setup's",37],
-    [40.16,40.3,"in",37],
-    [40.3,40.44,"the",38],
-    [40.44,40.64,"link",38],
-    [40.64,40.96,"in",38],
-    [40.96,41.22,"bio.",39],
-    [41.82,42.2,"Tomorrow,",40],
-    [42.52,42.7,"I'll",41],
-    [42.7,42.86,"show",41],
-    [42.86,43.02,"you",41],
-    [43.02,43.22,"what",42],
-    [43.22,43.74,"Gmail's",42],
-    [43.74,43.94,"AI",42],
-    [43.94,44.12,"can",43],
-    [44.12,44.24,"do",43],
-    [44.2,44.38,"with",43],
-    [44.38,44.58,"your",44],
-    [44.58,44.82,"email.",44],
-    [45.38,45.8,"Follow,",45],
-    [45.8,46.1,"so",45],
-    [46.1,46.26,"you",45],
-    [46.26,46.4,"get",45],
-    [46.4,46.56,"the",46],
-    [46.56,46.76,"full",46],
-    [46.76,47.08,"story.",46]
+    [28.56,28.9,"In",28],
+    [28.9,29.38,"Copilot,",28],
+    [29.84,30.0,"open",29],
+    [30.0,30.42,"Settings,",29],
+    [30.74,30.9,"then",30],
+    [30.9,31.7,"Personalization,",30],
+    [32.08,32.24,"and",31],
+    [32.24,32.44,"switch",31],
+    [32.44,32.86,"off",31],
+    [33.1,33.32,"Allow",32],
+    [33.32,33.68,"ads",32],
+    [34.02,34.78,"personalization.",32],
+    [35.32,35.48,"Show",33],
+    [35.48,35.68,"this",33],
+    [35.68,35.92,"to",33],
+    [35.92,36.24,"someone",34],
+    [36.24,36.54,"who",34],
+    [36.54,36.8,"uses",34],
+    [36.8,37.32,"Copilot",35],
+    [37.32,37.52,"on",35],
+    [37.52,37.76,"their",35],
+    [37.76,37.98,"own",36],
+    [37.98,38.46,"laptop.",36],
+    [39.46,39.66,"The",37],
+    [39.66,40.02,"setup's",37],
+    [40.02,40.18,"in",37],
+    [40.18,40.3,"the",38],
+    [40.3,40.5,"link",38],
+    [40.5,40.82,"in",38],
+    [40.82,41.1,"bio.",39],
+    [41.68,42.08,"Tomorrow,",40],
+    [42.4,42.56,"I'll",41],
+    [42.56,42.74,"show",41],
+    [42.74,42.9,"you",41],
+    [42.9,43.08,"what",42],
+    [43.08,43.6,"Gmail's",42],
+    [43.6,43.8,"AI",42],
+    [43.8,43.98,"can",43],
+    [43.98,44.1,"do",43],
+    [44.08,44.26,"with",43],
+    [44.26,44.44,"your",44],
+    [44.44,44.68,"email.",44],
+    [45.2,45.66,"Follow,",45],
+    [45.66,45.96,"so",46],
+    [45.96,46.12,"you",46],
+    [46.12,46.26,"get",46],
+    [46.26,46.44,"the",47],
+    [46.44,46.66,"full",47],
+    [46.66,46.96,"story.",47]
   ];
   var WORD_WINDOWS=[
     new Array(7).fill(null),

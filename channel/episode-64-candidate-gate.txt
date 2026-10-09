@@ -1,0 +1,86 @@
+=== narration
+audio/reel64-narration-r.wav  47.9s  10 lines
+  medians: ending -33.7 dB · level -19.2 dBFS · S residual -0.7 dB (slope +24.3 dB per sibilant/syllable)
+  flagged below: ending -47.8 dB · S residual -6.8 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  2.27  +0.42  3.96   -2.8  -20.0  -19.2  Your Copilot chats can shape your ads.
+    2  4.18  +0.42  4.31  -11.5  -13.9  -17.9  Copilot is Microsoft's AI chat, the on
+    3  7.25  +0.42  4.28   -8.8  -36.0  -19.3  Microsoft's own privacy page says Copi
+    4  4.12  +0.85  3.88   -9.6  -32.8  -19.2  It also says Microsoft may use your da
+    5  4.08  +0.42  4.66  -12.7  -20.1  -18.1  That's why one privacy ranking put Cop
+    6  3.63  +0.42  5.23   -9.7  -28.4  -19.2  It's what the policy allows, not proof
+    7  6.14  +0.42   4.4   -7.0  -45.9  -19.8  In Copilot, open Settings, then Person
+    8  3.33  +0.85   4.8  -10.2  -34.6  -19.2  Show this to someone who uses Copilot 
+    9  1.82  +0.42   4.4   -7.5  -35.9  -20.6  The setup's in the link in bio.
+   10   5.5    —    4.36  -12.6  -35.0  -19.8  Tomorrow, I'll show you what Gmail's A
+
+  nothing flagged. every line sits inside his own spread.
+
+  per word: 123 words · ending median -19.7 dB · S median -15.0 dB
+  weakest endings:
+     34.02s  personalization. ending  -56.9 dB
+     28.90s  Copilot,       ending  -47.0 dB
+     21.76s  Copilot        ending  -46.8 dB
+      3.02s  Copilot        ending  -44.9 dB
+     30.90s  personalization, ending  -44.5 dB
+     40.82s  bio.           ending  -44.0 dB
+     41.68s  Tomorrow,      ending  -44.0 dB
+     20.34s  why            ending  -42.4 dB
+  held too long (over 0.422s per syllable, median 0.200):
+     28.10s  In             0.800s per syllable (0.80s)
+     43.08s  Gmail's        0.520s per syllable (0.52s)
+      1.02s  can            0.460s per syllable (0.46s)
+     13.48s  the            0.460s per syllable (0.46s)
+     17.86s  to             0.440s per syllable (0.44s)
+  rushed / clipped (under 0.100s per syllable):
+     13.34s  including      0.047s per syllable (0.14s) — likely swallowed, re-roll this line
+     27.60s  every          0.060s per syllable (0.18s) — likely swallowed, re-roll this line
+     13.34s  including      S  -35.2 dB
+     46.66s  story.         S  -33.5 dB
+     35.92s  someone        S  -27.9 dB
+     35.32s  Show           S  -27.5 dB
+      5.96s  Windows        S  -23.0 dB
+      3.02s  Copilot        S  -20.8 dB
+
+=== accent
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+audio/reel64-narration-r.wav  10 lines — accent check (dima806/english_accents_classification)
+   ln 1  top=us 0.82  not-american=0.08   {'australia': 0.055, 'england': 0.016, 'indian': 0.004}   Your Copilot chats can shape your ads.
+   ln 2  top=us 0.68  not-american=0.01   {'australia': 0.005, 'england': 0.002, 'indian': 0.001}   Copilot is Microsoft's AI chat, the one buil
+   ln 3  top=canada 0.52  not-american=0.01   {'england': 0.004, 'australia': 0.003, 'indian': 0.001}   Microsoft's own privacy page says Copilot us
+   ln 4  top=us 0.84  not-american=0.02   {'australia': 0.012, 'england': 0.004, 'indian': 0.003}   It also says Microsoft may use your data to 
+   ln 5  top=us 0.54  not-american=0.01   {'australia': 0.004, 'england': 0.002, 'indian': 0.001}   That's why one privacy ranking put Copilot a
+   ln 6  top=us 0.64  not-american=0.01   {'australia': 0.006, 'england': 0.003, 'indian': 0.001}   It's what the policy allows, not proof of wh
+   ln 7  top=us 0.79  not-american=0.07   {'england': 0.029, 'australia': 0.025, 'indian': 0.013}   In Copilot, open Settings, then Personalizat
+   ln 8  top=canada 0.71  not-american=0.00   {'england': 0.002, 'australia': 0.001, 'indian': 0.001}   Show this to someone who uses Copilot on the
+   ln 9  top=us 0.69  not-american=0.17   {'england': 0.102, 'australia': 0.045, 'indian': 0.026}   The setup's in the link in bio.
+   ln 10  top=canada 0.75  not-american=0.00   {'england': 0.002, 'australia': 0.001, 'indian': 0.001}   Tomorrow, I'll show you what Gmail's AI can 
+
+  nothing stands out from this file's own baseline.
+
+=== frame layout
+reel-64-kar.html  47.94s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  overlaps: none over 10px
+
+=== rendered file
+reel-64.mp4  1080x1920  30fps  47.94s  20.5MB
+  visual change: median 0.03s, longest 7.27s
+  loudness: -14.0 LUFS integrated, peak -3.2 dBFS, LRA 2.0 LU
+  bed: ducking 2.6 dB, and 9.7 dB under the voice while he speaks
+  loop seam: first vs last frame differ by 47.3/255
+
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length 47.9s inside 30-90s
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 55.0)
+  ok        visual change every 0.03s median
+  ok        -14.0 LUFS
+  ok        peak -3.2 dBFS
+  ok        bed 9.7 dB under the voice, 2.6 dB of ducking
+
+SOMETHING FAILED — do not send this file
