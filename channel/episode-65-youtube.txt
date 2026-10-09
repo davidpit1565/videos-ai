@@ -1,0 +1,13 @@
+Gmail's AI writes your replies. Not for everyone.
+
+Google's Gmail Help page "Collaborate with Gemini in Gmail" says you can use Gemini in Gmail to "Create new emails or refine existing drafts for tone and clarity" and to "draft email or chat responses". The feature "requires an eligible Google Workspace or Google AI plan"; it is also available in Google Workspace Experiments, "a trusted tester program" for users with personal accounts. Source: https://support.google.com/mail/answer/14199860
+
+Said plainly: the page does not say Gemini sends emails for you; it says your emails are never deleted, archived, labeled, or marked read or unread until you explicitly confirm. Plan names and prices were not checked for this video.
+
+How to open it (computer): Gmail > Ask Gemini (top right).
+
+Full setup, sourced exactly: https://actually-works.com/e/65
+
+Tomorrow, I'll show you how to check if an Amazon deal is real. Follow, so you get the full story.
+
+#ai #gmail #gemini #google #email
