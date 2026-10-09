@@ -1799,6 +1799,33 @@ export const ARTICLES: Article[] = [
       "This channel did not test the feature on a live account. Button names are taken from Google's page; your screen may differ slightly.",
     ],
   },
+  {
+    n: 66,
+    title: "Is that Amazon sale price real? Where Amazon's own price history is",
+    standfirst:
+      "Amazon's help pages say its shopping assistant, called Rufus until 13 May 2026 and now Alexa for " +
+      "Shopping, can show 30, 90 and 365 days of price history on a product page. It can also buy for you " +
+      "when a price reaches a number you set. This guide shows where the price history is. It does not " +
+      "test whether any particular deal is real.",
+    steps: [
+      "Open Amazon (the U.S., UK, Canada or India site) in a browser or the app, and open any product page.",
+      "Find the price. Right next to it, click the price history link.",
+      "Look at the 30-day, 90-day or 365-day view. Amazon says the 365-day view is still rolling out in the U.S., UK and India, so you may only see the shorter ones.",
+      "Compare today's price with those weeks. If the \"sale\" price is about the same as the usual price, it is not much of a sale. This comparison is your own judgement; Amazon's page does not say anything about whether a deal is real.",
+      "Optional: Amazon's shopping assistant can be asked to buy an item when it reaches a price you set (Amazon's example: Buy these headphones when they're 30% off). Amazon's pages say it completes the purchase with your default payment method and do not mention a spending limit, so think before you turn it on.",
+      "Optional: if you do not see price history, check that you are on one of the four supported Amazon sites. Amazon says it is currently available to customers in the U.S., UK, Canada and India.",
+    ],
+    changes: [
+      "Verified live (9.10.2026) against Amazon's help page How to check Amazon price history (aboutamazon.com/news/retail/how-to-check-amazon-price-history): 30, 90 and 365 days; the price history link next to the price; the four countries; the 13 May 2026 rename from Rufus to Alexa for Shopping.",
+      "Verified live (9.10.2026) against Amazon's guide to its shopping assistant (aboutamazon.com/news/retail/how-to-use-amazon-shopping-ai-assistant): price history in 30, 90 and 365 days; the auto-buy example; the default payment method.",
+      "Topic chosen because episode 65 promised it on air, and to move away from privacy topics to a question every shopper has: is this sale real.",
+    ],
+    limits: [
+      "Not said in the video, because it was not confirmed on a first-party page: any Prime requirement, a cancellation window or duration for auto-buy, and spending limits. One search summary mentioned them; no Amazon page read here does.",
+      "Whether Amazon's price history is accurate is unknown, and this video does not claim it is.",
+      "This channel did not test the feature on a live account. Link names are taken from Amazon's pages; your screen may differ slightly.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
