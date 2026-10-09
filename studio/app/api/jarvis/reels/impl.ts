@@ -28,6 +28,7 @@ export async function GET(req: Request) {
     builtAt: r.builtAt,
     bytes: r.bytes,
     gatePassed: r.gate?.passed ?? null,
+    approvedByHuman: !!r.approval,
   }));
 
   return NextResponse.json({ ok: true, reels: list });

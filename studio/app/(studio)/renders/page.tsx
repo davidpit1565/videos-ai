@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { reels, SEQUEL_OF, SEQUEL_FOR } from "@/lib/reels";
+import { reels, canPublish, SEQUEL_OF, SEQUEL_FOR } from "@/lib/reels";
 import { localDT } from "@/lib/fmt";
 import { loadState } from "@/lib/db";
 
@@ -65,10 +65,12 @@ export default async function Renders() {
                 <span className="pill unknown">השער לא רץ</span>
               ) : r.gate.passed ? (
                 <span className="pill pass">עבר את השער</span>
+              ) : r.approval ? (
+                <span className="pill pass">אושר ידנית</span>
               ) : (
                 <span className="pill fail">נפל בשער</span>
               )}
-              {r.kind === "video" && r.gate?.passed && (!r.episode || !liveNumbers.has(r.episode)) && (
+              {r.kind === "video" && canPublish(r) && (!r.episode || !liveNumbers.has(r.episode)) && (
                 <span className="pill" style={{ borderColor: "var(--brass)", color: "var(--brass)" }}>
                   אפשר לפרסם ⇢
                 </span>

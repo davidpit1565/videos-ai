@@ -8,7 +8,7 @@
 import { sharedPool, loadState, saveState } from "./db";
 import { igRoute, igToken } from "./sources";
 import { SITE_URL } from "./site";
-import { reels } from "./reels";
+import { reels, canPublish } from "./reels";
 
 export { SITE_URL };
 
@@ -299,8 +299,8 @@ export async function publishEpisode(episodeNumber: number): Promise<EpisodePubl
     return { ok: true, alreadyPublished: true, igPermalink: row.igPermalink ?? null };
   }
 
-  const reel = reels().find((r) => r.kind === "video" && r.episode === episodeNumber && r.gate?.passed);
-  if (!reel) return { ok: false, reason: `אין רנדר שעבר את השער לפרק ${episodeNumber}` };
+  const reel = reels().find((r) => r.kind === "video" && r.episode === episodeNumber && canPublish(r));
+  if (!reel) return { ok: false, reason: `אין רנדר שעבר את השער (או אושר ידנית) לפרק ${episodeNumber}` };
   if (!reel.caption?.trim()) return { ok: false, reason: `אין קובץ כיתוב לפרק ${episodeNumber} — לא מפרסם בלי כיתוב` };
 
   const ig = await publishToInstagram(reel.file, reel.caption);

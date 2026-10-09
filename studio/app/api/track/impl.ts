@@ -8,7 +8,7 @@ import {
 } from "@/lib/sources";
 import { publishToFacebookBusinessPage } from "@/lib/publish";
 import { ActivityEvent, AccountInsightSnapshot, MetricStatus, ReelInsightSnapshot, State, uid } from "@/lib/types";
-import { realTitleFor, captionTitleFor, reels } from "@/lib/reels";
+import { realTitleFor, captionTitleFor, reels, canPublish } from "@/lib/reels";
 import { shouldSnapshot } from "@/lib/insights";
 import { hashPin } from "@/lib/pin";
 
@@ -207,7 +207,7 @@ export async function GET(req: Request) {
   // everywhere in the studio, because there was nothing in the list to update.
   const existingNumbers = new Set(state.episodes.map((e) => e.number));
   for (const r of reels()) {
-    if (r.kind !== "video" || !r.gate?.passed || r.episode == null) continue;
+    if (r.kind !== "video" || !canPublish(r) || r.episode == null) continue;
     if (existingNumbers.has(r.episode)) continue;
     const title = realTitleFor(r.episode) || captionTitleFor(r.episode) || `ריל ${r.episode}`;
     state.episodes.push({

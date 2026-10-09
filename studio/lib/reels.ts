@@ -23,6 +23,9 @@ export type Reel = {
   builtAt: string;
   /** the gate's own output, written beside the file by export/check.sh */
   gate: { passed: boolean; text: string } | null;
+  /** a human's by-ear approval recorded beside the gate (reel-N.approval.txt), or null. The gate
+   *  stays exactly as check.sh wrote it; this only says a person looked and overrode a heuristic. */
+  approval: string | null;
   /** the caption to post with it, if one is written for this episode */
   caption: string | null;
   /** title + description for YouTube Shorts, if one is written for this episode — a
@@ -49,7 +52,7 @@ export const SEQUEL_FOR: Record<number, number> = Object.fromEntries(
  *  pack every video into every function that imported this file (the 162 GB that got the
  *  Vercel team paused, 6.10.2026). */
 type Manifest = {
-  reels: { file: string; bytes: number; builtAt: string; gate: { passed: boolean; text: string } | null; archived?: boolean }[];
+  reels: { file: string; bytes: number; builtAt: string; gate: { passed: boolean; text: string } | null; approval?: string | null; archived?: boolean }[];
   texts: { caption: Record<string, string>; youtube: Record<string, string> };
 };
 const M = manifest as Manifest;
@@ -105,6 +108,7 @@ export function reels(): Reel[] {
         bytes: r.bytes,
         builtAt: r.builtAt,
         gate: r.gate,
+        approval: r.approval ?? null,
         archived: r.archived === true,
         caption: captionFor(episode),
         youtube: youtubeFor(episode),
@@ -117,3 +121,8 @@ export function reels(): Reel[] {
     })
     .sort((a, b) => b.builtAt.localeCompare(a.builtAt));
 }
+
+/** A render may be published when the automatic gate passed, or when a person recorded an
+ *  approval for it (an `.approval.txt` beside the gate). The gate result itself is never edited. */
+export const canPublish = (r: { gate: { passed: boolean } | null; approval: string | null }): boolean =>
+  !!r.gate?.passed || !!r.approval;
