@@ -37,11 +37,11 @@ YouTube Help, support.google.com/youtube/answer/3159776: how to check your Googl
 3. It does that even if your birthday says you're an adult.
 4. If it thinks you're under 18, teen limits switch on by themselves.
 5. Like blocked age-restricted videos, and break and bedtime messages.
-6. If it's wrong, you can prove your age with an ID, a credit card or a selfie.
+6. If it's wrong, you can prove your age with a selfie or an ID.
 7. It's live in the US, UK and Australia, and more places.
-8. Send this to a friend with kids.
+8. Send this to a friend who has kids.
 9. The setup's in the link in bio. (locked)
-10. Tomorrow, I'll show you how to make a Spotify playlist just by typing. Follow, so you get the full story.
+10. Tomorrow, I'll show you how to ask your phone about anything you see. Follow, so you get the full story.
 
 (Wording notes: "matter", "reminders", "government", "teenager" dropped for script_lint endings; "government ID" is in the caption.)
 
