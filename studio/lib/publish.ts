@@ -56,18 +56,20 @@ async function createAndPublishIgMedia(
   // the Reel already succeeded, so it can afford less.
   const deadline = Date.now() + timeoutMs;
   let status = "IN_PROGRESS";
+  let detailText = "";
   while (Date.now() < deadline) {
     const statusUrl = new URL(`${host}/${containerId}`);
-    statusUrl.searchParams.set("fields", "status_code");
+    statusUrl.searchParams.set("fields", "status_code,status");
     statusUrl.searchParams.set("access_token", token);
     const r = await fetch(statusUrl, { cache: "no-store" });
-    const j = (await r.json()) as { status_code?: string };
+    const j = (await r.json()) as { status_code?: string; status?: string };
     status = j.status_code ?? status;
+    if (j.status) detailText = j.status;
     if (status === "FINISHED" || status === "ERROR") break;
     await new Promise((res) => setTimeout(res, 3000));
   }
   if (status !== "FINISHED") {
-    return { ok: false, reason: `אינסטגרם לא סיים לעבד את הווידאו (סטטוס: ${status})`, detail: containerId };
+    return { ok: false, reason: `אינסטגרם לא סיים לעבד את הווידאו (סטטוס: ${status})${detailText ? ` — ${detailText}` : ""}`, detail: containerId };
   }
 
   const publishUrl = new URL(`${host}/${user}/media_publish`);
