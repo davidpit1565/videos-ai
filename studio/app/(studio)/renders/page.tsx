@@ -31,8 +31,9 @@ export default async function Renders() {
     }
     return b.builtAt.localeCompare(a.builtAt);
   });
-  const first = rs.find(waiting);
-  const nextFile = first && first.episode !== null && PUBLISH_ORDER.includes(first.episode) ? first.file : null;
+  // Always the first waiting reel, whether or not it is in PUBLISH_ORDER: a freshly built episode that
+  // nobody added to the list still sorts after the listed ones, and the badge never goes missing.
+  const nextFile = rs.find(waiting)?.file ?? null;
 
   return (
     <main>
