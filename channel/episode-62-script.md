@@ -48,7 +48,7 @@ views, completion and shares per `channel/experiments.md`.
 4. To wipe your chats, open Settings, then Data controls, then Delete all chats.
 5. Show this to someone who tells ChatGPT everything.
 6. The setup's in the link in bio. (locked)
-7. Tomorrow, I'll show you which AI chat is the riskiest for your privacy. Follow, so you get the full story.
+7. Tomorrow, I'll show you how Instagram's AI chat picks the ads you see. Follow, so you get the full story. (re-rendered 10.10.2026: publish order is 62, then 60, then 63)
 
 `script_lint.py` clean after rewording ("servers", "later", "deleted", "order", "September", "clear", "worst").
 

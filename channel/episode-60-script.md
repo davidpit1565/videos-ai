@@ -54,7 +54,7 @@ Final line points at episode 61 (Gemini chats and human reviewers) — flowing f
 6. Meta doesn't say if that changes your ads. So pause, then type. Treat it like a search box.
 7. Send this to someone who chats with Instagram's AI.
 8. The setup's in the link in bio. (locked)
-9. Tomorrow, I'll show you who can read your chats with Google's Gemini. Follow, so you get the full story.
+9. Tomorrow, I'll show you which AI chat is the riskiest for your privacy. Follow, so you get the full story. (re-rendered 10.10.2026: publish order is 62, then 60, then 63)
 
 `script_lint.py` clean after rewording "Whatever", "December", "health", "South", "before",
 "first".
