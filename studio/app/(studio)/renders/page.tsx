@@ -3,6 +3,7 @@ import { reels, canPublish, SEQUEL_OF, SEQUEL_FOR } from "@/lib/reels";
 import { localDT } from "@/lib/fmt";
 import { loadState } from "@/lib/db";
 import { PUBLISH_ORDER } from "@/lib/publish-order";
+import { igMediaIsGone } from "@/lib/publish";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "רנדרים" };
@@ -19,6 +20,13 @@ export default async function Renders() {
   // yet just means the badge doesn't show, not that the page fails.
   const state = await loadState().catch(() => null);
   const liveNumbers = new Set((state?.episodes ?? []).filter((e) => e.status === "live").map((e) => e.number));
+  // A reel in the publish queue that the studio calls live but whose Instagram post was deleted by hand
+  // goes back to waiting (checked with Instagram itself, only for episodes in PUBLISH_ORDER).
+  for (const e of state?.episodes ?? []) {
+    if (e.status === "live" && e.igMediaId && PUBLISH_ORDER.includes(e.number) && (await igMediaIsGone(e.igMediaId))) {
+      liveNumbers.delete(e.number);
+    }
+  }
   // Order for deciding what to post: reels still waiting come first, lowest episode number first
   // (PUBLISH_ORDER: the order the closing lines promise each other), already-published ones after.
   const waiting = (r: (typeof all)[number]) => r.kind === "video" && canPublish(r) && (r.episode === null || !liveNumbers.has(r.episode));
