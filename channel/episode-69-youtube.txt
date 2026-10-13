@@ -1,0 +1,13 @@
+Your iPhone rewrites your notifications, and it has gotten them wrong.
+
+Apple Support, iPhone User Guide, "Summarize notifications and reduce interruptions with Apple Intelligence on iPhone" (iOS 27 page): "Your iPhone can summarize long or stacked notifications, making them easier to understand at a glance." Settings > Notifications > Summarize Notifications turns it on or off; "Choose Notifications to Summarize" picks the apps. Requires an Apple Intelligence-enabled iPhone 15 Pro, iPhone 15 Pro Max, or iPhone 16 model or later; not available in all languages or regions.
+
+Background: the BBC complained in December 2024 about false headlines in AI-written alerts, and Apple paused news-app summaries in January 2025. This is reported in press coverage (secondary sources), including a darts-final alert that named a winner before the final was played.
+
+Said plainly: not tested on a live iPhone; whether news summaries are back and under what warning was not confirmed. Checked 13.10.2026.
+
+Full setup, sourced exactly: https://actually-works.com/e/69
+
+Tomorrow, I'll show you what ChatGPT keeps about you. Follow, so you get the full story.
+
+#iphone #apple #ai #privacy #notifications
