@@ -157,8 +157,16 @@ export async function igToken(): Promise<string | null> {
       await p.query(`create table if not exists ig_token (
         id int primary key default 1, token text not null,
         refreshed_at timestamptz not null default now())`);
-      const r = await p.query<{ token: string }>("select token from ig_token where id = 1");
-      if (r.rows[0]?.token) return r.rows[0].token;
+      await p.query("alter table ig_token add column if not exists env_seen text");
+      const r = await p.query<{ token: string; env_seen: string | null }>(
+        "select token, env_seen from ig_token where id = 1",
+      );
+      const row = r.rows[0];
+      // A token pasted into IG_ACCESS_TOKEN after the stored one was made wins. Without this,
+      // pasting a brand-new token after Meta invalidates the session changes nothing: the stored,
+      // dead, refreshed copy is read first, forever.
+      const envNow = process.env.IG_ACCESS_TOKEN ?? null;
+      if (row?.token && !(envNow && row.env_seen !== envNow)) return row.token;
     } catch {
       /* fall through to the environment — a database problem must not break the read path */
     }
@@ -169,10 +177,11 @@ export async function igToken(): Promise<string | null> {
 async function storeIgToken(token: string): Promise<void> {
   const p = sharedPool();
   if (!p) return;
+  await p.query("alter table ig_token add column if not exists env_seen text").catch(() => {});
   await p.query(
-    `insert into ig_token (id, token) values (1, $1)
-     on conflict (id) do update set token = $1, refreshed_at = now()`,
-    [token],
+    `insert into ig_token (id, token, env_seen) values (1, $1, $2)
+     on conflict (id) do update set token = $1, env_seen = $2, refreshed_at = now()`,
+    [token, process.env.IG_ACCESS_TOKEN ?? null],
   );
 }
 
