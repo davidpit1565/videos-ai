@@ -117,22 +117,31 @@ const REEL_COVER_OFFSET_MS = 1800;
 /** True only when Instagram itself says this media no longer exists (deleted by hand after the studio
  *  marked it live — 12.10.2026, episode 65). Anything else, including a network or token error, is
  *  "unknown" and returns false, so a hiccup can never make the studio publish a reel twice. */
-export async function igMediaIsGone(mediaId: string): Promise<boolean> {
+export type IgMediaState = "exists" | "gone" | "unknown";
+
+/** Whether a post is still on Instagram. "unknown" means Instagram could not be asked (dead or missing token,
+ *  network error, any other failure) — callers must not treat that as "exists". */
+export async function igMediaState(mediaId: string): Promise<IgMediaState> {
   try {
     const token = await igToken();
-    if (!token) return false;
+    if (!token) return "unknown";
     const { host } = igRoute(token);
     const url = new URL(`${host}/${mediaId}`);
     url.searchParams.set("fields", "id");
     url.searchParams.set("access_token", token);
     const r = await fetch(url, { cache: "no-store" });
-    if (r.ok) return false;
+    if (r.ok) return "exists";
     const j = (await r.json().catch(() => ({}))) as { error?: { code?: number; message?: string } };
     const msg = j.error?.message ?? "";
-    return j.error?.code === 100 && /does not exist|cannot be loaded|Unsupported get request/i.test(msg);
+    return j.error?.code === 100 && /does not exist|cannot be loaded|Unsupported get request/i.test(msg) ? "gone" : "unknown";
   } catch {
-    return false;
+    return "unknown";
   }
+}
+
+/** true only when Instagram itself says the post does not exist */
+export async function igMediaIsGone(mediaId: string): Promise<boolean> {
+  return (await igMediaState(mediaId)) === "gone";
 }
 
 /** Publishes the Reel only. This used to also publish the same raw video file as a
@@ -319,7 +328,13 @@ export async function publishEpisode(episodeNumber: number): Promise<EpisodePubl
 
   // The idempotency guard itself — this is the check today's incident shows was missing.
   if (row.status === "live" && row.igMediaId) {
-    if (!(await igMediaIsGone(row.igMediaId))) {
+    const mediaState = await igMediaState(row.igMediaId);
+    if (mediaState === "unknown") {
+      // Neither "already published" nor "safe to publish again" can be said when Instagram cannot be asked
+      // (dead token is the usual cause) — say so instead of guessing either way.
+      return { ok: false, reason: "אינסטגרם לא מחובר או לא זמין, אז אי אפשר לוודא אם הפרק כבר פורסם. מחברים את אינסטגרם קודם (טוקן חדש), ואז מפרסמים." };
+    }
+    if (mediaState === "exists") {
       return { ok: true, alreadyPublished: true, igPermalink: row.igPermalink ?? null };
     }
     // Instagram confirms the post was deleted: it is not published any more, so publish it again.
