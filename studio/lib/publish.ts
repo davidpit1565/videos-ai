@@ -9,6 +9,7 @@ import { sharedPool, loadState, saveState } from "./db";
 import { igRoute, igToken } from "./sources";
 import { SITE_URL } from "./site";
 import { reels, canPublish } from "./reels";
+import { PUBLISHED_MANUALLY } from "@/lib/publish-order";
 
 export { SITE_URL };
 
@@ -325,6 +326,10 @@ export async function publishEpisode(episodeNumber: number): Promise<EpisodePubl
   if (!state) return { ok: false, reason: "אין מסד נתונים מוגדר" };
   const row = state.episodes.find((e) => e.number === episodeNumber);
   if (!row) return { ok: false, reason: `פרק ${episodeNumber} לא קיים בסטייט` };
+  if (PUBLISHED_MANUALLY.includes(episodeNumber)) {
+    // David posted this one by hand; a second post from here would be a duplicate on Instagram.
+    return { ok: true, alreadyPublished: true, igPermalink: row.igPermalink ?? null };
+  }
 
   // The idempotency guard itself — this is the check today's incident shows was missing.
   if (row.status === "live" && row.igMediaId) {
