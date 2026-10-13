@@ -1853,6 +1853,33 @@ export const ARTICLES: Article[] = [
       "This channel did not test this on a live account. Page names are taken from Google's help pages; your screen may differ slightly.",
     ],
   },
+  {
+    n: 69,
+    title: "Is your iPhone rewriting your notifications? How to check and turn off Apple Intelligence summaries",
+    standfirst:
+      "Apple's iPhone User Guide says your iPhone can summarize long or stacked notifications with Apple Intelligence. " +
+      "In early 2025 Apple paused these summaries for news apps after the BBC complained about false headlines. " +
+      "Here is the exact path to check whether it is on and to turn it off, or to choose which apps it touches.",
+    steps: [
+      "Open the Settings app on your iPhone.",
+      "Tap Notifications.",
+      "Tap Summarize Notifications. If the Summarize Notifications switch is on, your iPhone is summarizing notifications for you.",
+      "To stop all summaries, turn Summarize Notifications off. That is the whole fix.",
+      "To keep summaries only for some apps: with Summarize Notifications on, tap Choose Notifications to Summarize, tap the apps you want, then tap Summarize Selected Notifications. To change it later, tap the button next to an app.",
+      "Optional: if you do not see Summarize Notifications at all, your iPhone may not support it. Apple's page says it needs an Apple Intelligence-enabled iPhone 15 Pro, iPhone 15 Pro Max, or any iPhone 16 model or later, and that Apple Intelligence is not available in all languages or regions.",
+      "Optional: this video's pause frame shows the same three taps: Settings, Notifications, Summarize Notifications. Pause on it, take a screenshot and send it to someone who only reads the preview.",
+    ],
+    changes: [
+      "Verified live (13.10.2026) against Apple's iPhone User Guide page \"Summarize notifications and reduce interruptions with Apple Intelligence on iPhone\" (support.apple.com/guide/iphone/iph1fbe7d2b9/ios, iOS 27 version): the Settings > Notifications > Summarize Notifications path, the on/off switch, Choose Notifications to Summarize, and the device requirements.",
+      "The BBC complaint and Apple's pause of news-app summaries are from press coverage of the BBC's complaint and Apple's statement (December 2024 and January 2025), including a darts-final alert that announced a winner before the final was played. This is secondary reporting, not an Apple page.",
+      "Topic chosen from the 13.10.2026 growth research: concrete \"how to turn off X on iPhone\" is the kind of video that did best in a small YouTube Shorts scan. This episode is also the first test of a built-in pause frame to earn saves and sends.",
+    ],
+    limits: [
+      "Not said in the video because the sources do not settle it: whether news summaries are back and under what warning, how often summaries are wrong today, and whether a given country or language has the feature.",
+      "On iOS 27 one press report says there is no single master switch for all of Apple Intelligence any more; the Summarize Notifications switch above is what this guide covers. Summaries inside Messages and Mail are separate settings that were not checked against an Apple page.",
+      "This channel did not test this on a live iPhone. Menu names are taken from Apple's help page; your screen may differ slightly depending on your iOS version.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
