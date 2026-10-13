@@ -3,7 +3,7 @@ import { reels, canPublish, SEQUEL_OF, SEQUEL_FOR } from "@/lib/reels";
 import { localDT } from "@/lib/fmt";
 import { loadState } from "@/lib/db";
 import { PUBLISH_ORDER } from "@/lib/publish-order";
-import { igMediaIsGone } from "@/lib/publish";
+import { igMediaState } from "@/lib/publish";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "רנדרים" };
@@ -23,7 +23,10 @@ export default async function Renders() {
   // A reel in the publish queue that the studio calls live but whose Instagram post was deleted by hand
   // goes back to waiting (checked with Instagram itself, only for episodes in PUBLISH_ORDER).
   for (const e of state?.episodes ?? []) {
-    if (e.status === "live" && e.igMediaId && PUBLISH_ORDER.includes(e.number) && (await igMediaIsGone(e.igMediaId))) {
+    // Only an episode Instagram CONFIRMS is still up stays "live". When Instagram cannot be asked (token dead),
+    // the hand-kept PUBLISH_ORDER wins: it lists what David has not published yet. Before this, a dead token
+    // made a deleted-by-hand post look live and the wrong reel (67) was shown as next.
+    if (e.status === "live" && PUBLISH_ORDER.includes(e.number) && (!e.igMediaId || (await igMediaState(e.igMediaId)) !== "exists")) {
       liveNumbers.delete(e.number);
     }
   }
