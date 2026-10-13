@@ -116,3 +116,34 @@ I. **Services:** measure conversations from Flemish SMEs; do not use follower co
 Audience tab: top countries, age, followers vs non-followers. Per Reel (59, 61, 63, 64, 65 and
 the best older ones): views, % from non-followers, follows, watch-time curve, skip rate, sends.
 Without follows-per-post the conversion step cannot be measured; our tracker does not pull it.
+
+## 7. Addendum (13.10, later) — reference reel + first niche scan
+
+**Reference reel analysed (DeYZ_aVz-h4, 47s, downloaded and watched in full).** A marketer explains
+how a 2-second "pause at the right frame" reel got 13.5M views. Mechanism = a challenge with a
+hidden frame that forces pause and replay; hook = result + number + on-screen proof in 0-2s;
+builds on an already-viral concept and adds a layer. All figures (30K follows, 29K DMs, 11s average
+watch time) are self-reported by someone selling marketing: one case, not a rule. Whether average
+watch time can exceed video length on Instagram is UNCONFIRMED (sources conflict on whether
+replays count).
+
+**First niche scan (YouTube Shorts, ytsearch, 36 Shorts <=75s with a view count; FACT for this
+sample, search-biased, small).** Top by views are plain, concrete "fix/hide/turn off X on
+WhatsApp/iPhone/Google" Shorts (hundreds of thousands to 1.7M). Fear-style "your phone is
+listening to you" Shorts in the same sample sit at ~5-50 views. HYPOTHESIS: the demand is for a
+specific problem the viewer already has plus the exact fix, not for an alarming claim. This only
+describes YouTube search intent; Instagram discovery differs. Instagram itself cannot be scanned
+from here, so Instagram references must come as links from David.
+
+**Whole-picture plan (everything interacts, nothing is a separate list item):**
+1. Each Reel gets ONE built-in device that earns a replay or a send: a "find it" challenge with a
+   freeze-able frame, or a named person it should be sent to. Chosen per episode, not optional.
+2. Topic is picked from proven demand (concrete problem + exact fix), then the hook is rebuilt
+   from a documented viral structure; never copied footage, text, script or voice (copyright and
+   Instagram's originality demotion).
+3. Frame 0 must be understandable with sound off; result/stake in <=2s.
+4. The profile, pinned posts and the "tomorrow" ending give a stranger one stable promise.
+5. The tracker must pull follows, sends and skip rate per Reel, otherwise none of the above can be
+   judged. Needs David's Insights data meanwhile.
+6. Audience fit stays an open question (English reach vs Flemish SME buyers).
+No faces (David, 13.10): the face test is dropped; replay/send devices replace it.
