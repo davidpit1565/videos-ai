@@ -1566,3 +1566,7 @@ mechanism shows up in a second, independent episode: move the claim from *Curren
 hypotheses* to *Confirmed patterns*, and say which two episodes it's based on. If a
 hypothesis gets clearly contradicted, don't delete it — mark it **REJECTED** and say why,
 so the same idea doesn't get re-proposed later without remembering it was already tested.
+
+## 13.10.2026 — growth research
+
+Full synthesis: `channel/growth-research-13-10.md`. It marks the "Espoladore 556-Reel study" cited above as UNVERIFIED (not found), the Buffer 1.1M length study as not found, and the per-view CTA benchmarks as vendor-grade (D). Diagnosis: no breakout outlier; first-2s retention, ~0 sends, no stable reason to follow.
