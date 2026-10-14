@@ -37,21 +37,20 @@ Test target: sends, saves, skip rate, average watch time vs length. Not "views a
 - Any claim that a summary of the viewer's own messages was wrong.
 
 ## Spoken script — FINAL (as built and shipped through the gate, 13.10.2026)
-Changes from the approved draft, all forced by the voice gate or the pause frame: line 1 now says "...and it has gotten them wrong" (the draft's "before you read them" was flagged by script_lint), line 2 "That's the AI built into your iPhone." (no brand word that the voice swallows), line 3 "...won the darts final, and the match hadn't started.", line 4 passive ("it was paused"), line 5 "a few taps" (the word "three" bursts on this voice on every roll), line 8 "It works on iPhone 15 Pro and up.", closing "keeps" (not "saves").
+Changes from the approved draft, all forced by the voice gate or the pause frame: line 1 now says "...and it has gotten them wrong" (the draft's "before you read them" was flagged by script_lint), line 2 "That's the AI built into your iPhone." (no brand word that the voice swallows), line 3 "...won the darts final, and the match hadn't started.", line 4 passive ("it was paused"), line 5 "in seconds" ("three" bursts on this voice on every roll, and "a few taps" was heard as "tabs"), line 8 "It works on iPhone 15 Pro and up.", closing "keeps" (not "saves").
 1. Your iPhone rewrites your notifications, and it has gotten them wrong.
 2. That's the AI built into your iPhone.
 3. Once, it said someone had won the darts final, and the match hadn't started.
 4. After the BBC complained, it was paused for news apps.
-5. You can check it in a few taps. Pause here.
+5. You can check it in seconds. Pause here.
 6. [PAUSE FRAME ~4s, three lines] Settings. / Notifications. / Summarize Notifications.
 7. Switch it off, or pick which apps it can touch.
 8. It works on iPhone 15 Pro and up.
 9. Send this to someone who only reads the preview.
 10. The setup's in the link in bio. (locked)
-11. Tomorrow, I'll show you what ChatGPT keeps about you. Follow, so you get the full story.
-(Binding promise: episode 70 = what ChatGPT keeps about you (Saved memories). NOT yet written: Settings > Personalization > Manage memories per OpenAI's help center, labels unconfirmed for 2026; "deleted memories may be kept in a log for up to 30 days" from a search result, must be re-verified on OpenAI's own page before 70 is scripted.)
+11. Follow for the setup that actually works. (locked canonical clip; David chose the standard ending for 69, so no promise about episode 70 is made)
 
-Build facts: 40.2s, accent #FB923C, mood 'confident', photos ep69-scene-a..d (Unsplash), Apple logo from Wikimedia Commons (ep69-apple-logo.svg), ChatGPT logo reused from ep63. Gate: ALL CHECKS PASSED; two watches (frames + transcript) done; one pause-frame layout defect found and fixed (4 lines -> 3). Known soft warning: picture nearly still 2.5s at 1.4-3.9s (hook).
+Build facts: 37.4s, accent #FB923C, mood 'confident', photos ep69-scene-a..d (Unsplash), Apple logo from Wikimedia Commons (ep69-apple-logo.svg), ChatGPT logo reused from ep63. Gate: ALL CHECKS PASSED; two watches (frames + transcript) done; one pause-frame layout defect found and fixed (4 lines -> 3). Known soft warning: picture nearly still 2.5s at 1.4-3.9s (hook).
 
 Hook type: Direct Address / stakes. Check `hooks-guide.md` log (rows 64-68) for the previous type before building, and read
 lines 1-2 cold for the dry-sentence test. Feel-it-in-3-seconds check: every iPhone owner with the feature on has read a

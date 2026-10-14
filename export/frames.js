@@ -57,7 +57,7 @@ async function withTimeout(promise, ms, label) {
 
   let b = await chromium.launch({
     executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
-    args: ['--no-sandbox', '--force-device-scale-factor=1', '--hide-scrollbars'],
+    args: ['--no-sandbox', '--force-device-scale-factor=1', '--hide-scrollbars', '--disable-gpu'],
   });
   let p = await openPage(b);
 
@@ -65,20 +65,26 @@ async function withTimeout(promise, ms, label) {
   for (let i = 0; i < total; i++) {
     const t = i / FPS;
     const framePath = path.join(out, String(i).padStart(5, '0') + '.png');
-    try {
-      await withTimeout(p.evaluate((t) => window.__reel.seek(t), t), FRAME_TIMEOUT_MS, `seek frame ${i}`);
-      await withTimeout(p.screenshot({ path: framePath }), FRAME_TIMEOUT_MS, `screenshot frame ${i}`);
-    } catch (e) {
-      console.log(`  frame ${i} wedged (${e.message}) — relaunching and retrying once`);
-      try { await b.close(); } catch {}
-      b = await chromium.launch({
-        executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
-        args: ['--no-sandbox', '--force-device-scale-factor=1', '--hide-scrollbars'],
-      });
-      p = await openPage(b);
-      await p.evaluate((t) => window.__reel.seek(t), t);
-      await p.screenshot({ path: framePath });
+    let ok = false;
+    for (let attempt = 0; attempt < 5 && !ok; attempt++) {
+      try {
+        if (attempt > 0 || (i > 0 && i % 100 === 0)) {
+          if (attempt > 0) console.log(`  frame ${i} wedged — relaunching (attempt ${attempt})`);
+          try { await b.close(); } catch {}
+          b = await chromium.launch({
+            executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+            args: ['--no-sandbox', '--force-device-scale-factor=1', '--hide-scrollbars', '--disable-gpu'],
+          });
+          p = await openPage(b);
+        }
+        await withTimeout(p.evaluate((t) => window.__reel.seek(t), t), FRAME_TIMEOUT_MS, `seek frame ${i}`);
+        await withTimeout(p.screenshot({ path: framePath }), FRAME_TIMEOUT_MS, `screenshot frame ${i}`);
+        ok = true;
+      } catch (e) {
+        console.log(`  frame ${i} failed (${e.message})`);
+      }
     }
+    if (!ok) throw new Error(`frame ${i} failed after 5 attempts`);
     if (i % 150 === 0) console.log(`frame ${i}/${total}`);
   }
   console.log(`captured ${total} frames at ${FPS} fps`);
