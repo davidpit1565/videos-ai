@@ -164,7 +164,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 8 -->
-<section class="scene" data-in="25.6" data-out="28.655">
+<section class="scene" data-in="25.6" data-out="28.375">
   <div class="photobg" id="photobgH" style="filter:brightness(0.85);background-image:url('../channel/assets/ep69-scene-a.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -174,7 +174,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 9 -->
-<section class="scene" data-in="28.655" data-out="31.92">
+<section class="scene" data-in="28.375" data-out="31.64">
   <div class="photobg" id="photobgI" style="filter:brightness(0.8);background-image:url('../channel/assets/ep69-scene-b.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -184,7 +184,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 10 -->
-<section class="scene" data-in="31.92" data-out="34.15">
+<section class="scene" data-in="31.64" data-out="33.87">
   <div class="photobg" id="photobgJ" style="filter:brightness(0.8);background-image:url('../channel/assets/ep69-scene-d.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -194,13 +194,12 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 11 -->
-<section class="scene" data-in="34.15" data-out="39.66">
+<section class="scene" data-in="33.87" data-out="36.69">
   <div class="photobg" id="photobgK" style="filter:brightness(0.8);background-image:url('../channel/assets/ep69-scene-d.jpg')"></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbK">
-    <h2 id="hookH2K" style="font-size:5.8cqw">Tomorrow, I'll show you what <span class="box">ChatGPT</span> keeps about you. Follow, so you get the full story.</h2>
-  <div class="logobadge" id="logoBadgeK"><img src="../channel/assets/ep63-chatgpt-logo.svg" alt="" style="height:8cqw;width:auto;filter:drop-shadow(0 .6cqw 2cqw rgba(0,0,0,.6))"></div>
+    <h2 id="hookH2K">Follow for the setup that <span class="box">actually works</span>.</h2>
   </div></div>
 </section>
 
@@ -211,7 +210,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="50.940000000000005" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="47.160000000000004" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -221,7 +220,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=40.16,t=0,playing=false,last=0;
+  var DUR=37.19,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var seek=document.getElementById('seek');
@@ -236,10 +235,10 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     [15.04,17.61,"You can check it in a few taps. Pause here."],
     [18.03,22.32,"Settings. Notifications. Summarize Notifications."],
     [22.74,25.39,"Switch it off, or pick which apps it can touch."],
-    [25.81,28.23,"It works on iPhone 15 Pro and up."],
-    [29.08,31.71,"Send this to someone who only reads the preview."],
-    [32.13,33.94,"The setup's in the link in bio."],
-    [34.36,39.26,"Tomorrow, I'll show you what ChatGPT keeps about you. Follow, so you get the full story."]
+    [25.81,27.95,"It works on iPhone 15 Pro and up."],
+    [28.80,31.43,"Send this to someone who only reads the preview."],
+    [31.85,33.66,"The setup's in the link in bio."],
+    [34.08,36.29,"Follow for the setup that actually works."]
   ];
   var WORD_WINDOWS=[
     new Array(11).fill(null),
@@ -252,7 +251,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
     new Array(8).fill(null),
     new Array(9).fill(null),
     new Array(7).fill(null),
-    new Array(16).fill(null)
+    new Array(7).fill(null)
   ];
 
   function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
