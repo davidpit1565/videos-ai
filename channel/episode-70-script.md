@@ -12,17 +12,18 @@ you provide."), "Memory summary" ("View an overview of what ChatGPT has learned 
 memories."), Your nickname, Your occupation, More about you. UNCONFIRMED and NOT said: how long switched-off/deleted memories are kept,
 whether turning Enable memory off removes anything already saved, Android/web differences.
 
-## Spoken lines (v2, 28.6s, after David's feedback 15.10.2026)
-1. Never tell ChatGPT anything personal until you check this. (hook, white text bar with the ChatGPT icon inline; formula "Negative Command" + stakes; basis: the screen's own text "Memory may include sensitive info you provide")
+## Spoken lines (v3, 29.4s, after David's second round of feedback 15.10.2026)
+1. Never tell ChatGPT anything personal until you check what it keeps. (hook in a white text bar, ChatGPT icon inline; "what it keeps" states the problem: ChatGPT saves things; basis: the screen's own text)
 2. It keeps a summary of what it learns about you.
-3. Open the menu, tap the gear, then tap Memory.
-4. Pause here. (pause frame, ring on the Memory row, "Menu. Gear. Memory.")
-5. The screen even warns it may include sensitive info you provide. (ring on that text)
-6. Switch it off if you don't like that. (ring on Enable memory)
-7. Send this to someone who uses ChatGPT.
-8. The setup's in the link in bio. (locked)
-9. Follow for the setup that actually works. (locked; standard ending)
-The v1 hook ("ChatGPT has been learning about you") was dropped: David judged it explains the video instead of pulling; no hook is proven to work, this is a hypothesis to test.
+3. Open the menu, top left. (home screen, ring on the menu button)
+4. Then press the gear at the bottom. (side menu, chats blurred, ring on the gear)
+5. And open Memory. (Settings, ring on the Memory row; email and phone values blurred)
+6. The screen even warns it may include sensitive info you provide. (ring on that text)
+7. Switch it off if you don't like that. (ring on Enable memory)
+8. Send this to someone who uses ChatGPT.
+9. The setup's in the link in bio. (locked)
+10. Follow for the setup that actually works. (locked)
+Changes from v2: each step is its own scene on the real screen, no more sliding transitions; the pause frame was dropped; blur only on chat titles, email and phone values; "tap" was misheard as "top" by the transcript, so the steps use "press" and "open".
 
 ## Privacy
 David's raw recording is NOT in git. Email, phone number and recent chat titles were blurred with a real Gaussian blur (v2; v1 used a mosaic) on every frame
@@ -32,7 +33,7 @@ visible by David's decision (already public on his profile). Masked 303 frames l
 Checked by eye twice on the final MP4 (a 5 fps sheet of the whole file and a 10 fps crop of the sensitive seconds); there is no OCR here.
 
 ## Build facts
-28.6s, accent #2DD4BF (teal), mood 'urgent', ChatGPT icon (white inverted version of ep63's real SVG), gate: ALL CHECKS PASSED.
+29.4s, accent #2DD4BF (teal), mood 'urgent', ChatGPT icon (white inverted version of ep63's real SVG), gate: ALL CHECKS PASSED.
 Known soft warnings: length 24s is under the usual 30-90s band (deliberate for the test); picture nearly still ~2s in a few places.
 The accent heuristic flagged lines 5 and 7 on many rolls; the shipped take cleared it.
 Hook type: Direct address / curiosity ("learning about you" + "you can see it").
