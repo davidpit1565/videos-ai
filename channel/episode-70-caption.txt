@@ -1,0 +1,15 @@
+ChatGPT has been learning about you. You can see what it knows.
+
+In the ChatGPT app, Memory has its own screen. It has an "Enable memory" switch, and a "Memory summary" that, per the screen's own text, gives an overview of what ChatGPT has learned about you.
+
+Open the menu, tap the gear, tap Memory. Check the summary, or switch Enable memory off if you don't like it.
+
+Pause on the Memory frame, take a screenshot, and send it to someone who uses ChatGPT.
+
+Keep in mind: this is from the iPhone app on one account on 15 October 2026. Menu names can differ by account and version, and we could not check OpenAI's own help page for this video. We did not open the Memory summary itself, because it is private.
+
+Full setup, step by step: https://actually-works.com/e/70
+
+Follow for the setup that actually works.
+
+#chatgpt #ai #privacy #memory #openai

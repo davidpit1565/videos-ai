@@ -1880,6 +1880,34 @@ export const ARTICLES: Article[] = [
       "This channel did not test this on a live iPhone. Menu names are taken from Apple's help page; your screen may differ slightly depending on your iOS version.",
     ],
   },
+  {
+    n: 70,
+    title: "What does ChatGPT know about you? Where to see it and how to turn Memory off",
+    standfirst:
+      "In the ChatGPT iPhone app, Memory has its own screen with an Enable memory switch and a Memory summary. " +
+      "The screen's own text says the summary is an overview of what ChatGPT has learned about you. " +
+      "Here are the exact taps to find it, as shown in a screen recording of the app on 15 October 2026.",
+    steps: [
+      "Open the ChatGPT app on your iPhone.",
+      "Tap the menu button (top left) to open the side menu.",
+      "Tap the gear icon at the bottom right of the side menu. This opens your account screen.",
+      "Under Customize ChatGPT, tap Memory.",
+      "You will see the Enable memory switch. When it is on, ChatGPT can personalize answers based on your chats, files and connected apps, according to the text on the screen.",
+      "Tap Memory summary to read an overview of what ChatGPT has learned about you. The screen's text also says you can still manage your old saved memories, in a link on the same screen.",
+      "If you do not want this, switch Enable memory off. Check the screen afterwards: the switch should show as off.",
+      "Optional: this video's pause frame shows the path (menu, gear, Memory). Pause on it, take a screenshot and send it to someone who uses ChatGPT.",
+    ],
+    changes: [
+      "Everything above comes from a screen recording of the ChatGPT iPhone app on one account on 15.10.2026: the Customize ChatGPT list (Personalization, Memory, Plugins), the Memory screen with Enable memory, Memory summary, Your nickname, Your occupation and More about you, and the screen's own explanatory text.",
+      "The recording's personal details (name, email, phone number, chat titles) were blurred before use. The Memory summary itself was not opened on camera.",
+      "Topic and format are the first test of the 10-video viral-format experiment (channel/experiments.md, 15.10.2026): a real screen recording with no face, a list-like path to save and send.",
+    ],
+    limits: [
+      "OpenAI's own help page was not reachable (it returned an access error), so these steps are verified against the live app, not against OpenAI's documentation. Menu names and the exact path can differ by account, plan, country and app version.",
+      "Not checked and not said in the video: how long deleted or switched-off memories are kept, whether switching Enable memory off removes anything already saved, and how this differs on the website or on Android.",
+      "ChatGPT learns about you only to the extent Enable memory is on and you have shared things in chats; an empty or short summary is possible.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
