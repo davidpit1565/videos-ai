@@ -298,3 +298,20 @@ against 61 (46s) and 60 (66s). Different topics, so a signal, not proof; repeat 
 changing the standing length rule.
 **Result:** [fill in]
 **Verdict:** —
+
+
+### PLANNED (15.10.2026) — "Viral format" test: 10 videos, no faces, real screens, list/save structure
+
+**Why:** 66 episodes sat at ~150-230 views, almost never reaching beyond followers (`growth-research-13-10.md`).
+Eight reels David sent (`reference-reels-15-10.md`) that did far better share a hook shape and a save/send-friendly
+structure. This is a HYPOTHESIS from 8 survivors with no view counts: we do not know it works for us.
+**Change:** from the next new episode, 10 videos in this shape: (1) hook = real AI product + a "hidden / you can read it /
+you shouldn't know" angle that is TRUE, spoken in the first 2s; (2) a numbered list or one frame worth screenshotting
+(the "Pause here" device from ep 69); (3) David's own real screen recording (no face) of the real app; (4) our own
+voice, our own captions, our setup guide, closing lines unchanged. NOT changed: music, safe areas, gate, honesty rules.
+**Measure:** views from NON-followers, % watching at 2s/5s, sends, saves, follows per post (Instagram Insights, David reads
+them). Baseline: ~150-230 views, sends ~0, saves 0-1.
+**Stop rule (ASSUMPTION, not proven):** after 10 videos, if none passes ~1,000 views from non-followers and sends stay ~0,
+stop and test a different axis. If one does, change one variable at a time from that video.
+**Result:** [fill in]
+**Verdict:** — (10 videos is a signal, not proof)
