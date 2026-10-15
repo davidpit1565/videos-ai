@@ -1,6 +1,6 @@
-ChatGPT has been learning about you. You can see what it knows.
+Never tell ChatGPT anything personal until you check this.
 
-In the ChatGPT app, Memory has its own screen. It has an "Enable memory" switch, and a "Memory summary" that, per the screen's own text, gives an overview of what ChatGPT has learned about you.
+In the ChatGPT app, Memory has its own screen. It has an "Enable memory" switch and a "Memory summary" that, per the screen's own text, gives an overview of what ChatGPT has learned about you. The same screen warns that memory "may include sensitive info you provide."
 
 Open the menu, tap the gear, tap Memory. Check the summary, or switch Enable memory off if you don't like it.
 

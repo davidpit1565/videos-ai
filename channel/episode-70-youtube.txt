@@ -1,6 +1,6 @@
-ChatGPT has been learning about you. You can see what it knows.
+Never tell ChatGPT anything personal until you check this.
 
-Source: the ChatGPT iPhone app itself, screen recorded by the channel on 15.10.2026. Settings (gear in the menu) > Customize ChatGPT > Memory. The Memory screen shows an "Enable memory" switch and a "Memory summary" row; the screen's own text says: "View an overview of what ChatGPT has learned about you." and "You can still manage your old saved memories."
+Source: the ChatGPT iPhone app itself, screen recorded by the channel on 15.10.2026. Settings (gear in the menu) > Customize ChatGPT > Memory. The Memory screen shows an "Enable memory" switch and a "Memory summary" row; the screen's own text says: "View an overview of what ChatGPT has learned about you." and "You can still manage your old saved memories." The same screen says memory "may include sensitive info you provide."
 
 Said plainly: menu names can differ by account and app version. OpenAI's own help page was not reachable for this check (it returned an access error), so this is verified against the live app, not against OpenAI's documentation. The Memory summary itself was not opened on camera because it is private.
 
