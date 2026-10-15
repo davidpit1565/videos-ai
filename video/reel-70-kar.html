@@ -86,7 +86,7 @@ body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
 body.render .reel{width:100vw;max-width:none}
 body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
 .scrbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.5);opacity:.35;filter:blur(3cqw) brightness(.9) saturate(1.2)}
-.card{position:absolute;left:15cqw;top:54cqw;width:70cqw;height:106cqw;border-radius:4.5cqw;overflow:hidden;box-shadow:0 2cqw 7cqw rgba(0,0,0,.75);border:.25cqw solid rgba(255,255,255,.16);background:#000}
+.card{position:absolute;left:15cqw;top:54cqw;width:70cqw;height:106cqw;border-radius:4.5cqw;overflow:hidden;border:.5cqw solid rgba(255,255,255,.3);box-shadow:0 2cqw 7cqw rgba(0,0,0,.75),inset 0 0 0 .3cqw rgba(0,0,0,.6);background:#000}
 .scrcard{width:100%;height:100%;display:block;filter:brightness(1.5) contrast(1.06)}
 .ring{position:absolute;border:.7cqw solid var(--accent);border-radius:3.4cqw;box-shadow:0 0 3.5cqw var(--accent);opacity:0}
 .hookbar{background:#fff;color:#0a0e14;padding:2.4cqw 3.2cqw;border-radius:2.4cqw;text-shadow:none!important;display:inline-block;box-shadow:0 1.2cqw 4cqw rgba(0,0,0,.5)}
@@ -101,7 +101,7 @@ h2.hookbar .box,h2.hookbar .wd.spoken,h2.hookbar .wd.box.spoken{color:#0d7a6e!im
 <div class="prog" id="prog"></div>
 
 <!-- Scene 1 -->
-<section class="scene" data-in="0" data-out="4.31" data-y0="100" data-s0="9.9" data-s1="9.9">
+<section class="scene" data-in="0" data-out="4.31" data-y0="0" data-s0="9.9" data-s1="9.9">
   <div class="photobg" id="photobgA" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -111,7 +111,7 @@ h2.hookbar .box,h2.hookbar .wd.spoken,h2.hookbar .wd.box.spoken{color:#0d7a6e!im
 </section>
 
 <!-- Scene 2 -->
-<section class="scene" data-in="4.31" data-out="7.31" data-y0="100" data-s0="9.9" data-s1="9.9">
+<section class="scene" data-in="4.31" data-out="7.31" data-y0="0" data-s0="9.9" data-s1="9.9">
   <div class="photobg" id="photobgB" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -131,8 +131,8 @@ h2.hookbar .box,h2.hookbar .wd.spoken,h2.hookbar .wd.box.spoken{color:#0d7a6e!im
 </section>
 
 <!-- Scene 4 -->
-<section class="scene" data-in="9.51" data-out="12.085" data-y0="456" data-s0="2.2" data-s1="2.2">
-  <div class="photobg" id="photobgD" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas><div class="ring" style="left:59.2%;top:87.5%;width:11.7%;height:7.7%"></div></div></div>
+<section class="scene" data-in="9.51" data-out="12.085" data-y0="440" data-s0="2.2" data-s1="2.2">
+  <div class="photobg" id="photobgD" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas><div class="ring" style="left:59.2%;top:89.0%;width:11.7%;height:7.7%"></div></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbD">
@@ -141,8 +141,8 @@ h2.hookbar .box,h2.hookbar .wd.spoken,h2.hookbar .wd.box.spoken{color:#0d7a6e!im
 </section>
 
 <!-- Scene 5 -->
-<section class="scene" data-in="12.085" data-out="13.9" data-y0="300" data-s0="3.7" data-s1="3.7">
-  <div class="photobg" id="photobgE" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas><div class="ring" style="left:4%;top:43.1%;width:92%;height:9.2%"></div></div></div>
+<section class="scene" data-in="12.085" data-out="13.9" data-y0="220" data-s0="3.7" data-s1="3.7">
+  <div class="photobg" id="photobgE" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas><div class="ring" style="left:4%;top:50.5%;width:92%;height:9.2%"></div></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbE">
@@ -151,8 +151,8 @@ h2.hookbar .box,h2.hookbar .wd.spoken,h2.hookbar .wd.box.spoken{color:#0d7a6e!im
 </section>
 
 <!-- Scene 6 -->
-<section class="scene" data-in="13.9" data-out="18.29" data-y0="100" data-s0="9.7" data-s1="9.7">
-  <div class="photobg" id="photobgF" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas><div class="ring" style="left:4%;top:24.8%;width:92%;height:9.2%"></div></div></div>
+<section class="scene" data-in="13.9" data-out="18.29" data-y0="0" data-s0="9.7" data-s1="9.7">
+  <div class="photobg" id="photobgF" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas><div class="ring" style="left:4%;top:33.9%;width:92%;height:9.2%"></div></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbF">
@@ -161,8 +161,8 @@ h2.hookbar .box,h2.hookbar .wd.spoken,h2.hookbar .wd.box.spoken{color:#0d7a6e!im
 </section>
 
 <!-- Scene 7 -->
-<section class="scene" data-in="18.29" data-out="20.51" data-y0="100" data-s0="9.7" data-s1="9.7">
-  <div class="photobg" id="photobgG" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas><div class="ring" style="left:4%;top:15.1%;width:92%;height:9.2%"></div></div></div>
+<section class="scene" data-in="18.29" data-out="20.51" data-y0="0" data-s0="9.7" data-s1="9.7">
+  <div class="photobg" id="photobgG" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas><div class="ring" style="left:4%;top:24.3%;width:92%;height:9.2%"></div></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbG">
@@ -171,7 +171,7 @@ h2.hookbar .box,h2.hookbar .wd.spoken,h2.hookbar .wd.box.spoken{color:#0d7a6e!im
 </section>
 
 <!-- Scene 8 -->
-<section class="scene" data-in="20.51" data-out="23.655" data-y0="150" data-s0="5.2" data-s1="5.2">
+<section class="scene" data-in="20.51" data-out="23.655" data-y0="100" data-s0="5.2" data-s1="5.2">
   <div class="photobg" id="photobgH" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -181,7 +181,7 @@ h2.hookbar .box,h2.hookbar .wd.spoken,h2.hookbar .wd.box.spoken{color:#0d7a6e!im
 </section>
 
 <!-- Scene 9 -->
-<section class="scene" data-in="23.655" data-out="26.1" data-y0="300" data-s0="6.9" data-s1="6.9">
+<section class="scene" data-in="23.655" data-out="26.1" data-y0="220" data-s0="6.9" data-s1="6.9">
   <div class="photobg" id="photobgI" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
@@ -191,7 +191,7 @@ h2.hookbar .box,h2.hookbar .wd.spoken,h2.hookbar .wd.box.spoken{color:#0d7a6e!im
 </section>
 
 <!-- Scene 10 -->
-<section class="scene" data-in="26.1" data-out="28.93" data-y0="100" data-s0="9.9" data-s1="9.9">
+<section class="scene" data-in="26.1" data-out="28.93" data-y0="0" data-s0="9.9" data-s1="9.9">
   <div class="photobg" id="photobgJ" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1090"></canvas></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
