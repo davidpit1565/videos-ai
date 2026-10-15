@@ -86,9 +86,12 @@ body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
 body.render .reel{width:100vw;max-width:none}
 body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
 .scrbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.5);opacity:.35;filter:blur(3cqw) brightness(.9) saturate(1.2)}
-.card{position:absolute;left:15cqw;top:56cqw;width:70cqw;height:112cqw;border-radius:4.5cqw;overflow:hidden;box-shadow:0 2cqw 7cqw rgba(0,0,0,.75);border:.25cqw solid rgba(255,255,255,.16);background:#000}
+.card{position:absolute;left:15cqw;top:64cqw;width:70cqw;height:96cqw;border-radius:4.5cqw;overflow:hidden;box-shadow:0 2cqw 7cqw rgba(0,0,0,.75);border:.25cqw solid rgba(255,255,255,.16);background:#000}
 .scrcard{width:100%;height:100%;display:block;filter:brightness(1.5) contrast(1.06)}
 .ring{position:absolute;border:.7cqw solid var(--accent);border-radius:3.4cqw;box-shadow:0 0 3.5cqw var(--accent);opacity:0}
+.hookbar{background:#fff;color:#0a0e14;padding:2.4cqw 3.2cqw;border-radius:2.4cqw;text-shadow:none!important;display:inline-block;box-shadow:0 1.2cqw 4cqw rgba(0,0,0,.5)}
+h2.hookbar .wd,h2.hookbar .box{text-shadow:none!important}
+h2.hookbar .box,h2.hookbar .wd.spoken,h2.hookbar .wd.box.spoken{color:#0d7a6e!important}
 .frs{position:absolute;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none}
 </style>
 
@@ -98,29 +101,28 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <div class="prog" id="prog"></div>
 
 <!-- Scene 1 -->
-<section class="scene" data-in="0" data-out="2.75" data-y0="100" data-s0="9.9" data-s1="9.9">
-  <div class="photobg" id="photobgA" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1152"></canvas></div></div>
+<section class="scene" data-in="0" data-out="4.25" data-y0="100" data-s0="9.9" data-s1="9.9">
+  <div class="photobg" id="photobgA" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="987"></canvas></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbA">
-    <h2 id="hookH2A" style="font-size:6.6cqw"><span class="box">ChatGPT</span> has been learning about you.</h2>
-  <div class="logobadge" id="logoBadgeA"><img src="../channel/assets/ep70-chatgpt-logo.svg" alt="" style="height:6.4cqw;width:auto;filter:invert(1) drop-shadow(0 .4cqw 1.4cqw rgba(0,0,0,.6))"></div>
+    <h2 id="hookH2A" style="font-size:6.0cqw" class="hookbar"><img src="../channel/assets/ep70-chatgpt-logo.svg" alt="" style="height:1.0em;width:auto;vertical-align:-.14em;margin-right:.32em">Never tell <span class="box">ChatGPT</span> anything personal until you check this.</h2>
   </div></div>
 </section>
 
 <!-- Scene 2 -->
-<section class="scene" data-in="2.75" data-out="4.41" data-y0="100" data-s0="9.9" data-s1="9.9">
-  <div class="photobg" id="photobgB" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1152"></canvas></div></div>
+<section class="scene" data-in="4.25" data-out="7.24" data-y0="100" data-s0="9.9" data-s1="9.9">
+  <div class="photobg" id="photobgB" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="987"></canvas><div class="ring" style="left:4%;top:41.1%;width:92%;height:9.7%"></div></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbB">
-    <h2 id="hookH2B" style="font-size:6.6cqw">You can <span class="box">see</span> what it knows.</h2>
+    <h2 id="hookH2B" style="font-size:6.2cqw">It keeps a <span class="box">summary</span> of what it learns about you.</h2>
   </div></div>
 </section>
 
 <!-- Scene 3 -->
-<section class="scene" data-in="4.41" data-out="8.07" data-y0="414" data-s0="1.75" data-s1="3.7">
-  <div class="photobg" id="photobgC" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1152"></canvas></div></div>
+<section class="scene" data-in="7.24" data-out="10.9" data-y0="414" data-s0="1.75" data-s1="3.7">
+  <div class="photobg" id="photobgC" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="987"></canvas></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbC">
@@ -129,8 +131,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 4 -->
-<section class="scene" data-in="8.07" data-out="9.685" data-y0="414" data-s0="6.9" data-s1="6.9">
-  <div class="photobg" id="photobgD" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1152"></canvas><div class="ring" style="left:4%;top:31.3%;width:92%;height:8.2%"></div></div></div>
+<section class="scene" data-in="10.9" data-out="12.515" data-y0="414" data-s0="6.9" data-s1="6.9">
+  <div class="photobg" id="photobgD" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="987"></canvas><div class="ring" style="left:4%;top:36.6%;width:92%;height:9.6%"></div></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbD">
@@ -139,18 +141,18 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 5 -->
-<section class="scene" data-in="9.685" data-out="12.62" data-y0="100" data-s0="7.3" data-s1="9.4">
-  <div class="photobg" id="photobgE" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1152"></canvas><div class="ring" style="left:4%;top:35.2%;width:92%;height:8.3%"></div></div></div>
+<section class="scene" data-in="12.515" data-out="17.25" data-y0="100" data-s0="7.3" data-s1="9.4">
+  <div class="photobg" id="photobgE" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="987"></canvas><div class="ring" style="left:4%;top:27.9%;width:92%;height:9.6%"></div></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbE">
-    <h2 id="hookH2E" style="font-size:6.0cqw">The <span class="box">summary</span> shows what it knows about you.</h2>
+    <h2 id="hookH2E" style="font-size:5.8cqw">The screen even warns it may include <span class="box">sensitive info</span> you provide.</h2>
   </div></div>
 </section>
 
 <!-- Scene 6 -->
-<section class="scene" data-in="12.62" data-out="14.78" data-y0="100" data-s0="9.7" data-s1="9.7">
-  <div class="photobg" id="photobgF" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1152"></canvas><div class="ring" style="left:4%;top:14.8%;width:92%;height:8.1%"></div></div></div>
+<section class="scene" data-in="17.25" data-out="19.42" data-y0="100" data-s0="9.7" data-s1="9.7">
+  <div class="photobg" id="photobgF" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="987"></canvas><div class="ring" style="left:4%;top:17.2%;width:92%;height:9.4%"></div></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbF">
@@ -159,8 +161,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 7 -->
-<section class="scene" data-in="14.78" data-out="17.96" data-y0="100" data-s0="5.2" data-s1="5.2">
-  <div class="photobg" id="photobgG" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1152"></canvas></div></div>
+<section class="scene" data-in="19.42" data-out="22.6" data-y0="100" data-s0="5.2" data-s1="5.2">
+  <div class="photobg" id="photobgG" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="987"></canvas></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbG">
@@ -169,8 +171,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 8 -->
-<section class="scene" data-in="17.96" data-out="20.405" data-y0="414" data-s0="6.9" data-s1="6.9">
-  <div class="photobg" id="photobgH" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1152"></canvas></div></div>
+<section class="scene" data-in="22.6" data-out="25.045" data-y0="414" data-s0="6.9" data-s1="6.9">
+  <div class="photobg" id="photobgH" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="987"></canvas></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbH">
@@ -179,8 +181,8 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 </section>
 
 <!-- Scene 9 -->
-<section class="scene" data-in="20.405" data-out="23.45" data-y0="100" data-s0="9.9" data-s1="9.9">
-  <div class="photobg" id="photobgI" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="1152"></canvas></div></div>
+<section class="scene" data-in="25.045" data-out="28.08" data-y0="100" data-s0="9.9" data-s1="9.9">
+  <div class="photobg" id="photobgI" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><canvas class="scrbg" width="360" height="783"></canvas><div class="card"><canvas class="scrcard" width="720" height="987"></canvas></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbI">
@@ -196,7 +198,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="31.46" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="35.660000000000004" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -206,7 +208,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=23.95,t=0,playing=false,last=0;
+  var DUR=28.58,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var seek=document.getElementById('seek');
@@ -214,22 +216,22 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var tap=document.getElementById('tap'),prog=document.getElementById('prog');
 
   var CUES=[
-    [0.08,2.54,"ChatGPT has been learning about you."],
-    [2.96,4.20,"You can see what it knows."],
-    [4.62,7.86,"Open the menu, tap the gear, then tap Memory."],
-    [8.28,9.26,"Pause here."],
-    [10.11,12.41,"The summary shows what it knows about you."],
-    [12.83,14.57,"Switch it off if you don't like that."],
-    [14.99,17.75,"Send this to someone who uses ChatGPT."],
-    [18.17,19.98,"The setup's in the link in bio."],
-    [20.83,23.05,"Follow for the setup that actually works."]
+    [0.08,4.04,"Never tell ChatGPT anything personal until you check this."],
+    [4.46,7.03,"It keeps a summary of what it learns about you."],
+    [7.45,10.69,"Open the menu, tap the gear, then tap Memory."],
+    [11.11,12.09,"Pause here."],
+    [12.94,17.04,"The screen even warns it may include sensitive info you provide."],
+    [17.46,19.21,"Switch it off if you don't like that."],
+    [19.63,22.39,"Send this to someone who uses ChatGPT."],
+    [22.81,24.62,"The setup's in the link in bio."],
+    [25.47,27.68,"Follow for the setup that actually works."]
   ];
   var WORD_WINDOWS=[
-    new Array(6).fill(null),
-    new Array(6).fill(null),
+    new Array(9).fill(null),
+    new Array(10).fill(null),
     new Array(9).fill(null),
     new Array(2).fill(null),
-    new Array(8).fill(null),
+    new Array(11).fill(null),
     new Array(8).fill(null),
     new Array(7).fill(null),
     new Array(7).fill(null),
@@ -369,7 +371,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
       var a=+o.sc.dataset.in,b=+o.sc.dataset.out,p=Math.max(0,Math.min(1,(t-a)/(b-a)));
       var ss=o.s0+(o.s1-o.s0)*p,idx=Math.max(0,Math.min(FRS.length-1,Math.round(ss*30)));
       var im=FRS[idx]; if(!im||!im.complete||!im.naturalWidth) return;
-      o.card.getContext('2d').drawImage(im,0,o.y0,720,1152,0,0,720,1152); o.bg.getContext('2d').drawImage(im,0,0,360,783);
+      o.card.getContext('2d').drawImage(im,0,o.y0,720,987,0,0,720,987); o.bg.getContext('2d').drawImage(im,0,0,360,783);
       if(o.ring){var e=Math.max(0,Math.min(1,(t-a-0.5)/0.3));o.ring.style.opacity=(e*(0.82+0.18*Math.sin(t*7))).toFixed(3);}
     });
   }

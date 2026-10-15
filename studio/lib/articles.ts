@@ -1885,7 +1885,7 @@ export const ARTICLES: Article[] = [
     title: "What does ChatGPT know about you? Where to see it and how to turn Memory off",
     standfirst:
       "In the ChatGPT iPhone app, Memory has its own screen with an Enable memory switch and a Memory summary. " +
-      "The screen's own text says the summary is an overview of what ChatGPT has learned about you. " +
+      "The screen's own text says the summary is an overview of what ChatGPT has learned about you, and that memory may include sensitive info you provide. " +
       "Here are the exact taps to find it, as shown in a screen recording of the app on 15 October 2026.",
     steps: [
       "Open the ChatGPT app on your iPhone.",
