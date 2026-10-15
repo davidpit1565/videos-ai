@@ -1,29 +1,39 @@
-# Episode 70 — first video of the "viral format" test (DRAFT 15.10.2026, NOT built)
+# Episode 70 — first video of the "viral format" test (BUILT and gated 15.10.2026)
 
-**Product check (rule: verify before writing):** OpenAI's own help center returned HTTP 403 to me, so menu labels are
-UNCONFIRMED from the source. Secondary results (OpenAI's 2024 "memory and new controls" post via search, third-party guides):
-Settings > Personalization > Memory; memories can be viewed, deleted individually, or all cleared; memory can be turned off;
-deleting a chat does not delete its memories. Labels vary by account ("Manage" / "Saved memories"). **David's own screen
-recording decides the exact words.** Nothing below that names a label is final until the recording shows it.
-Also UNCONFIRMED and must not be said: how long deleted memories are kept (one search snippet said up to 30 days).
+**Format (the test variable):** David's own real ChatGPT iPhone screen recording (no face), shown as a phone card over a blurred,
+teal-tinted background; plain-language lines; a pause frame with a ring on the real "Memory" row; our own voice and captions.
+See `channel/experiments.md` (viral-format test, video 1 of 10) and `channel/reference-reels-15-10.md`.
 
-**Topic choice (data):** ChatGPT-memory episodes sat at ~175-186 views earlier (log in content-memory.md) — low, so the
-topic is NOT the proven part; the test is the format. Chosen because it is a real everyday ChatGPT feature, a true
-"you can read it" hook, and easy to show on a real screen.
+## Product check
+Verified against the LIVE APP (David's recording, 15.10.2026), NOT against OpenAI's help page (it returned HTTP 403 to my fetch).
+Real labels on screen: sidebar > gear > "Customize ChatGPT" list (Personalization, Memory, Plugins); Memory screen: "Enable memory"
+switch ("Let ChatGPT personalize your experience based on your chats, files, and connected apps. Memory may include sensitive info
+you provide."), "Memory summary" ("View an overview of what ChatGPT has learned about you. ... You can still manage your old saved
+memories."), Your nickname, Your occupation, More about you. UNCONFIRMED and NOT said: how long switched-off/deleted memories are kept,
+whether turning Enable memory off removes anything already saved, Android/web differences.
 
-## Lines (draft, ~22s)
-1. ChatGPT keeps notes about you, and you can read them.
-2. Open ChatGPT. Tap your name, then Settings. [screen: David's recording]
-3. Tap Personalization, then Memory. [labels to match the recording]
-4. That list is everything it saved about you. Pause here.
-5. [PAUSE FRAME: the 3-step path as text]
-6. Delete one note, or turn it all off.
-7. Send this to someone who uses ChatGPT every day.
-8. The setup's in the link in bio.
-9. Follow for the setup that actually works.
+## Spoken lines (final, 24.0s)
+1. ChatGPT has been learning about you.
+2. You can see what it knows.
+3. Open the menu, tap the gear, then tap Memory.
+4. Pause here. (pause frame: ring on the Memory row; headline "Menu. Gear. Memory.")
+5. The summary shows what it knows about you.
+6. Switch it off if you don't like that. (ring on Enable memory)
+7. Send this to someone who uses ChatGPT.
+8. The setup's in the link in bio. (locked)
+9. Follow for the setup that actually works. (locked; standard ending, no promise about 71)
+Lines were reworded from the first draft only because the voice gate flagged swallowed words ("Memory" at the start of a line, "learned",
+"every", "a lot"): the claim is unchanged ("knows" paraphrases the screen's own "has learned about you").
 
-No "comment WORD" CTA (no DM automation). No face. Hook type to log in `hooks-guide.md`: Direct address / you-can-read-it.
+## Privacy
+David's raw recording is NOT in git. Email, phone number and recent chat titles were mosaic-masked (30px pixelate) on every frame
+where they appear, including the slide-in moment (whole frame masked 2.8-3.4s of the source); full name and "DP" initials are left
+visible by David's decision (already public on his profile). Masked 303 frames live only in the working copy
+(`channel/assets/ep70-screen/`, git-excluded), so `video/reel-70*.html` cannot be re-rendered from a fresh clone without the recording.
+Checked by eye twice on the final MP4 (a 5 fps sheet of the whole file and a 10 fps crop of the sensitive seconds); there is no OCR here.
 
-## What David records (iPhone, about 20s, NO personal memories on screen)
-Screen recording of: ChatGPT app > your profile/name > Settings > Personalization > Memory. Stop BEFORE the saved list
-scrolls into view (your real memories are private). Hold 2s on the Memory screen with the on/off switch.
+## Build facts
+24.0s, accent #2DD4BF (teal), mood 'urgent', ChatGPT icon (white inverted version of ep63's real SVG), gate: ALL CHECKS PASSED.
+Known soft warnings: length 24s is under the usual 30-90s band (deliberate for the test); picture nearly still ~2s in a few places.
+The accent heuristic flagged lines 5 and 7 on many rolls; the shipped take cleared it.
+Hook type: Direct address / curiosity ("learning about you" + "you can see it").
