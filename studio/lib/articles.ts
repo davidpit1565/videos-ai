@@ -1498,9 +1498,9 @@ export const ARTICLES: Article[] = [
       "servers. There is a real, current fix for what happens to recordings afterward: one " +
       "toggle in the Alexa app that makes \"Alexa, delete everything I said today\" actually work.",
     steps: [
-      "Open the Alexa app on your phone (אפליקציית Alexa). Tap More (עוד) in the bottom-right corner, then Settings (הגדרות).",
-      "Tap Alexa Privacy (פרטיות Alexa), then Manage Your Alexa Data (ניהול הנתונים שלך ב-Alexa), then Voice Recordings (הקלטות קוליות).",
-      "Find \"Enable Deletion by Voice\" (אפשר מחיקה בקול) and turn the toggle on. This is the step that actually matters — without it, the voice command below does nothing.",
+      "Open the Alexa app on your phone. Tap More in the bottom-right corner, then Settings.",
+      "Tap Alexa Privacy, then Manage Your Alexa Data, then Voice Recordings.",
+      "Find \"Enable Deletion by Voice\" and turn the toggle on. This is the step that actually matters — without it, the voice command below does nothing.",
       "From then on, any time you want that day's recordings gone, just say it out loud to any Echo device: \"Alexa, delete everything I said today.\" You can also say \"Alexa, delete what I just said\" for a single request, or \"Alexa, delete my entire voice history\" to clear everything on file.",
       "Optional: in the same Voice Recordings screen, set an auto-delete window (3 months or 18 months) so recordings clear themselves going forward, instead of relying on remembering to say the command.",
       "There is no app setting that stops the recording from reaching Amazon's servers in the first place — the only control that does that is the physical mute button on top of the device, which disables the microphone entirely.",
@@ -1527,9 +1527,9 @@ export const ARTICLES: Article[] = [
       "headphones you already own, on both iPhone and Android — unlike Apple's competing " +
       "AirPods feature, which needs specific $249+ hardware and isn't available in the EU.",
     steps: [
-      "Make sure you have the latest version of the Google Translate app (אפליקציית Google Translate) installed, and connect your Bluetooth headphones to your phone as you normally would.",
-      "Open the Google Translate app. At the bottom of the screen, tap \"Live Translate\" (תרגום חי).",
-      "Choose a mode: \"Conversation\" (שיחה) for back-and-forth with another person through your headphones or speaker, \"Listening\" (האזנה) for one-way translation of someone speaking near you (headphones must stay connected for this mode), or \"Text only\" (טקסט בלבד) to read translations without audio.",
+      "Make sure you have the latest version of the Google Translate app installed, and connect your Bluetooth headphones to your phone as you normally would.",
+      "Open the Google Translate app. At the bottom of the screen, tap \"Live Translate\".",
+      "Choose a mode: \"Conversation\" for back-and-forth with another person through your headphones or speaker, \"Listening\" for one-way translation of someone speaking near you (headphones must stay connected for this mode), or \"Text only\" to read translations without audio.",
       "Pick the two languages involved — your own, and the other person's.",
       "Just start talking. The app also shows an on-screen transcript of both sides of the conversation as it translates, so you can follow along even in a noisy room.",
       "Optional: tap any line of the transcript to hear that specific translation played back again, or use the Speak button to pause and resume translation mid-conversation.",
@@ -1556,12 +1556,12 @@ export const ARTICLES: Article[] = [
       "on iPhone and Android, no sign-up required, and runs on Google's newest live " +
       "audio/voice model (widely reported as Gemini 3.1 Flash Live).",
     steps: [
-      "Make sure you have the Google app (אפליקציית Google) installed and updated — it's the regular Google Search app, not a separate download.",
-      "Open the Google app. Below the search bar, tap \"Live\" (חי).",
+      "Make sure you have the Google app installed and updated — it's the regular Google Search app, not a separate download.",
+      "Open the Google app. Below the search bar, tap \"Live\".",
       "Follow the on-screen instructions if this is your first time using it.",
       "Tap the camera/video icon to turn your camera on, so Search Live can see what you're pointing at, not just hear you.",
       "Just start talking — ask about whatever you're pointing the camera at. It answers out loud, in real time, and you can keep going back and forth.",
-      "While it's running: tap \"Wave\" (נפנוף) to interrupt it and add a follow-up question or change the subject, \"Mute\" (השתקה) to mute your microphone, or \"Exit\" (יציאה) to end the session.",
+      "While it's running: tap \"Wave\" to interrupt it and add a follow-up question or change the subject, \"Mute\" to mute your microphone, or \"Exit\" to end the session.",
     ],
     changes: [
       "Verified live (2.10.2026): the March 26, 2026 global expansion to 200+ countries, confirmed directly on Google's own blog (\"Search Live expands globally\") and independently corroborated by TechCrunch (\"Google is launching Search Live globally\"), the-decoder.com, ppc.land, Manila Bulletin, and digitalapplied.com.",
@@ -1585,9 +1585,9 @@ export const ARTICLES: Article[] = [
       "without leaving WhatsApp or opening a separate app. It's free, built into the " +
       "WhatsApp you already have, on both iPhone and Android.",
     steps: [
-      "Make sure you have the latest version of WhatsApp (אפליקציית WhatsApp) installed.",
+      "Make sure you have the latest version of WhatsApp installed.",
       "Open a chat like you normally would, and tap the photo/attachment icon to pick a photo — the same way you'd normally send one.",
-      "Before sending, look for the new edit button (עריכה) in the photo composer screen.",
+      "Before sending, look for the new edit button in the photo composer screen.",
       "Type a sentence describing what you want changed — for example, \"remove the bag in the background\" or \"make it look like sunset.\"",
       "Wait a few seconds while the AI rebuilds the photo to match what you typed.",
       "Review the result. If it's not right, you can usually type a follow-up instruction to adjust it again before sending.",
@@ -1615,11 +1615,11 @@ export const ARTICLES: Article[] = [
       "Login details and payment information are excluded. Switching it off only applies " +
       "from now on — it does not undo training that already happened.",
     steps: [
-      "On your phone, open the LinkedIn app (אפליקציית LinkedIn) and tap your profile photo at the top left.",
-      "Tap Settings (הגדרות) — at the bottom of the menu that slides out.",
+      "On your phone, open the LinkedIn app and tap your profile photo at the top left.",
+      "Tap Settings — at the bottom of the menu that slides out.",
       "Tap Data privacy, then tap Data for Generative AI Improvement. Menu wording can differ slightly by language and app version.",
       "Switch off the toggle \"Use my data for training content creation AI models\".",
-      "Shortcut on a computer: sign in and open linkedin.com/mypreferences/d/settings/data-for-ai-improvement — the same toggle, one click away. Or click Me (אני) → Settings & Privacy → Data privacy → Data for Generative AI Improvement.",
+      "Shortcut on a computer: sign in and open linkedin.com/mypreferences/d/settings/data-for-ai-improvement — the same toggle, one click away. Or click Me → Settings & Privacy → Data privacy → Data for Generative AI Improvement.",
       "Optional: if you manage a company page or a client's account, repeat the same steps while signed in as that account — the setting belongs to each account separately.",
     ],
     changes: [
@@ -1646,8 +1646,8 @@ export const ARTICLES: Article[] = [
       "page only says \"most regions\".",
     steps: [
       "Work out where you talk to Meta AI: the Meta AI app, or the Meta AI chat inside Instagram, Facebook or Messenger. This is what the personalization looks at.",
-      "To clear the Meta AI app's history: open the Meta AI app (אפליקציית Meta AI) and tap Menu (תפריט) at the top left.",
-      "Tap Settings (הגדרות) at the bottom left, then under App settings tap Data & privacy.",
+      "To clear the Meta AI app's history: open the Meta AI app and tap Menu at the top left.",
+      "Tap Settings at the bottom left, then under App settings tap Data & privacy.",
       "Tap Manage your information, then tap Delete all chats and media, then tap Delete all to confirm.",
       "Optional: Meta says its Ads Preferences tool and feed controls let you adjust the ads and content you see. Meta's announcement does not give click-by-click steps for them, so none are claimed here.",
       "Optional: from now on, treat the AI chat like a search box — do not type anything you would not want an ad about.",
