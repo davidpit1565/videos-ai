@@ -1908,6 +1908,35 @@ export const ARTICLES: Article[] = [
       "ChatGPT learns about you only to the extent Enable memory is on and you have shared things in chats; an empty or short summary is possible.",
     ],
   },
+  {
+    n: 71,
+    title: "Is ChatGPT using your chats to train its AI? Where the switch is and how to turn it off",
+    standfirst:
+      "In the ChatGPT iPhone app, Settings has a Data controls screen with a switch called Improve model for everyone. " +
+      "The screen's own text says it lets your content be used to improve ChatGPT's models for you and other users. " +
+      "Here are the exact taps to find it, as shown in a screen recording of the app on 16 October 2026. On the recorded account the switch was on before it was changed.",
+    steps: [
+      "Open the ChatGPT app on your iPhone.",
+      "Tap the menu button (top left) to open the side menu.",
+      "Tap the gear icon at the bottom right of the side menu. This opens your account and settings screen.",
+      "Scroll down to the App settings list and tap Data controls.",
+      "At the top you will see Improve model for everyone. The text under it says: Allow your content to be used to improve our models for you and other users. Check whether the switch is on for your account.",
+      "If you do not want that, switch Improve model for everyone off. Look at the screen afterwards: the switch should show as off.",
+      "Optional: right below it is a second switch, Include audio recordings. Its text says it shares audio from voice chats to train the models. It was also on in the recording. Switch it off if you do not want that.",
+      "Optional: pause the video on the Data controls screen, take a screenshot and send it to someone who uses ChatGPT.",
+    ],
+    changes: [
+      "Everything above comes from a screen recording of the ChatGPT iPhone app on one account on 16.10.2026: the settings list with Data controls, and the Data controls screen with Improve model for everyone, Include audio recordings, Location services, Apps with access and Chat history.",
+      "On that account both switches were on before the recording and were switched off during it.",
+      "The recording's personal details (email, phone number, chat titles) were blurred before use.",
+      "This is video 2 of the 10-video viral-format experiment (channel/experiments.md): a real screen recording with no face and a short path to save and send.",
+    ],
+    limits: [
+      "OpenAI's own help page was not reachable (it returned an access error), so these steps are verified against the live app, not against OpenAI's documentation. Menu names and the exact path can differ by account, plan, country and app version.",
+      "Whether the switch is on by default for your plan or in your country was not checked. It was on for the recorded account. Check yours on the screen.",
+      "Not checked and not said in the video: whether switching it off affects chats that were already used, how long chats are kept, and how this differs on the website or on Android.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

@@ -1,0 +1,9 @@
+The last thing you typed into ChatGPT may be teaching it.
+
+Source: the ChatGPT iPhone app itself, screen recorded by the channel on 16.10.2026. Settings (gear in the menu) > Data controls. The screen shows an "Improve model for everyone" switch with the text "Allow your content to be used to improve our models for you and other users. We take steps to protect your privacy." and an "Include audio recordings" switch with the text "Share audio from voice chats to train our models." Both switches were on for the recorded account and were switched off during the recording.
+
+Said plainly: menu names and defaults can differ by account, plan and country. OpenAI's own help page was not reachable for this check (it returned an access error), so this is verified against the live app, not against OpenAI's documentation.
+
+Full setup, step by step: https://actually-works.com/e/71
+
+Follow for the setup that actually works.
