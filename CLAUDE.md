@@ -95,8 +95,8 @@ been running for days.
   standing, not optional, from episode 21 on.** Decided 2.9.2026, alongside choosing the
   "live test / escalate until it breaks" format for episode 21: watching isn't enough, a
   viewer has to be able to install or replicate whatever the episode shows on their own
-  side by the end of it. Write it per `explain-steps` — numbered clicks, interface labels in
-  both languages, the boring path, what happens after each step — and it goes on the
+  side by the end of it. Write it per `explain-steps` — numbered clicks, English interface labels only (David, 16.10.2026:
+  NO Hebrew on any visitor-facing page; `export/check_setup_guide.py` fails on it. Labels in both languages are for chat answers to him, not for the site), the boring path, what happens after each step — and it goes on the
   episode's own site page (`/e/N`), not just spoken narration a viewer can't pause and
   copy from. Applies to every future reel/episode, whichever content pattern it uses.
   Enforced, not just written down: `export/produce.sh` runs `export/check_setup_guide.py`
