@@ -1,4 +1,4 @@
-The last thing you typed into ChatGPT may be teaching it.
+One switch in ChatGPT decides if your chats get used. Mine was on.
 
 Source: the ChatGPT iPhone app itself, screen recorded by the channel on 16.10.2026. Settings (gear in the menu) > Data controls. The screen shows an "Improve model for everyone" switch with the text "Allow your content to be used to improve our models for you and other users. We take steps to protect your privacy." and an "Include audio recordings" switch with the text "Share audio from voice chats to train our models." Both switches were on for the recorded account and were switched off during the recording.
 

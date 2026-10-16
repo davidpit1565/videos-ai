@@ -1,4 +1,4 @@
-The last thing you typed into ChatGPT may be teaching it.
+One switch in ChatGPT decides if your chats get used. Mine was on.
 
 In the ChatGPT app, Settings has a Data controls screen. At the top is a switch called "Improve model for everyone." The screen's own text says it lets your content be used to improve the models for you and other users. There is a second switch right below it, "Include audio recordings," for voice chats.
 

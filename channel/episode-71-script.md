@@ -21,18 +21,27 @@ no support: "sharing your secrets", "your chats are being read", "nothing is sav
 Own history (`hooks-guide.md`): 70 = negative command / direct address, so this one is NOT a negative command; 62 already used "Delete a ChatGPT chat..." (retention).
 Chosen type: **Direct address / personal stakes, softened with "may"** — about the viewer's own last chat, not a number or a prohibition.
 
-## Spoken lines (FINAL, built and gated 16.10.2026, 32.9s, ALL CHECKS PASSED)
-1. The last thing you typed into ChatGPT may be teaching it. (hook, white bar with the ChatGPT icon; screen: Data controls with the switch ON)
-2. OpenAI, which runs it, can use your chats to train its AI. (reworded from "the company behind it": "company" was swallowed on every roll)
-3. One switch decides that. Open the menu, top left. (ring on the menu button)
-4. Then press the gear at the bottom. (side menu, chat titles blurred, ring on the gear)
-5. Next, open Data controls. (reworded from "And open": the accent check kept flagging it; ring on the row in the settings list)
-6. Find Improve model for everyone. (the REAL label on screen has no "the"; ring on the row)
-7. Switch it off if you don't want that. (the real recording plays the switch flipping ON -> OFF)
-8. Your voice chats have their own switch just below it. ("Include audio recordings", also on and switched off in the recording; ring on that row)
-9. Send this to someone who uses ChatGPT.
-10. The setup's in the link in bio. (locked)
-11. Follow for the setup that actually works. (no episode 72 exists, so no promise is made)
+## Spoken lines (v3, built and gated 16.10.2026, 35.0s, ALL CHECKS PASSED; replaces v1 after David's feedback: boring delivery, weak hook, closing screens "jumping")
+1. One switch in ChatGPT decides if your chats get used. (hook, white bar; screen: Data controls, switch ON)
+2. Mine was on. (own beat, big text; the red ON tag appears on the real switch)
+3. That means OpenAI, which runs it, can use them to train its AI.
+4. Here's how to check your own.
+5. Open the menu, top left. (slow zoom push on the button, continuing from line 4)
+6. Press the gear at the bottom.
+7. Open Data controls.
+8. Find Improve model for everyone. (ON tag)
+9. Switch it off if you don't want that. (the real flip; the tag turns green OFF at the flip)
+10. Your voice chats have their own switch, just below it.
+11. Send this to someone who uses ChatGPT.
+12. The setup's in the link in bio. (locked)
+13. Follow for the setup that actually works. (locked; no episode 72 is published yet, so no promise)
+Hook choice: from a hook-ranking agent that read hooks-guide.md and the studio's own numbers. The only consistent winner pattern is a plain, checkable fact about a product the viewer uses in the first clause;
+"Mine was on." adds the personal stake and is checkable on the first frame. NO evidence it beats other hooks (about 4 grid points per pattern, all 300-450 views, no shares). The runner-up for a Trial Reels A/B:
+"ChatGPT can train on your chats. This switch stops it." (needs "stops it" softened to "stops future use").
+Delivery: exaggeration 0.66 (hook 0.74, "Mine was on." 0.80, CTA 0.70) instead of 0.50, shorter lines, a beat before "Mine was on.". Measured on the final audio: pitch variation 3.6 -> 4.5 semitones (std), range about the same,
+pace NOT faster. This is a measurement, not an ear test: if it sounds worse to David, his ear wins and the old setting (0.50) is in profile.json.
+Visual: ON/OFF tags, a zoom push, one constant closing screen (the three last lines used to re-fade the same screen, which read as a jump).
+Known weak spot left: about 3 s on the empty home screen before the menu.
 
 ## Build facts and what the real recording showed (16.10.2026, two recordings; the 16.7s one, 13:09, was used)
 - Real label: "Improve model for everyone" (not "Improve the model for everyone" as the third-party guides say). Text on screen: "Allow your content to be used to improve our models for you and other users. We take steps to protect your privacy."
