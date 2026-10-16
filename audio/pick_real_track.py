@@ -253,10 +253,13 @@ def main():
         sys.exit(f"no real track mapped for mood '{mood}' — pick one of: {', '.join(sorted(MOODS))}")
 
     history = load_history()
-    choice = choose(MOODS[mood], history)
+    # Only tracks that exist on this machine: the 16.10.2026 batch of mp3s is not in git (205 MB),
+    # so a clone or cloud session has the older tracks only and must not pick a missing one.
+    present = [c for c in MOODS[mood] if os.path.exists(os.path.join(LIB, c))]
+    if not present:
+        sys.exit(f"missing track files for mood '{mood}': none of {len(set(MOODS[mood]))} candidates exist in {LIB}")
+    choice = choose(present, history)
     src = os.path.join(LIB, choice)
-    if not os.path.exists(src):
-        sys.exit(f"missing track file: {src}")
 
     src_dur = probe_duration(src)
     fade_in, fade_out = 0.3, 2.0
