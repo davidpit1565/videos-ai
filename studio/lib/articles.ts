@@ -1895,7 +1895,7 @@ export const ARTICLES: Article[] = [
       "You will see the Enable memory switch. When it is on, ChatGPT can personalize answers based on your chats, files and connected apps, according to the text on the screen.",
       "Tap Memory summary to read an overview of what ChatGPT has learned about you. The screen's text also says you can still manage your old saved memories, in a link on the same screen.",
       "If you do not want this, switch Enable memory off. Check the screen afterwards: the switch should show as off.",
-      "Optional: this video's pause frame shows the path (menu, gear, Memory). Pause on it, take a screenshot and send it to someone who uses ChatGPT.",
+      "Optional: the video shows each of these taps on its own, with a highlight ring: menu, gear, Memory. Pause on any of them, take a screenshot and send it to someone who uses ChatGPT.",
     ],
     changes: [
       "Everything above comes from a screen recording of the ChatGPT iPhone app on one account on 15.10.2026: the Customize ChatGPT list (Personalization, Memory, Plugins), the Memory screen with Enable memory, Memory summary, Your nickname, Your occupation and More about you, and the screen's own explanatory text.",
