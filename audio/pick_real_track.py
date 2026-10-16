@@ -3,7 +3,8 @@
 same contract as build_music.py (a total duration in, a ready music.wav out),
 so produce.sh can point at either one interchangeably.
 
-Usage: python3 audio/pick_real_track.py <seconds> <out.wav> --mood <mood>
+Usage: python3 audio/pick_real_track.py <seconds> <out.wav> --mood <mood> [--no-record]
+       python3 audio/pick_real_track.py --rotation-test <mood>   (10 simulated picks, writes nothing)
 
 Moods map to files in audio/music-library/ (see MANIFEST.md for what each one
 actually sounds like and its real source/license). A track shorter than the
@@ -12,14 +13,98 @@ is the one 22s case); a longer one is trimmed from its start. Either way the
 same fade-in/fade-out as build_music.py's own output, so the two are
 interchangeable in render.sh without retuning levels.
 """
-import random, subprocess, sys, os
+import json, random, subprocess, sys, os, collections
 
 LIB = os.path.join(os.path.dirname(__file__), "music-library")
+
+# Rotation (16.10.2026): every pick is appended to last-used.json (git-ignored, last 5
+# kept); a mood with more than one candidate never reuses a track from the last 3
+# picks, and falls back to any candidate only if all of them were used recently.
+HISTORY = os.path.join(LIB, "last-used.json")
+HISTORY_KEEP = 5
+NO_REPEAT = 3
 
 # Each mood maps to a LIST of candidate files — pick_real_track.py chooses randomly
 # among them (see main()) so two episodes landing on the same mood don't always get
 # the identical track. Most moods still only have one real option; add more as
 # David listens to and picks real tracks for them (see MANIFEST.md's TODO).
+# Widened 16.10.2026 (channel/music-sourcing-prompt.md): 54 new Pixabay tracks, one list per
+# first-guess mood. Mood labels are guesses from titles + loudness checks — not yet heard.
+NEW = {
+    "tense": [
+        "tense--airium-tense--leberch.mp3",
+        "tense--tense-suspense--leberch.mp3",
+        "tense--suspense-tense-background-music--sigmamusicart.mp3",
+        "tense--palladium-thriller--leberch.mp3",
+        "tense--thriller-tension--leberch.mp3",
+        "tense--suspense-tension-background-music--peacockmusic.mp3",
+        "tense--chase-percussive--echobrainz.mp3",
+    ],
+    "punchy": [
+        "punchy--punchy--themountain.mp3",
+        "punchy--fresh-urban-stomp--osynthw.mp3",
+        "punchy--punchy-brass-groovy-pop-track--moonpub.mp3",
+        "punchy--trending-instagram-reels-music--bombinsound.mp3",
+        "punchy--trending-instagram-reels-music--delosound.mp3",
+        "punchy--hip-hop-beat--themountain.mp3",
+    ],
+    "curious": [
+        "curious--mysterious-fog-curious-discovery--alex-morgan.mp3",
+        "curious--curious-circuits--sonican.mp3",
+        "curious--inquisitive-curiosity--musictown.mp3",
+        "curious--mystery--soundpromusic.mp3",
+        "curious--inquisitive-orchestra--musictown.mp3",
+    ],
+    "lofi": [
+        "lofi--chill-lofi--zephiramusic.mp3",
+        "lofi--lofi-chill--zephiramusic.mp3",
+        "lofi--chill-lofi--velariomusic.mp3",
+        "lofi--lofi-night-haze--ornave.mp3",
+        "lofi--study-music--velariomusic.mp3",
+        "lofi--chill-beats--atlasaudio.mp3",
+    ],
+    "confident": [
+        "confident--technology-corporate--themountain.mp3",
+        "confident--technology-music--nastelbom.mp3",
+        "confident--tech-innovation--themountain.mp3",
+        "confident--tech--atlasaudio.mp3",
+        "confident--innovation--atlasaudio.mp3",
+        "confident--abstract-technology--verclubmusic.mp3",
+        "confident--tech-corporate--themountain.mp3",
+    ],
+    "bright": [
+        "bright--upbeat-music--nastelbom.mp3",
+        "bright--upbeat--subclair.mp3",
+        "bright--feel-good-music--paulyudin.mp3",
+        "bright--feel-good-music--starostin.mp3",
+        "bright--feel-good-beat--tunetank.mp3",
+    ],
+    "cinematic": [
+        "cinematic--cinematic-dramatic--atlasaudio.mp3",
+        "cinematic--dramatic--themountain.mp3",
+        "cinematic--dramatic--prettyjohn1.mp3",
+        "cinematic--epic-trailer--nastelbom.mp3",
+        "cinematic--epic-trailer-2--nastelbom.mp3",
+    ],
+    "minimal": [
+        "minimal--ambient--nastelbom.mp3",
+        "minimal--minimal-piano--leberch.mp3",
+        "minimal--minimal-ambient-background--audiodollar.mp3",
+        "minimal--minimal-minimalist--solarflex.mp3",
+        "minimal--ambient-soft--avelinemusic.mp3",
+        "minimal--instrumental-minimal--themountain.mp3",
+    ],
+    "triumphant": [
+        "triumphant--triumphant--kulakovka.mp3",
+        "triumphant--triumph-triumphant-fanfare--mfcc.mp3",
+        "triumphant--victory-news-orchestral-anthem--sonican.mp3",
+        "triumphant--success-music--paulyudin.mp3",
+        "triumphant--success--themountain.mp3",
+        "triumphant--great-achievement--themountain.mp3",
+        "triumphant--motivational-uplifting-success--denis-pavlov-music.mp3",
+    ],
+}
+
 MOODS = {
     "neutral":     ["confident-corporate-story--echoes-of-lumen.mp3"],
     "corporate":   ["confident-corporate-story--echoes-of-lumen.mp3"],
@@ -27,9 +112,9 @@ MOODS = {
     # mood for it — missing here meant produce.sh's mood='confident' (episodes 32 and 33)
     # silently fell back to synthesized music instead of this real track, which is
     # exactly the "not what I sent you" complaint David raised after hearing episode 33.
-    "confident":   ["confident-corporate-story--echoes-of-lumen.mp3"],
-    "urgent":      ["tense-suspense-rising-dread--alexmorgan.mp3"],
-    "triumphant":  ["success--paulyudin.mp3"],
+    "confident":   ["confident-corporate-story--echoes-of-lumen.mp3"] + NEW["confident"],
+    "urgent":      ["tense-suspense-rising-dread--alexmorgan.mp3"] + NEW["tense"],
+    "triumphant":  ["success--paulyudin.mp3"] + NEW["triumphant"],
     "bright":      [
         "upbeat-and-inspiring--atlasaudio.mp3",
         "upbeat-energetic--maksymmalko.mp3",
@@ -37,11 +122,11 @@ MOODS = {
         "upbeat-energetic--lnplusmusic.mp3",
         "energetic--ikoliksaj.mp3",
         "upbeat-energetic--ikoliksaj-2.mp3",
-    ],
-    "lofi":        ["vibraphone--alexmorgan.mp3"],
+    ] + NEW["bright"],
+    "lofi":        ["vibraphone--alexmorgan.mp3"] + NEW["lofi"],
     "retro":       ["nostalgic-memories-piano--alexmorgan.mp3"],
     "drive":       ["video-editing--alexmorgan.mp3"],
-    "punchy":      ["trending-vibe--alexmorgan.mp3"],
+    "punchy":      ["trending-vibe--alexmorgan.mp3"] + NEW["punchy"],
     # New 16.9.2026 — a genuinely new mood, not a relabeling of an existing one.
     "scary":       ["scary-horror--arpmedia.mp3"],
     "horror":      ["scary-horror--arpmedia.mp3"],
@@ -61,9 +146,61 @@ MOODS = {
     # doesn't catch (see audio/check_music_bed.py). Rather than maintain two mood keys
     # that both need the same fix, "tense" now points at the same alexmorgan track as
     # "suspense" — one fewer place for this exact bug to recur.
-    "tense":       ["tense-suspense-rising-dread--alexmorgan.mp3"],
-    "suspense":    ["tense-suspense-rising-dread--alexmorgan.mp3"],
+    "tense":       ["tense-suspense-rising-dread--alexmorgan.mp3"] + NEW["tense"],
+    "suspense":    ["tense-suspense-rising-dread--alexmorgan.mp3"] + NEW["tense"],
+    # New moods, 16.10.2026
+    "curious":     NEW["curious"],
+    "mystery":     NEW["curious"],
+    "cinematic":   NEW["cinematic"],
+    "dramatic":    NEW["cinematic"],
+    "minimal":     NEW["minimal"],
+    "ambient":     NEW["minimal"],
+    "tech":        NEW["confident"],
+    "upbeat":      NEW["bright"],
 }
+
+
+def load_history(path: str = HISTORY) -> list:
+    try:
+        with open(path) as f:
+            h = json.load(f)
+        return [x for x in h if isinstance(x, str)][-HISTORY_KEEP:]
+    except (OSError, ValueError):
+        return []
+
+
+def save_history(history: list, path: str = HISTORY) -> None:
+    with open(path, "w") as f:
+        json.dump(history[-HISTORY_KEEP:], f, indent=1)
+
+
+def choose(candidates: list, history: list) -> str:
+    """Random pick that skips the last NO_REPEAT used tracks (when there is a choice)."""
+    uniq = list(dict.fromkeys(candidates))
+    if len(uniq) > 1:
+        recent = set(history[-NO_REPEAT:])
+        fresh = [c for c in uniq if c not in recent]
+        if fresh:
+            return random.choice(fresh)
+    return random.choice(uniq)
+
+
+def rotation_test(mood: str, runs: int = 10) -> None:
+    """Simulate `runs` consecutive episodes on a mood, starting from the real history,
+    without writing anything or cutting audio. Prints the distribution."""
+    history = load_history()
+    picks = []
+    for _ in range(runs):
+        c = choose(MOODS[mood], history)
+        picks.append(c)
+        history = (history + [c])[-HISTORY_KEEP:]
+    for i, c in enumerate(picks, 1):
+        print(f"{i:2d}. {c}")
+    print(f"\ndistribution over {runs} runs for '{mood}' ({len(set(MOODS[mood]))} candidates):")
+    for c, n in collections.Counter(picks).most_common():
+        print(f"  {n}x {c}")
+    bad = [i + 1 for i in range(len(picks)) if picks[i] in picks[max(0, i - NO_REPEAT):i]]
+    print("repeat within the 3 previous picks:", bad or "none")
 
 
 def probe_duration(path: str) -> float:
@@ -103,13 +240,20 @@ def find_audible_start(path: str, src_dur: float, total: float, max_skip: float 
 
 
 def main():
+    if "--rotation-test" in sys.argv:
+        mood = sys.argv[sys.argv.index("--rotation-test") + 1]
+        if mood not in MOODS:
+            sys.exit(f"unknown mood '{mood}'")
+        rotation_test(mood)
+        return
     total = float(sys.argv[1])
     out = sys.argv[2]
     mood = sys.argv[sys.argv.index("--mood") + 1] if "--mood" in sys.argv else "neutral"
     if mood not in MOODS:
         sys.exit(f"no real track mapped for mood '{mood}' — pick one of: {', '.join(sorted(MOODS))}")
 
-    choice = random.choice(MOODS[mood])
+    history = load_history()
+    choice = choose(MOODS[mood], history)
     src = os.path.join(LIB, choice)
     if not os.path.exists(src):
         sys.exit(f"missing track file: {src}")
@@ -128,6 +272,8 @@ def main():
         cmd += (["-ss", str(start)] if start > 0 else []) + ["-i", src, "-t", str(total)]
     cmd += ["-ac", "1", "-ar", "48000", "-af", filt, out]
     subprocess.run(cmd, check=True)
+    if "--no-record" not in sys.argv:
+        save_history(history + [choice])
     print(f"wrote {out}  {total:.1f}s  mood={mood}  source={choice}")
 
 
