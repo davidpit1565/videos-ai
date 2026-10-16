@@ -21,23 +21,32 @@ no support: "sharing your secrets", "your chats are being read", "nothing is sav
 Own history (`hooks-guide.md`): 70 = negative command / direct address, so this one is NOT a negative command; 62 already used "Delete a ChatGPT chat..." (retention).
 Chosen type: **Direct address / personal stakes, softened with "may"** — about the viewer's own last chat, not a number or a prohibition.
 
-## Spoken lines (v1, script_lint clean — "learn" and "smarter" were swapped out)
-1. The last thing you typed into ChatGPT may be teaching it. (hook; white bar with the ChatGPT icon, like 70)
-2. OpenAI, the company behind it, can use your chats to train its AI. (explains "teaching" and who, from second 3)
+## Spoken lines (FINAL, built and gated 16.10.2026, 32.9s, ALL CHECKS PASSED)
+1. The last thing you typed into ChatGPT may be teaching it. (hook, white bar with the ChatGPT icon; screen: Data controls with the switch ON)
+2. OpenAI, which runs it, can use your chats to train its AI. (reworded from "the company behind it": "company" was swallowed on every roll)
 3. One switch decides that. Open the menu, top left. (ring on the menu button)
-4. Then press the gear at the bottom. (ring on the gear)
-5. And open Data controls. (ring on the row)
-6. Find Improve the model for everyone. (ring on the row; also show the switch state)
-7. Switch it off, and new chats stay out of its training. (ring on the switch)
-8. Send this to someone who uses ChatGPT.
-9. The setup's in the link in bio. (locked)
-10. Follow for the setup that actually works. (retired as final line, but no episode 72 exists yet, so no promise can be made; the voice doctor flags "works", check on the build)
+4. Then press the gear at the bottom. (side menu, chat titles blurred, ring on the gear)
+5. Next, open Data controls. (reworded from "And open": the accent check kept flagging it; ring on the row in the settings list)
+6. Find Improve model for everyone. (the REAL label on screen has no "the"; ring on the row)
+7. Switch it off if you don't want that. (the real recording plays the switch flipping ON -> OFF)
+8. Your voice chats have their own switch just below it. ("Include audio recordings", also on and switched off in the recording; ring on that row)
+9. Send this to someone who uses ChatGPT.
+10. The setup's in the link in bio. (locked)
+11. Follow for the setup that actually works. (no episode 72 exists, so no promise is made)
 
-Open question for David: episode 70's own last line could name this episode ("Tomorrow, I'll show you what OpenAI does with your chats...") — but the promise is binding (CLAUDE.md), so only if 71 is certain to publish the next day.
+## Build facts and what the real recording showed (16.10.2026, two recordings; the 16.7s one, 13:09, was used)
+- Real label: "Improve model for everyone" (not "Improve the model for everyone" as the third-party guides say). Text on screen: "Allow your content to be used to improve our models for you and other users. We take steps to protect your privacy."
+- Both switches ("Improve model for everyone", "Include audio recordings") were ON on David's account before the recording: that is FACT for this one account only. The default for other accounts, plans and countries is still UNCONFIRMED and the video does not claim it.
+- Accent #818CF8 (indigo), mood 'drive' (video-editing--alexmorgan.mp3, a real library track). The gate first refused 'urgent': same mood as episode 70, and it would have been the same track.
+- Voice: 8 rounds of per-line seed rerolls until nothing was flagged; line 2 and 5 were reworded because they kept flagging.
+- Privacy: raw recordings and the masked frames (channel/assets/ep71-screen, git-excluded) are NOT in git. Chat titles are blurred in the side menu; email and phone only appear in frames that are not used and were blurred anyway. Checked by eye twice on the final MP4 (contact sheets at 4 fps, plus a 4-frame crop of the side menu at full size); there is no OCR.
+- Watched twice: both clean. One thing noticed and left: the switch flips right as "Switch it off" begins, which matches the narration.
+- Not verified: OpenAI's help page (403). "New chats stay out of training" was NOT said in the final cut.
 
 ## What the recording must show (so the picture can follow the lines)
 Home screen with the menu button; the open side menu (chat titles blurred in the finished video, like 70); Settings with the gear; the "Data controls" row; the
 "Improve the model for everyone" row with its switch visible (on or off); ideally also Temporary Chat if David wants it added later. No face. Email/phone rows get blurred as in 70.
 
-## Not done yet
-Picture, captions, music, gate (`export/check.sh`), setup guide in `studio/lib/articles.ts` (needs the real labels from the recording), caption/youtube text, design row in `channel/used-designs.json`, hooks-guide log row.
+## Done / still open
+Done: picture, captions, music, gate, setup guide (`/e/71`, English only), caption and YouTube text, design row.
+Open: David posts it by hand after 70 (publish order [70, 71]); then reads Instagram Insights (views from non-followers, sends, saves, follows).

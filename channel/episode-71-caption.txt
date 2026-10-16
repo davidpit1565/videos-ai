@@ -1,0 +1,15 @@
+The last thing you typed into ChatGPT may be teaching it.
+
+In the ChatGPT app, Settings has a Data controls screen. At the top is a switch called "Improve model for everyone." The screen's own text says it lets your content be used to improve the models for you and other users. There is a second switch right below it, "Include audio recordings," for voice chats.
+
+Open the menu, tap the gear, tap Data controls. Check both switches on your own account, and switch them off if you don't want that.
+
+Pause on the Data controls screen, take a screenshot, and send it to someone who uses ChatGPT.
+
+Keep in mind: this is from the iPhone app on one account on 16 October 2026. Both switches were on for that account. Menu names and defaults can differ by account, plan and country, and we could not check OpenAI's own help page for this video.
+
+Full setup, step by step: https://actually-works.com/e/71
+
+Follow for the setup that actually works.
+
+#chatgpt #ai #privacy #openai #chatgptprivacy
