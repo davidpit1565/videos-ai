@@ -194,10 +194,10 @@ def main():
     # a genuine timing attribute this file doesn't know how to move (see the comment
     # above); it must not also fire on a numeric attribute that was never a time.
     # Real-screen-recording scenes (episode 71, 16.10.2026) add per-scene crop centre
-    # (data-cx/cy), the frame index of a preloaded screenshot (data-k) and the source-video
+    # (data-cx/cy), the ring/tag delay (data-rd, seconds into the scene), the frame index of a preloaded screenshot (data-k) and the source-video
     # second at which a ON/OFF tag flips (data-tt, a time inside the recording, not on this
     # file's timeline).
-    NON_TIMING = {"grad-alpha", "kb-scale", "kb-x", "kb-y", "cx", "cy", "k", "tt"}
+    NON_TIMING = {"grad-alpha", "kb-scale", "kb-x", "kb-y", "cx", "cy", "k", "tt", "rd"}
     unknown = {m.group(1) for m in re.finditer(r'data-([a-z-]+)="[0-9.]+"', original)
                } - REMAPPED - NON_TIMING
     if unknown:
