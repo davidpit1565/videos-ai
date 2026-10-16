@@ -46,6 +46,12 @@ def main():
                  f"(need >= {MIN_STEPS}, each >= {MIN_STEP_CHARS} chars) — a viewer landing on "
                  f"/e/{ep} needs an actual walkthrough, not a placeholder.")
 
+    # The public site is English only (David, 16.10.2026): no Hebrew anywhere on a visitor-facing
+    # page. Episodes 55-60 had Hebrew UI labels in parentheses and nothing stopped it.
+    if re.search("[\u0590-\u05FF]", block):
+        sys.exit(f"HEBREW ON THE PUBLIC SITE: episode {ep}'s article in studio/lib/articles.ts contains "
+                 f"Hebrew characters. The visitor-facing /e/{ep} page must be English only — remove them.")
+
     print(f"  ok — episode {ep} has {len(real)} real steps on /e/{ep}")
 
 
