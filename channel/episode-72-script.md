@@ -15,17 +15,20 @@ Third-party guides agree (iPhone Life, tested on iPhone 16 / iOS 26; iGeeks; Kap
 Apple's page returned only its navigation to my fetch, so the exact labels are UNCONFIRMED until the recording shows them. Device requirement: sources disagree (iPhone 15 Pro or newer vs. "iOS 18"),
 so the video says "recent iPhones", never a model. Not said: that it works on every photo, that it is perfect (it can leave smears on busy backgrounds), or anything about other countries.
 
-## Spoken lines (v1, script_lint clean except the locked last line)
-1. Your iPhone can delete a person from your photo. Watch. (hook; screen: the photo WITH the person)
-2. Open the photo, then tap Edit.
-3. Tap Clean Up.
-4. Tap the person. Or draw over them.
-5. And they're gone. (screen: the cleaned photo, held)
-6. No app. No cost. It's built into recent iPhones.
-7. Send this to the friend who always walks into the shot.
-8. The setup's in the link in bio. (locked)
-9. Follow for the setup that actually works.
-Hook type: Demonstration / curiosity ("Watch."), a new type (70 and 71 were negative-command / direct-address). Delivery: short, punchy, fast; see `channel/delivery-notes.md` if present.
+## Spoken lines (v2, 17.10.2026; script_lint clean except the locked last line; same punchy shape as episode 71 v3)
+1. Your iPhone can delete a person from your photo. (hook; screen: the photo WITH the person)
+2. Watch. (its own beat, a short pause before it)
+3. Open the photo. Tap Edit.
+4. Tap Clean Up.
+5. Tap the person. Or draw over them.
+6. And they're gone. (screen: the cleaned photo, held)
+7. No app. No cost. It's built into recent iPhones.
+8. Send this to the friend who always walks into the shot.
+9. The setup's in the link in bio. (locked)
+10. Follow for the setup that actually works.
+Hook type: Demonstration / curiosity (a new type; 70 was a negative command, 71 direct address with a personal stake). Hook alternatives, all unproven:
+"This photo had a person in it. Now it doesn't." (needs the before/after cut first) / "Your iPhone has a free eraser for people." ("eraser" flags the lint) / "Delete anyone from a photo. On iPhone. Free." ("anyone" overclaims: it works best on small distractions).
+Delivery: same settings as 71 v3 (exaggeration 0.66; hook 0.74; "Watch." 0.80). Claims to keep out: "works on every photo" (smears on busy backgrounds are possible), any model number, any country.
 
 ## What David records (one continuous iPhone screen recording, about 20 s; 5 steps)
 Photo: pick one where ONE unwanted thing or person is clearly there but small or far (a stranger far in the background, a pole, a bin). Not a close-up of a stranger's face.
