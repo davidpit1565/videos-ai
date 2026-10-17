@@ -43,6 +43,13 @@ pace NOT faster. This is a measurement, not an ear test: if it sounds worse to D
 Visual: ON/OFF tags, a zoom push, one constant closing screen (the three last lines used to re-fade the same screen, which read as a jump).
 Known weak spot left: about 3 s on the empty home screen before the menu.
 
+## v4 (17.10.2026, 36.0s, ALL CHECKS PASSED; replaces v3 after David's feedback: boring start, wrong music, flat voice, stills instead of motion)
+- Lines changed: 1 "One switch in ChatGPT controls if your chats get used!" ("decides" kept being swallowed), 2 "Mine was on!" (written "ON" the voice spelled it out), 8 "Tap Improve model for everyone." ("Find" was held too long), 9 ends with "!".
+- Picture: real motion segments from the recording (menu opening, Data controls opening, the real switch flip) instead of held frames; red ON tag on the switch from the first second.
+- Voice: exaggeration 0.78 (line 1 0.78, 2 0.90, 6 and 8 0.64, 9 0.85, 10 0.68, 11 0.80). Lines 6 and 8 were flagged as sounding Indian by the accent check at higher settings, so those two sit lower. Enthusiasm is still the reference voice's ceiling: only David's ear can say if it is enough.
+- Music: mood 'bright', picked by the rotation from the library (the 54 new tracks are now in main). Different tracks were chosen in different runs; the shipped file used upbeat-energetic--lnplusmusic.
+- Process note: the cloud container is suspended when a turn ends, which kills background jobs; the voice loop and render only progress while a turn is active.
+
 ## Build facts and what the real recording showed (16.10.2026, two recordings; the 16.7s one, 13:09, was used)
 - Real label: "Improve model for everyone" (not "Improve the model for everyone" as the third-party guides say). Text on screen: "Allow your content to be used to improve our models for you and other users. We take steps to protect your privacy."
 - Both switches ("Improve model for everyone", "Include audio recordings") were ON on David's account before the recording: that is FACT for this one account only. The default for other accounts, plans and countries is still UNCONFIRMED and the video does not claim it.
