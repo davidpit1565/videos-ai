@@ -1570,3 +1570,9 @@ so the same idea doesn't get re-proposed later without remembering it was alread
 ## 13.10.2026 — growth research
 
 Full synthesis: `channel/growth-research-13-10.md`. It marks the "Espoladore 556-Reel study" cited above as UNVERIFIED (not found), the Buffer 1.1M length study as not found, and the per-view CTA benchmarks as vendor-grade (D). Diagnosis: no breakout outlier; first-2s retention, ~0 sends, no stable reason to follow.
+
+## 18.10.2026 — episode 71 v4: first viewer reaction to the new style (n=1, David's own watch, not views)
+
+FACT: David watched v3, rejected it (boring start, music did not fit, flat voice, stills instead of motion), then watched v4 and said it is "much better", that he "enjoyed every second", and that the music fits. Remaining issues he named: the menu swipe was slow (fixed), and a few off moments in the voice ("Mine was on").
+HYPOTHESIS (not tested on an audience): real screen motion + the proof on the first frame + short punchy lines + a more energetic voice and music hold attention better than held stills. No view data exists yet; the experiment is episode 71's Insights after posting. It is one person's reaction, not evidence of reach.
+FACT: Instagram Insights for episode 70 show 33.6% of the audience in Israel (David, 17.10.2026); other countries not yet given. Episode 70 was posted Friday evening, which may have cost reach (HYPOTHESIS). Posting window to test: Sunday to Thursday evening, Israel time.
