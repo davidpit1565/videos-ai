@@ -197,7 +197,7 @@ def main():
     # (data-cx/cy), the ring/tag delay (data-rd, seconds into the scene), the frame index of a preloaded screenshot (data-k) and the source-video
     # second at which a ON/OFF tag flips (data-tt, a time inside the recording, not on this
     # file's timeline).
-    NON_TIMING = {"grad-alpha", "kb-scale", "kb-x", "kb-y", "cx", "cy", "k", "tt", "rd"}
+    NON_TIMING = {"grad-alpha", "kb-scale", "kb-x", "kb-y", "cx", "cy", "k", "tt", "rd", "rt", "dl"}
     unknown = {m.group(1) for m in re.finditer(r'data-([a-z-]+)="[0-9.]+"', original)
                } - REMAPPED - NON_TIMING
     if unknown:

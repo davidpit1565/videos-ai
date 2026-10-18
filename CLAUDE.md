@@ -214,6 +214,16 @@ been running for days.
 - `audio/speak_language.py` does the same voice in 23 languages. Flemish needs its own
   reference recording — `record/flemish-script.md`.
 
+## The v4 style is the standard for every episode (David, 18.10.2026)
+
+After watching episode 71 v4 he said it is "much better, much more engaging, I enjoyed every second", and that this direction applies to **all** future videos. What it means:
+- **Real motion from the real screen recording**, not held stills: play the actual segments (menu opening, page sliding, the switch flip) at natural speed. A swipe that really takes 0.5s must take 0.5s on screen (`data-rt`/`data-dl` per scene: real-time seconds the source segment takes, and its start delay). Never slow-motion a segment to fill a line.
+- **Start on the proof**: the first frame already shows the real screen with the key state tagged (red ON / green OFF tag), not an empty home screen.
+- **Short, punchy lines with exclamation beats on the hook**; reword any word the voice swallows ("decides" → "controls", "Find" → "Tap") instead of fighting the model.
+- **Voice**: exaggeration about 0.78 (hook/beats higher); lines the accent check flags go lower (0.64) and get re-rolled. His own verdict: clearly more excited, still occasional off moments ("Mine was on"). Enthusiasm is capped by the calm reference clip, so say that honestly.
+- **Music**: energetic bed from the real library (now 69 tracks incl. the 54 new Pixabay ones). `FORCE_TRACK=<file.mp3>` pins the track when re-rendering an episode whose music he already liked.
+- The cloud container is suspended when a turn ends and background jobs die: run long voice/render stages while a turn is active (foreground or polled background), and keep loops resumable (`seeds.state`).
+
 ## Standing rule: everything we build becomes an episode
 
 He said it plainly — every skill, agent, or tool we develop here is itself content. When a
