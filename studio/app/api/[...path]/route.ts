@@ -25,18 +25,13 @@ export const maxDuration = 120;
 import * as agent from "../agent/impl";
 import * as beehiiv from "../beehiiv/impl";
 import * as claudeAgent from "../claude-agent/impl";
-import * as claudeUsage from "../claude-usage/impl";
 import * as clientlog from "../clientlog/impl";
 import * as connections from "../connections/impl";
-import * as didStatus from "../d-id/status/impl";
-import * as didSubmit from "../d-id/submit/impl";
 import * as facebook from "../facebook/impl";
 import * as facebookPublish from "../facebook/publish/impl";
 import * as health from "../health/impl";
 import * as healthCheck from "../health-check/impl";
 import * as healthResolve from "../health/resolve/impl";
-import * as higgsfieldStatus from "../higgsfield/status/impl";
-import * as higgsfieldSubmit from "../higgsfield/submit/impl";
 import * as ideaScore from "../idea-score/impl";
 import * as ideasBacklog from "../ideas-backlog/impl";
 import * as instagram from "../instagram/impl";
@@ -66,18 +61,13 @@ const ROUTES: Record<string, Handlers> = {
   "agent": agent,
   "beehiiv": beehiiv,
   "claude-agent": claudeAgent,
-  "claude-usage": claudeUsage,
   "clientlog": clientlog,
   "connections": connections,
-  "d-id/status": didStatus,
-  "d-id/submit": didSubmit,
   "facebook": facebook,
   "facebook/publish": facebookPublish,
   "health": health,
   "health-check": healthCheck,
   "health/resolve": healthResolve,
-  "higgsfield/status": higgsfieldStatus,
-  "higgsfield/submit": higgsfieldSubmit,
   "idea-score": ideaScore,
   "ideas-backlog": ideasBacklog,
   "instagram": instagram,
