@@ -256,6 +256,9 @@ def main():
     # Only tracks that exist on this machine: the 16.10.2026 batch of mp3s is not in git (205 MB),
     # so a clone or cloud session has the older tracks only and must not pick a missing one.
     present = [c for c in MOODS[mood] if os.path.exists(os.path.join(LIB, c))]
+    forced = os.environ.get("FORCE_TRACK")
+    if forced and os.path.exists(os.path.join(LIB, forced)):
+        present = [forced]  # re-render of an episode whose music was already approved
     if not present:
         sys.exit(f"missing track files for mood '{mood}': none of {len(set(MOODS[mood]))} candidates exist in {LIB}")
     choice = choose(present, history)

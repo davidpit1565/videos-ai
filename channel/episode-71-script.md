@@ -48,6 +48,7 @@ Known weak spot left: about 3 s on the empty home screen before the menu.
 - Picture: real motion segments from the recording (menu opening, Data controls opening, the real switch flip) instead of held frames; red ON tag on the switch from the first second.
 - Voice: exaggeration 0.78 (line 1 0.78, 2 0.90, 6 and 8 0.64, 9 0.85, 10 0.68, 11 0.80). Lines 6 and 8 were flagged as sounding Indian by the accent check at higher settings, so those two sit lower. Enthusiasm is still the reference voice's ceiling: only David's ear can say if it is enough.
 - Music: mood 'bright', picked by the rotation from the library (the 54 new tracks are now in main). Different tracks were chosen in different runs; the shipped file used upbeat-energetic--lnplusmusic.
+- 18.10.2026 fix after David's watch: the menu swipe was slow-motion (0.45s of source stretched over 2.4s); now plays at real speed (0.7s) during "check your own", and the empty home screen is no longer held. Same music track pinned (FORCE_TRACK). David's verdict: much better, enthusiasm improved, small voice glitches remain ("Mine was on").
 - Process note: the cloud container is suspended when a turn ends, which kills background jobs; the voice loop and render only progress while a turn is active.
 
 ## Build facts and what the real recording showed (16.10.2026, two recordings; the 16.7s one, 13:09, was used)
