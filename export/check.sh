@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Everything that has to pass before a reel is sent to him.
 #   ./export/check.sh <build.html> <narration.wav> [rendered.mp4] [music.wav]
+#   ACCENT_SKIP=3,5 ./export/check.sh ...    — lines in a second, deliberately different voice (a dialogue
+#                                                 episode's AI voice) left out of the accent check
 #   ACCEPT_WORDS=three ./export/check.sh ...   — words he has already approved by ear
 #                                                 (voice_doctor.py --accept), so the gate
 #                                                 doesn't keep failing him on his own call
@@ -21,7 +23,7 @@ echo "=== accent"
 # voice_doctor measures pacing/level/sibilance/endings — none of that is accent. Episode
 # 30's line 6 shipped sounding "a bit Indian" for half its length and nothing above caught
 # it. check_accent.py flags a line whose accent drifts sharply from the rest of the file.
-python3 audio/check_accent.py "$VO" || fail=1
+python3 audio/check_accent.py "$VO" ${ACCENT_SKIP:+--skip "$ACCENT_SKIP"} || fail=1
 
 echo
 echo "=== frame layout"

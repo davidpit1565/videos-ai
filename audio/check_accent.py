@@ -121,6 +121,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("wav")
     ap.add_argument("--cues", help="defaults to <wav>-cues.json")
+    ap.add_argument("--skip", help="1-based line numbers (comma list) left out of the flagging: a second voice that is meant to sound different, e.g. the AI voice in a dialogue episode")
     a = ap.parse_args()
 
     cues_path = a.cues or os.path.splitext(a.wav)[0] + "-cues.json"
@@ -131,6 +132,9 @@ def main():
 
     rows = classify_lines(a.wav, cues)
     issues = verdict(rows)
+    if a.skip:
+        skip = {int(x) for x in a.skip.split(',') if x.strip()}
+        issues = [i for i in issues if i[0] not in skip]
 
     print(f"{a.wav}  {len(cues)} lines — accent check ({MODEL_ID})")
     for r in rows:

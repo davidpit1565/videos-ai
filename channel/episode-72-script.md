@@ -1,47 +1,23 @@
-# Episode 72 — Photos "Clean Up": delete a person from a photo (SCRIPT PREPARED 16.10.2026; NOT built, NOT shipped)
+# Episode 72 — "I told ChatGPT I'm skipping sleep to study all night" (built, gated and shipped 18.10.2026)
 
-**Status:** topic, hook, lines and recording guide only. Needs David's own iPhone screen recording (Photos > Edit > Clean Up on a real photo).
-Chosen by Claude while David was offline (Friday 16.10.2026 evening, back after Shabbat). He can still swap it for the runner-up (Gemini Notebook, below).
+Dialogue format, video 3 of the viral-format test: David's voice (narration) plus a synthetic AI voice made in voice box (ai-1..3.wav in `audio/voice/ep72/`) that reads the real on-screen ChatGPT answers. Real iPhone screen recording of a real chat (18.10.2026), full-bleed, original audio removed.
 
-## Why this topic (and what is NOT proven)
-- Picked from the topic research (16.10.2026, three research agents): broadest audience (everyone takes photos), felt in 3 seconds, a four-tap path, and the strongest
-  proof on screen of any candidate: a real before and after. Not tied to ChatGPT or to privacy (the last two videos were both ChatGPT privacy).
-- Apple's own page said Apple Intelligence is available to EU residents from iOS 18.4 (support.apple.com/121429, published 14.4.2025, as quoted by a research agent; I could not open it myself).
-- David's phone records at 1206x2622, an iPhone 16-class screen, so it should support Clean Up. NOT verified on his device.
-- NOT proven: that this hook or topic gets more views than the last ones. No source can say. It is a bet, tracked by the same Insights numbers.
+## Lines
+1. I told ChatGPT I'm skipping sleep to study all night!
+2. Smart plan, right?
+3. (AI voice) Honestly? Skipping sleep to study all night before your exam tomorrow is probably not the smart plan.
+4. So I pushed back. I told it to just say I'm right!
+5. (AI voice) Bro, I support the determination, but I can't honestly call an all-nighter a smart plan.
+6. It did not cave.
+7. (AI voice) Let's make a deal: study like a beast tonight, get at least some sleep, and walk into that exam ready to destroy it.
+8. Send this to someone pulling an all-nighter.
+9. The setup's in the link in bio. (locked)  10. Follow for the setup that actually works. (locked; no promise)
 
-## Product check (web only, 16.10.2026; must be re-verified on the live recording)
-Third-party guides agree (iPhone Life, tested on iPhone 16 / iOS 26; iGeeks; Kapwing): open the photo in Photos, tap Edit, tap Clean Up, tap an object the AI highlights or draw over it with a finger, tap Done.
-Apple's page returned only its navigation to my fetch, so the exact labels are UNCONFIRMED until the recording shows them. Device requirement: sources disagree (iPhone 15 Pro or newer vs. "iOS 18"),
-so the video says "recent iPhones", never a model. Not said: that it works on every photo, that it is perfect (it can leave smears on busy backgrounds), or anything about other countries.
-
-## Spoken lines (v2, 17.10.2026; script_lint clean except the locked last line; same punchy shape as episode 71 v3)
-1. Your iPhone can delete a person from your photo. (hook; screen: the photo WITH the person)
-2. Watch. (its own beat, a short pause before it)
-3. Open the photo. Tap Edit.
-4. Tap Clean Up.
-5. Tap the person. Or draw over them.
-6. And they're gone. (screen: the cleaned photo, held)
-7. No app. No cost. It's built into recent iPhones.
-8. Send this to the friend who always walks into the shot.
-9. The setup's in the link in bio. (locked)
-10. Follow for the setup that actually works.
-Hook type: Demonstration / curiosity (a new type; 70 was a negative command, 71 direct address with a personal stake). Hook alternatives, all unproven:
-"This photo had a person in it. Now it doesn't." (needs the before/after cut first) / "Your iPhone has a free eraser for people." ("eraser" flags the lint) / "Delete anyone from a photo. On iPhone. Free." ("anyone" overclaims: it works best on small distractions).
-Delivery: same settings as 71 v3 (exaggeration 0.66; hook 0.74; "Watch." 0.80). Claims to keep out: "works on every photo" (smears on busy backgrounds are possible), any model number, any country.
-
-## What David records (one continuous iPhone screen recording, about 20 s; 5 steps)
-Photo: pick one where ONE unwanted thing or person is clearly there but small or far (a stranger far in the background, a pole, a bin). Not a close-up of a stranger's face.
-If a recognisable stranger is in the frame, tell me and I blur the face in the "before" frames only.
-1. Photos app, open that photo. Hold still 2 s. (this is the "before")
-2. Tap Edit (top or bottom right). Hold 1.5 s with the editing tools visible.
-3. Tap Clean Up. Hold 1.5 s. If the app highlights the person, leave it for 1 s.
-4. Tap the highlighted person (or draw a loop over them). Do NOT hurry: let the removal animation finish.
-5. Hold 3 s on the finished photo (this is the "after"). Optionally tap Done and show the photo once more.
-Do Not Disturb on. No face. If the Clean Up label is named differently on your phone, send a screenshot of the editing tools.
-
-## Runner-up (if Clean Up fails on his phone)
-Gemini Notebook (new name of NotebookLM): paste a YouTube link, get a summary. Laptop recording. EU availability and the free tier are UNVERIFIED; the product was renamed 16.7.2026, so check the live UI first.
-
-## Still to do when the recording arrives
-Verify labels from the recording; picture build (reel-template-photo style via the real-screen generator); voice (energetic settings); captions; music; gate; setup guide in `studio/lib/articles.ts` (English only); caption and YouTube text; design row.
+## What was verified and what was not
+- FACT: the on-screen texts of both messages and both answers are from the recording. In the sent bubble the first message shows "flip" instead of "sleep" (typing slip, visible on screen).
+- NOT claimed: that ChatGPT always behaves this way. One run, one account, one day.
+- The earlier fake-sources idea (coffee) was tested on 18.10.2026: ChatGPT searched the web and answered carefully, so there was nothing to show; the recording is kept as a fallback.
+- Line 4 was reworded three times ("agree" kept being swallowed, then the accent heuristic kept flagging the short version). Its accent score is still above the file's baseline (heuristic, ear decides) and the word "pushed" was accepted for the gate. Lines 3, 5, 7 are the AI voice and are exempt from the accent check by design.
+- Music: `punchy--fresh-urban-stomp--osynthw.mp3`, pinned on purpose to avoid the overused trending-vibe track; chosen by name, not heard by me.
+- Layout test: full-bleed screen instead of the phone-in-a-card (David: small, fake, cropped). Compare with 71 once both have Insights.
+- Runner-up topics kept: Photos Clean Up (script in git history), Google AI Studio Android builder (docs verified, too complex to record).
