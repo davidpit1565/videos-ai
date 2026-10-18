@@ -81,12 +81,7 @@ const TABS = [
   { href: "/analytics", label: "התקדמות" },
   { href: "/week", label: "השבוע" },
   { href: "/renders", label: "רנדרים" },
-  { href: "/templates", label: "תבניות" },
-  { href: "/pipeline", label: "צינור" },
   { href: "/agent", label: "סוכן" },
-  { href: "/higgsfield", label: "Higgsfield" },
-  { href: "/d-id", label: "D-ID" },
-  { href: "/claude-usage", label: "מכסת קלוד" },
   { href: "/health", label: "בריאות הריפו" },
 ];
 

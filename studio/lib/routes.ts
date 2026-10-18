@@ -14,13 +14,12 @@
 
 /** the private tool: the whole business is in here */
 export const STUDIO = [
-  "/studio", "/videos", "/analytics", "/week", "/pipeline", "/agent", "/renders", "/templates",
-  "/higgsfield", "/d-id", "/claude-usage", "/health",
+  "/studio", "/videos", "/analytics", "/week", "/agent", "/renders", "/health",
   // named separately from the public manifest, and gated like everything else here: a
   // manifest that can be fetched is a manifest that tells a stranger the tool exists
   "/studio.webmanifest",
   "/api/state", "/api/agent", "/api/idea-score", "/api/instagram", "/api/youtube", "/api/beehiiv", "/api/push",
-  "/api/ideas-backlog", "/api/higgsfield", "/api/facebook", "/api/d-id", "/api/claude-agent", "/api/health",
+  "/api/ideas-backlog", "/api/facebook", "/api/claude-agent", "/api/health",
   // /api/youtube/callback is under /api/youtube, already listed — Google's redirect back
   // from the consent screen is a same-browser top-level GET, so the "studio" cookie (set
   // sameSite:lax) still rides along and the PIN gate passes normally.
@@ -31,10 +30,8 @@ export const STUDIO = [
  *  middleware and belonged nowhere, which is exactly the shape of the bug this file exists
  *  to end — so it is a named third case instead of an exception.
  *
- *  /api/claude-usage joins it for the same reason: its POST caller is a Stop hook running
- *  on his own machine, no browser and no PIN cookie — same shape as the cron, checked by
- *  hand inside the route with its own secret (its GET, called from the studio page itself,
- *  is checked the same way /api/track checks a non-cron caller: the PIN cookie by hand).
+ *  (/api/claude-usage lived here too until 18.10.2026, when the Claude-usage page and
+ *  route were removed at David's request: the quota reading never worked.)
  *
  *  /api/jarvis joins it for the same reason again: its caller is his separate personal-
  *  assistant project, a server-to-server caller with no browser and no PIN cookie either —
@@ -50,7 +47,7 @@ export const STUDIO = [
  *  this route decides *when*, never *whether*. Vercel cron is fixed UTC and ignores DST,
  *  so the schedule needs a manual one-hour bump each time Belgium's clocks change (see
  *  the comment on the route itself). */
-export const CRON = ["/api/track", "/api/health-check", "/api/claude-usage", "/api/jarvis", "/api/scheduled-publish"];
+export const CRON = ["/api/track", "/api/health-check", "/api/jarvis", "/api/scheduled-publish"];
 
 /** the public funnel, plus the endpoints those pages call */
 export const SITE = [
