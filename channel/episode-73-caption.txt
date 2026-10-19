@@ -1,0 +1,13 @@
+Your AI chat likes to agree with you. Here are three ways to push back.
+
+1) Ask "What's wrong with this?" instead of "What do you think?" 2) In ChatGPT, open Personalization > Custom instructions and write: don't agree with me just because I sound sure. 3) Pick Candid in Personalization > Base style and tone.
+
+The drawings in the video are illustrations, not screenshots. These tips come from public guides and OpenAI's help pages; we have not measured how much each one helps, so treat them as things to try. Your results can differ.
+
+Send this to someone who always asks ChatGPT "is my idea good?"
+
+Full setup, step by step: https://actually-works.com/e/73
+
+Follow for the setup that actually works.
+
+#chatgpt #ai #chatgpttips #aitips #promptengineering
