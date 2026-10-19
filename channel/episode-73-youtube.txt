@@ -1,0 +1,9 @@
+3 ways to make ChatGPT stop agreeing with you
+
+Your AI chat likes to agree with you. Three things to try: ask "What's wrong with this?" instead of "What do you think?", add a Custom instructions line (Personalization > Custom instructions) such as "don't agree with me just because I sound sure", and pick the Candid option in Personalization > Base style and tone.
+
+Said plainly: the drawings are illustrations, not screenshots, and the tips come from public guides and OpenAI's help pages. We have not measured how much each one helps.
+
+Full setup, step by step: https://actually-works.com/e/73
+
+Follow for the setup that actually works.

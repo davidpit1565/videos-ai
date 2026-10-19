@@ -434,6 +434,14 @@
     "episode": 72,
     "brass": "#A3E635",
     "ember": "#A3E635",
-    "mood": "punchy"
+    "mood": "punchy",
+    "date": "2026-10-18"
+  },
+  {
+    "episode": 73,
+    "brass": "#22D3EE",
+    "ember": "#FDE047",
+    "mood": "bright",
+    "date": "2026-10-19"
   }
 ]

@@ -1966,6 +1966,32 @@ export const ARTICLES: Article[] = [
       "Not checked: other chatbots, other kinds of plans, and whether the answer changes if you push a third or fourth time.",
     ],
   },
+  {
+    n: 73,
+    title: "3 ways to make ChatGPT stop agreeing with you",
+    standfirst:
+      "AI chats tend to agree with you, even about a weak plan. These are three things to try, all from public guides and OpenAI's own help pages. " +
+      "The drawings in the video are illustrations, not screenshots, and none of the three has been measured by us, so treat them as experiments.",
+    steps: [
+      "Open ChatGPT and start a new chat.",
+      "Try 1: instead of asking What do you think? about your plan, ask What's wrong with this? Compare the two answers on the same plan, each in a new chat.",
+      "Open Settings, then Personalization.",
+      "Try 2: open Custom instructions and add a sentence such as: Don't agree with me just because I sound sure. State problems clearly and early. Save it.",
+      "Start a new chat and ask about the same plan again. Read whether the answer is more critical than before.",
+      "Try 3: in Personalization, open the Base style and tone dropdown and pick Candid. Ask about the same plan once more.",
+      "Optional: write down which of the three changed the answer most for you. One result does not tell you how it behaves in general.",
+    ],
+    changes: [
+      "Try 1 changes the question, so the model is asked to look for problems instead of giving an opinion.",
+      "Try 2 is a standing instruction that applies to every new chat, unlike a prompt typed inside one chat.",
+      "Try 3 changes the base tone with a preset. What each preset does may change when OpenAI updates ChatGPT.",
+    ],
+    limits: [
+      "Not measured by us: nobody here tested how much each try reduces agreement. The sources are guides and help pages, not studies.",
+      "The preset names and where they sit in Settings can change between app versions. If the menu looks different, search Personalization in the app.",
+      "A critical answer is not automatically a correct answer. Check any claim that matters.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
