@@ -1584,3 +1584,11 @@ Source: a screenshot David sent of his own Instagram chat with an AI creator he 
 - It conflicts with how we work on another: our rules rotate hook types, topics and colours so that nothing repeats, while the advice is to find a format that works and repeat it. We have not tested a repeated format yet.
 - HYPOTHESIS (untested): a recognisable series, run several times with the same frame, builds repeat viewers faster than a new format each day. Test: pick the best of episodes 70, 71 and 72 by non-follower views, sends and saves, and run that frame three times before judging it.
 - OPEN DECISION for David: whether to relax the "never repeat the same hook type two episodes in a row" rule for a deliberate series. Not changed yet.
+
+## 19.10.2026 — episode 72 Insights at about 4.5 hours (David's reading of Instagram; first dialogue-with-AI-voice episode)
+
+FACT (David, read off Instagram at about 4.5 hours after posting): 177 views, well above the channel average; average watch time 7 seconds (the video is 36.8 s, so about 19%); no new likes, shares, saves or reposts; the extra views came mostly from non-followers. Audience: Belgium 21%, Israel 14.5%, the rest mainly United States, Canada and Pakistan. Age: 18-24 56.3%, 25-34 about 28%, the rest smaller.
+FACT for comparison: episode 71 had about 200 views on Instagram at 8-10 hours (David, 18.10.2026), so 72 is faster at the same stage.
+HYPOTHESIS (not confirmed, n=1): the dialogue hook (a question plus an AI voice answering) stops the scroll for non-followers, which fits the high reach; it does not hold attention (7 s) and gives no reason to like, save or send, which fits the zero engagement. Both could also come from the topic, the music, the posting time, or chance; one episode cannot separate them.
+UNKNOWN: reach and watch time at 72 hours; whether the dialogue format or the topic caused the extra reach; why nobody saved it (candidate: it showed a result but no step to keep).
+Episode 73 (19.10.2026) is the first drawn-concept test (no recording, no second voice) and ships with three steps a viewer can save; compare its saves and shares with 72's at the same hour.
