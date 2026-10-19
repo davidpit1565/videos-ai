@@ -54,17 +54,14 @@ Final line points at episode 61 (Gemini chats and human reviewers) — flowing f
 6. Meta doesn't say if that changes your ads. So pause, then type. Treat it like a search box.
 7. Send this to someone who chats with Instagram's AI.
 8. The setup's in the link in bio. (locked)
-9. Tomorrow, I'll show you which AI chat is the riskiest for your privacy. Follow, so you get the full story. (re-rendered 10.10.2026: publish order is 62, then 60, then 63)
+9. Follow for the setup that actually works. (locked canonical clip; 19.10.2026: the tomorrow-promise to a not-yet-scheduled episode removed — a binding promise needs a scheduled next episode. Meta AI facts re-verified live 19.10.2026: no change found; Europe/UK/South Korea excluded; delete path unchanged per meta.com help.)
 
 `script_lint.py` clean after rewording "Whatever", "December", "health", "South", "before",
 "first".
 
 ## Binding promise
 
-Line 9 promises episode 61 tomorrow: Gemini chats read by human reviewers, kept up to 3 years
-even if deleted, with a real switch ("Keep Activity"). Source: Google's Gemini Apps Privacy Hub
-(support.google.com/gemini/answer/13594961). Must be re-verified live before 61 is written.
-If 61 changes or does not go out the next day, re-render line 9 before 60 goes out.
+None as of 19.10.2026 (closing line is the generic locked CTA). Gemini logo removed from the last scene.
 
 ## Photos (Unsplash License) — all faceless, no face-detection step applies
 
