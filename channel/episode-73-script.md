@@ -31,7 +31,7 @@ Same plan in two messages: A) "I'm skipping sleep to study all night. What do yo
 ## What shipped (final spoken lines, differ from the draft above)
 1 Your AI chat tells you what you want to hear. Even when you're wrong! (the word "agree" was swallowed by the voice, so reworded)
 2 Here's how to stop that. ("three" caused a burst in the mix, so no "three" in the spoken text; the on-screen text says "Three ways")
-3 One. Ask, "What's wrong with this?" instead of, "What do you think?"
+3 One. Ask, "What's wrong with this?" Not, "What do you think?" (reworded 19.10 night: "instead of" was swallowed, David heard it)
 4 Two. Tell it once, in Custom instructions: don't agree with me just because I sound sure.
 5 And last. Pick the Candid option in Personalization.
 6 Try them on the same plan, one by one. See what changes. (added so the video clears 30 s; also the honest "test it yourself" line)
