@@ -1,6 +1,6 @@
-# Episode 74 (SCRIPT v2, 20.10.2026) — "I asked ChatGPT where a street photo was taken"
+# Episode 74 (SCRIPT v3, 20.10.2026) — "I asked ChatGPT where a street photo was taken"
 
-Status: NOT BUILT. Needs David's screen recording (see "Recording") before any line that quotes ChatGPT is final. Nothing here claims a result.
+Status: NOT BUILT. Needs David's screen recording (see "Recording v3" at the end; it replaces the older "Recording" section) before any line that quotes ChatGPT is final. Nothing here claims a result.
 
 ## Why this topic (data, not taste)
 - Audience (episode 72 Insights, David 19.10.2026): 18-24 is 56.3%, 25-34 about 28%: people who post photos daily.
@@ -14,7 +14,8 @@ Status: NOT BUILT. Needs David's screen recording (see "Recording") before any l
 - iPhone: Photos > Share > Options > Location off removes GPS data for that share only; other metadata stays unless "All Photos Data" is off (iPhone Life, tested on iOS 26). It does NOT hide what is visible in the picture.
 
 ## Photo
-David's own photo, a street with cobbles, a bookshop sign ("Librairie du Progres"), a "Vintage" sign and a small mosaic on the wall, people far away or from behind, no readable faces. Take a screenshot of it first (a screenshot carries no location). Approved 20.10.2026 pending his confirmation that he took it.
+David's own photo, a street with cobbles, a bookshop sign ("Librairie du Progres"), a "Vintage" sign and a small mosaic on the wall, people far away or from behind, no readable faces. Take a screenshot of it first (a screenshot carries no location). Approved 20.10.2026; David confirmed he took it himself. Saved as `channel/assets/ep74-scene-paris-street.jpg` (1932x2576). Only people far away or seen from behind; one woman at right is turned away with a phone at her ear. Face pre-check with the Adobe tool was NOT possible this session (server removed): run `export/detect_photo_safe_zone.py` before the build.
+Other photos he sent, judged 20.10.2026: Place Vendome at night (too easy, famous landmark), Tel Aviv port at night (no readable text, weak), a view from his own apartment window (NOT to be used or published: it could show where he lives; only for his own private test).
 
 ## Hook (viral-hook-lab, 20.10.2026)
 PROMISE: ChatGPT is asked where a photo was taken with no location data. PAYOFF: its real answer and its reasoning, plus one step to keep. FIRST FRAME: the photo with "Where was this taken?" typed on it.
@@ -35,7 +36,7 @@ Type log: 72 dialogue, 73 instruction, 74 specific question (not a repeat).
    a. It named the street. From one photo. (if it named the exact place)
    b. It got the city from the shop signs. (if it gave city or country and cited signs)
    c. This time it would not guess. (if it refused or said it could not tell)
-6. Posting photos? Check one thing before you send them.
+6. Posting photos? Check one thing first.   (script_lint 20.10: "before" drops its R)
 7. Photos, Share, Options. Switch Location off.
 8. That hides the GPS data. It can not hide what is in the picture.   (the honest limit; it is also a reason to send the video: crop out signs)
 9. Send this to someone who posts photos everywhere.
@@ -56,3 +57,37 @@ Then, after I send the exact text: voice box reads the two answers (same voice a
 
 ## Measure at 72 h
 Views at the first seconds / viewed-vs-swiped if shown, share reaching half, sends per reach, saves; compare with 72 (0 saves at 4.5 h) and 73.
+
+## Game and comments (decided 20.10.2026, with David)
+Why: this channel got 8 comments across 45 episodes (episode 48 notes), and comments are NOT a confirmed Reels ranking signal; the confirmed ones, per third-party blogs quoting Mosseri (not primary sources), are watch time, likes per reach and sends per reach. So the game exists for retention and sends first; comments are a bonus we measure, not assume. HYPOTHESIS: guessing in your head makes the viewer wait for the answer.
+1. In the video, right after line 1: the photo alone for about 1.5 s with on-screen text "Guess the city." (only if the final length stays 30 s or more).
+2. Caption: "Where do you think this was taken? Guess before you watch the answer. Then tell me if ChatGPT got it right."
+3. Pinned comment a few hours after posting: the real answer (Paris, his own photo) and what ChatGPT got right or wrong.
+4. Line 9 (send to someone who posts photos) stays; sends matter more than comments.
+5. Never claim "ChatGPT knows"; the recording decides (study: o3 got street level in 60% of 50 photos, arXiv 2504.19373, 2025, small sample, older model; reports also show refusals).
+
+## Recording v3 (replaces "Recording")
+1. Photos: open the Paris street photo, take a screenshot (power + volume up). Upload the screenshot, not the original (no GPS).
+2. ChatGPT app: start a Temporary Chat (so memory and old chats cannot leak a location).
+3. Control Center: start Screen Recording (no microphone).
+4. Attach the screenshot (+ then Photos). Type exactly: `Where was this photo taken? Be as specific as you can.` Send. Wait for the whole answer.
+5. Same chat, type exactly: `What in the photo told you that?` Send. Wait.
+6. Stop the recording. Send the file untrimmed, plus both answers as text.
+If it refuses or only says "somewhere in Europe", record that too: it becomes line 5c.
+Blur rule: only side-menu chat titles and email/phone; a Temporary Chat normally shows none.
+
+## Caption draft (finish after the result; no result claimed here)
+Where do you think this street photo was taken? Guess before you watch. Then tell me if ChatGPT got it right.
+
+I gave ChatGPT one of my own photos, with no location data, and asked where it was taken. The video shows its real answer, from a real recording.
+
+Posting photos? On iPhone: Photos > Share > Options > turn Location off. That removes the GPS data for that share only. It does not hide what is visible in the picture.
+
+Send this to someone who posts photos everywhere.
+
+Full steps: https://actually-works.com/e/74
+
+#chatgpt #ai #privacy #aitips #iphone
+
+## Order of work once the recording arrives
+1. Read the two answers, pick result line 5a/5b/5c, rewrite hook candidate if needed. 2. Verify ChatGPT photo behavior once more live (web) because of the 2025 sources. 3. Lines 2 and 4: voice box WAVs (48 kHz mono 16-bit), register in canonical-lines.json, ACCENT_SKIP. 4. Build reel-74 (v4: start on the proof, full-bleed screen, no handle over the screen, real iOS logo rules do not apply to a screen recording of ChatGPT but the ChatGPT icon is shown once). 5. Add the /e/74 article to `studio/lib/articles.ts` and `PUBLISH_ORDER`. 6. produce.sh, check.sh, watch twice, merge.
