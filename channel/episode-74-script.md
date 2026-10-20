@@ -1,39 +1,58 @@
-# Episode 74 (DRAFT, 19.10.2026) — "I sent ChatGPT a photo with no location. Where does it think I took it?"
+# Episode 74 (SCRIPT v2, 20.10.2026) — "I asked ChatGPT where a street photo was taken"
 
-Why this topic (data, not taste): 56.3% of the audience is 18-24 and 28% is 25-34 (Insights on episode 72, David 19.10.2026); episode 72 (dialogue with an AI voice) reached non-followers fast but got no saves or shares, so this episode pairs the dialogue with ONE savable step; the research agent (19.10.2026) listed "does it know where my photo was taken?" as a recurring question with no ordinary-person live check (UNCONFIRMED for current models: the viral geolocation game was April-June 2025).
+Status: NOT BUILT. Needs David's screen recording (see "Recording") before any line that quotes ChatGPT is final. Nothing here claims a result.
 
-## Status: NOT BUILT. Waiting on David: (1) a photo, (2) a screen recording of ChatGPT answering it, (3) the AI voice (voice box) reading ChatGPT's real answer. Nothing below claims a result.
+## Why this topic (data, not taste)
+- Audience (episode 72 Insights, David 19.10.2026): 18-24 is 56.3%, 25-34 about 28%: people who post photos daily.
+- Episode 72 (dialogue with an AI voice) reached non-followers fast (177 views at 4.5 h) but got no saves or shares; in the 43 successful ChatGPT TikToks we read, savable "do this" videos get 4-7% saves and the top video (12.2M plays, 2.6% shares) is a first-person conversation with ChatGPT. So: keep the dialogue, add one step worth keeping.
+- Hook research (`channel/hook-research-20-10.md`): across 9,387 YouTube Shorts from 174 AI channels, naming the tool, a how-to promise and a concrete payoff carry small edges (about x1.2 each); "you/your" in the title is slightly negative (about x0.88); hook wording explains under 2% of the variation inside a channel, so the payoff matters more than the line.
+- Research agent (19.10.2026): "does it know where my photo was taken" is a recurring question; the viral version was April-June 2025 (o3). Current behaviour is UNKNOWN until David's recording.
 
-## Draft lines (hook type: stakes / personal — 72 was Dialogue, 73 was instruction, so not a repeat; needs the dry-sentence test with the real answer in hand)
-1. I sent ChatGPT a street photo. No location, no caption. Where was it?  (primary, picked with `.claude/skills/viral-hook-lab`; David rejected the first draft "I sent ChatGPT one photo, with no location in the file!": it needs the viewer to know what "location in the file" means and it states a fact instead of asking a question)
-2. I asked it: where was this taken?
-3. (AI voice) <ChatGPT's real answer, first two sentences, word for word>
-4. So I asked: what told you that?
-5. (AI voice) <ChatGPT's real answer, first two sentences, word for word>
-6. <depends on the result; written only after the recording. Branches below>
-7. Before you post a photo: Photos, Share, Options, switch Location off. That hides the GPS data. It cannot hide what is in the picture.  (savable step, with the honest limit: the guide only covers GPS metadata, and ChatGPT may be reading the picture itself)
-8. Send this to someone who posts photos.
-9-10. The setup's in the link in bio. / Follow for the setup that actually works. (locked, no promise)
+## Verified 20.10.2026 (web; not OpenAI's own pages)
+- ChatGPT iPhone: tap "+" next to the message box, then Photos, to attach an image; since the 21.8.2026 release a long press on "+" shows your four latest photos (tech-news reports of OpenAI's release notes). Photo permission must be on.
+- Location behaviour: reports from the o3 launch (2025) say ChatGPT can guess locations from visual clues with metadata stripped; OpenAI says it trains models to refuse identifying private individuals in images (about people, not places). One tester saw refusal when a photo looked like Street View and compliance once told it was their own photo. No source found for GPT-5 or 2026 policy. UNCONFIRMED for current models, which is why the recording decides line 5 and 6.
+- iPhone: Photos > Share > Options > Location off removes GPS data for that share only; other metadata stays unless "All Photos Data" is off (iPhone Life, tested on iOS 26). It does NOT hide what is visible in the picture.
 
-Line 6 branches (pick the one the recording supports; never invent):
-- It named the exact place: "From one photo. No location in the file."
-- It named the country or city only: "It did not need the location. The picture was enough."
-- It refused or said it could not tell: "This time it would not guess. Still, strip the location before you post."
+## Photo
+David's own photo, a street with cobbles, a bookshop sign ("Librairie du Progres"), a "Vintage" sign and a small mosaic on the wall, people far away or from behind, no readable faces. Take a screenshot of it first (a screenshot carries no location). Approved 20.10.2026 pending his confirmation that he took it.
 
-## Verified 19.10.2026 (web, blog/guide grade; OpenAI/Apple pages not opened)
-- iPhone, per a guide tested on iOS 26 (iPhone Life): open the photo, tap Share, tap Options, switch off Location; "Location Not Included" shows at the top when it worked; it applies to that share only (repeat each time) and leaves other metadata such as device and time unless "All Photos Data" is also off.
-- Other path (older guides): open the photo's info, tap Adjust next to the map, choose No Location (iOS keeps the original, Revert restores it). To stop geotagging at the source: Settings > Privacy & Security > Location Services > Camera > Never (path from general knowledge of iOS; recheck before it goes in /e/74).
-- NOT verified: how current ChatGPT models behave on photo location (needs the recording); anything about WhatsApp or Instagram stripping location (do not claim).
+## Hook (viral-hook-lab, 20.10.2026)
+PROMISE: ChatGPT is asked where a photo was taken with no location data. PAYOFF: its real answer and its reasoning, plus one step to keep. FIRST FRAME: the photo with "Where was this taken?" typed on it.
+Candidates (mechanism, gates):
+1. [specific question + tool first] "I asked ChatGPT where this street photo was taken. No location, no caption."  cold read ok; concrete (ChatGPT, street photo); honest whatever it answers; one specific unanswered question; reads on screen without sound; first frame is the photo; sendable to someone who posts holiday photos. PRIMARY.
+2. [experiment story] "I gave ChatGPT one photo and no hints. Watch what it says."  weaker: no specific question.
+3. [how-to + stake, only if the recording shows a correct guess] "ChatGPT can guess where your photo was taken. Here is how to hide it."  needs the result and must not overpromise (see line 8).
+4. [demonstration, only if correct] "This street is in Paris. ChatGPT is about to tell me why."
+Risk of the primary: a flat answer ("Paris, probably"). Mitigation: the second message ("What in the photo told you that?") is the payoff; line 8 is the part to keep.
+Type log: 72 dialogue, 73 instruction, 74 specific question (not a repeat).
 
-## Photo rules (David): public place, far from home, no readable faces, no house numbers or plates, never home, school or work. Screenshot it first (no GPS in a screenshot).
-- Stock options found on Wikimedia Commons (Pinterest and Unsplash block automated access): CC0 "Sun setting on the Sint-Niklaaskerk, view through Veldstraat, Ghent, 2026" (DimiTalen) has crowds with faces, so rejected; the Ghent "Gent StreetView" set (Bart Laridon, CC BY-SA 4.0) needs credit in the caption. David's own photo from a public place is simpler and needs no credit.
+## Lines (v4 style: punchy, start on the proof, first frame already shows the photo and the typed question)
+1. I asked ChatGPT where this street photo was taken. No location, no caption!
+2. (AI voice) <ChatGPT's real answer to "Where was this photo taken?", first two sentences, word for word>
+3. So I asked: what told you that?
+4. (AI voice) <ChatGPT's real answer to the second question, first two sentences, word for word>
+5. <result line, ONE of, chosen only after the recording:>
+   a. It named the street. From one photo. (if it named the exact place)
+   b. It got the city from the shop signs. (if it gave city or country and cited signs)
+   c. This time it would not guess. (if it refused or said it could not tell)
+6. Posting photos? Check one thing before you send them.
+7. Photos, Share, Options. Switch Location off.
+8. That hides the GPS data. It can not hide what is in the picture.   (the honest limit; it is also a reason to send the video: crop out signs)
+9. Send this to someone who posts photos everywhere.
+10. The setup's in the link in bio. (locked)  11. Follow for the setup that actually works. (locked, no promise)
+Notes: reword any word the voice swallows (run `audio/script_lint.py` first); line 7 lists labels exactly as the iPhone shows them; on-screen the real ChatGPT answer text, never retyped; no logo caption under the ChatGPT icon.
 
-## Runner-up: "I wrote this essay myself. An AI detector said 98% AI." (students; result depends on the detector; needs a recording).
+## Recording (what David does; ~2 minutes)
+1. Photos: open the street photo and take a screenshot (power + volume up).
+2. Control Center: start Screen Recording (no microphone).
+3. ChatGPT app, New chat. Tap + (or long-press + for recent photos), pick the screenshot.
+4. Type `Where was this photo taken?` Send. Wait for the whole answer.
+5. In the same chat type `What in the photo told you that?` Send. Wait.
+6. Stop the recording. Send the file. Do not trim.
+Then, after I send the exact text: voice box reads the two answers (same voice as episode 72); two WAV files plus the text.
 
-## Hook candidates (viral-hook-lab, 20.10.2026) — promise: ChatGPT is asked where a photo was taken with no location data; payoff: its real answer and reasoning, plus one step to keep
-1 [specific question] "I sent ChatGPT a street photo. No location, no caption. Where was it?"  gates: cold read ok, concrete (street photo, ChatGPT), honest whatever the answer, a question the viewer wants answered, mute ok, first frame = the photo itself with the question on it, sendable to someone who posts holiday photos. PRIMARY.
-2 [experiment story] "I gave ChatGPT one photo and no hints. Watch what it says."  Weaker: "no hints" is vague and "watch what it says" is a generic tease with no specific question. ALTERNATE only if line 1 sounds wrong by ear.
-3 [stake, result-dependent] "Posting photos? ChatGPT can guess where you took them."  Only usable if the recording shows a correct guess; still hedged ("can guess"). If it refused, do not use.
-4 [demonstration, result-dependent] "This street is in Paris. ChatGPT is about to tell me why."  Only if the guess is right; it weakens the question.
-Risk of the primary: none on honesty (the question is real whatever it answers); the risk is a boring answer ("Paris, probably"). Mitigation: the second message ("What in the photo told you that?") is the payoff, and the step in line 7 is the part to keep.
-Measure at 72 h: views at 3 s or viewed-vs-swiped if shown, share of viewers reaching half, sends per reach, saves. Compare with 72 (no saves) and 73.
+## Setup guide for /e/74 (draft, English only, after the result is known)
+1. Open the photo. 2. Tap Share. 3. Tap Options (top of the share sheet). 4. Switch Location off ("Location Not Included" appears). 5. Send. 6. Optional: crop signs and street names before sending. Limits: GPS only, that share only; the picture itself still gives clues.
+
+## Measure at 72 h
+Views at the first seconds / viewed-vs-swiped if shown, share reaching half, sends per reach, saves; compare with 72 (0 saves at 4.5 h) and 73.
