@@ -37,5 +37,5 @@
 - Savable how-to videos reached 4-7% saves.
 
 ## Data study (20.10.2026) — grade A numbers, B conclusions
-- 98 AI channels, 5,341 YouTube Shorts (latest 60 each, <=61 s), views relative to each channel's own median. Within-channel effect of title features: tool named x1.2, number x1.13, how-to x1.2, "free" x1.3, caps word x1.26, "you/your" x0.9, negative framing x0.85; question, first person, hype words, emoji, length: no effect. 22 title features together: R-squared 0.015 within channel. Raw data: `channel/hook-corpus-youtube-shorts-ai-20-10-2026.csv`.
-- Not measured: spoken hooks (YouTube blocked audio access), Reels, retention, saves/shares on YouTube.
+- 174 AI channels, 9,387 YouTube Shorts (latest 60 each, <=61 s), views relative to each channel's own median. Within-channel effect of title features: how-to x1.3, tool named x1.23, "free" x1.34, caps word x1.23, "you/your" x0.88; number, question, first person, hype words, emoji, length: no effect. Topic: image/video tools x1.21, others none. All features together: R-squared 0.017 within channel. Between channels: log-log slope of median views on subscribers 0.54, r 0.81. Raw data: `channel/hook-corpus-youtube-shorts-ai-20-10-2026.csv`.
+- Not measured: spoken hooks (YouTube blocked audio and automatic captions at scale), Reels, retention, saves/shares on YouTube.
