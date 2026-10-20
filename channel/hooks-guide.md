@@ -9,6 +9,8 @@ memory. Read this before writing any episode's first line.
 Pick deliberately from the categories below, based on what this specific episode's content
 actually is — not whichever type got used last.
 
+> **Evidence status, 20.10.2026.** A research pass (`channel/hook-research-20-10.md`) found no proven hook formula and no traceable per-second hook data: the platforms publish no weights, most online hook percentages are untraceable, and several pop-psychology claims (Zeigarnik "open loops", the 8-second attention span) are contested or myths. Everything in this file below is therefore a hypothesis the channel tests on its own numbers, not a sourced rule. The generic, shareable version of the process is the skill `.claude/skills/viral-hook-lab/` (candidate generation, gates, measurement plan, myths to refuse). Run it before writing the hook of every episode, then log the hook type and the 72-hour readings.
+
 ## Standing rule, 23.9.2026: every test below is a hard STOP, not a reference to consult
 
 David flagged, after episode 45's hook shipped and had to be rewritten, then again after

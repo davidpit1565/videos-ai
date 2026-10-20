@@ -9,6 +9,7 @@ one by name (e.g. `/cro`, `/autoresearch`).
 | Marketing | 50 | [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) | `f557c54` | MIT |
 | Research | 98 | [orchestra-research/ai-research-skills](https://github.com/orchestra-research/ai-research-skills) | `773a529` | MIT |
 | Postiz | 1 | [gitroomhq/postiz-agent](https://github.com/gitroomhq/postiz-agent) | `77d09c6` | AGPL-3.0 |
+| Local | 1 | this channel: `viral-hook-lab` (hooks, evidence-graded) | n/a | n/a |
 | Zernio | 1 | [zernio-dev/zernio-api](https://github.com/zernio-dev/zernio-api) | `6a8356f` | MIT |
 
 ## Layout
