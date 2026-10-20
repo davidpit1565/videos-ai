@@ -103,6 +103,7 @@ been running for days.
   before shipping and refuses to ship an episode with no `studio/lib/articles.ts` entry, or
   one whose `steps[]` is missing or placeholder-thin — a caption existing was already a hard
   stop for the same reason, this closes the matching gap for the setup guide itself.
+- **Evidence check on hooks, 20.10.2026: run the `viral-hook-lab` skill (`.claude/skills/viral-hook-lab/`) when writing an opening line.** Research (`channel/hook-research-20-10.md`) found no proven hook formula and no traceable per-second hook data, so every hook is a hypothesis: log its type and its 72-hour readings (reach, retention, sends, saves) in `content-memory.md`, and do not cite untraceable statistics ("65% leave in 3 seconds", the Zeigarnik effect, the 8-second attention span).
 - **Read `channel/hooks-guide.md` before writing any episode's opening line. Never repeat
   the same hook type two episodes in a row, and never ship a hook that only passes the
   "dry-sentence test" by accident.** Decided 2.9.2026, after he flagged twice, in the same
