@@ -1,4 +1,43 @@
-# Hook and virality research — 20.10.2026
+# Hook and virality research — 20.10.2026 (revised the same evening with a measured data study)
+
+**Revision note.** The first version of this file was built from five web-search passes and was thin: search tools cannot read TikTok, Instagram or Reddit, and most "hook statistics" online have no traceable source. Instead of repeating the same searches, section 0 below is a data study built from platform data that the tools CAN read (YouTube Shorts via `yt-dlp`, and individual TikTok video pages). Sections 1-8 are the earlier literature and corpus passes, kept as they were.
+
+## 0. Data study: YouTube Shorts from 98 AI channels (n = 5,341 Shorts)
+
+**Method.** Channels found by 60 AI-topic searches (ChatGPT, Claude, Gemini, prompts, agents, automation, AI tools and so on); kept a channel if at least 35% of its Shorts titles name AI/tools, it had 25+ Shorts of 61 s or less in its latest 60. For each Short: views divided by the channel's own median (the **lift**), so a channel's audience size cancels out. For each title feature: the average difference in log-lift between titles with and without the feature, **within the same channel**, averaged over channels (bootstrap 95% interval over channels), with a split-half check (random half of channels vs the other half) and a robustness run without brand/promoted channels (Google, Adobe, Canva, Microsoft, Perplexity, Claude/Anthropic, ElevenLabs and similar) and with extreme values capped. Data: `channel/hook-corpus-youtube-shorts-ai-20-10-2026.csv`.
+
+**Grade: A for the numbers (platform data read directly); B for the conclusions (correlational, titles not spoken hooks, YouTube Shorts not Reels/TikTok, one snapshot of each channel's latest 60 Shorts).**
+
+**Findings (robust run; ratio = typical views of titles with the feature vs without, same channel):**
+- Names the tool or product in the title (ChatGPT, Claude, Gemini, ...): about **x1.2** (69 channels; interval x1.03-x1.36; same direction in both halves).
+- Contains a number: about **x1.13** (79 channels; both halves same sign).
+- "How to ..." promise: about **x1.2** (30 channels; interval just above 1).
+- Says "free": about **x1.3** (24 channels; wide interval).
+- An ALL-CAPS word: about **x1.26** (39 channels; interval above 1).
+- Addresses the viewer with "you/your": about **x0.9** (67 channels; both halves negative, interval below 1). This goes against our assumption that direct address is a stronger hook; at title level it is a small negative.
+- Negative framing (stop, never, mistake, wrong, scam...): about **x0.85** (borderline, interval touches 1).
+- No measurable difference: question mark, first person ("I"), "this/these", hype words (insane, crazy, game-changing), "secret/hack", news recency words, emoji, exclamation, title length (short or long), colon/dash.
+- 22 features were tested; about one "significant" result is expected by chance. The ones above are those that kept the same sign in both halves.
+
+**The most important number: all 22 title features together explain 1.5% of the variation between a channel's Shorts** (R-squared 0.015, channel-fixed). Typical swing inside one channel is about x2.9, from 0.37x of its median at the 10th percentile to 3.4x at the 90th, with a tail up to 60x. **So wording moves views by roughly 10-30%, while the spread between a channel's own videos is ten times larger.** Something other than the title text drives most of it: the topic, the spoken delivery, the visuals, timing, and luck. This study cannot see those. It also means a perfect hook line is worth a modest edge, not a breakout.
+
+**What the biggest organic outliers look like** (creator channels, lift versus own median; views as read from YouTube):
+- "Talk to Your CRM with Claude (This Changes Everything)" (8.0M, x1,481, a 92k-subscriber channel).
+- "Make AI Writing Sound Actually Human" (3.2M, x577).
+- "The One Thing That Stops Every AI Agent" (5.7M, x439).
+- "HeyGen AI video generator just changed the game..." (5.3M, x408).
+- "Your AI agent NEEDS 4 types of memory... It has 1" (518k, x176).
+- "ChatGPT, Show Me an IPhone" (419k, x147) and "ChatGPT Repeat After Me" (218k, x77): a person talking to the AI.
+- "Stop Paying for 5 AI Tools (Use This Instead)" (4.6M, x91).
+- "Don't sleep on this AI motion tool" (187k, x117).
+- Common elements: a named tool, a concrete payoff or one specific unanswered question ("the one thing that stops every agent"), and often a how-to or a number. Several top-lift outliers in the full file are brand or promoted videos (certificates, PDF tool ads); they were excluded from the robust run.
+
+**Limits that matter.** (1) Titles stand in for the hook; the spoken first sentence could not be read because YouTube blocked media access from this server after the first requests (bot check), so spoken hooks are not measured here. (2) YouTube Shorts count a view from the first frame (since 24.8.2026), so views here include swipe-aways. (3) Latest 60 Shorts per channel only, so older hits are missing. (4) AI-niche channels that surface in search are larger and more professional than a 30-follower channel. (5) Nothing here is causal.
+
+**What this changes in our practice:** (a) name the tool or the object in the first words, (b) a concrete how-to or specific-question promise plus a number where honest, (c) do not assume "you"-address or hype words help, (d) expect a hook to move results by tens of percent, so the topic and the payoff deserve the larger share of the effort, (e) keep the hook honest because the effect of wording is small and the cost of a broken promise is unmeasured.
+
+---
+
 
 Five research passes (web search and page fetches only; TikTok, Instagram and Reddit pages could not be read by the tools except individual TikTok video pages), plus one corpus of our own built from public TikTok pages. Written from the reports, not from memory. Grades: A = replicated/meta-analytic or primary with method, B = solid single study or primary without method, C = vendor/blog/secondary, D = untraceable.
 
