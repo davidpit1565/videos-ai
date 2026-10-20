@@ -50,6 +50,17 @@ supported, what is contested, and the myths to refuse.
    our corpus of 43 successful ChatGPT TikToks the median save rate was 3.3% and
    share rate 0.85%; videos that teach a step get saves.
 
+## Measured priors (YouTube Shorts, 98 AI channels, 5,341 Shorts; within-channel, 20.10.2026)
+
+Treat these as small, correlational edges, not rules. Title text stands in for the hook.
+- **Naming the tool/product** in the title: typical views x1.2. **A number**: x1.13. **A "how to" promise**: x1.2. **"free"**: x1.3 (wide interval). **An ALL-CAPS word**: x1.26.
+- **"you/your"** in the title: x0.9 (both split halves negative). **Negative framing** (stop/never/mistake/scam): about x0.85 (borderline).
+- No measurable effect: question mark, first person, hype words (insane, crazy), "secret/hack", news-recency words, emoji, exclamation, title length.
+- **All title features together explain only 1.5% of the variation between one channel's own Shorts** (typical swing x2.9, tail up to x60). The text is a modest edge; topic, delivery, visuals and the payoff carry most of the variance. Spend the effort accordingly.
+- Biggest organic outliers combine a **named tool + a concrete payoff or one specific unanswered question**, often with a how-to or a number ("Talk to Your CRM with Claude", "The One Thing That Stops Every AI Agent", "Make AI Writing Sound Actually Human") and a person talking to the AI ("ChatGPT, Show Me an iPhone").
+- Corpus of successful ChatGPT-tip TikToks (n=43): median 3.3% saves, 0.85% shares; teach-a-step videos get 4-7% saves.
+Use them when choosing between two honest candidates; never to justify a dishonest one.
+
 ## Refuse these (contested or untraceable)
 
 Zeigarnik "open loops make people remember" (did not replicate in a 2025
@@ -74,7 +85,7 @@ one, replace it with "unproven; test it".
    weaker than the promise, fix the payoff or shrink the promise. Never write a
    hook the video cannot keep.
 2. **Generate 8-10 candidates across different mechanisms**, not variations of one:
-   - Specific question the viewer wants answered.
+   - Specific question the viewer wants answered (name the tool or object in the first words).
    - Personal stake / "this is about you" with a concrete object.
    - Demonstration: the result shown first, then the cause.
    - Experiment story: "I did X to Y" with the outcome withheld.
