@@ -1,0 +1,9 @@
+ChatGPT named my street from one photo (no GPS)
+
+I sent ChatGPT one photo of my own with no location data and asked where it was taken. It named the street and a house number. The video shows the real answer from a real recording, one try on one day. ChatGPT itself called it a strong lead, not a confirmed match.
+
+Before you post photos on iPhone: Photos > Share > Options > Location off. That removes the GPS location for that share only. It does not hide signs, house numbers or shop names that are visible in the picture.
+
+Full setup, step by step: https://actually-works.com/e/74
+
+Tomorrow: what happens when I crop the sign out.

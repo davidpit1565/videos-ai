@@ -1992,6 +1992,35 @@ export const ARTICLES: Article[] = [
       "A critical answer is not automatically a correct answer. Check any claim that matters.",
     ],
   },
+  {
+    n: 74,
+    title: "ChatGPT named my street from one photo with no location data",
+    standfirst:
+      "I gave ChatGPT one of my own photos, with no location data, and asked where it was taken. It answered with a street and a house number. " +
+      "This page has the exact question, what it answered, how to stop your phone sending location with a photo, and what that does not hide. " +
+      "It is one photo, one try and one day, so treat it as a test you can repeat, not as proof of how ChatGPT always behaves.",
+    steps: [
+      "Open the Photos app on your iPhone and tap the photo you want to send.",
+      "Tap the Share button (the square with an arrow pointing up).",
+      "At the top of the share sheet, tap Options.",
+      "Switch Location off. The preview then shows that the location is not included. This only applies to this one share.",
+      "Choose how to send it, for example Messages or WhatsApp.",
+      "Optional: before you post a photo online, crop out street signs, house numbers and shop names. Turning Location off does not remove them from the picture.",
+      "Optional: to test it yourself, take a screenshot of the photo (a screenshot carries no location data), open ChatGPT in a Temporary Chat, attach the screenshot and ask: Where was this photo taken? Be as specific as you can. Read the whole answer, including what it says it is unsure about.",
+    ],
+    changes: [
+      "The question and the answer come from one screen recording of the ChatGPT iPhone app on 21 October 2026 (free plan). The text on screen is the real answer. Two sentences of it were read out by a synthetic AI voice made with a voice generator.",
+      "In the recording ChatGPT named a street in Le Marais in Paris and a house number. It pointed to the number 22 on a storefront, a restaurant listed at that address, the street style and the surrounding area.",
+      "I checked its answer against the photo: the photo shows a MIZNON storefront and the number 22, and the restaurant is listed at 22 rue des Ecouffes, 75004 Paris. The photo is my own.",
+      "ChatGPT itself called the result a strong lead rather than a confirmed match, and the app showed that it used web sources.",
+      "The step list for Location off comes from public how-to guides and a third-party test on a recent iOS version, not from a test of mine on every iPhone.",
+    ],
+    limits: [
+      "One photo, one try, one account, one day. Another photo, another day or another model can give a different answer, including a wrong one or a refusal.",
+      "Turning Location off only removes the GPS location for that share. Other photo information may still be sent, and anything visible in the picture can still give the place away.",
+      "Not tested: cropping out the signs, other AI tools, other photos. That test comes next.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

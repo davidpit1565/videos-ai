@@ -443,5 +443,12 @@
     "ember": "#FDE047",
     "mood": "bright",
     "date": "2026-10-19"
+  },
+  {
+    "episode": 74,
+    "brass": "#F59E0B",
+    "ember": "#F59E0B",
+    "mood": "urgent",
+    "date": "2026-10-21"
   }
 ]
