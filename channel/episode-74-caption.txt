@@ -1,0 +1,11 @@
+I sent ChatGPT one photo with no location. It named the street. Guess which clue gave it away: the number, the shop, or the balconies?
+
+The video shows the real answer from a real recording of my own photo. One photo, one try; ChatGPT also searched the web and called its answer "a strong lead", not a confirmed match.
+
+Before you post photos on iPhone: Photos > Share > Options > Location off. That removes GPS for that share only. It does not hide signs, numbers or shop names in the picture.
+
+Send this to someone who posts photos everywhere. Tomorrow: what happens when I crop the sign out.
+
+Full setup, step by step: https://actually-works.com/e/74
+
+#chatgpt #ai #privacy #iphone #aitips

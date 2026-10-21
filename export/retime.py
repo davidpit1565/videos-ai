@@ -196,8 +196,10 @@ def main():
     # Real-screen-recording scenes (episode 71, 16.10.2026) add per-scene crop centre
     # (data-cx/cy), the ring/tag delay (data-rd, seconds into the scene), the frame index of a preloaded screenshot (data-k) and the source-video
     # second at which a ON/OFF tag flips (data-tt, a time inside the recording, not on this
-    # file's timeline).
-    NON_TIMING = {"grad-alpha", "kb-scale", "kb-x", "kb-y", "cx", "cy", "k", "tt", "rd", "rt", "dl"}
+    # file's timeline). Episode 74 (21.10.2026): data-neg (let the camera window start above the
+    # frame, padded black) and data-ct (crop the top of the frame, in frame pixels): per-scene
+    # picture config, not times.
+    NON_TIMING = {"grad-alpha", "kb-scale", "kb-x", "kb-y", "cx", "cy", "k", "tt", "rd", "rt", "dl", "neg", "ct", "zlin"}
     unknown = {m.group(1) for m in re.finditer(r'data-([a-z-]+)="[0-9.]+"', original)
                } - REMAPPED - NON_TIMING
     if unknown:

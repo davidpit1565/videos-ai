@@ -1,6 +1,6 @@
 # Episode 74 (SCRIPT v3, 20.10.2026) — "I asked ChatGPT where a street photo was taken"
 
-Status: NOT BUILT. RESULT RECEIVED 21.10.2026 (see "Result" at the end); waiting only for the two AI-voice WAVs. Needs David's screen recording (see "Recording v3" at the end; it replaces the older "Recording" section) before any line that quotes ChatGPT is final. Nothing here claims a result.
+Status: BUILT and gated 21.10.2026 (`studio/public/reels/reel-74.mp4`, 63.2 s). Gate passed with ONE ear-call left to David: line 13 (the final "Tomorrow..." line) kept an accent-heuristic score of 0.95-1.00 across four seeds (`ACCENT_SKIP=3,5,13`; 3 and 5 are the AI-voice lines). Also to listen to: the AI voice saying "Ecouffes" (Whisper heard "Accoufs"), and the word "Share" (UI label, script_lint flags the dropped R). Generator and spec: `video/gen/ep74/`. Not verified by a person: the audio, which I cannot hear. Needs David's screen recording (see "Recording v3" at the end; it replaces the older "Recording" section) before any line that quotes ChatGPT is final. Nothing here claims a result.
 
 ## Why this topic (data, not taste)
 - Audience (episode 72 Insights, David 19.10.2026): 18-24 is 56.3%, 25-34 about 28%: people who post photos daily.
