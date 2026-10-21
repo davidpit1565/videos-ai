@@ -235,9 +235,9 @@
  ],
  "scenes": [
   {
-   "spoken": "I sent ChatGPT one photo, no location. It named the street I was on!",
-   "html": "<img src=\"../channel/assets/ep70-chatgpt-logo.svg\" alt=\"\" style=\"height:1.0em;width:auto;vertical-align:-.14em;margin-right:.32em;filter:invert(1)\">I sent <span class=\"box\">ChatGPT</span> one photo, no location. It <span class=\"box\">named the street I was on!</span>",
-   "fs": 5.4,
+   "spoken": "I sent ChatGPT one photo, no location. It told me the street I was on!",
+   "html": "<img src=\"../channel/assets/ep70-chatgpt-logo.svg\" alt=\"\" style=\"height:1.0em;width:auto;vertical-align:-.14em;margin-right:.32em;filter:invert(1)\">I sent <span class=\"box\">ChatGPT</span> one photo, no location. It <span class=\"box\">told me the street I was on!</span>",
+   "fs": 5.2,
    "pt": 28.5,
    "s0": 4.3,
    "s1": 8.6,

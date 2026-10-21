@@ -11,4 +11,4 @@ export const PUBLISH_ORDER: number[] = [74];
  *  recorded live in the database, from the earlier post). 16.10.2026: 57, 65 and 69 added, from David's screenshot
  *  of his Reels tab (4 reels: 69 iPhone notifications, 57 Google live AI, 67 YouTube birthday, 65 Gmail replies).
  *  17.10.2026: 70 added (posted by hand Friday 16.10.2026 evening; about 130 views by Saturday night). 18.10.2026: 71 added (v4, posted by hand by David Sunday 18.10.2026). */
-export const PUBLISHED_MANUALLY: number[] = [57, 65, 67, 69, 70, 71, 72, 73];
+export const PUBLISHED_MANUALLY: number[] = [57, 60, 65, 67, 69, 70, 71, 72, 73];
