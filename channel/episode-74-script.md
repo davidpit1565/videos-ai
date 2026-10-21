@@ -105,3 +105,32 @@ Result line = 5a, worded to keep the limit honest. FINAL LINES (replaces the pla
 6. Posting photos? Check one thing first.  7. Photos, Share, Options. Switch Location off.  8. That hides the GPS data. It can not hide what is in the picture.  9. Send this to someone who posts photos everywhere.  10-11 locked CTAs (final line stays the standard one unless David approves a tomorrow promise).
 Honest limits for the caption/article: one photo, one try, one model on one day; ChatGPT also searched the web (Sources and a map link shown); it called the match "a strong lead", not confirmed.
 Optional follow-up episode (not promised anywhere): crop out the number and shop name and ask again; needs attachment credits to reset.
+
+## v4 (21.10.2026): hook payoff-first, story bridge to the ending, caption (David: hook must be viral; the end jumped from the tip to "send this" to "follow")
+Problem found in v3 (my miss): the ending stacked three asks in a row (send / setup link / follow) with no thread from the story, and line 11 was still the retired "Follow for the setup that actually works", which breaks the standing rule (final line names tomorrow's episode). Fix = the open question the story itself creates ("it can not hide a sign in the picture") becomes tomorrow's test, so the last line is a payoff of the story, not a generic ask.
+Hook change: the result is now known, so the primary is payoff-first (concrete outcome + the stake of the viewer's own photos): "I sent ChatGPT one photo, no location. It named the street!" (viral-hook-lab gates: cold read ok, concrete, honest because it did, specific question in the head: how? mute ok: first frame shows the answer card; sendable). Hypothesis, logged, not proven (hook wording explains under 2% of variation in our study). Type log: 72 dialogue, 73 instruction, 74 surprising result (not a repeat).
+FINAL LINES v4 (AI-voice lines 2 and 4 unchanged):
+1. I sent ChatGPT one photo, no location. It named the street!
+2. (AI voice) I believe this photo was taken on Rue des Ecouffes, in the Le Marais district of Paris, France, most likely near number 22, 75004 Paris.
+3. Then it told me why.
+4. (AI voice) The number 22: The storefront on the left appears to display this number. Miznon Paris is officially listed at exactly 22 Rue des Ecouffes, 75004 Paris.
+5. A 22 on a wall. A shop sign. That was all it needed.   (script_lint: "number" reworded)
+6. Turning off your location does not stop that.
+7. On iPhone: Photos, Share, Options. Switch Location off.   ("Share" is the real menu label; ear check)
+8. That hides the GPS. It can not hide a sign in the picture.
+9. So I'm testing what happens when the sign is gone.   (bridge)
+10. Know someone who posts photos everywhere? Send them this.
+11. The setup's in the link in bio. (locked, second to last)
+12. Tomorrow, I'll show you what ChatGPT says when I crop the sign out. Follow, so you get the full story.   (final line; BINDING PROMISE: episode 75 must be this test and be published the next day; needs David's yes and his recording after the attachment limit resets; if not, re-render lines 9 and 12 before 74 goes out)
+Caption v4 (first line is what shows before "more"):
+I sent ChatGPT one photo with no location. It named the street. Guess which clue gave it away: the number, the shop, or the balconies?
+
+The video shows the real answer from a real recording of my own photo. One photo, one try; ChatGPT also searched the web and called its answer "a strong lead", not a confirmed match.
+
+Before you post photos on iPhone: Photos > Share > Options > Location off. That removes GPS for that share only; it does not hide signs, numbers or shop names in the picture.
+
+Send this to someone who posts photos everywhere. Tomorrow: what happens when I crop the sign out.
+
+Full steps: https://actually-works.com/e/74
+#chatgpt #ai #privacy #iphone #aitips
+YouTube title/description (draft): "ChatGPT named my street from one photo (no GPS)" / same text as the caption minus hashtags spam; first 100 characters carry the result.
