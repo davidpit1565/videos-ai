@@ -1592,3 +1592,8 @@ FACT for comparison: episode 71 had about 200 views on Instagram at 8-10 hours (
 HYPOTHESIS (not confirmed, n=1): the dialogue hook (a question plus an AI voice answering) stops the scroll for non-followers, which fits the high reach; it does not hold attention (7 s) and gives no reason to like, save or send, which fits the zero engagement. Both could also come from the topic, the music, the posting time, or chance; one episode cannot separate them.
 UNKNOWN: reach and watch time at 72 hours; whether the dialogue format or the topic caused the extra reach; why nobody saved it (candidate: it showed a result but no step to keep).
 Episode 73 (19.10.2026) is the first drawn-concept test (no recording, no second voice) and ships with three steps a viewer can save; compare its saves and shares with 72's at the same hour.
+
+
+## 21.10.2026 - episode 72 (AI-voice dialogue, screen recording) vs 73 (drawn concept), David's numbers
+FACT (David, from Instagram, not independently checked): ep72 reached about 500-600 views, the most of any reel so far; his typical reel is about 200; 8 likes vs a typical 5; 3 profile visits; 0 new followers. Ep73 (all drawn, no screen recording) did worse than 72 by his account (numbers not given).
+HYPOTHESIS: real screen recording plus a second AI voice reading the real answer is what lifted 72; ep73 does not support the drawn-concept format. One video each, so this is not yet a confirmed pattern (rule: two independent episodes). Ep74 is the second test of the dialogue-with-real-screen format. Still UNKNOWN: saves, shares, average watch time for 72 and 73.
