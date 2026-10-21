@@ -111,6 +111,7 @@ Problem found in v3 (my miss): the ending stacked three asks in a row (send / se
 Hook change: the result is now known, so the primary is payoff-first (concrete outcome + the stake of the viewer's own photos): "I sent ChatGPT one photo, no location. It named the street!" (viral-hook-lab gates: cold read ok, concrete, honest because it did, specific question in the head: how? mute ok: first frame shows the answer card; sendable). Hypothesis, logged, not proven (hook wording explains under 2% of variation in our study). Type log: 72 dialogue, 73 instruction, 74 surprising result (not a repeat).
 FINAL LINES v4 (AI-voice lines 2 and 4 unchanged):
 1. I sent ChatGPT one photo, no location. It named the street!
+1b. This can happen with any photo you post.   (v4.1, 21.10.2026: second beat of the hook so the viewer feels the stake in the first seconds. Judgment from the 3-second rule, NOT measured. "yours" was dropped: script_lint flags it. Lines below renumber by +1.)
 2. (AI voice) I believe this photo was taken on Rue des Ecouffes, in the Le Marais district of Paris, France, most likely near number 22, 75004 Paris.
 3. Then it told me why.
 4. (AI voice) The number 22: The storefront on the left appears to display this number. Miznon Paris is officially listed at exactly 22 Rue des Ecouffes, 75004 Paris.
