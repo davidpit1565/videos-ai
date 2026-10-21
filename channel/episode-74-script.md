@@ -1,6 +1,6 @@
 # Episode 74 (SCRIPT v3, 20.10.2026) — "I asked ChatGPT where a street photo was taken"
 
-Status: NOT BUILT. Needs David's screen recording (see "Recording v3" at the end; it replaces the older "Recording" section) before any line that quotes ChatGPT is final. Nothing here claims a result.
+Status: NOT BUILT. RESULT RECEIVED 21.10.2026 (see "Result" at the end); waiting only for the two AI-voice WAVs. Needs David's screen recording (see "Recording v3" at the end; it replaces the older "Recording" section) before any line that quotes ChatGPT is final. Nothing here claims a result.
 
 ## Why this topic (data, not taste)
 - Audience (episode 72 Insights, David 19.10.2026): 18-24 is 56.3%, 25-34 about 28%: people who post photos daily.
@@ -91,3 +91,17 @@ Full steps: https://actually-works.com/e/74
 
 ## Order of work once the recording arrives
 1. Read the two answers, pick result line 5a/5b/5c, rewrite hook candidate if needed. 2. Verify ChatGPT photo behavior once more live (web) because of the 2025 sources. 3. Lines 2 and 4: voice box WAVs (48 kHz mono 16-bit), register in canonical-lines.json, ACCENT_SKIP. 4. Build reel-74 (v4: start on the proof, full-bleed screen, no handle over the screen, real iOS logo rules do not apply to a screen recording of ChatGPT but the ChatGPT icon is shown once). 5. Add the /e/74 article to `studio/lib/articles.ts` and `PUBLISH_ORDER`. 6. produce.sh, check.sh, watch twice, merge.
+
+## Result (recording received 21.10.2026, 10:32; raw file stays out of git)
+Recording: iPhone, 1206x2622, 35.7 s, ChatGPT app (free plan: Upgrade button and an "out of attachments" notice visible). Question 1 typed exactly as planned and answered in full. Question 2 was mistyped ("Well, in the photo made you think like that") and the recording stops mid-answer: that part is CUT and not used.
+ChatGPT's answer 1 (verbatim, read off the frames): "I believe this photo was taken on Rue des Ecouffes, in the Le Marais district of Paris, France, most likely near number 22, 75004 Paris." Then a "Most likely location" card (Rue des Ecouffes, 4th arrondissement, Le Marais, Paris, France, with a Google Maps link and photo thumbnails), then "What points to this location?": (1) "The number 22: The storefront on the left appears to display this number. Miznon Paris is officially listed at exactly 22 Rue des Ecouffes, 75004 Paris." (2) architecture (cobbled street, Parisian facades, wrought-iron balconies, wall-mounted lamps, historic Marais), (3) surrounding area (close to Rue des Rosiers). Then "My best estimate: Rue des Ecouffes, near number 22, in Le Marais, Paris." and a caveat: "I haven't independently matched the exact arrangement of the storefronts and street furniture to a verified street-level image, so I would treat the precise street identification as a strong lead rather than a confirmed match."
+Checked by me: the photo itself shows a MIZNON storefront and the number 22 above it; Miznon is listed at 22 rue des Ecouffes, 75004 (The Infatuation, J Guide Europe, Paris by Mouth). David does not know the street; he remembers a falafel place opposite and a chocolate shop on the same street, which is consistent. So the answer is correct, and it came from a visible number and shop name plus the neighbourhood, not from architecture alone.
+Result line = 5a, worded to keep the limit honest. FINAL LINES (replaces the placeholders; second question dropped because answer 1 already contains the reasons):
+1. I asked ChatGPT where this street photo was taken. No location, no caption!
+2. (AI voice) I believe this photo was taken on Rue des Ecouffes, in the Le Marais district of Paris, France, most likely near number 22, 75004 Paris.
+3. Then it told me why.
+4. (AI voice) The number 22: The storefront on the left appears to display this number. Miznon Paris is officially listed at exactly 22 Rue des Ecouffes, 75004 Paris.
+5. It named the street. A shop sign gave it away.
+6. Posting photos? Check one thing first.  7. Photos, Share, Options. Switch Location off.  8. That hides the GPS data. It can not hide what is in the picture.  9. Send this to someone who posts photos everywhere.  10-11 locked CTAs (final line stays the standard one unless David approves a tomorrow promise).
+Honest limits for the caption/article: one photo, one try, one model on one day; ChatGPT also searched the web (Sources and a map link shown); it called the match "a strong lead", not confirmed.
+Optional follow-up episode (not promised anywhere): crop out the number and shop name and ask again; needs attachment credits to reset.
