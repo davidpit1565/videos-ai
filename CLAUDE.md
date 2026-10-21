@@ -470,6 +470,8 @@ Every one of those checks exists because a real defect reached him first. The ca
 duration check exists because he stopped the video on a 10-frame yellow card; the blank
 first frame check because the hook faded in over 0.26s and frame zero was empty.
 
+**Standing rule, 21.10.2026 (David's words: the voice must always sound good, no frequencies that sound bad, the highest quality, "as if we used the best microphones"): run `audio/voice_quality.py <narration-r.wav> <cues.json> --music <music.wav> --vol <MUSIC_VOL>` on every episode before it is shipped.** It measures what the older checks miss: each line's pitch range and where it ends (episode 74's hook swung 12.1 semitones and ended -4.4 below its median: every other check passed and David called the tone "really bad"; the lines he likes sit at 4.9-8.4 st), a steady tone in the voice, and whether the music bed can be heard on a phone speaker (episode 74's first track was an 85%-sub-bass drone: present in the file, inaudible on the phone; the bed should sit about -6 to -18 dB under the voice in the 300-3500 Hz band). A hook line that fails is re-rolled with several seeds and a lower exaggeration and chosen by these numbers, not by guess. It does not replace his ear: after it passes, say plainly that the audio was measured, not heard.
+
 **Standing rule, as of episode 18: check → fix → re-check → only then send.** A targeted
 fix after the gate already passed (a de-esser pass on one line, a re-cut clip) can break
 something the first pass never touched, silently. `check.sh` runs again, in full, after
