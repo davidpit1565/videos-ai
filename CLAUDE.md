@@ -225,6 +225,9 @@ After watching episode 71 v4 he said it is "much better, much more engaging, I e
 - **Music**: energetic bed from the real library (now 69 tracks incl. the 54 new Pixabay ones). `FORCE_TRACK=<file.mp3>` pins the track when re-rendering an episode whose music he already liked.
 - **Nothing we add may cover what the screen is showing (David, 18.10.2026).** The `@actually_works.ai` handle sat on the keyboard and the answer in the first full-bleed screen episode. On full-bleed screen episodes the handle is dropped (the platform shows the account name anyway); any overlay (tags, rings, headline bars) must sit where the recording shows nothing the viewer needs. Check every frame for this, not only the safe-area numbers.
 - **Two-voice dialogue episodes (72 on):** the second voice comes from voice box as WAV files (resample to 48 kHz mono 16-bit first, or the pipeline plays them double speed), is registered as canonical clips in `audio/voice/profile/canonical-lines.json` and left out of the accent check with `ACCENT_SKIP=<line numbers>` (`check.sh`, `check_accent.py --skip`). The on-screen text is the real output of the real chat; the voice only reads it.
+- **Answer scenes in a dialogue episode (David, 21.10.2026):** the white headline bar with the spoken words lit as they are said (episode 72's style) plus ONE ring drawn around the real answer block, measured on the real frame, is what he approved. A moving per-word highlight box over the real text was tried on episode 74 and he rejected it ("not good, too prominent": the earlier style is better). Do not rebuild it. Hold the real frame still for the AI-voice lines only if the text is not scrolling; check where the frame stops moving (`channel/assets/ep<N>-screen/`) before placing a ring.
+- **His own photos are a first-class source (episode 74).** He photographs on his phone and owns them. Never use a photo taken from his own window or home, and never publish where he lives: ChatGPT can narrow a photo to a street. Photos with people only far away or from behind; the face pre-check still applies (the Adobe tool was not available in the 74 session: say so instead of skipping it silently).
+- **Verify a number on screen before it goes in a script.** Episode 74's claim "the answer is correct" rests on the photo itself (a MIZNON storefront and the number 22) plus public listings of the restaurant's address, not on David's memory of the street.
 - The cloud container is suspended when a turn ends and background jobs die: run long voice/render stages while a turn is active (foreground or polled background), and keep loops resumable (`seeds.state`).
 
 ## Standing rule: everything we build becomes an episode
@@ -286,6 +289,15 @@ honest about what we actually know.
   waiting to be asked. This applies to episode-shipping PRs and routine site fixes alike;
   still ask first for anything that's actually a judgment call (a design direction with no
   clear right answer, a change to what an episode claims).
+  **Merging is not shipping: verify it is live before saying "ready" (21.10.2026).** Vercel marked
+  the deploy of episode 74's v4.2 merge as failed with no signal here; the studio kept serving an
+  older cut for two hours until David noticed. After every merge that carries a reel: (1) read
+  `https://api.github.com/repos/davidpit1565/videos-ai/commits/<merge-sha>/status` until the Vercel
+  status is `success` (a `failure` means no new deploy: a later main commit has to deploy it); (2)
+  compare `content-length` of `https://www.actually-works.com/reels/reel-N.mp4` with
+  `git cat-file -s origin/main:studio/public/reels/reel-N.mp4`. The studio pages themselves are
+  behind the PIN, so the file size is the proof you can read. Failed deploys on main this week were
+  also seen on 94ebed4, f90ee52 and 506a793, each followed by a good deploy of the next commit.
 - **Standing authorization exists — don't re-ask for something already approved.** Said
   directly 30.9.2026, after repeated rounds of stopping mid-iteration to check in again on
   work whose direction he'd already signed off on: once he's approved a direction (a visual
