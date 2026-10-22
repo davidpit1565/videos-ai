@@ -1,29 +1,59 @@
 {
- "ep": 74,
- "accent": "#F59E0B",
+ "ep": 75,
+ "accent": "#FB7185",
  "root": "/home/user/videos-ai",
  "fps": 10,
- "title": "I sent ChatGPT one photo, no location. It named the street!",
- "note": "Dialogue episode (David + AI voice from voice box), real iPhone screen recording of a real ChatGPT chat (21.10.2026, 10:32), original audio muted; photo scenes use David's own photo.",
+ "title": "Where was this photo taken? The AI knew the street. Then I covered the sign.",
+ "note": "Dialogue episode (David + AI voice from voice box), real iPhone screen recording of a real ChatGPT chat (22.10.2026, 12:45), original audio muted; photo scenes use David's own photo (people far away).",
  "groups": [
   [
-   2,
-   3
+   0
+  ],
+  [
+   3,
+   4
   ],
   [
    5,
    6,
-   7,
-   8
+   7
   ],
   [
    9,
    10,
-   11,
-   12
+   11
   ]
  ],
  "frame_files": [
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
   40,
   41,
   42,
@@ -183,157 +213,196 @@
   196,
   197,
   198,
-  199,
-  200,
-  201,
-  202,
-  203,
-  204,
-  205,
-  206,
-  207,
-  208,
-  209,
-  210,
-  211,
-  212,
-  213,
-  214,
-  215,
-  216,
-  217,
-  218,
-  219,
-  220,
-  221,
-  222,
-  223,
-  224,
-  225,
-  226,
-  227,
-  228,
-  229,
-  230,
-  231,
-  232,
-  233,
-  234,
-  235,
-  236,
-  237,
-  238,
-  239,
-  240,
-  241,
-  242,
-  243,
-  244,
-  245,
   5001,
   5002
  ],
  "scenes": [
   {
-   "spoken": "I sent ChatGPT one photo, no location. It told me the street I was on!",
-   "html": "<img src=\"../channel/assets/ep70-chatgpt-logo.svg\" alt=\"\" style=\"height:1.0em;width:auto;vertical-align:-.14em;margin-right:.32em;filter:invert(1)\">I sent <span class=\"box\">ChatGPT</span> one photo, no location. It <span class=\"box\">told me the street I was on!</span>",
-   "fs": 5.2,
-   "pt": 28.5,
-   "s0": 4.3,
-   "s1": 8.6,
-   "rt": 4.3,
-   "cx": 360,
-   "cy": 860,
-   "dur": 4.6
-  },
-  {
-   "spoken": "This can happen with any photo you post. Here's what it said.",
-   "html": "This can happen with <span class=\"box\">any photo you post.</span> Here's what it said.",
-   "fs": 6.4,
+   "spoken": "Where was this photo taken?",
+   "html": "Where was <span class=\"box\">this photo</span> taken?",
+   "fs": 6.8,
    "pt": 29,
-   "s0": 500.0,
-   "s1": 500.0,
-   "rt": 2.9,
+   "dur": 2.8,
    "cx": 360,
    "cy": 640,
-   "dur": 5.0,
    "z0": 1.0,
-   "z1": 1.14,
+   "z1": 1.07,
    "zlin": 1,
-   "nofilter": 1,
-   "rings": []
+   "rings": [
+    [
+     0,
+     428,
+     80,
+     84,
+     0.5
+    ],
+    [
+     640,
+     464,
+     76,
+     64,
+     1.0
+    ],
+    [
+     636,
+     362,
+     66,
+     104,
+     1.5
+    ]
+   ],
+   "s0": 500.0,
+   "s1": 500.0,
+   "nofilter": 1
   },
   {
-   "spoken": "I believe this photo was taken on Rue des Écouffes, in the Le Marais district of Paris, France, most likely near number 22, 75004 Paris.",
-   "html": "<img src=\"../channel/assets/ep70-chatgpt-logo.svg\" alt=\"\" style=\"height:1.0em;width:auto;vertical-align:-.14em;margin-right:.32em\">I believe this photo was taken on <span class=\"box\">Rue des Écouffes,</span> in the Le Marais district of Paris, France, most likely near number 22, 75004 Paris.",
-   "fs": 4.4,
+   "spoken": "An AI got the exact street from this photo.",
+   "html": "An AI got the <span class=\"box\">exact street</span> from this photo.",
+   "fs": 5.8,
+   "pt": 29,
+   "dur": 3.8,
+   "cx": 300,
+   "cy": 560,
+   "z0": 1.0,
+   "z1": 1.9,
+   "zlin": 1,
+   "rings": [
+    [
+     212,
+     416,
+     60,
+     48,
+     1.0
+    ],
+    [
+     286,
+     548,
+     48,
+     36,
+     1.8
+    ]
+   ],
+   "s0": 500.1,
+   "s1": 500.1,
+   "nofilter": 1
+  },
+  {
+   "spoken": "Now the sign is hidden.",
+   "html": "Now the <span class=\"box\">sign is hidden.</span>",
+   "fs": 6.6,
+   "pt": 29,
+   "dur": 3.0,
+   "cx": 300,
+   "cy": 560,
+   "z0": 1.9,
+   "z1": 1.5,
+   "rings": [
+    [
+     208,
+     412,
+     172,
+     70,
+     0.8
+    ]
+   ],
+   "s0": 500.0,
+   "s1": 500.0,
+   "nofilter": 1,
+   "zlin": 1
+  },
+  {
+   "spoken": "I asked the same thing in a new chat.",
+   "html": "I asked the same thing in <span class=\"box\">a new chat.</span>",
+   "fs": 6.4,
+   "pt": 29,
+   "dur": 3.4,
+   "s0": 1.0,
+   "s1": 4.0,
+   "rt": 3.0,
+   "cx": 360,
+   "cy": 640
+  },
+  {
+   "spoken": "It searched the web, then answered.",
+   "html": "It <span class=\"box\">searched the web,</span> then answered.",
+   "fs": 7.2,
+   "pt": 29,
+   "dur": 2.6,
+   "s0": 6.0,
+   "s1": 6.0,
+   "cx": 360,
+   "cy": 500,
+   "zs": [
+    [
+     0,
+     1.0
+    ],
+    [
+     1.4,
+     1.06
+    ]
+   ]
+  },
+  {
+   "spoken": "My best guess is Le Marais, in the 3rd or 4th arrondissement of Paris.",
+   "html": "<img src=\"../channel/assets/ep70-chatgpt-logo.svg\" alt=\"\" style=\"height:1.0em;width:auto;vertical-align:-.14em;margin-right:.32em\">My best guess is <span class=\"box\">Le Marais,</span> in the 3rd or 4th arrondissement of Paris.",
+   "fs": 4.5,
    "pt": 26,
-   "s0": 13.9,
-   "s1": 16.5,
-   "rt": 2.6,
+   "dur": 5.0,
+   "s0": 10.4,
+   "s1": 11.6,
+   "rt": 1.2,
    "cx": 360,
    "cy": 700,
-   "dur": 11.0,
    "bar": true,
    "rings": [
     [
      24,
      538,
-     644,
-     166,
-     0.6
-    ]
-   ],
-   "zs": [
-    [
-     0,
-     1.0
-    ],
-    [
-     2.8,
-     1.07
-    ],
-    [
-     5.6,
-     1.0
-    ],
-    [
-     8.0,
-     1.07
+     672,
+     258,
+     1.4
     ]
    ]
   },
   {
-   "spoken": "Then it told me why.",
-   "html": "Then it told <span class=\"box\">me why.</span>",
-   "fs": 7.4,
+   "spoken": "Exact street: I can't confidently identify it from this photo alone.",
+   "html": "<img src=\"../channel/assets/ep70-chatgpt-logo.svg\" alt=\"\" style=\"height:1.0em;width:auto;vertical-align:-.14em;margin-right:.32em\"><span class=\"box\">Exact street:</span> I can't confidently identify it from this photo alone.",
+   "fs": 4.5,
    "pt": 26,
-   "s0": 17.0,
-   "s1": 19.6,
-   "rt": 2.6,
+   "dur": 5.0,
+   "s0": 13.6,
+   "s1": 18.1,
+   "rt": 4.5,
    "cx": 360,
    "cy": 700,
-   "dur": 2.6
-  },
-  {
-   "spoken": "The number 22: The storefront on the left appears to display this number. Miznon Paris is officially listed at exactly 22 Rue des Écouffes, 75004 Paris.",
-   "html": "<img src=\"../channel/assets/ep70-chatgpt-logo.svg\" alt=\"\" style=\"height:1.0em;width:auto;vertical-align:-.14em;margin-right:.32em\">The number 22: The storefront on the left appears to display this number. <span class=\"box\">Miznon Paris is officially listed at exactly 22 Rue des Écouffes,</span> 75004 Paris.",
-   "fs": 4.4,
-   "pt": 26,
-   "s0": 23.8,
-   "s1": 23.8,
-   "cx": 360,
-   "cy": 410,
-   "neg": 1,
-   "dur": 12.3,
-   "ct": 232,
    "bar": true,
    "rings": [
     [
-     50,
-     294,
-     646,
-     170,
+     44,
+     812,
+     652,
+     176,
+     3.2
+    ]
+   ]
+  },
+  {
+   "spoken": "It got Paris and the neighborhood right. Just not the street.",
+   "html": "It got Paris and the neighborhood right. <span class=\"box\">Just not the street.</span>",
+   "fs": 5.6,
+   "pt": 29,
+   "dur": 4.2,
+   "s0": 18.4,
+   "s1": 18.4,
+   "cx": 360,
+   "cy": 780,
+   "rings": [
+    [
+     44,
+     686,
+     652,
+     108,
      0.6
     ]
    ],
@@ -343,212 +412,89 @@
      1.0
     ],
     [
-     3.0,
-     1.07
-    ],
-    [
-     6.0,
-     1.0
-    ],
-    [
-     9.0,
-     1.07
+     2.0,
+     1.06
     ]
    ]
   },
   {
-   "spoken": "A 22 on a wall. A shop sign. That was all it needed.",
-   "html": "A <span class=\"box\">22</span> on a wall. A <span class=\"box\">shop sign.</span> That was all it needed.",
-   "fs": 6.4,
+   "spoken": "Last time, a shop sign and a 22 gave it away.",
+   "html": "Last time, <span class=\"box\">a shop sign</span> and <span class=\"box\">a 22</span> gave it away.",
+   "fs": 5.8,
    "pt": 29,
+   "dur": 4.0,
+   "cx": 300,
+   "cy": 520,
    "z0": 1.0,
-   "z1": 2.6,
+   "z1": 2.4,
+   "zlin": 1,
    "rings": [
     [
-     36,
-     317,
-     34,
-     33,
+     212,
+     416,
+     60,
+     48,
      0.5
     ],
     [
-     98,
-     428,
+     286,
+     548,
+     48,
      36,
-     28,
-     0.9
-    ],
-    [
-     168,
-     552,
-     42,
-     32,
-     1.9
+     1.0
     ]
    ],
-   "dur": 5.0,
-   "s0": 500.0,
-   "s1": 500.0,
-   "cx": 130,
-   "cy": 460,
-   "nofilter": 1
-  },
-  {
-   "spoken": "Turning off your location does not stop that.",
-   "html": "Turning off your location <span class=\"box\">does not stop that.</span>",
-   "fs": 6.4,
-   "pt": 29,
-   "z0": 2.6,
-   "z1": 2.6,
-   "rings": [
-    [
-     36,
-     317,
-     34,
-     33,
-     0
-    ],
-    [
-     98,
-     428,
-     36,
-     28,
-     0
-    ],
-    [
-     168,
-     552,
-     42,
-     32,
-     0
-    ]
-   ],
-   "dur": 4.0,
-   "s0": 500.0,
-   "s1": 500.0,
-   "cx": 130,
-   "cy": 460,
-   "nofilter": 1
-  },
-  {
-   "spoken": "On iPhone: Photos, Share, Options. Switch Location off.",
-   "html": "On iPhone: Photos, Share, Options. <span class=\"box\">Switch Location off.</span>",
-   "fs": 6.0,
-   "pt": 29,
-   "z0": 2.6,
-   "z1": 2.6,
-   "rings": [
-    [
-     36,
-     317,
-     34,
-     33,
-     0
-    ],
-    [
-     98,
-     428,
-     36,
-     28,
-     0
-    ],
-    [
-     168,
-     552,
-     42,
-     32,
-     0
-    ]
-   ],
-   "dur": 5.0,
-   "s0": 500.0,
-   "s1": 500.0,
-   "cx": 130,
-   "cy": 460,
-   "nofilter": 1
-  },
-  {
-   "spoken": "That hides the GPS. It can not hide a sign in the picture.",
-   "html": "That hides the GPS. It can not hide <span class=\"box\">a sign in the picture.</span>",
-   "fs": 6.2,
-   "pt": 29,
-   "z0": 2.6,
-   "z1": 2.6,
-   "rings": [
-    [
-     168,
-     552,
-     42,
-     32,
-     2.4
-    ]
-   ],
-   "dur": 5.4,
-   "s0": 500.0,
-   "s1": 500.0,
-   "cx": 130,
-   "cy": 460,
-   "nofilter": 1
-  },
-  {
-   "spoken": "So next, I hide the sign and ask again.",
-   "html": "So next, I <span class=\"box\">hide the sign</span> and ask again.",
-   "fs": 6.4,
-   "pt": 29,
-   "z0": 2.6,
-   "z1": 2.0,
-   "dur": 4.6,
    "s0": 500.1,
    "s1": 500.1,
-   "cx": 130,
-   "cy": 460,
-   "nofilter": 1,
-   "zlin": 1
+   "nofilter": 1
   },
   {
    "spoken": "Know someone who posts photos everywhere? Send them this.",
    "html": "Know someone who posts photos everywhere? <span class=\"box\">Send them this.</span>",
-   "fs": 6.4,
+   "fs": 6.2,
    "pt": 29,
-   "z0": 2.0,
-   "z1": 1.6,
    "dur": 4.6,
-   "s0": 500.1,
-   "s1": 500.1,
-   "cx": 130,
-   "cy": 460,
-   "nofilter": 1,
-   "zlin": 1
+   "cx": 290,
+   "cy": 470,
+   "z0": 2.2,
+   "z1": 2.0,
+   "zlin": 1,
+   "rings": [],
+   "s0": 500.0,
+   "s1": 500.0,
+   "nofilter": 1
   },
   {
    "spoken": "The setup's in the link in bio.",
    "html": "The setup's in the link in bio.",
    "fs": 6.6,
    "pt": 29,
-   "z0": 1.6,
-   "z1": 1.45,
    "dur": 2.8,
-   "s0": 500.1,
-   "s1": 500.1,
-   "cx": 130,
-   "cy": 460,
-   "nofilter": 1,
-   "zlin": 1
+   "cx": 290,
+   "cy": 470,
+   "z0": 2.0,
+   "z1": 1.85,
+   "zlin": 1,
+   "rings": [],
+   "s0": 500.0,
+   "s1": 500.0,
+   "nofilter": 1
   },
   {
-   "spoken": "Tomorrow, I'll show you what ChatGPT says with the sign covered. Follow for part two.",
-   "html": "Tomorrow, I'll show you what <span class=\"box\">ChatGPT</span> says with the sign covered. <span class=\"box\">Follow</span> for part two.",
-   "fs": 5.6,
+   "spoken": "Tomorrow, I'll show you what ChatGPT does when I hide even more of the photo. Follow, so you don't miss it.",
+   "html": "Tomorrow, I'll show you what <img src=\"../channel/assets/ep70-chatgpt-logo.svg\" alt=\"\" style=\"height:1.0em;width:auto;vertical-align:-.14em;margin-right:.32em;filter:invert(1)\"><span class=\"box\">ChatGPT</span> does when <span class=\"box\">I hide even more</span> of the photo. Follow, so you don't miss it.",
+   "fs": 5.0,
    "pt": 29,
-   "z0": 1.45,
-   "z1": 1.0,
    "dur": 8.0,
-   "s0": 500.1,
-   "s1": 500.1,
-   "cx": 130,
-   "cy": 460,
-   "nofilter": 1,
-   "zlin": 1
+   "cx": 290,
+   "cy": 470,
+   "z0": 1.85,
+   "z1": 1.0,
+   "zlin": 1,
+   "rings": [],
+   "s0": 500.0,
+   "s1": 500.0,
+   "nofilter": 1
   }
  ]
 }

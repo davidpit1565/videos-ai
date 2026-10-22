@@ -2021,6 +2021,35 @@ export const ARTICLES: Article[] = [
       "Not tested: cropping out the signs, other AI tools, other photos. That test comes next.",
     ],
   },
+  {
+    n: 75,
+    title: "I covered the sign. Could ChatGPT still find the street?",
+    standfirst:
+      "In my last video, ChatGPT named the street from one of my photos, helped by a shop sign and a house number. " +
+      "This time I covered both in the same photo, opened a new chat and asked the same question. " +
+      "This page has the exact question, what ChatGPT answered, and how to hide the things in a photo that give a place away before you post it. " +
+      "It is one photo, one try and one day, so treat it as a test you can repeat, not as proof of how ChatGPT always behaves.",
+    steps: [
+      "Open the Photos app on your iPhone and tap the photo you want to post.",
+      "Tap Edit (top right). Tap the Crop button (the square with arrows) and drag the edges so street signs, house numbers and shop names are outside the frame. Tap Done.",
+      "If a sign or number cannot be cropped out: tap Edit, then the Markup button (the pen), pick a solid colour and fill over the sign or number completely. A thin line is not enough. Tap Done twice.",
+      "Tap the Share button (the square with an arrow pointing up), then Options at the top, and switch Location off. This removes the GPS location for this one share only.",
+      "Choose how to send or post it, for example Messages, WhatsApp or Instagram.",
+      "Optional: to test it yourself, take a screenshot of the edited photo (a screenshot carries no location data). Open ChatGPT, start a new Temporary Chat, attach the screenshot and ask: Where was this photo taken? Be as specific as you can. Read the whole answer, including what it says it cannot tell.",
+    ],
+    changes: [
+      "The question and the answer come from one screen recording of the ChatGPT iPhone app on 22 October 2026 (free plan), in a new chat with the covered photo. The text on screen is the real answer. Two sentences of it were read out by a synthetic AI voice made with a voice generator.",
+      "In the recording ChatGPT said Paris was likely, Le Marais a plausible neighbourhood but not confirmed, and that it could not confidently identify the exact street from the photo alone. Before answering, the app showed that it was searching websites.",
+      "In the photo from the first test (my own), the number 22 and a MIZNON storefront sign were visible, and the restaurant is listed at 22 rue des Ecouffes, 75004 Paris, which is in Le Marais. In this test those two details are covered and the rest of the photo is unchanged.",
+      "The crop and Markup steps use the iPhone Photos app menus as they are named on a recent iOS version. I did not test them on every iPhone or iOS version, and the button names can differ.",
+    ],
+    limits: [
+      "One photo, one try, one account, one day. Another photo, another day or another model can give a different answer, a more exact one or a refusal.",
+      "In this test ChatGPT still got the city and the neighbourhood right. Covering a sign did not hide the general area.",
+      "I do not know whether ChatGPT's web search looked up the photo itself or only searched text. The app does not say.",
+      "Not tested: covering more of the photo (the next test), other AI tools, other photos.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

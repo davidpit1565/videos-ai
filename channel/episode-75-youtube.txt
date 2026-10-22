@@ -1,0 +1,9 @@
+I covered the sign. Could ChatGPT still find the street? (privacy test)
+
+In my last video, ChatGPT named a street from one of my photos, helped by a shop sign and a house number. This time I covered both, opened a new chat and asked the same question. It found Paris and the neighbourhood, but said it could not confidently name the exact street. One photo, one try, one day; the app also searched the web before answering.
+
+Before you post a photo: crop or cover signs and house numbers, then on iPhone Photos > Share > Options > Location off.
+
+Full setup, step by step: https://actually-works.com/e/75
+
+Tomorrow: what happens when I hide even more of the photo.

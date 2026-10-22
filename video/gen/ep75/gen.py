@@ -10,7 +10,7 @@ head=head.replace('</style>\n','</style>\n'+CSS_PLACEHOLDER,1) if False else hea
 head=head.replace('#A78BFA',ACC).replace('#3F6212','#92400E').replace('Reel 63 — Is the AI chat you use one of the risky ones?',f"Reel {EP} — {spec['title']}")
 head=re.sub(r'<!--\s*Episode 63.*?-->',f"<!--\n  Episode {EP} — real-photo composite style (video/reel-template-photo.html). {spec['note']}\n  See channel/episode-{EP}-script.md. Photos: channel/assets/ep{EP}-scene-*.jpg (Unsplash License, faceless).\n  Logos (icons only, no captions): real marks from official/Wikimedia sources.\n-->",head,flags=re.S)
 LOGO=lambda f: f'<img src="../channel/assets/{f}" alt="" style="height:6.4cqw;width:auto;filter:invert(1) drop-shadow(0 .4cqw 1.4cqw rgba(0,0,0,.6))">'
-CSS=open(f'{root}/video/gen/ep74/css.txt').read().replace('#3F6212','#92400E')+".hlw{position:absolute;background:rgba(245,158,11,.36);border:.5cqw solid rgba(245,158,11,.9);border-radius:1.2cqw;box-shadow:0 0 3.2cqw rgba(245,158,11,.55);opacity:0;pointer-events:none}\n"
+CSS=open(f'{root}/video/gen/ep74/css.txt').read().replace('#3F6212','#92400E').replace('brightness(1.5) contrast(1.05)','brightness(2.3) contrast(1.08)')+'.lift{position:absolute;inset:0;background:'+('rgba(%d,%d,%d,.15)'%tuple(int(ACC[i:i+2],16) for i in (1,3,5)))+';mix-blend-mode:screen;pointer-events:none}\n'+".hlw{position:absolute;background:rgba(245,158,11,.36);border:.5cqw solid rgba(245,158,11,.9);border-radius:1.2cqw;box-shadow:0 0 3.2cqw rgba(245,158,11,.55);opacity:0;pointer-events:none}\n"
 scenes=spec['scenes']; n=len(scenes)
 HL=json.load(open(f'{root}/video/gen/ep74/hl.json'))
 t=0.0; times=[]
@@ -37,7 +37,7 @@ for i,s in enumerate(scenes):
     nofilt=' style="filter:none"' if s.get('nofilter') else ''
     body+=f'''<!-- Scene {i+1} -->
 <section class="scene" data-in="{dur[0]}" data-out="{dur[1]}" data-y0="{s.get('y0',0)}" data-s0="{s['s0']}" data-s1="{s['s1']}" data-z0="{s.get('z0',1)}" data-z1="{s.get('z1',1)}" data-cx="{s.get('cx',360)}" data-cy="{s.get('cy',545)}" data-rd="{s.get('rd',0.5)}" data-rt="{s.get('rt',0)}" data-dl="{s.get('dl',0)}" data-neg="{1 if s.get('neg') else 0}" data-ct="{s.get('ct',0)}" data-zlin="{1 if s.get('zlin') else 0}"{(" data-zs='"+json.dumps(s['zs'])+"'") if s.get('zs') else ''}>
-  <div class="photobg" id="photobg{lab}" style="background:radial-gradient(120% 75% at 50% 48%,{ACC}66 0%,{ACC}26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920"{nofilt}></canvas>{ring}</div><div class="scrim"></div></div>
+  <div class="photobg" id="photobg{lab}" style="background:radial-gradient(120% 75% at 50% 48%,{ACC}66 0%,{ACC}26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920"{nofilt}></canvas>{"" if s.get("nofilter") else "<div class=lift></div>"}{ring}</div><div class="scrim"></div></div>
   <div class="grain" data-decor></div>
   <div class="photogradient" style="{grad}"></div>
   <div class="pad"{padtop}><div class="kb" id="hookKb{lab}">
