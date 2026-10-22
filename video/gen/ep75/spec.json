@@ -7,16 +7,17 @@
  "note": "Dialogue episode (David + AI voice from voice box), real iPhone screen recording of a real ChatGPT chat (22.10.2026, 12:45), original audio muted; photo scenes use David's own photo (people far away).",
  "groups": [
   [
-   0
+   0,
+   1
   ],
   [
-   3,
-   4
+   4,
+   5
   ],
   [
-   5,
    6,
-   7
+   7,
+   8
   ],
   [
    9,
@@ -218,37 +219,23 @@
  ],
  "scenes": [
   {
-   "spoken": "Where was this photo taken?",
-   "html": "Where was <span class=\"box\">this photo</span> taken?",
-   "fs": 6.8,
+   "spoken": "Anyone can see your street photo. What do they know?",
+   "html": "Anyone can see <span class=\"box\">your street photo.</span> What do they know?",
+   "fs": 5.6,
    "pt": 29,
-   "dur": 2.8,
+   "dur": 4.0,
    "cx": 360,
    "cy": 640,
    "z0": 1.0,
-   "z1": 1.07,
+   "z1": 1.06,
    "zlin": 1,
    "rings": [
     [
-     0,
-     428,
-     80,
-     84,
-     0.5
-    ],
-    [
-     640,
-     464,
-     76,
-     64,
-     1.0
-    ],
-    [
-     636,
-     362,
-     66,
-     104,
-     1.5
+     208,
+     412,
+     172,
+     70,
+     0.4
     ]
    ],
    "s0": 500.0,
@@ -256,11 +243,35 @@
    "nofilter": 1
   },
   {
-   "spoken": "An AI got the exact street from this photo.",
-   "html": "An AI got the <span class=\"box\">exact street</span> from this photo.",
-   "fs": 5.8,
+   "spoken": "Here's mine. Guess the city.",
+   "html": "Here's mine. <span class=\"box\">Guess the city.</span>",
+   "fs": 7.0,
    "pt": 29,
-   "dur": 3.8,
+   "dur": 2.6,
+   "cx": 360,
+   "cy": 640,
+   "z0": 1.06,
+   "z1": 1.12,
+   "zlin": 1,
+   "rings": [
+    [
+     208,
+     412,
+     172,
+     70,
+     0.0
+    ]
+   ],
+   "s0": 500.0,
+   "s1": 500.0,
+   "nofilter": 1
+  },
+  {
+   "spoken": "In my last video, an AI got the exact street from this photo.",
+   "html": "In my last video, an AI got the <span class=\"box\">exact street</span> from this photo.",
+   "fs": 5.4,
+   "pt": 29,
+   "dur": 4.2,
    "cx": 300,
    "cy": 560,
    "z0": 1.0,
@@ -287,33 +298,33 @@
    "nofilter": 1
   },
   {
-   "spoken": "Now the sign is hidden.",
-   "html": "Now the <span class=\"box\">sign is hidden.</span>",
-   "fs": 6.6,
+   "spoken": "Now the sign and the 22 are blurred.",
+   "html": "Now the sign and the 22 are <span class=\"box\">blurred.</span>",
+   "fs": 5.8,
    "pt": 29,
-   "dur": 3.0,
+   "dur": 2.8,
    "cx": 300,
    "cy": 560,
    "z0": 1.9,
-   "z1": 1.5,
+   "z1": 1.6,
+   "zlin": 1,
    "rings": [
     [
      208,
      412,
      172,
      70,
-     0.8
+     0.6
     ]
    ],
    "s0": 500.0,
    "s1": 500.0,
-   "nofilter": 1,
-   "zlin": 1
+   "nofilter": 1
   },
   {
-   "spoken": "I asked the same thing in a new chat.",
-   "html": "I asked the same thing in <span class=\"box\">a new chat.</span>",
-   "fs": 6.4,
+   "spoken": "Same question, in a new chat.",
+   "html": "Same question, <span class=\"box\">in a new chat.</span>",
+   "fs": 6.6,
    "pt": 29,
    "dur": 3.4,
    "s0": 1.0,
@@ -388,8 +399,8 @@
    ]
   },
   {
-   "spoken": "It got Paris and the neighborhood right. Just not the street.",
-   "html": "It got Paris and the neighborhood right. <span class=\"box\">Just not the street.</span>",
+   "spoken": "It got the city and the area right. Just not the street.",
+   "html": "It got the city and the area right. <span class=\"box\">Just not the street.</span>",
    "fs": 5.6,
    "pt": 29,
    "dur": 4.2,
@@ -416,37 +427,6 @@
      1.06
     ]
    ]
-  },
-  {
-   "spoken": "Last time, a shop sign and a 22 gave it away.",
-   "html": "Last time, <span class=\"box\">a shop sign</span> and <span class=\"box\">a 22</span> gave it away.",
-   "fs": 5.8,
-   "pt": 29,
-   "dur": 4.0,
-   "cx": 300,
-   "cy": 520,
-   "z0": 1.0,
-   "z1": 2.4,
-   "zlin": 1,
-   "rings": [
-    [
-     212,
-     416,
-     60,
-     48,
-     0.5
-    ],
-    [
-     286,
-     548,
-     48,
-     36,
-     1.0
-    ]
-   ],
-   "s0": 500.1,
-   "s1": 500.1,
-   "nofilter": 1
   },
   {
    "spoken": "Know someone who posts photos everywhere? Send them this.",

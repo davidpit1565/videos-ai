@@ -320,7 +320,7 @@ stop and test a different axis. If one does, change one variable at a time from 
 ### PLANNED (22.10.2026) — Episode 75: curiosity gap (answer at the END) vs episode 74 (answer FIRST)
 
 **Why:** 74 opens with the result ("It told me the street I was on!"). 75 is the follow-up test (same Paris photo, sign and number covered, new Temporary Chat, same question). Idea source: `external-advice-chen-mor-21-10-2026.md` (a paid workshop's marketing; its numbers are unverified, so this is only an idea to test, not a rule).
-**Change (one thing):** the order. 74: result in the first second. 75: photo + question first, ChatGPT's answer held to the last third. Same format otherwise (real screen recording, second AI voice, white headline bar, ring on the answer).
+**Change (one thing, updated 22.10 evening):** the order and the hook. 74: result in the first second. 75: the viewer's own-post question and a 'guess the city' challenge first (hook chosen by the Arena skill after David rejected two drafts), ChatGPT's answer held to the last third. Same format otherwise (real screen recording, second AI voice, white headline bar, ring on the answer).
 **Honest limits:** different photo state and a different outcome, so this is a signal, not proof. The result itself is unknown until David records it; the hook may only promise what the recording shows. The open-loop effect is on our refused-claims list (did not replicate), so the test is of the order, not of that theory.
 **Measure (72 h after publish, Instagram Insights, read by David):** reach and views from non-followers, average watch time / % reaching the end, sends, saves, follows. Compare with 72 and 74 at the same age.
 **Result:** [fill in]
