@@ -35,6 +35,7 @@ import * as healthResolve from "../health/resolve/impl";
 import * as ideaScore from "../idea-score/impl";
 import * as ideasBacklog from "../ideas-backlog/impl";
 import * as instagram from "../instagram/impl";
+import * as instagramDiscover from "../instagram/discover/impl";
 import * as instagramPublish from "../instagram/publish/impl";
 import * as jarvisInstagram from "../jarvis/instagram/impl";
 import * as jarvisPublish from "../jarvis/publish/impl";
@@ -71,6 +72,7 @@ const ROUTES: Record<string, Handlers> = {
   "idea-score": ideaScore,
   "ideas-backlog": ideasBacklog,
   "instagram": instagram,
+  "instagram/discover": instagramDiscover,
   "instagram/publish": instagramPublish,
   "jarvis/instagram": jarvisInstagram,
   "jarvis/publish": jarvisPublish,
