@@ -483,3 +483,29 @@ episode should reach for something *not* in {Product/Outcome, Direct Address/Que
 Contrarian Open} to actually rotate, e.g. Shock/Surprise, The Specific Number, or
 Expert/Authority, whichever the content genuinely supports — never force a type the episode's
 own content doesn't earn.
+
+## Four rules from episode 75's hook round (added 23.10.2026)
+
+Source: the `arena` run on episode 75's hook (16 agents, 4 rounds) after David rejected two
+drafts ("Anyone can see your street photo. What do they know?", then "Here's mine. Guess the
+city."). The judges were models, not an audience: these rules are **hypotheses from that
+round, not measured results**. Episode 75's 72-hour readings (see `experiments.md`) are the
+first real test.
+
+1. **Never promise in the hook what the ending does not show.** If the hook asks "what do
+   they know?" or "guess the city", the video must answer exactly that, on screen. A hook the
+   ending does not pay off reads as bait.
+2. **Give the viewer a task they can win.** "Guess the city" is a task; "what do they know?"
+   is only a question. A task the viewer can finish in their head in three seconds keeps them
+   for the answer.
+3. **Locate a photo, never a person.** On photo episodes the hook talks about the picture
+   ("this photo", "this street"), not about finding someone. Same line as the own-photos rule
+   in `CLAUDE.md`: nothing from David's own window or home.
+4. **Keep a list of words the voice swallows, and check the hook against it before
+   rendering.** Words that failed the accent/ending gate on episodes 74-75, in different runs:
+   `covered`, `original`, `asked`, `neighborhood`, `three`, and earlier `named`, `hide`, `I'll`,
+   `street` at a sentence end. Reword, do not approve by ear. `audio/script_lint.py --cues`
+   catches the ending patterns but not this list; add a word here when the gate flags it.
+
+Arena itself: about 92 calls, ~10M tokens, ~20 minutes. Its value was the rules it exposed,
+not the winner. Run it only when a hook has been rejected, not for every hook.
