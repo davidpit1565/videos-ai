@@ -1608,3 +1608,6 @@ Vercel marked the production deploy of the episode 74 v4.2 merge (commit ab2ecc6
 
 ## Episode 77 hook log (25.10.2026)
 Hook type: surprise statement about the viewer's own phone ("Your phone can write a map pin into your photos!"). Rotation: 74 result-first, 75 personal question, 77 surprise statement. Hypothesis. Built without any ChatGPT recording because 76's test is not recorded yet; both claims come from official help pages (Apple, OpenAI), cited on /e/77. 72-hour readings: not yet.
+
+## Episode 76 hook log (25.10.2026)
+Hook type: contrarian claim + test. Result shown: city and area yes, exact street no (same as 75). New finding to track: ChatGPT said the original photo's metadata could help, which does not obviously match OpenAI's FAQ; unresolved. 72-hour readings: not yet.

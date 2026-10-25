@@ -1,0 +1,9 @@
+I blurred even more of the photo. Could ChatGPT still place it? (privacy test)
+
+Same Paris street photo as before, with more signs blurred, a new chat and the same question. ChatGPT searched 15 websites, then said Paris, best bet Le Marais, and that it could not confidently name the exact street. One photo, one try, one day (25 October 2026, free plan, real screen recording).
+
+It also said the original photo with its metadata could help narrow the location down. I could not verify that; OpenAI's Image Inputs FAQ says the model doesn't process metadata.
+
+Before you post a photo on iPhone: cover the signs, then Photos > Share > Options > Location off.
+
+Full setup, step by step: https://actually-works.com/e/76

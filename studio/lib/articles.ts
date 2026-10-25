@@ -2078,6 +2078,36 @@ export const ARTICLES: Article[] = [
       "Next on the channel: what ChatGPT does when I hide even more of the photo. That test needs a new real recording that does not exist yet, so there is no date.",
     ],
   },
+  {
+    n: 76,
+    title: "I blurred even more of the photo. Could ChatGPT still place it?",
+    standfirst:
+      "Same Paris street photo as the last two tests, with more signs blurred (the library and vintage signs as well as the shop sign and the number). " +
+      "I opened a new chat, attached the photo and asked the same question. This page has the exact question, what ChatGPT answered, and how to blur a photo before you post it. " +
+      "It is one photo, one try and one day, so treat it as a test you can repeat, not as proof of how ChatGPT always behaves.",
+    steps: [
+      "Open the Photos app on your iPhone and tap the photo you want to post.",
+      "Tap Edit (top right), then the Markup button (the pen). Pick a solid colour and fill over every sign, shop name and house number completely. A thin line is not enough. Tap Done twice.",
+      "Tap Edit, then the Crop button (the square with arrows), and drag the edges so more of the street is outside the frame. Tap Done.",
+      "Tap the Share button (the square with an arrow pointing up), then Options at the top, and switch Location off. Apple's guide says this stops the location saved in the photo from being shared.",
+      "Choose how to send or post it, for example Messages, WhatsApp or Instagram.",
+      "Optional, to test it yourself: take a screenshot of the edited photo. Open ChatGPT, start a new chat, attach the screenshot and ask: Where was this photo taken? Be as specific as you can. Read the whole answer, including what it says it cannot tell.",
+    ],
+    changes: [
+      "The question and the answer come from one screen recording of the ChatGPT iPhone app on 25 October 2026 (free plan), in a new chat with the photo attached. The text on screen is the real answer. The recording's own audio was removed; the voice is mine.",
+      "In the recording ChatGPT searched 15 websites first, then said: My best guess is Paris, France, most likely the Le Marais district, in the historic 3rd or 4th arrondissement. However, I can't confidently identify the exact street from this photograph alone. It also named the Rue des Rosiers as one possible area to investigate and said it had not verified that this is the actual street.",
+      "In the last paragraph of its answer ChatGPT said: If you have the original, unedited photo, including its metadata, that could help narrow the location down considerably.",
+      "That last sentence is ChatGPT's own claim. OpenAI's Image Inputs FAQ lists as a limitation that the model doesn't process original file names or metadata (https://help.openai.com/en/articles/8400551-chatgpt-image-inputs-faq, read 25 October 2026). The two do not obviously agree, and I could not check which is right.",
+      "For the same photo with fewer signs blurred, see the previous test: ChatGPT also gave Paris and Le Marais and said it could not confidently name the street.",
+    ],
+    limits: [
+      "One photo, one try, one account, one day. Another photo, another day or another model can give a different answer, a more exact one or a refusal.",
+      "In this test ChatGPT still got the city and the neighbourhood from the picture itself. Blurring signs did not hide the general area.",
+      "I do not know whether ChatGPT's web search used the photo or only text, and I did not check how its answer was produced.",
+      "I could not verify whether ChatGPT uses a photo's metadata. Do not assume it ignores or reads it; remove the location before sharing either way.",
+      "The photo is not a picture of anywhere I live, and its location was not published.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

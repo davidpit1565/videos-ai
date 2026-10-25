@@ -1,0 +1,13 @@
+Blur the signs, keep the place secret? I tried it. Same Paris street photo, even more of it blurred, a new chat, the same question: where was this photo taken?
+
+What ChatGPT answered is in the video, a real screen recording, one try on one day. It searched 15 websites, then said Paris, best bet Le Marais, but that it could not confidently name the exact street. So blurring hid the street, not the city or the area.
+
+It also said the original photo with its metadata could narrow it down. I could not check that, and OpenAI's own help page says the model does not process metadata. Both are on the setup page.
+
+Before you post a photo on iPhone: Photos > Share > Options > Location off, and cover the signs.
+
+Send this to someone who posts holiday photos.
+
+Full setup, step by step, with sources: https://actually-works.com/e/76
+
+#chatgpt #ai #privacy #iphone #aitips

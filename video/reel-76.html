@@ -1,0 +1,497 @@
+<title>Reel 76 — Blur the signs, keep the place secret?</title>
+<!--
+  Episode 76 — real-photo composite style (video/reel-template-photo.html). Dialogue-free episode: David's voice only; real iPhone screen recording of a real ChatGPT chat (25.10.2026, 19:02, free plan, new chat), original audio muted.
+  See channel/episode-76-script.md. Photos: channel/assets/ep76-scene-*.jpg (Unsplash License, faceless).
+  Logos (icons only, no captions): real marks from official/Wikimedia sources.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Assistant:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ink:#0A0E14;--line:#1F2B3A;
+  --accent:#2DD4BF;
+  --text:#FFFFFF;--muted:#8AA0B8;
+  --d:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --b:'Assistant','Segoe UI',system-ui,sans-serif;
+  --m:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#050709;color:var(--text);font-family:var(--b);-webkit-font-smoothing:antialiased}
+.page{display:flex;gap:34px;justify-content:center;padding:24px 16px 70px;flex-wrap:wrap;align-items:flex-start}
+.reel{width:min(400px,92vw);flex:0 0 auto}
+.frame{position:relative;aspect-ratio:9/16;width:100%;overflow:hidden;border-radius:8px;
+  container-type:inline-size;background:var(--ink);border:1px solid var(--line)}
+
+.scene{position:absolute;inset:0;z-index:2;will-change:opacity,transform,filter}
+.photobg{position:absolute;inset:0;z-index:0;transform-origin:center center;will-change:transform;
+  background-size:cover;background-position:center;background-repeat:no-repeat}
+@media (prefers-reduced-motion:reduce){.photobg{transition:none!important}}
+.grain{position:absolute;inset:0;z-index:1;opacity:.05;pointer-events:none;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+
+.photogradient{position:absolute;inset:0;z-index:1;pointer-events:none}
+.prog{position:absolute;left:0;top:0;height:.9cqw;background:var(--accent);z-index:14;width:0;
+  box-shadow:0 0 3cqw rgba(13,148,136,.7)}
+
+.pad{position:absolute;inset:0;z-index:2;padding:27cqw 10cqw 0;display:flex;flex-direction:column;
+  justify-content:flex-start;align-items:center;text-align:center;gap:2.4cqw}
+.kb{will-change:transform;width:100%}
+
+.b{opacity:0;transform:translateY(2cqw) scale(.94);transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1)}
+.b.snap{transition:none}
+.b.on{opacity:1;transform:none}
+.b.gone{display:none!important}
+@media (prefers-reduced-motion:reduce){.b,.kb{transition-duration:1ms!important}}
+
+h2{font-family:var(--d);font-weight:900;font-size:8.4cqw;line-height:1.14;letter-spacing:-.02em;
+  margin:0;text-wrap:balance;position:relative;z-index:2;color:var(--text);
+  text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.92),0 .15cqw .4cqw rgba(0,0,0,.95),0 0 5cqw rgba(0,0,0,.5)}
+h2 .wd{margin:0 .08em;transition:color .09s linear}
+h2 .wd.spoken{color:var(--accent)!important}
+h2 .wd.box.spoken{color:#fff!important}
+h2 .box{color:var(--accent);font-weight:900;background:none;border:0;padding:0;
+  border-radius:0;display:inline;transform:none;text-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.95),0 0 4cqw rgba(0,0,0,.6)}
+
+/* LinkedIn logo badge — scene 2 only, in-flow inside .kb (never absolutely
+   bottom-anchored), same pattern as episode 55/56/57's logo badges. */
+.logobadge{width:100%;display:flex;justify-content:center;margin-top:1.4cqw;
+  opacity:0;transition:opacity .3s ease}
+.logobadge.on{opacity:1}
+.logobadge{gap:3cqw;align-items:center}
+.logobadge img{width:9cqw;height:auto;filter:drop-shadow(0 .6cqw 2cqw rgba(0,0,0,.6))}
+
+.handle{position:absolute;left:0;right:0;bottom:14cqw;text-align:center;z-index:11;
+  font-family:var(--m);font-size:2.6cqw;letter-spacing:.28em;text-transform:uppercase;color:#CBD5E1;
+  text-shadow:0 .3cqw 1cqw rgba(0,0,0,.9)}
+.tapover{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,7,9,.72);border:0;width:100%;color:var(--text)}
+.tapover.hide{display:none}
+.tapover .d{width:17cqw;height:17cqw;border-radius:50%;border:.7cqw solid var(--accent);display:grid;place-items:center}
+.tapover .d::after{content:"";border-left:4.8cqw solid var(--accent);border-top:2.9cqw solid transparent;border-bottom:2.9cqw solid transparent;margin-inline-start:1.5cqw}
+
+.ctl{display:flex;align-items:center;gap:11px;margin-top:11px}
+.ctl input{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:20px;cursor:pointer;margin:0}
+.ctl input::-webkit-slider-runnable-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-moz-range-track{height:3px;background:#1B2735;border-radius:2px}
+.ctl input::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:-4.5px}
+.ctl input::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--accent)}
+.ctl button{background:var(--accent);color:#fff;border:0;border-radius:3px;width:40px;height:31px;font-size:13px;font-weight:700;cursor:pointer}
+.ctl span{font-family:var(--m);font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+body.render{background:#000;overflow:hidden}
+#preroll{position:fixed;inset:0;background:#000;z-index:9999}
+body.render .page{padding:0;gap:0;display:block}
+body.render .ctl,body.render .tapover,body.render .prog{display:none!important}
+body.render .reel{width:100vw;max-width:none}
+body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0}
+.card{position:absolute;left:0;top:0;width:100cqw;height:177.78cqw;overflow:hidden;background:#000}
+.scrcard{width:100%;height:100%;display:block;filter:brightness(2.3) contrast(1.08)}
+.scrim{position:absolute;left:0;top:0;width:100%;height:62cqw;background:linear-gradient(180deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.78) 55%,rgba(0,0,0,0) 100%);pointer-events:none}
+.ring{position:absolute;border:.7cqw solid var(--accent);border-radius:2.4cqw;box-shadow:0 0 3.5cqw var(--accent);opacity:0}
+.hookbar{background:#fff;color:#0a0e14;padding:2.4cqw 3.2cqw;border-radius:2.4cqw;text-shadow:none!important;display:inline-block;box-shadow:0 1.2cqw 4cqw rgba(0,0,0,.5)}
+h2.hookbar .wd,h2.hookbar .box{text-shadow:none!important}
+h2.hookbar .box,h2.hookbar .wd.spoken,h2.hookbar .wd.box.spoken{color:#92400E!important}
+.frs{position:absolute;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none}
+.tag{position:absolute;transform:translate(-100%,-118%);padding:.8cqw 2.6cqw;border-radius:2.2cqw;font:800 5.2cqw/1.1 Inter,Arial,sans-serif;letter-spacing:.2cqw;color:#fff;background:#ef4444;box-shadow:0 .8cqw 3cqw rgba(0,0,0,.55);opacity:0;white-space:nowrap}
+.tag.off{background:#22c55e}
+.lift{position:absolute;inset:0;background:rgba(45,212,191,.15);mix-blend-mode:screen;pointer-events:none}
+.hlw{position:absolute;background:rgba(245,158,11,.36);border:.5cqw solid rgba(245,158,11,.9);border-radius:1.2cqw;box-shadow:0 0 3.2cqw rgba(245,158,11,.55);opacity:0;pointer-events:none}
+</style>
+
+<div class="page">
+<div class="reel">
+<div class="frame" id="frame">
+<div class="prog" id="prog"></div>
+
+<!-- Scene 1 -->
+<section class="scene" data-in="0.0" data-out="4.4" data-y0="0" data-s0="500.0" data-s1="500.0" data-z0="1.35" data-z1="1.42" data-cx="360" data-cy="782" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="1">
+  <div class="photobg" id="photobgA" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920" style="filter:none"></canvas></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:29cqw"><div class="kb" id="hookKbA">
+    <h2 id="hookH2A" style="font-size:5.6cqw"><span class="box">Blur the signs,</span> hide the spot. One AI, one try.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 2 -->
+<section class="scene" data-in="4.4" data-out="8.2" data-y0="0" data-s0="500.0" data-s1="500.0" data-z0="1.42" data-z1="1.5" data-cx="360" data-cy="782" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="1">
+  <div class="photobg" id="photobgB" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920" style="filter:none"></canvas></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:29cqw"><div class="kb" id="hookKbB">
+    <h2 id="hookH2B" style="font-size:5.6cqw">Here's my street photo, with <span class="box">more signs blurred.</span></h2>
+  </div></div>
+</section>
+
+<!-- Scene 3 -->
+<section class="scene" data-in="8.2" data-out="12.8" data-y0="0" data-s0="8.0" data-s1="12.4" data-z0="1" data-z1="1" data-cx="360" data-cy="640" data-rd="0.5" data-rt="4.4" data-dl="0" data-neg="0" data-ct="0" data-zlin="0">
+  <div class="photobg" id="photobgC" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920"></canvas><div class=lift></div></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:29cqw"><div class="kb" id="hookKbC">
+    <h2 id="hookH2C" style="font-size:5.4cqw">I give it to <span class="box">ChatGPT</span> and ask where this was taken.</h2>
+  <div class="logobadge" id="logoBadgeC"><img src="../channel/assets/ep70-chatgpt-logo.svg" alt="" style="height:6.4cqw;width:auto;filter:invert(1) drop-shadow(0 .4cqw 1.4cqw rgba(0,0,0,.6))"></div>
+  </div></div>
+</section>
+
+<!-- Scene 4 -->
+<section class="scene" data-in="12.8" data-out="16.2" data-y0="0" data-s0="20.0" data-s1="20.0" data-z0="1" data-z1="1" data-cx="360" data-cy="500" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="0" data-zs='[[0, 1.0], [1.4, 1.06]]'>
+  <div class="photobg" id="photobgD" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920"></canvas><div class=lift></div></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:29cqw"><div class="kb" id="hookKbD">
+    <h2 id="hookH2D" style="font-size:5.8cqw">It <span class="box">checked fifteen websites,</span> then gave its guess.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 5 -->
+<section class="scene" data-in="16.2" data-out="22.6" data-y0="0" data-s0="22.6" data-s1="22.6" data-z0="1" data-z1="1" data-cx="360" data-cy="700" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="0">
+  <div class="photobg" id="photobgE" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920"></canvas><div class=lift></div><div class="ring" data-rf="24,534,660,222" data-rd="1.0"></div></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:26cqw"><div class="kb" id="hookKbE">
+    <h2 id="hookH2E" style="font-size:4.6cqw" class="hookbar">It guessed <span class="box">the city and the area.</span> Not the street.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 6 -->
+<section class="scene" data-in="22.6" data-out="29.0" data-y0="0" data-s0="22.6" data-s1="22.6" data-z0="1" data-z1="1" data-cx="360" data-cy="700" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="0">
+  <div class="photobg" id="photobgF" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920"></canvas><div class=lift></div></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:26cqw"><div class="kb" id="hookKbF">
+    <h2 id="hookH2F" style="font-size:4.8cqw" class="hookbar">So, does blurring keep it secret? <span class="box">Only in part.</span> The street stayed hidden, the area did not.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 7 -->
+<section class="scene" data-in="29.0" data-out="31.2" data-y0="0" data-s0="22.6" data-s1="22.6" data-z0="1" data-z1="1" data-cx="360" data-cy="700" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="0">
+  <div class="photobg" id="photobgG" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920"></canvas><div class=lift></div></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:29cqw"><div class="kb" id="hookKbG">
+    <h2 id="hookH2G" style="font-size:7.0cqw"><span class="box">Same as last time.</span></h2>
+  </div></div>
+</section>
+
+<!-- Scene 8 -->
+<section class="scene" data-in="31.2" data-out="36.8" data-y0="0" data-s0="30.5" data-s1="30.5" data-z0="1" data-z1="1" data-cx="360" data-cy="700" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="0">
+  <div class="photobg" id="photobgH" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920"></canvas><div class=lift></div><div class="ring" data-rf="24,794,664,140" data-rd="0.8"></div></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:26cqw"><div class="kb" id="hookKbH">
+    <h2 id="hookH2H" style="font-size:4.6cqw" class="hookbar">It also asked for <span class="box">the raw file.</span></h2>
+  </div></div>
+</section>
+
+<!-- Scene 9 -->
+<section class="scene" data-in="36.8" data-out="42.2" data-y0="0" data-s0="30.5" data-s1="30.5" data-z0="1" data-z1="1" data-cx="360" data-cy="700" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="0">
+  <div class="photobg" id="photobgI" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920"></canvas><div class=lift></div></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:26cqw"><div class="kb" id="hookKbI">
+    <h2 id="hookH2I" style="font-size:4.8cqw" class="hookbar">It said <span class="box">the info inside</span> could narrow it down. I can't check that.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 10 -->
+<section class="scene" data-in="42.2" data-out="47.2" data-y0="0" data-s0="500.0" data-s1="500.0" data-z0="1.35" data-z1="1.42" data-cx="360" data-cy="782" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="1">
+  <div class="photobg" id="photobgJ" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920" style="filter:none"></canvas></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:29cqw"><div class="kb" id="hookKbJ">
+    <h2 id="hookH2J" style="font-size:5.2cqw"><span class="box">Try it</span> on your photo. Blur the signs, then ask the same question.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 11 -->
+<section class="scene" data-in="47.2" data-out="50.8" data-y0="0" data-s0="500.0" data-s1="500.0" data-z0="1.42" data-z1="1.46" data-cx="360" data-cy="782" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="1">
+  <div class="photobg" id="photobgK" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920" style="filter:none"></canvas></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:29cqw"><div class="kb" id="hookKbK">
+    <h2 id="hookH2K" style="font-size:5.6cqw">Send this to anyone who <span class="box">posts photos.</span></h2>
+  </div></div>
+</section>
+
+<!-- Scene 12 -->
+<section class="scene" data-in="50.8" data-out="53.6" data-y0="0" data-s0="500.0" data-s1="500.0" data-z0="1.46" data-z1="1.5" data-cx="360" data-cy="782" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="1">
+  <div class="photobg" id="photobgL" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920" style="filter:none"></canvas></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:29cqw"><div class="kb" id="hookKbL">
+    <h2 id="hookH2L" style="font-size:6.6cqw">The setup's in the link in bio.</h2>
+  </div></div>
+</section>
+
+<!-- Scene 13 -->
+<section class="scene" data-in="53.6" data-out="57.0" data-y0="0" data-s0="500.0" data-s1="500.0" data-z0="1.5" data-z1="1.55" data-cx="360" data-cy="782" data-rd="0.5" data-rt="0" data-dl="0" data-neg="0" data-ct="0" data-zlin="1">
+  <div class="photobg" id="photobgM" style="background:radial-gradient(120% 75% at 50% 48%,#2DD4BF66 0%,#2DD4BF26 38%,#07151a 78%)"><div class="card"><canvas class="scrcard" width="1080" height="1920" style="filter:none"></canvas></div><div class="scrim"></div></div>
+  <div class="grain" data-decor></div>
+  <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
+  <div class="pad" style="padding-top:29cqw"><div class="kb" id="hookKbM">
+    <h2 id="hookH2M" style="font-size:6.0cqw">Follow for the <span class="box">setup that actually works.</span></h2>
+  </div></div>
+</section>
+
+<div class="frs" data-decor><img class="fr" data-k="1" src="../channel/assets/ep76-screen/f_001.jpg" alt=""><img class="fr" data-k="2" src="../channel/assets/ep76-screen/f_002.jpg" alt=""><img class="fr" data-k="3" src="../channel/assets/ep76-screen/f_003.jpg" alt=""><img class="fr" data-k="4" src="../channel/assets/ep76-screen/f_004.jpg" alt=""><img class="fr" data-k="5" src="../channel/assets/ep76-screen/f_005.jpg" alt=""><img class="fr" data-k="6" src="../channel/assets/ep76-screen/f_006.jpg" alt=""><img class="fr" data-k="7" src="../channel/assets/ep76-screen/f_007.jpg" alt=""><img class="fr" data-k="8" src="../channel/assets/ep76-screen/f_008.jpg" alt=""><img class="fr" data-k="9" src="../channel/assets/ep76-screen/f_009.jpg" alt=""><img class="fr" data-k="10" src="../channel/assets/ep76-screen/f_010.jpg" alt=""><img class="fr" data-k="11" src="../channel/assets/ep76-screen/f_011.jpg" alt=""><img class="fr" data-k="12" src="../channel/assets/ep76-screen/f_012.jpg" alt=""><img class="fr" data-k="13" src="../channel/assets/ep76-screen/f_013.jpg" alt=""><img class="fr" data-k="14" src="../channel/assets/ep76-screen/f_014.jpg" alt=""><img class="fr" data-k="15" src="../channel/assets/ep76-screen/f_015.jpg" alt=""><img class="fr" data-k="16" src="../channel/assets/ep76-screen/f_016.jpg" alt=""><img class="fr" data-k="17" src="../channel/assets/ep76-screen/f_017.jpg" alt=""><img class="fr" data-k="18" src="../channel/assets/ep76-screen/f_018.jpg" alt=""><img class="fr" data-k="19" src="../channel/assets/ep76-screen/f_019.jpg" alt=""><img class="fr" data-k="20" src="../channel/assets/ep76-screen/f_020.jpg" alt=""><img class="fr" data-k="21" src="../channel/assets/ep76-screen/f_021.jpg" alt=""><img class="fr" data-k="22" src="../channel/assets/ep76-screen/f_022.jpg" alt=""><img class="fr" data-k="23" src="../channel/assets/ep76-screen/f_023.jpg" alt=""><img class="fr" data-k="24" src="../channel/assets/ep76-screen/f_024.jpg" alt=""><img class="fr" data-k="25" src="../channel/assets/ep76-screen/f_025.jpg" alt=""><img class="fr" data-k="26" src="../channel/assets/ep76-screen/f_026.jpg" alt=""><img class="fr" data-k="27" src="../channel/assets/ep76-screen/f_027.jpg" alt=""><img class="fr" data-k="28" src="../channel/assets/ep76-screen/f_028.jpg" alt=""><img class="fr" data-k="29" src="../channel/assets/ep76-screen/f_029.jpg" alt=""><img class="fr" data-k="30" src="../channel/assets/ep76-screen/f_030.jpg" alt=""><img class="fr" data-k="31" src="../channel/assets/ep76-screen/f_031.jpg" alt=""><img class="fr" data-k="32" src="../channel/assets/ep76-screen/f_032.jpg" alt=""><img class="fr" data-k="33" src="../channel/assets/ep76-screen/f_033.jpg" alt=""><img class="fr" data-k="34" src="../channel/assets/ep76-screen/f_034.jpg" alt=""><img class="fr" data-k="35" src="../channel/assets/ep76-screen/f_035.jpg" alt=""><img class="fr" data-k="36" src="../channel/assets/ep76-screen/f_036.jpg" alt=""><img class="fr" data-k="37" src="../channel/assets/ep76-screen/f_037.jpg" alt=""><img class="fr" data-k="38" src="../channel/assets/ep76-screen/f_038.jpg" alt=""><img class="fr" data-k="39" src="../channel/assets/ep76-screen/f_039.jpg" alt=""><img class="fr" data-k="40" src="../channel/assets/ep76-screen/f_040.jpg" alt=""><img class="fr" data-k="41" src="../channel/assets/ep76-screen/f_041.jpg" alt=""><img class="fr" data-k="42" src="../channel/assets/ep76-screen/f_042.jpg" alt=""><img class="fr" data-k="43" src="../channel/assets/ep76-screen/f_043.jpg" alt=""><img class="fr" data-k="44" src="../channel/assets/ep76-screen/f_044.jpg" alt=""><img class="fr" data-k="45" src="../channel/assets/ep76-screen/f_045.jpg" alt=""><img class="fr" data-k="46" src="../channel/assets/ep76-screen/f_046.jpg" alt=""><img class="fr" data-k="47" src="../channel/assets/ep76-screen/f_047.jpg" alt=""><img class="fr" data-k="48" src="../channel/assets/ep76-screen/f_048.jpg" alt=""><img class="fr" data-k="49" src="../channel/assets/ep76-screen/f_049.jpg" alt=""><img class="fr" data-k="50" src="../channel/assets/ep76-screen/f_050.jpg" alt=""><img class="fr" data-k="51" src="../channel/assets/ep76-screen/f_051.jpg" alt=""><img class="fr" data-k="52" src="../channel/assets/ep76-screen/f_052.jpg" alt=""><img class="fr" data-k="53" src="../channel/assets/ep76-screen/f_053.jpg" alt=""><img class="fr" data-k="54" src="../channel/assets/ep76-screen/f_054.jpg" alt=""><img class="fr" data-k="55" src="../channel/assets/ep76-screen/f_055.jpg" alt=""><img class="fr" data-k="56" src="../channel/assets/ep76-screen/f_056.jpg" alt=""><img class="fr" data-k="57" src="../channel/assets/ep76-screen/f_057.jpg" alt=""><img class="fr" data-k="58" src="../channel/assets/ep76-screen/f_058.jpg" alt=""><img class="fr" data-k="59" src="../channel/assets/ep76-screen/f_059.jpg" alt=""><img class="fr" data-k="60" src="../channel/assets/ep76-screen/f_060.jpg" alt=""><img class="fr" data-k="61" src="../channel/assets/ep76-screen/f_061.jpg" alt=""><img class="fr" data-k="62" src="../channel/assets/ep76-screen/f_062.jpg" alt=""><img class="fr" data-k="63" src="../channel/assets/ep76-screen/f_063.jpg" alt=""><img class="fr" data-k="64" src="../channel/assets/ep76-screen/f_064.jpg" alt=""><img class="fr" data-k="65" src="../channel/assets/ep76-screen/f_065.jpg" alt=""><img class="fr" data-k="66" src="../channel/assets/ep76-screen/f_066.jpg" alt=""><img class="fr" data-k="67" src="../channel/assets/ep76-screen/f_067.jpg" alt=""><img class="fr" data-k="68" src="../channel/assets/ep76-screen/f_068.jpg" alt=""><img class="fr" data-k="69" src="../channel/assets/ep76-screen/f_069.jpg" alt=""><img class="fr" data-k="70" src="../channel/assets/ep76-screen/f_070.jpg" alt=""><img class="fr" data-k="71" src="../channel/assets/ep76-screen/f_071.jpg" alt=""><img class="fr" data-k="72" src="../channel/assets/ep76-screen/f_072.jpg" alt=""><img class="fr" data-k="73" src="../channel/assets/ep76-screen/f_073.jpg" alt=""><img class="fr" data-k="74" src="../channel/assets/ep76-screen/f_074.jpg" alt=""><img class="fr" data-k="75" src="../channel/assets/ep76-screen/f_075.jpg" alt=""><img class="fr" data-k="76" src="../channel/assets/ep76-screen/f_076.jpg" alt=""><img class="fr" data-k="77" src="../channel/assets/ep76-screen/f_077.jpg" alt=""><img class="fr" data-k="78" src="../channel/assets/ep76-screen/f_078.jpg" alt=""><img class="fr" data-k="79" src="../channel/assets/ep76-screen/f_079.jpg" alt=""><img class="fr" data-k="80" src="../channel/assets/ep76-screen/f_080.jpg" alt=""><img class="fr" data-k="81" src="../channel/assets/ep76-screen/f_081.jpg" alt=""><img class="fr" data-k="82" src="../channel/assets/ep76-screen/f_082.jpg" alt=""><img class="fr" data-k="83" src="../channel/assets/ep76-screen/f_083.jpg" alt=""><img class="fr" data-k="84" src="../channel/assets/ep76-screen/f_084.jpg" alt=""><img class="fr" data-k="85" src="../channel/assets/ep76-screen/f_085.jpg" alt=""><img class="fr" data-k="86" src="../channel/assets/ep76-screen/f_086.jpg" alt=""><img class="fr" data-k="87" src="../channel/assets/ep76-screen/f_087.jpg" alt=""><img class="fr" data-k="88" src="../channel/assets/ep76-screen/f_088.jpg" alt=""><img class="fr" data-k="89" src="../channel/assets/ep76-screen/f_089.jpg" alt=""><img class="fr" data-k="90" src="../channel/assets/ep76-screen/f_090.jpg" alt=""><img class="fr" data-k="91" src="../channel/assets/ep76-screen/f_091.jpg" alt=""><img class="fr" data-k="92" src="../channel/assets/ep76-screen/f_092.jpg" alt=""><img class="fr" data-k="93" src="../channel/assets/ep76-screen/f_093.jpg" alt=""><img class="fr" data-k="94" src="../channel/assets/ep76-screen/f_094.jpg" alt=""><img class="fr" data-k="95" src="../channel/assets/ep76-screen/f_095.jpg" alt=""><img class="fr" data-k="96" src="../channel/assets/ep76-screen/f_096.jpg" alt=""><img class="fr" data-k="97" src="../channel/assets/ep76-screen/f_097.jpg" alt=""><img class="fr" data-k="98" src="../channel/assets/ep76-screen/f_098.jpg" alt=""><img class="fr" data-k="99" src="../channel/assets/ep76-screen/f_099.jpg" alt=""><img class="fr" data-k="100" src="../channel/assets/ep76-screen/f_100.jpg" alt=""><img class="fr" data-k="101" src="../channel/assets/ep76-screen/f_101.jpg" alt=""><img class="fr" data-k="102" src="../channel/assets/ep76-screen/f_102.jpg" alt=""><img class="fr" data-k="103" src="../channel/assets/ep76-screen/f_103.jpg" alt=""><img class="fr" data-k="104" src="../channel/assets/ep76-screen/f_104.jpg" alt=""><img class="fr" data-k="105" src="../channel/assets/ep76-screen/f_105.jpg" alt=""><img class="fr" data-k="106" src="../channel/assets/ep76-screen/f_106.jpg" alt=""><img class="fr" data-k="107" src="../channel/assets/ep76-screen/f_107.jpg" alt=""><img class="fr" data-k="108" src="../channel/assets/ep76-screen/f_108.jpg" alt=""><img class="fr" data-k="109" src="../channel/assets/ep76-screen/f_109.jpg" alt=""><img class="fr" data-k="110" src="../channel/assets/ep76-screen/f_110.jpg" alt=""><img class="fr" data-k="111" src="../channel/assets/ep76-screen/f_111.jpg" alt=""><img class="fr" data-k="112" src="../channel/assets/ep76-screen/f_112.jpg" alt=""><img class="fr" data-k="113" src="../channel/assets/ep76-screen/f_113.jpg" alt=""><img class="fr" data-k="114" src="../channel/assets/ep76-screen/f_114.jpg" alt=""><img class="fr" data-k="115" src="../channel/assets/ep76-screen/f_115.jpg" alt=""><img class="fr" data-k="116" src="../channel/assets/ep76-screen/f_116.jpg" alt=""><img class="fr" data-k="117" src="../channel/assets/ep76-screen/f_117.jpg" alt=""><img class="fr" data-k="118" src="../channel/assets/ep76-screen/f_118.jpg" alt=""><img class="fr" data-k="119" src="../channel/assets/ep76-screen/f_119.jpg" alt=""><img class="fr" data-k="120" src="../channel/assets/ep76-screen/f_120.jpg" alt=""><img class="fr" data-k="121" src="../channel/assets/ep76-screen/f_121.jpg" alt=""><img class="fr" data-k="122" src="../channel/assets/ep76-screen/f_122.jpg" alt=""><img class="fr" data-k="123" src="../channel/assets/ep76-screen/f_123.jpg" alt=""><img class="fr" data-k="124" src="../channel/assets/ep76-screen/f_124.jpg" alt=""><img class="fr" data-k="125" src="../channel/assets/ep76-screen/f_125.jpg" alt=""><img class="fr" data-k="126" src="../channel/assets/ep76-screen/f_126.jpg" alt=""><img class="fr" data-k="127" src="../channel/assets/ep76-screen/f_127.jpg" alt=""><img class="fr" data-k="128" src="../channel/assets/ep76-screen/f_128.jpg" alt=""><img class="fr" data-k="129" src="../channel/assets/ep76-screen/f_129.jpg" alt=""><img class="fr" data-k="130" src="../channel/assets/ep76-screen/f_130.jpg" alt=""><img class="fr" data-k="131" src="../channel/assets/ep76-screen/f_131.jpg" alt=""><img class="fr" data-k="132" src="../channel/assets/ep76-screen/f_132.jpg" alt=""><img class="fr" data-k="133" src="../channel/assets/ep76-screen/f_133.jpg" alt=""><img class="fr" data-k="134" src="../channel/assets/ep76-screen/f_134.jpg" alt=""><img class="fr" data-k="135" src="../channel/assets/ep76-screen/f_135.jpg" alt=""><img class="fr" data-k="136" src="../channel/assets/ep76-screen/f_136.jpg" alt=""><img class="fr" data-k="137" src="../channel/assets/ep76-screen/f_137.jpg" alt=""><img class="fr" data-k="138" src="../channel/assets/ep76-screen/f_138.jpg" alt=""><img class="fr" data-k="139" src="../channel/assets/ep76-screen/f_139.jpg" alt=""><img class="fr" data-k="140" src="../channel/assets/ep76-screen/f_140.jpg" alt=""><img class="fr" data-k="141" src="../channel/assets/ep76-screen/f_141.jpg" alt=""><img class="fr" data-k="142" src="../channel/assets/ep76-screen/f_142.jpg" alt=""><img class="fr" data-k="143" src="../channel/assets/ep76-screen/f_143.jpg" alt=""><img class="fr" data-k="144" src="../channel/assets/ep76-screen/f_144.jpg" alt=""><img class="fr" data-k="145" src="../channel/assets/ep76-screen/f_145.jpg" alt=""><img class="fr" data-k="146" src="../channel/assets/ep76-screen/f_146.jpg" alt=""><img class="fr" data-k="147" src="../channel/assets/ep76-screen/f_147.jpg" alt=""><img class="fr" data-k="148" src="../channel/assets/ep76-screen/f_148.jpg" alt=""><img class="fr" data-k="149" src="../channel/assets/ep76-screen/f_149.jpg" alt=""><img class="fr" data-k="150" src="../channel/assets/ep76-screen/f_150.jpg" alt=""><img class="fr" data-k="151" src="../channel/assets/ep76-screen/f_151.jpg" alt=""><img class="fr" data-k="152" src="../channel/assets/ep76-screen/f_152.jpg" alt=""><img class="fr" data-k="153" src="../channel/assets/ep76-screen/f_153.jpg" alt=""><img class="fr" data-k="154" src="../channel/assets/ep76-screen/f_154.jpg" alt=""><img class="fr" data-k="155" src="../channel/assets/ep76-screen/f_155.jpg" alt=""><img class="fr" data-k="156" src="../channel/assets/ep76-screen/f_156.jpg" alt=""><img class="fr" data-k="157" src="../channel/assets/ep76-screen/f_157.jpg" alt=""><img class="fr" data-k="158" src="../channel/assets/ep76-screen/f_158.jpg" alt=""><img class="fr" data-k="159" src="../channel/assets/ep76-screen/f_159.jpg" alt=""><img class="fr" data-k="160" src="../channel/assets/ep76-screen/f_160.jpg" alt=""><img class="fr" data-k="161" src="../channel/assets/ep76-screen/f_161.jpg" alt=""><img class="fr" data-k="162" src="../channel/assets/ep76-screen/f_162.jpg" alt=""><img class="fr" data-k="163" src="../channel/assets/ep76-screen/f_163.jpg" alt=""><img class="fr" data-k="164" src="../channel/assets/ep76-screen/f_164.jpg" alt=""><img class="fr" data-k="165" src="../channel/assets/ep76-screen/f_165.jpg" alt=""><img class="fr" data-k="166" src="../channel/assets/ep76-screen/f_166.jpg" alt=""><img class="fr" data-k="167" src="../channel/assets/ep76-screen/f_167.jpg" alt=""><img class="fr" data-k="168" src="../channel/assets/ep76-screen/f_168.jpg" alt=""><img class="fr" data-k="169" src="../channel/assets/ep76-screen/f_169.jpg" alt=""><img class="fr" data-k="170" src="../channel/assets/ep76-screen/f_170.jpg" alt=""><img class="fr" data-k="171" src="../channel/assets/ep76-screen/f_171.jpg" alt=""><img class="fr" data-k="172" src="../channel/assets/ep76-screen/f_172.jpg" alt=""><img class="fr" data-k="173" src="../channel/assets/ep76-screen/f_173.jpg" alt=""><img class="fr" data-k="174" src="../channel/assets/ep76-screen/f_174.jpg" alt=""><img class="fr" data-k="175" src="../channel/assets/ep76-screen/f_175.jpg" alt=""><img class="fr" data-k="176" src="../channel/assets/ep76-screen/f_176.jpg" alt=""><img class="fr" data-k="177" src="../channel/assets/ep76-screen/f_177.jpg" alt=""><img class="fr" data-k="178" src="../channel/assets/ep76-screen/f_178.jpg" alt=""><img class="fr" data-k="179" src="../channel/assets/ep76-screen/f_179.jpg" alt=""><img class="fr" data-k="180" src="../channel/assets/ep76-screen/f_180.jpg" alt=""><img class="fr" data-k="181" src="../channel/assets/ep76-screen/f_181.jpg" alt=""><img class="fr" data-k="182" src="../channel/assets/ep76-screen/f_182.jpg" alt=""><img class="fr" data-k="183" src="../channel/assets/ep76-screen/f_183.jpg" alt=""><img class="fr" data-k="184" src="../channel/assets/ep76-screen/f_184.jpg" alt=""><img class="fr" data-k="185" src="../channel/assets/ep76-screen/f_185.jpg" alt=""><img class="fr" data-k="186" src="../channel/assets/ep76-screen/f_186.jpg" alt=""><img class="fr" data-k="187" src="../channel/assets/ep76-screen/f_187.jpg" alt=""><img class="fr" data-k="188" src="../channel/assets/ep76-screen/f_188.jpg" alt=""><img class="fr" data-k="189" src="../channel/assets/ep76-screen/f_189.jpg" alt=""><img class="fr" data-k="190" src="../channel/assets/ep76-screen/f_190.jpg" alt=""><img class="fr" data-k="191" src="../channel/assets/ep76-screen/f_191.jpg" alt=""><img class="fr" data-k="192" src="../channel/assets/ep76-screen/f_192.jpg" alt=""><img class="fr" data-k="193" src="../channel/assets/ep76-screen/f_193.jpg" alt=""><img class="fr" data-k="194" src="../channel/assets/ep76-screen/f_194.jpg" alt=""><img class="fr" data-k="195" src="../channel/assets/ep76-screen/f_195.jpg" alt=""><img class="fr" data-k="196" src="../channel/assets/ep76-screen/f_196.jpg" alt=""><img class="fr" data-k="197" src="../channel/assets/ep76-screen/f_197.jpg" alt=""><img class="fr" data-k="198" src="../channel/assets/ep76-screen/f_198.jpg" alt=""><img class="fr" data-k="199" src="../channel/assets/ep76-screen/f_199.jpg" alt=""><img class="fr" data-k="200" src="../channel/assets/ep76-screen/f_200.jpg" alt=""><img class="fr" data-k="201" src="../channel/assets/ep76-screen/f_201.jpg" alt=""><img class="fr" data-k="202" src="../channel/assets/ep76-screen/f_202.jpg" alt=""><img class="fr" data-k="203" src="../channel/assets/ep76-screen/f_203.jpg" alt=""><img class="fr" data-k="204" src="../channel/assets/ep76-screen/f_204.jpg" alt=""><img class="fr" data-k="205" src="../channel/assets/ep76-screen/f_205.jpg" alt=""><img class="fr" data-k="206" src="../channel/assets/ep76-screen/f_206.jpg" alt=""><img class="fr" data-k="207" src="../channel/assets/ep76-screen/f_207.jpg" alt=""><img class="fr" data-k="208" src="../channel/assets/ep76-screen/f_208.jpg" alt=""><img class="fr" data-k="209" src="../channel/assets/ep76-screen/f_209.jpg" alt=""><img class="fr" data-k="210" src="../channel/assets/ep76-screen/f_210.jpg" alt=""><img class="fr" data-k="211" src="../channel/assets/ep76-screen/f_211.jpg" alt=""><img class="fr" data-k="212" src="../channel/assets/ep76-screen/f_212.jpg" alt=""><img class="fr" data-k="213" src="../channel/assets/ep76-screen/f_213.jpg" alt=""><img class="fr" data-k="214" src="../channel/assets/ep76-screen/f_214.jpg" alt=""><img class="fr" data-k="215" src="../channel/assets/ep76-screen/f_215.jpg" alt=""><img class="fr" data-k="216" src="../channel/assets/ep76-screen/f_216.jpg" alt=""><img class="fr" data-k="217" src="../channel/assets/ep76-screen/f_217.jpg" alt=""><img class="fr" data-k="218" src="../channel/assets/ep76-screen/f_218.jpg" alt=""><img class="fr" data-k="219" src="../channel/assets/ep76-screen/f_219.jpg" alt=""><img class="fr" data-k="220" src="../channel/assets/ep76-screen/f_220.jpg" alt=""><img class="fr" data-k="221" src="../channel/assets/ep76-screen/f_221.jpg" alt=""><img class="fr" data-k="222" src="../channel/assets/ep76-screen/f_222.jpg" alt=""><img class="fr" data-k="223" src="../channel/assets/ep76-screen/f_223.jpg" alt=""><img class="fr" data-k="224" src="../channel/assets/ep76-screen/f_224.jpg" alt=""><img class="fr" data-k="225" src="../channel/assets/ep76-screen/f_225.jpg" alt=""><img class="fr" data-k="226" src="../channel/assets/ep76-screen/f_226.jpg" alt=""><img class="fr" data-k="227" src="../channel/assets/ep76-screen/f_227.jpg" alt=""><img class="fr" data-k="228" src="../channel/assets/ep76-screen/f_228.jpg" alt=""><img class="fr" data-k="229" src="../channel/assets/ep76-screen/f_229.jpg" alt=""><img class="fr" data-k="230" src="../channel/assets/ep76-screen/f_230.jpg" alt=""><img class="fr" data-k="231" src="../channel/assets/ep76-screen/f_231.jpg" alt=""><img class="fr" data-k="232" src="../channel/assets/ep76-screen/f_232.jpg" alt=""><img class="fr" data-k="233" src="../channel/assets/ep76-screen/f_233.jpg" alt=""><img class="fr" data-k="234" src="../channel/assets/ep76-screen/f_234.jpg" alt=""><img class="fr" data-k="235" src="../channel/assets/ep76-screen/f_235.jpg" alt=""><img class="fr" data-k="236" src="../channel/assets/ep76-screen/f_236.jpg" alt=""><img class="fr" data-k="237" src="../channel/assets/ep76-screen/f_237.jpg" alt=""><img class="fr" data-k="238" src="../channel/assets/ep76-screen/f_238.jpg" alt=""><img class="fr" data-k="239" src="../channel/assets/ep76-screen/f_239.jpg" alt=""><img class="fr" data-k="240" src="../channel/assets/ep76-screen/f_240.jpg" alt=""><img class="fr" data-k="241" src="../channel/assets/ep76-screen/f_241.jpg" alt=""><img class="fr" data-k="242" src="../channel/assets/ep76-screen/f_242.jpg" alt=""><img class="fr" data-k="243" src="../channel/assets/ep76-screen/f_243.jpg" alt=""><img class="fr" data-k="244" src="../channel/assets/ep76-screen/f_244.jpg" alt=""><img class="fr" data-k="245" src="../channel/assets/ep76-screen/f_245.jpg" alt=""><img class="fr" data-k="246" src="../channel/assets/ep76-screen/f_246.jpg" alt=""><img class="fr" data-k="247" src="../channel/assets/ep76-screen/f_247.jpg" alt=""><img class="fr" data-k="248" src="../channel/assets/ep76-screen/f_248.jpg" alt=""><img class="fr" data-k="249" src="../channel/assets/ep76-screen/f_249.jpg" alt=""><img class="fr" data-k="250" src="../channel/assets/ep76-screen/f_250.jpg" alt=""><img class="fr" data-k="251" src="../channel/assets/ep76-screen/f_251.jpg" alt=""><img class="fr" data-k="252" src="../channel/assets/ep76-screen/f_252.jpg" alt=""><img class="fr" data-k="253" src="../channel/assets/ep76-screen/f_253.jpg" alt=""><img class="fr" data-k="254" src="../channel/assets/ep76-screen/f_254.jpg" alt=""><img class="fr" data-k="255" src="../channel/assets/ep76-screen/f_255.jpg" alt=""><img class="fr" data-k="256" src="../channel/assets/ep76-screen/f_256.jpg" alt=""><img class="fr" data-k="257" src="../channel/assets/ep76-screen/f_257.jpg" alt=""><img class="fr" data-k="258" src="../channel/assets/ep76-screen/f_258.jpg" alt=""><img class="fr" data-k="259" src="../channel/assets/ep76-screen/f_259.jpg" alt=""><img class="fr" data-k="260" src="../channel/assets/ep76-screen/f_260.jpg" alt=""><img class="fr" data-k="261" src="../channel/assets/ep76-screen/f_261.jpg" alt=""><img class="fr" data-k="262" src="../channel/assets/ep76-screen/f_262.jpg" alt=""><img class="fr" data-k="263" src="../channel/assets/ep76-screen/f_263.jpg" alt=""><img class="fr" data-k="264" src="../channel/assets/ep76-screen/f_264.jpg" alt=""><img class="fr" data-k="265" src="../channel/assets/ep76-screen/f_265.jpg" alt=""><img class="fr" data-k="266" src="../channel/assets/ep76-screen/f_266.jpg" alt=""><img class="fr" data-k="267" src="../channel/assets/ep76-screen/f_267.jpg" alt=""><img class="fr" data-k="268" src="../channel/assets/ep76-screen/f_268.jpg" alt=""><img class="fr" data-k="269" src="../channel/assets/ep76-screen/f_269.jpg" alt=""><img class="fr" data-k="270" src="../channel/assets/ep76-screen/f_270.jpg" alt=""><img class="fr" data-k="271" src="../channel/assets/ep76-screen/f_271.jpg" alt=""><img class="fr" data-k="272" src="../channel/assets/ep76-screen/f_272.jpg" alt=""><img class="fr" data-k="273" src="../channel/assets/ep76-screen/f_273.jpg" alt=""><img class="fr" data-k="274" src="../channel/assets/ep76-screen/f_274.jpg" alt=""><img class="fr" data-k="275" src="../channel/assets/ep76-screen/f_275.jpg" alt=""><img class="fr" data-k="276" src="../channel/assets/ep76-screen/f_276.jpg" alt=""><img class="fr" data-k="277" src="../channel/assets/ep76-screen/f_277.jpg" alt=""><img class="fr" data-k="278" src="../channel/assets/ep76-screen/f_278.jpg" alt=""><img class="fr" data-k="279" src="../channel/assets/ep76-screen/f_279.jpg" alt=""><img class="fr" data-k="280" src="../channel/assets/ep76-screen/f_280.jpg" alt=""><img class="fr" data-k="281" src="../channel/assets/ep76-screen/f_281.jpg" alt=""><img class="fr" data-k="282" src="../channel/assets/ep76-screen/f_282.jpg" alt=""><img class="fr" data-k="283" src="../channel/assets/ep76-screen/f_283.jpg" alt=""><img class="fr" data-k="284" src="../channel/assets/ep76-screen/f_284.jpg" alt=""><img class="fr" data-k="285" src="../channel/assets/ep76-screen/f_285.jpg" alt=""><img class="fr" data-k="286" src="../channel/assets/ep76-screen/f_286.jpg" alt=""><img class="fr" data-k="287" src="../channel/assets/ep76-screen/f_287.jpg" alt=""><img class="fr" data-k="288" src="../channel/assets/ep76-screen/f_288.jpg" alt=""><img class="fr" data-k="289" src="../channel/assets/ep76-screen/f_289.jpg" alt=""><img class="fr" data-k="290" src="../channel/assets/ep76-screen/f_290.jpg" alt=""><img class="fr" data-k="291" src="../channel/assets/ep76-screen/f_291.jpg" alt=""><img class="fr" data-k="292" src="../channel/assets/ep76-screen/f_292.jpg" alt=""><img class="fr" data-k="293" src="../channel/assets/ep76-screen/f_293.jpg" alt=""><img class="fr" data-k="294" src="../channel/assets/ep76-screen/f_294.jpg" alt=""><img class="fr" data-k="295" src="../channel/assets/ep76-screen/f_295.jpg" alt=""><img class="fr" data-k="296" src="../channel/assets/ep76-screen/f_296.jpg" alt=""><img class="fr" data-k="297" src="../channel/assets/ep76-screen/f_297.jpg" alt=""><img class="fr" data-k="298" src="../channel/assets/ep76-screen/f_298.jpg" alt=""><img class="fr" data-k="299" src="../channel/assets/ep76-screen/f_299.jpg" alt=""><img class="fr" data-k="300" src="../channel/assets/ep76-screen/f_300.jpg" alt=""><img class="fr" data-k="301" src="../channel/assets/ep76-screen/f_301.jpg" alt=""><img class="fr" data-k="302" src="../channel/assets/ep76-screen/f_302.jpg" alt=""><img class="fr" data-k="303" src="../channel/assets/ep76-screen/f_303.jpg" alt=""><img class="fr" data-k="304" src="../channel/assets/ep76-screen/f_304.jpg" alt=""><img class="fr" data-k="305" src="../channel/assets/ep76-screen/f_305.jpg" alt=""><img class="fr" data-k="306" src="../channel/assets/ep76-screen/f_306.jpg" alt=""><img class="fr" data-k="307" src="../channel/assets/ep76-screen/f_307.jpg" alt=""><img class="fr" data-k="308" src="../channel/assets/ep76-screen/f_308.jpg" alt=""><img class="fr" data-k="309" src="../channel/assets/ep76-screen/f_309.jpg" alt=""><img class="fr" data-k="310" src="../channel/assets/ep76-screen/f_310.jpg" alt=""><img class="fr" data-k="311" src="../channel/assets/ep76-screen/f_311.jpg" alt=""><img class="fr" data-k="312" src="../channel/assets/ep76-screen/f_312.jpg" alt=""><img class="fr" data-k="313" src="../channel/assets/ep76-screen/f_313.jpg" alt=""><img class="fr" data-k="314" src="../channel/assets/ep76-screen/f_314.jpg" alt=""><img class="fr" data-k="315" src="../channel/assets/ep76-screen/f_315.jpg" alt=""><img class="fr" data-k="5001" src="../channel/assets/ep76-screen/f_5001.jpg" alt=""><img class="fr" data-k="5002" src="../channel/assets/ep76-screen/f_5002.jpg" alt=""></div>
+
+<button class="tapover" id="tap" aria-label="play"><span class="d"></span></button>
+</div>
+</div>
+
+<div class="ctl">
+  <button id="pp" aria-label="Play">▶</button>
+  <input id="seek" type="range" min="0" max="57.7" step="0.05" value="0" aria-label="Seek">
+  <span id="cur2">0:00</span>
+</div>
+</div>
+</div>
+
+<script src="../export/motion-kit.js"></script>
+<script>
+(function(){
+  var MK=window.MotionKit;
+  var DUR=57.0,t=0,playing=false,last=0;
+  var frame=document.getElementById('frame');
+  var scenes=[].slice.call(frame.querySelectorAll('.scene'));
+  var seek=document.getElementById('seek');
+  var pp=document.getElementById('pp'),cur2=document.getElementById('cur2');
+  var tap=document.getElementById('tap'),prog=document.getElementById('prog');
+
+  var CUES=[
+    [0.08,4.00,"Blur the signs, hide the spot. One AI, one try."],
+    [4.48,7.80,"Here's my street photo, with more signs blurred."],
+    [8.28,12.40,"I give it to ChatGPT and ask where this was taken."],
+    [12.88,15.80,"It checked fifteen websites, then gave its guess."],
+    [16.279999999999998,22.20,"It guessed the city and the area. Not the street."],
+    [22.68,28.60,"So, does blurring keep it secret? Only in part. The street stayed hidden, the area did not."],
+    [29.08,30.80,"Same as last time."],
+    [31.279999999999998,36.40,"It also asked for the raw file."],
+    [36.879999999999995,41.80,"It said the info inside could narrow it down. I can't check that."],
+    [42.28,46.80,"Try it on your photo. Blur the signs, then ask the same question."],
+    [47.28,50.40,"Send this to anyone who posts photos."],
+    [50.879999999999995,53.20,"The setup's in the link in bio."],
+    [53.68,56.60,"Follow for the setup that actually works."]
+  ];
+  var WORD_WINDOWS=[
+    new Array(10).fill(null),
+    new Array(8).fill(null),
+    new Array(11).fill(null),
+    new Array(8).fill(null),
+    new Array(10).fill(null),
+    new Array(17).fill(null),
+    new Array(4).fill(null),
+    new Array(7).fill(null),
+    new Array(13).fill(null),
+    new Array(13).fill(null),
+    new Array(7).fill(null),
+    new Array(7).fill(null),
+    new Array(7).fill(null)
+  ];
+
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2);}
+
+  var photobgA=document.getElementById('photobgA');
+  var photobgB=document.getElementById('photobgB');
+  var photobgC=document.getElementById('photobgC');
+  var photobgD=document.getElementById('photobgD');
+  var photobgE=document.getElementById('photobgE');
+  var photobgF=document.getElementById('photobgF');
+  var photobgG=document.getElementById('photobgG');
+  var photobgH=document.getElementById('photobgH');
+  var photobgI=document.getElementById('photobgI');
+  var photobgJ=document.getElementById('photobgJ');
+  var photobgK=document.getElementById('photobgK');
+  var photobgL=document.getElementById('photobgL');
+  var photobgM=document.getElementById('photobgM');
+
+  // Scenes 7 and 8 both reuse scene 6's exact photo (all three adjacent to each
+  // other) -> fully static, no pan/zoom, per the standing rule (a repeated Ken
+  // Burns on an unchanged photo reads as a reset/jump, not a continuation).
+  var KB_A={fromScale:1.0,toScale:1.30,fromX:0,toX:-3.0,fromY:0,toY:2.0};
+  var KB_B={fromScale:1.0,toScale:1.32,fromX:0,toX:2.6,fromY:0,toY:-3.0};
+  var KB_C={fromScale:1.0,toScale:2.0,fromX:0,toX:-12.0,fromY:0,toY:7.0};
+  var KB_D={fromScale:1.0,toScale:1.34,fromX:0,toX:3.0,fromY:0,toY:-3.4};
+  var KB_E={fromScale:1.0,toScale:1.6,fromX:0,toX:-8.0,fromY:0,toY:5.0};
+  var KB_F={fromScale:1.0,toScale:1.75,fromX:0,toX:-9.0,fromY:0,toY:-6.0};
+  var KB_G={fromScale:1.0,toScale:1.30,fromX:0,toX:3.0,fromY:0,toY:-2.2};
+  var KB_H={fromScale:1.0,toScale:1.4,fromX:0,toX:2.0,fromY:0,toY:-2.5};
+  var KB_I={fromScale:1.0,toScale:1.30,fromX:0,toX:-3.0,fromY:0,toY:2.0};
+  var KB_J={fromScale:1.0,toScale:1.32,fromX:0,toX:2.6,fromY:0,toY:-3.0};
+  var KB_K={fromScale:1.0,toScale:2.0,fromX:0,toX:-12.0,fromY:0,toY:7.0};
+  // Closing pair (CTA + tomorrow line) = ONE continuous shot on one photo. A static hold
+  // is no longer possible: the tomorrow line made the pair run past qa.py's 4s frozen
+  // limit (6.10.2026). One slow drift spans both scenes, so nothing resets at the cut.
+  var KB_GH={fromScale:1.0,toScale:1.85,fromX:0,toX:-14.0,fromY:0,toY:-10.0};
+  // LINEAR on purpose: kenBurns()'s ease-out front-loads the motion and left a 4.4s still tail.
+  function driftGH(t0,t1){var p=Math.max(0,Math.min(1,(t-t0)/(t1-t0)));var k=KB_GH;
+    return 'scale('+(k.fromScale+(k.toScale-k.fromScale)*p).toFixed(4)+') translate('+(k.toX*p).toFixed(3)+'%,'+(k.toY*p).toFixed(3)+'%)';}
+
+  function makeHook(kbId,h2Id,sceneIdx){
+    var kb=document.getElementById(kbId);
+    var h2=document.getElementById(h2Id);
+    var scene=h2.closest('.scene');
+    var split=MK.splitWordsSafe(h2,{explodeBoxes:true});
+    var climax=split.boxWords[0]||null;
+    var climaxIndex=climax?split.words.indexOf(climax):-1;
+    var windows=WORD_WINDOWS[sceneIdx]||[];
+    return function render(){
+      var ht=t-(+scene.dataset.in);
+      var START=0.15,GAP=0.10,WDUR=0.30;
+      for(var i=0;i<split.words.length;i++){
+        var w=split.words[i],at=START+i*GAP;
+        var entranceT=(ht-at)/WDUR;
+        if(entranceT<1){
+          var e=MK.smoothIn(MK.clamp01(entranceT));
+          w.style.opacity=String(e);
+          w.style.transform='scale('+(0.82+0.18*e).toFixed(3)+')';
+        } else {
+          w.style.opacity='1';
+          w.style.transform='scale(1)';
+          var win=windows[i];
+          MK.animateWordEmphasis(w,t,win?win[0]:null,win?win[1]:null);
+        }
+      }
+      if(climaxIndex>=0){
+        var climaxAt=START+climaxIndex*GAP;
+        var camScale=MK.multiPhaseCamera(ht,{settleDur:0.4,pullBack:0.98,pushAt:climaxAt,pushDur:0.9,pushTo:1.05});
+        kb.style.transform='scale('+camScale.toFixed(4)+')';
+      }
+    };
+  }
+  var renderHookA=makeHook('hookKbA','hookH2A',0);
+  var renderHookB=makeHook('hookKbB','hookH2B',1);
+  var renderHookC=makeHook('hookKbC','hookH2C',2);
+  var renderHookD=makeHook('hookKbD','hookH2D',3);
+  var renderHookE=makeHook('hookKbE','hookH2E',4);
+  var renderHookF=makeHook('hookKbF','hookH2F',5);
+  var renderHookG=makeHook('hookKbG','hookH2G',6);
+  var renderHookH=makeHook('hookKbH','hookH2H',7);
+  var renderHookI=makeHook('hookKbI','hookH2I',8);
+  var renderHookJ=makeHook('hookKbJ','hookH2J',9);
+  var renderHookK=makeHook('hookKbK','hookH2K',10);
+  var renderHookL=makeHook('hookKbL','hookH2L',11);
+  var renderHookM=makeHook('hookKbM','hookH2M',12);
+
+  var OUT_DUR=0.42, IN_DUR=0.5, IN_OFFSET=0.16;
+  function renderScene(i){
+    var scene=scenes[i];
+    var prev=i>0?scenes[i-1]:null;
+    var next=i<scenes.length-1?scenes[i+1]:null;
+    var outTime=+scene.dataset.out;
+    var inStart=-Infinity, inEndsAt=-Infinity;
+    if(prev){
+      var prevOutStart=+prev.dataset.out-OUT_DUR;
+      inStart=prevOutStart+IN_OFFSET;
+      inEndsAt=inStart+IN_DUR;
+    }
+    var outStart=next?outTime-OUT_DUR:Infinity;
+
+    var opacity,scale,blur;
+    if(prev&&sameGrp(i-1,i)){ inStart=+prev.dataset.out; inEndsAt=inStart; }
+    if(next&&sameGrp(i,i+1)){ outStart=outTime; }
+    if(prev && t<inStart){
+      opacity=0; scale=0.94; blur=5;
+    } else if(prev && t<inEndsAt){
+      var ie=MK.smoothIn(MK.clamp01((t-inStart)/IN_DUR));
+      opacity=ie; scale=0.94+0.06*ie; blur=5*(1-ie);
+    } else if(next && t>=outStart && t<outTime){
+      var oe=MK.smoothIn(MK.clamp01((t-outStart)/OUT_DUR));
+      opacity=1-oe; scale=1+0.16*oe; blur=5*oe;
+    } else if(next && t>=outTime){
+      opacity=0; scale=1.16; blur=5;
+    } else {
+      opacity=1; scale=1; blur=0;
+    }
+    scene.style.opacity=String(opacity);
+    scene.style.transform='scale('+scale.toFixed(4)+')';
+    scene.style.filter='blur('+blur.toFixed(1)+'px)';
+  }
+  function renderTransitions(){
+    for(var i=0;i<scenes.length;i++) renderScene(i);
+  }
+
+  var logoBadges=[].slice.call(document.querySelectorAll('.logobadge'));
+  function renderLogo(){
+    logoBadges.forEach(function(b){
+      var sc=b.closest('.scene');
+      var lt=t-(+sc.dataset.in);
+      b.classList.toggle('on', lt>=1.0 && t<+sc.dataset.out);
+    });
+  }
+
+  // LINEAR drift (not MK.kenBurns' ease-out): on long scenes the ease-out left 4s+ still tails
+  // that qa.py flags as frozen picture (episode 59, 6.10.2026).
+  function kenBurns(el,sceneEl,kb){
+    var dIn=+sceneEl.dataset.in, dOut=+sceneEl.dataset.out;
+    var p=Math.max(0,Math.min(1,(t-dIn)/(dOut-dIn)));
+    var fs=kb.fromScale==null?1:kb.fromScale;
+    el.style.transform='scale('+(fs+(kb.toScale-fs)*p).toFixed(4)+') translate('+((kb.toX||0)*p).toFixed(3)+'%,'+((kb.toY||0)*p).toFixed(3)+'%)';
+  }
+
+  var FPSV=10;
+  var FRM={};[].slice.call(document.querySelectorAll('img.fr')).forEach(function(im){FRM[+im.dataset.k-1]=im;});
+  var GRP=[[0, 1], [4, 5, 6], [7, 8], [9, 10, 11, 12]];
+  function grpOf(i){for(var g=0;g<GRP.length;g++){if(GRP[g].indexOf(i)>=0)return g;}return -1;}
+  function sameGrp(a,b){var ga=grpOf(a);return ga>=0&&ga===grpOf(b);}
+  var scrScenes=scenes.map(function(sc,si){var c=sc.querySelector('.scrcard');if(!c)return null;var hw=sc.querySelector('.hlw');
+    return {si:si,sc:sc,card:c,s0:+sc.dataset.s0,s1:+sc.dataset.s1,z0:+sc.dataset.z0,z1:+sc.dataset.z1,cx:+sc.dataset.cx,cy:+sc.dataset.cy,rd:+sc.dataset.rd,rt:+sc.dataset.rt,dl:+sc.dataset.dl,neg:+sc.dataset.neg,ct:+sc.dataset.ct,zlin:+sc.dataset.zlin,zs:sc.dataset.zs?JSON.parse(sc.dataset.zs):null,
+      rings:[].slice.call(sc.querySelectorAll('.ring')),hl:hw,hld:hw?JSON.parse(hw.dataset.hl):null};}).filter(Boolean);
+  function drawScr(){
+    scrScenes.forEach(function(o){
+      var a=+o.sc.dataset.in,b=+o.sc.dataset.out,p=Math.max(0,Math.min(1,(t-a)/(b-a)));
+      var pp=o.rt>0?Math.max(0,Math.min(1,(t-a-o.dl)/o.rt)):p,ss=o.s0+(o.s1-o.s0)*pp,idx=Math.round(ss*FPSV);
+      var im=FRM[idx]; if(!im||!im.complete||!im.naturalWidth) return;
+      var K=im.naturalWidth/720,fh=im.naturalHeight/K,pe=p*p*(3-2*p),z=o.z0+(o.z1-o.z0)*(o.zlin?p:pe);
+      if(o.zs){var rel=t-a,zc=o.zs[0][1],zp=zc;for(var q=0;q<o.zs.length;q++){if(rel>=o.zs[q][0]){var ee=Math.max(0,Math.min(1,(rel-o.zs[q][0])/0.22));ee=ee*ee*(3-2*ee);zp=q>0?o.zs[q-1][1]:o.zs[q][1];zc=zp+(o.zs[q][1]-zp)*ee;}}z=zc;}
+      var sw=720/z,sh=1280/z,sx=Math.max(0,Math.min(720-sw,o.cx-sw/2)),syr=o.cy-sh/2;
+      var sy=o.neg?Math.min(fh-sh,syr):Math.max(0,Math.min(fh-sh,syr));
+      var ctx=o.card.getContext('2d');
+      if(o.neg){var srcY=Math.max(o.ct||0,sy,0),top=Math.max(0,srcY-sy),srcH=Math.min(sh-top,fh-srcY);
+        ctx.fillStyle='#000';ctx.fillRect(0,0,1080,1920);
+        ctx.drawImage(im,sx*K,srcY*K,sw*K,srcH*K,0,top/sh*1920,1080,srcH/sh*1920);}
+      else ctx.drawImage(im,sx*K,sy*K,sw*K,sh*K,0,0,1080,1920);
+      o.rings.forEach(function(rg){var r=rg.dataset.rf.split(',').map(Number);
+        rg.style.left=((r[0]-sx)/sw*100).toFixed(2)+'%';rg.style.top=((r[1]-sy)/sh*100).toFixed(2)+'%';rg.style.width=(r[2]/sw*100).toFixed(2)+'%';rg.style.height=(r[3]/sh*100).toFixed(2)+'%';
+        var e=Math.max(0,Math.min(1,(t-a-(+rg.dataset.rd))/0.3));rg.style.opacity=(e*(0.82+0.18*Math.sin(t*7))).toFixed(3);});
+      if(o.hl){var cue=CUES[o.si],rel=t-cue[0],cur=null;
+        for(var k=0;k<o.hld.length;k++){var w=o.hld[k];if(rel>=w.s&&rel<w.e){cur=w;break;}}
+        if(cur){var bx=cur.b;o.hl.style.left=((bx[0]-sx)/sw*100).toFixed(2)+'%';o.hl.style.top=((bx[1]-sy)/sh*100).toFixed(2)+'%';o.hl.style.width=(bx[2]/sw*100).toFixed(2)+'%';o.hl.style.height=(bx[3]/sh*100).toFixed(2)+'%';o.hl.style.opacity='1';}
+        else o.hl.style.opacity='0';}
+    });
+  }
+  function render(){
+    drawScr();
+    renderTransitions();
+    renderHookA();renderHookB();renderHookC();renderHookD();renderHookE();renderHookF();renderHookG();renderHookH();renderHookI();renderHookJ();renderHookK();renderHookL();renderHookM();
+    renderLogo();
+
+    scenes.forEach(function(sc,i){
+      var i0=i,i1=i;for(var g=0;g<GRP.length;g++){if(GRP[g].indexOf(i)>=0){i0=GRP[g][0];i1=GRP[g][GRP[g].length-1];}}
+      var a=+scenes[i0].dataset.in,b=+scenes[i1].dataset.out,p=Math.max(0,Math.min(1,(t-a)/(b-a)));
+      var dir=(i0%2?-1:1);
+      document.getElementById('photobg'+'ABCDEFGHIJKLMNOPQR'[i]).style.transform='scale('+(1+0.055*p).toFixed(4)+') translate('+(dir*0.9*p).toFixed(3)+'%,'+(-0.7*p).toFixed(3)+'%)';
+    });
+
+    prog.style.width=(t/DUR*100)+'%';
+    seek.value=t; cur2.textContent=fmt(t);
+  }
+  function loop(ts){ if(!playing)return; if(!last)last=ts; t+=(ts-last)/1000; last=ts;
+    if(t>=DUR){t=DUR;pause();render();return;} render(); requestAnimationFrame(loop); }
+  function play(){ if(t>=DUR)t=0; playing=true;last=0;pp.textContent='❚❚';tap.classList.add('hide');requestAnimationFrame(loop); }
+  function pause(){ playing = false; pp.textContent='▶'; }
+  pp.onclick=function(){playing?pause():play()};
+  tap.onclick=play;
+  seek.oninput=function(){t=+seek.value;last=0;render();};
+  document.addEventListener('keydown',function(ev){ if(ev.key===' '&&ev.target.tagName!=='INPUT'){ev.preventDefault();playing?pause():play();} });
+  render();
+  if(location.search.indexOf('render=1')>=0){
+    document.body.classList.add('render');
+    var pre=document.createElement('div'); pre.id='preroll'; document.body.appendChild(pre);
+    var _p=play; play=function(){ if(pre&&pre.parentNode) pre.parentNode.removeChild(pre); _p(); };
+  }
+  window.__reel={play:function(){play();},pause:pause,seek:function(v){t=v;last=0;render();},duration:DUR};
+})();
+</script>
