@@ -1,3 +1,5 @@
+# Episode 77 build state (25.10.2026): SHIPPED. Merged in PR #480; reel-77.gate.txt ends with ALL CHECKS PASSED. The text below is the earlier mid-build note, kept for history only; it is no longer current.
+
 # Episode 77 build state (25.10.2026, 17:55 UTC) — STOPPED, NOT SHIPPED
 Gate result: only failure = accent check on lines 1 and 2 ("Your phone can write a map pin into your photos!", "It is saved as coordinates inside the file."). Rewordings tried: 3 rounds for line 1, 3 for line 2; classifier keeps saying "indian" 0.94-0.99. All other checks passed (safe area, render qa, loudness -14 LUFS, music bed, setup guide not reached).
 Done: sources verified, script, video/reel-77.html (video/gen/ep77/gen.py), article in studio/lib/articles.ts, captions, publish-order, experiments/memory entries, voice cache for 6 of 8 lines.

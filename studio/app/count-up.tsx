@@ -1,23 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+// useLayoutEffect warns when rendered on the server; the effect below only runs in the browser.
+const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 /** Counts up to a real, already-computed value — never invents the number, only
  *  animates arriving at it. He asked directly for the count-up to play on every visit,
  *  hero stat included, rather than sitting still because it happened to already be on
  *  screen at mount — a static number read as broken, not as a fix. Starts at 0 every
- *  time (server-rendered 0 too): a brief 0 before the count-up lands is the same
- *  convention every stat-tile landing page uses, and is a world apart from the earlier
- *  bug this replaced — a stray permanent 0 with no animation ever following it. */
+ *  time in the browser, but the server renders the REAL value (25.10.2026): the earlier
+ *  server-rendered 0 meant crawlers, link previews, no-JS readers and an outside audit saw
+ *  "0 episodes live / 0 views measured" on the home page. The count-up is unchanged for
+ *  anyone running JavaScript; it is skipped for people who ask for reduced motion. */
 export default function CountUp({ value, duration = 900 }: { value: number | null; duration?: number }) {
-  const [shown, setShown] = useState(0);
+  const [shown, setShown] = useState(value ?? 0);
   const ref = useRef<HTMLSpanElement>(null);
   const done = useRef(false);
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     if (value == null) return;
     const el = ref.current;
     if (!el) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    // Reset to 0 before the first browser paint of this component, so the count-up still
+    // starts from 0 for people with JavaScript while the server HTML carries the real value.
+    setShown(0);
     function run() {
       if (done.current) return;
       done.current = true;
