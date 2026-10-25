@@ -1611,3 +1611,13 @@ Hook type: surprise statement about the viewer's own phone ("Your phone can writ
 
 ## Episode 76 hook log (25.10.2026)
 Hook type: contrarian claim + test. Result shown: city and area yes, exact street no (same as 75). New finding to track: ChatGPT said the original photo's metadata could help, which does not obviously match OpenAI's FAQ; unresolved. 72-hour readings: not yet.
+
+## 25.10.2026 (23:41 Belgium) - episode 72 Instagram Insights, read off David's screenshots (FACT unless marked)
+- Views 804 in total = Instagram 570 + Facebook 234. Viewers 474. Average watch time 10 s of 36 s. Follows 0. 9 likes, 0 comments, 0 reposts, 0 shares, 0 saves. Skip rate 50.3% (the first of the "what affects your views" rates; the rest were cut off).
+- Views over time: almost all views arrived in the first 2-3 days (19-21 Oct), then flat. His "typical reel" line is about 230 views.
+- Who viewed: followers 6%, non-followers 94%. Age: 18-24 47.3%, 25-34 26.7%, 13-17 9.7%, 35-44 10%. Countries: Belgium 14.9%, Israel 8.3%, India 7.9%, Canada 6.7%, US 6.2% (at 4.5 h it was Belgium 21%, Israel 14.5%: Instagram widened the audience over time).
+- Top sources of views: Reels tab 66.8%, Explore 10.2%, Feed 9.8%, Stories 9.5%, Profile 1.6%.
+- Retention curve (read by eye, not exact): about 60% still watching at 2 s, about 40% at 5 s, about 25% at 12 s, then a flat plateau around 20% until about 30 s, then a fall to about 2% at the end. So the loss is in the first 5 s; people who passed it mostly stayed.
+- HYPOTHESIS: a young (18-34, 74%) student-age audience fits the exam topic; the topic, not the format, brought non-followers. Not testable until the same Insights exist for 74/75/77 (David is sending 74 and 75).
+- Reel-level skip rate is the right metric for hook tests: each reel has about 200+ viewers, so one reel's skip rate has about +-3.5 points of noise, much less than the view count between reels.
+- Trial Reels: David believes the account needs 200 followers (it has 127); not tested.
