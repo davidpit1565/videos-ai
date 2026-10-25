@@ -2050,6 +2050,34 @@ export const ARTICLES: Article[] = [
       "Not tested: covering more of the photo (the next test), other AI tools, other photos.",
     ],
   },
+  {
+    n: 77,
+    title: "Your phone hides a map pin inside your photos",
+    standfirst:
+      "Apple says that when Location Services is on for the Camera, the coordinates where a photo was taken are saved inside the photo, and the people you share it with may be able to read them. " +
+      "OpenAI says ChatGPT does not process a photo's metadata. This page has the exact clicks to check your own photos and to send one without its location, and the sources for both claims. " +
+      "Nothing in this episode is a screen recording of ChatGPT: it is built from the two official help pages and stock photos.",
+    steps: [
+      "Open the Photos app on your iPhone. Tap Collections, then scroll to the Map collection. Every photo shown there carries a location (Apple calls it location metadata).",
+      "Optional: to see one photo's pin, open the photo and swipe up, or tap the Info button (the i). A small map shows where it was taken.",
+      "To send a photo without its location: select the photo, tap the Share button (the square with an arrow pointing up), then tap Options at the top and switch Location off. The words Location Not Included appear above the Options button.",
+      "Choose how to send it, for example Messages, WhatsApp or Mail.",
+      "Optional, to remove the location from the photo itself: open it, tap the More button (three dots), then Adjust Info, then Adjust Location, then No Location.",
+      "Optional, to stop new photos from carrying a location: Settings > Privacy & Security > Location Services > Camera > Never.",
+    ],
+    changes: [
+      "Apple's guide Manage location metadata in Photos says that when Location Services is on for the Camera, coordinates are embedded in each photo and video, and that people you share them with may be able to access that location metadata and learn where it was taken. https://support.apple.com/guide/personal-safety/manage-location-metadata-in-photos-ips0d7a5df82/web (read 25 October 2026).",
+      "The steps above are the ones in that Apple guide: Share > Options > Location off for one share, Adjust Info > Adjust Location > No Location for one photo, Camera > Never for new photos.",
+      "OpenAI's ChatGPT Image Inputs FAQ lists as a limitation: The model doesn't process original file names or metadata, and images are resized before analysis. https://help.openai.com/en/articles/8400551-chatgpt-image-inputs-faq (read 25 October 2026).",
+    ],
+    limits: [
+      "I did not run any ChatGPT test for this episode and did not record a screen. The ChatGPT claim is only what OpenAI's help page says about the model; it does not tell what an app or website does with a file before or after it reaches the model.",
+      "Apple says people you share with may be able to see the location. Whether they can depends on how you send the photo and which app receives it. I did not test each app, so check before you rely on it.",
+      "The menu names follow Apple's current guide and can differ on other iOS versions. Android phones have their own setting, which this page does not cover.",
+      "Removing the location does not hide what is in the picture. In my earlier tests, a photo with no location still let ChatGPT guess a city.",
+      "Next on the channel: what ChatGPT does when I hide even more of the photo. That test needs a new real recording that does not exist yet, so there is no date.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

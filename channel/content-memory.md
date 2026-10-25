@@ -1605,3 +1605,6 @@ READ AT 72 HOURS (David pastes Insights): reach, average watch time and % watche
 
 ## 21.10.2026 - deployment note (not a performance entry)
 Vercel marked the production deploy of the episode 74 v4.2 merge (commit ab2ecc6, 15:36 UTC) as failed, so the studio kept serving the earlier cut (about 12:43 UTC, 30,144,854 bytes) until a later commit deployed. Failed deploys on main this week: 94ebed4, f90ee52, 506a793, ab2ecc6; each earlier one was followed by a successful deploy of the next commit. Cause not read (the build log needs a Vercel login; the GitHub status only says "failed"). How it was found: `curl https://api.github.com/repos/davidpit1565/videos-ai/commits/<sha>/status` and compare the live `content-length` of `/reels/reel-N.mp4` with the file in git.
+
+## Episode 77 hook log (25.10.2026)
+Hook type: surprise statement about the viewer's own phone ("Your phone can write a map pin into your photos!"). Rotation: 74 result-first, 75 personal question, 77 surprise statement. Hypothesis. Built without any ChatGPT recording because 76's test is not recorded yet; both claims come from official help pages (Apple, OpenAI), cited on /e/77. 72-hour readings: not yet.

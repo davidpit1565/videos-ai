@@ -456,5 +456,11 @@
     "brass": "#FB7185",
     "ember": "#FB7185",
     "mood": "bright"
+  },
+  {
+    "episode": 77,
+    "brass": "#38BDF8",
+    "ember": "#38BDF8",
+    "mood": "confident"
   }
 ]

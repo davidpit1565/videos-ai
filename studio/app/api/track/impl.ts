@@ -676,52 +676,8 @@ export async function GET(req: Request) {
     }
   }
 
-  // He asked directly (22.9.2026) for an automatic nudge so a gate-passed, tested
-  // episode never just sits unpublished because he forgot — episodes 43/44 had done
-  // exactly that with no error anywhere to explain it. Two checkpoints, each its own
-  // one-time push ("must upload" at the short one, "reminder" at the long one), then
-  // it repeats once a day past the long checkpoint for as long as the episode stays
-  // untouched — "remind me if I forget" means it has to outlast one missed day.
-  // Stops the moment a human either publishes it or ticks queuedForPublish — this never
-  // publishes anything itself, only says so.
-  //
-  // Best-effort by construction, not by bug: this only runs when /api/track actually
-  // runs — the daily cron, or him opening the studio. There is no hourly cron backing
-  // this (he was asked and chose not to add a 4th cron job rather than risk the
-  // account's cron-count limit), so the short checkpoint fires whenever /api/track
-  // next happens to run after that many hours have passed, not necessarily on the dot.
-  const REMINDER_CHECKPOINT_HOURS = (process.env.PUBLISH_REMINDER_CHECKPOINT_HOURS ?? "1,24")
-    .split(",").map((s) => Number(s.trim())).filter((n) => Number.isFinite(n) && n > 0).sort((a, b) => a - b);
-  const lastCheckpoint = REMINDER_CHECKPOINT_HOURS.at(-1) ?? 24;
-  const staleUnpublished: { number: number; title: string; hoursSinceReady: number; first: boolean }[] = [];
-  for (const e of state.episodes) {
-    if (e.status === "live" || !e.tested || e.queuedForPublish) continue;
-    const reel = reels().find((r) => r.kind === "video" && r.episode === e.number && r.gate?.passed);
-    if (!reel) continue;
-    const hoursSinceReady = (Date.parse(now) - Date.parse(reel.builtAt)) / 3_600_000;
-
-    // The largest checkpoint this pull has actually crossed, if any — each checkpoint
-    // fires exactly once, ever, per episode (not deduped by day like the repeat below).
-    const crossed = [...REMINDER_CHECKPOINT_HOURS].reverse().find((h) => hoursSinceReady >= h);
-    if (crossed !== undefined) {
-      const checkpointLabel = `תזכורת: ריל ${e.number} מוכן ${crossed} שעות ולא פורסם ולא בתור לפרסום אוטומטי`;
-      const alreadySaid = feed.some((f) => f.label === checkpointLabel);
-      if (!alreadySaid) {
-        fresh.push({ id: uid(), at: now, source: "studio", label: checkpointLabel, value: null, delta: null });
-        staleUnpublished.push({ number: e.number, title: e.title, hoursSinceReady: crossed, first: crossed === REMINDER_CHECKPOINT_HOURS[0] });
-        continue; // the checkpoint push already said it — don't also send the daily one below today
-      }
-    }
-
-    // Past the last checkpoint (the "day" mark) and already reminded about it once —
-    // keep nagging once a day, same dedupe shape as the account-insight snapshot above.
-    if (hoursSinceReady < lastCheckpoint) continue;
-    const dailyLabel = `תזכורת: ריל ${e.number} מוכן ${Math.floor(hoursSinceReady / 24)} ימים ולא פורסם ולא בתור לפרסום אוטומטי`;
-    const saidToday = feed.some((f) => f.label === dailyLabel && f.at.slice(0, 10) === today);
-    if (saidToday) continue;
-    fresh.push({ id: uid(), at: now, source: "studio", label: dailyLabel, value: null, delta: null });
-    staleUnpublished.push({ number: e.number, title: e.title, hoursSinceReady, first: false });
-  }
+  // The "reel ready but not published" reminders were removed on 25.10.2026 at David's direct
+  // request ("not built well, I don't want them for now"). Nothing nags about unpublished reels.
 
   state.activity = [...fresh, ...feed].slice(0, 300);
   state.updatedAt = now;
@@ -779,21 +735,6 @@ export async function GET(req: Request) {
     const e = state.episodes.find((x) => x.number === num);
     const title = realTitleFor(num) || e?.title || `Episode ${num}`;
     void notifyEpisodeLive(num, title).catch(() => {});
-  }
-
-  // The actual push for the "don't let me forget" reminder computed above — one per
-  // day per stale episode, not bundled into the generic "עדכון חדש" notice above so it
-  // reads as its own thing and can't get lost inside "3 עדכונים: ...".
-  for (const s of staleUnpublished) {
-    const age = s.hoursSinceReady < 24
-      ? `${Math.round(s.hoursSinceReady)} שעות`
-      : `${Math.floor(s.hoursSinceReady / 24)} ימים`;
-    void notify({
-      title: s.first ? `ריל ${s.number} חייב להתפרסם` : `ריל ${s.number} עדיין לא פורסם`,
-      body: `${s.title} — מוכן כבר ${age}. סמן "תור לפרסום אוטומטי" או פרסם ידנית.`,
-      url: "/renders",
-      tag: `stale-${s.number}`,
-    }).catch(() => {});
   }
 
   // How many of this pull's Instagram posts came back with no fresh metrics because
