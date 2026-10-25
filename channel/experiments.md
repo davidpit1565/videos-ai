@@ -325,3 +325,6 @@ stop and test a different axis. If one does, change one variable at a time from 
 **Measure (72 h after publish, Instagram Insights, read by David):** reach and views from non-followers, average watch time / % reaching the end, sends, saves, follows. Compare with 72 and 74 at the same age.
 **Result:** [fill in]
 **Verdict:** —
+
+## Episode 77 (25.10.2026): sourced-claims episode, no recording
+Test: a pure "official source says" episode (Apple's location-metadata page and OpenAI's image FAQ), hook = surprise statement about the viewer's own phone ("Your phone can write a map pin into your photos!"). Different hook type from 74 (result-first) and 75 (personal question). Hypothesis only. Read at 72 hours: reach, average watch time, sends, saves, new followers; compare with 74 and 75.
