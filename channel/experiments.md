@@ -328,3 +328,6 @@ stop and test a different axis. If one does, change one variable at a time from 
 
 ## Episode 77 (25.10.2026): sourced-claims episode, no recording
 Test: a pure "official source says" episode (Apple's location-metadata page and OpenAI's image FAQ), hook = surprise statement about the viewer's own phone ("Your phone can write a map pin into your photos!"). Different hook type from 74 (result-first) and 75 (personal question). Hypothesis only. Read at 72 hours: reach, average watch time, sends, saves, new followers; compare with 74 and 75.
+
+## Episode 76 (25.10.2026): sequel with the real recording
+Same photo as 75 with more signs blurred, same question. Hook = contrarian claim + one-try test ("Blur the signs, hide the spot. One AI, one try."). Compare at 72 hours with 75 (personal question) and 77 (surprise statement): reach, average watch time, sends, saves, new followers. Hypothesis only.

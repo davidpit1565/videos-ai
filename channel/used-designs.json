@@ -458,6 +458,12 @@
     "mood": "bright"
   },
   {
+    "episode": 76,
+    "brass": "#2DD4BF",
+    "ember": "#2DD4BF",
+    "mood": "neutral"
+  },
+  {
     "episode": 77,
     "brass": "#38BDF8",
     "ember": "#38BDF8",
