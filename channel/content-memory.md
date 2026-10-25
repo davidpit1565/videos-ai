@@ -1621,3 +1621,23 @@ Hook type: contrarian claim + test. Result shown: city and area yes, exact stree
 - HYPOTHESIS: a young (18-34, 74%) student-age audience fits the exam topic; the topic, not the format, brought non-followers. Not testable until the same Insights exist for 74/75/77 (David is sending 74 and 75).
 - Reel-level skip rate is the right metric for hook tests: each reel has about 200+ viewers, so one reel's skip rate has about +-3.5 points of noise, much less than the view count between reels.
 - Trial Reels: David believes the account needs 200 followers (it has 127); not tested.
+
+## 25.10.2026 (23:41-23:46 Belgium) - Insights for episodes 60 and 75 next to 72, read off David's screenshots (FACT unless marked)
+| | 72 | 75 | 60 |
+|---|---|---|---|
+| Views (Instagram + Facebook crosspost) | 804 (570+234) | 511 (265+246) | 450 (219+231) |
+| Viewers | 474 | 202 | 165 |
+| Average watch time | 10 s of 36 s | 7 s of 43 s | 4 s |
+| Skip rate (first of the "what affects your views" rates, "in order of importance to reach") | 50.3% | 55.8% (marked Lower than typical) | 65.5% (marked Lower than typical) |
+| Share / like / save rate | not seen / not seen / not seen | 0.5% Higher / 2.3% Higher / not seen | 0.0% Typical / 1.7% Lower / 0.6% Higher |
+| Likes / saves / shares | 9 / 0 / 0 | 8 / 1 / 1 | 4 / 1 / 0 |
+| Non-followers | 94% | 85% | 86% |
+| Top sources | Reels tab 66.8, Explore 10.2, Feed 9.8, Stories 9.5 | Reels tab 45.7, Stories 25.3, Feed 18.5, Explore 6.0 | not seen |
+| Top countries | Belgium 15, Israel 8, India 8, Canada 7, US 6 | Belgium 30, Israel 16, India 6, US 5, UK 3 | Belgium 28, Israel 19, US 14, Canada 6, Germany 5 |
+| Age | 18-24 47%, 25-34 27% | 25-34 36%, 18-24 34%, 13-17 14% | 18-24 37%, 25-34 34%, 13-17 16% |
+- Follows from every one of the three reels: 0.
+- Retention curves (by eye): 72 holds a flat plateau of about 20% from 12 s to about 30 s; 75 decays steadily (about 28% at 10 s, 18% at 15 s, 12% at 25 s, near 0 at the end). Both lose about half in the first 3-5 s.
+- FACT: the order by reach, by average watch time and by skip rate is the same: 72 > 75 > 60. n=3, so this is a pattern to test, not a result. It matches the app's own ordering of "what affects your views" (skip rate first).
+- FACT: about half of all views of each reel are the Facebook crosspost; the studio's "views" column is Instagram only.
+- FACT: 75's views grew slowly through day 2 and ended above "your typical reel"; 72 and 60 jumped on day 1 and flattened.
+- HYPOTHESIS (to test): what separates 72 is retention after the first 5 s (a plateau), not the first seconds; the exam scenario may be why. Test: compare skip rate and average watch time per reel on the next episodes; pull 74 and 77 Insights too.
