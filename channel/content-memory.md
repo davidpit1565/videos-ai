@@ -1641,3 +1641,8 @@ Hook type: contrarian claim + test. Result shown: city and area yes, exact stree
 - FACT: about half of all views of each reel are the Facebook crosspost; the studio's "views" column is Instagram only.
 - FACT: 75's views grew slowly through day 2 and ended above "your typical reel"; 72 and 60 jumped on day 1 and flattened.
 - HYPOTHESIS (to test): what separates 72 is retention after the first 5 s (a plateau), not the first seconds; the exam scenario may be why. Test: compare skip rate and average watch time per reel on the next episodes; pull 74 and 77 Insights too.
+
+## 25.10.2026 (23:48 Belgium) - episode 74 Insights added (David's screenshots; FACT unless marked)
+- 74: views 445 (Instagram 234 + Facebook 211), viewers 174, average watch time 6 s, follows 0, 4 likes, 0 saves, 0 shares. Non-followers 84.3%. Belgium 29.3%, Israel 17%, US 7%, India 6.6%, UK 5.7%. Age 25-34 38%, 18-24 35%, 13-17 15%. Views curve close to "your typical reel". Skip rate not in the screenshots.
+- FACT, four reels now: average watch time and Instagram views have the same order: 72 (10 s, 570) > 75 (7 s, 265) > 74 (6 s, 234) > 60 (4 s, 219). n=4, so still a pattern to test, not a result. Direction note: more distribution to cold viewers would normally LOWER average watch time, so a higher watch time arriving with more reach is not an artefact of reach.
+- FACT: the audience mix (Belgium about 30%, Israel about 17%, ages 18-34 about 70%) is almost the same for 74, 75 and 60, so who watched does not explain 72; 72's audience widened to India/Canada later.
