@@ -7,10 +7,10 @@ head=re.sub(r'<!--.*?-->','<!-- Episode 77 — photo-composite style. See channe
 G='linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)'
 # id, photo, brightness, html, fontsize, logo, text, kb
 S=[
- ('A','ep59-scene-c-phonelaptop.jpg',0.8,'Your phone can write a <span class="box">map pin</span> into your photos!',None,None,"Your phone can write a map pin into your photos!",dict(fromScale=1.0,toScale=1.25,toX=-2.0,toY=2.0)),
- ('B','ep59-scene-d-laptopdesk.jpg',0.8,'It is saved as <span class="box">coordinates</span> inside the file.','5.8',None,"It is saved as coordinates inside the file.",dict(fromScale=1.0,toScale=1.3,toX=0,toY=-3.0)),
+ ('A','ep59-scene-c-phonelaptop.jpg',0.8,'Your phone puts a <span class="box">map pin</span> inside your photos!',None,None,"Your phone puts a map pin inside your photos!",dict(fromScale=1.0,toScale=1.25,toX=-2.0,toY=2.0)),
+ ('B','ep59-scene-d-laptopdesk.jpg',0.8,'That pin shows <span class="box">where you took</span> the photo.','5.8',None,"That pin shows where you took the photo.",dict(fromScale=1.0,toScale=1.3,toX=0,toY=-3.0)),
  ('C','ep57-scene-c-street.jpg',0.9,'Send one, and the person who gets it <span class="box">may see</span> the exact place.','6.0',None,"Send one, and the person who gets it may see the exact place.",dict(fromScale=1.0,toScale=1.3,toX=2.0,toY=-3.0)),
- ('D','ep67-scene-c.jpg',0.7,'OpenAI says ChatGPT <span class="box">does not process</span> a photo&#8217;s metadata.','6.0','ep70-chatgpt-logo.svg',"OpenAI says ChatGPT does not process a photo's metadata.",dict(fromScale=1.0,toScale=1.5,toX=-6.0,toY=4.0)),
+ ('D','ep67-scene-c.jpg',0.7,'OpenAI says ChatGPT <span class="box">does not process</span> the location saved in a photo.','6.0','ep70-chatgpt-logo.svg',"OpenAI says ChatGPT does not process the location saved in a photo.",dict(fromScale=1.0,toScale=1.5,toX=-6.0,toY=4.0)),
  ('E','ep57-scene-d-citystreet.jpg',0.9,'It only looks at the picture itself. And a picture can <span class="box">still give</span> a place away.','5.8',None,"It only looks at the picture itself. And a picture can still give a place away.",dict(fromScale=1.0,toScale=1.3,toX=2.5,toY=-3.0)),
  ('F','ep67-scene-b.jpg',0.8,'To keep it off, tap the send arrow, then Options, and switch <span class="box">Location</span> off.','5.6','ep69-apple-logo.svg',"To keep it off, tap the send arrow, then Options, and switch Location off.",dict(fromScale=1.0,toScale=1.3,toX=2.5,toY=-3.0)),
  ('G','ep59-scene-b-darkroom.jpg',0.8,"The setup's in the link in bio.",None,None,"The setup's in the link in bio.",None),

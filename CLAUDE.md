@@ -528,3 +528,6 @@ check → fix → re-check rule above.
 - The document is **English and LTR** — the visitor-facing site is the default. The studio
   is the Hebrew RTL island and declares that on its own container, so an English page can
   never inherit a right-to-left scrollbar.
+
+## Phone notification when a reel is ready (David, 25.10.2026)
+When a reel is ready (check.sh passed, merged, deploy verified), send a real phone notification with the PushNotification tool: one line, the episode number and that it is ready. Do this for every new reel. The studio's own "reel ready, not published" reminder pushes were removed the same day at his request (they were not built well); do not re-add them without asking.

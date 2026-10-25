@@ -8,10 +8,10 @@ Why this episode: episode 76 (the promised "even more hidden" ChatGPT test) need
 - NOT claimed: what any app does with the file before it reaches the model; whether a given app strips the location on send; that ChatGPT can or cannot find a place from the picture alone (the earlier episodes 74/75 are cited only on the /e/77 page as "my earlier tests").
 
 ## Spoken lines (8, about 37 s)
-1. Your phone can write a map pin into your photos! (hook: surprise statement, "a thing your phone does to you"; hypothesis, not measured)
-2. It is saved as coordinates inside the file.
+1. Your phone puts a map pin inside your photos! (hook: surprise statement, "a thing your phone does to you"; hypothesis, not measured)
+2. That pin shows where you took the photo.
 3. Send one, and the person who gets it may see the exact place.
-4. OpenAI says ChatGPT does not process a photo's metadata.
+4. OpenAI says ChatGPT does not process the location saved in a photo. (OpenAI's wording is "metadata"; the voice swallowed that word on every take, so the line says location, which is part of it.)
 5. It only looks at the picture itself. And a picture can still give a place away.
 6. To keep it off, tap the send arrow, then Options, and switch Location off.
 7. The setup's in the link in bio.
