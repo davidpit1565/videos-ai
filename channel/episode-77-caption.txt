@@ -1,0 +1,13 @@
+Your phone can save a map pin inside every photo you take. Apple says the people you send a photo to may be able to see where it was taken.
+
+OpenAI's own help page says ChatGPT does not process a photo's metadata, so the hidden location is not what it reads. This video is built from those two official pages, not from a ChatGPT test: no screen recording, no answer from ChatGPT.
+
+To send a photo without its location on iPhone: Photos > Share > Options > Location off.
+
+The next photo test, what ChatGPT does when I hide even more of the photo, needs a new real recording. There is no date yet.
+
+Send this to someone who posts photos everywhere.
+
+Full setup, step by step, with both sources: https://actually-works.com/e/77
+
+#iphone #privacy #chatgpt #ai #aitips
