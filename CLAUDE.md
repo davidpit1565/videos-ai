@@ -38,6 +38,9 @@ read 194M cached tokens against 572k actually written, a factor of 340. A fresh 
 pointed at `SUNDAY.md` costs far less than a tier change. Say that too, when a session has
 been running for days.
 
+## העברת סשנים (25.10.2026, David)
+כשהסשן ארוך או שמשימה גדולה הסתיימה: (1) עדכן את `SUNDAY.md` ואת `NEXT_SESSION_PROMPT.md` (מצב והדבר הבא); (2) פתח בעצמך סשן חדש עם הכלי `create_session` (מקור: הריפו הזה, ענף main), הפרומפט הקבוע: "קרא את CLAUDE.md, SUNDAY.md ו-NEXT_SESSION_PROMPT.md במלואם ובצע את 'הדבר הבא' בראש NEXT_SESSION_PROMPT.md", ועוד הוראה מיוחדת אם יש; (3) אמור ל-David בעברית איך קוראים לסשן החדש ומה הועבר אליו. ברירת מחדל: הסשן החדש קורא ומדווח ולא פועל עד ש-David אומר, כי כל פעולה עולה לו קרדיטים. הסשן החדש נראה ברשימת הסשנים באפליקציה, לא בצ'אט הנוכחי. אסור למחוק או לארכב סשן שיש לו תזכורת מתוזמנת או ענף לא ממוזג. סשן שנפל בגלל גבול ההקשר לא מעביר לבד: לכן מעבירים בצורה יזומה.
+
 ## Rules that do not bend
 
 - **Never fabricate.** No invented clients, testimonials, results, prices or metrics. If a
