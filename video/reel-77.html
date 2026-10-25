@@ -94,7 +94,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbA">
-    <h2 id="hookH2A">Your phone hides a <span class="box">map pin</span> inside your photos!</h2>
+    <h2 id="hookH2A">Your phone can write a <span class="box">map pin</span> into your photos!</h2>
   </div></div>
 </section>
 
@@ -104,7 +104,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbB">
-    <h2 id="hookH2B" style="font-size:5.8cqw">The pin is a set of <span class="box">coordinates,</span> saved inside the photo file.</h2>
+    <h2 id="hookH2B" style="font-size:5.8cqw">It is saved as <span class="box">coordinates</span> inside the file.</h2>
   </div></div>
 </section>
 
@@ -114,7 +114,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbC">
-    <h2 id="hookH2C" style="font-size:6.0cqw">Send one, and the person who gets it <span class="box">may see</span> where it was taken.</h2>
+    <h2 id="hookH2C" style="font-size:6.0cqw">Send one, and the person who gets it <span class="box">may see</span> the exact place.</h2>
   </div></div>
 </section>
 
@@ -124,7 +124,7 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   <div class="grain" data-decor></div>
   <div class="photogradient" style="background:linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.30) 26%, rgba(4,4,4,.10) 36%, transparent 42%, transparent 50%, rgba(4,4,4,.16) 58%, rgba(4,4,4,.44) 68%, rgba(4,4,4,.62) 78%, rgba(4,4,4,.70) 100%)"></div>
   <div class="pad" style="padding-top:30cqw"><div class="kb" id="hookKbD">
-    <h2 id="hookH2D" style="font-size:6.0cqw">OpenAI says ChatGPT <span class="box">does not read</span> that hidden data.</h2>
+    <h2 id="hookH2D" style="font-size:6.0cqw">OpenAI says ChatGPT <span class="box">does not process</span> a photo&#8217;s metadata.</h2>
   <div class="logobadge" id="logoBadgeD"><img src="../channel/assets/ep70-chatgpt-logo.svg" alt="" style="height:8cqw;width:auto;filter:drop-shadow(0 .6cqw 2cqw rgba(0,0,0,.6))"></div>
   </div></div>
 </section>
@@ -196,19 +196,19 @@ body.render .frame{width:100vw;height:100vh;aspect-ratio:auto;border:0;border-ra
   var tap=document.getElementById('tap'),prog=document.getElementById('prog');
 
   var CUES=[
-    [0.1,3.6,"Your phone hides a map pin inside your photos!"],
-    [4.1,7.6,"The pin is a set of coordinates, saved inside the photo file."],
-    [8.1,11.6,"Send one, and the person who gets it may see where it was taken."],
-    [12.1,15.6,"OpenAI says ChatGPT does not read that hidden data."],
+    [0.1,3.6,"Your phone can write a map pin into your photos!"],
+    [4.1,7.6,"It is saved as coordinates inside the file."],
+    [8.1,11.6,"Send one, and the person who gets it may see the exact place."],
+    [12.1,15.6,"OpenAI says ChatGPT does not process a photo's metadata."],
     [16.1,20.6,"It only looks at the picture itself. And a picture can still give a place away."],
     [21.1,25.6,"To keep it off, tap the send arrow, then Options, and switch Location off."],
     [26.1,29.6,"The setup's in the link in bio."],
     [30.1,37.6,"Next, I'll show you what ChatGPT does when I hide even more of the photo. Follow, so you get the full story."]
   ];
   var WORD_WINDOWS=[
-    new Array(9).fill(null),
-    new Array(12).fill(null),
-    new Array(14).fill(null),
+    new Array(10).fill(null),
+    new Array(8).fill(null),
+    new Array(13).fill(null),
     new Array(9).fill(null),
     new Array(16).fill(null),
     new Array(14).fill(null),
