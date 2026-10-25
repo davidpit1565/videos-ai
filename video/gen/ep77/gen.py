@@ -8,14 +8,16 @@ G='linear-gradient(180deg, rgba(4,4,4,.62) 0%, rgba(4,4,4,.52) 14%, rgba(4,4,4,.
 # id, photo, brightness, html, fontsize, logo, text, kb
 S=[
  ('A','ep59-scene-c-phonelaptop.jpg',0.8,'Your phone hides a <span class="box">map pin</span> inside your photos!',None,None,"Your phone hides a map pin inside your photos!",dict(fromScale=1.0,toScale=1.25,toX=-2.0,toY=2.0)),
- ('B','ep57-scene-c-street.jpg',0.9,'Send one, and the person who gets it <span class="box">may see</span> where it was taken.','6.0',None,"Send one, and the person who gets it may see where it was taken.",dict(fromScale=1.0,toScale=1.3,toX=2.0,toY=-3.0)),
- ('C','ep67-scene-c.jpg',0.7,'OpenAI says ChatGPT <span class="box">does not read</span> that hidden data.','6.0','ep70-chatgpt-logo.svg',"OpenAI says ChatGPT does not read that hidden data.",dict(fromScale=1.0,toScale=1.5,toX=-6.0,toY=4.0)),
- ('D','ep57-scene-d-citystreet.jpg',0.9,'To keep it off, tap the send arrow, then Options, and switch <span class="box">Location</span> off.','5.6','ep69-apple-logo.svg',"To keep it off, tap the send arrow, then Options, and switch Location off.",dict(fromScale=1.0,toScale=1.3,toX=2.5,toY=-3.0)),
- ('E','ep67-scene-b.jpg',0.8,"The setup's in the link in bio.",None,None,"The setup's in the link in bio.",None),
- ('F','ep67-scene-b.jpg',0.8,"Next, I'll show you what ChatGPT does when I <span class=\"box\">hide even more</span> of the photo. Follow, so you get the full story.",'5.6','ep70-chatgpt-logo.svg',"Next, I'll show you what ChatGPT does when I hide even more of the photo. Follow, so you get the full story.",None),
+ ('B','ep59-scene-d-laptopdesk.jpg',0.8,'The pin is a set of <span class="box">coordinates,</span> saved inside the photo file.','5.8',None,"The pin is a set of coordinates, saved inside the photo file.",dict(fromScale=1.0,toScale=1.3,toX=0,toY=-3.0)),
+ ('C','ep57-scene-c-street.jpg',0.9,'Send one, and the person who gets it <span class="box">may see</span> where it was taken.','6.0',None,"Send one, and the person who gets it may see where it was taken.",dict(fromScale=1.0,toScale=1.3,toX=2.0,toY=-3.0)),
+ ('D','ep67-scene-c.jpg',0.7,'OpenAI says ChatGPT <span class="box">does not read</span> that hidden data.','6.0','ep70-chatgpt-logo.svg',"OpenAI says ChatGPT does not read that hidden data.",dict(fromScale=1.0,toScale=1.5,toX=-6.0,toY=4.0)),
+ ('E','ep57-scene-d-citystreet.jpg',0.9,'It only looks at the picture itself. And a picture can <span class="box">still give</span> a place away.','5.8',None,"It only looks at the picture itself. And a picture can still give a place away.",dict(fromScale=1.0,toScale=1.3,toX=2.5,toY=-3.0)),
+ ('F','ep67-scene-b.jpg',0.8,'To keep it off, tap the send arrow, then Options, and switch <span class="box">Location</span> off.','5.6','ep69-apple-logo.svg',"To keep it off, tap the send arrow, then Options, and switch Location off.",dict(fromScale=1.0,toScale=1.3,toX=2.5,toY=-3.0)),
+ ('G','ep59-scene-b-darkroom.jpg',0.8,"The setup's in the link in bio.",None,None,"The setup's in the link in bio.",None),
+ ('H','ep59-scene-b-darkroom.jpg',0.8,"Next, I'll show you what ChatGPT does when I <span class=\"box\">hide even more</span> of the photo. Follow, so you get the full story.",'5.6','ep70-chatgpt-logo.svg',"Next, I'll show you what ChatGPT does when I hide even more of the photo. Follow, so you get the full story.",None),
 ]
 # placeholder timings (retime.py rewrites them)
-T=[0,5,10,15,20,24,34]
+T=[0,4,8,12,16,21,26,30,38]
 out=head
 for i,(k,ph,br,h,fs,logo,txt,kb) in enumerate(S):
     st=f' style="font-size:{fs}cqw"' if fs else ''
@@ -38,7 +40,7 @@ out+='''<div class="handle" data-decor>@actually_works.ai</div>
 
 <div class="ctl">
   <button id="pp" aria-label="Play">▶</button>
-  <input id="seek" type="range" min="0" max="34" step="0.05" value="0" aria-label="Seek">
+  <input id="seek" type="range" min="0" max="38" step="0.05" value="0" aria-label="Seek">
   <span id="cur2">0:00</span>
 </div>
 </div>
@@ -48,7 +50,7 @@ out+='''<div class="handle" data-decor>@actually_works.ai</div>
 <script>
 (function(){
   var MK=window.MotionKit;
-  var DUR=34,t=0,playing=false,last=0;
+  var DUR=38,t=0,playing=false,last=0;
   var frame=document.getElementById('frame');
   var scenes=[].slice.call(frame.querySelectorAll('.scene'));
   var seek=document.getElementById('seek');
@@ -83,7 +85,7 @@ tail=tail[:a]+''.join(f"  var renderHook{s[0]}=makeHook('hookKb{s[0]}','hookH2{s
 tail=tail.replace("renderHookA();renderHookB();renderHookC();renderHookD();renderHookE();renderHookF();renderHookG();renderHookH();renderHookI();renderHookJ();",''.join(f"renderHook{s[0]}();" for s in S))
 a=tail.index("    kenBurns(photobgA"); b=tail.index("    prog.style.width")
 kb=''.join(f"    kenBurns(photobg{s[0]},scenes[{i}],KB_{s[0]});\n" for i,s in enumerate(S) if s[7])
-kb+="    var ghIn=+scenes[4].dataset.in, ghOut=+scenes[5].dataset.out;\n    photobgE.style.transform=driftGH(ghIn,ghOut);\n    photobgF.style.transform=driftGH(ghIn,ghOut);\n\n"
+kb+="    var ghIn=+scenes[6].dataset.in, ghOut=+scenes[7].dataset.out;\n    photobgG.style.transform=driftGH(ghIn,ghOut);\n    photobgH.style.transform=driftGH(ghIn,ghOut);\n\n"
 tail=tail[:a]+kb+tail[b:]
 out+=tail
 open('video/reel-77.html','w').write(out)
