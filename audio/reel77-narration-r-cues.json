@@ -1,0 +1,50 @@
+[
+ {
+  "n": 1,
+  "line": "Your phone puts a map pin inside your photos!",
+  "start": 0.08,
+  "end": 2.84
+ },
+ {
+  "n": 2,
+  "line": "That pin shows where you took the photo.",
+  "start": 3.26,
+  "end": 5.21
+ },
+ {
+  "n": 3,
+  "line": "Send one, and the person who gets it may see the exact place.",
+  "start": 5.63,
+  "end": 9.22
+ },
+ {
+  "n": 4,
+  "line": "OpenAI says ChatGPT does not process the location saved in a photo.",
+  "start": 9.64,
+  "end": 13.7
+ },
+ {
+  "n": 5,
+  "line": "It only looks at the picture itself. And a picture can still give a place away.",
+  "start": 14.55,
+  "end": 19.42
+ },
+ {
+  "n": 6,
+  "line": "To keep it off, tap the send arrow, then Options, and switch Location off.",
+  "start": 19.84,
+  "end": 25.45
+ },
+ {
+  "n": 7,
+  "line": "The setup's in the link in bio.",
+  "start": 25.87,
+  "end": 27.69
+ },
+ {
+  "n": 8,
+  "line": "Next, I'll show you what ChatGPT does when I hide even more of the photo. Follow, so you get the full story.",
+  "start": 28.11,
+  "end": 34.03
+ }
+]
