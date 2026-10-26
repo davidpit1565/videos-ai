@@ -535,7 +535,9 @@
    "dur": 11.0,
    "s0": 6.1,
    "s1": 6.1,
-   "bar": true
+   "bar": true,
+   "z0": 1.0,
+   "z1": 1.04
   },
   {
    "spoken": "So I told it to just say I'm right.",
@@ -675,7 +677,9 @@
    "ct": 0,
    "dur": 4.0,
    "s0": 120.4,
-   "s1": 120.4
+   "s1": 120.4,
+   "z0": 1.0,
+   "z1": 1.012
   },
   {
    "spoken": "Send this to anyone who is about to buy a new phone.",
@@ -690,8 +694,8 @@
    "dur": 3.8,
    "s0": 120.4,
    "s1": 120.4,
-   "z0": 1.0,
-   "z1": 1.0
+   "z0": 1.012,
+   "z1": 1.024
   },
   {
    "spoken": "The setup's in the link in bio.",
@@ -706,8 +710,8 @@
    "dur": 2.6,
    "s0": 120.4,
    "s1": 120.4,
-   "z0": 1.0,
-   "z1": 1.0
+   "z0": 1.024,
+   "z1": 1.036
   },
   {
    "spoken": "Next time, I ask it something crazy. Follow, and watch me try to get one more yes.",
@@ -722,8 +726,8 @@
    "dur": 6.0,
    "s0": 120.4,
    "s1": 120.4,
-   "z0": 1.0,
-   "z1": 1.0
+   "z0": 1.036,
+   "z1": 1.05
   }
  ],
  "scoretag": {
