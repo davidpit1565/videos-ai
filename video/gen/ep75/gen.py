@@ -72,9 +72,13 @@ kbcalls=''.join(f"    kenBurns(photobg{ids[i]},scenes[{i}],KB_{ids[i]});\n" for 
 js=re.sub(r"    kenBurns\(photobgA,scenes\[0\],KB_A\);.*?photobgH\.style\.transform=driftGH\(ghIn,ghOut\);",
    kbcalls+f"    var ghIn=+scenes[{nk}].dataset.in, ghOut=+scenes[{nk+1}].dataset.out;\n    photobg{ids[nk]}.style.transform=driftGH(ghIn,ghOut);\n    photobg{ids[nk+1]}.style.transform=driftGH(ghIn,ghOut);",js,flags=re.S)
 tail=tail_html.replace('max="49.7"',f'max="{DUR+0.7}"')
+TL=spec.get('topline')
+if TL:
+    CSS+=(".topline{position:absolute;left:0;right:0;top:%gcqw;text-align:center;z-index:12;font-family:var(--b);font-weight:800;font-size:3.7cqw;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.74);padding:1.3cqw 2cqw;pointer-events:none}\n")%TL.get('top',26)
 CSS+=spec.get('extra_css','')
 tagdiv=('<div class="scoretag" id="scoretag"><span class="pill"><span class="lab">%s</span><span class="num" id="tagnum">%s</span><span class="note" id="tagnote"></span></span></div>\n'%(TAG['label'],TAG['before'])) if TAG else ''
-frs=tagdiv+'<div class="frs" data-decor>'+''.join(f'<img class="fr" data-k="{k}" src="../channel/assets/ep{EP}-screen/f_{k:03d}.jpg" alt="">' for k in spec['frame_files'])+'</div>\n'
+tldiv=('<div class="topline" id="topline">%s</div>\n'%TL['text']) if TL else ''
+frs=tldiv+tagdiv+'<div class="frs" data-decor>'+''.join(f'<img class="fr" data-k="{k}" src="../channel/assets/ep{EP}-screen/f_{k:03d}.jpg" alt="">' for k in spec['frame_files'])+'</div>\n'
 draw='''  var FPSV=%d;
   var FRM={};[].slice.call(document.querySelectorAll('img.fr')).forEach(function(im){FRM[+im.dataset.k-1]=im;});
   var GRP=%s;
