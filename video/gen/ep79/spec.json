@@ -684,8 +684,8 @@
    "zlin": true
   },
   {
-   "spoken": "Send this to a friend who is buying a new phone soon.",
-   "html": "Send this to a friend who is <span class=\"box\">buying</span> a new phone soon.",
+   "spoken": "Send this to a friend who is buying a new phone.",
+   "html": "Send this to a friend who is <span class=\"box\">buying</span> a new phone.",
    "fs": 5.2,
    "pt": 46,
    "cx": 360,
