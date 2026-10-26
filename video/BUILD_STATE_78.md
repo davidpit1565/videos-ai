@@ -1,0 +1,2 @@
+# Episode 78 build state: DONE (26.10.2026)
+check.sh passed on the final render (32 s, -14 LUFS), voice_quality clean (measured, not heard), frames viewed in three contact sheets (a zoom that cropped the answer's left edge was found and fixed). Waiting only on David to listen and publish. Publish order: 76, then 78. Read the 48 h Insights per channel/episode-78-plan.md (prediction: average watch time 8 s or more, skip rate below 75's 55.8%).
