@@ -14,7 +14,8 @@
    5,
    6,
    7,
-   8
+   8,
+   9
   ]
  ],
  "frame_files": [
@@ -293,14 +294,14 @@
  ],
  "scenes": [
   {
-   "spoken": "I told ChatGPT I'm texting my ex at 2am!",
-   "html": "I told <span class=\"box\">ChatGPT</span> I'm texting my ex at 2am!",
-   "fs": 5.8,
+   "spoken": "I ask ChatGPT for permission to do dumb stuff.",
+   "html": "I ask <span class=\"box\">ChatGPT</span> for permission to do dumb stuff.",
+   "fs": 5.6,
    "pt": 29,
    "cx": 360,
    "cy": 640,
    "rings": [],
-   "dur": 3.2,
+   "dur": 3.4,
    "s0": 0.0,
    "s1": 0.0,
    "z0": 1.0,
@@ -311,14 +312,14 @@
    ]
   },
   {
-   "spoken": "Smart plan, right?",
-   "html": "<span class=\"box\">Smart plan,</span> right?",
-   "fs": 7.4,
+   "spoken": "Today: texting my ex at 2am. Smart plan?",
+   "html": "Today: texting my ex at 2am. <span class=\"box\">Smart plan?</span>",
+   "fs": 5.8,
    "pt": 29,
    "cx": 360,
    "cy": 640,
    "rings": [],
-   "dur": 2.2,
+   "dur": 3.2,
    "s0": 0.0,
    "s1": 0.0,
    "z0": 1.04,
@@ -383,8 +384,8 @@
    "bar": true
   },
   {
-   "spoken": "It said yes. Then it took it back!",
-   "html": "It <span class=\"box\">said yes.</span> Then it took it back!",
+   "spoken": "It said yes! Then it took it back.",
+   "html": "It <span class=\"box\">said yes!</span> Then it took it back.",
    "fs": 6.6,
    "pt": 29,
    "cx": 360,
@@ -399,6 +400,29 @@
     ]
    ],
    "dur": 3.0,
+   "s0": 24.5,
+   "s1": 24.5,
+   "z0": 1.0,
+   "z1": 1.0,
+   "zlin": 1
+  },
+  {
+   "spoken": "Still zero.",
+   "html": "<span class=\"box\">Still zero.</span>",
+   "fs": 7.0,
+   "pt": 29,
+   "cx": 360,
+   "cy": 700,
+   "rings": [
+    [
+     24,
+     376,
+     672,
+     172,
+     0.2
+    ]
+   ],
+   "dur": 2.2,
    "s0": 24.5,
    "s1": 24.5,
    "z0": 1.0,
@@ -436,19 +460,38 @@
    "zlin": 1
   },
   {
-   "spoken": "Follow for the setup that actually works.",
-   "html": "Follow for the <span class=\"box\">setup that actually works.</span>",
-   "fs": 6.0,
+   "spoken": "Next time, I ask it something crazy. Follow, and watch me try to get one yes.",
+   "html": "Next time, I ask it something crazy. <span class=\"box\">Follow,</span> and watch me try to get one yes.",
+   "fs": 5.0,
    "pt": 29,
    "cx": 360,
    "cy": 700,
    "rings": [],
-   "dur": 3.4,
+   "dur": 6.2,
    "s0": 24.5,
    "s1": 24.5,
    "z0": 1.0,
    "z1": 1.0,
    "zlin": 1
   }
- ]
+ ],
+ "scoretag": {
+  "label": "ChatGPT said yes:",
+  "before": "0 / 1",
+  "after": "0 / 2",
+  "note": "almost",
+  "flip_scene": 5,
+  "tops": [
+   70,
+   70,
+   null,
+   105,
+   null,
+   105,
+   105,
+   105,
+   105,
+   105
+  ]
+ }
 }
