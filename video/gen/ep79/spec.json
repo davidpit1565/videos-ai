@@ -540,8 +540,8 @@
    "z1": 1.04
   },
   {
-   "spoken": "So I told it to just say I'm right.",
-   "html": "So I told it to <span class=\"box\">just say I'm right.</span>",
+   "spoken": "So I told it, just say I'm right.",
+   "html": "So I told it, <span class=\"box\">just say I'm right.</span>",
    "fs": 5.6,
    "pt": 46,
    "cx": 360,
