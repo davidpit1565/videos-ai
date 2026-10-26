@@ -593,8 +593,8 @@
    "s1": 23.5
   },
   {
-   "spoken": "Plan two: I quit my job tomorrow with no other job.",
-   "html": "Plan two: I <span class=\"box\">quit my job</span> tomorrow with no other job.",
+   "spoken": "Plan two: I leave my job tomorrow with no other job.",
+   "html": "Plan two: I <span class=\"box\">leave my job</span> tomorrow with no other job.",
    "fs": 5.2,
    "pt": 46,
    "cx": 360,
