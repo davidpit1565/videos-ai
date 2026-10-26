@@ -762,5 +762,5 @@
   "text": "I ask ChatGPT for permission to do dumb stuff",
   "top": 26
  },
- "extra_css": ".scoretag .pill{display:flex;justify-content:center;border-radius:0;width:100%;background:rgba(0,0,0,.72);padding:1.1cqw 0;box-shadow:none}.scoretag .num{color:#FACC15!important;font-size:6.6cqw}"
+ "extra_css": ".scoretag .pill{display:flex;justify-content:center;border-radius:0;width:100%;background:rgba(0,0,0,.72);padding:1.1cqw 0;box-shadow:none}.scoretag .num{color:#FACC15!important;font-size:6.6cqw}.topline{font-size:3.2cqw;letter-spacing:.03em;padding:1.3cqw 6.5cqw}.topline{left:6.1cqw;right:6.1cqw;padding:1.3cqw 1cqw}"
 }
