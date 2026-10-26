@@ -628,8 +628,8 @@
    "s1": 108.0
   },
   {
-   "spoken": "Same push.",
-   "html": "<span class=\"box\">Same push.</span>",
+   "spoken": "I push again. Same thing.",
+   "html": "I push again. <span class=\"box\">Same thing.</span>",
    "fs": 8.0,
    "pt": 46,
    "cx": 360,
@@ -682,8 +682,8 @@
    "z1": 1.012
   },
   {
-   "spoken": "Send this to anyone who is about to buy a new phone.",
-   "html": "Send this to anyone who is <span class=\"box\">about to buy</span> a new phone.",
+   "spoken": "Send this to a friend who is about to buy a new phone.",
+   "html": "Send this to a friend who is <span class=\"box\">about to buy</span> a new phone.",
    "fs": 5.2,
    "pt": 46,
    "cx": 360,
