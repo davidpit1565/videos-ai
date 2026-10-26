@@ -12,6 +12,12 @@ head=re.sub(r'<!--\s*Episode 63.*?-->',f"<!--\n  Episode {EP} — real-photo com
 LOGO=lambda f: f'<img src="../channel/assets/{f}" alt="" style="height:6.4cqw;width:auto;filter:invert(1) drop-shadow(0 .4cqw 1.4cqw rgba(0,0,0,.6))">'
 CSS=open(f'{root}/video/gen/ep74/css.txt').read().replace('#3F6212','#92400E').replace('brightness(1.5) contrast(1.05)','brightness(2.3) contrast(1.08)')+'.lift{position:absolute;inset:0;background:'+('rgba(%d,%d,%d,.15)'%tuple(int(ACC[i:i+2],16) for i in (1,3,5)))+';mix-blend-mode:screen;pointer-events:none}\n'+".hlw{position:absolute;background:rgba(245,158,11,.36);border:.5cqw solid rgba(245,158,11,.9);border-radius:1.2cqw;box-shadow:0 0 3.2cqw rgba(245,158,11,.55);opacity:0;pointer-events:none}\n"
 scenes=spec['scenes']; n=len(scenes)
+TAG=spec.get('scoretag')
+if TAG:
+    CSS+=(".scoretag{position:absolute;left:0;right:0;top:%dcqw;text-align:center;z-index:12;font-family:var(--d);font-weight:900;color:#fff;pointer-events:none}"
+      ".scoretag .pill{display:inline-flex;align-items:baseline;gap:2.2cqw;padding:1.4cqw 4.2cqw;background:rgba(0,0,0,.62);border-radius:3.2cqw;box-shadow:0 0 0 .5cqw rgba(255,255,255,.12)}"
+      ".scoretag .lab{font-size:4.4cqw;letter-spacing:.01em}.scoretag .num{font-size:8.4cqw;line-height:1;color:var(--accent)}"
+      ".scoretag .note{font-size:3.8cqw;opacity:.9}\n")%TAG.get('top',105)
 HL=json.load(open(f'{root}/video/gen/ep74/hl.json'))
 t=0.0; times=[]
 for s in scenes:
@@ -66,7 +72,13 @@ kbcalls=''.join(f"    kenBurns(photobg{ids[i]},scenes[{i}],KB_{ids[i]});\n" for 
 js=re.sub(r"    kenBurns\(photobgA,scenes\[0\],KB_A\);.*?photobgH\.style\.transform=driftGH\(ghIn,ghOut\);",
    kbcalls+f"    var ghIn=+scenes[{nk}].dataset.in, ghOut=+scenes[{nk+1}].dataset.out;\n    photobg{ids[nk]}.style.transform=driftGH(ghIn,ghOut);\n    photobg{ids[nk+1]}.style.transform=driftGH(ghIn,ghOut);",js,flags=re.S)
 tail=tail_html.replace('max="49.7"',f'max="{DUR+0.7}"')
-frs='<div class="frs" data-decor>'+''.join(f'<img class="fr" data-k="{k}" src="../channel/assets/ep{EP}-screen/f_{k:03d}.jpg" alt="">' for k in spec['frame_files'])+'</div>\n'
+TL=spec.get('topline')
+if TL:
+    CSS+=(".topline{position:absolute;left:0;right:0;top:%gcqw;text-align:center;z-index:12;font-family:var(--b);font-weight:800;font-size:3.7cqw;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.74);padding:1.3cqw 2cqw;pointer-events:none}\n")%TL.get('top',26)
+CSS+=spec.get('extra_css','')
+tagdiv=('<div class="scoretag" id="scoretag"><span class="pill"><span class="lab">%s</span><span class="num" id="tagnum">%s</span><span class="note" id="tagnote"></span></span></div>\n'%(TAG['label'],TAG['before'])) if TAG else ''
+tldiv=('<div class="topline" id="topline">%s</div>\n'%TL['text']) if TL else ''
+frs=tldiv+tagdiv+'<div class="frs" data-decor>'+''.join(f'<img class="fr" data-k="{k}" src="../channel/assets/ep{EP}-screen/f_{k:03d}.jpg" alt="">' for k in spec['frame_files'])+'</div>\n'
 draw='''  var FPSV=%d;
   var FRM={};[].slice.call(document.querySelectorAll('img.fr')).forEach(function(im){FRM[+im.dataset.k-1]=im;});
   var GRP=%s;
@@ -101,7 +113,8 @@ draw='''  var FPSV=%d;
 ''' % (FPS, json.dumps(spec.get('groups',[])))
 js=js.replace("  function render(){\n","draw+\"  function render(){\n    drawScr();\n\"",1) if False else js
 js=js.replace("    var opacity,scale,blur;\n    if(prev && t<inStart){","    var opacity,scale,blur;\n    if(prev&&sameGrp(i-1,i)){ inStart=+prev.dataset.out; inEndsAt=inStart; }\n    if(next&&sameGrp(i,i+1)){ outStart=outTime; }\n    if(prev && t<inStart){",1)
-js=js.replace("  function render(){\n",draw+"  function render(){\n    drawScr();\n",1)
+tagjs=('  var TAGC=%s;\n  var TOPS=%s;\n  function tagScene(){for(var i=0;i<scenes.length;i++){if(t>=+scenes[i].dataset.in&&t<+scenes[i].dataset.out)return i;}return scenes.length-1;}\n  function updateTag(){var e=document.getElementById("tagnum");if(!e)return;var box=document.getElementById("scoretag"),tp=TOPS[tagScene()];if(tp==null){box.style.opacity=0;}else{box.style.opacity=1;box.style.top=tp+"cqw";}var on=t>=+scenes[TAGC.scene].dataset.in+TAGC.delay;e.textContent=on?TAGC.after:TAGC.before;document.getElementById("tagnote").textContent=on?TAGC.note:"";}\n'%(json.dumps(dict(scene=TAG['flip_scene'],delay=TAG.get('delay',0.0),after=TAG['after'],before=TAG['before'],note=TAG.get('note',''))),json.dumps(TAG.get('tops',[105]*len(scenes))))) if TAG else '  function updateTag(){}\n'
+js=js.replace("  function render(){\n",draw+tagjs+"  function render(){\n    drawScr();updateTag();\n",1)
 tail=tail.replace('<div class="handle"',frs+'<div class="handle"',1)
 tail=re.sub(r'<div class="handle"[^>]*>.*?</div>','',tail,flags=re.S)  # full-bleed screen episodes: the handle used to sit on the keyboard / the answer (David, 18.10.2026)
 head=head.replace('</style>\n',CSS.replace('<style>\n','').replace('</style>\n','')+'</style>\n',1)
