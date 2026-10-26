@@ -679,7 +679,7 @@
    "s0": 120.4,
    "s1": 120.4,
    "z0": 1.0,
-   "z1": 1.012
+   "z1": 1.01
   },
   {
    "spoken": "Send this to a friend who is about to buy a new phone.",
@@ -694,8 +694,8 @@
    "dur": 3.8,
    "s0": 120.4,
    "s1": 120.4,
-   "z0": 1.012,
-   "z1": 1.024
+   "z0": 1.01,
+   "z1": 1.025
   },
   {
    "spoken": "The setup's in the link in bio.",
@@ -710,8 +710,8 @@
    "dur": 2.6,
    "s0": 120.4,
    "s1": 120.4,
-   "z0": 1.024,
-   "z1": 1.036
+   "z0": 1.025,
+   "z1": 1.04
   },
   {
    "spoken": "Next time, I ask it something crazy. Follow, and watch me try to get one more yes.",
@@ -726,8 +726,8 @@
    "dur": 6.0,
    "s0": 120.4,
    "s1": 120.4,
-   "z0": 1.036,
-   "z1": 1.05
+   "z0": 1.04,
+   "z1": 1.07
   }
  ],
  "scoretag": {
