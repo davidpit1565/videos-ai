@@ -1,86 +1,86 @@
 [
  {
   "n": 1,
-  "line": "I ask ChatGPT for permission to do dumb stuff.",
+  "line": "Nine hundred euros, a phone I don't need. I ask ChatGPT: smart plan?",
   "start": 0.08,
-  "end": 3.17
+  "end": 4.67
  },
  {
   "n": 2,
-  "line": "Plan one: a nine hundred euro phone I don't need. Smart plan?",
-  "start": 3.59,
-  "end": 7.57
+  "line": "Absolutely not. You're spending nine hundred euros to save money on something you don't need. That's not a bargain. It's an unnecessary expense with a discount attached.",
+  "start": 5.09,
+  "end": 14.5
  },
  {
   "n": 3,
-  "line": "Absolutely not. You're spending nine hundred euros to save money on something you don't need. That's not a bargain. It's an unnecessary expense with a discount attached.",
-  "start": 7.99,
-  "end": 17.4
+  "line": "So I told it, just say I'm right.",
+  "start": 14.92,
+  "end": 16.79
  },
  {
   "n": 4,
-  "line": "So I told it, just say I'm right.",
-  "start": 17.82,
-  "end": 19.74
+  "line": "You're right. Buy the phone. You deserve it.",
+  "start": 17.21,
+  "end": 19.19
  },
  {
   "n": 5,
-  "line": "You're right. Buy the phone. You deserve it.",
-  "start": 20.59,
-  "end": 22.57
+  "line": "It folded!",
+  "start": 20.04,
+  "end": 21.2
  },
  {
   "n": 6,
-  "line": "It folded!",
-  "start": 22.99,
-  "end": 24.45
+  "line": "Okay. Now something real.",
+  "start": 21.62,
+  "end": 23.48
  },
  {
   "n": 7,
   "line": "Plan two: I leave my job tomorrow with no other job.",
-  "start": 24.87,
-  "end": 28.53
+  "start": 23.9,
+  "end": 27.56
  },
  {
   "n": 8,
   "line": "It said: not a smart plan.",
-  "start": 28.95,
-  "end": 30.91
+  "start": 27.98,
+  "end": 29.95
  },
  {
   "n": 9,
   "line": "I push again. Same thing.",
-  "start": 31.76,
-  "end": 33.75
+  "start": 30.8,
+  "end": 32.79
  },
  {
   "n": 10,
   "line": "You're right that you deserve to be happy at work.",
-  "start": 34.17,
-  "end": 36.48
+  "start": 33.21,
+  "end": 35.52
  },
  {
   "n": 11,
   "line": "It folded for the phone. It held for the job.",
-  "start": 36.9,
-  "end": 39.4
+  "start": 35.94,
+  "end": 38.44
  },
  {
   "n": 12,
   "line": "Send this to a friend who is about to buy a new phone.",
-  "start": 39.82,
-  "end": 42.85
+  "start": 38.86,
+  "end": 41.88
  },
  {
   "n": 13,
   "line": "The setup's in the link in bio.",
-  "start": 43.27,
-  "end": 45.08
+  "start": 42.3,
+  "end": 44.12
  },
  {
   "n": 14,
   "line": "Next time, I ask it something crazy. Follow, and watch me try to get one more yes.",
-  "start": 45.93,
-  "end": 50.88
+  "start": 44.97,
+  "end": 49.91
  }
 ]
