@@ -474,5 +474,11 @@
     "brass": "#F472B6",
     "ember": "#F472B6",
     "mood": "neutral"
+  },
+  {
+    "episode": 79,
+    "brass": "#FACC15",
+    "ember": "#FACC15",
+    "mood": "bright"
   }
 ]

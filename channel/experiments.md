@@ -331,3 +331,8 @@ Test: a pure "official source says" episode (Apple's location-metadata page and 
 
 ## Episode 76 (25.10.2026): sequel with the real recording
 Same photo as 75 with more signs blurred, same question. Hook = contrarian claim + one-try test ("Blur the signs, hide the spot. One AI, one try."). Compare at 72 hours with 75 (personal question) and 77 (surprise statement): reach, average watch time, sends, saves, new followers. Hypothesis only.
+
+## Episode 79 (27.10.2026): two plans, one reel, score tag in the top strip
+What changed: one reel combines two real ChatGPT chats (a €900 phone, quitting a job), a persistent "ChatGPT said yes: x / y" score tag, a topline stating the series premise, and a closing line that names the next episode. Test: does a visible reason to follow (running score + promised next test) change follows and sends versus 76/78?
+PREDICTION (written before posting, a guess not a fact): sends per reach at or above 78; follows still low (single digits). Read at 48 h: skip rate, average watch time, sends per reach, comments, follows. If the numbers do not move, the format, not the execution, is the problem.
+Tally after 79: ChatGPT asked 4, said yes (final answer endorses the plan) 1 (the phone), "held" 1 (job).

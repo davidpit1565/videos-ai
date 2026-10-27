@@ -1657,3 +1657,6 @@ FACT (transcripts and frames): the 5 reels I could watch share one structure: a 
 Her stated rules (opinion, her words): (1) design the video in reverse: the payoff and the action you want first; "I design every single comment section before I design the video: what do I want them to say?"; (2) the viewer thinks "do I care?" every 3 seconds, so check the script 3 s by 3 s; (3) the "duh" test for a hook; (4) the stakes must be high or it is not shareable; (5) do not lead with the niche or the topic.
 UNVERIFIED: every number she claims (80B views, 70M, 17M views, $20M); not used.
 HYPOTHESES for our series, not decided: (a) a persistent top line that states the premise and why to stay ("I ask ChatGPT for permission to do dumb stuff"); (b) design the comment section first: "Comment your dumbest plan and I'll ask ChatGPT" (only plans we really run, said honestly) gives a reason to comment and to follow; (c) audit every script 3 s by 3 s; (d) run the "duh" test on every hook. Not to copy: income claims and course funnel.
+
+## 27.10.2026 — episode 79 hook log
+Hook type: stated premise ("I ask ChatGPT for permission to do dumb stuff") + running score tag. Hypothesis, not confirmed. 72-hour readings (reach, retention, sends, saves) to be added after posting.
