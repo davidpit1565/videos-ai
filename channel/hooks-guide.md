@@ -11,6 +11,10 @@ actually is — not whichever type got used last.
 
 > **Evidence status, 20.10.2026.** A research pass (`channel/hook-research-20-10.md`) found no proven hook formula and no traceable per-second hook data: the platforms publish no weights, most online hook percentages are untraceable, and several pop-psychology claims (Zeigarnik "open loops", the 8-second attention span) are contested or myths. Everything in this file below is therefore a hypothesis the channel tests on its own numbers, not a sourced rule. The generic, shareable version of the process is the skill `.claude/skills/viral-hook-lab/` (candidate generation, gates, measurement plan, myths to refuse). Run it before writing the hook of every episode, then log the hook type and the 72-hour readings.
 
+## Standing rule, 28.10.2026 (David): the point of the hook is in the FIRST WORDS, not the second sentence
+
+A viewer mid-scroll decides on the first word or two. A hook that opens with setup ("ChatGPT said no. Then I pushed.", "I told ChatGPT I'm skipping sleep...", "Nine hundred euros, a phone I don't need. I ask ChatGPT: smart plan?") makes the viewer wait for the claim, and a viewer who does not yet know what is being said and why it matters does not wait. David sees this late-hook pattern in the channel's videos, including 72 and 79. Gate, with every hook: the first 3 words must already carry the subject and the stake (the thing the viewer can lose, be wrong about, or has to decide). If the point only lands at word 6 or later, rewrite before anything else. Write down the question the viewer asks themselves after the first words ("why would I throw it away?"); if that question cannot be written down, there is no gap. Hypothesis, not proven: same status as everything below.
+
 ## Standing rule, 23.9.2026: every test below is a hard STOP, not a reference to consult
 
 David flagged, after episode 45's hook shipped and had to be rewritten, then again after
