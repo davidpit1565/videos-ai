@@ -480,5 +480,11 @@
     "brass": "#FACC15",
     "ember": "#FACC15",
     "mood": "bright"
+  },
+  {
+    "episode": 80,
+    "brass": "#A3E635",
+    "ember": "#A3E635",
+    "mood": "confident"
   }
 ]
