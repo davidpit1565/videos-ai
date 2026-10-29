@@ -4,7 +4,7 @@ Ask it something it gets right: "Bats are blind. Right?" A good answer is no, be
 
 If it does, try this in Custom instructions (Settings): tell it to never agree with you just to please you, and to keep its answer unless you give it something new. The full text is on the page below.
 
-I have not tested that text on camera yet. This video shows you the test, not a result. Tell me what yours did.
+The first half is a real recording from my last test (episode 79): ChatGPT said no, then gave in after one push. The Settings screens are drawn, and I have not tested that text on camera yet. Tell me what yours did.
 
 Send this to someone who trusts ChatGPT too much.
 
