@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:"Inter";src:url("https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-800-normal.woff2") format("woff2");font-weight:800}
+@font-face{font-family:"Inter";src:url("https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-500-normal.woff2") format("woff2");font-weight:500}
+@font-face{font-family:"Inter";src:url("https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-700-normal.woff2") format("woff2");font-weight:700}
+:root{--bg:#F3EEE4;--ink:#131313;--acc:#2F5BFF;--line:#D9D2C3}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:Inter,sans-serif;color:var(--ink)}
+#root{position:relative;width:1080px;height:1920px;
+ background-image:radial-gradient(var(--line) 3px,transparent 3.5px);background-size:60px 60px;background-position:30px 30px}
+.abs{position:absolute}
+.logo{width:150px;height:150px;left:465px;top:300px}
+.big{left:65px;width:950px;text-align:center;font-weight:800;font-size:150px;line-height:1;letter-spacing:-4px}
+.sel{background:var(--ink);color:#fff;padding:6px 26px;border-radius:12px;display:inline-block}
+.w{display:inline-block;opacity:0}
+.card{left:85px;width:910px;top:330px;background:#fff;border:6px solid var(--ink);border-radius:36px;padding:48px 52px;box-shadow:14px 14px 0 var(--ink);font-size:52px;line-height:1.35;font-weight:500;min-height:440px}
+.tag{display:inline-block;background:var(--acc);color:#fff;font-weight:700;font-size:36px;padding:8px 22px;border-radius:14px;margin-bottom:26px}
+.cur{display:inline-block;width:6px;height:52px;background:var(--acc);vertical-align:-8px;margin-left:4px}
+.sticker{font-weight:800;font-size:44px;background:#FFD84A;border:5px solid var(--ink);padding:14px 30px;border-radius:18px;transform:rotate(-6deg);box-shadow:8px 8px 0 var(--ink)}
+.keys{left:65px;width:950px;display:flex;flex-wrap:wrap;gap:18px;justify-content:center}
+.key{font-weight:700;font-size:31px;background:#fff;border:4px solid var(--ink);border-bottom-width:10px;border-radius:16px;padding:12px 22px;opacity:0}
+.arrow{font-size:34px;font-weight:800;opacity:0;align-self:center}
+.cap{left:65px;width:950px;text-align:center;font-weight:800;font-size:64px;letter-spacing:-1.5px}
+</style></head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="13" data-width="1080" data-height="1920">
+
+ <img class="abs logo clip" id="logo" src="assets/chatgpt.svg" data-start="0" data-duration="3" data-track-index="0">
+ <div class="abs big clip" id="h1" style="top:520px" data-start="0" data-duration="3" data-track-index="1">
+  <span class="w">ChatGPT</span><br><span class="w">can cave</span><br><span class="w"><span class="sel">when you push!</span></span></div>
+
+ <div class="abs card clip" id="card" data-start="3" data-duration="10" data-track-index="2">
+  <div class="tag">Custom instructions</div><br>
+  <span id="typed"></span><span class="cur" id="cur"></span></div>
+ <div class="abs sticker clip" id="st1" style="left:700px;top:250px" data-start="3.2" data-duration="9.8" data-track-index="3">TRY IT</div>
+
+ <div class="abs keys clip" id="keys" style="top:960px" data-start="7" data-duration="6" data-track-index="4">
+  <div class="key">Settings</div><div class="arrow">→</div><div class="key">Personalization</div><div class="arrow">→</div><div class="key">Custom instructions</div></div>
+
+ <div class="abs cap clip" id="cap" style="top:1090px" data-start="9.5" data-duration="3.5" data-track-index="5">Send this to a friend<br>who trusts ChatGPT.</div>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.set(["#logo","#h1","#card","#st1","#keys","#cap"],{visibility:"visible"},0);
+tl.set("#logo",{opacity:1,scale:1},0);
+document.querySelectorAll("#h1 .w").forEach((w,i)=>(i===0?tl.set(w,{opacity:1},0):tl.fromTo(w,{opacity:0,y:50,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:"power3.out"},0.5+i*.5)));
+tl.to(["#logo","#h1"],{opacity:0,y:-60,duration:.3,ease:"power2.in"},2.6);
+tl.fromTo("#card",{opacity:0,y:120,scale:.92},{opacity:1,y:0,scale:1,duration:.5,ease:"back.out(1.6)"},3);
+tl.fromTo("#st1",{opacity:0,scale:.2,rotation:-30},{opacity:1,scale:1,rotation:-6,duration:.4,ease:"back.out(2.4)"},3.4);
+const txt="Be honest, not agreeable. Never agree with me just to please me, or because I sound sure.";
+const o={n:0};
+tl.to(o,{n:txt.length,duration:3.4,ease:"none",onUpdate(){document.getElementById("typed").textContent=txt.slice(0,Math.round(o.n))}},3.7);
+tl.fromTo("#cur",{opacity:1},{opacity:0,duration:.01,repeat:12,yoyo:true,repeatDelay:.25},3.7);
+document.querySelectorAll("#keys .key,#keys .arrow").forEach((k,i)=>tl.fromTo(k,{opacity:0,y:40,scale:.8},{opacity:1,y:0,scale:1,duration:.3,ease:"back.out(2)"},7.1+i*.28));
+tl.fromTo("#cap",{opacity:0,y:60},{opacity:1,y:0,duration:.4,ease:"power3.out"},9.6);
+tl.to({}, {duration:.01},12.99);
+window.__timelines["main"]=tl; tl.seek(0);
+</script>
+</body></html>

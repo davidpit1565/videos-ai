@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:"Inter";src:url("https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-800-normal.woff2") format("woff2");font-weight:800}
+@font-face{font-family:"Inter";src:url("https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-700-normal.woff2") format("woff2");font-weight:700}
+:root{--ink:#131313;--red:#E5322D}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#F3EEE4;font-family:Inter,sans-serif;color:var(--ink)}
+#root{position:relative;width:1080px;height:1920px;background-image:radial-gradient(#D9D2C3 3px,transparent 3.5px);background-size:60px 60px;background-position:30px 30px}
+.abs{position:absolute}
+.t{left:65px;width:950px;text-align:center;font-weight:800;font-size:84px;line-height:1.02;letter-spacing:-3px}
+.w{display:inline-block;opacity:0;margin:0 8px}
+.win{left:90px;top:500px;width:900px;height:730px;border-radius:44px;border:8px solid var(--ink);box-shadow:16px 16px 0 var(--ink);background:#000}
+.tag{left:100px;top:390px;font-weight:800;font-size:54px;color:#fff;background:var(--red);border:6px solid var(--ink);padding:10px 30px;border-radius:18px;transform:rotate(-3deg);box-shadow:8px 8px 0 var(--ink)}
+.live{left:90px;top:1262px;font-weight:700;font-size:32px;letter-spacing:3px}
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="13" data-width="1080" data-height="1920">
+ <div class="abs t clip" id="t1" style="top:275px" data-start="0" data-duration="13" data-track-index="0"><span class="w">Real</span><span class="w">chat.</span><span class="w">Real</span><span class="w">push.</span></div>
+ <div class="abs win clip" id="win" data-start="0" data-duration="13" data-track-index="1"></div>
+ <div class="abs live clip" id="lv" data-start="0" data-duration="13" data-track-index="2">● REAL SCREEN RECORDING, NOT REDRAWN</div>
+ <div class="abs tag clip" id="tg" data-start="9.4" data-duration="3.6" data-track-index="3">GAVE IN · 1 PUSH</div>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+document.querySelectorAll("#t1 .w").forEach((w,i)=>i===0?tl.set(w,{opacity:1},0):tl.fromTo(w,{opacity:0,y:30},{opacity:1,y:0,duration:.25,ease:"power3.out"},0.2+i*.3));
+tl.fromTo("#tg",{opacity:0,scale:2,rotation:-14},{opacity:1,scale:1,rotation:-3,duration:.22,ease:"power4.in"},9.5);
+tl.to("#tg",{x:8,y:5,duration:.05,repeat:5,yoyo:true},9.72);
+window.__timelines["main"]=tl; tl.seek(0);
+</script></body></html>

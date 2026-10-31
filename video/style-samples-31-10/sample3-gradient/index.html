@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:"Inter";src:url("https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-800-normal.woff2") format("woff2");font-weight:800}
+@font-face{font-family:"Inter";src:url("https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-600-normal.woff2") format("woff2");font-weight:600}
+@font-face{font-family:"IS";src:url("https://cdn.jsdelivr.net/npm/@fontsource/instrument-serif@5/files/instrument-serif-latin-400-italic.woff2") format("woff2");font-style:italic}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#120a2e;font-family:Inter,sans-serif;color:#fff}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden}
+#bg{position:absolute;inset:-300px;background:radial-gradient(circle at 20% 25%,#b6ff3b 0,transparent 38%),radial-gradient(circle at 80% 30%,#ff3bd4 0,transparent 40%),radial-gradient(circle at 50% 80%,#3b5bff 0,transparent 45%),#2a0f5e}
+.abs{position:absolute}
+.serif{font-family:"IS",serif;font-style:italic;font-weight:400}
+.cap{left:65px;width:950px;text-align:center;font-size:104px;line-height:1.05}
+.w{display:inline-block;opacity:0;margin:0 10px}
+.glass{left:90px;width:900px;padding:34px 44px;border-radius:36px;background:rgba(18,10,46,.78);border:3px solid rgba(255,255,255,.5);font-weight:600;font-size:50px;display:flex;gap:26px;align-items:center}
+.n{font-weight:800;font-size:60px;color:#c6ff3d;min-width:50px}
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="12" data-width="1080" data-height="1920">
+ <div id="bg" class="abs clip" data-start="0" data-duration="12" data-track-index="0"></div>
+ <div class="abs cap serif clip" id="c1" style="top:400px" data-start="0" data-duration="4" data-track-index="1"><span class="w">Without</span><span class="w">this,</span><br><span class="w">ChatGPT</span><span class="w">tells</span><span class="w">you</span><br><span class="w">what</span><span class="w">you</span><span class="w">want</span><span class="w">to</span><span class="w">hear.</span></div>
+ <div class="abs glass clip" id="g1" style="top:360px" data-start="4" data-duration="8" data-track-index="2"><span class="n">1</span>Never agree just to please me</div>
+ <div class="abs glass clip" id="g2" style="top:560px" data-start="4.6" data-duration="7.4" data-track-index="3"><span class="n">2</span>Keep your answer unless I give you a new fact</div>
+ <div class="abs glass clip" id="g3" style="top:790px" data-start="5.2" data-duration="6.8" data-track-index="4"><span class="n">3</span>Tell me what changed your mind</div>
+ <div class="abs cap serif clip" id="c2" style="top:1070px;font-size:92px" data-start="7.5" data-duration="4.5" data-track-index="5"><span class="w">One</span><span class="w">setting.</span><span class="w">Three</span><span class="w">sentences.</span></div>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.to("#bg",{x:120,y:-90,rotation:8,duration:12,ease:"sine.inOut"},0);
+const ws=document.querySelectorAll("#c1 .w");
+ws.forEach((w,i)=>i===0?tl.set(w,{opacity:1},0):tl.fromTo(w,{opacity:0,y:30,filter:"blur(10px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.3,ease:"power3.out"},0.3+i*.28));
+tl.to("#c1",{opacity:0,y:-60,duration:.3},3.65);
+["#g1","#g2","#g3"].forEach((g,i)=>tl.fromTo(g,{opacity:0,y:80,scale:.94},{opacity:1,y:0,scale:1,duration:.5,ease:"back.out(1.7)"},4+i*.6));
+document.querySelectorAll("#c2 .w").forEach((w,i)=>tl.fromTo(w,{opacity:0,y:30,filter:"blur(10px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.3,ease:"power3.out"},7.6+i*.3));
+window.__timelines["main"]=tl; tl.seek(0);
+</script></body></html>
