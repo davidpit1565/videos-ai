@@ -513,3 +513,34 @@ first real test.
 
 Arena itself: about 92 calls, ~10M tokens, ~20 minutes. Its value was the rules it exposed,
 not the winner. Run it only when a hook has been rejected, not for every hook.
+
+## The two questions a viewer asks, with our real results (David, 31.10.2026)
+
+David's model: the viewer decides in two steps. (1) In the first second: "what is this video saying?" (2) Right after: "is it worth my time?" A hook has to answer both, in that order. Written here so it stops getting lost between sessions.
+
+**Step 1, understood in one second:** the product and the claim in the first 3-4 words, in words a 13-year-old uses. No setup, no second sentence needed to understand the first.
+**Step 2, worth it:** the viewer sees themselves in it (a thing THEY do or that happens to THEM) and there is an open question the video will answer (what happens when...?). A task they can do themselves counts as a reason to stay.
+
+**Our real numbers (Instagram views, average watch time; FACT from David's Insights; hooks as written in the script files; n=5, confounded by topic, hour, footage, so this is HYPOTHESIS, not a rule):**
+
+| Ep | Hook | IG views | Avg watch |
+|---|---|---|---|
+| 80 | ChatGPT can cave when you push! | 786 | 13 s |
+| 72 | I told ChatGPT I'm skipping sleep to study all night! | 570 | 10 s |
+| 75 | Anyone can see your street photo. What do they know? | 265 | 7 s |
+| 74 | I asked ChatGPT where this street photo was taken. No location, no caption! (shipped v4: payoff-first, "It told me the street I was on") | 234 | 6 s |
+| 60 | Anything you type to Instagram's AI chat can come back as an ad. (13 words; the shipped updated version was not re-checked here) | 219 | 4 s |
+
+**What the pattern suggests (HYPOTHESES):**
+- The two best ones are about what ChatGPT DOES TO the viewer's own behaviour (pressure, giving in, studying all night), in plain words, with "ChatGPT" in the first three words. The weaker three are about a photo, a street, or a third-party app's data: the viewer has to imagine the stake.
+- 80 passes both questions fastest: "ChatGPT can cave" (what) + "when you push" (you do it, and what happens is the open question). 72 passes step 1 at once ("I told ChatGPT") but the stake ("skipping sleep") comes in the second half of the line.
+- The weakest (60) is a long abstract statement with the subject ("Instagram's AI chat") after a long lead-in; a cold viewer needs the whole sentence to see why it matters.
+
+**Checklist to run on every candidate hook (add to the dry-sentence test):**
+1. Cover everything after the 4th word. Is the topic still clear? If not, move the point earlier.
+2. Say it to a 13-year-old: do they get what it says and why it could matter to them?
+3. Is there a "you"/"your" or a first-person human moment, not a third-party fact?
+4. Is there one open question the video answers, and does the ending actually answer it (rule 1 of the 75 round)?
+5. Is it a different TYPE from the previous episode (80 = claim + test invitation, so 81 = result/story)?
+
+Not claimed: any causal effect. Five reels, different hours, different footage. Re-score this table when 79 and 81 numbers exist.
