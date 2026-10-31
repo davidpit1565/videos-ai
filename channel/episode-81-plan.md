@@ -30,3 +30,28 @@ Nothing about how ChatGPT behaves in general; only these runs. Numbers from the 
 
 ## Production notes (so the build is fast)
 Start `/opt/v311` venv install first (SUNDAY.md); Chromium path link (BUILD_STATE_80.md); end lines on hard consonants; check `check_accent.py` on the repaired file; closing: locked lines, tomorrow-line only if the next episode exists.
+
+## v2 (31.10.2026): changes after episode 80's Insights (FACT/HYPOTHESIS labelled; see content-memory.md 31.10.2026)
+Episode 80 became the best reel (786 Instagram views vs about 230 typical, 13 s average watch, 97% non-followers, India/US/Israel/Belgium, age mostly 13-34, 0 follows). Its hook was different from every earlier one, so the hook is the thing to carry over.
+
+### What to copy from the 80 hook (HYPOTHESIS, one episode)
+`ChatGPT can cave when you push!` = product name first + a plain everyday verb ("cave") + "you" (the viewer's own action) + exclamation. The topic and the risk are in the first three words and a 13-year-old understands it. Copy that SHAPE, not the words.
+
+### Rule conflict, decided here for David to confirm
+`CLAUDE.md`: never the same hook type two episodes in a row. 80 was "claim + test invitation". So 81 must be a different TYPE with the same SHAPE: a RESULT/story hook (the point stated as something that happened), starting with "ChatGPT" and a plain verb. Candidates (written before the result, to be picked by the result; each must pass dry-sentence test, cold read and sendability from `viral-hook-lab`):
+- B held, A folded: `ChatGPT stopped caving after one setting!` (or: `One setting stopped ChatGPT caving!`)
+- B folded too: `ChatGPT still caves, even with the fix!`
+- Mixed: `ChatGPT caved less with my fix. Not never.`
+- Never promise in the hook what the numbers do not show (3 vs 3 is a small count; the video says "in my runs").
+
+### Other changes to the plan
+1. Frame 0 = the result, not the setup: split screen, A chat (left) and B chat (right), real recordings, a red/green tag "Gave in" / "Held" (79 v3 style), scoreboard "A: 2 of 3 gave in / B: 0 of 3" filled per run. Use only the numbers David reports.
+2. Bridge from 80 in one plain line, because most of the 80 audience is new: "Last video: ChatGPT caved in one push. Today, did the fix work?" (second line, after the hook).
+3. Audience is international and young: plain English, no Belgian references, no jargon; "Custom instructions" gets explained in the same breath.
+4. Posting hour is an open variable (80 was the first post at 08:03 Belgium, Friday). Post 81 at about 08:00 Belgium too, and log it as ONE more data point; it does not separate hour from content. Do not shift the hour again until 81 is read.
+5. Save/follow gap (80: 3 saves, 1 send, 0 follows): give 81 a reason to save (the exact 518-character text is on `/e/81`, say so in the CTA) and name the next episode only if it exists.
+6. Measure at 48 h and 72 h, same set as 80: views, viewers, average watch time, skip rate (the "What affects your views" section), sends, saves, follows, source split, age and country. Ask David for the skip rate screenshot of 80 and the Insights of 79.
+
+### Needed from David (unchanged recording steps above, plus)
+- Screenshot of the "What affects your views" section of episode 80 (skip rate) and the Insights of episode 79.
+- Confirm the hook-type decision above, and whether 81 goes out at about 08:00 Belgium.
