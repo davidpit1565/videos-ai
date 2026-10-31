@@ -544,3 +544,9 @@ David's model: the viewer decides in two steps. (1) In the first second: "what i
 5. Is it a different TYPE from the previous episode (80 = claim + test invitation, so 81 = result/story)?
 
 Not claimed: any causal effect. Five reels, different hours, different footage. Re-score this table when 79 and 81 numbers exist.
+
+## Standing rule, 31.10.2026 (David, passing on Miki): the 8-year-old test (stricter than the 13-year-old check above)
+
+Every line, starting with the hook, must be understood at once by an 8-year-old: the plainest English, no idioms, no slang. The viewer must know in the first second what the video is about and why it is worth watching. "ChatGPT can cave when you push!" fails this: "cave" and "push" are idioms most kids do not know (it still got 786 Instagram views, so the test is about the next reels, not a verdict on that one). Replace: cave / fold / give in -> "say yes", "say what I wanted to hear"; "custom instructions" -> "a box where you tell ChatGPT how to act" the first time it is named; "myth", "convincing" -> avoid or explain.
+
+Check every hook and script line: could an 8-year-old repeat it back? Add it to the five-point checklist above.
