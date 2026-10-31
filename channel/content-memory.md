@@ -1686,3 +1686,7 @@ Hook type: claim in the first words + test invitation ("ChatGPT can cave when yo
 - HYPOTHESES (none tested): (a) the hook with the point in the first three words (first episode built under the 28.10 rule); (b) topic "ChatGPT gives in when you push" is relevant to a broad, young, global ChatGPT audience; (c) real recording of a real ChatGPT answer in frame 0 (72 had one too); (d) posting hour 08:03 Belgium, first post at that hour (earlier ones 16:51-21:23 UTC), a second difference so not attributable alone.
 - UNKNOWN: 76-79 numbers at the same age (79 shares the footage of 80, so it is the cleanest comparison); skip rate of 80; whether the audience change comes from the hour (India morning, US night) or the content.
 - Same pattern as ep 55: reach from non-followers, 0 follows, 1 send. Reach is not yet growth.
+
+## 31.10.2026 - advice from David's friend Miki on posting hour (one person's opinion, NOT data)
+- David's words (voice message, transcribed): Miki works at a large marketing company, says he has done over 5,000 videos (unverified), and that the posting hour has nothing to do with why episode 80 took off; he always posted between 07:00 and 21:00.
+- Read: it fits our own history only partly (80 at 08:03 Belgium; 76, 78, 79 at about 18:00; 77 at 22:23 Belgium time, outside his window). It says nothing measured about this channel. It shifts the guess slightly toward the content (hook, topic) and away from the hour, without settling it. The cleanest check remains episode 79 (same footage as 80, different hook and hour) at equal age, plus 81.
