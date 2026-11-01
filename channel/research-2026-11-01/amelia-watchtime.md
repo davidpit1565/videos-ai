@@ -17,3 +17,10 @@ Source: David sent the reel link https://www.instagram.com/reel/DcZhaG-xbUU/ and
 
 ## Not claimed
 Nothing here says copying these steps produces views. The viral-scripts study found the same script getting 78K views from one account and 4.96M from another: reach depends mostly on the account and timing.
+
+## The video itself (downloaded 1.11.2026 via yt-dlp on the /embed/ URL after the plain URL returned 429; watched and transcribed; FACT unless marked)
+- 25.7 s, 1440x2560, a real presenter (NOT faceless) with a lavalier mic, handheld pointing gestures, word captions at the bottom, a small real retention chart pinned at the top, a red cross with one word (HOOK / VALUE / ATTENTION) when she names the problem.
+- Script (spoken): four parallel blocks of about 5 s: "If your watch time looks like this, it means [your hook / the value / attention] is the problem and you need [a combination of these four things / one of these five things / one of these three things]." The fourth block is the good case ("you had a great hook, provided lots of value and kept it engaging until the end"). Five labelled chips appear for the value block (practical knowledge, easy-to-implement hacks, compelling story, helpful advice, pure entertainment).
+- The rehook at the end, spoken: "If you wanna know the formula that got me this watch time graph and over eight million views, I put it in the caption." The caption on screen says "over 12 million" and the caption text says "nearly 13 million": her numbers disagree between the voice, the captions and the text (UNVERIFIED, and not for us to repeat).
+- What it shows about the format (HYPOTHESIS): a repeated sentence pattern gives a predictable rhythm; showing the REAL retention chart makes the claim visible; the end line promises a specific missing thing ("the formula") that lives in the caption, which is the rehook she describes.
+- Idea for us, not a rule: a "diagnosis" reel where we show our own real retention chart (ep 81 at 48 h) and say what it taught us. Only with David's real screenshot and real numbers.
