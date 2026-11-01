@@ -182,6 +182,15 @@ function ViewsBars({ episodes }: { episodes: Episode[] }) {
     .sort((a, b) => a.number - b.number);
 
   const [hover, setHover] = useState<number | null>(null);
+  const scroller = useRef<HTMLDivElement>(null);
+  // 80 reels in a 720px box printed the episode numbers on top of each other. Each bar gets its own
+  // 26px band, the chart scrolls sideways, and it opens on the newest episodes (David, 1.11.2026).
+  const BAND = 26;
+  const w = Math.max(W, PAD.left + PAD.right + live.length * BAND);
+  useEffect(() => {
+    const el = scroller.current;
+    if (el) el.scrollLeft = el.scrollWidth;
+  }, [live.length]);
 
   if (live.length === 0) {
     return (
@@ -192,7 +201,7 @@ function ViewsBars({ episodes }: { episodes: Episode[] }) {
     );
   }
 
-  const innerW = W - PAD.left - PAD.right;
+  const innerW = w - PAD.left - PAD.right;
   const innerH = H - PAD.top - PAD.bottom;
   const maxV = niceMax(Math.max(...live.map((e) => e.views ?? 0)));
   const bandW = innerW / live.length;
@@ -201,11 +210,11 @@ function ViewsBars({ episodes }: { episodes: Episode[] }) {
   const ticks = [0, maxV / 2, maxV];
 
   return (
-    <div className="chart-wrap">
-      <svg viewBox={`0 0 ${W} ${H}`} className="chart" role="img" aria-label="צפיות לפי ריל">
+    <div className="chart-wrap" dir="ltr" ref={scroller} style={{ overflowX: "auto" }}>
+      <svg viewBox={`0 0 ${w} ${H}`} className="chart" style={{ width: w, minWidth: w }} role="img" aria-label="צפיות לפי ריל">
         {ticks.map((t, i) => (
           <g key={i}>
-            <line x1={PAD.left} x2={W - PAD.right} y1={y(t)} y2={y(t)} className="grid" />
+            <line x1={PAD.left} x2={w - PAD.right} y1={y(t)} y2={y(t)} className="grid" />
             <text x={PAD.left - 8} y={y(t)} className="axis" textAnchor="end" dominantBaseline="middle">
               {n(Math.round(t))}
             </text>
