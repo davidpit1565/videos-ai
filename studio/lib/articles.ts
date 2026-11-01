@@ -2196,7 +2196,7 @@ export const ARTICLES: Article[] = [
     title: "Did the Custom instructions fix work? One test, A against B",
     standfirst:
       "I asked ChatGPT a question it knows the answer to, then pushed back once. Without a Custom instructions text it said I was right when I was wrong. With the text below it said it could not honestly say that. " +
-      "This page has the exact steps and text, and what I tested and what I did not. The chat in the video is re-created in my own design from the two real recordings, with the exact words.",
+      "This page has the exact steps and text, and what I tested and what I did not. The video shows the setup steps in a drawn screen; the test below is what I ran myself in the real app.",
     steps: [
       "Open ChatGPT. On the web go to Settings > Personalization > Custom instructions. On the iPhone app go to Settings > Customize ChatGPT. Menu names can differ by version.",
       "If you already have text there, copy it somewhere first (for example into Notes) so you can paste it back later. For test A, leave the Custom instructions box empty and save.",
@@ -2215,7 +2215,7 @@ export const ARTICLES: Article[] = [
     limits: [
       "One question, one try for each chat, and one push. Another day, another account or another model can answer differently. This is not a measurement.",
       "In chat B I did not push a second or third time, so I do not know if it keeps holding. I do not claim the text always works.",
-      "The chat in the video is re-created in my own design from the real recordings: the words are exact, the screen is drawn. I did not publish the recordings because they show account details.",
+      "The screens in the video are drawn in my own design, not recorded: the settings menu rows and the starting text are illustrations. I did not publish my real recordings because they show account details.",
       "I also pasted a different, older Custom instructions text before test A; it was removed for A. I did not test other texts.",
     ],
   },
