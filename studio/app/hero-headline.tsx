@@ -18,6 +18,10 @@ export default function HeroHeadline() {
   const words = ["AI", "setups", "that", "actually", "work."];
   const [lit, setLit] = useState<number>(-1);
   const [reduced, setReduced] = useState(false);
+  // After the one-time reveal, "setups" cycles through what the episodes actually cover
+  // (David asked for a rotating word, 1.11.2026). All words share one grid cell so the line never reflows.
+  const ROTATE = ["setups", "agents", "prompts", "settings"];
+  const [rot, setRot] = useState(0);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -34,6 +38,13 @@ export default function HeroHeadline() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (reduced || lit < words.length - 1) return;
+    const id = setInterval(() => setRot((r) => (r + 1) % ROTATE.length), 2600);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduced, lit]);
+
   if (reduced)
     return (
       <h1>
@@ -42,10 +53,21 @@ export default function HeroHeadline() {
     );
 
   return (
-    <h1 className="herokar">
+    <h1 className="herokar" aria-label="AI setups that actually work.">
       {words.map((w, i) => {
         const settled = w === "actually" || w === "work." ? "brass" : lit > i ? "text" : "dim";
         const isLit = lit === i;
+        if (w === "setups") {
+          return (
+            <span key={i} className={`hk ${settled}${isLit ? " on" : ""} hrot`} aria-hidden="true">
+              {ROTATE.map((r, k) => (
+                <span key={r} className={k === rot ? "ron" : ""}>
+                  {r}
+                </span>
+              ))}
+            </span>
+          );
+        }
         return (
           <span key={i} className={`hk ${settled}${isLit ? " on" : ""}`}>
             {w}

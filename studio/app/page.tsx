@@ -1,11 +1,8 @@
 import Link from "next/link";
 import { catalogue } from "@/lib/site";
-import { fetchLatestBeehiivIssue } from "@/lib/sources";
 import { PROMPTS } from "@/lib/prompts";
 import { ARTICLES } from "@/lib/articles";
 import { reels } from "@/lib/reels";
-import Signup from "./signup";
-import SiteNotify from "./site-notify";
 import SiteNav from "./sitenav";
 import CountUp from "./count-up";
 import IgEmbed from "./ig-embed";
@@ -40,15 +37,15 @@ export default async function Home() {
   // that do have an Instagram post — the opposite of the episode page's own priority
   // (self-hosted file, then Instagram, then YouTube last, see /e/[n]/page.tsx) and
   // exactly the mismatch he flagged directly. Same priority here now.
+  // David, 1.11.2026: the hero shows the newest reel through its Instagram post (or YouTube), never as a
+  // file hosted on the site: the mp4 is pruned from the deployment once an episode is live and the
+  // player came up empty (404). Self-hosted playback stays out of this page on purpose.
   const heroEpisode = live.find((e) => e.ytVideoId || e.igPermalink) ?? null;
-  const heroSelfHosted = heroEpisode
-    ? reels().find((r) => r.kind === "video" && r.episode === heroEpisode.n && r.gate?.passed)
-    : undefined;
+  const heroSelfHosted: { src: string } | undefined = undefined as { src: string } | undefined;
   // A short teaser, not the full browser: the home page is a landing page, not the
   // episode index. He said directly that home reading as the same page as the episode
   // list — no visual break between them — made it feel like there was no home page at all.
   const recent = live.slice(0, 3);
-  const latestIssue = await fetchLatestBeehiivIssue();
   // Named tracks instead of one flat feed — the structural idea a competitor audit
   // flagged directly (Every.to organizes its whole homepage around named verticals
   // rather than an undifferentiated blog list). The tags are real ones already
@@ -84,7 +81,7 @@ export default async function Home() {
           </p>
           <div className="herocta">
             <Link className="cta" href="/episodes">
-              Browse episodes →
+              Browse episodes <span className="arr" aria-hidden="true">→</span>
             </Link>
             <Link href="/about">My story →</Link>
           </div>
@@ -115,20 +112,6 @@ export default async function Home() {
               )}
             </div>
           )}
-          {/* Something concrete to judge before handing over an email — a signup form
-              with nothing behind it is a harder ask than one with a real last issue. */}
-          {latestIssue ? (
-            <a className="issueteaser" href={latestIssue.url} target="_blank" rel="noopener">
-              <span className="ilabel">Last issue</span>
-              <span className="ititle">{latestIssue.title}</span>
-            </a>
-          ) : null}
-          {/* Attributed to the featured hero episode when there is one, instead of
-              the generic "home" bucket — this is the same page most Instagram bio-link
-              traffic actually lands on (see app/latest/route.ts), and a signup here is
-              really a response to that episode, not to the homepage in the abstract. */}
-          <Signup source="home" episode={heroEpisode?.n} />
-          <SiteNotify />
         </div>
         {heroSelfHosted ? (
           <div className="herovid vid-native">
@@ -248,7 +231,6 @@ export default async function Home() {
         <Link href="/episodes">Episodes</Link>
         <Link href="/search">Search</Link>
         <Link href="/about">About</Link>
-        <Link href="/join">Email list</Link>
       </footer>
     </main>
   );

@@ -4,8 +4,6 @@ import { notFound } from "next/navigation";
 import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
 import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor } from "@/lib/reels";
-import Signup from "../../signup";
-import SiteNotify from "../../site-notify";
 import IgEmbed from "../../ig-embed";
 import Reveal from "../../reveal";
 import ExternalIcon from "../../external-icon";
@@ -235,20 +233,12 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         </section>
       ) : null}
 
-      <section>
-        <h2>Get the next one</h2>
-        <p className="sub">One AI setup a week, straight to your inbox.</p>
-        <Signup source="episode" episode={n} />
-        <SiteNotify />
-      </section>
-
       <footer className="sfoot">
         {more.map((x) => (
           <Link key={x.n} href={`/e/${x.n}`}>
             {String(x.n).padStart(2, "0")} · {x.t}
           </Link>
         ))}
-        <Link href="/join">Email list</Link>
       </footer>
     </main>
   );
