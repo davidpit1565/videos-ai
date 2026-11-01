@@ -1247,3 +1247,24 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 }
 
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--faint)}
+
+/* --- Motion additions, David 1.11.2026 (2: rotating word, 3: aurora, 4: arrow button, 6: scroll tilt).
+   Plain CSS, no library; all of it is off under prefers-reduced-motion. --- */
+.site .hrot{display:inline-grid;vertical-align:bottom;overflow:hidden}
+.site .hrot > span{grid-area:1/1;opacity:0;transform:translateY(55%);
+  transition:opacity .45s ease,transform .45s cubic-bezier(.2,.9,.3,1)}
+.site .hrot > span.ron{opacity:1;transform:none}
+.site .cta .arr{display:inline-block;transition:transform .25s cubic-bezier(.2,.9,.3,1)}
+.site .cta:hover .arr{transform:translateX(5px)}
+.site .hero::after{content:"";position:absolute;bottom:-6rem;inset-inline-start:-9rem;
+  width:26rem;height:26rem;border-radius:50%;pointer-events:none;z-index:-1;
+  background:radial-gradient(circle,rgba(226,154,62,.13) 0%,rgba(232,200,106,.05) 48%,rgba(232,200,106,0) 72%);
+  animation:herodrift 38s ease-in-out infinite alternate}
+@keyframes herodrift{from{transform:translate(0,0) scale(1)}to{transform:translate(5rem,-3rem) scale(1.12)}}
+.site .hero .herovid{transform:perspective(900px) rotateX(calc(var(--hero-tilt,0) * 1deg)) scale(calc(1 - var(--hero-tilt,0) * .004));
+  transform-origin:50% 100%;will-change:transform}
+@media (prefers-reduced-motion:reduce){
+  .site .hero::after{animation:none}
+  .site .hrot > span{transition:none}
+  .site .hero .herovid{transform:none}
+}

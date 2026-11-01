@@ -81,7 +81,7 @@ export default async function Home() {
           </p>
           <div className="herocta">
             <Link className="cta" href="/episodes">
-              Browse episodes →
+              Browse episodes <span className="arr" aria-hidden="true">→</span>
             </Link>
             <Link href="/about">My story →</Link>
           </div>
