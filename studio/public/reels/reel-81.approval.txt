@@ -1,0 +1,4 @@
+Manual approval — episode 81 (1.11.2026)
+
+No automatic gate was run on this cut. check.sh, produce.sh, safe_check and qa.py were NOT run; the voice and the music were measured, not heard.
+David watched the 25.3 s cut in the chat on 1.11.2026 (the render with music 1) and said, in his own words, that it is fine and that he wants it published ("זה בסדר, אני רוצה שתפרסם לי את זה"), then told Claude to publish it to Instagram. There is no reel-81.gate.txt, so this approval is the only thing that lets the studio publish it.
