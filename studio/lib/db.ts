@@ -13,7 +13,14 @@ const CANDIDATES = [
   "SUPABASE_DB_URL",
 ] as const;
 
+/** 1.11.2026: the Supabase project ("agently") was deleted, so every connection fails with
+ *  "tenant/user not found" and took down the production build (/rss.xml prerender) and every page
+ *  that reads state. While this is true the app runs exactly as it does with no database URL set.
+ *  When a new database exists: put its URL in Vercel (POSTGRES_URL or DATABASE_URL) and set this to false. */
+const DB_DISABLED = true;
+
 function pick(): { name: string; url: string } | null {
+  if (DB_DISABLED) return null;
   for (const n of CANDIDATES) {
     const v = process.env[n];
     if (v && v.startsWith("postgres")) return { name: n, url: v };
