@@ -51,6 +51,7 @@ import * as track from "../track/impl";
 import * as unlock from "../unlock/impl";
 import * as youtube from "../youtube/impl";
 import * as youtubeAuth from "../youtube/auth/impl";
+import * as ytBackfill from "../yt-backfill/impl";
 import * as youtubeCallback from "../youtube/callback/impl";
 import * as youtubePublish from "../youtube/publish/impl";
 import * as youtubeStatus from "../youtube/status/impl";
@@ -88,6 +89,7 @@ const ROUTES: Record<string, Handlers> = {
   "unlock": unlock,
   "youtube": youtube,
   "youtube/auth": youtubeAuth,
+  "yt-backfill": ytBackfill,
   "youtube/callback": youtubeCallback,
   "youtube/publish": youtubePublish,
   "youtube/status": youtubeStatus,

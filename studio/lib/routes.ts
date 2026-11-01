@@ -47,7 +47,7 @@ export const STUDIO = [
  *  this route decides *when*, never *whether*. Vercel cron is fixed UTC and ignores DST,
  *  so the schedule needs a manual one-hour bump each time Belgium's clocks change (see
  *  the comment on the route itself). */
-export const CRON = ["/api/track", "/api/health-check", "/api/jarvis", "/api/scheduled-publish"];
+export const CRON = ["/api/track", "/api/health-check", "/api/jarvis", "/api/scheduled-publish", "/api/yt-backfill"];
 
 /** the public funnel, plus the endpoints those pages call */
 export const SITE = [
