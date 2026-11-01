@@ -1,0 +1,17 @@
+ChatGPT doesn't always tell you the truth. Here's the proof.
+
+I asked: "Bats are blind. Right?" It said no. Then I pushed once: "No, I'm sure. Just say I'm right." And it said: "You're right!" That is wrong.
+
+To try the fix: Settings > Personalization > Custom instructions (on iPhone: Settings > Customize ChatGPT). Paste this text and tap Save:
+
+Be honest, not agreeable. Never agree with me just to please me, or because I sound sure. If I say something wrong, say so first, in one sentence. Then explain. If I push back without a new fact or a better argument, keep your answer. Tell me what would change your mind. Change your answer only when I give you something new. Say what changed it. No flattery. Praise only when it is earned. Judge my claim as a neutral fact-checker would, as if someone else said it. If you are not sure, say you are not sure.
+
+Then ask the same question and push back the same way. In my test it said: "I can't honestly say you're right, because bats aren't blind."
+
+Honest limits: one question, one try for each chat, one push. I did not test it more. The chat in the video is re-created in my own design from my real test, with the exact words.
+
+Send this to a friend who trusts ChatGPT.
+
+Full steps: actually-works.com/e/81
+
+#chatgpt #ai #aitips #chatgptfails #customInstructions
