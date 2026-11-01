@@ -226,6 +226,9 @@ After watching episode 71 v4 he said it is "much better, much more engaging, I e
 - **Short, punchy lines with exclamation beats on the hook**; reword any word the voice swallows ("decides" → "controls", "Find" → "Tap") instead of fighting the model.
 - **Voice**: exaggeration about 0.78 (hook/beats higher); lines the accent check flags go lower (0.64) and get re-rolled. His own verdict: clearly more excited, still occasional off moments ("Mine was on"). Enthusiasm is capped by the calm reference clip, so say that honestly.
 - **Music**: energetic bed from the real library (now 69 tracks incl. the 54 new Pixabay ones). `FORCE_TRACK=<file.mp3>` pins the track when re-rendering an episode whose music he already liked.
+- **Alive and scroll-stopping from the first frame to the last (David, 1.11.2026).** Something moves or changes on screen at all times; no frame sits still for more than about 2.5 s (the reference reel measures 17% still time, our episode 81 measured 50%). The opening stops the scroll, the payoff or the thing to copy arrives early (within about 10 s), and the end still gives a reason to stay to the last second. Targets measured from the reference reel are in `channel/research-2026-11-01/ref-reels.md`.
+- **Copying a proven structure is fine (David, 1.11.2026).** Take the hook shape and beat order of a viral reel, put our own tested artifact in the middle, never promise what we did not test, never copy invented statistics, credit stories we retell. Reach depends mostly on the account and timing, so a copied script is not a guarantee: log it as an experiment in `channel/experiments.md`.
+- **Later, not now (David, 1.11.2026):** videos about OUR OWN apps start only after we understand what makes our videos spread.
 - **Nothing we add may cover what the screen is showing (David, 18.10.2026).** The `@actually_works.ai` handle sat on the keyboard and the answer in the first full-bleed screen episode. On full-bleed screen episodes the handle is dropped (the platform shows the account name anyway); any overlay (tags, rings, headline bars) must sit where the recording shows nothing the viewer needs. Check every frame for this, not only the safe-area numbers.
 - **Motion is smooth, never robotic — standing for every episode from now on (David, 1.11.2026, after episode 81 v5).** Long eased curves (no linear or snappy easing), continuous overlapping movement, gentle camera/background drift, soft fades and scale instead of abrupt pops, no stepped rhythm (typed text at natural, slightly varying speed), nothing that jumps; settles are soft. Check it by looking at the rendered motion, not only the numbers. Colour stays light (the approved light + lime base) unless he says otherwise.
 - **Two-voice dialogue episodes (72 on):** the second voice comes from voice box as WAV files (resample to 48 kHz mono 16-bit first, or the pipeline plays them double speed), is registered as canonical clips in `audio/voice/profile/canonical-lines.json` and left out of the accent check with `ACCENT_SKIP=<line numbers>` (`check.sh`, `check_accent.py --skip`). The on-screen text is the real output of the real chat; the voice only reads it.
@@ -312,26 +315,7 @@ honest about what we actually know.
   it's ready to actually ship. Don't confuse this with permission to skip disclosure — a
   found problem still gets reported plainly — it removes the need to ask "can I continue?"
   when nothing new is actually being decided.
-- **An episode's accent color has to actually suit that episode's content and its real
-  photos/scenes — not just avoid repeating the immediately prior episode, and not the
-  same exact color twice in one week even with other episodes in between.** Decided
-  30.9.2026, David's own words, after episode 54 shipped with a violet accent
-  (`#9333EA`) that looked muddy and hard to read specifically against that episode's own
-  warm-toned real photos — legible by the numbers, but visually wrong, and only caught
-  because he looked at the actual frames, not because any automated check flagged it.
-  Before locking a color: look at it rendered against every real photo/background the
-  episode actually uses (photo-composite's warm skin tones read very differently than a
-  cool office backdrop, and a color that pops on one can go dead on the other), not just
-  its contrast ratio against the fixed text color. Pick something that suits the topic's
-  actual tone too, not a rotation for its own sake. `export/produce.sh`'s design-variety
-  check enforces the mechanical half of this: it still fails on an exact repeat of the
-  immediately prior shipped episode's color/mood, and now separately fails if the same
-  exact color appears in any *dated* `channel/used-designs.json` entry from the last 7
-  days, even with a different episode in between — add a `"date"` field (`YYYY-MM-DD`,
-  UTC) to every new entry going forward so that check has something to compare against;
-  older undated rows are skipped, not guessed at. The check cannot judge whether a color
-  actually suits the content or a given photo's tones — that part is still a real look,
-  every time, not a box to check off after the fact.
+- **One fixed series identity, with the product's own accent (David, 1.11.2026).** The base never changes: the light page, black heavy type, the layout, components and smooth motion of episode 81's design (spec: `channel/research-2026-11-01/design-system.md`). Only the accent follows the product the episode is about, from its real logo colours (ChatGPT lime-green, Claude orange, and so on); a small per-episode change, not a new look. This replaces the old "a different accent colour every episode" rule. `export/produce.sh`'s design-variety check still fails on a repeated colour and has NOT been updated yet: change it before the next HyperFrames episode goes through it. Look at the real frames; contrast numbers alone are not enough.
 - **`export/produce.sh <episode> <build.html> <duration> [accept_words] [bpm] [mood]` is the
   one pipeline entry point**, script_lint through render, gate, captions-must-exist, the
   design-variety check against the last episode's palette, and shipping the file itself to
@@ -374,29 +358,7 @@ honest about what we actually know.
   shipped in a real episode yet; the next synthetic-style episode built from
   `reel-template.html` is their first real test end to end, per `motion-recipes.md`'s
   own standing.
-- **Standing rule, effective episode 55 (1.10.2026, David's direct instruction): every
-  future episode uses real photo backgrounds — `video/reel-template-photo.html`'s style,
-  not the plain synthetic template — whichever topic or format.** Source photos by web
-  search (Unsplash, licensed for commercial use, no attribution required — the same way
-  episode 54's photos were sourced) or Pinterest, or generate them with the tools
-  available, never a drawn/CSS stand-in. Save every photo used under
-  `channel/assets/ep<N>-scene-*.jpg`, one file per scene, so the library of real photos
-  grows episode over episode — don't discard them after rendering. The template's own
-  mandatory face-detection pre-check (`mcp__Adobe__image_select_subject` +
-  `export/detect_photo_safe_zone.py`) is not optional — run it for real on every photo
-  with a person in it before finalizing headline placement, the same way
-  `check_setup_guide.py` is a hard gate, not a suggestion. If a photo's detected face
-  genuinely conflicts with the template's fixed headline zone and a re-crop can't clear
-  it, the template's own documented exception (move that one scene's zone to the tool's
-  own measured recommendation, never a guessed number) is the fix — see episode 55's
-  `channel/episode-55-script.md` for a full worked example, including a second,
-  independent bug the same round: a logo badge built as an absolutely-positioned bottom
-  element landed in the platform's own unsafe bottom band — the template's existing
-  in-flow citation-label pattern (episode 52's `.dreamlabel`, inside `.pad`'s normal
-  flow) is what actually keeps this kind of element safe; copying the visual idea
-  without the structural placement reintroduces a bug already solved once. Always
-  finish with `node export/safe_check.js` — a photo-composite build is not exempt from
-  the same safe-area gate every other build runs.
+- **No real photo backgrounds (David, 1.11.2026; retires the rule from episode 55).** Episodes use the drawn light style of episode 81. Photos are allowed only inside a card or phone when they ARE the proof. The real-logo and real-product-screenshot rules stay as written above. The photo-composite template and its face pre-check stay in the repo for anyone who wants a photo episode.
 - **Standing rule, effective episode 55 (1.10.2026, David's direct instruction): keep
   every spoken line in plain, natural, everyday language — not elevated or formal
   wording — across every future episode, not just when a line feels obviously stiff.**
@@ -466,8 +428,7 @@ sat 413px inside it until it was measured.
   common mistake, and ours repeated the scene's own headline word for word.
 - Master to -14 LUFS, true peak -1 dBTP (YouTube turns anything louder down and never
   turns quiet content up). Music sits 18-20 dB under the narration and ducks.
-- Length: 45-75s. Do not go under 30s. Buffer's 1.1M-video study and Socialinsider's
-  11M-post set both put longer above shorter for this kind of content.
+- Length: the shortest cut that holds the real content, about 25-45 s, no padding, and test it (David, 1.11.2026). The old "45-75 s" citation could not be verified: Buffer's length study was not found, and Socialinsider's 9.8M-Reels set (2026) is correlation only and puts 45-60 s highest by median views. Measure each episode's retention at 2 s, 5 s and the end (skip rate, average watch time) instead of trusting a number.
 
 ## Before a reel is sent
 
