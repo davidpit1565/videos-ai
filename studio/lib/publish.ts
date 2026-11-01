@@ -321,7 +321,10 @@ export type EpisodePublishResult =
  *  already marked `live` with a real `igMediaId` is refused outright rather than
  *  quietly published again. State is updated in the same request that publishes,
  *  not left for a later best-effort pull to reconstruct by matching text. */
-export async function publishEpisode(episodeNumber: number): Promise<EpisodePublishResult> {
+export async function publishEpisode(
+  episodeNumber: number,
+  opts?: { skipFacebook?: boolean },
+): Promise<EpisodePublishResult> {
   const state = await loadState();
   if (!state) return { ok: false, reason: "אין מסד נתונים מוגדר" };
   const row = state.episodes.find((e) => e.number === episodeNumber);
@@ -354,7 +357,8 @@ export async function publishEpisode(episodeNumber: number): Promise<EpisodePubl
   if (!reel.caption?.trim()) return { ok: false, reason: `אין קובץ כיתוב לפרק ${episodeNumber} — לא מפרסם בלי כיתוב` };
 
   const ig = await publishToInstagram(reel.file, reel.caption);
-  const fb = ig.reel.ok ? await publishToFacebookBoth(reel.file, reel.caption) : null;
+  // David can ask for Instagram only (1.11.2026, episode 81: he posts to Facebook and Stories by hand).
+  const fb = ig.reel.ok && !opts?.skipFacebook ? await publishToFacebookBoth(reel.file, reel.caption) : null;
 
   // Write the real outcome into state from the same request that published, rather than
   // waiting on the next /api/track pull to reconstruct it by matching caption text —
