@@ -37,13 +37,11 @@ export default async function Home() {
   // that do have an Instagram post — the opposite of the episode page's own priority
   // (self-hosted file, then Instagram, then YouTube last, see /e/[n]/page.tsx) and
   // exactly the mismatch he flagged directly. Same priority here now.
-  // David, 1.11.2026: no hero video for now (the old one 404s and showed an empty player); a fixed
-  // video will be built for this slot later. While this is false the hero shows the setup.log panel.
-  const HERO_VIDEO = false;
-  const heroEpisode = HERO_VIDEO ? (live.find((e) => e.ytVideoId || e.igPermalink) ?? null) : null;
-  const heroSelfHosted = heroEpisode
-    ? reels().find((r) => r.kind === "video" && r.episode === heroEpisode.n && r.gate?.passed)
-    : undefined;
+  // David, 1.11.2026: the hero shows the newest reel through its Instagram post (or YouTube), never as a
+  // file hosted on the site: the mp4 is pruned from the deployment once an episode is live and the
+  // player came up empty (404). Self-hosted playback stays out of this page on purpose.
+  const heroEpisode = live.find((e) => e.ytVideoId || e.igPermalink) ?? null;
+  const heroSelfHosted: { src: string } | undefined = undefined as { src: string } | undefined;
   // A short teaser, not the full browser: the home page is a landing page, not the
   // episode index. He said directly that home reading as the same page as the episode
   // list — no visual break between them — made it feel like there was no home page at all.
