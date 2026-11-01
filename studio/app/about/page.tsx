@@ -105,7 +105,6 @@ export default async function About() {
 
       <footer className="sfoot">
         <Link href="/">Episodes</Link>
-        <Link href="/join">Email list</Link>
       </footer>
     </main>
   );

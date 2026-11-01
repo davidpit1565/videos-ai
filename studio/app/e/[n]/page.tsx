@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
 import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor } from "@/lib/reels";
-import Signup from "../../signup";
 import SiteNotify from "../../site-notify";
 import IgEmbed from "../../ig-embed";
 import Reveal from "../../reveal";
@@ -237,8 +236,7 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
 
       <section>
         <h2>Get the next one</h2>
-        <p className="sub">One AI setup a week, straight to your inbox.</p>
-        <Signup source="episode" episode={n} />
+        <p className="sub">One tap, and your phone tells you when the next episode is out.</p>
         <SiteNotify />
       </section>
 
@@ -248,7 +246,6 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
             {String(x.n).padStart(2, "0")} · {x.t}
           </Link>
         ))}
-        <Link href="/join">Email list</Link>
       </footer>
     </main>
   );
