@@ -22,9 +22,9 @@ export const maxDuration = 120;
  *  happened to episode 45 minutes after the legitimate cron had already published it. */
 export async function POST(req: Request) {
   try {
-    const { episode } = (await req.json()) as { episode?: number };
+    const { episode, skipFacebook } = (await req.json()) as { episode?: number; skipFacebook?: boolean };
     if (!episode) return NextResponse.json({ ok: false, reason: "חסר מספר פרק" }, { status: 400 });
-    const result = await publishEpisode(episode);
+    const result = await publishEpisode(episode, { skipFacebook: skipFacebook === true });
     if (!result.ok) return NextResponse.json(result, { status: 400 });
     // Same response shape the frontend (renders/[file]/publish-buttons.tsx) already
     // expects: {reel, story, facebook, facebookPage}. `story` stays null — see the
