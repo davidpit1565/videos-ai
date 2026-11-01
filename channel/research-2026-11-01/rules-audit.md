@@ -97,7 +97,7 @@ Status key: KEEP-EVERY-VIDEO, KEEP-SITUATIONAL, OBSOLETE, CONFLICT, DUPLICATE. "
 | R73 | Header: David 18, Flemish Belgium, employed elsewhere | 3-5 | undated | CONFLICT | `SUNDAY.md` section 5.5: repo `davidpit1565/videos-ai` is public, CLAUDE.md "details age, location and workplace"; recommendation to make private, "waiting for a decision" | kept as is; [ASK 9] |
 | R74 | Success bar 5,000-10,000 views per reel | not in CLAUDE.md | 31.10, David, `style-research-31-10.md` item 5; NEXT_SESSION 31.10 | KEEP-EVERY-VIDEO (MISSING) | | added |
 
-Count: 76 rows (R20b, R20c, R24b, R40b added). Merged/duplicated: R20/R20b/R51, R21/R31, R32/R53, R37/R38. OBSOLETE count: 0 by the strict method (no rule was explicitly cancelled by David in any file); R61 and R45 are the closest and are marked CONFLICT (strong).
+Count: 78 rows (R20b, R20c, R24b, R40b added). Merged/duplicated: R20/R20b/R51, R21/R31, R32/R53, R37/R38. OBSOLETE count: 0 by the strict method (no rule was explicitly cancelled by David in any file); R61 and R45 are the closest and are marked CONFLICT (strong).
 
 ## 2. What the proposal changes (every change with source)
 1. Removed to history, content unchanged: stories behind R08, R09 (screenshot clause), R10, R25, R26, R35, R36, R40 list, R43 failed-deploy hashes, R45, R49, R50, R53 incident list, R55, R56, R67.
