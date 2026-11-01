@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
 import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor } from "@/lib/reels";
-import SiteNotify from "../../site-notify";
 import IgEmbed from "../../ig-embed";
 import Reveal from "../../reveal";
 import ExternalIcon from "../../external-icon";
@@ -233,12 +232,6 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
           ))}
         </section>
       ) : null}
-
-      <section>
-        <h2>Get the next one</h2>
-        <p className="sub">One tap, and your phone tells you when the next episode is out.</p>
-        <SiteNotify />
-      </section>
 
       <footer className="sfoot">
         {more.map((x) => (

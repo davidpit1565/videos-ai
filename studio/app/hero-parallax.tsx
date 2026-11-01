@@ -29,10 +29,6 @@ export default function HeroParallax() {
       if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
       const y = Math.max(-40, Math.min(40, window.scrollY * -0.15));
       hero!.style.setProperty("--hero-px", `${y.toFixed(1)}px`);
-      // Container-scroll effect (David, 1.11.2026): the hero video starts leaning back and
-      // lies flat once the visitor has scrolled ~250px.
-      const tilt = Math.max(0, 10 - window.scrollY / 25);
-      hero!.style.setProperty("--hero-tilt", tilt.toFixed(2));
     }
     function onScroll() {
       if (ticking) return;

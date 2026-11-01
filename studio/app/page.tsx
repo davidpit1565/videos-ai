@@ -3,7 +3,6 @@ import { catalogue } from "@/lib/site";
 import { PROMPTS } from "@/lib/prompts";
 import { ARTICLES } from "@/lib/articles";
 import { reels } from "@/lib/reels";
-import SiteNotify from "./site-notify";
 import SiteNav from "./sitenav";
 import CountUp from "./count-up";
 import IgEmbed from "./ig-embed";
@@ -38,7 +37,10 @@ export default async function Home() {
   // that do have an Instagram post — the opposite of the episode page's own priority
   // (self-hosted file, then Instagram, then YouTube last, see /e/[n]/page.tsx) and
   // exactly the mismatch he flagged directly. Same priority here now.
-  const heroEpisode = live.find((e) => e.ytVideoId || e.igPermalink) ?? null;
+  // David, 1.11.2026: no hero video for now (the old one 404s and showed an empty player); a fixed
+  // video will be built for this slot later. While this is false the hero shows the setup.log panel.
+  const HERO_VIDEO = false;
+  const heroEpisode = HERO_VIDEO ? (live.find((e) => e.ytVideoId || e.igPermalink) ?? null) : null;
   const heroSelfHosted = heroEpisode
     ? reels().find((r) => r.kind === "video" && r.episode === heroEpisode.n && r.gate?.passed)
     : undefined;
@@ -112,7 +114,6 @@ export default async function Home() {
               )}
             </div>
           )}
-          <SiteNotify />
         </div>
         {heroSelfHosted ? (
           <div className="herovid vid-native">
