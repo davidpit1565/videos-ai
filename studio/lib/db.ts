@@ -62,8 +62,28 @@ export const hasDb = () => pick() !== null;
 /** The variable name only — never the value, which holds the password. */
 export const dbVar = () => pick()?.name ?? null;
 
+/** Schema statements (CREATE ... IF NOT EXISTS) race when Next prerenders several pages at once
+ *  against an empty database: Postgres answers 23505 / 42P07 for the loser even with IF NOT EXISTS
+ *  (the 1.11.2026 production build failed on exactly this). Retry a few times; the table exists by then. */
+async function ddl(p: Pool, sql: string): Promise<void> {
+  for (let i = 0; i < 4; i++) {
+    try {
+      await p.query(sql);
+      return;
+    } catch (e) {
+      const code = (e as { code?: string }).code;
+      if (code === "23505" || code === "42P07" || code === "42710") {
+        await new Promise((r) => setTimeout(r, 200 * (i + 1)));
+        continue;
+      }
+      throw e;
+    }
+  }
+  await p.query(sql);
+}
+
 async function ensure(p: Pool) {
-  await p.query(`CREATE TABLE IF NOT EXISTS studio_state (
+  await ddl(p, `CREATE TABLE IF NOT EXISTS studio_state (
     id int PRIMARY KEY DEFAULT 1,
     data jsonb NOT NULL,
     updated_at timestamptz NOT NULL DEFAULT now(),
@@ -77,13 +97,14 @@ async function ensure(p: Pool) {
  *  cron run downloaded all of it — 9.35 GB of Supabase egress against a 5 GB free quota.
  *  Nothing is ever overwritten or deleted here either (see ReelInsightSnapshot). */
 async function ensureSnapshots(p: Pool) {
-  await p.query(`CREATE TABLE IF NOT EXISTS reel_insight_snapshots (
+  await ddl(p, `CREATE TABLE IF NOT EXISTS reel_insight_snapshots (
     id text PRIMARY KEY,
     episode_number int NOT NULL,
     collected_at timestamptz NOT NULL,
     data jsonb NOT NULL
   )`);
-  await p.query(
+  await ddl(
+    p,
     `CREATE INDEX IF NOT EXISTS reel_insight_snapshots_ep
      ON reel_insight_snapshots (episode_number, collected_at DESC)`,
   );
@@ -218,7 +239,7 @@ export async function saveState(
 export async function ensureSubscribers(): Promise<Pool | null> {
   const p = db();
   if (!p) return null;
-  await p.query(`CREATE TABLE IF NOT EXISTS subscribers (
+  await ddl(p, `CREATE TABLE IF NOT EXISTS subscribers (
     email text PRIMARY KEY,
     created_at timestamptz NOT NULL DEFAULT now(),
     source text,
@@ -286,7 +307,7 @@ export type ClaudeSession = {
 };
 
 async function ensureClaudeUsage(p: Pool) {
-  await p.query(`CREATE TABLE IF NOT EXISTS claude_sessions (
+  await ddl(p, `CREATE TABLE IF NOT EXISTS claude_sessions (
     session_id text PRIMARY KEY,
     project text,
     model text,
@@ -380,7 +401,7 @@ export async function subscribersByEpisode(): Promise<Map<number, number>> {
  *  personal-work-studio's own rule: a finding a human marked resolved must never come
  *  back from the same source text being seen again in a later scan. */
 async function ensureHealthResolved(p: Pool) {
-  await p.query(`CREATE TABLE IF NOT EXISTS health_resolved (
+  await ddl(p, `CREATE TABLE IF NOT EXISTS health_resolved (
     finding_id text PRIMARY KEY,
     resolved_at timestamptz NOT NULL DEFAULT now()
   )`);
