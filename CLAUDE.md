@@ -12,6 +12,7 @@ the free one — the full reasoning is in `plan/business-model.html`.
   languages, the boring path over the clever one, optional steps marked as optional. When he
   says he did not understand, the step assumed something — replace the route, do not repeat
   it louder.
+- **Spread the work over parallel agents (David, 1.11.2026).** When a job splits into independent parts (research, build, voice, checks), start agents for each part at once instead of doing them one after another. Limits that stay: one voice/TTS render at a time (each needs 4-5 GB, parallel ones were killed for memory), no Firecrawl while its quota is high, no agent publishes, merges or touches secrets, and every agent report is checked before it is passed on as fact.
 - **Say the honest thing once, then do the work.** He acts on straight answers; he has
   redirected several times when told a plan would not hold.
 
@@ -315,7 +316,7 @@ honest about what we actually know.
   it's ready to actually ship. Don't confuse this with permission to skip disclosure — a
   found problem still gets reported plainly — it removes the need to ask "can I continue?"
   when nothing new is actually being decided.
-- **One fixed series identity, with the product's own accent (David, 1.11.2026).** The base never changes: the light page, black heavy type, the layout, components and smooth motion of episode 81's design (spec: `channel/research-2026-11-01/design-system.md`). Only the accent follows the product the episode is about, from its real logo colours (ChatGPT lime-green, Claude orange, and so on); a small per-episode change, not a new look. This replaces the old "a different accent colour every episode" rule. `export/produce.sh`'s design-variety check still fails on a repeated colour and has NOT been updated yet: change it before the next HyperFrames episode goes through it. Look at the real frames; contrast numbers alone are not enough.
+- **One fixed series identity, with the product's own accent (David, 1.11.2026).** The base never changes: the light page, black heavy type, the layout, components and smooth motion of episode 81's design (spec: `channel/research-2026-11-01/design-system.md`). Only the accent and the small details follow the product or platform the episode is about (David: ChatGPT, Claude, Amazon, ...): its real logo colours as the accent (ChatGPT lime-green, Claude orange, Amazon orange), its real icons and marks as the badges and decorations, and drawn UI in that product's feel; a small per-episode change on the same base, not a new look. The agent working on an episode decides the details itself. This replaces the old "a different accent colour every episode" rule. `export/produce.sh`'s design-variety check still fails on a repeated colour and has NOT been updated yet: change it before the next HyperFrames episode goes through it. Look at the real frames; contrast numbers alone are not enough.
 - **`export/produce.sh <episode> <build.html> <duration> [accept_words] [bpm] [mood]` is the
   one pipeline entry point**, script_lint through render, gate, captions-must-exist, the
   design-variety check against the last episode's palette, and shipping the file itself to
