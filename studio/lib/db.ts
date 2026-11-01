@@ -17,7 +17,7 @@ const CANDIDATES = [
  *  "tenant/user not found" and took down the production build (/rss.xml prerender) and every page
  *  that reads state. While this is true the app runs exactly as it does with no database URL set.
  *  When a new database exists: put its URL in Vercel (POSTGRES_URL or DATABASE_URL) and set this to false. */
-const DB_DISABLED = true;
+const DB_DISABLED = false;
 
 function pick(): { name: string; url: string } | null {
   if (DB_DISABLED) return null;
