@@ -63,9 +63,9 @@ call asked for. Check the `totalCount` in the response metadata.
    this.
 6. **Pattern pass.** Count the formats among the kept posts, look at the first
    line of each caption (the hook), and check the bait flag. Example seen on
-   2026-11-01: almost every post of one AI-tools account opened with
-   "Comment X and I'll send you…". That is a repeated format to note, not a
-   reason to copy the bait.
+   2026-11-01: all 30 posts pulled from each of two AI-tools accounts (60 of 60)
+   opened with "Comment X and I'll send you…". That is a repeated format to
+   note, not a reason to copy the bait.
 7. **Break down the top 3–5** with the `breakdown` skill (user-level skill, not
    in this repo; it uses `video-download` and `video-analysis`). Pass the post
    URLs.
@@ -85,6 +85,11 @@ call asked for. Check the `totalCount` in the response metadata.
   computes it from the two counts so the scale cannot be mixed up.
 - Big accounts have low ratios even when their videos are good. Compare within
   a similar follower range where possible.
+- Calibration from the two handle tests (2026-11-01). On a 31k-follower account
+  the top post reached 6.7x and only 4 of 30 posts passed 3x. On a 1.3M-follower
+  account the top reached 6.5x. So with the default `--min-ratio 3`, expect only
+  a handful of posts per account. Lower the threshold only with an explicit note
+  in the report.
 - Recent posts matter more. Check the `published` column; posts from several
   months ago may reflect an old trend.
 
