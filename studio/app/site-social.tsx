@@ -1,4 +1,3 @@
-import ExternalIcon from "./external-icon";
 
 /** Real profile links, once — every public page gets the same row, and changing an
  *  account only means changing it here. Icons are plain inline SVGs, no icon library.
@@ -49,11 +48,6 @@ export function SocialIcons({ size = 18 }: { size?: number }) {
 export default function SiteSocial() {
   return (
     <div className="ssocial-wrap">
-      <a href="https://agently-jet.vercel.app" className="ssocial-crosslink" target="_blank" rel="noopener noreferrer">
-        <span className="ssocial-crosslink-label">Also building</span>
-        <span className="ssocial-crosslink-name">Agently</span>
-        <span className="ssocial-crosslink-desc">— the catalog for AI agents <ExternalIcon /></span>
-      </a>
       <div className="ssocial" aria-label="Social links">
         {LINKS.map((l) => (
           <a key={l.name} href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.name}>
