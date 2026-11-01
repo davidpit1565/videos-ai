@@ -1,0 +1,568 @@
+# Rules history (moved out of CLAUDE.md, 1.11.2026)
+
+Nothing here was deleted from the record. Section 1 summarises the stories behind the rules that were shortened or moved; section 2 is the complete, unmodified previous `CLAUDE.md` (540 lines), so every sentence is still readable. Status of each rule: `rules-audit.md`.
+
+## 1. Stories and context, by rule ID (summaries; source in section 2)
+- R08 verify product: episode 18 was first built around "ChatGPT agent mode", already retired for "ChatGPT Work"; caught only because it was checked.
+- R09 logos: 30.9.2026, David pointed at episode 52's real ChatGPT SVG; applies whichever visual style. The clause about taking a real screenshot instead of an AI stand-in conflicts with episode 81's drawn chat (decision 31.10 night).
+- R10 logo badge: 5.10.2026, episode 58 shipped a caption under the WhatsApp badge, copied into 55-57 (not retro-fixed).
+- R12 topic from data: 5.9.2026, episodes 2 (623 views) and 7 (372) both hit the "n8n ai agent tutorial" keyword (233k median monthly searches).
+- R17 hook rotation: 2.9.2026, flagged twice in one day as flat; `hooks-guide.md` holds taxonomy, dry-sentence test and two rejected drafts.
+- R19 packaging: 6.10.2026, episode 55 (Alexa, off-topic) 260 views, 0 followers/shares/saves; episodes 44 and 48 (177/185) built the way proposed.
+- R24 tomorrow-line: 6.10.2026; first wording "Tomorrow: <topic>. Follow so you see it." rejected by David as "childish and not professional"; revised to a flowing sentence; episode 54 once shipped the two closing lines reversed.
+- R25 closing scenes: 30.9-1.10.2026, a cross-episode canon photo was rejected by David ("the same thing, not according to the video"); episode 54 points at its own photo; a standing design was left open.
+- R26 static Ken Burns on repeated photo: 1.10.2026, episode 54 scenes 2-3 and 5-6.
+- R43 deploys: 21.10.2026 episode 74 v4.2 deploy failed silently for two hours; failed deploys also on 94ebed4, f90ee52, 506a793. 1.11.2026: cause of the later failures was a deleted Supabase project (`SUNDAY.md` 1.11), not Vercel quota.
+- R45 accent colour: 30.9.2026, episode 54's violet `#9333EA` looked muddy on warm photos; `produce.sh` fails on a repeat of the last episode's colour or any dated entry in the last 7 days (`channel/used-designs.json`).
+- R49 motion recipes: six recipes extracted to `export/motion-kit.js`; recipe 6 shipped on episode 54 (a plain colour toggle, David: "the simplest thing"); `video/reel-template.html`, `video/reel-template-photo.html`; details `channel/motion-recipes.md`.
+- R50 photo backgrounds: effective episode 55 (1.10.2026); sources Unsplash/Pinterest; face pre-check (`mcp__Adobe__image_select_subject`, `export/detect_photo_safe_zone.py`); episode 55's logo badge landed in the unsafe band.
+- R53 music: three incidents (episodes 32/33 silent fallback to synthesized music, 29 "tense" track read as absent, 54 round 2 re-renders without the real library; plus three versions with no music because the last argument was dropped).
+- R63 voice quality: 21.10.2026, episode 74's hook swung 12.1 semitones and ended -4.4 below median; the first music track was an 85% sub-bass drone.
+- R67 Vercel "Skip deployments" toggle: 3-4.9.2026, ten merges produced no deploy.
+- R35/R36 dialogue episodes: episode 72 style approved; moving per-word box on episode 74 rejected ("not good, too prominent").
+- R55 long cut, R56 brass flash-card sync: legacy of the early HTML pipeline.
+
+## 2. Previous CLAUDE.md, complete and unmodified (copied 1.11.2026)
+
+````markdown
+# Actually Works — how this repo works
+
+An AI-content channel and an AI-services business, run by David: 18, based in Flemish
+Belgium, employed elsewhere and building this alongside. Two engines, and the paid one feeds
+the free one — the full reasoning is in `plan/business-model.html`.
+
+## Talking to him
+
+- **He writes Hebrew, the videos are English.** Answer in Hebrew. Content, captions and
+  scripts are English (4–5 a week) plus Flemish (1 a week, for clients).
+- **Explain by the `explain-steps` skill.** Numbered clicks, interface labels in both
+  languages, the boring path over the clever one, optional steps marked as optional. When he
+  says he did not understand, the step assumed something — replace the route, do not repeat
+  it louder.
+- **Say the honest thing once, then do the work.** He acts on straight answers; he has
+  redirected several times when told a plan would not hold.
+
+## Say it out loud when the work turns mechanical
+
+He asked to be reminded, so this is the reminder and it is not optional: **when a stretch of
+work is mechanical, tell him to switch to Sonnet 5 for it — before starting, in one line.**
+
+Mechanical means the answer is already decided and what remains is execution: writing an
+episode script from the slate's template, publishing, caption edits, doc updates, running a
+build and reporting the number, renaming things. Sonnet 5 is roughly 2.5x cheaper and the
+difference does not show on that work.
+
+Keep Opus for the opposite: debugging, architecture calls, and anything where being wrong
+costs him a day. The three most expensive catches on 21.8 were all of that kind — a metric
+that measured position instead of a phoneme, a check that ran before the transform it was
+protecting against, and a diagnostic asserting the presence of a variable that was absent.
+None was caught by a tool.
+
+Two things he should not be told to do, because they do not help: `/fast` is Opus with faster
+output, not a cheaper tier; and switching mid-session does not reclaim what the session
+already accumulated. **The bigger lever is session length** — on 21.8 a three-day session had
+read 194M cached tokens against 572k actually written, a factor of 340. A fresh session
+pointed at `SUNDAY.md` costs far less than a tier change. Say that too, when a session has
+been running for days.
+
+## העברת סשנים (25.10.2026, David)
+כשהסשן ארוך או שמשימה גדולה הסתיימה: (1) עדכן את `SUNDAY.md` ואת `NEXT_SESSION_PROMPT.md` (מצב והדבר הבא); (2) פתח בעצמך סשן חדש עם הכלי `create_session` (מקור: הריפו הזה, ענף main), הפרומפט הקבוע: "קרא את CLAUDE.md, SUNDAY.md ו-NEXT_SESSION_PROMPT.md במלואם ובצע את 'הדבר הבא' בראש NEXT_SESSION_PROMPT.md", ועוד הוראה מיוחדת אם יש; (3) אמור ל-David בעברית איך קוראים לסשן החדש ומה הועבר אליו. ברירת מחדל: הסשן החדש קורא ומדווח ולא פועל עד ש-David אומר, כי כל פעולה עולה לו קרדיטים. הסשן החדש נראה ברשימת הסשנים באפליקציה, לא בצ'אט הנוכחי. אסור למחוק או לארכב סשן שיש לו תזכורת מתוזמנת או ענף לא ממוזג. סשן שנפל בגלל גבול ההקשר לא מעביר לבד: לכן מעבירים בצורה יזומה.
+
+## Rules that do not bend
+
+- **Never fabricate.** No invented clients, testimonials, results, prices or metrics. If a
+  number is an assumption, it says ASSUMPTION next to it. If research could not confirm
+  something, it is listed as unconfirmed, not smoothed over.
+- **Before writing any script, verify the product is still real — every time, automatically,
+  not just when something feels off.** Episode 18 was first built around "ChatGPT agent
+  mode," a name OpenAI had already retired days earlier in favor of "ChatGPT Work" — caught
+  before shipping, but only because it got checked, not because checking was already the
+  default. AI-tool features and names change fast enough that a script written from memory
+  or an old episode's assumptions can be stale within weeks. A live web search for the
+  current name, current behavior and current limits comes before the first line is written,
+  not after a version is already built.
+- **Every app, site, or product an episode names gets its real logo or icon on screen —
+  standing, every episode, whichever visual style it uses.** Decided 30.9.2026, David's
+  direct instruction, pointing at episode 52's real ChatGPT icon as the example: a small
+  detail, but it visibly lifted that episode and should not have been situational — it
+  applies every time a script names something with a real, findable brand mark, not just
+  when it happens to come up. This holds whether or not the episode uses background
+  screenshots or real-photo compositing — a fully synthetic scene still gets the real logo,
+  not a drawn stand-in. Sourcing is not guesswork: search the web and pull the actual current
+  logo/icon (official site, Wikimedia Commons, the product's own press/brand page) the same
+  way episode 52's ChatGPT SVG was sourced — never invent, redraw, or approximate a brand
+  mark from memory. When a real product screenshot is the more natural fit than a logo alone
+  (showing an actual interface, not just naming a brand), get that screenshot directly —
+  live web search, open the real page or app, capture the actual screen — rather than
+  treating a generic AI-generated stand-in as good enough.
+- **A logo badge is the icon alone — never a text caption underneath it.** Decided
+  5.10.2026, David's direct instruction, after episode 58 shipped with a small
+  uppercase label ("whatsapp · photo touch-up · march 2026") under the WhatsApp logo
+  badge — a pattern copied as-is into episodes 55, 56 and 57 too, none of which were
+  asked for a caption either. The logo mark itself already identifies the product; the
+  text underneath it is restating what the viewer can already see. Fixed in episode
+  58's build (the `.logolabel` div/CSS/JS removed from `reel-58.html/-timed/-kar`) —
+  episodes 55-57 were not touched retroactively, since that wasn't asked for, but they
+  carry the same pattern and are candidates if he wants it applied there too.
+- **Measure, don't guess.** Demand comes from real view counts (`channel/demand-report.md`),
+  voice decisions from measurement *and* his ear — and when they disagree, his ear wins and
+  the disagreement gets written down.
+- **Every episode's topic is chosen from the data, not picked fresh each time — standing
+  from episode 25 on.** Before writing a script: check `channel/demand-report.md` for
+  measured search demand, `content-memory.md` for which past hooks/formats actually
+  performed (the studio's real view counts, per-episode), and pick the highest-demand,
+  best-fitting angle that hasn't already been covered from that exact angle — not just
+  "what sounds interesting." Decided 5.9.2026 after episode 2 (agent-vs-chatbot,
+  623 views) and episode 7 (n8n agent reliability, 372 views) turned out to be the two
+  strongest performers by a wide margin, both landing on the single highest-demand
+  keyword in the report ("n8n ai agent tutorial," 233k median monthly searches) — the
+  data already pointed at the next topic before anyone had to guess at one.
+- **Secrets live only in Vercel environment variables.** Never in chat, never in git. The
+  publication id is public; the API key is not.
+- **Nothing ships untested silently.** If something was built but not run — the n8n workflow,
+  for instance — the file says so in plain language.
+- **Every episode ships with a full, exact setup path the viewer can actually follow —
+  standing, not optional, from episode 21 on.** Decided 2.9.2026, alongside choosing the
+  "live test / escalate until it breaks" format for episode 21: watching isn't enough, a
+  viewer has to be able to install or replicate whatever the episode shows on their own
+  side by the end of it. Write it per `explain-steps` — numbered clicks, English interface labels only (David, 16.10.2026:
+  NO Hebrew on any visitor-facing page; `export/check_setup_guide.py` fails on it. Labels in both languages are for chat answers to him, not for the site), the boring path, what happens after each step — and it goes on the
+  episode's own site page (`/e/N`), not just spoken narration a viewer can't pause and
+  copy from. Applies to every future reel/episode, whichever content pattern it uses.
+  Enforced, not just written down: `export/produce.sh` runs `export/check_setup_guide.py`
+  before shipping and refuses to ship an episode with no `studio/lib/articles.ts` entry, or
+  one whose `steps[]` is missing or placeholder-thin — a caption existing was already a hard
+  stop for the same reason, this closes the matching gap for the setup guide itself.
+- **Evidence check on hooks, 20.10.2026: run the `viral-hook-lab` skill (`.claude/skills/viral-hook-lab/`) when writing an opening line.** Research (`channel/hook-research-20-10.md`) found no proven hook formula and no traceable per-second hook data, so every hook is a hypothesis: log its type and its 72-hour readings (reach, retention, sends, saves) in `content-memory.md`, and do not cite untraceable statistics ("65% leave in 3 seconds", the Zeigarnik effect, the 8-second attention span).
+- **Read `channel/hooks-guide.md` before writing any episode's opening line. Never repeat
+  the same hook type two episodes in a row, and never ship a hook that only passes the
+  "dry-sentence test" by accident.** Decided 2.9.2026, after he flagged twice, in the same
+  day, that the opening line kept reading as a flat, informational sentence — even after a
+  type-rotation fix, the replacement line still failed on tone. A hook is not just a true,
+  on-topic first sentence: it has to create real pull (fear, identity, stakes, curiosity),
+  not just state a fact. `hooks-guide.md` has the sourced taxonomy, the dry-sentence test
+  itself, a log of which type each recent episode used, and the two rejected drafts that
+  failed this exact check — read those before assuming a new draft clears the bar.
+- **The viewer has to feel the problem in the first 3 seconds, not just understand it.**
+  Decided 30.9.2026, David's own words: understanding a claim intellectually is not the
+  same as feeling it — the hook has to land as something the viewer recognizes happening
+  to their own body/life/people they care about, right away, or there's no real reason not
+  to keep scrolling. This is the actual mechanism behind "create real pull" in the rule
+  above and the "sendability" test elsewhere in this file: a viewer who feels the problem
+  is the one who stops, watches for the solution, and is the one who forwards it to a
+  specific person it could actually happen to. Check every hook against this before
+  assuming a checkable-fact opener (per the "500+ club" finding) is automatically enough —
+  a checkable fact that doesn't land in the gut still isn't a strong hook.
+- **Package every episode as an everyday thing that's already happening to the viewer —
+  with AI as the substance inside it, never swapped out for a non-AI topic.** Decided
+  6.10.2026, David's go-ahead after the episode 55 analysis (`content-memory.md`): 55
+  (Alexa/Amazon — not really an AI topic, shipped by mistake) got 260 views, ~2x the
+  run's median, from a second wave of non-followers — but gained 0 followers, 0 shares,
+  0 saves. Reach from an off-topic video builds an audience that doesn't want what this
+  channel or the business offers. So take the packaging, not the topic: a product nearly
+  everyone owns or uses (phone, WhatsApp, Google, a smart speaker, their kid's phone), a
+  short hook (~7-12 words) stating something that is already happening to them right now,
+  and the AI mechanism as the actual content. Episodes 44 and 48 (177/185, both AI) were
+  already built this way. This is a working direction, not a confirmed pattern — one
+  outlier episode is not proof; `channel/experiments.md` tracks the test.
+- **Every episode must be fully understandable, to literally anyone, from the first second
+  — not just to a viewer already into AI, and not only by the time the video ends.**
+  Decided 24.9.2026, David's own words: this applies to every future video from now on, not
+  just one episode. The hook itself has to carry enough plain-language context that someone
+  with zero prior exposure to the topic, the company, or AI in general immediately knows
+  what's being claimed — a named feature or product gets explained in the same breath it's
+  named, never assumed familiar. This is a stricter, standing version of the comprehension
+  check already described in `hooks-guide.md`'s dry-sentence test: check the *entire* script
+  against it, not just the opening line, and check it from second one, not "does it resolve
+  by the end." A script that only makes sense in hindsight, or only to a technical/AI-literate
+  viewer, fails this regardless of how strong its hook or claim otherwise is.
+
+## The voice
+
+- Profile: `audio/voice/profile/` — reference chosen by his ear, settings locked in
+  `profile.json` (exaggeration 0.50, cfg 0.30).
+- **Run `python3 audio/script_lint.py --cues <build>` before generating narration.** His
+  voice softens word endings — unstressed -ER, -LE/-BLE, -LY, R plus a cluster, flapped T.
+  Swap the word; respellings were measured and do not help.
+- A line he flags goes through `audio/line_doctor.py`, which ranks candidates by the energy
+  left in the last 90 ms of the target word. The approved take is genuinely locked per
+  line — `audio/voice/profile/canonical-lines.json` maps a line's exact text to a
+  pre-polished clip, and `build_voice.py` loads that clip byte-for-byte instead of
+  regenerating, for every episode. "The setup's in the link in bio." is locked this way —
+  add a new line to the manifest the same way once he approves a take for it. ("Follow
+  for the setup that actually works." is also still in the manifest, but is retired as the
+  final line — see the next rule.)
+- **The final line names tomorrow's episode — decided 6.10.2026, David's choice, replacing
+  the locked "Follow for the setup that actually works." from episode 59 on (58 too, if it
+  hasn't been published yet).** The research behind it (`content-memory.md`, 6.10.2026):
+  a generic "follow for more" barely converts; a line pointing at one concrete next thing
+  converts several times better, and this channel was gaining ~1 organic follower a month.
+  Shape (revised 6.10.2026 — David called the first wording, `Tomorrow: <topic>. Follow so
+  you see it.`, "childish and not professional", and asked for something fluent that pulls
+  like Nas Daily's sign-off): one flowing spoken sentence that names tomorrow's topic as a
+  promise, then a short follow clause that gives a reason — `Tomorrow, I'll show you what
+  <company> does with <the thing>. Follow, so you get the full story.` No "Tomorrow:" label, no
+  colon. Research behind it: Nas Daily's fixed sign-off ("That's one minute, see you
+  tomorrow") works as a signature plus curiosity about the next video, and short-form
+  sources rank open-loop teasers above a generic "follow for more" (vendor blogs — trust the
+  direction, not the numbers). It is NOT locked: it's generated and checked like any other line (script_lint, voice_doctor,
+  accent), every episode. **This means episode N+1's script is written — topic chosen from
+  the data, product verified live — before episode N ships**, so N's last line can name it.
+  The promise is binding (never-fabricate rule): if N+1's topic changes or doesn't publish
+  the next day, re-render N's final line before N goes out. Standing order stays: "The
+  setup's in the link in bio." second-to-last, the tomorrow line is the true final line —
+  episode 54 once shipped these reversed, caught only by David watching. Verify the CUES
+  order and the matching scene text before shipping.
+- **The two closing-CTA scenes always share ONE locked background photo — but that
+  photo is chosen per episode, from that episode's own real photos (or newly
+  sourced to fit), never a single file hardcoded across every future episode.**
+  Decided 30.9.2026 after episode 54 first shipped with its ending repeating one
+  scene's photo three times running — fixed first with a dedicated cross-episode
+  asset (`channel/assets/canon-closing-photo.png`), which David then corrected
+  (1.10.2026, his own words): a fixed file reused identically forever is "the same
+  thing, not according to the video" — the two closing scenes must still read as
+  this episode's own ending, not a franchise slate. Episode 54 now points its
+  closing scenes straight at its own `ep54-scene-a-videocall.png` (the same photo
+  scene 1 opens on — a deliberate bookend, not a leftover default); the canon file
+  was removed. Pick a fitting photo per episode, lock it across both closing
+  scenes (still static Ken Burns per the rule below — they're one continuous shot),
+  and never repeat whatever an earlier scene in that same episode already used.
+  **Open, not yet designed**: David then clarified (same night) he does still want
+  some standing, cross-episode treatment for these two scenes specifically — not the
+  literal same photo file, but a consistent direction/design still to be figured out.
+  Explicit instruction: leave episode 54's current closing scenes alone (they're
+  fine as shipped), think about what that standing direction could be, apply it
+  starting from a future episode once actually decided. Not a task to pick up
+  casually — a real design call that needs his input, not a guess.
+- **A photo-composite scene reusing the SAME photo file as the scene right before it holds
+  Ken Burns fully static (scale 1.00, no pan) — never re-zoom/re-pan on a photo that never
+  actually changed.** Decided 1.10.2026, David's own words after watching episode 54's
+  picture a second time: a second independent Ken Burns animation on an unchanged photo
+  reads as the photo resetting/jumping, not continuing — confirmed on episode 54's two
+  repeated-photo pairs (scenes 2→3 and 5→6, both reusing the same file back to back) before
+  fixing it. Only a scene whose photo is actually new relative to the one before it gets its
+  own entrance motion.
+- `audio/speak_language.py` does the same voice in 23 languages. Flemish needs its own
+  reference recording — `record/flemish-script.md`.
+
+## The v4 style is the standard for every episode (David, 18.10.2026)
+
+After watching episode 71 v4 he said it is "much better, much more engaging, I enjoyed every second", and that this direction applies to **all** future videos. What it means:
+- **Real motion from the real screen recording**, not held stills: play the actual segments (menu opening, page sliding, the switch flip) at natural speed. A swipe that really takes 0.5s must take 0.5s on screen (`data-rt`/`data-dl` per scene: real-time seconds the source segment takes, and its start delay). Never slow-motion a segment to fill a line.
+- **Start on the proof**: the first frame already shows the real screen with the key state tagged (red ON / green OFF tag), not an empty home screen.
+- **Short, punchy lines with exclamation beats on the hook**; reword any word the voice swallows ("decides" → "controls", "Find" → "Tap") instead of fighting the model.
+- **Voice**: exaggeration about 0.78 (hook/beats higher); lines the accent check flags go lower (0.64) and get re-rolled. His own verdict: clearly more excited, still occasional off moments ("Mine was on"). Enthusiasm is capped by the calm reference clip, so say that honestly.
+- **Music**: energetic bed from the real library (now 69 tracks incl. the 54 new Pixabay ones). `FORCE_TRACK=<file.mp3>` pins the track when re-rendering an episode whose music he already liked.
+- **Nothing we add may cover what the screen is showing (David, 18.10.2026).** The `@actually_works.ai` handle sat on the keyboard and the answer in the first full-bleed screen episode. On full-bleed screen episodes the handle is dropped (the platform shows the account name anyway); any overlay (tags, rings, headline bars) must sit where the recording shows nothing the viewer needs. Check every frame for this, not only the safe-area numbers.
+- **Motion is smooth, never robotic — standing for every episode from now on (David, 1.11.2026, after episode 81 v5).** Long eased curves (no linear or snappy easing), continuous overlapping movement, gentle camera/background drift, soft fades and scale instead of abrupt pops, no stepped rhythm (typed text at natural, slightly varying speed), nothing that jumps; settles are soft. Check it by looking at the rendered motion, not only the numbers. Colour stays light (the approved light + lime base) unless he says otherwise.
+- **Two-voice dialogue episodes (72 on):** the second voice comes from voice box as WAV files (resample to 48 kHz mono 16-bit first, or the pipeline plays them double speed), is registered as canonical clips in `audio/voice/profile/canonical-lines.json` and left out of the accent check with `ACCENT_SKIP=<line numbers>` (`check.sh`, `check_accent.py --skip`). The on-screen text is the real output of the real chat; the voice only reads it.
+- **Answer scenes in a dialogue episode (David, 21.10.2026):** the white headline bar with the spoken words lit as they are said (episode 72's style) plus ONE ring drawn around the real answer block, measured on the real frame, is what he approved. A moving per-word highlight box over the real text was tried on episode 74 and he rejected it ("not good, too prominent": the earlier style is better). Do not rebuild it. Hold the real frame still for the AI-voice lines only if the text is not scrolling; check where the frame stops moving (`channel/assets/ep<N>-screen/`) before placing a ring.
+- **His own photos are a first-class source (episode 74).** He photographs on his phone and owns them. Never use a photo taken from his own window or home, and never publish where he lives: ChatGPT can narrow a photo to a street. Photos with people only far away or from behind; the face pre-check still applies (the Adobe tool was not available in the 74 session: say so instead of skipping it silently).
+- **Verify a number on screen before it goes in a script.** Episode 74's claim "the answer is correct" rests on the photo itself (a MIZNON storefront and the number 22) plus public listings of the restaurant's address, not on David's memory of the street.
+- The cloud container is suspended when a turn ends and background jobs die: run long voice/render stages while a turn is active (foreground or polled background), and keep loops resumable (`seeds.state`).
+
+## Standing rule: everything we build becomes an episode
+
+He said it plainly — every skill, agent, or tool we develop here is itself content. When a
+new one is finished, add it to the idea list in the studio with the angle already written:
+what it does, the one screen that proves it, and the number that makes it real. Nothing gets
+built and quietly filed.
+
+Already shipped this way: `explain-steps` (its own content post), `voice_doctor.py`
+(episode 11), and `retime.py` (episode 24 — "Editors squeeze the picture to fit the audio.
+We do the opposite."). Nothing currently queued and unshipped as of episode 24 — the next
+tool or skill this repo builds goes on this list the same day it's finished, not after.
+
+The public `/skills` and `/prompts` browsing pages on the site were removed (28.9.2026,
+David's direct instruction): they listed every skill and prompt the repo had ever built, but
+nothing kept that list current per episode, so it drifted out of sync with what was actually
+still true — the same "stale content presented as current" problem the "never fabricate"
+rule exists to prevent. This does not change the rule above: a new skill or tool still
+becomes an episode, angle written the same day it ships. It only means there is no longer a
+standing site page that browses the full list — the episode itself, not a catalogue page,
+is where it gets shown. (The per-episode detail pages, `/p/[slug]` and `/s/[slug]`, are
+unaffected and still serve the individual prompt/skill an episode actually points to.)
+
+## Content memory — the weekly loop
+
+Two files carry this, deliberately kept to two: `channel/content-memory.md` (patterns,
+hypotheses, winning/losing formats) and `channel/experiments.md` (deliberate tests only —
+"we changed X to test Y," never every episode). Real per-episode performance — views,
+saves, save-rate, engagement — lives in the studio's own tracked state (`/api/track` pulls
+it daily from Instagram and Beehiiv), not in a markdown file; `/api/agent` already answers
+questions against it under the same rule as everywhere else in this repo: never invent a
+metric, say plainly when there isn't enough data yet. `channel/demand-report.md` is a
+separate, one-time thing — YouTube search-demand research, not live episode performance.
+Don't conflate the two.
+
+When he says "plan next week" or "what should we learn from this," do it without needing
+a slash command: read `content-memory.md`, check the studio's real numbers (ask him to
+paste the studio's data or a relevant `/api/agent` answer if this session can't reach it
+directly), separate FACT from HYPOTHESIS from UNKNOWN, and report: what happened, what
+might explain it (labeled as guesses, not conclusions), what pattern is worth repeating,
+what's worth a deliberate experiment next, and what to stop doing — only if there's
+actually enough evidence to say so. Update the two files with anything that changed. A
+pattern moves from *Current hypotheses* to *Confirmed* only after showing up in two
+independent episodes, not one good week — 12 published episodes is not enough volume to
+overfit a rule to a single video.
+
+Skip a numeric virality score (no "Hook: 9/10, Score: 87") — it fakes precision the
+data doesn't support. STRONG / PROMISING / WEAK / UNCLEAR, with the reasoning stated, is
+honest about what we actually know.
+
+## Building and rendering
+
+- **Studio production only reflects `main` — merge, don't just push.** Branch deploys are
+  off (`studio/vercel.json`), so a shipped reel sitting on an open PR is invisible to him no
+  matter how clean the build is. He said this directly, more than once, after builds he
+  couldn't find in the studio: once `check.sh` passes clean and there is nothing left for a
+  human to weigh in on, mark the PR ready and merge it — don't leave it as an unmerged draft
+  waiting to be asked. This applies to episode-shipping PRs and routine site fixes alike;
+  still ask first for anything that's actually a judgment call (a design direction with no
+  clear right answer, a change to what an episode claims).
+  **Merging is not shipping: verify it is live before saying "ready" (21.10.2026).** Vercel marked
+  the deploy of episode 74's v4.2 merge as failed with no signal here; the studio kept serving an
+  older cut for two hours until David noticed. After every merge that carries a reel: (1) read
+  `https://api.github.com/repos/davidpit1565/videos-ai/commits/<merge-sha>/status` until the Vercel
+  status is `success` (a `failure` means no new deploy: a later main commit has to deploy it); (2)
+  compare `content-length` of `https://www.actually-works.com/reels/reel-N.mp4` with
+  `git cat-file -s origin/main:studio/public/reels/reel-N.mp4`. The studio pages themselves are
+  behind the PIN, so the file size is the proof you can read. Failed deploys on main this week were
+  also seen on 94ebed4, f90ee52 and 506a793, each followed by a good deploy of the next commit.
+- **Standing authorization exists — don't re-ask for something already approved.** Said
+  directly 30.9.2026, after repeated rounds of stopping mid-iteration to check in again on
+  work whose direction he'd already signed off on: once he's approved a direction (a visual
+  style, a fix, a feature), keep iterating and verifying it on your own — real checks, real
+  screenshots, honest disclosure of what still doesn't work — without pausing each round to
+  ask again. Bring it back to him only for an actual new judgment call (a real creative
+  decision, a genuinely ambiguous tradeoff, something no automated check can settle) or once
+  it's ready to actually ship. Don't confuse this with permission to skip disclosure — a
+  found problem still gets reported plainly — it removes the need to ask "can I continue?"
+  when nothing new is actually being decided.
+- **An episode's accent color has to actually suit that episode's content and its real
+  photos/scenes — not just avoid repeating the immediately prior episode, and not the
+  same exact color twice in one week even with other episodes in between.** Decided
+  30.9.2026, David's own words, after episode 54 shipped with a violet accent
+  (`#9333EA`) that looked muddy and hard to read specifically against that episode's own
+  warm-toned real photos — legible by the numbers, but visually wrong, and only caught
+  because he looked at the actual frames, not because any automated check flagged it.
+  Before locking a color: look at it rendered against every real photo/background the
+  episode actually uses (photo-composite's warm skin tones read very differently than a
+  cool office backdrop, and a color that pops on one can go dead on the other), not just
+  its contrast ratio against the fixed text color. Pick something that suits the topic's
+  actual tone too, not a rotation for its own sake. `export/produce.sh`'s design-variety
+  check enforces the mechanical half of this: it still fails on an exact repeat of the
+  immediately prior shipped episode's color/mood, and now separately fails if the same
+  exact color appears in any *dated* `channel/used-designs.json` entry from the last 7
+  days, even with a different episode in between — add a `"date"` field (`YYYY-MM-DD`,
+  UTC) to every new entry going forward so that check has something to compare against;
+  older undated rows are skipped, not guessed at. The check cannot judge whether a color
+  actually suits the content or a given photo's tones — that part is still a real look,
+  every time, not a box to check off after the fact.
+- **`export/produce.sh <episode> <build.html> <duration> [accept_words] [bpm] [mood]` is the
+  one pipeline entry point**, script_lint through render, gate, captions-must-exist, the
+  design-variety check against the last episode's palette, and shipping the file itself to
+  `studio/public/reels/`. `export/make_reel.sh` is an older, incomplete duplicate built
+  without knowing this one existed — it stops before shipping. Don't build a third one.
+- **The real handle is `@actually_works.ai` — with the underscore.** `channel/launch-plan.md`
+  and `channel/instagram-automation.md` had it wrong (no underscore) for a while and every
+  reel's on-screen `.handle` div copied that mistake. Check the handle text in any new
+  build against this line, not against the last episode's file.
+- The picture follows the narration, never the reverse. Build the voice at its own pace,
+  then `export/retime.py <build> <cues.json> --out <build>-paced.html` moves every timing
+  in the build to match. `--fit` on build_voice is only for a cut that genuinely may not
+  move; using it for pacing is what produced seven overlapping lines in episode 02.
+- **`channel/motion-recipes.md` has six verified motion upgrades — word-by-word builds,
+  a per-word text highlight (fixes a real line-wrap bug in the naive one-box version),
+  a staggered contradiction reveal, zoom-through scene transitions (every episode today
+  hard-cuts between scenes with zero transition, which `hyperframes-animation`'s own
+  rules call a non-negotiable gap), one GPU-tier fragment-shatter hero beat reserved
+  for a single real reveal per episode, and spoken-word emphasis on a fixed headline.**
+  Verified in isolated demos David approved one at a time, then extracted into a real
+  shared module, `export/motion-kit.js` (`window.MotionKit`), re-verified with its own
+  frame capture. **`video/reel-template.html`** is the real starter build to copy for a
+  new synthetic-style episode — recipes 1-3 (hook word-by-word, quote highlight,
+  scoreboard stagger) and recipe 4 (zoom-through transitions) are all wired in and
+  verified clean end-to-end with `export/safe_check.js`, via a markup-safe word-splitter
+  (`MK.splitWordsSafe`) that preserves existing inline markup (`<br>`,
+  `<span class="box">`) instead of mangling it. **`video/reel-template-photo.html`**
+  (the real-photo-composite style) has no separate caption track at all — recipe 6
+  drives the fixed headline's own words from real spoken-word timing
+  (`export/headline_sync.py`) instead, so the headline is never shown twice. **Recipe 6
+  shipped for real on episode 54** (1.10.2026) — see `motion-recipes.md` for the full
+  account across its rounds, including a real index-misalignment bug in
+  `headline_sync.py` once `.box` phrases started building word by word (never caught
+  by eye, only by David reporting words popping early/late/missing) and the final,
+  deliberately simple mechanism: `MK.animateWordEmphasis` is a plain color toggle —
+  the exact same thing `karaoke.py`'s classic caption track has always done
+  (`.subs b.on{color:accent}`) — applied uniformly to every word including `.box`
+  ones, with no scale or brightness involved, on David's own direct instruction that
+  it should be "the simplest thing, like every other video." Recipes 1-3 have not
+  shipped in a real episode yet; the next synthetic-style episode built from
+  `reel-template.html` is their first real test end to end, per `motion-recipes.md`'s
+  own standing.
+- **Standing rule, effective episode 55 (1.10.2026, David's direct instruction): every
+  future episode uses real photo backgrounds — `video/reel-template-photo.html`'s style,
+  not the plain synthetic template — whichever topic or format.** Source photos by web
+  search (Unsplash, licensed for commercial use, no attribution required — the same way
+  episode 54's photos were sourced) or Pinterest, or generate them with the tools
+  available, never a drawn/CSS stand-in. Save every photo used under
+  `channel/assets/ep<N>-scene-*.jpg`, one file per scene, so the library of real photos
+  grows episode over episode — don't discard them after rendering. The template's own
+  mandatory face-detection pre-check (`mcp__Adobe__image_select_subject` +
+  `export/detect_photo_safe_zone.py`) is not optional — run it for real on every photo
+  with a person in it before finalizing headline placement, the same way
+  `check_setup_guide.py` is a hard gate, not a suggestion. If a photo's detected face
+  genuinely conflicts with the template's fixed headline zone and a re-crop can't clear
+  it, the template's own documented exception (move that one scene's zone to the tool's
+  own measured recommendation, never a guessed number) is the fix — see episode 55's
+  `channel/episode-55-script.md` for a full worked example, including a second,
+  independent bug the same round: a logo badge built as an absolutely-positioned bottom
+  element landed in the platform's own unsafe bottom band — the template's existing
+  in-flow citation-label pattern (episode 52's `.dreamlabel`, inside `.pad`'s normal
+  flow) is what actually keeps this kind of element safe; copying the visual idea
+  without the structural placement reintroduces a bug already solved once. Always
+  finish with `node export/safe_check.js` — a photo-composite build is not exempt from
+  the same safe-area gate every other build runs.
+- **Standing rule, effective episode 55 (1.10.2026, David's direct instruction): keep
+  every spoken line in plain, natural, everyday language — not elevated or formal
+  wording — across every future episode, not just when a line feels obviously stiff.**
+  This is a sharper, standing version of `hooks-guide.md`'s existing "write for a
+  person, not an AI-literate viewer" rule: it applies to word choice and sentence shape
+  throughout the whole script, not only to jargon/comprehension. Before a script ships,
+  reread every line and ask whether a person would actually say it out loud this way —
+  if a word or phrase reads like it belongs in an article rather than a sentence a
+  friend would say, simplify it, the same discipline already applied to jargon. This
+  does not license losing precision or dropping a real caveat — episode 55's "send it to
+  anyone who still has one of these in their kitchen" → "send it to someone you know who
+  has one" is the shape of the fix: shorter, plainer, same claim.
+- Reels render with `FRAMES=1 ./export/render.sh <build> 1080 1920 <seconds> <vo.wav> <out.mp4> [music.wav]`
+  — frame-by-frame capture, because recorded playback drifted up to two seconds.
+- **Music for a shipped episode always comes from the real licensed library
+  (`audio/music-library/` + `audio/pick_real_track.py --mood <mood>`), never from
+  `audio/build_music.py`'s synthesized output.** David said so directly, more than
+  once, because the real tracks (Pixabay, free to use, no attribution, downloaded and
+  listened to by him — see `audio/music-library/MANIFEST.md`) are more professional;
+  `build_music.py` only exists for quick local iteration before a real track is picked,
+  never for what actually ships. This is the THIRD documented incident of this same
+  mistake shipping anyway: episodes 32/33 (a missing `MOODS` entry silently fell back
+  to synthesized audio), episode 29 (the real track picked for "tense" read as
+  thin/absent to the ear despite healthy loudness numbers — fixed by pointing "tense"
+  and "suspense" at the same already-vetted track), and episode 54 round 2 (several
+  re-renders used `build_music.py` directly out of habit, never touching the real
+  library at all — caught only because David heard it and said so). Verify a music bed
+  both ways before shipping: `audio/check_music_bed.py <music.wav>` (mean dB, peak dB,
+  longest quiet stretch — catches "technically present but reads as absent") AND which
+  script actually produced the file — a healthy loudness reading from
+  `build_music.py` output is still the wrong file.
+- Music is generated to the exact length: `python3 audio/pick_real_track.py <seconds> <out.wav> --mood <mood>`
+  (same output contract as `build_music.py` — exact duration, fades, mono 48kHz — so
+  it drops into `render.sh` the same way).
+  **`render.sh`'s `[music.wav]` argument is the last positional argument and easy to
+  silently drop** — confirmed the hard way on episode 54's own iteration rounds: every
+  re-render across several rounds of fixes omitted it, so three shipped versions in a
+  row had no music at all, and `check.sh` has no check that catches a silent music
+  track, so nothing flagged it. If a build's duration changes (a re-time, a re-cut), the
+  existing music file is now the WRONG LENGTH too — regenerate it at the new exact
+  duration before the next render, don't reuse a stale file or skip it.
+- Nothing with his voice in it is delivered before `audio/voice_doctor.py` runs on it, and a
+  `BAD` finding blocks the delivery. `--repair` levels and evens sibilance, iterating until
+  a pass finds nothing.
+- The long cut stays on the recorded path; 24,000 screenshots costs more than the drift.
+- After any render, verify sync by finding the brass flash cards and comparing them to the
+  times the build declares.
+
+## Frame layout — measured, not taste
+
+Meta publishes the numbers for 9:16: keep text and key elements out of the **top 14%
+(269px), bottom 35% (672px) and 6% of each side (65px)** on 1080x1920. The usable box
+is x 65-1015, y 269-1248. The bottom third is where Instagram draws the username,
+caption, audio label and buttons — a subtitle there is behind the interface, and ours
+sat 413px inside it until it was measured.
+
+- `node export/safe_check.js <build> [--tiktok] [--tol 10]` walks the real DOM at
+  sample times, flags any visible text box outside the safe area, and flags two text
+  boxes landing on each other. It waits 340ms after each seek because the build's
+  reveals are 0.26-0.3s transitions. Run it before every render.
+- Mark a purely decorative element `data-decor` and the checker leaves it alone — the
+  watermark is meant to be lost to the platform UI.
+- Captions are word-by-word: `export/karaoke.py <build> <deep.json>` aligns Whisper's
+  word stamps onto the script (so "ChatGPT" stays one word) and emits 2-3 word chunks
+  with the spoken word lit in brass. 80.2% of 13.5M short clips carry captions and
+  78.6% animate them; a full sentence at the bottom of frame is the format's most
+  common mistake, and ours repeated the scene's own headline word for word.
+- Master to -14 LUFS, true peak -1 dBTP (YouTube turns anything louder down and never
+  turns quiet content up). Music sits 18-20 dB under the narration and ducks.
+- Length: 45-75s. Do not go under 30s. Buffer's 1.1M-video study and Socialinsider's
+  11M-post set both put longer above shorter for this kind of content.
+
+## Before a reel is sent
+
+`./export/check.sh <build.html> <narration.wav> [rendered.mp4]` runs all three, and
+nothing goes to him until it passes:
+
+- `audio/voice_doctor.py` — pacing, rate, sibilance, endings, per line.
+- `export/safe_check.js` — every visible text box against the platform safe area, and
+  text boxes landing on each other.
+- `export/qa.py` — the rendered file: resolution, pixel format, 48kHz stereo, length
+  against the build's own DUR, frozen picture runs, black frames, a blank first frame,
+  colour-card duration (under 0.45s reads as a glitch) and whether a card plays over
+  speech, visual-change rhythm, loudness and true peak, loop seam.
+
+Every one of those checks exists because a real defect reached him first. The card
+duration check exists because he stopped the video on a 10-frame yellow card; the blank
+first frame check because the hook faded in over 0.26s and frame zero was empty.
+
+**Standing rule, 21.10.2026 (David's words: the voice must always sound good, no frequencies that sound bad, the highest quality, "as if we used the best microphones"): run `audio/voice_quality.py <narration-r.wav> <cues.json> --music <music.wav> --vol <MUSIC_VOL>` on every episode before it is shipped.** It measures what the older checks miss: each line's pitch range and where it ends (episode 74's hook swung 12.1 semitones and ended -4.4 below its median: every other check passed and David called the tone "really bad"; the lines he likes sit at 4.9-8.4 st), a steady tone in the voice, and whether the music bed can be heard on a phone speaker (episode 74's first track was an 85%-sub-bass drone: present in the file, inaudible on the phone; the bed should sit about -6 to -18 dB under the voice in the 300-3500 Hz band). A hook line that fails is re-rolled with several seeds and a lower exaggeration and chosen by these numbers, not by guess. It does not replace his ear: after it passes, say plainly that the audio was measured, not heard.
+
+**Standing rule, as of episode 18: check → fix → re-check → only then send.** A targeted
+fix after the gate already passed (a de-esser pass on one line, a re-cut clip) can break
+something the first pass never touched, silently. `check.sh` runs again, in full, after
+every such fix — not just the piece that changed — before the file goes to him. If that
+re-check finds anything, fix it and run the whole check again. Repeat until a full run
+comes back clean, then send. Never send on the strength of the first pass alone once a
+fix has been made after it.
+
+**Standing rule, as of episode 25: `check.sh` passing clean is necessary, not sufficient
+— watch the actual rendered file yourself, twice, before it goes to him.** The automated
+checks measure what they were built to measure; a garbled word, a leaked bit of debug
+text, a layout glitch a viewer would spot in one second can still slip through numbers
+that all read "ok". After `check.sh` passes: watch the rendered video in full, twice.
+Only fully approve — and only then hand it to him — once both viewings come back clean.
+If either viewing finds anything, fix it and watch the file twice again from scratch;
+a fix made after one clean viewing isn't covered by it, the same reasoning as the
+check → fix → re-check rule above.
+
+## The studio app
+
+- `studio/` — Next.js on Vercel, root directory `studio`, Supabase over `POSTGRES_URL`.
+- Branch deploys are off in `studio/vercel.json` (`git.deploymentEnabled`); the free plan's
+  100 builds a day are counted before any ignore step runs. Production builds on merge.
+- Never "Redeploy" an old deployment: it rebuilds that old commit, and any commit from before
+  `studio/` existed fails with "The specified Root Directory studio does not exist".
+- **Vercel's own "Skip deployments when there are no changes to the root directory or its
+  dependencies" (Settings → Build and Deployment → Root Directory) silently stopped every
+  production deploy for almost a full day on 3-4.9.2026** — ten separate merges to `main`,
+  several genuinely touching files under `studio/`, produced zero new deployments; the
+  dashboard's Production Deployment stayed pinned to a merge from a day earlier with no
+  error, no skipped-build entry, nothing to see without opening Settings directly. Disabled
+  now. If episodes or site fixes stop appearing after merging again, check this toggle
+  first, before assuming a Hobby-plan build-quota exhaustion (the two look identical from
+  outside — no banner, no error, just silence).
+- `/api/track` reads Instagram and Beehiiv and records only what changed. Cron runs it daily.
+- **Which pages are public is declared once, in `studio/lib/routes.ts`** (`SITE` / `STUDIO`
+  / `CRON`). The middleware and `app/shell.tsx` both import it. That list used to be
+  duplicated in both files and drifted three times: `/api/subscribe` answered 401 to every
+  visitor, then `/prompts` and `/search` redirected to the PIN gate, then those same two
+  rendered inside the studio's Hebrew tab bar. `npm run check:routes` (wired as `prebuild`,
+  so Vercel runs it) walks `app/` and fails the build on a route in neither list.
+- The document is **English and LTR** — the visitor-facing site is the default. The studio
+  is the Hebrew RTL island and declares that on its own container, so an English page can
+  never inherit a right-to-left scrollbar.
+
+## Phone notification when a reel is ready (David, 25.10.2026)
+When a reel is ready (check.sh passed, merged, deploy verified), send a real phone notification with the PushNotification tool: one line, the episode number and that it is ready. Do this for every new reel. The studio's own "reel ready, not published" reminder pushes were removed the same day at his request (they were not built well); do not re-add them without asking.
+
+## Claude may read the studio (David, 25.10.2026)
+The studio is gated against the public, not against Claude. When David has given the PIN in the chat of the current session, read real numbers with `POST /api/unlock` (json `{"pin": ...}`, keep the cookie) and then `GET /api/state` on https://www.actually-works.com. The PIN is never written into a file, a commit, a PR or a log. If no PIN was given in the session, ask for it once. Fields: `state.episodes[]` (views, reach, likes, saves, shares, publishedAtPrecise), `state.snapshots[]` (followers). Watch time and reach by follower type are NOT_AVAILABLE for this account.
+````
