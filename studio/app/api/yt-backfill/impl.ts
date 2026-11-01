@@ -3,6 +3,7 @@ import { hashPin } from "@/lib/pin";
 import { publishToYoutube, youtubeConnected } from "@/lib/publish";
 import { hasDb, loadState, saveState } from "@/lib/db";
 import { SITE_URL } from "@/lib/site";
+import { fetchYouTube } from "@/lib/sources";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -26,6 +27,7 @@ const RAW = "https://raw.githubusercontent.com/davidpit1565/videos-ai/main";
  *  at: David checks the channel first. */
 const SKIP = new Set<number>([2]);
 const pad = (n: number) => String(n).padStart(2, "0");
+const norm = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 60);
 
 async function allowed(req: Request): Promise<boolean> {
   const secret = process.env.CRON_SECRET;
@@ -76,6 +78,13 @@ export async function GET(req: Request) {
   const uploaded: { episode: number; videoId: string }[] = [];
   let stopped: string | null = null;
 
+  // David, 1.11.2026: look at what is really on the channel first, and never upload what is already there.
+  // Matched by title (first line of the episode's youtube.txt); a match is recorded in the state and skipped.
+  const onChannel = new Map<string, string>();
+  const yt = await fetchYouTube();
+  if (yt.connected) for (const v of yt.videos) onChannel.set(norm(v.title), v.id);
+  const alreadyThere: { episode: number; videoId: string }[] = [];
+
   for (const n of queue) {
     if (uploaded.length >= max) break;
     if (Date.now() - started > 230_000) {
@@ -93,6 +102,19 @@ export async function GET(req: Request) {
     if (!title) {
       stopped = `episode ${n}: empty title`;
       break;
+    }
+    const existing = onChannel.get(norm(title));
+    if (existing) {
+      alreadyThere.push({ episode: n, videoId: existing });
+      for (let attempt = 0; attempt < 3; attempt++) {
+        const st = await loadState();
+        if (!st) break;
+        const ep = st.episodes.find((e) => e.number === n);
+        if (ep) ep.ytVideoId = existing;
+        const saved = await saveState(st, (st as { updatedAt?: string | null }).updatedAt ?? null);
+        if (saved.ok) break;
+      }
+      continue;
     }
     const mp4 = (await fetchOk(`${RAW}/studio/public/reels/reel-${pad(n)}.mp4`)) ?? (await fetchOk(`${SITE_URL}/reels/reel-${pad(n)}.mp4`));
     if (!mp4) {
@@ -118,5 +140,5 @@ export async function GET(req: Request) {
   }
 
   const left = queue.length - uploaded.length;
-  return NextResponse.json({ ok: true, uploaded, stopped, remaining: left });
+  return NextResponse.json({ ok: true, uploaded, alreadyThere, stopped, remaining: left - alreadyThere.length });
 }
