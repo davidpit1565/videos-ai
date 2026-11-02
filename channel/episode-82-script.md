@@ -13,13 +13,13 @@ NOT confirmed, so not said: that Opus 5.5 got worse, that anything was done on p
 ## Spoken lines (target about 30 s)
 1. Some say Claude got dumb on purpose!
 2. Anthropic says it never does that.
-3. But it did own up to three real problems.
+3. But it did own up to real problems.
 4. One: in Claude Code, the default thinking effort dropped from high to medium.
 5. Two: a bug made Claude forget its own reasoning.
-6. Three: a rule that kept replies short hurt coding quality.
-7. All three were fixed by April 20.
+6. And last: a rule that kept replies short hurt coding quality.
+7. All of them were fixed by April 20.
 8. Did you notice a change? Tell me below.
-9. The links to Anthropic's own report are in the caption.   <- rehook (permanent test element, as in 66)
+9. The links to the original report are in the caption.   <- rehook (permanent test element, as in 66)
 
 Lint (2.11.2026): script_lint flagged "People", "dumber" and "answers" (endings the voice swallows), so line 1 became "Some say Claude got dumb on purpose!" and line 6 "replies ... coding quality". The scene files were edited to match. Original reminder: "dropped" and "forget" are fine; check "effort", "problems", "quality" with `audio/script_lint.py --cues`; reword anything flagged instead of fighting the voice.
 
@@ -28,3 +28,7 @@ Real Claude logo (from the product's own brand page, not redrawn). Hook: the Cla
 
 ## Experiment (log in channel/experiments.md)
 Copied structure of a viral reel with an honest claim set. Prediction (a guess): reach above 66, comments from the question line, no promise it explodes. Read at 48 h and 72 h. Post at 08:00 Belgium so it is comparable.
+
+## Voice fixes (2.11.2026, David's ears)
+- "three" came out as "tree" and too loud. Measured on 5 whole-script takes plus 4 low-exaggeration takes (0.62-0.68): every "three" is a stop burst or absent by audio/burst.py (one frication, +7.2 dB over its line's median, still too loud), and 4-12 dB over the line median. No take had a real TH at a normal level, so the word is gone: lines 3, 6, 7 reworded ("real problems", "And last:", "All of them"); the third badge reads "last".
+- "Anthropic" at the end of line 9 sounded over-rolled; line 9 now says "the original report". Line 2 ("Anthropic says it never does that.") still has the word; David did not flag it.
