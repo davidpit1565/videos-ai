@@ -1,0 +1,89 @@
+<style>
+#s5{--acc:#D97757}
+#s5 .w{display:inline-block;opacity:0;margin:0 10px;font-weight:800;letter-spacing:-.04em;line-height:1.04}
+#s5 .pill{background:var(--acc);color:var(--ink);padding:0 28px;border-radius:26px;border:7px solid var(--ink);box-shadow:9px 9px 0 var(--ink)}
+#s5 .nb{position:absolute;left:100px;top:296px;width:120px;height:120px;border-radius:36px;background:var(--acc);border:6px solid var(--ink);box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:92px;padding-bottom:6px;opacity:0}
+#s5 .dt{position:absolute;left:250px;top:304px;height:76px;padding:0 30px;border-radius:38px;background:var(--white);border:6px solid var(--ink);box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;font-weight:800;font-size:44px;letter-spacing:-.02em;opacity:0}
+#s5 .cb{position:absolute;left:80px;top:752px;width:920px;height:488px;background:var(--cd);border-radius:32px;border:2px solid #2A2C34;box-shadow:0 30px 60px rgba(0,0,0,.25);opacity:0}
+#s5 .hd{position:absolute;left:36px;top:26px;right:36px;height:54px;display:flex;align-items:center;gap:16px;color:#9A9BA3;font-weight:500;font-size:30px}
+#s5 .hd i{width:46px;height:46px;background:var(--white);border-radius:12px;display:flex;align-items:center;justify-content:center}
+#s5 .hd i img{width:30px;height:30px}
+#s5 .hd em{margin-left:auto;font-style:normal;font-size:24px;letter-spacing:.04em;border:2px solid #3A3C45;border-radius:12px;padding:3px 14px;color:#8B8C94}
+#s5 .ln{position:absolute;left:30px;width:860px;height:52px;border-radius:16px;background:#1F2128;display:flex;align-items:center;padding:0 22px;gap:16px;font-family:JBM,monospace,sans-serif;font-weight:500;font-size:28px;color:var(--cink);opacity:0;white-space:nowrap}
+#s5 .ln b{width:14px;height:14px;border-radius:50%;background:#5A5C66;flex:none}
+#s5 .ln.nw{background:#262932;border:2px solid var(--acc)}
+#s5 .ln.nw b{background:var(--acc)}
+#s5 .dust{position:absolute;width:9px;height:9px;border-radius:50%;background:#7A7C86;opacity:0}
+#s5 .bub{position:absolute;left:36px;top:396px;height:84px;padding:0 30px;border-radius:30px 30px 30px 8px;background:var(--acc);border:5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);display:flex;align-items:center;gap:16px;font-weight:900;font-size:46px;color:var(--ink);opacity:0}
+#s5 .bub img{width:44px;height:44px}
+#s5 .bug{position:absolute;left:760px;top:862px;background:var(--bad,#E5484D);color:#fff;border:6px solid var(--ink);border-radius:22px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:50px;padding:6px 26px;letter-spacing:.02em;opacity:0;z-index:5}
+</style>
+<div class="scn clip" id="s5" data-start="0" data-duration="__D5__" data-track-index="1"><div class="cam" id="c5">
+ <div class="nb" id="n5">2</div>
+ <div class="dt" id="d5">March 26</div>
+ <div class="grp" id="g5" style="top:432px">
+  <div class="row"><span class="w lt" style="font-size:84px" data-w="0">A</span><span class="w" style="font-size:84px" data-w="1">bug</span><span class="w lt" style="font-size:84px" data-w="2">made</span><span class="w" style="font-size:84px" data-w="3">Claude</span></div>
+  <div class="row"><span class="w pill" style="font-size:100px;margin-top:6px" data-w="4">forget</span><span class="w lt" style="font-size:84px;margin-top:6px" data-w="5">its</span></div>
+  <div class="row"><span class="w" style="font-size:84px;margin-top:4px" data-w="6">own</span><span class="w" style="font-size:84px;margin-top:4px" data-w="7">reasoning.</span></div>
+ </div>
+ <div class="cb" id="cb5">
+  <div class="hd"><i><img src="assets/claude.svg"></i>Agent log<em>re-created</em></div>
+  <div class="ln" id="l5a" style="top:92px;width:560px"><b></b>Why I chose this file</div>
+  <div class="ln" id="l5b" style="top:150px;width:560px"><b></b>Plan: 3 steps</div>
+  <div class="ln" id="l5c" style="top:208px"><b></b>Checked the tests</div>
+  <div class="ln" id="l5d" style="top:266px"><b></b>Ruled out the old API</div>
+  <div class="ln nw" id="l5e" style="top:324px"><b></b>Now: edit the config</div>
+  <div class="bub" id="bb5" style="top:394px;height:62px;font-size:38px;padding:0 24px;border-radius:24px 24px 24px 6px"><img src="assets/claude.svg" style="width:34px;height:34px"><span id="q5">...?</span></div>
+ </div>
+ <div class="bug" id="bug5">BUG</div>
+</div></div>
+<script>
+window.buildScene_5=function(tl,T0,DUR){
+ const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+ const at=f=>T0+DUR*f;
+ tl.set('#s5',{opacity:1,visibility:'visible'},T0);
+ // seeded rng
+ let a=82;const R=()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+ const cb=q('#cb5');
+ // dust particles per old line
+ ['a','b','c','d'].forEach(k=>{const ln=q('#l5'+k);const top=parseFloat(ln.style.top);
+  for(let i=0;i<7;i++){const d=document.createElement('div');d.className='dust';d.dataset.k=k;d.style.left=(60+R()*760)+'px';d.style.top=(top+14+R()*28)+'px';cb.appendChild(d);}});
+ tl.set(['#n5','#d5','#cb5','#bug5','#bb5'],{opacity:0},T0);
+ tl.set('#n5',{scale:.6,rotation:-8},T0);
+ tl.set('#d5',{x:-30},T0);
+ tl.set('#cb5',{y:60,scale:.96},T0);
+ tl.set('#bug5',{scale:2,rotation:-18},T0);
+ tl.set('#bb5',{y:14,scale:.85,transformOrigin:'0% 100%'},T0);
+ qa('#s5 .ln').forEach(l=>tl.set(l,{opacity:0,x:-24},T0));
+ // camera drift for the whole scene
+ tl.fromTo('#c5',{scale:1,x:-10,y:6},{scale:1.03,x:12,y:-8,duration:DUR,ease:'sine.inOut'},T0);
+ // badge + date
+ tl.to('#n5',{opacity:1,scale:1,rotation:-4,duration:DUR*.16,ease:'back.out(1.3)'},at(.01));
+ tl.to('#d5',{opacity:1,x:0,duration:DUR*.16,ease:'power3.out'},at(.06));
+ // headline words
+ const wt=[.05,.10,.15,.20,.36,.46,.52,.58];
+ qa('#s5 .w').forEach(el=>{const k=+el.dataset.w;const slam=el.classList.contains('pill');
+  if(slam) tl.fromTo(el,{opacity:0,y:40,scale:1.18},{opacity:1,y:0,scale:1,duration:DUR*.2,ease:'expo.out'},at(wt[k]));
+  else tl.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:DUR*.17,ease:'power3.out'},at(wt[k]));});
+ // card in
+ tl.to('#cb5',{opacity:1,y:0,scale:1,duration:DUR*.2,ease:'power3.out'},at(.08));
+ ['a','b','c','d','e'].forEach((k,i)=>tl.to('#l5'+k,{opacity:1,x:0,duration:DUR*.13,ease:'power3.out'},at(.14+i*.045)));
+ // BUG sticker slaps
+ tl.to('#bug5',{opacity:1,scale:1,rotation:7,duration:DUR*.1,ease:'expo.out'},at(.34));
+ tl.to('#cb5',{x:6,duration:DUR*.03,ease:'sine.inOut',yoyo:true,repeat:1},at(.38));
+ // dissolve top down, landing on "forget"
+ ['a','b','c','d'].forEach((k,i)=>{const t=.43+i*.06;
+  tl.to('#l5'+k,{opacity:0,filter:'blur(8px)',y:-14,x:36,duration:DUR*.13,ease:'power2.in'},at(t));
+  qa('#s5 .dust[data-k="'+k+'"]').forEach(d=>{
+   tl.fromTo(d,{opacity:0,x:0,y:0,scale:1},{opacity:.9,duration:DUR*.03,ease:'sine.out'},at(t+.01));
+   tl.to(d,{x:40+R()*120,y:-30-R()*70,opacity:0,scale:.3,duration:DUR*.16,ease:'power2.out'},at(t+.04));});
+ });
+ // newest line pulses
+ tl.to('#l5e',{scale:1.025,duration:DUR*.1,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},at(.7));
+ // reply bubble: moves to fill the gap, confusion
+ tl.to('#bb5',{opacity:1,y:0,scale:1,duration:DUR*.14,ease:'back.out(1.2)'},at(.72));
+ tl.to('#q5',{rotation:-4,duration:DUR*.12,ease:'sine.inOut',yoyo:true,repeat:3,transformOrigin:'50% 50%'},at(.8));
+ // slow final drift on bug sticker
+ tl.to('#bug5',{rotation:5,duration:DUR*.5,ease:'sine.inOut'},at(.5));
+};
+</script>

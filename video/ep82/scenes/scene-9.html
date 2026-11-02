@@ -1,0 +1,51 @@
+<style>
+#s9 .grp{top:305px}
+#s9 .w{font-weight:800;letter-spacing:-.04em;line-height:1.04}
+#s9 .lk{position:absolute;left:65px;top:720px;width:950px;height:350px;background:#14151A;border-radius:32px;border:2px solid #2A2C34;padding:30px 44px;opacity:0;box-shadow:0 30px 60px rgba(0,0,0,.25),10px 10px 0 #0E0E0E;color:#F2F2EE}
+#s9 .lk .top{display:flex;align-items:center;gap:18px;color:#9A9BA3;font-weight:500;font-size:28px}
+#s9 .lk .top i{width:54px;height:54px;background:#fff;border-radius:14px;display:flex;align-items:center;justify-content:center}
+#s9 .lk .top i img{width:34px;height:34px}
+#s9 .lk .re{margin-left:auto;border:2px solid #4A4C55;border-radius:14px;padding:2px 14px;font-size:24px}
+#s9 .lk .tt{font-weight:800;font-size:48px;line-height:1.1;letter-spacing:-.03em;margin-top:16px}
+#s9 .lk .hs{display:flex;align-items:center;gap:16px;margin-top:14px;font-weight:500;font-size:34px;color:#C9CAD0}
+#s9 .lk .hs b{background:var(--acc);color:#0E0E0E;font-weight:900;font-size:28px;padding:2px 16px;border-radius:14px}
+#s9 .lk .dt{margin-top:10px;font-weight:500;font-size:28px;color:#9A9BA3}
+#s9 #arr{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible}
+#s9 #stc{left:500px;top:1120px;font-size:50px;transform:rotate(-4deg)}
+</style>
+<div class="scn clip" id="s9" data-start="0" data-duration="__D9__" data-track-index="1"><div class="cam" id="c9">
+ <div class="grp">
+  <div class="row"><span class="w s92 lt" data-w="0">The</span><span class="w s92 lt" data-w="1">links</span><span class="w s92 lt" data-w="2">to</span></div>
+  <div class="row"><span class="w sel s80" style="font-size:62px;margin-top:6px;padding:0 20px" data-w="3">Anthropic's</span><span class="w sel" style="font-size:62px;margin-top:6px;padding:0 20px" data-w="4">own</span><span class="w sel" style="font-size:62px;margin-top:6px;padding:0 20px" data-w="5">report</span></div>
+  <div class="row" style="margin-top:14px"><span class="w s92 lt" data-w="6">are</span><span class="w s92 lt" data-w="7">in</span><span class="w s92 lt" data-w="8">the</span><span class="w pill s92" data-w="9">caption.</span></div>
+ </div>
+ <div class="lk" id="lk9">
+  <div class="top"><i><img src="assets/claude.svg"></i><span>Link card</span><span class="re">re-created</span></div>
+  <div class="tt">An update on Claude Code quality reports</div>
+  <div class="hs"><span>anthropic.com</span><b>Source</b></div>
+  <div class="dt">Anthropic's own report, April 23, 2026</div>
+ </div>
+ <svg id="arr" viewBox="0 0 1080 1920" data-decor>
+  <path id="ap" d="M840,1078 C950,1085 985,1100 975,1125 C968,1148 960,1152 935,1156" fill="none" stroke="#0E0E0E" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path id="ah" d="M976,1163 L935,1156 L960,1126" fill="none" stroke="#0E0E0E" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+ </svg>
+ <div class="sticker" id="stc">in the caption</div>
+</div></div>
+<script>
+window.buildScene_9=function(tl,T0,DUR){
+ const t=f=>T0+DUR*f, q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+ tl.set('#s9',{opacity:1,visibility:'visible'},T0);
+ const ws=qa('#s9 .w');
+ ws.forEach((el,i)=>{const slam=el.classList.contains('pill')||el.classList.contains('sel'); const f=0.02+0.30*i/ws.length;
+  if(slam) tl.fromTo(el,{opacity:0,y:40,scale:1.15},{opacity:1,y:0,scale:1,duration:DUR*0.28,ease:'expo.out'},t(f));
+  else tl.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:DUR*0.2,ease:'power3.out'},t(f));});
+ tl.fromTo('#lk9',{opacity:0,y:50,scale:.96},{opacity:1,y:0,scale:1,duration:DUR*0.3,ease:'power3.out'},t(0.34));
+ const ap=q('#ap'), ah=q('#ah'), L=ap.getTotalLength();
+ gsap.set(ap,{strokeDasharray:L,strokeDashoffset:L}); gsap.set(ah,{opacity:0});
+ tl.to(ap,{strokeDashoffset:0,duration:DUR*0.32,ease:'power2.inOut'},t(0.5));
+ tl.to(ah,{opacity:1,duration:DUR*0.1,ease:'power2.out'},t(0.76));
+ tl.fromTo('#stc',{opacity:0,scale:.7,rotation:-8},{opacity:1,scale:1,rotation:-4,duration:DUR*0.25,ease:'power3.out'},t(0.66));
+ tl.fromTo('#c9',{scale:1,x:-8,y:6},{scale:1.03,x:10,y:-8,duration:DUR,ease:'sine.inOut'},T0);
+ tl.to('#stc',{y:-6,duration:DUR*0.3,ease:'sine.inOut'},t(0.9));
+};
+</script>

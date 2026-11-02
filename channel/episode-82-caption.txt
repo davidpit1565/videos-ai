@@ -1,0 +1,24 @@
+Some say Claude got dumb on purpose!
+
+Anthropic, the company that makes Claude, says it never does that. In its own report from 23 April 2026 it also admits three real changes in Claude Code that made answers worse for some users:
+1. 4 March: the default thinking effort was lowered from high to medium (changed back 7 April).
+2. 26 March: a bug dropped Claude's earlier reasoning during long sessions (fixed 10 April).
+3. 16 April: a rule that kept answers short hurt coding quality, about 3% on one of Anthropic's own tests (removed 20 April).
+All three were fixed by 20 April. The API was not affected.
+
+Check your own setting (Claude Code): type /effort and press Enter, move the slider, or type /effort high. /effort auto clears your saved level. Anthropic's docs say the default on Opus 5.5 is medium, one level below Opus 5, which defaulted to high.
+
+Not confirmed: that Opus 5.5 got worse, that anything was done on purpose, or that it saved money. Anthropic's report covers Opus 4.6 and 4.7 in Claude Code, not 5.5. We did not test Claude's quality ourselves. The 3% is Anthropic's number for one test, not a general measure.
+
+Full disclosure: Anthropic makes Claude, and this video was made with help from Claude. The screens are drawn by us, not recordings, and the line in the opening is an illustration, not data.
+
+Did you notice a change? Tell me below.
+
+Sources:
+https://www.anthropic.com/research/april-23-postmortem
+https://code.claude.com/docs/en/model-config
+https://platform.claude.com/docs/en/build-with-claude/effort
+
+Full setup, sourced exactly: https://actually-works.com/e/82
+
+#claude #anthropic #claudecode #ai

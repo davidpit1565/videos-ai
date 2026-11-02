@@ -1,0 +1,55 @@
+<style>
+#s2{--acc:#D97757}
+#s2 .grp{top:290px}
+#s2 .w{opacity:0}
+#s2 .docard{position:absolute;left:65px;top:640px;width:950px;height:580px;background:var(--white);border:6px solid var(--ink);border-radius:36px;box-shadow:12px 12px 0 var(--ink);overflow:hidden;opacity:0}
+#s2 .bar{height:70px;border-bottom:5px solid var(--ink);background:#EDEDE6;display:flex;align-items:center;padding:0 26px;gap:12px}
+#s2 .bar i{width:20px;height:20px;border-radius:50%;border:4px solid var(--ink);background:var(--white)}
+#s2 .bar .url{margin-left:18px;flex:1;height:34px;border-radius:17px;background:var(--white);border:3px solid #C9C9BF}
+#s2 .bar .rc{font-family:JBM,monospace;font-weight:700;font-size:20px;color:var(--ink2);border:3px dashed var(--ink2);border-radius:10px;padding:2px 10px}
+#s2 .pg{padding:30px 40px 0}
+#s2 .lab{display:flex;align-items:center;gap:14px;font-weight:800;font-size:28px;color:var(--ink2)}
+#s2 .lab img{width:38px;height:38px}
+#s2 .ttl{font-weight:900;font-size:48px;line-height:1.08;letter-spacing:-.03em;margin:16px 0 22px}
+#s2 .rule{height:5px;background:var(--ink);border-radius:3px;width:120px;margin-bottom:24px}
+#s2 .q{font-weight:800;font-size:58px;line-height:1.16;letter-spacing:-.035em}
+#s2 .q span{display:inline-block;margin-right:12px;padding:0 6px;border-radius:10px;background-image:linear-gradient(rgba(217,119,87,.55),rgba(217,119,87,.55));background-repeat:no-repeat;background-size:0% 100%}
+#s2 .stamp{position:absolute;left:470px;top:1088px;font-weight:900;font-size:58px;letter-spacing:.02em;color:var(--acc);border:9px solid var(--acc);border-radius:18px;padding:6px 26px;background:rgba(244,244,239,.9);opacity:0;transform:rotate(-8deg)}
+</style>
+<div class="scn clip" id="s2" data-start="0" data-duration="__D2__" data-track-index="1"><div class="cam" id="c2">
+ <div class="grp">
+  <div class="row"><span class="w s100" data-w="0">Anthropic</span><span class="w s100" data-w="1">says</span></div>
+  <div class="row"><span class="w s92 lt" data-w="2">it</span><span class="w s92 lt" data-w="3">never</span><span class="w s92 lt" data-w="4">does</span><span class="w sel s92" data-w="5">that.</span></div>
+ </div>
+ <div class="docard" id="d2">
+  <div class="bar" data-decor><i></i><i></i><i></i><div class="url"></div><div class="rc">re-created</div></div>
+  <div class="pg">
+   <div class="lab"><img src="assets/claude.svg">Anthropic, April 23, 2026</div>
+   <div class="ttl">An update on Claude Code quality reports</div>
+   <div class="rule"></div>
+   <div class="q" id="q2"><span>We</span><span>never</span><span>intentionally</span><span>degrade</span><span>our</span><span>models.</span></div>
+  </div>
+ </div>
+ <div class="stamp" id="st2">THEIR WORDS</div>
+</div></div>
+<script>
+window.buildScene_2=function(tl,T0,DUR){
+ const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)], t=f=>T0+DUR*f;
+ tl.set('#s2',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s2 .w',{opacity:0},T0);
+ tl.set('#d2',{opacity:0,y:140,scale:.97},T0);
+ tl.set('#st2',{opacity:0,scale:1.05,rotation:-14},T0);
+ tl.set('#q2 span',{backgroundSize:'0% 100%'},T0);
+ const ws=qa('#s2 .w');
+ ws.forEach((el,i)=>{const slam=el.classList.contains('sel');
+  const a=t(.03+.3*i/ws.length);
+  if(slam) tl.fromTo(el,{opacity:0,y:40,scale:1.15},{opacity:1,y:0,scale:1,duration:Math.max(.5,DUR*.2),ease:'expo.out'},a);
+  else tl.fromTo(el,{opacity:0,y:44},{opacity:1,y:0,duration:Math.max(.45,DUR*.16),ease:'power3.out'},a);});
+ tl.to('#d2',{opacity:1,y:0,scale:1,duration:DUR*.28,ease:'power3.out'},t(.1));
+ const sp=qa('#q2 span');
+ sp.forEach((el,i)=>{tl.to(el,{backgroundSize:'100% 100%',duration:DUR*.11,ease:'power2.inOut'},t(.3+.42*i/sp.length));});
+ tl.to('#st2',{opacity:1,scale:1,rotation:-8,duration:DUR*.22,ease:'back.out(1.2)'},t(.68));
+ tl.to('#st2',{rotation:-6.5,y:-4,duration:DUR*.3,ease:'sine.inOut'},t(.9));
+ tl.fromTo('#c2',{scale:1,x:-12,y:6},{scale:1.035,x:12,y:-8,duration:DUR*1.15,ease:'sine.inOut'},T0);
+};
+</script>

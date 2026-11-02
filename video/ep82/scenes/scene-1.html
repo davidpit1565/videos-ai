@@ -1,0 +1,123 @@
+<style>
+#s1{--acc:#D97757;--good:#2FBF71;--bad:#E5484D}
+#s1 .shk,#s1 .drift{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#s1 .w.pill{background:var(--acc)}
+#s1 #tshadow{position:absolute;left:400px;top:710px;width:300px;height:300px;border-radius:64px;background:var(--ink);opacity:.9}
+#s1 .tile,#s1 .si{width:300px;height:300px;border-radius:64px;background:var(--ink);display:flex;align-items:center;justify-content:center}
+#s1 .tile{position:absolute;left:390px;top:700px;border:0}
+#s1 .tile img,#s1 .si img{width:58%;height:58%;display:block}
+#s1 .sh{position:absolute;left:390px;top:700px;width:300px;height:300px;opacity:0;filter:drop-shadow(6px 6px 0 var(--ink))}
+#s1 .si{position:absolute;left:0;top:0}
+#s1 #crk{position:absolute;left:390px;top:700px;width:300px;height:300px}
+#s1 #crk path{fill:none;stroke:var(--paper);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+#s1 #pend{position:absolute;left:1250px;top:400px;width:0;height:0;transform-origin:0 0}
+#s1 #chain{position:absolute;left:-9px;top:0;width:18px;height:610px;background:repeating-linear-gradient(180deg,var(--ink) 0 26px,transparent 26px 36px);border-radius:9px}
+#s1 #ball{position:absolute;left:-100px;top:600px;width:200px;height:200px;border-radius:50%;background:var(--ink);box-shadow:inset -18px -18px 0 rgba(255,255,255,.08)}
+#s1 #ball:before{content:"";position:absolute;left:30px;top:26px;width:62px;height:30px;border-radius:50%;background:rgba(244,244,239,.22);transform:rotate(-35deg)}
+#s1 #ball:after{content:"";position:absolute;left:62px;top:-18px;width:76px;height:34px;border-radius:14px;background:var(--ink)}
+#s1 #flash{position:absolute;left:0;top:0;width:1080px;height:1920px;background:var(--acc);opacity:0}
+#s1 #qc{position:absolute;left:65px;top:1030px;width:950px;height:216px;background:var(--cd);border-radius:32px;border:2px solid #2A2C34;box-shadow:0 30px 60px rgba(0,0,0,.25);opacity:0}
+#s1 #qc .hd{position:absolute;left:34px;top:22px;display:flex;align-items:center;gap:16px;color:#9A9BA3;font-weight:500;font-size:34px}
+#s1 #qc .hd i{width:50px;height:50px;background:var(--ink);border:2px solid #2A2C34;border-radius:14px;display:flex;align-items:center;justify-content:center}
+#s1 #qc .hd i img{width:30px;height:30px}
+#s1 #qc .arrow{position:absolute;right:38px;top:16px;font-weight:900;font-size:52px;line-height:1}
+#s1 #qc svg{position:absolute;left:34px;top:84px}
+#s1 #q{position:absolute;left:390px;top:700px;width:300px;height:300px;border-radius:150px;background:var(--acc);border:7px solid var(--ink);box-shadow:9px 9px 0 var(--ink);display:flex;align-items:center;justify-content:center;font-size:230px;font-weight:900;color:var(--ink);padding-bottom:18px;opacity:0}
+</style>
+<div class="scn clip" id="s1" data-start="0" data-duration="__D1__" data-track-index="1">
+ <div class="shk" id="s1shk"><div class="drift" id="s1drift">
+  <div class="grp" id="s1h" style="top:285px">
+   <div class="row"><span class="w s92 lt" data-w="0">Some</span><span class="w s92 lt" data-w="1">say</span></div>
+   <div class="row"><span class="w s92 bk" data-w="2">Claude</span><span class="w s92 lt" data-w="3">got</span><span class="w sel s92" data-w="4">dumb</span></div>
+   <div class="row"><span class="w s92 lt" data-w="5">on</span><span class="w pill s112" data-w="6" style="margin-top:12px">purpose!</span></div>
+  </div>
+  <div id="tshadow"></div>
+  <div class="tile" id="tile"><img src="assets/claude.svg"></div>
+  <svg id="crk" viewBox="0 0 300 300">
+   <path pathLength="1" d="M300,150 L230,200 L190,300"/>
+   <path pathLength="1" d="M230,200 L110,220 L0,300"/>
+   <path pathLength="1" d="M110,220 L100,90 L0,150"/>
+   <path pathLength="1" d="M100,90 L150,0"/>
+   <path pathLength="1" d="M100,90 L210,80 L300,0"/>
+   <path pathLength="1" d="M210,80 L230,200"/>
+  </svg>
+  <div class="sh" id="sh0" style="transform-origin:30% 25%"><div class="si" style="clip-path:polygon(0px 0px,150px 0px,100px 90px,0px 150px)"><img src="assets/claude.svg"></div></div>
+  <div class="sh" id="sh1" style="transform-origin:50% 15%"><div class="si" style="clip-path:polygon(150px 0px,300px 0px,210px 80px,100px 90px)"><img src="assets/claude.svg"></div></div>
+  <div class="sh" id="sh2" style="transform-origin:80% 20%"><div class="si" style="clip-path:polygon(300px 0px,300px 150px,230px 200px,210px 80px)"><img src="assets/claude.svg"></div></div>
+  <div class="sh" id="sh3" style="transform-origin:85% 70%"><div class="si" style="clip-path:polygon(300px 150px,300px 300px,190px 300px,230px 200px)"><img src="assets/claude.svg"></div></div>
+  <div class="sh" id="sh4" style="transform-origin:45% 90%"><div class="si" style="clip-path:polygon(190px 300px,0px 300px,110px 220px,230px 200px)"><img src="assets/claude.svg"></div></div>
+  <div class="sh" id="sh5" style="transform-origin:15% 65%"><div class="si" style="clip-path:polygon(0px 150px,100px 90px,110px 220px,0px 300px)"><img src="assets/claude.svg"></div></div>
+  <div class="sh" id="sh6" style="transform-origin:55% 50%"><div class="si" style="clip-path:polygon(100px 90px,210px 80px,230px 200px,110px 220px)"><img src="assets/claude.svg"></div></div>
+  <div id="pend"><div id="chain"></div><div id="ball"></div></div>
+  <div id="q">?</div>
+  <div id="qc">
+   <div class="hd"><i><img src="assets/claude.svg"></i>Claude quality</div>
+   <div class="arrow" id="qaU" data-decor style="color:var(--good)">&#9650;</div><div class="arrow" id="qaD" data-decor style="color:var(--bad);opacity:0">&#9660;</div>
+   <svg width="880" height="116" viewBox="0 0 880 116">
+    <line x1="0" y1="110" x2="880" y2="110" stroke="#2A2C34" stroke-width="3"/>
+    <path id="qpA" pathLength="1" d="M10,98 C120,92 200,60 300,44 S400,16 440,12" fill="none" stroke="#2FBF71" stroke-width="12" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1"/>
+    <path id="qpB" pathLength="1" d="M440,12 C520,14 560,50 640,70 S780,98 868,104" fill="none" stroke="#E5484D" stroke-width="12" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1"/>
+    <circle id="qdot" cx="868" cy="104" r="0" fill="#E5484D"/>
+   </svg>
+  </div>
+  <div id="flash"></div>
+ </div></div>
+</div>
+<script>
+window.buildScene_1=function(tl,T0,DUR){
+ const t=f=>T0+DUR*f, d=f=>DUR*f, q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+ const S="#s1 ";
+ tl.set('#s1',{opacity:1,visibility:'visible'},T0);
+ // initial states
+ tl.set(S+".w",{opacity:0},T0);
+ tl.set(S+"#pend",{rotation:-8},T0);
+ tl.set(S+"#qc",{opacity:0,x:1100},T0);
+ tl.set(S+"#q",{opacity:0,scale:.5},T0);
+ tl.set(S+".sh",{opacity:0},T0);
+ // camera drift (runs past the end so it never freezes)
+ tl.fromTo(S+"#s1drift",{scale:1,x:-8,y:6},{scale:1.035,x:10,y:-8,duration:d(1.4),ease:"sine.inOut"},T0);
+ // tile: alive before impact
+ tl.fromTo(S+"#tile,"+S+"#tshadow",{scale:.96},{scale:1.03,duration:d(.22),ease:"sine.inOut",transformOrigin:"50% 50%"},T0);
+ // headline words (synced roughly to speech)
+ const wt=[.02,.10,.18,.27,.35,.50,.58];
+ qa(S+".w").forEach(el=>{const k=+el.dataset.w, slam=el.classList.contains("pill")||el.classList.contains("sel");
+  if(slam) tl.fromTo(el,{opacity:0,y:40,scale:1.16},{opacity:1,y:0,scale:1,duration:d(.2),ease:"expo.out"},t(wt[k]));
+  else tl.fromTo(el,{opacity:0,y:44},{opacity:1,y:0,duration:d(.15),ease:"power3.out"},t(wt[k]));});
+ // wrecking ball swing in
+ const tI=.22;
+ tl.fromTo(S+"#pend",{rotation:-8},{rotation:47,duration:d(tI),ease:"power2.in",transformOrigin:"0 0"},t(0));
+ // impact: tile pushed, cracks
+ tl.to(S+"#tile,"+S+"#crk",{x:-16,duration:d(.03),ease:"power2.out"},t(tI));
+ tl.to(S+"#tshadow",{opacity:0,duration:d(.03)},t(tI));
+ qa(S+"#crk path").forEach((p,i)=>tl.to(p,{strokeDashoffset:0,duration:d(.05),ease:"power2.out"},t(tI+.004+i*.007)));
+ // recoil of the ball
+ tl.to(S+"#pend",{rotation:16,duration:d(.12),ease:"power2.out"},t(tI+.02));
+ tl.to(S+"#pend",{rotation:-4,duration:d(.14),ease:"power2.inOut"},t(tI+.14));
+ tl.to(S+"#pend",{opacity:0,duration:d(.04),ease:"power1.in"},t(tI+.25));
+ // break
+ const tB=.27;
+ tl.set(S+"#tile,"+S+"#crk",{opacity:0},t(tB));
+ const V=[[-290,-60,-95],[-120,-80,-55],[130,-50,85],[250,160,120],[-40,250,-140],[-330,130,-110],[-170,170,40]];
+ V.forEach((v,i)=>{const e="#sh"+i, st=t(tB)+i*.012;
+  tl.set(S+e,{opacity:1,x:-16},st);
+  tl.to(S+e,{x:v[0],y:v[1],rotation:v[2],duration:d(.3),ease:"power3.out"},st);
+  tl.to(S+e,{y:v[1]+190+i*14,rotation:v[2]*1.25,duration:d(.22),ease:"power2.in"},st+d(.2));
+  tl.to(S+e,{opacity:0,duration:d(.1),ease:"power1.in"},st+d(.28));});
+ // flash + shake
+ tl.fromTo(S+"#flash",{opacity:0},{opacity:.5,duration:d(.025),ease:"power2.out"},t(tI+.005));
+ tl.to(S+"#flash",{opacity:0,duration:d(.13),ease:"power2.out"},t(tI+.03));
+ [[-16,8],[12,-9],[-8,5],[4,-3],[0,0]].forEach((p,i)=>tl.to(S+"#s1shk",{x:p[0],y:p[1],duration:d(.03),ease:"sine.inOut"},t(tI+i*.03)));
+ // quality card
+ tl.to(S+"#qc",{opacity:1,x:0,duration:d(.14),ease:"power3.out"},t(.36));
+ tl.to(S+"#qpA",{strokeDashoffset:0,duration:d(.2),ease:"power2.inOut"},t(.44));
+ tl.to(S+"#qpB",{strokeDashoffset:0,duration:d(.24),ease:"power2.in"},t(.66));
+ tl.to(S+"#qpA",{stroke:"#E5484D",duration:d(.1),ease:"sine.inOut"},t(.62));
+ tl.to(S+"#qaU",{opacity:0,duration:d(.06),ease:"sine.inOut"},t(.64));
+ tl.to(S+"#qaD",{opacity:1,duration:d(.08),ease:"sine.inOut"},t(.66));
+ tl.to(S+"#qdot",{attr:{r:14},duration:d(.1),ease:"back.out(1.4)"},t(.88));
+ // question mark settles in the accent
+ tl.fromTo(S+"#q",{opacity:0,scale:.5,rotation:-12},{opacity:1,scale:1,rotation:-4,duration:d(.2),ease:"back.out(1.3)"},t(.46));
+ tl.to(S+"#q",{rotation:3,y:-8,duration:d(.8),ease:"sine.inOut"},t(.66));
+ tl.to(S+"#qc",{y:-6,duration:d(.8),ease:"sine.inOut"},t(.7));
+};
+</script>

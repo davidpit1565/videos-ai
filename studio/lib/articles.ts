@@ -2220,6 +2220,37 @@ export const ARTICLES: Article[] = [
       "I also pasted a different, older Custom instructions text before test A; it was removed for A. I did not test other texts.",
     ],
   },
+  {
+    n: 82,
+    title: "Did Claude get dumber on purpose? What Anthropic admitted, and how to check your effort setting",
+    standfirst:
+      "Some users say Claude got worse on purpose. Anthropic's own report from 23 April 2026 says it never " +
+      "intentionally degrades its models, and it names three real changes in Claude Code that lowered quality " +
+      "for some users: a lower default reasoning effort, a bug that dropped Claude's earlier reasoning, and a " +
+      "system prompt rule that kept answers short. All three were fixed by 20 April. This guide shows how to " +
+      "check the effort setting yourself. It does not show that Opus 5.5 got worse.",
+    steps: [
+      "Open a terminal and start Claude Code in your project folder (the claude command).",
+      "Type /effort and press Enter. Claude Code opens a slider that shows the current effort level. Anthropic's docs list the levels low, medium, high and xhigh.",
+      "Move the slider to the level you want and confirm. You can also type the level straight after the command, for example /effort high.",
+      "Optional: type /effort auto to clear your saved level for the model you are using, so the default applies again.",
+      "Optional: read what Anthropic's docs say about defaults. They say the default effort on Opus 5.5 is medium, one level below Opus 5, which defaulted to high. The same page says a request that does not set effort explicitly runs at the default.",
+      "Optional: read Anthropic's own report, An update on Claude Code quality reports (anthropic.com/research/april-23-postmortem), to see the three changes with their dates: 4 March, 26 March and 16 April.",
+    ],
+    changes: [
+      "Verified live (2.11.2026) against Anthropic's report An update on Claude Code quality reports (anthropic.com/research/april-23-postmortem), published 23 April 2026: the three changes and their dates, the revert and fix dates (7 April, 10 April, 20 April), the quote \"We never intentionally degrade our models\", and that the API was not affected.",
+      "Verified live (2.11.2026) against Claude Code's model configuration page (code.claude.com/docs/en/model-config): the /effort command, the levels, /effort auto, and that Opus 5.5 defaults to medium.",
+      "Verified live (2.11.2026) against the Claude API effort page (platform.claude.com/docs/en/build-with-claude/effort): Opus 5.5 default effort is medium, one level below Opus 5's high.",
+      "The structure of the video follows a viral reel David was sent; the claims were rewritten so each one has a source.",
+    ],
+    limits: [
+      "Not confirmed, so not said as fact: that Claude Opus 5.5 got worse, that anything was done on purpose, or that it saved money. Anthropic's report covers Sonnet 4.6, Opus 4.6 and Opus 4.7 in Claude Code, not Opus 5.5.",
+      "The report's three changes affected Claude Code, the Agent SDK and Cowork. The API was not affected.",
+      "The roughly 3% drop in the video is Anthropic's number for one of its own evals after the short-answer rule. It is not a general measure of quality.",
+      "Anthropic makes Claude, and this video was made with help from Claude. This channel did not test Claude's quality before or after the changes.",
+      "The screens in the video are drawn in our own design, not recordings, and the quality line in the opening is an illustration, not data. Menu looks may differ on your machine.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
