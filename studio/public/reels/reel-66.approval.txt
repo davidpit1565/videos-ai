@@ -1,0 +1,4 @@
+Manual approval — episode 66 v2, rehook cut with music A (2.11.2026)
+
+The automatic gate ran (frame layout, qa.py, voice_quality, voice_doctor all PASS) but the accent check was skipped (python package "transformers" missing), so its summary reads "ALL CHECKS THAT RAN PASSED (1 skipped)" and the studio's gate parser, which looks for "ALL CHECKS PASSED", does not count it. The voice and music were measured, not heard.
+David watched the plain and the rehook versions in the chat on 1-2.11.2026, chose the rehook cut with music A ("ריהוק A, הכי טוב"), asked for it to be published to Instagram only, and on 2.11.2026 said "נסה שוב" after the first publish attempt was blocked. This approval is what lets the studio publish it.
