@@ -1,25 +1,25 @@
 <style>
 #s6 .drift{position:absolute;left:0;top:0;width:1080px;height:1920px}
-#s6 #tab{position:absolute;left:65px;top:665px;width:950px;height:580px;background:#ECEAE1;border:7px solid var(--ink);border-radius:60px 60px 40px 40px;box-shadow:14px 14px 0 var(--ink);opacity:0;overflow:hidden}
+#s6 #tab{position:absolute;left:90px;top:705px;width:900px;height:540px;background:#ECEAE1;border:7px solid var(--ink);border-radius:60px 60px 40px 40px;box-shadow:14px 14px 0 var(--ink);opacity:0;overflow:hidden}
 #s6 #tab:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 15%,rgba(255,255,255,.7),transparent 45%),radial-gradient(circle at 85% 90%,rgba(0,0,0,.06),transparent 40%)}
 #s6 #hd{position:absolute;left:0;top:0;width:100%;height:160px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:104px;font-weight:900;letter-spacing:-.04em}
 #s6 #hd b{color:var(--acc);margin-left:22px;font-weight:900}
-#s6 #lines{position:absolute;left:80px;top:205px;width:790px}
+#s6 #lines{position:absolute;left:70px;top:195px;width:740px}
 #s6 .ln{height:26px;border-radius:13px;background:#CFCCC0;margin-bottom:46px;transform-origin:0 50%;opacity:0}
 #s6 .ln:nth-child(2){width:86%}#s6 .ln:nth-child(3){width:64%}
-#s6 #seal{position:absolute;left:715px;top:975px;width:260px;height:260px;opacity:0}
+#s6 #seal{position:absolute;left:700px;top:975px;width:260px;height:260px;opacity:0}
 #s6 #sealsvg{position:absolute;left:0;top:0;filter:drop-shadow(6px 6px 0 var(--ink))}
 #s6 #seal .tx{position:absolute;left:0;top:0;width:260px;height:260px;display:flex;align-items:center;justify-content:center}
-#s6 #ring{position:absolute;left:715px;top:975px;width:260px;height:260px;border-radius:50%;border:8px solid var(--acc2);opacity:0}
-#s6 #conf{position:absolute;left:845px;top:1105px;width:0;height:0}
+#s6 #ring{position:absolute;left:700px;top:975px;width:260px;height:260px;border-radius:50%;border:8px solid var(--acc2);opacity:0}
+#s6 #conf{position:absolute;left:830px;top:1105px;width:0;height:0}
 #s6 .cf{position:absolute;width:22px;height:22px;margin:-11px;opacity:0;border:4px solid var(--ink);border-radius:6px}
 #s6 .spk{position:absolute;opacity:0}
 </style>
 <div class="scn clip" id="s6" data-start="0" data-duration="__D6__" data-track-index="1">
  <div class="drift" id="s6drift">
-  <div class="grp" id="s6h" style="top:268px">
-   <div class="row"><span class="w s170 lt" data-w="0">THE</span><span class="w s170 bk" data-w="1">ONE</span></div>
-   <div class="row"><span class="w pill s170" data-w="2" style="margin-top:10px">RULE</span></div>
+  <div class="grp" id="s6h" style="top:292px">
+   <div class="row"><span class="w s160 lt" data-w="0">THE</span><span class="w s160 bk" data-w="1">ONE</span></div>
+   <div class="row"><span class="w pill s160" data-w="2" style="margin-top:10px">RULE</span></div>
   </div>
   <div id="tab">
    <div id="hd">RULE<b>#1</b></div>
@@ -44,7 +44,7 @@ window.buildScene_6=function(tl,T0,DUR){
  tl.set(S+"#tab",{opacity:0,y:-900,rotation:-3,transformOrigin:"50% 0"},T0);
  tl.set(S+"#seal",{opacity:0,scale:2,rotation:-20},T0);
  // camera drift
- tl.fromTo(S+"#s6drift",{scale:1.0,x:-6,y:8},{scale:1.03,x:8,y:-6,duration:d(1.4),ease:"sine.inOut"},T0);
+ tl.fromTo(S+"#s6drift",{scale:1.0,x:-6,y:8},{scale:1.015,x:6,y:-4,duration:d(1.4),ease:"sine.inOut"},T0);
  // headline
  const wt=[.04,.16,.30];
  qa(S+".w").forEach(el=>{const k=+el.dataset.w,slam=el.classList.contains("pill");
