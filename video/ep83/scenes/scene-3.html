@@ -11,7 +11,7 @@
 #s3 #cn{position:absolute;left:290px;top:790px;width:500px;height:455px;opacity:0;transform-origin:50% 0;clip-path:polygon(40% 0,60% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(255,226,120,.85),rgba(255,226,120,.28) 70%,rgba(255,226,120,.12))}
 #s3 #st{position:absolute;left:600px;top:912px;background:var(--red);color:var(--white);border:7px solid var(--ink);border-radius:26px;box-shadow:8px 8px 0 var(--ink);font-weight:900;font-size:50px;padding:8px 28px;letter-spacing:-.02em;opacity:0;white-space:nowrap}
 #s3 .ey{position:absolute;top:712px;width:200px;height:120px;opacity:0;filter:drop-shadow(0 0 16px rgba(155,114,203,.85))}
-#s3 #sh{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;background:radial-gradient(ellipse 640px 520px at 50% 60%,rgba(0,0,0,0) 0,rgba(14,14,14,.22) 100%)}
+#s3 #sh{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;background:radial-gradient(ellipse 640px 520px at 50% 60%,rgba(0,0,0,0) 0,rgba(14,14,14,.1) 100%)}
 </style>
 <div class="scn clip" id="s3" data-start="0" data-duration="__D3__" data-track-index="1"><div id="sh"></div><div class="cam" id="cam3">
  <div class="grp" id="g3" style="top:272px">
@@ -68,5 +68,6 @@ window.buildScene_3=function(tl,T0,DUR){
  tl.fromTo('#st',{opacity:0,scale:.5,rotation:-8,y:24},{opacity:1,scale:1,rotation:-4,y:0,duration:DUR*0.22,ease:"back.out(1.4)"},at(0.78));
  tl.to('#st',{y:-8,duration:DUR*0.18,ease:ED,yoyo:true,repeat:1},at(0.9));
  tl.to('#cn',{rotation:27,duration:DUR*0.2,ease:ED,yoyo:true,repeat:1},at(0.82));
+ tl.to("#cn",{opacity:.4,duration:DUR*0.15,ease:ED},at(0.72));
 };
 </script>

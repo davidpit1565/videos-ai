@@ -71,9 +71,11 @@ window.buildScene_9=function(tl,T0,DUR){
  tl.set('#trp9',{opacity:.6},fl);
  tl.fromTo('#trp9',{strokeDashoffset:0},{strokeDashoffset:-160,duration:fd,ease:'none'},fl);
  tl.set('#pl9',{opacity:0,x:355,y:715},T0);
- const pr={t:0};
  const pos=t=>{const u=1-t;return[u*u*430+2*u*t*640+t*t*800,u*u*790+2*u*t*560+t*t*840]};
- tl.to(pr,{t:1,duration:fd,ease:'sine.inOut',onUpdate:()=>{const q=pos(pr.t),q2=pos(Math.min(1,pr.t+.02));const ang=Math.atan2(q2[1]-q[1],q2[0]-q[0])*180/Math.PI+24.5;gsap.set('#pl9',{x:q[0]-75,y:q[1]-75,rotation:ang,scale:1+0.35*Math.sin(Math.PI*pr.t)});}},fl);
+ const N=24,kx=[],ky=[],kr=[],ks=[];
+ for(let i=1;i<=N;i++){const f=i/N,t=-(Math.cos(Math.PI*f)-1)/2,q=pos(t),q2=pos(Math.min(1,t+.02));const d=fd/N;
+  kx.push({x:q[0]-75,y:q[1]-75,rotation:Math.atan2(q2[1]-q[1],q2[0]-q[0])*180/Math.PI+24.5,scale:1+0.35*Math.sin(Math.PI*t),duration:d,ease:'none'});}
+ tl.to('#pl9',{keyframes:kx},fl);
  tl.to('#pl9',{opacity:1,duration:fd*0.15,ease:E1},fl);
  tl.to('#pl9',{opacity:0,duration:DUR*0.06,ease:E2},L);
  tl.to('#trp9',{opacity:0,duration:DUR*0.1,ease:ED},L);

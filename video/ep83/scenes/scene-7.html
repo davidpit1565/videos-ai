@@ -1,26 +1,27 @@
 <style>
-#s7 .tab{position:absolute;left:100px;top:300px;width:880px;height:640px;background:#E4E3DA;border:9px solid var(--ink);border-radius:46px;box-shadow:16px 16px 0 var(--ink);opacity:0}
-#s7 .tab:before{content:"";position:absolute;inset:14px;border:3px dashed #9A998F;border-radius:30px}
-#s7 .hdr{position:absolute;left:40px;top:34px;width:330px;height:74px;background:var(--ink);color:var(--paper);border-radius:22px;font-weight:900;font-size:46px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
-#s7 .seal{position:absolute;right:38px;top:20px;width:118px;height:118px;border-radius:50%;background:var(--acc);border:7px solid var(--ink);box-shadow:6px 6px 0 var(--ink);display:flex;align-items:center;justify-content:center}
-#s7 .seal svg{width:60px;height:60px}
-#s7 .txt{position:absolute;left:40px;right:40px;top:158px;text-align:center}
-#s7 .ln{display:block;white-space:nowrap;line-height:1.12;font-size:92px;font-weight:800;letter-spacing:-.04em}
-#s7 .rw{display:inline-block;margin:0 9px;opacity:0}
-#s7 .hate{background:var(--acc);border:6px solid var(--ink);border-radius:22px;box-shadow:7px 7px 0 var(--ink);padding:0 22px}
-#s7 .kb{position:absolute;left:100px;top:1000px;width:880px;height:210px;background:var(--white);border:7px solid var(--ink);border-radius:38px;box-shadow:12px 12px 0 var(--ink);opacity:0}
-#s7 .kb .dot{position:absolute;left:34px;top:26px;font-weight:700;font-size:26px;color:var(--ink2);letter-spacing:0}
-#s7 .ty{position:absolute;left:34px;top:84px;font-weight:700;font-size:50px;letter-spacing:-.02em;white-space:nowrap;color:var(--ink)}
+#s7 .tab{position:absolute;left:65px;top:665px;width:950px;height:580px;background:linear-gradient(135deg,rgba(255,255,255,.7) 0%,rgba(255,255,255,0) 35%),#ECEAE1;border:7px solid var(--ink);border-radius:60px 60px 40px 40px;box-shadow:14px 14px 0 var(--ink);overflow:hidden;opacity:0}
+#s7 .hdr{position:absolute;left:0;top:0;width:100%;height:160px;background:var(--ink);color:var(--paper);font-weight:900;font-size:104px;letter-spacing:-.04em;display:flex;align-items:center;justify-content:center;line-height:1}
+#s7 .hdr b{color:var(--acc);margin-left:22px;font-weight:900}
+#s7 .seal{position:absolute;left:650px;top:310px;width:260px;height:260px}
+#s7 .txt{position:absolute;left:30px;top:178px;text-align:left}
+#s7 .ln{display:block;white-space:nowrap;line-height:1.1;font-size:76px;font-weight:800;letter-spacing:-.04em}
+#s7 .rw{display:inline-block;margin:0 9px 0 0;opacity:0}
+#s7 .hate{background:var(--acc);border:6px solid var(--ink);border-radius:22px;box-shadow:6px 6px 0 var(--ink);padding:0 20px;margin-right:16px}
+#s7 .kb{position:absolute;left:65px;top:290px;width:950px;height:330px;background:var(--white);border:7px solid var(--ink);border-radius:44px;box-shadow:14px 14px 0 var(--ink);opacity:0}
+#s7 .kb .dot{position:absolute;left:44px;top:34px;font-weight:700;font-size:32px;color:var(--ink2);letter-spacing:0}
+#s7 .ty{position:absolute;left:44px;top:140px;font-weight:700;font-size:56px;letter-spacing:-.02em;white-space:nowrap;color:var(--ink)}
 #s7 .ty span{opacity:0}
-#s7 .cur{position:absolute;top:84px;width:5px;height:60px;background:var(--acc);left:34px}
-#s7 .strike{position:absolute;left:24px;top:112px;width:0;height:9px;border-radius:5px;background:var(--red);transform:rotate(-1.2deg)}
-#s7 .no{position:absolute;right:56px;top:972px;width:150px;height:150px;border-radius:50%;background:var(--white);border:9px solid var(--ink);box-shadow:8px 8px 0 var(--ink);opacity:0;display:flex;align-items:center;justify-content:center}
-#s7 .no svg{width:104px;height:104px}
+#s7 .cur{position:absolute;top:138px;width:6px;height:70px;background:var(--acc);left:44px}
+#s7 .strike{position:absolute;left:30px;top:178px;width:0;height:16px;border-radius:8px;background:var(--red);transform:rotate(-1.5deg)}
+#s7 .no{position:absolute;left:760px;top:430px;width:210px;height:210px;border-radius:50%;background:var(--white);border:10px solid var(--ink);box-shadow:10px 10px 0 var(--ink);opacity:0;display:flex;align-items:center;justify-content:center}
+#s7 .no svg{width:146px;height:146px}
 </style>
 <div class="scn clip" id="s7" data-start="0" data-duration="__D7__" data-track-index="1"><div class="cam" id="cam7">
  <div class="tab" id="tab7">
-  <div class="hdr">RULE #1</div>
-  <div class="seal"><svg viewBox="0 0 60 60"><path d="M14 31l11 11 21-24" fill="none" stroke="#0E0E0E" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="hdr">RULE<b>#1</b></div>
+  <svg class="seal" id="seal7" viewBox="-130 -130 260 260"><defs><linearGradient id="sg7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4C7BF4"/><stop offset="1" stop-color="#9B72CB"/></linearGradient></defs>
+   <path id="sp7" fill="url(#sg7)" stroke="#0E0E0E" stroke-width="6" stroke-linejoin="round" d=""/>
+   <path d="M-48 2l33 34 64-72" fill="none" stroke="#fff" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/></svg>
   <div class="txt">
    <span class="ln"><span class="rw">Don't</span><span class="rw">type</span><span class="rw">what</span></span>
    <span class="ln"><span class="rw">you'd</span><span class="rw hate">hate</span><span class="rw">for</span></span>
@@ -35,31 +36,29 @@
 window.buildScene_7=function(tl,T0,DUR){
  const ED="sine.inOut",E1="power3.out";
  const at=f=>T0+DUR*f;
+ let d="";for(let i=0;i<64;i++){const a=i*Math.PI/32,r=i%2?112:128;d+=(i?"L":"M")+(r*Math.cos(a)).toFixed(1)+","+(r*Math.sin(a)).toFixed(1)}
+ document.getElementById('sp7').setAttribute('d',d+"Z");
  tl.set('#s7',{opacity:1,visibility:'visible'},T0);
  tl.set('#s7 .rw',{opacity:0},T0);
- tl.fromTo('#cam7',{scale:1,x:8,y:6},{scale:1.03,x:-8,y:-8,duration:DUR,ease:ED},T0);
- // tablet is already there (continues scene 6): soft settle only
- tl.fromTo('#tab7',{opacity:0,y:30,rotation:-1.2},{opacity:1,y:0,rotation:0,duration:DUR*0.16,ease:"expo.out"},at(0));
- tl.to('#tab7',{y:-6,rotation:.4,duration:DUR*0.9,ease:ED},at(0.1));
- // rule words, word by word
+ tl.fromTo('#cam7',{scale:1,x:8,y:6},{scale:1.025,x:-8,y:-8,duration:DUR,ease:ED},T0);
+ tl.fromTo('#tab7',{opacity:0,y:24,rotation:-.8},{opacity:1,y:0,rotation:0,duration:DUR*0.14,ease:"expo.out"},at(0));
+ tl.to('#tab7',{y:-6,rotation:.3,duration:DUR*0.9,ease:ED},at(0.1));
+ tl.fromTo('#seal7',{rotation:-20,scale:.9},{rotation:20,scale:1,duration:DUR,ease:ED},T0);
  [...document.querySelectorAll('#s7 .rw')].forEach((el,i)=>{
   const hate=el.classList.contains('hate');
   tl.fromTo(el,hate?{opacity:0,y:30,scale:1.2}:{opacity:0,y:24},hate?{opacity:1,y:0,scale:1,duration:DUR*0.18,ease:"expo.out"}:{opacity:1,y:0,duration:DUR*0.14,ease:E1},at(0.05+i*0.065));
  });
- // typing bar
- tl.fromTo('#kb7',{opacity:0,y:50},{opacity:1,y:0,duration:DUR*0.18,ease:E1},at(0.12));
+ tl.fromTo('#kb7',{opacity:0,y:-40},{opacity:1,y:0,duration:DUR*0.16,ease:E1},at(0.02));
  const msg="I've never told anyone this...";
  const ty=document.getElementById('ty7');
- const sp=[...msg].map(c=>{const s=document.createElement('span');s.textContent=c===' '?' ':c;ty.appendChild(s);return s});
- const ms=[...sp];
- let t=0.24;
- ms.forEach((s,i)=>{t+=0.011+0.006*Math.abs(Math.sin(i*1.7));tl.set(s,{opacity:1},at(t));tl.set('#cu7',{x:s.offsetLeft+s.offsetWidth+3},at(t))});
+ const ms=[...msg].map(c=>{const s=document.createElement('span');s.textContent=c===' '?' ':c;ty.appendChild(s);return s});
+ let t=0.12;
  tl.set('#cu7',{x:0},T0);
+ ms.forEach((s,i)=>{t+=0.011+0.006*Math.abs(Math.sin(i*1.7));tl.set(s,{opacity:1},at(t));tl.set('#cu7',{x:s.offsetLeft+s.offsetWidth+3},at(t))});
  tl.to('#cu7',{opacity:0,duration:DUR*0.05,ease:ED},at(t+0.02));
- // red strike-through then no-entry badge
- tl.to('#st7',{width:ty.offsetWidth+16,duration:DUR*0.16,ease:"power2.inOut"},at(0.66));
- tl.to('#ty7',{opacity:.45,duration:DUR*0.16,ease:ED},at(0.7));
- tl.fromTo('#no7',{opacity:0,scale:.6,rotation:-14},{opacity:1,scale:1,rotation:6,duration:DUR*0.22,ease:"back.out(1.3)"},at(0.74));
- tl.to('#no7',{scale:1.06,duration:DUR*0.2,ease:ED,yoyo:true,repeat:1},at(0.9));
+ tl.to('#st7',{width:ty.offsetWidth+30,duration:DUR*0.2,ease:"power2.inOut"},at(0.6));
+ tl.to('#ty7',{opacity:.4,duration:DUR*0.2,ease:ED},at(0.64));
+ tl.fromTo('#no7',{opacity:0,scale:.4,rotation:-20},{opacity:1,scale:1,rotation:6,duration:DUR*0.26,ease:"back.out(1.4)"},at(0.68));
+ tl.to('#no7',{scale:1.08,duration:DUR*0.18,ease:ED,yoyo:true,repeat:1},at(0.9));
 };
 </script>
