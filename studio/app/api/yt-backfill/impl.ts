@@ -97,8 +97,10 @@ export async function GET(req: Request) {
       break;
     }
     const lines = (await txt.text()).split("\n");
-    const title = (lines[0] ?? "").trim();
-    const description = lines.slice(1).join("\n").trim();
+    // YouTube rejects "<" and ">" in titles and descriptions ("invalid video description"), e.g. "Settings > Memory".
+    const clean = (t: string) => t.replace(/>/g, "\u203a").replace(/</g, "\u2039");
+    const title = clean((lines[0] ?? "").trim());
+    const description = clean(lines.slice(1).join("\n").trim());
     if (!title) {
       stopped = `episode ${n}: empty title`;
       break;
