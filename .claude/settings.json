@@ -5,9 +5,22 @@
         "source": "github",
         "repo": "pbakaus/impeccable"
       }
+    },
+    "lemolab": {
+      "source": {
+        "source": "github",
+        "repo": "lemomo-ai/lemo-opuscar"
+      }
     }
   },
   "enabledPlugins": {
-    "impeccable@impeccable": true
+    "impeccable@impeccable": true,
+    "lemo-opuscar@lemolab": true
+  },
+  "permissions": {
+    "allow": [
+      "Bash(claude plugin marketplace add lemomo-ai/lemo-opuscar)",
+      "Bash(claude plugin install lemo-opuscar@lemolab)"
+    ]
   }
 }
