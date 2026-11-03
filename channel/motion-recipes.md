@@ -499,3 +499,7 @@ anything:
   the previously-wrong word and for the real music track's continuous presence
   (confirmed via `check_music_bed.py` run against the actual rendered file's own
   audio track, not just the input wav).
+
+
+## Scene transitions: the black wipe is the exception (David, 3.11.2026)
+Episode 82/83's shell cut every scene in with a black zig-zag wipe (0.7 s). On episode 83 that was nine wipes in 29 s, and David's friend Roni (marketing professional) said: too many transitions, the black things disturb a bit. Rule: no wipe between ordinary scenes. A soft dip (previous scene fades out over about 0.12 s, the next fades in over about 0.2 s, never both visible) or the scenes' own entrances are the default. A hard wipe is for one real change of topic, at most once, and not required in any video. Reason it also matters to the gate: `export/safe_check_hf.js` flags overlapping text boxes, so a cross-dissolve with two scenes visible at once would fail it.
