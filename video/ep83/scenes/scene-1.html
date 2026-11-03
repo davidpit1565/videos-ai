@@ -1,30 +1,31 @@
 <style>
 #s1 .shk,#s1 .drift{position:absolute;left:0;top:0;width:1080px;height:1920px}
-#s1 #bub{position:absolute;left:150px;top:640px;width:780px;height:190px;background:var(--white);border:7px solid var(--ink);border-radius:56px;box-shadow:10px 10px 0 var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;font-size:62px;line-height:1.08;font-weight:800;letter-spacing:-.04em;opacity:1}
-#s1 #bub:after{content:"";position:absolute;left:340px;bottom:-40px;width:56px;height:56px;background:var(--white);border-right:7px solid var(--ink);border-bottom:7px solid var(--ink);transform:rotate(45deg);border-radius:0 0 14px 0}
+#s1 #bub{position:absolute;left:130px;top:630px;width:820px;height:150px;padding-bottom:30px;background:var(--white);border:7px solid var(--ink);border-radius:56px;box-shadow:10px 10px 0 var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;font-size:52px;line-height:1.08;font-weight:800;letter-spacing:-.04em;opacity:1}
+#s1 #bub:after{display:none;content:"";position:absolute;left:340px;bottom:-40px;width:56px;height:56px;background:var(--white);border-right:7px solid var(--ink);border-bottom:7px solid var(--ink);transform:rotate(45deg);border-radius:0 0 14px 0}
 #s1 #bub div{line-height:1.12}#s1 #bub b{font-weight:900;color:var(--acc3)}
-#s1 #gem{position:absolute;left:810px;top:588px;width:132px;height:132px;opacity:1}
+#s1 #gem{position:absolute;left:68px;top:650px;width:140px;height:140px;opacity:1}
 #s1 #gem img{width:68%;height:68%}
-#s1 #lock{position:absolute;left:375px;top:885px;width:330px;height:385px;opacity:1}
-#s1 #lock svg{width:330px;height:385px;overflow:visible}
-#s1 #ring{position:absolute;left:290px;top:1000px;width:500px;height:500px;border-radius:50%;border:10px solid var(--red);opacity:0}
+#s1 #lock{position:absolute;left:330px;top:765px;width:420px;height:490px;opacity:1}
+#s1 #lock svg{width:420px;height:490px;overflow:visible}
+#s1 #disc{position:absolute;left:190px;top:760px;width:700px;height:700px;border-radius:50%;background:radial-gradient(closest-side,rgba(229,72,77,.38),rgba(217,101,112,.16) 70%,rgba(217,101,112,0));opacity:0}
+#s1 #ring{position:absolute;left:240px;top:850px;width:600px;height:600px;border-radius:50%;border:10px solid var(--red);opacity:0}
 #s1 #glow{position:absolute;left:340px;top:1020px;width:400px;height:300px;border-radius:50%;background:radial-gradient(closest-side,rgba(229,72,77,.35),rgba(229,72,77,0));opacity:0}
 #s1 .ray{position:absolute;left:0;top:0;width:1080px;height:1920px}
 </style>
 <div class="scn clip" id="s1" data-start="0" data-duration="__D1__" data-track-index="1">
  <div class="shk" id="s1shk"><div class="drift" id="s1drift">
-  <div class="grp" id="s1h" style="top:280px">
-   <div class="row"><span class="w s128 bk" data-w="0">Your</span><span class="w s128 bk" data-w="1">secrets</span></div>
-   <div class="row"><span class="w s128 lt" data-w="2">aren't</span><span class="w pill s128" data-w="3" style="margin-top:10px">SAFE</span></div>
+  <div class="grp" id="s1h" style="top:270px">
+   <div class="row"><span class="w s150 bk" data-w="0">Your</span><span class="w s150 bk" data-w="1">secrets</span></div>
+   <div class="row"><span class="w s150 lt" data-w="2">aren't</span><span class="w pill s150" data-w="3" style="margin-top:10px">SAFE</span></div>
   </div>
-  <div id="glow"></div>
-  <div id="bub"><div>I've never told<br>anyone <b>this...</b></div></div>
+  <div id="glow"></div><div id="disc"></div>
+  <div id="bub"><div>I've never told anyone <b>this...</b></div></div>
   <div class="badge" id="gem"><img src="assets/Google_Gemini_icon_2025.svg" alt="Gemini"></div>
   <div id="lock">
    <svg viewBox="0 0 330 385">
     <g id="s1shkl"><path d="M80,170 V110 a85,85 0 0 1 170,0 V170" fill="none" stroke="#0E0E0E" stroke-width="46"/><path d="M80,170 V110 a85,85 0 0 1 170,0 V170" fill="none" stroke="#D9D9D1" stroke-width="26"/></g>
     <rect x="22" y="172" width="296" height="206" rx="40" fill="#0E0E0E"/>
-    <rect x="10" y="160" width="296" height="206" rx="40" fill="#4C7BF4" stroke="#0E0E0E" stroke-width="9"/>
+    <rect id="body" x="10" y="160" width="296" height="206" rx="40" fill="#4C7BF4" stroke="#0E0E0E" stroke-width="9"/>
     <g id="key"><circle cx="158" cy="240" r="26" fill="#0E0E0E"/><rect x="146" y="250" width="24" height="64" rx="8" fill="#0E0E0E"/></g>
     <g id="eye" transform="translate(158 262)"><g id="eyeS">
      <path d="M-120,0 Q0,-92 120,0 Q0,92 -120,0 Z" fill="#fff" stroke="#0E0E0E" stroke-width="9" stroke-linejoin="round"/>
@@ -51,19 +52,23 @@ window.buildScene_1=function(tl,T0,DUR){
  tl.to(S+"#bub",{y:6,rotation:-.6,duration:d(.55),ease:"sine.inOut"},t(.45));
  tl.fromTo(S+"#gem",{scale:.9,rotation:-8},{scale:1,rotation:5,duration:d(.4),ease:"sine.inOut"},T0);
  tl.to(S+"#gem",{rotation:-3,duration:d(.6),ease:"sine.inOut"},t(.4));
- tl.fromTo(S+"#lock",{scale:.96,y:6},{scale:1.03,y:-4,duration:d(.38),ease:"sine.inOut",transformOrigin:"50% 60%"},T0);
+ tl.fromTo(S+"#lock",{scale:.96,y:6},{scale:1,y:-2,duration:d(.38),ease:"sine.inOut",transformOrigin:"50% 60%"},T0);
  // headline
  const wt=[.0,.1,.22,.34];
  qa(S+".w").forEach(el=>{const k=+el.dataset.w,pl=el.classList.contains("pill");
   if(pl) tl.fromTo(el,{opacity:0,y:40,scale:1.18},{opacity:1,y:0,scale:1,duration:d(.2),ease:"expo.out"},t(wt[k]));
-  else tl.fromTo(el,{opacity:0,y:44},{opacity:1,y:0,duration:d(.16),ease:"power3.out"},t(wt[k]));});
+  else tl.fromTo(el,{opacity:0,y:44},{opacity:1,y:0,duration:d(k?.16:.06),ease:"power3.out"},t(wt[k]));});
  // pill SAFE trembles as danger nears
  tl.to(S+".pill",{rotation:-2,duration:d(.1),ease:"sine.inOut",transformOrigin:"50% 50%"},t(.5));
  tl.to(S+".pill",{rotation:2,duration:d(.12),ease:"sine.inOut"},t(.6));
  tl.to(S+".pill",{rotation:0,duration:d(.12),ease:"sine.inOut"},t(.72));
  // lock opens ~40%: shackle lifts and swings, key fades, red glow, eye grows
- tl.to(S+"#s1shkl",{y:-46,rotation:-22,svgOrigin:"250 170",duration:d(.2),ease:"power2.inOut"},t(.36));
+ tl.to(S+"#s1shkl",{y:-14,rotation:-22,svgOrigin:"250 170",duration:d(.2),ease:"power2.inOut"},t(.36));
  tl.to(S+"#key",{opacity:0,scale:.4,svgOrigin:"158 262",duration:d(.12),ease:"sine.inOut"},t(.38));
+ tl.fromTo(S+"#disc",{opacity:0,scale:.2},{opacity:1,scale:1,duration:d(.28),ease:"expo.out",transformOrigin:"50% 50%"},t(.38));
+ tl.to(S+"#disc",{scale:1.08,duration:d(.5),ease:"sine.inOut"},t(.66));
+ tl.to(S+"#body",{fill:"#E5484D",duration:d(.2),ease:"sine.inOut"},t(.4));
+ tl.to(S+"#lock",{scale:1.03,duration:d(.2),ease:"power2.out",transformOrigin:"50% 30%"},t(.4));
  tl.to(S+"#glow",{opacity:1,duration:d(.2),ease:"sine.inOut"},t(.4));
  tl.to(S+"#eyeS",{scale:1,duration:d(.2),ease:"expo.out"},t(.44));
  tl.set(S+"#ring",{opacity:.9,scale:.35},t(.44));tl.to(S+"#ring",{opacity:0,scale:1.15,duration:d(.3),ease:"power2.out"},t(.44));

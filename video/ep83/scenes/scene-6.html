@@ -1,33 +1,35 @@
 <style>
 #s6 .drift{position:absolute;left:0;top:0;width:1080px;height:1920px}
-#s6 #tab{position:absolute;left:115px;top:700px;width:850px;height:540px;background:#ECEAE1;border:7px solid var(--ink);border-radius:60px 60px 40px 40px;box-shadow:14px 14px 0 var(--ink);opacity:0;overflow:hidden}
+#s6 #tab{position:absolute;left:65px;top:665px;width:950px;height:580px;background:#ECEAE1;border:7px solid var(--ink);border-radius:60px 60px 40px 40px;box-shadow:14px 14px 0 var(--ink);opacity:0;overflow:hidden}
 #s6 #tab:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 15%,rgba(255,255,255,.7),transparent 45%),radial-gradient(circle at 85% 90%,rgba(0,0,0,.06),transparent 40%)}
-#s6 #hd{position:absolute;left:0;top:0;width:100%;height:140px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:88px;font-weight:900;letter-spacing:-.04em}
+#s6 #hd{position:absolute;left:0;top:0;width:100%;height:160px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:104px;font-weight:900;letter-spacing:-.04em}
 #s6 #hd b{color:var(--acc);margin-left:22px;font-weight:900}
-#s6 #lines{position:absolute;left:60px;top:185px;width:730px}
-#s6 .ln{height:22px;border-radius:11px;background:#CFCCC0;margin-bottom:40px;transform-origin:0 50%;opacity:0}
+#s6 #lines{position:absolute;left:80px;top:205px;width:790px}
+#s6 .ln{height:26px;border-radius:13px;background:#CFCCC0;margin-bottom:46px;transform-origin:0 50%;opacity:0}
 #s6 .ln:nth-child(2){width:86%}#s6 .ln:nth-child(3){width:64%}
-#s6 #seal{position:absolute;left:740px;top:1010px;width:210px;height:210px;opacity:0}
+#s6 #seal{position:absolute;left:715px;top:975px;width:260px;height:260px;opacity:0}
 #s6 #sealsvg{position:absolute;left:0;top:0;filter:drop-shadow(6px 6px 0 var(--ink))}
-#s6 #seal .tx{position:absolute;left:0;top:0;width:210px;height:210px;display:flex;align-items:center;justify-content:center}
-#s6 #ring{position:absolute;left:740px;top:1010px;width:210px;height:210px;border-radius:50%;border:8px solid var(--acc2);opacity:0}
+#s6 #seal .tx{position:absolute;left:0;top:0;width:260px;height:260px;display:flex;align-items:center;justify-content:center}
+#s6 #ring{position:absolute;left:715px;top:975px;width:260px;height:260px;border-radius:50%;border:8px solid var(--acc2);opacity:0}
+#s6 #conf{position:absolute;left:845px;top:1105px;width:0;height:0}
+#s6 .cf{position:absolute;width:22px;height:22px;margin:-11px;opacity:0;border:4px solid var(--ink);border-radius:6px}
 #s6 .spk{position:absolute;opacity:0}
 </style>
 <div class="scn clip" id="s6" data-start="0" data-duration="__D6__" data-track-index="1">
  <div class="drift" id="s6drift">
-  <div class="grp" id="s6h" style="top:285px">
-   <div class="row"><span class="w s150 lt" data-w="0">THE</span><span class="w s150 bk" data-w="1">ONE</span></div>
-   <div class="row"><span class="w pill s150" data-w="2" style="margin-top:10px">RULE</span></div>
+  <div class="grp" id="s6h" style="top:268px">
+   <div class="row"><span class="w s170 lt" data-w="0">THE</span><span class="w s170 bk" data-w="1">ONE</span></div>
+   <div class="row"><span class="w pill s170" data-w="2" style="margin-top:10px">RULE</span></div>
   </div>
   <div id="tab">
    <div id="hd">RULE<b>#1</b></div>
    <div id="lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
   </div>
-  <div id="ring"></div>
-  <div id="seal"><svg id="sealsvg" width="210" height="210" viewBox="0 0 210 210"></svg>
-   <div class="tx"><svg width="96" height="96" viewBox="0 0 96 96"><path id="chk" pathLength="1" d="M14,50 L38,74 L84,22" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div></div>
+  <div id="ring"></div><div id="conf"></div>
+  <div id="seal"><svg id="sealsvg" width="260" height="260" viewBox="0 0 210 210"></svg>
+   <div class="tx"><svg width="120" height="120" viewBox="0 0 96 96"><path id="chk" pathLength="1" d="M14,50 L38,74 L84,22" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div></div>
   <svg class="spk" id="spk0" data-decor style="left:70px;top:1090px" width="70" height="70" viewBox="-35 -35 70 70"><path d="M0,-32 Q3,-3 32,0 Q3,3 0,32 Q-3,3 -32,0 Q-3,-3 0,-32Z" fill="#9B72CB"/></svg>
-  <svg class="spk" id="spk1" data-decor style="left:950px;top:640px" width="56" height="56" viewBox="-35 -35 70 70"><path d="M0,-32 Q3,-3 32,0 Q3,3 0,32 Q-3,3 -32,0 Q-3,-3 0,-32Z" fill="#4C7BF4"/></svg>
+  <svg class="spk" id="spk1" data-decor style="left:960px;top:560px" width="56" height="56" viewBox="-35 -35 70 70"><path d="M0,-32 Q3,-3 32,0 Q3,3 0,32 Q-3,3 -32,0 Q-3,-3 0,-32Z" fill="#4C7BF4"/></svg>
  </div>
 </div>
 <script>
@@ -58,12 +60,21 @@ window.buildScene_6=function(tl,T0,DUR){
  // blank rule lines draw in
  qa(S+".ln").forEach((l,i)=>tl.fromTo(l,{opacity:1,scaleX:0},{scaleX:1,duration:d(.2),ease:"power2.inOut"},t(.34+i*.07)));
  // seal stamp
- tl.to(S+"#seal",{opacity:1,scale:1,rotation:-8,duration:d(.16),ease:"power3.in"},t(.52));
+ tl.to(S+"#seal",{opacity:1,scale:1,rotation:-8,duration:d(.18),ease:"power3.in"},t(.52));
  tl.to(S+"#seal",{rotation:-5,duration:d(.3),ease:"sine.inOut"},t(.68));
  tl.set(S+"#ring",{opacity:0},T0);tl.fromTo(S+"#ring",{opacity:.9,scale:1},{opacity:0,scale:2.2,duration:d(.3),ease:"power2.out",immediateRender:false},t(.67));
  tl.to(S+"#chk",{strokeDashoffset:0,duration:d(.16),ease:"power2.inOut"},t(.7));
  tl.to(S+"#tab",{x:-5,duration:d(.04),ease:"sine.out"},t(.67));
  tl.to(S+"#tab",{x:0,duration:d(.12),ease:"sine.inOut"},t(.71));
+
+ // confetti burst from the seal (deterministic)
+ const cols=["#4C7BF4","#9B72CB","#D96570","#4C7BF4","#9B72CB","#D96570"],cf=document.querySelector("#conf");
+ for(let i=0;i<14;i++){const e=document.createElement("div");e.className="cf";e.style.background=cols[i%6];if(i%3==0)e.style.borderRadius="50%";cf.appendChild(e);
+  const a=i*2.399+.4,r=210+(i%4)*45,x=Math.cos(a)*r,y=Math.sin(a)*r*.8-40;
+  tl.set(e,{opacity:0,x:0,y:0,scale:.3,rotation:0},T0);
+  tl.to(e,{opacity:1,duration:d(.03),ease:"sine.out"},t(.65));
+  tl.to(e,{x:x,y:y,scale:1,rotation:i*47-200,duration:d(.3),ease:"expo.out"},t(.65));
+  tl.to(e,{y:y+120,opacity:0,duration:d(.25),ease:"sine.in"},t(.8));}
  // sparkles
  [["#spk0",.74],["#spk1",.6]].forEach(([e,f])=>{
   tl.fromTo(S+e,{opacity:0,scale:.2,rotation:-30},{opacity:1,scale:1,rotation:0,duration:d(.18),ease:"expo.out"},t(f));
