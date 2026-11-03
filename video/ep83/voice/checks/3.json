@@ -1,0 +1,25 @@
+{
+ "line": 3,
+ "verdict": "ok",
+ "reasons": [],
+ "numbers": {
+  "dur": 2.28,
+  "peak": 0.777,
+  "lead_s": 0.0,
+  "trail_s": 0.0,
+  "transcript": "because a real person may read your chat.",
+  "first_word_start_s": -0.3,
+  "speech_onset_s": 0.02,
+  "first200ms_after_onset_vs_median_db": 6.0,
+  "rate_syl_s": 4.38,
+  "sibilance_db": -10.1,
+  "ending_db": -28.8,
+  "level_dbfs": -17.2,
+  "file_median_ending_db": -36.3,
+  "pitch_range_st": 5.4,
+  "pitch_end_st": -0.7,
+  "accent_row": "ln 3  top=canada 0.46  not-american=0.09   {'england': 0.06,",
+  "script_lint": "0 risky word(s) across 1 line(s)."
+ },
+ "note": "measured, not heard"
+}

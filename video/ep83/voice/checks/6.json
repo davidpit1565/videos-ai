@@ -1,0 +1,29 @@
+{
+ "line": 6,
+ "verdict": "ear",
+ "reasons": [
+  "ending soft (-14.2 dB vs median; ear)",
+  "voice_doctor note:dull S (-18.3 dB, -7.4 against what this line's own sibilants predict)",
+  "accent heuristic flags line (ear decision)"
+ ],
+ "numbers": {
+  "dur": 1.83,
+  "peak": 0.619,
+  "lead_s": 0.0,
+  "trail_s": 0.0,
+  "transcript": "So here's the one rule.",
+  "first_word_start_s": -0.3,
+  "speech_onset_s": 0.02,
+  "first200ms_after_onset_vs_median_db": 6.0,
+  "rate_syl_s": 3.28,
+  "sibilance_db": -18.3,
+  "ending_db": -50.5,
+  "level_dbfs": -19.0,
+  "file_median_ending_db": -36.3,
+  "pitch_range_st": 6.2,
+  "pitch_end_st": 0.1,
+  "accent_row": "ln 6  not-american 0.98 (file median 0.069)   So here's the ",
+  "script_lint": "0 risky word(s) across 1 line(s)."
+ },
+ "note": "measured, not heard"
+}

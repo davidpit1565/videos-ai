@@ -1,74 +1,114 @@
 {
  "lines": {
   "1": {
-   "state": "rolling",
-   "seed": null,
-   "exaggeration": null,
-   "take": null,
-   "notes": "queued: whole-script takes t8301.. in voice/takes"
+   "state": "done",
+   "seed": 8302,
+   "take_seed": "8301",
+   "exaggeration": 0.83,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/1.wav",
+   "dur": 2.26,
+   "notes": "interim pick; see metrics.json",
+   "check": "ok"
   },
   "2": {
-   "state": "rolling",
-   "seed": null,
-   "exaggeration": null,
-   "take": null,
-   "notes": "queued: whole-script takes t8301.. in voice/takes"
+   "state": "needs-check",
+   "seed": 8313,
+   "take_seed": "8311",
+   "exaggeration": 0.8,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8311.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/2.wav",
+   "dur": 1.72,
+   "notes": "rerolled from take 8311 after checker flag (L2 end -3.6, L7 weak first word); please recheck",
+   "check": "ok"
   },
   "3": {
-   "state": "rolling",
-   "seed": null,
-   "exaggeration": null,
-   "take": null,
-   "notes": "queued: whole-script takes t8301.. in voice/takes"
+   "state": "done",
+   "seed": 8304,
+   "take_seed": "8301",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/3.wav",
+   "dur": 2.29,
+   "notes": "interim pick; see metrics.json",
+   "check": "ok"
   },
   "4": {
-   "state": "rolling",
-   "seed": null,
-   "exaggeration": null,
-   "take": null,
-   "notes": "queued: whole-script takes t8301.. in voice/takes"
+   "state": "done",
+   "seed": 8305,
+   "take_seed": "8301",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/4.wav",
+   "dur": 2.5,
+   "notes": "interim pick; see metrics.json",
+   "check": "ok"
   },
   "5": {
-   "state": "rolling",
-   "seed": null,
-   "exaggeration": null,
-   "take": null,
-   "notes": "queued: whole-script takes t8301.. in voice/takes"
+   "state": "done",
+   "seed": 8306,
+   "take_seed": "8301",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/5.wav",
+   "dur": 3.4,
+   "notes": "interim pick; see metrics.json",
+   "check": "ok"
   },
   "6": {
-   "state": "rolling",
-   "seed": null,
-   "exaggeration": null,
-   "take": null,
-   "notes": "queued: whole-script takes t8301.. in voice/takes"
+   "state": "done",
+   "seed": 8307,
+   "take_seed": "8301",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/6.wav",
+   "dur": 1.83,
+   "notes": "interim pick; see metrics.json",
+   "check": "ear"
   },
   "7": {
-   "state": "rolling",
-   "seed": null,
-   "exaggeration": null,
-   "take": null,
-   "notes": "queued: whole-script takes t8301.. in voice/takes"
+   "state": "needs-check",
+   "seed": 8318,
+   "take_seed": "8311",
+   "exaggeration": 0.8,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8311.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/7.wav",
+   "dur": 2.36,
+   "notes": "rerolled from take 8311 after checker flag (L2 end -3.6, L7 weak first word); please recheck",
+   "check": "ok"
   },
   "8": {
-   "state": "rolling",
-   "seed": null,
-   "exaggeration": null,
-   "take": null,
-   "notes": "queued: whole-script takes t8301.. in voice/takes"
+   "state": "done",
+   "seed": 8309,
+   "take_seed": "8301",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/8.wav",
+   "dur": 3.21,
+   "notes": "interim pick; see metrics.json",
+   "check": "ok"
   },
   "9": {
-   "state": "rolling",
-   "seed": null,
-   "exaggeration": null,
-   "take": null,
-   "notes": "queued: whole-script takes t8301.. in voice/takes"
+   "state": "done",
+   "seed": 8310,
+   "take_seed": "8301",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/9.wav",
+   "dur": 3.27,
+   "notes": "interim pick; see metrics.json",
+   "check": "ear"
   },
   "10": {
-   "state": "rolling",
-   "seed": null,
-   "exaggeration": null,
-   "take": null,
-   "notes": "queued: whole-script takes t8301.. in voice/takes"
+   "state": "done",
+   "seed": 8311,
+   "take_seed": "8301",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/10.wav",
+   "dur": 2.92,
+   "notes": "interim pick; see metrics.json",
+   "check": "ok"
   }
  }
 }

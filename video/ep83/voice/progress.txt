@@ -1,0 +1,15 @@
+done 8301 14:43:15
+line 1 final from take 8301 dur 2.26s 14:43:51
+line 2 final from take 8301 dur 1.68s 14:43:51
+line 3 final from take 8301 dur 2.29s 14:43:51
+line 4 final from take 8301 dur 2.50s 14:43:51
+line 5 final from take 8301 dur 3.40s 14:43:52
+line 6 final from take 8301 dur 1.83s 14:43:52
+line 7 final from take 8301 dur 2.72s 14:43:52
+line 8 final from take 8301 dur 3.21s 14:43:52
+line 9 final from take 8301 dur 3.27s 14:43:52
+line 10 final from take 8301 dur 2.92s 14:43:52
+done 8311 ex=0.80 14:54:39
+line 7 final from take 8311 dur 2.36s 14:55:55
+line 2 final from take 8311 dur 1.72s 14:55:56
+done 8321 ex=0.78 15:02:45
