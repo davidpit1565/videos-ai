@@ -486,5 +486,12 @@
     "brass": "#A3E635",
     "ember": "#A3E635",
     "mood": "confident"
+  },
+  {
+    "episode": 83,
+    "brass": "#4C7BF4",
+    "ember": "#9B72CB",
+    "mood": "confident",
+    "date": "2026-11-03"
   }
 ]
