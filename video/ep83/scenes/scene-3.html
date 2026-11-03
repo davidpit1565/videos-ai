@@ -1,7 +1,7 @@
 <style>
 #s3 .pill{background:var(--acc2)}
 #s3 #ph{position:absolute;left:70px;top:835px;width:940px;height:410px;background:var(--white);border:8px solid var(--ink);border-radius:56px;box-shadow:12px 12px 0 var(--ink);opacity:0}
-#s3 .rc{position:absolute;left:40px;bottom:10px;font-size:24px;font-weight:600;color:#8A8A84}
+#s3 .rc{position:absolute;left:40px;bottom:44px;font-size:24px;font-weight:600;color:#8A8A84}
 #s3 .bb{position:absolute;height:84px;border-radius:34px;background:#ECEDF1;display:flex;align-items:center;padding:0 34px;font-weight:700;font-size:42px;color:#2A2B30;letter-spacing:-.02em;opacity:0;white-space:nowrap}
 #s3 .bb.me{background:#DCE6FD}
 #s3 i.ln{display:block;height:20px;border-radius:10px;background:#C4C6CE}
@@ -46,7 +46,7 @@ window.buildScene_3=function(tl,T0,DUR){
   if(slam) tl.fromTo(el,{opacity:0,y:44,scale:1.18},{opacity:1,y:0,scale:1,duration:DUR*0.22,ease:"expo.out"},t);
   else tl.fromTo(el,{opacity:0,y:36},{opacity:1,y:0,duration:DUR*0.16,ease:E1},t);
  });
- tl.fromTo('#ph',{opacity:0,y:80},{opacity:1,y:0,duration:DUR*0.24,ease:"expo.out"},at(0.0));
+ tl.fromTo('#ph',{opacity:0,y:30},{opacity:1,y:0,duration:DUR*0.24,ease:"expo.out"},at(0.0));
  tl.fromTo('#gm',{opacity:0,scale:.6,rotation:-10},{opacity:1,scale:1,rotation:-4,duration:DUR*0.2,ease:"back.out(1.3)"},at(0.06));
  ['b1','b2','b3','b4'].forEach((id,i)=>{
   tl.fromTo('#'+id,{opacity:0,y:26,scale:.95},{opacity:1,y:0,scale:1,duration:DUR*0.16,ease:E1},at(id=='b3'?0.02:0.08+i*0.04));
