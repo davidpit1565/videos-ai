@@ -1,0 +1,52 @@
+[
+ {
+  "id": "l1",
+  "text": "ChatGPT can keep notes about you!",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "asr": "Chat GPT can keep notes about you!"
+ },
+ {
+  "id": "l2",
+  "text": "Even after you delete the chat.",
+  "voice": "af_heart",
+  "speed": 1.0
+ },
+ {
+  "id": "l3",
+  "text": "Ask it: what do you know about me?",
+  "voice": "af_heart",
+  "speed": 1.0
+ },
+ {
+  "id": "l4",
+  "text": "Delete the chat. The note stays.",
+  "voice": "af_heart",
+  "speed": 1.0
+ },
+ {
+  "id": "l5",
+  "text": "Settings, Personalization, Memory. That's where it lives.",
+  "voice": "af_heart",
+  "speed": 1.0
+ },
+ {
+  "id": "l6",
+  "text": "Did it get something wrong about you? Tell me below.",
+  "voice": "af_heart",
+  "speed": 1.0
+ },
+ {
+  "id": "l7",
+  "text": "The setup's in the link in bio.",
+  "voice": "af_heart",
+  "speed": 1.0
+ },
+ {
+  "id": "l8",
+  "text": "Tomorrow, I'll show you how ChatGPT can guess your age from how you use it. Follow, so you can check it too.",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "asr": "Tomorrow, I'll show you how chat GPT can guess your age from how you use it. Follow, so you can check it too."
+ }
+]

@@ -1,0 +1,6 @@
+Voice: Kokoro-82M via kokoro-onnx (voice af_heart), Apache-2.0 (model) - plugin core/tts.
+Music bed and foley: synthesized in code with the plugin's core/audio/sfx.py + numpy (original, no samples). NOT the channel's licensed library.
+Fonts: Inter, Inter Tight, JetBrains Mono (SIL OFL), copied from the earlier scaffold's fonts/ folder.
+ChatGPT mark: Wikimedia Commons "ChatGPT-Logo.svg" (OpenAI trademark; geometry unchanged, only filled ink on a lime tile). Check the licence/trademark terms before publishing.
+Quote: OpenAI Help Center, Memory FAQ, words unaltered ("...even if you delete a chat, any saved memories from it can still be used in future conversations.").
+All UI shown is re-created, tagged "example · re-created". No personal data.
