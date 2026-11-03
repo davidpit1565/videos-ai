@@ -1,5 +1,7 @@
 # Episode 83 script (3.11.2026, DRAFT v1, not built): "Claude Code isn't on full power"
 
+> **DROPPED as a Reel topic (David, 3.11.2026, same day):** niche (Claude Code subgroup), no personal stake, not sendable, fails the "everyday product" rule. Kept only as a record of the live verification. Replacement candidate: see `channel/lemo-opuscar-test/hook-ratings-3-11.md`.
+
 Status: script and setup guide only. NOT produced, NOT published. Written in the lemo-opuscar test session (branch `claude/lemo-opuscar-video`).
 
 ## Product verification (live, 3.11.2026, official docs, read by WebFetch)

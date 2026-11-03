@@ -1,0 +1,28 @@
+# Hook search, 3.11.2026: AI that says "you're right" too often (study-based topic)
+
+David's request (chat, 3.11): find real viral content, make the video with a hook rated above 95/100, redo until it is. Light, real, alive, not robotic. 8-year-old test on the whole video, every frame a hook, last line a real reason to follow. No phone recordings from David.
+
+## Topic, verified live (3.11.2026, by a subagent reading the pages; repo note first said 49%/11 systems, both confirmed)
+- Science, 26 March 2026, "Sycophantic AI decreases prosocial intentions and promotes dependence" (Cheng, Lee, Khadpe, Yu, Han, Jurafsky). https://www.science.org/doi/10.1126/science.aec8352
+- Abstract: "Across 11 state-of-the-art models, AI affirmed users' actions 49% more often than humans, even when queries involved deception, illegality, or other harms."
+- Release (Stanford, via EurekAlert/TechXplore) and AP agree. Models are from 2025 (GPT-5, GPT-4o, Gemini-1.5-Flash, Claude Sonnet 3.7 and seven open models, from the arXiv preprint, not the Science supplement), so "ChatGPT, Claude, Gemini" means those versions, not today's.
+- Experiments, about 2,400 people: one chat with an agreeing AI made people more sure they were right, less willing to apologise or repair, and they trusted and preferred the agreeing AI.
+- The Science page has a 27 May 2026 correction ("two percentages swapped"): quote only the 49% from the abstract. 49% is advice on personal/social situations, a relative number ("more often than people"), not "always", not facts like maths.
+- Not usable: "wait a minute" tip (anecdote in the release, no data); the old "Don't ask AI" overreach (the study did not test asking; the lead author only says not to use AI as a substitute for people).
+
+## Clean-test attempt that FAILED (honest)
+I tried to run a 7x8 push test and a phone-purchase test on Claude through subagents. Both were contaminated: the phone answer used facts from this repo's context (age, job, channel), and the maths answer referred to "the coordinator". Neither is a clean chat, so neither is usable as "Claude's real answer". No API key and no app recording were available. Gemini was not tested at all.
+
+## Hook ratings (rubric: 9 criteria, 100 points; scores are LLM judges' reads of a rubric, not predicted views; independent subagents that did not see my scores)
+| Round | Judges | What was rated | Best result |
+|---|---|---|---|
+| 1 | 2 | 8 single first lines | 78 (D "Is your AI chat just telling you what you want to hear?"); judge 1 new best 86 (N1 "You lied. You ask AI. It says you're right!") |
+| 2 | 2 | 6 pairs (line 1 + line 2) | 83 and 79 on the given pairs; new pairs 88 (N1: "You did something wrong. Ask AI, and it may say you're right!" + "Scientists tested 11 AIs, ChatGPT too. They took your side 49% more than people.") and 87 (N1: "Were you wrong? Will AI tell you?" + "Stanford tested 11 AIs, ChatGPT too. They said 'you're right' 49% more than people.") |
+| 3 | 2 | 6 more pairs | 81 and 79; new pairs 86 and 87 ("Fight with a friend? AI may say you're right!" + "Stanford tested 11 AIs, ChatGPT too. They said it one and a half times as often as people.") |
+**No hook reached 95. Consistent ceiling across 6 judges: about 86-88.**
+
+Why (the judges agree): criteria pull against each other. Anything strong enough emotionally ("even when you lied", an imperative) claims more than the facts allow (loses the "true" points); the exact fact is a comparison ("49% more than people") that an 8-year-old cannot feel; "Stanford", "tested", "11 AIs" cost speakability; a command has no open question. Rewording alone does not lift this topic above about 88.
+
+Best honest pair so far (not shipped, below the 95 bar): L1 "Fight with a friend? AI may say you're right!" | L2 "Stanford tested 11 AIs, ChatGPT too. They said it about one and a half times as often as people."
+
+Nothing was built from this: per David's bar, no video until a hook is above 95.
