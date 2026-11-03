@@ -12,7 +12,8 @@
    "metrics": {
     "range_st": 6.5,
     "end_vs_median_st": -0.1
-   }
+   },
+   "check": "ok"
   },
   "2": {
    "state": "done",
@@ -41,7 +42,8 @@
    "metrics": {
     "range_st": 6.6,
     "end_vs_median_st": 0.0
-   }
+   },
+   "check": "ear"
   },
   "4": {
    "state": "done",
@@ -70,7 +72,8 @@
    "metrics": {
     "range_st": 6.6,
     "end_vs_median_st": 0.9
-   }
+   },
+   "check": "ok"
   },
   "6": {
    "state": "done",
@@ -84,7 +87,8 @@
    "metrics": {
     "range_st": 6.4,
     "end_vs_median_st": 0.7
-   }
+   },
+   "check": "ok"
   },
   "7": {
    "state": "done",

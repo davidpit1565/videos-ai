@@ -16,9 +16,9 @@
   "ending_db": -41.6,
   "level_dbfs": -19.8,
   "file_median_ending_db": -36.3,
-  "pitch_range_st": 6.9,
-  "pitch_end_st": 0.7,
-  "accent_row": "ln 4  top=us 0.81  not-american=0.05   {'australia': 0.023, ",
+  "pitch_range_st": 7.0,
+  "pitch_end_st": 0.8,
+  "accent_row": "ln 4  top=us 0.81  not-american=0.05   {'australia': 0.024, ",
   "script_lint": "0 risky word(s) across 1 line(s)."
  },
  "note": "measured, not heard"

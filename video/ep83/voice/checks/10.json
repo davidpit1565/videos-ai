@@ -18,7 +18,7 @@
   "file_median_ending_db": -36.3,
   "pitch_range_st": 6.0,
   "pitch_end_st": -0.7,
-  "accent_row": "ln 10  top=us 0.71  not-american=0.14   {'england': 0.083, '",
+  "accent_row": "ln 10  top=us 0.70  not-american=0.16   {'england': 0.095, '",
   "script_lint": "0 risky word(s) across 1 line(s)."
  },
  "note": "measured, not heard"

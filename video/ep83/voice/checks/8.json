@@ -11,14 +11,14 @@
   "first_word_start_s": -0.3,
   "speech_onset_s": 0.04,
   "first200ms_after_onset_vs_median_db": 9.3,
-  "rate_syl_s": 3.75,
+  "rate_syl_s": 3.74,
   "sibilance_db": -10.0,
   "ending_db": -26.3,
   "level_dbfs": -19.1,
   "file_median_ending_db": -36.3,
   "pitch_range_st": 7.8,
   "pitch_end_st": 1.5,
-  "accent_row": "ln 8  top=us 0.76  not-american=0.03   {'australia': 0.014, ",
+  "accent_row": "ln 8  top=us 0.76  not-american=0.02   {'australia': 0.013, ",
   "script_lint": "0 risky word(s) across 1 line(s)."
  },
  "note": "measured, not heard"
