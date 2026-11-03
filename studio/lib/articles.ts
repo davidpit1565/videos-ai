@@ -1668,7 +1668,7 @@ export const ARTICLES: Article[] = [
     n: 61,
     title: "Google's reviewers can read some Gemini chats — even after you delete them",
     standfirst:
-      "Google's own Gemini Apps Privacy Hub says a subset of Gemini chats is reviewed by human " +
+      "Google's own Google's Gemini help page says a subset of Gemini chats is reviewed by human " +
       "reviewers, after the chat is disconnected from your Google Account. Reviewed chats are kept " +
       "for up to three years, and deleting your activity does not remove a chat that was already " +
       "reviewed. There is a real switch for new chats: Keep Activity.",
@@ -1681,7 +1681,7 @@ export const ARTICLES: Article[] = [
       "Optional: if you want to send something sensitive anyway, treat it like a search box — Google says chats made with Keep Activity off are held for 72 hours and not reviewed unless you send feedback.",
     ],
     changes: [
-      "Verified live (8.10.2026) against Google's Gemini Apps Privacy Hub (support.google.com/gemini/answer/13594961, last updated 24 September 2026) and Google's Gemini activity help page (support.google.com/gemini/answer/13278892).",
+      "Read on 3.11.2026 on Google's Gemini help page (support.google.com/gemini/answer/13594961).",
       "Google says a subset of chats is reviewed by human reviewers, disconnected from your account first, and that reviewed chats are retained for up to three years and are not deleted when you delete your activity.",
       "With Keep Activity off, and for Temporary Chats, Google says chats are retained for 72 hours, not used to train its models, and not reviewed unless you send feedback.",
       "Topic chosen because episode 60 promised it on air, and because the best recent episodes are all \"something is already happening to your data\".",
@@ -2249,6 +2249,33 @@ export const ARTICLES: Article[] = [
       "The roughly 3% drop in the video is Anthropic's number for one of its own evals after the short-answer rule. It is not a general measure of quality.",
       "Anthropic makes Claude, and this video was made with help from Claude. This channel did not test Claude's quality before or after the changes.",
       "The screens in the video are drawn in our own design, not recordings, and the quality line in the opening is an illustration, not data. Menu looks may differ on your machine.",
+    ],
+  },
+  {
+    n: 83,
+    title: "Can a person read your Gemini chats? What Google says, and the one setting to check",
+    standfirst:
+      "Google's own Gemini help page says a subset of chats is reviewed by human reviewers. Reviewed chats are " +
+      "kept for up to three years, even if you delete your activity. Google says names and accounts are " +
+      "disconnected from chats before reviewers see them, and it tells you not to type anything confidential " +
+      "that you would not want a reviewer to see. This guide shows where the setting lives. It does not say " +
+      "that your chat was read.",
+    steps: [
+      "Open https://myactivity.google.com/product/gemini in your browser and sign in to the Google account you use with Gemini. This is the Gemini Apps Activity page that Google's help page points to.",
+      "Look for the Keep Activity setting on that page, as described on Google's help page. Google says that if you turn Keep Activity off, or use a temporary chat, your chats are still kept for 72 hours.",
+      "Look for the auto-delete setting. Google says it is set to 18 months by default, and you can change it to 3 months or 36 months, or choose never. Pick the shortest time you are happy with.",
+      "Optional: read Google's own page, Google's Gemini help page, at https://support.google.com/gemini/answer/13594961 for the exact wording and the current menu names, because Google can rename them. We did not copy any menu label that we have not seen ourselves.",
+      "Before you send a chat, do the one thing Google advises: do not type anything confidential that you would not want a reviewer to see.",
+    ],
+    changes: [
+      "Verified live (3.11.2026) against Google's Gemini help page (support.google.com/gemini/answer/13594961): a subset of chats is reviewed by human reviewers; reviewed chats are kept up to three years even if you delete your activity; names and accounts are disconnected before chats go to reviewers; with Keep Activity off or in temporary chats, chats are still kept 72 hours; auto-delete defaults to 18 months and can be 3 months, 36 months or never; the advice not to enter confidential information you would not want a reviewer to see; and that the control is in Gemini Apps Activity (myactivity.google.com/product/gemini).",
+    ],
+    limits: [
+      "Only some chats are reviewed, not all, and Google says the names are removed first. The video says a person may read your chat, not that a person did.",
+      "Turning off Keep Activity does not fully stop human review, according to Google's page. We do not say it does.",
+      "I did not check the exact menu labels on a phone or in the app. Where I could not see a label myself, the steps point to Google's page instead of guessing one.",
+      "The settings card in the video is re-created in our own design, not a recording of your account. Menus may look different on your screen.",
+      "The sentence on screen is a short version of Google's advice. Please read Google's full page for the exact words.",
     ],
   },
 ];

@@ -1,0 +1,13 @@
+Does Google read your Gemini chats? Here is what its own page says.
+
+Google's Gemini help page says a subset of chats is reviewed by human reviewers. Not all chats, only some. Google says names and accounts are disconnected from the chats before they go to reviewers. Reviewed chats are kept for up to three years, even if you delete your activity. Google's advice: do not enter confidential information you would not want a reviewer to see.
+
+Keep Activity off or a temporary chat still keeps chats for 72 hours, and the page does not say it fully stops human review. Auto-delete is set to 18 months by default.
+
+Google's page: https://support.google.com/gemini/answer/13594961
+The setting: https://myactivity.google.com/product/gemini
+Setup steps, sourced exactly: https://actually-works.com/e/83
+
+Follow for the next AI trap.
+
+#gemini #google #aiprivacy #chatgpt #ai
