@@ -39,3 +39,11 @@ David chose option 2 (new topic, hook must reach 95/100, must work with sound of
 - Judges' repeated fixes already applied: "under 18" or "teen" instead of "kid"; claim in big words on frame 0; "may"/"some" hedges; "Here's where to look" (the screen is read-only, never "fix").
 - Not claimed: any prediction of views. Scores are LLM judges' reads of a rubric.
 Nothing built or rendered from this; no video until David decides.
+
+## Round 8 (three topics with CERTAIN facts: ChatGPT Memory, ChatGPT Locked chats, Snapchat Ghost Mode + My AI), 2 more judges
+- Judge 15 (strict): best as written 84 (S5, M2); highest ceiling = Memory; best improved hook 91: frame "IS CHATGPT SAVING STUFF ABOUT YOU?" | L1 "Is ChatGPT saving stuff about you?" | L2 "It can, on its own. Ask it to show you."
+- Judge 16 (12-year-old, muted): best as written 84 (M2), 83 (S6); highest ceiling = Snapchat; best improved hook 89 (S-A/S-C). Locked chats: 70-82 (feature news, no tension).
+- Judges disagree on which topic has the higher ceiling; both cap at about 90-92.
+- **Total so far: 8 rounds, 16 independent judges, 3 topics worth scoring (ChatGPT age, Memory, Snapchat), best honest score about 91, no 95.**
+- The same barrier appears in every round: a real, first-hand proof frame (a real capture of a real account/device screen) is missing; the hedged facts ("can", "some") cannot promise the viewer a finding; the Snapchat "check this switch" step has no sourced path. Wording alone does not remove them.
+- Per the owner's request the test is also about how the video comes out, so no video is built until the content bar is decided.
