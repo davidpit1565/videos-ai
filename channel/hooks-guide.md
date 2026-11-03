@@ -550,3 +550,9 @@ Not claimed: any causal effect. Five reels, different hours, different footage. 
 Every line, starting with the hook, must be understood at once by an 8-year-old: the plainest English, no idioms, no slang. The viewer must know in the first second what the video is about and why it is worth watching. "ChatGPT can cave when you push!" fails this: "cave" and "push" are idioms most kids do not know (it still got 786 Instagram views, so the test is about the next reels, not a verdict on that one). Replace: cave / fold / give in -> "say yes", "say what I wanted to hear"; "custom instructions" -> "a box where you tell ChatGPT how to act" the first time it is named; "myth", "convincing" -> avoid or explain.
 
 Check every hook and script line: could an 8-year-old repeat it back? Add it to the five-point checklist above.
+
+
+## Standing rule, 3.11.2026 (David): minimum hook score and the hook chain
+- **Score gate.** Before a hook is built, Claude rates it 1-100 against the eight checks (product name in the first 3 words, personal stake, surprising yet officially verifiable, an 8-year-old follows it, an action within 10 s, sendable to a specific person, drawable, no jargon). **Under 80 = not good enough, rewrite. 80-90 = acceptable. 90-100 = take it straight away.** The score is a judgement, not a measurement (no data predicts reach); say so each time.
+- **Hook after hook.** Line 1 stops the scroll; every following line must also be a hook that opens the next loop, until the end. Never a flat explanation line.
+- **Precision goes in the caption and on /e/N, not in the hook.** A hook may compress a verified fact (David, 3.11.2026), but it may not invent a capability, and the video itself must say the true qualifier ("may", "some") within a few seconds.

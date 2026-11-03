@@ -1,3 +1,22 @@
+# Episode 83 script (3.11.2026, v2): "Your secrets aren't safe with Gemini" (REPLACES the Claude Design sliders draft below; kept for history)
+
+David chose Gemini after the 3.11 research (support.google.com/gemini/answer/13594961, read 3.11.2026): human reviewers read a subset of chats; reviewed chats kept up to three years even after you delete your activity; Google says names are disconnected from the account first; temporary chats / Keep Activity off still kept 72 hours; page advises not to enter confidential information you would not want a reviewer to see. NOT verified: that Keep Activity "helps a bit" beyond training use; exact menu label on phones. "anymore" (David's idea) was dropped: it claims something changed, which no source says.
+
+## Chain of hooks (David, 3.11.2026): every line is a hook that opens the next loop. script_lint clean.
+1. Your secrets aren't safe with Gemini.   (hook, my guess 82; precise wording "some chats, reviewers" goes in line 3 and the caption)
+2. Even the company warns you.
+3. Because a real person may read your chat.
+4. Not a robot. A person.
+5. And they keep it a long time. Even if you delete it.   (screen: "UP TO 3 YEARS", the voice cannot say TH)
+6. So here's the one rule.
+7. Don't type what you'd hate for anyone to read.   (screen: Google's own sentence, real logo)
+8. Then switch off Keep Activity. It helps a bit.   (screen: Gemini Apps Activity > Keep Activity; label to be seen by a person before /e/83 goes live)
+9. Send this to a friend who tells Gemini everything.
+
+Caption (precise version): only a subset of chats is reviewed; names are disconnected first; links to the Google page. No false claim in the video: line 3 says "may".
+
+---
+(older draft, Claude Design sliders, not used)
 # Episode 83 script (3.11.2026, draft v1): "Claude makes its own controls" (Claude Design sliders)
 
 Chosen by David (3.11.2026): of three verified Claude Design features he liked the custom sliders most. NOT built yet; this is the script and the evidence for it. Nothing here has been tested by us (no access to Claude Design in this session). David may run one test; until then the video says "Anthropic says" in the caption, not "I tested".
