@@ -1,0 +1,81 @@
+<style>
+#s10{--acc:#4C7BF4;--acc2:#9B72CB;--acc3:#D96570}
+#s10 .pill{background:var(--acc)}
+#s10 .w{color:var(--ink)}
+#s10 #h10b{opacity:0}
+#s10 .trap{overflow:visible;position:absolute;left:65px;top:610px;width:950px;height:380px;opacity:0}
+#s10 .fol{position:absolute;left:215px;top:900px;width:650px;height:150px;border-radius:75px;background:var(--acc);border:7px solid var(--ink);box-shadow:10px 10px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:22px;font-weight:900;font-size:76px;letter-spacing:-.04em;color:var(--white);opacity:0}
+#s10 .fol svg{width:64px;height:64px}
+#s10 .rip{position:absolute;left:640px;top:975px;width:60px;height:60px;margin:-30px;border-radius:50%;border:8px solid var(--acc);opacity:0}
+#s10 .cur{position:absolute;left:0;top:0;width:110px;height:130px;opacity:0}
+#s10 .bell{position:absolute;left:830px;top:850px;width:130px;height:130px;background:var(--white);border:6px solid var(--ink);border-radius:40px;box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center;opacity:0}
+#s10 .bell svg{width:80px;height:80px;transform-origin:50% 8%}
+#s10 .hd10{position:absolute;left:65px;top:1120px;width:950px;text-align:center;font-weight:900;font-size:62px;letter-spacing:-.03em;opacity:0;color:var(--ink)}
+#s10 .hd10 span{background:var(--white);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);padding:6px 28px;display:inline-block}
+</style>
+<div class="scn clip" id="s10" data-start="0" data-duration="__D10__" data-track-index="1"><div class="cam" id="cam10">
+ <div class="grp" id="g10a" style="top:295px">
+  <div class="row"><span class="w s100">DON'T MISS</span></div>
+  <div class="row"><span class="w s100">THE NEXT</span> <span class="w pill s100" style="margin-left:8px">TRAP</span></div>
+ </div>
+ <div class="grp" id="g10b" style="top:560px;opacity:0">
+  <div class="row"><span class="w pill s170">FOLLOW</span></div>
+ </div>
+ <svg class="trap" id="t10" viewBox="0 0 950 380">
+  <rect x="150" y="190" width="650" height="150" rx="26" fill="#E9C98F" stroke="#0E0E0E" stroke-width="8"/>
+  <rect x="172" y="212" width="606" height="106" rx="16" fill="none" stroke="#B88F4B" stroke-width="5" stroke-dasharray="4 14" stroke-linecap="round"/>
+  <rect x="640" y="150" width="30" height="60" rx="6" fill="#B8B8B0" stroke="#0E0E0E" stroke-width="6"/>
+  <g id="spk10" transform="translate(560 205)"><path d="M0-62 C6-18 18-6 62 0 C18 6 6 18 0 62 C-6 18 -18 6 -62 0 C-18-6 -6-18 0-62Z" fill="#9B72CB" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/></g>
+  <g id="bar10"><path d="M215 200 L215 120 L640 120 L640 200" fill="none" stroke="#0E0E0E" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+   <path d="M215 200 L215 120 L640 120 L640 200" fill="none" stroke="#C9CAD2" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <circle cx="215" cy="200" r="16" fill="#0E0E0E"/>
+ </svg>
+ <div class="fol" id="f10"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round"><circle cx="10" cy="8" r="4.5"/><path d="M2 21c0-5 3.5-8 8-8s8 3 8 8M19 7v7M15.5 10.5h7"/></svg><span>Follow</span></div>
+ <div class="rip" id="r10"></div>
+ <svg class="cur" id="c10" viewBox="0 0 110 130"><path d="M30 6 C30 0 42 0 42 6 L42 52 L52 48 C56 40 66 42 66 48 C72 44 82 46 82 54 C90 52 98 58 96 66 L92 100 C90 118 78 126 62 126 C46 126 36 118 28 104 L10 72 C6 62 18 58 24 66 L30 76Z" fill="#fff" stroke="#0E0E0E" stroke-width="6" stroke-linejoin="round"/></svg>
+ <div class="bell" id="b10"><svg viewBox="0 0 24 24" fill="#F2B84B" stroke="#0E0E0E" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3c-3.5 0-6 2.6-6 6v4l-2 3.5h16L18 13V9c0-3.4-2.5-6-6-6z"/><path d="M9.5 19.5a2.5 2.5 0 0 0 5 0"/></svg></div>
+ <div class="hd10" id="hd10"><span>@actually_works.ai</span></div>
+</div></div>
+<script>
+window.buildScene_10=function(tl,T0,DUR){
+ const E1="power3.out",E2="power2.inOut",ED="sine.inOut";
+ const at=f=>T0+DUR*f;
+ tl.set('#s10',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s10 .w',{opacity:0},T0);tl.set('#g10b .w',{opacity:1},T0);
+ tl.set('#t10',{opacity:0},T0);
+ tl.set('#bar10',{svgOrigin:"215 200",rotation:-72},T0);
+ tl.set('#c10',{x:860,y:1230,opacity:0},T0);
+ tl.fromTo('#cam10',{scale:1,x:-10,y:6},{scale:1.03,x:10,y:-8,duration:DUR,ease:ED},T0);
+ // headline A
+ const ws=[...document.querySelectorAll('#g10a .w')];
+ ws.forEach((el,i)=>{
+  const slam=el.classList.contains('pill');
+  const t=at(0.02+i*0.07);
+  if(slam) tl.fromTo(el,{opacity:0,y:40,scale:1.15},{opacity:1,y:0,scale:1,duration:DUR*0.18,ease:"expo.out"},t);
+  else tl.fromTo(el,{opacity:0,y:36},{opacity:1,y:0,duration:DUR*0.14,ease:E1},t);
+ });
+ // trap enters, bait sparkle breathes, bar snaps gently
+ tl.fromTo('#t10',{opacity:0,y:70,scale:.92},{opacity:1,y:0,scale:1,duration:DUR*0.22,ease:"expo.out"},at(0.04));
+ tl.to('#spk10',{rotation:18,scale:1.12,svgOrigin:"560 205",duration:DUR*0.3,ease:ED,yoyo:true,repeat:1},at(0.06));
+ tl.to('#bar10',{rotation:-58,duration:DUR*0.14,ease:ED,yoyo:true,repeat:1},at(0.1));
+ tl.to('#bar10',{rotation:0,duration:DUR*0.14,ease:"power3.in"},at(0.42));
+ tl.to('#t10',{y:10,duration:DUR*0.06,ease:"sine.out",yoyo:true,repeat:1},at(0.55));
+ tl.to('#spk10',{opacity:0,scale:.4,duration:DUR*0.1,ease:E2},at(0.52));
+ // swap to FOLLOW; trap steps back
+ tl.to('#g10a',{opacity:0,y:-30,duration:DUR*0.14,ease:E2},at(0.54));
+ tl.fromTo('#g10b',{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.22,ease:"expo.out"},at(0.58));
+ tl.to('#t10',{opacity:0.0,y:-40,scale:.85,duration:DUR*0.2,ease:E2},at(0.58));
+ // follow button + cursor press + ripple
+ tl.fromTo('#f10',{opacity:0,y:60,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.2,ease:"expo.out"},at(0.6));
+ tl.to('#c10',{opacity:1,duration:DUR*0.06,ease:E1},at(0.62));
+ tl.to('#c10',{x:640,y:975,duration:DUR*0.2,ease:E2},at(0.62));
+ tl.to('#c10',{scale:.9,duration:DUR*0.04,ease:ED,yoyo:true,repeat:1},at(0.82));
+ tl.to('#f10',{scale:.95,duration:DUR*0.04,ease:ED,yoyo:true,repeat:1},at(0.82));
+ tl.fromTo('#r10',{scale:.4,opacity:.9},{scale:5,opacity:0,duration:DUR*0.18,ease:"power2.out"},at(0.83));
+ // bell + handle
+ tl.fromTo('#b10',{opacity:0,scale:.6,rotation:-10},{opacity:1,scale:1,rotation:0,duration:DUR*0.16,ease:"back.out(1.4)"},at(0.84));
+ [-18,14,-10,6,0].forEach((r,i)=>tl.to('#b10 svg',{rotation:r,duration:DUR*0.035,ease:ED},at(0.88+i*0.035)));
+ tl.fromTo('#hd10',{opacity:0,y:30},{opacity:1,y:0,duration:DUR*0.18,ease:E1},at(0.7));
+ tl.to('#c10',{x:700,y:1010,duration:DUR*0.16,ease:ED},at(0.86));
+};
+</script>
