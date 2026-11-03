@@ -26,3 +26,16 @@ Why (the judges agree): criteria pull against each other. Anything strong enough
 Best honest pair so far (not shipped, below the 95 bar): L1 "Fight with a friend? AI may say you're right!" | L2 "Stanford tested 11 AIs, ChatGPT too. They said it about one and a half times as often as people."
 
 Nothing was built from this: per David's bar, no video until a hook is above 95.
+
+## Round 4-7 (new topic: ChatGPT age prediction; same day)
+David chose option 2 (new topic, hook must reach 95/100, must work with sound off, whole script and design also scored). Three scouts (recent news / try-it-yourself / what AI does to people) found candidates; the two best were Snapchat Ghost Mode + My AI and ChatGPT age prediction. Rubric changed to 10 criteria (added a MUTED test, 10 points) after David's new rule.
+
+- Topic verified by me, reading OpenAI Help Center "Age prediction in ChatGPT" (updated 12 days before 3 Nov 2026) in full: age prediction "can identify an account as eligible for the ChatGPT for Teens experience even if you already gave your date of birth"; signals = topics, times of day, how/when used, account age; you get an email and a prompt; Settings > Account > Age shows the category (read-only); adults verify via Persona (selfie and/or ID); "not perfect". Dated outside evidence: TechRadar 29 Jan 2026 ("adult users are getting stuck in teen mode"), Reuters 20 Jan 2026, Tom's Guide 10 Mar 2026 ("some adult users"), OpenAI's own post quoted by TechRadar (20 Jan 2026).
+- Judges (independent subagents, blind to my scores): round 4: best 88-91 (topic A > topic S); round 5: best 83-89; round 6: best 87/81, new 90/86; round 7: best 87/81, new 90/86.
+- **Result: no hook reached 95. Consistent honest ceiling about 86-90** (a few judges said 92-93 would need a real capture of the Settings > Account > Age screen as frame 0 and a verified concrete consequence).
+- Why: the facts only support "may" and "some adults" (no number of affected users); the muted frame is a redrawn screen (labelled "re-created"); the TTS-safe wording costs little (linter 0 risky words) but "Settings", "birthday" stay mildly clustered. Rewording does not remove these limits.
+- Best honest pair (not shipped, below the 95 bar): frame "ADULT? CHATGPT MAY THINK YOU'RE A TEEN" | L1 "ChatGPT may think you're a teen!" | L2 "Some adults got stuck there. Here's where to look." (judges' range 85-90). Also: "ChatGPT guesses how old you are! Even if you typed your birthday." + "Some adults got put in teen mode. Here's where to look." (90).
+- Voice-linter flags found and fixed: "yours" (R + cluster), "treating" (flapped T). Full script v1: `script-v1-chatgpt-age.md` (lint clean; closing line promises tomorrow's Snapchat Ghost Mode episode, a binding promise).
+- Judges' repeated fixes already applied: "under 18" or "teen" instead of "kid"; claim in big words on frame 0; "may"/"some" hedges; "Here's where to look" (the screen is read-only, never "fix").
+- Not claimed: any prediction of views. Scores are LLM judges' reads of a rubric.
+Nothing built or rendered from this; no video until David decides.
