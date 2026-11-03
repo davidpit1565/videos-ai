@@ -18,19 +18,15 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--paper);fon
 .badge{position:absolute;background:var(--white);border:6px solid var(--ink);border-radius:44px;box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center;opacity:0}
 .badge img{width:62%;height:62%}
 .sticker{position:absolute;background:var(--acc);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:46px;padding:10px 28px;opacity:0;letter-spacing:-.02em}
-#wipe{position:absolute;left:0;top:0;width:1080px;height:2400px;opacity:1;filter:blur(14px);transform:translateY(1960px);will-change:transform}
 __STYLES__
 </style></head><body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="__D__" data-width="1080" data-height="1920">
 <div class="abs clip" id="gd" style="left:0;top:0;width:1080px;height:1920px;background:radial-gradient(var(--dot) 2.6px,transparent 3.2px) 27px 27px/54px 54px" data-start="0" data-duration="__D__" data-track-index="1"></div>
 __MARKUP__
-<svg id="wipe" class="clip" data-decor data-start="0" data-duration="__D__" data-track-index="2" viewBox="0 0 1080 2400" preserveAspectRatio="none"><path id="wp" d="" fill="#0E0E0E"/></svg>
 </div>
 <script>
 const C=__CUES__; const D=C.D; const L=C.lines; window.__CUES=C;
 const tl=gsap.timeline({paused:true});
-(function(){let d="M0,0";const n=14,w=1080/n;for(let i=0;i<=n;i++){const x=i*w;d+=` L${x},${i%2?150:0}`;if(i<n)d+=` L${x+w/2},${i%2?0:150}`}
- d+=" L1080,2250";for(let i=n;i>=0;i--){const x=i*w;d+=` L${x},${i%2?2400:2250}`;if(i>0)d+=` L${x-w/2},${i%2?2250:2400}`}d+=" Z";document.querySelector("#wp").setAttribute("d",d);})();
 </script>
 <script>
 __SCRIPTS__
@@ -38,10 +34,10 @@ __SCRIPTS__
 <script>
 __CALLS__
 const BOUNDS=__BOUNDS__;
-tl.set("#wipe",{y:1960},0);
-BOUNDS.forEach((tm,k)=>{ // scene k+1 (index) is covered at tm, previous scene hidden under the band
- tl.fromTo("#wipe",{y:1960},{y:-2440,duration:.7,ease:"power2.inOut"},tm-.35);
- tl.set("#s"+(k+1),{opacity:0,visibility:"hidden"},tm+.02);
+BOUNDS.forEach((tm,k)=>{ // soft dip: scene k+1 fades out just before tm, scene k+2 fades in after tm
+ tl.to("#s"+(k+1),{opacity:0,duration:.12,ease:"sine.inOut"},tm-.12);
+ tl.fromTo("#s"+(k+2),{opacity:0},{opacity:1,duration:.2,ease:"sine.inOut"},tm);
+ tl.set("#s"+(k+1),{visibility:"hidden"},tm+.02);
 });
 tl.to({},{duration:.001},D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
