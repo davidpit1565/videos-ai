@@ -4,7 +4,10 @@ Each scene file = <style>, markup (root div id=sN class="scn clip"), and window.
 import json, os, re, sys
 H=os.path.dirname(os.path.abspath(__file__))
 TEXTS=[l.rstrip("\n") for l in open(H+"/lines.txt") if l.strip()]; N=len(TEXTS)
-EST=json.load(open(H+"/cues.json"))["durations"] if os.path.exists(H+"/cues.json") else [round(0.32*len(t.split())+0.5,2) for t in TEXTS]
+_c=json.load(open(H+"/cues.json")) if os.path.exists(H+"/cues.json") else None
+EST=(_c["durations"] if "durations" in _c else [round(l["end"]-l["start"],3) for l in _c["lines"]]) if _c else None
+EST=EST or ([round(0.32*len(t.split())+0.5,2) for t in TEXTS])
+_x=( else 0
 GAP=0.3; HEAD=0.10; HOOKGAP=0.55; TAIL=0.9
 t=HEAD; lines=[]
 for i,(tx,d) in enumerate(zip(TEXTS,EST),1):
