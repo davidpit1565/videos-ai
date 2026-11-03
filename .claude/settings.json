@@ -5,9 +5,16 @@
         "source": "github",
         "repo": "pbakaus/impeccable"
       }
+    },
+    "lemolab": {
+      "source": {
+        "source": "github",
+        "repo": "lemomo-ai/lemo-opuscar"
+      }
     }
   },
   "enabledPlugins": {
-    "impeccable@impeccable": true
+    "impeccable@impeccable": true,
+    "lemo-opuscar@lemolab": true
   }
 }
