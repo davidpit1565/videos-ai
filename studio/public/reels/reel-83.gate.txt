@@ -1,0 +1,77 @@
+=== PASS  frame layout (safe_check_hf.js)
+    index.html  29.19s  146 samples every 0.2s  safe box: x 65-1015, y 269-1248
+      safe area: clean (tolerance 10px)
+      within tolerance: 9px past the right line   #st  "SOME CHATS"
+      within tolerance: 7px past the bottom line   SPAN  "3 YEARS"
+      within tolerance: 5px past the left line   #bb1  "...and then I told it..."
+      within tolerance: 4px past the left line   #bb3  "...and then I told it..."
+      within tolerance: 3px past the top line   .w.s118  "SEND"
+      within tolerance: 3px past the top line   .w.s118.lt  "TO"
+      within tolerance: 1px past the top line   .w.h140.bk  "Your"
+      overlaps: none over 10px
+      within tolerance: 6px overlap  .tag x #cp5
+
+=== PASS  rendered file (qa.py --hf)
+    ep83-C.mp4  1080x1920  30fps  29.20s  12.6MB
+      visual change: median 0.03s, longest 3.20s
+      loudness: -15.0 LUFS integrated, peak -3.6 dBFS, LRA 1.6 LU
+      loop seam: first vs last frame differ by 38.9/255
+    
+      [warn]    29.2s is outside the 30-90s band
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 231.5, std 42.8)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -15.0 LUFS
+      ok        peak -3.6 dBFS
+
+=== PASS  voice + music quality (voice_quality.py)
+    pitch (semitones vs each line's own median):
+      line   1  range  6.8 st  end  -0.2    Your secrets aren't safe with Gemini.
+      line   2  range  8.8 st  end  -0.1    Even the company warns you.
+      line   3  range  6.8 st  end  -0.1    Because a real person may read your chat.
+      line   4  range  7.0 st  end  +0.8    Not a robot. A person.
+      line   5  range  6.6 st  end  +1.0    And they keep it a long time. Even if you delete
+      line   6  range  6.4 st  end  +0.7    So here's the one rule.
+      line   7  range  5.4 st  end  -0.6    Don't type what you'd hate for anyone to read.
+      line   8  range  7.8 st  end  +1.5    Then switch off Keep Activity. It helps a bit.
+      line   9  range  7.1 st  end  +0.3    Send this to a friend who tells Gemini everythin
+      line  10  range  5.9 st  end  -0.7    Don't miss the next AI trap. Follow.
+    tone: none steady over 0.6 s
+    music: 21% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.42 = -8.0 dB
+    
+    voice quality: clean
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep83/out/narration-r.wav  29.2s  10 lines
+      medians: ending -36.3 dB · level -18.7 dBFS · S residual -0.2 dB (slope +5.9 dB per sibilant/syllable)
+      flagged below: ending -61.9 dB · S residual -9.5 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  2.43  +0.55  4.12   -8.3  -28.5  -19.9  Your secrets aren't safe with Gemini.
+        2  1.71  +0.30  4.67  -15.5  -38.3  -18.7  Even the company warns you.
+        3  2.64  +0.30   3.8  -14.4  -22.2  -19.0  Because a real person may read your ch
+        4   2.5  +0.30  2.81  -13.3  -41.6  -19.8  Not a robot. A person.
+        5  2.85  +0.30  4.91  -13.3  -26.3  -18.7  And they keep it a long time. Even if 
+        6  1.38  +0.30  4.34  -18.0  -42.3  -18.7  So here's the one rule.
+        7  2.36  +0.30  4.24  -14.8  -35.9  -18.7  Don't type what you'd hate for anyone 
+        8   3.2  +0.30  3.75  -10.0  -26.2  -19.1  Then switch off Keep Activity. It help
+        9  3.26  +0.30  4.29   -7.2  -45.2  -18.2  Send this to a friend who tells Gemini
+       10  2.91    —    2.75   -8.9  -36.8  -18.7  Don't miss the next AI trap. Follow.
+    
+      nothing flagged. every line sits inside his own spread.
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  PASS  frame layout (safe_check_hf.js)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+ALL CHECKS THAT RAN PASSED (1 skipped)  -  audio was measured, not heard; watch the file twice before sending

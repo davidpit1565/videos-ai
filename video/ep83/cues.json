@@ -1,0 +1,87 @@
+{
+ "lines": [
+  {
+   "n": 1,
+   "text": "Your secrets aren't safe with Gemini.",
+   "start": 0.1,
+   "end": 2.528,
+   "real": true
+  },
+  {
+   "n": 2,
+   "text": "Even the company warns you.",
+   "start": 3.078,
+   "end": 4.792,
+   "real": true
+  },
+  {
+   "n": 3,
+   "text": "Because a real person may read your chat.",
+   "start": 5.092,
+   "end": 7.727,
+   "real": true
+  },
+  {
+   "n": 4,
+   "text": "Not a robot. A person.",
+   "start": 8.027,
+   "end": 10.522,
+   "real": true
+  },
+  {
+   "n": 5,
+   "text": "And they keep it a long time. Even if you delete it.",
+   "start": 10.822,
+   "end": 13.675,
+   "real": true
+  },
+  {
+   "n": 6,
+   "text": "So here's the one rule.",
+   "start": 13.975,
+   "end": 15.357,
+   "real": true
+  },
+  {
+   "n": 7,
+   "text": "Don't type what you'd hate for anyone to read.",
+   "start": 15.657,
+   "end": 18.014,
+   "real": true
+  },
+  {
+   "n": 8,
+   "text": "Then switch off Keep Activity. It helps a bit.",
+   "start": 18.314,
+   "end": 21.518,
+   "real": true
+  },
+  {
+   "n": 9,
+   "text": "Send this to a friend who tells Gemini everything.",
+   "start": 21.819,
+   "end": 25.08,
+   "real": true
+  },
+  {
+   "n": 10,
+   "text": "Don't miss the next AI trap. Follow.",
+   "start": 25.38,
+   "end": 28.294,
+   "real": true
+  }
+ ],
+ "D": 29.19,
+ "real": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10
+ ]
+}

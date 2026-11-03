@@ -1,0 +1,154 @@
+{
+ "lines": {
+  "1": {
+   "state": "done",
+   "seed": 8342,
+   "take_seed": "8341",
+   "exaggeration": 0.83,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8341.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/1.wav",
+   "dur": 2.43,
+   "notes": "picked from 7 whole-script takes by pitch range/end; Whisper small transcript matches; measured, not heard",
+   "metrics": {
+    "range_st": 6.5,
+    "end_vs_median_st": -0.1
+   },
+   "check": "ok"
+  },
+  "2": {
+   "state": "done",
+   "seed": 8313,
+   "take_seed": "8311",
+   "exaggeration": 0.8,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8311.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/2.wav",
+   "dur": 1.72,
+   "notes": "picked from 7 whole-script takes by pitch range/end; Whisper small transcript matches; measured, not heard",
+   "check": "ok",
+   "metrics": {
+    "range_st": 8.8,
+    "end_vs_median_st": -0.1
+   }
+  },
+  "3": {
+   "state": "done",
+   "seed": 8314,
+   "take_seed": "8311",
+   "exaggeration": 0.8,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8311.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/3.wav",
+   "dur": 2.64,
+   "notes": "picked from 7 whole-script takes by pitch range/end; Whisper small transcript matches; measured, not heard",
+   "metrics": {
+    "range_st": 6.6,
+    "end_vs_median_st": 0.0
+   },
+   "check": "ear"
+  },
+  "4": {
+   "state": "done",
+   "seed": 8305,
+   "take_seed": "8301",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/4.wav",
+   "dur": 2.5,
+   "notes": "picked from 7 whole-script takes by pitch range/end; Whisper small transcript matches; measured, not heard",
+   "check": "ok",
+   "metrics": {
+    "range_st": 7.5,
+    "end_vs_median_st": 0.7
+   }
+  },
+  "5": {
+   "state": "done",
+   "seed": 8326,
+   "take_seed": "8321",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8321.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/5.wav",
+   "dur": 2.86,
+   "notes": "picked from 7 whole-script takes by pitch range/end; Whisper small transcript matches; measured, not heard",
+   "metrics": {
+    "range_st": 6.6,
+    "end_vs_median_st": 0.9
+   },
+   "check": "ok"
+  },
+  "6": {
+   "state": "done",
+   "seed": 8327,
+   "take_seed": "8321",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8321.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/6.wav",
+   "dur": 1.39,
+   "notes": "picked from 7 whole-script takes by pitch range/end; Whisper small transcript matches; measured, not heard",
+   "metrics": {
+    "range_st": 6.4,
+    "end_vs_median_st": 0.7
+   },
+   "check": "ok"
+  },
+  "7": {
+   "state": "done",
+   "seed": 8318,
+   "take_seed": "8311",
+   "exaggeration": 0.8,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8311.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/7.wav",
+   "dur": 2.36,
+   "notes": "picked from 7 whole-script takes by pitch range/end; Whisper small transcript matches; measured, not heard",
+   "check": "ok",
+   "metrics": {
+    "range_st": 5.7,
+    "end_vs_median_st": -0.6
+   }
+  },
+  "8": {
+   "state": "done",
+   "seed": 8309,
+   "take_seed": "8301",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/8.wav",
+   "dur": 3.21,
+   "notes": "picked from 7 whole-script takes by pitch range/end; Whisper small transcript matches; measured, not heard",
+   "check": "ok",
+   "metrics": {
+    "range_st": 7.8,
+    "end_vs_median_st": 1.4
+   }
+  },
+  "9": {
+   "state": "done",
+   "seed": 8310,
+   "take_seed": "8301",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/9.wav",
+   "dur": 3.27,
+   "notes": "picked from 7 whole-script takes by pitch range/end; Whisper small transcript matches; measured, not heard",
+   "check": "ear",
+   "metrics": {
+    "range_st": 6.4,
+    "end_vs_median_st": 0.5
+   }
+  },
+  "10": {
+   "state": "done",
+   "seed": 8311,
+   "take_seed": "8301",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep83/voice/takes/t8301.wav",
+   "final": "/home/user/videos-ai/video/ep83/voice/final/10.wav",
+   "dur": 2.92,
+   "notes": "picked from 7 whole-script takes by pitch range/end; Whisper small transcript matches; measured, not heard",
+   "check": "ok",
+   "metrics": {
+    "range_st": 5.7,
+    "end_vs_median_st": -0.9
+   }
+  }
+ }
+}

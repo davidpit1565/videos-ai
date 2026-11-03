@@ -1,0 +1,27 @@
+{
+ "line": 9,
+ "verdict": "ear",
+ "reasons": [
+  "accent heuristic flags line (ear decision)"
+ ],
+ "numbers": {
+  "dur": 3.26,
+  "peak": 0.814,
+  "lead_s": 0.03,
+  "trail_s": 0.03,
+  "transcript": "Send this to a friend who tells Gemini everything.",
+  "first_word_start_s": -0.3,
+  "speech_onset_s": 0.06,
+  "first200ms_after_onset_vs_median_db": 1.9,
+  "rate_syl_s": 4.29,
+  "sibilance_db": -7.2,
+  "ending_db": -45.2,
+  "level_dbfs": -18.2,
+  "file_median_ending_db": -36.3,
+  "pitch_range_st": 7.1,
+  "pitch_end_st": 0.3,
+  "accent_row": "ln 9  not-american 0.51 (file median 0.038)   Send this to a",
+  "script_lint": "0 risky word(s) across 1 line(s)."
+ },
+ "note": "measured, not heard"
+}

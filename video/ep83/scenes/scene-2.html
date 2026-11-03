@@ -1,0 +1,61 @@
+<style>
+#s2 .pill{background:var(--acc)}
+#s2 .w{color:var(--ink);line-height:.95}
+#s2 #c2b{position:absolute;left:105px;top:690px;width:900px;height:540px;background:#D3D6DC;border-radius:36px;border:7px solid var(--ink);opacity:0;transform:rotate(-3deg)}
+#s2 #c2{position:absolute;left:78px;top:700px;width:905px;height:540px;background:var(--white);border-radius:36px;border:7px solid var(--ink);box-shadow:12px 12px 0 var(--ink);opacity:0;overflow:hidden}
+#s2 .hd{position:absolute;left:0;top:0;right:0;height:92px;background:#E8EAED;border-bottom:4px solid var(--ink);display:flex;align-items:center;gap:20px;padding-left:30px;font-weight:700;font-size:38px;box-sizing:border-box;width:100%;letter-spacing:-.02em;color:#3C4043}
+#s2 .hd img{width:52px;height:52px}
+#s2 .dots{margin-left:auto;margin-right:50px;display:flex;gap:10px}
+#s2 .dots i{width:16px;height:16px;border-radius:50%;background:#BDC1C6}
+#s2 #tx{position:absolute;left:34px;right:34px;top:112px;font-weight:700;font-size:66px;line-height:1.2;letter-spacing:-.025em;color:#202124}
+#s2 .hw{display:inline-block;padding:0 6px;margin:0 3px;border-radius:10px;background:rgba(76,123,244,0)}
+#s2 .hw.k{text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:6px;text-underline-offset:6px;text-decoration-skip-ink:none}
+#s2 #tri{position:absolute;left:785px;top:1050px;width:190px;height:168px;opacity:0;transform-origin:50% 60%}
+#s2 #tri svg{width:100%;height:100%;overflow:visible}
+#s2 #ring{position:absolute;left:810px;top:1070px;width:140px;height:140px;border-radius:50%;border:6px solid var(--red);opacity:0}
+#s2 .bar{position:absolute;left:0;top:0;width:16px;height:100%;background:var(--red);opacity:0}
+</style>
+<div class="scn clip" id="s2" data-start="0" data-duration="__D2__" data-track-index="1"><div class="cam" id="cam2">
+  <div class="grp" id="g2" style="top:300px;line-height:1">
+  <div class="row"><span class="w s128" data-w="0">EVEN</span><span class="w s128" data-w="1">THE</span></div>
+  <div class="row"><span class="w s128" data-w="2">COMPANY</span></div>
+  <div class="row"><span class="w s128 pill" data-w="3" style="margin-top:8px">WARNS</span><span class="w s128" data-w="4" style="margin-top:8px">YOU</span></div>
+ </div>
+ <div id="c2b"></div>
+ <div id="c2">
+  <div class="hd"><img src="assets/Google_Gemini_icon_2025.svg">Gemini Apps Help<span class="dots"><i></i><i></i><i></i></span></div>
+  <div class="bar" id="bar2"></div>
+  <div id="tx"><span class="hw" data-h="0">Please</span> <span class="hw" data-h="1">don't</span> <span class="hw" data-h="2">enter</span> <span class="hw k" data-h="3">confidential</span> <span class="hw" data-h="4">information</span> <span class="hw" data-h="5">that</span> <span class="hw" data-h="6">you</span> <span class="hw" data-h="7">wouldn't</span> <span class="hw" data-h="8">want</span> <span class="hw" data-h="9">a</span> <span class="hw k" data-h="10">reviewer</span> <span class="hw" data-h="11">to</span> <span class="hw" data-h="12">see.</span> </div>
+ </div>
+ <div id="ring"></div>
+ <div id="tri"><svg viewBox="0 0 170 150"><path d="M85 10 L160 138 L10 138 Z" fill="#FFC53D" stroke="#0E0E0E" stroke-width="10" stroke-linejoin="round"/><rect x="77" y="52" width="16" height="48" rx="8" fill="#0E0E0E"/><circle cx="85" cy="116" r="9" fill="#0E0E0E"/></svg></div>
+</div></div>
+<script>
+window.buildScene_2=function(tl,T0,DUR){
+ const E1="power3.out",ED="sine.inOut";
+ const at=f=>T0+DUR*f;
+ tl.set('#s2',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s2 .w',{opacity:0},T0);
+ tl.fromTo('#cam2',{scale:1,x:-12,y:8},{scale:1.035,x:12,y:-10,duration:DUR,ease:ED},T0);
+ const ws=[...document.querySelectorAll('#s2 .w')];
+ ws.forEach((el,i)=>{
+  const t=at(0.02+i*0.11), slam=el.classList.contains('pill');
+  if(slam) tl.fromTo(el,{opacity:0,y:40,scale:1.2},{opacity:1,y:0,scale:1,duration:DUR*0.22,ease:"expo.out"},t);
+  else tl.fromTo(el,{opacity:0,y:36},{opacity:1,y:0,duration:DUR*0.16,ease:E1},t);
+ });
+ tl.fromTo('#c2',{opacity:0,y:70,rotation:1.5},{opacity:1,y:0,rotation:0,duration:DUR*0.22,ease:"expo.out"},T0);
+ tl.set('#tri',{opacity:1},T0);tl.fromTo('#tri',{scale:.6,rotation:-20},{scale:1,rotation:6,duration:DUR*0.18,ease:"expo.out"},T0);tl.fromTo('#c2b',{opacity:0,y:40},{opacity:1,y:0,duration:DUR*0.25,ease:"expo.out"},T0);
+ tl.to('#tri',{scale:1.06,rotation:-4,duration:DUR*0.12,ease:ED,yoyo:true,repeat:4},at(0.2));
+ tl.fromTo('#ring',{opacity:.9,scale:.8},{opacity:0,scale:1.9,duration:DUR*0.22,ease:"sine.out",repeat:3,repeatDelay:0},at(0.3));
+ tl.fromTo('#bar2',{opacity:0},{opacity:1,duration:DUR*0.12,ease:ED},at(0.15));
+ // word-by-word selection bar
+ const hs=[...document.querySelectorAll('#s2 .hw')], n=hs.length;
+ hs.forEach((el,i)=>{
+  const t=at(0.2+i*(0.62/n));
+  tl.to(el,{backgroundColor:'rgba(76,123,244,0.38)',duration:DUR*0.07,ease:ED},t);
+  if(el.classList.contains('k')){tl.to(el,{backgroundColor:'rgba(229,72,77,0.4)',scale:1.06,duration:DUR*0.1,ease:'sine.inOut'},t+DUR*0.02);tl.to(el,{scale:1,duration:DUR*0.16,ease:'sine.inOut'},t+DUR*0.14);tl.to('#tri',{scale:1.35,duration:DUR*0.08,ease:'sine.inOut',yoyo:true,repeat:1},t);}
+ });
+ tl.to('#bar2',{opacity:.35,duration:DUR*0.1,yoyo:true,repeat:3,ease:ED},at(0.4));
+ tl.to('#tx',{y:-6,duration:DUR*0.8,ease:ED},at(0.2));
+};
+</script>

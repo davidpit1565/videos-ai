@@ -1,0 +1,89 @@
+<style>
+#s5 .row.r1{margin-bottom:6px}
+#s5 .pill{background:var(--red);color:var(--white)}
+#s5 .bub{position:absolute;left:420px;top:765px;width:440px;height:130px;border-radius:44px 44px 44px 10px;white-space:nowrap;background:var(--red);border:7px solid var(--ink);box-shadow:9px 9px 0 var(--ink);display:flex;align-items:center;padding:0 34px;font-weight:800;font-size:40px;letter-spacing:-.03em;color:var(--white);opacity:0;transform-origin:50% 50%}
+#s5 .bub.cp{background:var(--acc);box-shadow:0 0 0 0 rgba(76,123,244,0)}
+#s5 .trash{position:absolute;left:830px;top:762px;transform-origin:0 0;width:230px;height:240px;opacity:0}
+#s5 .lid{position:absolute;left:-12px;top:0;width:254px;height:40px;border-radius:16px;background:#C9C9C0;border:7px solid var(--ink);transform-origin:0 100%}
+#s5 .can{position:absolute;left:12px;top:46px;width:206px;height:190px;border-radius:10px 10px 36px 36px;background:#E2E2D9;border:7px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}
+#s5 .can i{position:absolute;top:30px;width:9px;height:120px;border-radius:5px;background:var(--ink);opacity:.5}
+#s5 .cur{position:absolute;left:0;top:0;width:70px;height:70px;opacity:0}
+#s5 .drw{position:absolute;left:70px;top:762px;width:330px;height:150px;opacity:0}
+#s5 .box{position:absolute;left:0;top:0;width:330px;height:150px;border-radius:26px;background:var(--white);border:7px solid var(--ink);box-shadow:10px 10px 0 var(--ink)}
+#s5 .slot{position:absolute;left:24px;top:16px;width:276px;height:40px;border-radius:18px;background:#14151A;border:6px solid var(--ink)}
+#s5 .gl{position:absolute;left:20px;top:10px;width:290px;height:90px;border-radius:40px;background:var(--acc);filter:blur(36px);opacity:0}
+#s5 .tag{position:absolute;left:24px;top:70px;width:276px;height:58px;border-radius:20px;background:var(--acc);border:6px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:40px;letter-spacing:-.03em;color:var(--ink)}
+#s5 .cal{position:absolute;left:100px;top:925px;width:880px;height:300px;opacity:0}
+#s5 .cb{position:absolute;left:0;top:0;width:880px;height:300px;border-radius:30px;background:var(--white);border:7px solid var(--ink);box-shadow:10px 10px 0 var(--ink);overflow:hidden}
+#s5 .ch{position:absolute;left:0;top:0;width:100%;height:56px;background:var(--red);border-bottom:7px solid var(--ink)}
+#s5 .ch b{position:absolute;top:14px;width:18px;height:18px;border-radius:50%;background:var(--paper);border:5px solid var(--ink)}
+#s5 .up{position:absolute;left:0;top:62px;width:100%;text-align:center;font-weight:900;font-size:46px;letter-spacing:-.03em}
+#s5 .yr{position:absolute;left:0;top:126px;width:100%;text-align:center;font-weight:900;font-size:126px;letter-spacing:-.05em;line-height:1;white-space:nowrap}
+#s5 .yr span{background:var(--acc);padding:0 26px;border-radius:30px;display:inline-block;line-height:1.05;border:6px solid var(--ink)}
+#s5 .pg{position:absolute;left:0;top:56px;width:100%;height:244px;background:#EFEFE8;transform-origin:50% 0;backface-visibility:hidden;border-top:0;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:220px;color:#B9B9AE;letter-spacing:-.05em}
+</style>
+<div class="scn clip" id="s5" data-start="0" data-duration="__D5__" data-track-index="1"><div class="cam" id="cam5">
+ <div class="grp" id="g5" style="top:298px">
+  <div class="row r1"><span class="w pill bk s150" style="font-size:160px" data-w="0">KEPT.</span></div>
+  <div class="row"><span class="w s92 lt" style="font-size:100px" data-w="1">EVEN</span><span class="w s92 lt" style="font-size:100px" data-w="2">IF</span><span class="w s92 lt" style="font-size:100px" data-w="3">YOU</span></div>
+  <div class="row"><span class="w s112 bk" style="font-size:122px" data-w="4">DELETE</span><span class="w s112 bk" style="font-size:122px" data-w="5">IT.</span></div>
+ </div>
+ <div class="trash" id="tr5"><div class="lid" id="ld5"></div><div class="can"><i style="left:48px"></i><i style="left:98px"></i><i style="left:148px"></i></div></div>
+ <div class="drw" id="dr5"><div class="gl" id="gl5"></div><div class="box"><div class="slot"></div><div class="tag">KEPT</div></div></div>
+ <div class="bub cp" id="cp5">I told it everything...</div>
+ <div class="bub" id="bb5">I told it everything...</div>
+ <div class="cal" id="cl5"><div class="cb"><div class="ch"><b style="left:110px"></b><b style="left:752px"></b></div>
+  <div class="up">UP TO</div><div class="yr"><span>3 YEARS</span></div>
+  <div class="pg" id="pg5"></div></div></div>
+ <svg class="cur" id="cu5" viewBox="0 0 70 70"><path d="M10 6 L10 54 L22 43 L31 64 L40 60 L31 40 L47 40 Z" fill="#fff" stroke="#0E0E0E" stroke-width="5" stroke-linejoin="round"/></svg>
+</div></div>
+<script>
+window.buildScene_5=function(tl,T0,DUR){
+ const E1="power3.out",E2="power2.inOut",ED="sine.inOut",EB="back.out(1.2)";
+ const at=f=>T0+DUR*f;
+ tl.set('#s5',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s5 .w',{opacity:0},T0);
+ tl.set('#bb5,#cp5,#tr5,#dr5,#cl5,#cu5',{opacity:0},T0);tl.set('#tr5',{scale:.62},T0);
+ tl.fromTo('#cam5',{scale:1,x:-6,y:4},{scale:1.012,x:6,y:-4,duration:DUR,ease:ED},T0);
+ const ws=[...document.querySelectorAll('#s5 .w')];
+ ws.forEach((el,i)=>{
+  const t=at(0.02+i*0.1), big=i==0;
+  if(big) tl.fromTo(el,{opacity:0,y:40,scale:1.18},{opacity:1,y:0,scale:1,duration:DUR*0.2,ease:"expo.out"},t);
+  else tl.fromTo(el,{opacity:0,y:36},{opacity:1,y:0,duration:DUR*0.14,ease:E1},t);
+ });
+ // proof in first second: red bubble, trash, drawer already arriving
+ tl.fromTo('#bb5',{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.14,ease:E1},at(0));
+ tl.fromTo('#tr5',{opacity:0,y:40},{opacity:1,y:0,duration:DUR*0.16,ease:E1},at(0.03));
+ tl.fromTo('#dr5',{opacity:0,y:60},{opacity:1,y:0,duration:DUR*0.18,ease:E1},at(0.08));
+ // red bubble pulses while waiting
+ tl.to('#bb5',{scale:1.04,duration:DUR*0.08,ease:ED,yoyo:true,repeat:1},at(0.12));
+ // cursor comes in, grabs
+ tl.fromTo('#cu5',{opacity:0,left:640,top:1000},{opacity:1,left:560,top:800,duration:DUR*0.16,ease:E2},at(0.12));
+ // copy peels off and drops into the drawer (stays, glows)
+ const c0=at(0.26), cd=DUR*0.26;
+ tl.set('#cp5',{opacity:1,left:420,top:765},c0-0.01);
+ tl.to('#cp5',{left:12,top:733,scale:.5,duration:cd,ease:E2},c0);
+ tl.to('#cp5',{top:731,duration:DUR*0.08,ease:ED},c0+cd);
+ // original dragged to trash
+ const d0=at(0.28), dd=DUR*0.26;
+ tl.to('#bb5',{left:520,top:770,duration:dd,ease:E2},d0);
+ tl.to('#cu5',{left:730,top:810,duration:dd,ease:E2},d0);
+ tl.to('#ld5',{rotation:-24,duration:DUR*0.08,ease:ED},d0+dd*0.5);
+ tl.to('#bb5',{scale:.2,left:800,top:790,opacity:0,duration:DUR*0.1,ease:"power2.in"},d0+dd);
+ tl.to('#ld5',{rotation:0,duration:DUR*0.1,ease:ED},d0+dd+DUR*0.04);
+ tl.to('#tr5',{y:6,duration:DUR*0.05,ease:ED,yoyo:true,repeat:1},d0+dd+DUR*0.04);
+ tl.to('#cu5',{opacity:0,y:20,duration:DUR*0.1,ease:E2},d0+dd+DUR*0.03);
+ // copy glows after the delete
+ const g=at(0.56);
+ tl.to('#gl5',{opacity:.8,duration:DUR*0.14,ease:ED},g);
+ tl.to('#cp5',{backgroundColor:'#4C7BF4',duration:DUR*0.1,ease:ED},g);
+ tl.to('#gl5',{opacity:.4,duration:DUR*0.18,ease:ED,yoyo:true,repeat:1},at(0.7));
+ // calendar flips, big counter
+ tl.fromTo('#cl5',{opacity:0,y:50,scale:.94},{opacity:1,y:0,scale:1,duration:DUR*0.16,ease:E1},at(0.52));
+ tl.fromTo('#pg5',{rotationX:0},{rotationX:-95,duration:DUR*0.2,ease:E2},at(0.62));
+ tl.fromTo('#pg5',{opacity:1},{opacity:0,duration:DUR*0.04,ease:ED},at(0.62)+DUR*0.17);
+ tl.fromTo('#s5 .yr span',{scale:1.25,opacity:0},{scale:1,opacity:1,duration:DUR*0.2,ease:"expo.out"},at(0.68));
+ tl.to('#s5 .yr span',{scale:1.05,duration:DUR*0.2,ease:ED,yoyo:true,repeat:1},at(0.84));
+ tl.to('#cl5',{y:-6,duration:DUR*0.3,ease:ED,yoyo:true,repeat:1},at(0.4));
+};
+</script>

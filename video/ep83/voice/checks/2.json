@@ -1,0 +1,25 @@
+{
+ "line": 2,
+ "verdict": "ok",
+ "reasons": [],
+ "numbers": {
+  "dur": 1.71,
+  "peak": 0.729,
+  "lead_s": 0.01,
+  "trail_s": 0.02,
+  "transcript": "Even the company warns you.",
+  "first_word_start_s": -0.3,
+  "speech_onset_s": 0.22,
+  "first200ms_after_onset_vs_median_db": 8.1,
+  "rate_syl_s": 4.67,
+  "sibilance_db": -15.5,
+  "ending_db": -38.2,
+  "level_dbfs": -18.7,
+  "file_median_ending_db": -36.3,
+  "pitch_range_st": 8.8,
+  "pitch_end_st": -0.1,
+  "accent_row": "ln 2  top=us 0.82  not-american=0.02   {'australia': 0.013, ",
+  "script_lint": "0 risky word(s) across 1 line(s)."
+ },
+ "note": "measured, not heard"
+}

@@ -1,0 +1,25 @@
+{
+ "line": 4,
+ "verdict": "ok",
+ "reasons": [],
+ "numbers": {
+  "dur": 2.5,
+  "peak": 0.816,
+  "lead_s": 0.01,
+  "trail_s": 0.0,
+  "transcript": "Not a robot. A person.",
+  "first_word_start_s": -0.3,
+  "speech_onset_s": 0.0,
+  "first200ms_after_onset_vs_median_db": 4.5,
+  "rate_syl_s": 2.81,
+  "sibilance_db": -13.3,
+  "ending_db": -41.6,
+  "level_dbfs": -19.8,
+  "file_median_ending_db": -36.3,
+  "pitch_range_st": 7.0,
+  "pitch_end_st": 0.8,
+  "accent_row": "ln 4  top=us 0.81  not-american=0.05   {'australia': 0.024, ",
+  "script_lint": "0 risky word(s) across 1 line(s)."
+ },
+ "note": "measured, not heard"
+}

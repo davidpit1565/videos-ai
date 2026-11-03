@@ -1,0 +1,25 @@
+{
+ "line": 1,
+ "verdict": "ok",
+ "reasons": [],
+ "numbers": {
+  "dur": 2.43,
+  "peak": 0.62,
+  "lead_s": 0.01,
+  "trail_s": 0.01,
+  "transcript": "Your secrets aren't safe with Gemini.",
+  "first_word_start_s": -0.3,
+  "speech_onset_s": 0.02,
+  "first200ms_after_onset_vs_median_db": 10.4,
+  "rate_syl_s": 4.12,
+  "sibilance_db": -8.3,
+  "ending_db": -28.5,
+  "level_dbfs": -19.9,
+  "file_median_ending_db": -36.3,
+  "pitch_range_st": 6.8,
+  "pitch_end_st": -0.2,
+  "accent_row": "ln 1  top=us 0.63  not-american=0.22   {'england': 0.138, 'a",
+  "script_lint": "0 risky word(s) across 1 line(s)."
+ },
+ "note": "measured, not heard"
+}

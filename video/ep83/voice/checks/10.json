@@ -1,0 +1,25 @@
+{
+ "line": 10,
+ "verdict": "ok",
+ "reasons": [],
+ "numbers": {
+  "dur": 2.91,
+  "peak": 0.737,
+  "lead_s": 0.01,
+  "trail_s": 0.0,
+  "transcript": "Don't miss the next AI trap. Follow.",
+  "first_word_start_s": -0.3,
+  "speech_onset_s": 0.02,
+  "first200ms_after_onset_vs_median_db": 6.0,
+  "rate_syl_s": 2.75,
+  "sibilance_db": -8.9,
+  "ending_db": -36.8,
+  "level_dbfs": -18.7,
+  "file_median_ending_db": -36.3,
+  "pitch_range_st": 6.0,
+  "pitch_end_st": -0.7,
+  "accent_row": "ln 10  top=us 0.70  not-american=0.16   {'england': 0.095, '",
+  "script_lint": "0 risky word(s) across 1 line(s)."
+ },
+ "note": "measured, not heard"
+}

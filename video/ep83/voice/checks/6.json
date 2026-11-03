@@ -1,0 +1,25 @@
+{
+ "line": 6,
+ "verdict": "ok",
+ "reasons": [],
+ "numbers": {
+  "dur": 1.38,
+  "peak": 0.837,
+  "lead_s": 0.03,
+  "trail_s": 0.01,
+  "transcript": "So here's the one rule.",
+  "first_word_start_s": -0.3,
+  "speech_onset_s": 0.04,
+  "first200ms_after_onset_vs_median_db": 5.8,
+  "rate_syl_s": 4.34,
+  "sibilance_db": -18.0,
+  "ending_db": -42.3,
+  "level_dbfs": -16.9,
+  "file_median_ending_db": -36.3,
+  "pitch_range_st": 6.4,
+  "pitch_end_st": 0.7,
+  "accent_row": "ln 6  top=us 0.67  not-american=0.02   {'australia': 0.012, ",
+  "script_lint": "0 risky word(s) across 1 line(s)."
+ },
+ "note": "measured, not heard"
+}
