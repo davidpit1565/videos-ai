@@ -16,5 +16,11 @@
   "enabledPlugins": {
     "impeccable@impeccable": true,
     "lemo-opuscar@lemolab": true
+  },
+  "permissions": {
+    "allow": [
+      "Bash(claude plugin marketplace add lemomo-ai/lemo-opuscar)",
+      "Bash(claude plugin install lemo-opuscar@lemolab)"
+    ]
   }
 }
