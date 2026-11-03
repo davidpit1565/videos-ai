@@ -1,0 +1,89 @@
+{
+ "lines": [
+  {
+   "n": 1,
+   "text": "Your secrets aren't safe with Gemini.",
+   "start": 0.1,
+   "end": 2.52
+  },
+  {
+   "n": 2,
+   "text": "Even the company warns you.",
+   "start": 3.07,
+   "end": 5.17
+  },
+  {
+   "n": 3,
+   "text": "Because a real person may read your chat.",
+   "start": 5.47,
+   "end": 8.53
+  },
+  {
+   "n": 4,
+   "text": "Not a robot. A person.",
+   "start": 8.83,
+   "end": 10.93
+  },
+  {
+   "n": 5,
+   "text": "And they keep it a long time. Even if you delete it.",
+   "start": 11.23,
+   "end": 15.57
+  },
+  {
+   "n": 6,
+   "text": "So here's the one rule.",
+   "start": 15.87,
+   "end": 17.97
+  },
+  {
+   "n": 7,
+   "text": "Don't type what you'd hate for anyone to read.",
+   "start": 18.27,
+   "end": 21.65
+  },
+  {
+   "n": 8,
+   "text": "Then switch off Keep Activity. It helps a bit.",
+   "start": 21.95,
+   "end": 25.33
+  },
+  {
+   "n": 9,
+   "text": "Send this to a friend who tells Gemini everything.",
+   "start": 25.63,
+   "end": 29.01
+  },
+  {
+   "n": 10,
+   "text": "Don't miss the next AI trap. Follow.",
+   "start": 29.31,
+   "end": 32.05
+  }
+ ],
+ "D": 32.95,
+ "T0": [
+  0.0,
+  2.92,
+  5.32,
+  8.68,
+  11.08,
+  15.72,
+  18.12,
+  21.8,
+  25.48,
+  29.16
+ ],
+ "DUR": [
+  2.92,
+  2.4,
+  3.36,
+  2.4,
+  4.64,
+  2.4,
+  3.68,
+  3.68,
+  3.68,
+  3.79
+ ]
+}
