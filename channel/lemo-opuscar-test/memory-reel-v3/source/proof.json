@@ -1,0 +1,32 @@
+{
+ "image": "phone.png",
+ "caption": "real screen · ChatGPT app · Settings > Personalization",
+ "zoom": [
+  1.125,
+  1.2
+ ],
+ "pan": [
+  0,
+  210
+ ],
+ "rings": [
+  {
+   "x": 240,
+   "y": 34,
+   "w": 320,
+   "h": 64,
+   "style": "solid",
+   "t0": 10.85,
+   "t1": 11.35
+  },
+  {
+   "x": 24,
+   "y": 190,
+   "w": 752,
+   "h": 120,
+   "style": "dashed",
+   "t0": 11.8,
+   "t1": 12.35
+  }
+ ]
+}
