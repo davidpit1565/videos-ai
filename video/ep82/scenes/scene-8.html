@@ -1,0 +1,67 @@
+<style>
+#s8 .c8chip{position:absolute;top:985px;width:430px;height:124px;background:var(--white);border:6px solid var(--ink);border-radius:36px;box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:44px;letter-spacing:-.03em;opacity:0}
+#s8 #c8card{position:absolute;left:65px;top:625px;width:950px;height:330px;background:var(--cd);border-radius:32px;border:2px solid #2A2C34;box-shadow:0 30px 60px rgba(0,0,0,.25);opacity:0}
+#s8 .c8hd{position:absolute;left:44px;top:34px;display:flex;align-items:center;gap:18px;color:#9A9BA3;font-weight:500;font-size:32px}
+#s8 .c8tag{position:absolute;right:40px;top:36px;font-weight:500;font-size:24px;color:#9A9BA3;border:2px solid #3A3C45;border-radius:14px;padding:4px 14px}
+#s8 .c8in{position:absolute;left:44px;top:112px;width:862px;height:170px;border-radius:24px;background:#1D1E25;border:3px solid #34363F}
+#s8 #c8caret{position:absolute;left:30px;top:34px;width:5px;height:56px;background:var(--acc);border-radius:3px}
+#s8 #c8ph{position:absolute;left:52px;top:36px;font-weight:500;font-size:40px;color:#6C6D76}
+#s8 #c8dots{position:absolute;right:34px;bottom:26px;display:flex;gap:12px}
+#s8 #c8dots i{width:18px;height:18px;border-radius:50%;background:var(--acc);display:block}
+#s8 #c8sel{position:absolute;left:30px;bottom:24px;font-weight:800;font-size:38px;color:var(--cink);opacity:0}
+#s8 #c8cur{position:absolute;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(14,14,14,.26);border:4px solid var(--ink);opacity:0;z-index:9}
+#s8 #c8rip{position:absolute;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;border:6px solid var(--ink);opacity:0;z-index:8}
+#s8 #c8st{position:absolute;left:290px;top:1138px;width:500px;height:96px;background:var(--acc);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:50px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;gap:18px;opacity:0}
+#s8 #c8arr{display:block}
+</style>
+<div class="scn clip" id="s8" data-start="0" data-duration="__D8__" data-track-index="1"><div class="cam" id="c8cam">
+ <div class="grp" style="top:300px">
+  <div class="row"><span class="w s92 lt c8w" data-w="0">Did</span><span class="w s92 lt c8w" data-w="1">you</span><span class="w s92 c8w" data-w="2">notice</span></div>
+  <div class="row"><span class="w pill s128 c8w" data-w="3" style="margin-top:10px">a change?</span></div>
+ </div>
+ <div id="c8card">
+  <div class="c8hd"><svg width="54" height="54" viewBox="0 0 54 54"><path d="M6 8h42a4 4 0 0 1 4 4v24a4 4 0 0 1-4 4H26l-12 10V40H6a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4z" fill="#D97757"/></svg>Comments</div>
+  <div class="c8tag">re-created</div>
+  <div class="c8in"><div id="c8caret"></div><div id="c8ph">Add a comment</div><div id="c8sel"></div><div id="c8dots"><i></i><i></i><i></i></div></div>
+ </div>
+ <div class="c8chip" id="c8k1" style="left:75px">Yes, felt worse</div>
+ <div class="c8chip" id="c8k2" style="left:560px">No change</div>
+ <div id="c8st"><span>Tell me below</span><svg id="c8arr" width="44" height="52" viewBox="0 0 44 52"><path d="M22 4v38M8 28l14 16 14-16" fill="none" stroke="#0E0E0E" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+ <div id="c8rip"></div><div id="c8cur"></div>
+</div></div>
+<script>
+window.buildScene_8=function(tl,T0,DUR){
+ const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)], t=f=>T0+DUR*f;
+ tl.set('#s8',{opacity:1,visibility:'visible'},T0);
+ tl.set('#c8cam',{scale:1,x:0,y:0},T0);
+ tl.set(['#c8card','#c8k1','#c8k2','#c8st','#c8cur','#c8rip','#c8sel'],{opacity:0},T0);
+ tl.set('.c8w',{opacity:0,y:40},T0);
+ tl.set('#c8cur',{x:830,y:1180},T0);
+ // camera drift
+ tl.fromTo('#c8cam',{scale:1,x:-12,y:8},{scale:1.03,x:12,y:-10,duration:DUR*1.1,ease:'sine.inOut'},T0);
+ // headline
+ qa('.c8w').forEach((el,i)=>{const pill=el.classList.contains('pill');
+  if(pill) tl.fromTo(el,{opacity:0,y:44,scale:1.18},{opacity:1,y:0,scale:1,duration:DUR*.3,ease:'expo.out'},t(.02+.1*i));
+  else tl.fromTo(el,{opacity:0,y:42},{opacity:1,y:0,duration:DUR*.2,ease:'power3.out'},t(.0+.06*i));});
+ // card + chips
+ tl.fromTo('#c8card',{opacity:0,y:40,scale:.96},{opacity:1,y:0,scale:1,duration:DUR*.25,ease:'power3.out'},t(.2));
+ tl.fromTo('#c8k1',{opacity:0,y:36,scale:.92},{opacity:1,y:0,scale:1,duration:DUR*.22,ease:'back.out(1.1)'},t(.32));
+ tl.fromTo('#c8k2',{opacity:0,y:36,scale:.92},{opacity:1,y:0,scale:1,duration:DUR*.22,ease:'back.out(1.1)'},t(.38));
+ // caret soft breathing, dots pulse
+ tl.fromTo('#c8caret',{opacity:1},{opacity:.25,duration:DUR*.18,ease:'sine.inOut',repeat:5,yoyo:true},t(.25));
+ qa('#c8dots i').forEach((d,i)=>tl.fromTo(d,{opacity:.25,y:0},{opacity:1,y:-8,duration:DUR*.14,ease:'sine.inOut',repeat:6,yoyo:true},t(.3+.04*i)));
+ // sticker + arrow bounce
+ tl.fromTo('#c8st',{opacity:0,y:30,scale:.8,rotation:-6},{opacity:1,y:0,scale:1,rotation:-2,duration:DUR*.26,ease:'back.out(1.2)'},t(.52));
+ tl.fromTo('#c8arr',{y:-6},{y:8,duration:DUR*.14,ease:'sine.inOut',repeat:7,yoyo:true},t(.62));
+ // cursor glides to chip 1 and taps
+ const cx=65+215, cy=985+62;
+ tl.fromTo('#c8cur',{x:830,y:1180,opacity:0},{x:cx,y:cy,opacity:1,duration:DUR*.22,ease:'power2.inOut'},t(.5));
+ tl.to('#c8cur',{scale:.86,duration:DUR*.05,ease:'sine.inOut'},t(.73));
+ tl.to('#c8cur',{scale:1,duration:DUR*.08,ease:'sine.inOut'},t(.78));
+ tl.fromTo('#c8rip',{x:cx,y:cy,scale:.6,opacity:.6},{scale:2.6,opacity:0,duration:DUR*.25,ease:'power2.out'},t(.73));
+ tl.to('#c8k1',{background:'#D97757',y:3,duration:DUR*.08,ease:'sine.inOut'},t(.73));
+ tl.to('#c8cur',{opacity:0,x:cx+60,y:cy+50,duration:DUR*.15,ease:'power2.in'},t(.86));
+ // slow end drift of sticker
+ tl.to('#c8st',{y:-5,rotation:-1,duration:DUR*.35,ease:'sine.inOut'},t(.8));
+};
+</script>

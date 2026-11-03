@@ -1,0 +1,47 @@
+<style>
+#s3 .tile{position:absolute;left:480px;top:280px;width:120px;height:120px;background:var(--white);border:6px solid var(--ink);border-radius:36px;box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center;opacity:0}
+#s3 .tile img{width:60%;height:60%}
+#s3 .slot{position:absolute;left:85px;width:915px;height:118px;opacity:0}
+#s3 .num{position:absolute;left:0;top:0;width:118px;height:118px;background:var(--acc);border:6px solid var(--ink);border-radius:34px;box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:84px;color:var(--ink);padding-bottom:6px;z-index:2}
+#s3 .hole{position:absolute;left:146px;top:0;width:762px;height:118px;border:6px dashed #A9A99F;border-radius:30px;background:rgba(255,255,255,.45)}
+#s3 .file{position:absolute;left:146px;top:0;width:762px;height:118px;background:var(--cd);border:2px solid #2A2C34;border-radius:30px;box-shadow:8px 8px 0 var(--ink);opacity:0;display:flex;align-items:center;gap:28px;padding:0 34px;overflow:hidden}
+#s3 .fi{flex:none;width:58px;height:74px;background:var(--white);border-radius:10px;position:relative}
+#s3 .fi:before{content:"";position:absolute;right:0;top:0;width:20px;height:20px;background:#C9C9BF;border-radius:0 10px 0 10px}
+#s3 .fi:after{content:"";position:absolute;left:11px;top:34px;width:36px;height:6px;background:#C9C9BF;border-radius:3px;box-shadow:0 14px 0 #C9C9BF}
+#s3 .bars{flex:1}
+#s3 .bars i{display:block;height:20px;border-radius:10px;background:#34363F;margin:8px 0}
+</style>
+<div class="scn clip" id="s3" data-start="0" data-duration="__D3__" data-track-index="1"><div class="cam" id="c3">
+ <div class="tile" id="t3"><img src="assets/claude.svg"></div>
+ <div class="grp" style="top:430px">
+  <div class="row"><span class="w s92 lt" data-w="0">But</span><span class="w s92 lt" data-w="1">it</span><span class="w s92 lt" data-w="2">did</span><span class="w s92" data-w="3">own</span><span class="w s92" data-w="4">up</span></div>
+  <div class="row"><span class="w s92 lt" data-w="5">to</span><span class="w sel s92" data-w="7" style="padding:0 20px">real</span></div>
+  <div class="row"><span class="w pill s112" data-w="8" style="margin-top:8px">problems.</span></div>
+ </div>
+ <div class="slot" id="sl1" style="top:822px"><div class="hole"></div><div class="file" id="f1"><div class="fi"></div><div class="bars"><i style="width:70%"></i><i style="width:46%"></i></div></div><div class="num" id="n1">1</div></div>
+ <div class="slot" id="sl2" style="top:967px"><div class="hole"></div><div class="file" id="f2"><div class="fi"></div><div class="bars"><i style="width:62%"></i><i style="width:52%"></i></div></div><div class="num" id="n2">2</div></div>
+ <div class="slot" id="sl3" style="top:1102px"><div class="hole"></div><div class="file" id="f3"><div class="fi"></div><div class="bars"><i style="width:76%"></i><i style="width:40%"></i></div></div><div class="num" id="n3" style="font-size:44px">last</div></div>
+</div></div>
+<script>
+window.buildScene_3=function(tl,T0,DUR){
+ const t=f=>T0+DUR*f, d=f=>DUR*f, G=gsap;
+ tl.set('#s3',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s3 .w',{opacity:0},T0);
+ tl.set('#t3',{opacity:0,scale:.7},T0);
+ tl.set('.slot',{opacity:0},T0); tl.set('#sl1,#sl3',{x:-12,y:28},T0); tl.set('#sl2',{x:12,y:28},T0);
+ tl.set('.file',{opacity:0,scale:.9},T0); tl.set('.num',{scale:1},T0);
+ tl.fromTo('#c3',{scale:1,x:-10,y:6},{scale:1.035,x:10,y:-8,duration:d(1)+1,ease:'sine.inOut'},T0);
+ tl.to('#t3',{opacity:1,scale:1,duration:d(.2),ease:'back.out(1.2)'},t(0));
+ tl.to('#t3',{y:-6,duration:d(.5),ease:'sine.inOut',yoyo:true,repeat:1},t(.3));
+ const ws=[...document.querySelectorAll('#s3 .w')];
+ ws.forEach((el,k)=>{const slam=el.classList.contains('pill')||el.classList.contains('sel');const at=t(.02+k*.045);
+  if(slam) tl.fromTo(el,{opacity:0,y:36,scale:1.15},{opacity:1,y:0,scale:1,duration:d(.22),ease:'expo.out'},at);
+  else tl.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:d(.17),ease:'power3.out'},at);});
+ [1,2,3].forEach((n,i)=>{const at=t(.34+i*.1);
+  tl.to('#sl'+n,{opacity:1,x:0,y:0,duration:d(.24),ease:'power3.out'},at);
+  tl.to('#f'+n,{opacity:1,scale:1,duration:d(.2),ease:'power2.out'},t(.55+i*.07));});
+ [1,2,3].forEach((n,i)=>{const at=t(.74+i*.07);
+  tl.to('#n'+n,{scale:1.1,duration:d(.07),ease:'sine.inOut',yoyo:true,repeat:1},at);});
+ tl.to('.slot',{y:'-=5',duration:d(.2),ease:'sine.inOut',yoyo:true,repeat:1,stagger:d(.03)},t(.8));
+};
+</script>

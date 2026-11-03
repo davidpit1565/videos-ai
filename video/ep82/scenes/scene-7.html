@@ -1,0 +1,45 @@
+<div class="scn clip" id="s7" data-start="0" data-duration="__D7__" data-track-index="1"><div class="cam" id="c7">
+ <div class="grp" style="top:305px">
+  <div class="row"><span class="w s92 lt" data-w="0">All</span><span class="w s92 lt" data-w="1">of them</span><span class="w s92 lt" data-w="2">were</span></div>
+  <div class="row"><span class="w s92" data-w="3">fixed</span><span class="w s92" data-w="4">by</span><span class="w sel s92" data-w="5">April 20.</span></div>
+ </div>
+ <div class="s7row" id="r7a" style="top:590px"><span class="s7lab">Effort</span><svg class="s7ck" viewBox="0 0 100 100"><circle class="s7ring" cx="50" cy="50" r="40"/><path class="s7tick" d="M30 52 L45 67 L72 36"/></svg></div>
+ <div class="s7row" id="r7b" style="top:745px"><span class="s7lab">Memory bug</span><svg class="s7ck" viewBox="0 0 100 100"><circle class="s7ring" cx="50" cy="50" r="40"/><path class="s7tick" d="M30 52 L45 67 L72 36"/></svg></div>
+ <div class="s7row" id="r7c" style="top:900px"><span class="s7lab">Short-answer rule</span><svg class="s7ck" viewBox="0 0 100 100"><circle class="s7ring" cx="50" cy="50" r="40"/><path class="s7tick" d="M30 52 L45 67 L72 36"/></svg></div>
+ <div class="sticker" id="st7" style="left:320px;top:1070px;font-size:74px;padding:2px 38px;border-radius:30px;transform:rotate(-4deg)">April 20</div>
+ <div id="fn7">Source: Anthropic report, April 23, 2026</div>
+</div></div>
+<style>
+.s7row{position:absolute;left:65px;width:950px;height:140px;background:var(--white);border:6px solid var(--ink);border-radius:36px;box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 34px 0 44px;opacity:0}
+.s7lab{font-weight:800;font-size:64px;letter-spacing:-.03em}
+.s7ck{width:96px;height:96px;overflow:visible}
+.s7ring{fill:#fff;stroke:#C9C9BF;stroke-width:7}
+.s7tick{fill:none;stroke:#2FBF71;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:80;stroke-dashoffset:80}
+#fn7{position:absolute;left:105px;width:870px;top:1206px;text-align:center;font-weight:500;font-size:28px;color:var(--ink2);opacity:0}
+</style>
+<script>
+window.buildScene_7=function(tl,T0,DUR){
+ var d=function(f){return T0+DUR*f;};
+ tl.set('#s7',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s7 .w',{opacity:0,y:26,scale:.96},T0);
+ tl.set('.s7row',{opacity:0,x:-40},T0);
+ tl.set('.s7tick',{strokeDashoffset:80},T0);
+ tl.set('.s7ring',{stroke:'#C9C9BF',fill:'#fff'},T0);
+ tl.set('#st7',{opacity:0,scale:.6,y:-40,rotation:-12},T0);
+ tl.set('#fn7',{opacity:0,y:10},T0);
+ tl.fromTo('#c7',{scale:1.0,y:0},{scale:1.035,y:-10,duration:DUR,ease:'sine.inOut',transformOrigin:'50% 40%'},T0);
+ var ws=document.querySelectorAll('#s7 .w');
+ ws.forEach(function(w,i){tl.to(w,{opacity:1,y:0,scale:1,duration:DUR*.16,ease:'power3.out'},d(.02+i*.05));});
+ ['a','b','c'].forEach(function(k,i){
+  var s=.2+i*.17;
+  tl.to('#r7'+k,{opacity:1,x:0,duration:DUR*.2,ease:'power3.out'},d(s));
+  tl.to('#r7'+k+' .s7tick',{strokeDashoffset:0,duration:DUR*.17,ease:'power2.inOut'},d(s+.14));
+  tl.to('#r7'+k+' .s7ring',{stroke:'#2FBF71',duration:DUR*.12,ease:'sine.out'},d(s+.14));
+  tl.fromTo('#r7'+k+' .s7ck',{filter:'drop-shadow(0 0 0px rgba(47,191,113,0))'},{filter:'drop-shadow(0 0 22px rgba(47,191,113,.75))',duration:DUR*.1,ease:'sine.out',yoyo:true,repeat:1},d(s+.28));
+  tl.fromTo('#r7'+k+' .s7ck',{scale:1},{scale:1.12,duration:DUR*.1,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},d(s+.28));
+ });
+ tl.to('#st7',{opacity:1,scale:1,y:0,rotation:-4,duration:DUR*.28,ease:'back.out(1.2)'},d(.62));
+ tl.to('#fn7',{opacity:1,y:0,duration:DUR*.2,ease:'power2.out'},d(.8));
+ tl.to('#st7',{y:-8,rotation:-3,duration:DUR*.3,ease:'sine.inOut',yoyo:true,repeat:1},d(.9));
+};
+</script>
