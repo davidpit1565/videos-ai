@@ -495,6 +495,11 @@ check → fix → re-check rule above.
   is the Hebrew RTL island and declares that on its own container, so an English page can
   never inherit a right-to-left scrollbar.
 
+## YouTube text and recurring failures (David, 3.11.2026)
+- **YouTube titles and descriptions must not contain `<` or `>`.** YouTube rejects them with "invalid video description" (episode 52 stopped the whole upload queue on `Settings > Personalization > Memory`; 16 queued files had them). `studio/app/api/yt-backfill/impl.ts` now swaps them for `›` / `‹` on upload (PR #546). In new `channel/episode-NN-youtube.txt` files write the path with `›` or "then" instead of `>`. Instagram and the site accept `>`.
+- **Standing order: when something fails because of a cause that will keep recurring (a platform rule, a character, a quota, a format), fix the root in the code, write the rule here the same day, and tell David in one line.** Do not just patch the single episode that hit it.
+- YouTube uploads have a daily quota (about 13 per day observed 3.11). `/api/yt-backfill` and its daily 08:20 UTC cron stop on it by design; an upload that returns "exceeded the number of videos" is not a bug.
+
 ## Phone notification when a reel is ready (David, 25.10.2026)
 When a reel is ready (check.sh passed, merged, deploy verified), send a real phone notification with the PushNotification tool: one line, the episode number and that it is ready. Do this for every new reel. The studio's own "reel ready, not published" reminder pushes were removed the same day at his request (they were not built well); do not re-add them without asking.
 
