@@ -1,0 +1,4 @@
+Manual approval — episode 82, V7 cut with music A (3.11.2026)
+
+The automatic gate ran (frame layout, qa.py, voice_quality, voice_doctor all PASS) but the accent check was skipped (python package "transformers" missing), so its summary reads "ALL CHECKS THAT RAN PASSED (1 skipped)", which the studio's gate parser ("ALL CHECKS PASSED") does not count. The voice and music were measured, not heard.
+David listened to several versions of the last line and the word "Anthropic" (stress and R) over 2-3.11.2026, said on 3.11.2026 that the stress is still not fully fixed but to leave it as it is, and told Claude to publish ("צריך לפרסם כבר, אז פרסם"). Music A was chosen final by him. This approval is what lets the studio publish it.
