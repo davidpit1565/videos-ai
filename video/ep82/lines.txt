@@ -6,4 +6,4 @@ Two: a bug made Claude forget its own reasoning.
 And last: a rule that kept replies short hurt coding quality.
 All of them were fixed by April 20.
 Did you notice a change? Tell me below.
-The links to the original report are in the caption.
+The links to Anthropic's own report are in the caption.
