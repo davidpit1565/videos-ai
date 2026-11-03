@@ -12,9 +12,9 @@
       within tolerance: 6px overlap  .tag x #cp5
 
 === PASS  rendered file (qa.py --hf)
-    ep83-C.mp4  1080x1920  30fps  29.20s  12.6MB
-      visual change: median 0.03s, longest 3.20s
-      loudness: -15.0 LUFS integrated, peak -3.6 dBFS, LRA 1.6 LU
+    ep83-D.mp4  1080x1920  30fps  29.20s  12.4MB
+      visual change: median 0.03s, longest 3.53s
+      loudness: -14.9 LUFS integrated, peak -3.9 dBFS, LRA 1.6 LU
       loop seam: first vs last frame differ by 38.9/255
     
       [warn]    29.2s is outside the 30-90s band
@@ -27,8 +27,8 @@
       ok        first frame carries picture (luma 231.5, std 42.8)
       ok        colour-card check not applicable (HyperFrames build, no cards)
       ok        visual change every 0.03s median
-      ok        -15.0 LUFS
-      ok        peak -3.6 dBFS
+      ok        -14.9 LUFS
+      ok        peak -3.9 dBFS
 
 === PASS  voice + music quality (voice_quality.py)
     pitch (semitones vs each line's own median):
@@ -43,7 +43,7 @@
       line   9  range  7.1 st  end  +0.3    Send this to a friend who tells Gemini everythin
       line  10  range  5.9 st  end  -0.7    Don't miss the next AI trap. Follow.
     tone: none steady over 0.6 s
-    music: 21% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.42 = -8.0 dB
+    music: 5% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.25 = -7.4 dB
     
     voice quality: clean
 

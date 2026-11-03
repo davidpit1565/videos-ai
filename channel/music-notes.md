@@ -25,7 +25,8 @@ None of this has data on reach for our channel. We have 80 episodes' views but m
 ## Log (add one row per episode)
 | Ep | Track | Mood tag | Bed vs voice (300-3500 Hz) | Verdict (who) | Notes |
 |---|---|---|---|---|---|
-| 83 v1 | confident--technology-corporate--themountain | confident / corporate | -8.0 dB | "very generic" (Roni, 3.11) | replaced; three new candidates D/E/F built 3.11 |
+| 83 v1 | confident--technology-corporate--themountain | confident / corporate | -8.0 dB | "very generic" (Roni, 3.11) | replaced |
+| 83 v2 | minimal--minimal-ambient-background--audiodollar (D) | minimal | -7.4 dB, 5% under 150 Hz | pending (David's ear) | picked by measurement; alternatives E curious--inquisitive-curiosity--musictown (-8.2 dB), F lofi--lofi-night-haze--ornave (-7.3 dB) |
 
 ## Ideas to test (deliberate experiments, log in experiments.md)
 - Same style of episode with a character bed vs a neutral bed, compare average watch time (needs several episodes, not one).
