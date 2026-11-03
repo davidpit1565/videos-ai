@@ -12,7 +12,7 @@
 #s3 #mg b{position:absolute;left:0;top:0;width:150px;height:150px;border-radius:50%;border:13px solid var(--ink);background:rgba(76,123,244,.13);box-sizing:border-box;box-shadow:0 0 0 2000px rgba(14,14,14,0)}
 #s3 #mg u{position:absolute;left:112px;top:118px;width:90px;height:22px;border-radius:11px;background:var(--ink);transform:rotate(48deg);transform-origin:0 50%}
 #s3 #st{position:absolute;left:150px;top:905px;background:var(--red);color:var(--white);border:6px solid var(--ink);border-radius:24px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:42px;padding:8px 24px;letter-spacing:-.02em;opacity:0;white-space:nowrap}
-#s3 #ey{position:absolute;left:830px;top:655px;width:120px;height:72px;opacity:0}
+#s3 #ey{position:absolute;left:845px;top:628px;width:120px;height:72px;opacity:0}
 #s3 #sh{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;background:radial-gradient(ellipse 560px 420px at 50% 62%,rgba(0,0,0,0) 0,rgba(14,14,14,.08) 100%)}
 </style>
 <div class="scn clip" id="s3" data-start="0" data-duration="__D3__" data-track-index="1"><div id="sh"></div><div class="cam" id="cam3">
@@ -21,7 +21,6 @@
   <div class="row"><span class="w pill s128" data-w="2">PERSON</span></div>
   <div class="row"><span class="w s100" data-w="3">may</span><span class="w s100" data-w="4">read</span><span class="w s100" data-w="5">it</span></div>
  </div>
- <svg id="ey" viewBox="0 0 150 90"><path d="M8 45 Q75 -15 142 45 Q75 105 8 45Z" fill="#fff" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/><circle id="ir" cx="75" cy="45" r="21" fill="#9B72CB" stroke="#0E0E0E" stroke-width="6"/><circle cx="75" cy="45" r="8" fill="#0E0E0E"/></svg>
  <div id="ph">
   <div class="hd"><img src="assets/Google_Gemini_icon_2025.svg"><span>Chats</span><i>re-created</i></div>
   <div class="bb" id="b1" style="left:34px;top:100px;width:430px"><span><i class="ln" style="width:330px"></i></span></div>
@@ -30,6 +29,7 @@
   <div class="bb me" id="b4" style="right:34px;top:376px;width:400px"><span><i class="ln" style="width:300px;background:#AEBFE8"></i></span></div>
   <div class="bb" id="b5" style="left:34px;top:468px;width:340px"><span><i class="ln" style="width:240px"></i></span></div>
  </div>
+ <svg id="ey" viewBox="0 0 150 90"><path d="M8 45 Q75 -15 142 45 Q75 105 8 45Z" fill="#fff" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/><circle id="ir" cx="75" cy="45" r="21" fill="#9B72CB" stroke="#0E0E0E" stroke-width="6"/><circle cx="75" cy="45" r="8" fill="#0E0E0E"/></svg>
  <div id="st">SOME CHATS</div>
  <div id="mg"><b></b><u></u></div>
 </div></div>
@@ -57,8 +57,8 @@ window.buildScene_3=function(tl,T0,DUR){
  tl.to('#mg',{opacity:1,duration:DUR*0.1,ease:E1},at(0.18));
  tl.to('#mg',{x:600,y:850,duration:DUR*0.2,ease:ED},at(0.2));
  tl.to('#mg',{x:660,y:1030,duration:DUR*0.18,ease:ED},at(0.37));
- tl.to('#mg',{x:615,y:936,duration:DUR*0.25,ease:E2},at(0.53));
- tl.to('#mg',{y:944,x:622,duration:DUR*0.2,ease:ED,yoyo:true,repeat:1},at(0.8));
+ tl.to('#mg',{x:640,y:936,duration:DUR*0.25,ease:E2},at(0.53));
+ tl.to('#mg',{y:944,x:647,duration:DUR*0.2,ease:ED,yoyo:true,repeat:1},at(0.8));
  // spotlight: other bubbles dim, target grows, tag appears
  tl.to('#sh',{opacity:1,duration:DUR*0.3,ease:ED},at(0.55));
  tl.to('#b1,#b2,#b4,#b5',{opacity:.35,duration:DUR*0.25,ease:ED},at(0.6));

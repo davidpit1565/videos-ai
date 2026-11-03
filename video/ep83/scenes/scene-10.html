@@ -3,7 +3,7 @@
 #s10 .pill{background:var(--acc)}
 #s10 .w{color:var(--ink)}
 #s10 #h10b{opacity:0}
-#s10 .trap{overflow:visible;position:absolute;left:65px;top:610px;width:950px;height:380px;opacity:0}
+#s10 .trap{overflow:visible;position:absolute;left:65px;top:660px;width:950px;height:380px;opacity:0}
 #s10 .fol{position:absolute;left:215px;top:900px;width:650px;height:150px;border-radius:75px;background:var(--acc);border:7px solid var(--ink);box-shadow:10px 10px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:22px;font-weight:900;font-size:76px;letter-spacing:-.04em;color:var(--white);opacity:0}
 #s10 .fol svg{width:64px;height:64px}
 #s10 .rip{position:absolute;left:640px;top:975px;width:60px;height:60px;margin:-30px;border-radius:50%;border:8px solid var(--acc);opacity:0}
@@ -43,7 +43,7 @@ window.buildScene_10=function(tl,T0,DUR){
  tl.set('#s10',{opacity:1,visibility:'visible'},T0);
  tl.set('#s10 .w',{opacity:0},T0);tl.set('#g10b .w',{opacity:1},T0);
  tl.set('#t10',{opacity:0},T0);
- tl.set('#bar10',{svgOrigin:"215 200",rotation:-72},T0);
+ tl.set('#bar10',{svgOrigin:"215 200",rotation:-50},T0);
  tl.set('#c10',{x:860,y:1230,opacity:0},T0);
  tl.fromTo('#cam10',{scale:1,x:-10,y:6},{scale:1.03,x:10,y:-8,duration:DUR,ease:ED},T0);
  // headline A
@@ -57,23 +57,23 @@ window.buildScene_10=function(tl,T0,DUR){
  // trap enters, bait sparkle breathes, bar snaps gently
  tl.fromTo('#t10',{opacity:0,y:70,scale:.92},{opacity:1,y:0,scale:1,duration:DUR*0.22,ease:"expo.out"},at(0.04));
  tl.to('#spk10',{rotation:18,scale:1.12,svgOrigin:"560 205",duration:DUR*0.3,ease:ED,yoyo:true,repeat:1},at(0.06));
- tl.to('#bar10',{rotation:-58,duration:DUR*0.14,ease:ED,yoyo:true,repeat:1},at(0.1));
+ tl.to('#bar10',{rotation:-40,duration:DUR*0.14,ease:ED,yoyo:true,repeat:1},at(0.1));
  tl.to('#bar10',{rotation:0,duration:DUR*0.14,ease:"power3.in"},at(0.42));
  tl.to('#t10',{y:10,duration:DUR*0.06,ease:"sine.out",yoyo:true,repeat:1},at(0.55));
  tl.to('#spk10',{opacity:0,scale:.4,duration:DUR*0.1,ease:E2},at(0.52));
  // swap to FOLLOW; trap steps back
  tl.to('#g10a',{opacity:0,y:-30,duration:DUR*0.14,ease:E2},at(0.54));
- tl.fromTo('#g10b',{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.22,ease:"expo.out"},at(0.58));
- tl.to('#t10',{opacity:0.0,y:-40,scale:.85,duration:DUR*0.2,ease:E2},at(0.58));
+ tl.fromTo('#g10b',{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.22,ease:"expo.out"},at(0.6));
+ tl.to('#t10',{opacity:0,y:70,scale:.9,duration:DUR*0.12,ease:E2},at(0.56));
  // follow button + cursor press + ripple
- tl.fromTo('#f10',{opacity:0,y:60,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.2,ease:"expo.out"},at(0.6));
- tl.to('#c10',{opacity:1,duration:DUR*0.06,ease:E1},at(0.62));
- tl.to('#c10',{x:640,y:975,duration:DUR*0.2,ease:E2},at(0.62));
- tl.to('#c10',{scale:.9,duration:DUR*0.04,ease:ED,yoyo:true,repeat:1},at(0.82));
- tl.to('#f10',{scale:.95,duration:DUR*0.04,ease:ED,yoyo:true,repeat:1},at(0.82));
- tl.fromTo('#r10',{scale:.4,opacity:.9},{scale:5,opacity:0,duration:DUR*0.18,ease:"power2.out"},at(0.83));
+ tl.fromTo('#f10',{opacity:0,y:60,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.2,ease:"expo.out"},at(0.66));
+ tl.to('#c10',{opacity:1,duration:DUR*0.06,ease:E1},at(0.67));
+ tl.to('#c10',{x:640,y:975,duration:DUR*0.2,ease:E2},at(0.67));
+ tl.to('#c10',{scale:.9,duration:DUR*0.04,ease:ED,yoyo:true,repeat:1},at(0.84));
+ tl.to('#f10',{scale:.95,duration:DUR*0.04,ease:ED,yoyo:true,repeat:1},at(0.84));
+ tl.fromTo('#r10',{scale:.4,opacity:.9},{scale:5,opacity:0,duration:DUR*0.18,ease:"power2.out"},at(0.85));
  // bell + handle
- tl.fromTo('#b10',{opacity:0,scale:.6,rotation:-10},{opacity:1,scale:1,rotation:0,duration:DUR*0.16,ease:"back.out(1.4)"},at(0.84));
+ tl.fromTo('#b10',{opacity:0,scale:.6,rotation:-10},{opacity:1,scale:1,rotation:0,duration:DUR*0.16,ease:"back.out(1.4)"},at(0.86));
  [-18,14,-10,6,0].forEach((r,i)=>tl.to('#b10 svg',{rotation:r,duration:DUR*0.035,ease:ED},at(0.88+i*0.035)));
  tl.fromTo('#hd10',{opacity:0,y:30},{opacity:1,y:0,duration:DUR*0.18,ease:E1},at(0.7));
  tl.to('#c10',{x:700,y:1010,duration:DUR*0.16,ease:ED},at(0.86));
