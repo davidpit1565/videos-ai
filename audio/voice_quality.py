@@ -6,7 +6,14 @@ every automatic check passed, and (2) a background bed he could not hear, becaus
 track was a sub-bass drone that a phone speaker does not reproduce. Nothing here replaces his
 ear; each number only catches a failure that has already reached him once.
 
-  python3 audio/voice_quality.py <narration.wav> <cues.json> [--music music.wav] [--vol 0.14]
+  /opt/v311/bin/python audio/voice_quality.py <narration.wav> <cues.json> [--music music.wav] [--vol 0.14]
+  /opt/v311/bin/python audio/voice_quality.py <narration.wav> <cues.json> --mix <reel.mp4>   (HyperFrames reels)
+
+cues.json is the old list [{"n":1,"line":"...","start":s,"end":e}] or the HyperFrames build's
+{"lines":[{"n":"01-new","text":"...","start":s,"end":e}],"D":..}; both are read.
+--mix: HyperFrames reels are mixed by the build, so no separate bed file exists. The bed is then
+ESTIMATED as (finished mix) minus (best-fit gain x narration) and checked at volume 1.0. It is an
+estimate, and the printed line says so; pass --music/--vol instead when the real bed file is known.
 
 Checks:
   pitch     per spoken line: pitch range (p10-p90, semitones) and where the line ends relative
@@ -40,6 +47,25 @@ def band_rms_db(x, sr, lo, hi):
     return 20 * np.log10(np.sqrt((y ** 2).mean()) + 1e-12)
 
 
+def norm_cues(raw):
+    lines = raw["lines"] if isinstance(raw, dict) else raw
+    return [{"n": c.get("n", i + 1), "line": c.get("line", c.get("text", "")),
+             "start": float(c["start"]), "end": float(c["end"])} for i, c in enumerate(lines)]
+
+
+def estimate_bed(voice, mix, out="/tmp/vq-bed-estimate.wav"):
+    """music bed ~= mix - g*voice, g = least-squares gain over the whole file."""
+    import soundfile as sf
+    xm = load(mix, 48000)
+    xv = load(voice, 48000)
+    n = min(len(xm), len(xv))
+    xm, xv = xm[:n], xv[:n]
+    g = float((xm * xv).sum() / ((xv * xv).sum() + 1e-12))
+    sf.write(out, (xm - g * xv).astype(np.float32), 48000)
+    print("bed ESTIMATE: mix minus %.2f x narration (written to %s)" % (g, out))
+    return out
+
+
 def pitch_report(wav, cues):
     import librosa
     bad = []
@@ -61,7 +87,7 @@ def pitch_report(wav, cues):
             flag.append("range over 10 st")
         if end == end and end < -3.5:
             flag.append("ends %.1f below median" % end)
-        print("  line %2d  range %4.1f st  end %+5.1f  %s  %s" % (c["n"], rng, end, ("<-- " + ", ".join(flag)) if flag else "", c["line"][:48]))
+        print("  line %3s  range %4.1f st  end %+5.1f  %s  %s" % (c["n"], rng, end, ("<-- " + ", ".join(flag)) if flag else "", c["line"][:48]))
         if flag:
             bad.append(c["n"])
     return bad
@@ -128,8 +154,11 @@ if __name__ == "__main__":
     ap.add_argument("cues")
     ap.add_argument("--music")
     ap.add_argument("--vol", type=float, default=0.14)
+    ap.add_argument("--mix", help="finished mp4/wav with voice + bed; bed is estimated, volume 1.0")
     a = ap.parse_args()
-    cues = json.load(open(a.cues))
+    cues = norm_cues(json.load(open(a.cues)))
+    if a.mix:
+        a.music, a.vol = estimate_bed(a.wav, a.mix), 1.0
     bad = pitch_report(a.wav, cues)
     tone = tone_report(a.wav)
     mus = music_report(a.wav, a.music, a.vol) if a.music else False

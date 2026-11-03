@@ -68,6 +68,9 @@ def main():
     ap.add_argument("--vo", help="the narration wav")
     ap.add_argument("--music", help="the music bed, so the mix can be decomposed")
     ap.add_argument("--static-fail", type=float, default=STATIC_FAIL)
+    ap.add_argument("--hf", action="store_true",
+                    help="HyperFrames reel (auto-on when --build has data-composition-id): reads the "
+                         "length from data-duration, skips the colour-card check, flags a flat first frame")
     a = ap.parse_args()
 
     bad, warn, clean = [], [], []
@@ -106,8 +109,14 @@ def main():
 
     if a.build:
         src = open(a.build, encoding="utf-8").read()
-        m = re.search(r"var DUR=([0-9.]+)", src)
-        if m and abs(float(m.group(1)) - dur) > 0.05:
+        if "data-composition-id" in src:
+            a.hf = True
+        # old builds: var DUR=..;  HyperFrames compositions: data-duration on the root element
+        m = re.search(r"var DUR=([0-9.]+)", src) or \
+            re.search(r'data-composition-id="[^"]*"[^>]*?data-duration="([0-9.]+)"', src)
+        if not m:
+            warn.append("could not read the build's declared length (no var DUR / data-duration on the root)")
+        elif abs(float(m.group(1)) - dur) > 0.05:
             bad.append(f"render is {dur:.2f}s, the build declares {m.group(1)}s")
         else:
             clean.append("length matches the build")
@@ -128,10 +137,15 @@ def main():
     dark = mean < 8
     for s, e in runs_of(dark):
         bad.append(f"black frames {s:.2f}-{e:.2f}s")
+    # Blank = dark (old reels) OR a flat single-colour frame (light HyperFrames reels have a
+    # light base, so mean luma alone cannot tell a hook from an empty page).
+    first_std = float(f[0].std())
     if mean[0] < 12:
         bad.append(f"first frame is blank (mean luma {mean[0]:.1f})")
+    elif first_std < 6:
+        bad.append(f"first frame is a flat fill (spatial std {first_std:.1f}) - no hook on it")
     else:
-        clean.append(f"first frame carries picture (luma {mean[0]:.1f})")
+        clean.append(f"first frame carries picture (luma {mean[0]:.1f}, std {first_std:.1f})")
     if mean[-1] < 12:
         warn.append(f"last frame is blank (mean luma {mean[-1]:.1f})")
 
@@ -141,12 +155,18 @@ def main():
     # std 32-57. Brightness alone missed the ember card, so both conditions are used.
     flat = f.reshape(len(f), -1).std(axis=1)
     card = (mean > 110) & (flat < 30)
+    if a.hf:
+        # HyperFrames reels have no full-frame colour cards, and their light base (#F7F7F2) is
+        # exactly the "bright and flat" signature this test hunts for, so it would flag
+        # ordinary frames. Skipped on purpose, and said so in the report.
+        card = np.zeros_like(card)
+        clean.append("colour-card check not applicable (HyperFrames build, no cards)")
     cards = [(s, e) for s, e in runs_of(card) if e - s > 0.10]
     # Whether a card plays over speech is decided by the cue times, not by energy: the
     # narration carries his own breaths in the gaps, and an energy test calls a breath
     # speech, which flagged every card in the reel as overrunning.
     lines = []
-    if a.build:
+    if a.build and not a.hf:
         lines = [(float(c[0]), float(c[1])) for c in json.loads(
             re.search(r"var CUES=(\[.*?\]);", open(a.build, encoding="utf-8").read(),
                       re.S).group(1))]
