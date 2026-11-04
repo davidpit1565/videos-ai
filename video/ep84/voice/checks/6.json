@@ -1,0 +1,31 @@
+{
+ "line": 6,
+ "text": "Even then, OpenAI may keep a log for weeks.",
+ "verdict": "ok",
+ "reasons": [],
+ "numbers": {
+  "dur": 2.85,
+  "range_st": 7.1,
+  "end_st": -0.5,
+  "end_level_db": -20.7,
+  "sibilance": -16.7,
+  "level_dbfs": -18.0,
+  "peak_db": -2.1,
+  "accent_not_american": 0.03,
+  "tail_silence": 0.27,
+  "whisper": "Even then, OpenAI may keep a log for weeks.",
+  "whisper_match_ignoring_spaces": true,
+  "whisper_wer_token": 0.0
+ },
+ "doubts": [
+  "OpenAI and weeks transcribed correctly; end level -20.7 dB is the strongest ending in the file"
+ ],
+ "checked": {
+  "voice_quality": "per-line, ran",
+  "voice_doctor": "run on concatenated 8-line file (single-file mode crashes on 1 line), --no-watch, no BAD, only line 1 quiet note",
+  "whisper": "faster_whisper small",
+  "accent": "check_accent on concatenated file, flags 5,7,8",
+  "script_lint": "0 risky words"
+ },
+ "note": "measured, not heard"
+}

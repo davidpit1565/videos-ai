@@ -1,0 +1,32 @@
+{
+ "line": 3,
+ "text": "Go look. Settings. Personalization. Memory.",
+ "verdict": "ok",
+ "reasons": [],
+ "numbers": {
+  "dur": 2.81,
+  "range_st": 9.0,
+  "end_st": -0.2,
+  "end_level_db": -36.7,
+  "sibilance": -9.3,
+  "level_dbfs": -19.1,
+  "peak_db": -3.2,
+  "accent_not_american": 0.06,
+  "tail_silence": 0.31,
+  "whisper": "Go look, settings, personalization, memory.",
+  "whisper_match_ignoring_spaces": true,
+  "whisper_wer_token": 0.0
+ },
+ "doubts": [
+  "pitch range 9.0 st, just over the 4.9-8.4 reference band, under the 10 st fail line",
+  "Personalization transcribed correctly"
+ ],
+ "checked": {
+  "voice_quality": "per-line, ran",
+  "voice_doctor": "run on concatenated 8-line file (single-file mode crashes on 1 line), --no-watch, no BAD, only line 1 quiet note",
+  "whisper": "faster_whisper small",
+  "accent": "check_accent on concatenated file, flags 5,7,8",
+  "script_lint": "0 risky words"
+ },
+ "note": "measured, not heard"
+}

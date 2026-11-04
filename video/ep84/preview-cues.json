@@ -1,0 +1,94 @@
+{
+ "lines": [
+  {
+   "n": 1,
+   "text": "ChatGPT kept what you trashed!",
+   "start": 0.1,
+   "end": 1.79,
+   "real": true,
+   "words": [
+    [
+     0.1,
+     0.7
+    ],
+    [
+     0.7,
+     0.98
+    ],
+    [
+     0.98,
+     1.18
+    ],
+    [
+     1.18,
+     1.26
+    ],
+    [
+     1.26,
+     1.76
+    ]
+   ]
+  },
+  {
+   "n": 2,
+   "text": "Go look, Settings. Personalization. Memory.",
+   "start": 2.34,
+   "end": 5.144,
+   "real": true
+  },
+  {
+   "n": 3,
+   "text": "See anything you never meant to tell it?",
+   "start": 5.444,
+   "end": 7.571,
+   "real": true
+  },
+  {
+   "n": 4,
+   "text": "Tap the dots. Delete and switch off memory.",
+   "start": 7.871,
+   "end": 10.194,
+   "real": true
+  },
+  {
+   "n": 5,
+   "text": "Even then, OpenAI may keep a log for weeks.",
+   "start": 10.494,
+   "end": 13.347,
+   "real": true
+  },
+  {
+   "n": 6,
+   "text": "Send this to someone who tells ChatGPT everything.",
+   "start": 13.647,
+   "end": 16.209,
+   "real": true
+  },
+  {
+   "n": 7,
+   "text": "Don't miss the next AI trap. Follow.",
+   "start": 16.509,
+   "end": 19.064,
+   "real": true
+  }
+ ],
+ "D": 19.96,
+ "T0": [
+  0.0,
+  2.19,
+  5.294,
+  7.721,
+  10.344,
+  13.497,
+  16.359
+ ],
+ "DUR": [
+  2.19,
+  3.104,
+  2.427,
+  2.623,
+  3.153,
+  2.862,
+  3.601
+ ]
+}

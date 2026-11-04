@@ -1,0 +1,126 @@
+start 14:19:20
+free MB 15373
+done 8401 ex=0.80 h1=0.88 h2=0.84 14:44:38
+free MB 15184
+line 1 final from take 8401 dur 2.14s 14:44:50
+line 2 final from take 8401 dur 2.30s 14:44:50
+line 3 final from take 8401 dur 3.38s 14:44:50
+line 4 final from take 8401 dur 2.26s 14:44:50
+line 5 final from take 8401 dur 2.36s 14:44:50
+line 6 final from take 8401 dur 2.86s 14:44:51
+line 7 final from take 8401 dur 3.09s 14:44:51
+line 8 final from take 8401 dur 2.73s 14:44:51
+done 8411 ex=0.78 h1=0.84 h2=0.80 14:48:56
+free MB 15265
+done 8421 ex=0.82 h1=0.90 h2=0.86 14:53:15
+free MB 15229
+done 8431 ex=0.78 h1=0.86 h2=0.82 14:57:37
+free MB 15248
+done 8441 ex=0.80 h1=0.88 h2=0.84 15:01:42
+free MB 15278
+done 8451 ex=0.82 h1=0.84 h2=0.80 15:05:54
+free MB 15262
+done 8461 ex=0.78 h1=0.90 h2=0.86 15:10:15
+free MB 15254
+done 8471 ex=0.80 h1=0.86 h2=0.82 15:14:24
+free MB 15239
+done 8481 ex=0.82 h1=0.88 h2=0.84 15:18:21
+free MB 15277
+done 8491 ex=0.78 h1=0.85 h2=0.81 15:22:41
+free MB 15229
+done 8501 ex=0.80 h1=0.90 h2=0.86 15:26:42
+free MB 15224
+done 8511 ex=0.82 h1=0.87 h2=0.83 15:30:39
+ALLDONE
+line 1 final from take 8481 dur 2.30s 15:35:01
+line 2 final from take 8431 dur 1.90s 15:35:01
+line 3 final from take 8441 dur 2.82s 15:35:01
+line 4 final from take 8441 dur 2.13s 15:35:01
+line 5 final from take 8441 dur 2.58s 15:35:02
+line 6 final from take 8441 dur 2.86s 15:35:02
+line 7 final from take 8461 dur 3.16s 15:35:02
+line 8 final from take 8491 dur 3.28s 15:35:02
+FINAL lines 1-8 written 15:35:11
+rr done 8601 15:55:03
+rr done 8611 15:57:11
+rr done 8621 15:59:06
+rr done 8631 16:01:07
+rr done 8641 16:03:17
+rr done 8651 16:05:14
+RRDONE
+line 5 rerolled from r8621 dur 2.33s 16:06:54
+line 7 rerolled from r8631 dur 2.57s 16:06:54
+line 8 rerolled from r8651 dur 2.56s 16:06:54
+n done 8701 ex=0.88 16:44:22
+n done 8711 ex=0.84 16:45:25
+n done 8721 ex=0.90 16:46:39
+n done 8731 ex=0.86 16:48:46
+n done 8741 ex=0.80 16:52:40
+n done 8751 ex=0.88 16:53:35
+n done 8761 ex=0.82 16:54:38
+n done 8771 ex=0.90 16:55:29
+n done 8781 ex=0.85 16:56:24
+n done 8791 ex=0.87 16:57:15
+NNDONE
+n done 8801 ex=0.88 16:58:48
+n done 8811 ex=0.84 16:59:35
+n done 8821 ex=0.90 17:00:27
+n done 8831 ex=0.86 17:01:13
+n done 8841 ex=0.88 17:02:07
+n done 8851 ex=0.82 17:03:02
+N2DONE
+v2 hook final-v2/1 = take n8781; final-v2/2..7 = old 3..8 (rerolled 5,7,8 included) 17:04:17
+f done 8901 ex=1.00 cfg=0.30 sp=1.2 17:43:48
+f done 8911 ex=0.96 cfg=0.25 sp=1.2 17:44:59
+f done 8921 ex=0.92 cfg=0.20 sp=1.2 17:46:16
+f done 8931 ex=0.85 cfg=0.30 sp=1.2 17:47:17
+f done 8941 ex=1.00 cfg=0.20 sp=1.5 17:48:15
+f done 8951 ex=0.96 cfg=0.30 sp=1.5 17:49:06
+f done 8961 ex=0.92 cfg=0.25 sp=1.5 17:50:01
+f done 8971 ex=0.85 cfg=0.20 sp=1.5 17:50:57
+f done 8981 ex=0.98 cfg=0.25 sp=1.5 17:51:51
+f done 8991 ex=0.94 cfg=0.30 sp=1.5 17:52:43
+f done 9001 ex=0.90 cfg=0.20 sp=1.5 17:53:36
+f done 9011 ex=0.88 cfg=0.25 sp=1.5 17:54:26
+FFDONE
+s done 9101 17:56:32
+s done 9111 17:57:55
+s done 9121 17:59:18
+s done 9131 18:00:41
+s done 9141 18:02:15
+s done 9151 18:03:37
+s done 9161 18:04:54
+s done 9171 18:06:13
+s done 9181 18:07:31
+s done 9191 18:08:55
+s done 9201 18:10:26
+s done 9211 18:11:58
+SSDONE
+w done 9301 h1.txt 18:16:00
+w done 9311 h1c.txt 18:16:56
+w done 9321 h1.txt 18:17:39
+w done 9331 h1c.txt 18:18:33
+w done 9341 h1.txt 18:19:16
+w done 9351 h1c.txt 18:20:05
+w done 9361 h1.txt 18:20:45
+w done 9371 h1c.txt 18:21:32
+w done 9381 h1.txt 18:22:18
+w done 9391 h1c.txt 18:23:10
+w done 9401 h1.txt 18:23:50
+w done 9411 h1c.txt 18:24:39
+w done 9421 h1.txt 18:25:19
+w done 9431 h1c.txt 18:26:28
+w done 9441 h1.txt 18:27:10
+w done 9451 h1c.txt 18:28:00
+WWDONE
+v3 hook final-v3/1 = edited take f9401 18:30:14
+l done 9501 ex=0.80 18:34:59
+l done 9511 ex=0.78 18:35:42
+l done 9521 ex=0.82 18:36:28
+l done 9531 ex=0.80 18:37:16
+l done 9541 ex=0.78 18:38:01
+l done 9551 ex=0.82 18:38:44
+l done 9561 ex=0.80 18:39:30
+l done 9571 ex=0.79 18:40:17
+LLDONE
+v4: hook = raw take f9401, line2 = l9561 18:41:11

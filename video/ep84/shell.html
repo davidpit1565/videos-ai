@@ -1,0 +1,45 @@
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+:root{--paper:#F4F4EF;--dot:#D6D6CC;--ink:#0E0E0E;--ink2:#5B5B55;--acc:#4C7BF4;--acc2:#9B72CB;--acc3:#D96570;--cd:#14151A;--cink:#F2F2EE;--white:#FFFFFF;--grn:#3DBE6B;--red:#E5484D}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--paper);font-family:"Inter Display",Inter,Helvetica,Arial,sans-serif;font-weight:800;color:var(--ink)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--paper)}
+.abs{position:absolute}
+.scn{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;visibility:hidden}
+.cam{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.grp{position:absolute;left:65px;width:950px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.row{display:block;white-space:nowrap;margin:2px 0;position:relative}
+.w{display:inline-block;opacity:0;margin:0 11px;font-weight:800;letter-spacing:-.04em;line-height:1.04}
+.s72{font-size:72px}.s92{font-size:92px}.s100{font-size:100px}.s112{font-size:112px}.s128{font-size:128px}.s150{font-size:150px}.s170{font-size:170px}
+.lt{font-weight:500}.bk{font-weight:900}
+.pill{background:var(--acc);color:var(--ink);padding:0 32px;border-radius:30px;border:7px solid var(--ink);box-shadow:9px 9px 0 var(--ink)}
+.sel{background:var(--ink);color:var(--paper);padding:0 28px;border-radius:24px}
+.badge{position:absolute;background:var(--white);border:6px solid var(--ink);border-radius:44px;box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center;opacity:0}
+.badge img{width:62%;height:62%}
+.sticker{position:absolute;background:var(--acc);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:46px;padding:10px 28px;opacity:0;letter-spacing:-.02em}
+__STYLES__
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="__D__" data-width="1080" data-height="1920">
+<div class="abs clip" id="gd" style="left:0;top:0;width:1080px;height:1920px;background:radial-gradient(var(--dot) 2.6px,transparent 3.2px) 27px 27px/54px 54px" data-start="0" data-duration="__D__" data-track-index="1"></div>
+__MARKUP__
+</div>
+<script>
+const C=__CUES__; const D=C.D; const L=C.lines; window.__CUES=C;
+const tl=gsap.timeline({paused:true});
+</script>
+<script>
+__SCRIPTS__
+</script>
+<script>
+__CALLS__
+const BOUNDS=__BOUNDS__;
+BOUNDS.forEach((tm,k)=>{ // soft dip: scene k+1 fades out just before tm, scene k+2 fades in after tm
+ tl.to("#s"+(k+1),{opacity:0,duration:.12,ease:"sine.inOut"},tm-.12);
+ tl.fromTo("#s"+(k+2),{opacity:0},{opacity:1,duration:.2,ease:"sine.inOut"},tm);
+ tl.set("#s"+(k+1),{visibility:"hidden"},tm+.02);
+});
+tl.to({},{duration:.001},D-.001);
+window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
+window.__reel={duration:D,seek:t=>tl.seek(t)};
+</script></body></html>

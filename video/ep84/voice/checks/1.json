@@ -1,0 +1,33 @@
+{
+ "line": 1,
+ "text": "ChatGPT has been taking notes on you!",
+ "verdict": "ok",
+ "reasons": [],
+ "numbers": {
+  "dur": 2.29,
+  "range_st": 5.9,
+  "end_st": -0.5,
+  "end_level_db": -42.3,
+  "sibilance": -8.5,
+  "level_dbfs": -22.8,
+  "peak_db": -4.6,
+  "accent_not_american": 0.01,
+  "tail_silence": 0.11,
+  "whisper": "chat GPT has been taking notes on you.",
+  "whisper_match_ignoring_spaces": true,
+  "whisper_wer_token": 0.286
+ },
+ "doubts": [
+  "level -22.8 dBFS is 3.5 dB under file median: level before mix",
+  "Whisper writes 'chat GPT' (two words); after joining ChatGPT it matches (the 0.286 WER is a tokenising artefact)",
+  "hook: pitch numbers fine, his ear decides"
+ ],
+ "checked": {
+  "voice_quality": "per-line, ran",
+  "voice_doctor": "run on concatenated 8-line file (single-file mode crashes on 1 line), --no-watch, no BAD, only line 1 quiet note",
+  "whisper": "faster_whisper small",
+  "accent": "check_accent on concatenated file, flags 5,7,8",
+  "script_lint": "0 risky words"
+ },
+ "note": "measured, not heard"
+}

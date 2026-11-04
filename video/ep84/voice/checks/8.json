@@ -1,0 +1,34 @@
+{
+ "line": 8,
+ "text": "Don't miss the next AI trap. Follow.",
+ "verdict": "needs-reroll",
+ "reasons": [
+  "accent outlier (mild, 0.34)"
+ ],
+ "numbers": {
+  "dur": 3.28,
+  "range_st": 5.1,
+  "end_st": -0.4,
+  "end_level_db": -43.4,
+  "sibilance": -9.0,
+  "level_dbfs": -19.3,
+  "peak_db": -2.3,
+  "accent_not_american": 0.34,
+  "tail_silence": 0.24,
+  "whisper": "Don't miss the next AI trap, follow!",
+  "whisper_match_ignoring_spaces": true,
+  "whisper_wer_token": 0.0
+ },
+ "doubts": [
+  "accent not-american 0.34 flagged (england 0.25); lower priority, series signature line",
+  "slowest rate in file 2.44 syll/s, 3.28 s, long tail"
+ ],
+ "checked": {
+  "voice_quality": "per-line, ran",
+  "voice_doctor": "run on concatenated 8-line file (single-file mode crashes on 1 line), --no-watch, no BAD, only line 1 quiet note",
+  "whisper": "faster_whisper small",
+  "accent": "check_accent on concatenated file, flags 5,7,8",
+  "script_lint": "0 risky words"
+ },
+ "note": "measured, not heard"
+}

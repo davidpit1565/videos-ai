@@ -1,0 +1,96 @@
+<style>
+#s3{--lime:#A3E635}
+#s3 .w{color:var(--ink)}
+#s3 .pill{background:var(--lime);color:var(--ink)}
+#s3 #card3{position:absolute;left:65px;top:672px;width:950px;height:380px;background:#fff;border:7px solid var(--ink);border-radius:40px;box-shadow:10px 10px 0 var(--ink);opacity:0}
+#s3 #hd3{position:absolute;left:30px;top:20px;height:58px;display:flex;align-items:center;gap:16px;font-weight:900;font-size:44px;letter-spacing:-.03em}
+#s3 #hd3 img{width:52px;height:52px;display:block}
+#s3 #rc3{position:absolute;right:30px;top:30px;font-size:26px;font-weight:700;color:var(--ink2);letter-spacing:-.01em}
+#s3 .it3{position:absolute;left:28px;width:886px;height:76px;border:5px solid var(--ink);border-radius:24px;background:#FFF9C9;opacity:0}
+#s3 .it3 span{position:absolute;left:78px;top:0;line-height:66px;font-size:40px;font-weight:800;letter-spacing:-.03em;white-space:nowrap}
+#s3 .dot3{position:absolute;left:22px;top:18px;width:30px;height:30px;border-radius:50%;background:var(--lime);border:5px solid var(--ink)}
+#s3 #mk3{position:absolute;left:-14px;top:-12px;width:914px;height:100px;border-radius:28px;background:rgba(229,72,77,.26);border:6px solid var(--red);opacity:0;transform-origin:0 50%}
+#s3 #q3{position:absolute;left:470px;top:1110px;width:96px;height:96px;border-radius:50%;background:var(--red);border:6px solid var(--ink);box-shadow:6px 6px 0 var(--ink);color:#fff;font-weight:900;font-size:68px;line-height:84px;text-align:center;opacity:0}
+#s3 #ch3{position:absolute;left:590px;top:1018px;width:420px;height:235px;overflow:hidden}
+#s3 svg{position:absolute;left:0;top:0;overflow:visible}
+</style>
+<div class="scn clip" id="s3" data-start="0" data-duration="__D3__" data-track-index="1"><div class="cam" id="cam3">
+ <div class="grp" id="g3" style="top:296px">
+  <div class="row"><span class="w s92" data-w="0">SEE</span><span class="w pill s112 bk" data-w="1">ANYTHING</span></div>
+  <div class="row"><span class="w s92" data-w="2">YOU</span><span class="w s92" data-w="3">NEVER</span><span class="w s92" data-w="4">MEANT</span></div>
+  <div class="row"><span class="w s92 lt" data-w="5">TO</span><span class="w s92" data-w="6">TELL</span><span class="w s92" data-w="7">IT?</span></div>
+ </div>
+ <div id="card3">
+  <div id="hd3"><img src="assets/chatgpt.svg" alt=""/><div>Memory</div></div>
+  <div id="rc3">re-created example</div>
+  <div class="it3" id="i40" style="top:96px"><div class="dot3"></div><span>Likes pasta</span></div>
+  <div class="it3" id="i41" style="top:188px"><div id="mk3"></div><div class="dot3"></div><span>Has an exam on Friday</span></div>
+  <div class="it3" id="i42" style="top:280px"><div class="dot3"></div><span>Prefers short answers</span></div>
+ </div>
+ <div id="ch3"><svg width="420" height="235" viewBox="0 0 420 235"><g id="cg3">
+  <path d="M40 260 C50 190 120 168 210 168 C300 168 370 190 380 260 Z" fill="#4C7BF4" stroke="#0E0E0E" stroke-width="9"/>
+  <rect x="190" y="150" width="40" height="30" fill="#E9A66B" stroke="#0E0E0E" stroke-width="8"/>
+  <g id="hd_3">
+   <circle cx="210" cy="108" r="96" fill="#F2B880" stroke="#0E0E0E" stroke-width="9"/>
+   <path d="M112 98 C110 30 170 8 214 12 C268 14 312 44 308 100 C280 70 240 60 205 60 C170 60 135 74 112 98 Z" fill="#2B2118" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/>
+   <circle cx="116" cy="118" r="16" fill="#F2B880" stroke="#0E0E0E" stroke-width="7"/><circle cx="304" cy="118" r="16" fill="#F2B880" stroke="#0E0E0E" stroke-width="7"/>
+   <g id="bl3"><circle cx="165" cy="112" r="27" fill="#fff" stroke="#0E0E0E" stroke-width="7"/><circle cx="255" cy="112" r="27" fill="#fff" stroke="#0E0E0E" stroke-width="7"/>
+    <g id="pu3"><circle cx="165" cy="112" r="11" fill="#0E0E0E"/><circle cx="255" cy="112" r="11" fill="#0E0E0E"/></g></g>
+   <path id="eb0" d="M133 78 Q165 66 195 78" fill="none" stroke="#0E0E0E" stroke-width="10" stroke-linecap="round"/>
+   <path id="eb1" d="M225 78 Q255 66 287 78" fill="none" stroke="#0E0E0E" stroke-width="10" stroke-linecap="round"/>
+   <ellipse id="mo3" cx="210" cy="162" rx="22" ry="7" fill="#7A2E2E" stroke="#0E0E0E" stroke-width="7"/>
+  </g></g></svg></div>
+ <div id="q3">?</div>
+</div></div>
+<script>
+window.buildScene_3=function(tl,T0,DUR){
+ const E1="power3.out",ED="sine.inOut",BK="back.out(1.2)";
+ const at=f=>T0+DUR*f;
+ tl.set('#s3',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s3 .w',{opacity:0},T0);
+ tl.set('#card3',{opacity:1,y:0,scale:1,transformOrigin:'50% 100%'},T0);
+ tl.set(['#i40','#i41','#i42'],{opacity:0},T0);
+ tl.set('#mk3',{opacity:0,scaleX:0},T0);
+ tl.set('#q3',{opacity:0,scale:.4},T0);
+ tl.set('#cg3',{transformOrigin:'210px 235px'},T0);
+ tl.set('#hd_3',{transformOrigin:'210px 190px'},T0);
+ tl.set('#bl3',{transformOrigin:'210px 112px'},T0);
+ tl.set('#mo3',{transformOrigin:'210px 162px'},T0);
+ // camera drift
+ tl.fromTo('#cam3',{scale:1,x:-6,y:5},{scale:1.03,x:7,y:-7,duration:DUR,ease:ED},T0);
+ // headline words, uneven
+ const ts=[0,0.07,0.2,0.27,0.36,0.46,0.52,0.6];
+ [...document.querySelectorAll('#s3 .w')].forEach((el,i)=>{
+  if(i==1) tl.fromTo(el,{opacity:0,y:40,scale:1.02},{opacity:1,y:0,scale:1,duration:DUR*.2,ease:"expo.out"},at(ts[i]));
+  else tl.fromTo(el,{opacity:0,y:32},{opacity:1,y:0,duration:DUR*.13,ease:E1},at(ts[i]));
+ });
+ // card is on screen from frame 0, drifts in with a small settle
+ tl.fromTo('#card3',{y:30,scale:.97,rotation:-.6},{y:0,scale:1,rotation:0,duration:DUR*.22,ease:BK},T0);
+ tl.fromTo('#card3',{rotation:-.4},{rotation:.5,duration:DUR*.9,ease:ED},at(0.15));
+ // items pop with uneven offsets and each sways on its own period
+ [['#i40',0,-6],['#i41',.035,7],['#i42',.075,-5]].forEach(([id,f,x],k)=>{
+  tl.fromTo(id,{opacity:0,x:x*9,y:24,scale:.94},{opacity:1,x:0,y:0,scale:1,duration:DUR*.2,ease:BK},at(f));
+  tl.fromTo(id,{y:-2},{y:3,duration:DUR*(.23+k*.07),ease:ED,repeat:3,yoyo:true},at(.2+f));
+ });
+ // character rises, breathes, looks, reacts
+ tl.fromTo('#ch3',{y:70,opacity:0},{y:0,opacity:1,duration:DUR*.24,ease:"expo.out"},at(0.02));
+ tl.fromTo('#cg3',{scaleY:1},{scaleY:1.022,duration:DUR*.2,ease:ED,repeat:4,yoyo:true},at(0.2));
+ tl.fromTo('#hd_3',{rotation:-2.5},{rotation:2.5,duration:DUR*.34,ease:ED,repeat:2,yoyo:true},at(0.12));
+ // eyes scan the list (pupils drift up, then right, then settle on item 2)
+ tl.to('#pu3',{y:-12,x:-4,duration:DUR*.12,ease:ED},at(0.2));
+ tl.to('#pu3',{y:-6,x:5,duration:DUR*.12,ease:ED},at(0.34));
+ tl.to('#pu3',{y:-10,x:0,duration:DUR*.1,ease:ED},at(0.5));
+ // blink 1 and 2
+ [.4,.78].forEach(f=>{tl.to('#bl3',{scaleY:.08,duration:DUR*.025,ease:"power2.in"},at(f));tl.to('#bl3',{scaleY:1,duration:DUR*.04,ease:"power2.out"},at(f+.028));});
+ // marker lands on item 2, eyebrows shoot up, mouth opens, question mark pops
+ tl.fromTo('#mk3',{opacity:0,scaleX:0},{opacity:1,scaleX:1,duration:DUR*.2,ease:"power3.out"},at(0.5));
+ tl.fromTo('#i41',{scale:1},{scale:1.03,duration:DUR*.16,ease:BK},at(0.52));
+ tl.to('#eb0',{y:-16,rotation:-8,transformOrigin:'165px 78px',duration:DUR*.14,ease:BK},at(0.52));
+ tl.to('#eb1',{y:-22,rotation:8,transformOrigin:'255px 78px',duration:DUR*.14,ease:BK},at(0.55));
+ tl.to('#mo3',{scaleX:.62,scaleY:2.6,duration:DUR*.14,ease:BK},at(0.55));
+ tl.fromTo('#q3',{opacity:0,scale:.4,y:20,rotation:-14},{opacity:1,scale:1,y:0,rotation:8,duration:DUR*.2,ease:BK},at(0.6));
+ tl.fromTo('#q3',{y:-4},{y:6,duration:DUR*.2,ease:ED,repeat:3,yoyo:true},at(0.82));
+ // marker pulses softly so the end is never still
+ tl.fromTo('#mk3',{backgroundColor:'rgba(229,72,77,.18)'},{backgroundColor:'rgba(229,72,77,.38)',duration:DUR*.16,ease:ED,repeat:3,yoyo:true},at(0.72));
+};
+</script>

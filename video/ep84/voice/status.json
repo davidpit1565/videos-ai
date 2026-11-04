@@ -1,0 +1,140 @@
+{
+ "lines": {
+  "1": {
+   "state": "done",
+   "seed": 8482,
+   "take_seed": "8481",
+   "exaggeration": 0.88,
+   "take": "/home/user/videos-ai/video/ep84/voice/takes/t8481.wav",
+   "final": "/home/user/videos-ai/video/ep84/voice/final/1.wav",
+   "dur": 2.3,
+   "notes": "picked from 12 whole-script takes by pitch range/end + Whisper small; measured, not heard",
+   "metrics": {
+    "range_st": 5.9,
+    "end_vs_median_st": -0.5
+   },
+   "whisper_small": "ChatGPT has been taking notes on you.",
+   "whisper_wer": 0.0,
+   "check": "pending-checker"
+  },
+  "2": {
+   "state": "done",
+   "seed": 8433,
+   "take_seed": "8431",
+   "exaggeration": 0.82,
+   "take": "/home/user/videos-ai/video/ep84/voice/takes/t8431.wav",
+   "final": "/home/user/videos-ai/video/ep84/voice/final/2.wav",
+   "dur": 1.9,
+   "notes": "picked from 12 whole-script takes by pitch range/end + Whisper small; measured, not heard",
+   "metrics": {
+    "range_st": 8.8,
+    "end_vs_median_st": 0.1
+   },
+   "whisper_small": "Delete a chat. The notes stay.",
+   "whisper_wer": 0.0,
+   "check": "pending-checker"
+  },
+  "3": {
+   "state": "done",
+   "seed": 8444,
+   "take_seed": "8441",
+   "exaggeration": 0.8,
+   "take": "/home/user/videos-ai/video/ep84/voice/takes/t8441.wav",
+   "final": "/home/user/videos-ai/video/ep84/voice/final/3.wav",
+   "dur": 2.82,
+   "notes": "picked from 12 whole-script takes by pitch range/end + Whisper small; measured, not heard",
+   "metrics": {
+    "range_st": 6.3,
+    "end_vs_median_st": 0.8
+   },
+   "whisper_small": "Go look, settings, personalization, memory.",
+   "whisper_wer": 0.0,
+   "check": "pending-checker"
+  },
+  "4": {
+   "state": "done",
+   "seed": 8445,
+   "take_seed": "8441",
+   "exaggeration": 0.8,
+   "take": "/home/user/videos-ai/video/ep84/voice/takes/t8441.wav",
+   "final": "/home/user/videos-ai/video/ep84/voice/final/4.wav",
+   "dur": 2.13,
+   "notes": "picked from 12 whole-script takes by pitch range/end + Whisper small; measured, not heard",
+   "metrics": {
+    "range_st": 6.7,
+    "end_vs_median_st": 0.1
+   },
+   "whisper_small": "See anything you never meant to tell it?",
+   "whisper_wer": 0.0,
+   "check": "pending-checker"
+  },
+  "5": {
+   "state": "done",
+   "seed": 8446,
+   "take_seed": "r8621",
+   "exaggeration": 0.8,
+   "take": "/home/user/videos-ai/video/ep84/voice/takes/r8621.wav",
+   "final": "/home/user/videos-ai/video/ep84/voice/final/5.wav",
+   "dur": 2.33,
+   "notes": "REROLLED after checker flag (3 line-only takes r8601..r8651); old at final/5.old.wav",
+   "metrics": {
+    "range_st": 6.0,
+    "end_vs_median_st": -0.5
+   },
+   "whisper_small": "Tap the dots, delete and switch off memory.",
+   "whisper_wer": 0.0,
+   "check": "pending-recheck"
+  },
+  "6": {
+   "state": "done",
+   "seed": 8447,
+   "take_seed": "8441",
+   "exaggeration": 0.8,
+   "take": "/home/user/videos-ai/video/ep84/voice/takes/t8441.wav",
+   "final": "/home/user/videos-ai/video/ep84/voice/final/6.wav",
+   "dur": 2.86,
+   "notes": "picked from 12 whole-script takes by pitch range/end + Whisper small; measured, not heard",
+   "metrics": {
+    "range_st": 7.2,
+    "end_vs_median_st": -0.6
+   },
+   "whisper_small": "Even then, OpenAI may keep a log for weeks.",
+   "whisper_wer": 0.0,
+   "check": "pending-checker"
+  },
+  "7": {
+   "state": "done",
+   "seed": 8468,
+   "take_seed": "r8631",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep84/voice/takes/r8631.wav",
+   "final": "/home/user/videos-ai/video/ep84/voice/final/7.wav",
+   "dur": 2.57,
+   "notes": "REROLLED after checker flag (3 line-only takes r8601..r8651); old at final/7.old.wav",
+   "metrics": {
+    "range_st": 6.0,
+    "end_vs_median_st": -0.4
+   },
+   "whisper_small": "Send this to someone who tells chat GPT everything.",
+   "whisper_wer": 0.25,
+   "check": "pending-recheck"
+  },
+  "8": {
+   "state": "done",
+   "seed": 8499,
+   "take_seed": "r8651",
+   "exaggeration": 0.78,
+   "take": "/home/user/videos-ai/video/ep84/voice/takes/r8651.wav",
+   "final": "/home/user/videos-ai/video/ep84/voice/final/8.wav",
+   "dur": 2.56,
+   "notes": "REROLLED after checker flag (3 line-only takes r8601..r8651); old at final/8.old.wav",
+   "metrics": {
+    "range_st": 5.7,
+    "end_vs_median_st": -0.1
+   },
+   "whisper_small": "Don't miss the next AI trap. Follow!",
+   "whisper_wer": 0.0,
+   "check": "pending-recheck"
+  }
+ }
+}

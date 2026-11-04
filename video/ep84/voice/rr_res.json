@@ -1,0 +1,158 @@
+{
+ "8601": {
+  "5": {
+   "t": "Tap the dots. Delete and switch off memory.",
+   "match": true,
+   "rng": 4.9,
+   "end": -0.8,
+   "dur": 2.72,
+   "endlvl": -13.5
+  },
+  "7": {
+   "t": "Send this to someone who tells chat GPT everything.",
+   "match": true,
+   "rng": 5.3,
+   "end": 0.7,
+   "dur": 2.98,
+   "endlvl": -7.0
+  },
+  "8": {
+   "t": "don't miss the next AI trap. Follow.",
+   "match": true,
+   "rng": 4.7,
+   "end": -0.9,
+   "dur": 2.97,
+   "endlvl": -12.4
+  }
+ },
+ "8611": {
+  "5": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "match": true,
+   "rng": 5.1,
+   "end": -0.5,
+   "dur": 2.6,
+   "endlvl": -11.8
+  },
+  "7": {
+   "t": "Send this to someone who tells ChadGPT everything.",
+   "match": false,
+   "rng": 7.2,
+   "end": 0.6,
+   "dur": 3.18,
+   "endlvl": -15.7
+  },
+  "8": {
+   "t": "Don't miss the next AI trap follow",
+   "match": true,
+   "rng": 4.3,
+   "end": -0.2,
+   "dur": 3.0,
+   "endlvl": -14.4
+  }
+ },
+ "8621": {
+  "5": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "match": true,
+   "rng": 6.0,
+   "end": -0.5,
+   "dur": 2.39,
+   "endlvl": -6.2
+  },
+  "7": {
+   "t": "Send this to someone who tells chat GPT everything.",
+   "match": true,
+   "rng": 4.4,
+   "end": -0.1,
+   "dur": 2.93,
+   "endlvl": -11.1
+  },
+  "8": {
+   "t": "Don't miss the next AI trap. Follow.",
+   "match": true,
+   "rng": 4.8,
+   "end": -0.9,
+   "dur": 2.95,
+   "endlvl": -16.7
+  }
+ },
+ "8631": {
+  "5": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "match": true,
+   "rng": 5.7,
+   "end": -0.5,
+   "dur": 2.88,
+   "endlvl": -9.8
+  },
+  "7": {
+   "t": "Send this to someone who tells chat GPT everything.",
+   "match": true,
+   "rng": 6.0,
+   "end": -0.4,
+   "dur": 2.64,
+   "endlvl": -10.6
+  },
+  "8": {
+   "t": "Don't miss the next AI Trap. Follow.",
+   "match": true,
+   "rng": 5.5,
+   "end": -1.9,
+   "dur": 2.8,
+   "endlvl": -21.4
+  }
+ },
+ "8641": {
+  "5": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "match": true,
+   "rng": 4.4,
+   "end": 0.2,
+   "dur": 2.34,
+   "endlvl": -7.3
+  },
+  "7": {
+   "t": "Send this to someone who tells ChatGBT everything.",
+   "match": false,
+   "rng": 5.5,
+   "end": -0.5,
+   "dur": 3.41,
+   "endlvl": -9.2
+  },
+  "8": {
+   "t": "Don't miss the next AI trap. Follow!",
+   "match": true,
+   "rng": 4.9,
+   "end": 0.6,
+   "dur": 2.93,
+   "endlvl": -17.4
+  }
+ },
+ "8651": {
+  "5": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "match": true,
+   "rng": 4.5,
+   "end": 0.1,
+   "dur": 2.78,
+   "endlvl": -12.1
+  },
+  "7": {
+   "t": "Send this to someone who tells ChadGBT everything.",
+   "match": false,
+   "rng": 6.5,
+   "end": -0.9,
+   "dur": 2.96,
+   "endlvl": -7.1
+  },
+  "8": {
+   "t": "Don't miss the next AI trap. Follow!",
+   "match": true,
+   "rng": 5.7,
+   "end": -0.1,
+   "dur": 2.58,
+   "endlvl": -14.0
+  }
+ }
+}
