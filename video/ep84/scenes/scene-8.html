@@ -37,9 +37,9 @@
  <div class="rip" id="r8"></div>
  <svg class="cur" id="c8" viewBox="0 0 110 130"><path d="M30 6 C30 0 42 0 42 6 L42 52 L52 48 C56 40 66 42 66 48 C72 44 82 46 82 54 C90 52 98 58 96 66 L92 100 C90 118 78 126 62 126 C46 126 36 118 28 104 L10 72 C6 62 18 58 24 66 L30 76Z" fill="#fff" stroke="#0E0E0E" stroke-width="6" stroke-linejoin="round"/></svg>
  <div class="bell" id="b8"><svg viewBox="0 0 24 24" fill="#F2B84B" stroke="#0E0E0E" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3c-3.5 0-6 2.6-6 6v4l-2 3.5h16L18 13V9c0-3.4-2.5-6-6-6z"/><path d="M9.5 19.5a2.5 2.5 0 0 0 5 0"/></svg></div>
- <svg class="sp" id="sp1" viewBox="-70 -70 140 140" style="left:150px;top:640px"><path d="M0-62 C6-18 18-6 62 0 C18 6 6 18 0 62 C-6 18 -18 6 -62 0 C-18-6 -6-18 0-62Z" fill="#A3E635" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/></svg><svg class="sp" id="sp2" viewBox="-70 -70 140 140" style="left:930px;top:1130px"><path d="M0-62 C6-18 18-6 62 0 C18 6 6 18 0 62 C-6 18 -18 6 -62 0 C-18-6 -6-18 0-62Z" fill="#FFE066" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/></svg><svg class="sp" id="sp3" viewBox="-70 -70 140 140" style="left:130px;top:1150px"><path d="M0-62 C6-18 18-6 62 0 C18 6 6 18 0 62 C-6 18 -18 6 -62 0 C-18-6 -6-18 0-62Z" fill="#fff" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/></svg>
- <svg class="note" id="n1" viewBox="0 0 110 110" style="left:110px;top:1000px"><rect x="8" y="8" width="94" height="94" rx="8" fill="#FFE066" stroke="#0E0E0E" stroke-width="6"/><path d="M26 40h58M26 58h40" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/></svg>
- <svg class="note" id="n2" viewBox="0 0 110 110" style="left:960px;top:560px"><rect x="8" y="8" width="94" height="94" rx="8" fill="#FFE066" stroke="#0E0E0E" stroke-width="6"/><path d="M26 40h58M26 58h40" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/></svg>
+ <svg class="sp" id="sp1" viewBox="-70 -70 140 140" style="left:540px;top:625px"><path d="M0-62 C6-18 18-6 62 0 C18 6 6 18 0 62 C-6 18 -18 6 -62 0 C-18-6 -6-18 0-62Z" fill="#A3E635" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/></svg><svg class="sp" id="sp2" viewBox="-70 -70 140 140" style="left:960px;top:1195px"><path d="M0-62 C6-18 18-6 62 0 C18 6 6 18 0 62 C-6 18 -18 6 -62 0 C-18-6 -6-18 0-62Z" fill="#FFE066" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/></svg><svg class="sp" id="sp3" viewBox="-70 -70 140 140" style="left:520px;top:1205px"><path d="M0-62 C6-18 18-6 62 0 C18 6 6 18 0 62 C-6 18 -18 6 -62 0 C-18-6 -6-18 0-62Z" fill="#fff" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/></svg>
+ <svg class="note" id="n1" viewBox="0 0 110 110" style="left:105px;top:1195px"><rect x="8" y="8" width="94" height="94" rx="8" fill="#FFE066" stroke="#0E0E0E" stroke-width="6"/><path d="M26 40h58M26 58h40" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/></svg>
+ <svg class="note" id="n2" viewBox="0 0 110 110" style="left:105px;top:650px"><rect x="8" y="8" width="94" height="94" rx="8" fill="#FFE066" stroke="#0E0E0E" stroke-width="6"/><path d="M26 40h58M26 58h40" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/></svg>
  <div class="hd8" id="hd8"><span>@actually_works.ai</span></div>
 </div></div>
 <script>
@@ -74,8 +74,8 @@ window.buildScene_8=function(tl,T0,DUR){
  tl.to('#pup8,#pup8b',{x:-2,y:4,duration:DUR*0.1,ease:ED},at(0.36));
  [0.2,0.47].forEach(f=>tl.to('#eye8,#eye8b',{scaleY:.1,duration:DUR*0.018,ease:"sine.in",yoyo:true,repeat:1},at(f)));
  // swap to FOLLOW; trap steps back
- tl.to('#g8a',{opacity:0,y:-30,duration:DUR*0.14,ease:"power2.in"},at(0.54));
- tl.fromTo('#g8b',{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.22,ease:"back.out(1.2)"},at(0.6));
+ tl.to('#g8a',{opacity:0,y:-30,duration:DUR*0.08,ease:"power2.in"},at(0.5));
+ tl.fromTo('#g8b',{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.22,ease:"back.out(1.2)"},at(0.62));
  tl.to('#t8',{opacity:0,y:70,scale:1.25,duration:DUR*0.12,ease:"power2.in"},at(0.56));
  // follow button + cursor press + ripple
  tl.fromTo('#f8',{opacity:0,y:60,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.2,ease:"back.out(1.2)"},at(0.66));

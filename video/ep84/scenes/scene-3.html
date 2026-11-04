@@ -1,0 +1,100 @@
+<style>
+#s3{--lime:#A3E635;--yel:#FFE45C}
+#s3 .w{color:var(--ink)}
+#s3 .pill{background:var(--lime);box-shadow:9px 9px 0 var(--ink)}
+#s3 #ph3{position:absolute;left:300px;top:700px;width:480px;height:540px;background:#fff;border:8px solid var(--ink);border-radius:56px;box-shadow:12px 12px 0 var(--ink);overflow:hidden;opacity:0}
+#s3 .pg{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}
+#s3 .hd{position:absolute;left:0;top:0;width:100%;height:84px;background:var(--ink);color:#fff;font-size:34px;letter-spacing:-.03em;display:flex;align-items:center;justify-content:center;line-height:1}
+#s3 .hd img{position:absolute;left:22px;top:20px;width:44px;height:44px;background:#fff;border-radius:12px;padding:5px}
+#s3 .rw{position:absolute;left:22px;width:436px;height:84px;border:5px solid var(--ink);border-radius:24px;background:#F4F4EF;font-size:34px;letter-spacing:-.03em;line-height:1;display:flex;align-items:center;padding-left:24px}
+#s3 .tg{position:absolute;right:20px;top:50%;margin-top:-18px;width:68px;height:36px;border-radius:18px;background:#C9C9C0;border:4px solid var(--ink)}
+#s3 .tg i{position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid var(--ink)}
+#s3 .note{position:absolute;width:150px;height:150px;background:var(--yel);border:6px solid var(--ink);box-shadow:7px 7px 0 var(--ink);border-radius:8px;opacity:0}
+#s3 .note b{position:absolute;left:18px;height:8px;border-radius:4px;background:rgba(14,14,14,.35)}
+#s3 #fg3{position:absolute;left:0;top:0;width:78px;height:78px;margin:-39px 0 0 -39px;border-radius:50%;background:#fff;border:7px solid var(--ink);box-shadow:6px 6px 0 var(--ink);opacity:0}
+#s3 #rp3{position:absolute;left:0;top:0;width:90px;height:90px;margin:-45px 0 0 -45px;border-radius:50%;border:9px solid var(--lime);opacity:0}
+#s3 .sp{position:absolute;width:34px;height:34px;opacity:0}
+</style>
+<div class="scn clip" id="s3" data-start="0" data-duration="__D3__" data-track-index="1"><div class="cam" id="cam3">
+ <div class="note" id="n3a" style="left:120px;top:820px;transform:rotate(-9deg)"><b style="top:34px;width:100px"></b><b style="top:60px;width:70px"></b><b style="top:86px;width:90px"></b></div>
+ <div class="note" id="n3b" style="left:800px;top:960px;transform:rotate(8deg);background:#FFF08A"><b style="top:34px;width:80px"></b><b style="top:60px;width:104px"></b></div>
+ <div class="note" id="n3c" style="left:760px;top:730px;width:120px;height:120px;transform:rotate(14deg)"><b style="top:30px;width:70px"></b><b style="top:54px;width:56px"></b></div>
+ <div class="grp" id="g3" style="top:292px">
+  <div class="row"><span class="w s112" data-w="0">GO</span><span class="w s112" data-w="1">LOOK.</span></div>
+  <div class="row"><span class="w s100" data-w="2">SETTINGS</span><span class="w s100 lt" data-w="3">›</span></div>
+  <div class="row"><span class="w pill s112 bk" data-w="4" style="margin-top:4px">MEMORY.</span></div>
+ </div>
+ <div id="ph3">
+  <div class="pg" id="p3a"><div class="hd"><img src="assets/chatgpt.svg" alt="">Menu</div>
+   <div class="rw" style="top:110px">Upgrade plan</div><div class="rw" id="r3s" style="top:208px">Settings</div><div class="rw" style="top:306px">Help</div><div class="rw" style="top:404px">Log out</div></div>
+  <div class="pg" id="p3b"><div class="hd">Settings</div>
+   <div class="rw" style="top:110px">General</div><div class="rw" style="top:208px">Notifications</div><div class="rw" id="r3p" style="top:306px">Personalization</div><div class="rw" style="top:404px">Data controls</div></div>
+  <div class="pg" id="p3c"><div class="hd">Personalization</div>
+   <div class="rw" style="top:110px">Custom instructions</div><div class="rw" id="r3m" style="top:208px">Memory<span class="tg" id="tg3"><i id="tk3"></i></span></div><div class="rw" style="top:306px">Tone</div></div>
+ </div>
+ <div id="rp3"></div><div id="fg3"></div>
+ <svg class="sp" id="sp3a" style="left:250px;top:660px" viewBox="0 0 40 40"><path d="M20 0 Q22 18 40 20 Q22 22 20 40 Q18 22 0 20 Q18 18 20 0Z" fill="#A3E635" stroke="#0E0E0E" stroke-width="3"/></svg>
+ <svg class="sp" id="sp3b" style="left:800px;top:1210px" viewBox="0 0 40 40"><path d="M20 0 Q22 18 40 20 Q22 22 20 40 Q18 22 0 20 Q18 18 20 0Z" fill="#A3E635" stroke="#0E0E0E" stroke-width="3"/></svg>
+</div></div>
+<script>
+window.buildScene_3=function(tl,T0,DUR){
+ const ED="sine.inOut",BK="back.out(1.2)";
+ const at=f=>T0+DUR*f;
+ tl.set('#s3',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s3 .w',{opacity:0},T0);
+ tl.set(['#ph3','#p3a'],{opacity:1},T0);
+ tl.set('#p3b,#p3c',{opacity:0},T0);
+ // camera drift
+ tl.fromTo('#cam3',{scale:1,x:-6,y:5},{scale:1.03,x:7,y:-7,duration:DUR,ease:ED},T0);
+ // phone: soft entrance + sway
+ tl.fromTo('#ph3',{y:50,scale:.94,rotation:-2},{y:0,scale:1,rotation:0,duration:DUR*.22,ease:"expo.out"},T0);
+ tl.to('#ph3',{rotation:1.4,y:-6,duration:DUR*.5,ease:ED},at(.2));
+ tl.to('#ph3',{rotation:-.8,y:3,duration:DUR*.35,ease:ED},at(.7));
+ // sticky notes pop with overshoot and flutter
+ [['#n3a',.02,-9,3.2,6,.6],['#n3b',.09,8,-2.6,8,.7],['#n3c',.16,14,2.4,5,.5]].forEach(([id,t,r,fl,sw,p])=>{
+  tl.fromTo(id,{opacity:0,scale:.3,y:40,rotation:r-14},{opacity:1,scale:1,y:0,rotation:r,duration:DUR*.2,ease:"back.out(1.4)"},at(t));
+  tl.to(id,{rotation:r+fl,y:-sw,duration:DUR*(.28+p*.08),ease:ED},at(t+.2));
+  tl.to(id,{rotation:r-fl*.7,y:sw*.6,duration:DUR*(.3+p*.06),ease:ED},at(t+.2+.3+p*.08));
+ });
+ // headline words, uneven
+ const ws=[...document.querySelectorAll('#s3 .w')];
+ const ts=[0.03,0.12,0.30,0.46,0.64];
+ ws.forEach((el,i)=>{
+  const t=at(ts[i]);
+  if(i==4) tl.fromTo(el,{opacity:0,y:50,scale:1.22},{opacity:1,y:0,scale:1,duration:DUR*.22,ease:"expo.out"},t);
+  else tl.fromTo(el,{opacity:0,y:34},{opacity:1,y:0,duration:DUR*.14,ease:"power3.out"},t);
+ });
+ // finger path: points are page coords (phone left 300 top 700 + 8 border)
+ const P=(y)=>({x:560+(y%3)*8,y:700+8+y});
+ const fy=[208+42,306+42,208+42]; // settings, personalization, memory row centres
+ tl.set('#fg3',{x:760,y:1320},T0);
+ tl.fromTo('#fg3',{opacity:0,x:780,y:1330,scale:.9},{opacity:1,x:690,y:716+fy[0]-8,scale:1,duration:DUR*.2,ease:"power3.out"},at(.1));
+ // tap 1 (Settings) ~.30
+ const tap=(t,x,y,row)=>{
+  tl.to('#fg3',{scale:.8,duration:DUR*.04,ease:"power2.in"},at(t-.04));
+  tl.fromTo('#rp3',{opacity:.9,scale:.4,x:x,y:y},{opacity:0,scale:1.7,x:x,y:y,duration:DUR*.16,ease:"power2.out"},at(t));
+  tl.to('#fg3',{scale:1,duration:DUR*.07,ease:BK},at(t));
+  tl.to(row,{backgroundColor:'#A3E635',scale:1.04,duration:DUR*.08,ease:"back.out(1.6)"},at(t));
+  tl.to(row,{scale:1,duration:DUR*.1,ease:ED},at(t+.08));
+ };
+ tap(.30,690,716+fy[0]-8,'#r3s');
+ // page 1
+ tl.to('#p3a',{opacity:0,x:-34,duration:DUR*.08,ease:"power2.in"},at(.40));
+ tl.fromTo('#p3b',{opacity:0,x:40},{opacity:1,x:0,duration:DUR*.13,ease:"back.out(1.2)"},at(.45));
+ tl.to('#fg3',{x:700,y:716+fy[1]-8,duration:DUR*.16,ease:"power2.inOut"},at(.44));
+ tap(.58,700,716+fy[1]-8,'#r3p');
+ // page 2
+ tl.to('#p3b',{opacity:0,x:-34,duration:DUR*.08,ease:"power2.in"},at(.67));
+ tl.fromTo('#p3c',{opacity:0,x:40},{opacity:1,x:0,duration:DUR*.13,ease:"back.out(1.2)"},at(.72));
+ tl.to('#fg3',{x:600,y:716+fy[2]-8,duration:DUR*.13,ease:"power2.inOut"},at(.71));
+ tap(.86,600,716+fy[2]-8,'#r3m');
+ tl.to('#tg3',{backgroundColor:'#A3E635',duration:DUR*.08,ease:ED},at(.88));
+ tl.to('#tk3',{x:32,duration:DUR*.1,ease:"back.out(1.5)"},at(.88));
+ tl.to('#fg3',{x:640,y:716+fy[2]+50,duration:DUR*.14,ease:ED},at(.9));
+ // sparkles pop soft and rotate
+ tl.fromTo('#sp3a',{opacity:0,scale:.2,rotation:-40},{opacity:1,scale:1.1,rotation:20,duration:DUR*.2,ease:BK},at(.5));
+ tl.to('#sp3a',{rotation:80,scale:.9,duration:DUR*.35,ease:ED},at(.7));
+ tl.fromTo('#sp3b',{opacity:0,scale:.2,rotation:30},{opacity:1,scale:1,rotation:-20,duration:DUR*.2,ease:BK},at(.62));
+ tl.to('#sp3b',{rotation:-90,scale:1.15,duration:DUR*.3,ease:ED},at(.8));
+};
+</script>

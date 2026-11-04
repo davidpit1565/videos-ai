@@ -2,7 +2,7 @@
 #s4{--lime:#A3E635}
 #s4 .w{color:var(--ink)}
 #s4 .pill{background:var(--lime);color:var(--ink)}
-#s4 #card4{position:absolute;left:65px;top:690px;width:950px;height:380px;background:#fff;border:7px solid var(--ink);border-radius:40px;box-shadow:10px 10px 0 var(--ink);opacity:0}
+#s4 #card4{position:absolute;left:65px;top:672px;width:950px;height:380px;background:#fff;border:7px solid var(--ink);border-radius:40px;box-shadow:10px 10px 0 var(--ink);opacity:0}
 #s4 #hd4{position:absolute;left:30px;top:20px;height:58px;display:flex;align-items:center;gap:16px;font-weight:900;font-size:44px;letter-spacing:-.03em}
 #s4 #hd4 img{width:52px;height:52px;display:block}
 #s4 #rc4{position:absolute;right:30px;top:30px;font-size:26px;font-weight:700;color:var(--ink2);letter-spacing:-.01em}
@@ -10,8 +10,8 @@
 #s4 .it4 span{position:absolute;left:78px;top:0;line-height:66px;font-size:40px;font-weight:800;letter-spacing:-.03em;white-space:nowrap}
 #s4 .dot4{position:absolute;left:22px;top:18px;width:30px;height:30px;border-radius:50%;background:var(--lime);border:5px solid var(--ink)}
 #s4 #mk4{position:absolute;left:-14px;top:-12px;width:914px;height:100px;border-radius:28px;background:rgba(229,72,77,.26);border:6px solid var(--red);opacity:0;transform-origin:0 50%}
-#s4 #q4{position:absolute;left:690px;top:1100px;width:96px;height:96px;border-radius:50%;background:var(--red);border:6px solid var(--ink);box-shadow:6px 6px 0 var(--ink);color:#fff;font-weight:900;font-size:68px;line-height:84px;text-align:center;opacity:0}
-#s4 #ch4{position:absolute;left:330px;top:1010px;width:420px;height:235px;overflow:hidden}
+#s4 #q4{position:absolute;left:470px;top:1110px;width:96px;height:96px;border-radius:50%;background:var(--red);border:6px solid var(--ink);box-shadow:6px 6px 0 var(--ink);color:#fff;font-weight:900;font-size:68px;line-height:84px;text-align:center;opacity:0}
+#s4 #ch4{position:absolute;left:590px;top:1018px;width:420px;height:235px;overflow:hidden}
 #s4 svg{position:absolute;left:0;top:0;overflow:visible}
 </style>
 <div class="scn clip" id="s4" data-start="0" data-duration="__D4__" data-track-index="1"><div class="cam" id="cam4">
@@ -59,7 +59,7 @@ window.buildScene_4=function(tl,T0,DUR){
  // camera drift
  tl.fromTo('#cam4',{scale:1,x:-6,y:5},{scale:1.03,x:7,y:-7,duration:DUR,ease:ED},T0);
  // headline words, uneven
- const ts=[0.02,0.1,0.2,0.27,0.36,0.46,0.52,0.6];
+ const ts=[0,0.07,0.2,0.27,0.36,0.46,0.52,0.6];
  [...document.querySelectorAll('#s4 .w')].forEach((el,i)=>{
   if(i==1) tl.fromTo(el,{opacity:0,y:46,scale:1.18},{opacity:1,y:0,scale:1,duration:DUR*.2,ease:"expo.out"},at(ts[i]));
   else tl.fromTo(el,{opacity:0,y:32},{opacity:1,y:0,duration:DUR*.13,ease:E1},at(ts[i]));
@@ -68,12 +68,12 @@ window.buildScene_4=function(tl,T0,DUR){
  tl.fromTo('#card4',{y:30,scale:.97,rotation:-.6},{y:0,scale:1,rotation:0,duration:DUR*.22,ease:BK},T0);
  tl.fromTo('#card4',{rotation:-.4},{rotation:.5,duration:DUR*.9,ease:ED},at(0.15));
  // items pop with uneven offsets and each sways on its own period
- [['#i40',.02,-6],['#i41',.07,7],['#i42',.135,-5]].forEach(([id,f,x],k)=>{
+ [['#i40',0,-6],['#i41',.035,7],['#i42',.075,-5]].forEach(([id,f,x],k)=>{
   tl.fromTo(id,{opacity:0,x:x*9,y:24,scale:.94},{opacity:1,x:0,y:0,scale:1,duration:DUR*.2,ease:BK},at(f));
   tl.fromTo(id,{y:-2},{y:3,duration:DUR*(.23+k*.07),ease:ED,repeat:3,yoyo:true},at(.2+f));
  });
  // character rises, breathes, looks, reacts
- tl.fromTo('#ch4',{y:70,opacity:0},{y:0,opacity:1,duration:DUR*.24,ease:"expo.out"},at(0.06));
+ tl.fromTo('#ch4',{y:70,opacity:0},{y:0,opacity:1,duration:DUR*.24,ease:"expo.out"},at(0.02));
  tl.fromTo('#cg4',{scaleY:1},{scaleY:1.022,duration:DUR*.2,ease:ED,repeat:4,yoyo:true},at(0.2));
  tl.fromTo('#hd_4',{rotation:-2.5},{rotation:2.5,duration:DUR*.34,ease:ED,repeat:2,yoyo:true},at(0.12));
  // eyes scan the list (pupils drift up, then right, then settle on item 2)

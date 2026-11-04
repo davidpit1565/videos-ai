@@ -1,0 +1,128 @@
+<style>
+#s5{--lime:#A3E635}
+#s5 .w{color:var(--ink);line-height:1}
+#s5 .pill{background:var(--lime)}
+#s5 #card5{position:absolute;left:65px;top:670px;width:950px;height:560px;background:var(--white);border:7px solid var(--ink);border-radius:40px;box-shadow:12px 12px 0 var(--ink);opacity:0}
+#s5 .hd5{position:absolute;left:0;top:0;width:100%;height:104px;border-bottom:5px solid var(--ink);background:#F1F1EA;border-radius:32px 32px 0 0}
+#s5 .hd5 img{position:absolute;left:30px;top:24px;width:54px;height:54px}
+#s5 .ttl5{position:absolute;left:104px;top:26px;font-size:50px;line-height:1;letter-spacing:-.03em;font-weight:900}
+#s5 #dots5{position:absolute;right:24px;top:16px;width:80px;height:70px;border-radius:22px;display:flex;align-items:center;justify-content:center;gap:9px;background:rgba(163,230,53,0)}
+#s5 #dots5 i{width:13px;height:13px;border-radius:50%;background:var(--ink);display:block}
+#s5 #ring5{position:absolute;right:14px;top:6px;width:100px;height:90px;border-radius:30px;border:6px solid var(--lime);opacity:0}
+#s5 .it5{position:absolute;left:36px;width:560px;height:84px;display:flex;align-items:center;gap:18px;opacity:0}
+#s5 .it5 b{display:block;width:30px;height:30px;border-radius:50%;background:var(--lime);border:5px solid var(--ink);flex:none}
+#s5 .it5 span{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:1;white-space:nowrap}
+#s5 .nt5{position:absolute;left:36px;bottom:14px;font-size:26px;font-weight:700;color:var(--ink2);line-height:1;letter-spacing:-.01em}
+#s5 #menu5{position:absolute;left:400px;top:92px;width:520px;height:98px;background:var(--white);border:6px solid var(--ink);border-radius:26px;box-shadow:9px 9px 0 var(--ink);opacity:0;transform-origin:92% 0}
+#s5 #mi5{position:absolute;left:10px;top:10px;right:10px;bottom:10px;border-radius:16px;display:flex;align-items:center;padding-left:18px;gap:14px;background:rgba(229,72,77,0)}
+#s5 #mi5 svg{width:34px;height:34px;flex:none}
+#s5 #mi5 span{font-size:32px;font-weight:800;letter-spacing:-.025em;line-height:1;white-space:nowrap;color:#C2272D}
+#s5 #cur5{position:absolute;left:0;top:0;width:70px;height:84px;opacity:0;z-index:9}
+#s5 #cur5 svg{width:100%;height:100%;overflow:visible}
+#s5 #chk5{position:absolute;left:325px;top:150px;width:300px;height:300px;opacity:0}
+#s5 #chk5 svg{width:100%;height:100%;overflow:visible}
+#s5 #off5{position:absolute;left:200px;width:550px;top:440px;text-align:center;font-size:46px;font-weight:900;letter-spacing:-.03em;line-height:1;opacity:0}
+#s5 #conf5{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+#s5 .bit5{position:absolute;opacity:0;border:3px solid var(--ink);border-radius:4px}
+</style>
+<div class="scn clip" id="s5" data-start="0" data-duration="__D5__" data-track-index="1"><div class="cam" id="cam5">
+ <div class="grp" id="g5" style="top:298px">
+  <div class="row"><span class="w s112" data-w="0">TAP</span><span class="w s112" data-w="1">THE</span><span class="w s112" data-w="2">DOTS.</span></div>
+  <div class="row"><span class="w s100 pill" data-w="3" style="margin-top:8px">DELETE</span><span class="w s100" data-w="4" style="margin-top:8px">IT</span><span class="w s100" data-w="5" style="margin-top:8px">ALL.</span></div>
+ </div>
+ <div id="card5">
+  <div class="hd5"><img src="assets/chatgpt.svg"><div class="ttl5">Memory</div>
+   <div id="ring5"></div><div id="dots5"><i></i><i></i><i></i></div></div>
+  <div class="it5" style="top:124px" data-i="0"><b></b><span>Likes pasta</span></div>
+  <div class="it5" style="top:214px" data-i="1"><b></b><span>Has an exam on Friday</span></div>
+  <div class="it5" style="top:304px" data-i="2"><b></b><span>Prefers short answers</span></div>
+  <div class="it5" style="top:394px" data-i="3"><b></b><span>Has a dog named Max</span></div>
+  <div class="nt5" id="nt5">re-created example</div>
+  <div id="conf5"></div>
+  <div id="chk5"><svg viewBox="0 0 300 300"><circle id="cc5" cx="150" cy="150" r="130" fill="#3DBE6B" stroke="#0E0E0E" stroke-width="12"/><path id="cp5" d="M82 156 L132 206 L222 98" pathLength="1" fill="none" stroke="#fff" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div>
+  <div id="off5">Memory is off</div>
+  <div id="menu5"><div id="mi5"><svg viewBox="0 0 34 34"><path d="M7 9 H27 M13 9 V6 H21 V9 M9 9 L10.5 29 H23.5 L25 9" fill="none" stroke="#C2272D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Delete and turn off memory</span></div></div>
+  <div id="cur5"><svg viewBox="0 0 70 84"><path d="M8 6 L8 62 L24 48 L36 76 L48 70 L36 43 L58 43 Z" fill="#0E0E0E" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></svg></div>
+ </div>
+</div></div>
+<script>
+window.buildScene_5=function(tl,T0,DUR){
+ const E1="power3.out",ED="sine.inOut",BK="back.out(1.2)";
+ const at=f=>T0+DUR*f;
+ tl.set('#s5',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s5 .w',{opacity:0},T0);
+ tl.set('#card5',{opacity:1},T0);
+ tl.set('#s5 .it5',{opacity:1},T0);
+ // deterministic confetti
+ let sd=84;const rnd=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};
+ const cols=['#A3E635','#FFD93D','#FFFFFF','#F4F4EF','#A3E635','#FFC53D'];
+ const host=document.getElementById('conf5');
+ const bits=[];
+ for(let i=0;i<44;i++){
+  const d=document.createElement('div');d.className='bit5';
+  const w=14+rnd()*22,h=10+rnd()*18;
+  d.style.width=w+'px';d.style.height=h+'px';d.style.background=cols[i%cols.length];
+  const row=Math.floor(i/11),x0=60+rnd()*470,y0=140+row*90+rnd()*50;
+  d.style.left=x0+'px';d.style.top=y0+'px';host.appendChild(d);
+  bits.push({d,x0,y0,row,dx:(rnd()-.35)*520,dy:-60-rnd()*160,fall:240+rnd()*260,rot:(rnd()-.5)*900,dl:rnd()*.07});
+ }
+ tl.set('#conf5 .bit5',{opacity:0},T0);
+ tl.set('#cc5',{transformOrigin:'150px 150px',scale:.2},T0);tl.set('#chk5',{opacity:0},T0);
+ tl.set('#cp5',{strokeDashoffset:1},T0);tl.set('#off5',{opacity:0,y:14},T0);
+ tl.set('#menu5',{opacity:0,scale:.7,y:-10},T0);
+ tl.set('#cur5',{opacity:0,x:760,y:470},T0);
+ // camera drift + card breathing
+ tl.fromTo('#cam5',{scale:1,x:-8,y:6},{scale:1.03,x:8,y:-8,duration:DUR,ease:ED},T0);
+ tl.fromTo('#card5',{y:6,rotation:-.5},{y:-6,rotation:.5,duration:DUR,ease:ED},T0);
+ // headline words, uneven
+ const ws=[...document.querySelectorAll('#s5 .w')];
+ const ts=[0.01,0.09,0.16,0.43,0.55,0.61];
+ ws.forEach((el,i)=>{
+  if(i==3) tl.fromTo(el,{opacity:0,y:50,scale:1.18},{opacity:1,y:0,scale:1,duration:DUR*.2,ease:"expo.out"},at(ts[i]));
+  else tl.fromTo(el,{opacity:0,y:34},{opacity:1,y:0,duration:DUR*.14,ease:E1},at(ts[i]));
+ });
+ // list items already there: sway each own period, small entrance wobble
+ [...document.querySelectorAll('#s5 .it5')].forEach((el,i)=>{
+  tl.fromTo(el,{x:-14,opacity:.0},{x:0,opacity:1,duration:DUR*.16,ease:BK},at(.0+i*.045));
+  tl.fromTo(el,{rotation:-.5-i*.1,y:-2},{rotation:.6,y:3,duration:DUR*(.5+i*.07),ease:ED},at(.05));
+ });
+ // cursor glides in (curved: x first then y), taps dots
+ tl.set('#cur5',{opacity:1},at(.05));
+ tl.to('#cur5',{x:866,duration:DUR*.26,ease:"power2.inOut"},at(.06));
+ tl.to('#cur5',{y:46,duration:DUR*.28,ease:"power3.inOut"},at(.05));
+ tl.to('#ring5',{opacity:1,duration:DUR*.06,ease:ED},at(.22));
+ tl.to('#cur5',{scale:.84,duration:DUR*.035,ease:"power2.in"},at(.32));
+ tl.to('#cur5',{scale:1,duration:DUR*.07,ease:BK},at(.355));
+ tl.to('#dots5',{backgroundColor:'rgba(163,230,53,.9)',scale:.92,duration:DUR*.04,ease:ED},at(.32));
+ tl.to('#dots5',{scale:1,duration:DUR*.07,ease:BK},at(.36));
+ tl.to('#ring5',{opacity:0,scale:1.25,duration:DUR*.1,ease:"power2.out"},at(.34));
+ // menu pops open with soft overshoot
+ tl.to('#menu5',{opacity:1,scale:1,y:0,duration:DUR*.14,ease:BK},at(.37));
+ // cursor to menu item
+ tl.to('#cur5',{x:760,y:150,duration:DUR*.17,ease:"power2.inOut"},at(.43));
+ tl.to('#mi5',{backgroundColor:'rgba(229,72,77,.16)',duration:DUR*.06,ease:ED},at(.54));
+ tl.to('#cur5',{scale:.82,duration:DUR*.035,ease:"power2.in"},at(.6));
+ tl.to('#cur5',{scale:1,duration:DUR*.07,ease:BK},at(.635));
+ tl.to('#mi5',{backgroundColor:'rgba(229,72,77,.4)',duration:DUR*.04,ease:ED},at(.6));
+ // menu closes, cursor drifts off
+ tl.to('#menu5',{opacity:0,scale:.9,y:-8,duration:DUR*.1,ease:"power2.in"},at(.65));
+ tl.to('#cur5',{x:830,y:300,opacity:0,duration:DUR*.2,ease:"power2.in"},at(.68));
+ // list dissolves into paper bits, row by row, overlapping
+ [...document.querySelectorAll('#s5 .it5')].forEach((el,i)=>{
+  tl.to(el,{opacity:0,scale:.92,y:-8,filter:'blur(3px)',duration:DUR*.13,ease:"power2.in"},at(.66+i*.03));
+ });
+ bits.forEach(b=>{
+  const t=at(.66+b.row*.03+b.dl);
+  tl.fromTo(b.d,{opacity:0,scale:.4,rotation:0,x:0,y:0},{opacity:1,scale:1,duration:DUR*.04,ease:"power2.out"},t);
+  tl.to(b.d,{x:b.dx,y:b.dy,rotation:b.rot,duration:DUR*.16,ease:"power2.out"},t);
+  tl.to(b.d,{y:b.dy+b.fall,rotation:b.rot*1.4,opacity:0,duration:DUR*.2,ease:"power2.in"},t+DUR*.16);
+ });
+ // green check, soft pop; text below
+ tl.set('#chk5',{opacity:1},at(.76));
+ tl.to('#cc5',{scale:1,duration:DUR*.16,ease:"back.out(1.5)"},at(.76));
+ tl.to('#cp5',{strokeDashoffset:0,duration:DUR*.1,ease:"power2.inOut"},at(.82));
+ tl.fromTo('#chk5',{rotation:-6},{rotation:3,duration:DUR*.24,ease:ED},at(.76));
+ tl.to('#off5',{opacity:1,y:0,duration:DUR*.1,ease:E1},at(.84));
+ tl.set('#s5 .it5',{visibility:'hidden'},at(.835));
+};
+</script>
