@@ -1,0 +1,5 @@
+Manual approval, episode 85 (4.11.2026): "Does ChatGPT think you're a teen?" (ChatGPT age prediction), music bed cinematic--dramatic--themountain.
+
+David asked to put it into the studio (4.11.2026, "כן, תכניס את זה") and chose the music bed himself from four options in a player page. The automatic HyperFrames gate was NOT run on this reel (see reel-85.gate.txt for exactly what ran), so the studio's gate parser will not read "ALL CHECKS PASSED". This approval is only to let the studio list the reel; publishing to Instagram or YouTube still needs David's explicit word.
+Episode 84 is being built by David in another place; this reel is numbered 85 so the two do not collide. Order is the studio's: it sorts by number.
+Open items: the "teen" vs "team" ear check (Whisper base hears "team", small hears "teen"), the real ChatGPT mark licence, the TechRadar and TechCrunch screenshots are used as proof cards.

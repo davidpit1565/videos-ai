@@ -1,0 +1,14 @@
+ChatGPT may think you're a teen, even if you typed your birthday.
+
+OpenAI's help page says ChatGPT can guess if an account belongs to someone under 18. It looks at signals like the topics you talk about, the times of day you use it, how and when the account is used, and how long it has existed. It can flag an account as under 18 even if a date of birth was given. OpenAI says age prediction is not perfect.
+
+Where to look: Settings, Account, Age. If it's wrong, OpenAI says you can verify your age with a third party (a selfie and/or an ID), and then it stops predicting.
+
+News sites reported adults getting stuck in teen mode in January 2026. We don't know how many adults it affects.
+
+OpenAI's page: https://help.openai.com/en/articles/12652064-age-prediction-in-chatgpt
+Setup steps: https://actually-works.com/e/85
+
+Did ChatGPT ever act like you're a kid? Tell me below.
+
+#chatgpt #openai #ai #privacy #aitips

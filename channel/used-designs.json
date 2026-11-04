@@ -493,5 +493,12 @@
     "ember": "#9B72CB",
     "mood": "confident",
     "date": "2026-11-03"
+  },
+  {
+    "episode": 85,
+    "brass": "#B6F23A",
+    "ember": "#B6F23A",
+    "mood": "confident",
+    "date": "2026-11-04"
   }
 ]
