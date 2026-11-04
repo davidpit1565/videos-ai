@@ -41,3 +41,4 @@ line 6 final from take 8441 dur 2.86s 15:35:02
 line 7 final from take 8461 dur 3.16s 15:35:02
 line 8 final from take 8491 dur 3.28s 15:35:02
 FINAL lines 1-8 written 15:35:11
+rr done 8601 15:55:03

@@ -2,7 +2,7 @@
 #s3{--lime:#A3E635;--yel:#FFE45C}
 #s3 .w{color:var(--ink)}
 #s3 .pill{background:var(--lime);box-shadow:9px 9px 0 var(--ink)}
-#s3 #ph3{position:absolute;left:300px;top:700px;width:480px;height:540px;background:#fff;border:8px solid var(--ink);border-radius:56px;box-shadow:12px 12px 0 var(--ink);overflow:hidden;opacity:0}
+#s3 #ph3{position:absolute;left:300px;top:708px;width:480px;height:540px;background:#fff;border:8px solid var(--ink);border-radius:56px;box-shadow:12px 12px 0 var(--ink);overflow:hidden;opacity:0}
 #s3 .pg{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}
 #s3 .hd{position:absolute;left:0;top:0;width:100%;height:84px;background:var(--ink);color:#fff;font-size:34px;letter-spacing:-.03em;display:flex;align-items:center;justify-content:center;line-height:1}
 #s3 .hd img{position:absolute;left:22px;top:20px;width:44px;height:44px;background:#fff;border-radius:12px;padding:5px}
@@ -19,7 +19,7 @@
  <div class="note" id="n3a" style="left:120px;top:820px;transform:rotate(-9deg)"><b style="top:34px;width:100px"></b><b style="top:60px;width:70px"></b><b style="top:86px;width:90px"></b></div>
  <div class="note" id="n3b" style="left:800px;top:960px;transform:rotate(8deg);background:#FFF08A"><b style="top:34px;width:80px"></b><b style="top:60px;width:104px"></b></div>
  <div class="note" id="n3c" style="left:760px;top:730px;width:120px;height:120px;transform:rotate(14deg)"><b style="top:30px;width:70px"></b><b style="top:54px;width:56px"></b></div>
- <div class="grp" id="g3" style="top:292px">
+ <div class="grp" id="g3" style="top:288px">
   <div class="row"><span class="w s112" data-w="0">GO</span><span class="w s112" data-w="1">LOOK.</span></div>
   <div class="row"><span class="w s100" data-w="2">SETTINGS</span><span class="w s100 lt" data-w="3">›</span></div>
   <div class="row"><span class="w pill s112 bk" data-w="4" style="margin-top:4px">MEMORY.</span></div>
@@ -65,10 +65,10 @@ window.buildScene_3=function(tl,T0,DUR){
   else tl.fromTo(el,{opacity:0,y:34},{opacity:1,y:0,duration:DUR*.14,ease:"power3.out"},t);
  });
  // finger path: points are page coords (phone left 300 top 700 + 8 border)
- const P=(y)=>({x:560+(y%3)*8,y:700+8+y});
+ const P=(y)=>({x:560+(y%3)*8,y:708+8+y});
  const fy=[208+42,306+42,208+42]; // settings, personalization, memory row centres
  tl.set('#fg3',{x:760,y:1320},T0);
- tl.fromTo('#fg3',{opacity:0,x:780,y:1330,scale:.9},{opacity:1,x:690,y:716+fy[0]-8,scale:1,duration:DUR*.2,ease:"power3.out"},at(.1));
+ tl.fromTo('#fg3',{opacity:0,x:780,y:1330,scale:.9},{opacity:1,x:690,y:724+fy[0]-8,scale:1,duration:DUR*.2,ease:"power3.out"},at(.1));
  // tap 1 (Settings) ~.30
  const tap=(t,x,y,row)=>{
   tl.to('#fg3',{scale:.8,duration:DUR*.04,ease:"power2.in"},at(t-.04));
@@ -77,20 +77,20 @@ window.buildScene_3=function(tl,T0,DUR){
   tl.to(row,{backgroundColor:'#A3E635',scale:1.04,duration:DUR*.08,ease:"back.out(1.6)"},at(t));
   tl.to(row,{scale:1,duration:DUR*.1,ease:ED},at(t+.08));
  };
- tap(.30,690,716+fy[0]-8,'#r3s');
+ tap(.30,690,724+fy[0]-8,'#r3s');
  // page 1
- tl.to('#p3a',{opacity:0,x:-34,duration:DUR*.08,ease:"power2.in"},at(.40));
- tl.fromTo('#p3b',{opacity:0,x:40},{opacity:1,x:0,duration:DUR*.13,ease:"back.out(1.2)"},at(.45));
- tl.to('#fg3',{x:700,y:716+fy[1]-8,duration:DUR*.16,ease:"power2.inOut"},at(.44));
- tap(.58,700,716+fy[1]-8,'#r3p');
+ tl.to('#p3a',{opacity:0,x:-30,duration:DUR*.075,ease:"sine.in"},at(.39));
+ tl.fromTo('#p3b',{opacity:0,x:36},{opacity:1,x:0,duration:DUR*.15,ease:"sine.out"},at(.475));
+ tl.to('#fg3',{x:700,y:724+fy[1]-8,duration:DUR*.16,ease:"power2.inOut"},at(.44));
+ tap(.58,700,724+fy[1]-8,'#r3p');
  // page 2
- tl.to('#p3b',{opacity:0,x:-34,duration:DUR*.08,ease:"power2.in"},at(.67));
- tl.fromTo('#p3c',{opacity:0,x:40},{opacity:1,x:0,duration:DUR*.13,ease:"back.out(1.2)"},at(.72));
- tl.to('#fg3',{x:600,y:716+fy[2]-8,duration:DUR*.13,ease:"power2.inOut"},at(.71));
- tap(.86,600,716+fy[2]-8,'#r3m');
+ tl.to('#p3b',{opacity:0,x:-30,duration:DUR*.075,ease:"sine.in"},at(.66));
+ tl.fromTo('#p3c',{opacity:0,x:36},{opacity:1,x:0,duration:DUR*.14,ease:"sine.out"},at(.745));
+ tl.to('#fg3',{x:600,y:724+fy[2]-8,duration:DUR*.13,ease:"power2.inOut"},at(.71));
+ tap(.86,600,724+fy[2]-8,'#r3m');
  tl.to('#tg3',{backgroundColor:'#A3E635',duration:DUR*.08,ease:ED},at(.88));
  tl.to('#tk3',{x:32,duration:DUR*.1,ease:"back.out(1.5)"},at(.88));
- tl.to('#fg3',{x:640,y:716+fy[2]+50,duration:DUR*.14,ease:ED},at(.9));
+ tl.to('#fg3',{x:640,y:724+fy[2]+50,duration:DUR*.14,ease:ED},at(.9));
  // sparkles pop soft and rotate
  tl.fromTo('#sp3a',{opacity:0,scale:.2,rotation:-40},{opacity:1,scale:1.1,rotation:20,duration:DUR*.2,ease:BK},at(.5));
  tl.to('#sp3a',{rotation:80,scale:.9,duration:DUR*.35,ease:ED},at(.7));
