@@ -1,0 +1,31 @@
+{
+ "line": 2,
+ "text": "Delete a chat? The notes stay!",
+ "verdict": "ok",
+ "reasons": [],
+ "numbers": {
+  "dur": 1.9,
+  "range_st": 8.8,
+  "end_st": 0.0,
+  "end_level_db": -30.2,
+  "sibilance": -8.8,
+  "level_dbfs": -20.8,
+  "peak_db": -3.4,
+  "accent_not_american": 0.04,
+  "tail_silence": 0.18,
+  "whisper": "Delete a chat.  The notes stay.",
+  "whisper_match_ignoring_spaces": true,
+  "whisper_wer_token": 0.0
+ },
+ "doubts": [
+  "pitch range 8.8 st, just over the 4.9-8.4 reference band but under the 10 st fail line"
+ ],
+ "checked": {
+  "voice_quality": "per-line, ran",
+  "voice_doctor": "run on concatenated 8-line file (single-file mode crashes on 1 line), --no-watch, no BAD, only line 1 quiet note",
+  "whisper": "faster_whisper small",
+  "accent": "check_accent on concatenated file, flags 5,7,8",
+  "script_lint": "0 risky words"
+ },
+ "note": "measured, not heard"
+}

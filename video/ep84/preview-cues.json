@@ -4,70 +4,78 @@
    "n": 1,
    "text": "ChatGPT has been taking notes on you!",
    "start": 0.1,
-   "end": 2.84
+   "end": 2.394,
+   "real": true
   },
   {
    "n": 2,
    "text": "Delete a chat? The notes stay!",
-   "start": 3.39,
-   "end": 5.81
+   "start": 2.944,
+   "end": 4.844,
+   "real": true
   },
   {
    "n": 3,
    "text": "Go look. Settings. Personalization. Memory.",
-   "start": 6.11,
-   "end": 8.21
+   "start": 5.144,
+   "end": 7.956,
+   "real": true
   },
   {
    "n": 4,
    "text": "See anything you never meant to tell it?",
-   "start": 8.51,
-   "end": 11.57
+   "start": 8.256,
+   "end": 10.383,
+   "real": true
   },
   {
    "n": 5,
    "text": "Tap the dots. Delete and switch off memory.",
-   "start": 11.87,
-   "end": 14.93
+   "start": 10.683,
+   "end": 13.258,
+   "real": true
   },
   {
    "n": 6,
    "text": "Even then, OpenAI may keep a log for weeks.",
-   "start": 15.23,
-   "end": 18.61
+   "start": 13.558,
+   "end": 16.411,
+   "real": true
   },
   {
    "n": 7,
    "text": "Send this to someone who tells ChatGPT everything.",
-   "start": 18.91,
-   "end": 21.97
+   "start": 16.711,
+   "end": 19.87,
+   "real": true
   },
   {
    "n": 8,
    "text": "Don't miss the next AI trap. Follow.",
-   "start": 22.27,
-   "end": 25.01
+   "start": 20.17,
+   "end": 23.446,
+   "real": true
   }
  ],
- "D": 25.91,
+ "D": 24.35,
  "T0": [
   0.0,
-  3.24,
-  5.96,
-  8.36,
-  11.72,
-  15.08,
-  18.76,
-  22.12
+  2.794,
+  4.994,
+  8.106,
+  10.533,
+  13.408,
+  16.561,
+  20.02
  ],
  "DUR": [
-  3.24,
-  2.72,
-  2.4,
-  3.36,
-  3.36,
-  3.68,
-  3.36,
-  3.79
+  2.794,
+  2.2,
+  3.112,
+  2.427,
+  2.875,
+  3.153,
+  3.459,
+  4.33
  ]
 }
