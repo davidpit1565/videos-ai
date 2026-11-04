@@ -155,6 +155,8 @@ been running for days.
 
 - **Anything David must hear or watch goes to him as a PLAYABLE page, not only as a file card (David, 4.11.2026).** In the app he can see audio and video files but cannot play their sound, and downloading each one is too much work. For every voice take, hook option or video review: publish a private Artifact page with `<audio controls>` / `<video controls>` elements (files as data: URIs, under 16 MB, so re-encode a smaller review copy of a video; 720 px wide, crf 27 is about 1.7 MB per 21 s) and give him the link. The sound only plays after he taps. Keep ONE page per episode and update it in place (same file path) instead of making new links. Say whether the file is a review copy.
 
+- **Virality gate moves to the CONCEPT stage (David, 4.11.2026: virality is what makes a video explode, 85 or more is the minimum from now on).** A polished render cannot lift a weak concept: episode 84 sat at 65-70 after five rounds of polish. So score the concept BEFORE any scene or voice work, on this checklist, and do not build under 85: (1) a specific, surprising thing happening to the viewer's own account/phone, not a general warning; (2) a curiosity gap in the hook that only the video closes; (3) something worth SAVING (a path, a list, a setting) shown on screen as a screenshot-able card; (4) a named person to send it to; (5) a reason to watch twice (loop back to the hook, or a detail that is easy to miss); (6) a claim a stranger can check in 30 seconds. Write the score and the checklist result into the episode script file. If the concept is under 85, change the concept (angle, hook, payoff), not the polish.
+
 ## The voice
 
 - Profile: `audio/voice/profile/` — reference chosen by his ear, settings locked in
