@@ -15,6 +15,8 @@ for i,(tx,d) in enumerate(zip(TEXTS,EST),1):
 D=round(lines[-1]["end"]+TAIL,2)
 T0=[0.0]+[round(lines[i]["start"]-0.15,3) for i in range(1,N)]
 DUR=[round((T0[i+1] if i<N-1 else D)-T0[i],3) for i in range(N)]
+if os.environ.get("T0S"):   # preview override: T0S="[..]" DURS="[..]" (real timings from the voice build)
+    T0=json.loads(os.environ["T0S"]); DUR=json.loads(os.environ["DURS"]); D=round(T0[-1]+DUR[-1],2)
 shell=open(H+"/shell.html").read(); styles=[];markup=[];scripts=[]
 ONLY=[int(x) for x in os.environ["ONLY"].split(",")] if os.environ.get("ONLY") else None
 OUT=os.environ.get("OUT","index")

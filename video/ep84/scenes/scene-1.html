@@ -86,7 +86,7 @@
 <script>
 window.buildScene_1=function(tl,T0,DUR){
  const E1="power3.out",ED="sine.inOut";
- const U=2.69; // illustration runs on a fixed 2.69 s timeline so it works for DUR 2.4-3.5
+ const U=DUR*1.05; // illustration timeline scales with the scene: landing at ~57% of DUR, second beat at ~84%
  const at=f=>T0+U*f;
  tl.set('#s1',{opacity:1,visibility:'visible'},T0);
  tl.fromTo('#cam1',{scale:1,x:6,y:-5},{scale:1.03,x:-6,y:6,duration:DUR,ease:ED},T0);
@@ -193,14 +193,14 @@ window.buildScene_1=function(tl,T0,DUR){
  tl.to(pill,{scale:1.045,duration:U*.07,ease:"sine.out"},at(.55));
  tl.to(pill,{scale:1,duration:U*.16,ease:"sine.inOut"},at(.62));
  // ---- beat 2 (~2.5 s): notes hop again, lid pops, KEPT pulses
- [['#hnb1',.92],['#hnb2',.945],['#hnb3',.97]].forEach(([id,t])=>{
+ [['#hnb1',.80],['#hnb2',.825],['#hnb3',.85]].forEach(([id,t])=>{
   tl.to(id,{y:-16,duration:U*.05,ease:"power2.out"},at(t));
   tl.to(id,{y:0,duration:U*.12,ease:"back.out(2)"},at(t+.05));
  });
- tl.to('#lid1',{rotation:-34,duration:U*.05,ease:"power2.out"},at(.93));
- tl.to('#lid1',{rotation:-12,duration:U*.12,ease:"back.out(2)"},at(.98));
- tl.to(kept,{scale:1.05,duration:U*.06,ease:"sine.out"},at(.94));
- tl.to(kept,{scale:1,duration:U*.14,ease:"sine.inOut"},at(1.0));
+ tl.to('#lid1',{rotation:-34,duration:U*.05,ease:"power2.out"},at(.81));
+ tl.to('#lid1',{rotation:-12,duration:U*.12,ease:"back.out(2)"},at(.86));
+ tl.to(kept,{scale:1.05,duration:U*.06,ease:"sine.out"},at(.82));
+ tl.to(kept,{scale:1,duration:U*.14,ease:"sine.inOut"},at(.88));
  // idle after: pupils glance, can wobbles
  tl.to('#hp1a,#hp1b,#hp2a,#hp2b,#hp3a,#hp3b',{x:-5,duration:U*.12,ease:ED},at(1.08));
  tl.to('#hp1a,#hp1b,#hp2a,#hp2b,#hp3a,#hp3b',{x:4,duration:U*.14,ease:ED},at(1.22));
