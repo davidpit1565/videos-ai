@@ -114,3 +114,13 @@ w done 9441 h1.txt 18:27:10
 w done 9451 h1c.txt 18:28:00
 WWDONE
 v3 hook final-v3/1 = edited take f9401 18:30:14
+l done 9501 ex=0.80 18:34:59
+l done 9511 ex=0.78 18:35:42
+l done 9521 ex=0.82 18:36:28
+l done 9531 ex=0.80 18:37:16
+l done 9541 ex=0.78 18:38:01
+l done 9551 ex=0.82 18:38:44
+l done 9561 ex=0.80 18:39:30
+l done 9571 ex=0.79 18:40:17
+LLDONE
+v4: hook = raw take f9401, line2 = l9561 18:41:11
