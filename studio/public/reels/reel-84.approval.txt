@@ -1,0 +1,5 @@
+Episode 84 (4.11.2026): "ChatGPT kept what you trashed!", version v7, music bed H (curious--inquisitive-orchestra--musictown).
+
+Approved for the studio by David on 4.11.2026 ("complete it and make it ready, I have no time"). He had heard the voice options on the listening page. Publishing to Instagram is still his own step.
+
+The automatic gate for HyperFrames reels: frame layout, qa.py, voice_quality and voice_doctor all PASS. The accent check (check_accent.py) FAILED on line 1 (hook, 1.00, a short clip so unreliable) and line 4 (0.34). It is a heuristic classifier; the lines were left to David's ear. Voice and music were measured, not heard by Claude. Concept virality score by Claude: about 73-75 of 100, below the new 85 bar (judgement, not a measurement); this episode shipped as a deliberate exception because David asked for it to be finished.

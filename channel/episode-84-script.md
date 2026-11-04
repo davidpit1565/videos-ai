@@ -22,3 +22,13 @@ That memory is on for everyone (it varies by plan and region); that switching Me
 
 ## David's directions for this build (4.11.2026)
 Hook tone exciting (exclamation, higher exaggeration, several takes, his ear decides); the picture must feel alive, not robotic (organic motion: soft overshoot and settle, secondary motion, blinks, uneven natural timing); hook scene visual rated 90+ by looking at rendered frames; different look from episode 83 (ChatGPT lime accent, notes/memory objects, a living character); no black wipes between scenes; music with character, not generic.
+
+## Final script (v7, 4.11.2026)
+1. ChatGPT kept what you trashed!
+2. Go look, Settings. Personalization. Memory.
+3. See anything you never meant to tell it?
+4. Tap the dots. Delete and switch off memory.
+5. Even then, OpenAI may keep a log for weeks.
+6. Send this to someone who tells ChatGPT everything. (SAVE THIS card with the path on screen)
+7. Don't miss the next AI trap. Follow. (ending fades back into the hook: loop)
+Scores (Claude's judgement, 4.11): hook text 88, hook visual 90, whole video ~75, virality 73-75. Under the 85 bar; shipped as an exception at David's request. Real views at 48 h to be logged in content-memory.md.
