@@ -1,0 +1,7 @@
+Gate for episode 85 (4.11.2026). This reel was NOT built with produce.sh / HyperFrames; it was built in the lemo-opuscar test session. Only these checks were run:
+=== PASS  qa.py --hf: 1080x1920, yuv420p, 48 kHz stereo, 33.2 s, no frozen run over 4 s, first frame carries picture, -14.0 LUFS, peak -1.1 dBFS. WARN: 24 fps.
+=== PASS  voice_quality.py: "voice quality: clean". Bed minus voice in 300-3500 Hz: -11.5 dB; 48% of the bed under 150 Hz (bass-heavy for a phone speaker).
+=== NOTES voice_doctor.py: no BAD finding; lines 1 and 8 are quiet (-21.8 and -20.6 dBFS vs median -19.0), not levelled.
+=== PASS  build's own safe-area check (a copy of safecheck.mjs, x 65-1015, y 269-1248): 0 issues.
+NOT RUN: export/check.sh, check_hf.sh, safe_check_hf.js, the accent check, produce.sh design-variety check. Audio and picture were measured, not heard or watched in full by Claude.
+Voice: David's cloned voice (Chatterbox, exaggeration 0.76 with per-line overrides). Music: audio/music-library/cinematic--dramatic--themountain.mp3, chosen by David from four options.
