@@ -153,6 +153,8 @@ been running for days.
 
 - **Pre-publish gate, David 4.11.2026: every episode needs a hook score of at least 90 (goal 95) and a virality score of at least 85 on the written rubric, and the target is 1,000 views per episode.** The scores are my judgement against the rubric (personal and felt in 3 s, product named at once, one specific curiosity gap, every line a hook, a sendable ending, alive picture), not a measurement and not a promise. Under the bar: rewrite before building. Every episode logs its predicted score and its real views at 48 h in `content-memory.md`, so we learn whether the score means anything. Followers come after we reliably pass 1,000.
 
+- **Anything David must hear or watch goes to him as a PLAYABLE page, not only as a file card (David, 4.11.2026).** In the app he can see audio and video files but cannot play their sound, and downloading each one is too much work. For every voice take, hook option or video review: publish a private Artifact page with `<audio controls>` / `<video controls>` elements (files as data: URIs, under 16 MB, so re-encode a smaller review copy of a video; 720 px wide, crf 27 is about 1.7 MB per 21 s) and give him the link. The sound only plays after he taps. Keep ONE page per episode and update it in place (same file path) instead of making new links. Say whether the file is a review copy.
+
 ## The voice
 
 - Profile: `audio/voice/profile/` — reference chosen by his ear, settings locked in
