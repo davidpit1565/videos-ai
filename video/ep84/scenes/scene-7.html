@@ -41,7 +41,18 @@
  <svg class="note" id="n1" viewBox="0 0 110 110" style="left:105px;top:1195px"><rect x="8" y="8" width="94" height="94" rx="8" fill="#FFE066" stroke="#0E0E0E" stroke-width="6"/><path d="M26 40h58M26 58h40" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/></svg>
  <svg class="note" id="n2" viewBox="0 0 110 110" style="left:105px;top:650px"><rect x="8" y="8" width="94" height="94" rx="8" fill="#FFE066" stroke="#0E0E0E" stroke-width="6"/><path d="M26 40h58M26 58h40" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/></svg>
  <div class="hd7" id="hd7"><span>@actually_works.ai</span></div>
-</div></div>
+ </div>
+<svg id="lp7" viewBox="0 0 1080 1920" width="1080" height="1920" style="position:absolute;left:0;top:0;overflow:visible;opacity:0" data-decor>
+  <g id="lpb"><rect x="203" y="356" width="104" height="104" rx="30" fill="#0E0E0E"/><rect x="195" y="348" width="104" height="104" rx="30" fill="#fff" stroke="#0E0E0E" stroke-width="6"/><image href="assets/chatgpt.svg" x="214" y="367" width="66" height="66"/></g>
+  <g id="lpn" opacity=".5">
+   <g transform="rotate(-7 306 893)"><rect x="236" y="823" width="150" height="150" rx="9" fill="#FFE45C" stroke="#0E0E0E" stroke-width="7"/></g>
+   <g transform="rotate(5 536 862)"><rect x="466" y="792" width="150" height="150" rx="9" fill="#FFE45C" stroke="#0E0E0E" stroke-width="7"/></g>
+   <g transform="rotate(-4 753 901)"><rect x="683" y="831" width="150" height="150" rx="9" fill="#FFE45C" stroke="#0E0E0E" stroke-width="7"/></g>
+   <path d="M663 1090 L797 1090 L787 1222 L675 1222 Z" fill="#E9E9E2" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/>
+   <g transform="rotate(-38 662 1086)"><rect x="652" y="1070" width="150" height="22" rx="9" fill="#A3E635" stroke="#0E0E0E" stroke-width="6"/></g>
+  </g>
+ </svg>
+</div>
 <script>
 window.buildScene_7=function(tl,T0,DUR){
  const E1="power3.out",E2="power2.inOut",ED="sine.inOut";
@@ -92,7 +103,7 @@ window.buildScene_7=function(tl,T0,DUR){
  tl.to('#c7',{x:720,y:880,duration:DUR*0.16,ease:ED},at(0.86));
  // sparkles + floating notes (the channel's notes motif), each own phase
  ['#sp1','#sp2','#sp3'].forEach((id,i)=>{
-  tl.fromTo(id,{opacity:0,scale:.2,rotation:-30},{opacity:1,scale:1,rotation:0,duration:DUR*0.14,ease:"back.out(1.4)"},at(0.8+i*0.04+(i==1?0.01:0)));
+  tl.fromTo(id,{opacity:0,scale:.2,rotation:-30},{opacity:1,scale:1,rotation:0,duration:DUR*0.1,ease:"back.out(1.4)"},at(0.76+i*0.03+(i==1?0.01:0)));
   tl.to(id,{rotation:60,scale:1.25,duration:DUR*0.16,ease:ED,yoyo:true,repeat:1},at(0.9));
  });
  [['#n1',0.7,-8,10,0.2],['#n2',0.74,7,-10,0.18]].forEach(([id,f,r,y,d])=>{
@@ -100,5 +111,13 @@ window.buildScene_7=function(tl,T0,DUR){
   tl.to(id,{rotation:-r,y:y,duration:DUR*0.13,ease:ED,yoyo:true,repeat:1},at(f+0.2));
  });
  tl.to('#f7',{y:-8,scale:1.03,duration:DUR*0.1,ease:ED,yoyo:true,repeat:1},at(0.9));
+ // ---- loop: the last ~0.5 s dissolve every word and the CTA away (never two texts at once), then ease into scene 1's opening look:
+ // ChatGPT badge half in, notes and bin as 50% silhouettes, no text.
+ tl.to('#g8b,#g8a,#f7,#b7,#hd7,#c7,#r7,#sp1,#sp2,#sp3,#n1,#n2,#t7',{opacity:0,duration:DUR*.07,ease:"sine.inOut"},at(0.865));
+ tl.set('#g8b,#g8a,#f7,#b7,#hd7,#c7,#r7,#sp1,#sp2,#sp3,#n1,#n2,#t7',{opacity:0},at(0.94));
+ tl.set('#lp7',{opacity:1},at(0.9));
+ tl.fromTo('#lpb',{opacity:0,scale:1,rotation:0,svgOrigin:'247 400'},{opacity:.6,scale:.92,rotation:-7,svgOrigin:'247 400',duration:DUR*.1,ease:"sine.inOut"},at(0.9));
+ tl.fromTo('#lpn',{opacity:0},{opacity:.5,duration:DUR*.1,ease:"sine.inOut"},at(0.9));
+ tl.fromTo('#lpn',{y:14},{y:0,duration:DUR*.1,ease:"sine.out"},at(0.9));
 };
 </script>

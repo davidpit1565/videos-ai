@@ -4,12 +4,20 @@
 #s6 .pill{background:var(--lime)}
 #s6 #st6{position:absolute;left:65px;top:650px;width:950px;height:580px}
 #s6 #st6 svg{position:absolute;left:0;top:0;overflow:visible}
+#s6 #sv6{position:absolute;left:115px;top:318px;width:850px;height:500px;background:#fff;border:8px solid var(--ink);border-radius:44px;box-shadow:12px 12px 0 var(--ink);opacity:0;transform-origin:50% 50%}
+#s6 #sv6 .bar{position:absolute;left:0;top:0;right:0;height:18px;background:var(--lime);border-radius:34px 34px 0 0;border-bottom:6px solid var(--ink)}
+#s6 #sv6 .ic{position:absolute;left:44px;top:62px;width:112px;height:112px;border-radius:50%;background:var(--lime);border:7px solid var(--ink);display:flex;align-items:center;justify-content:center}
+#s6 #sv6 .ic img{width:64%;height:64%}
+#s6 #sv6 .t1{position:absolute;left:184px;top:62px;font-size:104px;line-height:1;font-weight:900;letter-spacing:-.04em;white-space:nowrap;color:var(--ink)}
+#s6 #sv6 .t2{position:absolute;left:44px;top:236px;width:762px;font-size:40px;line-height:1;font-weight:800;letter-spacing:-.03em;white-space:nowrap;color:var(--ink);background:#F4F4EF;border:5px solid var(--ink);border-radius:22px;padding:22px 0;text-align:center}
+#s6 #sv6 .t3{position:absolute;left:44px;top:388px;width:762px;font-size:38px;line-height:1;font-weight:800;letter-spacing:-.03em;color:#5B5B55;text-align:center;white-space:nowrap}
 </style>
 <div class="scn clip" id="s6" data-start="0" data-duration="__D6__" data-track-index="1"><div class="cam" id="cam6">
  <div class="grp" id="g6" style="top:300px">
   <div class="row"><span class="w s100" data-w="0">SEND</span><span class="w s100" data-w="1">THIS</span><span class="w s100 lt" data-w="2">TO</span><span class="w s100 lt" data-w="3">A</span></div>
   <div class="row"><span class="w pill s150 bk" data-w="4" style="margin-top:4px">FRIEND</span></div>
  </div>
+ <div id="sv6"><div class="bar"></div><div class="ic"><img src="assets/chatgpt.svg" alt=""/></div><div class="t1">SAVE THIS</div><div class="t2">Settings › Personalization › Memory</div><div class="t3">Delete and switch off</div></div>
  <div id="st6"><svg width="950" height="580" viewBox="0 0 950 580">
   <defs><clipPath id="cl6"><rect x="546" y="118" width="308" height="420" rx="10"/></clipPath></defs>
   <ellipse cx="190" cy="568" rx="190" ry="14" fill="rgba(0,0,0,.12)"/>
@@ -146,6 +154,12 @@ window.buildScene_6=function(tl,T0,DUR){
  tl.fromTo('#plr6',{rotation:-20,svgOrigin:'0 0'},{rotation:-45,svgOrigin:'0 0',duration:DUR*.13,ease:ED,yoyo:true,repeat:1},at(0.68));
  tl.to('#pl6',{opacity:0,scale:.4,duration:DUR*.06,ease:"power2.in"},at(0.92));
  tl.fromTo('#tick6',{opacity:0,scale:.2,svgOrigin:'0 0'},{opacity:1,scale:1,svgOrigin:'0 0',duration:DUR*.12,ease:BK},at(0.9));
- 
+ // ---- save card (after ~40% of the scene): headline steps aside, the art shrinks to the bottom, a screenshot-worthy card scales in and stays
+ tl.set('#sv6',{opacity:0,scale:.9,y:24},T0);
+ tl.to('#g6',{opacity:0,y:-24,duration:DUR*.08,ease:"power2.inOut"},at(0.4));
+ tl.to('#st6',{scale:.64,transformOrigin:'50% 100%',duration:DUR*.2,ease:"power3.inOut"},at(0.4));
+ tl.to('#sv6',{opacity:1,scale:1,y:0,duration:DUR*.2,ease:"back.out(1.1)"},at(0.47));
+ tl.to('#sv6',{y:-6,duration:DUR*.2,ease:ED,yoyo:true,repeat:2},at(0.7));
+ tl.fromTo('#sv6 .ic',{rotate:-8},{rotate:6,duration:DUR*.2,ease:ED,yoyo:true,repeat:3},at(0.5));
 };
 </script>
