@@ -2,62 +2,77 @@
  "lines": [
   {
    "n": 1,
-   "text": "ChatGPT has been taking notes on you!",
+   "text": "ChatGPT kept what you trashed!",
    "start": 0.1,
-   "end": 2.394,
-   "real": true
+   "end": 2.87,
+   "real": true,
+   "words": [
+    [
+     0.1,
+     1.1
+    ],
+    [
+     1.1,
+     1.52
+    ],
+    [
+     1.52,
+     1.92
+    ],
+    [
+     1.92,
+     2.22
+    ],
+    [
+     2.22,
+     2.84
+    ]
+   ]
   },
   {
    "n": 2,
-   "text": "Delete a chat? The notes stay!",
-   "start": 2.944,
-   "end": 4.844,
+   "text": "Go look. Settings. Personalization. Memory.",
+   "start": 3.42,
+   "end": 6.232,
    "real": true
   },
   {
    "n": 3,
-   "text": "Go look. Settings. Personalization. Memory.",
-   "start": 5.144,
-   "end": 7.956,
+   "text": "See anything you never meant to tell it?",
+   "start": 6.532,
+   "end": 8.659,
    "real": true
   },
   {
    "n": 4,
-   "text": "See anything you never meant to tell it?",
-   "start": 8.256,
-   "end": 10.383,
+   "text": "Tap the dots. Delete and switch off memory.",
+   "start": 8.959,
+   "end": 11.282,
    "real": true
   },
   {
    "n": 5,
-   "text": "Tap the dots. Delete and switch off memory.",
-   "start": 10.683,
-   "end": 13.006,
+   "text": "Even then, OpenAI may keep a log for weeks.",
+   "start": 11.582,
+   "end": 14.435,
    "real": true
   },
   {
    "n": 6,
-   "text": "Even then, OpenAI may keep a log for weeks.",
-   "start": 13.306,
-   "end": 16.159,
+   "text": "Send this to someone who tells ChatGPT everything.",
+   "start": 14.735,
+   "end": 17.298,
    "real": true
   },
   {
    "n": 7,
-   "text": "Send this to someone who tells ChatGPT everything.",
-   "start": 16.459,
-   "end": 19.021,
-   "real": true
-  },
-  {
-   "n": 8,
    "text": "Don't miss the next AI trap. Follow.",
-   "start": 19.321,
-   "end": 21.877,
+   "start": 17.598,
+   "end": 20.153,
    "real": true
   }
  ],
- "D": 22.78,
+ "D": 21.05,
  "real": [
   1,
   2,
@@ -65,7 +80,6 @@
   4,
   5,
   6,
-  7,
-  8
+  7
  ]
 }

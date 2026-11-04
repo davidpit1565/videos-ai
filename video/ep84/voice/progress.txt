@@ -55,3 +55,18 @@ n done 8701 ex=0.88 16:44:22
 n done 8711 ex=0.84 16:45:25
 n done 8721 ex=0.90 16:46:39
 n done 8731 ex=0.86 16:48:46
+n done 8741 ex=0.80 16:52:40
+n done 8751 ex=0.88 16:53:35
+n done 8761 ex=0.82 16:54:38
+n done 8771 ex=0.90 16:55:29
+n done 8781 ex=0.85 16:56:24
+n done 8791 ex=0.87 16:57:15
+NNDONE
+n done 8801 ex=0.88 16:58:48
+n done 8811 ex=0.84 16:59:35
+n done 8821 ex=0.90 17:00:27
+n done 8831 ex=0.86 17:01:13
+n done 8841 ex=0.88 17:02:07
+n done 8851 ex=0.82 17:03:02
+N2DONE
+v2 hook final-v2/1 = take n8781; final-v2/2..7 = old 3..8 (rerolled 5,7,8 included) 17:04:17
