@@ -1,14 +1,11 @@
-=== FAIL  frame layout (safe_check_hf.js) (exit 1)
+=== PASS  frame layout (safe_check_hf.js)
     index.html  19.96s  100 samples every 0.2s  safe box: x 65-1015, y 269-1248
       safe area: clean (tolerance 10px)
       within tolerance: 6px past the top line   .w.s112  "GO"
-      overlap   90px worst at 3.6s, 1 hits 3.6-3.6s   .hd "Menu"  x  .hd "Settings"
-      overlap   90px worst at 3.6s, 2 hits 3.6-3.6s   .rw "Upgrade plan"  x  .rw "General"
-      overlap   90px worst at 3.6s, 1 hits 3.6-3.6s   #r3s "Settings"  x  .rw "Notifications"
-      overlap   90px worst at 3.6s, 1 hits 3.6-3.6s   .rw "Help"  x  #r3p "Personalization"
+      overlaps: none over 10px
 
 === PASS  rendered file (qa.py --hf)
-    ep84-v4.mp4  1080x1920  30fps  19.97s  10.0MB
+    ep84-v5.mp4  1080x1920  30fps  19.97s  10.0MB
       visual change: median 0.03s, longest 2.10s
       loudness: -15.3 LUFS integrated, peak -3.8 dBFS, LRA 1.1 LU
       loop seam: first vs last frame differ by 29.6/255
@@ -72,7 +69,7 @@
       this is a heuristic, not a certainty (see the file's own docstring) — listen to the flagged line(s) before rerolling.
 
 ================ SUMMARY
-  FAIL  frame layout (safe_check_hf.js) (exit 1)
+  PASS  frame layout (safe_check_hf.js)
   PASS  rendered file (qa.py --hf)
   PASS  voice + music quality (voice_quality.py)
   PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
