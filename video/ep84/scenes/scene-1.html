@@ -2,17 +2,17 @@
 #s1{--lime:#A3E635;--yel:#FFE45C}
 #s1 .w{color:var(--ink);line-height:1}
 #s1 .pill{background:var(--lime)}
-#s1 .s136{font-size:136px}
+#s1 .s150{font-size:150px}
 #s1 #bd1{display:inline-flex;width:104px;height:104px;vertical-align:middle;background:#fff;border:6px solid #0E0E0E;border-radius:34px;box-shadow:8px 8px 0 #0E0E0E;align-items:center;justify-content:center;margin:0 16px 8px 0}
 #s1 #bd1 img{width:64%;height:64%}
-#s1 #st1{position:absolute;left:65px;top:768px;width:950px;height:620px;transform:scale(.76);transform-origin:50% 0}
+#s1 #st1{position:absolute;left:65px;top:790px;width:950px;height:620px;transform:scale(.72);transform-origin:50% 0}
 #s1 #st1 svg{position:absolute;left:0;top:0;overflow:visible}
 </style>
 <div class="scn clip" id="s1" data-start="0" data-duration="__D1__" data-track-index="1"><div class="cam" id="cam1">
  <div class="grp" id="g1" style="top:292px">
-  <div class="row"><span id="bd1"><img src="assets/chatgpt.svg" alt=""/></span><span class="w s112" data-w="0">CHATGPT</span></div>
+  <div class="row"><span id="bd1"><img src="assets/chatgpt.svg" alt=""/></span><span class="w s128" data-w="0">CHATGPT</span></div>
   <div class="row"><span class="w pill s100 bk" data-w="1" style="margin:0 14px 0 0">KEPT</span><span class="w s100" data-w="2" style="margin:0 8px">WHAT</span><span class="w s100" data-w="3" style="margin:0 8px">YOU</span></div>
-  <div class="row"><span class="w pill s136 bk" data-w="4" style="margin-top:4px">TRASHED!</span></div>
+  <div class="row"><span class="w pill s150 bk" data-w="4" style="margin-top:4px">TRASHED!</span></div>
  </div>
  <div id="st1"><svg width="950" height="620" viewBox="0 0 950 620">
   <ellipse id="fl1" cx="730" cy="606" rx="120" ry="14" fill="rgba(0,0,0,.14)"/>
@@ -64,7 +64,7 @@
     <circle cx="158" cy="445" r="58" fill="#A3E635" stroke="#0E0E0E" stroke-width="6"/>
     <image href="assets/chatgpt.svg" x="120" y="407" width="76" height="76"/>
     <path d="M240 425 L352 425 M240 465 L322 465" stroke="#0E0E0E" stroke-width="10" stroke-linecap="round" opacity=".35"/>
-    <g id="x1"><circle cx="390" cy="365" r="32" fill="#E5484D" stroke="#0E0E0E" stroke-width="6"/><path d="M376 351 L404 379 M404 351 L376 379" stroke="#fff" stroke-width="8" stroke-linecap="round"/></g>
+    <g id="x1"><circle cx="390" cy="365" r="44" fill="#E5484D" stroke="#0E0E0E" stroke-width="6"/><path d="M372 347 L408 383 M408 347 L372 383" stroke="#fff" stroke-width="11" stroke-linecap="round"/></g>
    </g>
    <path d="M638 420 L822 420 L806 604 L654 604 Z" fill="#E9E9E2" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/>
    <path d="M690 446 L696 580 M730 446 L730 580 M770 446 L764 580" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round" opacity=".4"/>
@@ -90,19 +90,13 @@ window.buildScene_1=function(tl,T0,DUR){
  tl.set('#s1 .w',{opacity:0},T0);
  tl.fromTo('#cam1',{scale:1,x:6,y:-5},{scale:1.03,x:-6,y:6,duration:DUR,ease:ED},T0);
 
- // ---- hook words: timed from the real spoken-word stamps of line 1 (window.__CUES.lines[0].words, absolute seconds);
- // without them (estimate build) spread over the line's own length.
- const L1=(window.__CUES&&window.__CUES.lines&&window.__CUES.lines[0])||{start:.1,end:2.1};
- const wd=L1.words&&L1.words.length===5?L1.words:null, len=Math.max(.8,L1.end-L1.start);
- const rel=[0,.2,.46,.58,.7].map(f=>L1.start+f*len);
+ // ---- hook words: all five in the first ~0.4 s (fast soft ease), KEPT and TRASHED! slam in big.
  const ws=[...document.querySelectorAll('#s1 .w')];
+ const wt=[0,.05,.16,.22,.12];
  ws.forEach((el,i)=>{
-  const t0=Math.max(T0,(wd?wd[i][0]:rel[i])-0.06);
-  if(i===0){ // first word already half in on frame 0
-   tl.fromTo(el,{opacity:.55,y:18},{opacity:1,y:0,duration:.34,ease:"expo.out"},T0);
-  } else if(el.classList.contains('pill')){
-   tl.fromTo(el,{opacity:0,y:44,scale:1.2},{opacity:1,y:0,scale:1,duration:.42,ease:"back.out(1.2)"},t0);
-  } else tl.fromTo(el,{opacity:0,y:30},{opacity:1,y:0,duration:.3,ease:E1},t0);
+  if(i===0) tl.fromTo(el,{opacity:.55,y:18},{opacity:1,y:0,duration:.3,ease:"expo.out"},T0);
+  else if(el.classList.contains('pill')) tl.fromTo(el,{opacity:0,y:50,scale:1.1},{opacity:1,y:0,scale:1,duration:.34,ease:"power3.out"},T0+wt[i]);
+  else tl.fromTo(el,{opacity:0,y:30},{opacity:1,y:0,duration:.28,ease:"power3.out"},T0+wt[i]);
  });
  // the real ChatGPT badge is there from frame 0, settles and keeps bobbing
  tl.fromTo('#bd1',{rotation:-7,scale:.92,y:6},{rotation:0,scale:1,y:0,duration:.45,ease:"back.out(1.2)"},T0);
@@ -123,11 +117,11 @@ window.buildScene_1=function(tl,T0,DUR){
  sway('#hnw3',760,160,3.4,.45,.04,4);
 
  // ---- the trashed chat is already in flight on frame 0, spins into the open can
- tl.set('#bub1',{svgOrigin:'230 445',x:150,y:-80,rotation:-16,scale:1},T0);
+ tl.set('#bub1',{svgOrigin:'230 445',x:150,y:-80,rotation:-16,scale:1.32},T0);
  tl.to('#bub1',{x:490,duration:DUR*.5,ease:"power1.inOut"},T0);
  tl.to('#bub1',{y:-120,duration:DUR*.16,ease:"sine.out"},T0);
  tl.to('#bub1',{y:64,duration:DUR*.34,ease:"power2.in"},at(.16));
- tl.to('#bub1',{rotation:12,scale:.62,duration:DUR*.4,ease:ED},T0+.02);
+ tl.to('#bub1',{rotation:12,scale:.86,duration:DUR*.4,ease:ED},T0+.02);
  tl.to('#bub1',{scaleX:.34,scaleY:.2,rotation:24,duration:DUR*.14,ease:"power2.in"},at(.5));
  tl.to('#bub1',{opacity:0,duration:DUR*.05,ease:ED},at(.62));
  tl.fromTo('#x1',{scale:.7,svgOrigin:'390 365'},{scale:1.08,duration:.5,ease:"back.out(1.6)"},T0);
@@ -145,8 +139,8 @@ window.buildScene_1=function(tl,T0,DUR){
  const vec=[[-70,-120,200],[60,-150,-160],[-20,-170,120],[100,-90,-220],[-110,-70,260],[30,-190,-100]];
  [...document.querySelectorAll('#s1 .bt')].forEach((el,i)=>{
   const t=at(.58+i*.012);
-  tl.fromTo(el,{opacity:1,scale:.4,x:0,y:0,rotation:0},{x:vec[i][0],y:vec[i][1],rotation:vec[i][2],scale:1,duration:DUR*.2,ease:"power2.out"},t);
-  tl.to(el,{y:vec[i][1]+50,opacity:0,duration:DUR*.16,ease:"power2.in"},t+DUR*.2);
+  tl.fromTo(el,{opacity:1,scale:.4,x:0,y:0,rotation:0},{x:vec[i][0]*1.5,y:vec[i][1]*1.4,rotation:vec[i][2],scale:2.4,duration:DUR*.2,ease:"power2.out"},t);
+  tl.to(el,{y:vec[i][1]*1.4+60,opacity:0,duration:DUR*.16,ease:"power2.in"},t+DUR*.2);
  });
 
  // ---- faces look at the viewer on frame 0, glance at the falling chat, blink, go smug
