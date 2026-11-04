@@ -70,3 +70,5 @@ n done 8841 ex=0.88 17:02:07
 n done 8851 ex=0.82 17:03:02
 N2DONE
 v2 hook final-v2/1 = take n8781; final-v2/2..7 = old 3..8 (rerolled 5,7,8 included) 17:04:17
+f done 8901 ex=1.00 cfg=0.30 sp=1.2 17:43:48
+f done 8911 ex=0.96 cfg=0.25 sp=1.2 17:44:59
