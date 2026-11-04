@@ -505,3 +505,6 @@ When a reel is ready (check.sh passed, merged, deploy verified), send a real pho
 
 ## Claude may read the studio (David, 25.10.2026)
 The studio is gated against the public, not against Claude. When David has given the PIN in the chat of the current session, read real numbers with `POST /api/unlock` (json `{"pin": ...}`, keep the cookie) and then `GET /api/state` on https://www.actually-works.com. The PIN is never written into a file, a commit, a PR or a log. If no PIN was given in the session, ask for it once. Fields: `state.episodes[]` (views, reach, likes, saves, shares, publishedAtPrecise), `state.snapshots[]` (followers). Watch time and reach by follower type are NOT_AVAILABLE for this account.
+
+## שליחת וידאו ל-David עם סאונד שהוא יכול לשמוע (4.11.2026, David)
+הוא עוקב מהטלפון, הצ'אט לא משמיע שם סאונד, והורדה של כל קובץ מעצבנת אותו. **בכל פעם ששולחים לו וידאו או קובץ עם קול (ריל, בדיקת קול, אפשרויות מוזיקה): מריצים `export/phone_preview.sh <video.mp4>` (כותב `-phone.mp4` קטן, `-sound.m4a`, `-sound.mp3`) ושולחים ב-`SendUserFile` את ה-`-phone.mp4` ואת ה-`-sound.m4a`.** ההוראות המלאות בסקיל `.claude/skills/send-with-sound/`. אם אחד מהפורמטים לא מתנגן אצלו, רושמים את זה שם ועוברים לפורמט הבא (mp3, ואז עמוד Artifact עם נגן). הקובץ המלא נשאר זה שנכנס לסטודיו.
