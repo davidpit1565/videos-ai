@@ -32,6 +32,7 @@
   <div class="row"><span class="w s112" data-w="4">MAY</span><span class="w s112" data-w="5">STAY</span></div>
  </div>
  <div class="card" id="mem5">
+  <div id="rg5" style="position:absolute;right:24px;top:20px;width:56px;height:56px;border-radius:50%;border:6px solid #A3E635;opacity:0"></div>
   <div class="tt">Memory</div>
   <svg class="ok" id="ok5" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><path d="M15 29 L25 39 L42 18" fill="none" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
   <div class="em">Nothing saved</div>
@@ -75,7 +76,7 @@ window.buildScene_5=function(tl,T0,DUR){
  tl.set('#s5',{opacity:1,visibility:'visible'},T0);
  tl.set('#s5 .w',{opacity:0},T0);
  tl.set('#mem5',{opacity:1,scale:.94,rotation:-1.5},T0);
- tl.set('#cab5',{opacity:0,x:70},T0);
+ tl.set('#cab5',{opacity:0,x:140},T0);
  tl.set('#gh5',{opacity:0,svgOrigin:'220 250',x:0,y:-205,scale:.15},T0);
  tl.set('#cal5',{opacity:0,y:22,scale:.94},T0);
  tl.set('#hero5',{opacity:0,scale:.78,y:30,rotation:-3},T0);
@@ -94,11 +95,17 @@ window.buildScene_5=function(tl,T0,DUR){
  });
  // empty memory card: already there, settles with a soft overshoot, then sways
  tl.to('#mem5',{scale:1,rotation:0,duration:DUR*.2,ease:BO},T0);
+ // quiet-window motion (0-0.9 s): the card glides in from the left, a soft ring spreads from the tick, the dashed bars draw in, the drawer starts sliding at once
+ tl.fromTo('#mem5',{x:70},{x:0,duration:DUR*.3,ease:"power3.out"},T0);
+ tl.fromTo('#rg5',{opacity:.8,scale:.9},{opacity:0,scale:2.4,duration:DUR*.22,ease:"sine.out"},at(.05));
+ tl.fromTo('#rg5',{opacity:.7,scale:.9},{opacity:0,scale:2.2,duration:DUR*.22,ease:"sine.out"},at(.2));
+ tl.fromTo('#mem5 .bar',{scaleX:.2,transformOrigin:'0 50%'},{scaleX:1,duration:DUR*.28,ease:"power2.out",stagger:DUR*.06},at(.04));
+ tl.fromTo('#mem5 .em',{x:24,opacity:.2},{x:0,opacity:1,duration:DUR*.22,ease:"power2.out"},at(.03));
  tl.fromTo('#mem5',{y:-4},{y:5,duration:DUR*.32,ease:ED,yoyo:true,repeat:3},at(.18));
  tl.fromTo('#ok5',{scale:.6,rotation:-20},{scale:1,rotation:0,duration:DUR*.16,ease:"back.out(1.6)"},at(.06));
  tl.to('#ok5',{rotation:6,duration:DUR*.3,ease:ED,yoyo:true,repeat:3},at(.25));
  // drawer chest slides in, front pulls open
- tl.to('#cab5',{opacity:1,x:0,duration:DUR*.2,ease:"expo.out"},at(.05));
+ tl.to('#cab5',{opacity:1,x:0,duration:DUR*.26,ease:"power3.out"},T0);
  tl.to('#dr5',{y:36,duration:DUR*.17,ease:BO},at(.24));
  tl.fromTo('#cab5',{rotation:0},{rotation:-.8,duration:DUR*.4,ease:ED,yoyo:true,repeat:2},at(.3));
  // ghost file rises out, grows, then bobs
