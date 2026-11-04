@@ -80,3 +80,37 @@ f done 8961 ex=0.92 cfg=0.25 sp=1.5 17:50:01
 f done 8971 ex=0.85 cfg=0.20 sp=1.5 17:50:57
 f done 8981 ex=0.98 cfg=0.25 sp=1.5 17:51:51
 f done 8991 ex=0.94 cfg=0.30 sp=1.5 17:52:43
+f done 9001 ex=0.90 cfg=0.20 sp=1.5 17:53:36
+f done 9011 ex=0.88 cfg=0.25 sp=1.5 17:54:26
+FFDONE
+s done 9101 17:56:32
+s done 9111 17:57:55
+s done 9121 17:59:18
+s done 9131 18:00:41
+s done 9141 18:02:15
+s done 9151 18:03:37
+s done 9161 18:04:54
+s done 9171 18:06:13
+s done 9181 18:07:31
+s done 9191 18:08:55
+s done 9201 18:10:26
+s done 9211 18:11:58
+SSDONE
+w done 9301 h1.txt 18:16:00
+w done 9311 h1c.txt 18:16:56
+w done 9321 h1.txt 18:17:39
+w done 9331 h1c.txt 18:18:33
+w done 9341 h1.txt 18:19:16
+w done 9351 h1c.txt 18:20:05
+w done 9361 h1.txt 18:20:45
+w done 9371 h1c.txt 18:21:32
+w done 9381 h1.txt 18:22:18
+w done 9391 h1c.txt 18:23:10
+w done 9401 h1.txt 18:23:50
+w done 9411 h1c.txt 18:24:39
+w done 9421 h1.txt 18:25:19
+w done 9431 h1c.txt 18:26:28
+w done 9441 h1.txt 18:27:10
+w done 9451 h1c.txt 18:28:00
+WWDONE
+v3 hook final-v3/1 = edited take f9401 18:30:14
