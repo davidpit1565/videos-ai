@@ -1,5 +1,4 @@
-ChatGPT has been taking notes on you!
-Delete a chat? The notes stay!
+ChatGPT kept what you trashed!
 Go look. Settings. Personalization. Memory.
 See anything you never meant to tell it?
 Tap the dots. Delete and switch off memory.
