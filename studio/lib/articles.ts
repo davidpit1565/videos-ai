@@ -2278,6 +2278,39 @@ export const ARTICLES: Article[] = [
       "The sentence on screen is a short version of Google's advice. Please read Google's full page for the exact words.",
     ],
   },
+  {
+    n: 84,
+    title: "ChatGPT has been taking notes on you: how to look, and what deleting a chat does not do",
+    standfirst:
+      "ChatGPT can keep little notes about you, called memories. OpenAI's own help page says these notes are " +
+      "stored separately from your chats. So if you delete a chat, a note made from that chat does not " +
+      "necessarily go away. This guide shows where to look and what each button does, in OpenAI's own words. " +
+      "It does not say what ChatGPT has saved about you. Only your own Memory screen can show that.",
+    steps: [
+      "Open ChatGPT and click your profile picture or name, then click Settings. If you do not see a Settings option right away, look for the three dots or a menu button first.",
+      "In Settings, click Personalization. Then click Memory. OpenAI's help page gives this exact path: Settings, Personalization, Memory.",
+      "Read what is shown. OpenAI says the controls can include Memory, Reference saved memories, Reference chat history, Memory summary, Manage, or Saved memories. Which ones you see depends on your plan, region and device. If you do not see a setting, it is not available for your account yet. That is what OpenAI's page says.",
+      "Look for anything you never meant to tell ChatGPT. OpenAI says the memory summary is a high-level view and does not necessarily show every detail. You can also ask ChatGPT in a chat what it remembers about you.",
+      "To remove one saved memory, delete it from the saved memories list (open Manage or Saved memories if you see them). Then also delete the chat where you first shared it. OpenAI says: to remove information saved as a memory, delete the saved memory and the chat where you first shared it.",
+      "Remember what deleting a chat does not do. OpenAI says deleting a chat alone does not necessarily delete a separate saved memory created from that chat. Saved memories are stored separately from chat history.",
+      "Optional: to wipe the memory summary, click the three dots (shown as more options, or •••) on the memory summary and choose Delete and turn off memory. OpenAI says this deletes the remembered information shown in the summary and turns Memory off. It does not delete your past chats.",
+      "Know what the Off switches do not do. OpenAI says turning off Reference chat history does not delete your saved memories. We do not claim that turning Memory off deletes anything.",
+      "Know that a log may stay for a while. OpenAI says it may keep logs of deleted saved memories for up to 30 days for safety and debugging, and that it can take time for deletions to take effect.",
+      "Optional: for a chat that should not use or create memories, start a Temporary chat. OpenAI says temporary chats do not create or update memories. Saving a temporary chat turns it into a regular chat.",
+      "Optional: read OpenAI's own page for the current wording, because OpenAI can rename things: https://help.openai.com/en/articles/8590148-memory-in-chatgpt",
+    ],
+    changes: [
+      "Verified live (4.11.2026) against OpenAI's Help Center page Memory in ChatGPT (help.openai.com/en/articles/8590148-memory-in-chatgpt, shown as updated 4 days earlier): the path Settings, Personalization, Memory; the control names Memory, Reference saved memories, Reference chat history, Memory summary, Manage, Saved memories; Delete and turn off memory in the more options menu (three dots) of the memory summary; that it deletes the remembered information in the summary, turns Memory off and does not delete past chats; that deleting a chat alone does not necessarily delete a separate saved memory; that turning off Reference chat history does not delete saved memories; that logs of deleted saved memories may be kept up to 30 days; and that controls vary by plan, region, platform and workspace.",
+      "Also checked OpenAI's announcement Memory and new controls for ChatGPT (openai.com/index/memory-and-new-controls-for-chatgpt/): it says deleting a chat does not erase its memories and you must delete the memory itself. That page is from February 2024 with later updates, so the Help Center page is the current source for menu names.",
+    ],
+    limits: [
+      "We do not know what ChatGPT has saved about you. Only your own Memory screen shows that, and even that summary may leave details out, according to OpenAI.",
+      "Memory is not on for everyone. OpenAI says controls vary by plan, region, platform and workspace settings. If you do not see a setting, it is not available for your account yet.",
+      "The settings screens and the example memories in the video are re-created examples in our own design, not a recording of any real account.",
+      "OpenAI's page also says that if you turn Reference chat history off, information remembered from past chats is scheduled for deletion within 30 days. That is separate from saved memories, which stay unless you delete them. The video does not go into this part.",
+      "We did not test the buttons on every device. Menu looks and names may differ on your screen, so follow OpenAI's page if it differs from these steps.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

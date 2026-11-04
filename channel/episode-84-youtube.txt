@@ -1,0 +1,16 @@
+ChatGPT memory: deleting a chat does not delete the notes
+
+OpenAI's own help page says saved memories in ChatGPT are stored separately from your chat history. Deleting a chat alone does not necessarily delete a memory made from it. To remove one, delete the saved memory and the chat where you first shared it.
+
+Where to look: Settings, Personalization, Memory. OpenAI says controls vary by plan, region and platform, so if you do not see a setting, it is not available for your account yet.
+
+The three dots menu on the memory summary has Delete and turn off memory. OpenAI says it deletes the remembered information shown in the summary and turns Memory off, and that it does not delete past chats. OpenAI may keep logs of deleted saved memories for up to 30 days.
+
+Said plainly: this video shows what OpenAI's own page says and where the setting is. The settings screens in the video are re-created examples. It does not claim what ChatGPT has saved about you.
+
+OpenAI's page: https://help.openai.com/en/articles/8590148-memory-in-chatgpt
+Full setup, step by step: https://actually-works.com/e/84
+
+AI traps: follow for the next one.
+
+#chatgpt #openai #aiprivacy #ai
