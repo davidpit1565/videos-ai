@@ -1,3 +1,4 @@
+> v2 (4.11.2026): 7 lines, scene 1 is now the new hook (trash + notes, line 1 "ChatGPT kept what you trashed!"); old scenes 3-8 are scenes 2-7; the old scene 1 and 8 text below is the v1 plan. Old files: scenes/_old/.
 # Episode 84 scene brief (4.11.2026) — read fully before writing your scene
 
 Reel: "ChatGPT has been taking notes on you!" (about 26 s, 1080x1920, HyperFrames-style HTML + GSAP, drawn, NO real photos, NO real faces, NO recordings). Eight lines = eight scenes; `lines.txt` has the spoken lines. Your scene file is `scenes/scene-N.html`; write ONLY that file (+ own assets `assets/sN-*.svg`). Do NOT touch other scenes, shell.html, build84.py, git, branches. Do not commit.

@@ -1,136 +1,151 @@
 <style>
-#s6{--lime:#A3E635;--limed:#6FA316}
+#s6{--lime:#A3E635}
 #s6 .w{color:var(--ink)}
 #s6 .pill{background:var(--lime)}
-#s6 .grp .row{margin:0}
-#s6 .card{position:absolute;background:var(--white);border:7px solid var(--ink);border-radius:36px;box-shadow:9px 9px 0 var(--ink)}
-#s6 #mem6{left:65px;top:715px;width:450px;height:262px;opacity:0;transform-origin:50% 50%}
-#s6 #mem6 .tt{position:absolute;left:28px;top:18px;font-weight:900;font-size:42px;letter-spacing:-.03em}
-#s6 #mem6 .em{position:absolute;left:28px;top:84px;font-weight:900;font-size:50px;letter-spacing:-.04em;color:var(--ink2)}
-#s6 #mem6 .bar{position:absolute;left:28px;height:22px;border-radius:11px;border:4px dashed #C3C3B8;opacity:.9}
-#s6 #mem6 .ok{position:absolute;right:24px;top:20px;width:56px;height:56px}
-#s6 #mem6 .rc{position:absolute;right:26px;bottom:14px;font-weight:700;font-size:28px;color:var(--ink2);letter-spacing:-.01em}
-#s6 #cab6{position:absolute;left:575px;top:838px;width:440px;height:150px;overflow:visible;opacity:0}
-#s6 #cal6{position:absolute;left:65px;top:1004px;width:300px;height:226px;opacity:0;transform-origin:50% 100%}
-#s6 #cal6 .top{position:absolute;left:0;top:0;width:100%;height:58px;background:var(--lime);border-bottom:7px solid var(--ink);border-radius:28px 28px 0 0}
-#s6 #cal6 .ring{position:absolute;top:-18px;width:22px;height:48px;border-radius:11px;background:var(--ink)}
-#s6 #cal6 .body{position:absolute;left:0;top:58px;width:100%;height:161px;perspective:700px}
-#s6 #cal6 .pg{position:absolute;left:0;top:0;width:100%;height:100%;background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;transform-origin:50% 0%;backface-visibility:hidden;border-radius:0 0 28px 28px}
-#s6 #cal6 .pg i{font-style:normal;font-weight:800;font-size:30px;letter-spacing:.02em;color:var(--ink2);line-height:1}
-#s6 #cal6 .pg b{font-weight:900;font-size:104px;letter-spacing:-.05em;line-height:.95}
-#s6 #hero6{left:395px;top:1004px;width:620px;height:226px;opacity:0;transform-origin:50% 60%;background:var(--ink);box-shadow:9px 9px 0 var(--limed)}
-#s6 #hero6 .up{position:absolute;left:34px;top:16px;font-weight:900;font-size:56px;letter-spacing:-.03em;color:var(--lime);line-height:1}
-#s6 #hero6 .big{position:absolute;left:30px;top:84px;font-weight:900;font-size:122px;letter-spacing:-.05em;color:var(--white);line-height:1;white-space:nowrap}
-#s6 #may6{position:absolute;left:760px;top:1000px;font-weight:900;font-size:40px;letter-spacing:-.02em;background:var(--lime);color:var(--ink);border:6px solid var(--ink);border-radius:22px;box-shadow:6px 6px 0 var(--ink);padding:2px 22px;opacity:0;line-height:1.1}
-#s6 svg{position:absolute;overflow:visible}
-#s6 .mote{position:absolute;width:20px;height:20px;border-radius:50%;background:var(--lime);border:4px solid var(--ink);opacity:0}
+#s6 #st6{position:absolute;left:65px;top:650px;width:950px;height:580px}
+#s6 #st6 svg{position:absolute;left:0;top:0;overflow:visible}
 </style>
 <div class="scn clip" id="s6" data-start="0" data-duration="__D6__" data-track-index="1"><div class="cam" id="cam6">
- <div class="grp" id="g6" style="top:298px">
-  <div class="row"><span class="w s112" data-w="0">EVEN</span><span class="w s112" data-w="1">THEN:</span></div>
-  <div class="row"><span class="w s112 lt" data-w="2">A</span><span class="w pill s112 bk" data-w="3">LOG</span></div>
-  <div class="row"><span class="w s112" data-w="4">MAY</span><span class="w s112" data-w="5">STAY</span></div>
+ <div class="grp" id="g6" style="top:300px">
+  <div class="row"><span class="w s100" data-w="0">SEND</span><span class="w s100" data-w="1">THIS</span><span class="w s100 lt" data-w="2">TO</span><span class="w s100 lt" data-w="3">A</span></div>
+  <div class="row"><span class="w pill s150 bk" data-w="4" style="margin-top:4px">FRIEND</span></div>
  </div>
- <div class="card" id="mem6">
-  <div class="tt">Memory</div>
-  <svg class="ok" id="ok6" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><path d="M15 29 L25 39 L42 18" fill="none" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  <div class="em">Nothing saved</div>
-  <div class="bar" style="top:158px;width:300px"></div>
-  <div class="bar" style="top:192px;width:230px"></div>
-  <div class="rc">re-created</div>
- </div>
- <svg id="cab6" viewBox="0 0 440 150">
-  <ellipse cx="220" cy="148" rx="215" ry="12" fill="rgba(0,0,0,.14)"/>
-  <rect x="0" y="0" width="440" height="140" rx="26" fill="#DEDED4" stroke="#0E0E0E" stroke-width="8"/>
-  <rect id="slot6" x="18" y="12" width="404" height="34" rx="10" fill="#14151A"/>
-  <g id="dr6"><rect x="14" y="10" width="412" height="100" rx="22" fill="#fff" stroke="#0E0E0E" stroke-width="8"/>
-   <rect x="160" y="46" width="120" height="26" rx="13" fill="#0E0E0E"/><rect x="170" y="54" width="100" height="8" rx="4" fill="#A3E635"/></g>
-  <g id="gh6" opacity="0"><g id="gb6">
-   <path d="M120 0 H285 L320 36 V250 q-25 22 -50 0 q-25 -22 -50 0 q-25 22 -50 0 q-25 -22 -50 0 Z" fill="#FFFFFF" fill-opacity=".86" stroke="#0E0E0E" stroke-width="9" stroke-dasharray="22 12" stroke-linejoin="round" stroke-linecap="round"/>
-   <path d="M285 0 V36 H320" fill="none" stroke="#0E0E0E" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
-   <rect x="150" y="160" width="120" height="12" rx="6" fill="#0E0E0E" opacity=".25"/><rect x="150" y="186" width="90" height="12" rx="6" fill="#0E0E0E" opacity=".25"/>
-   <g id="brow6"><path d="M158 62 Q176 52 194 62" fill="none" stroke="#0E0E0E" stroke-width="8" stroke-linecap="round"/><path d="M246 62 Q264 52 282 62" fill="none" stroke="#0E0E0E" stroke-width="8" stroke-linecap="round"/></g>
-   <ellipse id="eL6" cx="176" cy="98" rx="24" ry="28" fill="#fff" stroke="#0E0E0E" stroke-width="7"/><ellipse id="eR6" cx="264" cy="98" rx="24" ry="28" fill="#fff" stroke="#0E0E0E" stroke-width="7"/>
-   <circle id="pL6" cx="176" cy="102" r="11" fill="#0E0E0E"/><circle id="pR6" cx="264" cy="102" r="11" fill="#0E0E0E"/>
-   <path d="M205 140 Q220 152 235 140" fill="none" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round"/>
-  </g></g>
- </svg>
- <div class="card" id="cal6"><div class="top"></div><div class="ring" style="left:60px"></div><div class="ring" style="right:60px"></div>
-  <div class="body" id="bd6">
-   <div class="pg" style="z-index:1"><i>DAY</i><b style="color:var(--limed)">30</b></div>
-   <div class="pg" id="pg5" style="z-index:2"><i>DAY</i><b>26</b></div>
-   <div class="pg" id="pg4" style="z-index:3"><i>DAY</i><b>19</b></div>
-   <div class="pg" id="pg3" style="z-index:4"><i>DAY</i><b>11</b></div>
-   <div class="pg" id="pg2" style="z-index:5"><i>DAY</i><b>5</b></div>
-   <div class="pg" id="pg1" style="z-index:6"><i>DAY</i><b>1</b></div>
-  </div></div>
- <div class="card" id="hero6"><div class="up">UP TO</div><div class="big">30 DAYS</div></div>
- <div id="may6">may</div>
- <div class="mote" id="m1" style="left:640px;top:800px"></div><div class="mote" id="m2" style="left:880px;top:770px"></div><div class="mote" id="m3" style="left:760px;top:735px"></div>
+ <div id="st6"><svg width="950" height="580" viewBox="0 0 950 580">
+  <defs><clipPath id="cl6"><rect x="546" y="118" width="308" height="420" rx="10"/></clipPath></defs>
+  <ellipse cx="190" cy="568" rx="190" ry="14" fill="rgba(0,0,0,.12)"/>
+  <!-- friend -->
+  <g id="fr6">
+   <g id="body6">
+    <path d="M30 580 L30 440 C30 380 90 350 160 350 C230 350 290 380 290 440 L290 580 Z" fill="#FF8A5B" stroke="#0E0E0E" stroke-width="9"/>
+    <path d="M130 352 Q160 392 190 352" fill="none" stroke="#0E0E0E" stroke-width="8" stroke-linecap="round"/>
+    <g id="head6">
+     <rect x="144" y="318" width="32" height="42" fill="#FFC98B" stroke="#0E0E0E" stroke-width="8"/>
+     <circle cx="160" cy="245" r="84" fill="#FFD39B" stroke="#0E0E0E" stroke-width="9"/>
+     <path d="M76 235 C70 150 130 150 160 160 C200 150 250 170 244 238 C230 200 200 195 160 196 C120 196 92 205 76 235Z" fill="#3B2A20" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/>
+     <g id="eyes6"><circle cx="126" cy="250" r="11" fill="#0E0E0E"/><circle cx="194" cy="250" r="11" fill="#0E0E0E"/>
+      <circle cx="130" cy="246" r="3.5" fill="#fff"/><circle cx="198" cy="246" r="3.5" fill="#fff"/></g>
+     <path id="brL6" d="M108 222 Q126 212 144 222" fill="none" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round"/>
+     <path id="brR6" d="M176 222 Q194 212 212 222" fill="none" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round"/>
+     <circle cx="106" cy="278" r="13" fill="#FF8A7A" opacity=".5"/><circle cx="214" cy="278" r="13" fill="#FF8A7A" opacity=".5"/>
+     <g id="mouth6"><path d="M130 282 Q160 322 190 282 Z" fill="#7A1F2B" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/><path d="M142 296 Q160 306 178 296" fill="#FF8A7A"/></g>
+    </g>
+    <g id="phn6"><rect x="196" y="430" width="70" height="104" rx="14" fill="#fff" stroke="#0E0E0E" stroke-width="8" transform="rotate(-12 231 482)"/>
+     <circle cx="226" cy="486" r="9" fill="#A3E635" stroke="#0E0E0E" stroke-width="4"/></g>
+    <g id="thL6"><circle cx="212" cy="500" r="17" fill="#FFD39B" stroke="#0E0E0E" stroke-width="7"/></g>
+    <g id="thR6"><circle cx="252" cy="486" r="17" fill="#FFD39B" stroke="#0E0E0E" stroke-width="7"/></g>
+   </g>
+  </g>
+  <!-- flying chatter bubbles -->
+  <g id="fb6">
+   <g class="fb"><rect x="0" y="0" width="92" height="46" rx="23" fill="#A3E635" stroke="#0E0E0E" stroke-width="6"/><circle cx="26" cy="23" r="5" fill="#0E0E0E"/><circle cx="46" cy="23" r="5" fill="#0E0E0E"/><circle cx="66" cy="23" r="5" fill="#0E0E0E"/></g>
+   <g class="fb"><rect x="0" y="0" width="110" height="46" rx="23" fill="#fff" stroke="#0E0E0E" stroke-width="6"/><rect x="22" y="18" width="66" height="10" rx="5" fill="#0E0E0E"/></g>
+   <g class="fb"><rect x="0" y="0" width="84" height="46" rx="23" fill="#A3E635" stroke="#0E0E0E" stroke-width="6"/><rect x="20" y="18" width="44" height="10" rx="5" fill="#0E0E0E"/></g>
+   <g class="fb"><rect x="0" y="0" width="100" height="46" rx="23" fill="#fff" stroke="#0E0E0E" stroke-width="6"/><circle cx="30" cy="23" r="5" fill="#0E0E0E"/><circle cx="50" cy="23" r="5" fill="#0E0E0E"/><circle cx="70" cy="23" r="5" fill="#0E0E0E"/></g>
+   <g class="fb"><rect x="0" y="0" width="96" height="46" rx="23" fill="#A3E635" stroke="#0E0E0E" stroke-width="6"/><rect x="20" y="18" width="56" height="10" rx="5" fill="#0E0E0E"/></g>
+  </g>
+  <!-- phone -->
+  <g id="ph6">
+   <rect x="532" y="30" width="336" height="540" rx="52" fill="#0E0E0E" transform="translate(10 10)"/>
+   <rect x="532" y="30" width="336" height="540" rx="52" fill="#fff" stroke="#0E0E0E" stroke-width="9"/>
+   <rect x="546" y="118" width="308" height="420" rx="10" fill="#F4F4EF"/>
+   <rect x="640" y="42" width="120" height="14" rx="7" fill="#0E0E0E"/>
+   <g id="bdg6"><circle cx="700" cy="84" r="32" fill="#fff" stroke="#0E0E0E" stroke-width="6"/><image href="assets/chatgpt.svg" x="679" y="63" width="42" height="42"/></g>
+   <g clip-path="url(#cl6)"><g id="msgs6">
+    <g class="mb" data-y="140"><rect x="640" y="140" width="204" height="44" rx="22" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><rect x="662" y="157" width="130" height="10" rx="5" fill="#0E0E0E"/></g>
+    <g class="mb" data-y="198"><rect x="556" y="198" width="190" height="44" rx="22" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><rect x="578" y="215" width="110" height="10" rx="5" fill="#9A9A92"/></g>
+    <g class="mb" data-y="256"><rect x="610" y="256" width="234" height="44" rx="22" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><rect x="632" y="273" width="150" height="10" rx="5" fill="#0E0E0E"/></g>
+    <g class="mb" data-y="314"><rect x="556" y="314" width="214" height="44" rx="22" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><rect x="578" y="331" width="130" height="10" rx="5" fill="#9A9A92"/></g>
+    <g class="mb" data-y="372"><rect x="650" y="372" width="194" height="44" rx="22" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><rect x="672" y="389" width="110" height="10" rx="5" fill="#0E0E0E"/></g>
+    <g class="mb" data-y="430"><rect x="620" y="430" width="224" height="44" rx="22" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><rect x="642" y="447" width="140" height="10" rx="5" fill="#0E0E0E"/></g>
+    <g class="mb" data-y="488"><rect x="556" y="488" width="200" height="44" rx="22" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><rect x="578" y="505" width="120" height="10" rx="5" fill="#9A9A92"/></g>
+    <g class="mb" data-y="546"><rect x="636" y="546" width="208" height="44" rx="22" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><rect x="658" y="563" width="126" height="10" rx="5" fill="#0E0E0E"/></g>
+   </g></g>
+   <g id="dots6" opacity="0"><rect x="556" y="488" width="86" height="40" rx="20" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><circle cx="582" cy="508" r="6" fill="#0E0E0E"/><circle cx="599" cy="508" r="6" fill="#0E0E0E"/><circle cx="616" cy="508" r="6" fill="#0E0E0E"/></g>
+  </g>
+  <!-- post card + plane -->
+  <g id="card6">
+   <rect x="300" y="470" width="190" height="112" rx="14" fill="#FFF3B0" stroke="#0E0E0E" stroke-width="8" transform="translate(8 8)" opacity="1"/>
+   <rect x="300" y="470" width="190" height="112" rx="14" fill="#FFF3B0" stroke="#0E0E0E" stroke-width="8"/>
+   <rect x="440" y="482" width="40" height="46" rx="6" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/>
+   <line x1="320" y1="512" x2="410" y2="512" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round"/>
+   <line x1="320" y1="540" x2="395" y2="540" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g id="pl6"><g id="plr6"><path d="M0 0 L84 -34 L48 30 L36 4 Z" fill="#A3E635" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/><path d="M36 4 L84 -34" stroke="#0E0E0E" stroke-width="5"/></g></g>
+  <g transform="translate(850 520)"><g id="tick6"><circle cx="0" cy="0" r="40" fill="#A3E635" stroke="#0E0E0E" stroke-width="7"/><path d="M-18 2 L-5 16 L20 -14" fill="none" stroke="#0E0E0E" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+ </svg></div>
 </div></div>
 <script>
 window.buildScene_6=function(tl,T0,DUR){
- const ED="sine.inOut",BO="back.out(1.2)";
+ const ED="sine.inOut",BK="back.out(1.2)";
  const at=f=>T0+DUR*f;
  tl.set('#s6',{opacity:1,visibility:'visible'},T0);
  tl.set('#s6 .w',{opacity:0},T0);
- tl.set('#mem6',{opacity:1,scale:.94,rotation:-1.5},T0);
- tl.set('#cab6',{opacity:0,x:70},T0);
- tl.set('#gh6',{opacity:0,svgOrigin:'220 250',x:0,y:-205,scale:.15},T0);
- tl.set('#cal6',{opacity:0,y:22,scale:.94},T0);
- tl.set('#hero6',{opacity:0,scale:.78,y:30,rotation:-3},T0);
- tl.set('#may6',{opacity:0,scale:.5,rotation:-14},T0);
- tl.set('#s6 .mote',{opacity:0},T0);
- tl.set('#pg2,#pg3,#pg4,#pg5',{opacity:0},T0);
- tl.set('#bd6 .pg:first-child',{opacity:0},T0);
- tl.set('#pg1,#pg2,#pg3,#pg4,#pg5',{rotationX:0,transformPerspective:700,transformOrigin:'50% 0%'},T0);
- // camera drift all scene
+ // camera drift
  tl.fromTo('#cam6',{scale:1,x:-6,y:5},{scale:1.03,x:7,y:-7,duration:DUR,ease:ED},T0);
- // headline words, uneven rhythm, over ~60%
- const ws=[...document.querySelectorAll('#s6 .w')], ts=[0.02,0.105,0.21,0.3,0.4,0.5];
+ // headline words, uneven offsets
+ const ws=[...document.querySelectorAll('#s6 .w')];
+ const ts=[0.02,0.11,0.19,0.24,0.36];
  ws.forEach((el,i)=>{
-  if(i==3) tl.fromTo(el,{opacity:0,y:40,scale:1.18},{opacity:1,y:0,scale:1,duration:DUR*.2,ease:"expo.out"},at(ts[i]));
-  else tl.fromTo(el,{opacity:0,y:32},{opacity:1,y:0,duration:DUR*.15,ease:"power3.out"},at(ts[i]));
+  if(i==4) tl.fromTo(el,{opacity:0,y:44,scale:1.25},{opacity:1,y:0,scale:1,duration:DUR*.24,ease:"expo.out"},at(ts[i]));
+  else tl.fromTo(el,{opacity:0,y:34},{opacity:1,y:0,duration:DUR*.15,ease:"power3.out"},at(ts[i]));
  });
- // empty memory card: already there, settles with a soft overshoot, then sways
- tl.to('#mem6',{scale:1,rotation:0,duration:DUR*.2,ease:BO},T0);
- tl.fromTo('#mem6',{y:-4},{y:5,duration:DUR*.32,ease:ED,yoyo:true,repeat:3},at(.18));
- tl.fromTo('#ok6',{scale:.6,rotation:-20},{scale:1,rotation:0,duration:DUR*.16,ease:"back.out(1.6)"},at(.06));
- tl.to('#ok6',{rotation:6,duration:DUR*.3,ease:ED,yoyo:true,repeat:3},at(.25));
- // drawer chest slides in, front pulls open
- tl.to('#cab6',{opacity:1,x:0,duration:DUR*.2,ease:"expo.out"},at(.05));
- tl.to('#dr6',{y:36,duration:DUR*.17,ease:BO},at(.24));
- tl.fromTo('#cab6',{rotation:0},{rotation:-.8,duration:DUR*.4,ease:ED,yoyo:true,repeat:2},at(.3));
- // ghost file rises out, grows, then bobs
- tl.to('#gh6',{opacity:1,duration:DUR*.1,ease:ED},at(.27));
- tl.to('#gh6',{y:-262,scale:.58,duration:DUR*.3,ease:BO},at(.27));
- tl.fromTo('#gb6',{y:2},{y:-12,duration:.62,ease:ED,yoyo:true,repeat:Math.ceil(DUR*.7/.62)},at(.5));
- tl.fromTo('#gb6',{rotation:-1.5,svgOrigin:'220 250'},{rotation:2,duration:.9,ease:ED,yoyo:true,repeat:Math.ceil(DUR*.7/.9)},at(.5));
- // eyes: glance at card, then at calendar, blink twice, brows rise
- tl.to('#pL6,#pR6',{x:-9,duration:DUR*.08,ease:ED},at(.42));
- tl.to('#pL6,#pR6',{x:8,y:3,duration:DUR*.09,ease:ED},at(.58));
- tl.to('#pL6,#pR6',{x:0,y:0,duration:DUR*.1,ease:ED},at(.8));
- [.47,.74,.93].forEach(f=>tl.to('#eL6,#eR6',{scaleY:.08,duration:.07,ease:"sine.in",yoyo:true,repeat:1},at(f)));
- tl.to('#brow6',{y:-9,duration:DUR*.07,ease:"power2.out"},at(.62));
- tl.to('#brow6',{y:0,duration:DUR*.12,ease:ED},at(.82));
- // dust motes drift up out of the drawer
- [['#m1',.34,-80],['#m2',.4,-110],['#m3',.46,-70]].forEach(([s,f,dy])=>{
-  tl.fromTo(s,{opacity:0,y:60,scale:.4},{opacity:1,y:0,scale:1,duration:DUR*.1,ease:"power2.out"},at(f));
-  tl.to(s,{y:dy,x:'+=14',opacity:0,duration:DUR*.28,ease:ED},at(f+.1));
+ // frame-0 proof: friend, phone with chatgpt badge and first bubbles already there
+ tl.set('#fr6',{transformOrigin:'160px 580px'},T0);
+ tl.fromTo('#ph6',{y:30,rotation:-3,svgOrigin:'700 300',opacity:1},{y:0,rotation:0,svgOrigin:'700 300',duration:DUR*.28,ease:BK},T0);
+ tl.fromTo('#fr6',{x:-40},{x:0,duration:DUR*.26,ease:"expo.out"},T0);
+ // breathing and phone sway all scene
+ tl.fromTo('#body6',{scaleY:1,transformOrigin:'160px 580px'},{scaleY:1.022,duration:DUR*.34,ease:ED,yoyo:true,repeat:2},T0);
+ tl.fromTo('#head6',{rotation:-3,svgOrigin:'160 350'},{rotation:4,svgOrigin:'160 350',duration:DUR*.4,ease:ED,yoyo:true,repeat:2},T0);
+ tl.fromTo('#ph6',{rotation:-.8,svgOrigin:'700 300'},{rotation:.9,svgOrigin:'700 300',duration:DUR*.45,ease:ED,yoyo:true,repeat:2},at(0.28));
+ tl.fromTo('#bdg6',{scale:1,svgOrigin:'700 84'},{scale:1.1,svgOrigin:'700 84',duration:DUR*.2,ease:ED,yoyo:true,repeat:4},T0);
+ // blinks (about every 2.5 s of real time) + eyebrows react
+ [0.18,0.74].forEach(f=>{
+  tl.to('#eyes6',{scaleY:.08,svgOrigin:'160 250',duration:.07,ease:"power2.in"},at(f));
+  tl.to('#eyes6',{scaleY:1,svgOrigin:'160 250',duration:.12,ease:"power2.out"},at(f)+.07);
  });
- // calendar pops up, pages flip away with uneven timing
- tl.to('#cal6',{opacity:1,y:0,scale:1,duration:DUR*.16,ease:BO},at(.3));
- [['#pg1',.4],['#pg2',.47],['#pg3',.535],['#pg4',.6],['#pg5',.655]].forEach(([s,f],i)=>{
-  const d=DUR*(.13-i*.006);
-  tl.to(s,{rotationX:-172,duration:d,ease:"power2.in"},at(f));
-  tl.set(s,{opacity:0},at(f)+d*.45);
-  tl.set(i<4?'#pg'+(i+2):'#bd6 .pg:first-child',{opacity:1},at(f)+d*.45);
+ tl.fromTo('#brL6',{y:0},{y:-8,duration:DUR*.12,ease:ED,yoyo:true,repeat:3},at(0.1));
+ tl.fromTo('#brR6',{y:0},{y:-9,duration:DUR*.14,ease:ED,yoyo:true,repeat:3},at(0.13));
+ // talking mouth, uneven
+ [[0,.07],[.09,.06],[.19,.08],[.3,.05],[.38,.09],[.5,.06],[.58,.07],[.67,.05]].forEach(([f,d],i)=>{
+  tl.fromTo('#mouth6',{scaleY:.45,svgOrigin:'160 283'},{scaleY:1,svgOrigin:'160 283',duration:DUR*d,ease:ED,yoyo:true,repeat:1},at(f));
  });
- tl.fromTo('#cal6',{rotation:-1.2},{rotation:1.2,duration:DUR*.3,ease:ED,yoyo:true,repeat:3},at(.4));
- // hero: UP TO 30 DAYS arrives with a soft overshoot, then breathes
- tl.to('#hero6',{opacity:1,scale:1,y:0,rotation:0,duration:DUR*.2,ease:BO},at(.62));
- tl.fromTo('#hero6',{scale:1},{scale:1.025,duration:DUR*.22,ease:ED,yoyo:true,repeat:2},at(.84));
- tl.to('#may6',{opacity:1,scale:1,rotation:5,duration:DUR*.14,ease:"back.out(1.8)"},at(.78));
- tl.to('#may6',{rotation:-2,y:-4,duration:DUR*.2,ease:ED,yoyo:true,repeat:1},at(.9));
+ // thumbs tapping, varying rhythm
+ tl.fromTo('#thL6',{y:0},{y:-9,duration:.2,ease:ED,yoyo:true,repeat:Math.floor(DUR/.4)},T0);
+ tl.fromTo('#thR6',{y:0},{y:-8,duration:.27,ease:ED,yoyo:true,repeat:Math.floor(DUR/.54)},T0+.1);
+ tl.fromTo('#phn6',{rotation:0,svgOrigin:'231 482'},{rotation:3,svgOrigin:'231 482',duration:.5,ease:ED,yoyo:true,repeat:Math.floor(DUR/.5)},T0);
+ // chat bubbles inside the phone (first two already visible at frame 0)
+ const mbs=[...document.querySelectorAll('#s6 .mb')];
+ const mt=[0,0.02,0.1,0.17,0.25,0.35,0.44,0.53];
+ mbs.forEach((el,i)=>{
+  const right=(i%2==0);
+  tl.fromTo(el,{opacity:i<2?1:0,scale:i<2?.9:.5,svgOrigin:(right?'844':'556')+' '+(+el.dataset.y+22)},{opacity:1,scale:1,duration:DUR*.13,ease:BK},at(mt[i]));
+ });
+ tl.to('#msgs6',{y:-60,duration:DUR*.16,ease:"power2.inOut"},at(0.3));
+ tl.to('#msgs6',{y:-176,duration:DUR*.2,ease:"power2.inOut"},at(0.52));
+ tl.fromTo('#dots6',{opacity:0,y:20},{opacity:1,y:0,duration:DUR*.1,ease:"power2.out"},at(0.64));
+ // flying chatter bubbles from friend to phone, each its own arc
+ const fb=[...document.querySelectorAll('#s6 .fb')];
+ const fs=[0.02,0.12,0.22,0.34,0.46], fd=[.2,.24,.19,.23,.21], fy=[-150,-110,-170,-120,-140], fe=[20,60,-10,80,40];
+ fb.forEach((el,i)=>{
+  const x0=250,y0=270,x1=560,y1=210+fe[i];
+  tl.fromTo(el,{opacity:0,scale:.4,x:x0,y:y0,svgOrigin:'0 0'},{opacity:1,scale:1,duration:DUR*.06,ease:BK},at(fs[i]));
+  tl.fromTo(el,{x:x0},{x:x1,duration:DUR*fd[i],ease:"sine.inOut"},at(fs[i]));
+  tl.fromTo(el,{y:y0},{y:y0+fy[i],duration:DUR*fd[i]*.5,ease:"sine.out"},at(fs[i]));
+  tl.to(el,{y:y1,duration:DUR*fd[i]*.5,ease:"sine.in"},at(fs[i]+fd[i]*.5));
+  tl.to(el,{opacity:0,scale:.6,duration:DUR*.05,ease:"power2.in"},at(fs[i]+fd[i]*.92));
+ });
+ // post card slides in, plane flies from it to the phone
+ tl.fromTo('#card6',{opacity:0,y:90,rotation:6,svgOrigin:'395 526'},{opacity:1,y:0,rotation:-3,svgOrigin:'395 526',duration:DUR*.22,ease:BK},at(0.5));
+ tl.to('#card6',{rotation:2,svgOrigin:'395 526',duration:DUR*.4,ease:ED,yoyo:true,repeat:1},at(0.72));
+ tl.set('#pl6',{x:395,y:488,opacity:0},T0);
+ tl.set('#tick6',{opacity:0,scale:.2,svgOrigin:'0 0'},T0);
+ tl.fromTo('#pl6',{opacity:0,scale:.5,svgOrigin:'0 0',x:395,y:490},{opacity:1,scale:1,duration:DUR*.07,ease:BK},at(0.66));
+ tl.fromTo('#pl6',{x:395},{x:760,duration:DUR*.26,ease:"sine.inOut"},at(0.68));
+ tl.fromTo('#pl6',{y:490},{y:340,duration:DUR*.13,ease:"sine.out"},at(0.68));
+ tl.to('#pl6',{y:150,duration:DUR*.13,ease:"sine.in"},at(0.81));
+ tl.fromTo('#plr6',{rotation:-20,svgOrigin:'0 0'},{rotation:-45,svgOrigin:'0 0',duration:DUR*.13,ease:ED,yoyo:true,repeat:1},at(0.68));
+ tl.to('#pl6',{opacity:0,scale:.4,duration:DUR*.06,ease:"power2.in"},at(0.92));
+ tl.fromTo('#tick6',{opacity:0,scale:.2,svgOrigin:'0 0'},{opacity:1,scale:1,svgOrigin:'0 0',duration:DUR*.12,ease:BK},at(0.9));
+ 
 };
 </script>

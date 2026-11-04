@@ -5,8 +5,9 @@ import json, os, re, sys
 H=os.path.dirname(os.path.abspath(__file__))
 TEXTS=[l.rstrip("\n") for l in open(H+"/lines.txt") if l.strip()]; N=len(TEXTS)
 _c=json.load(open(H+"/cues.json")) if os.path.exists(H+"/cues.json") else None
-EST=(_c["durations"] if "durations" in _c else [round(l["end"]-l["start"],3) for l in _c["lines"]]) if _c else None
-EST=EST or ([round(0.32*len(t.split())+0.5,2) for t in TEXTS])
+assert N==7, f"ep84 v2 has 7 lines, lines.txt has {N}"
+_byt={l["text"]:round(l["end"]-l["start"],3) for l in _c["lines"]} if _c else {}   # durations carried over by exact line text (stale cues.json has the 8 old lines)
+EST=[_byt.get(t, 2.0 if i==0 else round(0.32*len(t.split())+0.5,2)) for i,t in enumerate(TEXTS)]
 GAP=0.3; HEAD=0.10; HOOKGAP=0.55; TAIL=0.9
 t=HEAD; lines=[]
 for i,(tx,d) in enumerate(zip(TEXTS,EST),1):

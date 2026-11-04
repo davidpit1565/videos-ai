@@ -5,12 +5,12 @@ import json, os, re, sys, subprocess
 import soundfile as sf, numpy as np
 H=os.path.dirname(os.path.abspath(__file__))
 GAP=float(os.environ.get("GAP","0.3")); HOOKGAP=float(os.environ.get("HOOKGAP","0.55")); HEAD=0.10; TAIL=float(os.environ.get("TAIL","0.9"))
-TEXTS=[l.rstrip("\n") for l in open(H+"/lines.txt") if l.strip()]; N=len(TEXTS); assert N==8
+TEXTS=[l.rstrip("\n") for l in open(H+"/lines.txt") if l.strip()]; N=len(TEXTS); assert N==7, 'ep84 v2 has 7 lines'
 sr=48000
-wj=H+"/voice/words.json"; words=json.load(open(wj)) if os.path.exists(wj) else {}
+wj=H+"/voice/words-v2.json"; words=json.load(open(wj)) if os.path.exists(wj) else {}
 t=HEAD; lines=[]; out=[]; real=[]
 for i,tx in enumerate(TEXTS,1):
-    p=f"{H}/voice/final/{i}.wav"
+    p=f"{H}/voice/final-v2/{i}.wav"
     if os.path.exists(p):
         x,s=sf.read(p); assert s==sr,f"line {i}: {s} Hz, need 48000"
         x=x if x.ndim==1 else x[:,0]; x=x*10**(float(os.environ.get('G1','3.5'))/20) if i==1 else x; d=len(x)/sr; real.append(i); out.append((int(t*sr),x))

@@ -1,99 +1,194 @@
 <style>
-#s1{--lime:#A3E635;--limed:#7DB81A;--note:#FFE066;--note2:#FFD23F}
-#s1 .pill{background:var(--lime);color:var(--ink)}
-#s1 .w{color:var(--ink);line-height:1.0}
-#s1 .grp{top:288px}
-#s1 .nt{position:absolute;width:230px;height:200px;opacity:0}
-#s1 .nt .fl{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:50% 8%}
-#s1 .nt .pad{position:absolute;left:0;top:0;width:100%;height:100%;background:var(--note);border:6px solid var(--ink);border-radius:10px 10px 28px 10px;box-shadow:8px 8px 0 var(--ink)}
-#s1 .nt .tape{position:absolute;left:78px;top:-20px;width:74px;height:34px;background:rgba(255,255,255,.72);border:4px solid var(--ink);border-radius:6px;transform:rotate(-4deg)}
-#s1 .nt .tx{position:absolute;left:16px;right:12px;top:42px;font-weight:800;font-size:40px;line-height:1.05;letter-spacing:-.03em;color:var(--ink)}
-#s1 .nt .ln{position:absolute;left:18px;right:22px;height:8px;border-radius:4px;background:rgba(14,14,14,.32)}
-#s1 #bub{position:absolute;left:70px;top:738px;width:560px;height:290px;opacity:0}
-#s1 #bub svg{width:100%;height:100%;overflow:visible}
-#s1 #bdots{position:absolute;left:300px;top:150px;display:flex;gap:16px}
-#s1 #bdots i{width:26px;height:26px;border-radius:50%;background:var(--ink);display:block}
-#s1 #bd{position:absolute;left:54px;top:728px;width:210px;height:210px;background:var(--white);border:7px solid var(--ink);border-radius:56px;box-shadow:9px 9px 0 var(--ink);display:flex;align-items:center;justify-content:center;opacity:0}
-#s1 #bd img{width:66%;height:66%}
-#s1 #bd .ring{position:absolute;inset:-6px;border-radius:56px;border:7px solid var(--lime);opacity:0}
-#s1 #pen{position:absolute;left:855px;top:925px;width:170px;height:185px;opacity:0;transform-origin:10% 92%}
-#s1 #pen svg{width:100%;height:100%;overflow:visible}
-#s1 #scr{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
-#s1 .cap{position:absolute;left:690px;top:1212px;font-size:24px;font-weight:700;color:var(--ink2);letter-spacing:0;opacity:0}
-#s1 .spk{position:absolute;opacity:0}
+#s1{--lime:#A3E635;--yel:#FFE45C}
+#s1 .w{color:var(--ink);line-height:1}
+#s1 .pill{background:var(--lime)}
+#s1 .s136{font-size:136px}
+#s1 #bd1{display:inline-flex;width:104px;height:104px;vertical-align:middle;background:#fff;border:6px solid #0E0E0E;border-radius:34px;box-shadow:8px 8px 0 #0E0E0E;align-items:center;justify-content:center;margin:0 16px 8px 0}
+#s1 #bd1 img{width:64%;height:64%}
+#s1 #st1{position:absolute;left:65px;top:768px;width:950px;height:620px;transform:scale(.76);transform-origin:50% 0}
+#s1 #st1 svg{position:absolute;left:0;top:0;overflow:visible}
 </style>
 <div class="scn clip" id="s1" data-start="0" data-duration="__D1__" data-track-index="1"><div class="cam" id="cam1">
- <div class="grp">
-  <div class="row"><span class="w" data-w="0" style="font-size:112px">CHATGPT</span><span class="w" data-w="1" style="font-size:112px">HAS</span></div>
-  <div class="row"><span class="w" data-w="2" style="font-size:112px">BEEN</span><span class="w" data-w="3" style="font-size:112px">TAKING</span></div>
-  <div class="row"><span class="w pill" data-w="4" style="font-size:112px;margin-top:6px">NOTES</span><span class="w" data-w="5" style="font-size:112px;margin-top:6px">ON YOU</span></div>
+ <div class="grp" id="g1" style="top:292px">
+  <div class="row"><span id="bd1"><img src="assets/chatgpt.svg" alt=""/></span><span class="w s112" data-w="0">CHATGPT</span></div>
+  <div class="row"><span class="w pill s100 bk" data-w="1" style="margin:0 14px 0 0">KEPT</span><span class="w s100" data-w="2" style="margin:0 8px">WHAT</span><span class="w s100" data-w="3" style="margin:0 8px">YOU</span></div>
+  <div class="row"><span class="w pill s136 bk" data-w="4" style="margin-top:4px">TRASHED!</span></div>
  </div>
+ <div id="st1"><svg width="950" height="620" viewBox="0 0 950 620">
+  <ellipse id="fl1" cx="730" cy="606" rx="120" ry="14" fill="rgba(0,0,0,.14)"/>
+  <!-- three sticky notes -->
+  <g id="hnw1"><g id="hnb1"><g transform="rotate(-7 140 150)">
+    <rect x="48" y="68" width="200" height="180" rx="10" fill="#0E0E0E"/>
+    <rect x="40" y="60" width="200" height="180" rx="10" fill="#FFE45C" stroke="#0E0E0E" stroke-width="7"/>
+    <path d="M240 200 L200 240 L240 240 Z" fill="#E8C93A" stroke="#0E0E0E" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M70 86 L150 86 M70 102 L118 102" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round" opacity=".55"/>
+    <g id="he1a"><circle cx="102" cy="150" r="20" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><circle id="hp1a" cx="102" cy="150" r="9" fill="#0E0E0E"/><rect id="hl1a" x="80" y="128" width="44" height="22" fill="#FFE45C" opacity="0"/></g>
+    <g id="he1b"><circle cx="178" cy="150" r="20" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><circle id="hp1b" cx="178" cy="150" r="9" fill="#0E0E0E"/><rect id="hl1b" x="156" y="128" width="44" height="22" fill="#FFE45C" opacity="0"/></g>
+    <path id="hm1n" d="M124 205 Q140 214 156 205" fill="none" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/>
+    <path id="hm1s" d="M118 203 Q146 222 168 196" fill="none" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round" opacity="0"/>
+    <path id="hb1" d="M82 127 L124 121" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round" opacity="0"/>
+  </g></g></g>
 
- <div id="n1" class="nt" style="left:660px;top:738px"><div class="fl"><div class="pad"></div><div class="tape"></div><div class="tx">Likes<br>pasta</div><div class="ln" style="top:140px"></div><div class="ln" style="top:162px;right:70px"></div></div></div>
- <div id="n2" class="nt" style="left:775px;top:950px"><div class="fl"><div class="pad" style="background:var(--note2)"></div><div class="tape"></div><div class="tx">Exam<br>Fri.</div><svg id="scr" viewBox="0 0 230 200"><path id="scrp" d="M18 140 C50 125 70 160 100 140 S150 125 178 150 S200 140 212 152" fill="none" stroke="#0E0E0E" stroke-width="8" stroke-linecap="round" stroke-dasharray="320" stroke-dashoffset="320"/></svg></div></div>
- <div id="n3" class="nt" style="left:92px;top:1040px"><div class="fl"><div class="pad"></div><div class="tape"></div><div class="tx" style="font-size:36px">Prefers<br>short<br>answers</div></div></div>
- <div id="n4" class="nt" style="left:385px;top:1055px"><div class="fl"><div class="pad" style="background:#FFEF9A"></div><div class="tape"></div><div class="tx">Plays<br>guitar</div><div class="ln" style="top:140px"></div><div class="ln" style="top:162px;right:90px"></div></div></div>
+  <g id="hnw2"><g id="hnb2"><g transform="rotate(5 460 110)">
+    <rect x="368" y="28" width="200" height="180" rx="10" fill="#0E0E0E"/>
+    <rect x="360" y="20" width="200" height="180" rx="10" fill="#FFE45C" stroke="#0E0E0E" stroke-width="7"/>
+    <path d="M560 160 L520 200 L560 200 Z" fill="#E8C93A" stroke="#0E0E0E" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M390 46 L480 46 M390 62 L440 62" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round" opacity=".55"/>
+    <g id="he2a"><circle cx="422" cy="110" r="20" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><circle id="hp2a" cx="422" cy="110" r="9" fill="#0E0E0E"/><rect id="hl2a" x="400" y="88" width="44" height="22" fill="#FFE45C" opacity="0"/></g>
+    <g id="he2b"><circle cx="498" cy="110" r="20" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><circle id="hp2b" cx="498" cy="110" r="9" fill="#0E0E0E"/><rect id="hl2b" x="476" y="88" width="44" height="22" fill="#FFE45C" opacity="0"/></g>
+    <path id="hm2n" d="M444 166 Q460 174 476 166" fill="none" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/>
+    <path id="hm2s" d="M438 164 Q466 182 488 156" fill="none" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round" opacity="0"/>
+    <path id="hb2" d="M402 89 L444 83" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round" opacity="0"/>
+  </g></g></g>
 
- <div id="bub"><svg viewBox="0 0 560 290"><path d="M40 12 H520 Q548 12 548 40 V200 Q548 228 520 228 H220 L120 280 L150 228 H40 Q12 228 12 200 V40 Q12 12 40 12Z" fill="#fff" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/><rect x="250" y="52" width="250" height="16" rx="8" fill="#D6D6CC"/><rect x="250" y="88" width="180" height="16" rx="8" fill="#D6D6CC"/></svg><div id="bdots"><i></i><i></i><i></i></div></div>
- <div id="bd"><img src="assets/chatgpt.svg"><div class="ring"></div></div>
+  <g id="hnw3"><g id="hnb3"><g transform="rotate(-4 760 160)">
+    <rect x="668" y="78" width="200" height="180" rx="10" fill="#0E0E0E"/>
+    <rect x="660" y="70" width="200" height="180" rx="10" fill="#FFE45C" stroke="#0E0E0E" stroke-width="7"/>
+    <path d="M860 210 L820 250 L860 250 Z" fill="#E8C93A" stroke="#0E0E0E" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M690 96 L770 96 M690 112 L744 112" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round" opacity=".55"/>
+    <g id="he3a"><circle cx="722" cy="160" r="20" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><circle id="hp3a" cx="722" cy="160" r="9" fill="#0E0E0E"/><rect id="hl3a" x="700" y="138" width="44" height="22" fill="#FFE45C" opacity="0"/></g>
+    <g id="he3b"><circle cx="798" cy="160" r="20" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><circle id="hp3b" cx="798" cy="160" r="9" fill="#0E0E0E"/><rect id="hl3b" x="776" y="138" width="44" height="22" fill="#FFE45C" opacity="0"/></g>
+    <path id="hm3n" d="M744 214 Q760 222 776 214" fill="none" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/>
+    <path id="hm3s" d="M738 212 Q766 230 788 204" fill="none" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round" opacity="0"/>
+    <path id="hb3" d="M702 137 L744 131" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round" opacity="0"/>
+  </g></g></g>
 
- <div id="pen"><svg viewBox="0 0 230 250"><g id="penbody"><path d="M22 232 L48 190 L196 28 Q212 14 226 28 Q240 42 224 58 L74 214 Z" fill="#fff" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/><path d="M22 232 L48 190 L74 214 Z" fill="#A3E635" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/><path d="M190 36 L218 64" stroke="#0E0E0E" stroke-width="8"/>
-  <g id="eyes" transform="translate(132 128) rotate(-45)"><g class="ey"><ellipse cx="-16" cy="0" rx="13" ry="15" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><circle class="pp" cx="-13" cy="1" r="6" fill="#0E0E0E"/></g><g class="ey"><ellipse cx="16" cy="0" rx="13" ry="15" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><circle class="pp" cx="19" cy="1" r="6" fill="#0E0E0E"/></g><path id="brw" d="M-30 -22 L-6 -28 M8 -28 L32 -20" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/></g></g></svg></div>
- <div class="cap" id="cap1">re-created examples</div>
- <svg class="spk" id="sp1" style="left:300px;top:700px;width:60px;height:60px" viewBox="0 0 60 60"><path d="M30 2 L36 24 L58 30 L36 36 L30 58 L24 36 L2 30 L24 24Z" fill="#A3E635" stroke="#0E0E0E" stroke-width="4" stroke-linejoin="round"/></svg>
- <svg class="spk" id="sp2" style="left:690px;top:1130px;width:46px;height:46px" viewBox="0 0 60 60"><path d="M30 2 L36 24 L58 30 L36 36 L30 58 L24 36 L2 30 L24 24Z" fill="#FFE066" stroke="#0E0E0E" stroke-width="4" stroke-linejoin="round"/></svg>
+  <!-- trash can: back, then bubble, then front, lid on top -->
+  <g id="tc1">
+   <ellipse cx="730" cy="424" rx="90" ry="14" fill="#2A2A28"/>
+   <g id="spd1" stroke="#0E0E0E" stroke-width="9" stroke-linecap="round" opacity="0"><path d="M60 330 L20 322"/><path d="M52 440 L4 440"/><path d="M70 540 L28 556"/></g>
+   <g id="lid1"><rect x="622" y="392" width="216" height="30" rx="12" fill="#A3E635" stroke="#0E0E0E" stroke-width="8"/><rect x="700" y="372" width="60" height="24" rx="10" fill="#E9E9E2" stroke="#0E0E0E" stroke-width="7"/></g>
+   <g id="bub1">
+    <path d="M110 365 L350 365 Q390 365 390 405 L390 485 Q390 525 350 525 L170 525 L116 575 L132 525 L110 525 Q70 525 70 485 L70 405 Q70 365 110 365 Z" transform="translate(8 8)" fill="#0E0E0E"/>
+    <path d="M110 365 L350 365 Q390 365 390 405 L390 485 Q390 525 350 525 L170 525 L116 575 L132 525 L110 525 Q70 525 70 485 L70 405 Q70 365 110 365 Z" fill="#fff" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/>
+    <circle cx="158" cy="445" r="58" fill="#A3E635" stroke="#0E0E0E" stroke-width="6"/>
+    <image href="assets/chatgpt.svg" x="120" y="407" width="76" height="76"/>
+    <path d="M240 425 L352 425 M240 465 L322 465" stroke="#0E0E0E" stroke-width="10" stroke-linecap="round" opacity=".35"/>
+    <g id="x1"><circle cx="390" cy="365" r="32" fill="#E5484D" stroke="#0E0E0E" stroke-width="6"/><path d="M376 351 L404 379 M404 351 L376 379" stroke="#fff" stroke-width="8" stroke-linecap="round"/></g>
+   </g>
+   <path d="M638 420 L822 420 L806 604 L654 604 Z" fill="#E9E9E2" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/>
+   <path d="M690 446 L696 580 M730 446 L730 580 M770 446 L764 580" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round" opacity=".4"/>
+  </g>
+
+  <!-- paper bits -->
+  <g id="bits1">
+   <rect class="bt" x="724" y="400" width="18" height="14" rx="3" fill="#fff" stroke="#0E0E0E" stroke-width="4"/>
+   <rect class="bt" x="724" y="400" width="14" height="14" rx="3" fill="#A3E635" stroke="#0E0E0E" stroke-width="4"/>
+   <rect class="bt" x="724" y="400" width="16" height="12" rx="3" fill="#FFE45C" stroke="#0E0E0E" stroke-width="4"/>
+   <rect class="bt" x="724" y="400" width="12" height="12" rx="3" fill="#fff" stroke="#0E0E0E" stroke-width="4"/>
+   <rect class="bt" x="724" y="400" width="16" height="14" rx="3" fill="#A3E635" stroke="#0E0E0E" stroke-width="4"/>
+   <rect class="bt" x="724" y="400" width="14" height="12" rx="3" fill="#fff" stroke="#0E0E0E" stroke-width="4"/>
+  </g>
+
+ </svg></div>
 </div></div>
 <script>
 window.buildScene_1=function(tl,T0,DUR){
- const ED="sine.inOut", at=f=>T0+DUR*f;
+ const E1="power3.out",ED="sine.inOut";
+ const at=f=>T0+DUR*f;
  tl.set('#s1',{opacity:1,visibility:'visible'},T0);
  tl.set('#s1 .w',{opacity:0},T0);
- // camera drift
- tl.fromTo('#cam1',{scale:1,x:-8,y:6},{scale:1.03,x:9,y:-8,duration:DUR,ease:ED},T0);
- // headline words, uneven stagger over ~60% of DUR
- const off=[0.0,0.07,0.16,0.24,0.36,0.47];
- [...document.querySelectorAll('#s1 .w')].forEach((el,i)=>{
-  const t=at(off[i]*0.95), pill=el.classList.contains('pill');
-  if(pill) tl.fromTo(el,{opacity:0,y:36,scale:1.14},{opacity:1,y:0,scale:1,duration:DUR*0.2,ease:"back.out(1.2)"},t);
-  else tl.fromTo(el,{opacity:0,y:34},{opacity:1,y:0,duration:DUR*0.17,ease:"expo.out"},t);
+ tl.fromTo('#cam1',{scale:1,x:6,y:-5},{scale:1.03,x:-6,y:6,duration:DUR,ease:ED},T0);
+
+ // ---- hook words: timed from the real spoken-word stamps of line 1 (window.__CUES.lines[0].words, absolute seconds);
+ // without them (estimate build) spread over the line's own length.
+ const L1=(window.__CUES&&window.__CUES.lines&&window.__CUES.lines[0])||{start:.1,end:2.1};
+ const wd=L1.words&&L1.words.length===5?L1.words:null, len=Math.max(.8,L1.end-L1.start);
+ const rel=[0,.2,.46,.58,.7].map(f=>L1.start+f*len);
+ const ws=[...document.querySelectorAll('#s1 .w')];
+ ws.forEach((el,i)=>{
+  const t0=Math.max(T0,(wd?wd[i][0]:rel[i])-0.06);
+  if(i===0){ // first word already half in on frame 0
+   tl.fromTo(el,{opacity:.55,y:18},{opacity:1,y:0,duration:.34,ease:"expo.out"},T0);
+  } else if(el.classList.contains('pill')){
+   tl.fromTo(el,{opacity:0,y:44,scale:1.2},{opacity:1,y:0,scale:1,duration:.42,ease:"back.out(1.2)"},t0);
+  } else tl.fromTo(el,{opacity:0,y:30},{opacity:1,y:0,duration:.3,ease:E1},t0);
  });
- // proof already on screen at frame 0: badge + bubble + first notes in partial pop
- tl.fromTo('#bd',{opacity:1,scale:.9,rotation:-6},{opacity:1,scale:1,rotation:0,duration:DUR*0.2,ease:"back.out(1.2)"},T0);
- tl.fromTo('#bub',{opacity:1,y:24,scale:.94,transformOrigin:'20% 100%'},{opacity:1,y:0,scale:1,duration:DUR*0.22,ease:"back.out(1.2)"},T0+0.02);
- tl.to('#bub',{y:-7,duration:DUR*0.3,ease:ED,yoyo:true,repeat:3},at(0.22));
- tl.to('#bd',{y:-6,rotation:2,duration:DUR*0.26,ease:ED,yoyo:true,repeat:3},at(0.2));
- tl.fromTo('#bd .ring',{opacity:.9,scale:1},{opacity:0,scale:1.25,duration:DUR*0.3,ease:"sine.out",repeat:2,repeatDelay:DUR*0.05},at(0.12));
- // typing dots wave
- [...document.querySelectorAll('#bdots i')].forEach((d,i)=>tl.fromTo(d,{y:0},{y:-12,duration:0.3+i*0.04,ease:ED,yoyo:true,repeat:Math.ceil(DUR/0.7)},T0+i*0.11));
- // notes: sprout from badge, soft overshoot; first two already mid-pop at frame 0
- const N=[
-  {id:'#n1',fx:-560,fy:60,r:7,at:0.00,ph:0,per:1.15},
-  {id:'#n3',fx:-60,fy:-290,r:-8,at:0.03,ph:.3,per:1.5},
-  {id:'#n2',fx:-640,fy:-120,r:-5,at:0.22,ph:.7,per:1.3},
-  {id:'#n4',fx:-260,fy:-330,r:5,at:0.4,ph:.1,per:1.7}];
- N.forEach((n,i)=>{
-  const t=at(n.at);
-  tl.fromTo(n.id,{opacity:1,x:n.fx*0.42,y:n.fy*0.42,scale:i<2?.55:.15,rotation:n.r*3},{opacity:1,x:0,y:0,scale:1,rotation:n.r,duration:DUR*(0.3+i*0.03),ease:"back.out(1.2)"},t);
-  const fl=n.id+' .fl', reps=Math.ceil(DUR/n.per);
-  tl.fromTo(fl,{rotation:-2.6,y:-3},{rotation:2.6,y:5,duration:n.per,ease:ED,yoyo:true,repeat:reps},T0+n.ph*0.3);
+ // the real ChatGPT badge is there from frame 0, settles and keeps bobbing
+ tl.fromTo('#bd1',{rotation:-7,scale:.92,y:6},{rotation:0,scale:1,y:0,duration:.45,ease:"back.out(1.2)"},T0);
+ tl.to('#bd1',{y:-6,rotation:2,duration:.62,ease:ED,yoyo:true,repeat:Math.ceil(DUR/.62)},T0+.45);
+
+ // ---- notes: constant flutter (own period/phase)
+ const sway=(id,cx,cy,amp,per,ph,ya)=>{
+  let t=ph,k=0;
+  tl.set(id,{svgOrigin:cx+' '+cy},T0);
+  while(t<DUR-.05){
+   const sgn=(k%2?-1:1), d=per*(.85+.3*((k*37)%7)/7);
+   tl.to(id,{rotation:sgn*amp*(.8+.4*((k*5)%3)/3),y:-sgn*ya,duration:d,ease:ED},T0+t);
+   t+=d*.92;k++;
+  }
+ };
+ sway('#hnw1',140,150,3.2,.5,0,4);
+ sway('#hnw2',460,110,2.6,.6,.08,5);
+ sway('#hnw3',760,160,3.4,.45,.04,4);
+
+ // ---- the trashed chat is already in flight on frame 0, spins into the open can
+ tl.set('#bub1',{svgOrigin:'230 445',x:150,y:-80,rotation:-16,scale:1},T0);
+ tl.to('#bub1',{x:490,duration:DUR*.5,ease:"power1.inOut"},T0);
+ tl.to('#bub1',{y:-120,duration:DUR*.16,ease:"sine.out"},T0);
+ tl.to('#bub1',{y:64,duration:DUR*.34,ease:"power2.in"},at(.16));
+ tl.to('#bub1',{rotation:12,scale:.62,duration:DUR*.4,ease:ED},T0+.02);
+ tl.to('#bub1',{scaleX:.34,scaleY:.2,rotation:24,duration:DUR*.14,ease:"power2.in"},at(.5));
+ tl.to('#bub1',{opacity:0,duration:DUR*.05,ease:ED},at(.62));
+ tl.fromTo('#x1',{scale:.7,svgOrigin:'390 365'},{scale:1.08,duration:.5,ease:"back.out(1.6)"},T0);
+ tl.fromTo('#spd1',{opacity:.9,x:0},{opacity:0,x:-30,duration:DUR*.3,ease:"power2.out"},T0);
+ // lid: already open on frame 0, flaps shut a bit after landing
+ tl.set('#lid1',{svgOrigin:'622 408'},T0);
+ tl.fromTo('#lid1',{rotation:-38},{rotation:-46,duration:DUR*.3,ease:ED},T0);
+ tl.to('#lid1',{rotation:-12,duration:DUR*.22,ease:"back.inOut(1.2)"},at(.6));
+ // can squashes on landing, soft elastic settle
+ tl.set('#tc1',{svgOrigin:'730 604'},T0);
+ tl.to('#tc1',{scaleY:.94,scaleX:1.04,duration:DUR*.07,ease:"power2.out"},at(.54));
+ tl.to('#tc1',{scaleY:1,scaleX:1,duration:DUR*.26,ease:"elastic.out(1,.5)"},at(.61));
+ // paper bits puff
+ tl.set('#s1 .bt',{opacity:0,scale:.3,svgOrigin:'730 410'},T0);
+ const vec=[[-70,-120,200],[60,-150,-160],[-20,-170,120],[100,-90,-220],[-110,-70,260],[30,-190,-100]];
+ [...document.querySelectorAll('#s1 .bt')].forEach((el,i)=>{
+  const t=at(.58+i*.012);
+  tl.fromTo(el,{opacity:1,scale:.4,x:0,y:0,rotation:0},{x:vec[i][0],y:vec[i][1],rotation:vec[i][2],scale:1,duration:DUR*.2,ease:"power2.out"},t);
+  tl.to(el,{y:vec[i][1]+50,opacity:0,duration:DUR*.16,ease:"power2.in"},t+DUR*.2);
  });
- // spark pops
- tl.fromTo('#sp1',{opacity:0,scale:.2,rotation:-30},{opacity:1,scale:1,rotation:15,duration:DUR*0.2,ease:"back.out(1.2)"},at(0.2));
- tl.to('#sp1',{scale:.6,opacity:.3,duration:DUR*0.25,ease:ED,yoyo:true,repeat:2},at(0.4));
- tl.fromTo('#sp2',{opacity:0,scale:.2},{opacity:1,scale:1,rotation:-20,duration:DUR*0.2,ease:"back.out(1.2)"},at(0.5));
- tl.to('#sp2',{scale:.5,opacity:.3,duration:DUR*0.2,ease:ED,yoyo:true,repeat:2},at(0.7));
- // pen enters, wobbles and scribbles on note 2
- tl.fromTo('#pen',{opacity:0,x:80,y:70,rotation:10},{opacity:1,x:0,y:0,rotation:0,duration:DUR*0.28,ease:"back.out(1.2)"},at(0.16));
- const pk=[[-14,6,-3],[6,-8,2],[-24,4,-4],[10,-5,3],[-6,8,-2],[-18,-3,3]];
- pk.forEach((k,i)=>tl.to('#pen',{x:k[0],y:k[1],rotation:k[2],duration:DUR*(0.1+0.015*(i%3)),ease:ED},at(0.4+i*0.095)));
- tl.fromTo('#scrp',{strokeDashoffset:320},{strokeDashoffset:0,duration:DUR*0.5,ease:"sine.inOut"},at(0.36));
- // pen eyes: blink + look at viewer / at note, brow raise
- tl.fromTo('#pen .ey',{scaleY:1,transformOrigin:'50% 50%'},{scaleY:.08,duration:0.09,ease:"power2.inOut",yoyo:true,repeat:1},T0+1.15);
- tl.fromTo('#pen .ey',{scaleY:1},{scaleY:.08,duration:0.09,ease:"power2.inOut",yoyo:true,repeat:1},T0+2.55);
- tl.to('#pen .pp',{x:-5,y:4,duration:0.35,ease:ED},at(0.3));
- tl.to('#pen .pp',{x:5,y:-1,duration:0.4,ease:ED},at(0.62));
- tl.fromTo('#brw',{y:0},{y:-6,duration:0.3,ease:"back.out(1.2)"},at(0.55));
- tl.to('#brw',{y:0,duration:0.5,ease:ED},at(0.8));
- tl.fromTo('#cap1',{opacity:0},{opacity:.85,duration:DUR*0.2,ease:ED},at(0.45));
+
+ // ---- faces look at the viewer on frame 0, glance at the falling chat, blink, go smug
+ const pup=(id,dx1,dy1,dx2,dy2)=>{
+  tl.set(id,{x:0,y:1},T0);
+  tl.to(id,{x:dx1,y:dy1,duration:DUR*.3,ease:"power2.inOut"},at(.14));
+  tl.to(id,{x:dx2,y:dy2,duration:DUR*.16,ease:"back.out(1.2)"},at(.58));
+ };
+ pup('#hp1a,#hp1b',7,4,0,3);
+ pup('#hp2a,#hp2b',5,3,0,3);
+ pup('#hp3a,#hp3b',-3,4,-1,3);
+ const blink=(l,t)=>{
+  tl.set(l,{opacity:1},T0);
+  tl.fromTo(l,{scaleY:0,transformOrigin:'50% 0%'},{scaleY:1,duration:DUR*.035,ease:"power2.in"},at(t));
+  tl.to(l,{scaleY:0,duration:DUR*.05,ease:"power2.out"},at(t+.04));
+ };
+ tl.set('#hl1a,#hl1b,#hl2a,#hl2b,#hl3a,#hl3b',{scaleY:0,transformOrigin:'50% 0%'},T0);
+ blink('#hl1a,#hl1b',.3);blink('#hl2a,#hl2b',.2);blink('#hl3a,#hl3b',.42);
+ const smug=(l,m,mn,b,t)=>{
+  tl.to(l,{scaleY:.55,duration:DUR*.1,ease:"power2.out"},at(t));
+  tl.to(mn,{opacity:0,duration:DUR*.06,ease:ED},at(t));
+  tl.to(m,{opacity:1,duration:DUR*.1,ease:ED},at(t));
+  tl.to(b,{opacity:1,duration:DUR*.1,ease:ED},at(t+.02));
+ };
+ smug('#hl1a,#hl1b','#hm1s','#hm1n','#hb1',.62);
+ smug('#hl2a,#hl2b','#hm2s','#hm2n','#hb2',.67);
+ smug('#hl3a,#hl3b','#hm3s','#hm3n','#hb3',.72);
+ [['#hl1a,#hl1b',.88],['#hl3a,#hl3b',.92]].forEach(([l,t])=>{
+  tl.to(l,{scaleY:1,duration:DUR*.03,ease:"power2.in"},at(t));
+  tl.to(l,{scaleY:.55,duration:DUR*.05,ease:"power2.out"},at(t+.035));
+ });
+
+ // ---- notes hop in a cascade on landing and drift apart
+ [['#hnb1',.56],['#hnb2',.6],['#hnb3',.64]].forEach(([id,t])=>{
+  tl.to(id,{y:-26,duration:DUR*.07,ease:"power2.out"},at(t));
+  tl.to(id,{y:0,duration:DUR*.2,ease:"back.out(2.2)"},at(t+.07));
+ });
+ tl.to('#hnb1',{x:50,duration:DUR*.42,ease:ED},at(.6));
+ tl.to('#hnb2',{x:-10,duration:DUR*.42,ease:ED},at(.62));
+ tl.to('#hnb3',{x:-60,duration:DUR*.42,ease:ED},at(.64));
+ tl.to('#hnb1',{scale:1.06,svgOrigin:'140 150',duration:DUR*.3,ease:ED},at(.68));
+ tl.to('#hnb2',{scale:1.05,svgOrigin:'460 110',duration:DUR*.3,ease:ED},at(.7));
+ tl.to('#hnb3',{scale:1.06,svgOrigin:'760 160',duration:DUR*.3,ease:ED},at(.72));
 };
 </script>

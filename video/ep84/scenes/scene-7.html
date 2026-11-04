@@ -1,151 +1,104 @@
 <style>
-#s7{--lime:#A3E635}
+#s7{--lime:#A3E635;--lime2:#84CC16}
+#s7 .pill{background:var(--lime);color:var(--ink)}
 #s7 .w{color:var(--ink)}
-#s7 .pill{background:var(--lime)}
-#s7 #st7{position:absolute;left:65px;top:650px;width:950px;height:580px}
-#s7 #st7 svg{position:absolute;left:0;top:0;overflow:visible}
+#s7 .trap{overflow:visible;position:absolute;left:65px;top:760px;width:950px;height:380px;transform-origin:50% 50%;opacity:0}
+#s7 .fol{position:absolute;left:117px;top:720px;width:845px;height:195px;border-radius:98px;background:var(--lime);border:7px solid var(--ink);box-shadow:10px 10px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:22px;font-weight:900;font-size:100px;letter-spacing:-.04em;color:var(--ink);opacity:0}
+#s7 .fol svg{width:84px;height:84px}
+#s7 .rip{position:absolute;left:640px;top:818px;width:60px;height:60px;margin:-30px;border-radius:50%;border:8px solid var(--lime2);opacity:0}
+#s7 .cur{position:absolute;left:0;top:0;width:110px;height:130px;opacity:0}
+#s7 .bell{position:absolute;left:810px;top:640px;width:160px;height:160px;background:var(--white);border:6px solid var(--ink);border-radius:40px;box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center;opacity:0}
+#s7 .bell svg{width:100px;height:100px;transform-origin:50% 8%}
+#s7 .hd7{position:absolute;left:65px;top:1010px;width:950px;text-align:center;font-weight:900;font-size:82px;letter-spacing:-.03em;opacity:0;color:var(--ink)}
+#s7 .hd7 span{background:var(--white);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);padding:6px 28px;display:inline-block}
+#s7 .sp{position:absolute;width:90px;height:90px;opacity:0;margin:-45px}
+#s7 .note{position:absolute;width:110px;height:110px;margin:-55px;opacity:0}
 </style>
 <div class="scn clip" id="s7" data-start="0" data-duration="__D7__" data-track-index="1"><div class="cam" id="cam7">
- <div class="grp" id="g7" style="top:300px">
-  <div class="row"><span class="w s100" data-w="0">SEND</span><span class="w s100" data-w="1">THIS</span><span class="w s100 lt" data-w="2">TO</span><span class="w s100 lt" data-w="3">A</span></div>
-  <div class="row"><span class="w pill s150 bk" data-w="4" style="margin-top:4px">FRIEND</span></div>
+ <div class="grp" id="g8a" style="top:295px">
+  <div class="row"><span class="w s112">DON'T MISS</span></div>
+  <div class="row"><span class="w s112">THE NEXT</span> <span class="w pill s112" style="margin-left:6px">TRAP</span></div>
  </div>
- <div id="st7"><svg width="950" height="580" viewBox="0 0 950 580">
-  <defs><clipPath id="cl7"><rect x="546" y="118" width="308" height="420" rx="10"/></clipPath></defs>
-  <ellipse cx="190" cy="568" rx="190" ry="14" fill="rgba(0,0,0,.12)"/>
-  <!-- friend -->
-  <g id="fr7">
-   <g id="body7">
-    <path d="M30 580 L30 440 C30 380 90 350 160 350 C230 350 290 380 290 440 L290 580 Z" fill="#FF8A5B" stroke="#0E0E0E" stroke-width="9"/>
-    <path d="M130 352 Q160 392 190 352" fill="none" stroke="#0E0E0E" stroke-width="8" stroke-linecap="round"/>
-    <g id="head7">
-     <rect x="144" y="318" width="32" height="42" fill="#FFC98B" stroke="#0E0E0E" stroke-width="8"/>
-     <circle cx="160" cy="245" r="84" fill="#FFD39B" stroke="#0E0E0E" stroke-width="9"/>
-     <path d="M76 235 C70 150 130 150 160 160 C200 150 250 170 244 238 C230 200 200 195 160 196 C120 196 92 205 76 235Z" fill="#3B2A20" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/>
-     <g id="eyes7"><circle cx="126" cy="250" r="11" fill="#0E0E0E"/><circle cx="194" cy="250" r="11" fill="#0E0E0E"/>
-      <circle cx="130" cy="246" r="3.5" fill="#fff"/><circle cx="198" cy="246" r="3.5" fill="#fff"/></g>
-     <path id="brL7" d="M108 222 Q126 212 144 222" fill="none" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round"/>
-     <path id="brR7" d="M176 222 Q194 212 212 222" fill="none" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round"/>
-     <circle cx="106" cy="278" r="13" fill="#FF8A7A" opacity=".5"/><circle cx="214" cy="278" r="13" fill="#FF8A7A" opacity=".5"/>
-     <g id="mouth7"><path d="M130 282 Q160 322 190 282 Z" fill="#7A1F2B" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/><path d="M142 296 Q160 306 178 296" fill="#FF8A7A"/></g>
-    </g>
-    <g id="phn7"><rect x="196" y="430" width="70" height="104" rx="14" fill="#fff" stroke="#0E0E0E" stroke-width="8" transform="rotate(-12 231 482)"/>
-     <circle cx="226" cy="486" r="9" fill="#A3E635" stroke="#0E0E0E" stroke-width="4"/></g>
-    <g id="thL7"><circle cx="212" cy="500" r="17" fill="#FFD39B" stroke="#0E0E0E" stroke-width="7"/></g>
-    <g id="thR7"><circle cx="252" cy="486" r="17" fill="#FFD39B" stroke="#0E0E0E" stroke-width="7"/></g>
-   </g>
-  </g>
-  <!-- flying chatter bubbles -->
-  <g id="fb7">
-   <g class="fb"><rect x="0" y="0" width="92" height="46" rx="23" fill="#A3E635" stroke="#0E0E0E" stroke-width="6"/><circle cx="26" cy="23" r="5" fill="#0E0E0E"/><circle cx="46" cy="23" r="5" fill="#0E0E0E"/><circle cx="66" cy="23" r="5" fill="#0E0E0E"/></g>
-   <g class="fb"><rect x="0" y="0" width="110" height="46" rx="23" fill="#fff" stroke="#0E0E0E" stroke-width="6"/><rect x="22" y="18" width="66" height="10" rx="5" fill="#0E0E0E"/></g>
-   <g class="fb"><rect x="0" y="0" width="84" height="46" rx="23" fill="#A3E635" stroke="#0E0E0E" stroke-width="6"/><rect x="20" y="18" width="44" height="10" rx="5" fill="#0E0E0E"/></g>
-   <g class="fb"><rect x="0" y="0" width="100" height="46" rx="23" fill="#fff" stroke="#0E0E0E" stroke-width="6"/><circle cx="30" cy="23" r="5" fill="#0E0E0E"/><circle cx="50" cy="23" r="5" fill="#0E0E0E"/><circle cx="70" cy="23" r="5" fill="#0E0E0E"/></g>
-   <g class="fb"><rect x="0" y="0" width="96" height="46" rx="23" fill="#A3E635" stroke="#0E0E0E" stroke-width="6"/><rect x="20" y="18" width="56" height="10" rx="5" fill="#0E0E0E"/></g>
-  </g>
-  <!-- phone -->
-  <g id="ph7">
-   <rect x="532" y="30" width="336" height="540" rx="52" fill="#0E0E0E" transform="translate(10 10)"/>
-   <rect x="532" y="30" width="336" height="540" rx="52" fill="#fff" stroke="#0E0E0E" stroke-width="9"/>
-   <rect x="546" y="118" width="308" height="420" rx="10" fill="#F4F4EF"/>
-   <rect x="640" y="42" width="120" height="14" rx="7" fill="#0E0E0E"/>
-   <g id="bdg7"><circle cx="700" cy="84" r="32" fill="#fff" stroke="#0E0E0E" stroke-width="6"/><image href="assets/chatgpt.svg" x="679" y="63" width="42" height="42"/></g>
-   <g clip-path="url(#cl7)"><g id="msgs7">
-    <g class="mb" data-y="140"><rect x="640" y="140" width="204" height="44" rx="22" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><rect x="662" y="157" width="130" height="10" rx="5" fill="#0E0E0E"/></g>
-    <g class="mb" data-y="198"><rect x="556" y="198" width="190" height="44" rx="22" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><rect x="578" y="215" width="110" height="10" rx="5" fill="#9A9A92"/></g>
-    <g class="mb" data-y="256"><rect x="610" y="256" width="234" height="44" rx="22" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><rect x="632" y="273" width="150" height="10" rx="5" fill="#0E0E0E"/></g>
-    <g class="mb" data-y="314"><rect x="556" y="314" width="214" height="44" rx="22" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><rect x="578" y="331" width="130" height="10" rx="5" fill="#9A9A92"/></g>
-    <g class="mb" data-y="372"><rect x="650" y="372" width="194" height="44" rx="22" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><rect x="672" y="389" width="110" height="10" rx="5" fill="#0E0E0E"/></g>
-    <g class="mb" data-y="430"><rect x="620" y="430" width="224" height="44" rx="22" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><rect x="642" y="447" width="140" height="10" rx="5" fill="#0E0E0E"/></g>
-    <g class="mb" data-y="488"><rect x="556" y="488" width="200" height="44" rx="22" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><rect x="578" y="505" width="120" height="10" rx="5" fill="#9A9A92"/></g>
-    <g class="mb" data-y="546"><rect x="636" y="546" width="208" height="44" rx="22" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/><rect x="658" y="563" width="126" height="10" rx="5" fill="#0E0E0E"/></g>
-   </g></g>
-   <g id="dots7" opacity="0"><rect x="556" y="488" width="86" height="40" rx="20" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><circle cx="582" cy="508" r="6" fill="#0E0E0E"/><circle cx="599" cy="508" r="6" fill="#0E0E0E"/><circle cx="616" cy="508" r="6" fill="#0E0E0E"/></g>
-  </g>
-  <!-- post card + plane -->
-  <g id="card7">
-   <rect x="300" y="470" width="190" height="112" rx="14" fill="#FFF3B0" stroke="#0E0E0E" stroke-width="8" transform="translate(8 8)" opacity="1"/>
-   <rect x="300" y="470" width="190" height="112" rx="14" fill="#FFF3B0" stroke="#0E0E0E" stroke-width="8"/>
-   <rect x="440" y="482" width="40" height="46" rx="6" fill="#A3E635" stroke="#0E0E0E" stroke-width="5"/>
-   <line x1="320" y1="512" x2="410" y2="512" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round"/>
-   <line x1="320" y1="540" x2="395" y2="540" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round"/>
-  </g>
-  <g id="pl7"><g id="plr7"><path d="M0 0 L84 -34 L48 30 L36 4 Z" fill="#A3E635" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/><path d="M36 4 L84 -34" stroke="#0E0E0E" stroke-width="5"/></g></g>
-  <g transform="translate(850 520)"><g id="tick7"><circle cx="0" cy="0" r="40" fill="#A3E635" stroke="#0E0E0E" stroke-width="7"/><path d="M-18 2 L-5 16 L20 -14" fill="none" stroke="#0E0E0E" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g>
- </svg></div>
+ <div class="grp" id="g8b" style="top:330px;opacity:0">
+  <div class="row"><span class="w pill" style="font-size:196px">FOLLOW</span></div>
+ </div>
+ <svg class="trap" id="t7" viewBox="0 0 950 380">
+  <rect x="150" y="190" width="650" height="150" rx="26" fill="#E9C98F" stroke="#0E0E0E" stroke-width="8"/>
+  <rect x="172" y="212" width="606" height="106" rx="16" fill="none" stroke="#B88F4B" stroke-width="5" stroke-dasharray="4 14" stroke-linecap="round"/>
+  <rect x="640" y="150" width="30" height="60" rx="6" fill="#B8B8B0" stroke="#0E0E0E" stroke-width="6"/>
+  <g id="spk7" transform="translate(560 205)"><path d="M0-62 C6-18 18-6 62 0 C18 6 6 18 0 62 C-6 18 -18 6 -62 0 C-18-6 -6-18 0-62Z" fill="#A3E635" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/></g>
+  <g id="eye7" transform="translate(330 265)"><ellipse cx="0" cy="0" rx="26" ry="30" fill="#fff" stroke="#0E0E0E" stroke-width="6"/><g id="pup7"><circle cx="4" cy="2" r="11" fill="#0E0E0E"/></g></g>
+  <g id="eye8b" transform="translate(405 265)"><ellipse cx="0" cy="0" rx="26" ry="30" fill="#fff" stroke="#0E0E0E" stroke-width="6"/><g id="pup8b"><circle cx="4" cy="2" r="11" fill="#0E0E0E"/></g></g>
+  <g id="bar7"><path d="M215 200 L215 120 L640 120 L640 200" fill="none" stroke="#0E0E0E" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+   <path d="M215 200 L215 120 L640 120 L640 200" fill="none" stroke="#C9CAD2" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <circle cx="215" cy="200" r="16" fill="#0E0E0E"/>
+ </svg>
+ <div class="fol" id="f7"><svg viewBox="0 0 24 24" fill="none" stroke="#0E0E0E" stroke-width="3.2" stroke-linecap="round"><circle cx="10" cy="8" r="4.5"/><path d="M2 21c0-5 3.5-8 8-8s8 3 8 8M19 7v7M15.5 10.5h7"/></svg><span>Follow</span></div>
+ <div class="rip" id="r7"></div>
+ <svg class="cur" id="c7" viewBox="0 0 110 130"><path d="M30 6 C30 0 42 0 42 6 L42 52 L52 48 C56 40 66 42 66 48 C72 44 82 46 82 54 C90 52 98 58 96 66 L92 100 C90 118 78 126 62 126 C46 126 36 118 28 104 L10 72 C6 62 18 58 24 66 L30 76Z" fill="#fff" stroke="#0E0E0E" stroke-width="6" stroke-linejoin="round"/></svg>
+ <div class="bell" id="b7"><svg viewBox="0 0 24 24" fill="#F2B84B" stroke="#0E0E0E" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3c-3.5 0-6 2.6-6 6v4l-2 3.5h16L18 13V9c0-3.4-2.5-6-6-6z"/><path d="M9.5 19.5a2.5 2.5 0 0 0 5 0"/></svg></div>
+ <svg class="sp" id="sp1" viewBox="-70 -70 140 140" style="left:540px;top:625px"><path d="M0-62 C6-18 18-6 62 0 C18 6 6 18 0 62 C-6 18 -18 6 -62 0 C-18-6 -6-18 0-62Z" fill="#A3E635" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/></svg><svg class="sp" id="sp2" viewBox="-70 -70 140 140" style="left:960px;top:1195px"><path d="M0-62 C6-18 18-6 62 0 C18 6 6 18 0 62 C-6 18 -18 6 -62 0 C-18-6 -6-18 0-62Z" fill="#FFE066" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/></svg><svg class="sp" id="sp3" viewBox="-70 -70 140 140" style="left:520px;top:1205px"><path d="M0-62 C6-18 18-6 62 0 C18 6 6 18 0 62 C-6 18 -18 6 -62 0 C-18-6 -6-18 0-62Z" fill="#fff" stroke="#0E0E0E" stroke-width="7" stroke-linejoin="round"/></svg>
+ <svg class="note" id="n1" viewBox="0 0 110 110" style="left:105px;top:1195px"><rect x="8" y="8" width="94" height="94" rx="8" fill="#FFE066" stroke="#0E0E0E" stroke-width="6"/><path d="M26 40h58M26 58h40" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/></svg>
+ <svg class="note" id="n2" viewBox="0 0 110 110" style="left:105px;top:650px"><rect x="8" y="8" width="94" height="94" rx="8" fill="#FFE066" stroke="#0E0E0E" stroke-width="6"/><path d="M26 40h58M26 58h40" stroke="#0E0E0E" stroke-width="6" stroke-linecap="round"/></svg>
+ <div class="hd7" id="hd7"><span>@actually_works.ai</span></div>
 </div></div>
 <script>
 window.buildScene_7=function(tl,T0,DUR){
- const ED="sine.inOut",BK="back.out(1.2)";
+ const E1="power3.out",E2="power2.inOut",ED="sine.inOut";
  const at=f=>T0+DUR*f;
  tl.set('#s7',{opacity:1,visibility:'visible'},T0);
- tl.set('#s7 .w',{opacity:0},T0);
- // camera drift
- tl.fromTo('#cam7',{scale:1,x:-6,y:5},{scale:1.03,x:7,y:-7,duration:DUR,ease:ED},T0);
- // headline words, uneven offsets
- const ws=[...document.querySelectorAll('#s7 .w')];
- const ts=[0.02,0.11,0.19,0.24,0.36];
+ tl.set('#s7 .w',{opacity:0},T0);tl.set('#g8b .w',{opacity:1},T0);
+ tl.set('#t7',{opacity:0,scale:1.4},T0);
+ tl.set('#bar7',{svgOrigin:"215 200",rotation:-32},T0);
+ tl.set('#c7',{x:860,y:1230,opacity:0},T0);
+ tl.set('#eye7,#eye8b',{svgOrigin:"0 0"},T0);
+ tl.fromTo('#cam7',{scale:1,x:-10,y:6},{scale:1.03,x:10,y:-8,duration:DUR,ease:ED},T0);
+ // headline A, uneven stagger
+ const ws=[...document.querySelectorAll('#g8a .w')];
+ const off=[0.02,0.09,0.17];
  ws.forEach((el,i)=>{
-  if(i==4) tl.fromTo(el,{opacity:0,y:44,scale:1.25},{opacity:1,y:0,scale:1,duration:DUR*.24,ease:"expo.out"},at(ts[i]));
-  else tl.fromTo(el,{opacity:0,y:34},{opacity:1,y:0,duration:DUR*.15,ease:"power3.out"},at(ts[i]));
+  const slam=el.classList.contains('pill');
+  const t=at(off[i]||0.02+i*0.07);
+  if(slam) tl.fromTo(el,{opacity:0,y:40,scale:1.15},{opacity:1,y:0,scale:1,duration:DUR*0.18,ease:"back.out(1.2)"},t);
+  else tl.fromTo(el,{opacity:0,y:36},{opacity:1,y:0,duration:DUR*0.14,ease:E1},t);
  });
- // frame-0 proof: friend, phone with chatgpt badge and first bubbles already there
- tl.set('#fr7',{transformOrigin:'160px 580px'},T0);
- tl.fromTo('#ph7',{y:30,rotation:-3,svgOrigin:'700 300',opacity:1},{y:0,rotation:0,svgOrigin:'700 300',duration:DUR*.28,ease:BK},T0);
- tl.fromTo('#fr7',{x:-40},{x:0,duration:DUR*.26,ease:"expo.out"},T0);
- // breathing and phone sway all scene
- tl.fromTo('#body7',{scaleY:1,transformOrigin:'160px 580px'},{scaleY:1.022,duration:DUR*.34,ease:ED,yoyo:true,repeat:2},T0);
- tl.fromTo('#head7',{rotation:-3,svgOrigin:'160 350'},{rotation:4,svgOrigin:'160 350',duration:DUR*.4,ease:ED,yoyo:true,repeat:2},T0);
- tl.fromTo('#ph7',{rotation:-.8,svgOrigin:'700 300'},{rotation:.9,svgOrigin:'700 300',duration:DUR*.45,ease:ED,yoyo:true,repeat:2},at(0.28));
- tl.fromTo('#bdg7',{scale:1,svgOrigin:'700 84'},{scale:1.1,svgOrigin:'700 84',duration:DUR*.2,ease:ED,yoyo:true,repeat:4},T0);
- // blinks (about every 2.5 s of real time) + eyebrows react
- [0.18,0.74].forEach(f=>{
-  tl.to('#eyes7',{scaleY:.08,svgOrigin:'160 250',duration:.07,ease:"power2.in"},at(f));
-  tl.to('#eyes7',{scaleY:1,svgOrigin:'160 250',duration:.12,ease:"power2.out"},at(f)+.07);
+ // trap enters, bait sparkle breathes, bar snaps gently
+ tl.fromTo('#t7',{opacity:0,y:70,scale:1.3},{opacity:1,y:0,scale:1.4,duration:DUR*0.22,ease:"expo.out"},at(0.04));
+ tl.to('#spk7',{rotation:18,scale:1.12,svgOrigin:"560 205",duration:DUR*0.3,ease:ED,yoyo:true,repeat:1},at(0.06));
+ tl.to('#bar7',{rotation:-26,duration:DUR*0.14,ease:ED,yoyo:true,repeat:1},at(0.1));
+ tl.to('#bar7',{rotation:0,duration:DUR*0.14,ease:"power3.in"},at(0.42));
+ tl.to('#t7',{y:10,duration:DUR*0.06,ease:"sine.out",yoyo:true,repeat:1},at(0.55));
+ tl.to('#spk7',{opacity:0,scale:.4,duration:DUR*0.1,ease:E2},at(0.52));
+ // trap's eyes: look at bait, blink, then look at viewer
+ tl.to('#pup7,#pup8b',{x:12,y:-2,duration:DUR*0.08,ease:ED},at(0.1));
+ tl.to('#pup7,#pup8b',{x:-2,y:4,duration:DUR*0.1,ease:ED},at(0.36));
+ [0.2,0.47].forEach(f=>tl.to('#eye7,#eye8b',{scaleY:.1,duration:DUR*0.018,ease:"sine.in",yoyo:true,repeat:1},at(f)));
+ // swap to FOLLOW; trap steps back
+ tl.to('#g8a',{opacity:0,y:-30,duration:DUR*0.08,ease:"power2.in"},at(0.5));
+ tl.fromTo('#g8b',{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.22,ease:"back.out(1.2)"},at(0.62));
+ tl.to('#t7',{opacity:0,y:70,scale:1.25,duration:DUR*0.12,ease:"power2.in"},at(0.56));
+ // follow button + cursor press + ripple
+ tl.fromTo('#f7',{opacity:0,y:60,scale:.9},{opacity:1,y:0,scale:1,duration:DUR*0.2,ease:"back.out(1.2)"},at(0.66));
+ tl.to('#c7',{opacity:1,duration:DUR*0.06,ease:E1},at(0.67));
+ tl.to('#c7',{x:640,y:830,duration:DUR*0.2,ease:E2},at(0.67));
+ tl.to('#c7',{scale:.9,duration:DUR*0.04,ease:ED,yoyo:true,repeat:1},at(0.84));
+ tl.to('#f7',{scale:.95,duration:DUR*0.04,ease:ED,yoyo:true,repeat:1},at(0.84));
+ tl.fromTo('#r7',{scale:.4,opacity:.9},{scale:5,opacity:0,duration:DUR*0.18,ease:"power2.out"},at(0.85));
+ // bell + handle
+ tl.fromTo('#b7',{opacity:0,scale:.6,rotation:-10},{opacity:1,scale:1,rotation:0,duration:DUR*0.16,ease:"back.out(1.4)"},at(0.86));
+ [-18,14,-10,6,0].forEach((r,i)=>tl.to('#b7 svg',{rotation:r,duration:DUR*0.035+i*0.0004,ease:ED},at(0.88+i*0.036)));
+ tl.fromTo('#hd7',{opacity:0,y:30},{opacity:1,y:0,duration:DUR*0.18,ease:E1},at(0.7));
+ tl.to('#hd7',{y:-6,duration:DUR*0.12,ease:ED,yoyo:true,repeat:1},at(0.88));
+ tl.to('#c7',{x:720,y:880,duration:DUR*0.16,ease:ED},at(0.86));
+ // sparkles + floating notes (the channel's notes motif), each own phase
+ ['#sp1','#sp2','#sp3'].forEach((id,i)=>{
+  tl.fromTo(id,{opacity:0,scale:.2,rotation:-30},{opacity:1,scale:1,rotation:0,duration:DUR*0.14,ease:"back.out(1.4)"},at(0.8+i*0.04+(i==1?0.01:0)));
+  tl.to(id,{rotation:60,scale:1.25,duration:DUR*0.16,ease:ED,yoyo:true,repeat:1},at(0.9));
  });
- tl.fromTo('#brL7',{y:0},{y:-8,duration:DUR*.12,ease:ED,yoyo:true,repeat:3},at(0.1));
- tl.fromTo('#brR7',{y:0},{y:-9,duration:DUR*.14,ease:ED,yoyo:true,repeat:3},at(0.13));
- // talking mouth, uneven
- [[0,.07],[.09,.06],[.19,.08],[.3,.05],[.38,.09],[.5,.06],[.58,.07],[.67,.05]].forEach(([f,d],i)=>{
-  tl.fromTo('#mouth7',{scaleY:.45,svgOrigin:'160 283'},{scaleY:1,svgOrigin:'160 283',duration:DUR*d,ease:ED,yoyo:true,repeat:1},at(f));
+ [['#n1',0.7,-8,10,0.2],['#n2',0.74,7,-10,0.18]].forEach(([id,f,r,y,d])=>{
+  tl.fromTo(id,{opacity:0,scale:.3,rotation:-20},{opacity:1,scale:1,rotation:r,duration:DUR*d,ease:"back.out(1.2)"},at(f));
+  tl.to(id,{rotation:-r,y:y,duration:DUR*0.13,ease:ED,yoyo:true,repeat:1},at(f+0.2));
  });
- // thumbs tapping, varying rhythm
- tl.fromTo('#thL7',{y:0},{y:-9,duration:.2,ease:ED,yoyo:true,repeat:Math.floor(DUR/.4)},T0);
- tl.fromTo('#thR7',{y:0},{y:-8,duration:.27,ease:ED,yoyo:true,repeat:Math.floor(DUR/.54)},T0+.1);
- tl.fromTo('#phn7',{rotation:0,svgOrigin:'231 482'},{rotation:3,svgOrigin:'231 482',duration:.5,ease:ED,yoyo:true,repeat:Math.floor(DUR/.5)},T0);
- // chat bubbles inside the phone (first two already visible at frame 0)
- const mbs=[...document.querySelectorAll('#s7 .mb')];
- const mt=[0,0.02,0.1,0.17,0.25,0.35,0.44,0.53];
- mbs.forEach((el,i)=>{
-  const right=(i%2==0);
-  tl.fromTo(el,{opacity:i<2?1:0,scale:i<2?.9:.5,svgOrigin:(right?'844':'556')+' '+(+el.dataset.y+22)},{opacity:1,scale:1,duration:DUR*.13,ease:BK},at(mt[i]));
- });
- tl.to('#msgs7',{y:-60,duration:DUR*.16,ease:"power2.inOut"},at(0.3));
- tl.to('#msgs7',{y:-176,duration:DUR*.2,ease:"power2.inOut"},at(0.52));
- tl.fromTo('#dots7',{opacity:0,y:20},{opacity:1,y:0,duration:DUR*.1,ease:"power2.out"},at(0.64));
- // flying chatter bubbles from friend to phone, each its own arc
- const fb=[...document.querySelectorAll('#s7 .fb')];
- const fs=[0.02,0.12,0.22,0.34,0.46], fd=[.2,.24,.19,.23,.21], fy=[-150,-110,-170,-120,-140], fe=[20,60,-10,80,40];
- fb.forEach((el,i)=>{
-  const x0=250,y0=270,x1=560,y1=210+fe[i];
-  tl.fromTo(el,{opacity:0,scale:.4,x:x0,y:y0,svgOrigin:'0 0'},{opacity:1,scale:1,duration:DUR*.06,ease:BK},at(fs[i]));
-  tl.fromTo(el,{x:x0},{x:x1,duration:DUR*fd[i],ease:"sine.inOut"},at(fs[i]));
-  tl.fromTo(el,{y:y0},{y:y0+fy[i],duration:DUR*fd[i]*.5,ease:"sine.out"},at(fs[i]));
-  tl.to(el,{y:y1,duration:DUR*fd[i]*.5,ease:"sine.in"},at(fs[i]+fd[i]*.5));
-  tl.to(el,{opacity:0,scale:.6,duration:DUR*.05,ease:"power2.in"},at(fs[i]+fd[i]*.92));
- });
- // post card slides in, plane flies from it to the phone
- tl.fromTo('#card7',{opacity:0,y:90,rotation:6,svgOrigin:'395 526'},{opacity:1,y:0,rotation:-3,svgOrigin:'395 526',duration:DUR*.22,ease:BK},at(0.5));
- tl.to('#card7',{rotation:2,svgOrigin:'395 526',duration:DUR*.4,ease:ED,yoyo:true,repeat:1},at(0.72));
- tl.set('#pl7',{x:395,y:488,opacity:0},T0);
- tl.set('#tick7',{opacity:0,scale:.2,svgOrigin:'0 0'},T0);
- tl.fromTo('#pl7',{opacity:0,scale:.5,svgOrigin:'0 0',x:395,y:490},{opacity:1,scale:1,duration:DUR*.07,ease:BK},at(0.66));
- tl.fromTo('#pl7',{x:395},{x:760,duration:DUR*.26,ease:"sine.inOut"},at(0.68));
- tl.fromTo('#pl7',{y:490},{y:340,duration:DUR*.13,ease:"sine.out"},at(0.68));
- tl.to('#pl7',{y:150,duration:DUR*.13,ease:"sine.in"},at(0.81));
- tl.fromTo('#plr7',{rotation:-20,svgOrigin:'0 0'},{rotation:-45,svgOrigin:'0 0',duration:DUR*.13,ease:ED,yoyo:true,repeat:1},at(0.68));
- tl.to('#pl7',{opacity:0,scale:.4,duration:DUR*.06,ease:"power2.in"},at(0.92));
- tl.fromTo('#tick7',{opacity:0,scale:.2,svgOrigin:'0 0'},{opacity:1,scale:1,svgOrigin:'0 0',duration:DUR*.12,ease:BK},at(0.9));
- 
+ tl.to('#f7',{y:-8,scale:1.03,duration:DUR*0.1,ease:ED,yoyo:true,repeat:1},at(0.9));
 };
 </script>

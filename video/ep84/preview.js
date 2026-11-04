@@ -9,7 +9,7 @@ const fs=require('fs'),path=require('path');
  await p.goto('file://'+H+'/hf/'+(process.env.PAGE||'index')+'.html'); await p.waitForTimeout(800);
  fs.mkdirSync(H+'/out/prev',{recursive:true});
  const ids=which==='all'?cues.T0.map((_,i)=>i+1):[+which];
- for(const n of ids){ for(const f of fr){ const t=cues.T0[n-1]+cues.DUR[n-1]*f;
+ for(const n of ids){ for(const f of fr){ const t=process.env.AT?+process.env.AT:cues.T0[n-1]+cues.DUR[n-1]*f;
    await p.evaluate(t=>{window.__reel.seek(t);return 1},t); await p.waitForTimeout(380);
    await p.screenshot({path:`${H}/out/prev/s${n}-f${f}.png`}); } }
  await b.close();

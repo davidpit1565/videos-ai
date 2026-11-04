@@ -51,3 +51,7 @@ RRDONE
 line 5 rerolled from r8621 dur 2.33s 16:06:54
 line 7 rerolled from r8631 dur 2.57s 16:06:54
 line 8 rerolled from r8651 dur 2.56s 16:06:54
+n done 8701 ex=0.88 16:44:22
+n done 8711 ex=0.84 16:45:25
+n done 8721 ex=0.90 16:46:39
+n done 8731 ex=0.86 16:48:46
