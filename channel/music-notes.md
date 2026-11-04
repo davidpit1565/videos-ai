@@ -27,6 +27,14 @@ None of this has data on reach for our channel. We have 80 episodes' views but m
 |---|---|---|---|---|---|
 | 83 v1 | confident--technology-corporate--themountain | confident / corporate | -8.0 dB | "very generic" (Roni, 3.11) | replaced |
 | 83 v2 | minimal--minimal-ambient-background--audiodollar (D) | minimal | -7.4 dB, 5% under 150 Hz | pending (David's ear) | picked by measurement; alternatives E curious--inquisitive-curiosity--musictown (-8.2 dB), F lofi--lofi-night-haze--ornave (-7.3 dB) |
+| 84 A | curious--mystery--soundpromusic | curious | -7.6 dB, 64% under 150 Hz (FAIL: sub-bass) | not heard | rejected by numbers |
+| 84 B | curious--curious-circuits--sonican | curious | -8.5 dB, 48% under 150 Hz | not heard | over the 40% bar |
+| 84 C | punchy--fresh-urban-stomp--osynthw | punchy | -7.3 dB, 81% under 150 Hz (FAIL) | not heard | rejected |
+| 84 D | vibraphone--alexmorgan | calm/warm | -7.3 dB, 50% under 150 Hz | not heard | over the bar |
+| 84 E | minimal--minimal-piano--leberch | minimal | -7.8 dB, 54% under 150 Hz | not heard | too quiet (bed mean -20 dB) |
+| 84 F | punchy--punchy-brass-groovy-pop-track--moonpub | punchy / playful | -7.8 dB, 44% under 150 Hz | not heard | runner-up, playful brass groove |
+| 84 G | curious--mysterious-fog-curious-discovery--alex-morgan | curious | -9.2 dB, 77% under 150 Hz (FAIL) | not heard | rejected |
+| 84 H (chosen) | curious--inquisitive-orchestra--musictown | curious | -7.8 dB at vol 0.37 (ducked -16.2 dB), 35% under 150 Hz | pending (David's ear) | picked by measurement only: only candidate under the 40% bar; feeling "quiet, slightly sneaky, light playful edge" |
 
 ## Ideas to test (deliberate experiments, log in experiments.md)
 - Same style of episode with a character bed vs a neutral bed, compare average watch time (needs several episodes, not one).

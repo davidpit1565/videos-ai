@@ -13,7 +13,7 @@ for i,tx in enumerate(TEXTS,1):
     p=f"{H}/voice/final/{i}.wav"
     if os.path.exists(p):
         x,s=sf.read(p); assert s==sr,f"line {i}: {s} Hz, need 48000"
-        x=x if x.ndim==1 else x[:,0]; d=len(x)/sr; real.append(i); out.append((int(t*sr),x))
+        x=x if x.ndim==1 else x[:,0]; x=x*10**(float(os.environ.get('G1','3.5'))/20) if i==1 else x; d=len(x)/sr; real.append(i); out.append((int(t*sr),x))
     else: d=round(0.32*len(tx.split())+0.5,2)
     ln=dict(n=i,text=tx,start=round(t,3),end=round(t+d,3),real=i in real)
     if str(i) in words and i in real: ln["words"]=[[round(a+t,3),round(b+t,3)] for a,b in words[str(i)]]
