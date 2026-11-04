@@ -52,6 +52,11 @@ for e in ev['ev']:
     elif ty == 'thud': sfx.add(fo, sfx.pop(.7), t0, .5 * vj)
     elif ty == 'ding': sfx.add(fo, sfx.ding(.7), t0, .4)
     elif ty == 'crash': sfx.add(fo, sfx.crash(.8), t0 - .02, .55)
+if os.environ.get('REAL_MUSIC'):   # licensed library bed (pick_real_track output), replaces the synthesized one
+    m, msr = sf.read(os.environ['REAL_MUSIC'], dtype='float32')
+    if m.ndim > 1: m = m.mean(1)
+    if msr != SR: m = soxr.resample(m, msr, SR).astype(np.float32)
+    mus = np.zeros((N, 2), np.float32); L = min(N, len(m)); mus[:L, 0] = m[:L]; mus[:L, 1] = m[:L]
 vl = uniform_filter1d(np.abs(voice), int(.12 * SR)); vpk = max(1e-6, np.abs(voice).max())
 duck = 1 - np.clip(vl / vpk * 14, 0, 1) * .8
 duck = uniform_filter1d(duck, int(.25 * SR))[:, None]
