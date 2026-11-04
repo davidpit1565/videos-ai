@@ -71,19 +71,19 @@
   "5": {
    "state": "done",
    "seed": 8446,
-   "take_seed": "8441",
+   "take_seed": "r8621",
    "exaggeration": 0.8,
-   "take": "/home/user/videos-ai/video/ep84/voice/takes/t8441.wav",
+   "take": "/home/user/videos-ai/video/ep84/voice/takes/r8621.wav",
    "final": "/home/user/videos-ai/video/ep84/voice/final/5.wav",
-   "dur": 2.58,
-   "notes": "picked from 12 whole-script takes by pitch range/end + Whisper small; measured, not heard",
+   "dur": 2.33,
+   "notes": "REROLLED after checker flag (3 line-only takes r8601..r8651); old at final/5.old.wav",
    "metrics": {
-    "range_st": 7.5,
-    "end_vs_median_st": 0.4
+    "range_st": 6.0,
+    "end_vs_median_st": -0.5
    },
    "whisper_small": "Tap the dots, delete and switch off memory.",
    "whisper_wer": 0.0,
-   "check": "pending-checker"
+   "check": "pending-recheck"
   },
   "6": {
    "state": "done",
@@ -105,36 +105,36 @@
   "7": {
    "state": "done",
    "seed": 8468,
-   "take_seed": "8461",
+   "take_seed": "r8631",
    "exaggeration": 0.78,
-   "take": "/home/user/videos-ai/video/ep84/voice/takes/t8461.wav",
+   "take": "/home/user/videos-ai/video/ep84/voice/takes/r8631.wav",
    "final": "/home/user/videos-ai/video/ep84/voice/final/7.wav",
-   "dur": 3.16,
-   "notes": "picked from 12 whole-script takes by pitch range/end + Whisper small; measured, not heard",
+   "dur": 2.57,
+   "notes": "REROLLED after checker flag (3 line-only takes r8601..r8651); old at final/7.old.wav",
    "metrics": {
-    "range_st": 7.0,
-    "end_vs_median_st": 0.1
+    "range_st": 6.0,
+    "end_vs_median_st": -0.4
    },
    "whisper_small": "Send this to someone who tells chat GPT everything.",
    "whisper_wer": 0.25,
-   "check": "pending-checker"
+   "check": "pending-recheck"
   },
   "8": {
    "state": "done",
    "seed": 8499,
-   "take_seed": "8491",
+   "take_seed": "r8651",
    "exaggeration": 0.78,
-   "take": "/home/user/videos-ai/video/ep84/voice/takes/t8491.wav",
+   "take": "/home/user/videos-ai/video/ep84/voice/takes/r8651.wav",
    "final": "/home/user/videos-ai/video/ep84/voice/final/8.wav",
-   "dur": 3.28,
-   "notes": "picked from 12 whole-script takes by pitch range/end + Whisper small; measured, not heard",
+   "dur": 2.56,
+   "notes": "REROLLED after checker flag (3 line-only takes r8601..r8651); old at final/8.old.wav",
    "metrics": {
-    "range_st": 6.3,
-    "end_vs_median_st": -0.4
+    "range_st": 5.7,
+    "end_vs_median_st": -0.1
    },
-   "whisper_small": "Don't miss the next AI trap, follow!",
+   "whisper_small": "Don't miss the next AI trap. Follow!",
    "whisper_wer": 0.0,
-   "check": "pending-checker"
+   "check": "pending-recheck"
   }
  }
 }

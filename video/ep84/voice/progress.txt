@@ -42,3 +42,12 @@ line 7 final from take 8461 dur 3.16s 15:35:02
 line 8 final from take 8491 dur 3.28s 15:35:02
 FINAL lines 1-8 written 15:35:11
 rr done 8601 15:55:03
+rr done 8611 15:57:11
+rr done 8621 15:59:06
+rr done 8631 16:01:07
+rr done 8641 16:03:17
+rr done 8651 16:05:14
+RRDONE
+line 5 rerolled from r8621 dur 2.33s 16:06:54
+line 7 rerolled from r8631 dur 2.57s 16:06:54
+line 8 rerolled from r8651 dur 2.56s 16:06:54
