@@ -5,8 +5,8 @@
       overlaps: none over 10px
 
 === PASS  rendered file (qa.py --hf)
-    ep84-v6.mp4  1080x1920  30fps  19.97s  10.1MB
-      visual change: median 0.03s, longest 2.57s
+    ep84-v7.mp4  1080x1920  30fps  19.97s  10.1MB
+      visual change: median 0.03s, longest 2.10s
       loudness: -15.3 LUFS integrated, peak -3.8 dBFS, LRA 1.1 LU
       loop seam: first vs last frame differ by 13.4/255
 
