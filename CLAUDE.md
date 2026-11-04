@@ -151,6 +151,8 @@ been running for days.
   by the end." A script that only makes sense in hindsight, or only to a technical/AI-literate
   viewer, fails this regardless of how strong its hook or claim otherwise is.
 
+- **Pre-publish gate, David 4.11.2026: every episode needs a hook score of at least 90 (goal 95) and a virality score of at least 85 on the written rubric, and the target is 1,000 views per episode.** The scores are my judgement against the rubric (personal and felt in 3 s, product named at once, one specific curiosity gap, every line a hook, a sendable ending, alive picture), not a measurement and not a promise. Under the bar: rewrite before building. Every episode logs its predicted score and its real views at 48 h in `content-memory.md`, so we learn whether the score means anything. Followers come after we reliably pass 1,000.
+
 ## The voice
 
 - Profile: `audio/voice/profile/` — reference chosen by his ear, settings locked in
