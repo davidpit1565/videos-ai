@@ -2311,6 +2311,34 @@ export const ARTICLES: Article[] = [
       "We did not test the buttons on every device. Menu looks and names may differ on your screen, so follow OpenAI's page if it differs from these steps.",
     ],
   },
+  {
+    n: 85,
+    title: "Does ChatGPT think you're a teen? What OpenAI says, and where to check",
+    standfirst:
+      "OpenAI's help page says ChatGPT can guess whether an account belongs to someone under 18, and it can " +
+      "do that even if a date of birth was given at sign-up. It looks at signals such as the topics you talk " +
+      "about, the times of day you use it, how and when the account is used, and how long it has existed. " +
+      "OpenAI says age prediction is not perfect. This guide shows where to look and what OpenAI says you can " +
+      "do if it is wrong. It does not say that your account was flagged.",
+    steps: [
+      "Open ChatGPT in your browser or the app and sign in to your account.",
+      "Open Settings, then choose Account.",
+      "Look for the Age setting. OpenAI's page says it shows an age category and does not let you edit your date of birth. If you see no Age row, your version may not show it yet: do not guess, and read OpenAI's page below.",
+      "Optional: if you are 18 or older and the category looks wrong, OpenAI's page says you can verify your age with a third party called Persona, using a selfie and/or an ID. OpenAI says it does not receive your ID or selfie, and that once you verify it will not run age prediction on your account.",
+      "Optional: read OpenAI's own page, Age prediction in ChatGPT, at https://help.openai.com/en/articles/12652064-age-prediction-in-chatgpt for the exact wording, because OpenAI can change the menu names.",
+    ],
+    changes: [
+      "Verified live (3.11.2026) against OpenAI's help page Age prediction in ChatGPT: the signals (general topics, times of day, how and when the account is used, how long it has existed); that an account can be flagged as under 18 even if a date of birth was given; that predictions can change over time; the Settings, Account, Age location; the Persona verification with a selfie and/or an ID; and the sentence that age prediction is not perfect.",
+      "Real news pages (TechRadar, 29 January 2026, and TechCrunch, 20 January 2026) were captured on 3.11.2026 and shown in the video as proof that adults reported being put in teen mode.",
+    ],
+    limits: [
+      "We do not know how many adults are affected. The video says some adults got stuck in teen mode, as news sites reported, not that it happens to you.",
+      "We did not test it on a real account, and we do not claim that late-night use or any single topic triggers it.",
+      "The account card with the birth year and the TEEN tag in the video is re-created in our own design for illustration, not a recording of a real account. The label on screen says so.",
+      "The menu may look different on your screen or may not show the Age row yet.",
+      "OpenAI makes ChatGPT, and the video was made with help from AI tools. This channel is not affiliated with OpenAI.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
