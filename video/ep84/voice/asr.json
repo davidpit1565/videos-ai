@@ -1,0 +1,402 @@
+{
+ "1": {
+  "8401": {
+   "t": "Chai GPT has been taking notes on you.",
+   "wer": 0.2857142857142857
+  },
+  "8411": {
+   "t": "ChadGPT has been taking notes on you.",
+   "wer": 0.14285714285714285
+  },
+  "8421": {
+   "t": "ChadGPT has been taking notes on you.",
+   "wer": 0.14285714285714285
+  },
+  "8431": {
+   "t": "ChatGPT has been taking notes on you.",
+   "wer": 0.0
+  },
+  "8441": {
+   "t": "And ChatGVT has been taking notes on you.",
+   "wer": 0.2857142857142857
+  },
+  "8451": {
+   "t": "ChatGPT has been taking notes on you.",
+   "wer": 0.0
+  },
+  "8461": {
+   "t": "ChadGPT has been taking notes on you!",
+   "wer": 0.14285714285714285
+  },
+  "8471": {
+   "t": "chat.gpd has been taking notes on you.",
+   "wer": 0.2857142857142857
+  },
+  "8481": {
+   "t": "ChatGPT has been taking notes on you.",
+   "wer": 0.0
+  },
+  "8491": {
+   "t": "JGPT has been taking notes on you.",
+   "wer": 0.14285714285714285
+  },
+  "8501": {
+   "t": "JattGBD has been taking notes on you.",
+   "wer": 0.14285714285714285
+  },
+  "8511": {
+   "t": "ChatGPT has been taking notes on you.",
+   "wer": 0.0
+  }
+ },
+ "2": {
+  "8401": {
+   "t": "delete the chat, the notes stay!",
+   "wer": 0.16666666666666666
+  },
+  "8411": {
+   "t": "Delete a chat. The notes stay.",
+   "wer": 0.0
+  },
+  "8421": {
+   "t": "Delete a chat. The notes stay.",
+   "wer": 0.0
+  },
+  "8431": {
+   "t": "Delete a chat. The notes stay.",
+   "wer": 0.0
+  },
+  "8441": {
+   "t": "Delete a chat. The notes. Stay.",
+   "wer": 0.0
+  },
+  "8451": {
+   "t": "Do you read a chat? The notes stay.",
+   "wer": 0.5
+  },
+  "8461": {
+   "t": "Delete a chat. The notes. Stay.",
+   "wer": 0.0
+  },
+  "8471": {
+   "t": "delete a chat, the notes, stay!",
+   "wer": 0.0
+  },
+  "8481": {
+   "t": "Delete the chat, the notes stay.",
+   "wer": 0.16666666666666666
+  },
+  "8491": {
+   "t": "Delete a chat.  The notes stay.",
+   "wer": 0.0
+  },
+  "8501": {
+   "t": "Delete a chat. The notes. Stay.",
+   "wer": 0.0
+  },
+  "8511": {
+   "t": "Delete a chat. The notes. Stay.",
+   "wer": 0.0
+  }
+ },
+ "3": {
+  "8401": {
+   "t": "Go look, settings, personalization, memory.",
+   "wer": 0.0
+  },
+  "8411": {
+   "t": "Go look. Settings. Personalization. Memory.",
+   "wer": 0.0
+  },
+  "8421": {
+   "t": "Let's go look, settings, personalization, memory.",
+   "wer": 0.2
+  },
+  "8431": {
+   "t": "Go look. Settings. Personalization. Memory.",
+   "wer": 0.0
+  },
+  "8441": {
+   "t": "Go look, settings, personalization, memory.",
+   "wer": 0.0
+  },
+  "8451": {
+   "t": "Go look, settings, personalization, memory.",
+   "wer": 0.0
+  },
+  "8461": {
+   "t": "Go look! Settings. Personalization. Memory.",
+   "wer": 0.0
+  },
+  "8471": {
+   "t": "Gold look, settings, personalization, memory.",
+   "wer": 0.2
+  },
+  "8481": {
+   "t": "Go look. Settings. Personalization. Memory.",
+   "wer": 0.0
+  },
+  "8491": {
+   "t": "Go look, settings, personalization, memory.",
+   "wer": 0.0
+  },
+  "8501": {
+   "t": "Go look, settings, personalization, memory.",
+   "wer": 0.0
+  },
+  "8511": {
+   "t": "Go look, settings, personalization, memory.",
+   "wer": 0.0
+  }
+ },
+ "4": {
+  "8401": {
+   "t": "See anything you never meant to tell it?",
+   "wer": 0.0
+  },
+  "8411": {
+   "t": "See anything you never meant to tell it?",
+   "wer": 0.0
+  },
+  "8421": {
+   "t": "See anything you never meant to tell it?",
+   "wer": 0.0
+  },
+  "8431": {
+   "t": "See anything you never meant to tell it?",
+   "wer": 0.0
+  },
+  "8441": {
+   "t": "See anything you never meant to tell it?",
+   "wer": 0.0
+  },
+  "8451": {
+   "t": "See anything you never meant to tell it.",
+   "wer": 0.0
+  },
+  "8461": {
+   "t": "See anything you never meant to tell it?",
+   "wer": 0.0
+  },
+  "8471": {
+   "t": "See anything you never meant to tell it?",
+   "wer": 0.0
+  },
+  "8481": {
+   "t": "See anything you never meant to tell it?",
+   "wer": 0.0
+  },
+  "8491": {
+   "t": "See anything you never meant to tell it?",
+   "wer": 0.0
+  },
+  "8501": {
+   "t": "See anything you never meant to tell it?",
+   "wer": 0.0
+  },
+  "8511": {
+   "t": "See anything you never meant to tell it?",
+   "wer": 0.0
+  }
+ },
+ "5": {
+  "8401": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "wer": 0.0
+  },
+  "8411": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "wer": 0.0
+  },
+  "8421": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "wer": 0.0
+  },
+  "8431": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "wer": 0.0
+  },
+  "8441": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "wer": 0.0
+  },
+  "8451": {
+   "t": "Tap the dots. Delete and switch off memory.",
+   "wer": 0.0
+  },
+  "8461": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "wer": 0.0
+  },
+  "8471": {
+   "t": "Tap the dots. Delete and switch off memory.",
+   "wer": 0.0
+  },
+  "8481": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "wer": 0.0
+  },
+  "8491": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "wer": 0.0
+  },
+  "8501": {
+   "t": "Tag the dots, delete, and switch off memory.",
+   "wer": 0.125
+  },
+  "8511": {
+   "t": "Tap the dots, delete and switch off memory.",
+   "wer": 0.0
+  }
+ },
+ "6": {
+  "8401": {
+   "t": "Even then, OpenAI may keep a log for weeks.",
+   "wer": 0.0
+  },
+  "8411": {
+   "t": "Even then, OpenAI may keep a lot for weeks.",
+   "wer": 0.1111111111111111
+  },
+  "8421": {
+   "t": "Even then, OpenAI may keep a log for weeks!",
+   "wer": 0.0
+  },
+  "8431": {
+   "t": "Even then, OpenAI may keep a log for weeks.",
+   "wer": 0.0
+  },
+  "8441": {
+   "t": "Even then, OpenAI may keep a log for weeks.",
+   "wer": 0.0
+  },
+  "8451": {
+   "t": "Even then, OpenAI may keep a log for weeks.",
+   "wer": 0.0
+  },
+  "8461": {
+   "t": "Even then, OpenAI may keep a log for weeks.",
+   "wer": 0.0
+  },
+  "8471": {
+   "t": "Even then, OpenAI may keep a log for weeks.",
+   "wer": 0.0
+  },
+  "8481": {
+   "t": "Even then, OpenAI may keep a log for weeks.",
+   "wer": 0.0
+  },
+  "8491": {
+   "t": "Even then, OpenAI may keep a log for weeks.",
+   "wer": 0.0
+  },
+  "8501": {
+   "t": "Even then, OpenAI may keep a log for weeks.",
+   "wer": 0.0
+  },
+  "8511": {
+   "t": "Even then, OpenAI may keep a log for weeks.",
+   "wer": 0.0
+  }
+ },
+ "7": {
+  "8401": {
+   "t": "Send this to someone who tells ChadGBT everything.",
+   "wer": 0.125
+  },
+  "8411": {
+   "t": "Send this to someone who tells shared GPT everything",
+   "wer": 0.25
+  },
+  "8421": {
+   "t": "Send this to someone who tells chat GPT everything.",
+   "wer": 0.25
+  },
+  "8431": {
+   "t": "Send this to someone who tells chat GPT everything.",
+   "wer": 0.25
+  },
+  "8441": {
+   "t": "It sent this to someone who tells chat dbt everything",
+   "wer": 0.5
+  },
+  "8451": {
+   "t": "Send this to someone who tells chat GPT everything",
+   "wer": 0.25
+  },
+  "8461": {
+   "t": "Send this to someone who tells chat GPT everything.",
+   "wer": 0.25
+  },
+  "8471": {
+   "t": "Send this to someone who tells chat GPT everything.",
+   "wer": 0.25
+  },
+  "8481": {
+   "t": "Send this to someone who tells ChatGPT everything.",
+   "wer": 0.0
+  },
+  "8491": {
+   "t": "Send this to someone who tells chat GPT everything.",
+   "wer": 0.25
+  },
+  "8501": {
+   "t": "Send this to someone who tells chat GPT every day.",
+   "wer": 0.5
+  },
+  "8511": {
+   "t": "Send this to someone who tells chat GPT everything.",
+   "wer": 0.25
+  }
+ },
+ "8": {
+  "8401": {
+   "t": "Don't miss the next AI trap. Follow!",
+   "wer": 0.0
+  },
+  "8411": {
+   "t": "Don't miss the next AI trap, follow.",
+   "wer": 0.0
+  },
+  "8421": {
+   "t": "Don't miss the next AI trap. Follow.",
+   "wer": 0.0
+  },
+  "8431": {
+   "t": "Don't miss the next AI Trap. Follow!",
+   "wer": 0.0
+  },
+  "8441": {
+   "t": "Don't miss the next AI trap. Follow!",
+   "wer": 0.0
+  },
+  "8451": {
+   "t": "Don't miss the next AI trap. Follow.",
+   "wer": 0.0
+  },
+  "8461": {
+   "t": "Don't miss the next AI trap, follow!",
+   "wer": 0.0
+  },
+  "8471": {
+   "t": "Don't miss the next AI trap. Follow.",
+   "wer": 0.0
+  },
+  "8481": {
+   "t": "Don't miss the next AI trap. Follow!",
+   "wer": 0.0
+  },
+  "8491": {
+   "t": "Don't miss the next AI trap, follow!",
+   "wer": 0.0
+  },
+  "8501": {
+   "t": "Don't miss the next AI trap, follow!",
+   "wer": 0.0
+  },
+  "8511": {
+   "t": "Don't miss the next AI trap. Follow.",
+   "wer": 0.0
+  }
+ }
+}

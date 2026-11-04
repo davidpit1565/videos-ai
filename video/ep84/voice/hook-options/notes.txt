@@ -1,0 +1,13 @@
+Hook options (measured, not heard). 12 whole-script takes (seeds 8401..8511), pyin range / end vs median / Whisper small word match.
+Line 1 'ChatGPT has been taking notes on you!'  (h1 = my preference by numbers)
+ h1.wav take 8481 (line seed 8482) ex 0.88: range 5.9 st, end -0.5 st, end-150ms level -9.4 dB, 2.3 s, Whisper exact. Lively and the ending holds.
+ h2.wav take 8431 (line seed 8432) ex 0.86: range 7.3 st (livelier), end -0.3 st, but end-150ms level -26 dB = the last word fades; 2.7 s (slower). Whisper exact.
+ h3.wav take 8511 (line seed 8512) ex 0.87: range 5.0 st, end -0.7 st, end level -13.7 dB, 2.5 s, Whisper exact.
+ Not offered: 8461 (6.9 st, lively, but Whisper heard 'ChadGPT'), 8501/8491 (7.5/7.0 st but Whisper heard 'JattGBD'/'JGPT').
+ Note Whisper missed 'ChatGPT' in 7 of 12 takes: the name is the weak spot; the final choice by ear matters.
+Line 2 'Delete a chat? The notes stay!'  (g1 = my preference)
+ g1.wav take 8431 (seed 8433) ex 0.82: range 8.8 st, end +0.1, end level -5.4 dB (strong 'stay'), 1.9 s, Whisper exact.
+ g2.wav take 8491 (seed 8492) ex 0.81: range 8.6 st, end +1.9, end level -17 dB, 1.95 s, Whisper exact.
+ g3.wav take 8511 (seed 8513) ex 0.83: range 7.7 st, end +1.5, 2.0 s, Whisper hears a pause 'notes. Stay.'
+ Rejected: 8421/8451/8471 ranges 10.9-11.6 st (over 10 st) or ending +3.3/+4.1 st; 8411 only 4.5 st (flat).
+Current final/1.wav = h1, final/2.wav = g1. Swap by running: python3 finalize.py 1:<take>  (from voice/, PATH=/opt/v311/bin).
