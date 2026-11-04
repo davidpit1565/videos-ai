@@ -79,13 +79,13 @@ window.buildScene_2=function(tl,T0,DUR){
  };
  tap(.30,690,724+fy[0]-8,'#r3s');
  // page 1
- tl.to('#p3a',{opacity:0,x:-30,duration:DUR*.075,ease:"sine.in"},at(.39));
- tl.fromTo('#p3b',{opacity:0,x:36},{opacity:1,x:0,duration:DUR*.15,ease:"sine.out"},at(.475));
+ tl.to('#p3a',{opacity:0,x:-30,duration:DUR*.06,ease:"sine.in"},at(.4));
+ tl.fromTo('#p3b',{opacity:.45,x:30},{opacity:1,x:0,duration:DUR*.14,ease:"sine.out",immediateRender:false},at(.452));
  tl.to('#fg2',{x:700,y:724+fy[1]-8,duration:DUR*.16,ease:"power2.inOut"},at(.44));
  tap(.58,700,724+fy[1]-8,'#r3p');
  // page 2
- tl.to('#p3b',{opacity:0,x:-30,duration:DUR*.075,ease:"sine.in"},at(.66));
- tl.fromTo('#p3c',{opacity:0,x:36},{opacity:1,x:0,duration:DUR*.14,ease:"sine.out"},at(.745));
+ tl.to('#p3b',{opacity:0,x:-30,duration:DUR*.06,ease:"sine.in"},at(.67));
+ tl.fromTo('#p3c',{opacity:.45,x:30},{opacity:1,x:0,duration:DUR*.14,ease:"sine.out",immediateRender:false},at(.722));
  tl.to('#fg2',{x:600,y:724+fy[2]-8,duration:DUR*.13,ease:"power2.inOut"},at(.71));
  tap(.86,600,724+fy[2]-8,'#r3m');
  tl.to('#tg2',{backgroundColor:'#A3E635',duration:DUR*.08,ease:ED},at(.88));
