@@ -11,16 +11,16 @@
 #s6 #mem6 .ok{position:absolute;right:24px;top:20px;width:56px;height:56px}
 #s6 #mem6 .rc{position:absolute;right:26px;bottom:14px;font-weight:700;font-size:28px;color:var(--ink2);letter-spacing:-.01em}
 #s6 #cab6{position:absolute;left:575px;top:845px;width:440px;height:150px;overflow:visible;opacity:0}
-#s6 #cal6{position:absolute;left:65px;top:1012px;width:300px;height:226px;opacity:0;transform-origin:50% 100%}
+#s6 #cal6{position:absolute;left:65px;top:1004px;width:300px;height:226px;opacity:0;transform-origin:50% 100%}
 #s6 #cal6 .top{position:absolute;left:0;top:0;width:100%;height:58px;background:var(--lime);border-bottom:7px solid var(--ink);border-radius:28px 28px 0 0}
 #s6 #cal6 .ring{position:absolute;top:-18px;width:22px;height:48px;border-radius:11px;background:var(--ink)}
 #s6 #cal6 .body{position:absolute;left:0;top:58px;width:100%;height:161px;perspective:700px}
 #s6 #cal6 .pg{position:absolute;left:0;top:0;width:100%;height:100%;background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;transform-origin:50% 0%;backface-visibility:hidden;border-radius:0 0 28px 28px}
 #s6 #cal6 .pg i{font-style:normal;font-weight:800;font-size:30px;letter-spacing:.02em;color:var(--ink2);line-height:1}
 #s6 #cal6 .pg b{font-weight:900;font-size:104px;letter-spacing:-.05em;line-height:.95}
-#s6 #hero6{left:395px;top:1012px;width:620px;height:226px;opacity:0;transform-origin:50% 60%;background:var(--ink);box-shadow:9px 9px 0 var(--limed)}
+#s6 #hero6{left:395px;top:1004px;width:620px;height:226px;opacity:0;transform-origin:50% 60%;background:var(--ink);box-shadow:9px 9px 0 var(--limed)}
 #s6 #hero6 .up{position:absolute;left:34px;top:16px;font-weight:900;font-size:56px;letter-spacing:-.03em;color:var(--lime);line-height:1}
-#s6 #hero6 .big{position:absolute;left:30px;top:70px;font-weight:900;font-size:122px;letter-spacing:-.05em;color:var(--white);line-height:1;white-space:nowrap}
+#s6 #hero6 .big{position:absolute;left:30px;top:84px;font-weight:900;font-size:122px;letter-spacing:-.05em;color:var(--white);line-height:1;white-space:nowrap}
 #s6 #may6{position:absolute;left:760px;top:1000px;font-weight:900;font-size:40px;letter-spacing:-.02em;background:var(--lime);color:var(--ink);border:6px solid var(--ink);border-radius:22px;box-shadow:6px 6px 0 var(--ink);padding:2px 22px;opacity:0;line-height:1.1}
 #s6 svg{position:absolute;overflow:visible}
 #s6 .mote{position:absolute;width:20px;height:20px;border-radius:50%;background:var(--lime);border:4px solid var(--ink);opacity:0}
@@ -77,10 +77,12 @@ window.buildScene_6=function(tl,T0,DUR){
  tl.set('#mem6',{opacity:1,scale:.94,rotation:-1.5},T0);
  tl.set('#cab6',{opacity:0,x:70},T0);
  tl.set('#gh6',{opacity:0,svgOrigin:'220 250',x:0,y:-205,scale:.15},T0);
- tl.set('#cal6',{opacity:0,y:60,scale:.9},T0);
+ tl.set('#cal6',{opacity:0,y:22,scale:.94},T0);
  tl.set('#hero6',{opacity:0,scale:.78,y:30,rotation:-3},T0);
  tl.set('#may6',{opacity:0,scale:.5,rotation:-14},T0);
  tl.set('#s6 .mote',{opacity:0},T0);
+ tl.set('#pg2,#pg3,#pg4,#pg5',{opacity:0},T0);
+ tl.set('#bd6 .pg:first-child',{opacity:0},T0);
  tl.set('#pg1,#pg2,#pg3,#pg4,#pg5',{rotationX:0,transformPerspective:700,transformOrigin:'50% 0%'},T0);
  // camera drift all scene
  tl.fromTo('#cam6',{scale:1,x:-6,y:5},{scale:1.03,x:7,y:-7,duration:DUR,ease:ED},T0);
@@ -119,7 +121,10 @@ window.buildScene_6=function(tl,T0,DUR){
  // calendar pops up, pages flip away with uneven timing
  tl.to('#cal6',{opacity:1,y:0,scale:1,duration:DUR*.16,ease:BO},at(.3));
  [['#pg1',.4],['#pg2',.47],['#pg3',.535],['#pg4',.6],['#pg5',.655]].forEach(([s,f],i)=>{
-  tl.to(s,{rotationX:-172,duration:DUR*(.13-i*.006),ease:"power2.in"},at(f));
+  const d=DUR*(.13-i*.006);
+  tl.to(s,{rotationX:-172,duration:d,ease:"power2.in"},at(f));
+  tl.set(s,{opacity:0},at(f)+d*.45);
+  tl.set(i<4?'#pg'+(i+2):'#bd6 .pg:first-child',{opacity:1},at(f)+d*.45);
  });
  tl.fromTo('#cal6',{rotation:-1.2},{rotation:1.2,duration:DUR*.3,ease:ED,yoyo:true,repeat:3},at(.4));
  // hero: UP TO 30 DAYS arrives with a soft overshoot, then breathes
