@@ -1,0 +1,6 @@
+I told ChatGPT and Gemini my test secret.
+Both promised to keep it.
+Then I asked them: was he using you?
+ChatGPT told right away.
+Gemini told after a few tries.
+Claude refused to help at all.
