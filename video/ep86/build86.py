@@ -2,7 +2,7 @@
 """ep86 integrator: voice/final/<n>.wav (n=1..6) + scenes/scene-N.html (markup + window.buildScene_N(tl,T0,DUR)) -> cues.json, out/narration.wav, hf/index.html. --render <name> renders the silent video."""
 import json, os, re, sys, subprocess
 import soundfile as sf, numpy as np
-H=os.path.dirname(os.path.abspath(__file__)); GAP=float(os.environ.get("GAP","0.3")); HOOKGAP=float(os.environ.get("HOOKGAP","0.55")); HEAD=0.10; TAIL=float(os.environ.get("TAIL","0.9"))
+H=os.path.dirname(os.path.abspath(__file__)); GAP=float(os.environ.get("GAP","0.3")); HOOKGAP=float(os.environ.get("HOOKGAP","0.55")); HEAD=0.10; TAIL=float(os.environ.get("TAIL","2.6"))
 TEXTS=[l.rstrip("\n") for l in open(H+"/lines.txt") if l.strip()]; N=len(TEXTS); assert N==6
 sr=48000; lines=[]; t=HEAD; out=[]
 wj=H+"/voice/words.json"; words=json.load(open(wj)) if os.path.exists(wj) else {}
