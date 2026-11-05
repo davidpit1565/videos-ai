@@ -4,13 +4,14 @@ import json, os, re, sys, subprocess
 import soundfile as sf, numpy as np
 H=os.path.dirname(os.path.abspath(__file__)); GAP=float(os.environ.get("GAP","0.3")); HOOKGAP=float(os.environ.get("HOOKGAP","0.55")); HEAD=0.10; TAIL=float(os.environ.get("TAIL","2.6"))
 TEXTS=[l.rstrip("\n") for l in open(H+"/lines.txt") if l.strip()]; N=len(TEXTS); assert N==6
+EXTRA={int(k):float(v) for k,v in (x.split(":") for x in os.environ.get("EXTRA","2:0.5,3:0.2,4:2.4,5:3.0").split(",") if x)}  # reading time after a line (the answers must be readable)
 sr=48000; lines=[]; t=HEAD; out=[]
 wj=H+"/voice/words.json"; words=json.load(open(wj)) if os.path.exists(wj) else {}
 for i,tx in enumerate(TEXTS,1):
     x,s=sf.read(f"{H}/voice/final/{i}.wav"); assert s==sr; x=x if x.ndim==1 else x[:,0]
     d=len(x)/sr; ln=dict(n=i,text=tx,start=round(t,3),end=round(t+d,3))
     if str(i) in words: ln["words"]=[[round(a+t,3),round(b+t,3)] for a,b in words[str(i)]]
-    lines.append(ln); out.append((int(t*sr),x)); t+=d+(HOOKGAP if i==1 else GAP)
+    lines.append(ln); out.append((int(t*sr),x)); t+=d+(HOOKGAP if i==1 else GAP)+EXTRA.get(i,0.0)
 D=round(lines[-1]["end"]+TAIL,2)
 nar=np.zeros(int((D+0.3)*sr))
 for i0,x in out: nar[i0:i0+len(x)]+=x
