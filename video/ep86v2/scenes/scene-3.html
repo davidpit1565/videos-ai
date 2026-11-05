@@ -1,7 +1,7 @@
 <!-- ep86 v2 scene 3: "Both promised to keep it." Real crops: assets/epi86-cg-promise.png (chatgpt-1.mp4 @12.0 s) and assets/epi86-gm-promise.png (gemini-1.mp4 @25 s), brightened x1.95 in v1, words unchanged. -->
 <style>
 #s3 .dk{position:absolute;left:65px;width:950px;background:#000;border-radius:36px;box-shadow:0 28px 70px rgba(14,14,14,.22),0 4px 12px rgba(14,14,14,.12);overflow:hidden}
-#s3 .hd{position:absolute;left:30px;top:22px;width:76px;height:76px;background:var(--white);border-radius:22px;display:flex;align-items:center;justify-content:center}
+#s3 .hd{position:absolute;width:76px;height:76px;background:var(--white);border-radius:22px;display:flex;align-items:center;justify-content:center}
 #s3 .hd img{width:62%;height:62%;display:block}
 #s3 .dk img.c{position:absolute;display:block}
 #s3 .ul{position:absolute;height:8px;border-radius:4px;background:var(--acc);transform-origin:0 50%}
@@ -9,14 +9,15 @@
 </style>
 <div class="scn clip" id="s3" data-start="0" data-duration="__D3__" data-track-index="1"><div class="cam" id="c3">
  <div class="grp" id="h3" style="top:300px">
-  <div class="row"><span class="w s112 bk">BOTH</span><span class="w pill s112">PROMISED &#x1F910;</span></div>
+  <div class="row"><span class="w s128 bk">BOTH</span></div>
+  <div class="row"><span class="w pill s112" style="margin-top:10px">PROMISED &#x1F910;</span></div>
  </div>
- <div class="dk" id="d3a" style="top:480px;height:342px"><div class="hd"><img src="assets/chatgpt.svg"></div>
-  <img class="c" src="assets/epi86-cg-promise.png" style="left:39px;top:116px;width:872px;height:210px">
-  <div class="ul" id="u3a" style="left:52px;top:180px;width:512px"></div></div>
- <div class="dk" id="d3b" style="top:852px;height:268px"><div class="hd"><img src="assets/gemini.svg"></div>
-  <img class="c" src="assets/epi86-gm-promise.png" style="left:39px;top:116px;width:872px;height:132px">
-  <div class="ul" id="u3b" style="left:56px;top:176px;width:530px"></div></div>
+ <div class="dk" id="d3a" style="top:600px;height:250px"><div class="hd" style="right:26px;top:20px"><img src="assets/chatgpt.svg"></div>
+  <img class="c" src="assets/epi86-cg-promise.png" style="left:39px;top:20px;width:872px;height:210px">
+  <div class="ul" id="u3a" style="left:52px;top:84px;width:512px"></div></div>
+ <div class="dk" id="d3b" style="top:885px;height:176px"><div class="hd" style="right:26px;bottom:20px"><img src="assets/gemini.svg"></div>
+  <img class="c" src="assets/epi86-gm-promise.png" style="left:39px;top:20px;width:872px;height:132px">
+  <div class="ul" id="u3b" style="left:56px;top:80px;width:530px"></div></div>
  <div class="lb" id="lb3">Real screen recordings &middot; 5 Nov 2026</div>
 </div></div>
 <script>
@@ -28,27 +29,27 @@ window.__e86h=window.__e86h||{
  // word-by-word entrance; f0=true: already readable at frame 0 (only a soft settle)
  words:function(tl,els,at,f0,step){step=step||.05;
   els.forEach((el,k)=>{const slam=el.classList.contains('pill')||el.classList.contains('sel')||el.classList.contains('red');const a=at+k*step;
-   if(f0){ if(slam) tl.fromTo(el,{opacity:1,scale:1.1,y:0},{opacity:1,scale:1,duration:.7,ease:'expo.out'},at);
-           else tl.fromTo(el,{opacity:1,y:10},{opacity:1,y:0,duration:.8,ease:'power3.out'},at); }
+   if(f0){ if(slam) tl.to(el,{scale:1.07,duration:.35,ease:'sine.inOut',yoyo:true,repeat:1},at+.15);
+           else tl.to(el,{y:-6,duration:1.2,ease:'sine.inOut'},at); }
    else if(slam) tl.fromTo(el,{opacity:0,y:36,scale:1.16},{opacity:1,y:0,scale:1,duration:.5,ease:'expo.out'},a);
    else tl.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:.45,ease:'power3.out'},a);});},
  // slow camera drift past the scene end so nothing freezes
- drift:function(tl,sel,T0,DUR){tl.fromTo(sel,{scale:1,x:-10,y:6},{scale:1.035,x:10,y:-8,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 760px'},T0);}
+ drift:function(tl,sel,T0,DUR,f0){tl.fromTo(sel,f0?{scale:1,x:0,y:0}:{scale:1,x:-10,y:6},{scale:1.035,x:10,y:-8,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 760px'},T0);}
 };
 window.buildScene_3=function(tl,T0,DUR){
- const h=window.__e86h, qa=s=>[...document.querySelectorAll(s)];
+ const h=window.__e86h, E=E+.18, qa=s=>[...document.querySelectorAll(s)];
  tl.set('#s3',{opacity:1,visibility:'visible'},T0);
  h.drift(tl,'#c3',T0,DUR);
  tl.set(qa('#s3 .w'),{opacity:0},T0);
- h.words(tl,qa('#h3 .w'),T0+.02,false,.08);
+ h.words(tl,qa('#h3 .w'),E+.02,false,.08);
  tl.set(['#u3a','#u3b'],{scaleX:0},T0);
- tl.fromTo('#d3a',{opacity:0,y:80,scale:.96},{opacity:1,y:0,scale:1,duration:.55,ease:'power3.out'},T0+.1);
- tl.fromTo('#d3b',{opacity:0,y:80,scale:.96},{opacity:1,y:0,scale:1,duration:.55,ease:'power3.out'},T0+.22);
- tl.to('#u3a',{scaleX:1,duration:.45,ease:'power2.inOut'},T0+.55);
- tl.to('#u3b',{scaleX:1,duration:.45,ease:'power2.inOut'},T0+.7);
- tl.to('#d3a',{y:-6,duration:Math.max(.8,DUR-.65),ease:'sine.inOut'},T0+.65);
- tl.to('#d3b',{y:-10,duration:Math.max(.8,DUR-.77),ease:'sine.inOut'},T0+.77);
- tl.to('#h3 .pill',{rotation:-2,duration:Math.max(.8,DUR-.5),ease:'sine.inOut'},T0+.5);
- tl.fromTo('#lb3',{opacity:0},{opacity:1,duration:.5},T0+.4);
+ tl.fromTo('#d3a',{opacity:0,y:80,scale:.96},{opacity:1,y:0,scale:1,duration:.55,ease:'power3.out'},E+.1);
+ tl.fromTo('#d3b',{opacity:0,y:80,scale:.96},{opacity:1,y:0,scale:1,duration:.55,ease:'power3.out'},E+.22);
+ tl.to('#u3a',{scaleX:1,duration:.45,ease:'power2.inOut'},E+.55);
+ tl.to('#u3b',{scaleX:1,duration:.45,ease:'power2.inOut'},E+.7);
+ tl.to('#d3a',{y:-6,duration:Math.max(.8,DUR-.65),ease:'sine.inOut'},E+.65);
+ tl.to('#d3b',{y:-10,duration:Math.max(.8,DUR-.77),ease:'sine.inOut'},E+.77);
+ tl.to('#h3 .pill',{rotation:-2,duration:Math.max(.8,DUR-.5),ease:'sine.inOut'},E+.5);
+ tl.fromTo('#lb3',{opacity:0},{opacity:1,duration:.5},E+.4);
 };
 </script>

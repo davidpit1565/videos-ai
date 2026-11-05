@@ -7,6 +7,7 @@
 #s7 .cam{transform-origin:540px 760px}
 #s7 .grp{top:286px}
 #s7 .w{opacity:0}
+#s7 .grp .w{text-transform:uppercase;font-weight:900}
 #s7 .lg{position:absolute;background:#fff;border:6px solid var(--ink);display:flex;align-items:center;justify-content:center}
 #s7 .lg img{width:62%;height:62%;display:block}
 #s7 #s7card{position:absolute;left:65px;top:540px;width:950px;height:487px;background:var(--app);border-radius:40px;overflow:hidden;box-shadow:0 28px 70px rgba(14,14,14,.22),0 4px 12px rgba(14,14,14,.12);opacity:0}
@@ -18,8 +19,8 @@
 #s7 .hon{position:absolute;left:540px;top:1176px;transform:translateX(-50%);white-space:nowrap;text-align:center;font-weight:500;font-size:30px;color:var(--ink2);letter-spacing:.01em;opacity:0}
 /* the board */
 #s7 #s7b{position:absolute;left:0;top:0;width:1080px;height:1920px}
-#s7 #s7k{position:absolute;left:65px;top:292px;width:950px;text-align:center;font-family:JBM,monospace;font-weight:700;font-size:34px;letter-spacing:.08em;color:var(--ink2);opacity:0}
-#s7 #s7t{position:absolute;left:65px;top:340px;width:950px;text-align:center;font-weight:900;font-size:80px;letter-spacing:-.04em;line-height:1.04;white-space:nowrap;opacity:0}
+#s7 #s7k{position:absolute;left:240px;top:292px;width:600px;text-align:center;font-family:JBM,monospace;font-weight:700;font-size:34px;letter-spacing:.08em;color:var(--ink2);opacity:0}
+#s7 #s7t{position:absolute;left:95px;top:340px;width:890px;text-align:center;font-weight:900;font-size:70px;text-transform:uppercase;letter-spacing:-.04em;line-height:1.04;white-space:nowrap;opacity:0}
 #s7 .brow{position:absolute;left:65px;width:950px;height:130px;background:#fff;border:5px solid var(--ink);border-radius:32px;box-shadow:7px 7px 0 var(--ink);opacity:0;display:flex;align-items:center;white-space:nowrap}
 #s7 .brow .lg{position:relative;margin-left:18px;width:92px;height:92px;border-width:4px;border-radius:26px;flex:none}
 #s7 .brow .nm{margin-left:26px;font-weight:900;font-size:58px;letter-spacing:-.03em}
@@ -60,7 +61,7 @@
    <div class="g" style="left:680px"><div class="lg"><img src="assets/claude.svg"></div><div class="q">?</div></div>
   </div>
  </div>
- <div class="hon" id="s7hon">Real screen recordings · 5 Nov 2026</div>
+ <div class="hon" id="s7hon">Real screen recording · 5 Nov 2026</div>
  </div>
 </div>
 <script>
@@ -96,6 +97,6 @@ window.buildScene_7=function(tl,T0,DUR){
  tl.fromTo(S+'#s7two .g',{opacity:0,y:18},{opacity:1,y:0,duration:.45,ease:'power3.out',stagger:.1},tB+1.3);
  tl.fromTo(S+'#s7two .q',{rotation:-10},{rotation:6,duration:Math.max(.5,E-(tB+1.4)),ease:'sine.inOut'},tB+1.4);
  // whole scene drifts slowly, never still; the board keeps breathing to the last frame
- tl.fromTo(S+'#s7b',{scale:1,y:6},{scale:1.025,y:-6,duration:Math.max(.5,E-tB),ease:'sine.inOut',transformOrigin:'540px 700px'},tB);
+ tl.fromTo(S+'#s7b',{scale:1,y:6},{scale:1.012,y:-6,duration:Math.max(.5,E-tB),ease:'sine.inOut',transformOrigin:'540px 700px'},tB);
 };
 </script>
