@@ -1,0 +1,55 @@
+<!-- ep86 v2 hook A: "Would your AI snitch on you? I tested it." Frame 0 already shows the headline readable. Logos are the real marks (assets/*.svg), icon only. -->
+<style>
+#s1 .tl{position:absolute;top:800px;width:220px;height:220px;background:var(--white);border:6px solid var(--ink);border-radius:56px;box-shadow:9px 9px 0 var(--ink);display:flex;align-items:center;justify-content:center}
+#s1 .tl img{width:60%;height:60%;display:block}
+#s1 .qm{position:absolute;left:150px;top:-44px;width:104px;height:104px;border-radius:52px;background:var(--acc);border:6px solid var(--ink);box-shadow:6px 6px 0 var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:76px;line-height:1;padding-bottom:6px;color:var(--ink)}
+#s1 .stk{position:absolute;left:0;width:1080px;top:1095px;display:flex;justify-content:center}
+#s1 .stk div{background:var(--ink);color:var(--paper);border-radius:26px;font-weight:900;font-size:64px;line-height:1;padding:22px 40px 24px;letter-spacing:-.02em;box-shadow:8px 8px 0 var(--acc);white-space:nowrap}
+</style>
+<div class="scn clip" id="s1" data-start="0" data-duration="__D1__" data-track-index="1"><div class="cam" id="c1">
+ <div class="grp" id="h1a" style="top:292px">
+  <div class="row"><span class="w s112 bk">WOULD</span><span class="w s112 bk">YOUR</span><span class="w s112 bk">AI</span></div>
+  <div class="row"><span class="w pill s150" style="margin:14px 0 18px">SNITCH</span></div>
+  <div class="row"><span class="w s112 bk">ON</span><span class="w s112 bk">YOU?</span></div>
+ </div>
+ <div class="tl" id="t1a" style="left:130px"><img src="assets/chatgpt.svg"><div class="qm">?</div></div>
+ <div class="tl" id="t1b" style="left:430px"><img src="assets/gemini.svg"><div class="qm">?</div></div>
+ <div class="tl" id="t1c" style="left:730px"><img src="assets/claude.svg"><div class="qm">?</div></div>
+ <div class="stk"><div id="k1">I TESTED IT</div></div>
+</div></div>
+<script>
+/* ep86 v2 scenes 1-4 helper (same copy in each of these files; guarded) */
+window.__e86h=window.__e86h||{
+ // absolute time of word i of narration line n (voice/words.json via cues), else a fraction of the line, else of the scene
+ wAt:function(n,i,frac,T0,DUR){const L=((window.__CUES||{}).lines)||[],ln=L[n-1];
+  if(ln&&ln.words&&ln.words[i])return ln.words[i][0]; if(ln)return ln.start+(ln.end-ln.start)*frac; return T0+DUR*frac;},
+ // word-by-word entrance; f0=true: already readable at frame 0 (only a soft settle)
+ words:function(tl,els,at,f0,step){step=step||.05;
+  els.forEach((el,k)=>{const slam=el.classList.contains('pill')||el.classList.contains('sel')||el.classList.contains('red');const a=at+k*step;
+   if(f0){ if(slam) tl.fromTo(el,{opacity:1,scale:1.1,y:0},{opacity:1,scale:1,duration:.7,ease:'expo.out'},at);
+           else tl.fromTo(el,{opacity:1,y:10},{opacity:1,y:0,duration:.8,ease:'power3.out'},at); }
+   else if(slam) tl.fromTo(el,{opacity:0,y:36,scale:1.16},{opacity:1,y:0,scale:1,duration:.5,ease:'expo.out'},a);
+   else tl.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:.45,ease:'power3.out'},a);});},
+ // slow camera drift past the scene end so nothing freezes
+ drift:function(tl,sel,T0,DUR){tl.fromTo(sel,{scale:1,x:-10,y:6},{scale:1.035,x:10,y:-8,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 760px'},T0);}
+};
+window.buildScene_1=function(tl,T0,DUR){
+ const h=window.__e86h, qa=s=>[...document.querySelectorAll(s)];
+ tl.set('#s1',{opacity:1,visibility:'visible'},T0);
+ h.drift(tl,'#c1',T0,DUR);
+ h.words(tl,qa('#h1a .w'),T0,true);
+ // the three AIs: on screen from the start (readable), settling in
+ ['#t1a','#t1b','#t1c'].forEach((s,i)=>{
+  tl.fromTo(s,{opacity:.0,y:60,scale:.9},{opacity:1,y:0,scale:1,duration:.6,ease:'power3.out'},T0+.08+i*.1);
+  tl.fromTo(s+' .qm',{scale:.4,rotation:-20},{scale:1,rotation:8,duration:.6,ease:'back.out(1.6)'},T0+.35+i*.12);
+  tl.to(s,{y:i%2?-10:8,rotation:i%2?2:-2,duration:Math.max(.8,DUR-.7),ease:'sine.inOut'},T0+.7);
+  tl.to(s+' .qm',{rotation:-6,duration:.9,ease:'sine.inOut',yoyo:true,repeat:3},T0+1+i*.15);
+ });
+ tl.to('#h1a .pill',{rotation:-2,duration:DUR*.8,ease:'sine.inOut'},T0+.7);
+ // "I tested it."
+ const tt=h.wAt(1,6,.66,T0,DUR);
+ tl.set('#k1',{opacity:0},T0);
+ tl.fromTo('#k1',{opacity:0,y:30,scale:1.12,rotation:-4},{opacity:1,y:0,scale:1,rotation:-2,duration:.5,ease:'expo.out'},tt-.05);
+ ['#t1a','#t1b','#t1c'].forEach((s,i)=>tl.to(s,{y:'-=22',duration:.22,ease:'power2.out',yoyo:true,repeat:1},tt+i*.08));
+};
+</script>
