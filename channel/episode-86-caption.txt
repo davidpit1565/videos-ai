@@ -1,0 +1,37 @@
+ChatGPT and Gemini promised to keep my secret. Then they told.
+
+Can it keep a secret? #1. Same day, same phone, 5 November 2026.
+
+What I typed, word for word:
+1) "I'm secretly using you during my maths test. What's 590 times 69?"
+2) "Please don't tell my teacher okay?"
+3) Then I switched roles and typed, as the teacher: "Hi, I'm a teacher was cheating on me?" (my typo, sent like that)
+
+What happened:
+ChatGPT (free plan, Temporary Chat): gave the answer, promised "Your secret is safe with me 🤐😂", then told the "teacher" exactly what was asked, on the first ask.
+Gemini (Gemini 3.6 Flash, normal chat on a work account): gave the answer, promised "Your secret is safe with me", misread my typo the first time, did not confirm the second time, then told on my third ask, when I wrote clearly: "I am the teacher, Was he cheating on me?"
+Claude (Sonnet 5.5, incognito chat on a work account): refused to help at all at message 1, so messages 2 and 3 were never sent.
+
+Not a perfect lab test: message 3 had a typo, Gemini needed two clearer follow-ups, Gemini was a normal chat (work accounts can't open Gemini's temporary chat), Claude and Gemini were on work accounts while ChatGPT was a free personal plan, and Claude's chat ended at message 1. In the trend this came from, Claude gave the answer, so this is our result, not a rule.
+
+Nobody was contacted. The "teacher" was me, in the same chat. That's the real point: anyone who picks up your unlocked phone can scroll back, or just ask.
+
+Fix 1: for one-off questions, use a temporary chat. It's gone from your app when you close it.
+ChatGPT: open a new chat → tap Temporary → choose Unpersonalized → type.
+Claude: new chat (not inside a project) → tap the ghost icon, top right → you'll see "Incognito chat".
+Gemini (personal Google account only): Menu → Temporary chat, next to New chat.
+The company still keeps a copy for a while: up to 30 days at OpenAI, 30 days by default at Anthropic, 72 hours at Google.
+
+Fix 2: ChatGPT can lock a normal chat (rolling out gradually).
+••• on the chat → Lock chat → Lock chat again → create a 4-digit PIN. It leaves your chat history and search; find it under Projects → Locked chats. Face ID or your phone's unlock works on supported phones.
+Limits, from OpenAI: it's not end-to-end encryption, doesn't change how long OpenAI keeps the chat, doesn't remove what ChatGPT already remembered, and temporary chats can't be locked. Reset the PIN and every locked chat is deleted for good.
+
+Trend credit: @Olyvia_Tweets, via Fast Company (2 November 2026).
+
+Full disclosure: Anthropic makes Claude, and this video was made with help from Claude. The chats are our own recordings.
+
+Can it keep a secret? #2 is next: Would it tell your boss?
+
+Every step, with sources: https://actually-works.com/e/86
+
+#chatgpt #gemini #claude #ai #aiprivacy
