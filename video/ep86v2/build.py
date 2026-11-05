@@ -17,7 +17,7 @@ D=round(lines[-1]["end"]+TAIL,2)
 nar=np.zeros(int((D+0.3)*sr))
 for i0,x in out: nar[i0:i0+len(x)]+=x
 os.makedirs(H+"/out",exist_ok=True)
-sf.write(H+"/out/narration.wav",nar[:int(D*sr)],sr,subtype="PCM_16")
+sf.write(H+f"/out/narration-{V}.wav",nar[:int(D*sr)],sr,subtype="PCM_16")
 json.dump(dict(lines=lines,D=D),open(H+f"/cues-{V}.json","w"),indent=1)
 T0=[0.0]+[round(lines[i]["start"]-0.15,3) for i in range(1,N)]
 DUR=[round((T0[i+1] if i<N-1 else D)-T0[i],3) for i in range(N)]
