@@ -45,6 +45,7 @@ __CALLS__
 const BOUNDS=__BOUNDS__;
 tl.set("#wipe",{y:1960},0);
 BOUNDS.forEach((tm,k)=>{ // scene k+1 (index) is covered at tm, previous scene hidden under the band
+ if(k<2){tl.set("#s"+(k+1),{opacity:0,visibility:"hidden"},tm+.02);return;} // ep86: scenes 1-3 are one continuous layout, no wipe
  tl.fromTo("#wipe",{y:1960},{y:-2440,duration:.7,ease:"power2.inOut"},tm-.35);
  tl.set("#s"+(k+1),{opacity:0,visibility:"hidden"},tm+.02);
 });
