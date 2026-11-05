@@ -6,7 +6,7 @@ the free one — the full reasoning is in `plan/business-model.html`.
 
 ## Talking to him
 
-- **He writes Hebrew, the videos are English.** Answer in Hebrew. Content, captions and
+- **He writes Hebrew, the videos are English.** Answer in Hebrew. **Every message to him is in Hebrew, without exception (David, 5.11.2026)**: status updates, short notices after a background agent or a GitHub/Vercel notification, reports and questions alike, whenever he writes in Hebrew. English only for things that stay English (scripts, captions, code, file names, quoted on-screen text). Content, captions and
   scripts are English (4–5 a week) plus Flemish (1 a week, for clients).
 - **Explain by the `explain-steps` skill.** Numbered clicks, interface labels in both
   languages, the boring path over the clever one, optional steps marked as optional. When he
