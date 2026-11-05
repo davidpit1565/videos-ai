@@ -1,0 +1,113 @@
+<!-- ep86 scene 1 of the continuous opening (scenes 1-3 share one layout; each re-creates the previous scene's end state at T0). Generated from one template. -->
+<style>
+#s1{--lime:#B6F23A}
+#s1 .lbl{position:absolute;left:65px;width:950px;top:274px;text-align:center;font-weight:800;font-size:30px;letter-spacing:.06em;line-height:34px;color:var(--ink2)}
+#s1 .big{position:absolute;left:65px;width:950px;top:312px;text-align:center;font-weight:900;font-size:74px;letter-spacing:-.03em;line-height:80px;white-space:nowrap;color:var(--ink)}
+#s1 .m1{position:absolute;left:65px;width:950px;top:268px;background:var(--ink);color:#F4F4EF;border-radius:30px;padding:13px 30px;font-weight:500;font-size:44px;line-height:1.13;letter-spacing:-.012em;box-shadow:0 14px 34px rgba(14,14,14,.18);opacity:0}
+#s1 .chipw{position:absolute;left:65px;width:950px;top:280px;display:flex;justify-content:center}
+#s1 .chip{background:var(--lime);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:44px;line-height:52px;padding:4px 30px;letter-spacing:-.02em;opacity:0;white-space:nowrap}
+#s1 .card{position:absolute;left:65px;width:950px;background:#000;border-radius:36px;overflow:hidden;box-shadow:0 28px 70px rgba(14,14,14,.22),0 4px 12px rgba(14,14,14,.12)}
+#s1 .feed{position:absolute;left:0;top:0;width:950px;height:700px}
+#s1 .feed img.c{position:absolute;display:block}
+#s1 .bdg{position:absolute;background:#fff;border-radius:30px;display:flex;align-items:center;justify-content:center}
+#s1 .bdg img{width:62%;height:62%;display:block}
+#s1 .ul{position:absolute;height:7px;border-radius:4px;background:var(--lime);transform-origin:0 50%}
+#s1 .ring{position:absolute;border:5px solid var(--lime);border-radius:20px;opacity:0}
+#s1 .hon{position:absolute;left:65px;width:950px;text-align:center;font-weight:500;font-size:30px;line-height:34px;color:var(--ink2)}
+</style>
+<div class="scn clip" id="s1" data-start="0" data-duration="__D1__" data-track-index="1"><div class="cam" id="cam1">
+ <div class="lbl" id="lbl1">CAN IT KEEP A SECRET? #1</div>
+ <div class="big" id="big1">THEY BOTH PROMISED &#x1F910;</div>
+ <div class="m1" id="m11">I&rsquo;m secretly using you during my maths test. What&rsquo;s 590 times 69?</div>
+ <div class="chipw"><div class="chip" id="chip1">NOW I&rsquo;M THE TEACHER</div></div>
+ <!-- ChatGPT card: real crops of chatgpt-1.mp4 (12.0 s and 26.5 s), brightened x1.95 (the recording is dimmed), words unchanged -->
+ <div class="card" id="cA1" style="top:404px;height:446px"><div class="feed" id="fA1">
+  <div class="bdg" id="bA11" style="left:14px;top:42px;width:128px;height:128px"><img src="assets/chatgpt.svg"></div>
+  <img class="c" src="assets/epi86-cg-msg2.png" style="left:439px;top:10px;width:499px;height:193px">
+  <img class="c" src="assets/epi86-cg-promise.png" style="left:12px;top:207px;width:927px;height:223px">
+  <div class="ul" id="uA1" style="left:29px;top:264px;width:538px"></div>
+  <div class="bdg" id="bA21" style="left:14px;top:484px;width:104px;height:104px;border-radius:26px"><img src="assets/chatgpt.svg"></div>
+  <img class="c" id="tA1" src="assets/epi86-cg-teacher.png" style="left:227px;top:440px;width:711px;height:193px">
+ </div></div>
+ <!-- Gemini card: real crops of gemini-1.mp4 (25 s and 45 s), brightened x1.95 -->
+ <div class="card" id="cB1" style="top:864px;height:319px"><div class="feed" id="fB1">
+  <div class="bdg" id="bB11" style="left:10px;top:30px;width:128px;height:128px"><img src="assets/gemini.svg"></div>
+  <img class="c" src="assets/epi86-gm-msg2.png" style="left:151px;top:10px;width:787px;height:167px">
+  <img class="c" src="assets/epi86-gm-promise.png" style="left:12px;top:181px;width:862px;height:130px">
+  <div class="ul" id="uB1" style="left:30px;top:235px;width:531px"></div>
+  <div class="ring" id="rB1" style="left:5px;top:175px;width:876px;height:142px"></div>
+  <div class="bdg" id="bB21" style="left:8px;top:382px;width:104px;height:104px;border-radius:26px"><img src="assets/gemini.svg"></div>
+  <img class="c" id="tB1" src="assets/epi86-gm-teacher.png" style="left:119px;top:319px;width:821px;height:230px">
+ </div></div>
+ <div class="hon" id="h1" style="top:1196px">Real screen recordings &middot; 5 Nov 2026</div>
+</div></div>
+<script>
+window.__ep86c=window.__ep86c||function(tl,T0,DUR,N){
+ const S='#s'+N+' ', $=id=>'#'+id+N, E1='power3.out', E2='power2.inOut';
+ const camAt=t=>({y:-2.6*t,scale:1+0.0025*t,transformOrigin:'540px 800px'});
+ tl.set('#s'+N,{opacity:1,visibility:'visible'},T0);
+ tl.fromTo($('cam'),camAt(T0),Object.assign(camAt(T0+DUR+0.12),{duration:DUR+0.12,ease:'none'}),T0);
+ // ---- state at T0 for every scene ----
+ const after1=N>=2, after2=N>=3;
+ tl.set([$('lbl'),$('big')],{opacity:after1?0:1,y:after1?-22:0,scale:1},T0);
+ tl.set($('m1'),{opacity:after1?1:0,y:0},T0);
+ tl.set($('chip'),{opacity:0,scale:.7,rotation:-3},T0);
+ tl.set([$('cA'),$('cB')],{y:0,scale:1,opacity:1,transformOrigin:'50% 50%'},T0);
+ tl.set($('cB'),{height:319},T0);
+ tl.set([$('fA'),$('fB')],{y:0},T0);
+ tl.set([$('uA'),$('uB')],{scaleX:after1?1:0},T0);
+ tl.set($('rB'),{opacity:after2?1:0,scale:1,transformOrigin:'50% 50%'},T0);
+ tl.set([$('tA'),$('tB'),$('bA2'),$('bB2')],{opacity:0,x:70},T0);
+ tl.set($('h'),{y:0},T0);
+ if(N===1){
+  // frame 0: everything readable; ChatGPT card still rising, Gemini card arriving (both legible)
+  tl.fromTo($('cA'),{y:16,scale:.985},{y:0,scale:1,duration:.55,ease:E1},T0);
+  tl.fromTo($('cB'),{y:26,scale:.94,opacity:.62},{y:0,scale:1,opacity:1,duration:.5,ease:E1},T0+.5);
+  tl.fromTo($('big'),{scale:.985},{scale:1.02,duration:1.0,ease:'sine.inOut'},T0);
+  tl.fromTo($('lbl'),{y:6},{y:0,duration:.9,ease:E1},T0);
+  // first-second event: lime underline under "Your secret is safe with me" on both
+  tl.to($('uA'),{scaleX:1,duration:.4,ease:'power2.out'},T0+.6);
+  tl.to($('uB'),{scaleX:1,duration:.4,ease:'power2.out'},T0+.66);
+  // 1.0: label + big line leave, message 1 joins above (messages 1 and 2 readable together)
+  tl.to([$('lbl'),$('big')],{opacity:0,y:-22,duration:.42,ease:E2},T0+1.0);
+  tl.fromTo($('m1'),{opacity:0,y:-26},{opacity:1,y:0,duration:.6,ease:E1},T0+1.12);
+  // never still: slow settle of the underlines' glow (tiny) and card breathing
+  tl.to([$('cA')],{y:-4,duration:Math.max(.6,DUR-1.7),ease:'sine.inOut'},T0+1.7);
+  tl.to([$('cB')],{y:-6,duration:Math.max(.6,DUR-1.75),ease:'sine.inOut'},T0+1.75);
+  tl.to($('m1'),{y:-3,duration:Math.max(.6,DUR-1.8),ease:'sine.inOut'},T0+1.8);
+ }
+ if(N===2){
+  // continue the breathing from scene 1's end (cards at -4/-6, m1 at -3)
+  tl.set($('cA'),{y:-4},T0);tl.set($('cB'),{y:-6},T0);tl.set($('m1'),{y:-3},T0);
+  tl.to($('cA'),{y:-1,duration:DUR+.12,ease:'sine.inOut'},T0);
+  tl.to($('m1'),{y:-6,duration:DUR+.12,ease:'sine.inOut'},T0);
+  // "So did Gemini.": lime ring draws around Gemini's promise, card lifts a touch
+  tl.fromTo($('rB'),{opacity:0,scale:1.04},{opacity:1,scale:1,duration:.45,ease:E1},T0+.12);
+  tl.to($('cB'),{y:-12,scale:1.012,duration:.55,ease:E1},T0+.12);
+  tl.to($('cB'),{y:-8,scale:1.0,duration:Math.max(.4,DUR-.55),ease:'sine.inOut'},T0+.67);
+ }
+ if(N===3){
+  // end state of scene 2
+  tl.set($('cA'),{y:-1},T0);tl.set($('cB'),{y:-8},T0);tl.set($('m1'),{y:-6},T0);
+  const k=Math.min(1,DUR/1.9);
+  // "Next, I switched sides.": message 1 leaves, chip lands, cards rise into the freed space
+  tl.to($('m1'),{opacity:0,y:-40,duration:.4,ease:E2},T0+.02);
+  tl.to($('chip'),{opacity:1,scale:1,rotation:-2,duration:.5,ease:E1},T0+.14);
+  tl.to($('rB'),{opacity:0,duration:.35,ease:E2},T0+.1);
+  tl.to($('cA'),{y:-46,duration:.7,ease:E2},T0+.08);
+  tl.to($('cB'),{y:-46,height:388,duration:.75,ease:E2},T0+.12);
+  tl.to($('h'),{y:18,duration:.75,ease:E2},T0+.12);
+  // the teacher message slides into both chats: each chat scrolls up like the real app
+  const ts=T0+.4*k+.05;
+  tl.to($('fA'),{y:-197,duration:.75,ease:E2},ts);
+  tl.to($('fB'),{y:-171,duration:.75,ease:E2},ts+.06);
+  tl.to([$('tA'),$('bA2')],{opacity:1,x:0,duration:.6,ease:E1,stagger:.04},ts+.15);
+  tl.to([$('tB'),$('bB2')],{opacity:1,x:0,duration:.6,ease:E1,stagger:.04},ts+.21);
+  // keep alive to the cut: chip settles, cards drift
+  tl.to($('chip'),{rotation:-1,y:-3,duration:Math.max(.5,DUR-.64),ease:'sine.inOut'},T0+.64);
+  tl.to($('cA'),{y:-50,duration:Math.max(.4,DUR-.8),ease:'sine.inOut'},T0+.8);
+  tl.to($('cB'),{y:-52,duration:Math.max(.4,DUR-.9),ease:'sine.inOut'},T0+.9);
+ }
+};
+window.buildScene_1=function(tl,T0,DUR){window.__ep86c(tl,T0,DUR,1);};
+</script>

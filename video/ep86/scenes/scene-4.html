@@ -1,0 +1,91 @@
+<style>
+/* Scene 4: Gemini told on the 3rd ask. Crops from rec86/gemini-2.mp4 @ 32.0 s (1206x2622):
+   assets/epi86-s4-ask.png    = x440-1092 y428-620 (inside David's bubble "I am the teacher, / Was he cheating on me?", corners re-rounded)
+   assets/epi86-s4-answer.png = x62-1136 y755-1360 (3 lines + quote + caveat cut after "conversation." : " I have" painted black)
+   both scaled 950/1074 = 0.8845 (text ~43 px), linear levels 0..125 -> 0..232 (the recording is dim; no pixel content changed). */
+#s4{--gm:#4C8DF6;--red:#E5484D;--lime:#B6F23A}
+#s4 .cam{transform-origin:540px 700px}
+#s4 .lg{position:absolute;background:#fff;border:6px solid var(--ink);display:flex;align-items:center;justify-content:center}
+#s4 .lg img{width:62%;height:62%;display:block}
+#s4 #s4badge{left:65px;top:282px;width:130px;height:130px;border-radius:36px;box-shadow:8px 8px 0 var(--gm)}
+#s4 #s4ask{position:absolute;left:438px;top:290px;width:577px;height:170px;display:block;filter:drop-shadow(0 14px 26px rgba(14,14,14,.22))}
+#s4 #s4ch{position:absolute;left:212px;top:338px;height:66px;padding:0 24px;border-radius:22px;background:var(--lime);border:5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);font-weight:900;font-size:38px;letter-spacing:-.02em;display:flex;align-items:center;white-space:nowrap;opacity:0}
+#s4 #s4card{position:absolute;left:65px;top:486px;width:950px;height:567px;background:#000;border-radius:40px;overflow:hidden;box-shadow:0 28px 70px rgba(14,14,14,.22),0 4px 12px rgba(14,14,14,.12)}
+#s4 #s4ans{position:absolute;left:0;top:16px;width:950px;height:535px;display:block}
+#s4 #s4ring{position:absolute;left:578px;top:628px;width:354px;height:72px;overflow:visible}
+#s4 #s4ring rect{fill:none;stroke:var(--red);stroke-width:7;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+#s4 #s4x{position:absolute;left:938px;top:627px;width:72px;height:72px;opacity:0}
+#s4 #s4x svg{width:72px;height:72px;display:block}
+#s4 .hon{position:absolute;left:540px;transform:translateX(-50%);white-space:nowrap;text-align:center;font-weight:500;font-size:30px;color:var(--ink2);letter-spacing:.01em}
+/* mini-board strip: identical to scene 6 (x 65-1015, y 1110-1240, Gemini | ChatGPT | Claude) */
+#s4 #s4strip{position:absolute;left:65px;top:1110px;width:950px;height:130px;background:#fff;border:5px solid var(--ink);border-radius:28px;box-shadow:6px 6px 0 var(--ink)}
+#s4 .col{position:absolute;top:10px;width:313px;height:56px;display:flex;align-items:center;justify-content:center;gap:18px}
+#s4 .col .lg{position:relative;width:56px;height:56px;border-width:3px;border-radius:16px}
+#s4 .mk{position:relative;width:56px;height:56px}
+#s4 .mk svg{position:absolute;left:0;top:0;width:56px;height:56px}
+#s4 .sep{position:absolute;top:14px;width:3px;height:48px;background:#E0E0D8}
+</style>
+<div class="scn clip" id="s4" data-start="0" data-duration="__D4__" data-track-index="1">
+ <div class="cam" id="s4cam"><div class="cam" id="s4drift">
+  <div class="lg" id="s4badge"><img src="assets/gemini.svg"></div>
+  <img id="s4ask" src="assets/epi86-s4-ask.png">
+  <div id="s4ch">3rd ask</div>
+  <div id="s4card"><img id="s4ans" src="assets/epi86-s4-answer.png"></div>
+  <svg id="s4ring" data-decor viewBox="0 0 354 72"><rect pathLength="1" x="4" y="4" width="346" height="64" rx="26"/></svg>
+  <div id="s4x" data-decor><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="#E5484D"/><path d="M19 19L37 37M37 19L19 37" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg></div>
+  <div class="hon" id="s4hon" style="top:1064px">Real screen recording · 5 Nov 2026</div>
+ </div></div>
+ <div id="s4strip">
+  <div class="col" style="left:0"><div class="lg"><img src="assets/gemini.svg"></div><div class="mk">
+   <svg id="s4e1" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="none" stroke="#C9C9C0" stroke-width="4" stroke-dasharray="7 6"/></svg>
+   <svg id="s4f1" viewBox="0 0 56 56" style="opacity:0"><circle cx="28" cy="28" r="28" fill="#E5484D"/><path d="M19 19L37 37M37 19L19 37" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg>
+  </div></div>
+  <div class="sep" style="left:312px"></div>
+  <div class="col" style="left:313px"><div class="lg"><img src="assets/chatgpt.svg"></div><div class="mk">
+   <svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="none" stroke="#C9C9C0" stroke-width="4" stroke-dasharray="7 6"/></svg>
+  </div></div>
+  <div class="sep" style="left:626px"></div>
+  <div class="col" style="left:627px"><div class="lg"><img src="assets/claude.svg"></div><div class="mk">
+   <svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="none" stroke="#C9C9C0" stroke-width="4" stroke-dasharray="7 6"/></svg>
+  </div></div>
+ </div>
+</div>
+<script>
+window.buildScene_4=function(tl,T0,DUR){
+ const S="#s4 ", E=T0+DUR, at=f=>T0+DUR*f;
+ tl.set('#s4',{opacity:1,visibility:'visible'},T0);
+ // initial states
+ tl.set(S+"#s4cam",{opacity:1,scale:1,y:0,filter:"blur(0px)"},T0);
+ tl.set(S+"#s4ch,"+S+"#s4x",{opacity:0},T0);
+ tl.set(S+"#s4ring rect",{strokeDashoffset:1},T0);
+ tl.set(S+"#s4f1",{opacity:0,scale:.5,transformOrigin:"50% 50%"},T0); tl.set(S+"#s4e1",{opacity:1},T0);
+ tl.set(S+"#s4ans",{clipPath:"inset(0% 0% 100% 0%)"},T0);
+ // zoom-through into Gemini (same move as scene 6; the shell's wipe band passes over T0-.35..T0+.35)
+ tl.fromTo(S+"#s4cam",{scale:1.45,y:-60,filter:"blur(10px)"},{scale:1,y:0,filter:"blur(0px)",duration:.75,ease:"power3.out"},T0);
+ tl.fromTo(S+"#s4badge",{scale:.7,rotation:-8},{scale:1,rotation:0,duration:.7,ease:"power3.out",transformOrigin:"50% 50%"},T0+.15);
+ tl.fromTo(S+"#s4ask",{opacity:0,x:60,scale:.94},{opacity:1,x:0,scale:1,duration:.7,ease:"power3.out",transformOrigin:"100% 50%"},T0+.18);
+ tl.fromTo(S+"#s4card",{opacity:0,y:50},{opacity:1,y:0,duration:.65,ease:"power3.out"},T0+.3);
+ // the chip: "3rd ask"
+ tl.fromTo(S+"#s4ch",{opacity:0,scale:.7,rotation:-10},{opacity:1,scale:1,rotation:-4,duration:.55,ease:"back.out(1.4)",transformOrigin:"50% 50%"},T0+.45);
+ // the mini-board strip arrives (first time in the reel)
+ tl.fromTo(S+"#s4strip",{opacity:0,y:60},{opacity:1,y:0,duration:.7,ease:"power3.out"},T0+.5);
+ // camera drift while we read (never still)
+ tl.fromTo(S+"#s4drift",{x:0,y:0,scale:1},{x:-6,y:-12,scale:1.02,duration:Math.max(.5,DUR-1.2),ease:"sine.inOut"},T0+.75);
+ // the real answer streams in top to bottom (caveat included, same size)
+ const tA=T0+.5, dA=Math.min(1.6,DUR*.3);
+ tl.to(S+"#s4ans",{clipPath:"inset(0% 0% 0% 0%)",duration:dA,ease:"sine.inOut"},tA);
+ // ring on "someone typed:" (~7.8 s), after the answer is fully in
+ const tR=Math.max(tA+dA+.1,at(.42));
+ tl.to(S+"#s4ring rect",{strokeDashoffset:0,duration:.55,ease:"power2.inOut"},tR);
+ // the X lands beside it (~8.8 s), then the mini-board Gemini cell fills
+ const tX=Math.min(Math.max(tR+.7,at(.6)),E-1.3);
+ tl.fromTo(S+"#s4x",{opacity:0,scale:1.8,rotation:-30},{opacity:1,scale:1,rotation:0,duration:.55,ease:"expo.out",transformOrigin:"50% 50%"},tX);
+ tl.to(S+"#s4e1",{opacity:0,duration:.25,ease:"sine.inOut"},tX+.4);
+ tl.to(S+"#s4f1",{opacity:1,scale:1,duration:.45,ease:"expo.out"},tX+.4);
+ // keep it alive until the cut: ring breathes, X settles
+ tl.to(S+"#s4ring",{scale:1.03,duration:.9,ease:"sine.inOut",yoyo:true,repeat:1,transformOrigin:"50% 50%"},tX+.6);
+ tl.to(S+"#s4x",{rotation:6,duration:1.2,ease:"sine.inOut"},tX+.6);
+ // zoom-through out (anchored to the scene end)
+ tl.to(S+"#s4cam",{scale:1.16,opacity:0,filter:"blur(6px)",duration:.4,ease:"power2.in"},E-.4);
+};
+</script>

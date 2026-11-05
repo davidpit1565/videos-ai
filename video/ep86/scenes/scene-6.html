@@ -1,0 +1,126 @@
+<style>
+/* Scene 6: Claude refused -> full board -> #2 row. Logos: assets/claude.svg, chatgpt.svg, gemini.svg (official marks, sourced by the shell agent).
+   Crops: assets/epi86-claude-msg1.png + epi86-claude-answer.png = rec86/claude-1.mp4 @ 14.0 s (1206x2622), msg x255-1165 y400-634,
+   answer x36-1166 y712-960, scaled 0.8407 (text ~43 px), linear levels 34..129 -> 34..232 (the recording is dim; no pixel content changed). */
+#s6{--cl:#D97757;--red:#E5484D;--grey:#8A8A84;--g2:#6E6E68;--app:#222222}
+#s6 .cam{transform-origin:540px 700px}
+#s6 .lg{position:absolute;background:#fff;border:6px solid var(--ink);display:flex;align-items:center;justify-content:center}
+#s6 .lg img{width:62%;height:62%;display:block}
+#s6 #s6badge{left:65px;top:282px;width:130px;height:130px;border-radius:36px;box-shadow:8px 8px 0 var(--cl)}
+#s6 #s6card{position:absolute;left:65px;top:440px;width:950px;height:487px;background:var(--app);border-radius:40px;overflow:hidden;box-shadow:0 28px 70px rgba(14,14,14,.22),0 4px 12px rgba(14,14,14,.12)}
+#s6 #s6msg{position:absolute;right:10px;top:28px;width:765px;height:197px;display:block}
+#s6 #s6ans{position:absolute;left:0;top:255px;width:950px;height:208px}
+#s6 #s6ans img{position:absolute;left:0;top:0;width:950px;height:208px;display:block}
+#s6 .cv{position:absolute;left:0;width:960px;height:60px;background:var(--app)}
+#s6 #s6ring{position:absolute;left:58px;top:696px;width:462px;height:66px;overflow:visible}
+#s6 #s6ring rect{fill:none;stroke:var(--cl);stroke-width:7;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+#s6 .hon{position:absolute;left:65px;width:950px;text-align:center;font-weight:500;font-size:30px;color:var(--ink2);letter-spacing:.01em}
+#s6 #s6ref{position:absolute;left:65px;top:1000px;height:86px;padding:0 34px;border-radius:26px;background:#E8E8E1;border:5px solid var(--grey);color:var(--g2);font-weight:900;font-size:54px;letter-spacing:-.02em;display:flex;align-items:center;white-space:nowrap;opacity:0;transform-origin:20% 0}
+#s6 #s6ref:before{content:"";position:absolute;left:160px;top:-17px;width:24px;height:24px;background:#E8E8E1;border-left:5px solid var(--grey);border-top:5px solid var(--grey);transform:rotate(45deg)}
+/* mini-board strip: fixed by the brief, x 65-1015, y 1110-1240, three equal columns Gemini | ChatGPT | Claude */
+#s6 #s6strip{position:absolute;left:65px;top:1110px;width:950px;height:130px;background:#fff;border:5px solid var(--ink);border-radius:28px;box-shadow:6px 6px 0 var(--ink)}
+#s6 .col{position:absolute;top:10px;width:313px;height:56px;display:flex;align-items:center;justify-content:center;gap:18px}
+#s6 .col .lg{position:relative;width:56px;height:56px;border-width:3px;border-radius:16px}
+#s6 .mk{position:relative;width:56px;height:56px}
+#s6 .mk svg{position:absolute;left:0;top:0;width:56px;height:56px}
+#s6 .sep{position:absolute;top:14px;width:3px;height:48px;background:#E0E0D8}
+#s6 #s6chip{position:absolute;left:340px;top:1186px;width:400px;height:44px;border-radius:22px;background:var(--ink);color:var(--paper);font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+/* full board */
+#s6 #s6title{position:absolute;left:65px;top:286px;width:950px;text-align:center;font-weight:800;font-size:52px;letter-spacing:.02em;opacity:0}
+#s6 .brow{position:absolute;left:65px;width:950px;height:140px;background:#fff;border:5px solid var(--ink);border-radius:32px;box-shadow:7px 7px 0 var(--ink);opacity:0;display:flex;align-items:center;white-space:nowrap}
+#s6 .brow .lg{position:relative;margin-left:20px;width:96px;height:96px;border-width:4px;border-radius:26px;flex:none}
+#s6 .brow .v{margin-left:28px;font-weight:900;font-size:56px;letter-spacing:-.025em;display:flex;align-items:center;gap:14px}
+#s6 .brow .v svg{width:50px;height:50px;flex:none}
+#s6 .brow .v .r{color:var(--red)}
+#s6 .brow .v small{font-size:36px;font-weight:500;color:var(--ink2);letter-spacing:0;margin-left:4px}
+#s6 #s6b3 .v{color:var(--g2)}
+#s6 #s6b3{border-left:16px solid var(--cl)}
+#s6 #s6two{position:absolute;left:65px;top:862px;width:950px;height:220px;border:4px dashed var(--ink2);border-radius:32px;background:rgba(255,255,255,.55);opacity:0}
+#s6 #s6two .t{position:absolute;left:0;top:24px;width:942px;text-align:center;font-weight:900;font-size:56px;letter-spacing:-.025em;white-space:nowrap}
+#s6 #s6two .g{position:absolute;top:116px;width:200px;height:76px;display:flex;align-items:center;justify-content:center;gap:16px}
+#s6 #s6two .g .lg{position:relative;width:76px;height:76px;border-width:4px;border-radius:22px}
+#s6 #s6two .q{width:68px;height:68px;border-radius:50%;border:4px dashed var(--ink2);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:44px;color:var(--ink2)}
+</style>
+<div class="scn clip" id="s6" data-start="0" data-duration="__D6__" data-track-index="1">
+ <div class="cam" id="s6cam">
+  <div class="lg" id="s6badge"><img src="assets/claude.svg"></div>
+  <div id="s6card">
+   <img id="s6msg" src="assets/epi86-claude-msg1.png">
+   <div id="s6ans"><img src="assets/epi86-claude-answer.png">
+    <div class="cv" id="s6cv1" style="top:4px"></div><div class="cv" id="s6cv2" style="top:73px"></div><div class="cv" id="s6cv3" style="top:141px"></div>
+   </div>
+  </div>
+  <svg id="s6ring" data-decor viewBox="0 0 462 66"><rect pathLength="1" x="4" y="4" width="454" height="58" rx="24"/></svg>
+  <div class="hon" id="s6hon" style="top:940px">Real screen recording · 5 Nov 2026</div>
+  <div id="s6ref">— Refused to help</div>
+ </div>
+ <div id="s6strip">
+  <div class="col" style="left:0"><div class="lg"><img src="assets/gemini.svg"></div><div class="mk"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="#E5484D"/><path d="M19 19L37 37M37 19L19 37" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg></div></div>
+  <div class="sep" style="left:312px"></div>
+  <div class="col" style="left:313px"><div class="lg"><img src="assets/chatgpt.svg"></div><div class="mk"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="#E5484D"/><path d="M19 19L37 37M37 19L19 37" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg></div></div>
+  <div class="sep" style="left:626px"></div>
+  <div class="col" style="left:627px"><div class="lg"><img src="assets/claude.svg"></div><div class="mk">
+   <svg id="s6empty" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="none" stroke="#C9C9C0" stroke-width="4" stroke-dasharray="7 6"/></svg>
+   <svg id="s6dash" viewBox="0 0 56 56" style="opacity:0"><circle cx="28" cy="28" r="28" fill="#8A8A84"/><path d="M17 28H39" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg>
+  </div></div>
+ </div>
+ <div id="s6chip">#2 next: your boss?</div>
+ <div id="s6title">CAN IT KEEP A SECRET? #1</div>
+ <div class="brow" id="s6b1" style="top:376px"><div class="lg"><img src="assets/chatgpt.svg"></div><div class="v">Promised → <svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="#E5484D"/><path d="M19 19L37 37M37 19L19 37" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg><span class="r">Told</span><small>(1st ask)</small></div></div>
+ <div class="brow" id="s6b2" style="top:538px"><div class="lg"><img src="assets/gemini.svg"></div><div class="v">Promised → <svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="#E5484D"/><path d="M19 19L37 37M37 19L19 37" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg><span class="r">Told</span><small>(3rd ask)</small></div></div>
+ <div class="brow" id="s6b3" style="top:700px"><div class="lg"><img src="assets/claude.svg"></div><div class="v">— Refused to help</div></div>
+ <div id="s6two">
+  <div class="t">#2: Would it tell your boss?</div>
+  <div class="g" style="left:62px"><div class="lg"><img src="assets/chatgpt.svg"></div><div class="q">?</div></div>
+  <div class="g" style="left:371px"><div class="lg"><img src="assets/gemini.svg"></div><div class="q">?</div></div>
+  <div class="g" style="left:680px"><div class="lg"><img src="assets/claude.svg"></div><div class="q">?</div></div>
+ </div>
+ <div class="hon" id="s6hon2" style="top:1110px;opacity:0">Real screen recordings · 5 Nov 2026</div>
+</div>
+<script>
+window.buildScene_6=function(tl,T0,DUR){
+ const S="#s6 ", E=T0+DUR, t=f=>T0+DUR*f;
+ tl.set('#s6',{opacity:1,visibility:'visible'},T0);
+ // initial states
+ tl.set(S+"#s6cam",{opacity:1,scale:1,y:0},T0);
+ tl.set(S+"#s6cv1",{x:0},T0); tl.set(S+"#s6cv2,"+S+"#s6cv3",{x:0},T0);
+ tl.set(S+"#s6ref",{opacity:0},T0); tl.set(S+"#s6dash",{opacity:0,scale:.5,transformOrigin:"50% 50%"},T0); tl.set(S+"#s6empty",{opacity:1},T0);
+ tl.set(S+"#s6strip,"+S+"#s6chip",{opacity:1,x:0,y:0,scale:1},T0);
+ tl.set(S+"#s6title,"+S+".brow,"+S+"#s6two,"+S+"#s6hon2",{opacity:0},T0);
+ // zoom-through into Claude (the shell's wipe band passes over T0-.35..T0+.35)
+ tl.fromTo(S+"#s6cam",{scale:1.45,y:-60,filter:"blur(10px)"},{scale:1,y:0,filter:"blur(0px)",duration:.75,ease:"power3.out"},T0);
+ tl.fromTo(S+"#s6badge",{scale:.7,rotation:-8},{scale:1,rotation:0,duration:.7,ease:"power3.out",transformOrigin:"50% 50%"},T0+.15);
+ // camera drift while we read (never still)
+ const tB=E-2.3;
+ tl.fromTo(S+"#s6cam",{x:0},{x:-6,y:-14,scale:1.025,duration:Math.max(.5,tB-(T0+.75)),ease:"sine.inOut"},T0+.75);
+ // the real answer arrives: "I can't help with that." alone first (as in the recording), then the rest streams
+ tl.to(S+"#s6cv1",{x:446,duration:.4,ease:"power1.inOut"},T0+.3);
+ const tR=T0+Math.max(.9,DUR*.16);
+ tl.to(S+"#s6ring rect",{strokeDashoffset:0,duration:.5,ease:"power2.inOut"},tR);
+ const tS=T0+Math.max(1.3,DUR*.25);
+ tl.to(S+"#s6cv1",{x:960,duration:.38,ease:"power1.in"},tS);
+ tl.to(S+"#s6cv2",{x:960,duration:.55,ease:"none"},tS+.36);
+ tl.to(S+"#s6cv3",{x:960,duration:.55,ease:"none"},tS+.9);
+ // verdict beside the ring: grey "— Refused to help", then the mini-board cell fills
+ const tF=Math.min(T0+DUR*.52,E-2.95);
+ tl.fromTo(S+"#s6ref",{opacity:0,y:26,scale:.92},{opacity:1,y:0,scale:1,duration:.5,ease:"power3.out"},tF);
+ tl.to(S+"#s6empty",{opacity:0,duration:.25,ease:"sine.inOut"},tF+.4);
+ tl.to(S+"#s6dash",{opacity:1,scale:1,duration:.45,ease:"expo.out"},tF+.4);
+ // zoom out to the full board (anchored to the scene end)
+ tl.to(S+"#s6cam",{scale:.52,y:-260,opacity:0,filter:"blur(6px)",duration:.75,ease:"power2.inOut"},tB);
+ tl.to(S+"#s6strip",{scale:.9,opacity:0,y:-30,duration:.5,ease:"power2.in",transformOrigin:"50% 50%"},tB+.05);
+ // rows grow out of the strip cells: ChatGPT (cell 2), Gemini (cell 1), Claude (cell 3)
+ [["#s6b1",1,376],["#s6b2",0,538],["#s6b3",2,700]].forEach(([id,c,top],i)=>{
+  const cx=65+156+313*c, dx=cx-540, dy=1150-(top+70);
+  tl.fromTo(S+id,{opacity:0,x:dx,y:dy,scale:.33},{opacity:1,x:0,y:0,scale:1,duration:.75,ease:"power3.out"},tB+.22+i*.09);
+ });
+ tl.fromTo(S+"#s6title",{opacity:0,y:-30},{opacity:1,y:0,duration:.6,ease:"power3.out"},tB+.35);
+ // the chip rises to where the #2 row will be, then the row grows out of it
+ tl.to(S+"#s6chip",{y:-(1186-940),duration:.7,ease:"power2.inOut"},tB+.25);
+ const t2=E-1.4;
+ tl.fromTo(S+"#s6two",{opacity:0,scaleX:.42,scaleY:.25},{opacity:1,scaleX:1,scaleY:1,duration:.6,ease:"power3.out",transformOrigin:"50% 36%"},t2);
+ tl.to(S+"#s6chip",{opacity:0,scale:1.15,duration:.3,ease:"power2.out"},t2+.05);
+ tl.fromTo(S+"#s6two .g",{opacity:0,y:20},{opacity:1,y:0,duration:.45,ease:"power3.out",stagger:.1},t2+.3);
+ tl.fromTo(S+"#s6hon2",{opacity:0},{opacity:1,duration:.4,ease:"sine.inOut"},t2+.4);
+};
+</script>
