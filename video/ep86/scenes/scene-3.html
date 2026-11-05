@@ -26,7 +26,7 @@
  <!-- ChatGPT card: real crops of chatgpt-1.mp4 (12.0 s and 26.5 s), brightened x1.95 (the recording is dimmed), words unchanged -->
  <div class="card" id="cA3" style="top:404px;height:446px"><div class="feed" id="fA3">
   <div class="bdg" id="bA13" style="left:14px;top:42px;width:128px;height:128px"><img src="assets/chatgpt.svg"></div>
-  <img class="c" src="assets/epi86-cg-msg2.png" style="left:439px;top:10px;width:499px;height:193px">
+  <img class="c" id="mA3" src="assets/epi86-cg-msg2.png" style="left:439px;top:10px;width:499px;height:193px">
   <img class="c" src="assets/epi86-cg-promise.png" style="left:12px;top:207px;width:927px;height:223px">
   <div class="ul" id="uA3" style="left:29px;top:264px;width:538px"></div>
   <div class="bdg" id="bA23" style="left:14px;top:484px;width:104px;height:104px;border-radius:26px"><img src="assets/chatgpt.svg"></div>
@@ -35,7 +35,7 @@
  <!-- Gemini card: real crops of gemini-1.mp4 (25 s and 45 s), brightened x1.95 -->
  <div class="card" id="cB3" style="top:864px;height:319px"><div class="feed" id="fB3">
   <div class="bdg" id="bB13" style="left:10px;top:30px;width:128px;height:128px"><img src="assets/gemini.svg"></div>
-  <img class="c" src="assets/epi86-gm-msg2.png" style="left:151px;top:10px;width:787px;height:167px">
+  <img class="c" id="mB3" src="assets/epi86-gm-msg2.png" style="left:151px;top:10px;width:787px;height:167px">
   <img class="c" src="assets/epi86-gm-promise.png" style="left:12px;top:181px;width:862px;height:130px">
   <div class="ul" id="uB3" style="left:30px;top:235px;width:531px"></div>
   <div class="ring" id="rB3" style="left:5px;top:175px;width:876px;height:142px"></div>
@@ -58,6 +58,7 @@ window.__ep86c=window.__ep86c||function(tl,T0,DUR,N){
  tl.set([$('cA'),$('cB')],{y:0,scale:1,opacity:1,transformOrigin:'50% 50%'},T0);
  tl.set($('cB'),{height:319},T0);
  tl.set([$('fA'),$('fB')],{y:0},T0);
+ tl.set([$('mA'),$('mB'),$('bA1'),$('bB1')],{opacity:1},T0);
  tl.set([$('uA'),$('uB')],{scaleX:after1?1:0},T0);
  tl.set($('rB'),{opacity:after2?1:0,scale:1,transformOrigin:'50% 50%'},T0);
  tl.set([$('tA'),$('tB'),$('bA2'),$('bB2')],{opacity:0,x:70},T0);
@@ -104,6 +105,8 @@ window.__ep86c=window.__ep86c||function(tl,T0,DUR,N){
   const ts=T0+.4*k+.05;
   tl.to($('fA'),{y:-197,duration:.75,ease:E2},ts);
   tl.to($('fB'),{y:-171,duration:.75,ease:E2},ts+.06);
+  tl.to([$('mA'),$('bA1')],{opacity:0,duration:.45,ease:E2},ts+.05);
+  tl.to([$('mB'),$('bB1')],{opacity:0,duration:.45,ease:E2},ts+.11);
   tl.to([$('tA'),$('bA2')],{opacity:1,x:0,duration:.6,ease:E1,stagger:.04},ts+.15);
   tl.to([$('tB'),$('bB2')],{opacity:1,x:0,duration:.6,ease:E1,stagger:.04},ts+.21);
   // keep alive to the cut: chip settles, cards drift
