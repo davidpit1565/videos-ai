@@ -1,0 +1,3 @@
+      per-line exaggeration: {1: 0.88, 4: 0.82, 7: 0.8}
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
