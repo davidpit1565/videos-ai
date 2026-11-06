@@ -45,7 +45,7 @@
 <script>
 window.buildScene_6=function(tl,T0,DUR){
  const G=gsap, qa=s=>[...document.querySelectorAll(s)], E=T0+.24;
- const Ls=((window.__CUES||{}).lines)||[], l9=Ls[8], l10=Ls[9];
+ const Ls=((window.__CUES||{}).lines)||[], l9=Ls[9], l10=Ls[10];
  const s9=l9?l9.start:T0+.15, e9=l9?l9.end:T0+DUR*.35, s10=l10?l10.start:e9+.28, e10=l10?l10.end:T0+DUR-.2;
  // time of word i (whitespace token) of a line, else proportional by characters
  const tokAt=(ln,i,txt,sA,eA)=>{ if(ln&&ln.words&&ln.words.length===txt.split(/\s+/).length&&ln.words[i])return ln.words[i][0];
