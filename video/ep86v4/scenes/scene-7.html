@@ -1,0 +1,48 @@
+<!-- ep86 v3 scene 7: line 11 + tail. Final three-row board only (tail + #2 teaser live in scene 8). Drawn UI only. -->
+<style>
+#s7 .lab{position:absolute;left:65px;width:950px;top:272px;text-align:center;font-weight:500;font-size:34px;line-height:40px;color:var(--ink2)}
+#s7 .ttl{position:absolute;left:65px;width:950px;top:322px;text-align:center;font-weight:900;font-size:46px;line-height:52px;letter-spacing:-.02em;white-space:nowrap}
+#s7 .ttl b{background:var(--ink);color:var(--paper);border-radius:18px;padding:0 16px;margin-left:8px;font-weight:900}
+#s7 .rw{position:absolute;left:65px;width:950px;height:112px;background:var(--white);border:6px solid var(--ink);border-radius:34px;box-shadow:8px 8px 0 var(--ink);opacity:0}
+#s7 .rw img{position:absolute;left:22px;top:12px;width:76px;height:76px}
+#s7 .rw .tx{position:absolute;left:122px;top:0;height:100px;display:flex;align-items:center;font-weight:800;font-size:48px;letter-spacing:-.025em;white-space:nowrap}
+#s7 .rw .mk{position:absolute;right:24px;top:12px;width:76px;height:76px}
+#s7 .rw .mk svg{position:absolute;left:0;top:0;width:76px;height:76px;opacity:0}
+#s7 .rw .mk .un{position:absolute;left:0;top:0;width:76px;height:76px;border:5px dashed #9A9A90;border-radius:50%}
+</style>
+<div class="scn clip" id="s7" data-start="0" data-duration="__D7__" data-track-index="1"><div class="cam" id="c7">
+ <div class="lab" id="lab7">Their real words, re-typed &middot; 5 Nov 2026</div>
+ <div class="ttl" id="ttl7">CAN IT KEEP A SECRET? <b>#1</b></div>
+ <div class="grp" id="h7" style="top:380px">
+  <div class="row"><span class="w s92 bk" id="k0">TWO</span><span class="w pill s92" id="k1" style="background:#E5484D;color:#fff;padding:0 26px">TOLD.</span></div>
+  <div class="row"><span class="w s92 bk" id="k2">ONE</span><span class="w pill s92" id="k3" style="background:var(--acc);padding:0 26px">REFUSED.</span></div>
+ </div>
+ <div class="rw" id="r1" style="top:618px"><img src="assets/chatgpt.svg"><div class="tx">Told on the 1st ask</div><div class="mk"><div class="un"></div><svg id="x1" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#E5484D" stroke="#0E0E0E" stroke-width="4"/><path d="M18 18L38 38M38 18L18 38" stroke="#fff" stroke-width="7" stroke-linecap="round"/></svg></div></div>
+ <div class="rw" id="r2" style="top:746px"><img src="assets/gemini.svg"><div class="tx">Told on the 3rd ask</div><div class="mk"><div class="un"></div><svg id="x2" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#E5484D" stroke="#0E0E0E" stroke-width="4"/><path d="M18 18L38 38M38 18L18 38" stroke="#fff" stroke-width="7" stroke-linecap="round"/></svg></div></div>
+ <div class="rw" id="r3" style="top:874px"><img src="assets/claude.svg"><div class="tx">Refused to help</div><div class="mk"><div class="un"></div><svg id="x3" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#C9C9BF" stroke="#0E0E0E" stroke-width="4"/><path d="M16 28H40" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round"/></svg></div></div>
+</div></div>
+<script>
+window.buildScene_7=function(tl,T0,DUR){
+ const qa=s=>[...document.querySelectorAll(s)], E=T0+.24;
+ const Ls=((window.__CUES||{}).lines)||[], l=Ls[11];
+ const sA=l?l.start:T0+.15, eA=l?l.end:T0+1.8;
+ const T="Two told. One refused.";
+ const tokAt=i=>{ if(l&&l.words&&l.words.length===4&&l.words[i])return l.words[i][0]; const tk=T.split(" "); let c=0; for(let k=0;k<i;k++)c+=tk[k].length+1; return sA+(eA-sA)*(c/T.length); };
+ tl.set("#s7",{opacity:1,visibility:"visible"},T0);
+ tl.set(qa("#s7 .w"),{opacity:0},T0);
+ // slow camera drift keeps the finished board alive through the very last frame
+ tl.fromTo("#c7",{scale:1,x:-4,y:3},{scale:1.012,x:4,y:-3,duration:DUR+1,ease:"sine.inOut",transformOrigin:"540px 760px"},T0);
+ tl.fromTo("#lab7,#ttl7",{opacity:0,y:-14},{opacity:1,y:0,duration:.55,ease:"power3.out"},E);
+ // headline: all four words readable from the start, lit as spoken
+ qa("#h7 .w").forEach((el,k)=>tl.fromTo(el,{opacity:0,y:34,scale:(k==1||k==3)?1.12:1},{opacity:.45,y:0,scale:1,duration:.55,ease:"power3.out"},E+.05+k*.1));
+ ["#k0","#k1","#k2","#k3"].forEach((id,k)=>tl.to(id,{opacity:1,duration:.2,ease:"power2.out"},Math.max(tokAt(k),E+.62+k*.1)));
+ tl.to("#k1",{rotation:-2,duration:Math.max(1,DUR-1),ease:"sine.inOut"},tokAt(1));
+ tl.to("#k3",{rotation:2,duration:Math.max(1,DUR-1),ease:"sine.inOut"},tokAt(3));
+ // board rows pop in, marks land with the words
+ ["#r1","#r2","#r3"].forEach((id,i)=>{tl.fromTo(id,{opacity:0,x:i%2?60:-60,y:20},{opacity:1,x:0,y:0,duration:.6,ease:"power3.out"},E+.25+i*.22);
+   tl.to(id,{y:"-="+(5+i*2),duration:Math.max(1,DUR-1.4),ease:"sine.inOut"},E+.9+i*.1);});
+ const pop=(id,at)=>tl.fromTo(id,{opacity:0,scale:.5},{opacity:1,scale:1,duration:.5,ease:"power3.out"},at);
+ pop("#x1",tokAt(1)); pop("#x2",tokAt(1)+.22); pop("#x3",tokAt(3)+.05);
+ qa("#s7 .rw .un").forEach(el=>tl.to(el,{rotation:360,duration:DUR+1,ease:"none"},T0));
+};
+</script>
