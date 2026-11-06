@@ -5,7 +5,7 @@
 #__S__ .ch{position:absolute;left:80px;width:920px;display:flex;gap:14px;justify-content:center}
 #__S__ .ch div{background:var(--white);border:5px solid var(--ink);border-radius:26px;box-shadow:6px 6px 0 var(--ink);font-weight:900;font-size:36px;line-height:1;padding:12px 22px 15px;white-space:nowrap;opacity:0;letter-spacing:-.005em}
 #__S__ .ch div.b{background:var(--acc);color:#fff}
-#__S__ .bb{position:absolute;left:80px;top:690px;width:920px;background:var(--white);border:6px solid var(--ink);border-radius:44px;box-shadow:10px 10px 0 var(--ink);padding:26px 32px 30px;opacity:0}
+#__S__ .bb{position:absolute;left:80px;top:680px;width:920px;background:var(--white);border:6px solid var(--ink);border-radius:44px;box-shadow:10px 10px 0 var(--ink);padding:26px 32px 30px;opacity:0}
 #__S__ .bb .qt{font-weight:800;font-size:54px;line-height:61px;letter-spacing:-.022em}
 #__S__ .bb .qw{display:inline-block;opacity:.55;margin-right:.24em;white-space:nowrap}
 #__S__ .bb .typed{color:var(--acc)}
@@ -14,8 +14,8 @@
 </style>
 <div class="scn clip" id="__S__" data-start="0" data-duration="__D__" data-track-index="1"><div class="cam" id="gcam">
  <div class="grp hd" id="ghd"><div class="row"><span class="w s84 bk">GEMINI</span><span class="w pill s84 bk" style="background:#4285F4;color:#fff">TOLD</span><span class="w s84 bk">TOO</span></div></div>
- <div class="ch" style="top:464px"><div class="b" id="gc1">3RD ASK</div><div id="gc2">NEEDED MORE TRIES</div></div>
- <div class="ch" style="top:566px"><div id="gc3">WORK ACCOUNT</div><div id="gc4">NOT A TEMPORARY CHAT</div></div>
+ <div class="ch" style="top:464px"><div class="b" id="gc1">3RD ASK</div><div id="gc3">WORK ACCOUNT</div></div>
+ <div class="ch" style="top:560px"><div id="gc4">NOT A TEMPORARY CHAT</div></div>
  <div class="bb" id="gbb"><div class="lg" id="glg"><img src="assets/gemini.svg"></div><div class="qt" id="gq"></div></div>
 </div></div>
 <script>
@@ -28,14 +28,14 @@ window.buildScene_gem=function(tl,T0,DUR,SID){
  const t0=T0+.1;
  q('#ghd .w').forEach((el,i)=>tl.fromTo(el,{opacity:0,y:34,scale:el.classList.contains('pill')?1.1:1},{opacity:1,y:0,scale:1,duration:.55,ease:'power3.out'},t0+i*.09));
  const c=(id,at)=>tl.fromTo(id,{opacity:0,y:18},{opacity:1,y:0,duration:.6,ease:'power3.out'},at);
- const a=Math.max(t0+.45,(w[2]||[t0+.5])[0]);
- c('#gc1',a);c('#gc3',a+.2);c('#gc4',a+.4);c('#gc2',Math.max(a+.6,(w[5]||[0])[0]-.1));
+ const a=t0+.4;
+ c('#gc1',a);c('#gc3',a+.15);c('#gc4',a+.3);
  // quote card (trimmed, verbatim): rises, words light across the rest of the scene
- const tq=Math.max(t0+.7,a+.5);
+ const tq=a+.55;
  H.rise(tl,'#gbb',tq,150);tl.fromTo('#glg',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.6,ease:'power3.out'},tq+.4);
  const toks=['…someone','typed:','“I’m','secretly','using','you','during','my','maths','test.”'];
  const qw=H.qwords(document.querySelector('#gq'),toks);qw.forEach((e,j)=>{if(j>1)e.classList.add('typed')});
- qw.forEach((el,j)=>tl.to(el,{opacity:1,duration:.18,ease:'sine.out'},tq+.35+(Math.max(.8,E-tq-.7))*j/toks.length));
+ qw.forEach((el,j)=>tl.to(el,{opacity:1,duration:.18,ease:'sine.out'},tq+.4+(Math.max(.7,E-tq-.95))*j/toks.length));
  tl.to('#glg',{rotation:8,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.floor(DUR/1.2))},tq+.9);
  H.pulses(tl,['#gbb','#ghd','#gc1','#gbb'],tq+.8,E,.75,.03);
 };

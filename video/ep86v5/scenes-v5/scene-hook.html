@@ -3,21 +3,21 @@
  Headline is built from the spoken hook words. On "told!" the promise is struck through and the red X lands. All text re-typed from the real chat, 5 Nov 2026. -->
 <style>
 #__S__{opacity:1;visibility:visible;--acc:#7FD14B}
-#__S__ .stk{position:absolute;left:80px;top:346px;width:920px;display:flex;justify-content:center}
+#__S__ .stk{position:absolute;left:80px;top:338px;width:920px;display:flex;justify-content:center}
 #__S__ .stk div{background:var(--acc);color:var(--ink);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:33px;line-height:1;padding:12px 24px 15px;letter-spacing:-.01em;white-space:nowrap}
 #__S__ .stk .tl{position:absolute;left:0;top:0;width:920px;display:flex;justify-content:center;opacity:0}
 #__S__ .stk .tl div{background:var(--red);color:#fff}
-#__S__ .hd{top:444px}
-#__S__ .cardk{position:absolute;left:80px;top:646px;width:920px;background:var(--white);border:6px solid var(--ink);border-radius:36px;box-shadow:9px 9px 0 var(--ink);padding:14px 22px 20px}
+#__S__ .hd{top:452px}
+#__S__ .cardk{position:absolute;left:80px;top:664px;width:920px;background:var(--white);border:6px solid var(--ink);border-radius:36px;box-shadow:9px 9px 0 var(--ink);padding:10px 22px 16px}
 #__S__ .ttl{display:flex;align-items:center;gap:14px}
-#__S__ .ttl img{width:44px;height:44px;flex:none}
-#__S__ .ttl .a{font-weight:900;font-size:32px;line-height:36px;letter-spacing:-.01em}
-#__S__ .ttl .b{font-weight:600;font-size:24px;line-height:28px;color:var(--ink2);letter-spacing:.01em}
-#__S__ .um{margin:10px 0 0 70px;background:var(--ink);color:var(--paper);border-radius:30px 30px 8px 30px;padding:10px 24px 14px;font-weight:800;font-size:46px;line-height:52px;letter-spacing:-.02em}
-#__S__ .rp{position:relative;margin:10px 20px 0 0;background:#F3F3EE;border:5px solid var(--ink);border-radius:30px 30px 30px 8px;padding:12px 22px 16px}
+#__S__ .ttl img{width:56px;height:56px;flex:none}
+#__S__ .ttl .a{font-weight:900;font-size:36px;line-height:40px;letter-spacing:-.01em}
+#__S__ .ttl .b{font-weight:700;font-size:32px;line-height:36px;color:var(--ink2);letter-spacing:.01em}
+#__S__ .um{margin:8px 0 0 50px;background:var(--ink);color:var(--paper);border-radius:30px 30px 8px 30px;padding:8px 22px 12px;font-weight:800;font-size:46px;line-height:52px;letter-spacing:-.02em}
+#__S__ .rp{position:relative;margin:10px 20px 0 0;background:#F3F3EE;border:5px solid var(--ink);border-radius:30px 30px 30px 8px;padding:10px 20px 14px}
 #__S__ .rp .l1{white-space:nowrap;font-weight:900;font-size:48px;line-height:54px;letter-spacing:-.025em}
 #__S__ .rp .st{background:linear-gradient(var(--red),var(--red)) 0 56%/0% 9% no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-#__S__ .rp .wn{display:block;margin-top:10px;border:6px solid var(--red);border-radius:22px;padding:8px 16px 12px;font-weight:700;font-size:44px;line-height:50px;letter-spacing:-.02em}
+#__S__ .rp .wn{display:block;margin-top:8px;border:6px solid var(--red);border-radius:22px;padding:8px 16px 12px;font-weight:700;font-size:44px;line-height:50px;letter-spacing:-.02em}
 #__S__ .xk{position:absolute;right:-26px;top:-30px;width:84px;height:84px;opacity:0}
 </style>
 <div class="scn clip" id="__S__" data-start="0" data-duration="__D1__" data-track-index="1"><div class="cam" id="kcam">
@@ -56,10 +56,10 @@ window.buildScene_hook=function(tl,T0,DUR,SID){
  tl.fromTo('#krp .l1',{backgroundImage:'linear-gradient(#7FD14B,#7FD14B)',backgroundSize:'0% 14%',backgroundPosition:'0 92%',backgroundRepeat:'no-repeat'},{backgroundSize:'100% 14%',duration:.7,ease:'power2.inOut'},sw);
  // send-to tag 0-3 s, then "THEN IT TOLD!" takes its place on the spoken words
  const tT=Math.max(sw+.5,W(s,5,4)[0]-.1);
- tl.fromTo('#ksend>div:first-child',{y:0,rotation:-1.2},{y:0,rotation:1.2,duration:1.5,ease:'sine.inOut'},T0);
+ tl.fromTo('#ksend>div:first-child',{y:0,rotation:-.5},{y:0,rotation:.5,duration:1.5,ease:'sine.inOut'},T0);
  tl.to('#ksend>div:first-child',{opacity:0,y:-10,duration:.3,ease:'sine.in'},tT-.05);
- tl.fromTo('#ktold',{opacity:0,y:8,scale:.94},{opacity:1,y:0,scale:1,duration:.6,ease:'power3.out'},tT+.3);
- tl.to('#ktold',{rotation:-1.5,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-tT)/1.2))},tT+.8);
+ tl.fromTo('#ktold',{opacity:0,scale:.94},{opacity:1,scale:1,duration:.6,ease:'power3.out'},tT+.3);
+ tl.to('#ktold',{rotation:-.6,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-tT)/1.2))},tT+.8);
  // told!: promise struck through, red X lands
  const tt=W(s,7,5)[0];
  tl.fromTo('#kst',{backgroundSize:'0% 9%'},{backgroundSize:'100% 9%',duration:.6,ease:'power2.inOut'},tt);
