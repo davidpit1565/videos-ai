@@ -43,7 +43,7 @@ for i in range(1,NS+1):
     mk=re.sub(r'data-start="[^"]*"',f'data-start="{T0[i-1]}"',mk,count=1)
     mk=re.sub(r'data-duration="[^"]*"',f'data-duration="{round(DUR[i-1]+0.12,3)}"',mk,count=1)
     markup.append(mk.replace(f"__D{i}__",str(DUR[i-1])))
-calls="\n".join(f"if(window.buildScene_{i})window.buildScene_{i}(tl,{T0[i-1]},{DUR[i-1]}); else console.warn('missing scene {i}');" for i in range(1,NS+1))
+calls="window.__T0=%s; window.__DUR=%s;\n"%(json.dumps(T0),json.dumps(DUR))+"\n".join(f"if(window.buildScene_{i})window.buildScene_{i}(tl,{T0[i-1]},{DUR[i-1]}); else console.warn('missing scene {i}');" for i in range(1,NS+1))+"\nif(window.buildChrome)window.buildChrome(tl);"
 html=(shell.replace("__STYLES__","\n".join(styles)).replace("__MARKUP__","\n".join(markup)).replace("__CHROME__",chrome).replace("__SCRIPTS__","\n".join(scripts))
       .replace("__D__",str(D)).replace("__CUES__",json.dumps(dict(lines=lines,D=D))).replace("__CALLS__",calls).replace("__BOUNDS__",json.dumps([T0[i] for i in range(1,NS)])).replace("__NSC__",str(NS)))
 os.makedirs(H+"/hf/assets",exist_ok=True); open(H+"/hf/index.html","w").write(html)
