@@ -11,7 +11,7 @@ vb=band(load(nar)); res={}
 for k,f,ss,hp in BEDS:
     raw=f"{H}/out/bed-{k}.wav"
     subprocess.run(['ffmpeg','-y','-v','error','-ss',str(ss),'-t',str(D),'-i',LIB+f,'-ac','1','-ar','48000','-af',f'afade=t=in:d=0.5,afade=t=out:st={D-1.3}:d=1.3,highpass=f=140',raw],check=True)
-    g=vb-12-band(load(raw))
+    g=vb-13-band(load(raw))
     fc=f"[0:a]asplit=2[v1][key];[1:a]volume={g}dB[b];[b][key]sidechaincompress=threshold=0.05:ratio=4:attack=12:release=420[duck];[duck]asplit=2[d1][d2];[v1][d1]amix=inputs=2:normalize=0,loudnorm=I=-14:TP=-1:LRA=11[o]"
     wav=f"{H}/out/mix-{tag}-{k}.wav"; duck=f"{H}/out/duck-{tag}-{k}.wav"
     subprocess.run(['ffmpeg','-y','-v','error','-i',nar,'-i',raw,'-filter_complex',fc,'-map','[o]','-ar','48000',wav,'-map','[d2]',duck],check=True)
