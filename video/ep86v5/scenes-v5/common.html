@@ -65,7 +65,7 @@ window.buildChrome=function(tl){
  // ChatGPT: on "it TOLD!" ; Gemini: on "TOLD me too" ; Claude: on "said NO" (grey dash = refused, never a 'kept the secret' symbol)
  if(ws[7])told(1,ws[7][0]+.02);
  if(wg[1])told(2,wg[1][0]+.02);
- if(wc[2]){const t=wc[2][0];tl.fromTo('#strip .c3 .m-dash',{opacity:0,scale:1.7},{opacity:1,scale:1,duration:.6,ease:'power3.out',transformOrigin:'50% 50%'},t);tl.to('#strip .c3 .m-unk',{opacity:0,duration:.3,ease:'sine.inOut'},t+.05);
+ if(wc[4]){const t=wc[4][0];tl.fromTo('#strip .c3 .m-dash',{opacity:0,scale:1.7},{opacity:1,scale:1,duration:.6,ease:'power3.out',transformOrigin:'50% 50%'},t);tl.to('#strip .c3 .m-unk',{opacity:0,duration:.3,ease:'sine.inOut'},t+.05);
   tl.fromTo('#strip .c3',{y:0},{y:-8,duration:.35,ease:'sine.out',yoyo:true,repeat:1},t);}
  // voice meter
  const Ls=(window.__CUES||{}).lines||[],sp=t=>Ls.some(l=>t>=l.start-.05&&t<=l.end+.05);

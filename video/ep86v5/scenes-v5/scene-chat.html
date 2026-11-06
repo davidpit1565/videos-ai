@@ -29,7 +29,8 @@
 <script>
 window.buildScene_chat=function(tl,T0,DUR,SID){
  const H=window.__e86,q=s=>[...document.querySelectorAll(s)],E=T0+DUR;
- const w=H.wk('chat')||[];   // It(0) said:(1) someone(2) asked(3) me(4) to(5) calculate(6) five(7) ninety(8) times(9) sixty(10) nine,(11) and(12) then(13) asked(14) me(15) not(16) to(17) tell.(18)
+ const w=H.wk('chat')||[];   // spoken: It(0) said:(1) someone(2) asked(3) me(4) for(5) maths(6) help,(7) and(8) asked(9) me(10) not(11) to(12) tell.(13)
+ // the screen shows the FULL real answer; its real words light in order across the time of the spoken part (not claimed to be the spoken words)
  tl.set('#'+SID,{opacity:1,visibility:'visible'},T0);
  tl.set('#'+SID+' .w',{opacity:0},T0);
  tl.fromTo('#ccam',{scale:.984,y:14},{scale:1,y:-10,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 760px'},T0);
@@ -46,18 +47,18 @@ window.buildScene_chat=function(tl,T0,DUR,SID){
  const pre=['If','you’re','asking','whether','a','student','used','ChatGPT','during','a','maths','test,','I','can','only','confirm','that'];
  const sp=['someone','asked','me','to','calculate','590','×','69,','and','then','asked','me','not','to','tell'];
  const post=['their','teacher.'];
- const spk=[2,3,4,5,6,7,9,10,12,13,14,15,16,17,18];   // spoken token that lights each display token in sp
- const qa=H.qwords(document.querySelector('#cqa'),pre.concat(sp,post));
+  const qa=H.qwords(document.querySelector('#cqa'),pre.concat(sp,post));
  const qb=H.qwords(document.querySelector('#cqb'),['I','can’t','verify','who','was','using','the','device','or','whether','this','was','an','actual','test.','\u{1F605}']);
  H.rise(tl,'#cA',t1,150);
  tl.fromTo('#cask',{opacity:0,y:14,rotation:-3},{opacity:1,y:0,rotation:-2,duration:.55,ease:'power3.out'},t0+.5);
- sp.forEach((_,j)=>tl.to(qa[pre.length+j],{opacity:1,duration:.18,ease:'sine.out'},Math.max(t1+.4,(w[spk[j]]||[t1])[0])));
- const tl_=(w[18]||[E-1,E-.7])[1];
+ const l0=Math.max(t1+.4,(w[2]||[t1])[0]),l1=Math.max(l0+1.2,(w[13]||[0,E-.8])[1]-.15);
+ sp.forEach((_,j)=>tl.to(qa[pre.length+j],{opacity:1,duration:.2,ease:'sine.out'},l0+(l1-l0)*j/sp.length));
+ const tl_=[0,l1];
  post.forEach((_,j)=>tl.to(qa[pre.length+sp.length+j],{opacity:1,duration:.2,ease:'sine.out'},tl_+.05+j*.25));
  // the caveat (kept, not cut): second bubble rises while the spoken part is still going, then it lights as a whole
- const t2=Math.max(Math.min((w[12]||[t1+2.4])[0]-.2,E-2.6),t1+1.4);
+ const t2=t1+.95;
  H.rise(tl,'#cB',t2,130);
- qb.forEach((el,j)=>tl.to(el,{opacity:1,duration:.2,ease:'sine.out'},Math.max(t2+.5,E-1.9)+j*.07));
+ qb.forEach((el,j)=>tl.to(el,{opacity:1,duration:.2,ease:'sine.out'},t2+.45+j*.07));
  tl.to('#cask',{rotation:2,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.floor(DUR/1.3))},t1+1.0);
  H.pulses(tl,['#cA','#chd','#cB','#cA'],t1+.9,E,.65,.018);
  tl.to('#cask',{y:-9,duration:.8,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-t0)/.8))},t0+1.2);
