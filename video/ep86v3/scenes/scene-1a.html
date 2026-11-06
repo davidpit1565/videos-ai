@@ -94,7 +94,7 @@ window.buildScene_1=function(tl,T0,DUR){
  const b1=Math.max(T0+1.4,W(5)[0]+.1),b2=Math.max(b1+.6,W(8)[0]);
  tl.fromTo('#pb1',{opacity:0,x:-30,scale:.92},{opacity:1,x:0,scale:1,duration:.45,ease:'power3.out',transformOrigin:'0 100%'},b1);
  tl.fromTo('#pb2',{opacity:0,x:30,scale:.92},{opacity:1,x:0,scale:1,duration:.45,ease:'power3.out',transformOrigin:'100% 100%'},b2);
- q('#pb2 .bar').forEach((e,i)=>tl.to(e,{width:e.style.getPropertyValue('--w'),duration:.55,ease:'power2.out'},b2+.35+i*.22));
+ q('#pb2 .bar').forEach((e,i)=>tl.to(e,{width:[92,64,78][i]+'%',duration:.55,ease:'power2.out'},b2+.35+i*.22));
  tl.fromTo('#pb2 .lk',{opacity:0,scale:.4},{opacity:1,scale:1,duration:.4,ease:'power3.out'},Math.max(b2+1.0,W(11)[0]));
  tl.to('#pb2 .lk',{scale:1.12,duration:.5,ease:'sine.inOut',yoyo:true,repeat:3},Math.max(b2+1.5,W(12)[1]));
 
