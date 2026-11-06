@@ -5,13 +5,13 @@
 #s1 .hd{top:352px}
 #s1 .rp{background:var(--red);color:var(--ink)}
 #s1 .sub{position:absolute;left:65px;width:950px;top:508px;text-align:center;font-weight:800;font-size:44px;line-height:50px;letter-spacing:-.02em;color:var(--ink2);opacity:0;white-space:nowrap}
-#s1 .cd{position:absolute;left:65px;width:950px;height:212px;background:var(--white);border:6px solid var(--ink);border-radius:40px;box-shadow:9px 9px 0 var(--ink)}
+#s1 .cd{position:absolute;left:80px;width:920px;height:212px;background:var(--white);border:6px solid var(--ink);border-radius:40px;box-shadow:9px 9px 0 var(--ink)}
 #s1 .cd .lg{position:absolute;left:28px;top:36px;width:128px;height:128px;background:var(--paper);border:6px solid var(--ink);border-radius:38px;box-shadow:6px 6px 0 var(--ink);display:flex;align-items:center;justify-content:center}
 #s1 .cd .lg img{width:66%;height:66%}
-#s1 .cd .tx{position:absolute;left:186px;top:0;width:610px;height:100%;display:flex;align-items:center;font-weight:800;font-size:54px;line-height:62px;letter-spacing:-.025em}
+#s1 .cd .tx{position:absolute;left:186px;top:18px;width:610px;height:calc(100% - 18px);display:flex;align-items:center;font-weight:800;font-size:54px;line-height:62px;letter-spacing:-.025em}
 #s1 .cd .st{background:linear-gradient(var(--red),var(--red)) 0 56%/0% 10% no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 #s1 .cd .xk{position:absolute;right:26px;top:60px;width:92px;height:92px;opacity:0}
-#s1 .cd .tg{position:absolute;right:26px;top:-42px;background:var(--acc);border:5px solid var(--ink);border-radius:22px;box-shadow:5px 5px 0 var(--ink);font-weight:900;font-size:36px;line-height:1;padding:9px 20px 11px;letter-spacing:.02em;opacity:0}
+#s1 .cd .tg{position:absolute;right:26px;top:-44px;background:var(--acc);border:5px solid var(--ink);border-radius:22px;box-shadow:5px 5px 0 var(--ink);font-weight:900;font-size:36px;line-height:1;padding:9px 20px 11px;letter-spacing:.02em;opacity:0}
 </style>
 <div class="scn clip" id="s1" data-start="0" data-duration="__D1__" data-track-index="1"><div class="cam" id="c1">
  <div class="grp hd" id="h1">
@@ -38,8 +38,8 @@ window.buildScene_1=function(tl,T0,DUR){
  // cards are on screen at frame 0, drifting; the whole thing breathes
  tl.fromTo('#cg',{y:12,rotation:-.8},{y:0,rotation:.5,duration:2.4,ease:'sine.out'},T0);
  tl.fromTo('#cm',{y:18,rotation:.8},{y:0,rotation:-.5,duration:2.6,ease:'sine.out'},T0);
- tl.to('#cg',{rotation:-.6,y:-4,duration:Math.max(1,DUR-2.4),ease:'sine.inOut'},T0+2.4);
- tl.to('#cm',{rotation:.6,y:-4,duration:Math.max(1,DUR-2.6),ease:'sine.inOut'},T0+2.6);
+ tl.to('#cg',{rotation:-1.6,duration:1.15,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((DUR-2.4)/1.15))},T0+2.4);
+ tl.to('#cm',{rotation:1.6,duration:1.15,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((DUR-2.6)/1.15))},T0+2.6);
  tl.fromTo('#c1',{scale:1.012},{scale:1.0,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 760px'},T0);
  // strike-through + X: ChatGPT on "told", Gemini on "Gemini"
  const tA=(w0[1]||[T0+.3])[0],tB=(w0[6]||[T0+1.4])[0];
@@ -48,7 +48,7 @@ window.buildScene_1=function(tl,T0,DUR){
   tl.fromTo(xk,{opacity:0,scale:1.7,rotation:-14},{opacity:1,scale:1,rotation:0,duration:.65,ease:'power3.out',transformOrigin:'50% 50%'},t+.1);
   tl.to(xk,{scale:1.07,duration:.8,ease:'sine.inOut',yoyo:true,repeat:5},t+.8);};
  strike('#st1','#xg',tA); strike('#st2','#xm',tB);
- H.pulses(tl,['#cg','#cm','#h1'],T0+1.7,E,.95,.014);
+ H.pulses(tl,['#h1','#cg','#cm'],T0+1.0,E,.7,.03);
  // line 2: "Two AI chats had PROMISED to KEEP my secret": tags slide in, the begging line follows
  const pr=(w1[4]||[T0+3.6])[0],kp=(w1[6]||[T0+4.2])[0];
  tl.fromTo('#tg1',{opacity:0,y:14,scale:.9,rotation:-4},{opacity:1,y:0,scale:1,rotation:-3,duration:.55,ease:'power3.out'},pr);

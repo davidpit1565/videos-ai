@@ -27,7 +27,7 @@ window.buildScene_2=function(tl,T0,DUR){
  tl.set('#s2',{opacity:1,visibility:'visible'},T0);
  tl.set('#s2 .w',{opacity:0},T0);
  tl.fromTo('#c2',{scale:.984,x:0,y:14},{scale:1,x:0,y:-10,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 700px'},T0);
- const t0=T0+.06;
+ const t0=T0+.1;
  // headline words rise in, lit as spoken
  q('#h2 .w').forEach((el,i)=>{tl.fromTo(el,{opacity:0,y:34},{opacity:.45,y:0,duration:.5,ease:'power3.out'},t0+i*.07);
   tl.to(el,{opacity:1,duration:.16,ease:'sine.out'},Math.max(t0+.45,(w[Math.min(i,w.length-1)]||[t0])[0]));});

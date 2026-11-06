@@ -41,7 +41,7 @@ __SCRIPTS__
 __CALLS__
 const BOUNDS=__BOUNDS__;
 BOUNDS.forEach((tm,k)=>{ // soft dip between scenes, never a wipe (David 3.11): old scene fades out over .2 s while the new one starts building
- tl.to("#s"+(k+1),{opacity:0,duration:.2,ease:"sine.inOut"},tm-.12); tl.set("#s"+(k+1),{visibility:"hidden"},tm+.09);
+ tl.to("#s"+(k+1),{opacity:0,y:-14,duration:.17,ease:"sine.in"},tm-.19); tl.set("#s"+(k+1),{visibility:"hidden"},tm-.01); // old scene is fully gone before the next one starts building at tm+.1: never two scenes' text together
 });
 tl.to({},{duration:.001},D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
