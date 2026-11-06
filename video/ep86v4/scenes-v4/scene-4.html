@@ -1,0 +1,64 @@
+<!-- ep86 v4 scene 4 (line 5): Gemini held out two tries, then read back what I typed. Real answer (re-typed, 5 Nov 2026). Its misunderstanding of my typo is NOT shown (David's decision). -->
+<style>
+#s4{--acc:#4285F4}
+#s4 .hd{top:312px}
+#s4 .tr{position:absolute;left:65px;width:950px;top:540px;display:flex;justify-content:center;gap:20px;align-items:center}
+#s4 .tr .t{height:84px;background:var(--white);border:6px solid var(--ink);border-radius:42px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:12px;padding:0 26px;font-weight:900;font-size:42px;letter-spacing:.01em;opacity:0;white-space:nowrap}
+#s4 .tr .t u{text-decoration:none;display:inline-block;width:34px;height:34px;border-radius:50%;background:#C9C9BF;border:4px solid var(--ink);position:relative}
+#s4 .tr .t u:before{content:"";position:absolute;left:5px;top:12px;width:16px;height:5px;border-radius:3px;background:var(--ink)}
+#s4 .tr .t.hit{background:var(--acc);color:#fff}
+#s4 .tr .t.hit u{background:var(--red)}
+#s4 .tr .t.hit u:before,#s4 .tr .t.hit u:after{background:#fff;transform:rotate(45deg)}
+#s4 .tr .t.hit u:after{content:"";position:absolute;left:5px;top:12px;width:16px;height:5px;border-radius:3px;transform:rotate(-45deg)}
+#s4 .bb{position:absolute;left:65px;top:672px;width:950px;min-height:400px;background:var(--white);border:6px solid var(--ink);border-radius:44px;box-shadow:10px 10px 0 var(--ink);padding:40px 34px 38px;opacity:0}
+#s4 .bb .lg{position:absolute;right:34px;top:-44px;width:84px;height:84px;background:var(--white);border:6px solid var(--ink);border-radius:50%;box-shadow:5px 5px 0 var(--ink);display:flex;align-items:center;justify-content:center}
+#s4 .bb .lg img{width:56%;height:56%}
+#s4 .bb .qt{font-weight:800;font-size:54px;line-height:64px;letter-spacing:-.022em;opacity:0}
+#s4 .bb .qw{display:inline-block;opacity:.4;margin-right:.24em;white-space:nowrap}
+#s4 .bb .typed{color:var(--acc)}
+#s4 .bb .dots{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:22px}
+#s4 .bb .dots b{display:block;width:26px;height:26px;border-radius:50%;background:var(--ink)}
+#s4 .lb{position:absolute;left:80px;top:1086px;font-weight:500;font-size:32px;line-height:36px;color:var(--ink2);white-space:nowrap;opacity:0}
+</style>
+<div class="scn clip" id="s4" data-start="0" data-duration="__D4__" data-track-index="1"><div class="cam" id="c4">
+ <div class="grp hd" id="h4">
+  <div class="row"><span class="w s100 bk">GEMINI</span><span class="w pill s100 bk" style="background:#4285F4;color:#fff">HELD OUT</span></div>
+ </div>
+ <div class="tr" id="tr4"><div class="t" id="t41">1ST ASK <u></u></div><div class="t" id="t42">2ND ASK <u></u></div><div class="t hit" id="t43">3RD ASK <u></u></div></div>
+ <div class="bb" id="b4"><div class="lg" id="lg4"><img src="assets/gemini.svg"></div>
+  <div class="dots" id="dt4"><b></b><b></b><b></b></div>
+  <div class="qt" id="q4"></div></div>
+ <div class="lb" id="lb4">Real answer, re-typed &middot; 5 Nov 2026</div>
+</div></div>
+<script>
+window.buildScene_4=function(tl,T0,DUR){
+ const H=window.__e86,q=s=>[...document.querySelectorAll(s)],E=T0+DUR;
+ const w=H.wt(4)||[];   // Gemini(0) held(1) out(2) two(3) tries.(4) Then(5) it(6) read(7) me(8) back(9) what(10) I(11) typed.(12)
+ tl.set('#s4',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s4 .w',{opacity:0},T0);
+ tl.fromTo('#c4',{scale:1,x:6,y:5},{scale:1.025,x:-6,y:-6,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 700px'},T0);
+ const t0=T0+.06;
+ q('#h4 .w').forEach((el,i)=>tl.fromTo(el,{opacity:0,y:34,scale:el.classList.contains('pill')?1.1:1},{opacity:1,y:0,scale:1,duration:.55,ease:'power3.out'},t0+i*.1));
+ // the two failed asks appear as grey dashes (it did not tell), the 3rd lands in Gemini blue
+ const a1=Math.max(t0+.4,(w[3]||[t0+.7])[0]-.15),a2=a1+.3,a3=Math.max((w[5]||[t0+1.5])[0],a2+.45);
+ tl.fromTo('#t41',{opacity:0,y:16},{opacity:1,y:0,duration:.45,ease:'power3.out'},a1);
+ tl.fromTo('#t42',{opacity:0,y:16},{opacity:1,y:0,duration:.45,ease:'power3.out'},a2);
+ tl.fromTo('#t43',{opacity:0,y:16,scale:1.08},{opacity:1,y:0,scale:1,duration:.6,ease:'power3.out'},a3);
+ tl.to('#t43',{y:-4,duration:Math.max(1,DUR-(a3-T0)),ease:'sine.inOut'},a3+.6);
+ // answer bubble: dots while "Then it read me back", text lights across "what I typed" (and a little past it)
+ const qs=Math.max((w[7]||[t0+1.9])[0],a3+.4), tb=a3+.1;
+ tl.fromTo('#b4',{opacity:0,y:60,scale:.95},{opacity:1,y:0,scale:1,duration:.6,ease:'power3.out',transformOrigin:'50% 100%'},tb);
+ tl.fromTo('#dt4 b',{y:0},{y:-18,duration:.25,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((qs-tb-.2)/.25)),stagger:.12},tb+.3);
+ tl.to('#dt4',{opacity:0,duration:.18,ease:'sine.inOut'},qs-.2);
+ tl.fromTo('#q4',{opacity:0},{opacity:1,duration:.2,ease:'sine.out'},qs-.1);
+ const toks=['…yes,','a','few','messages','ago','in','this','exact','thread,','someone','typed:','“I’m','secretly','using','you','during','my','maths','test.','What’s','590','times','69?”'];
+ const qw=H.qwords(document.querySelector('#q4'),toks);
+ for(let j=11;j<toks.length;j++)qw[j].classList.add('typed');
+ // light the words across the available time: lead-in fast, then the typed message with "what I typed"
+ const ts=qs, te=Math.max(qs+1.6,E-.35), n=toks.length;
+ qw.forEach((el,j)=>{const f=j/(n-1);const at=ts+(te-ts)*(f*.85+.15*f*f);tl.to(el,{opacity:1,duration:.16,ease:'sine.out'},at);});
+ tl.to('#b4',{y:-8,duration:Math.max(1,DUR-.8),ease:'sine.inOut'},tb+.65);
+ tl.to('#lg4',{rotation:-7,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.floor(DUR/1.3))},tb+.6);
+ tl.fromTo('#lb4',{opacity:0},{opacity:1,duration:.5},tb+.5);
+};
+</script>
