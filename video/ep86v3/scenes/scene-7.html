@@ -35,7 +35,7 @@ window.buildScene_7=function(tl,T0,DUR){
  tl.fromTo("#lab7,#ttl7",{opacity:0,y:-14},{opacity:1,y:0,duration:.55,ease:"power3.out"},E);
  // headline: all four words readable from the start, lit as spoken
  qa("#h7 .w").forEach((el,k)=>tl.fromTo(el,{opacity:0,y:34,scale:(k==1||k==3)?1.12:1},{opacity:.45,y:0,scale:1,duration:.55,ease:"power3.out"},E+.05+k*.1));
- ["#k0","#k1","#k2","#k3"].forEach((id,k)=>tl.to(id,{opacity:1,duration:.2,ease:"power2.out"},Math.max(tokAt(k),E+.75+k*.05)));
+ ["#k0","#k1","#k2","#k3"].forEach((id,k)=>tl.to(id,{opacity:1,duration:.2,ease:"power2.out"},Math.max(tokAt(k),E+.62+k*.1)));
  tl.to("#k1",{rotation:-2,duration:Math.max(1,DUR-1),ease:"sine.inOut"},tokAt(1));
  tl.to("#k3",{rotation:2,duration:Math.max(1,DUR-1),ease:"sine.inOut"},tokAt(3));
  // board rows pop in, marks land with the words
