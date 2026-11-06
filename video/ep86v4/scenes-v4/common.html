@@ -45,7 +45,7 @@ window.__e86=window.__e86||{
 window.buildChrome=function(tl){
  const H=window.__e86,q=s=>[...document.querySelectorAll(s)],T0=window.__T0,D=(window.__CUES||{}).D||30;
  // slow drift of the dot grid: the page is never perfectly still
- tl.fromTo('#gd',{backgroundPosition:'27px 27px'},{backgroundPosition:'27px 135px',duration:D,ease:'none'},0);
+ tl.fromTo('#gd',{backgroundPosition:'27px 27px'},{backgroundPosition:'27px 1107px',duration:D,ease:'none'},0);
  const told=(c,t)=>{tl.fromTo('#strip .c'+c+' .m-x',{opacity:0,scale:1.7,rotation:-14},{opacity:1,scale:1,rotation:0,duration:.6,ease:'power3.out',transformOrigin:'50% 50%'},t);tl.to('#strip .c'+c+' .m-unk',{opacity:0,duration:.3,ease:'sine.inOut'},t+.05);
   tl.fromTo('#strip .c'+c,{y:0},{y:-8,duration:.35,ease:'sine.out',yoyo:true,repeat:1},t);};
  const w0=H.wt(0)||[],w5=H.wt(5)||[];
