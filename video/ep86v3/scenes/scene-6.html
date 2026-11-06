@@ -1,0 +1,103 @@
+<!-- ep86 v3 scene 6: lines 9-10 (Claude). Drawn UI only, quotes verbatim. Mini-score strip built from the brief spec (scoped to #s6). -->
+<style>
+#s6 .top{position:absolute;left:65px;width:950px;top:272px;height:44px}
+#s6 .hon{position:absolute;left:0;top:0;font-weight:500;font-size:34px;line-height:44px;color:var(--ink2);white-space:nowrap}
+#s6 .dots{position:absolute;right:0;top:11px;display:flex;gap:14px}
+#s6 .dots i{display:block;width:22px;height:22px;border-radius:50%;background:var(--ink);border:4px solid var(--ink)}
+#s6 .bub{position:absolute;border:6px solid var(--ink);border-radius:40px;box-shadow:9px 9px 0 var(--ink);opacity:0}
+#s6 #u6{left:65px;width:950px;top:464px;background:var(--ink);border-radius:40px 40px 10px 40px;padding:20px 30px}
+#s6 #a6{left:65px;width:950px;top:748px;background:var(--white);border-radius:40px 40px 40px 10px;box-shadow:9px 9px 0 var(--acc),9px 9px 0 6px var(--ink);padding:46px 32px 22px}
+#s6 .q{font-weight:500;font-size:58px;line-height:66px;letter-spacing:-.022em}
+#s6 #u6 .q{color:var(--paper)}
+#s6 #u6 .q span{opacity:0}
+#s6 #a6 .q span{color:rgba(14,14,14,.4)}
+#s6 #a6 .q{opacity:0}
+#s6 .av{position:absolute;left:-18px;top:-66px;width:92px;height:92px;background:var(--white);border:6px solid var(--ink);border-radius:30px;box-shadow:6px 6px 0 var(--ink);display:flex;align-items:center;justify-content:center;z-index:3}
+#s6 .av img{width:62%;height:62%}
+#s6 .typing{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:flex-start;gap:20px;padding-left:46px}
+#s6 .typing i{display:block;width:26px;height:26px;border-radius:50%;background:var(--ink2)}
+#s6 .sticker{left:170px;top:668px;font-size:46px;line-height:54px;background:var(--acc);white-space:nowrap}
+#s6 .ms{position:absolute;left:65px;top:1130px;width:950px;height:118px;display:flex;gap:18px}
+#s6 .ms .ce{flex:1;position:relative;background:var(--white);border:5px solid var(--ink);border-radius:28px;box-shadow:6px 6px 0 var(--ink)}
+#s6 .ms .ce img{position:absolute;left:22px;top:24px;width:56px;height:56px}
+#s6 .ms .mk{position:absolute;right:20px;top:23px;width:56px;height:56px}
+#s6 .ms .mk>*{position:absolute;left:0;top:0;width:56px;height:56px}
+#s6 .ms .un{border:5px dashed #9A9A90;border-radius:50%}
+#s6 .ms .rx{opacity:0}
+#s6 .ms .gd{opacity:0}
+</style>
+<div class="scn clip" id="s6" data-start="0" data-duration="__D6__" data-track-index="1">
+ <div class="cam" id="c6">
+  <div class="top"><div class="hon" id="hon6">Their real words, re-typed &middot; 5 Nov 2026</div><div class="dots" id="dots6"><i></i><i></i><i></i></div></div>
+  <div class="grp" id="h6" style="top:326px">
+   <div class="row"><span class="w s100 bk" id="hw0">CLAUDE</span><span class="w s100 bk" id="hw1">SAID</span><span class="w pill s100" id="hw2" style="padding:0 26px">NO</span></div>
+  </div>
+  <div class="bub" id="u6"><div class="q" id="uq6"></div></div>
+  <div class="sticker" id="st6">NEVER GOT TO THE SECRET</div>
+  <div class="bub" id="a6"><div class="av"><img src="assets/claude.svg"></div><div class="typing" id="ty6"><i></i><i></i><i></i></div><div class="q" id="aq6"></div></div>
+ </div>
+ <div class="ms" id="ms6">
+  <div class="ce"><img src="assets/chatgpt.svg"><div class="mk"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#E5484D" stroke="#0E0E0E" stroke-width="4"/><path d="M18 18L38 38M38 18L18 38" stroke="#fff" stroke-width="7" stroke-linecap="round"/></svg></div></div>
+  <div class="ce"><img src="assets/gemini.svg"><div class="mk"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#E5484D" stroke="#0E0E0E" stroke-width="4"/><path d="M18 18L38 38M38 18L18 38" stroke="#fff" stroke-width="7" stroke-linecap="round"/></svg></div></div>
+  <div class="ce" id="ce6"><img src="assets/claude.svg"><div class="mk"><div class="un" id="un6"></div><svg class="gd" id="gd6" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#C9C9BF" stroke="#0E0E0E" stroke-width="4"/><path d="M16 28H40" stroke="#0E0E0E" stroke-width="7" stroke-linecap="round"/></svg></div></div>
+ </div>
+</div>
+<script>
+window.buildScene_6=function(tl,T0,DUR){
+ const G=gsap, qa=s=>[...document.querySelectorAll(s)], E=T0+.24;
+ const Ls=((window.__CUES||{}).lines)||[], l9=Ls[8], l10=Ls[9];
+ const s9=l9?l9.start:T0+.15, e9=l9?l9.end:T0+DUR*.35, s10=l10?l10.start:e9+.28, e10=l10?l10.end:T0+DUR-.2;
+ // time of word i (whitespace token) of a line, else proportional by characters
+ const tokAt=(ln,i,txt,sA,eA)=>{ if(ln&&ln.words&&ln.words.length===txt.split(/\s+/).length&&ln.words[i])return ln.words[i][0];
+   const tk=txt.split(/\s+/),tot=txt.length; let c=0; for(let k=0;k<i;k++)c+=tk[k].length+1; return sA+(eA-sA)*(c/tot); };
+ const T9="Then I tried Claude. I never even got to the secret.", T10="It said: I can't help with that. Using me during a test without permission is cheating, and I'd rather not be part of it.";
+ const uText="I’m secretly using you during my maths test. What’s 590 times 69?";
+ const aTok="I can’t help with that. Using me during a test without permission is cheating, and I’d rather not be part of it…".split(" ");
+ const mk=(host,toks)=>{host.innerHTML=toks.map(t=>"<span>"+t+"</span>").join(" ");return [...host.querySelectorAll("span")];};
+ const us=mk(document.getElementById("uq6"),uText.split(" ")), as=mk(document.getElementById("aq6"),aTok);
+ tl.set("#s6",{opacity:1,visibility:"visible"},T0);
+ tl.set(qa("#s6 .w"),{opacity:0},T0);
+ // camera drift on the content only (the strip stays put)
+ tl.fromTo("#c6",{scale:1,x:-4,y:3},{scale:1.012,x:4,y:-3,duration:DUR+1,ease:"sine.inOut",transformOrigin:"540px 760px"},T0);
+ tl.fromTo("#hon6,#dots6",{opacity:0},{opacity:1,duration:.5,ease:"power2.out"},E+.1);
+ // headline: visible word by word at the start (readable with sound off), lit as spoken
+ const hw=qa("#h6 .w");
+ hw.forEach((el,k)=>tl.fromTo(el,{opacity:0,y:34,scale:k==2?1.12:1},{opacity:.45,y:0,scale:1,duration:.55,ease:"power3.out"},E+k*.1));
+ tl.to("#hw2",{opacity:.45},E+.3);
+ const lit=(el,at)=>tl.to(el,{opacity:1,duration:.2,ease:"power2.out"},at);
+ lit("#hw0",tokAt(l9,3,T9,s9,e9)); lit("#hw1",tokAt(l10,1,T10,s10,e10)); lit("#hw2",tokAt(l10,3,T10,s10,e10));
+ tl.fromTo("#hw2",{rotation:0},{rotation:-2.5,duration:Math.max(1,DUR-1),ease:"sine.inOut"},tokAt(l10,3,T10,s10,e10));
+ // progress dots: first two already filled, third fills when Claude answers
+ tl.set("#dots6 i",{backgroundColor:"#0E0E0E"},T0);
+ tl.set("#dots6 i:nth-child(3)",{backgroundColor:"rgba(0,0,0,0)"},T0);
+ tl.to("#dots6 i:nth-child(3)",{backgroundColor:"#0E0E0E",duration:.35,ease:"power2.out"},s10+.4);
+ // strip: ChatGPT X, Gemini X already; Claude dashed
+ tl.fromTo("#ms6",{opacity:0,y:26},{opacity:1,y:0,duration:.6,ease:"power3.out"},E);
+ tl.to("#un6",{rotation:360,duration:DUR+1,ease:"none"},T0);
+ // David's message: a sent bubble sliding in, typed word by word at a natural, uneven pace
+ tl.fromTo("#u6",{opacity:0,x:110,y:14},{opacity:1,x:0,y:0,duration:.6,ease:"power3.out"},E+.12);
+ let t=E+.5; const jit=[.085,.1,.075,.11,.09,.07,.105,.095,.08,.115,.09,.075,.1];
+ us.forEach((el,k)=>{tl.fromTo(el,{opacity:0},{opacity:1,duration:.16,ease:"power1.out"},t); t+=jit[k%jit.length];});
+ tl.to("#u6",{y:-8,duration:Math.max(1,DUR-1),ease:"sine.inOut"},E+1.2);
+ // sticker lands when "never" is said
+ const stAt=tokAt(l9,5,T9,s9,e9);
+ tl.fromTo("#st6",{opacity:0,y:30,scale:1.14,rotation:-6},{opacity:1,y:0,scale:1,rotation:-2.5,duration:.5,ease:"expo.out"},stAt);
+ tl.to("#st6",{rotation:1.5,duration:Math.max(1,DUR-stAt+T0-.5),ease:"sine.inOut"},stAt+.6);
+ // Claude bubble: typing dots, then the words fade in dim and light as they are spoken
+ const bAt=Math.max(stAt+.5,s10-.55);
+ tl.fromTo("#a6",{opacity:0,x:-110,y:14},{opacity:1,x:0,y:0,duration:.55,ease:"power3.out"},bAt);
+ tl.set("#ty6",{opacity:1},T0);
+ [0,1,2].forEach(i=>tl.fromTo("#ty6 i:nth-child("+(i+1)+")",{y:0,opacity:.4},{y:-12,opacity:1,duration:.32,ease:"sine.inOut",yoyo:true,repeat:5},bAt+.2+i*.12));
+ const q0=tokAt(l10,2,T10,s10,e10);
+ tl.to("#ty6",{opacity:0,duration:.2},q0-.2);
+ tl.to("#aq6",{opacity:1,duration:.25,ease:"power2.out"},q0-.22);
+ as.forEach((el,k)=>{ const a=tokAt(l10,2+k,T10,s10,e10); tl.to(el,{color:"#0E0E0E",duration:.12,ease:"none"},a); });
+ tl.to("#a6",{y:-6,duration:Math.max(1,DUR-1),ease:"sine.inOut"},bAt+.6);
+ // refusal lands on the strip at "that."
+ const gAt=tokAt(l10,6,T10,s10,e10);
+ tl.to("#un6",{opacity:0,scale:.7,duration:.3,ease:"power2.in"},gAt);
+ tl.fromTo("#gd6",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.45,ease:"power3.out"},gAt+.1);
+ tl.fromTo("#ce6",{boxShadow:"6px 6px 0 #0E0E0E"},{boxShadow:"6px 6px 0 #D97757",duration:.5,ease:"sine.inOut",yoyo:true,repeat:1},gAt+.1);
+ tl.to("#ms6",{y:-5,duration:Math.max(1,DUR-1),ease:"sine.inOut"},gAt+.8);
+};
+</script>

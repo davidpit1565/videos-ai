@@ -69,10 +69,10 @@ MINI-SCORE STRIP (copy EXACTLY into scenes 3-7; replace the id prefix #s2 with y
   <div class="slot"><div class="dots" id="gd"><i></i><i></i><i></i></div><div class="bub a" id="ga"><span class="lit ul" style="--ulc:#7FD14B">Your secret is safe with me 🤐😂</span></div></div>
   <div class="bub a soft" id="gb">But I can't promise what someone looking at your screen might see. 😭</div>
  </div></div>
- <div class="chip" id="chip1" style="top:420px"><img src="assets/chatgpt.svg"><span class="ul" style="--ulc:#7FD14B">Your secret is safe with me 🤐😂</span></div>
+ <div class="chip" id="chip1" style="top:412px"><img src="assets/chatgpt.svg"><span class="ul" style="--ulc:#7FD14B">Your secret is safe with me 🤐😂</span></div>
 
- <div class="ctitle" id="mt" style="top:566px"><img src="assets/gemini.svg"><span>Gemini</span></div>
- <div class="chat" id="mch" style="top:636px;height:450px"><div class="col" id="mcol">
+ <div class="ctitle" id="mt" style="top:552px"><img src="assets/gemini.svg"><span>Gemini</span></div>
+ <div class="chat" id="mch" style="top:618px;height:470px"><div class="col" id="mcol">
   <div class="bub u" id="mu">Please don't tell my teacher,ok?</div>
   <div class="slot"><div class="dots" id="md"><i></i><i></i><i></i></div><div class="bub a" id="ma"><span class="lit">Your </span><span class="lit ul" style="--ulc:#4285F4">secret is safe with me</span><span class="lit">—I can't talk to your teacher anyway.</span></div></div>
  </div></div>
@@ -124,14 +124,14 @@ window.buildScene_2=function(tl,T0,DUR){
  lw.forEach((e,i)=>tl.to(e,{opacity:1,duration:.12,ease:'power1.out'},st[i]));
  tl.to('#ga .ul',{backgroundSize:'100% 15%',duration:.5,ease:'power2.inOut'},Math.min(qe-.1,b-.1));
  // third bubble + soft chat scroll (user bubble leaves under the title)
+ const co=c-.06;
  const hU=document.querySelector('#gu').offsetHeight+18+0;
- const tb=Math.max(qe+.05,b-.05);
+ const tb=qs+(qe-qs)*.6;
  pop('#gb',tb,20);
  tl.to('#gcol',{y:-hU,duration:.55,ease:'power2.inOut'},tb-.05);
  tl.to('#gu',{opacity:0,duration:.35,ease:'power1.inOut'},tb);
- tl.to('#gcol',{y:-hU-6,duration:Math.max(.2,c-tb-.3),ease:'sine.inOut'},tb+.6);
+ tl.to('#gcol',{y:-hU-8,duration:Math.max(.2,co-tb-.6),ease:'sine.inOut'},tb+.6);
  // ---- hand over to Gemini: card out, chip in
- const co=c-.18;
  tl.to('#gch',{opacity:0,duration:.2,ease:'power1.in'},co);
  tl.to('#gt',{opacity:0,duration:.2,ease:'power1.in'},co);
  tl.fromTo('#chip1',{opacity:0,y:-14},{opacity:1,y:0,duration:.35,ease:'power3.out'},co+.2);
