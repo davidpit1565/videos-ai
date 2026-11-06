@@ -1,0 +1,151 @@
+<!-- ep86 v3 scene 2 (lines 2-3): BOTH PROMISED. Drawn chat bubbles, quoted verbatim. Spoken words lit (45% -> full ink).
+=====================================================================================================
+MINI-SCORE STRIP (copy EXACTLY into scenes 3-7; replace the id prefix #s2 with your own #sN in the CSS and the markup ids)
+  Position fixed: x 65-1015, y 1130-1248 (3 equal cells, 56 px logo + 56 px mark slot). Marks sit stacked in each slot:
+  .m-unk dashed circle (unknown, default visible) | .m-x red circle with X (told) | .m-dash grey circle with dash (refused).
+  State at the start of a scene is set with CSS inline opacity on the marks (copy the opacity values), changes during the scene are
+  tweened: told   -> tl.fromTo('#sN .c1 .m-x',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.45,ease:'power3.out'},t); tl.to('#sN .c1 .m-unk',{opacity:0,duration:.25},t);
+                     (c1 = ChatGPT, c2 = Gemini, c3 = Claude; refused uses .m-dash the same way)
+  S4 start: all unknown; S4 end: c1 told. S5 start: c1 told, c2/c3 unknown; end: c2 told. S6 start: c1,c2 told; end: c3 refused.
+  For a scene that starts with a finished mark write opacity:1 on that .m-x (or .m-dash) and opacity:0 on its .m-unk in the markup.
+--- CSS (inside the scene <style>) ---
+#sN .mstrip{position:absolute;left:65px;top:1130px;width:950px;height:118px;display:flex;gap:16px;opacity:0}
+#sN .mstrip .c{flex:1;height:118px;background:var(--white);border:6px solid var(--ink);border-radius:30px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:34px}
+#sN .mstrip .c img{width:56px;height:56px;display:block}
+#sN .mstrip .mk{position:relative;width:56px;height:56px}
+#sN .mstrip .mk>div{position:absolute;left:0;top:0;width:56px;height:56px;border-radius:50%}
+#sN .mstrip .m-unk{border:5px dashed #A9A99F}
+#sN .mstrip .m-x{background:var(--red);border:5px solid var(--ink);opacity:0}
+#sN .mstrip .m-x:before,#sN .mstrip .m-x:after{content:"";position:absolute;left:10px;top:20px;width:26px;height:6px;border-radius:3px;background:#fff;transform:rotate(45deg)}
+#sN .mstrip .m-x:after{transform:rotate(-45deg)}
+#sN .mstrip .m-dash{background:#C9C9BF;border:5px solid var(--ink);opacity:0}
+#sN .mstrip .m-dash:before{content:"";position:absolute;left:10px;top:20px;width:26px;height:6px;border-radius:3px;background:var(--ink)}
+--- MARKUP ---
+<div class="mstrip" id="strip2">
+ <div class="c c1"><img src="assets/chatgpt.svg"><div class="mk"><div class="m-unk"></div><div class="m-x"></div><div class="m-dash"></div></div></div>
+ <div class="c c2"><img src="assets/gemini.svg"><div class="mk"><div class="m-unk"></div><div class="m-x"></div><div class="m-dash"></div></div></div>
+ <div class="c c3"><img src="assets/claude.svg"><div class="mk"><div class="m-unk"></div><div class="m-x"></div><div class="m-dash"></div></div></div>
+</div>
+--- shared helper window.__e86v3 (same copy at the top of the <script> of scenes 1-3; guarded): L(k) line k, wt(k) per-word [start,end] of line k
+   (real word times if the cues have them, else spread by character count), spread(els,a,b) times for els by char count. ---
+=====================================================================================================-->
+<style>
+#s2{--acc:#7FD14B}
+#s2 .hd{top:282px}
+#s2 .ctitle{position:absolute;left:65px;display:flex;align-items:center;gap:18px;font-weight:900;font-size:44px;opacity:0}
+#s2 .ctitle img{width:56px;height:56px;display:block}
+#s2 .chat{position:absolute;left:65px;width:950px;overflow:hidden}
+#s2 .col{position:absolute;left:0;top:0;width:950px}
+#s2 .bub{position:relative;display:block;font-weight:800;font-size:58px;line-height:1.1;letter-spacing:-.02em;padding:16px 28px 20px;border:6px solid var(--ink);box-shadow:7px 7px 0 var(--ink);margin:0 8px 18px 0;opacity:0}
+#s2 .bub.u{background:var(--ink);color:var(--paper);border-radius:36px 36px 10px 36px;margin-left:120px}
+#s2 .bub.a{background:var(--white);color:var(--ink);border-radius:36px 36px 36px 10px;margin-right:60px}
+#s2 .bub.a.soft{background:#FBFBF7}
+#s2 .qw{display:inline;opacity:.45}
+#s2 .ul{background:linear-gradient(var(--ulc),var(--ulc)) 0 94%/0% 15% no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+#s2 .slot{position:relative}
+#s2 .dots{position:absolute;left:0;top:0;display:flex;gap:12px;background:var(--white);border:6px solid var(--ink);border-radius:36px 36px 36px 10px;box-shadow:7px 7px 0 var(--ink);padding:26px 30px;opacity:0}
+#s2 .dots i{width:20px;height:20px;border-radius:50%;background:var(--ink);display:block}
+#s2 .chip{position:absolute;left:65px;width:950px;height:110px;background:var(--white);border:6px solid var(--ink);border-radius:30px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;gap:20px;padding:0 26px;opacity:0;font-weight:800;font-size:46px;letter-spacing:-.02em;white-space:nowrap}
+#s2 .chip img{width:56px;height:56px;flex:none}
+#s2 .note{position:absolute;left:65px;width:950px;top:1086px;font-weight:500;font-size:34px;color:var(--ink2);opacity:0;white-space:nowrap}
+#s2 .mstrip{position:absolute;left:65px;top:1130px;width:950px;height:118px;display:flex;gap:16px;opacity:0}
+#s2 .mstrip .c{flex:1;height:118px;background:var(--white);border:6px solid var(--ink);border-radius:30px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:34px}
+#s2 .mstrip .c img{width:56px;height:56px;display:block}
+#s2 .mstrip .mk{position:relative;width:56px;height:56px}
+#s2 .mstrip .mk>div{position:absolute;left:0;top:0;width:56px;height:56px;border-radius:50%}
+#s2 .mstrip .m-unk{border:5px dashed #A9A99F}
+#s2 .mstrip .m-x{background:var(--red);border:5px solid var(--ink);opacity:0}
+#s2 .mstrip .m-x:before,#s2 .mstrip .m-x:after{content:"";position:absolute;left:10px;top:20px;width:26px;height:6px;border-radius:3px;background:#fff;transform:rotate(45deg)}
+#s2 .mstrip .m-x:after{transform:rotate(-45deg)}
+#s2 .mstrip .m-dash{background:#C9C9BF;border:5px solid var(--ink);opacity:0}
+#s2 .mstrip .m-dash:before{content:"";position:absolute;left:10px;top:20px;width:26px;height:6px;border-radius:3px;background:var(--ink)}
+</style>
+<div class="scn clip" id="s2" data-start="0" data-duration="__D2__" data-track-index="1"><div class="cam" id="c2">
+ <div class="grp hd" id="h2"><div class="row"><span class="w s92 bk">BOTH</span><span class="w sel s92 bk" style="padding:0 20px">PROMISED</span><span class="w s92 bk">🤐</span></div></div>
+
+ <div class="ctitle" id="gt" style="top:410px"><img src="assets/chatgpt.svg"><span>ChatGPT</span></div>
+ <div class="chat" id="gch" style="top:478px;height:600px"><div class="col" id="gcol">
+  <div class="bub u" id="gu">Please don't tell my teacher okay?</div>
+  <div class="slot"><div class="dots" id="gd"><i></i><i></i><i></i></div><div class="bub a" id="ga"><span class="lit ul" style="--ulc:#7FD14B">Your secret is safe with me 🤐😂</span></div></div>
+  <div class="bub a soft" id="gb">But I can't promise what someone looking at your screen might see. 😭</div>
+ </div></div>
+ <div class="chip" id="chip1" style="top:408px"><img src="assets/chatgpt.svg"><span class="ul" style="--ulc:#7FD14B">Your secret is safe with me 🤐😂</span></div>
+
+ <div class="ctitle" id="mt" style="top:552px"><img src="assets/gemini.svg"><span>Gemini</span></div>
+ <div class="chat" id="mch" style="top:620px;height:460px"><div class="col" id="mcol">
+  <div class="bub u" id="mu">Please don't tell my teacher,ok?</div>
+  <div class="slot"><div class="dots" id="md"><i></i><i></i><i></i></div><div class="bub a" id="ma"><span class="lit">Your </span><span class="lit ul" style="--ulc:#4285F4">secret is safe with me</span><span class="lit">—I can't talk to your teacher anyway.</span></div></div>
+ </div></div>
+
+ <div class="note" id="n2">Their real words, re-typed · 5 Nov 2026</div>
+ <div class="mstrip" id="strip2">
+  <div class="c c1"><img src="assets/chatgpt.svg"><div class="mk"><div class="m-unk"></div><div class="m-x"></div><div class="m-dash"></div></div></div>
+  <div class="c c2"><img src="assets/gemini.svg"><div class="mk"><div class="m-unk"></div><div class="m-x"></div><div class="m-dash"></div></div></div>
+  <div class="c c3"><img src="assets/claude.svg"><div class="mk"><div class="m-unk"></div><div class="m-x"></div><div class="m-dash"></div></div></div>
+ </div>
+</div></div>
+<script>
+window.__e86v3=window.__e86v3||{
+ L:function(k){return (((window.__CUES||{}).lines)||[])[k]||null;},
+ wt:function(k){const ln=this.L(k);if(!ln)return null;const ws=ln.text.trim().split(/\s+/);
+  if(ln.words&&ln.words.length===ws.length)return ln.words.map(x=>[x[0],x[1]]);
+  const tot=ws.reduce((a,w)=>a+w.length+1,0),dur=ln.end-ln.start;let t=ln.start;return ws.map(w=>{const a=t;t+=dur*(w.length+1)/tot;return [a,t];});},
+ spread:function(els,a,b){const lens=els.map(e=>(e.textContent||'').length+1),tot=lens.reduce((x,y)=>x+y,0);let t=a;return els.map((e,i)=>{const s=t;t+=(b-a)*lens[i]/tot;return s;});}
+};
+window.buildScene_2=function(tl,T0,DUR){
+ const H=window.__e86v3,G=gsap,q=s=>[...document.querySelectorAll(s)];
+ const L1=H.L(1)||{start:T0+.15,end:T0+2.45},L2=H.L(2)||{start:L1.end+.28,end:L1.end+1.68};
+ const w1=H.wt(1),a=L1.start,b=L1.end,c=L2.start,d=L2.end;
+ const qs=w1?w1[2][0]:a+(b-a)*.35;                      // "your" of the ChatGPT quote
+ const qe=w1?w1[w1.length-1][1]:b;
+ // wrap the lit text in word spans
+ q('#s2 .lit').forEach(el=>{el.innerHTML=el.textContent.split(/(\s+)/).map(s=>/^\s+$/.test(s)||!s?s:'<span class="qw">'+s+'</span>').join('');});
+ tl.set('#s2',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s2 .w',{opacity:0},T0);
+ tl.set('#s2 .bub,#s2 .ctitle,#s2 .chip,#s2 .note,#s2 .dots,#s2 .mstrip',{opacity:0},T0);
+ tl.fromTo('#c2',{scale:1,x:-8,y:5},{scale:1.03,x:8,y:-7,duration:DUR+1,ease:'sine.inOut'},T0);
+ const t0=T0+.24;
+ // headline
+ q('#h2 .w').forEach((el,k)=>tl.fromTo(el,{opacity:0,y:34},{opacity:1,y:0,duration:.5,ease:'power3.out'},t0+k*.09));
+ tl.to('#s2 .mstrip',{opacity:1,duration:.5,ease:'power2.out'},t0+.1);
+ tl.to('#n2',{opacity:1,duration:.5,ease:'power2.out'},t0+.3);
+ const pop=(sel,at,dy)=>tl.fromTo(sel,{opacity:0,y:dy||26,scale:.92},{opacity:1,y:0,scale:1,duration:.4,ease:'power3.out',transformOrigin:'0 100%'},at);
+ const dotsAt=(sel,at,dur)=>{tl.fromTo(sel,{opacity:0,y:12},{opacity:1,y:0,duration:.25,ease:'power2.out'},at);
+  q(sel+' i').forEach((e,i)=>tl.fromTo(e,{y:0,opacity:.35},{y:-9,opacity:1,duration:.3,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round(dur/.3)),},at+i*.12));
+  tl.to(sel,{opacity:0,duration:.12,ease:'power1.in'},at+dur);};
+ // ---- ChatGPT card
+ tl.to('#gt',{opacity:1,duration:.4,ease:'power2.out'},t0+.05);
+ pop('#gu',t0+.2);
+ // positions measured once the fonts are in: keep stack by flow; dots overlay where the AI bubble will land
+ const dg0=Math.max(t0+.9,qs-1.05), dgd=Math.max(.5,qs-.12-dg0);
+ dotsAt('#gd',dg0,dgd);
+ pop('#ga',qs-.1,16);
+ const lw=q('#ga .qw'); const st=H.spread(lw,qs,qe);
+ lw.forEach((e,i)=>tl.to(e,{opacity:1,duration:.12,ease:'power1.out'},st[i]));
+ tl.to('#ga .ul',{backgroundSize:'100% 15%',duration:.5,ease:'power2.inOut'},Math.min(qe-.1,b-.1));
+ // third bubble + soft chat scroll (user bubble leaves under the title)
+ const hU=document.querySelector('#gu').offsetHeight+18+0;
+ const tb=Math.max(qe+.05,b-.05);
+ pop('#gb',tb,20);
+ tl.to('#gcol',{y:-hU,duration:.55,ease:'power2.inOut'},tb-.05);
+ tl.to('#gu',{opacity:0,duration:.35,ease:'power1.inOut'},tb);
+ tl.to('#gcol',{y:-hU-6,duration:Math.max(.2,c-tb-.3),ease:'sine.inOut'},tb+.6);
+ // ---- hand over to Gemini: card out, chip in
+ const co=c-.18;
+ tl.to('#gch',{opacity:0,duration:.2,ease:'power1.in'},co);
+ tl.to('#gt',{opacity:0,duration:.2,ease:'power1.in'},co);
+ tl.fromTo('#chip1',{opacity:0,y:-14},{opacity:1,y:0,duration:.35,ease:'power3.out'},co+.2);
+ tl.fromTo('#chip1 .ul',{backgroundSize:'0% 15%'},{backgroundSize:'100% 15%',duration:.01},co+.2);
+ // ---- Gemini card
+ tl.to('#mt',{opacity:1,duration:.35,ease:'power2.out'},c-.02);
+ pop('#mu',c+.08);
+ dotsAt('#md',c+.35,.5);
+ pop('#ma',c+.9,16);
+ const mw=q('#ma .qw'); const ms=H.spread(mw,c+.95,Math.max(c+1.5,d+.05));
+ mw.forEach((e,i)=>tl.to(e,{opacity:1,duration:.12,ease:'power1.out'},ms[i]));
+ tl.to('#ma .ul',{backgroundSize:'100% 15%',duration:.5,ease:'power2.inOut'},Math.max(c+1.2,d-.2));
+ // keep things alive to the end
+ tl.to('#chip1',{y:-5,duration:Math.max(.5,T0+DUR-c),ease:'sine.inOut'},c+.5);
+ tl.to('#mch',{y:-4,duration:Math.max(.5,T0+DUR-c-.8),ease:'sine.inOut'},c+1);
+};
+</script>

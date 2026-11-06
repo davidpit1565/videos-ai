@@ -77,7 +77,6 @@ window.buildScene_5=function(tl,T0,DUR){
  const ut=t3+.1, ue=s7.en[12]+.05;
  tl.fromTo('#u5',{opacity:0,y:60,scale:.96},{opacity:1,y:0,scale:1,duration:.55,ease:'power3.out',transformOrigin:'100% 100%'},ut);
  um.forEach((el,j)=>{tl.fromTo(el,{opacity:0,y:10},{opacity:1,y:0,duration:.22,ease:'sine.out'},ut+.15+j*Math.max(.07,(Math.max(.5,ue-ut-.5)/9)));});
- tl.to('#u5',{y:-6,duration:Math.max(.6,ue-ut),ease:'sine.inOut'},ut+.55);
  // the told beat: red X in the headline and the strip, dot 2 fills
  const tt=s7.st[10];
  tl.fromTo('#x5',{opacity:0,scale:1.8,rotation:-16},{opacity:1,scale:1,rotation:0,duration:.7,ease:'expo.out',transformOrigin:'50% 50%'},tt+.08);
@@ -88,7 +87,7 @@ window.buildScene_5=function(tl,T0,DUR){
  tl.to('#g52',{backgroundColor:'#E5484D',duration:.4,ease:'sine.inOut'},tt+.25);
  // line 8: his message makes way, typing dots, then the answer bubble
  const qs=s8.st[2], tb=Math.max(ue+.12,s8.ln.start-.1);
- tl.to('#u5',{opacity:0,y:-40,duration:.3,ease:'power2.in'},tb-.05);
+ tl.to('#u5',{opacity:0,duration:.3,ease:'sine.inOut'},tb-.05);
  tl.fromTo('#b5',{opacity:0,y:70,scale:.94},{opacity:1,y:0,scale:1,duration:.6,ease:'power3.out',transformOrigin:'50% 100%'},tb+.15);
  const nd=Math.max(.3,qs-tb-.55), rep=Math.max(1,Math.round(nd/.5)-1);
  tl.fromTo('#dt5 b',{y:0},{y:-18,duration:.25,ease:'sine.inOut',yoyo:true,repeat:rep*2+1,stagger:.12},tb+.45);
