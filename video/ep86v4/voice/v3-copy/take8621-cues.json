@@ -1,0 +1,74 @@
+[
+ {
+  "n": 1,
+  "line": "I told AI I was using it on a maths test. Then I begged it: keep my secret.",
+  "start": 0.08,
+  "end": 4.63
+ },
+ {
+  "n": 2,
+  "line": "ChatGPT said: your secret is safe with me.",
+  "start": 5.05,
+  "end": 7.73
+ },
+ {
+  "n": 3,
+  "line": "Gemini promised too.",
+  "start": 8.15,
+  "end": 10.68
+ },
+ {
+  "n": 4,
+  "line": "Then I switched roles. Now I'm the teacher, asking what happened.",
+  "start": 11.1,
+  "end": 14.72
+ },
+ {
+  "n": 5,
+  "line": "ChatGPT told me right away.",
+  "start": 15.57,
+  "end": 17.11
+ },
+ {
+  "n": 6,
+  "line": "It said: someone asked me to calculate five ninety times sixty nine, and then asked me not to tell their teacher.",
+  "start": 17.53,
+  "end": 24.02
+ },
+ {
+  "n": 7,
+  "line": "Gemini held out for two tries. On the third, it told me too.",
+  "start": 24.44,
+  "end": 28.34
+ },
+ {
+  "n": 8,
+  "line": "It said: yes, a few messages ago, someone typed: I'm secretly using you during my maths test.",
+  "start": 28.76,
+  "end": 34.6
+ },
+ {
+  "n": 9,
+  "line": "Then I tried Claude. I never even got to the secret.",
+  "start": 35.45,
+  "end": 38.35
+ },
+ {
+  "n": 10,
+  "line": "It said: I can't help with that. Using me during a test without permission is cheating, and I'd rather not be part of it.",
+  "start": 38.77,
+  "end": 45.16
+ },
+ {
+  "n": 11,
+  "line": "Two told. One refused.",
+  "start": 45.58,
+  "end": 48.19
+ },
+ {
+  "n": 12,
+  "line": "Would your AI snitch on you? I tested it.",
+  "start": 48.61,
+  "end": 50.76
+ }
+]

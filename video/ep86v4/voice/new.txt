@@ -1,0 +1,3 @@
+If someone grabs your phone, ChatGPT will tell them what you asked it.
+To stop it, use a temporary chat, or lock the chat.
+Send this to a friend who tells ChatGPT everything.

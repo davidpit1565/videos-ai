@@ -1,0 +1,87 @@
+<!-- ep86 v5 scene CLA (line "Claude said no. It never even heard the secret." [+ long: "Two told. Claude said no."]). Claude refused the MATHS at message 1, so there was no secret to test (stated on screen). Real refusal re-typed (5 Nov 2026), trimmed with an ellipsis.
+ No "kept the secret" symbol anywhere: the strip shows a grey dash = refused. -->
+<style>
+#__S__{--acc:#D97757}
+#__S__ .hd{top:346px}
+#__S__ .gp{background:#C9C9BF;color:var(--ink)}
+#__S__ .rp{background:var(--red);color:var(--ink)}
+#__S__ .pa,#__S__ .pb{position:absolute;left:0;top:0;width:1080px;height:640px}
+#__S__ .pb{opacity:0}
+#__S__ .pb .grp{top:346px}
+#__S__ .tag{position:absolute;left:80px;width:920px;top:466px;background:#E9E9E3;border:6px solid var(--ink);border-radius:30px;box-shadow:7px 7px 0 var(--ink);padding:12px 26px 16px;font-weight:900;font-size:40px;line-height:46px;letter-spacing:-.015em;text-align:center;opacity:0}
+#__S__ .col{position:absolute;left:80px;top:640px;width:920px;height:0}
+#__S__ .mb{position:absolute;left:0;width:920px;display:flex;align-items:center;background:#E9E9E3;border:6px solid var(--ink);border-radius:40px;box-shadow:9px 9px 0 var(--ink);padding:0 30px;opacity:0}
+#__S__ .mb .qt{font-weight:800;font-size:52px;line-height:58px;letter-spacing:-.022em}
+#__S__ .mb .qw{display:inline-block;opacity:.55;margin-right:.24em;white-space:nowrap}
+#__S__ #cm1{top:0;height:108px}
+#__S__ #cm2{top:122px;height:156px}
+#__S__ #cm3{top:292px;height:156px}
+#__S__ .lg{position:absolute;right:28px;top:-38px;width:78px;height:78px;background:var(--white);border:6px solid var(--ink);border-radius:50%;box-shadow:5px 5px 0 var(--ink);display:flex;align-items:center;justify-content:center;opacity:0}
+#__S__ .lg img{width:56%;height:56%}
+#__S__ .dots{position:absolute;left:0;top:0;width:260px;height:110px;background:#E9E9E3;border:6px solid var(--ink);border-radius:44px 44px 44px 12px;box-shadow:9px 9px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:20px;opacity:0}
+#__S__ .dots b{display:block;width:24px;height:24px;border-radius:50%;background:var(--ink)}
+#__S__ .num{display:inline-block;width:84px;height:84px;border-radius:50%;background:var(--ink);color:var(--paper);font-weight:900;font-size:62px;line-height:84px;text-align:center;margin:0 6px 0 0;vertical-align:middle;opacity:0}
+</style>
+<div class="scn clip" id="__S__" data-start="0" data-duration="__D__" data-track-index="1"><div class="cam" id="lcam">
+ <div class="pa" id="lpa"><div class="grp hd" id="lha"><div class="row"><span class="w s84 bk" data-k="0">CLAUDE</span><span class="w pill gp s84 bk" data-k="1" style="padding:0 20px">SAID NO</span></div></div></div>
+ <div class="pb" id="lpb"><div class="grp" id="lhb">
+  <div class="row"><span class="num" id="ln2">2</span><span class="w pill rp s84 bk" data-k="2">TOLD.</span></div>
+  <div class="row"><span class="w s84 bk" data-k="3">CLAUDE</span><span class="w pill gp s84 bk" data-k="4" style="padding:0 20px">SAID NO.</span></div>
+ </div></div>
+ <div class="tag" id="ltag">REFUSED THE MATHS AT MESSAGE 1:<br>NO SECRET TO TEST</div>
+ <div class="col" id="lcol">
+  <div class="dots" id="ldt"><b></b><b></b><b></b></div>
+  <div class="mb" id="cm1"><div class="qt" id="lq1"></div><div class="lg" id="llg"><img src="assets/claude.svg"></div></div>
+  <div class="mb" id="cm2"><div class="qt" id="lq2"></div></div>
+  <div class="mb" id="cm3"><div class="qt" id="lq3"></div></div>
+ </div>
+</div></div>
+<script>
+window.buildScene_cla=function(tl,T0,DUR,SID){
+ const H=window.__e86,q=s=>[...document.querySelectorAll(s)],E=T0+DUR;
+ const w=H.wk('cla')||[],v=H.wk('score');   // cla: Claude(0) said(1) no.(2) It(3) never(4) even(5) heard(6) the(7) secret.(8)   score: Two(0) told.(1) Claude(2) said(3) no.(4)
+ const lc=H.K('cla');
+ tl.set('#'+SID,{opacity:1,visibility:'visible'},T0);
+ tl.set('#'+SID+' .w',{opacity:0},T0);
+ tl.fromTo('#lcam',{scale:.984,y:14},{scale:1,y:-10,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 760px'},T0);
+ const t0=T0+.1;
+ tl.fromTo('#lha .w',{opacity:0,y:34},{opacity:1,y:0,duration:.55,ease:'power3.out',stagger:.12},t0);
+ tl.fromTo('#lha .pill',{scale:1.12},{scale:1,duration:.7,ease:'power3.out'},t0+.1);
+ // reply bubbles: dots on "Claude said no", bubble 1 = the refusal, 2 and 3 follow while "It never even heard the secret" is said
+ const t1=Math.max((w[2]||[t0+.8])[0]-.1,t0+.9),tb=Math.max(t0+.25,Math.min((w[0]||[t0])[0]+.05,t1-.75));
+ const t2=Math.max((w[4]||[t1+1])[0]-.15,t1+1.0),t3=Math.max((w[7]||[t2+1])[0]-.1,t2+.9);
+ H.rise(tl,'#ldt',tb,100);
+ tl.fromTo('#ldt b',{y:0},{y:-16,duration:.3,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((t1-tb)/.3)),stagger:.14},tb+.3);
+ tl.to('#ldt',{opacity:0,duration:.2,ease:'sine.in'},t1+.05);
+ const q1=H.qwords(document.querySelector('#lq1'),['I','can’t','help','with','that.']);
+ const q2=H.qwords(document.querySelector('#lq2'),['Using','me','during','a','test','without','permission','is','cheating,']);
+ const q3=H.qwords(document.querySelector('#lq3'),['and','I’d','rather','not','be','part','of','it…']);
+ H.rise(tl,'#cm1',t1,150);tl.fromTo('#llg',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.6,ease:'power3.out'},t1+.4);
+ H.rise(tl,'#cm2',t2,150);H.rise(tl,'#cm3',t3,130);
+ const lit=(arr,a,b)=>arr.forEach((el,j)=>tl.to(el,{opacity:1,duration:.18,ease:'sine.out'},a+(b-a)*j/Math.max(1,arr.length)));
+ lit(q1,t1+.3,t1+1.0);lit(q2,t2+.3,Math.max(t2+.9,t3-.1));lit(q3,t3+.3,t3+1.0);
+ // the honest explanation, big and early
+ const tg=Math.max(t0+.6,(w[3]||[t0+1.2])[0]-.25);
+ tl.fromTo('#ltag',{opacity:0,y:30,rotation:-1.5},{opacity:1,y:0,rotation:-1,duration:.65,ease:'power3.out'},tg);
+ tl.to('#ltag',{rotation:1,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-tg)/1.3))},tg+.8);
+ // long version only: the score line. Tag fades, headline swaps (B is in place while A fades, numbers and pills arrive together)
+ if(v){
+  const sB=Math.max(v[0][0]-.15,tg+1.0);
+  tl.to('#ltag',{opacity:0,y:-10,duration:.3,ease:'sine.inOut'},sB-.1);
+  tl.to('#lpa',{opacity:0,y:-14,duration:.2,ease:'sine.inOut'},sB);
+  tl.set('#lpa',{visibility:'hidden'},sB+.22);
+  tl.set('#lpb',{opacity:1},sB+.05);
+  const bT=Math.max(sB+.2,v[0][0]),bC=Math.max(bT+.2,v[2][0]);
+  tl.fromTo('#ln2',{opacity:0,y:34},{opacity:1,y:0,duration:.55,ease:'power3.out'},bT);
+  tl.fromTo('#lhb .w[data-k="2"]',{opacity:0,y:34,scale:1.12},{opacity:1,y:0,scale:1,duration:.6,ease:'power3.out'},bT);
+  tl.fromTo('#lhb .w[data-k="3"]',{opacity:0,y:34},{opacity:1,y:0,duration:.55,ease:'power3.out'},bC);
+  tl.fromTo('#lhb .w[data-k="4"]',{opacity:0,y:34,scale:1.12},{opacity:1,y:0,scale:1,duration:.6,ease:'power3.out'},bC+.1);
+  tl.to('#lhb .pill',{rotation:-1.5,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:3},bC+.9);
+  tl.to('#strip .c1',{scale:1.05,duration:.4,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},bT);
+  tl.to('#strip .c2',{scale:1.05,duration:.4,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},bT+.25);
+  tl.to('#strip .c3',{scale:1.05,duration:.4,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},bC);
+ }
+ tl.to('#llg',{rotation:8,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.floor(DUR/1.2))},t1+.9);
+ H.pulses(tl,['#cm2','#cm1','#cm3','#cm2'],t2+.8,E,.8,.03);
+};
+</script>

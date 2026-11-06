@@ -1,0 +1,99 @@
+<style>
+/* Scene 5: ChatGPT told on the 1st ask. Crops from rec86/chatgpt-1.mp4 (1206x2622):
+   assets/epi86-s5-promise.png = @10.0 s x40-845 y715-797 ("Your secret is safe with me 🤐😂")
+   assets/epi86-s5-answer.png  = @25.0 s x40-1124 y725-1272 (the full answer, both paragraphs, emoji included)
+   both scaled 950/1084 = 0.8764 (text ~43 px), linear levels 0..125 -> 0..232 (the recording is dim; no pixel content changed). */
+#s5{--gp:#10A37F;--red:#E5484D;--lime:#B6F23A}
+#s5 .cam{transform-origin:540px 350px}
+#s5 .lg{position:absolute;background:#fff;border:6px solid var(--ink);display:flex;align-items:center;justify-content:center}
+#s5 .lg img{width:62%;height:62%;display:block}
+#s5 #s5badge{left:65px;top:282px;width:130px;height:130px;border-radius:36px;box-shadow:8px 8px 0 var(--gp)}
+#s5 #s5pr{position:absolute;left:225px;top:282px;width:790px;height:130px;background:#000;border-radius:34px;box-shadow:0 20px 50px rgba(14,14,14,.2),0 4px 12px rgba(14,14,14,.12)}
+#s5 #s5pri{position:absolute;left:22px;top:29px;width:706px;height:72px;display:block}
+#s5 #s5st{position:absolute;left:24px;top:62px;width:700px;height:8px;border-radius:4px;background:var(--red);transform-origin:0 50%;box-shadow:0 0 0 2px rgba(0,0,0,.35)}
+#s5 #s5card{position:absolute;left:65px;top:436px;width:950px;height:511px;background:#000;border-radius:40px;overflow:hidden;box-shadow:0 28px 70px rgba(14,14,14,.22),0 4px 12px rgba(14,14,14,.12)}
+#s5 #s5ans{position:absolute;left:0;top:16px;width:950px;height:479px;display:block}
+#s5 .ring{position:absolute;overflow:visible}
+#s5 .ring rect{fill:none;stroke:var(--red);stroke-width:7;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+#s5 #s5x{position:absolute;left:262px;top:694px;width:92px;height:92px;opacity:0}
+#s5 #s5x svg{width:92px;height:92px;display:block}
+#s5 .hon{position:absolute;left:540px;transform:translateX(-50%);white-space:nowrap;text-align:center;font-weight:500;font-size:30px;color:var(--ink2);letter-spacing:.01em}
+/* mini-board strip: identical to scene 6 (x 65-1015, y 1110-1240, Gemini | ChatGPT | Claude) */
+#s5 #s5strip{position:absolute;left:65px;top:1110px;width:950px;height:130px;background:#fff;border:5px solid var(--ink);border-radius:28px;box-shadow:6px 6px 0 var(--ink)}
+#s5 .col{position:absolute;top:10px;width:313px;height:56px;display:flex;align-items:center;justify-content:center;gap:18px}
+#s5 .col .lg{position:relative;width:56px;height:56px;border-width:3px;border-radius:16px}
+#s5 .mk{position:relative;width:56px;height:56px}
+#s5 .mk svg{position:absolute;left:0;top:0;width:56px;height:56px}
+#s5 .sep{position:absolute;top:14px;width:3px;height:48px;background:#E0E0D8}
+#s5 #s5chip{position:absolute;left:340px;top:1186px;width:400px;height:44px;border-radius:22px;background:var(--ink);color:var(--paper);font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;white-space:nowrap;opacity:0}
+</style>
+<div class="scn clip" id="s5" data-start="0" data-duration="__D5__" data-track-index="1">
+ <div class="cam" id="s5cam"><div class="cam" id="s5push">
+  <div class="lg" id="s5badge"><img src="assets/chatgpt.svg"></div>
+  <div id="s5pr"><img id="s5pri" src="assets/epi86-s5-promise.png"><div id="s5st" data-decor></div></div>
+  <div id="s5card"><img id="s5ans" src="assets/epi86-s5-answer.png"></div>
+  <svg class="ring" id="s5r1" data-decor style="left:488px;top:641px;width:525px;height:60px" viewBox="0 0 525 60"><rect pathLength="1" x="4" y="4" width="517" height="52" rx="22"/></svg>
+  <svg class="ring" id="s5r2" data-decor style="left:63px;top:705px;width:187px;height:60px" viewBox="0 0 187 60"><rect pathLength="1" x="4" y="4" width="179" height="52" rx="22"/></svg>
+  <div id="s5x" data-decor><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="#E5484D"/><path d="M19 19L37 37M37 19L19 37" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg></div>
+  <div class="hon" id="s5hon" style="top:962px">Real screen recording · 5 Nov 2026</div>
+ </div></div>
+ <div id="s5strip">
+  <div class="col" style="left:0"><div class="lg"><img src="assets/gemini.svg"></div><div class="mk"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="#E5484D"/><path d="M19 19L37 37M37 19L19 37" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg></div></div>
+  <div class="sep" style="left:312px"></div>
+  <div class="col" style="left:313px"><div class="lg"><img src="assets/chatgpt.svg"></div><div class="mk">
+   <svg id="s5e2" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="none" stroke="#C9C9C0" stroke-width="4" stroke-dasharray="7 6"/></svg>
+   <svg id="s5f2" viewBox="0 0 56 56" style="opacity:0"><circle cx="28" cy="28" r="28" fill="#E5484D"/><path d="M19 19L37 37M37 19L19 37" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg>
+  </div></div>
+  <div class="sep" style="left:626px"></div>
+  <div class="col" style="left:627px"><div class="lg"><img src="assets/claude.svg"></div><div class="mk">
+   <svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="none" stroke="#C9C9C0" stroke-width="4" stroke-dasharray="7 6"/></svg>
+  </div></div>
+ </div>
+ <div id="s5chip">#2 next: your boss?</div>
+</div>
+<script>
+window.buildScene_5=function(tl,T0,DUR){
+ const S="#s5 ", E=T0+DUR, at=f=>T0+DUR*f;
+ tl.set('#s5',{opacity:1,visibility:'visible'},T0);
+ // initial states
+ tl.set(S+"#s5cam",{opacity:1,scale:1,y:0,filter:"blur(0px)"},T0);
+ tl.set(S+"#s5push",{scale:1,x:0,y:0},T0);
+ tl.set(S+"#s5x,"+S+"#s5chip",{opacity:0},T0);
+ tl.set(S+".ring rect",{strokeDashoffset:1},T0);
+ tl.set(S+"#s5st",{scaleX:0},T0);
+ tl.set(S+"#s5pri",{opacity:1},T0);
+ tl.set(S+"#s5f2",{opacity:0,scale:.5,transformOrigin:"50% 50%"},T0); tl.set(S+"#s5e2",{opacity:1},T0);
+ tl.set(S+"#s5ans",{clipPath:"inset(0% 0% 100% 0%)"},T0);
+ tl.set(S+"#s5strip",{opacity:1,x:0,y:0,scale:1},T0);
+ // zoom-through into ChatGPT (same move as scenes 4 and 6)
+ tl.fromTo(S+"#s5cam",{scale:1.45,y:-60,filter:"blur(10px)"},{scale:1,y:0,filter:"blur(0px)",duration:.75,ease:"power3.out"},T0);
+ tl.fromTo(S+"#s5badge",{scale:.7,rotation:-8},{scale:1,rotation:0,duration:.7,ease:"power3.out",transformOrigin:"50% 50%"},T0+.15);
+ tl.fromTo(S+"#s5pr",{opacity:0,x:50},{opacity:1,x:0,duration:.65,ease:"power3.out"},T0+.15);
+ tl.fromTo(S+"#s5card",{opacity:0,y:50},{opacity:1,y:0,duration:.65,ease:"power3.out"},T0+.25);
+ // the full answer streams in (~11.5 s), both sentences, same size
+ const tA=T0+.35, dA=Math.min(1.3,DUR*.24);
+ tl.to(S+"#s5ans",{clipPath:"inset(0% 0% 0% 0%)",duration:dA,ease:"sine.inOut"},tA);
+ // the #2 chip appears inside the mini-board strip (~12.0 s), same spot scene 6 uses
+ tl.fromTo(S+"#s5chip",{opacity:0,y:14,scale:.9},{opacity:1,y:0,scale:1,duration:.55,ease:"power3.out",transformOrigin:"50% 50%"},Math.max(T0+.75,at(.16)));
+ // gentle drift while reading (until the hero beat, then the push-in takes over)
+ const tH=Math.min(Math.max(at(.51),tA+dA+1.2),E-2.4);   // hero beat ~13.9 s
+ tl.fromTo(S+"#s5push",{x:0,y:0},{x:-5,y:-6,duration:Math.max(.4,tH-(T0+.75)),ease:"sine.inOut"},T0+.75);
+ // ring on "asked me not to tell their / teacher." (~13.0 s)
+ const tR=Math.min(Math.max(tA+dA+.1,at(.34)),tH-.9);
+ tl.to(S+"#s5r1 rect",{strokeDashoffset:0,duration:.45,ease:"power2.in"},tR);
+ tl.to(S+"#s5r2 rect",{strokeDashoffset:0,duration:.3,ease:"power2.out"},tR+.4);
+ // HERO: the X lands beside the ring, the promise above is struck through with a soft snap
+ tl.fromTo(S+"#s5x",{opacity:0,scale:2.2,rotation:-35},{opacity:1,scale:1,rotation:0,duration:.6,ease:"expo.out",transformOrigin:"50% 50%"},tH);
+ tl.to(S+"#s5st",{scaleX:1,duration:.42,ease:"power4.out"},tH+.18);
+ tl.to(S+"#s5pr",{x:7,duration:.07,ease:"sine.inOut",yoyo:true,repeat:3},tH+.3);
+ tl.to(S+"#s5pri",{opacity:.62,duration:.6,ease:"sine.out"},tH+.4);
+ tl.to(S+"#s5e2",{opacity:0,duration:.25,ease:"sine.inOut"},tH+.45);
+ tl.to(S+"#s5f2",{opacity:1,scale:1,duration:.45,ease:"expo.out"},tH+.45);
+ tl.fromTo(S+"#s5strip",{scale:1},{scale:1.015,duration:.35,ease:"sine.inOut",yoyo:true,repeat:1,transformOrigin:"50% 50%"},tH+.5);
+ // slow push-in on the struck-through ChatGPT card until the cut (no frame holds still)
+ tl.to(S+"#s5push",{scale:1.03,x:0,y:10,duration:Math.max(.5,E-.4-(tH+.2)),ease:"sine.inOut"},tH+.2);
+ tl.to(S+"#s5x",{rotation:7,duration:Math.max(.5,E-.4-(tH+.7)),ease:"sine.inOut"},tH+.7);
+ // zoom-through out (anchored to the scene end)
+ tl.to(S+"#s5cam",{scale:1.16,opacity:0,filter:"blur(6px)",duration:.4,ease:"power2.in"},E-.4);
+};
+</script>

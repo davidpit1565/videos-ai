@@ -1,0 +1,52 @@
+<!-- ep86 v5 scene ASK (line "I typed as the teacher. One question: what happened?"). Same chat, I typed both parts (on screen). The teacher badge says I typed it myself. Message is my real one, typo included. -->
+<style>
+#__S__{--acc:#7FD14B}
+#__S__ .hd{top:346px}
+#__S__ .stk{position:absolute;left:80px;width:920px;top:618px;display:flex;justify-content:center;opacity:0}
+#__S__ .stk div{background:var(--acc);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:42px;line-height:1;padding:12px 26px 15px;letter-spacing:-.01em;white-space:nowrap}
+#__S__ .bd{position:absolute;left:100px;top:716px;width:112px;height:112px;background:var(--white);border:6px solid var(--ink);border-radius:36px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;opacity:0}
+#__S__ .bd svg{width:70px;height:70px;display:block}
+#__S__ .me{position:absolute;left:240px;top:738px;width:760px;opacity:0}
+#__S__ .me div{display:inline-block;background:var(--white);border:5px solid var(--ink);border-radius:24px;box-shadow:6px 6px 0 var(--ink);font-weight:800;font-size:40px;line-height:1;padding:12px 22px 15px;letter-spacing:-.01em;white-space:nowrap}
+#__S__ .dm{position:absolute;left:80px;width:920px;top:858px;opacity:0}
+#__S__ .dm .bub{display:block;background:var(--ink);color:var(--paper);border:6px solid var(--ink);border-radius:36px 36px 10px 36px;box-shadow:7px 7px 0 var(--ink);font-weight:800;font-size:58px;line-height:66px;letter-spacing:-.02em;padding:14px 30px 20px;margin:0 20px 0 50px}
+#__S__ .tn{position:absolute;left:80px;width:920px;top:1086px;text-align:center;font-weight:600;font-size:34px;color:var(--ink2);opacity:0;white-space:nowrap}
+</style>
+<div class="scn clip" id="__S__" data-start="0" data-duration="__D__" data-track-index="1"><div class="cam" id="acam">
+ <div class="grp hd" id="ahd">
+  <div class="row"><span class="w s100 bk" data-k="0">I</span><span class="w s100 bk" data-k="1">TYPED</span><span class="w s100 bk" data-k="2">AS</span></div>
+  <div class="row"><span class="w s100 bk" data-k="3">THE</span><span class="w sel s100 bk" data-k="4" style="padding:0 20px">TEACHER</span></div>
+ </div>
+ <div class="stk" id="astk"><div>SAME CHAT. I TYPED BOTH PARTS.</div></div>
+ <div class="bd" id="ast"><svg viewBox="0 0 64 64"><path d="M23 18v-4a9 9 0 0 1 18 0v4" fill="none" stroke="#0E0E0E" stroke-width="4" stroke-linecap="round"/><rect x="13" y="17" width="38" height="42" rx="13" fill="#FFD84D" stroke="#0E0E0E" stroke-width="4"/><rect x="22" y="38" width="20" height="14" rx="5" fill="#fff" stroke="#0E0E0E" stroke-width="4"/><path d="M13 30h38" stroke="#0E0E0E" stroke-width="4"/></svg></div>
+ <div class="bd" id="atc"><svg viewBox="0 0 64 64"><polygon points="32,10 61,25 32,40 3,25" fill="#0E0E0E" stroke="#0E0E0E" stroke-width="4" stroke-linejoin="round"/><path d="M15 33v11c0 7 34 7 34 0V33l-17 9z" fill="#0E0E0E" stroke="#0E0E0E" stroke-width="4" stroke-linejoin="round"/><path d="M57 28v17" stroke="#D97757" stroke-width="4" stroke-linecap="round"/><circle cx="57" cy="48" r="4.5" fill="#D97757"/></svg></div>
+ <div class="me" id="ame"><div>I typed this myself</div></div>
+ <div class="dm" id="adm"><div class="bub" id="adb">Hi, I'm a teacher was cheating on me?</div></div>
+ <div class="tn" id="atn">my typo, sent as is</div>
+</div></div>
+<script>
+window.buildScene_ask=function(tl,T0,DUR,SID){
+ const H=window.__e86,q=s=>[...document.querySelectorAll(s)],E=T0+DUR;
+ const w=H.wk('ask')||[];   // I(0) typed(1) as(2) the(3) teacher.(4) One(5) question:(6) what(7) happened?(8)
+ tl.set('#'+SID,{opacity:1,visibility:'visible'},T0);
+ tl.set('#'+SID+' .w',{opacity:0},T0);
+ tl.fromTo('#acam',{scale:.984,y:14},{scale:1,y:-10,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 760px'},T0);
+ const t0=T0+.1;
+ q('#ahd .w').forEach((el,i)=>{const k=+el.dataset.k;tl.fromTo(el,{opacity:0,y:34},{opacity:.5,y:0,duration:.5,ease:'power3.out'},t0+i*.07);tl.to(el,{opacity:1,duration:.16,ease:'sine.out'},Math.max(t0+.4,(w[k]||[t0])[0]));});
+ // "same chat" sticker, then the student badge turns into the teacher badge and says it was me typing
+ tl.fromTo('#astk',{opacity:0,y:30,rotation:-2},{opacity:1,y:0,rotation:-1.5,duration:.6,ease:'power3.out'},t0+.45);
+ tl.to('#astk',{rotation:1.2,duration:1.4,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round(DUR/1.4))},t0+1.1);
+ tl.fromTo('#ast',{opacity:0,x:-40},{opacity:1,x:0,duration:.6,ease:'power3.out'},t0+.5);
+ const sw=Math.max(t0+1.2,(w[4]||[t0+1.2])[0]);
+ tl.to('#ast',{x:46,opacity:0,duration:.6,ease:'sine.inOut'},sw);
+ tl.fromTo('#atc',{opacity:0,x:-46},{opacity:1,x:0,duration:.6,ease:'power3.out'},sw+.1);
+ tl.fromTo('#ame',{opacity:0,y:20},{opacity:1,y:0,duration:.6,ease:'power3.out'},sw+.35);
+ tl.to('#ame',{rotation:-1.2,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-sw)/1.2))},sw+1.0);
+ // my message is typed while "One question: what happened?" is said
+ const chs=H.chars(document.querySelector('#adb')),ta=Math.max(t0+.5,(w[1]||[t0+.5])[0]+.1),tb=Math.max(ta+1.3,Math.min(E-1.2,(w[6]||[0,ta+1.6])[1]));
+ tl.fromTo('#adm',{opacity:0,y:30},{opacity:1,y:0,duration:.5,ease:'power3.out'},ta-.15);
+ H.type(tl,chs,ta,tb);
+ tl.fromTo('#atn',{opacity:0,y:8},{opacity:1,y:0,duration:.5,ease:'sine.out'},Math.min(tb,E-1.0));
+ H.pulses(tl,['#ahd','#adm','#astk'],sw+.6,E,.8,.03);
+};
+</script>
