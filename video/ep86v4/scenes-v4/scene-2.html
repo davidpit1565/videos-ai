@@ -1,0 +1,52 @@
+<!-- ep86 v4 scene 2 (line 3 "Then I asked: what happened?"): role switch. Student and teacher badges swap, then my real (typo) message is typed. Short scene, everything moves at once. -->
+<style>
+#s2{--acc:#7FD14B}
+#s2 .hd{top:312px}
+#s2 .bd{position:absolute;top:608px;width:112px;height:112px;background:var(--white);border:6px solid var(--ink);border-radius:36px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;opacity:0}
+#s2 .bd svg{width:70px;height:70px;display:block}
+#s2 .ar{position:absolute;left:0;top:628px;width:1080px;text-align:center;font-weight:900;font-size:60px;line-height:70px;color:var(--ink2);opacity:0}
+#s2 .dm{position:absolute;left:65px;width:950px;top:770px;opacity:0}
+#s2 .dm .bub{display:block;background:var(--ink);color:var(--paper);border:6px solid var(--ink);border-radius:36px 36px 10px 36px;box-shadow:7px 7px 0 var(--ink);font-weight:800;font-size:64px;line-height:72px;letter-spacing:-.02em;padding:16px 30px 22px;margin:0 20px 0 50px}
+#s2 .tn{position:absolute;left:65px;width:950px;top:1000px;text-align:center;font-weight:500;font-size:38px;color:var(--ink2);opacity:0;white-space:nowrap}
+</style>
+<div class="scn clip" id="s2" data-start="0" data-duration="__D2__" data-track-index="1"><div class="cam" id="c2">
+ <div class="grp hd" id="h2">
+  <div class="row"><span class="w s100 bk" data-k="0">NOW</span><span class="w s100 bk" data-k="1">I'M</span><span class="w s100 bk" data-k="2">THE</span></div>
+  <div class="row"><span class="w sel s128 bk" data-k="3" style="padding:0 24px">TEACHER</span></div>
+ </div>
+ <div class="bd" id="bst" style="left:320px"><svg viewBox="0 0 64 64"><path d="M23 18v-4a9 9 0 0 1 18 0v4" fill="none" stroke="#0E0E0E" stroke-width="4" stroke-linecap="round"/><rect x="13" y="17" width="38" height="42" rx="13" fill="#FFD84D" stroke="#0E0E0E" stroke-width="4"/><rect x="22" y="38" width="20" height="14" rx="5" fill="#fff" stroke="#0E0E0E" stroke-width="4"/><path d="M13 30h38" stroke="#0E0E0E" stroke-width="4"/></svg></div>
+ <div class="bd" id="btc" style="left:648px"><svg viewBox="0 0 64 64"><polygon points="32,10 61,25 32,40 3,25" fill="#0E0E0E" stroke="#0E0E0E" stroke-width="4" stroke-linejoin="round"/><path d="M15 33v11c0 7 34 7 34 0V33l-17 9z" fill="#0E0E0E" stroke="#0E0E0E" stroke-width="4" stroke-linejoin="round"/><path d="M57 28v17" stroke="#D97757" stroke-width="4" stroke-linecap="round"/><circle cx="57" cy="48" r="4.5" fill="#D97757"/></svg></div>
+ <div class="ar" id="ar2">&#8646;</div>
+ <div class="dm" id="dm2"><div class="bub" id="db2">Hi, I'm a teacher was cheating on me?</div></div>
+ <div class="tn" id="tn2">my typo, sent as is</div>
+</div></div>
+<script>
+window.buildScene_2=function(tl,T0,DUR){
+ const H=window.__e86,q=s=>[...document.querySelectorAll(s)],E=T0+DUR;
+ const w=H.wt(2)||[];
+ tl.set('#s2',{opacity:1,visibility:'visible'},T0);
+ tl.set('#s2 .w',{opacity:0},T0);
+ tl.fromTo('#c2',{scale:1,x:3,y:2},{scale:1.02,x:-3,y:-3,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 700px'},T0);
+ const t0=T0+.06;
+ // headline words rise in, lit as spoken
+ q('#h2 .w').forEach((el,i)=>{tl.fromTo(el,{opacity:0,y:34},{opacity:.45,y:0,duration:.5,ease:'power3.out'},t0+i*.07);
+  tl.to(el,{opacity:1,duration:.16,ease:'sine.out'},Math.max(t0+.45,(w[Math.min(i,w.length-1)]||[t0])[0]));});
+ // role swap: the two badges glide past each other on arcs
+ tl.fromTo('#bst',{opacity:0,y:20},{opacity:1,y:0,duration:.4,ease:'power3.out'},t0+.05);
+ tl.fromTo('#btc',{opacity:0,y:20},{opacity:1,y:0,duration:.4,ease:'power3.out'},t0+.12);
+ tl.fromTo('#ar2',{opacity:0,scale:.8},{opacity:1,scale:1,duration:.4,ease:'sine.out'},t0+.25);
+ const sw=t0+.3,sd=Math.min(1.0,Math.max(.7,DUR*.45));
+ tl.to('#bst',{x:328,duration:sd,ease:'sine.inOut'},sw); tl.to('#btc',{x:-328,duration:sd,ease:'sine.inOut'},sw);
+ tl.to('#bst',{y:-46,duration:sd/2,ease:'sine.inOut',yoyo:true,repeat:1},sw);
+ tl.to('#btc',{y:46,duration:sd/2,ease:'sine.inOut',yoyo:true,repeat:1},sw);
+ tl.to('#btc',{scale:1.12,duration:.35,ease:'sine.inOut'},sw+sd);
+ tl.to('#bst',{scale:.9,opacity:.7,duration:.35,ease:'sine.inOut'},sw+sd);
+ tl.to('#ar2',{opacity:0,duration:.3,ease:'sine.in'},sw+sd*.6);
+ // my message typed
+ const chs=H.chars(document.querySelector('#db2')),ta=t0+.55,tb=Math.max(ta+.9,Math.min(E-.45,t0+1.55));
+ tl.fromTo('#dm2',{opacity:0,y:24},{opacity:1,y:0,duration:.4,ease:'power3.out'},ta-.12);
+ H.type(tl,chs,ta,tb);
+ tl.fromTo('#tn2',{opacity:0,y:8},{opacity:1,y:0,duration:.4,ease:'sine.out'},Math.min(tb,E-.4));
+ tl.to('#db2',{y:-4,duration:Math.max(.5,E-tb),ease:'sine.inOut'},tb);
+};
+</script>
