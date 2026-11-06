@@ -6,9 +6,9 @@ import json, os, re, sys, subprocess
 import soundfile as sf, numpy as np
 H=os.path.dirname(os.path.abspath(__file__)); GAP=float(os.environ.get("GAP","0.28")); TAIL=float(os.environ.get("TAIL","2.8")); HEAD=0.10
 V=os.environ.get("V","a")
-ALL=[l.rstrip("\n") for l in open(H+"/lines-all.txt") if l.strip()]; assert len(ALL)==12
-ORDER=[1 if V=="a" else 12]+list(range(2,12))          # spoken order: hook, then lines 2..11
-GROUPS=[[0],[1,2],[3],[4,5],[6,7],[8,9],[10]]            # indexes into ORDER -> scenes 1..7
+ALL=[l.rstrip("\n") for l in open(H+"/lines-all.txt") if l.strip()]; assert len(ALL)==15
+ORDER=[13 if V=="a" else 12,1]+list(range(2,12))+[14,15]   # hook, setup (line 1), lines 2..11, save card, send-to
+GROUPS=[[0,1],[2,3],[4],[5,6],[7,8],[9,10],[11],[12,13]]   # indexes into ORDER -> scenes 1..8 (1 hook+setup | 2 promises | 3 roles | 4 ChatGPT | 5 Gemini | 6 Claude | 7 board | 8 save card + send-to + #2)
 sr=48000; lines=[]; t=HEAD; out=[]
 wj=H+"/voice/words.json"; words=json.load(open(wj)) if os.path.exists(wj) else {}
 for k,n in enumerate(ORDER):
@@ -26,7 +26,7 @@ NS=len(GROUPS)
 T0=[0.0]+[round(lines[GROUPS[i][0]]["start"]-0.15,3) for i in range(1,NS)]
 DUR=[round((T0[i+1] if i<NS-1 else D)-T0[i],3) for i in range(NS)]
 shell=open(H+"/shell.html").read(); styles=[];markup=[];scripts=[]
-ONLY=[int(x) for x in os.environ.get("ONLY","1,2,3,4,5,6,7").split(",")]
+ONLY=[int(x) for x in os.environ.get("ONLY","1,2,3,4,5,6,7,8").split(",")]
 for i in range(1,NS+1):
     if i not in ONLY: continue
     p=H+(f"/scenes/scene-1{V}.html" if i==1 else f"/scenes/scene-{i}.html"); src=open(p).read()

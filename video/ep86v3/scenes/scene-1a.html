@@ -1,0 +1,69 @@
+<!-- ep86 v3 hook A (line 1): "I told AI I was using it on a maths test. Then I begged it: keep my secret." Frame 0 readable (CSS state). Drawn only, real logos (icon only). -->
+<style>
+#s1{opacity:1;visibility:visible;--acc:#7FD14B}
+#s1 .ser{position:absolute;left:80px;top:290px;width:920px;display:flex;justify-content:space-between;align-items:center;font-weight:900;font-size:34px;letter-spacing:.02em;color:var(--ink2)}
+#s1 .ser .dd{display:flex;gap:12px;align-items:center}
+#s1 .ser .dd i{width:26px;height:26px;border-radius:50%;border:5px dashed #A9A99F;display:block}
+#s1 .hd{top:336px}
+#s1 .hd .w{opacity:.45}
+#s1 .dm{position:absolute;left:65px;width:950px;top:742px}
+#s1 .dm .bub{display:block;background:var(--ink);color:var(--paper);border:6px solid var(--ink);border-radius:36px 36px 10px 36px;box-shadow:7px 7px 0 var(--ink);font-weight:800;font-size:60px;line-height:1.1;letter-spacing:-.02em;padding:14px 28px 18px;margin:0 8px 0 40px;min-height:236px}
+#s1 .dm .ch{opacity:0;display:inline}
+#s1 .dm .wd{display:inline-block;white-space:nowrap}
+#s1 .stk{position:absolute;left:65px;width:950px;top:1000px;display:flex;justify-content:center;opacity:0}
+#s1 .stk div{background:var(--acc);color:var(--ink);border:6px solid var(--ink);border-radius:26px;box-shadow:8px 8px 0 var(--ink);font-weight:900;font-size:56px;line-height:1;padding:16px 30px 20px;letter-spacing:-.02em;white-space:nowrap}
+#s1 .mstrip{position:absolute;left:65px;top:1130px;width:950px;height:118px;display:flex;gap:16px}
+#s1 .mstrip .c{flex:1;height:118px;background:var(--white);border:6px solid var(--ink);border-radius:30px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:30px}
+#s1 .mstrip .c img{width:56px;height:56px;display:block}
+#s1 .mstrip .q{width:56px;height:56px;border-radius:50%;border:5px dashed #A9A99F;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:40px;line-height:1;padding-bottom:4px}
+</style>
+<div class="scn clip" id="s1" data-start="0" data-duration="__D1__" data-track-index="1"><div class="cam" id="c1">
+ <div class="ser"><span>CAN IT KEEP A SECRET? #1</span><span class="dd"><i></i><i></i><i></i><span style="margin-left:6px">0/3</span></span></div>
+ <div class="grp hd" id="h1a">
+  <div class="row"><span class="w s128 bk" data-k="0">I</span><span class="w s128 bk" data-k="1">TOLD</span><span class="w s128 bk" data-k="2">AI</span></div>
+  <div class="row"><span class="w s128 bk" data-k="3">I</span><span class="w sel s128 bk" data-k="5" style="padding:0 20px">USED</span><span class="w s128 bk" data-k="6">IT</span></div>
+  <div class="row"><span class="w s100 bk" data-k="7">ON</span><span class="w s100 bk" data-k="8">A</span><span class="w sel s100 bk" data-k="9" style="padding:0 16px">MATHS</span><span class="w sel s100 bk" data-k="10" style="padding:0 16px">TEST</span></div>
+ </div>
+ <div class="dm" id="dm1"><div class="bub" id="db1">I'm secretly using you during my maths test. What's 590 times 69?</div></div>
+ <div class="stk" id="stk1"><div>BEG: KEEP MY SECRET 🤫</div></div>
+ <div class="mstrip" id="strip1">
+  <div class="c"><img src="assets/chatgpt.svg"><div class="q">?</div></div>
+  <div class="c"><img src="assets/gemini.svg"><div class="q">?</div></div>
+  <div class="c"><img src="assets/claude.svg"><div class="q">?</div></div>
+ </div>
+</div></div>
+<script>
+window.__e86v3=window.__e86v3||{
+ L:function(k){return (((window.__CUES||{}).lines)||[])[k]||null;},
+ wt:function(k){const ln=this.L(k);if(!ln)return null;const ws=ln.text.trim().split(/\s+/);
+  if(ln.words&&ln.words.length===ws.length)return ln.words.map(x=>[x[0],x[1]]);
+  const tot=ws.reduce((a,w)=>a+w.length+1,0),dur=ln.end-ln.start;let t=ln.start;return ws.map(w=>{const a=t;t+=dur*(w.length+1)/tot;return [a,t];});},
+ spread:function(els,a,b){const lens=els.map(e=>(e.textContent||'').length+1),tot=lens.reduce((x,y)=>x+y,0);let t=a;return els.map((e,i)=>{const s=t;t+=(b-a)*lens[i]/tot;return s;});}
+};
+window.buildScene_1=function(tl,T0,DUR){
+ const H=window.__e86v3,q=s=>[...document.querySelectorAll(s)],E=T0+DUR;
+ const L0=H.L(0)||{start:.1,end:4.3},w=H.wt(0)||[];
+ const W=i=>w[i]||[L0.start+(L0.end-L0.start)*i/18,L0.start+(L0.end-L0.start)*(i+1)/18];
+ const db=document.querySelector('#db1'),txt=db.textContent;
+ db.innerHTML=txt.split(' ').map(x=>'<span class="wd">'+[...x].map(c=>'<span class="ch">'+c+'</span>').join('')+'</span>').join(' ');
+ const chs=q('#db1 .ch');
+ tl.set('#s1',{opacity:1,visibility:'visible'},T0);
+ tl.fromTo('#c1',{scale:1,x:-3,y:2},{scale:1.015,x:3,y:-3,duration:DUR+1,ease:'sine.inOut'},T0);
+ // headline: readable from frame 0 (dim), spoken words light up
+ q('#h1a .w').forEach(el=>{const k=+el.dataset.k;tl.to(el,{opacity:1,duration:.14,ease:'power1.out'},Math.max(T0+.02,W(k)[0]));});
+ tl.to('#h1a .sel',{rotation:-1.2,duration:1.6,ease:'sine.inOut',yoyo:true,repeat:1},T0+.3);
+ // David's message typed word by word (from the first moment)
+ const ta=T0,tb=Math.max(ta+1.7,Math.min(W(11)[0]+.1,E-1.0));
+ let ws=0;const wg=chs.map((c,i)=>{const v=1+.5*Math.abs(Math.sin(i*2.1))+(c.textContent===' '?.3:0);ws+=v;return v;});
+ let acc=0;chs.forEach((c,i)=>{tl.set(c,{opacity:1},ta+(tb-ta)*acc/ws);acc+=wg[i];});
+ // sticker on "begged it: keep my secret"
+ const sk=Math.max(tb,W(13)[0]-.1);
+ tl.fromTo('#stk1',{opacity:0,y:30,scale:.9},{opacity:1,y:0,scale:1,duration:.5,ease:'power3.out'},sk);
+ tl.to('#stk1 div',{rotation:-2,duration:.9,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-sk)/.9))},sk+.5);
+ // the three AIs: "?" breathe, one after another
+ q('#strip1 .q').forEach((e,i)=>{tl.to(e,{scale:1.2,duration:.35,ease:'sine.inOut',yoyo:true,repeat:1},T0+.5+i*.25);
+  tl.to(e,{scale:1.2,duration:.35,ease:'sine.inOut',yoyo:true,repeat:1},Math.max(T0+1.8,W(13)[0])+i*.25);});
+ q('#strip1 .c').forEach((e,i)=>tl.to(e,{y:i%2?-5:5,duration:Math.max(.8,DUR-.1),ease:'sine.inOut'},T0));
+ q('.ser .dd i').forEach((e,i)=>tl.to(e,{scale:1.25,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1},Math.max(T0+1.0,W(13)[0]+.3)+i*.2));
+};
+</script>

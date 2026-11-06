@@ -31,12 +31,12 @@ MINI-SCORE STRIP (copy EXACTLY into scenes 3-7; replace the id prefix #s2 with y
 =====================================================================================================-->
 <style>
 #s2{--acc:#7FD14B}
-#s2 .hd{top:280px}
-#s2 .ctitle{position:absolute;left:65px;display:flex;align-items:center;gap:18px;font-weight:900;font-size:48px;opacity:0}
+#s2 .hd{top:296px}
+#s2 .ctitle{position:absolute;left:80px;display:flex;align-items:center;gap:18px;font-weight:900;font-size:48px;opacity:0}
 #s2 .ctitle img{width:56px;height:56px;display:block}
 #s2 .chat{position:absolute;left:65px;width:950px;overflow:hidden}
 #s2 .col{position:absolute;left:0;top:0;width:950px}
-#s2 .bub{position:relative;display:block;font-weight:800;font-size:64px;line-height:1.1;letter-spacing:-.02em;padding:16px 28px 20px;border:6px solid var(--ink);box-shadow:7px 7px 0 var(--ink);margin:0 8px 18px 0;opacity:0}
+#s2 .bub{position:relative;display:block;font-weight:800;font-size:64px;line-height:1.1;letter-spacing:-.02em;padding:16px 28px 20px;border:6px solid var(--ink);box-shadow:7px 7px 0 var(--ink);margin:0 24px 18px 0;opacity:0}
 #s2 .bub.u{background:var(--ink);color:var(--paper);border-radius:36px 36px 10px 36px;margin-left:70px}
 #s2 .bub.a{background:var(--white);color:var(--ink);border-radius:36px 36px 36px 10px;margin-right:60px}
 #s2 .bub.a.soft{background:#FBFBF7}
@@ -47,7 +47,7 @@ MINI-SCORE STRIP (copy EXACTLY into scenes 3-7; replace the id prefix #s2 with y
 #s2 .dots i{width:20px;height:20px;border-radius:50%;background:var(--ink);display:block}
 #s2 .chip{position:absolute;left:65px;width:950px;height:120px;background:var(--white);border:6px solid var(--ink);border-radius:30px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;gap:20px;padding:0 24px;opacity:0;font-weight:800;font-size:50px;letter-spacing:-.02em;white-space:nowrap}
 #s2 .chip img{width:56px;height:56px;flex:none}
-#s2 .note{position:absolute;left:65px;width:950px;top:1092px;font-weight:500;font-size:34px;color:var(--ink2);opacity:0;white-space:nowrap}
+#s2 .note{position:absolute;left:80px;width:920px;top:1092px;font-weight:500;font-size:34px;color:var(--ink2);opacity:0;white-space:nowrap}
 #s2 .mstrip{position:absolute;left:65px;top:1130px;width:950px;height:118px;display:flex;gap:16px;opacity:0}
 #s2 .mstrip .c{flex:1;height:118px;background:var(--white);border:6px solid var(--ink);border-radius:30px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:34px}
 #s2 .mstrip .c img{width:56px;height:56px;display:block}
@@ -61,7 +61,7 @@ MINI-SCORE STRIP (copy EXACTLY into scenes 3-7; replace the id prefix #s2 with y
 #s2 .mstrip .m-dash:before{content:"";position:absolute;left:10px;top:20px;width:26px;height:6px;border-radius:3px;background:var(--ink)}
 </style>
 <div class="scn clip" id="s2" data-start="0" data-duration="__D2__" data-track-index="1"><div class="cam" id="c2">
- <div class="grp hd" id="h2"><div class="row"><span class="w s100 bk">BOTH</span><span class="w sel s100 bk" style="padding:0 18px">PROMISED</span><span class="w s100 bk">🤐</span></div></div>
+ <div class="grp hd" id="h2"><div class="row"><span class="w s96 bk">BOTH</span><span class="w sel s96 bk" style="padding:0 16px">PROMISED</span><span class="w s96 bk">🤐</span></div></div>
 
  <div class="ctitle" id="gt" style="top:428px"><img src="assets/chatgpt.svg"><span>ChatGPT</span></div>
  <div class="chat" id="gch" style="top:500px;height:586px"><div class="col" id="gcol">
@@ -103,7 +103,7 @@ window.buildScene_2=function(tl,T0,DUR){
  tl.set('#s2',{opacity:1,visibility:'visible'},T0);
  tl.set('#s2 .w',{opacity:0},T0);
  tl.set('#s2 .bub,#s2 .ctitle,#s2 .chip,#s2 .note,#s2 .dots,#s2 .mstrip',{opacity:0},T0);
- tl.fromTo('#c2',{scale:1,x:-8,y:5},{scale:1.03,x:8,y:-7,duration:DUR+1,ease:'sine.inOut'},T0);
+ tl.fromTo('#c2',{scale:1,x:-3,y:2},{scale:1.015,x:3,y:-3,duration:DUR+1,ease:'sine.inOut'},T0);
  const t0=T0+.24;
  // headline
  q('#h2 .w').forEach((el,k)=>tl.fromTo(el,{opacity:0,y:34},{opacity:1,y:0,duration:.5,ease:'power3.out'},t0+k*.09));
@@ -137,10 +137,10 @@ window.buildScene_2=function(tl,T0,DUR){
  tl.fromTo('#chip1',{opacity:0,y:-14},{opacity:1,y:0,duration:.35,ease:'power3.out'},co+.2);
  tl.fromTo('#chip1 .ul',{backgroundSize:'0% 15%'},{backgroundSize:'100% 15%',duration:.01},co+.2);
  // ---- Gemini card
- tl.to('#mt',{opacity:1,duration:.35,ease:'power2.out'},c-.02);
- pop('#mu',c+.08);
- dotsAt('#md',c+.35,.5);
- pop('#ma',c+.9,16);
+ tl.to('#mt',{opacity:1,duration:.35,ease:'power2.out'},c+.14);
+ pop('#mu',c+.2);
+ dotsAt('#md',c+.45,.45);
+ pop('#ma',c+.95,16);
  const mw=q('#ma .qw'); const ms=H.spread(mw,c+.95,Math.max(c+1.5,d+.05));
  mw.forEach((e,i)=>tl.to(e,{opacity:1,duration:.12,ease:'power1.out'},ms[i]));
  tl.to('#ma .ul',{backgroundSize:'100% 15%',duration:.5,ease:'power2.inOut'},Math.max(c+1.2,d-.2));

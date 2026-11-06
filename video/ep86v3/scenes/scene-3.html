@@ -1,19 +1,19 @@
 <!-- ep86 v3 scene 3 (line 4): NOW I'M THE TEACHER. Roles swap, the two promises shrink to chips, David's typo message is typed. Strip copied from scene-2 (all dashed). -->
 <style>
-#s3 .hd{top:276px}
-#s3 .bd{position:absolute;top:548px;width:104px;height:104px;background:var(--white);border:6px solid var(--ink);border-radius:34px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;opacity:0}
+#s3 .hd{top:292px}
+#s3 .bd{position:absolute;top:560px;width:104px;height:104px;background:var(--white);border:6px solid var(--ink);border-radius:34px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;opacity:0}
 #s3 .bd svg{width:66px;height:66px;display:block}
 #s3 .sw{position:absolute;left:0;top:556px;width:1080px;height:112px;opacity:0}
-#s3 .chip{position:absolute;top:668px;width:462px;height:160px;background:var(--white);border:6px solid var(--ink);border-radius:28px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;gap:16px;padding:0 20px;opacity:0;font-weight:800;font-size:40px;line-height:1.1;letter-spacing:-.02em}
+#s3 .chip{position:absolute;top:676px;width:462px;height:160px;background:var(--white);border:6px solid var(--ink);border-radius:28px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;gap:16px;padding:0 20px;opacity:0;font-weight:800;font-size:40px;line-height:1.1;letter-spacing:-.02em}
 #s3 .chip img{width:56px;height:56px;flex:none}
 #s3 .ul{background:linear-gradient(var(--ulc),var(--ulc)) 0 94%/100% 14% no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-#s3 .arr{position:absolute;top:838px;width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-top:26px solid var(--ink);opacity:0}
-#s3 .tn{position:absolute;left:65px;width:950px;top:838px;text-align:center;font-weight:500;font-size:34px;color:var(--ink2);opacity:0;white-space:nowrap}
-#s3 .dm{position:absolute;left:65px;width:950px;top:884px;opacity:0}
-#s3 .dm .bub{display:block;background:var(--ink);color:var(--paper);border:6px solid var(--ink);border-radius:36px 36px 10px 36px;box-shadow:7px 7px 0 var(--ink);font-weight:800;font-size:64px;line-height:1.1;letter-spacing:-.02em;padding:14px 28px 18px;margin:0 8px 0 70px}
+#s3 .arr{position:absolute;top:846px;width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-top:26px solid var(--ink);opacity:0}
+#s3 .tn{position:absolute;left:65px;width:950px;top:846px;text-align:center;font-weight:500;font-size:34px;color:var(--ink2);opacity:0;white-space:nowrap}
+#s3 .dm{position:absolute;left:65px;width:950px;top:890px;opacity:0}
+#s3 .dm .bub{display:block;background:var(--ink);color:var(--paper);border:6px solid var(--ink);border-radius:36px 36px 10px 36px;box-shadow:7px 7px 0 var(--ink);font-weight:800;font-size:64px;line-height:1.1;letter-spacing:-.02em;padding:14px 28px 18px;margin:0 24px 0 70px}
 #s3 .dm .ch{opacity:0;display:inline}
 #s3 .dm .wd{display:inline-block;white-space:nowrap}
-#s3 .note{position:absolute;left:65px;width:950px;top:1092px;font-weight:500;font-size:34px;color:var(--ink2);opacity:0;white-space:nowrap}
+#s3 .note{position:absolute;left:80px;width:920px;top:1092px;font-weight:500;font-size:34px;color:var(--ink2);opacity:0;white-space:nowrap}
 #s3 .mstrip{position:absolute;left:65px;top:1130px;width:950px;height:118px;display:flex;gap:16px;opacity:0}
 #s3 .mstrip .c{flex:1;height:118px;background:var(--white);border:6px solid var(--ink);border-radius:30px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:34px}
 #s3 .mstrip .c img{width:56px;height:56px;display:block}
@@ -64,7 +64,7 @@ window.buildScene_3=function(tl,T0,DUR){
  tl.set('#s3',{opacity:1,visibility:'visible'},T0);
  tl.set('#s3 .w',{opacity:0},T0);
  tl.set('#s3 .bd,#s3 .chip,#s3 .arr,#s3 .tn,#s3 .dm,#s3 .note,#s3 .mstrip',{opacity:0},T0);
- tl.fromTo('#c3',{scale:1,x:8,y:5},{scale:1.03,x:-8,y:-7,duration:DUR+1,ease:'sine.inOut'},T0);
+ tl.fromTo('#c3',{scale:1,x:3,y:2},{scale:1.015,x:-3,y:-3,duration:DUR+1,ease:'sine.inOut'},T0);
  const t0=T0+.24;
  tl.to('#s3 .mstrip',{opacity:1,duration:.5,ease:'power2.out'},t0);
  tl.to('#n3',{opacity:1,duration:.5,ease:'power2.out'},t0+.2);

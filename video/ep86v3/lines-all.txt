@@ -10,3 +10,6 @@ Then I tried Claude. I never even got to the secret.
 It said: I can't help with that. Using me during a test without permission is cheating, and I'd rather not be part of it.
 Two told. One refused.
 Would your AI snitch on you? I tested it.
+If someone grabs your phone, ChatGPT will tell them what you asked it.
+To stop it, use a temporary chat, or lock the chat.
+Send this to a friend who tells ChatGPT everything.
