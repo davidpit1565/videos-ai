@@ -3,8 +3,8 @@
  Headline is built from the spoken hook words. On "told!" the promise is struck through and the red X lands. All text re-typed from the real chat, 5 Nov 2026. -->
 <style>
 #__S__{opacity:1;visibility:visible;--acc:#7FD14B}
-#__S__ .stk{position:absolute;left:80px;top:338px;width:920px;display:flex;justify-content:center}
-#__S__ .stk div{background:var(--acc);color:var(--ink);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:33px;line-height:1;padding:12px 24px 15px;letter-spacing:-.01em;white-space:nowrap}
+#__S__ .stk{position:absolute;left:80px;top:348px;width:920px;display:flex;justify-content:center}
+#__S__ .stk>div:first-child,#__S__ .stk .tl div{background:var(--acc);color:var(--ink);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:33px;line-height:1;padding:12px 24px 15px;letter-spacing:-.01em;white-space:nowrap}
 #__S__ .stk .tl{position:absolute;left:0;top:0;width:920px;display:flex;justify-content:center;opacity:0}
 #__S__ .stk .tl div{background:var(--red);color:#fff}
 #__S__ .hd{top:452px}
@@ -57,7 +57,7 @@ window.buildScene_hook=function(tl,T0,DUR,SID){
  // send-to tag 0-3 s, then "THEN IT TOLD!" takes its place on the spoken words
  const tT=Math.max(sw+.5,W(s,5,4)[0]-.1);
  tl.fromTo('#ksend>div:first-child',{y:0,rotation:-.5},{y:0,rotation:.5,duration:1.5,ease:'sine.inOut'},T0);
- tl.to('#ksend>div:first-child',{opacity:0,y:-10,duration:.3,ease:'sine.in'},tT-.05);
+ tl.to('#ksend>div:first-child',{opacity:0,duration:.3,ease:'sine.in'},tT-.05);
  tl.fromTo('#ktold',{opacity:0,scale:.94},{opacity:1,scale:1,duration:.6,ease:'power3.out'},tT+.3);
  tl.to('#ktold',{rotation:-.6,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-tT)/1.2))},tT+.8);
  // told!: promise struck through, red X lands

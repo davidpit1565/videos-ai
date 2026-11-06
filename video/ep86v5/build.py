@@ -2,7 +2,7 @@
 """ep86 v5 integrator. lines-v5.txt (8 lines) + VOICE/<n>.wav (n = line number 1..8) -> cues-<V>.json, out/narration-<V>.wav, hf/index.html.
 V=short : spoken lines 1,2,4,5,6,7  -> scenes hook | ask | chat | gem | cla | try
 V=long  : spoken lines 1..8        -> scenes hook | warn | ask | chat | gem | cla(+score line) | try
-The last scene (try) is the silent screenshot-able TRY IT card (env TRY seconds, default 3.8); there is no spoken outro. The last frame is meant to cut/loop to frame 0.
+The last scene (try) is the silent screenshot-able TRY IT card (env TRY seconds, default 4.4); there is no spoken outro. The last frame is meant to cut/loop to frame 0.
 Scene file scenes-v5/scene-<name>.html defines window.buildScene_<name>(tl,T0,DUR); scenes-v5/common.html = chrome (series label, source note, voice meter, score strip) + helper window.__e86.
 In scene files the token __S__ becomes the scene's element id (s1..sN). Cue lines carry a key (hook, safe, warn, ask, chat, gem, cla, score).
 Env: V, VOICE=<dir with 1..8.wav> (default voice/final; tmpvoice/final = placeholder tones), GAPS="g1,g2,.." (one gap per spoken line but the last), TRY, WORDS=<json {"<line n>":[[s,e],..]}> (default voice/words-v5.json if present; used per line only if the token count matches)."""
@@ -16,7 +16,7 @@ SCENES=([("hook",["hook","safe"]),("ask",["ask"]),("chat",["chat"]),("gem",["gem
         else [("hook",["hook","safe"]),("warn",["warn"]),("ask",["ask"]),("chat",["chat"]),("gem",["gem"]),("cla",["cla","score"]),("try",[])])
 DEFG={"short":"0.5,0.4,0.45,0.3,0.4","long":"0.5,0.4,0.35,0.45,0.3,0.35,0.4"}[V]
 GAPS=[float(x) for x in os.environ.get("GAPS",DEFG).split(",")]; assert len(GAPS)==len(USE)-1
-TRY=float(os.environ.get("TRY","3.8"))
+TRY=float(os.environ.get("TRY","4.4"))
 VOICE=os.environ.get("VOICE",H+"/voice/final")
 ALL=[l.rstrip("\n") for l in open(H+"/lines-v5.txt") if l.strip()]; assert len(ALL)==8
 sr=48000; lines=[]; t=0.0; out=[]

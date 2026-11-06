@@ -29,11 +29,14 @@ window.buildScene_try=function(tl,T0,DUR,SID){
  tl.fromTo('#tcam',{scale:.986,y:12},{scale:1,y:-8,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 760px'},T0);
  const t0=T0+.1;
  tl.fromTo('#tct',{opacity:0,y:70,scale:.97},{opacity:1,y:0,scale:1,duration:.7,ease:'power3.out',transformOrigin:'50% 0%'},t0);
- [['#tst1',.3],['#tst2',.5],['#tnt1',.7],['#tnt2',.88],['#tnt3',1.02]].forEach(([s,d])=>tl.fromTo(s,{opacity:0,y:30},{opacity:1,y:0,duration:.55,ease:'power3.out'},t0+d));
+ [['#tst1',.2],['#tst2',.34],['#tnt1',.48],['#tnt2',.6],['#tnt3',.7]].forEach(([s,d])=>tl.fromTo(s,{opacity:0,y:30},{opacity:1,y:0,duration:.55,ease:'power3.out'},t0+d));
  // card stays readable and screenshot-able; it only drifts and the steps tick softly
- tl.to('#tct',{y:-6,rotation:.4,duration:Math.max(1,E-t0-1.6),ease:'sine.inOut'},t0+1.6);
+ tl.to('#tct',{y:-6,duration:Math.max(1,E-t0-1.6),ease:'sine.inOut'},t0+1.6);
  tl.fromTo('#tst1 .n',{rotation:-4},{rotation:4,duration:1.1,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round(DUR/1.1))},t0+.8);
  tl.fromTo('#tst2 .n',{rotation:4},{rotation:-4,duration:1.1,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round(DUR/1.1))},t0+.9);
- H.pulses(tl,['#tst1','#tst2'],t0+1.7,E,.9,.03);
+ H.pulses(tl,['#tct','#tst1','#tct','#tst2'],t0+.8,E,.6,.02);
+ tl.to('#tst1 .n',{y:-8,duration:.8,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-t0)/.8))},t0+.9);tl.to('#tst2 .n',{y:8,duration:.8,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-t0)/.8))},t0+.9);
+ tl.to('#tct .h i',{y:-6,duration:.9,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-t0)/.9))},t0+.9);
+ tl.to('#tct',{rotation:-.7,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-t0-.7)/1.3))},t0+.7);
 };
 </script>
