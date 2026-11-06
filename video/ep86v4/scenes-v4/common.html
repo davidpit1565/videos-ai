@@ -37,6 +37,8 @@ window.__e86=window.__e86||{
  chars:function(el){const txt=el.textContent;el.innerHTML=txt.split(' ').map(x=>'<span class="wd" style="display:inline-block;white-space:nowrap">'+[...x].map(c=>'<span class="ch" style="opacity:0">'+c+'</span>').join('')+'</span>').join(' ');return [...el.querySelectorAll('.ch')];},
  // schedule chars between a and b with slightly uneven rhythm (never stepped)
  type:function(tl,chs,a,b){let ws=0;const wg=chs.map((c,i)=>{const v=1+.55*Math.abs(Math.sin(i*2.1+.7))+(c.textContent===' '?.35:0);ws+=v;return v;});let acc=0;chs.forEach((c,i)=>{tl.set(c,{opacity:1},a+(b-a)*acc/ws);acc+=wg[i];});},
+ // soft scale pulses on a list of elements, alternating, every `step` s from a to b (a smooth 'beat', never a pop)
+ pulses:function(tl,sels,a,b,step,amp){let i=0;for(let t=a;t<b-.5;t+=step,i++){const s=sels[i%sels.length];tl.fromTo(s,{scale:1},{scale:1+(amp||.014),duration:.5,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},t);}},
  // wrap words of el in .qw spans (display tokens) -> array
  qwords:function(el,toks){el.innerHTML=toks.map(t=>'<span class="qw">'+t+'</span>').join(' ');return [...el.querySelectorAll('.qw')];}
 };

@@ -48,6 +48,7 @@ window.buildScene_1=function(tl,T0,DUR){
   tl.fromTo(xk,{opacity:0,scale:1.7,rotation:-14},{opacity:1,scale:1,rotation:0,duration:.65,ease:'power3.out',transformOrigin:'50% 50%'},t+.1);
   tl.to(xk,{scale:1.07,duration:.8,ease:'sine.inOut',yoyo:true,repeat:5},t+.8);};
  strike('#st1','#xg',tA); strike('#st2','#xm',tB);
+ H.pulses(tl,['#cg','#cm','#h1'],T0+1.7,E,.95,.014);
  // line 2: "Two AI chats had PROMISED to KEEP my secret": tags slide in, the begging line follows
  const pr=(w1[4]||[T0+3.6])[0],kp=(w1[6]||[T0+4.2])[0];
  tl.fromTo('#tg1',{opacity:0,y:14,scale:.9,rotation:-4},{opacity:1,y:0,scale:1,rotation:-3,duration:.55,ease:'power3.out'},pr);

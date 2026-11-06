@@ -55,7 +55,7 @@ window.buildScene_6=function(tl,T0,DUR){
  const w=H.wt(7)||[];   // So(0) close(1) the(2) chat,(3) or(4) lock(5) it.(6)
  tl.set('#s6',{opacity:1,visibility:'visible'},T0);
  tl.set('#s6 .w',{opacity:0},T0);
- tl.fromTo('#c6',{scale:1,x:-4,y:3},{scale:1.015,x:4,y:-3,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 760px'},T0);
+ tl.fromTo('#c6',{scale:.984,x:0,y:14},{scale:1,x:0,y:-10,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 760px'},T0);
  const t0=T0+.06;
  // ---- phase A: headline lit as spoken, two fix cards with the exact taps
  q('#h6 .w').forEach((el,i)=>{const k=+el.dataset.k;tl.fromTo(el,{opacity:0,y:34,scale:el.classList.contains('pill')?1.1:1},{opacity:.45,y:0,scale:1,duration:.5,ease:'power3.out'},t0+i*.07);
@@ -96,6 +96,7 @@ window.buildScene_6=function(tl,T0,DUR){
  tl.fromTo('#bk6',{scale:1},{scale:1.3,duration:.45,ease:'sine.inOut',yoyo:true,repeat:5,transformOrigin:'50% 50%'},c0+.5);
  tl.fromTo('#pl6',{opacity:0,x:0,y:40,rotation:0,scale:.8},{opacity:1,x:60,y:-30,rotation:-8,scale:1,duration:.6,ease:'sine.out'},c0+.5);
  tl.to('#pl6',{x:330,y:-200,rotation:-14,opacity:0,duration:1.0,ease:'sine.in'},c0+1.05);
+ H.pulses(tl,['#o1','#o2'],aA+1.4,pB-.4,.9,.014);H.pulses(tl,['#b61','#tg6'],b0+1.2,pC,.9,.016);H.pulses(tl,['#snd6','#nx6'],c0+1.6,E,.9,.014);
  tl.fromTo('#nx6',{opacity:0,y:20},{opacity:1,y:0,duration:.55,ease:'power3.out'},c0+.9);
  tl.to('#nx6',{y:-4,duration:Math.max(.8,E-c0-1.5),ease:'sine.inOut'},c0+1.5);
 };

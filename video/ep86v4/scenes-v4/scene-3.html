@@ -5,6 +5,7 @@
 #s3 .xk{position:relative;display:inline-block;width:88px;height:88px;vertical-align:middle;margin-left:12px;opacity:0}
 #s3 .rp{background:var(--red);color:var(--ink)}
 #s3 .hd{top:346px}
+#s3 #cc3,#s3 #cn3{background:var(--white)}
 #s3 .ask{position:absolute;left:65px;width:950px;top:500px;display:flex;justify-content:center;opacity:0}
 #s3 .ask div{background:var(--acc);color:var(--ink);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:50px;line-height:1;padding:12px 28px 15px;letter-spacing:-.01em;white-space:nowrap}
 #s3 .bb{position:absolute;left:65px;top:640px;width:950px;min-height:380px;background:var(--white);border:6px solid var(--ink);border-radius:44px;box-shadow:10px 10px 0 var(--ink);padding:42px 36px 40px;opacity:0}
@@ -22,6 +23,8 @@
   <div class="row"><span class="w s100 bk">CHATGPT</span><span class="w pill rp s100 bk">TOLD</span><svg class="xk" id="x3" viewBox="0 0 88 88"><circle cx="44" cy="44" r="38" fill="#E5484D" stroke="#0E0E0E" stroke-width="6"/><path d="M27 27L61 61M61 27L27 61" stroke="#fff" stroke-width="10" stroke-linecap="round"/></svg></div>
  </div>
  <div class="ask" id="ask3"><div>1ST ASK</div></div>
+ <div class="ask" id="ask3b" style="justify-content:flex-start"><div id="cc3">590 × 69</div></div>
+ <div class="ask" id="ask3c" style="justify-content:flex-end"><div id="cn3">NOT TO TELL &#x1F910;</div></div>
  <div class="bb" id="b3"><div class="lg" id="lg3"><img src="assets/chatgpt.svg"></div>
   <div class="dots" id="dt3"><b></b><b></b><b></b></div>
   <div class="qt" id="q3"></div></div>
@@ -33,7 +36,7 @@ window.buildScene_3=function(tl,T0,DUR){
  const w=H.wt(3)||[];   // spoken tokens: ChatGPT told me right away: someone asked me to calculate five ninety times sixty nine, and then asked me not to tell.
  tl.set('#s3',{opacity:1,visibility:'visible'},T0);
  tl.set('#s3 .w',{opacity:0},T0);
- tl.fromTo('#c3',{scale:1,x:-6,y:5},{scale:1.025,x:6,y:-6,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 700px'},T0);
+ tl.fromTo('#c3',{scale:.984,x:0,y:14},{scale:1,x:0,y:-10,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 700px'},T0);
  const t0=T0+.06;
  q('#h3 .w').forEach((el,i)=>tl.fromTo(el,{opacity:0,y:34,scale:el.classList.contains('pill')?1.1:1},{opacity:1,y:0,scale:1,duration:.55,ease:'power3.out'},t0+i*.1));
  // the hero beat: red X lands on "told"
@@ -62,6 +65,11 @@ window.buildScene_3=function(tl,T0,DUR){
  tl.to(qw[15],{backgroundSize:'100% 12%',duration:.5,ease:'power2.inOut'},((w[21]||[0,qs+5])[1])+.1);
  tl.to(qw[16],{backgroundSize:'100% 12%',duration:.5,ease:'power2.inOut'},((w[21]||[0,qs+5])[1])+.38);
  qw[15].classList.add('hl');qw[16].classList.add('hl');
+ const cA=Math.max((w[9]||[0])[0]-.1,tb+.9),cB=Math.max((w[19]||[0])[0]-.1,cA+.9);
+ tl.fromTo('#ask3b',{opacity:0,x:-30},{opacity:1,x:0,duration:.6,ease:'power3.out'},cA);
+ tl.fromTo('#ask3c',{opacity:0,x:30},{opacity:1,x:0,duration:.6,ease:'power3.out'},cB);
+ tl.to('#ask3b',{y:-5,duration:1.4,ease:'sine.inOut',yoyo:true,repeat:3},cA+.6);tl.to('#ask3c',{y:-5,duration:1.4,ease:'sine.inOut',yoyo:true,repeat:3},cB+.6);
+ H.pulses(tl,['#b3','#h3'],tb+1.2,E,1.1,.014);
  tl.to('#b3',{y:-8,duration:Math.max(1,DUR-.8),ease:'sine.inOut'},tb+.65);
  tl.to('#lg3',{rotation:-7,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.floor(DUR/1.3))},tb+.6);
  tl.fromTo('#lb3',{opacity:0},{opacity:1,duration:.5},tb+.5);

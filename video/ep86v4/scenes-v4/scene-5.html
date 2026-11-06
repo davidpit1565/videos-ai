@@ -39,7 +39,7 @@ window.buildScene_5=function(tl,T0,DUR){
  const l6=H.L(5)||{start:T0+.2,end:T0+2},l7=H.L(6)||{start:l6.end+.3,end:l6.end+1.6};
  tl.set('#s5',{opacity:1,visibility:'visible'},T0);
  tl.set('#s5 .w',{opacity:0},T0);
- tl.fromTo('#c5',{scale:1,x:-5,y:5},{scale:1.02,x:5,y:-5,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 700px'},T0);
+ tl.fromTo('#c5',{scale:.984,x:0,y:14},{scale:1,x:0,y:-10,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 700px'},T0);
  const t0=T0+.06;
  // phase A headline
  tl.fromTo('#h5a .w',{opacity:0,y:34},{opacity:1,y:0,duration:.55,ease:'power3.out',stagger:.12},t0);
@@ -74,6 +74,7 @@ window.buildScene_5=function(tl,T0,DUR){
  tl.to('#strip .c1',{scale:1.05,duration:.4,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},(v[1]||[sB])[0]);
  tl.to('#strip .c2',{scale:1.05,duration:.4,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},(v[1]||[sB])[0]+.2);
  tl.to('#strip .c3',{scale:1.05,duration:.4,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},(v[3]||[sB])[0]);
+ H.pulses(tl,['#b5','#h5a','#b5','#h5b'],tb+1.0,E,.95,.014);
  tl.to('#b5',{y:-8,duration:Math.max(1,DUR-.8),ease:'sine.inOut'},tb+.65);
  tl.to('#lg5',{rotation:-7,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.floor(DUR/1.3))},tb+.6);
  tl.fromTo('#lb5',{opacity:0},{opacity:1,duration:.5},tb+.5);
