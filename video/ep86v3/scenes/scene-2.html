@@ -8,7 +8,7 @@ MINI-SCORE STRIP (copy EXACTLY into scenes 3-7; replace the id prefix #s2 with y
                      (c1 = ChatGPT, c2 = Gemini, c3 = Claude; refused uses .m-dash the same way)
   S4 start: all unknown; S4 end: c1 told. S5 start: c1 told, c2/c3 unknown; end: c2 told. S6 start: c1,c2 told; end: c3 refused.
   For a scene that starts with a finished mark write opacity:1 on that .m-x (or .m-dash) and opacity:0 on its .m-unk in the markup.
---- CSS (inside the scene <style>) ---
+--- CSS (inside the scene style block) ---
 #sN .mstrip{position:absolute;left:65px;top:1130px;width:950px;height:118px;display:flex;gap:16px;opacity:0}
 #sN .mstrip .c{flex:1;height:118px;background:var(--white);border:6px solid var(--ink);border-radius:30px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:34px}
 #sN .mstrip .c img{width:56px;height:56px;display:block}
@@ -26,7 +26,7 @@ MINI-SCORE STRIP (copy EXACTLY into scenes 3-7; replace the id prefix #s2 with y
  <div class="c c2"><img src="assets/gemini.svg"><div class="mk"><div class="m-unk"></div><div class="m-x"></div><div class="m-dash"></div></div></div>
  <div class="c c3"><img src="assets/claude.svg"><div class="mk"><div class="m-unk"></div><div class="m-x"></div><div class="m-dash"></div></div></div>
 </div>
---- shared helper window.__e86v3 (same copy at the top of the <script> of scenes 1-3; guarded): L(k) line k, wt(k) per-word [start,end] of line k
+--- shared helper window.__e86v3 (same copy at the top of the script block of scenes 1-3; guarded): L(k) line k, wt(k) per-word [start,end] of line k
    (real word times if the cues have them, else spread by character count), spread(els,a,b) times for els by char count. ---
 =====================================================================================================-->
 <style>
