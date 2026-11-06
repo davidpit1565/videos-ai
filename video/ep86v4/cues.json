@@ -1,0 +1,53 @@
+{
+ "lines": [
+  {
+   "n": 1,
+   "text": "ChatGPT told on me. So did Gemini.",
+   "start": 0.0,
+   "end": 2.21
+  },
+  {
+   "n": 2,
+   "text": "Two AI chats had promised to keep my secret.",
+   "start": 2.66,
+   "end": 5.3
+  },
+  {
+   "n": 3,
+   "text": "Then I asked: what happened?",
+   "start": 5.55,
+   "end": 7.54
+  },
+  {
+   "n": 4,
+   "text": "ChatGPT told me right away: someone asked me to calculate five ninety times sixty nine, and then asked me not to tell.",
+   "start": 8.04,
+   "end": 14.16
+  },
+  {
+   "n": 5,
+   "text": "Gemini held out two tries. Then it read me back what I typed.",
+   "start": 14.51,
+   "end": 18.24
+  },
+  {
+   "n": 6,
+   "text": "Claude said: I can't help with that.",
+   "start": 18.79,
+   "end": 20.78
+  },
+  {
+   "n": 7,
+   "text": "Two told. One refused.",
+   "start": 21.08,
+   "end": 22.42
+  },
+  {
+   "n": 8,
+   "text": "So close the chat, or lock it.",
+   "start": 23.02,
+   "end": 24.79
+  }
+ ],
+ "D": 30.79
+}
