@@ -21,7 +21,7 @@ for k,f,ss,hp in BEDS:
     m=subprocess.run(['ffmpeg','-v','info','-i',wav,'-af','ebur128=peak=true','-f','null','-'],capture_output=True,text=True).stderr
     I=float(_re.findall(r'I:\s+(-?[\d.]+) LUFS',m)[-1]); fix=-14.0-I
     tmp=wav[:-4]+'-pre.wav'; os.replace(wav,tmp)
-    subprocess.run(['ffmpeg','-y','-v','error','-i',tmp,'-af',f'volume={fix}dB,alimiter=limit=0.85:level=false','-ar','48000',wav],check=True)
+    subprocess.run(['ffmpeg','-y','-v','error','-i',tmp,'-af',f'volume={fix}dB,alimiter=limit=0.78:level=false','-ar','48000',wav],check=True)
     print(k,'integrated',I,'-> corrected by',round(fix,2),'dB')
     res[k]=round(band(load(duck))-vb,1)
     out=f"{H}/out/ep86v3-{tag}-{k}.mp4"
