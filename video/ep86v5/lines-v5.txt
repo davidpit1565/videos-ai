@@ -1,8 +1,8 @@
 ChatGPT, don't tell my teacher!
 It said: safe with me. Then it told!
 It added a warning: someone looking at your screen might see.
-I typed as the teacher. One question: what happened?
-It said: someone asked me to calculate five ninety times sixty nine, and then asked me not to tell.
+I typed as the teacher: did a kid cheat?
+It said: someone asked me for maths help, and asked me not to tell.
 Gemini told me too, after more tries.
-Claude said no. It never even heard the secret.
+And Claude? It said no. It never even heard the secret.
 Two told. Claude said no.
