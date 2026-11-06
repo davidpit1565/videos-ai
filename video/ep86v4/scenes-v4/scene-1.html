@@ -1,0 +1,60 @@
+<!-- ep86 v4 scene 1 (lines 1-2): hook. "ChatGPT told on me. So did Gemini." + "Two AI chats had promised to keep my secret."
+ Frame 0 already shows the proof: both logos, each with its REAL promise (re-typed from the recordings, 5 Nov 2026). The strike-through lands as the voice says "told" / "Gemini". -->
+<style>
+#s1{opacity:1;visibility:visible;--acc:#7FD14B}
+#s1 .hd{top:322px}
+#s1 .rp{background:var(--red);color:var(--ink)}
+#s1 .sub{position:absolute;left:65px;width:950px;top:490px;text-align:center;font-weight:800;font-size:44px;line-height:50px;letter-spacing:-.02em;color:var(--ink2);opacity:0;white-space:nowrap}
+#s1 .cd{position:absolute;left:65px;width:950px;height:212px;background:var(--white);border:6px solid var(--ink);border-radius:40px;box-shadow:9px 9px 0 var(--ink)}
+#s1 .cd .lg{position:absolute;left:28px;top:36px;width:128px;height:128px;background:var(--paper);border:6px solid var(--ink);border-radius:38px;box-shadow:6px 6px 0 var(--ink);display:flex;align-items:center;justify-content:center}
+#s1 .cd .lg img{width:66%;height:66%}
+#s1 .cd .tx{position:absolute;left:186px;top:0;width:610px;height:100%;display:flex;align-items:center;font-weight:800;font-size:54px;line-height:62px;letter-spacing:-.025em}
+#s1 .cd .st{background:linear-gradient(var(--red),var(--red)) 0 56%/0% 10% no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+#s1 .cd .xk{position:absolute;right:26px;top:60px;width:92px;height:92px;opacity:0}
+#s1 .cd .tg{position:absolute;right:26px;top:-30px;background:var(--acc);border:5px solid var(--ink);border-radius:22px;box-shadow:5px 5px 0 var(--ink);font-weight:900;font-size:36px;line-height:1;padding:9px 20px 11px;letter-spacing:.02em;opacity:0}
+</style>
+<div class="scn clip" id="s1" data-start="0" data-duration="__D1__" data-track-index="1"><div class="cam" id="c1">
+ <div class="grp hd" id="h1">
+  <div class="row"><span class="w pill rp s128 bk" data-k="1">TOLD</span><span class="w s128 bk" data-k="2">ON</span><span class="w s128 bk" data-k="3">ME</span></div>
+ </div>
+ <div class="sub" id="sub1">I BEGGED EACH ONE: KEEP MY SECRET &#x1F92B;</div>
+ <div class="cd" id="cg" style="top:574px"><div class="lg"><img src="assets/chatgpt.svg"></div><div class="tx"><span class="st" id="st1">Your secret is safe with me &#x1F910;&#x1F602;</span></div>
+  <svg class="xk" id="xg" viewBox="0 0 92 92"><circle cx="46" cy="46" r="40" fill="#E5484D" stroke="#0E0E0E" stroke-width="6"/><path d="M28 28L64 64M64 28L28 64" stroke="#fff" stroke-width="10" stroke-linecap="round"/></svg>
+  <div class="tg" id="tg1">PROMISED</div></div>
+ <div class="cd" id="cm" style="top:834px"><div class="lg"><img src="assets/gemini.svg"></div><div class="tx"><span class="st" id="st2">Your secret is safe with me&hellip;</span></div>
+  <svg class="xk" id="xm" viewBox="0 0 92 92"><circle cx="46" cy="46" r="40" fill="#E5484D" stroke="#0E0E0E" stroke-width="6"/><path d="M28 28L64 64M64 28L28 64" stroke="#fff" stroke-width="10" stroke-linecap="round"/></svg>
+  <div class="tg" id="tg2">PROMISED</div></div>
+</div></div>
+<script>
+window.buildScene_1=function(tl,T0,DUR){
+ const H=window.__e86,q=s=>[...document.querySelectorAll(s)],E=T0+DUR;
+ const w0=H.wt(0)||[],w1=H.wt(1)||[];
+ const W=(w,i,d)=>(w[i]||[T0+d,T0+d+.3]);
+ tl.set('#s1',{opacity:1,visibility:'visible'},T0);
+ // headline: readable at frame 0 (dim), already moving (starts mid-settle), lit word by word as spoken
+ tl.set('#s1 .w',{opacity:.45},T0);
+ tl.fromTo('#h1',{y:16,scale:.965},{y:0,scale:1,duration:1.8,ease:'sine.out',transformOrigin:'50% 0%'},T0);
+ q('#h1 .w').forEach(el=>{const k=+el.dataset.k;tl.to(el,{opacity:1,duration:.2,ease:'sine.out'},Math.max(T0+.02,W(w0,k,.1)[0]));});
+ // cards are on screen at frame 0, drifting; the whole thing breathes
+ tl.fromTo('#cg',{y:12,rotation:-.8},{y:0,rotation:.5,duration:2.4,ease:'sine.out'},T0);
+ tl.fromTo('#cm',{y:18,rotation:.8},{y:0,rotation:-.5,duration:2.6,ease:'sine.out'},T0);
+ tl.to('#cg',{rotation:-.6,y:-4,duration:Math.max(1,DUR-2.4),ease:'sine.inOut'},T0+2.4);
+ tl.to('#cm',{rotation:.6,y:-4,duration:Math.max(1,DUR-2.6),ease:'sine.inOut'},T0+2.6);
+ tl.fromTo('#c1',{scale:1.012},{scale:1.0,duration:DUR+1,ease:'sine.inOut',transformOrigin:'540px 760px'},T0);
+ // strike-through + X: ChatGPT on "told", Gemini on "Gemini"
+ const tA=(w0[1]||[T0+.3])[0],tB=(w0[6]||[T0+1.4])[0];
+ const strike=(st,xk,t)=>{tl.fromTo(st,{backgroundSize:'0% 10%'},{backgroundSize:'100% 10%',duration:.55,ease:'power2.inOut'},t);
+  tl.to(st,{opacity:.5,duration:.5,ease:'sine.inOut'},t+.2);
+  tl.fromTo(xk,{opacity:0,scale:1.7,rotation:-14},{opacity:1,scale:1,rotation:0,duration:.65,ease:'power3.out',transformOrigin:'50% 50%'},t+.1);
+  tl.to(xk,{scale:1.07,duration:.8,ease:'sine.inOut',yoyo:true,repeat:5},t+.8);};
+ strike('#st1','#xg',tA); strike('#st2','#xm',tB);
+ // line 2: "Two AI chats had PROMISED to KEEP my secret": tags slide in, the begging line follows
+ const pr=(w1[4]||[T0+3.6])[0],kp=(w1[6]||[T0+4.2])[0];
+ tl.fromTo('#tg1',{opacity:0,y:14,scale:.9,rotation:-4},{opacity:1,y:0,scale:1,rotation:-3,duration:.55,ease:'power3.out'},pr);
+ tl.fromTo('#tg2',{opacity:0,y:14,scale:.9,rotation:4},{opacity:1,y:0,scale:1,rotation:3,duration:.55,ease:'power3.out'},pr+.22);
+ tl.to('#tg1',{rotation:2,duration:1.4,ease:'sine.inOut',yoyo:true,repeat:3},pr+.8);
+ tl.to('#tg2',{rotation:-2,duration:1.4,ease:'sine.inOut',yoyo:true,repeat:3},pr+.9);
+ tl.fromTo('#sub1',{opacity:0,y:12},{opacity:1,y:0,duration:.6,ease:'power3.out'},kp-.05);
+ tl.to('#sub1',{y:-3,duration:Math.max(.8,E-kp-.6),ease:'sine.inOut'},kp+.6);
+};
+</script>
