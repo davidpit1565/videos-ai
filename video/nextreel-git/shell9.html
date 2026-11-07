@@ -1,0 +1,32 @@
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-ExtraBold.otf");font-weight:800}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Medium.otf");font-weight:500}
+@font-face{font-family:"JBM";src:url("assets/fonts/JetBrainsMono-Medium.ttf");font-weight:500}
+@font-face{font-family:"JBM";src:url("assets/fonts/JetBrainsMono-Bold.ttf");font-weight:700}
+:root{--bg:#06070B;--lime:#D4FF3A;--lime2:#9FE62E;--ink:#F4F5F7;--dim:#8A8F9C;--red:#FF5A5F;--grn:#42D77D}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:IDisp,Inter,Helvetica,Arial,sans-serif;font-weight:800;color:var(--ink)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:radial-gradient(900px 1100px at 50% 52%,#101830 0%,#080B14 55%,#05060A 100%)}
+.abs{position:absolute}
+__STYLES__
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="__D__" data-width="1080" data-height="1920">
+__MARKUP__
+__CHROME__
+</div>
+<script>
+const C=__CUES__; const D=C.D; const L=C.lines; window.__cues=C; window.__CUES=C;
+const tl=gsap.timeline({paused:true});
+</script>
+<script>
+__SCRIPTS__
+</script>
+<script>
+__CALLS__
+tl.to({},{duration:.001},D-.001);
+window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
+window.__reel={duration:D,seek:t=>tl.seek(t)};
+</script></body></html>

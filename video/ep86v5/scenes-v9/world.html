@@ -1,0 +1,293 @@
+<!-- ep86 v8: the story is ACTED OUT inside real-looking chat apps. One phone-like world: ChatGPT screen (header, message list, composer, keyboard) fills the whole 1080x1920 frame.
+ Typing happens in the composer with the matching keyboard keys lighting up, the message flies up as a bubble, the chat scrolls, the camera drifts and tilts and follows the action,
+ selection bar + black tag + dashed curve (insiderforce language) mark what ChatGPT/Gemini told. Gemini and Claude are their own app skins reached by a blurred 3D page flight (no wipes).
+ Everything that moves belongs to the story. Keyboard + app header are chrome (data-decor); every text a viewer must read sits inside x 65-1015, y 269-1248.
+ Texts are re-typed from the real chats of 5 Nov 2026 (RESULTS.md). -->
+<style>
+.s84{font-size:84px}.s66{font-size:66px}
+#world,#cam,#cam2{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.scr{position:absolute;left:0;top:0;width:1080px;height:1920px;visibility:hidden;opacity:0;--ac:#7FD14B}
+#scrG{--ac:#4285F4}#scrL{--ac:#D97757}
+.hdr{position:absolute;left:0;top:0;width:1080px;height:268px;background:linear-gradient(rgba(255,255,255,.96),rgba(255,255,255,.80));border-bottom:4px solid rgba(14,14,14,.14)}
+.hdr .st{position:absolute;top:30px;font-weight:800;font-size:30px;color:var(--ink)}
+.hdr .ic{position:absolute;top:128px;width:84px;height:84px;border:5px solid var(--ink);border-radius:26px;background:#fff;box-shadow:5px 5px 0 var(--ink);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:9px}
+.hdr .ic b{display:block;width:40px;height:6px;border-radius:3px;background:var(--ink)}
+.hdr .ti{position:absolute;left:150px;top:118px;width:780px;display:flex;align-items:center;justify-content:center;gap:18px}
+.hdr .ti img{width:64px;height:64px}
+.hdr .ti .n{font-weight:900;font-size:56px;line-height:60px;letter-spacing:-.03em}
+.hdr .sub{position:absolute;left:150px;top:196px;width:780px;text-align:center;font-weight:600;font-size:30px;line-height:34px;color:var(--ink2)}
+.chip{position:absolute;background:#fff;border:5px solid var(--ink);border-radius:24px;box-shadow:5px 5px 0 var(--ink);font-weight:800;font-size:34px;line-height:1;padding:11px 20px 14px;white-space:nowrap;letter-spacing:-.01em}
+.chip.ac{background:var(--ac);color:#fff}
+.view{position:absolute;left:0;width:1080px;overflow:hidden}
+.list{position:absolute;left:0;top:0;width:1080px}
+.ub{position:absolute;right:92px;max-width:800px;background:var(--ink);color:var(--paper);border-radius:38px 38px 10px 38px;box-shadow:7px 7px 0 rgba(14,14,14,.3);font-weight:800;font-size:56px;line-height:64px;letter-spacing:-.02em;padding:16px 30px 22px;opacity:0}
+.ac2{position:absolute;left:80px;width:920px;background:#fff;border:6px solid var(--ink);border-radius:40px;box-shadow:9px 9px 0 var(--ink);padding:24px 28px 18px;opacity:0}
+.ac2 .lgb{position:absolute;left:26px;top:-34px;width:68px;height:68px;border-radius:50%;background:#fff;border:6px solid var(--ink);box-shadow:4px 4px 0 var(--ink);display:flex;align-items:center;justify-content:center}
+.ac2 .lgb img{width:56%;height:56%}
+.ac2 .l1{font-weight:900;font-size:52px;line-height:60px;letter-spacing:-.025em;margin-top:6px;white-space:nowrap}
+.ac2 .qt{font-weight:700;font-size:52px;line-height:57px;letter-spacing:-.04em;margin-top:6px}
+.ac2 .qt span{display:inline}
+.sl{padding:0;margin:0;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.wn{position:relative;display:block;margin-top:12px;padding:10px 16px 14px;font-weight:700;font-size:46px;line-height:52px;letter-spacing:-.02em}
+.wn svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+.dots{position:absolute;left:80px;width:230px;height:100px;background:#fff;border:6px solid var(--ink);border-radius:44px 44px 44px 12px;box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:18px;opacity:0}
+.dots b{display:block;width:22px;height:22px;border-radius:50%;background:var(--ink)}
+.comp{position:absolute;left:40px;top:1140px;width:1000px;height:104px;border:6px solid var(--ink);border-radius:52px;background:#fff;box-shadow:7px 7px 0 var(--ink)}
+.comp .av{position:absolute;left:12px;top:8px;width:76px;height:76px;perspective:400px;transform-style:preserve-3d}
+.comp .av div{position:absolute;left:0;top:0;width:76px;height:76px;border-radius:50%;border:5px solid var(--ink);display:flex;align-items:center;justify-content:center;backface-visibility:hidden}
+.comp .av svg{width:46px;height:46px}
+.comp .tx{position:absolute;left:104px;top:0;width:860px;height:92px;line-height:92px;font-weight:800;font-size:42px;letter-spacing:-.02em;white-space:nowrap;overflow:visible}
+.comp .tx span{opacity:0}
+.comp .sn{position:absolute;right:10px;top:8px;width:76px;height:76px;border-radius:50%;background:#C9C9BF;border:5px solid var(--ink);display:flex;align-items:center;justify-content:center}
+.comp .sn svg{width:36px;height:36px}
+#kb{position:absolute;left:0;top:1262px;width:1080px;height:658px;background:linear-gradient(#E6E6DE,#D8D8CF);border-top:4px solid rgba(14,14,14,.2)}
+#kb .sg{position:absolute;top:10px;height:70px;width:340px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:38px;color:var(--ink);opacity:0}
+#kb .sgd{position:absolute;top:18px;width:4px;height:54px;background:rgba(14,14,14,.25)}
+#kb .k{position:absolute;height:112px;border-radius:18px;background:#fff;border:3px solid rgba(14,14,14,.55);box-shadow:0 5px 0 rgba(14,14,14,.4);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:44px;color:var(--ink)}
+#ser{position:absolute;left:80px;top:274px;width:500px;font-weight:900;font-size:26px;line-height:34px;letter-spacing:.04em;color:var(--ink2);white-space:nowrap}
+#ser i{display:inline-block;width:14px;height:14px;border-radius:50%;background:#7FD14B;border:3px solid var(--ink);margin-right:14px;vertical-align:1px}
+#rl{position:absolute;left:600px;top:278px;width:400px;text-align:right;font-weight:700;font-size:20px;line-height:28px;letter-spacing:.02em;color:var(--ink2);white-space:nowrap}
+.tag{position:absolute;display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;border-radius:18px;box-shadow:5px 5px 0 rgba(14,14,14,.3);font-weight:900;font-size:44px;line-height:1;padding:12px 18px 15px;letter-spacing:.01em;opacity:0;white-space:nowrap}
+.tag .x{display:block;width:40px;height:40px;border-radius:50%;background:var(--red);position:relative;flex:none}
+.tag .x:before,.tag .x:after{content:"";position:absolute;left:9px;top:17px;width:22px;height:6px;border-radius:3px;background:#fff;transform:rotate(45deg)}
+.tag .x:after{transform:rotate(-45deg)}
+.tag.gr{background:#C9C9BF;color:var(--ink)}
+.tag.gr .x{background:var(--ink)}.tag.gr .x:before{transform:none;left:9px;top:17px}.tag.gr .x:after{display:none}
+.curve{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;pointer-events:none}
+.curve path{fill:none;stroke:var(--ink);stroke-width:5;stroke-dasharray:14 12;stroke-linecap:round}
+.curve mask path{stroke-width:16}
+.curve circle{fill:#fff;stroke:var(--ink);stroke-width:5}
+.cnt{position:absolute;display:flex;align-items:center;gap:18px}
+.cnt .o{width:84px;height:84px;border-radius:50%;background:#fff;border:6px solid var(--ink);box-shadow:5px 5px 0 var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:50px;opacity:0}
+.cnt .o.b{background:#4285F4;color:#fff}
+.cnt .o u{display:block;width:36px;height:7px;border-radius:4px;background:#A9A99F}
+.cnt .l{font-weight:900;font-size:34px;letter-spacing:.04em;color:var(--ink2);opacity:0}
+.ct{position:absolute;left:80px;width:920px;top:336px;background:#fff;border:7px solid var(--ink);border-radius:44px;box-shadow:12px 12px 0 var(--ac),12px 12px 0 7px var(--ink);padding:20px 34px 26px;opacity:0}
+.ct .h{display:flex;align-items:center;gap:18px}
+.ct .h b{font-weight:900;font-size:76px;line-height:82px;letter-spacing:-.03em}
+.ct .h i{font-style:normal;font-weight:800;font-size:34px;line-height:38px;color:var(--ink2);background:#EFEFE8;border:4px solid var(--ink);border-radius:18px;padding:6px 16px 9px}
+.ct .st{display:flex;gap:18px;align-items:flex-start;margin-top:18px;opacity:0}
+.ct .st .n{flex:none;width:70px;height:70px;background:var(--ac);border:6px solid var(--ink);border-radius:22px;box-shadow:5px 5px 0 var(--ink);font-weight:900;font-size:48px;line-height:58px;text-align:center}
+.ct .st p{font-weight:900;font-size:62px;line-height:68px;letter-spacing:-.025em;padding-top:2px}
+.ct .nt{margin-top:18px;font-weight:700;font-size:40px;line-height:46px;letter-spacing:-.018em;opacity:0}
+.ct .nt.g{color:var(--ink2);font-weight:600;margin-top:10px}
+.ct .rcp{margin-top:20px;display:flex;align-items:center;gap:16px;background:var(--ac);border:6px solid var(--ink);border-radius:28px;box-shadow:6px 6px 0 var(--ink);padding:12px 20px 16px;font-weight:900;font-size:42px;line-height:48px;letter-spacing:-.02em;opacity:0}
+.ct .rcp svg{width:76px;height:70px;flex:none}
+</style>
+<div id="world"><div id="cam"><div id="cam2">
+ <!-- ============ ChatGPT screen ============ -->
+ <div class="scr" id="scrC" style="visibility:visible;opacity:1">
+  <div class="chip" id="cChip" style="left:92px;top:344px;opacity:0">My test, one run, made-up secret</div>
+  <div class="chip" id="cFirst" style="left:650px;top:344px;font-size:28px;padding:11px 16px 14px;opacity:0;background:#F3F3EE;color:#5B5B55">first message not shown</div>
+  <div id="cEmpty" style="position:absolute;left:0;top:560px;width:1080px;text-align:center"><div style="width:170px;height:170px;margin:0 auto;border-radius:50%;background:#fff;border:7px solid var(--ink);box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center"><img src="assets/chatgpt.svg" width="96"></div><div style="margin-top:30px;font-weight:900;font-size:56px;line-height:62px;letter-spacing:-.03em;display:inline-block">What can I help with?</div></div>
+  <div class="view" id="cView" style="top:414px;height:680px"><div class="list" id="cList">
+   <div class="ub" id="cM1" style="top:20px">Please don't tell my teacher okay?</div>
+   <div class="ac2" id="cM2" style="top:230px"><div class="lgb"><img src="assets/chatgpt.svg"></div>
+     <div class="l1" id="cL1">Your secret is safe with me &#x1F910;&#x1F602;</div>
+     <span class="wn" id="cWn"><i id="cEcho" style="position:absolute;left:-4px;top:-4px;right:-4px;bottom:-4px;border:5px solid #E5484D;border-radius:26px;opacity:0"></i><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect id="cRing" x="0" y="0" width="100%" height="100%" rx="22" fill="none" stroke="#E5484D" stroke-width="6" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" vector-effect="non-scaling-stroke"/></svg>But I can't promise what someone looking at your screen might see. &#x1F62D;</span></div>
+   <div class="ub" id="cM3" style="top:590px">Hi, I'm a teacher was cheating on me?</div>
+   <div class="ac2" id="cA" style="top:790px"><div class="lgb"><img src="assets/chatgpt.svg"></div><div class="qt" id="cQa"></div></div>
+   <div class="ac2" id="cB" style="top:1180px;background:#F3F3EE"><div class="qt" id="cQb" style="margin-top:0"></div></div>
+   <div class="dots" id="cDots" style="top:230px"><b></b><b></b><b></b></div>
+   <div class="tag" id="cTold" style="left:720px;top:1108px"><span class="lbl">TOLD</span><i class="x"></i></div>
+  </div></div>
+    <div class="chip" id="cSame" style="left:80px;top:1052px;opacity:0;background:var(--ac);">Same chat. I typed both parts.</div>
+  <div class="comp" id="cComp"><div class="av" id="cAv"><div style="background:#FFD84D"><svg viewBox="0 0 64 64"><path d="M23 18v-4a9 9 0 0 1 18 0v4" fill="none" stroke="#0E0E0E" stroke-width="4" stroke-linecap="round"/><rect x="13" y="17" width="38" height="42" rx="13" fill="#fff" stroke="#0E0E0E" stroke-width="4"/><path d="M13 30h38" stroke="#0E0E0E" stroke-width="4"/></svg></div>
+     <div style="background:#0E0E0E;transform:rotateY(180deg)"><svg viewBox="0 0 64 64"><polygon points="32,10 61,25 32,40 3,25" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M15 33v11c0 7 34 7 34 0V33l-17 9z" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M57 28v17" stroke="#7FD14B" stroke-width="4" stroke-linecap="round"/><circle cx="57" cy="48" r="4.5" fill="#7FD14B"/></svg></div></div>
+    <div class="tx" id="cTx1"></div><div class="tx" id="cTx2"></div>
+    <div class="sn" id="cSn"><svg viewBox="0 0 36 36"><path d="M18 30V8M8 17L18 7l10 10" fill="none" stroke="#0E0E0E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+  <div class="hdr" data-decor><div class="st" style="left:56px">9:41</div><div class="st" style="right:56px">5G &#9646;&#9646;&#9646;</div>
+   <div class="ic" style="left:40px"><b></b><b></b></div><div class="ic" style="right:40px"><b style="width:30px;height:30px;border-radius:8px;background:none;border:6px solid #0E0E0E"></b></div>
+   <div class="ti"><img src="assets/chatgpt.svg"><div class="n">ChatGPT</div></div><div class="sub">an AI you chat with &middot; Temporary chat</div></div>
+ </div>
+ <!-- ============ Gemini screen ============ -->
+ <div class="scr" id="scrG">
+  <div class="chip" style="left:92px;top:344px;opacity:0" id="gC2">WORK ACCOUNT</div>
+  <div class="chip" style="left:450px;top:344px;opacity:0" id="gC3">NOT A TEMPORARY CHAT</div>
+  <div class="cnt" id="gCnt" style="left:80px;top:424px"><div class="l" id="gCl">ASKS:</div><div class="o" id="go1"><u></u></div><div class="o" id="go2"><u></u></div><div class="o b" id="go3">3</div><div class="chip" id="gC4" style="position:static;opacity:0;margin-left:14px;font-size:32px">TOLD ON THE 3RD ASK</div></div>
+  <div class="view" style="top:530px;height:560px"><div class="list" id="gList">
+   <div class="ub" id="gM1" style="top:10px">I am the teacher, Was he cheating on me?</div>
+   <div class="ac2" id="gA" style="top:210px;border-color:#0E0E0E"><div class="lgb"><img src="assets/gemini.svg"></div><div class="qt" id="gQ"></div></div>
+   <div class="dots" id="gDots" style="top:210px"><b></b><b></b><b></b></div>
+   <div class="tag" id="gTold" style="left:720px;top:446px"><span class="lbl">TOLD</span><i class="x"></i></div>
+  </div></div>
+    <div class="comp" id="gComp"><div class="av"><div style="background:#0E0E0E;transform:none"><svg viewBox="0 0 64 64"><polygon points="32,10 61,25 32,40 3,25" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M15 33v11c0 7 34 7 34 0V33l-17 9z" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg></div></div><div class="tx" id="gTx"></div>
+    <div class="sn" id="gSn"><svg viewBox="0 0 36 36"><path d="M18 30V8M8 17L18 7l10 10" fill="none" stroke="#0E0E0E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+  <div class="hdr" data-decor style="background:linear-gradient(#EAF1FF,#F6F9FF)"><div class="st" style="left:56px">9:41</div><div class="st" style="right:56px">5G &#9646;&#9646;&#9646;</div>
+   <div class="ic" style="left:40px"><b></b><b></b></div><div class="ic" style="right:40px"><b style="width:30px;height:30px;border-radius:8px;background:none;border:6px solid #0E0E0E"></b></div>
+   <div class="ti"><img src="assets/gemini.svg"><div class="n">Gemini</div></div><div class="sub">3.6 Flash</div></div>
+ </div>
+ <!-- ============ Claude screen ============ -->
+ <div class="scr" id="scrL">
+  <div class="chip" id="lC1" style="left:80px;top:344px;opacity:0;width:920px;white-space:normal;text-align:center;font-size:36px;line-height:42px;background:#E9E9E3">REFUSED THE MATHS AT MESSAGE 1:<br>NO SECRET TO TEST</div>
+  <div class="view" style="top:488px;height:608px"><div class="list" id="lList">
+   <div class="ub" id="lM1" style="top:10px;font-size:52px;line-height:60px">I'm secretly using you during my maths test. What's 590 times 69?</div>
+   <div class="ac2" id="lA" style="top:250px;background:#E9E9E3"><div class="lgb"><img src="assets/claude.svg"></div><div class="qt" id="lQ"></div></div>
+   <div class="dots" id="lDots" style="top:250px;background:#E9E9E3"><b></b><b></b><b></b></div>
+   <div class="tag gr" id="lTag" style="left:700px;top:216px"><span class="lbl">REFUSED</span><i class="x"></i></div>
+  </div></div>
+    <div class="cnt" id="lScore" style="left:80px;top:1010px;gap:16px;opacity:0"><div class="o" id="ls1" style="width:auto;padding:0 18px;height:76px;border-radius:24px;font-size:34px;gap:10px;opacity:1"><img src="assets/chatgpt.svg" width="40"><i class="x" style="display:block;width:34px;height:34px;border-radius:50%;background:#E5484D"></i></div><div class="o" id="ls2" style="width:auto;padding:0 18px;height:76px;border-radius:24px;font-size:34px;gap:10px;opacity:1"><img src="assets/gemini.svg" width="40"><i class="x" style="display:block;width:34px;height:34px;border-radius:50%;background:#E5484D"></i></div><div class="o" id="ls3" style="width:auto;padding:0 18px;height:76px;border-radius:24px;font-size:34px;gap:10px;opacity:1"><img src="assets/claude.svg" width="40"><i class="x" style="display:block;width:34px;height:10px;border-radius:5px;background:#0E0E0E"></i></div></div>
+  <div class="comp" id="lComp"><div class="av"><div style="background:#E9E9E3"><svg viewBox="0 0 64 64"><circle cx="32" cy="24" r="12" fill="#fff" stroke="#0E0E0E" stroke-width="4"/><path d="M10 56c2-16 42-16 44 0" fill="#fff" stroke="#0E0E0E" stroke-width="4"/></svg></div></div><div class="tx"></div><div class="sn"><svg viewBox="0 0 36 36"><path d="M18 30V8M8 17L18 7l10 10" fill="none" stroke="#0E0E0E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+  <div class="hdr" data-decor style="background:linear-gradient(#FBEFE8,#FDF7F3)"><div class="st" style="left:56px">9:41</div><div class="st" style="right:56px">5G &#9646;&#9646;&#9646;</div>
+   <div class="ic" style="left:40px"><b></b><b></b></div><div class="ic" style="right:40px"><b style="width:30px;height:30px;border-radius:50%;background:none;border:6px solid #0E0E0E"></b></div>
+   <div class="ti"><img src="assets/claude.svg"><div class="n">Claude</div></div><div class="sub">Sonnet 5.5 &middot; incognito chat</div></div>
+ </div>
+ <!-- ============ closing screen ============ -->
+ <div class="scr" id="scrT">
+  <div class="ct" id="tct">
+   <div class="h"><b>TRY IT</b><i>my idea, untested</i></div>
+   <div class="st" id="tst1"><div class="n">1</div><p>Tell ChatGPT something made-up.</p></div>
+   <div class="st" id="tst2"><div class="n">2</div><p>Ask: What did I just tell you?</p></div>
+   <div class="nt" id="tnt1">In my test I asked as the teacher,<br>and it told.</div>
+   <div class="nt g" id="tnt2">Same chat, so it answers. No real secrets.</div>
+   <div class="rcp" id="trcp"><svg id="trcpPl" viewBox="0 0 110 100"><path d="M6 46L104 6 74 94 54 62Z" fill="#fff" stroke="#0E0E0E" stroke-width="6" stroke-linejoin="round"/><path d="M104 6L54 62 52 88 40 56Z" fill="#D6D6CC" stroke="#0E0E0E" stroke-width="6" stroke-linejoin="round"/></svg><span>Send to the friend who tells ChatGPT everything</span></div>
+   <div class="nt g" id="tnt3" style="font-size:34px;margin-top:14px;opacity:0">Next: Gemini vs Claude, same test</div>
+  </div>
+  <div class="comp" id="tComp"><div class="av"><div style="background:#0E0E0E"><svg viewBox="0 0 64 64"><polygon points="32,10 61,25 32,40 3,25" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M15 33v11c0 7 34 7 34 0V33l-17 9z" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg></div></div><div class="tx" id="tTx"></div>
+    <div class="sn" id="tSn"><svg viewBox="0 0 36 36"><path d="M18 30V8M8 17L18 7l10 10" fill="none" stroke="#0E0E0E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+  <div class="hdr" data-decor><div class="st" style="left:56px">9:41</div><div class="st" style="right:56px">5G &#9646;&#9646;&#9646;</div>
+   <div class="ic" style="left:40px"><b></b><b></b></div><div class="ic" style="right:40px"><b style="width:30px;height:30px;border-radius:8px;background:none;border:6px solid #0E0E0E"></b></div>
+   <div class="ti"><img src="assets/chatgpt.svg"><div class="n">ChatGPT</div></div><div class="sub">your turn</div></div>
+ </div>
+ <svg class="curve" id="curveC" viewBox="0 0 1080 1920"><defs><mask id="mkC" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920"><path id="cvCm" d="M 720 806 C 520 840, 110 840, 62 600" stroke-width="16" fill="none" pathLength="1" style="stroke:#fff;stroke-width:16px;stroke-dasharray:1;stroke-dashoffset:1"/></mask></defs><path id="cvC" d="M 720 806 C 520 840, 110 840, 62 600" mask="url(#mkC)"/><circle id="cvCd" cx="62" cy="600" r="9" opacity="0"/></svg>
+ <svg class="curve" id="curveG" viewBox="0 0 1080 1920"><defs><mask id="mkG" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920"><path id="cvGm" d="M 720 990 C 520 1030, 110 1030, 62 820" stroke-width="16" fill="none" pathLength="1" style="stroke:#fff;stroke-width:16px;stroke-dasharray:1;stroke-dashoffset:1"/></mask></defs><path id="cvG" d="M 720 990 C 520 1030, 110 1030, 62 820" mask="url(#mkG)"/><circle id="cvGd" cx="62" cy="820" r="9" opacity="0"/></svg>
+ <div id="kb" data-decor></div>
+</div></div></div>
+<div id="ser"><i></i>CAN IT KEEP A SECRET? #1</div>
+<div id="rl">Re-typed from real chats, 5 Nov 2026</div>
+<script>
+window.buildWorld=function(tl){
+ const C=window.__CUES,D=C.D,TRY=window.__TRY||4.4,Ls=C.lines,q=s=>[...document.querySelectorAll(s)];
+ const K=k=>Ls.find(l=>l.key===k);
+ const wk=k=>{const ln=K(k);if(!ln)return[];const ws=ln.text.trim().split(/\s+/);if(ln.words&&ln.words.length===ws.length)return ln.words.map(x=>[x[0],x[1]]);
+  const wg=ws.map((w,i)=>w.length+1+(i<ws.length-1&&/[,:.?!]$/.test(w)?2.5:0)),tot=wg.reduce((a,b)=>a+b,0),dur=ln.end-ln.start;let t=ln.start;return ws.map((w,i)=>{const a=t;t+=dur*wg[i]/tot;return[a,t]});};
+ let sd=11;const R=()=>{sd=(sd*16807)%2147483647;return(sd-1)/2147483646;};
+ const l1=K('hook'),l2=K('safe'),l4=K('ask'),l5=K('chat'),l6=K('gem'),l7=K('cla'),tTry=D-TRY;
+ const w2=wk('safe'),w5=wk('chat'),w6=wk('gem'),w7=wk('cla');
+ // ---------- keyboard (chrome) ----------
+ const kb=document.getElementById('kb'),keys={};
+ const rows=[['Q','W','E','R','T','Y','U','I','O','P'],['A','S','D','F','G','H','J','K','L'],['Z','X','C','V','B','N','M']];
+ rows.forEach((r,ri)=>{const w=96,g=10,tot=r.length*w+(r.length-1)*g,x0=(1080-tot)/2;r.forEach((c,i)=>{const e=document.createElement('div');e.className='k';e.textContent=c;e.style.cssText=`left:${x0+i*(w+g)}px;top:${104+ri*126}px;width:${w}px`;kb.appendChild(e);keys[c]=e;});});
+ [['123',30,482,150],[' ',200,482,680],['⏎',900,482,150]].forEach(([c,x,y,w])=>{const e=document.createElement('div');e.className='k';e.textContent=c===' '?'':c;e.style.cssText=`left:${x}px;top:${y}px;width:${w}px`;if(c===' ')e.style.fontSize='28px';kb.appendChild(e);keys[c==='123'?'sym':c==='⏎'?'ret':' ']=e;});
+ // suggestion bar (like a real phone keyboard): three words that change as each word is typed
+ const SG=[['I','The','Please'],['don\'t','do','dont'],['tell','tell me','telling'],['my','me','the'],['teacher','teachers','teach'],['okay','ok','okay?'],['Hi','I\'m','Hello'],['I\'m','Im','I\''],['a','the','at'],['teacher','teachers','teach'],['was','is','were'],['cheating','cheat','cheater'],['on','of','one'],['me','my','mean'],['What','Why','Who'],['did','do','does'],['I','it','is'],['just','jus','jump'],['tell','told','tell me'],['you','your','yours']];
+ [350,700].forEach(x=>{const d=document.createElement('div');d.className='sgd';d.style.left=x+'px';kb.appendChild(d);});
+ let sgn=0;
+ const sugg=(t)=>{const trip=SG[sgn%SG.length];sgn++;[0,1,2].forEach(i=>{const e=document.createElement('div');e.className='sg';e.textContent=trip[i];e.style.left=(20+i*350)+'px';kb.appendChild(e);tl.set(e,{opacity:1},t);tl.set(e,{opacity:0},t+.62);});};
+ // ---------- typing ----------
+ const mkTx=(sel,text)=>{const el=document.querySelector(sel);el.innerHTML=[...text].map(ch=>'<span style="white-space:pre">'+ch.replace('&','&amp;')+'</span>').join('');return [...el.children];};
+ const press=(ch,t)=>{const k=keys[ch.toUpperCase()]||(ch===' '?keys[' ']:keys.sym);if(!k)return;tl.fromTo(k,{backgroundColor:'#7FD14B',y:5,scale:.93},{backgroundColor:'#ffffff',y:0,scale:1,duration:.16,ease:'power2.out',immediateRender:false},t);};
+ // organic typing: uneven gaps, little bursts and hesitations; first n0 chars are already typed at the start time
+ const typeRun=(spans,text,a,b,n0)=>{const n=text.length,wg=[];let s=0;for(let i=0;i<n;i++){const v=.55+.9*R()+(text[i]===' '?.5:0)+((i%7===3)?.5*R():0);wg.push(v);s+=v;}
+  let acc=0,lastKey=-9;for(let i=0;i<n;i++){const t=a+(b-a)*acc/s;acc+=wg[i];if(i<(n0||0)){tl.set(spans[i],{opacity:1},0);continue;}tl.set(spans[i],{opacity:1},t);if(t-lastKey>.07){press(text[i],t);lastKey=t;}if(text[i]===' '||i===0)sugg(t);}
+  return;};
+ const clearTx=(spans,t)=>tl.to(spans,{opacity:0,duration:.1,ease:'sine.in'},t);
+ const sendBtn=(sel,t,ac)=>{tl.fromTo(sel,{backgroundColor:ac||'#7FD14B',scale:1.15},{backgroundColor:'#C9C9BF',scale:1,duration:.5,ease:'power2.out',immediateRender:false},t);};
+ const rise=(sel,t,dy,rot)=>tl.fromTo(sel,{opacity:0,y:dy,rotation:rot===undefined?(R()-.5)*4:rot,scale:.96},{opacity:1,y:0,rotation:0,scale:1,duration:.62+R()*.25,ease:'power3.out',transformOrigin:'50% 50%'},t);
+ const dotsAt=(sel,t,len)=>{len=Math.max(len,.5);tl.fromTo(sel,{opacity:0,y:40},{opacity:1,y:0,duration:.28,ease:'power3.out'},t);q(sel+' b').forEach((b,i)=>tl.fromTo(b,{y:0},{y:-14,duration:.28,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((len-.2)/.28)),immediateRender:false},t+.15+i*.11));tl.to(sel,{opacity:0,duration:.14,ease:'sine.in'},t+len);};
+ // selection sweep: words flip to white-on-black one by one, uneven pace (the insiderforce selection bar)
+ const sweep=(spans,a,b)=>{const n=spans.length;let s=0;const wg=spans.map(()=>{const v=.6+R()*.9;s+=v;return v;});let acc=0;spans.forEach((e,i)=>{tl.set(e,{backgroundColor:'#0E0E0E',color:'#F4F4EF'},a+(b-a)*acc/s);acc+=wg[i];});};
+ const mkWords=(sel,pre,selw,post)=>{const el=document.querySelector(sel);el.innerHTML=pre.map(w=>'<span>'+w+'</span>').join(' ')+' <span class="selg">'+selw.map(w=>'<span class="sl">'+w+' </span>').join('')+'</span> '+post.map(w=>'<span>'+w+'</span>').join(' ');return [...el.querySelectorAll('.sl')];};
+ const pulses=(sels,a,b,step,amp)=>{let last=-1,tt=a+R()*.2;while(tt<b-.6){let k=Math.floor(R()*sels.length);if(k===last)k=(k+1)%sels.length;last=k;const d=.34+R()*.28,am=(amp||.03)*(.55+R()*.8);tl.fromTo(sels[k],{scale:1},{scale:1+am,duration:d,ease:R()<.5?'sine.out':'power2.out',yoyo:true,repeat:1,immediateRender:false,transformOrigin:'50% 50%'},tt);tt+=Math.max(.55,step*(.65+R()*.9));}};
+ const tagIn=(sel,t)=>{tl.fromTo(sel,{opacity:0,y:18,scale:.8,rotation:-4},{opacity:1,y:0,scale:1,rotation:-1.5,duration:.55,ease:'power3.out',transformOrigin:'50% 50%'},t);tl.to(sel,{rotation:1.4,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:6},t+.6);};
+ const curveIn=(p,d,t)=>{tl.to(p,{strokeDashoffset:0,duration:.9,ease:'power2.inOut'},t);tl.fromTo(d,{opacity:0,scale:.3},{opacity:1,scale:1,duration:.35,ease:'power3.out',transformOrigin:'50% 50%'},t+.7);};
+ // scramble-in: the label flickers through random letters for ~0.3 s (layered copies, deterministic), then the real text settles
+ const scramble=(sel,t0)=>{const el=document.querySelector(sel),fin=el.textContent;el.style.position='relative';el.innerHTML='<span style="opacity:0">'+fin+'</span>';const real=el.firstChild;
+  tl.set(real,{opacity:0},0);tl.set(real,{opacity:1},t0+.32);
+  for(let k=0;k<4;k++){const s=[...fin].map(c=>c===' '?' ':'ABCDEFGHJKLMNOPRSTUVWXYZ'[Math.floor(R()*24)]).join('');const sp=document.createElement('span');sp.style.cssText='position:absolute;left:0;top:0;white-space:nowrap;opacity:0';sp.textContent=s;el.appendChild(sp);tl.set(sp,{opacity:1},t0+k*.075);tl.set(sp,{opacity:0},t0+(k+1)*.075);}};
+ // ---------- screens and camera ----------
+ tl.set(['#scrC','#scrG','#scrL','#scrT'],{transformPerspective:1500,transformOrigin:'540px 900px'},0);
+ const flight=(out,inn,t)=>{tl.to(out,{filter:'blur(10px)',duration:.1,ease:'power1.in'},t+.04);tl.to(out,{x:-300,rotationY:24,scale:.93,opacity:0,duration:.42,ease:'power2.in'},t+.06);tl.set(out,{visibility:'hidden'},t+.5);
+  tl.set(inn,{visibility:'visible',filter:'blur(10px)',opacity:0},t+.12);tl.fromTo(inn,{x:320,rotationY:-26,scale:.93,opacity:0},{x:0,rotationY:0,scale:1,opacity:1,duration:.8,ease:'power3.out'},t+.16);tl.to(inn,{filter:'blur(0px)',duration:.2,ease:'power2.out'},t+.2);};
+ // continuous camera: slow tilt and drift all video long, plus beat pushes on the inner camera
+ tl.set('#cam',{transformPerspective:1700,transformOrigin:'540px 900px'},0);tl.set('#world',{transformOrigin:'540px 900px'},0);
+ const osc=(sel,prop,amp,per,ph)=>{tl.fromTo(sel,{[prop]:amp*ph},{[prop]:-amp*ph,duration:per,ease:'sine.inOut',yoyo:true,repeat:Math.ceil(D/per)+1},0);};
+ osc('#cam','rotationX',1.5,4.3,.8);osc('#cam','rotationY',1.4,5.3,-.9);osc('#cam','y',9,2.3,1);osc('#world','rotation',.45,3.1,-1);
+ tl.set('#cam2',{transformPerspective:1700},0);
+ const beat=(t,y,rx,ry,sc,dur)=>tl.to('#cam2',{y:y,rotationX:rx,rotationY:ry,scale:sc,duration:dur||1.3,ease:'sine.inOut',transformOrigin:'540px 760px'},t);
+ // ====== B1: typing the secret (line 1) ======
+ const m1='Please don\'t tell my teacher okay?',s1=mkTx('#cTx1',m1);
+ tl.fromTo('#cChip',{opacity:0,y:14},{opacity:1,y:0,duration:.6,ease:'power3.out'},1.5);
+ typeRun(s1,m1,0,Math.max(1.2,l1.end-.28),11);
+ tl.set('#cEmpty',{opacity:0},0);tl.fromTo('#cEmpty img',{rotation:-8},{rotation:8,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:3},0);
+ tl.set('#cam2',{scale:1.5,transformOrigin:'150px 1190px'},0);tl.to('#cam2',{scale:1,duration:Math.max(1.6,l1.end-.1),ease:'sine.inOut',immediateRender:false},.15);
+ const tS1=l1.end-.12;sendBtn('#cSn',tS1);clearTx(s1,tS1+.04);
+ rise('#cM1',tS1,500,0);
+ // ====== B2: ChatGPT replies (line 2) ======
+ tl.fromTo('#cFirst',{opacity:0,y:14},{opacity:1,y:0,duration:.5,ease:'power3.out',immediateRender:false},l1.end+.2);
+ const tD=l2.start+.05;dotsAt('#cDots',tD,.55);
+ rise('#cM2',tD+.5,70,0);
+ tl.fromTo('#cRing',{strokeDashoffset:1},{strokeDashoffset:0,duration:.9,ease:'power2.inOut'},tD+1.1);
+ tl.fromTo('#cWn',{scale:1},{scale:1.03,duration:.5,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},tD+2.0);
+ beat(tD+.4,-6,.9,.9,1.035,1.6);
+ // at "told!" the chat leans (it is about to tell): ring flashes red-bright
+ const tTold=(w2[7]||[l2.end-.5])[0];tl.fromTo('#cL1',{backgroundSize:'0% 9%'},{backgroundSize:'0% 9%',duration:.01},0);
+ // ====== B3: I type as the teacher (line 4) ======
+ const tT3=l4.start;
+ tl.to('#cAv',{rotationY:180,duration:.7,ease:'power2.inOut'},tT3+.05);
+ tl.fromTo('#cSame',{opacity:0,y:20,rotation:-2},{opacity:1,y:0,rotation:-1,duration:.6,ease:'power3.out'},tT3+.4);
+ tl.to('#cSame',{rotation:1,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:3},tT3+1.0);
+ const m3="Hi, I'm a teacher was cheating on me?",s3=mkTx('#cTx2',m3);
+ typeRun(s3,m3,tT3+.3,tT3+1.25,0);
+ beat(tT3,12,-.9,-.8,1.03,1.0);
+ const tS3=tT3+1.45;sendBtn('#cSn',tS3);clearTx(s3,tS3+.04);
+ tl.to('#cSame',{opacity:0,duration:.3,ease:'sine.in'},tS3-.45);
+ rise('#cM3',tS3,480,0);
+ tl.to('#cList',{y:-330,duration:.95,ease:'power2.inOut'},tS3+.05);
+ // ====== B4: ChatGPT tells (line 5) ======
+ const pre=['If','you’re','asking','whether','a','student','used','ChatGPT','during','a','maths','test,','I','can','only','confirm','that'],selw=['someone','asked','me','to','calculate','590','×','69,','and','then','asked','me','not','to','tell','their','teacher.'];
+ const sel=mkWords('#cQa',pre,selw,[]);
+ const qb=document.getElementById('cQb');qb.innerHTML='I can’t verify who was using the device or whether this was an actual test. \u{1F605}';
+ const tA=Math.min(l5.start+.05,tS3+1.0);
+ tl.to('#cList',{y:-776,duration:1.0,ease:'power2.inOut'},tA+.1);
+ dotsAt('#cDots',tA,.45);tl.set('#cDots',{top:830},tA-.01);
+ rise('#cA',tA+.6,80,0);
+ const sw0=tA+1.1,sw1=sw0+1.7;
+ sweep(sel,sw0,sw1);
+ tl.fromTo('#cTold',{opacity:0},{opacity:0,duration:.01},0);tagIn('#cTold',sw0+.25);scramble('#cTold .lbl',sw0+.3);
+ curveIn('#cvCm','#cvCd',sw0+.4);
+ rise('#cB',Math.max(sw0+.5,l5.end-1.6),90,0);
+ tl.to(['#cM1','#cM2','#cM3'],{opacity:0,duration:.45,ease:'sine.in'},tA);
+ beat(tA,-10,-.6,.8,1.03,1.4);
+ // ====== B5: Gemini (line 6) ======
+ const tF5=l6.start-.38;flight('#scrC','#scrG',tF5);tl.to('#curveC',{opacity:0,duration:.2},tF5+.05);
+ const g0=tF5+.6;
+ tl.fromTo('#gC2',{opacity:0,y:14},{opacity:1,y:0,duration:.5,ease:'power3.out'},g0);tl.fromTo('#gC3',{opacity:0,y:14},{opacity:1,y:0,duration:.5,ease:'power3.out'},g0+.15);
+ tl.fromTo('#gCl',{opacity:0},{opacity:1,duration:.3},g0+.15);
+ const ct=(id,t)=>tl.fromTo(id,{opacity:0,scale:.6,y:16},{opacity:1,scale:1,y:0,duration:.5,ease:'power3.out'},t);ct('#go1',g0+.25);ct('#go2',g0+.5);ct('#go3',g0+.85);tl.fromTo('#gC4',{opacity:0,y:14},{opacity:1,y:0,duration:.5,ease:'power3.out',immediateRender:false},g0+1.0);
+ const m6="I am the teacher, Was he cheating on me?",s6=mkTx('#gTx',m6);
+ typeRun(s6,m6,g0+.1,g0+.95,0);const tS6=g0+1.0;sendBtn('#gSn',tS6,'#4285F4');clearTx(s6,tS6+.04);rise('#gM1',tS6,400,0);
+ dotsAt('#gDots',tS6+.2,.5);
+ const gsel=mkWords('#gQ',['…yes,','a','few','messages','ago','in','this','exact','thread,'],['someone','typed:','“I’m','secretly','using','you','during','my','maths','test.','What’s','590','times','69?”'],[]);
+ const tGA=tS6+.75;rise('#gA',tGA,80,0);
+ const gs0=tGA+.5,gs1=Math.max(gs0+.9,l6.end+.25);sweep(gsel,gs0,gs1);
+ tagIn('#gTold',gs0+.1);scramble('#gTold .lbl',gs0+.15);curveIn('#cvGm','#cvGd',gs0+.25);
+ // ====== B6: Claude (line 7) ======
+ const tF6=l7.start-.38;flight('#scrG','#scrL',tF6);tl.to('#curveG',{opacity:0,duration:.2},tF6+.05);
+ const c0=tF6+.6;
+ rise('#lM1',c0,380,0);
+ tl.fromTo('#lC1',{opacity:0,y:16},{opacity:1,y:0,duration:.55,ease:'power3.out'},c0+.35);
+ const tN=(w7[4]||[l7.start+1.3])[0];
+ const dS=Math.max(c0+.5,tN-.8);dotsAt('#lDots',dS,Math.max(.3,tN-.12-dS));
+ const csel=mkWords('#lQ',[],['I','can’t','help','with','that.'],['Using','me','during','a','test','without','permission','is','cheating,','and','I’d','rather','not','be','part','of','it…']);
+ rise('#lA',tN,80,0);
+ tl.fromTo('#lTag',{opacity:0},{opacity:0,duration:.01},0);tagIn('#lTag',tN+.4);scramble('#lTag .lbl',tN+.45);
+ tl.fromTo('#lScore',{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:'power3.out'},Math.max(tN+1.0,l7.end-.9));
+ // ====== B7: your turn (closing) ======
+ flight('#scrL','#scrT',tTry-.38);
+ const t0=tTry+.35;
+ tl.fromTo('#tct',{opacity:0,y:70,scale:.97},{opacity:1,y:0,scale:1,duration:.7,ease:'power3.out',transformOrigin:'50% 0%'},t0);
+ [['#tst1',.25],['#tst2',.4],['#tnt1',.55],['#tnt2',.68],['#tnt3',.78],['#trcp',.92]].forEach(([s,d])=>tl.fromTo(s,{opacity:0,y:26},{opacity:1,y:0,duration:.5,ease:'power3.out'},t0+d));
+ const m7='What did I just tell you?',s7=mkTx('#tTx',m7);typeRun(s7,m7,t0+.6,Math.max(t0+3.0,D-1.3),0);
+ [0,1].forEach(k=>tl.fromTo('#trcpPl',{x:0,y:0,rotation:0,opacity:1},{x:60,y:-50,rotation:-12,opacity:0,duration:.8,ease:'power2.in',immediateRender:false},t0+1.4+k*1.5));
+ pulses(['#cM1','#cM2','#cWn'],tD+1.4,l4.start+.6,.8,.025);pulses(['#cA','#cB','#cM3'],tA+1.3,tF5,.8,.025);pulses(['#gA','#gM1'],tGA+.9,tF6,.8,.025);pulses(['#lA','#lM1'],tN+.4,tTry-.4,.8,.025);pulses(['#tct','#tst1','#tst2'],t0+1.0,D,.7,.02);
+ // ring pulse: the warning ring sends out soft echoes (second-watch detail)
+ for(let k=0;k<3;k++)tl.fromTo('#cEcho',{scale:1,opacity:.8},{scale:1.09,opacity:0,duration:.9,ease:'power2.out',immediateRender:false,transformOrigin:'50% 50%'},tD+2.0+k*1.0);
+ // ----- idle life on whatever holds: 3D tilt, skew, sideways float (long, uneven curves)
+ const idle=(sels,a,b,seed)=>sels.forEach((s,i)=>{let r=(seed+i*7)%97/97+.1,t=a+((seed*.37+i*.23)%.6);while(t<b-.3){r=(r*9301+49297)%233280/233280;const d=.9+r*1.0;tl.to(s,{x:(r-.5)*10,rotationY:(r-.4)*3.2,rotationX:(.5-r)*2,skewX:(r-.5)*.9,duration:d,ease:'sine.inOut',transformOrigin:'50% 50%'},t);t+=d;}});
+ tl.set(['#cM2','#cA','#cB','#gA','#lA','#tct'],{transformPerspective:1200},0);
+ idle(['#cM2'],tD+1.2,l4.start+.5,1);idle(['#cA','#cB'],tA+1.0,tF5,2);idle(['#gA','#gM1'],tGA+.8,tF6,3);idle(['#lA','#lM1'],tN+.2,tTry-.4,4);idle(['#tct'],t0+1.0,D,5);
+ // scene dots grid drifts a little
+ tl.fromTo('#gd',{backgroundPosition:'27px 27px'},{backgroundPosition:'27px 400px',duration:D,ease:'none'},0);
+};
+</script>
