@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "historyId": "9a670841-1b24-4365-b519-f922701e688b",
+  "currentRevision": "8699147c-ab5b-4cef-b198-3f1fa5d03075",
+  "pendingChanges": false,
+  "files": {
+    "assets/fonts/InterDisplay-Black.otf": {
+      "hash": "c0ebb676933a45d73d16fea70c875f9f2b711b585c69b15962b7f2a890b5f8e8",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/c0/c0ebb676933a45d73d16fea70c875f9f2b711b585c69b15962b7f2a890b5f8e8"
+    },
+    "assets/fonts/InterDisplay-ExtraBold.otf": {
+      "hash": "7f233cb770bedfb0e4d1d5bada87dade7505513b020ca4b1ae2566fa358263b4",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/7f/7f233cb770bedfb0e4d1d5bada87dade7505513b020ca4b1ae2566fa358263b4"
+    },
+    "assets/fonts/InterDisplay-Medium.otf": {
+      "hash": "cf438d4cd4979fda59150c773af3381d5b18627826672234846722bb6d06b86c",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/cf/cf438d4cd4979fda59150c773af3381d5b18627826672234846722bb6d06b86c"
+    },
+    "assets/fonts/JetBrainsMono-Bold.ttf": {
+      "hash": "587fe1c01c3c1a8c579edd0d213476b3db625269bd5f43a7ec4ead6826f64557",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/58/587fe1c01c3c1a8c579edd0d213476b3db625269bd5f43a7ec4ead6826f64557"
+    },
+    "assets/fonts/JetBrainsMono-Medium.ttf": {
+      "hash": "712b76d2f7cabaa50799d5775b8de657b8ca07dd3abb95bd793effb71b754c8d",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/71/712b76d2f7cabaa50799d5775b8de657b8ca07dd3abb95bd793effb71b754c8d"
+    },
+    "assets/git-logo.svg": {
+      "hash": "c5f6153fc8e226accca81b404961b2bc465baccfb8521d081799eaaf4be3379d",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/c5/c5f6153fc8e226accca81b404961b2bc465baccfb8521d081799eaaf4be3379d"
+    },
+    "assets/github-lockup.svg": {
+      "hash": "802172fd58f2956be454f45e07c351d5c3d6830554632796b8f16fcecc7d273b",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/80/802172fd58f2956be454f45e07c351d5c3d6830554632796b8f16fcecc7d273b"
+    },
+    "assets/github-mark.svg": {
+      "hash": "693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/69/693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1"
+    },
+    "index.html": {
+      "hash": "7044e1417aec98783633dfa21016e099e031225d349ebfd58ebb29bdcab463f4",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/70/7044e1417aec98783633dfa21016e099e031225d349ebfd58ebb29bdcab463f4"
+    }
+  },
+  "revisions": {
+    "c3b71fa5-8bfa-4a4e-b2fd-5aa328bacedb": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794091932535,
+      "endedAt": 1794091932536,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/8b/8bf28baf5c07283afa7e99a7ca414694a5c21f2de1519d8035226f3f94a97648",
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/b7/b7b4512b175fe87ead3df988430b8106ec16929f9ae7a4d19d2869df380588be"
+        }
+      }
+    },
+    "2ff5eee4-9a8f-40d1-9a28-1bd443653aa2": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794092381567,
+      "endedAt": 1794092381568,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/b7/b7b4512b175fe87ead3df988430b8106ec16929f9ae7a4d19d2869df380588be",
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/27/27334fc401775b1fcb3266912cf9d6e82864b1e07a2cdccc4456624e8ed3beb7"
+        }
+      }
+    },
+    "8699147c-ab5b-4cef-b198-3f1fa5d03075": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794092536220,
+      "endedAt": 1794092536223,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/27/27334fc401775b1fcb3266912cf9d6e82864b1e07a2cdccc4456624e8ed3beb7",
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/70/7044e1417aec98783633dfa21016e099e031225d349ebfd58ebb29bdcab463f4"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "b9af2d06-e7e7-4243-baa6-fbf4bbf9129f",
+      "completedAt": 1794092660432,
+      "output": "/home/user/videos-ai/video/nextreel-git/out/b1t.mp4",
+      "status": "completed",
+      "revision": "8699147c-ab5b-4cef-b198-3f1fa5d03075"
+    },
+    "retainedRevisions": [
+      "8699147c-ab5b-4cef-b198-3f1fa5d03075",
+      "2ff5eee4-9a8f-40d1-9a28-1bd443653aa2"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

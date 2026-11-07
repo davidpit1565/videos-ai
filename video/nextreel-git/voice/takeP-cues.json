@@ -1,0 +1,164 @@
+[
+ {
+  "n": 1,
+  "line": "It only works if a save point exists. GitHub is where those live.",
+  "start": 0.08,
+  "end": 4.42
+ },
+ {
+  "n": 2,
+  "line": "It only works if a save point exists. GitHub is where those live.",
+  "start": 4.84,
+  "end": 9.02
+ },
+ {
+  "n": 3,
+  "line": "It only works if a save point exists. GitHub is where those live.",
+  "start": 9.44,
+  "end": 13.49
+ },
+ {
+  "n": 4,
+  "line": "Nobody shows you this when AI builds your app.",
+  "start": 13.91,
+  "end": 16.48
+ },
+ {
+  "n": 5,
+  "line": "Nobody shows you this when AI builds your app.",
+  "start": 17.33,
+  "end": 19.75
+ },
+ {
+  "n": 6,
+  "line": "Nobody shows you this when AI builds your app.",
+  "start": 20.17,
+  "end": 23.22
+ },
+ {
+  "n": 7,
+  "line": "In a game, you save ahead of the boss. In an app, that save is a commit.",
+  "start": 23.64,
+  "end": 28.36
+ },
+ {
+  "n": 8,
+  "line": "In a game, you save ahead of the boss. In an app, that save is a commit.",
+  "start": 28.78,
+  "end": 33.29
+ },
+ {
+  "n": 9,
+  "line": "In a game, you save ahead of the boss. In an app, that save is a commit.",
+  "start": 34.14,
+  "end": 38.86
+ },
+ {
+  "n": 10,
+  "line": "Git makes the save. GitHub keeps a copy online.",
+  "start": 39.28,
+  "end": 42.42
+ },
+ {
+  "n": 11,
+  "line": "Git makes the save. GitHub keeps a copy online.",
+  "start": 42.84,
+  "end": 46.47
+ },
+ {
+  "n": 12,
+  "line": "Git makes the save. GitHub keeps a copy online.",
+  "start": 46.89,
+  "end": 50.44
+ },
+ {
+  "n": 13,
+  "line": "Push sends your saves there.",
+  "start": 50.86,
+  "end": 52.4
+ },
+ {
+  "n": 14,
+  "line": "Push sends your saves there.",
+  "start": 53.25,
+  "end": 54.87
+ },
+ {
+  "n": 15,
+  "line": "Push sends your saves there.",
+  "start": 55.29,
+  "end": 57.12
+ },
+ {
+  "n": 16,
+  "line": "Clone gets them on a new laptop.",
+  "start": 57.97,
+  "end": 59.89
+ },
+ {
+  "n": 17,
+  "line": "Clone gets them on a new laptop.",
+  "start": 60.31,
+  "end": 62.49
+ },
+ {
+  "n": 18,
+  "line": "Clone gets them on a new laptop.",
+  "start": 62.91,
+  "end": 64.86
+ },
+ {
+  "n": 19,
+  "line": "A branch is a side copy, for risky tries. Merge brings it back.",
+  "start": 65.28,
+  "end": 69.41
+ },
+ {
+  "n": 20,
+  "line": "A branch is a side copy, for risky tries. Merge brings it back.",
+  "start": 69.83,
+  "end": 74.06
+ },
+ {
+  "n": 21,
+  "line": "A branch is a side copy, for risky tries. Merge brings it back.",
+  "start": 74.48,
+  "end": 78.6
+ },
+ {
+  "n": 22,
+  "line": "So say this to your AI: save this version.",
+  "start": 79.02,
+  "end": 82.06
+ },
+ {
+  "n": 23,
+  "line": "So say this to your AI: save this version.",
+  "start": 82.48,
+  "end": 84.98
+ },
+ {
+  "n": 24,
+  "line": "So say this to your AI: save this version.",
+  "start": 85.4,
+  "end": 87.79
+ },
+ {
+  "n": 25,
+  "line": "Tomorrow, I'll show you why AI says to hide a secret key. Follow for the full story.",
+  "start": 88.21,
+  "end": 93.06
+ },
+ {
+  "n": 26,
+  "line": "Tomorrow, I'll show you why AI says to hide a secret key. Follow for the full story.",
+  "start": 93.48,
+  "end": 98.36
+ },
+ {
+  "n": 27,
+  "line": "Tomorrow, I'll show you why AI says to hide a secret key. Follow for the full story.",
+  "start": 98.78,
+  "end": 103.95
+ }
+]

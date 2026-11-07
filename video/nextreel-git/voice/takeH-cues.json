@@ -1,0 +1,62 @@
+[
+ {
+  "n": 1,
+  "line": "This app just died. One sentence brought it back.",
+  "start": 0.08,
+  "end": 3.05
+ },
+ {
+  "n": 2,
+  "line": "This app just died. One sentence brought it back.",
+  "start": 3.47,
+  "end": 6.69
+ },
+ {
+  "n": 3,
+  "line": "This app just died. One sentence brought it back.",
+  "start": 7.11,
+  "end": 9.99
+ },
+ {
+  "n": 4,
+  "line": "This app just died. One sentence brought it back.",
+  "start": 10.41,
+  "end": 13.69
+ },
+ {
+  "n": 5,
+  "line": "This app just died. One sentence brought it back.",
+  "start": 14.54,
+  "end": 17.33
+ },
+ {
+  "n": 6,
+  "line": "The sentence: go back to the last version that worked.",
+  "start": 17.75,
+  "end": 20.64
+ },
+ {
+  "n": 7,
+  "line": "The sentence: go back to the last version that worked.",
+  "start": 21.06,
+  "end": 23.99
+ },
+ {
+  "n": 8,
+  "line": "The sentence: go back to the last version that worked.",
+  "start": 24.41,
+  "end": 27.36
+ },
+ {
+  "n": 9,
+  "line": "The sentence: go back to the last version that worked.",
+  "start": 28.21,
+  "end": 31.08
+ },
+ {
+  "n": 10,
+  "line": "The sentence: go back to the last version that worked.",
+  "start": 31.5,
+  "end": 34.28
+ }
+]
