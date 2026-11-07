@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "9a670841-1b24-4365-b519-f922701e688b",
-  "currentRevision": "8699147c-ab5b-4cef-b198-3f1fa5d03075",
+  "currentRevision": "b4a86ab4-ca40-4ffb-bdd8-e9cd1e259c2f",
   "pendingChanges": false,
   "files": {
     "assets/fonts/InterDisplay-Black.otf": {
@@ -37,8 +37,32 @@
       "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/69/693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1"
     },
     "index.html": {
-      "hash": "7044e1417aec98783633dfa21016e099e031225d349ebfd58ebb29bdcab463f4",
-      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/70/7044e1417aec98783633dfa21016e099e031225d349ebfd58ebb29bdcab463f4"
+      "hash": "0866e141f9060ff5f40f954d798866ce5ecd89fb7ce1abf89e8ababf588b9429",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/08/0866e141f9060ff5f40f954d798866ce5ecd89fb7ce1abf89e8ababf588b9429"
+    },
+    "assets/cap/gh-branches.jpg": {
+      "hash": "0a51e2e94e097fbd4bd1c6c73f08d47a8f241c4577f09457dc99effb69e15b73",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/0a/0a51e2e94e097fbd4bd1c6c73f08d47a8f241c4577f09457dc99effb69e15b73"
+    },
+    "assets/cap/gh-code.jpg": {
+      "hash": "11f6dc469bd83eced29180b69aca84b1f81880dddb04eac1b43f64062d58937d",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/11/11f6dc469bd83eced29180b69aca84b1f81880dddb04eac1b43f64062d58937d"
+    },
+    "assets/cap/gh-commits.jpg": {
+      "hash": "e1211a52b6a46d9346af794c1dab08f99c1e8619a0eb9ca3443d3ed6c9e4de3f",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/e1/e1211a52b6a46d9346af794c1dab08f99c1e8619a0eb9ca3443d3ed6c9e4de3f"
+    },
+    "assets/cap/gh-repo.jpg": {
+      "hash": "9011b980050f9fbf124107e638fbcb1c50d16720b1c202844558431c6092592b",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/90/9011b980050f9fbf124107e638fbcb1c50d16720b1c202844558431c6092592b"
+    },
+    "assets/cap/gitscm.jpg": {
+      "hash": "257599db6a3c7a1190cac5c79cbe17fba08eeff5196f3d4df509635f485e82bc",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/25/257599db6a3c7a1190cac5c79cbe17fba08eeff5196f3d4df509635f485e82bc"
+    },
+    "assets/cap/meta.json": {
+      "hash": "5e0dd436e7473e7a486a0724e88c470c2e00ef77932fcc09a669ee84e73bfe21",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/5e/5e0dd436e7473e7a486a0724e88c470c2e00ef77932fcc09a669ee84e73bfe21"
     }
   },
   "revisions": {
@@ -84,6 +108,45 @@
         "index.html": {
           "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/27/27334fc401775b1fcb3266912cf9d6e82864b1e07a2cdccc4456624e8ed3beb7",
           "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/70/7044e1417aec98783633dfa21016e099e031225d349ebfd58ebb29bdcab463f4"
+        }
+      }
+    },
+    "b4a86ab4-ca40-4ffb-bdd8-e9cd1e259c2f": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794094292166,
+      "endedAt": 1794094292204,
+      "files": {
+        "assets/cap/gh-branches.jpg": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/0a/0a51e2e94e097fbd4bd1c6c73f08d47a8f241c4577f09457dc99effb69e15b73"
+        },
+        "assets/cap/gh-code.jpg": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/11/11f6dc469bd83eced29180b69aca84b1f81880dddb04eac1b43f64062d58937d"
+        },
+        "assets/cap/gh-commits.jpg": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/e1/e1211a52b6a46d9346af794c1dab08f99c1e8619a0eb9ca3443d3ed6c9e4de3f"
+        },
+        "assets/cap/gh-repo.jpg": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/90/9011b980050f9fbf124107e638fbcb1c50d16720b1c202844558431c6092592b"
+        },
+        "assets/cap/gitscm.jpg": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/25/257599db6a3c7a1190cac5c79cbe17fba08eeff5196f3d4df509635f485e82bc"
+        },
+        "assets/cap/meta.json": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/5e/5e0dd436e7473e7a486a0724e88c470c2e00ef77932fcc09a669ee84e73bfe21"
+        },
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/70/7044e1417aec98783633dfa21016e099e031225d349ebfd58ebb29bdcab463f4",
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/08/0866e141f9060ff5f40f954d798866ce5ecd89fb7ce1abf89e8ababf588b9429"
         }
       }
     }
