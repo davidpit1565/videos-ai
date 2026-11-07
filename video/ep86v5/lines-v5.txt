@@ -4,5 +4,5 @@ It added a warning: someone looking at your screen might see.
 Now I'm the teacher. Did someone cheat?
 It said: someone asked me for maths help, and asked me not to tell.
 Gemini told me too, after more tries.
-And Claude? It said no. It never even heard the secret.
+And Claude? It said no to the maths. So there was no secret to tell.
 Two told. Claude said no.
