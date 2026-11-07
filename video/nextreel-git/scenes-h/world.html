@@ -55,7 +55,7 @@ function plane(g,w,h,css,html){const p=div('o pl',g,html||'',Object.assign({widt
 const LW=n=>L[n-1].words, LS=n=>L[n-1].start, LE=n=>L[n-1].end, WT=(n,i)=>L[n-1].words[i][0];
 
 /* ---------- depth: stars, floor ---------- */
-for(let i=0;i<150;i++){const s=div('star',pan,'',{width:(3+rnd(i+7)*5)+'px',height:(3+rnd(i+9)*5)+'px',opacity:.12+rnd(i+3)*.3,background:rnd(i)>.75?'#D4FF3A':'#9FB4FF'});
+for(let i=0;i<45;i++){const s=div('star',pan,'',{width:(3+rnd(i+7)*5)+'px',height:(3+rnd(i+9)*5)+'px',opacity:.12+rnd(i+3)*.3,background:rnd(i)>.75?'#D4FF3A':'#9FB4FF'});
   gsap.set(s,{x:-800+rnd(i+1)*18600,y:-200+rnd(i+2)*2300,z:-300-rnd(i+4)*1500});}
 const floor=div('o',pan,'',{width:19000+'px',height:2600+'px',background:'repeating-linear-gradient(90deg,rgba(212,255,58,.10) 0 2px,transparent 2px 130px),repeating-linear-gradient(0deg,rgba(212,255,58,.10) 0 2px,transparent 2px 130px)',
   WebkitMaskImage:'radial-gradient(closest-side,#000 40%,transparent 100%)',maskImage:'linear-gradient(0deg,transparent,#000 30%,#000 70%,transparent)'});
@@ -63,7 +63,7 @@ gsap.set(floor,{x:-1300,y:SPY+140,z:-1300,rotationX:90,transformOrigin:'0 0'});
 
 /* ---------- spine (the lime timeline) ---------- */
 for(let k=-1;k<=14;k++){const s=div('sp',pan);gsap.set(s,{x:ST(k)-650,y:SPY-3});s.style.width='1300px';}
-for(let k=0;k<=13;k++){for(let j=0;j<2;j++){const st=div('streak',pan);gsap.set(st,{x:ST(k)-900,y:SPY-5});
+for(let k=0;k<=13;k++){for(let j=0;j<1;j++){const st=div('streak',pan);gsap.set(st,{x:ST(k)-900,y:SPY-5});
   tl.fromTo(st,{x:ST(k)-900},{x:ST(k)+900,duration:1.7,ease:'none',repeat:Math.ceil(D/1.7),},j*.85+k*.13);}}
 
 /* ---------- helpers: node, tag, terminal, ring ---------- */

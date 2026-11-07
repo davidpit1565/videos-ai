@@ -25,6 +25,8 @@ for j,k in enumerate(USE):
     n=k+1
     x,s=sf.read(f"{VOICE}/{n}.wav"); assert s==sr; x=x if x.ndim==1 else x[:,0]
     d=len(x)/sr; ln=dict(n=n,key=KEYS[k],text=ALL[k],start=round(t,3),end=round(t+d,3))
+    if str(n) in words and len(words[str(n)])==len(ALL[k].split())+1 and n==1:
+        w0=words[str(n)]; words[str(n)]=[[w0[0][0],w0[1][1]]]+w0[2:]   # splice line 1: whisper split "ChatGPT" in two stamps -> merge them
     if str(n) in words and len(words[str(n)])==len(ALL[k].split()): ln["words"]=[[round(a+t,3),round(b+t,3)] for a,b in words[str(n)]]
     lines.append(ln); out.append((int(t*sr),x)); t+=d+(GAPS[j] if j<len(USE)-1 else 0)
 byk={l["key"]:l for l in lines}

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "9a670841-1b24-4365-b519-f922701e688b",
-  "currentRevision": "b4a86ab4-ca40-4ffb-bdd8-e9cd1e259c2f",
+  "currentRevision": "bd437b28-3892-47a5-afb5-ee89ecbfbcc5",
   "pendingChanges": false,
   "files": {
     "assets/fonts/InterDisplay-Black.otf": {
@@ -37,8 +37,8 @@
       "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/69/693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1"
     },
     "index.html": {
-      "hash": "0866e141f9060ff5f40f954d798866ce5ecd89fb7ce1abf89e8ababf588b9429",
-      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/08/0866e141f9060ff5f40f954d798866ce5ecd89fb7ce1abf89e8ababf588b9429"
+      "hash": "fae21acc1f97a5d3139c4a9e4bfe8c10f9e148dd63d93adefc13f8f4893b2fa9",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/fa/fae21acc1f97a5d3139c4a9e4bfe8c10f9e148dd63d93adefc13f8f4893b2fa9"
     },
     "assets/cap/gh-branches.jpg": {
       "hash": "0a51e2e94e097fbd4bd1c6c73f08d47a8f241c4577f09457dc99effb69e15b73",
@@ -147,6 +147,21 @@
         "index.html": {
           "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/70/7044e1417aec98783633dfa21016e099e031225d349ebfd58ebb29bdcab463f4",
           "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/08/0866e141f9060ff5f40f954d798866ce5ecd89fb7ce1abf89e8ababf588b9429"
+        }
+      }
+    },
+    "bd437b28-3892-47a5-afb5-ee89ecbfbcc5": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794095345668,
+      "endedAt": 1794095345670,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/08/0866e141f9060ff5f40f954d798866ce5ecd89fb7ce1abf89e8ababf588b9429",
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/fa/fae21acc1f97a5d3139c4a9e4bfe8c10f9e148dd63d93adefc13f8f4893b2fa9"
         }
       }
     }

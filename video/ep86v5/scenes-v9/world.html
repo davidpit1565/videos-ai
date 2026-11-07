@@ -32,7 +32,7 @@
 .wn svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
 .dots{position:absolute;left:80px;width:230px;height:100px;background:#fff;border:6px solid var(--ink);border-radius:44px 44px 44px 12px;box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:18px;opacity:0}
 .dots b{display:block;width:22px;height:22px;border-radius:50%;background:var(--ink)}
-.cap{position:absolute;left:65px;width:950px;top:332px;text-align:center;font-weight:900;font-size:96px;line-height:104px;letter-spacing:-.045em;white-space:nowrap;opacity:0}
+.cap{position:absolute;left:65px;width:950px;top:340px;text-align:center;font-weight:900;font-size:96px;line-height:104px;letter-spacing:-.045em;white-space:nowrap;opacity:0}
 .cap span{display:inline-block;margin:0 9px;padding:0 10px;border-radius:18px;color:#B5B5AB}
 .comp{position:absolute;left:40px;top:1140px;width:1000px;height:104px;border:6px solid var(--ink);border-radius:52px;background:#fff;box-shadow:7px 7px 0 var(--ink)}
 .comp .av{position:absolute;left:12px;top:8px;width:76px;height:76px;perspective:400px;transform-style:preserve-3d}
@@ -214,16 +214,18 @@ window.buildWorld=function(tl){
  tl.fromTo('#cChip',{opacity:0,y:14},{opacity:1,y:0,duration:.6,ease:'power3.out'},l2.end+.25);
  typeRun(s1,m1,0,Math.max(1.2,l1.end-.28),11);
  tl.set('#cEmpty',{opacity:0},0);tl.fromTo('#cEmpty img',{rotation:-8},{rotation:8,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:3},0);
- tl.set('#cam2',{scale:1.07,transformOrigin:'540px 1000px'},0);tl.to('#cam2',{scale:1,duration:Math.max(2.4,l2.end-.2),ease:'sine.inOut',immediateRender:false},.1);
+ tl.set('#cam2',{scale:1.03,transformOrigin:'540px 640px'},0);tl.to('#cam2',{scale:1,duration:Math.max(2.4,l2.end-.2),ease:'sine.inOut',immediateRender:false},.1);
  const tS1=l1.end-.12;sendBtn('#cSn',tS1);clearTx(s1,tS1+.04);
  rise('#cM1',tS1,500,0);
  // ---- hook caption: big word-lit chunks (line 1 and 2), current word lime box, spoken words dark, unspoken grey
  {const cap=document.getElementById('capH'),wh=wk('hook'),wsf=wk('safe');
   const chunks=[[wh,[0,1]],[wh,[2,3,4]],[wsf,[0,1,2]],[wsf,[3,4]],[wsf,[5,6,7]]];
   const txt=[['ChatGPT,','don\u2019t','tell','my','teacher!'],['It','said:','safe','with','me.','Then','it','told!']];
-  chunks.forEach((ch,ci)=>{const src=ch[0]===wh?0:1,idx=ch[1];const d=document.createElement('div');d.className='cap';d.setAttribute('data-hook','');d.innerHTML=idx.map(i=>'<span>'+txt[src][i]+'</span>').join('');document.getElementById('scrC').appendChild(d);
-   const a=Math.max(ci?0:.02,ch[0][idx[0]][0]-.05),nx=chunks[ci+1],b=nx?Math.max(a+.4,nx[0][nx[1][0]][0]-.05):l2.end+.15;
-   tl.fromTo(d,{opacity:0,y:18},{opacity:1,y:0,duration:.22,ease:'power3.out',immediateRender:false},a);tl.to(d,{opacity:0,duration:.14,ease:'sine.in'},b);
+  const starts=chunks.map(ch=>ch[0][ch[1][0]][0]);
+  chunks.forEach((ch,ci)=>{const src=ch[0]===wh?0:1,idx=ch[1];const d=document.createElement('div');d.className='cap';d.setAttribute('data-hook','');d.style.visibility='hidden';d.innerHTML=idx.map(i=>'<span>'+txt[src][i]+'</span>').join('');document.getElementById('scrC').appendChild(d);
+   const a=Math.max(ci?0:.02,starts[ci]-.04),end=ci<chunks.length-1?starts[ci+1]-.08:l2.end+.2;
+   tl.set(d,{visibility:'visible'},a);tl.fromTo(d,{opacity:0,y:14},{opacity:1,y:0,duration:Math.min(.14,Math.max(.06,end-a-.2)),ease:'power3.out',immediateRender:false},a);
+   const fo=Math.max(a+.2,end-.09);tl.to(d,{opacity:0,duration:.08,ease:'sine.in'},fo);tl.set(d,{visibility:'hidden'},fo+.085);
    [...d.children].forEach((sp,k)=>{const wt=ch[0][idx[k]];tl.set(sp,{backgroundColor:'#7FD14B',color:'#0E0E0E'},Math.max(a,wt[0]));tl.set(sp,{backgroundColor:'rgba(127,209,75,0)',color:'#0E0E0E'},wt[1]);});});
   // proof flash: the final state for 0.5 s, then back to the typing
   tl.set('#capH',{opacity:0},0);tl.to('#flash',{opacity:0,duration:.18,ease:'sine.in'},.45);}
@@ -288,7 +290,7 @@ window.buildWorld=function(tl){
  tl.fromTo('#lTag',{opacity:0},{opacity:0,duration:.01},0);tagIn('#lTag',tN+.4);scramble('#lTag .lbl',tN+.45);
  tl.fromTo('#lScore',{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:'power3.out'},Math.max(tN+1.0,l7.end-.9));
  // ====== B7: your turn (closing) ======
- flight('#scrL','#scrT',tTry-.38);
+ flight('#scrL','#scrT',tTry-.38);tl.to(['#ser','#rl'],{opacity:0,duration:.25,ease:'sine.in'},tTry-.3);
  const t0=tTry+.35;
  tl.fromTo('#tct',{opacity:0,y:70,scale:.97},{opacity:1,y:0,scale:1,duration:.7,ease:'power3.out',transformOrigin:'50% 0%'},t0);
  [['#tst1',.25],['#tst2',.4],['#tnt1',.55],['#tnt2',.68],['#tnt3',.78],['#trcp',.92]].forEach(([s,d])=>tl.fromTo(s,{opacity:0,y:26},{opacity:1,y:0,duration:.5,ease:'power3.out'},t0+d));
