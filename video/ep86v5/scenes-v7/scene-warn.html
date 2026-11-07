@@ -1,0 +1,41 @@
+<!-- ep86 v5 scene WARN (long only, line "It added a warning: someone looking at your screen might see."). The real warning, in the SAME reply as "safe with me" (stated on screen). -->
+<style>
+#__S__{--acc:#7FD14B}
+#__S__ .hd{top:346px}
+#__S__ .bw{position:absolute;left:80px;top:690px;width:920px;background:var(--white);border:8px solid var(--red);border-radius:44px;box-shadow:10px 10px 0 var(--ink);padding:30px 34px 34px;opacity:0}
+#__S__ .bw .qt{font-weight:800;font-size:66px;line-height:74px;letter-spacing:-.025em}
+#__S__ .bw .qw{display:inline-block;opacity:.5;margin-right:.26em;white-space:nowrap}
+#__S__ .eyes{position:absolute;right:30px;top:-76px;font-size:80px;line-height:80px;opacity:0}
+#__S__ .cap{position:absolute;left:80px;width:920px;top:1070px;text-align:center;font-weight:700;font-size:40px;line-height:42px;color:var(--ink2);opacity:0}
+</style>
+<div class="scn clip" id="__S__" data-start="0" data-duration="__D__" data-track-index="1"><div class="cam" id="wcam">
+ <div class="grp hd" id="whd">
+  <div class="row"><span class="w s112 bk" data-k="0">IT</span><span class="w s112 bk" data-k="1">ADDED</span></div>
+  <div class="row"><span class="w s112 bk" data-k="2">A</span><span class="w pill s112 bk" data-k="3" style="padding:0 20px">WARNING</span></div>
+ </div>
+ <div class="bw" id="wbw"><div class="eyes" id="weyes">&#x1F440;</div><div class="qt" id="wq"></div></div>
+ <div class="cap" id="wcap">Same reply as &ldquo;safe with me&rdquo;</div>
+</div></div>
+<script>
+window.buildScene_warn=function(tl,T0,DUR,SID){
+ const H=window.__e86,q=s=>[...document.querySelectorAll(s)],E=T0+DUR;
+ const w=H.wk('warn')||[];   // It(0) added(1) a(2) warning:(3) someone(4) looking(5) at(6) your(7) screen(8) might(9) see.(10)
+ tl.set('#'+SID,{opacity:1,visibility:'visible'},T0);
+ tl.set('#'+SID+' .w',{opacity:0},T0);
+ H.cam(tl,'#wcam',T0,DUR,2);
+ const t0=T0+.1;
+ q('#whd .w').forEach((el,i)=>{const k=+el.dataset.k;tl.fromTo(el,{opacity:0,y:34,scale:el.classList.contains('pill')?1.1:1},{opacity:.5,y:0,scale:1,duration:.5,ease:'power3.out'},t0+i*.08);tl.to(el,{opacity:1,duration:.16,ease:'sine.out'},Math.max(t0+.4,(w[k]||[t0])[0]));});
+ const toks=['But','I','can’t','promise','what','someone','looking','at','your','screen','might','see.','\u{1F62D}'];
+ const qw=H.qwords(document.querySelector('#wq'),toks);
+ const map={5:4,6:5,7:6,8:7,9:8,10:9,11:10,12:10};  // display token -> spoken token (someone..see.)
+ const tb=Math.max(t0+.35,(w[3]||[t0+.8])[0]-.3);
+ H.rise(tl,'#wbw',tb,150);
+ qw.forEach((el,j)=>{ if(map[j]!==undefined) tl.to(el,{opacity:1,duration:.18,ease:'sine.out'},Math.max(tb+.5,(w[map[j]]||[tb])[0])); });
+ tl.fromTo('#weyes',{opacity:0,scale:.6,x:0},{opacity:1,scale:1,duration:.6,ease:'power3.out'},tb+.4);
+ tl.to('#weyes',{x:-22,duration:.7,ease:'sine.inOut',yoyo:true,repeat:Math.max(2,Math.round((E-tb)/.7))},tb+1.0);
+ tl.fromTo('#wcap',{opacity:0,y:20},{opacity:1,y:0,duration:.6,ease:'power3.out'},Math.max(tb+1.1,E-1.5));
+ tl.fromTo('#wbw',{rotation:-.6},{rotation:.6,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round(DUR/1.3))},tb+.8);
+ H.pulses(tl,['#wbw','#whd'],tb+.9,E,.8,.03);
+ H.idle(tl,['#whd','#wbw'],T0+1.0,E);
+};
+</script>

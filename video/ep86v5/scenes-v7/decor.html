@@ -1,0 +1,84 @@
+<!-- ep86 v7 decor: ALIVE background for the whole 1080x1920 frame (everything here is data-decor, no text a viewer must read).
+ Layers with different speeds (depth): soft glows, diagonal bands, a second dot grid, ghost chat bubbles with the three AI logos, floating reaction emoji,
+ two logo tickers + a progress ribbon + a big voice wave in the bottom third, side rails, a top ticker. Random-looking values come from a fixed seed (same every render). -->
+<style>
+#decor{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden;pointer-events:none}
+#decor .gl{position:absolute;border-radius:50%}
+#decor .bd2{position:absolute;left:-300px;width:1800px;height:110px;background:linear-gradient(90deg,rgba(127,209,75,0),rgba(127,209,75,.16),rgba(127,209,75,0));transform-origin:50% 50%}
+#decor #dots2{position:absolute;left:-200px;top:-200px;width:1500px;height:2300px;background:radial-gradient(rgba(14,14,14,.13) 4px,transparent 5px) 0 0/108px 108px}
+#decor .bub{position:absolute;background:rgba(255,255,255,.58);border:5px solid rgba(14,14,14,.17);border-radius:46px 46px 46px 12px;box-shadow:9px 9px 0 rgba(14,14,14,.07);display:flex;align-items:center;justify-content:center;gap:16px}
+#decor .bub img{opacity:.6}
+#decor .bub i{display:block;width:16px;height:16px;border-radius:50%;background:rgba(14,14,14,.22)}
+#decor .emo{position:absolute;line-height:1;opacity:.9}
+#decor .tk{position:absolute;left:0;height:92px;display:flex;gap:22px}
+#decor .tk .p{flex:none;width:168px;height:92px;background:rgba(255,255,255,.78);border:5px solid rgba(14,14,14,.45);border-radius:28px;box-shadow:6px 6px 0 rgba(14,14,14,.18);display:flex;align-items:center;justify-content:center;gap:14px}
+#decor .tk .p img{width:48px;height:48px}
+#decor .tk .p i{display:block;width:14px;height:14px;border-radius:50%;background:rgba(14,14,14,.4)}
+#decor .tk .p u{display:block;width:40px;height:40px;border-radius:50%;border:5px dashed rgba(14,14,14,.35)}
+#decor .rail{position:absolute;top:-100px;width:6px;height:2200px;background:repeating-linear-gradient(rgba(14,14,14,.22) 0 26px,transparent 26px 52px)}
+#decor .rh{position:absolute;left:-100px;width:1300px;height:6px;background:repeating-linear-gradient(90deg,rgba(14,14,14,.22) 0 26px,transparent 26px 52px)}
+#decor .trk{position:absolute;left:80px;top:1558px;width:920px;height:10px;border-radius:5px;background:rgba(14,14,14,.14)}
+#decor .seg{position:absolute;top:1550px;height:26px;border-radius:13px;border:4px solid rgba(14,14,14,.35);background:rgba(255,255,255,.6)}
+#decor .ph{position:absolute;top:1542px;width:42px;height:42px;border-radius:50%;background:#7FD14B;border:6px solid #0E0E0E;box-shadow:4px 4px 0 rgba(14,14,14,.3)}
+#decor .wv{position:absolute;left:20px;top:1650px;width:1040px;height:250px;display:flex;align-items:flex-end;justify-content:space-between}
+#decor .wv b{display:block;width:17px;height:250px;border-radius:9px;background:linear-gradient(rgba(127,209,75,.75),rgba(127,209,75,.35));border:4px solid rgba(14,14,14,.28);transform-origin:50% 100%;transform:scaleY(.2)}
+</style>
+<div id="decor" data-decor>
+ <div class="gl" id="dg1" data-decor style="left:-420px;top:1180px;width:1000px;height:1000px;background:radial-gradient(rgba(127,209,75,.34),rgba(127,209,75,0) 68%)"></div>
+ <div class="gl" id="dg2" data-decor style="left:640px;top:-380px;width:900px;height:900px;background:radial-gradient(rgba(127,209,75,.26),rgba(127,209,75,0) 68%)"></div>
+ <div class="gl" id="dg3" data-decor style="left:560px;top:880px;width:800px;height:800px;background:radial-gradient(rgba(66,133,244,.16),rgba(66,133,244,0) 68%)"></div>
+ <div class="gl" id="dg4" data-decor style="left:-380px;top:420px;width:760px;height:760px;background:radial-gradient(rgba(217,119,87,.17),rgba(217,119,87,0) 68%)"></div>
+ <div class="bd2" id="db1" data-decor style="top:300px;transform:rotate(-19deg)"></div>
+ <div class="bd2" id="db2" data-decor style="top:980px;transform:rotate(-19deg)"></div>
+ <div class="bd2" id="db3" data-decor style="top:1560px;transform:rotate(-19deg)"></div>
+ <div id="dots2" data-decor></div>
+ <div class="rail" id="rl1" data-decor style="left:22px"></div><div class="rail" id="rl2" data-decor style="left:1052px"></div>
+ <div class="rh" id="rh1" data-decor style="top:236px"></div>
+</div>
+<script>
+window.buildDecor=function(tl){
+ const q=s=>document.querySelector(s),dec=q('#decor'),D=(window.__CUES||{}).D||22,Ls=(window.__CUES||{}).lines||[],T0=window.__T0||[0],DU=window.__DUR||[D];
+ let sd=7;const R=()=>{sd=(sd*16807)%2147483647;return (sd-1)/2147483646;};   // fixed-seed random: organic but identical on every render
+ const mk=(tag,cls,html,style)=>{const e=document.createElement(tag);if(cls)e.className=cls;e.setAttribute('data-decor','');if(html)e.innerHTML=html;if(style)e.style.cssText=style;dec.appendChild(e);return e;};
+ const logos=['assets/chatgpt.svg','assets/gemini.svg','assets/claude.svg'];
+ // ---- glows: slow, different directions and periods
+ [['#dg1',420,-260,1.0,1.12],['#dg2',-300,330,1.0,1.1],['#dg3',-380,360,1.08,.92],['#dg4',300,500,.94,1.12]].forEach(([s,dx,dy,a,b],i)=>{
+  tl.fromTo(s,{x:0,y:0,scale:a},{x:dx,y:dy,scale:b,duration:D+1,ease:'sine.inOut'},0);});
+ // ---- diagonal bands drift sideways at three speeds
+ [['#db1',420,0],['#db2',-560,0],['#db3',300,0]].forEach(([s,dx],i)=>tl.fromTo(s,{x:-dx*.5,y:0},{x:dx*.5,y:-90*(i+1),duration:D+1,ease:'sine.inOut'},0));
+ tl.fromTo('#dots2',{x:0,y:0},{x:-216,y:-324,duration:D+1,ease:'none'},0);
+ tl.fromTo('#rl1',{y:0},{y:-520,duration:D+1,ease:'none'},0);tl.fromTo('#rl2',{y:-520},{y:0,duration:D+1,ease:'none'},0);
+ tl.fromTo('#rh1',{x:0},{x:-520,duration:D+1,ease:'none'},0);
+ // ---- ghost chat bubbles with logos: rise at different speeds, sway, tilt
+ const B=[[ -150,1450,360,240,0,70],[ 840,1650,300,200,1,55],[ 360,1830,420,280,2,88],[ 700,2050,260,180,0,64],[ -90,2150,340,230,1,92],[ 900,980,280,190,2,60],[ -110,760,320,210,0,52],[ 380,2350,380,250,1,104],[ 860,1950,330,220,2,76],[ 120,1180,260,170,1,58],[ 520,1380,300,200,0,66],[ 960,420,240,160,1,48]];
+ B.forEach(([x,y,w,h,li,sp],i)=>{const e=mk('div','bub','<img src="'+logos[li]+'" style="width:'+Math.round(h*.36)+'px;height:'+Math.round(h*.36)+'px"><i></i><i></i><i></i>',`left:${x}px;top:${y}px;width:${w}px;height:${h}px;${i%2?'border-radius:46px 46px 12px 46px':''}`);
+  tl.fromTo(e,{y:0,rotation:(R()-.5)*8},{y:-sp*(D+1),duration:D+1,ease:'none'},0);
+  tl.fromTo(e,{x:0},{x:(R()<.5?-1:1)*(40+R()*60),duration:3+R()*3,ease:'sine.inOut',yoyo:true,repeat:Math.ceil((D+1)/(3+R()*3)/2)*2-1},R()*1.5);
+ });
+ // ---- floating reaction emoji, mostly in the margins and the bottom third
+ const E=['\u{1F910}','\u{1F602}','\u{1F62D}','\u{1F440}','\u{1F92B}','\u{1F605}','\u{1F512}','\u{1F4AC}','\u{1F910}','\u{1F440}','\u{1F62D}','\u{1F92B}','\u{1F602}','\u{1F4AC}'];
+ E.forEach((ch,i)=>{const side=i%3,sz=side===2?(70+Math.round(R()*36)):(56+Math.round(R()*22));
+  const x=side===0?(-26+R()*34):(side===1?(1046-sz*.5-R()*10):(110+R()*760)),y=side===2?(1380+R()*700):((i%2?1500:1000)+R()*900),sp=70+R()*90;
+  const e=mk('div','emo',ch,`left:${Math.round(x)}px;top:${Math.round(y)}px;font-size:${sz}px`);
+  tl.fromTo(e,{y:0,rotation:(R()-.5)*30},{y:-sp*(D+1),rotation:(R()-.5)*50,duration:D+1,ease:'none'},0);
+  tl.fromTo(e,{x:0},{x:(R()<.5?-1:1)*(side===2?(24+R()*40):10),duration:1.6+R()*2,ease:'sine.inOut',yoyo:true,repeat:Math.ceil((D+1)/(1.6+R()*2)/2)*2-1},R());
+  if(side===2){const tc=Math.max(0,(y-1300)/sp);tl.to(e,{opacity:0,duration:.6,ease:'sine.in'},Math.max(0,tc-.6));}   // centre emoji fade out before they reach the text area
+ });
+ // ---- bottom third: two logo tickers (opposite directions, different speeds), progress ribbon, big voice wave
+ const pill=(k)=>{const li=logos[k%3];return '<div class="p"><img src="'+li+'">'+(k%2?'<u></u>':'<i></i><i></i><i></i>')+'</div>';};
+ let a='',b='';for(let k=0;k<20;k++){a+=pill(k);b+=pill(k+1);}
+ const ta=mk('div','tk',a,'top:1318px'),tb=mk('div','tk',b,'top:1432px');
+ tl.fromTo(ta,{x:0},{x:-1900,duration:D+1,ease:'none'},0);tl.fromTo(tb,{x:-2600},{x:-600,duration:D+1,ease:'none'},0);
+ // top ticker (the top 14%): dots running right, slower
+ const tt=mk('div','tk','','top:150px;height:40px;gap:36px');let dd='';for(let k=0;k<44;k++)dd+='<div style="flex:none;width:30px;height:30px;border-radius:50%;background:'+(k%4===0?'#7FD14B':'rgba(14,14,14,.18)')+';border:4px solid rgba(14,14,14,.3)"></div>';tt.innerHTML=dd;tl.fromTo(tt,{x:-900},{x:-100,duration:D+1,ease:'none'},0);
+ // progress ribbon: one segment per scene (real scene times), playhead moves linearly, passed segments fill
+ mk('div','trk','');const W=920,segs=[];T0.forEach((t,i)=>{const x=80+W*t/D,w=Math.max(10,W*DU[i]/D-8);const s=mk('div','seg','',`left:${x}px;width:${w}px`);segs.push([s,t,DU[i]]);});
+ segs.forEach(([s,t,d])=>{tl.to(s,{backgroundColor:'rgba(127,209,75,.95)',duration:.4,ease:'sine.out'},t);tl.to(s,{backgroundColor:'rgba(14,14,14,.78)',duration:.5,ease:'sine.inOut'},t+d);});
+ const ph=mk('div','ph','');tl.fromTo(ph,{x:80-21},{x:80+W-21,duration:D,ease:'none'},0);tl.fromTo(ph,{scale:1},{scale:1.18,duration:.55,ease:'sine.inOut',yoyo:true,repeat:Math.floor(D/.55)},0);
+ // big voice wave across the bottom: follows the real line times, a different phase per bar
+ const wv=mk('div','wv','');for(let k=0;k<40;k++)wv.appendChild(document.createElement('b'));
+ const sp=t=>Ls.some(l=>t>=l.start-.05&&t<=l.end+.05);
+ [...wv.children].forEach((bar,i)=>{const kf=[];for(let t=0;t<D+.2;t+=.15){const e=sp(t)?1:.42;const v=e*(.28+.72*Math.abs(Math.sin(t*(2.2+i*.37)+i*1.7)))*(.65+.35*Math.sin(t*1.3+i*.9));kf.push({scaleY:Math.max(.12,Math.min(1,v)),duration:.15,ease:'sine.inOut'});}
+  tl.to(bar,{keyframes:kf},0);});
+};
+</script>

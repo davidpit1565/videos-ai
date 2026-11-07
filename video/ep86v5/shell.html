@@ -27,6 +27,7 @@ __STYLES__
 </style></head><body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="__D__" data-width="1080" data-height="1920">
 <div class="abs clip" id="gd" style="left:0;top:0;width:1080px;height:1920px;background:radial-gradient(var(--dot) 2.6px,transparent 3.2px) 27px 27px/54px 54px" data-start="0" data-duration="__D__" data-track-index="1"></div>
+__DECOR__
 __MARKUP__
 __CHROME__
 </div>
@@ -40,8 +41,9 @@ __SCRIPTS__
 <script>
 __CALLS__
 const BOUNDS=__BOUNDS__;
-BOUNDS.forEach((tm,k)=>{ // soft dip between scenes, never a wipe (David 3.11): old scene fades out over .2 s while the new one starts building
- tl.to("#s"+(k+1),{opacity:0,y:-14,duration:.17,ease:"sine.in"},tm-.19); tl.set("#s"+(k+1),{visibility:"hidden"},tm-.01); // old scene is fully gone before the next one starts building at tm+.1: never two scenes' text together
+BOUNDS.forEach((tm,k)=>{ // fly-through between scenes (no wipes): the old scene pushes toward the viewer and is gone before the next one starts to build, the next one settles in from slightly further away
+ tl.to("#s"+(k+1),{opacity:0,scale:1.035,duration:.2,ease:"power2.in",transformOrigin:"540px 720px"},tm-.21); tl.set("#s"+(k+1),{visibility:"hidden"},tm-.01);
+ tl.fromTo("#s"+(k+2),{scale:.94},{scale:1,duration:.95,ease:"power3.out",transformOrigin:"540px 720px"},tm+.04);
 });
 tl.to({},{duration:.001},D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
