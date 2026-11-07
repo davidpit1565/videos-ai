@@ -13,6 +13,7 @@ VOICE=os.environ.get("VOICE",H+"/voice/final")
 ALL=[l.rstrip("\n") for l in open(H+"/lines-b.txt") if l.strip()]; assert len(ALL)==11
 sr=48000; lines=[]; t=0.0; out=[]
 wj=os.environ.get("WORDS",H+"/voice/words.json"); words=json.load(open(wj)) if os.path.exists(wj) else {}
+if '6' in words and len(words['6'])==10: words['6']=words['6'][:4]+[[words['6'][4][0],words['6'][5][1]]]+words['6'][6:]  # 'GitHub' was aligned as Git+Hub
 for k in range(N):
     n=k+1
     x,s=sf.read(f"{VOICE}/{n}.wav"); assert s==sr; x=x if x.ndim==1 else x[:,0]
