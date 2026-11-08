@@ -1,0 +1,8 @@
+One bad edit, and my tip app prints NaN.
+I typed one command. The working file came back.
+It works because Git takes a picture of your files.
+Each commit is one picture. Your project becomes a photo album.
+GitHub keeps a second copy of that album online.
+Push once, and a lost laptop can't take your history.
+Ahead of each AI edit, take a picture. That's git commit.
+Working? Commit. Broken? Undo it. Repeat.
