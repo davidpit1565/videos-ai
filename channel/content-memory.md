@@ -1699,3 +1699,6 @@ Hook changed by David from `ChatGPT doesn't always tell you the truth. Here's th
 
 ## 1.11.2026 - episode 81 published
 Posted to Instagram only by Claude through the studio at 2026-11-01 16:35 UTC (17:35 Belgium, Sunday), permalink https://www.instagram.com/reel/DfNLEiOHaUc/. Facebook and Stories are done by hand by David. Not on YouTube on purpose (David's backfill runs from the other session). 80 was posted Friday 07:03 UTC; the hour is a different variable again. Take the 48 h and 72 h readings (views, average watch time, skip rate, sends, saves, follows, source split) and compare with episode 80 (786 views, 13 s average watch).
+
+## Episode 86 published (8.11.2026, 08:00 Brussels)
+"Can it keep a secret? #1" (ChatGPT, Gemini, Claude from David's real recordings of 5.11.2026). Instagram https://www.instagram.com/reel/DfeLDz2it0M/ (Reel only; Story and Facebook by David), YouTube https://www.youtube.com/watch?v=KJaQMWAX-Q4. Calm hook version v11 (the excited hook failed the voice-quality range check at 13.4 st and David preferred the calm one). Hook type: curiosity gap plus identity ("ChatGPT, don't tell my teacher!"). Predicted by reviewer agents on v10 (judgements, not measurements): kid 88, viral 88-93, honesty 92. Goal 2,000 views; best so far about 800. 48 h and 72 h readings: not yet (reminders set for Tue 10.11 and Wed 11.11).
