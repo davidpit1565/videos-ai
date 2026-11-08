@@ -114,12 +114,12 @@ const g0=grp(ST(0),790,0);
 const T1=mkTerm(g0,960,440,'tipcalc — zsh',42,0);
 T1.line(0,[['$ ','p'],['node app.js 80','c']],0,0);
 T1.line(1,[['Each pays NaN','r']],0.01,0);
-const tBad=tag(g0,'A BAD EDIT',-300,-250,70,0,'red',2.3);
+const tBad=tag(g0,'A BAD EDIT',-300,-250,70,0,'red',2.05);
 const rs=WT(1,5)-.2; // "brought it back"
 const tRest=T1.line(2,[['$ ','p'],['git restore app.js','c']],1.55,26);
 T1.line(3,[['$ ','p'],['node app.js 80','c']],tRest+.25,30);
 T1.line(4,[['Bill 80 -> tip 12.00, total 92.00','g']],2.35,0);
-const tOk=tag(g0,'BACK',-340,-250,70,2.35,'',null);
+const tOk=tag(g0,'BACK',-340,-250,70,2.5,'',null);
 // unsaved ghost: red dashed segment + red node, removed on restore
 const ghost=div('o',pan,'',{width:520+'px',height:6+'px',backgroundImage:'repeating-linear-gradient(90deg,#FF5A5F 0 18px,transparent 18px 34px)',opacity:.9});gsap.set(ghost,{x:ST(0)+8,y:SPY-3,transformOrigin:'0 50%'});
 const gnode=node(ST(0)+560,SPY,'unsaved',null,0.05,{red:true});
@@ -299,7 +299,7 @@ hide(F); fin(F,LS(10)-.7,.6);
 const fx=F.querySelector('#fx');const fws=['save','this','version'].map(w=>{const s=document.createElement('span');s.textContent=w;s.style.opacity=0;s.style.display='inline-block';s.style.marginRight='24px';fx.appendChild(s);return s;});
 fws.forEach((s,i)=>{tl.fromTo(s,{opacity:0,y:14},{opacity:1,y:0,duration:.3,ease:'sine.out'},WT(10,6+i)-.03);});
 tl.set(fws[0],{color:'#D4FF3A'},WT(10,6));
-ring(F,470,190,880,200,WT(10,8)+.3,null);
+const rF=ring(F,470,190,880,200,WT(10,8)+.3,null);tl.to(rF,{scale:1.035,duration:.55,repeat:7,yoyo:true,ease:'sine.inOut'},WT(10,8)+1.0);
 const sh=tag(g11,'SCREENSHOT THIS',0,-260,70,LS(10)+.7,'wht',null);
 const f11n=node(ST(11),SPY,'ab0955b','Tip calculator works',LS(10));
 
@@ -307,9 +307,14 @@ const f11n=node(ST(11),SPY,'ab0955b','Tip calculator works',LS(10));
 const g12=grp(ST(12),800,0,{rotationY:-4});
 const EV=plane(g12,940,500,{background:'#10151F'},
  '<div style="position:absolute;left:0;top:0;right:0;height:70px;background:#161B28;border-bottom:2px solid #262E3F"><div style="position:absolute;left:30px;top:14px;height:56px;padding:0 24px;background:#10151F;border-radius:12px 12px 0 0;font-family:JBM;font-weight:500;font-size:28px;line-height:56px;color:#fff">.env</div></div>'+
- '<div style="position:absolute;left:40px;top:110px;font-family:JBM;font-weight:500;font-size:40px;line-height:70px;color:#B5BCC9;white-space:pre"><span style="color:#6F788A">1</span>   <span style="color:#F6D86B">SECRET_KEY</span>=<span style="color:#fff">••••••••••••••</span>\n<span style="color:#6F788A">2</span>   <span style="color:#F6D86B">API_URL</span>=https://api.example.com</div>'+
+ '<div style="position:absolute;left:40px;top:110px;font-family:JBM;font-weight:500;font-size:40px;line-height:70px;color:#B5BCC9;white-space:pre"><span style="color:#6F788A">1</span>   <span style="color:#F6D86B">SECRET_KEY</span>=<span id="dots" style="color:#fff;display:inline-block">••••••••••••••</span>\n<span style="color:#6F788A">2</span>   <span style="color:#F6D86B">API_URL</span>=https://api.example.com</div>'+
  '<div style="position:absolute;left:40px;top:340px;right:40px;height:110px;border-radius:18px;border:4px dashed #D4FF3A;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:40px;color:#D4FF3A;letter-spacing:-.02em">a secret key. never share it.</div>');
 hide(EV); fin(EV,LS(10)+2.3,.6);
+const dots=EV.querySelector('#dots');tl.fromTo(dots,{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:1.3,ease:'none'},LS11+.5);
+const scan=div('o',EV,'',{left:'0px',top:'104px',width:'940px',height:'70px',background:'linear-gradient(90deg,rgba(212,255,58,0),rgba(212,255,58,.22),rgba(212,255,58,0))',opacity:0});
+tl.fromTo(scan,{opacity:0,y:0},{opacity:1,y:70,duration:.9,repeat:5,yoyo:true,ease:'sine.inOut'},LS11+.2);
+const key=div('o',EV,'<svg width="120" height="60" viewBox="0 0 120 60"><circle cx="24" cy="30" r="18" fill="none" stroke="#D4FF3A" stroke-width="7"/><path d="M42 30H112M92 30v16M106 30v12" stroke="#D4FF3A" stroke-width="7" fill="none" stroke-linecap="round"/></svg>',{left:'780px',top:'236px'});
+tl.fromTo(key,{y:0,rotation:-6},{y:-14,rotation:6,duration:.8,repeat:8,yoyo:true,ease:'sine.inOut'},LS11);
 
 /* ================= CAMERA ================= */
 gsap.set(cam,{transformOrigin:'540px 960px'});

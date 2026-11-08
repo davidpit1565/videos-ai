@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "9a670841-1b24-4365-b519-f922701e688b",
-  "currentRevision": "bd437b28-3892-47a5-afb5-ee89ecbfbcc5",
+  "currentRevision": "c084fdaa-bde3-4d43-8f64-3780d81d7de4",
   "pendingChanges": false,
   "files": {
     "assets/fonts/InterDisplay-Black.otf": {
@@ -37,8 +37,8 @@
       "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/69/693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1"
     },
     "index.html": {
-      "hash": "fae21acc1f97a5d3139c4a9e4bfe8c10f9e148dd63d93adefc13f8f4893b2fa9",
-      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/fa/fae21acc1f97a5d3139c4a9e4bfe8c10f9e148dd63d93adefc13f8f4893b2fa9"
+      "hash": "a99f3dbbe5bd1924c8470d0cabfc70737a102ff8c1286dd9ad35e5349f405857",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/a9/a99f3dbbe5bd1924c8470d0cabfc70737a102ff8c1286dd9ad35e5349f405857"
     },
     "assets/cap/gh-branches.jpg": {
       "hash": "0a51e2e94e097fbd4bd1c6c73f08d47a8f241c4577f09457dc99effb69e15b73",
@@ -164,6 +164,21 @@
           "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/fa/fae21acc1f97a5d3139c4a9e4bfe8c10f9e148dd63d93adefc13f8f4893b2fa9"
         }
       }
+    },
+    "c084fdaa-bde3-4d43-8f64-3780d81d7de4": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794096079438,
+      "endedAt": 1794096079442,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/fa/fae21acc1f97a5d3139c4a9e4bfe8c10f9e148dd63d93adefc13f8f4893b2fa9",
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/a9/a99f3dbbe5bd1924c8470d0cabfc70737a102ff8c1286dd9ad35e5349f405857"
+        }
+      }
     }
   },
   "checks": {
@@ -178,15 +193,15 @@
   },
   "renders": {
     "latest": {
-      "id": "b9af2d06-e7e7-4243-baa6-fbf4bbf9129f",
-      "completedAt": 1794092660432,
-      "output": "/home/user/videos-ai/video/nextreel-git/out/b1t.mp4",
+      "id": "10551509-a3ba-46f6-a90d-99183deabfdc",
+      "completedAt": 1794095963157,
+      "output": "/home/user/videos-ai/video/nextreel-git/out/s1t.mp4",
       "status": "completed",
-      "revision": "8699147c-ab5b-4cef-b198-3f1fa5d03075"
+      "revision": "bd437b28-3892-47a5-afb5-ee89ecbfbcc5"
     },
     "retainedRevisions": [
-      "8699147c-ab5b-4cef-b198-3f1fa5d03075",
-      "2ff5eee4-9a8f-40d1-9a28-1bd443653aa2"
+      "bd437b28-3892-47a5-afb5-ee89ecbfbcc5",
+      "8699147c-ab5b-4cef-b198-3f1fa5d03075"
     ]
   },
   "pendingArtifactCleanup": []
