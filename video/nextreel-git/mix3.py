@@ -2,7 +2,7 @@ import subprocess,sys,numpy as np,os,json
 H=os.path.dirname(os.path.abspath(__file__)); LIB='/home/user/videos-ai/audio/music-library/'
 # usage: mix.py <narration.wav> <video.mp4> <D> <tag> ; mixes 3 beds -> out/<tag>-<k>.mp4 (+720p preview)
 nar,vid,D,tag=sys.argv[1],sys.argv[2],float(sys.argv[3]),sys.argv[4]
-BEDS=[("P","punchy--punchy-brass-groovy-pop-track--moonpub.mp3",0,0),("Q","curious--inquisitive-curiosity--musictown.mp3",0,0),("C","curious--curious-circuits--sonican.mp3",0,0)]
+BEDS=[("Q","curious--inquisitive-curiosity--musictown.mp3",0,0)]
 def load(p): return np.frombuffer(subprocess.run(['ffmpeg','-v','error','-i',p,'-ac','1','-ar','16000','-f','f32le','-'],capture_output=True).stdout,dtype=np.float32)
 def band(x):
     X=np.abs(np.fft.rfft(x*np.hanning(len(x))))**2; f=np.fft.rfftfreq(len(x),1/16000)
@@ -11,7 +11,7 @@ vb=band(load(nar)); res={}
 for k,f,ss,hp in BEDS:
     raw=f"{H}/out/bed-{k}.wav"
     subprocess.run(['ffmpeg','-y','-v','error','-ss',str(ss),'-t',str(D),'-i',LIB+f,'-ac','1','-ar','48000','-af',f'afade=t=in:d=0.5,afade=t=out:st={D-1.3}:d=1.3,highpass=f=140',raw],check=True)
-    g=vb-13-band(load(raw))
+    g=vb-9-band(load(raw))
     fc=f"[0:a]asplit=2[v1][key];[1:a]volume={g}dB[b];[b][key]sidechaincompress=threshold=0.05:ratio=4:attack=12:release=420[duck];[duck]asplit=2[d1][d2];[v1][d1]amix=inputs=2:normalize=0,loudnorm=I=-14:TP=-1:LRA=11[o]"
     wav=f"{H}/out/mix-{tag}-{k}.wav"; duck=f"{H}/out/duck-{tag}-{k}.wav"
     subprocess.run(['ffmpeg','-y','-v','error','-i',nar,'-i',raw,'-filter_complex',fc,'-map','[o]','-ar','48000',wav,'-map','[d2]',duck],check=True)

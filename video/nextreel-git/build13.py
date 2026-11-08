@@ -20,6 +20,7 @@ SEQ=[(HOOK,HW,HWORDS)]+[(ALLD[k],f"{H}/voice/new7/{k+1}.wav",W7[str(k+1)]) for k
 N=len(SEQ); GAPS=[0.3,0.3,0.3,0.35,0.3,0.3,0.3,0.4][:N-1]
 for k,(txt,wavp,w) in enumerate(SEQ):
     x,s_=sf.read(wavp); assert s_==sr; x=x if x.ndim==1 else x[:,0]
+    x=x*(10**(({8:1.6}.get(k+1,0))/20))
     d=len(x)/sr; ln=dict(n=k+1,key="L%d"%(k+1),text=txt,start=round(t,3),end=round(t+d,3))
     if w and len(w)==len(txt.split()): ln["words"]=[[round(a+t,3),round(b+t,3)] for a,b in w]
     else: print("NO WORDS for line",k+1,len(w or []),len(txt.split()))

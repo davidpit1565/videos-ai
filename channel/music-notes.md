@@ -39,3 +39,4 @@ None of this has data on reach for our channel. We have 80 episodes' views but m
 ## Ideas to test (deliberate experiments, log in experiments.md)
 - Same style of episode with a character bed vs a neutral bed, compare average watch time (needs several episodes, not one).
 - Ask David for 5 tracks he likes on first listen from the library and see what they share (tag, tempo, instruments).
+| nextreel-git s3 (GitHub undo reel) | curious--inquisitive-curiosity--musictown (Q) | curious | bed ducked -17.0 dB vs voice (300-3500 Hz), measured by video/nextreel-git/mix3.py; voice_quality --music at vol 0.166: -9.4 dB un-ducked; 2% of bed energy under 150 Hz | not heard | picked by measurement from 3 candidates: P punchy-brass-groovy-pop-moonpub (43% under 150 Hz), C curious-circuits-sonican (47%), Q (12%). The earlier s2 bed (cinematic--dramatic--themountain) was -19.9 dB ducked, below the -18 bar for a phone, so replaced. |
