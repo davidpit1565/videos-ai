@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "9a670841-1b24-4365-b519-f922701e688b",
-  "currentRevision": "4b4b1223-4937-4be6-8e0e-3b768a24acaa",
+  "currentRevision": "af9f094a-47c1-486e-9265-3b9dd3e3edc9",
   "pendingChanges": false,
   "files": {
     "assets/fonts/InterDisplay-Black.otf": {
@@ -37,8 +37,8 @@
       "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/69/693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1"
     },
     "index.html": {
-      "hash": "53e3a21fafef81a1077669d260bf19f25dea6b14ea9babb81fed265425fe7742",
-      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/53/53e3a21fafef81a1077669d260bf19f25dea6b14ea9babb81fed265425fe7742"
+      "hash": "d6e7c168f176413c9911366c590594f88bd340504b587eec060ee3ad9a30f73a",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/d6/d6e7c168f176413c9911366c590594f88bd340504b587eec060ee3ad9a30f73a"
     },
     "assets/cap/gh-branches.jpg": {
       "hash": "0a51e2e94e097fbd4bd1c6c73f08d47a8f241c4577f09457dc99effb69e15b73",
@@ -299,6 +299,36 @@
           "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/53/53e3a21fafef81a1077669d260bf19f25dea6b14ea9babb81fed265425fe7742"
         }
       }
+    },
+    "5d1f96e0-5b15-44f2-b931-64bf02235033": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794179903284,
+      "endedAt": 1794179903284,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/53/53e3a21fafef81a1077669d260bf19f25dea6b14ea9babb81fed265425fe7742",
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/f2/f21a71bd08a6a7e84117e0dbf19a70b87b6fe33b29b791cbeec724acd42f627a"
+        }
+      }
+    },
+    "af9f094a-47c1-486e-9265-3b9dd3e3edc9": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794180380792,
+      "endedAt": 1794180380793,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/f2/f21a71bd08a6a7e84117e0dbf19a70b87b6fe33b29b791cbeec724acd42f627a",
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/d6/d6e7c168f176413c9911366c590594f88bd340504b587eec060ee3ad9a30f73a"
+        }
+      }
     }
   },
   "checks": {
@@ -313,15 +343,15 @@
   },
   "renders": {
     "latest": {
-      "id": "4a367790-772d-4654-b9e5-adc659c32854",
-      "completedAt": 1794176934182,
-      "output": "/home/user/videos-ai/video/nextreel-git/out/s3.mp4",
+      "id": "75acae7d-1bf2-4cfb-9913-9b32ce3bd4d3",
+      "completedAt": 1794180675264,
+      "output": "/home/user/videos-ai/video/nextreel-git/out/s4.mp4",
       "status": "completed",
-      "revision": "4b4b1223-4937-4be6-8e0e-3b768a24acaa"
+      "revision": "af9f094a-47c1-486e-9265-3b9dd3e3edc9"
     },
     "retainedRevisions": [
-      "4b4b1223-4937-4be6-8e0e-3b768a24acaa",
-      "487e0a01-6145-4232-a940-92070c8540e5"
+      "af9f094a-47c1-486e-9265-3b9dd3e3edc9",
+      "5d1f96e0-5b15-44f2-b931-64bf02235033"
     ]
   },
   "pendingArtifactCleanup": []
