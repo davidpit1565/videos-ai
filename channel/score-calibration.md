@@ -2,7 +2,7 @@
 Every new video, hook option or review page I hand him carries three scores: HOOK, VIRALITY and OVERALL, plus a predicted VIEWS SCORE. After 48 h and 72 h the real views are converted to the same scale and written next to the prediction, so the next prediction is calibrated by the gap (up or down). The goal is 10,000 views = 100.
 
 ## The views scale (my proposal, David can change it)
-Log scale, because views are multiplicative: 200 views (our median, 204) = 50, 10,000 views = 100. Formula: score = 50 + 50 * log(views/200) / log(50). Reference points: 100 views = 32; 204 = 50; 500 = 61; 817 = 68; 1,000 = 71; 1,475 = 75; 2,000 = 81; 5,000 = 94; 10,000 = 100. David's own gut rating of ep 86 (about 1,475 views) was 80, close to 75.
+Log scale, because views are multiplicative: 200 views (our median, 204) = 50, 10,000 views = 100. Formula: score = 50 + 50 * log(views/200) / log(50). Reference points: 100 views = 41; 204 = 50; 500 = 62; 817 = 68; 1,000 = 70; 1,475 = 75; 2,000 = 79; 5,000 = 91; 10,000 = 100. David's own gut rating of ep 86 (about 1,475 views) was 80, close to 75.
 HOOK and VIRALITY are my judgement against the written rubric (CLAUDE.md pre-publish gate); the views score is the prediction of where the real views will land on the scale above. The three can differ: write all of them.
 
 ## Rules
