@@ -507,5 +507,12 @@
     "ember": "#B6F23A",
     "mood": "confident",
     "date": "2026-11-04"
+  },
+  {
+    "episode": 86,
+    "brass": "#B6F23A",
+    "ember": "#B6F23A",
+    "mood": "cinematic--dramatic--themountain",
+    "date": "2026-11-08"
   }
 ]

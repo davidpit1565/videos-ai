@@ -1,0 +1,10 @@
+Gate for episode 86 v11 (calm hook), 8.11.2026. Built in HyperFrames (video/ep86v5, build11.py), mixed with mix.py, checked with export/check_hf.sh.
+================ SUMMARY
+  PASS  frame layout (safe_check_hf.js)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+ALL CHECKS THAT RAN PASSED (1 skipped)  -  audio was measured, not heard; watch the file twice before sending
+Accent check run separately (audio/check_accent.py, python 3.11 env): all lines not-american 0.00-0.06 except line 5 at 0.20 (as in v10). Excited-hook variant fails voice_quality (line 1 range 13.4 st) and was NOT chosen. Audio and picture were measured and viewed as 9 frames, not heard or watched in full by Claude.
