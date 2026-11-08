@@ -1,0 +1,360 @@
+<!-- nextreel-git s2 (build11): one 3D world, dark base + lime timeline. Planes are big (fill the width), camera closer, stronger tilts, fast fly-through between 13 stations.
+ REAL: Playwright captures of live public pages taken 7.11.2026 (github.com/git/git front page, commits, branches, Code dropdown, git-scm.com: hf/assets/cap/*.jpg);
+       every terminal line verbatim from channel/next-reel-github/terminal-output.txt (real git 2.43.0 run); official Git logo + GitHub lockup unmodified;
+       fork counter ticks up to the number captured on the page (28.7k); commit hashes/messages from the real run.
+ DRAWN (said so in the report): Finder window (our test folder), game scene, laptop, composer boxes, .env card, branch curves. The bad edit is ours: tag says A BAD EDIT. -->
+<style>
+#vp{position:absolute;left:0;top:0;width:1080px;height:1920px;perspective:1250px;perspective-origin:540px 960px}
+#cam,#pan{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-style:preserve-3d}
+#pan{width:1px;height:1px}
+.o{position:absolute;left:0;top:0}
+.g3{transform-style:preserve-3d;width:0;height:0}
+.pl{background:#0D1117;border-radius:22px;overflow:hidden;box-shadow:0 0 0 2px #2A3345,0 0 80px rgba(212,255,58,.12),0 40px 90px rgba(0,0,0,.6)}
+.cap{position:absolute;left:0;top:282px;width:1080px;height:130px}
+.ck{position:absolute;left:0;top:0;width:1080px;text-align:center;visibility:hidden;opacity:0;white-space:nowrap}
+.cw{display:inline-block;position:relative;font-weight:900;font-size:100px;line-height:108px;letter-spacing:-.035em;color:#fff;padding:0 15px 6px;margin:0 3px;border-radius:22px;opacity:0;white-space:nowrap;background-color:rgba(212,255,58,0)}
+.tag{position:absolute;white-space:nowrap;font-weight:900;font-size:46px;line-height:1;padding:15px 26px 19px;border-radius:18px;letter-spacing:.01em;background:var(--lime);color:#0B0E04;box-shadow:0 8px 30px rgba(0,0,0,.5),0 0 40px rgba(212,255,58,.35);opacity:0;visibility:hidden}
+.tag.red{background:var(--red);color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.5),0 0 40px rgba(255,90,95,.4)}
+.tag.wht{background:#fff;color:#0B0E04}
+.term{background:#0B0E15;border-radius:24px;box-shadow:0 0 0 2px #2A3242,0 0 90px rgba(212,255,58,.12),0 40px 90px rgba(0,0,0,.65);font-family:JBM,monospace;font-weight:500;color:#E9ECF2;overflow:visible}
+.term .tb{position:absolute;left:0;top:0;right:0;height:70px;background:#151A26;border-radius:24px 24px 0 0;border-bottom:2px solid #232B3B}
+.term .tb i{position:absolute;top:26px;width:20px;height:20px;border-radius:50%;background:#3A4254}
+.term .tb span{position:absolute;left:0;right:0;top:0;line-height:70px;text-align:center;font-family:IDisp,sans-serif;font-weight:500;font-size:27px;color:#8D95A6}
+.term .ln{position:absolute;left:36px;white-space:pre}
+.term .ch{opacity:0}
+.term .p{color:#D4FF3A}.term .ou{color:#B5BCC9}.term .r{color:#FF6B70}.term .g{color:#47E083}.term .y{color:#F6D86B}.term .c{color:#fff}.term .d{color:#6F788A}
+.term .cur{position:absolute;background:#D4FF3A;opacity:0;border-radius:2px}
+.node{position:absolute;width:76px;height:76px;border-radius:50%;border:9px solid var(--lime);background:#07090F;box-shadow:0 0 40px rgba(212,255,58,.8),inset 0 0 16px rgba(212,255,58,.35);opacity:0;visibility:hidden}
+.node.red{border-color:var(--red);box-shadow:0 0 40px rgba(255,90,95,.85)}
+.nh{position:absolute;white-space:nowrap;font-family:JBM,monospace;font-weight:700;font-size:52px;color:#fff;opacity:0;visibility:hidden;letter-spacing:-.02em}
+.nm{position:absolute;white-space:nowrap;font-family:IDisp,sans-serif;font-weight:800;font-size:31px;line-height:1;color:#E2E6EE;background:#141A28;border:3px solid #2E3850;border-radius:16px;padding:12px 20px 15px;opacity:0;visibility:hidden}
+.sp{position:absolute;height:9px;border-radius:5px;background:linear-gradient(90deg,rgba(212,255,58,.3),rgba(212,255,58,.7) 12%,rgba(212,255,58,.7) 88%,rgba(212,255,58,.3));box-shadow:0 0 26px rgba(212,255,58,.4)}
+.streak{position:absolute;width:300px;height:13px;border-radius:7px;background:linear-gradient(90deg,transparent,#EFFF9A,transparent);filter:blur(1px)}
+.star{position:absolute;border-radius:50%;background:#fff}
+.ring{position:absolute;border:6px solid var(--lime);border-radius:16px;box-shadow:0 0 30px rgba(212,255,58,.85);opacity:0;visibility:hidden}
+.pill{position:absolute;white-space:nowrap;background:#fff;border-radius:30px;box-shadow:0 12px 40px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden}
+.pill img{display:block}
+#hz{position:absolute;left:0;top:1440px;width:1080px;height:480px;overflow:hidden;perspective:520px;perspective-origin:50% 0%;opacity:.55}
+#hzi{position:absolute;left:-1300px;top:0;width:3680px;height:2600px;transform:rotateX(74deg);transform-origin:50% 0;background:repeating-linear-gradient(0deg,rgba(212,255,58,.26) 0 3px,transparent 3px 150px),repeating-linear-gradient(90deg,rgba(212,255,58,.18) 0 2px,transparent 2px 150px);-webkit-mask-image:linear-gradient(#000,transparent 70%);mask-image:linear-gradient(#000,transparent 70%)}
+</style>
+<div id="vp" data-decor><div id="cam"><div id="pan" data-decor></div></div></div>
+<div id="hz" data-decor><i id="hzi"></i></div>
+<div class="cap" id="capbox"></div>
+<script>
+window.buildWorld=function(tl){
+const pan=document.getElementById('pan'), cam=document.getElementById('cam'), capbox=document.getElementById('capbox');
+const SPY=1190, ST=k=>k*1300, K=0.47, WY=840;
+function rnd(i){const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x);}
+function div(cls,parent,html,css){const d=document.createElement('div');if(cls)d.className=cls;if(html!=null)d.innerHTML=html;if(css)Object.assign(d.style,css);(parent||pan).appendChild(d);return d;}
+function put(el,x,y,z,o){gsap.set(el,Object.assign({x:x,y:y,z:z||0,xPercent:-50,yPercent:-50},o||{}));}
+function hide(el){gsap.set(el,{autoAlpha:0});}
+function fin(el,t,d,o){tl.to(el,Object.assign({autoAlpha:1,duration:d||.55,ease:'sine.out'},o||{}),t);}
+function fout(el,t,d){tl.to(el,{autoAlpha:0,duration:d||.5,ease:'sine.inOut'},t);}
+function grp(x,y,z,o){const g=div('o g3');gsap.set(g,Object.assign({x:x,y:y,z:z||0},o||{}));return g;}
+function plane(g,w,h,css,html){const p=div('o pl',g,html||'',Object.assign({width:w+'px',height:h+'px'},css||{}));gsap.set(p,{xPercent:-50,yPercent:-50});return p;}
+const LW=n=>L[n-1].words, LS=n=>L[n-1].start, LE=n=>L[n-1].end, WT=(n,i)=>L[n-1].words[i][0];
+const LS11=L[10]?L[10].start:D+10;
+
+/* ---------- depth: stars ---------- */
+for(let i=0;i<45;i++){const s=div('star',pan,'',{width:(3+rnd(i+7)*5)+'px',height:(3+rnd(i+9)*5)+'px',opacity:.12+rnd(i+3)*.3,background:rnd(i)>.75?'#D4FF3A':'#9FB4FF'});
+  gsap.set(s,{x:-800+rnd(i+1)*18600,y:-200+rnd(i+2)*2300,z:-300-rnd(i+4)*1500});}
+
+/* ---------- spine ---------- */
+for(let k=-1;k<=14;k++){const s=div('sp',pan);gsap.set(s,{x:ST(k)-650,y:SPY-4});s.style.width='1300px';}
+for(let k=0;k<=13;k++){const st=div('streak',pan);gsap.set(st,{x:ST(k)-900,y:SPY-6});
+  tl.fromTo(st,{x:ST(k)-900},{x:ST(k)+900,duration:1.5,ease:'none',repeat:Math.ceil(D/1.5)},k*.11);}
+
+/* ---------- helpers ---------- */
+function node(x,y,hash,msg,t,o){o=o||{};const g=grp(x,y,0);const n=div('node'+(o.red?' red':''),g);put(n,0,0,0);
+  const h=div('nh',g,hash);put(h,0,-84,0);const m=msg?div('nm',g,msg):null;if(m)put(m,0,96,0);
+  [n,h,m].forEach(e=>e&&hide(e)); tl.fromTo(n,{autoAlpha:0,scale:.4},{autoAlpha:1,scale:1,duration:.7,ease:'back.out(1.5)'},t);
+  fin(h,t+.15,.5); if(m)fin(m,t+.3,.5); return {g:g,n:n,h:h,m:m};}
+function tag(parent,txt,x,y,z,t,cls,t2){const e=div('tag'+(cls?' '+cls:''),parent,txt);put(e,x,y,z||0);
+  gsap.set(e,{autoAlpha:0});tl.fromTo(e,{autoAlpha:0,scale:.82,y:y+16},{autoAlpha:1,scale:1,y:y,duration:(t<=0?.01:.6),ease:'sine.out'},t);if(t2!=null)fout(e,t2,.45);return e;}
+function ring(parent,cx,cy,w,h,t,t2,z){const r=div('ring',parent);r.style.width=w+'px';r.style.height=h+'px';put(r,cx,cy,z||0);
+  tl.fromTo(r,{autoAlpha:0,scale:1.25},{autoAlpha:1,scale:1,duration:.55,ease:'sine.out'},t);if(t2!=null)fout(r,t2,.4);return r;}
+function pulse(el,t,n){for(let i=0;i<n;i++)tl.fromTo(el,{scale:1},{scale:1.28,duration:.45,yoyo:true,repeat:1,ease:'sine.inOut'},t+i*.95);}
+function mkTerm(g,w,h,title,fs,z){const lh=Math.round(fs*1.5), cw=fs*0.6;
+  const el=div('o term',g,'<div class="tb"><i style="left:28px"></i><i style="left:62px"></i><i style="left:96px"></i><span>'+title+'</span></div>',{width:w+'px',height:h+'px',fontSize:fs+'px'});
+  gsap.set(el,{xPercent:-50,yPercent:-50,z:z||0});
+  const cur=div('cur',el);cur.style.width=(cw*.9)+'px';cur.style.height=(fs*1.15)+'px';
+  let ci=0; const TOP=96;
+  function mk(i,segs){const ln=div('ln',el);ln.style.top=(TOP+i*lh)+'px';ln.style.height=lh+'px';ln.style.lineHeight=lh+'px';const chars=[];
+    segs.forEach(sg=>{for(const c of sg[0]){const s=document.createElement('span');s.className='ch '+((sg[1]==='o'||!sg[1])?'ou':sg[1]);s.textContent=c;ln.appendChild(s);chars.push(s);}});return {ln:ln,chars:chars};}
+  return {el:el,
+   line(i,segs,t,cps){const o=mk(i,segs);const pr=cps?segs[0][0].length:0;let tt=t;
+     o.chars.forEach((c,j)=>{if(cps&&j>=pr){tt+=(1/cps)*(0.55+0.9*rnd(++ci+j));tl.set(c,{opacity:1},tt);
+         tl.set(cur,{x:36+(j+1)*cw,y:TOP+i*lh+(lh-fs*1.15)/2,opacity:.9},tt);}
+       else tl.set(c,{opacity:1},t);});
+     if(cps){tl.set(cur,{x:36+pr*cw,y:TOP+i*lh+(lh-fs*1.15)/2,opacity:.9},t);tl.set(cur,{opacity:0},tt+.35);}
+     return tt;}};}
+const px=v=>v*K;   /* capture-display px (2000 wide) -> plane px (940 wide) */
+
+/* ---------- CAPTIONS: >=96px, 1-3 words, spoken word in a lime box ---------- */
+const KEY=new Set('crashed back sentence worked save point github nobody ai boss commit git online push clone laptop branch merge version secret follow story one'.split(' '));
+L.forEach((ln,li)=>{if(!ln.words)return;const toks=ln.text.split(' ');let chunks=[],cur=[],chars=0;
+  toks.forEach((w,i)=>{const add=w.length+(cur.length?1:0);
+    if(cur.length&&(chars+add>14||cur.length>=3)){chunks.push(cur);cur=[];chars=0;}
+    cur.push(i);chars+=w.length+(cur.length>1?1:0);
+    if(/[.,:;?!]$/.test(w)){chunks.push(cur);cur=[];chars=0;}});if(cur.length)chunks.push(cur);
+  chunks.forEach((ck,ci)=>{const box=div('ck',capbox);const t0=ln.words[ck[0]][0]-.03;const nxt=chunks[ci+1];const t1=nxt?ln.words[nxt[0]][0]-.07:ln.words[ck[ck.length-1]][1]+.4;
+    const ws=ck.map(i=>div('cw',box,toks[i]));
+    tl.set(box,{autoAlpha:1},t0);tl.set(box,{autoAlpha:0},t1);
+    ck.forEach((i,k)=>{const w=ws[k];const st=ln.words[i][0]-.03, key=KEY.has(toks[i].toLowerCase().replace(/[^a-z]/g,''));
+      const en=(ck[k+1]!=null?ln.words[ck[k+1]][0]-.03:t1);
+      tl.fromTo(w,{opacity:0,y:16,scale:.92},{opacity:1,y:0,scale:1,duration:.2,ease:'sine.out'},st);
+      tl.set(w,{backgroundColor:'#D4FF3A',color:'#0B0E04'},st);
+      tl.set(w,{backgroundColor:'rgba(212,255,58,0)',color:key?'#D4FF3A':'#FFFFFF'},en);});});});
+
+/* ================= STATIONS ================= */
+/* ---- st0: terminal T1 (bad edit -> restored), node ab0955b ---- */
+const g0=grp(ST(0),WY,0);
+const T1=mkTerm(g0,1000,560,'tipcalc — zsh',46,0);
+T1.line(0,[['$ ','p'],['node app.js 80','c']],0,0);
+T1.line(1,[['Each pays NaN','r']],0.01,0);
+const tBad=tag(g0,'A BAD EDIT',-170,-290,70,0,'red',1.8);
+const tRest=T1.line(2,[['$ ','p'],['git restore app.js','c']],1.1,26);
+T1.line(3,[['$ ','p'],['node app.js 80','c']],tRest+.2,30);
+T1.line(4,[['Bill 80 -> tip 12.00, total 92.00','g']],1.95,0);
+tag(g0,'BACK',-220,-290,70,1.95,'',null);
+const ghost=div('o',pan,'',{width:520+'px',height:8+'px',backgroundImage:'repeating-linear-gradient(90deg,#FF5A5F 0 20px,transparent 20px 38px)',opacity:.9});gsap.set(ghost,{x:ST(0)+8,y:SPY-4,transformOrigin:'0 50%'});
+const gnode=node(ST(0)+560,SPY,'unsaved',null,0.05,{red:true});
+tl.to(ghost,{scaleX:0,duration:.9,ease:'sine.inOut'},2.0); fout(gnode.n,1.9,.7);fout(gnode.h,1.9,.5);
+const n0=node(ST(0),SPY,'ab0955b','Tip calculator works',0.05);
+
+/* ---- st0b: composer with the sentence (L2) ---- */
+const gc=grp(ST(0),WY+20,70);
+const cmp=plane(gc,960,470,{background:'#10151F',borderRadius:'38px',boxShadow:'0 0 0 4px #D4FF3A,0 0 90px rgba(212,255,58,.4),0 40px 90px rgba(0,0,0,.65)'},
+ '<div style="position:absolute;left:44px;top:32px;font-weight:800;font-size:32px;color:#8D95A6;letter-spacing:.02em">ask your AI</div><div id="cmptx" style="position:absolute;left:44px;top:96px;width:870px;font-weight:800;font-size:84px;line-height:100px;letter-spacing:-.035em;color:#fff"></div>');
+hide(cmp); const ctx=cmp.querySelector('#cmptx'); const cws=[];
+['go','back','to','the','one','that','worked.'].forEach(w=>{const s=document.createElement('span');s.textContent=w+' ';s.style.opacity=0;s.style.display='inline-block';s.style.marginRight='16px';ctx.appendChild(s);cws.push(s);});
+fin(cmp,LS(2)-.35,.5); cws.forEach((s,i)=>{tl.fromTo(s,{opacity:0,y:12},{opacity:1,y:0,duration:.25,ease:'sine.out'},WT(2,2+i)-.03);});
+tl.to(cmp,{z:150,duration:.9,ease:'sine.out'},LS(2)-.2);
+tl.set(cws[6],{color:'#D4FF3A'},WT(2,8)-.02);
+tl.to(T1.el,{opacity:.12,duration:.3},LS(2)-.35); tl.to(T1.el,{opacity:1,duration:.3},LS(3)-.45);
+fout(cmp,LS(3)-.45,.3);
+
+/* ---- st0c: dive on the node (L3a) ---- */
+tag(pan,'SAVE POINT',ST(0),SPY+200,120,LS(3)+.15,'',LS(3)+1.9);
+pulse(n0.n,LS(3)+.1,2);
+
+/* ---- st1: real GitHub commits plane (L3b) ---- */
+const g1=grp(ST(1),WY,0,{rotationY:-2});
+const P1=plane(g1,940,734,{backgroundImage:'url(assets/cap/gh-commits.jpg)',backgroundSize:'940px auto',backgroundPosition:'0 0'});
+hide(P1); fin(P1,LS(3)+1.0,.6);
+const rail=div('o',P1,'',{left:(px(63)-3)+'px',top:px(520)+'px',width:'6px',height:'0px',background:'#D4FF3A',boxShadow:'0 0 24px #D4FF3A',borderRadius:'3px'});
+tl.to(rail,{height:px(930)+'px',duration:1.3,ease:'sine.inOut'},LS(3)+2.3);
+[[494,0],[1105,.8]].forEach(a=>{const n=div('o',P1,'',{left:(px(63)-20)+'px',top:(px(a[0])-20)+'px',width:'40px',height:'40px',borderRadius:'50%',border:'7px solid #D4FF3A',background:'#07090F',boxShadow:'0 0 26px #D4FF3A',opacity:0});
+  tl.fromTo(n,{opacity:0,scale:.4},{opacity:1,scale:1,duration:.5,ease:'back.out(1.6)'},LS(3)+2.4+a[1]);});
+[582,690,798,906,1014].forEach((y,i)=>{const r=div('o',P1,'',{left:(px(1778)-42)+'px',top:(px(y)-18)+'px',width:'84px',height:'36px',border:'4px solid #D4FF3A',borderRadius:'10px',boxShadow:'0 0 22px #D4FF3A',opacity:0});
+  tl.fromTo(r,{opacity:0,scale:1.35},{opacity:1,scale:1,duration:.4,ease:'sine.out'},LS(3)+2.5+i*.26);});
+const ghl=div('pill',g1);ghl.style.width='360px';ghl.style.height='116px';ghl.innerHTML='<img src="assets/github-lockup.svg" style="width:280px">';put(ghl,-250,348,120);fin(ghl,LS(3)+2.0,.6);
+
+/* ---- st2: Finder (drawn, labelled) (L4) ---- */
+const g2=grp(ST(2),WY,0,{rotationY:3});
+const fin2=plane(g2,940,640,{background:'#1B1F2A'},
+ '<div style="position:absolute;left:0;top:0;right:0;height:84px;background:#262B38;border-bottom:2px solid #333A4B"><i style="position:absolute;left:30px;top:32px;width:20px;height:20px;border-radius:50%;background:#FF5F57"></i><i style="position:absolute;left:66px;top:32px;width:20px;height:20px;border-radius:50%;background:#FEBC2E"></i><i style="position:absolute;left:102px;top:32px;width:20px;height:20px;border-radius:50%;background:#28C840"></i><span style="position:absolute;left:0;right:0;top:0;line-height:84px;text-align:center;font-weight:700;font-size:34px;color:#E7E9EE">tipcalc</span></div>'+
+ '<div style="position:absolute;left:0;top:84px;bottom:0;width:240px;background:#20242F;border-right:2px solid #2E3445;font-weight:600;font-size:29px;color:#9AA1B2;line-height:68px;padding:30px 0 0 32px">Favorites<br><span style="color:#cfd3dd">Desktop</span><br><span style="color:#cfd3dd">Documents</span><br><span style="color:#cfd3dd">Downloads</span></div>'+
+ '<div style="position:absolute;left:280px;top:112px;font-weight:700;font-size:26px;color:#8D95A6">Name</div><div style="position:absolute;left:540px;top:112px;font-weight:700;font-size:26px;color:#8D95A6">Date Modified</div><div style="position:absolute;left:800px;top:112px;font-weight:700;font-size:26px;color:#8D95A6">Size</div>'+
+ '<div style="position:absolute;left:262px;top:156px;width:660px;height:92px;border-radius:14px;background:#2D3446"></div>'+
+ '<div style="position:absolute;left:288px;top:178px;width:50px;height:50px;border-radius:10px;background:#F0DB4F;color:#000;font-weight:900;font-size:27px;line-height:50px;text-align:center">JS</div><div style="position:absolute;left:358px;top:172px;font-weight:600;font-size:44px;line-height:62px;color:#fff">app.js</div><div style="position:absolute;left:540px;top:182px;font-weight:500;font-size:24px;line-height:40px;color:#B3B9C8">7 Nov 2026, 21:17</div><div style="position:absolute;left:800px;top:182px;font-weight:500;font-size:24px;line-height:40px;color:#B3B9C8">318 bytes</div>'+
+ '<div id="ghostrow" style="position:absolute;left:262px;top:290px;width:660px;height:240px;border-radius:20px;border:5px dashed #D4FF3A;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:54px;color:#D4FF3A;letter-spacing:-.025em;text-align:center;line-height:62px">save points:<br>none yet</div>'+
+ '<div style="position:absolute;left:262px;bottom:20px;font-weight:500;font-size:22px;color:#6C7384">drawing of the folder from our test run</div>');
+hide(fin2); fin(fin2,LS(4)-.9,.6);
+tag(g2,'NOBODY SHOWS YOU THIS',-90,-318,90,LS(4)+.3,'red',LS(4)+2.2);
+tl.fromTo(fin2.querySelector('#ghostrow'),{opacity:.3},{opacity:1,duration:.5,yoyo:true,repeat:5,ease:'sine.inOut'},LS(4)+.3);
+
+/* ---- st3: game (drawn) (L5a) ---- */
+const g3_=grp(ST(3),WY,0,{rotationY:-3});
+function sprite(rows,pal,pxs){let h=rows.length,w=rows[0].length,s='<svg width="'+w*pxs+'" height="'+h*pxs+'" viewBox="0 0 '+w+' '+h+'" shape-rendering="crispEdges" style="display:block">';
+  rows.forEach((r,y)=>{for(let x=0;x<w;x++){const c=pal[r[x]];if(c)s+='<rect x="'+x+'" y="'+y+'" width="1.02" height="1.02" fill="'+c+'"/>';}});return s+'</svg>';}
+const boss=['....RR....RR....','...RRRR..RRRR...','..RRRRRRRRRRRR..','.RRRRRRRRRRRRRR.','.RRWWRRRRRRWWRR.','.RRWKRRRRRRWKRR.','.RRRRRRRRRRRRRR.','.RRRRKKKKKKRRRR.','.RRRRKWKWKWRRRR.','..RRRRRRRRRRRR..','...RR.RRRR.RR...','..RRR......RRR..'];
+const hero=['..HHHH..','.HHHHHH.','.HSSSSH.','.HSKSKS.','..SSSS..','.BBBBBB.','.BB..BB.','.LL..LL.'];
+const gm=plane(g3_,940,680,{background:'linear-gradient(#2A1659,#0E1535 70%)'},
+ '<div style="position:absolute;left:0;right:0;bottom:0;height:130px;background:#232A54;border-top:10px solid #3C4789"></div>'+
+ '<div style="position:absolute;left:40px;top:30px;font-weight:900;font-size:38px;color:#fff;letter-spacing:.04em">LEVEL 4</div><div style="position:absolute;left:470px;top:30px;font-weight:900;font-size:38px;color:#FF6B70;letter-spacing:.06em">BOSS</div>'+
+ '<div style="position:absolute;left:470px;top:84px;width:440px;height:32px;border-radius:6px;border:5px solid #fff;background:#3B0F1B"><div id="bhp" style="width:100%;height:100%;background:#FF4B55"></div></div>'+
+ '<div style="position:absolute;left:480px;top:160px">'+sprite(boss,{R:'#E53D4B',W:'#fff',K:'#16091F'},27)+'</div>'+
+ '<div style="position:absolute;left:70px;top:384px">'+sprite(hero,{H:'#5CC8FF',S:'#FFD9B0',K:'#14161F',B:'#2E7BFF',L:'#1B3C9C'},20)+'</div>'+
+ '<div id="flag" style="position:absolute;left:330px;top:340px;width:12px;height:210px;background:#D4FF3A;box-shadow:0 0 30px #D4FF3A"></div><div id="flag2" style="position:absolute;left:342px;top:340px;width:120px;height:76px;background:#D4FF3A;clip-path:polygon(0 0,100% 50%,0 100%);box-shadow:0 0 30px #D4FF3A"></div>');
+hide(gm); fin(gm,LS(5)-.9,.6);
+const fl=[gm.querySelector('#flag'),gm.querySelector('#flag2')];gsap.set(fl,{opacity:.2});tl.to(fl,{opacity:1,duration:.4},WT(5,4));
+tag(g3_,'SAVE POINT',-150,-50,110,WT(5,4)+.1,'',WT(5,8)+.3);
+tl.to(gm.querySelector('#bhp'),{width:'96%',duration:.5,ease:'sine.out'},WT(5,8)+.2);
+tl.fromTo(gm.querySelector('#bhp'),{backgroundColor:'#FF4B55'},{backgroundColor:'#FF7A82',duration:.4,yoyo:true,repeat:3},WT(5,8));
+
+/* ---- st4: commit terminal + node (L5b) ---- */
+const g4=grp(ST(4),WY-60,0,{rotationY:3});
+const T2=mkTerm(g4,1020,520,'tipcalc — zsh',40,0); hide(T2.el); fin(T2.el,WT(5,8)+.7,.5);
+T2.line(0,[['$ ','p'],['git add app.js','c']],WT(5,9)-.1,28);
+T2.line(1,[['$ ','p'],['git commit -m "Tip calculator works"','c']],WT(5,12)-.9,30);
+T2.line(2,[['[main (root-commit) ab0955b]','g']],WT(5,16)+.1,0);
+T2.line(3,[['Tip calculator works','g']],WT(5,16)+.15,0);
+T2.line(4,[[' 1 file changed, 4 insertions(+)','ou']],WT(5,16)+.25,0);
+node(ST(4),SPY,'ab0955b','Tip calculator works',WT(5,16)+.1);
+tag(g4,'A COMMIT = A SAVE',-60,-300,90,WT(5,16)+.3,'',LE(5)+.2);
+
+/* ---- st5: git-scm.com real capture + Git logo (L6a) ---- */
+const g5=grp(ST(5),WY,0,{rotationY:4});
+const P5=plane(g5,940,734,{backgroundImage:'url(assets/cap/gitscm.jpg)',backgroundSize:'940px auto',backgroundPosition:'0 0'}); hide(P5); fin(P5,LS(6)-.7,.6);
+const gl=div('pill',g5);gl.style.width='320px';gl.style.height='150px';gl.innerHTML='<img src="assets/git-logo.svg" style="width:226px">';put(gl,-260,350,120);fin(gl,LS(6)+.1,.6);
+ring(P5,px(1450),px(340),px(600),px(420),LS(6)+.7,LS(6)+1.9);
+
+/* ---- st6: real GitHub repo page + ticking fork counter (L6b) ---- */
+const g6=grp(ST(6),WY,0,{rotationY:-3});
+const P6=plane(g6,940,734,{backgroundImage:'url(assets/cap/gh-repo.jpg)',backgroundSize:'940px auto',backgroundPosition:'0 0'}); hide(P6); fin(P6,WT(6,4)-.9,.6);
+const ghl2=div('pill',g6);ghl2.style.width='360px';ghl2.style.height='116px';ghl2.innerHTML='<img src="assets/github-lockup.svg" style="width:280px">';put(ghl2,-250,348,110);fin(ghl2,WT(6,4)-.2,.6);
+const fk=div('o',g6,'',{width:'420px',height:'92px'});gsap.set(fk,{xPercent:-50,yPercent:-50,x:200,y:-290,z:150,autoAlpha:0});
+fk.style.cssText+='background:#0D1117;border-radius:24px;box-shadow:0 0 0 5px #D4FF3A,0 0 60px rgba(212,255,58,.65);font-family:IDisp;font-weight:800;color:#fff;font-size:54px;line-height:92px;text-align:center;letter-spacing:-.02em';
+const vals=['27.9k','28.0k','28.1k','28.2k','28.3k','28.4k','28.5k','28.6k','28.7k'];
+vals.forEach((v,i)=>{const s=div('o',fk,'<span style="color:#9AA2B3;font-weight:600">Fork </span>'+v,{left:'0',top:'0',width:'420px',height:'92px',textAlign:'center',opacity:0});
+  tl.set(s,{opacity:1},WT(6,4)+.15+i*.17);if(i<vals.length-1)tl.set(s,{opacity:0},WT(6,4)+.15+(i+1)*.17);});
+fin(fk,WT(6,4)-.1,.4);
+ring(P6,px(1672),px(316),px(190),px(48),WT(6,4)+.2,WT(6,4)+1.8,60);
+ring(P6,px(1340),px(525),px(250),px(46),WT(6,6),LS(7)-.1);
+ring(P6,px(1376),px(433),px(190),px(56),LS(7)-.5,LS(7)+1.3);
+
+/* ---- st7: push terminal, three save points fly up to GitHub (L7) ---- */
+const g7=grp(ST(7),WY+150,0,{rotationY:3});
+const T3=mkTerm(g7,1020,470,'tipcalc — zsh',36,0); hide(T3.el); fin(T3.el,LS(7)-.9,.5);
+T3.line(0,[['$ ','p'],['git push -u origin main','c']],LS(7)-.1,30);
+T3.line(1,[['To ../remote.git','ou']],LS(7)+.75,0);
+T3.line(2,[[' * [new branch]      main -> main','g']],LS(7)+.9,0);
+T3.line(3,[["branch 'main' set up to track 'origin/main'.",'ou']],LS(7)+1.05,0);
+T3.line(4,[['real run: a local test folder plays GitHub','d']],LS(7)+1.2,0);
+const pk=[['ab0955b','Tip calculator works'],['49f0a7d','AI: round the tip'],['936e268','Revert "AI: round the tip"']];
+pk.forEach((p,i)=>{node(ST(7)-420+i*420,SPY,p[0],p[1],LS(7)-.4+i*.25);});
+const gh7=grp(ST(7),560,-120);
+const P7=plane(gh7,900,330,{backgroundImage:'url(assets/cap/gh-commits.jpg)',backgroundSize:'900px auto',backgroundPosition:'0 -'+(px(480)*900/940)+'px'}); hide(P7);
+fin(P7,LS(7)+.3,.5);
+pk.forEach((p,i)=>{const d=div('o',pan,'',{width:'34px',height:'34px',borderRadius:'50%',background:'#D4FF3A',boxShadow:'0 0 30px #D4FF3A,0 0 70px #D4FF3A'});
+  gsap.set(d,{xPercent:-50,yPercent:-50,x:ST(7)-420+i*420,y:SPY,z:0,autoAlpha:0});
+  tl.set(d,{autoAlpha:1},LS(7)+.5+i*.12);
+  tl.to(d,{y:SPY-140,duration:.22,ease:'sine.in'},LS(7)+.5+i*.12);
+  tl.to(d,{x:ST(7)-250+i*250,y:600,z:-120,duration:.75,ease:'sine.inOut'},LS(7)+.72+i*.12);
+  tl.to(d,{autoAlpha:0,scale:.2,duration:.3},LS(7)+1.47+i*.12);});
+tag(g7,'SAVED ONLINE',230,-300,100,LS(7)+1.3,'',LE(7)+.4);
+
+/* ---- st8: Code dropdown real capture, then laptop (L8) ---- */
+const g8=grp(ST(8),WY,0,{rotationY:-3});
+const P8=plane(g8,940,734,{backgroundImage:'url(assets/cap/gh-code.jpg)',backgroundSize:'940px auto',backgroundPosition:'0 0'}); hide(P8); fin(P8,LS(8)-.8,.5);
+ring(P8,px(1120),px(628),px(540),px(60),LS(8)+.1,LS(8)+1.5);
+const g8b=grp(ST(8)+1100,WY+80,60,{rotationY:-6});
+const lid=div('o',g8b,'',{width:'860px',height:'540px',background:'#0B0E15',borderRadius:'30px 30px 8px 8px',border:'12px solid #3A4152',boxShadow:'0 0 60px rgba(212,255,58,.14)'});
+gsap.set(lid,{xPercent:-50,yPercent:-100,y:240,transformOrigin:'50% 100%',rotationX:-5});
+const base=div('o',g8b,'',{width:'980px',height:'420px',background:'linear-gradient(#3B4254,#222736)',borderRadius:'10px 10px 40px 40px',boxShadow:'0 30px 60px rgba(0,0,0,.6)'});
+gsap.set(base,{xPercent:-50,y:240,transformOrigin:'50% 0',rotationX:76});
+div('o',base,'',{left:'70px',top:'46px',width:'840px',height:'220px',background:'repeating-linear-gradient(90deg,#161A24 0 44px,transparent 44px 52px),#10131B',borderRadius:'12px',opacity:.9});
+const LT=mkTerm(g8b,820,500,'friend-copy — zsh',30,6); gsap.set(LT.el,{y:-10,transformOrigin:'50% 100%',rotationX:-5,z:4}); gsap.set(LT.el.querySelector('.tb'),{height:'56px'});
+hide(lid);hide(base);hide(LT.el);
+fin(lid,LS(8)+.3,.5);fin(base,LS(8)+.3,.5);fin(LT.el,LS(8)+.5,.4);
+LT.line(0,[['$ ','p'],['git clone remote.git friend-copy','c']],LS(8)+.65,36);
+LT.line(1,[["Cloning into 'friend-copy'...",'ou']],LS(8)+1.15,0);
+LT.line(2,[['done.','g']],LS(8)+1.3,0);
+tag(g8b,'NEW LAPTOP',0,330,90,LS(8)+1.0,'',LE(8)+.5);
+['ab0955b','49f0a7d','936e268'].forEach((h,i)=>{const e=div('o',g8b,'<div style="width:50px;height:50px;border-radius:50%;border:7px solid #D4FF3A;background:#07090F;box-shadow:0 0 24px #D4FF3A;margin:0 auto"></div><div style="font-family:JBM;font-weight:700;font-size:28px;color:#fff;text-align:center;margin-top:8px">'+h+'</div>',{width:'200px'});
+  gsap.set(e,{xPercent:-50,x:-260+i*260,y:130,z:10,autoAlpha:0});tl.fromTo(e,{autoAlpha:0,scale:.5},{autoAlpha:1,scale:1,duration:.4,ease:'back.out(1.5)'},LS(8)+1.35+i*.1);});
+
+/* ---- st9: real branches page (L9a) ---- */
+const g9=grp(ST(9),WY,0,{rotationY:3});
+const P9=plane(g9,940,734,{backgroundImage:'url(assets/cap/gh-branches.jpg)',backgroundSize:'940px auto',backgroundPosition:'0 0'}); hide(P9); fin(P9,LS(9)-.8,.5);
+[[507,578,0],[490,783,.4],[495,860,.6],[495,1013,.8]].forEach(a=>ring(P9,px(a[0]),px(a[1]),px(130),px(54),LS(9)+.2+a[2],LS(9)+1.5));
+
+/* ---- st10: branch + merge on the spine, smooth curves + flying tags (L9) ---- */
+const X10=ST(10);
+[['ab0955b','Tip calculator works',-720],['49f0a7d','AI: round the tip',-360],['936e268','Revert "AI: round the tip"',0]].forEach((b,i)=>node(X10+b[2],SPY,b[0],b[1],LS(9)+.9+i*.12));
+// curves (svg, drawn with stroke-dashoffset)
+const svg=div('o',pan,'<svg width="1100" height="520" viewBox="0 0 1100 520" style="overflow:visible"><path id="lane" d="M100 400 C 300 400, 330 150, 560 150" pathLength="1" fill="none" stroke="#D4FF3A" stroke-width="10" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1" style="filter:drop-shadow(0 0 12px #D4FF3A)"/><path id="mainx" d="M100 400 L 560 400" pathLength="1" fill="none" stroke="#D4FF3A" stroke-width="10" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1" style="filter:drop-shadow(0 0 12px #D4FF3A)"/></svg>',{left:(X10-100)+'px',top:(SPY-400)+'px'});
+const lane=svg.querySelector('#lane'), mainx=svg.querySelector('#mainx');
+tl.to(lane,{strokeDashoffset:0,duration:.8,ease:'sine.inOut'},LS(9)+1.4);
+const n10=node(X10+460,SPY-250,'8a3b55f','Split the bill',LS(9)+2.1);
+const tsb=tag(pan,'split-bill',X10+460,SPY-420,80,LS(9)+2.2,'',null);
+const gT=grp(X10+80,640,-60);
+const T4b=mkTerm(gT,960,190,'tipcalc — zsh',34,0); hide(T4b.el);
+fin(T4b.el,LS(9)+1.2,.4);fout(T4b.el,LS(9)+2.9,.4);
+T4b.line(0,[['$ ','p'],['git switch -c split-bill','c']],LS(9)+1.3,30);
+T4b.line(1,[["Switched to a new branch 'split-bill'",'ou']],LS(9)+2.2,0);
+const T5=mkTerm(gT,960,190,'tipcalc — zsh',34,0); hide(T5.el);
+fin(T5.el,WT(9,9)-.3,.4);
+T5.line(0,[['$ ','p'],['git merge split-bill','c']],WT(9,9)-.2,30);
+T5.line(1,[['Fast-forward','g']],WT(9,9)+.7,0);
+// merge: branch lane straightens into main; node settles onto the line; main tag flies up and back down along the arc
+tl.to(lane,{opacity:0,duration:.6,ease:'sine.inOut'},WT(9,9)+.7);
+tl.to(mainx,{strokeDashoffset:0,duration:.9,ease:'sine.inOut'},WT(9,9)+.7);
+tl.to(n10.g,{y:SPY,duration:.9,ease:'sine.inOut'},WT(9,9)+.7);
+tl.to(tsb,{y:SPY-190,autoAlpha:0,duration:.8,ease:'sine.inOut'},WT(9,9)+.7);
+const mainTag=div('tag wht',pan,'main');put(mainTag,X10,SPY+170,80);hide(mainTag);
+fin(mainTag,LS(9)+.9,.4);
+tl.to(mainTag,{keyframes:[{x:X10+160,y:SPY-60,duration:.45,ease:'sine.in'},{x:X10+460,y:SPY+170,duration:.55,ease:'sine.out'}]},WT(9,9)+.7);
+const vt=div('tag',pan,'v1.0');put(vt,X10+460,SPY-330,90);hide(vt);
+tl.fromTo(vt,{autoAlpha:0,y:SPY-500},{autoAlpha:1,y:SPY+250,duration:.9,ease:'bounce.out'},LE(9)-.4);
+
+/* ---- st11: the sentence to say (L10) ---- */
+const g11=grp(ST(11),WY-60,0);
+const F=plane(g11,960,560,{background:'#10151F',boxShadow:'0 0 0 5px #D4FF3A,0 0 110px rgba(212,255,58,.45),0 40px 90px rgba(0,0,0,.65)',borderRadius:'42px'},
+ '<div style="position:absolute;left:50px;top:36px;font-weight:800;font-size:34px;color:#8D95A6;letter-spacing:.02em">say this to your AI</div><div id="fx" style="position:absolute;left:50px;top:130px;width:860px;font-weight:900;font-size:150px;line-height:150px;letter-spacing:-.045em;color:#fff"></div>');
+hide(F); fin(F,LS(10)-.7,.6);
+const fx=F.querySelector('#fx');const fws=['save this','version'].map((w,i)=>{const s=document.createElement('div');s.textContent=w;s.style.opacity=0;fx.appendChild(s);return s;});
+tl.fromTo(fws[0],{opacity:0,y:16},{opacity:1,y:0,duration:.3,ease:'sine.out'},WT(10,6)-.03);
+tl.fromTo(fws[1],{opacity:0,y:16},{opacity:1,y:0,duration:.3,ease:'sine.out'},WT(10,8)-.03);
+tl.set(fws[0],{color:'#D4FF3A'},WT(10,6));
+const rF=ring(F,480,280,900,500,WT(10,8)+.3,null);tl.to(rF,{scale:1.03,duration:.5,repeat:9,yoyo:true,ease:'sine.inOut'},WT(10,8)+1.0);
+tag(g11,'SCREENSHOT THIS',0,-325,70,LS(10)+.7,'wht',null);
+// moving end: a "sent" bar sweeps, the save-point node pulses and packets run along the timeline
+const sweep=div('o',F,'',{left:'0px',top:'0px',width:'960px',height:'560px',background:'linear-gradient(90deg,rgba(212,255,58,0),rgba(212,255,58,.25),rgba(212,255,58,0))',opacity:0,borderRadius:'42px'});
+tl.fromTo(sweep,{opacity:0,x:-960},{opacity:1,x:960,duration:1.1,ease:'sine.inOut',repeat:4,repeatDelay:.35},WT(10,8)+.9);
+const f11n=node(ST(11),SPY,'ab0955b','Tip calculator works',LS(10)); pulse(f11n.n,WT(10,8)+.4,4);
+
+/* ---- st12: tomorrow (.env) ---- */
+const g12=grp(ST(12),WY,0,{rotationY:-3});
+const EV=plane(g12,940,640,{background:'#10151F'},
+ '<div style="position:absolute;left:0;top:0;right:0;height:84px;background:#161B28;border-bottom:2px solid #262E3F"><div style="position:absolute;left:34px;top:16px;height:68px;padding:0 30px;background:#10151F;border-radius:14px 14px 0 0;font-family:JBM;font-weight:500;font-size:33px;line-height:68px;color:#fff">.env</div></div>'+
+ '<div style="position:absolute;left:44px;top:128px;font-family:JBM;font-weight:500;font-size:47px;line-height:84px;color:#B5BCC9;white-space:pre"><span style="color:#6F788A">1</span>  <span style="color:#F6D86B">SECRET_KEY</span>=<span id="dots" style="color:#fff;display:inline-block">•••••••••••</span>\n<span style="color:#6F788A">2</span>  <span style="color:#F6D86B">API_URL</span>=api.example.com</div>'+
+ '<div style="position:absolute;left:44px;top:376px;right:44px;height:180px;border-radius:22px;border:5px dashed #D4FF3A;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:56px;line-height:64px;text-align:center;color:#D4FF3A;letter-spacing:-.025em">a secret key.<br>never share it.</div>');
+hide(EV); fin(EV,LS(10)+2.3,.6);
+const dots=EV.querySelector('#dots');tl.fromTo(dots,{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:1.3,ease:'none'},LS11+.5);
+const scan=div('o',EV,'',{left:'0px',top:'124px',width:'940px',height:'84px',background:'linear-gradient(90deg,rgba(212,255,58,0),rgba(212,255,58,.22),rgba(212,255,58,0))',opacity:0});
+tl.fromTo(scan,{opacity:0,y:0},{opacity:1,y:84,duration:.9,repeat:9,yoyo:true,ease:'sine.inOut'},LS11+.2);
+const key=div('o',EV,'<svg width="130" height="64" viewBox="0 0 120 60"><circle cx="24" cy="30" r="18" fill="none" stroke="#D4FF3A" stroke-width="7"/><path d="M42 30H112M92 30v16M106 30v12" stroke="#D4FF3A" stroke-width="7" fill="none" stroke-linecap="round"/></svg>',{left:'770px',top:'10px'});
+tl.fromTo(key,{y:0,rotation:-6},{y:-12,rotation:6,duration:.8,repeat:12,yoyo:true,ease:'sine.inOut'},LS11);
+
+/* flowing floor in screen space (faint) */
+tl.fromTo('#hzi',{backgroundPosition:'0px 0px'},{backgroundPosition:'150px 600px',duration:D,ease:'none'},0);
+
+/* ================= CAMERA: fast fly-through between stations ================= */
+gsap.set(cam,{transformOrigin:'540px 960px'});
+// flights: [start, arrive, x, y]
+const FL=[[LS(3)-.25,LS(3)+.6,ST(0),1275],
+ [LS(3)+1.55,LS(3)+2.35,ST(1),880],
+ [LS(4)-.6,LS(4)+.2,ST(2),880],
+ [LS(5)-.65,LS(5)+.15,ST(3),880],
+ [WT(5,8)+.45,WT(5,8)+1.2,ST(4),860],
+ [LS(6)-.6,LS(6)+.2,ST(5),880],
+ [WT(6,3)+.0,WT(6,4)+.1,ST(6),880],
+ [LS(7)-.65,LS(7)+.15,ST(7),1000],
+ [LS(8)-.6,LS(8)+.15,ST(8),880],
+ [LS(8)+.85,LS(8)+1.4,ST(8)+1100,910],
+ [LS(9)-.6,LS(9)+.2,ST(9),880],
+ [LS(9)+.95,LS(9)+1.65,X10+130,1020],
+ [LS(10)-.6,LS(10)+.25,ST(11),880],
+ [LS11-.5,LS11+.3,ST(12),880]].filter(f=>f[0]<D-.3);
+gsap.set(pan,{x:540-ST(0),y:960-740,z:0});
+tl.to(pan,{x:540-ST(0),y:960-880,duration:1.5,ease:'sine.inOut'},.4);
+FL.forEach(f=>tl.to(pan,{x:540-f[2],y:960-f[3],z:0,duration:f[1]-f[0],ease:'power3.inOut'},f[0]));
+// orientation: arrival pose (tilt up to ~12 deg, zoom 150), mid-flight spike (zoom 560, roll), leave pose
+const AZ=[420,130,140,140,40,130,130,40,130,100,130,100,110,130];
+const keys=[[0,[6,-4,-1.5,190]],[1.5,[4,9,1,50]]];
+let s=1;
+FL.forEach((f,i)=>{s=-s;const mid=(f[0]+f[1])/2;
+  keys.push([f[0],[3,-s*4,0,(i>0?AZ[i-1]:50)+60]]);
+  keys.push([mid,[-s*5,s*14,s*3.4,560]]);
+  keys.push([f[1],[i==0?16:7,s*10,-s*1.2,AZ[i]||120]]);});
+keys.push([D,[4,-6,1,220]]);
+// strictly increasing times
+keys.sort((a,b)=>a[0]-b[0]);
+for(let i=1;i<keys.length;i++){if(keys[i][0]<=keys[i-1][0]+.04)keys[i][0]=keys[i-1][0]+.04;}
+gsap.set(cam,{rotationX:keys[0][1][0],rotationY:keys[0][1][1],rotationZ:keys[0][1][2],z:keys[0][1][3]});
+for(let i=1;i<keys.length;i++){const a=keys[i],b=keys[i-1];if(b[0]>=D)break;
+  tl.to(cam,{rotationX:a[1][0],rotationY:a[1][1],rotationZ:a[1][2],z:a[1][3],duration:Math.max(.12,Math.min(a[0],D)-b[0]),ease:'sine.inOut'},b[0]);}
+};
+</script>
