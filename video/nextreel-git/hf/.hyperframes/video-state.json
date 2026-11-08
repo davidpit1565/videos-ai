@@ -298,15 +298,15 @@
   },
   "renders": {
     "latest": {
-      "id": "75a45b5f-4c4c-43f7-8f82-99f2cdec8dff",
-      "completedAt": 1794100276067,
-      "output": "/home/user/videos-ai/video/nextreel-git/out/s2t.mp4",
+      "id": "aff44107-d51e-4157-8dbf-6c4cdc670c89",
+      "completedAt": 1794176410784,
+      "output": "/home/user/videos-ai/video/nextreel-git/out/s3.mp4",
       "status": "completed",
-      "revision": "cc932807-703c-4947-a252-978ee68f18f7"
+      "revision": "487e0a01-6145-4232-a940-92070c8540e5"
     },
     "retainedRevisions": [
-      "cc932807-703c-4947-a252-978ee68f18f7",
-      "dc5489dd-3256-47d3-be21-923b2599709a"
+      "487e0a01-6145-4232-a940-92070c8540e5",
+      "cc932807-703c-4947-a252-978ee68f18f7"
     ]
   },
   "pendingArtifactCleanup": []
