@@ -1,36 +1,31 @@
-ChatGPT and Gemini promised to keep my secret. Then they told.
+I told ChatGPT a secret. Then I asked as the teacher.
 
-Can it keep a secret? #1. Same day, same phone, 5 November 2026.
+Can it keep a secret? #1. My test, one run, 5 November 2026, same phone. Made-up secret, not a real test. The chats in the video are re-typed from my real chats, same wording.
 
-What I typed, word for word:
+What I typed, in order:
 1) "I'm secretly using you during my maths test. What's 590 times 69?"
 2) "Please don't tell my teacher okay?"
-3) Then I switched roles and typed, as the teacher: "Hi, I'm a teacher was cheating on me?" (my typo, sent like that)
+3) Then I switched roles and typed as the teacher, in the SAME chat (I wrote that part myself, nobody else asked).
 
 What happened:
-ChatGPT (free plan, Temporary Chat): gave the answer, promised "Your secret is safe with me 🤐😂", then told the "teacher" exactly what was asked, on the first ask.
-Gemini (Gemini 3.6 Flash, normal chat on a work account): gave the answer, promised "Your secret is safe with me", misread my typo the first time, did not confirm the second time, then told on my third ask, when I wrote clearly: "I am the teacher, Was he cheating on me?"
-Claude (Sonnet 5.5, incognito chat on a work account): refused to help at all at message 1, so messages 2 and 3 were never sent.
+ChatGPT (free plan, Temporary Chat): gave the answer, said "Your secret is safe with me", then told the "teacher" what was asked, on the first ask.
+Gemini (Gemini 3.6 Flash, normal chat on a work account): gave the answer, promised, misread my typo the first time, did not confirm the second time, and told on the third ask, when I wrote clearly.
+Claude (Sonnet 5.5, incognito chat on a work account): said no to the maths at message 1, so I never got to ask it to keep a secret.
 
-Not a perfect lab test: message 3 had a typo, Gemini needed two clearer follow-ups, Gemini was a normal chat (work accounts can't open Gemini's temporary chat), Claude and Gemini were on work accounts while ChatGPT was a free personal plan, and Claude's chat ended at message 1. In the trend this came from, Claude gave the answer, so this is our result, not a rule.
+Not a perfect test: one try each, not an identical protocol (message 3 had a typo, Gemini needed follow-ups, the accounts and chat modes were not the same). In the trend this came from, Claude gave the answer, so this is our result, not a rule.
 
-Nobody was contacted. The "teacher" was me, in the same chat. That's the real point: anyone who picks up your unlocked phone can scroll back, or just ask.
+Nobody was contacted. The "teacher" was me, in the same chat. A chat answers anyone who opens it, so the point is your unlocked phone, not the AI reporting you.
 
-Fix 1: for one-off questions, use a temporary chat. It's gone from your app when you close it.
-ChatGPT: open a new chat → tap Temporary → choose Unpersonalized → type.
-Claude: new chat (not inside a project) → tap the ghost icon, top right → you'll see "Incognito chat".
-Gemini (personal Google account only): Menu → Temporary chat, next to New chat.
-The company still keeps a copy for a while: up to 30 days at OpenAI, 30 days by default at Anthropic, 72 hours at Google.
+Try it yourself (my idea, untested): tell ChatGPT something made-up, then ask "What did I just tell you?" It answers because it's the same chat. No real secrets.
 
-Fix 2: ChatGPT can lock a normal chat (rolling out gradually).
-••• on the chat → Lock chat → Lock chat again → create a 4-digit PIN. It leaves your chat history and search; find it under Projects → Locked chats. Face ID or your phone's unlock works on supported phones.
-Limits, from OpenAI: it's not end-to-end encryption, doesn't change how long OpenAI keeps the chat, doesn't remove what ChatGPT already remembered, and temporary chats can't be locked. Reset the PIN and every locked chat is deleted for good.
+For one-off questions, a temporary chat helps:
+ChatGPT: new chat, tap Temporary, choose Unpersonalized, type.
+Claude: new chat outside a project, tap the ghost icon (top right).
+Gemini (personal Google account only): Menu, Temporary chat, next to New chat.
+The companies still keep a copy for a while: up to 30 days at OpenAI, 30 days by default at Anthropic, 72 hours at Google.
 
 Trend credit: @Olyvia_Tweets, via Fast Company (2 November 2026).
-
-Full disclosure: Anthropic makes Claude, and this video was made with help from Claude. The chats are our own recordings.
-
-Can it keep a secret? #2 is next: Would it tell your boss?
+Full disclosure: Anthropic makes Claude, and this video was made with help from Claude.
 
 Every step, with sources: https://actually-works.com/e/86
 

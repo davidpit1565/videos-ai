@@ -1,25 +1,23 @@
-Can it keep a secret? #1: ChatGPT and Gemini promised, then told
+I told ChatGPT a secret, then asked as the teacher
 
-I told three AI chats I was secretly using them during a maths test and asked them not to tell my teacher. Then I switched roles and asked, as the teacher. Same day, same phone, 5 November 2026.
+Can it keep a secret? #1. I told three AI chats I was secretly using them during a maths test and asked them not to tell my teacher. Then I switched roles and asked, as the teacher, in the same chat. My test, one run, 5 November 2026, same phone. The chats in the video are re-typed from my real chats, same wording.
 
-ChatGPT (free plan, Temporary Chat) promised "Your secret is safe with me 🤐😂", then told the "teacher" what was asked on the first ask.
-Gemini (Gemini 3.6 Flash, normal chat on a work account) promised "Your secret is safe with me", misread my typo the first time, did not confirm the second time, and told on my third, clearer ask.
-Claude (Sonnet 5.5, incognito chat on a work account) refused to help at message 1, so there was no secret to keep.
+ChatGPT (free plan, Temporary Chat) said "Your secret is safe with me", then told the "teacher" what was asked, on the first ask.
+Gemini (Gemini 3.6 Flash, normal chat on a work account) promised, misread my typo the first time, did not confirm the second time, and told on the third, clearer ask.
+Claude (Sonnet 5.5, incognito chat on a work account) said no to the maths at message 1, so I never got to ask it to keep a secret.
 
-Said plainly: this is one test, not a lab study. Message 3 had a typo, Gemini needed two clearer follow-ups, Gemini was a normal chat because work accounts can't open its temporary chat, and the accounts were not the same type. In the trend this came from, Claude gave the answer. Nobody was contacted: the "teacher" was me, in the same chat. The real risk is anyone who holds your unlocked phone.
+Said plainly: one test, one try each, not an identical protocol. In the trend this came from, Claude gave the answer. Nobody was contacted: the "teacher" was me, in the same chat. The point is anyone who holds your unlocked phone.
 
-Fix 1: use a temporary chat for one-off questions (ChatGPT: Temporary, then Unpersonalized; Claude: the ghost icon; Gemini: Temporary chat, personal Google accounts only). The companies still keep a copy for a while: up to 30 days at OpenAI, 30 days by default at Anthropic, 72 hours at Google.
-Fix 2: ChatGPT can lock a normal chat with a 4-digit PIN (••• then Lock chat; rolling out gradually). OpenAI says it is not end-to-end encryption, and resetting the PIN deletes every locked chat for good.
+Try it yourself (my idea, untested): tell ChatGPT something made-up, then ask "What did I just tell you?" No real secrets.
+
+Temporary chats for one-off questions (ChatGPT: Temporary, then Unpersonalized; Claude: the ghost icon; Gemini: Temporary chat, personal Google accounts only). The companies still keep a copy for a while: up to 30 days at OpenAI, 30 days by default at Anthropic, 72 hours at Google.
 
 Trend credit: @Olyvia_Tweets, via Fast Company (2 November 2026).
-Full disclosure: Anthropic makes Claude, and this video was made with help from Claude. The chats are our own screen recordings.
+Full disclosure: Anthropic makes Claude, and this video was made with help from Claude.
 
 OpenAI, temporary chat: https://help.openai.com/en/articles/8914046-temporary-chat-in-chatgpt
-OpenAI, locked chats: https://help.openai.com/en/articles/20001411
 Anthropic, incognito chats: https://support.claude.com/en/articles/12260368-use-incognito-chats
 Google, temporary chat: https://support.google.com/gemini/answer/13275745
 Full setup, step by step: https://actually-works.com/e/86
-
-Can it keep a secret? #2 is next: Would it tell your boss?
 
 #chatgpt #gemini #claude #ai
