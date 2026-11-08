@@ -1,4 +1,4 @@
-One bad edit, and my tip app prints NaN.
+One bad edit, and my tip app is broken.
 I typed one command. The working file came back.
 It works because Git takes a picture of your files.
 Each commit is one picture. Your project becomes a photo album.

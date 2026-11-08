@@ -110,7 +110,7 @@ function mkTerm(g,w,h,title,fs,z){const lh=Math.round(fs*1.5), cw=fs*0.6;
 const px=v=>v*K;   /* capture-display px (2000 wide) -> plane px (940 wide) */
 
 /* ---------- CAPTIONS: >=96px, 1-3 words, spoken word in a lime box ---------- */
-const KEY=new Set('bad nan command back git picture picture commit album github online push laptop history undo restore repeat'.split(' '));
+const KEY=new Set('bad broken nan command back git picture picture commit album github online push laptop history undo restore repeat'.split(' '));
 L.forEach((ln,li)=>{if(!ln.words||li<OFF)return;const toks=ln.text.split(' ');let chunks=[],cur=[],chars=0;
   toks.forEach((w,i)=>{const add=w.length+(cur.length?1:0);
     if(cur.length&&(chars+add>14||cur.length>=3)){chunks.push(cur);cur=[];chars=0;}
