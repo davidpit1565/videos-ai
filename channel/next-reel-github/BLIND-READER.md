@@ -29,3 +29,18 @@ White pill with the real GitHub mark and wordmark; big words "AI broke your app?
 ## Fresh reader's exact answer
 Fresh reader (frame0-s4.png plus the spoken line only, 8.11.2026): (1) GitHub has an undo button for when AI breaks an app; subject clear from frame 1 plus the first words. (2) Stop scrolling: "only maybe": the bold type and big UNDO pop and the red ERROR is a small jolt, but it only hooks someone who already builds apps with AI; "NaN" means nothing to most people and "tip app" is not something they own; it reads as a tutorial ad, not something happening to me; would pause about a second. (3) About me: only if I make apps with AI tools; no personal felt problem for a general viewer, no named person to send it to. (4) Confusing: "NaN" is jargon; the small grey "bill 80" line is low-contrast and cramped against the box edge; both "A BAD EDIT (our demo)" and "tip app (our demo)" say demo (honest but cluttered, the tag overlaps the card corner); what GitHub does is clear only from the narration; empty bottom third. (5) Age: words readable at 10-12, the topic makes sense at about 14+, really for people who built or used AI-made software.
 VERDICT (Claude): passes "subject said and shown at once" (clearer than s3); stake is stronger than s3 but only for builders. Same ceiling as the hook research (about 80).
+
+---
+
+# Blind-reader test, frame 0 (s5, Ctrl+Z hook, 9.11.2026)
+
+Material for the reader: ONLY `channel/next-reel-github/blind/frame0-s5.png` (frame 0 of `video/nextreel-git/out/nextreel-s5-Q.mp4`, 1080x1920) plus the first spoken second as text: "You know Control Z ..." (full line as written and shown: "You know Ctrl+Z. GitHub is Ctrl+Z for AI mistakes.", 3.94 s; the voice says "Control plus Z").
+Questions: "What is this video about?" and "Would you stop scrolling, and why?"
+
+## STATUS: NOT RUN. The agent that built s5 has no tool to start a fresh sub-agent. The main session must show the still plus the text above to a fresh agent and paste its exact answer below.
+
+## What frame 0 shows (builder's description, not blind, does not count)
+White pill with the real GitHub mark and wordmark (no caption under it); a Ctrl + Z keycap pair (Z in lime); big words "Ctrl+Z for AI mistakes" (Ctrl+Z lime); a card "tip app (our demo)" with a red ERROR chip and "Each pays NaN" and the lime undo arrow beside it. The card is already moving from frame 0 (small shake, ERROR chip blinking, keys pressed on each spoken "Ctrl+Z"); when the voice says "GitHub is" the arrow turns once and the card flips to green "total 92.00" with OK (about 2.2 s), then the hook dissolves into the story at about 3.9 s. Removed vs s4: the grey "bill 80" line and the red "A BAD EDIT (our demo)" tag (one label left: "tip app (our demo)").
+
+## Fresh reader's exact answer
+(paste here)

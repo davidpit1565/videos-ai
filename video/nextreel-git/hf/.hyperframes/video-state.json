@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "9a670841-1b24-4365-b519-f922701e688b",
-  "currentRevision": "657e0fae-2233-4800-999c-c8559ca540ca",
+  "currentRevision": "5c43c116-cafd-486a-a2e1-6b882cba9769",
   "pendingChanges": false,
   "files": {
     "assets/fonts/InterDisplay-Black.otf": {
@@ -37,8 +37,8 @@
       "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/69/693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1"
     },
     "index.html": {
-      "hash": "75fba1f1412e83ec45dcffda3a8719e161f736da807fd8cfe1c4a59a42099418",
-      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/75/75fba1f1412e83ec45dcffda3a8719e161f736da807fd8cfe1c4a59a42099418"
+      "hash": "a2fa38250363887ebbcaa67b77d6208dd73b138fcb8b26445ee4dee9f754130f",
+      "content": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/a2/a2fa38250363887ebbcaa67b77d6208dd73b138fcb8b26445ee4dee9f754130f"
     },
     "assets/cap/gh-branches.jpg": {
       "hash": "0a51e2e94e097fbd4bd1c6c73f08d47a8f241c4577f09457dc99effb69e15b73",
@@ -344,6 +344,51 @@
           "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/75/75fba1f1412e83ec45dcffda3a8719e161f736da807fd8cfe1c4a59a42099418"
         }
       }
+    },
+    "b970f861-dd9d-4eb1-8f0f-d1c50d598d7a": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794190269427,
+      "endedAt": 1794190269428,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/75/75fba1f1412e83ec45dcffda3a8719e161f736da807fd8cfe1c4a59a42099418",
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/20/20835a904444637b316fb10254843a51b6d4e3f3fbbb189b30b0f8922223f02b"
+        }
+      }
+    },
+    "6d079a73-b190-4551-b05d-2504b8685305": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794190740668,
+      "endedAt": 1794190740669,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/20/20835a904444637b316fb10254843a51b6d4e3f3fbbb189b30b0f8922223f02b",
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/8c/8c24c648240fd19aeb2ae5156e2a9472f0bc18a7fe4acf444aa9269f81026e25"
+        }
+      }
+    },
+    "5c43c116-cafd-486a-a2e1-6b882cba9769": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794191184982,
+      "endedAt": 1794191184992,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/8c/8c24c648240fd19aeb2ae5156e2a9472f0bc18a7fe4acf444aa9269f81026e25",
+          "after": "/root/.cache/hyperframes/history/9a670841-1b24-4365-b519-f922701e688b/blobs/a2/a2fa38250363887ebbcaa67b77d6208dd73b138fcb8b26445ee4dee9f754130f"
+        }
+      }
     }
   },
   "checks": {
@@ -464,15 +509,15 @@
   },
   "renders": {
     "latest": {
-      "id": "75acae7d-1bf2-4cfb-9913-9b32ce3bd4d3",
-      "completedAt": 1794180675264,
-      "output": "/home/user/videos-ai/video/nextreel-git/out/s4.mp4",
+      "id": "293a4b7c-2273-480a-895f-5a89a305e8a3",
+      "completedAt": 1794191490587,
+      "output": "/home/user/videos-ai/video/nextreel-git/out/s5c.mp4",
       "status": "completed",
-      "revision": "af9f094a-47c1-486e-9265-3b9dd3e3edc9"
+      "revision": "5c43c116-cafd-486a-a2e1-6b882cba9769"
     },
     "retainedRevisions": [
-      "af9f094a-47c1-486e-9265-3b9dd3e3edc9",
-      "5d1f96e0-5b15-44f2-b931-64bf02235033"
+      "5c43c116-cafd-486a-a2e1-6b882cba9769",
+      "6d079a73-b190-4551-b05d-2504b8685305"
     ]
   },
   "pendingArtifactCleanup": []
