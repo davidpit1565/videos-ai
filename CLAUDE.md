@@ -494,6 +494,7 @@ check → fix → re-check rule above.
   now. If episodes or site fixes stop appearing after merging again, check this toggle
   first, before assuming a Hobby-plan build-quota exhaustion (the two look identical from
   outside — no banner, no error, just silence).
+- **Studio reel file names (9.11.2026):** the studio reads the episode number from the digits in a file name in `studio/public/reels/`. Until 9.11 the `.mp4` extension counted, so a file with no digits in its name (`post-ai-image.mp4`) was read as episode 4 and sat at the top of the renders list. Fixed in `studio/lib/reels.ts` and `studio/scripts/prune-old-reels.mjs` (the extension is stripped first). Only `reel-N.*` files belong in that folder; the YouTube publish route (`/api/youtube/publish`) can only fetch what the deployed site still serves, and the build removes published and old reels from the deployment, so use `/api/yt-backfill?episode=N` (it reads the repo) for episodes.
 - `/api/track` reads Instagram and Beehiiv and records only what changed. Cron runs it daily.
 - **Which pages are public is declared once, in `studio/lib/routes.ts`** (`SITE` / `STUDIO`
   / `CRON`). The middleware and `app/shell.tsx` both import it. That list used to be
