@@ -124,6 +124,46 @@ def cd(sfx):
     return f'''<div class="cd" id="cd{sfx}">{nums}<div class="cdbar"><div class="cdfill" id="cdr{sfx}"></div></div></div>'''
 
 
+
+def scene(k):
+    """drawn everyday scenes for the collage tiles (all illustrations)"""
+    A = lambda st, inner="": f'<i class="ab" style="{st}">{inner}</i>'
+    if k == 0:   # kids at the beach
+        return (A("left:0;top:0;width:100%;height:58%;background:linear-gradient(#8FD3FF,#D8F1FF)") + A("left:70%;top:8%;width:15%;padding-top:15%;border-radius:50%;background:#FFD84D")
+                + A("left:0;top:44%;width:100%;height:20%;background:#3FA7E0") + A("left:0;top:60%;width:100%;height:40%;background:#F1D9A0")
+                + A("left:22%;top:50%;width:11%;padding-top:11%;border-radius:50%;background:#7A4B2A") + A("left:20%;top:63%;width:15%;height:26%;background:#E5484D;border-radius:12px 12px 4px 4px")
+                + A("left:48%;top:56%;width:10%;padding-top:10%;border-radius:50%;background:#C98A5A") + A("left:46%;top:67%;width:14%;height:24%;background:#2D7BE0;border-radius:12px 12px 4px 4px")
+                + A("left:72%;top:74%;width:14%;height:15%;background:#FF9F1C;border-radius:4px 4px 16px 16px"))
+    if k == 1:   # birthday table
+        b = "".join(A(f"left:{x}%;top:{y}%;width:12%;padding-top:15%;border-radius:50%;background:{c}") + A(f"left:{x+5.5}%;top:{y+15}%;width:1.2%;height:22%;background:#6b6b6b") for x, y, c in ((8, 8, "#E5484D"), (24, 3, "#FFD84D"), (78, 6, "#86D93F"), (62, 11, "#2D7BE0")))
+        return (A("left:0;top:0;width:100%;height:100%;background:#FFE6C9") + b + A("left:0;top:70%;width:100%;height:30%;background:#B8763D")
+                + A("left:28%;top:50%;width:44%;height:26%;background:#fff;border-radius:10px;border:4px solid #E5484D") + A("left:28%;top:50%;width:44%;height:9%;background:#FF8FB1;border-radius:10px 10px 0 0")
+                + "".join(A(f"left:{x}%;top:38%;width:2.4%;height:13%;background:#2D7BE0") + A(f"left:{x-.6}%;top:32%;width:3.6%;padding-top:5%;border-radius:50%;background:#FFB000") for x in (38, 48, 58)))
+    if k == 2:   # messy desk
+        return (A("left:0;top:0;width:100%;height:100%;background:#E9EEF3") + A("left:0;top:62%;width:100%;height:38%;background:#A8764A")
+                + A("left:14%;top:20%;width:46%;height:34%;background:#2B2F36;border-radius:10px") + A("left:17%;top:23%;width:40%;height:28%;background:#8FD3FF;border-radius:6px") + A("left:8%;top:54%;width:58%;height:7%;background:#555C66;border-radius:6px")
+                + A("left:70%;top:50%;width:13%;height:20%;background:#fff;border-radius:6px 6px 14px 14px;border:4px solid #E5484D") + A("left:76%;top:56%;width:8%;height:8%;border:4px solid #E5484D;border-radius:50%")
+                + A("left:66%;top:70%;width:20%;height:13%;background:#fff;transform:rotate(14deg);border:2px solid #bbb") + A("left:22%;top:72%;width:22%;height:14%;background:#FFF3A8;transform:rotate(-9deg)") + A("left:50%;top:76%;width:18%;height:12%;background:#fff;transform:rotate(6deg);border:2px solid #bbb")
+                + A("left:74%;top:14%;width:14%;height:15%;background:#FFD84D;transform:rotate(7deg)") + A("left:86%;top:30%;width:10%;height:11%;background:#FF8FB1;transform:rotate(-8deg)"))
+    # fridge note
+    return (A("left:0;top:0;width:100%;height:100%;background:#F3EBDD") + A("left:22%;top:0;width:56%;height:100%;background:#E8EEF2;border:4px solid #9AA6B2;border-radius:14px")
+            + A("left:22%;top:38%;width:56%;height:3%;background:#9AA6B2") + A("left:70%;top:14%;width:3.5%;height:18%;background:#9AA6B2;border-radius:4px") + A("left:70%;top:50%;width:3.5%;height:18%;background:#9AA6B2;border-radius:4px")
+            + A("left:30%;top:12%;width:28%;height:28%;background:#FFF3A8;transform:rotate(-5deg);box-shadow:0 3px 6px rgba(0,0,0,.25)")
+            + "".join(A(f"left:{34}%;top:{y}%;width:{w}%;height:2.4%;background:#555;transform:rotate(-5deg)") for y, w in ((18, 18), (25, 20), (32, 14)))
+            + A("left:32%;top:7%;width:6%;padding-top:6%;border-radius:50%;background:#E5484D") + A("left:36%;top:56%;width:26%;height:24%;background:#fff;border:3px solid #bbb;transform:rotate(4deg)")
+            + A("left:42%;top:60%;width:8%;padding-top:8%;border-radius:50%;background:#FF9F1C") + A("left:44%;top:70%;width:4%;height:8%;background:#2D7BE0"))
+
+
+def feed(sfx):
+    tiles = ""
+    for k in range(4):
+        r, c = divmod(k, 2)
+        tiles += (f'<div class="ftile" id="ft{k}{sfx}" style="left:{c*446}px;top:{r*374}px">{scene(k)}'
+                  f'<b class="tg tgA ftag">NEVER POSTED</b></div>')
+    return f'''<div class="feedcard" id="feed{sfx}"><div class="fhead"><div class="flogo"><img src="assets/facebook.svg"></div>
+<div class="ftitle"><div class="ft1">Collage made for you</div><div class="ft2">drawn example</div></div></div>
+<div class="fgrid">{tiles}</div><div class="fshim" id="fshim{sfx}"></div></div>'''
+
 def capblock(n, sfx, size, top):
     toks = ALL[n - 1].split()
     sp = ""
@@ -141,24 +181,19 @@ def size_for(n):
 
 markup = f'''
 <div class="scn" id="sA" style="visibility:visible;opacity:1">
- <div class="lgo" id="lgo"><img src="assets/facebook.svg"></div>
- {cd("")}
- {capblock(1, "", 66, 468)}
- {phone("")}
+ {feed("")}
 </div>
 <div class="scn" id="sB">
- {capblock(2, "", size_for(2), 290)}
+ {capblock(3, "", size_for(3), 290)}
  <div class="setc" id="setc"><div class="r1"><div class="lg2"><img src="assets/facebook.svg"></div><div class="t1">Camera roll sharing suggestions</div></div>
   <div class="hr"></div><div class="r2"><div class="t2">Get camera roll suggestions when you're browsing Facebook</div><div class="tgl big" id="tglB"><b></b></div></div></div>
  <div class="note2" id="noteB">drawn example of the settings row</div>
 </div>
 <div class="scn" id="sC">
- {capblock(3, "", size_for(3), 290)}
+ {capblock(2, "", size_for(2), 290)}
  <div class="bigallow" id="ba">Allow</div><div class="ripple" id="ripple"></div><div class="finger" id="finger"></div>
- <div class="strip" id="strip">{"".join(tile(i, i*322, 0, 300, 230, "st") for i in range(10))}</div>
+ <div class="strip" id="strip">{"".join(f'<div class="tile st" style="left:{i*322}px;top:0;width:300px;height:230px">{scene(i % 4)}</div>' for i in range(10))}</div>
  <div class="scan" id="scan"></div>
- <div class="collage" id="collage"><div class="mos">{tile(0,0,0,118,118,"mt")}{tile(1,128,0,118,118,"mt")}{tile(2,0,128,118,118,"mt")}{tile(3,128,128,118,118,"mt")}</div>
-  <div class="chips"><div class="chip2">Collage</div><div class="chip2">Edit</div></div></div>
 </div>
 <div class="scn" id="sD">
  {capblock(4, "", size_for(4), 290)}
@@ -184,10 +219,7 @@ markup = f'''
  <div class="al" id="al1">Allow</div><div class="al" id="al2">Allow</div><div class="al" id="al3">Allow</div>
 </div>
 <div class="scn" id="sH">
- <div class="lgo" id="lgoH"><img src="assets/facebook.svg"></div>
- {cd("H")}
- {capblock(1, "H", 66, 468)}
- {phone("H")}
+ {feed("H")}
 </div>
 '''
 
@@ -198,6 +230,15 @@ styles = '''
 .cw{display:inline-block;color:#2A2A26;margin:0 8px;border-radius:14px}
 .cw.hl{background:rgba(134,217,63,.6);padding:0 6px;font-size:70px;margin:0 3px;white-space:nowrap}
 #cap1,#cap1H{opacity:1;visibility:visible;left:45px;width:990px}
+.feedcard{position:absolute;left:65px;top:269px;width:950px;height:979px;background:#fff;border:8px solid var(--ink);border-radius:52px;box-shadow:12px 12px 0 var(--ink);overflow:hidden}
+.fhead{position:absolute;left:34px;top:26px;width:880px;height:140px;display:flex;align-items:center;gap:28px}
+.flogo{width:132px;height:132px;flex:none;border-radius:50%;border:7px solid var(--ink);overflow:hidden;background:#fff}.flogo img{width:112%;height:112%;margin:-6%}
+.ft1{font-weight:900;font-size:76px;line-height:80px;letter-spacing:-.04em}
+.ft2{font-weight:700;font-size:26px;letter-spacing:.05em;color:var(--ink2);margin-top:4px}
+.fgrid{position:absolute;left:34px;top:186px;width:882px;height:750px}
+.ftile{position:absolute;width:436px;height:362px;border-radius:26px;border:6px solid var(--ink);overflow:hidden;background:#fff}
+.ftag{left:14px;bottom:14px;font-size:32px;line-height:36px;padding:5px 16px 8px}
+.fshim{position:absolute;left:0;top:0;width:200px;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));transform:translateX(-300px) skewX(-12deg);opacity:0;pointer-events:none}
 .ab{position:absolute;display:block}
 .lgo{left:65px;top:276px;width:180px;height:180px;border-radius:50%;background:#fff;border:8px solid var(--ink);box-shadow:9px 9px 0 var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .lgo img{width:112%;height:112%;margin:-6%}
@@ -300,54 +341,40 @@ function phoneAnim(sfx,t0,t1){
   for(let t=t0+.2;t<t1-.8;t+=1.6){ tl.fromTo('#phone'+sfx+' .shim',{x:-200,opacity:0},{x:1100,opacity:1,duration:1.5,ease:EA},t); tl.to('#phone'+sfx+' .shim',{opacity:0,duration:.3},t+1.3); }
   QA('#phone'+sfx+' .tgA').forEach((e,i)=>{ for(let t=t0+.3+i*.25;t<t1-.5;t+=1.4){ tl.to(e,{scale:1.07,duration:.7,ease:EA,transformOrigin:"0% 100%"},t); tl.to(e,{scale:1,duration:.7,ease:EA},t+.7);} });
 }
-// ---- scene A: frame 0 = logo + "Find the switch" + 0:05 timer + gallery with tags + hidden toggle "?"
+// ---- scene A: frame 0 = ONE giant feed card "Collage made for you" (4 drawn everyday scenes, each NEVER POSTED)
 const tA1=E(1);
-countdown('',0);
-phoneAnim('',0,tA1);
-tl.fromTo('#lgo',{scale:1},{scale:1.06,duration:E(1),ease:EA},0);
-cap('cap1',1,0,E(1)+.04);
-hide('#lgo',E(1)+.04,.22);
-const hp=[[25,59,290,152],[329,59,290,152],[633,59,290,152],[25,221,290,152],[329,221,290,152],[742,386,196,92]];  // x,y,w,h in frame offsets from the phone origin (65,760)
-hp.forEach((p,i)=>{
-  const t=0.5+i*0.78;
-  const x=65+p[0]-6, y=760+p[1]-6;
-  if(i==0) tl.fromTo('#hunt',{x:x,y:y,width:p[2],height:p[3],opacity:0},{opacity:1,duration:.3,ease:EA},t);
-  else tl.to('#hunt',{x:x,y:y,width:p[2],height:p[3],duration:.6,ease:EI},t);
-});
-tl.to('#hunt',{opacity:0,duration:.3,ease:EA},E(1)-.1);
-for(let t=0.2;t<E(1)-.3;t+=1.1){ tl.to('#tq',{boxShadow:"0 0 0 14px rgba(134,217,63,.75)",duration:.55,ease:EA},t); tl.to('#tq',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
-for(let t=E(6)+.5;t<D-.5;t+=1.1){ tl.to('#tqH',{boxShadow:"0 0 0 14px rgba(134,217,63,.75)",duration:.55,ease:EA},t); tl.to('#tqH',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
-tl.to('#tq b',{rotate:12,duration:.6,ease:EA,yoyo:true,repeat:5,transformOrigin:"50% 50%"},0.3);
+function feedAnim(sfx,t0,t1){
+  tl.fromTo('#feed'+sfx,{y:0,scale:1},{y:-8,scale:1.012,duration:t1-t0,ease:EA},t0);
+  [0,1,2,3].forEach(k=>{ tl.fromTo('#ft'+k+sfx,{scale:1},{scale:1.025,duration:1.3,ease:EA,yoyo:true,repeat:Math.max(1,Math.floor((t1-t0)/1.3/2)),transformOrigin:"50% 50%"},t0+.3+k*.35); });
+  for(let t=t0+.3;t<t1-.8;t+=1.7){ tl.fromTo('#fshim'+sfx,{x:-300,opacity:0},{x:1200,opacity:1,duration:1.6,ease:EA},t); tl.to('#fshim'+sfx,{opacity:0,duration:.3},t+1.35); }
+  QA('#feed'+sfx+' .ftag').forEach((e,i)=>{ for(let t=t0+.4+i*.3;t<t1-.5;t+=1.5){ tl.to(e,{scale:1.06,duration:.75,ease:EA,transformOrigin:"0% 100%"},t); tl.to(e,{scale:1,duration:.75,ease:EA},t+.75);} });
+}
+feedAnim('',0,tA1);
 hide('#sA',tA1+.0,.2);
 // ---- scene B: line 3
-show('#sB',S(2)-.08,.3);
-tl.fromTo('#setc',{y:30,opacity:0},{y:0,opacity:1,duration:.55,ease:EO},S(2)-.05);
-tl.fromTo('#noteB',{opacity:0},{opacity:1,duration:.4},S(2)+.4);
-cap('cap2',2,S(2)-.05,0);
-tl.fromTo('#setc',{scale:1},{scale:1.02,duration:E(2)-S(2)+.3,ease:EA},S(2));
-for(let t=S(2)+.3;t<E(2)-.5;t+=1.2){ tl.to('#tglB',{boxShadow:"0 0 0 12px rgba(134,217,63,.7)",duration:.55,ease:EA},t); tl.to('#tglB',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
-tl.to('#setc',{y:-8,duration:E(2)-S(2),ease:EA,immediateRender:false},S(2)+.6);
-hide('#sB',E(2),.2);
-// ---- scene C: line 4 (tap Allow -> looks through the gallery -> collages)
-show('#sC',S(3)-.08,.3);
+show('#sB',S(3)-.08,.3);
+tl.fromTo('#setc',{y:30,opacity:0},{y:0,opacity:1,duration:.55,ease:EO},S(3)-.05);
+tl.fromTo('#noteB',{opacity:0},{opacity:1,duration:.4},S(3)+.4);
 cap('cap3',3,S(3)-.05,0);
-const tp=W(3,3);
-tl.fromTo('#ba',{y:30,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.5,ease:EO},S(3)+.1);
+tl.fromTo('#setc',{scale:1},{scale:1.02,duration:E(3)-S(3)+.3,ease:EA},S(3));
+for(let t=S(3)+.3;t<E(3)-.5;t+=1.2){ tl.to('#tglB',{boxShadow:"0 0 0 12px rgba(134,217,63,.7)",duration:.55,ease:EA},t); tl.to('#tglB',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
+tl.to('#setc',{y:-8,duration:E(3)-S(3),ease:EA,immediateRender:false},S(3)+.6);
+hide('#sB',E(3),.2);
+show('#sC',S(2)-.08,.3);
+cap('cap2',2,S(2)-.05,0);
+const tp=W(2,3);
+tl.fromTo('#ba',{y:30,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.5,ease:EO},S(2)+.1);
 tl.fromTo('#finger',{opacity:0,y:50},{opacity:1,y:0,duration:.45,ease:EO},tp-.45);
 tl.to('#ba',{scale:.95,duration:.2,ease:EA,transformOrigin:"50% 50%"},tp);
 tl.fromTo('#ripple',{opacity:.9,scale:.5},{opacity:0,scale:2.6,duration:.9,ease:EO},tp+.05);
 tl.to('#ba',{scale:1,duration:.35,ease:EA},tp+.2);
 tl.to('#finger',{opacity:0,duration:.4,ease:EA},tp+.5);
-tl.to('#ba',{opacity:0,y:-20,duration:.35,ease:EA},W(3,4)-.1);
-tl.fromTo('#strip',{x:140,opacity:0},{x:0,opacity:1,duration:.5,ease:EO},W(3,4)-.05);
-tl.fromTo('#strip',{x:0},{x:-1250,duration:E(3)-W(3,4)+.4,ease:EA},W(3,4)+.2);
-tl.fromTo('#scan',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.4,ease:EO},W(3,5));
-tl.to('#scan',{scale:1.05,duration:.8,ease:EA,yoyo:true,repeat:2},W(3,5)+.4);
-tl.fromTo('#collage',{y:50,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.6,ease:EO},W(3,10)-.05);
-tl.fromTo('#collage .mt',{scale:.6,opacity:0},{scale:1,opacity:1,duration:.45,ease:EO,stagger:.12},W(3,10)+.1);
-tl.fromTo('#collage .chip2',{x:-20,opacity:0},{x:0,opacity:1,duration:.45,ease:EO,stagger:.35},W(3,11)+.0);
-tl.to('#collage',{y:-8,duration:E(3)-W(3,10),ease:EA},W(3,10)+.6);
-hide('#sC',E(3),.2);
+tl.to('#ba',{opacity:0,y:-20,duration:.35,ease:EA},W(2,4)-.1);
+tl.fromTo('#strip',{x:140,opacity:0},{x:0,opacity:1,duration:.5,ease:EO},W(2,4)-.05);
+tl.fromTo('#strip',{x:0},{x:-1250,duration:E(2)-W(2,4)+.4,ease:EA},W(2,4)+.2);
+tl.fromTo('#scan',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.4,ease:EO},W(2,5));
+tl.to('#scan',{scale:1.05,duration:.8,ease:EA,yoyo:true,repeat:2},W(2,5)+.4);
+hide('#sC',E(2),.2);
 // ---- scene D: line 5
 show('#sD',S(4)-.08,.3);
 cap('cap4',4,S(4)-.05,0);
@@ -381,13 +408,10 @@ tl.to('#dots2',{opacity:0,duration:.2},W(6,5)+.08);
 [1,2,3].forEach((k,i)=>tl.fromTo('#al'+k,{opacity:0,scale:.7,y:14},{opacity:1,scale:1,y:0,duration:.45,ease:EO},W(6,5)+.12+i*.3));
 tl.fromTo('#outb',{rotate:0},{rotate:-1.5,duration:E(6)-S(6),ease:EA},S(6)+.7);
 hide('#sG',E(6)+.1,.35);
-// ---- loop-back: frame 0 again (timer restarts)
+// ---- loop-back: frame 0 again
 tl.set('#sH',{autoAlpha:0},0);
 tl.fromTo('#sH',{autoAlpha:0},{autoAlpha:1,duration:.35,ease:EA},E(6)+.38);
-QA('#capH .cw').forEach((e,i)=>{ if(i==0) tl.set(e,{color:"#0E0E0E"},0); });
-tl.set('#cn5H',{opacity:1},E(6)+.38);
-tl.fromTo('#phoneH',{y:0},{y:-6,duration:D-E(6)-.3,ease:EA},E(6)+.4);
-phoneAnim('H',E(6)+.45,D);
+feedAnim('H',E(6)+.45,D);
 tl.to('#al1,#al2,#al3',{y:-8,duration:.9,ease:EA,yoyo:true,repeat:3,stagger:.2},E(6)-1.6);
 tl.to('#mini,#outb',{y:-6,duration:1.1,ease:EA,yoyo:true,repeat:2},E(6)-2.0);
 '''
