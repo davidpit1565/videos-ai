@@ -528,3 +528,6 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## Hook is visual first, little text (David, 9.11.2026)
 - The hook must be mostly VISUAL: far less text, never more than 3 lines of text on screen at once. The idea has to be understood from the picture and motion, with the text only naming it. Check this on every frame 0 and every title card (this overrides any earlier frame that carried long headlines).
+
+## Reference set = the 3 most viral episodes only (David, 9.11.2026)
+- For judging what works and for planning new videos, the ONLY episodes that count are the 3 most viral ones, listed in `channel/canon-top3.md` (episodes 86, 80, 82 by Instagram views; database in `channel/episodes-database.json`). All other published episodes are forgotten as evidence, style, hooks or results; they stay only as a topic list in `channel/topics-covered.txt` so a topic is not repeated. Do not cite them when analysing or advising.
