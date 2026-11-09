@@ -1,0 +1,32 @@
+AI broke your app? Git brings the file back
+
+I wrote a tiny tip calculator and saved it with Git. Then I made one bad edit on purpose. I wrote that edit myself, no AI made it. The app printed "Each pays NaN". One command, git restore app.js, brought the working file back. The real git output is from one run in a local folder on my computer, 7 November 2026, git 2.43.0.
+
+Git and GitHub are not the same thing. Git is the tool on your computer that saves pictures (commits) of your files. GitHub is a website that keeps an online copy of what Git saved.
+
+The commands:
+git init -b main
+git add app.js
+git commit -m "Tip calculator works"
+git restore app.js
+git revert --no-edit HEAD
+
+Careful: git restore only brings back edits that were not committed yet, and the edits you undo are gone for good. After a commit, use git revert, which adds a new commit that undoes the old one and keeps your history.
+
+Not claimed: that an AI broke the app, that this is the only way to undo a mistake, or that GitHub does the undo. Git does.
+
+Sources I read on 9 November 2026:
+Git book, What is Git: https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F
+Git book, Undoing Things: https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things
+git restore: https://git-scm.com/docs/git-restore
+git revert: https://git-scm.com/docs/git-revert
+Install Git: https://git-scm.com/install/
+GitHub, About GitHub and Git: https://docs.github.com/en/get-started/start-your-journey/about-github-and-git
+GitHub, Quickstart for repositories: https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories
+GitHub, Adding locally hosted code to GitHub: https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github
+
+Full setup, step by step: https://actually-works.com/e/87
+
+Full disclosure: Anthropic makes Claude, and this video was made with help from Claude.
+
+#git #github #ai
