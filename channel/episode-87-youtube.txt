@@ -1,4 +1,4 @@
-AI broke your app? Git brings the file back
+Ctrl+Z for AI mistakes: Git brings the file back
 
 I wrote a tiny tip calculator and saved it with Git. Then I made one bad edit on purpose. I wrote that edit myself, no AI made it. The app printed "Each pays NaN". One command, git restore app.js, brought the working file back. The real git output is from one run in a local folder on my computer, 7 November 2026, git 2.43.0.
 
