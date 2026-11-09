@@ -1,0 +1,114 @@
+<!doctype html><html><head><meta charset="utf-8"><title>ep88 redesign</title>
+<style>
+@font-face{font-family:"IDisp";src:url("fonts/InterDisplay-Black.otf");font-weight:900}
+@font-face{font-family:"IDisp";src:url("fonts/InterDisplay-ExtraBold.otf");font-weight:800}
+@font-face{font-family:"IDisp";src:url("fonts/InterDisplay-Medium.otf");font-weight:500}
+@font-face{font-family:"JBM";src:url("fonts/JetBrainsMono-Bold.ttf");font-weight:700}
+:root{--paper:#F4F4EF;--ink:#0E0E0E;--ink2:#5B5B55;--fb:#1877F2;--fbs:#E7F0FE;--lime:#B6F23A;--grn:#2FB35F;--red:#E5484D;
+--sh1:0 1px 2px rgba(14,14,14,.08),0 8px 18px -4px rgba(14,14,14,.12),0 40px 70px -18px rgba(14,14,14,.28);
+--sh2:0 1px 2px rgba(14,14,14,.06),0 6px 14px -4px rgba(14,14,14,.10),0 22px 40px -14px rgba(14,14,14,.20)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:IDisp,Inter,sans-serif;font-weight:800;color:var(--ink);letter-spacing:-.035em}
+body{position:relative;background:radial-gradient(1100px 1000px at 50% 36%,#fff 0%,#F8F8F4 45%,#EEEEE6 100%)}
+.abs{position:absolute}
+.dots{inset:0;background-image:radial-gradient(#CFCFC4 2.4px,transparent 2.6px);background-size:54px 54px;opacity:.55;-webkit-mask-image:radial-gradient(ellipse 70% 55% at 50% 40%,#000 30%,transparent 100%)}
+.blob{border-radius:50%;filter:blur(110px)}
+.grain{inset:0;opacity:.06;mix-blend-mode:multiply}
+.h{position:absolute;left:65px;width:950px;line-height:.98;font-weight:900}
+.fbb{width:128px;height:128px;border-radius:34px;background:#fff;box-shadow:var(--sh2);display:inline-flex;align-items:center;justify-content:center;vertical-align:middle}
+.fbb img{width:86px;height:86px}
+.pill{display:inline-block;background:var(--fb);color:#fff;padding:2px 30px 12px;border-radius:30px;box-shadow:7px 8px 0 var(--ink);}
+.pillw{display:inline-block;background:var(--lime);color:var(--ink);padding:2px 28px 12px;border-radius:30px;box-shadow:7px 8px 0 var(--ink)}
+.card{position:absolute;background:#fff;border-radius:44px;box-shadow:var(--sh1);border:1.5px solid rgba(14,14,14,.07)}
+.card:before{content:"";position:absolute;inset:0;border-radius:44px;box-shadow:inset 0 1.5px 0 #fff;pointer-events:none}
+.tile{position:absolute;border-radius:28px;overflow:hidden;box-shadow:0 10px 22px -8px rgba(14,14,14,.35)}
+.tile:after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(0,0,0,.28));}
+.chip{position:absolute;left:14px;bottom:14px;background:rgba(14,14,14,.78);color:#fff;font-size:22px;letter-spacing:.04em;padding:7px 14px 8px;border-radius:12px;font-weight:800;backdrop-filter:blur(6px)}
+.sticker{position:absolute;background:var(--lime);border-radius:24px;border:5px solid var(--ink);box-shadow:7px 8px 0 var(--ink);padding:10px 28px 14px;font-size:46px;font-weight:900;transform:rotate(-5deg)}
+.scene{display:none}.scene.on{display:block}
+.mono{font-family:JBM,monospace;font-weight:700;letter-spacing:0}
+.step{position:absolute;left:65px;width:950px;border-radius:34px;background:rgba(255,255,255,.86);box-shadow:var(--sh2);border:1.5px solid rgba(14,14,14,.07);height:112px;display:flex;align-items:center;padding:0 36px;font-size:56px;font-weight:800}
+.num{width:64px;height:64px;border-radius:50%;background:var(--ink);color:#fff;font-size:36px;display:flex;align-items:center;justify-content:center;margin-right:28px;flex:none;letter-spacing:0}
+.tog{width:140px;height:80px;border-radius:40px;background:#D5D5CC;position:relative;box-shadow:inset 0 2px 4px rgba(0,0,0,.18)}
+.tog i{position:absolute;left:6px;top:6px;width:68px;height:68px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.3)}
+.bub{position:absolute;border-radius:40px;background:#fff;box-shadow:var(--sh2);border:1.5px solid rgba(14,14,14,.07)}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0"/></filter></svg>
+<div class="abs blob" style="width:820px;height:820px;left:300px;top:700px;background:#1877F2;opacity:.18"></div>
+<div class="abs blob" style="width:620px;height:620px;left:-260px;top:1080px;background:#B6F23A;opacity:.10"></div>
+<div class="abs dots"></div>
+<div class="abs grain"><svg width="1080" height="1920"><rect width="1080" height="1920" filter="url(#n)"/></svg></div>
+
+<!-- S0 -->
+<div class="scene" id="s0">
+ <div class="h" style="top:283px;font-size:104px">
+  <span class="fbb" style="margin-right:22px;margin-top:-14px"><img src="facebook.svg"></span>made this<br>from photos you<br><span class="pill" style="margin-top:12px">never posted.</span>
+ </div>
+ <div class="abs blob" style="width:760px;height:520px;left:160px;top:760px;background:#1877F2;opacity:.30;filter:blur(90px)"></div>
+ <!-- left photo -->
+ <div class="tile" style="left:62px;top:700px;width:400px;height:520px;border-radius:34px;transform:rotate(-7deg);box-shadow:0 2px 4px rgba(0,0,0,.2),0 30px 50px -12px rgba(14,14,14,.45);border:10px solid #fff;background:linear-gradient(#6FBFF2 0%,#BFE4FA 44%,#4FA6DC 44.3%,#2F86C2 58%,#EBCB92 58.3%,#D9B173 100%)">
+   <div class="abs" style="left:150px;top:30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(#FFF6C8,#FFD45A 55%,rgba(255,212,90,0) 72%)"></div>
+   <div class="abs" style="left:30px;top:250px;width:86px;height:86px;border-radius:50%;background:#8A5A3C"></div><div class="abs" style="left:4px;top:326px;width:138px;height:200px;border-radius:44px 44px 0 0;background:#D9453D"></div>
+   <div class="abs" style="left:150px;top:290px;width:74px;height:74px;border-radius:50%;background:#C98F66"></div><div class="abs" style="left:126px;top:358px;width:122px;height:170px;border-radius:38px 38px 0 0;background:#2F6FD6"></div>
+   <span class="chip" style="top:14px;bottom:auto;font-size:20px">NEVER POSTED</span></div>
+ <!-- right photo -->
+ <div class="tile" style="left:618px;top:700px;width:400px;height:520px;border-radius:34px;transform:rotate(7deg);box-shadow:0 2px 4px rgba(0,0,0,.2),0 30px 50px -12px rgba(14,14,14,.45);border:10px solid #fff;background:linear-gradient(#EFE8D8,#D5CAB0)">
+   <div class="abs" style="left:90px;top:60px;width:200px;height:420px;border-radius:22px;background:linear-gradient(90deg,#F6F7F8,#DDE1E4);box-shadow:0 14px 26px rgba(0,0,0,.28)"></div>
+   <div class="abs" style="left:90px;top:236px;width:200px;height:4px;background:#B9C0C6"></div>
+   <div class="abs" style="left:112px;top:98px;width:140px;height:110px;border-radius:8px;background:#FFE680;transform:rotate(-4deg);box-shadow:0 6px 10px rgba(0,0,0,.2)"></div>
+   <div class="abs" style="left:150px;top:300px;width:110px;height:90px;border-radius:6px;background:#fff;box-shadow:0 6px 10px rgba(0,0,0,.2);transform:rotate(3deg)"></div>
+   <span class="chip" style="top:14px;bottom:auto;font-size:20px;left:auto;right:14px">NEVER POSTED</span></div>
+ <!-- centre photo -->
+ <div class="tile" style="left:340px;top:660px;width:400px;height:540px;border-radius:34px;box-shadow:0 2px 4px rgba(0,0,0,.2),0 40px 70px -14px rgba(14,14,14,.55);border:10px solid #fff;background:linear-gradient(#FFDCC6,#F4B392 70%,#B97A52 70.3%)">
+   <div class="abs" style="left:60px;top:40px;width:36px;height:36px;border-radius:50%;background:#E5484D;box-shadow:0 0 0 0 #000"></div><div class="abs" style="left:78px;top:76px;width:4px;height:110px;background:#fff8"></div>
+   <div class="abs" style="left:290px;top:60px;width:40px;height:40px;border-radius:50%;background:#3B82F6"></div><div class="abs" style="left:308px;top:100px;width:4px;height:90px;background:#fff8"></div>
+   <div class="abs" style="left:176px;top:30px;width:40px;height:40px;border-radius:50%;background:#FFD54A"></div><div class="abs" style="left:194px;top:70px;width:4px;height:100px;background:#fff8"></div>
+   <div class="abs" style="left:60px;top:300px;width:260px;height:130px;border-radius:12px;background:#fff;box-shadow:0 12px 20px rgba(0,0,0,.25)"></div><div class="abs" style="left:60px;top:300px;width:260px;height:48px;border-radius:12px 12px 0 0;background:#F58FB0"></div>
+   <div class="abs" style="left:100px;top:226px;width:12px;height:74px;background:#FFD54A;border-radius:6px;box-shadow:70px 0 #FFD54A,140px 0 #FFD54A"></div>
+   <span class="chip" style="top:14px;bottom:auto;font-size:20px">NEVER POSTED</span></div>
+ <!-- notification -->
+ <div class="card" style="left:90px;top:1100px;width:900px;height:132px;border-radius:44px;display:flex;align-items:center;padding:0 36px;gap:26px;background:rgba(255,255,255,.94);box-shadow:0 2px 4px rgba(0,0,0,.1),0 24px 50px -10px rgba(14,14,14,.4),0 0 0 6px rgba(24,119,242,.0)">
+   <span class="fbb" style="width:84px;height:84px;border-radius:24px;box-shadow:var(--sh2)"><img src="facebook.svg" style="width:58px;height:58px"></span><div style="font-size:60px;font-weight:900;white-space:nowrap">Collage made for you</div></div>
+ <div class="sticker" style="right:50px;top:640px;font-size:36px;transform:rotate(6deg);padding:8px 22px 12px;border-width:4px;box-shadow:6px 7px 0 var(--ink);z-index:5">CAMERA ROLL</div>
+</div>
+
+<!-- S1 -->
+<div class="scene" id="s1">
+ <div class="h" style="top:285px;font-size:122px;text-align:center">Meta says<br>it's <span class="pillw">opt-in</span></div>
+ <div class="card" style="left:55px;top:690px;width:970px;height:550px;overflow:hidden;background:#14151A;border:1.5px solid #2A2C34;box-shadow:0 2px 4px rgba(0,0,0,.2),0 30px 60px -10px rgba(0,0,0,.45),0 0 90px 0 rgba(24,119,242,.28)">
+  <div style="height:86px;border-bottom:1.5px solid #2A2C34;display:flex;align-items:center;padding:0 32px;gap:12px;background:#1B1C22"><i style="width:20px;height:20px;border-radius:50%;background:#FF5F57"></i><i style="width:20px;height:20px;border-radius:50%;background:#FEBC2E"></i><i style="width:20px;height:20px;border-radius:50%;background:#28C840"></i>
+   <span class="mono" style="margin-left:24px;font-size:28px;color:#9A9BA3;background:#24262E;border-radius:14px;padding:9px 24px;flex:1">Meta's own words</span></div>
+  <div style="padding:30px 54px;position:relative;color:#F2F2EE">
+   
+   <div style="font-size:72px;line-height:1.04;margin-top:48px;font-weight:900">You must <span style="background:linear-gradient(transparent 58%,#B6F23A 58% 92%,transparent 92%);color:#fff">opt in</span> to use this feature</div>
+   <div style="height:2px;background:#2A2C34;margin:30px 0 26px"></div>
+   <div style="font-size:48px;line-height:1.1;font-weight:500;color:#B9BAC2">&ldquo;We don't use photos and videos from your camera roll for ads targeting.&rdquo;</div>
+  </div></div>
+</div>
+
+<!-- S2 -->
+<div class="scene" id="s2">
+ <div class="h" style="top:285px;font-size:124px;line-height:1"><span class="fbb" style="width:140px;height:140px;margin:-16px 24px 0 0"><img src="facebook.svg" style="width:96px;height:96px"></span>Here's<br>the switch</div>
+ <div style="position:absolute;left:101px;top:700px;width:6px;height:340px;background:var(--ink);opacity:.14;border-radius:3px"></div>
+ <div class="step" style="top:640px"><span class="num">1</span>Profile picture</div>
+ <div class="step" style="top:768px"><span class="num">2</span>Settings &amp; Privacy</div>
+ <div class="step" style="top:896px"><span class="num">3</span>Settings</div>
+ <div class="card" style="left:41px;top:1030px;width:998px;height:216px;border-radius:44px;box-shadow:0 0 0 7px var(--fb),0 0 80px 8px rgba(24,119,242,.40),var(--sh1)">
+   <div style="position:absolute;left:44px;top:0;bottom:0;display:flex;align-items:center;width:640px"><span class="num" style="background:var(--fb);width:76px;height:76px;font-size:44px;margin-right:26px">4</span><div style="font-size:56px;line-height:1.02">Camera roll sharing suggestions</div></div>
+   <div class="tog" style="position:absolute;right:44px;top:68px;width:170px;height:92px;border-radius:46px"><i style="width:80px;height:80px;top:6px;left:6px"></i></div>
+ </div>
+ <div class="sticker" style="right:50px;top:345px;background:var(--grn);color:#fff;font-size:44px;transform:rotate(6deg);padding:8px 26px 12px">OFF</div>
+</div>
+
+<!-- S3 -->
+<div class="scene" id="s3">
+ <div class="h" style="top:285px;font-size:124px;text-align:center">Send this<br>to mum.</div>
+ <div class="h" style="top:640px;font-size:66px;text-align:center;font-weight:800;color:var(--ink2);line-height:1.04">She taps <span class="pillw" style="font-size:66px;padding:0 24px 8px;box-shadow:5px 6px 0 var(--ink);margin:0 6px">Allow</span> &nbsp;every time.</div>
+ <div class="card" style="left:55px;top:800px;width:970px;height:446px;border-radius:56px">
+   <div style="position:absolute;left:44px;top:34px;display:flex;align-items:center;gap:24px"><span style="width:96px;height:96px;border-radius:50%;background:#FFD24A;border:5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:54px;font-weight:900">M</span><span style="font-size:48px;color:var(--ink2);font-weight:500">Mum</span></div>
+   <div class="bub" style="left:44px;top:160px;width:760px;height:112px;background:#F0F0EA;box-shadow:none;display:flex;align-items:center;padding:0 40px;font-size:54px;font-weight:800">Camera roll sharing?</div>
+   <div style="position:absolute;left:44px;top:304px;display:flex;gap:22px"><span class="pillw" style="font-size:72px;padding:2px 34px 14px;margin-right:6px">Allow</span><span class="pillw" style="font-size:72px;padding:2px 34px 14px;margin-right:6px">Allow</span><span class="pillw" style="font-size:72px;padding:2px 34px 14px;margin-right:6px">Allow</span></div>
+ </div>
+</div>
+<script>const q=new URLSearchParams(location.search).get('s')||'0';document.getElementById('s'+q).classList.add('on')</script>
+</body></html>
