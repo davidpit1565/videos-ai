@@ -24,3 +24,9 @@ OVERALL at least 90, HOOK at least 95, VIRALITY at least 95. Do not propose a co
 ## Added 9.11.2026 (David): VALUE is a score too
 Every concept and review page now carries HOOK, VIRALITY, VALUE and OVERALL (and the predicted views score). VALUE = what the viewer gets and can use (a path, a list, a setting, a thing to check) that makes them watch to the end and leads to likes and follows; it must be as strong as virality. For the next video the bar is: HOOK at least 95, VIRALITY at least 95, VALUE at least 90, OVERALL at least 90, judged honestly (blind readers, not self-scoring). Topic constraints from David the same day: not another ChatGPT-centred video (we did too many), as few screen recordings as possible (drawn UI, real logos and our own generated pictures instead), something Claude can build alone.
 Real result note: David reports that episode 86 brought exactly 1 new follower (first reading, 9.11.2026; studio snapshots show 131 followers).
+
+### Episode 88 (9.11.2026, NOT published) — hook rounds, blind panel (Claude role-plays, judgement not measurement)
+- Round 1 hook "Facebook can see photos you never posted. Find the switch." (frame 0 with timer + small panel): hook 55-62, virality 40-55. A real viewer (Roni) said "Find the switch makes no sense".
+- Text-only comparison of 6 strategies: D (collage you never posted) best, hook 76-84; none >= 90.
+- Round 4 hook D on the REAL rendered frame 0 (drawn card, 'drawn example' label): hook 62, virality 55-58, overall 58-60, predicted 150-300 views (score ~50). A text description scored 82; the real frame scored 62: the picture lost ~20 points ("flat clip-art, says drawn example, no real proof, not my phone"). Lesson: score the rendered frame, not the description.
+- Verdict: below the 85 floor (David 9.11). Do not publish unless a real Facebook screenshot / personal proof lifts it.

@@ -2,16 +2,16 @@
 
 Topic: Facebook's opt-in feature "Camera roll sharing suggestions" (EU and UK, plus the countries Meta lists), and how to check and turn it off. Plan and sources: `channel/episode-88-plan.md`. Hook = plan option 1.
 
-## Spoken lines (no tomorrow line) - NEW HOOK, David 9.11.2026 (the old "Facebook asks to see photos you never posted." was rejected: flat, not a story; blind panel ranked the find-the-switch game best)
-1. Facebook can see photos you never posted. Find the switch.
-2. Five seconds. Go.   (on-screen 5-second countdown runs from frame 0 over the drawn phone)
-3. It's called camera roll sharing suggestions.
-4. If you tap Allow, Facebook looks through your gallery and suggests collages.
-5. Meta says it's opt-in and not used for ads.
-6. Here's the switch. Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions. Switch it off.   (VALUE card: four numbered rows + the switch flipping to OFF; "menu names can differ by app version")
-7. Send this to mum. She taps Allow every time.
+## Spoken lines (no tomorrow line) - ROUND 4 HOOK (9.11.2026; the find-the-switch hook was rejected by a real viewer: "which switch?"; blind panel of 3 scored this one ~81 vs ~58)
+1. Facebook can make you a collage from photos you never posted. Seen one?   (frame 0: ONE giant drawn feed card "Collage made for you", 4 drawn everyday scenes - kids at a beach, birthday table, messy desk, fridge note - each tagged NEVER POSTED; small "drawn example" label; real Facebook f icon; no timer)
+2. If you tapped Allow, it looks through your camera roll.   (drawn Allow button, tap, then a strip of the scenes scanned)
+3. It's called camera roll sharing suggestions.   (drawn settings row, labelled drawn example)
+4. Meta says it's opt-in and not used for ads.   (Meta's two quotes)
+5. Here's the switch. Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions. Switch it off.   (VALUE card: four numbered rows + the switch flipping to OFF; "menu names can differ by app version"; this is the answer to "turn it off")
+6. Send this to mum. She taps Allow every time.   (line reworded from "on everything": the voice trails off on that word)
 
-Claims kept out on purpose: "uploads", "is watching", "private photos", "whole gallery", "mobile app only" as a hard fact. Line 1 is accurate because the feature needs the Allow tap (line 4). (Shipped final: video/ep88/out/ep88-final2.mp4, 33.5 s; line 7 reworded from "on everything" because the voice trails off on that word.) Frame 0: Facebook logo (large), panel title YOUR CAMERA ROLL, countdown badge 5 SEC, "Find the switch", the countdown (5), the drawn gallery with NEVER POSTED tags and a hidden toggle with a question mark. Loop: the last second returns to frame 0.
+Truth notes: the collage idea is the verified feature ("suggests ... collages and edits", opt-in, EU/UK); line 1 says "can", line 2 keeps it conditional on Allow. No "uploads", "is watching", "private photos", "whole gallery". The old lines "Five seconds. Go." and "If you tap Allow, Facebook looks through your gallery and suggests collages." were dropped (line 2 now carries the Allow condition). The video loops back to frame 0. Length 30.8 s. Voice takes this round: W2 (line 1) and W5 (line 2) from one 6-take batch; lines 3-6 are the earlier approved takes.
+Blind reader on this frame 0: not run in this session (no Agent tool).
 Path (Which?, 21.10.2025): Settings & Privacy, Settings, Camera roll sharing suggestions (no "Preferences" step confirmed).
 
 ## Ground truth (re-opened 9.11.2026)
