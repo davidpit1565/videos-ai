@@ -59,3 +59,9 @@ Menu names move between app versions; page says "verified Nov 2026".
 - Menu path exact wording on today's app (Help Center page text not fully readable by my fetch; confirmed via Which?, MacRumors and a search summary).
 - Official logo asset and current Facebook logo colour not yet fetched.
 - No blind-reader panel run (no Agent tool here).
+
+## 7. Build log (ep88 build, 9.11.2026)
+- Logo: Facebook "f" icon, 2023 version, Wikimedia Commons https://commons.wikimedia.org/wiki/File:2023_Facebook_icon.svg (file https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg), categories on Commons: "With trademark", "Facebook f logos". Used as-is in video/ep88/hf/assets/facebook.svg, icon alone, no caption. Meta's own brand page was not fetched.
+- Spoken line 1 reworded "Facebook is asking to see photos you never posted." (the voice turned "asks" into "asked" on every retry; "asking" says the same thing and is unambiguous).
+- Line 7 follows the coordinator's correction: four taps, no "Preferences"; the card says "menu names can differ by app version".
+- Drawn prompt and settings row are labelled "drawn example" on screen: the real EU prompt wording is unverified.
