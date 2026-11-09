@@ -38,11 +38,11 @@ def fbsticker(id, x, y, size, rot):
 
 def hookblock(sfx):
     return (f'<div class="cam" id="hcam{sfx}">'
-            + strip(f"hA{sfx}", "FACEBOOK CAN LOOK", 40, 290, 1000, 150, -1.6, YEL, size=112, seed=3, left=170)
-            + strip(f"hB{sfx}", "THROUGH PHOTOS YOU", 60, 432, 960, 140, 1.2, YEL, size=112, seed=5, z=5)
-            + strip(f"hC{sfx}", "never posted", 170, 556, 740, 140, -2.2, BLK, "#fff", "Gloock", 100, 7, z=6)
-            + f'<div id="cards{sfx}">' + print_(0, f"pr1{sfx}", 40, 770, 340, 450, -8, 3) + print_(3, f"pr3{sfx}", 700, 780, 340, 450, 9, 3) + print_(1, f"pr2{sfx}", 350, 735, 380, 500, 2, 4) + '</div>'
-            + fbsticker(f"fbs{sfx}", 52, 292, 140, -8) + '</div>')
+            + strip(f"hA{sfx}", "FACEBOOK CAN LOOK", 90, 290, 900, 132, -1.2, YEL, size=100, seed=3, left=150)
+            + strip(f"hB{sfx}", "THROUGH PHOTOS YOU", 90, 436, 900, 130, 1.0, YEL, size=104, seed=5, z=5)
+            + strip(f"hC{sfx}", "never posted", 190, 580, 700, 116, -1.8, BLK, "#fff", "Gloock", 90, 7, z=6)
+            + f'<div id="cards{sfx}">' + print_(0, f"pr1{sfx}", 92, 782, 320, 430, -8, 3) + print_(3, f"pr3{sfx}", 668, 792, 320, 430, 9, 3) + print_(1, f"pr2{sfx}", 345, 748, 390, 490, 2, 4) + '</div>'
+            + fbsticker(f"fbs{sfx}", 94, 296, 128, -8) + '</div>')
 
 def uiblock(n):
     if n == 1:
@@ -50,17 +50,17 @@ def uiblock(n):
                 '<u class="sk" style="top:230px;width:70%"></u><u class="sk" style="top:276px;width:52%"></u><u class="sk" style="top:360px;width:62%"></u><u class="sk" style="top:406px;width:40%"></u><div class="circ" id="circ1" style="right:30px;top:6px;width:200px;height:170px"></div>')
     elif n == 2:
         body = ('<u class="sk" style="top:50px;width:46%"></u><u class="sk" style="top:150px;width:58%"></u>'
-                '<div class="hrow" id="hot2" style="top:236px"><b>Settings &amp; Privacy</b></div><u class="sk" style="top:370px;width:52%"></u><u class="sk" style="top:430px;width:40%"></u><div class="circ" id="circ2" style="left:20px;top:222px;width:910px;height:120px"></div>')
+                '<div class="hrow" id="hot2" style="top:236px"><b>Settings &amp; Privacy</b></div><u class="sk" style="top:370px;width:52%"></u><u class="sk" style="top:430px;width:40%"></u><div class="circ" id="circ2" style="left:20px;top:222px;width:860px;height:120px"></div>')
     elif n == 3:
         body = ('<u class="sk" style="top:60px;width:50%"></u><div class="hrow" id="hot3" style="top:160px"><i class="gear"></i><b>Settings</b></div>'
-                '<u class="sk" style="top:310px;width:60%"></u><u class="sk" style="top:370px;width:44%"></u><div class="circ" id="circ3" style="left:20px;top:146px;width:910px;height:120px"></div>')
+                '<u class="sk" style="top:310px;width:60%"></u><u class="sk" style="top:370px;width:44%"></u><div class="circ" id="circ3" style="left:20px;top:146px;width:860px;height:120px"></div>')
     else:
         body = ('<u class="sk" style="top:36px;width:56%"></u><div class="hrow tall" id="hot4" style="top:120px"><b>Camera roll sharing suggestions</b><div class="tg2 on" id="tg4"><i></i></div></div>'
-                '<u class="sk" style="top:330px;width:48%"></u><div class="uinote">menu names can differ by app version</div><div class="circ" id="circ4" style="left:20px;top:104px;width:910px;height:200px"></div>')
-    return piece(f'<div class="uibody">{body}</div>', f"ui{n}", 65, 760, 950, 486, 0.6 * (-1) ** n, "#FBF8EF", 20 + n, 6, 3)
+                '<u class="sk" style="top:330px;width:48%"></u><div class="uinote">menu names can differ by app version</div><div class="circ" id="circ4" style="left:20px;top:104px;width:860px;height:200px"></div>')
+    return piece(f'<div class="uibody">{body}</div>', f"ui{n}", 90, 760, 900, 466, 0.6 * (-1) ** n, "#FBF8EF", 20 + n, 6, 3)
 
 def stepscene(n, lines):
-    lab = "".join(strip(f"sl{n}{i}", t, 330 - i * 10, 330 + i * 124, 700 + (i % 2) * 20, 118, (-1.5, 1.2, -.8)[i], YEL if i != 1 else BLK, "#17130F" if i != 1 else "#fff", "BS", 98, 60 + n * 3 + i, z=5) for i, t in enumerate(lines))
+    lab = "".join(strip(f"sl{n}{i}", t, 360 - i * 6, 338 + i * 130, 620 + (i % 2) * 12, 112, (-1.5, 1.2, -.8)[i], YEL if i != 1 else BLK, "#17130F" if i != 1 else "#fff", "BS", 92, 60 + n * 3 + i, z=5) for i, t in enumerate(lines))
     return (f'<div class="sc" id="p{n}"><div class="cam" id="pc{n}"><div class="pnum" id="pn{n}">{n}</div>{lab}'
             f'<div class="of4" id="of{n}">STEP {n} OF 4</div>{uiblock(n)}</div></div>')
 
@@ -68,42 +68,45 @@ def bigtoggle(id, x, y, w, h, on=True):
     return (f'<div class="btg {"on" if on else ""}" id="{id}" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;border-radius:{h//2}px"><i style="width:{h-48}px;height:{h-48}px"></i></div>')
 
 def chat():
-    return (piece('<div class="mini"><b>Camera roll sharing suggestions</b><div class="tg2" id="tg7"><i></i></div></div>', "outb", 95, 650, 890, 250, 1.2, "#FBF8EF", 91, 6, 3)
+    return (piece('<div class="mini"><b>Camera roll sharing suggestions</b><div class="tg2" id="tg7"><i></i></div></div>', "outb", 110, 650, 860, 240, 1.0, "#FBF8EF", 91, 6, 3)
             + '<div class="mavt" id="mav">M</div><div class="dots2" id="dots2"><i></i><i></i><i></i></div>'
-            + "".join(strip(f"al{k}", "ALLOW", 205 + (k - 1) * 275, 1075, 250, 120, (-3, 2, -2)[k - 1], YEL, size=96, seed=70 + k, z=6) for k in (1, 2, 3)))
+            + "".join(strip(f"al{k}", "ALLOW", 250 + (k - 1) * 255, 1070, 235, 112, (-3, 2, -2)[k - 1], YEL, size=88, seed=70 + k, z=6) for k in (1, 2, 3)))
+
+NEWS = (piece('<div class="npr"></div>', 'np1', -60, 240, 620, 480, -5, '#E3D3AE', 101, 9, 1) + piece('<div class="npr"></div>', 'np2', 520, 330, 640, 520, 4, '#DFCDA5', 102, 9, 1)
+        + piece('<div class="npr"></div>', 'np3', -40, 880, 560, 470, 3, '#E3D3AE', 103, 9, 1) + piece('<div class="npr"></div>', 'np4', 560, 940, 600, 440, -3, '#DFCDA5', 104, 9, 1))
 
 markup = f'''
-<div class="bgl" id="bgl"><div class="news" id="news"></div><div class="news2" id="news2"></div><div class="dots"></div></div>
+<div class="bgl" id="bgl"><div class="news" id="news"></div><div class="news2" id="news2"></div><div class="dots"></div><div id="npw">{NEWS}</div></div>
 <div class="sc" id="s1" style="opacity:1;visibility:visible">{hookblock("")}</div>
 <div class="sc" id="s2"><div class="cam" id="c2">
- {strip("t2", "ONLY IF YOU TAPPED", 40, 300, 1000, 150, -1.4, YEL, size=124, seed=11, z=5)}
- {piece('<div class="mp"></div>', "dlg2", 65, 520, 950, 700, 0.5, CRM, 12, 8, 2)}
- <div id="stk">{print_(0, "d1", 150, 560, 250, 330, -8, 3, False, False)}{print_(1, "d2", 350, 540, 270, 350, 2, 4, False, False)}{print_(3, "d3", 590, 560, 250, 330, 9, 3, False, False)}</div>
- {strip("nb", "Not now", 105, 960, 300, 190, 0, "#D8CFB8", "#5d554a", "IDisp", 54, 21, z=4)}
- {strip("b2", "ALLOW", 430, 940, 520, 230, -1.5, BLK, "#fff", "BS", 200, 22, z=5)}
+ {strip("t2", "ONLY IF YOU TAPPED", 90, 300, 900, 150, -1.2, YEL, size=112, seed=11, z=5)}
+ {piece('<div class="mp"></div>', "dlg2", 90, 520, 900, 660, 0.5, CRM, 12, 8, 2)}
+ <div id="stk">{print_(0, "d1", 160, 560, 240, 320, -8, 3, False, False)}{print_(1, "d2", 360, 540, 260, 340, 2, 4, False, False)}{print_(3, "d3", 580, 560, 240, 320, 9, 3, False, False)}</div>
+ {strip("nb", "Not now", 125, 940, 280, 190, 0, "#D8CFB8", "#5d554a", "IDisp", 54, 21, z=4)}
+ {strip("b2", "ALLOW", 430, 930, 470, 210, -1.5, BLK, "#fff", "BS", 190, 22, z=5)}
  <div class="ring" id="ring"></div><div class="fing" id="fing"></div><div class="tiny" id="ill2">illustration</div></div></div>
 <div class="sc" id="s3"><div class="cam" id="c3">
- {strip("t3a", "HERE'S HOW", 50, 292, 980, 200, -1.4, YEL, size=180, seed=31, z=5)}
- {strip("t3b", "to stop it", 160, 468, 760, 200, 1.6, BLK, "#fff", "Gloock", 150, 32, z=6)}
- {piece(bigtoggle("bigtg", 100, 40, 700, 330, True), "tgp", 100, 720, 880, 410, -.8, CRM, 33, 8, 2)}
- {strip("tlab", "Camera roll sharing suggestions", 65, 1160, 950, 80, 0.8, YEL, size=34, font="PlexM", seed=34, z=5)}
+ {strip("t3a", "HERE'S HOW", 90, 292, 900, 178, -1.2, YEL, size=150, seed=31, z=5)}
+ {strip("t3b", "to stop it", 190, 488, 700, 170, 1.4, BLK, "#fff", "Gloock", 130, 32, z=6)}
+ {piece(bigtoggle("bigtg", 70, 35, 700, 330, True), "tgp", 110, 690, 860, 400, -.8, CRM, 33, 8, 2)}
+ {strip("tlab", "Camera roll sharing suggestions", 90, 1120, 900, 80, 0.8, YEL, size=32, font="PlexM", seed=34, z=5)}
  <div class="tiny" id="ill3" style="top:1246px;display:none"></div></div></div>
 {stepscene(1, ["PROFILE", "PICTURE"])}
 {stepscene(2, ["SETTINGS &amp;", "PRIVACY"])}
 {stepscene(3, ["SETTINGS"])}
 {stepscene(4, ["CAMERA ROLL", "SHARING", "SUGGESTIONS"])}
 <div class="sc" id="s5"><div class="cam" id="c5">
- {strip("t5", "SWITCH IT OFF", 50, 292, 980, 190, -1.2, YEL, size=170, seed=51, z=5)}
- {piece(bigtoggle("bigtg2", 70, 60, 740, 380, True), "tgp2", 100, 560, 880, 500, .6, CRM, 52, 8, 2)}
+ {strip("t5", "SWITCH IT OFF", 90, 300, 900, 170, -1.2, YEL, size=150, seed=51, z=5)}
+ {piece(bigtoggle("bigtg2", 50, 50, 780, 420, True), "tgp2", 100, 520, 880, 520, .6, CRM, 52, 8, 2)}
  <div class="offst" id="offw"><span class="scr" id="scr0">X#7</span><span class="scr" id="scr1">0F?</span><span class="scr" id="scr2">OF#</span><span class="offf" id="offf">OFF</span></div></div></div>
 <div class="sc" id="s6"><div class="cam" id="c6">
- {strip("t6a", "META SAYS", 270, 296, 540, 120, -2, BLK, "#fff", "Gloock", 70, 61, z=6)}
- {piece('<div class="optin" id="optin">OPT-IN</div>', "pin6", 65, 440, 950, 430, -1, CRM, 62, 8, 3)}
- {strip("t6b", "NOT USED FOR ADS", 50, 900, 980, 160, 1.3, YEL, size=134, seed=63, z=5)}
- {strip("t6c", "Meta newsroom, April 2026 · EU and UK", 130, 1120, 820, 70, -0.6, "#EADFC2", "#3b342a", "IDisp", 32, 64, z=4)}</div></div>
+ {strip("t6a", "META SAYS", 290, 296, 500, 110, -2, BLK, "#fff", "Gloock", 70, 61, z=6)}
+ {piece('<div class="optin" id="optin">OPT-IN</div>', "pin6", 110, 440, 860, 420, -1, CRM, 62, 8, 3)}
+ {strip("t6b", "NOT USED FOR ADS", 90, 890, 900, 150, 1.0, YEL, size=120, seed=63, z=5)}
+ {strip("t6c", "Meta newsroom, April 2026 · EU and UK", 140, 1090, 800, 64, -0.6, "#EADFC2", "#3b342a", "IDisp", 32, 64, z=4)}</div></div>
 <div class="sc" id="s7"><div class="cam" id="c7">
- {strip("t7a", "SEND THIS TO SOMEONE", 40, 292, 1000, 130, -1.2, YEL, size=104, seed=71, z=5)}
- {strip("t7b", "who always taps Allow", 80, 420, 920, 130, 1.0, BLK, "#fff", "Gloock", 84, 72, z=6)}
+ {strip("t7a", "SEND THIS TO SOMEONE", 90, 292, 900, 120, -1.0, YEL, size=92, seed=71, z=5)}
+ {strip("t7b", "who always taps Allow", 120, 426, 840, 120, 1.0, BLK, "#fff", "Gloock", 76, 72, z=6)}
  {chat()}</div></div>
 <div class="sc" id="sH">{hookblock("H")}</div>
 <div class="lens" id="lens1"></div><div class="lens l2" id="lens2"></div>
@@ -134,6 +137,11 @@ html,body,#root{background:#B8955F}
 .sc{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;visibility:hidden}
 .cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}
 .pcw{position:absolute}
+.npr{position:absolute;inset:0;filter:sepia(.5);
+ background:repeating-linear-gradient(0deg,rgba(40,28,14,.5) 0 3px,transparent 3px 11px) 26px 130px/calc(50% - 40px) calc(100% - 160px) no-repeat,
+ repeating-linear-gradient(0deg,rgba(40,28,14,.5) 0 3px,transparent 3px 11px) calc(50% + 14px) 130px/calc(50% - 40px) calc(100% - 160px) no-repeat}
+.npr:before{content:"";position:absolute;left:26px;top:28px;width:68%;height:62px;background:#2a1f12;opacity:.78}
+.npr:after{content:"";position:absolute;right:26px;top:36px;width:22%;height:46px;background:radial-gradient(circle,rgba(30,18,6,.7) 2px,transparent 2.6px) 0 0/8px 8px}
 .pc{position:absolute;inset:0;filter:drop-shadow(0 3px 3px rgba(30,18,6,.35)) drop-shadow(0 16px 16px rgba(30,18,6,.28)) drop-shadow(0 34px 34px rgba(30,18,6,.22))}
 .pcb{position:absolute;inset:0;overflow:hidden}
 .paperfx{position:absolute;inset:0;background:url("''' + _fib + r'''");mix-blend-mode:multiply;opacity:.55;pointer-events:none;z-index:9}
@@ -145,11 +153,11 @@ html,body,#root{background:#B8955F}
 .pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.25) sepia(.45) contrast(1.08) brightness(1.14)}
 .ht2{position:absolute;inset:0;background:radial-gradient(circle,rgba(30,18,6,.42) 1.8px,transparent 2.4px) 0 0/8px 8px;mix-blend-mode:multiply;opacity:.3}
 .pvig{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(0,0,0,.32))}
-.stamp{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%) rotate(-9deg);font:700 62px BS;letter-spacing:.04em;color:var(--red);border:6px solid var(--red);padding:2px 16px 4px;border-radius:8px;mix-blend-mode:multiply;opacity:.93;white-space:nowrap;z-index:11}
-.prn .stamp{font-size:52px}
+.stamp{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%) rotate(-9deg);font:700 44px BS;letter-spacing:.04em;color:var(--red);border:6px solid var(--red);padding:2px 16px 4px;border-radius:8px;mix-blend-mode:multiply;opacity:.93;white-space:nowrap;z-index:11}
+.prn .stamp{font-size:36px}
 .fbs{position:absolute;z-index:20;border-radius:50%;background:#fff;box-shadow:0 0 0 6px #fff,0 8px 20px rgba(30,18,6,.45);overflow:hidden}.fbs img{width:100%;height:100%;padding:6px}
-.pnum{position:absolute;left:50px;top:270px;font:700 520px BS;line-height:480px;color:var(--red);mix-blend-mode:multiply;opacity:.95;letter-spacing:-.02em}
-.of4{position:absolute;left:340px;top:296px;font:700 26px PlexM;letter-spacing:.1em;color:#3b2a14}
+.pnum{position:absolute;left:92px;top:340px;font:700 440px BS;line-height:400px;color:var(--red);mix-blend-mode:multiply;opacity:.95;letter-spacing:-.02em}
+.of4{position:absolute;left:360px;top:288px;font:700 26px PlexM;letter-spacing:.1em;color:#3b2a14}
 .uibody{position:absolute;inset:0}
 .sk{display:block;position:absolute;left:44px;height:24px;border-radius:12px;background:#D9D0BA;text-decoration:none}
 .fbtop{position:absolute;left:0;top:0;width:100%;height:180px;background:#EFE7D2}
@@ -164,26 +172,26 @@ html,body,#root{background:#B8955F}
 .tg2{position:relative;width:150px;height:84px;border-radius:42px;background:#CBBFA3;flex:none}
 .tg2 i{position:absolute;left:5px;top:5px;width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 4px 10px rgba(14,14,14,.35)}
 .tg2.on{background:#2a2118}.tg2.on i{left:auto;right:5px}
-.uinote{position:absolute;left:0;width:100%;bottom:16px;text-align:center;font:700 26px PlexM;color:#4a3a26}
+.uinote{position:absolute;left:0;width:100%;bottom:44px;text-align:center;font:700 26px PlexM;color:#4a3a26}
 .btg{position:absolute;background:#CBBFA3;box-shadow:inset 0 -10px 0 rgba(0,0,0,.10)}
 .btg i{position:absolute;left:24px;top:24px;border-radius:50%;background:#fff;box-shadow:0 12px 26px rgba(14,14,14,.4)}
 .btg.on{background:#2a2118}.btg.on i{left:auto;right:24px}
 .mini{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 50px;gap:20px}
-.mini b{font:700 76px BS;line-height:74px;text-transform:uppercase}
+.mini b{font:700 68px BS;line-height:68px;text-transform:uppercase}
 .mini .tg2{width:190px;height:106px;border-radius:53px}.mini .tg2 i{width:94px;height:94px}
 .mp{position:absolute;inset:0}
-.optin{position:absolute;left:0;top:0;width:100%;height:100%;font:400 350px Gloock;line-height:430px;text-align:center;color:var(--ink);letter-spacing:-.03em}
-.offst{position:absolute;left:65px;top:1085px;width:950px;height:160px;text-align:center;font-family:BS;font-weight:700;font-size:220px;line-height:160px}
+.optin{position:absolute;left:0;top:0;width:100%;height:100%;font:400 250px Gloock;line-height:430px;text-align:center;color:var(--ink);letter-spacing:-.03em}
+.offst{position:absolute;left:90px;top:1050px;width:900px;height:140px;text-align:center;font-family:BS;font-weight:700;font-size:170px;line-height:140px}
 .offst span{position:absolute;left:0;width:100%;top:0;opacity:0}
 .offf{background:var(--lime);color:var(--ink);border:8px solid var(--ink);border-radius:30px;padding:0 60px;width:auto!important;left:50%!important;transform:translateX(-50%) rotate(-4deg)!important;box-shadow:8px 10px 0 var(--ink)}
 .offst .scr{color:#4a3a26}
-.mavt{position:absolute;left:65px;top:1086px;width:130px;height:130px;border-radius:50%;background:var(--yel);font:700 90px BS;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px #fff,0 8px 20px rgba(30,18,6,.45);opacity:0}
-.dots2{position:absolute;left:220px;top:1096px;width:230px;height:112px;background:#FBF8EF;border-radius:50px 50px 50px 12px;box-shadow:0 8px 18px rgba(30,18,6,.4);display:flex;align-items:center;justify-content:center;gap:18px;opacity:0}
+.mavt{position:absolute;left:100px;top:1080px;width:120px;height:120px;border-radius:50%;background:var(--yel);font:700 90px BS;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px #fff,0 8px 20px rgba(30,18,6,.45);opacity:0}
+.dots2{position:absolute;left:250px;top:1086px;width:230px;height:112px;background:#FBF8EF;border-radius:50px 50px 50px 12px;box-shadow:0 8px 18px rgba(30,18,6,.4);display:flex;align-items:center;justify-content:center;gap:18px;opacity:0}
 .dots2 i{display:block;width:26px;height:26px;border-radius:50%;background:var(--ink)}
-.ring{position:absolute;left:760px;top:960px;width:110px;height:110px;border-radius:50%;border:10px solid var(--red);opacity:0;z-index:30}
-.fing{position:absolute;left:780px;top:1040px;width:100px;height:100px;border-radius:50%;background:rgba(23,19,15,.8);opacity:0;z-index:30}
+.ring{position:absolute;left:720px;top:940px;width:110px;height:110px;border-radius:50%;border:10px solid var(--red);opacity:0;z-index:30}
+.fing{position:absolute;left:740px;top:1020px;width:100px;height:100px;border-radius:50%;background:rgba(23,19,15,.8);opacity:0;z-index:30}
 .tiny{position:absolute;left:65px;width:950px;text-align:center;font:700 26px PlexM;letter-spacing:.06em;color:#3b2a14;text-transform:uppercase}
-#ill2{top:1226px}
+#ill2{top:1150px}
 .lens{position:absolute;left:-700px;top:560px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(30,18,6,.55),rgba(30,18,6,.1));filter:blur(46px);opacity:0;z-index:60;pointer-events:none}
 .lens.l2{top:760px;width:520px;height:520px}
 '''
@@ -194,31 +202,33 @@ const T=%s;
 const EA="sine.inOut",EO="power2.out",EX="expo.out";
 const Q=s=>document.querySelector(s), QA=s=>[...document.querySelectorAll(s)];
 const sceneIn=(id,t)=>tl.fromTo('#'+id,{autoAlpha:0},{autoAlpha:1,duration:.18,ease:EA},t);
-const sceneOut=(id,t)=>tl.to('#'+id,{autoAlpha:0,duration:.12,ease:EA},t);
+const sceneOut=(id,t)=>tl.to('#'+id,{autoAlpha:0,duration:.1,ease:EA},t-.1);
 const push=(cam,t0,t1,s0,s1)=>tl.fromTo('#'+cam,{scale:s0||1},{scale:s1||1.06,duration:Math.max(.3,t1-t0),ease:EA},t0);
 // a torn strip slams in (scale 1.35 -> 1, blur -> sharp) and its text is typed in with a hard wipe
 const slamP=(id,t,dir)=>{ tl.fromTo('#'+id,{scale:1.35,opacity:0,filter:"blur(12px)",rotation:'+=' + (dir||5)},{scale:1,opacity:1,filter:"blur(0px)",rotation:'-=' + (dir||5),duration:.42,ease:EX,transformOrigin:"50%% 50%%"},t);
   tl.fromTo('#'+id+'t',{clipPath:"inset(0 100%% 0 0)"},{clipPath:"inset(0 0%% 0 0)",duration:.34,ease:"steps(14)"},t+.12); };
-const lensCross=(id,t,dur)=>{ tl.fromTo('#'+id,{x:0,opacity:0},{opacity:.9,duration:dur*.3,ease:EA},t); tl.to('#'+id,{x:1900,duration:dur,ease:"power1.inOut"},t); tl.to('#'+id,{opacity:0,duration:dur*.25,ease:EA},t+dur*.75); };
+const lensCross=(id,t,dur)=>{ tl.fromTo('#'+id,{x:0,opacity:0},{opacity:.6,duration:dur*.3,ease:EA},t); tl.to('#'+id,{x:1900,duration:dur,ease:"power1.inOut"},t); tl.to('#'+id,{opacity:0,duration:dur*.25,ease:EA},t+dur*.75); };
 // slow parallax of the newspaper layer over the whole video
 tl.fromTo('#news,#news2',{x:0,y:0},{x:-70,y:-60,duration:D,ease:"none"},0);
+tl.fromTo('#npw',{x:0,y:0},{x:-40,y:-30,duration:D,ease:"none"},0);
 function hook(sfx,t0,t1){
   const h='hcam'+sfx;
   tl.fromTo('#pr1'+sfx,{y:90,rotation:-14},{y:0,rotation:-8,duration:.6,ease:EX},t0);
   tl.fromTo('#pr3'+sfx,{y:110,rotation:15},{y:0,rotation:9,duration:.6,ease:EX},t0+.05);
   tl.fromTo('#pr2'+sfx,{y:70,scale:.94},{y:0,scale:1,duration:.6,ease:EX},t0+.1);
-  tl.fromTo('#fbs'+sfx,{scale:.6,rotation:-30},{scale:1,rotation:-8,duration:.55,ease:"back.out(2.2)"},t0+.15);
+  tl.fromTo('#fbs'+sfx,{scale:.85,rotation:-20},{scale:1,rotation:-8,duration:.5,ease:"back.out(2.2)"},t0+.15);
   tl.fromTo(['#hA'+sfx,'#hB'+sfx,'#hC'+sfx],{x:-26},{x:0,duration:.5,ease:EX,stagger:.06},t0);
-  push(h,t0,t1,1,1.06);
-  [1,2,3].forEach((k,i)=>tl.fromTo('#pr'+k+sfx+'s',{scale:1.9,opacity:0},{scale:1,opacity:.93,duration:.22,ease:"power4.in"},t0+.55+i*.3));
-  tl.fromTo('#hC'+sfx,{scale:1.18},{scale:1,duration:.5,ease:EX,immediateRender:false,transformOrigin:"50%% 50%%"},T.slam1);
+  push(h,t0,t1,1,1.04);
+  [1,2,3].forEach((k,i)=>tl.fromTo('#pr'+k+sfx+'s',{scale:1.12,opacity:0},{scale:1,opacity:.93,duration:.22,ease:"power4.in"},t0+.55+i*.3));
+  tl.fromTo('#hC'+sfx,{scale:1.07},{scale:1,duration:.5,ease:EX,immediateRender:false,transformOrigin:"50%% 50%%"},T.slam1);
   tl.fromTo('#cards'+sfx,{x:0},{x:-30,duration:t1-t0,ease:EA},t0);
+  [['pr1',-12,.7],['pr3',-10,.85],['pr2',-14,.75]].forEach(a=>tl.to('#'+a[0]+sfx,{y:a[1],duration:1.3,ease:EA,yoyo:true,repeat:Math.max(1,Math.floor((t1-t0-a[2])/1.3)-1)},t0+a[2]));
 }
 hook('',0,T.s2+.1);
 lensCross('lens1',T.s2-.45,.55);
 sceneOut('s1',T.s2-.02);
 // ---------- S2
-sceneIn('s2',T.s2); push('c2',T.s2,T.s3,1,1.06);
+sceneIn('s2',T.s2); push('c2',T.s2,T.s3,1,1.04);
 slamP('t2',T.s2+.02,-4);
 tl.fromTo('#dlg2',{y:110,scale:.94,opacity:0},{y:0,scale:1,opacity:1,duration:.5,ease:EX},T.s2+.1);
 tl.fromTo('#stk .prn',{y:60,opacity:0},{y:0,opacity:1,duration:.45,ease:EX,stagger:.07},T.s2+.25);
@@ -232,7 +242,7 @@ tl.to('#fing',{opacity:0,duration:.3,ease:EA},T.tapAllow+.45);
 tl.fromTo('#ill2',{opacity:0},{opacity:1,duration:.3},T.s2+.6);
 sceneOut('s2',T.s3-.02);
 // ---------- S3
-sceneIn('s3',T.s3); push('c3',T.s3,T.p1,1,1.06);
+sceneIn('s3',T.s3); push('c3',T.s3,T.p1,1,1.04);
 slamP('t3a',T.s3+.02,-4); slamP('t3b',T.s3+.2,5);
 tl.fromTo('#tgp',{scale:.88,opacity:0,y:60},{scale:1,opacity:1,y:0,duration:.55,ease:EX},T.s3+.25);
 slamP('tlab',T.s3+.5,-3);
@@ -242,7 +252,7 @@ sceneOut('s3',T.p1-.02);
 const st=[['p1','p2','pc1','pn1','sl10','sl11','ui1','hot1','circ1'],['p2','p3','pc2','pn2','sl20','sl21','ui2','hot2','circ2'],['p3','p4','pc3','pn3','sl30',null,'ui3','hot3','circ3'],['p4','s5','pc4','pn4','sl40','sl41','ui4','hot4','circ4']];
 st.forEach((s,i)=>{
   const t0=T[s[0]], t1=T[s[1]];
-  sceneIn(s[0],t0); push(s[2],t0,t1+.1,1,1.07);
+  sceneIn(s[0],t0); push(s[2],t0,t1+.1,1,1.05);
   tl.fromTo('#'+s[3],{scale:1.4,opacity:0,filter:"blur(14px)"},{scale:1,opacity:.95,filter:"blur(0px)",duration:.4,ease:EX,transformOrigin:"30%% 50%%"},t0+.02);
   slamP(s[4],t0+.08,-4); if(s[5]) slamP(s[5],t0+.2,4);
   if(i==3){ slamP('sl42',t0+.32,-3); }
@@ -252,10 +262,10 @@ st.forEach((s,i)=>{
 });
 sceneOut('p4',T.s5-.02);
 // ---------- S5 switch OFF: the proof
-sceneIn('s5',T.s5); push('c5',T.s5,T.s6,1,1.07);
+sceneIn('s5',T.s5); push('c5',T.s5,T.s6,1,1.05);
 slamP('t5',T.s5+.02,-4);
 tl.fromTo('#tgp2',{scale:.9,opacity:0},{scale:1,opacity:1,duration:.4,ease:EX},T.s5+.05);
-tl.to('#bigtg2 i',{right:372,duration:.34,ease:"power3.inOut"},T.flip);
+tl.to('#bigtg2 i',{right:384,duration:.34,ease:"power3.inOut"},T.flip);
 tl.to('#bigtg2',{backgroundColor:"#9BE22E",duration:.34,ease:"power3.inOut"},T.flip);
 tl.fromTo('#bigtg2',{boxShadow:"0 0 0 0 rgba(155,226,46,.9)"},{boxShadow:"0 0 0 50px rgba(155,226,46,0)",duration:.6,ease:EO,immediateRender:false},T.flip+.3);
 [0,1,2].forEach(i=>{ tl.set('#scr'+i,{opacity:1},T.flip+.34+i*.07); tl.set('#scr'+i,{opacity:0},T.flip+.34+i*.07+.07); });
@@ -263,7 +273,7 @@ tl.fromTo('#offf',{scale:1.4,opacity:0,filter:"blur(14px)"},{scale:1,opacity:1,f
 tl.to('#tgp2',{y:-8,duration:T.s6-T.s5,ease:EA},T.s5+.5);
 sceneOut('s5',T.s6-.02);
 // ---------- S6 Meta
-sceneIn('s6',T.s6); push('c6',T.s6,T.s7,1,1.06);
+sceneIn('s6',T.s6); push('c6',T.s6,T.s7,1,1.04);
 slamP('t6a',T.s6+.02,-4);
 tl.fromTo('#pin6',{scale:1.25,opacity:0,filter:"blur(14px)"},{scale:1,opacity:1,filter:"blur(0px)",duration:.45,ease:EX,transformOrigin:"50%% 50%%"},T.s6+.1);
 slamP('t6b',T.s6+.55,4);
@@ -271,7 +281,7 @@ slamP('t6c',T.s6+1.0,-2);
 lensCross('lens2',T.s7-.5,.55);
 sceneOut('s6',T.s7-.02);
 // ---------- S7 send
-sceneIn('s7',T.s7); push('c7',T.s7,T.end,1,1.05);
+sceneIn('s7',T.s7); push('c7',T.s7,T.end,1,1.04);
 slamP('t7a',T.s7+.02,-4); slamP('t7b',T.s7+.2,4);
 tl.fromTo('#outb',{x:90,y:30,opacity:0,scale:.94},{x:0,y:0,opacity:1,scale:1,duration:.55,ease:EX},T.s7+.3);
 tl.fromTo('#mav',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.4,ease:"back.out(2)"},T.s7+1.0);
