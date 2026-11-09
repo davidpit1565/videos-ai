@@ -531,3 +531,6 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## Reference set = the 3 most viral episodes only (David, 9.11.2026)
 - For judging what works and for planning new videos, the ONLY episodes that count are the 3 most viral ones, listed in `channel/canon-top3.md` (episodes 86, 80, 82 by Instagram views; database in `channel/episodes-database.json`). All other published episodes are forgotten as evidence, style, hooks or results; they stay only as a topic list in `channel/topics-covered.txt` so a topic is not repeated. Do not cite them when analysing or advising.
+
+## Content funnel (Roni via David, 9.11.2026)
+- Every video idea carries a funnel stage: TOP (viral formats, 80% of videos), MID (for our curious-about-AI audience, trust and value), LOW (CTA-heavy, needs a real offer). Think in the funnel whenever ideas or videos are prepared. Details and the rules per idea: `channel/content-funnel.md`.
