@@ -1,0 +1,19 @@
+Facebook may ask to see photos you never posted.
+
+The feature is called "Camera roll sharing suggestions". It looks through the photos on your phone and suggests collages and edits. It is for people in the EU and UK, plus Bolivia, Colombia, the Dominican Republic, El Salvador, Honduras, Nicaragua, Paraguay and Uruguay, in the Facebook mobile apps only (Facebook's Help Center: "This feature isn't available on computers").
+
+Check it: Facebook app, tap your profile picture, Settings & Privacy, Settings, then scroll to Camera roll sharing suggestions (it may sit under Preferences, menu names change by app version). If it is on, switch it off.
+
+Strongest option, it blocks Facebook from your photos at phone level:
+iPhone: Settings, Privacy & Security, Photos, Facebook, None.
+Android: Settings, Apps, Facebook, Permissions, Photos and videos, Don't allow (menus vary by phone brand).
+
+What Meta says (Meta newsroom, 16 April 2026, updated 31 August 2026): "You must opt in to use this feature, and you can turn it off at any time." and "We don't use photos and videos from your camera roll for ads targeting." Also: "We also don't use photos and videos from your camera roll to improve AI at Meta", unless you choose to share them in an AI at Meta feature.
+
+What we do not know: whether this version uploads your photos to Meta's servers (Meta's post does not say; a 2025 test in the US and Canada did upload them), and the exact pop-up wording in Europe. The video is drawn, not a recording of a real account.
+
+Sources and every step: https://actually-works.com/e/88
+
+Full disclosure: Anthropic makes Claude, and this video was made with help from Claude. Facebook is a Meta product; this channel is not affiliated with Meta.
+
+#facebook #privacy #meta #ai
