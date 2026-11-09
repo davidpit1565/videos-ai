@@ -9,3 +9,4 @@
 7. Ask for: a list of 10 topics built on this brief; use the Find Skills skill (David installed it) to find extra skills; research agents for this new information.
 8. References sent by David from Roni: DeJ_gTHs-FB and Det3bEqtRh2 (@sanji.chien: 41.6 s 12,746 likes 19,458 comments; 55.1 s 5,027 likes 5,070 comments), DekGW1-tCoi (@kaloyan.editor: 18.6 s, 3,471 likes, 3,002 comments). Analysis: channel/refs-2026-11-09-roni3.md.
 Our own data point worth keeping in view: the panel test of 9.11 found frame-0 scores do not predict views; Roni's point is about comprehension speed and hook energy, which the panel did measure as CLEAR.
+9. (David, 9.11.2026, added later) Hook rule: far more visual, far less text, never more than 3 lines of text on screen. Now in CLAUDE.md.

@@ -525,3 +525,6 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## Every reference reel: how do WE reach its level, faceless and our way (David, 9.11.2026)
 - Whenever David sends a reel as a reference, analyse it AND answer: how do we reach that level of virality in this exact form, faceless and in our own format (drawn UI, calm cloned voice, no face)? Name what makes it spread, what we can copy structurally, what we cannot (face, trend, account size) and what the faceless version looks like beat by beat, with an honest score. Never stop at a description of the reel.
+
+## Hook is visual first, little text (David, 9.11.2026)
+- The hook must be mostly VISUAL: far less text, never more than 3 lines of text on screen at once. The idea has to be understood from the picture and motion, with the text only naming it. Check this on every frame 0 and every title card (this overrides any earlier frame that carried long headlines).
