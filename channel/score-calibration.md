@@ -36,3 +36,12 @@ Real result note: David reports that episode 86 brought exactly 1 new follower (
 - C4 'SCAM OR AI?': 60/62/74. C1 'Which text is the scam?': 60/61/70. C3 '5 free Google AI tools': 46/52/57 (4 logos missing).
 - Note: all readers called the bottom ~35% 'empty'; that area is the Instagram UI zone (y>1248), the card already fills the safe box. Tell readers the safe box next time.
 - Verdict: nothing >= 85, so nothing built (David's rule 9.11).
+
+### Panel validity test (9.11.2026): does a blind frame-0 panel predict real views? NO.
+Method: 30 first frames (t=1.2 s, bottom 10% cropped so the handle does not leak), 24 of our episodes 57-87 (real views 95-1563) + 6 viral references David sent (views unknown), shuffled, anonymous. 3 Claude role-play readers (teen, builder, parent) scored STOP / SEND / CLEAR 0-100 each. Key: channel/calib-key-2026-11-09.json.
+- Spearman correlation of panel mean vs log(views) on our 24 episodes: -0.23 (stop -0.20, send -0.21, clear -0.21). No positive signal.
+- Our 4 best (ep86 1563, ep80 817, ep82 656, ep72 580): mean panel score 45.7 vs 50.0 for the other 20. The three biggest winners sat in the lower half (ep86 46, ep82 38, ep80 29).
+- The 6 viral references scored LOWER than our episodes (33.3 vs 49.3).
+- Raters agree with each other moderately (Spearman 0.45-0.61), so the panel is consistent but not predictive.
+- Caveats: n=24, views also depend on timing/account/algorithm; the panel sees only a still frame; readers are Claude role-plays.
+- Consequence: the panel can catch confusion (CLEAR) but cannot be used as a virality gate. The 85 floor on panel scores measures nothing proven. Open for David: replace the gate with real experiments (post, read 48 h) and keep the panel only for clarity.
