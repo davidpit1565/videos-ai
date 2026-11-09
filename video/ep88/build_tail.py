@@ -16,14 +16,14 @@ def phone(sfx):
         r, c = divmod(i, 3)
         tag = '<b class="tg tgA">NEVER POSTED</b>' if i in (0, 2, 4) else ""
         tiles += tile(i, 18 + c * 244, 58 + r * 154, 232, 142, "pt", tag)
-    return f'''<div class="phone" id="phone{sfx}"><div class="pbar"><span>DRAWN EXAMPLE &middot; CAMERA ROLL</span><i class="bdot"></i></div>
+    return f'''<div class="phone" id="phone{sfx}"><div class="pbar"><span>YOUR CAMERA ROLL</span><i class="bdot"></i></div>
 {tiles}<div class="shim"></div>
 <div class="prompt"><div class="sk"><u></u><u style="width:70%"></u></div><div class="tgl q" id="tq{sfx}"><b>?</b></div></div></div>
 <div class="hunt" id="hunt{sfx}"></div>'''
 
 
 def cd(sfx):
-    nums = "".join(f'<span class="cdn" id="cn{k}{sfx}">{k}</span>' for k in range(5, -1, -1))
+    nums = "".join(f'<span class="cdn" id="cn{k}{sfx}">{k}</span>' for k in range(5, -1, -1)) + '<span class="cdl">SEC</span>'
     return f'''<div class="cd" id="cd{sfx}"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" class="cdbg"/><circle cx="50" cy="50" r="44" class="cdring" id="cdr{sfx}" transform="rotate(-90 50 50)"/></svg>{nums}</div>'''
 
 
@@ -45,7 +45,7 @@ markup = f'''
 <div class="scn" id="sA" style="visibility:visible;opacity:1">
  <div class="lgo" id="lgo"><img src="assets/facebook.svg"></div>
  {cd("")}
- {capblock(1, "", 80, 444)}
+ {capblock(1, "", 76, 474)}
  {capblock(2, "", size_for(2), 470)}
  {phone("")}
 </div>
@@ -89,7 +89,7 @@ markup = f'''
 <div class="scn" id="sH">
  <div class="lgo" id="lgoH"><img src="assets/facebook.svg"></div>
  {cd("H")}
- {capblock(1, "H", 80, 444)}
+ {capblock(1, "H", 76, 474)}
  {phone("H")}
 </div>
 '''
@@ -98,16 +98,17 @@ styles = '''
 :root{--acc:#86D93F}
 .scn .cap,.scn .lgo,.phone,.setc,.strip,.scan,.collage,.meta,.dlg,.val,.out,.note2,.hunt,.cd,.bigallow{position:absolute}
 .cap{left:65px;width:950px;text-align:center;font-weight:900;letter-spacing:-.045em;opacity:0;visibility:hidden}
-.cw{display:inline-block;color:#6F6F66;margin:0 8px;border-radius:14px}
-.cw.hl{background:rgba(134,217,63,.6);padding:0 10px;font-size:98px;margin:0 6px}
+.cw{display:inline-block;color:#2A2A26;margin:0 8px;border-radius:14px}
+.cw.hl{background:rgba(134,217,63,.6);padding:0 10px;font-size:92px;margin:0 6px}
 #cap1,#cap1H{opacity:1;visibility:visible;left:45px;width:990px}
-.lgo{left:65px;top:290px;width:112px;height:112px;border-radius:50%;background:#fff;border:6px solid var(--ink);box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.lgo{left:65px;top:276px;width:180px;height:180px;border-radius:50%;background:#fff;border:8px solid var(--ink);box-shadow:9px 9px 0 var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .lgo img{width:112%;height:112%;margin:-6%}
 .cd{left:855px;top:284px;width:150px;height:150px}
 .cd svg{position:absolute;left:0;top:0;width:150px;height:150px;overflow:visible}
 .cdbg{fill:#fff;stroke:var(--ink);stroke-width:7}
 .cdring{fill:none;stroke:var(--acc);stroke-width:12;stroke-linecap:round;stroke-dasharray:276.5;stroke-dashoffset:0}
-.cdn{position:absolute;left:0;top:0;width:150px;height:150px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:96px;letter-spacing:-.04em;opacity:0;padding-bottom:6px}
+.cdn{position:absolute;left:0;top:0;width:150px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:80px;letter-spacing:-.04em;opacity:0;height:106px}
+.cdl{position:absolute;left:0;top:100px;width:150px;text-align:center;font-weight:900;font-size:30px;letter-spacing:.14em}
 .phone{left:160px;top:748px;width:760px;height:482px;background:#fff;border:7px solid var(--ink);border-radius:44px;box-shadow:10px 10px 0 var(--ink);overflow:hidden}
 .pbar{position:absolute;left:0;top:0;width:100%;height:50px;background:#EFEFE8;border-bottom:4px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-weight:800;font-size:22px;letter-spacing:.06em;color:var(--ink2)}
 .bdot{display:block;width:20px;height:20px;border-radius:50%;background:#1877F2}
@@ -122,7 +123,8 @@ styles = '''
 .tgl{position:relative;width:124px;height:70px;flex:none;border-radius:35px;border:5px solid var(--ink);background:#D2D2C8}
 .tgl b{position:absolute;left:5px;top:5px;width:50px;height:50px;border-radius:50%;background:#fff;border:4px solid var(--ink);font-style:normal;font-weight:900;font-size:36px;line-height:42px;text-align:center}
 .tgl.on{background:var(--acc)}.tgl.on b{left:auto;right:5px}
-.tgl.q{width:150px;background:#fff}
+.tgl.q{width:230px;height:104px;border-radius:52px;border:6px solid var(--ink);background:#fff}
+.tgl.q b{width:76px;height:76px;top:7px;left:7px;font-size:56px;line-height:68px}
 .hunt{left:0;top:0;width:150px;height:110px;border:8px solid var(--acc);border-radius:26px;box-shadow:0 0 0 5px rgba(14,14,14,.9);opacity:0;pointer-events:none}
 .setc{left:80px;top:790px;width:920px;background:#fff;border:7px solid var(--ink);border-radius:44px;box-shadow:12px 12px 0 var(--ink);padding:30px 32px 30px}
 .setc .r1{display:flex;align-items:center;gap:24px}
@@ -208,7 +210,7 @@ cap('cap1',1,0,E(1)+.04);
 hide('#lgo',E(1)+.04,.22);
 cap('cap2',2,E(1)+.16,tA1);
 // a lime search frame hops over the gallery looking for the switch (the toggle with "?" is at the bottom right)
-const hp=[[24,64,236,150],[270,64,236,150],[514,64,236,150],[24,218,236,150],[270,218,236,150],[540,376,176,96]];  // x,y,w,h inside the phone (phone origin 160,748)
+const hp=[[24,64,236,150],[270,64,236,150],[514,64,236,150],[24,218,236,150],[270,218,236,150],[484,370,252,114]];  // x,y,w,h inside the phone (phone origin 160,748)
 hp.forEach((p,i)=>{
   const t=0.5+i*0.78;
   const x=160+p[0]-6, y=748+p[1]-6;
@@ -216,6 +218,8 @@ hp.forEach((p,i)=>{
   else tl.to('#hunt',{x:x,y:y,width:p[2],height:p[3],duration:.6,ease:EI},t);
 });
 tl.to('#hunt',{opacity:0,duration:.3,ease:EA},E(2)-.1);
+for(let t=0.2;t<E(2)-.3;t+=1.1){ tl.to('#tq',{boxShadow:"0 0 0 14px rgba(134,217,63,.75)",duration:.55,ease:EA},t); tl.to('#tq',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
+for(let t=E(7)+.5;t<D-.5;t+=1.1){ tl.to('#tqH',{boxShadow:"0 0 0 14px rgba(134,217,63,.75)",duration:.55,ease:EA},t); tl.to('#tqH',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
 tl.to('#tq b',{rotate:12,duration:.6,ease:EA,yoyo:true,repeat:5,transformOrigin:"50% 50%"},0.3);
 hide('#sA',tA1+.0,.2);
 // ---- scene B: line 3
@@ -225,6 +229,8 @@ tl.fromTo('#noteB',{opacity:0},{opacity:1,duration:.4},S(3)+.4);
 cap('cap3',3,S(3)-.05,0);
 tl.fromTo('#setc',{scale:1},{scale:1.03,duration:E(3)-S(3)+.3,ease:EA},S(3));
 tl.to('#tglB',{boxShadow:"0 0 0 10px rgba(134,217,63,.7)",duration:.5,ease:EA},W(3,4)); tl.to('#tglB',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.5,ease:EA},W(3,4)+.6);
+for(let t=S(3)+.3;t<E(3)-.5;t+=1.2){ tl.to('#tglB',{boxShadow:"0 0 0 10px rgba(134,217,63,.7)",duration:.55,ease:EA},t); tl.to('#tglB',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
+tl.to('#setc',{y:-8,duration:E(3)-S(3),ease:EA,immediateRender:false},S(3)+.6);
 hide('#sB',E(3),.2);
 // ---- scene C: line 4 (tap Allow -> looks through the gallery -> collages)
 show('#sC',S(4)-.08,.3);
@@ -286,6 +292,9 @@ tl.fromTo('#sH',{autoAlpha:0},{autoAlpha:1,duration:.35,ease:EA},E(7)+.38);
 QA('#capH .cw').forEach((e,i)=>{ if(i==0) tl.set(e,{color:"#0E0E0E"},0); });
 tl.set('#cn5H',{opacity:1},E(7)+.38);
 tl.fromTo('#phoneH',{y:0},{y:-6,duration:D-E(7)-.3,ease:EA},E(7)+.4);
+phoneAnim('H',E(7)+.45,D);
+tl.to('#al1,#al2,#al3',{y:-8,duration:.9,ease:EA,yoyo:true,repeat:3,stagger:.2},E(7)-1.6);
+tl.to('#mini,#outb',{y:-6,duration:1.1,ease:EA,yoyo:true,repeat:2},E(7)-2.0);
 '''
 
 GAP6 = GAPS[5]

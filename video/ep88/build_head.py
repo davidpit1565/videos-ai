@@ -7,7 +7,7 @@ import json, os, re, sys, subprocess
 import soundfile as sf, numpy as np
 H = os.path.dirname(os.path.abspath(__file__))
 VOICE = os.environ.get("VOICE", H + "/voice/final")
-GAPS = [float(x) for x in os.environ.get("GAPS", "0.32,0.3,0.34,0.36,0.36,3.4").split(",")]
+GAPS = [float(x) for x in os.environ.get("GAPS", "0.32,0.3,0.34,0.36,0.36,5.0").split(",")]
 TAIL = float(os.environ.get("TAIL", "1.1"))
 ALL = [l.rstrip("\n") for l in open(H + "/lines.txt") if l.strip()]
 assert len(ALL) == 7 and len(GAPS) == 6
