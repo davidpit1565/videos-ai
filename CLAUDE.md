@@ -519,3 +519,6 @@ The studio is gated against the public, not against Claude. When David has given
 ## Whole frame alive, no wasted space (David, 9.11.2026: "you always forget this, don't forget")
 - The main visual (screen/card/panel) is ENLARGED to fill the usable area (x 65-1015, y 269-1248), not a small block in the top with empty space below. No empty zones inside the safe box. Do NOT fill space with extra decorations: scale up what matters, and keep the whole picture moving. Blind readers flagged ep88 frame 0 for exactly this (panel small, bottom empty).
 - Compaction: after every context compaction, no detail from David's messages may be lost: before a long stretch, write his standing instructions of the session into CLAUDE.md or the episode plan file, and re-read them after compaction.
+
+## We build virality, not videos (David, 9.11.2026)
+- Next videos need OVERALL 85-95/100 (honest, blind panel). If the honest score is below that, DO NOT make the video: report what was tried and why it falls short. "I don't need a video if you can't do it properly: the goal is going viral, not producing a video."
