@@ -1,0 +1,11 @@
+# Roni's feedback (relayed by David, 9.11.2026). Roni is a content person who watched our reels. NOT yet a CLAUDE.md rule: David decides.
+
+1. Our content is mid/low funnel. We need more TOP-funnel topics: catchy, broad, grabbing.
+2. Hooks are boring. A viewer needs 6-7 s to understand what the video is; it must be under 3 s. 4-5 s is already risky = scrollable. If the viewer does not understand the content in 3 s, it is a bad video.
+3. Hooks more EXPLOSIVE; visuals much more interesting.
+4. Try Vox-style animations; many more professional sound effects; subtle zoom in / zoom out; other editing techniques.
+5. Avoid the typical 'Claude' branding; more unique; play with fonts (different, not default).
+6. Titles much more animated, not Claude-like.
+7. Ask for: a list of 10 topics built on this brief; use the Find Skills skill (David installed it) to find extra skills; research agents for this new information.
+8. References sent by David from Roni: DeJ_gTHs-FB and Det3bEqtRh2 (@sanji.chien: 41.6 s 12,746 likes 19,458 comments; 55.1 s 5,027 likes 5,070 comments), DekGW1-tCoi (@kaloyan.editor: 18.6 s, 3,471 likes, 3,002 comments). Analysis: channel/refs-2026-11-09-roni3.md.
+Our own data point worth keeping in view: the panel test of 9.11 found frame-0 scores do not predict views; Roni's point is about comprehension speed and hook energy, which the panel did measure as CLEAR.
