@@ -273,11 +273,11 @@
   },
   "renders": {
     "latest": {
-      "id": "2ba88b5e-ea73-4b9a-bd10-6f65d89a06d6",
-      "completedAt": 1794244369133,
-      "output": "/home/user/videos-ai/video/ep88/out/v5.mp4",
+      "id": "9afdcd55-9a0a-4950-9cb7-ff249adf0e1a",
+      "completedAt": 1794264312523,
+      "output": "/home/user/videos-ai/video/ep88/out/r5t.mp4",
       "status": "completed",
-      "revision": "d35c7858-908f-4848-8cf9-aa2c7457e1f8"
+      "revision": null
     },
     "retainedRevisions": [
       "d35c7858-908f-4848-8cf9-aa2c7457e1f8",
