@@ -515,3 +515,7 @@ When a reel is ready (check.sh passed, merged, deploy verified), send a real pho
 
 ## Claude may read the studio (David, 25.10.2026)
 The studio is gated against the public, not against Claude. When David has given the PIN in the chat of the current session, read real numbers with `POST /api/unlock` (json `{"pin": ...}`, keep the cookie) and then `GET /api/state` on https://www.actually-works.com. The PIN is never written into a file, a commit, a PR or a log. If no PIN was given in the session, ask for it once. Fields: `state.episodes[]` (views, reach, likes, saves, shares, publishedAtPrecise), `state.snapshots[]` (followers). Watch time and reach by follower type are NOT_AVAILABLE for this account.
+
+## Whole frame alive, no wasted space (David, 9.11.2026: "you always forget this, don't forget")
+- The main visual (screen/card/panel) is ENLARGED to fill the usable area (x 65-1015, y 269-1248), not a small block in the top with empty space below. No empty zones inside the safe box. Do NOT fill space with extra decorations: scale up what matters, and keep the whole picture moving. Blind readers flagged ep88 frame 0 for exactly this (panel small, bottom empty).
+- Compaction: after every context compaction, no detail from David's messages may be lost: before a long stretch, write his standing instructions of the session into CLAUDE.md or the episode plan file, and re-read them after compaction.
