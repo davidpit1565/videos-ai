@@ -534,3 +534,6 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## Content funnel (Roni via David, 9.11.2026)
 - Every video idea carries a funnel stage: TOP (viral formats, 80% of videos), MID (for our curious-about-AI audience, trust and value), LOW (CTA-heavy, needs a real offer). Think in the funnel whenever ideas or videos are prepared. Details and the rules per idea: `channel/content-funnel.md`.
+
+## Think in formats, not clips (Roni via David, 9.11.2026)
+- Every video is an episode of a named, numbered FORMAT with a locked template and one variable slot (the topic). Design the format first, then the episodes. Spec and candidates: `channel/formats-2026-11-09.md`.
