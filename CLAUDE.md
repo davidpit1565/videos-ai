@@ -522,3 +522,6 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## We build virality, not videos (David, 9.11.2026)
 - Next videos need OVERALL 85-95/100 (honest, blind panel). If the honest score is below that, DO NOT make the video: report what was tried and why it falls short. "I don't need a video if you can't do it properly: the goal is going viral, not producing a video."
+
+## Every reference reel: how do WE reach its level, faceless and our way (David, 9.11.2026)
+- Whenever David sends a reel as a reference, analyse it AND answer: how do we reach that level of virality in this exact form, faceless and in our own format (drawn UI, calm cloned voice, no face)? Name what makes it spread, what we can copy structurally, what we cannot (face, trend, account size) and what the faceless version looks like beat by beat, with an honest score. Never stop at a description of the reel.
