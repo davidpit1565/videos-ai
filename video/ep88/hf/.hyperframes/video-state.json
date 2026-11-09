@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "1fb7666a-5dbe-436d-8874-8adbe4ef9342",
-  "currentRevision": "b0da9e56-bb73-4c71-98c0-5cb58a671ebc",
+  "currentRevision": "fdb2128f-9f85-4fb4-b8cf-cd8ce0cfc349",
   "pendingChanges": false,
   "files": {
     "assets/facebook.svg": {
@@ -29,8 +29,8 @@
       "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/71/712b76d2f7cabaa50799d5775b8de657b8ca07dd3abb95bd793effb71b754c8d"
     },
     "index.html": {
-      "hash": "a7f0587451a91c9d4876ab57f8956f3e04df10477ef7c74d4597ff7824bd1d68",
-      "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/a7/a7f0587451a91c9d4876ab57f8956f3e04df10477ef7c74d4597ff7824bd1d68"
+      "hash": "83d34a32f353d0b98c476c6220ad263d2926126c713c26bdcdbc4e0a2aad7ed8",
+      "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/83/83d34a32f353d0b98c476c6220ad263d2926126c713c26bdcdbc4e0a2aad7ed8"
     },
     "assets/fonts/BigShoulders-Bold.ttf": {
       "hash": "b43bcd198b9fdf717dd42aa61a34dba32e01aceaeae659d689afd0ca52c37ea2",
@@ -39,6 +39,26 @@
     "assets/fonts/fraunces-latin-600-normal.woff2": {
       "hash": "3a1de7711d147bad4422825045f87597fd77cca72e7c96d3b0a81735d00dda82",
       "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/3a/3a1de7711d147bad4422825045f87597fd77cca72e7c96d3b0a81735d00dda82"
+    },
+    "assets/fonts/Gloock-Regular.ttf": {
+      "hash": "e86b4ce66dbd3f1f83eee8db99ec96e0da1128c3f53df0e9b3b7472025dfe960",
+      "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/e8/e86b4ce66dbd3f1f83eee8db99ec96e0da1128c3f53df0e9b3b7472025dfe960"
+    },
+    "assets/fonts/IBMPlexMono-Bold.ttf": {
+      "hash": "dbd2a2fb024579438d6400a84e57579bfd2dbe67c306c8fd9fde92a61e4f2eea",
+      "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/db/dbd2a2fb024579438d6400a84e57579bfd2dbe67c306c8fd9fde92a61e4f2eea"
+    },
+    "assets/photos/beach.jpg": {
+      "hash": "953bab89bc669c7e9ec5a98c5865b2b74560912d92d21aae739e00d06a627fb8",
+      "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/95/953bab89bc669c7e9ec5a98c5865b2b74560912d92d21aae739e00d06a627fb8"
+    },
+    "assets/photos/cake.jpg": {
+      "hash": "abbf525d7d010473f070642110adc2773b895ffec53e025b4db6683aa36cb682",
+      "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/ab/abbf525d7d010473f070642110adc2773b895ffec53e025b4db6683aa36cb682"
+    },
+    "assets/photos/desk.jpg": {
+      "hash": "fa715482e67bccc741449ace8b248db67ec6b7fa11991933793c4b1090dbaecc",
+      "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/fa/fa715482e67bccc741449ace8b248db67ec6b7fa11991933793c4b1090dbaecc"
     }
   },
   "revisions": {
@@ -259,6 +279,56 @@
           "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/a7/a7f0587451a91c9d4876ab57f8956f3e04df10477ef7c74d4597ff7824bd1d68"
         }
       }
+    },
+    "3d03c313-9aea-40b0-acdb-6146bf728bb6": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794264780838,
+      "endedAt": 1794264780858,
+      "files": {
+        "assets/fonts/Gloock-Regular.ttf": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/e8/e86b4ce66dbd3f1f83eee8db99ec96e0da1128c3f53df0e9b3b7472025dfe960"
+        },
+        "assets/fonts/IBMPlexMono-Bold.ttf": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/db/dbd2a2fb024579438d6400a84e57579bfd2dbe67c306c8fd9fde92a61e4f2eea"
+        },
+        "assets/photos/beach.jpg": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/95/953bab89bc669c7e9ec5a98c5865b2b74560912d92d21aae739e00d06a627fb8"
+        },
+        "assets/photos/cake.jpg": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/ab/abbf525d7d010473f070642110adc2773b895ffec53e025b4db6683aa36cb682"
+        },
+        "assets/photos/desk.jpg": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/fa/fa715482e67bccc741449ace8b248db67ec6b7fa11991933793c4b1090dbaecc"
+        },
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/a7/a7f0587451a91c9d4876ab57f8956f3e04df10477ef7c74d4597ff7824bd1d68",
+          "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/e7/e724ef8b4db9723b995aee408f5d635b38dc7ad10cccc4688eacc247c3a96525"
+        }
+      }
+    },
+    "fdb2128f-9f85-4fb4-b8cf-cd8ce0cfc349": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794265219974,
+      "endedAt": 1794265219977,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/e7/e724ef8b4db9723b995aee408f5d635b38dc7ad10cccc4688eacc247c3a96525",
+          "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/83/83d34a32f353d0b98c476c6220ad263d2926126c713c26bdcdbc4e0a2aad7ed8"
+        }
+      }
     }
   },
   "checks": {
@@ -273,15 +343,15 @@
   },
   "renders": {
     "latest": {
-      "id": "9afdcd55-9a0a-4950-9cb7-ff249adf0e1a",
-      "completedAt": 1794264312523,
+      "id": "62338b94-69fa-4232-bb7a-0cdae6fc3ee5",
+      "completedAt": 1794265099896,
       "output": "/home/user/videos-ai/video/ep88/out/r5t.mp4",
       "status": "completed",
-      "revision": null
+      "revision": "3d03c313-9aea-40b0-acdb-6146bf728bb6"
     },
     "retainedRevisions": [
-      "d35c7858-908f-4848-8cf9-aa2c7457e1f8",
-      "513abdf2-c563-4fd7-a2a8-1e96bca4fa82"
+      "3d03c313-9aea-40b0-acdb-6146bf728bb6",
+      "d35c7858-908f-4848-8cf9-aa2c7457e1f8"
     ]
   },
   "pendingArtifactCleanup": []

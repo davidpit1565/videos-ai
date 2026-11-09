@@ -27,7 +27,7 @@ def tape(x, y, rot, w=150, h=46):
     return f'<div class="tape" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;transform:rotate({rot}deg)"></div>'
 
 def print_(k, id, x, y, w, h, rot, z=3, stamp=True, tp=True):
-    inner = (f'<div class="pic" style="inset:14px 14px 50px 14px">{scene(k)}<div class="ht2"></div><div class="pvig"></div></div>'
+    inner = (f'<div class="pic" style="inset:14px 14px 50px 14px"><img class="pimg" src="assets/photos/{ {0: "beach", 1: "cake", 3: "desk"}[k] }.jpg"><div class="ht2"></div><div class="pvig"></div></div>'
              + (f'<div class="stamp" id="{id}s">NEVER POSTED</div>' if stamp else ''))
     return (f'<div class="pcw prn" id="{id}" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;transform:rotate({rot}deg);z-index:{z}">'
             f'<div class="pc"><div class="pcb" style="background:#FBF6EA;clip-path:{torn(w, h, 40 + k, 3, 40)}">{inner}</div></div>'
@@ -73,7 +73,7 @@ def chat():
             + "".join(strip(f"al{k}", "ALLOW", 205 + (k - 1) * 275, 1075, 250, 120, (-3, 2, -2)[k - 1], YEL, size=96, seed=70 + k, z=6) for k in (1, 2, 3)))
 
 markup = f'''
-<div class="bgl" id="bgl"><div class="news" id="news"></div><div class="dots"></div></div>
+<div class="bgl" id="bgl"><div class="news" id="news"></div><div class="news2" id="news2"></div><div class="dots"></div></div>
 <div class="sc" id="s1" style="opacity:1;visibility:visible">{hookblock("")}</div>
 <div class="sc" id="s2"><div class="cam" id="c2">
  {strip("t2", "ONLY IF YOU TAPPED", 40, 300, 1000, 150, -1.4, YEL, size=124, seed=11, z=5)}
@@ -119,13 +119,14 @@ styles = r'''
 @font-face{font-family:"PlexM";src:url("assets/fonts/IBMPlexMono-Bold.ttf");font-weight:700}
 :root{--ink:#17130F;--yel:#F2C230;--red:#B6402B;--lime:#9BE22E}
 html,body,#root{background:#B8955F}
-.bgl{position:absolute;left:0;top:0;width:1080px;height:1920px;background:linear-gradient(180deg,#D8C193,#C2A06A 60%,#B28F5B);overflow:hidden}
+.bgl{position:absolute;left:0;top:0;width:1080px;height:1920px;background:linear-gradient(180deg,#DCCBA3,#CBB184 60%,#BC9D6C);overflow:hidden}
 .news{position:absolute;left:-60px;top:-60px;width:1200px;height:2040px;opacity:.55;
  background:repeating-linear-gradient(0deg,rgba(60,42,22,.38) 0 3px,transparent 3px 11px) 0 0/290px 100% no-repeat,
  repeating-linear-gradient(0deg,rgba(60,42,22,.34) 0 3px,transparent 3px 11px) 330px 0/290px 100% no-repeat,
  repeating-linear-gradient(0deg,rgba(60,42,22,.30) 0 3px,transparent 3px 11px) 660px 0/290px 100% no-repeat,
  repeating-linear-gradient(0deg,rgba(60,42,22,.3) 0 3px,transparent 3px 11px) 990px 0/200px 100% no-repeat;
  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 45%,#000 40%,rgba(0,0,0,.25) 100%)}
+.news2{position:absolute;left:-60px;top:-60px;width:1200px;height:2040px;opacity:.5;background:repeating-linear-gradient(90deg,transparent 0 46px,#C9AE80 46px 54px),repeating-linear-gradient(90deg,transparent 0 71px,#C9AE80 71px 77px);-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 45%,#000 40%,rgba(0,0,0,.25) 100%)}
 .news:before{content:"";position:absolute;left:60px;top:300px;width:420px;height:300px;background:#2a1f12;opacity:.28}
 .news:after{content:"";position:absolute;left:560px;top:1000px;width:520px;height:360px;background:#2a1f12;opacity:.22}
 .dots{position:absolute;inset:0;background:radial-gradient(circle,rgba(40,25,10,.34) 2px,transparent 2.6px) 0 0/16px 16px;-webkit-mask-image:radial-gradient(ellipse 70% 55% at 50% 100%,#000,transparent);opacity:.7}
@@ -141,8 +142,8 @@ html,body,#root{background:#B8955F}
 .stx[style*="PlexM"]{letter-spacing:-.02em}
 .tape{position:absolute;background:rgba(232,214,160,.82);box-shadow:0 2px 4px rgba(30,18,6,.3);z-index:12}
 .pic{position:absolute;overflow:hidden;background:#fff}
-.pic .ab{filter:sepia(.28) saturate(.85) contrast(1.06)}
-.ht2{position:absolute;inset:0;background:radial-gradient(circle,rgba(30,18,6,.42) 1.8px,transparent 2.4px) 0 0/8px 8px;mix-blend-mode:multiply;opacity:.55}
+.pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.25) sepia(.45) contrast(1.08) brightness(1.14)}
+.ht2{position:absolute;inset:0;background:radial-gradient(circle,rgba(30,18,6,.42) 1.8px,transparent 2.4px) 0 0/8px 8px;mix-blend-mode:multiply;opacity:.3}
 .pvig{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(0,0,0,.32))}
 .stamp{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%) rotate(-9deg);font:700 62px BS;letter-spacing:.04em;color:var(--red);border:6px solid var(--red);padding:2px 16px 4px;border-radius:8px;mix-blend-mode:multiply;opacity:.93;white-space:nowrap;z-index:11}
 .prn .stamp{font-size:52px}
@@ -200,7 +201,7 @@ const slamP=(id,t,dir)=>{ tl.fromTo('#'+id,{scale:1.35,opacity:0,filter:"blur(12
   tl.fromTo('#'+id+'t',{clipPath:"inset(0 100%% 0 0)"},{clipPath:"inset(0 0%% 0 0)",duration:.34,ease:"steps(14)"},t+.12); };
 const lensCross=(id,t,dur)=>{ tl.fromTo('#'+id,{x:0,opacity:0},{opacity:.9,duration:dur*.3,ease:EA},t); tl.to('#'+id,{x:1900,duration:dur,ease:"power1.inOut"},t); tl.to('#'+id,{opacity:0,duration:dur*.25,ease:EA},t+dur*.75); };
 // slow parallax of the newspaper layer over the whole video
-tl.fromTo('#news',{x:0,y:0},{x:-70,y:-60,duration:D,ease:"none"},0);
+tl.fromTo('#news,#news2',{x:0,y:0},{x:-70,y:-60,duration:D,ease:"none"},0);
 function hook(sfx,t0,t1){
   const h='hcam'+sfx;
   tl.fromTo('#pr1'+sfx,{y:90,rotation:-14},{y:0,rotation:-8,duration:.6,ease:EX},t0);

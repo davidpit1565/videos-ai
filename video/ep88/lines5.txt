@@ -1,7 +1,5 @@
 Facebook can look through photos you never posted.
-Only if you tapped Allow.
-Here's how to stop it.
-Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions.
-Switch it off.
+Only if you tapped Allow. Here's how to stop it.
+Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions. Switch it off.
 Meta says it's opt-in, and not used for ads.
 Send this to someone who always taps Allow.
