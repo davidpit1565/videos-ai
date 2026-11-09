@@ -18,7 +18,7 @@ Read-only analysis. Sources: studio state saved 9.11.2026 (85 episodes with numb
 | ALL | 85 | 206 | 237 | 1563 | 1 | 89 | 17 | 10 | 4.4 |
 
 Quartiles of views: 158 / 206 / 259. Time slices (median views): eps 1-25: 229; 26-50: 164; 51-70: 177; 71-87: 260.
-Concentration (FACT): 4 episodes (86, 80, 82, 72: 1563/817/656/580) account for 3,616 of 20,150 total IG views (18%). Without them the behaviour-test family median is 235 and its mean 254: the family's lead is almost all those four plus nothing else. Every family's median sits in 164-265: the differences between medians are small compared with the noise of a 100-300 view account.
+Concentration (FACT): 4 episodes (86, 80, 82, 72: 1563/817/656/580) account for 3,616 of 20,150 total IG views (18%). Without ep 86, 80 and 72 the other seven behaviour tests have median 221 and mean 220 (the same as the channel): the family lead is those three. Every family's median sits in 164-265: the differences between medians are small compared with the noise of a 100-300 view account.
 
 ## 2. Follower history (correlation only)
 
@@ -29,7 +29,7 @@ Account day data 1.11-9.11: accountsReached 209, 321, 650, 687, 295, 247, 113, 1
 
 ## 3. Saves and shares (signs of value)
 
-- Totals: 89 saves and 17 shares over about 20,150 views (4.4 saves and 0.8 shares per 1,000 views). Median episode: 1 save, 0 shares. 49 of 85 episodes have exactly 1 save (often 1 is the account itself or one follower: UNKNOWN who).
+- Totals: 89 saves and 17 shares over 20,153 views (4.4 saves and 0.8 shares per 1,000 views). Median episode: 1 save, 0 shares. 61 of 85 episodes have exactly 1 save (13 have 0) (often 1 is the account itself or one follower: UNKNOWN who).
 - Shares: 17 total, and 12 of them are on ep 1 ("Paste this once - the Universal AI Engine", a paste-able setup). The other five: ep 75, 78, 80, 81, 82 one each. 79 of 85 episodes have 0 shares.
 - Highest saves per 1k views (episodes with 2+ saves): ep 35 n8n "says done and still repeats" 14.5/1k (2 saves, 138 views), ep 43 Windows screenshots 12.8/1k (4 saves, 312 views), ep 1 12.2/1k (5 saves, 410 views, plus 12 shares), ep 36 ChatGPT trains on your chats 10.9/1k, ep 25 n8n retry 10.9/1k, ep 73 "3 ways to make ChatGPT stop agreeing" 8.5/1k, ep 34 n8n node 8.4/1k, ep 81 6.0/1k.
 - Lowest: the four winners. Ep 86 1.3/1k, ep 82 3.0/1k, ep 80 3.7/1k, ep 72 0 saves. Likes per 1k: behaviour tests 13, rest 18-34.
