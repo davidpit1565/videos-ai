@@ -9,9 +9,9 @@ Topic: Facebook's opt-in feature "Camera roll sharing suggestions" (EU and UK, p
 4. If you tap Allow, Facebook looks through your gallery and suggests collages.
 5. Meta says it's opt-in and not used for ads.
 6. Here's the switch. Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions. Switch it off.   (VALUE card: four numbered rows + the switch flipping to OFF; "menu names can differ by app version")
-7. Send this to mum. She taps Allow on everything.
+7. Send this to mum. She taps Allow every time.
 
-Claims kept out on purpose: "uploads", "is watching", "private photos", "whole gallery", "mobile app only" as a hard fact. Line 1 is accurate because the feature needs the Allow tap (line 4). Frame 0: Facebook logo, "Find the switch", the countdown (5), the drawn gallery with NEVER POSTED tags and a hidden toggle with a question mark. Loop: the last second returns to frame 0.
+Claims kept out on purpose: "uploads", "is watching", "private photos", "whole gallery", "mobile app only" as a hard fact. Line 1 is accurate because the feature needs the Allow tap (line 4). (Shipped final: video/ep88/out/ep88-final2.mp4, 33.5 s; line 7 reworded from "on everything" because the voice trails off on that word.) Frame 0: Facebook logo (large), panel title YOUR CAMERA ROLL, countdown badge 5 SEC, "Find the switch", the countdown (5), the drawn gallery with NEVER POSTED tags and a hidden toggle with a question mark. Loop: the last second returns to frame 0.
 Path (Which?, 21.10.2025): Settings & Privacy, Settings, Camera roll sharing suggestions (no "Preferences" step confirmed).
 
 ## Ground truth (re-opened 9.11.2026)

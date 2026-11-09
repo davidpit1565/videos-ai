@@ -52,8 +52,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--paper);fon
 .tgl{position:relative;width:124px;height:70px;flex:none;border-radius:35px;border:5px solid var(--ink);background:#D2D2C8}
 .tgl b{position:absolute;left:5px;top:5px;width:50px;height:50px;border-radius:50%;background:#fff;border:4px solid var(--ink);font-style:normal;font-weight:900;font-size:36px;line-height:42px;text-align:center}
 .tgl.on{background:var(--acc)}.tgl.on b{left:auto;right:5px}
-.tgl.q{width:230px;height:104px;border-radius:52px;border:6px solid var(--ink);background:#fff}
-.tgl.q b{width:76px;height:76px;top:7px;left:7px;font-size:56px;line-height:68px}
+.tgl.q{width:230px;height:92px;border-radius:46px;border:6px solid var(--ink);background:#fff}
+.tgl.q b{width:68px;height:68px;top:5px;left:6px;font-size:50px;line-height:60px}
 .hunt{left:0;top:0;width:150px;height:110px;border:8px solid var(--acc);border-radius:26px;box-shadow:0 0 0 5px rgba(14,14,14,.9);opacity:0;pointer-events:none}
 .setc{left:80px;top:790px;width:920px;background:#fff;border:7px solid var(--ink);border-radius:44px;box-shadow:12px 12px 0 var(--ink);padding:30px 32px 30px}
 .setc .r1{display:flex;align-items:center;gap:24px}
@@ -210,7 +210,7 @@ cap('cap1',1,0,E(1)+.04);
 hide('#lgo',E(1)+.04,.22);
 cap('cap2',2,E(1)+.16,tA1);
 // a lime search frame hops over the gallery looking for the switch (the toggle with "?" is at the bottom right)
-const hp=[[24,64,236,150],[270,64,236,150],[514,64,236,150],[24,218,236,150],[270,218,236,150],[484,370,252,114]];  // x,y,w,h inside the phone (phone origin 160,748)
+const hp=[[24,64,236,150],[270,64,236,150],[514,64,236,150],[24,218,236,150],[270,218,236,150],[484,376,252,100]];  // x,y,w,h inside the phone (phone origin 160,748)
 hp.forEach((p,i)=>{
   const t=0.5+i*0.78;
   const x=160+p[0]-6, y=748+p[1]-6;
