@@ -15,3 +15,16 @@ Implication for topic choice: judge every topic by 'would a curious AI person le
 8. What is the level? Understandable to a beginner in 3 s, with a detail that rewards an expert.
 9. What differentiates us from the big list accounts? Faceless + we test + we show failures + setup path on the site.
 10. How do we measure success this month? PROPOSAL: views per episode, followers per 1,000 views, saves+sends; not scores.
+
+## Brand framework questions (Dutch screenshot from David, 9.11.2026, 23:17). Translated; status = what evidence can answer vs what only David knows.
+1. Association when they see/hear your name? NEEDS DAVID (no evidence). Working draft only: 'the account that tests AI things so you do not have to'.
+2. Your story: the moments that brought you here? NEEDS DAVID. (Known facts only: 18, Flemish Belgium, employed elsewhere, builds this alongside; business-model.html.)
+3. End goal? NEEDS DAVID (plan says: engine A paid AI systems EUR 1.5-8k; engine B audience/newsletter from 5,000 subscribers).
+4. What must you be known for to make that happen? DRAFT from evidence: tested AI results shown as real output, including failures.
+5. Why does your business exist, what did you see that others did not, why called to do this? NEEDS DAVID. (business-model.html thesis: most AI creators either teach without clients or build without content.)
+6. What do you bring that is different? DRAFT: faceless, we run the test, real output, failures with numbers, setup path on the site.
+7. Proof you can help them? FACTS available: 86 published episodes, real tests run, best episode 1,563 views. NO client results are documented in the repo: never invent any; ask David what real project proof exists.
+8. Target group today? David: people curious about AI, any level, wanting tips or things they did not know.
+b. Three accounts/brands (also outside the sector) whose vibe they like, and why specifically? NEEDS DAVID (the reels he sent show taste: faceless drawn-UI @kaloyan.editor, @sanji.chien Vox-style, @breakingbreach, @arising.ai; ask which three and why).
+a. How should the client come across (funny, professional, patient, calm, educational)? DRAFT: calm, educational, honest, quick. Roni: much more energetic hooks and pacing.
+d. House style: colours, fonts, logo? NOW: light beige + product accent, Inter heavy; ROni: avoid the typical Claude look, more unique fonts and animated titles. NEEDS DAVID + decision.
