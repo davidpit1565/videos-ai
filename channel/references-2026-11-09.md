@@ -1,0 +1,6 @@
+# Reference reels David sent (9.11.2026), running list. Views are David's estimates unless marked FACT.
+Rule: for each, answer how WE reach its level faceless in our format (CLAUDE.md, 9.11.2026).
+
+1. DBbQKwGMmTV @adamstewartmarketing, 23.4 s, talking head + screen. FACT: 236,613 likes, 1,200 comments. David: 12M views. Hook 'This prompt has been going viral'. Mechanism (hypothesis): personal result from the viewer's own ChatGPT history, 1-line prompt to copy, answer blurred, escalation 'scarier', comment social proof. Ours: prompt card + our real answer (needs David's account); ep70 is near. Score ~75.
+2. DI7prasxrCZ @hector.corrales.915, 6.4 s, faceless (man from behind, stormy sky), text claim, 9 prompts in the caption, comment-gate 'SIMPLE'. FACT: 228,618 likes, 10,291 comments. David: 20M+ views. Do not copy '126 million use ChatGPT daily' (unverified). Ours: 6-8 s loop + our own tested 9 prompts in caption. Score ~72.
+3. DdZLW3fvyYp @arturrioni, 42.4 s, faceless drawn-UI light beige (almost our style), 'Connect ChatGPT to your Instagram in 2 minutes', 5 step cards, CTA 'Comment AUDIT'. FACT: 2,062 likes, 5,166 comments, posted 17.9.2026. David: 12M views (ratio looks off, unverified). It is an ad for ChatPlace; claim '2-5 days to 30 minutes' unverified. Ours: 'Connect <AI> to <app> in 2 minutes' with steps we really ran. Score ~75.
