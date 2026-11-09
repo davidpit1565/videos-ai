@@ -28,3 +28,9 @@ Implication for topic choice: judge every topic by 'would a curious AI person le
 b. Three accounts/brands (also outside the sector) whose vibe they like, and why specifically? NEEDS DAVID (the reels he sent show taste: faceless drawn-UI @kaloyan.editor, @sanji.chien Vox-style, @breakingbreach, @arising.ai; ask which three and why).
 a. How should the client come across (funny, professional, patient, calm, educational)? DRAFT: calm, educational, honest, quick. Roni: much more energetic hooks and pacing.
 d. House style: colours, fonts, logo? NOW: light beige + product accent, Inter heavy; ROni: avoid the typical Claude look, more unique fonts and animated titles. NEEDS DAVID + decision.
+
+## David's answers (9.11.2026, late evening)
+Q1 Association: when people hear 'Actually Works' or see our video they must feel, subconsciously, 'AI solutions': they have a problem with AI, whatever they do (coding, making videos with AI, building apps/sites/systems/CRM, or just ChatGPT prompts for emails). General, all about AI, but NOT too complicated (no heavy code), made for a curious audience at any level (beginner, a bit more than beginner like David, or above). Whatever their field, they can always find our answer here, so it is worth following: every video adds knowledge they did not have.
+Q2 Story: half a year to a year ago David started really working with AI (beyond writing messages to ChatGPT), moving to more advanced uses. He did not study AI, he started working with it and learned much the hard way. The videos exist so people can learn the EASY way, the way he wishes he had: if he had known then what he knows now he would be much further along.
+Remaining questions (3-11): David answers tomorrow.
+Brand line implied (my wording, to confirm): 'Actually Works: the AI answer you would otherwise learn the hard way.'
