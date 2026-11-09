@@ -7,10 +7,10 @@ import json, os, re, sys, subprocess
 import soundfile as sf, numpy as np
 H = os.path.dirname(os.path.abspath(__file__))
 VOICE = os.environ.get("VOICE", H + "/voice/final")
-GAPS = [float(x) for x in os.environ.get("GAPS", "0.32,0.3,0.34,0.36,0.36,5.0").split(",")]
+GAPS = [float(x) for x in os.environ.get("GAPS", "0.32,0.34,0.36,0.36,5.0").split(",")]
 TAIL = float(os.environ.get("TAIL", "1.1"))
 ALL = [l.rstrip("\n") for l in open(H + "/lines.txt") if l.strip()]
-assert len(ALL) == 7 and len(GAPS) == 6
+assert len(ALL) == 6 and len(GAPS) == 5
 sr = 48000
 
 
@@ -54,12 +54,12 @@ def words_for(x, text, t0):
 
 
 lines = []; t = 0.0; parts = []
-for j in range(7):
+for j in range(6):
     n = j + 1
     x, s = sf.read(f"{VOICE}/{n}.wav"); assert s == sr; x = x if x.ndim == 1 else x[:, 0]
     d = len(x) / sr
     ln = dict(n=n, text=ALL[j], start=round(t, 3), end=round(t + d, 3), words=words_for(x, ALL[j], t))
-    lines.append(ln); parts.append((int(t * sr), x)); t += d + (GAPS[j] if j < 6 else 0)
+    lines.append(ln); parts.append((int(t * sr), x)); t += d + (GAPS[j] if j < 5 else 0)
 D = round(lines[-1]["end"] + TAIL, 2)
 nar = np.zeros(int((D + 0.3) * sr))
 for i0, x in parts: nar[i0:i0 + len(x)] += x
@@ -115,7 +115,7 @@ def phone(sfx):
         tiles += tile(i, 18 + c * 304, 52 + r * 162, 290, 152, "pt", tag)
     return f'''<div class="phone" id="phone{sfx}"><div class="pbar"><span>YOUR CAMERA ROLL</span><i class="bdot"></i></div>
 {tiles}<div class="shim"></div>
-<div class="prompt"><div class="sk"><u></u><u style="width:70%"></u></div><div class="tgl q" id="tq{sfx}"><b>?</b></div></div></div>
+<div class="prompt"><div class="plabel">Camera roll sharing suggestions</div><div class="tgl q" id="tq{sfx}"><b>?</b></div></div></div>
 <div class="hunt" id="hunt{sfx}"></div>'''
 
 
@@ -128,8 +128,9 @@ def capblock(n, sfx, size, top):
     toks = ALL[n - 1].split()
     sp = ""
     for i, w in enumerate(toks):
-        hl = " hl" if (n == 1 and i >= 7) else ""
-        sp += f'<span class="cw{hl}">{w}</span> ' + ("<br>" if (n == 1 and i in (3, 6)) else "")
+        hl = " hl" if (n == 1 and i >= 9) else ""
+        disp = "5" if (n == 1 and w == "five") else w
+        sp += f'<span class="cw{hl}">{disp}</span> ' + ("<br>" if (n == 1 and i in (4, 8)) else "")
     return f'<div class="cap" id="cap{n}{sfx}" style="font-size:{size}px;line-height:{int(size*1.08)}px;top:{top}px">{sp}</div>'
 
 
@@ -142,18 +143,17 @@ markup = f'''
 <div class="scn" id="sA" style="visibility:visible;opacity:1">
  <div class="lgo" id="lgo"><img src="assets/facebook.svg"></div>
  {cd("")}
- {capblock(1, "", 76, 474)}
- {capblock(2, "", 104, 500)}
+ {capblock(1, "", 66, 468)}
  {phone("")}
 </div>
 <div class="scn" id="sB">
- {capblock(3, "", size_for(3), 290)}
+ {capblock(2, "", size_for(2), 290)}
  <div class="setc" id="setc"><div class="r1"><div class="lg2"><img src="assets/facebook.svg"></div><div class="t1">Camera roll sharing suggestions</div></div>
   <div class="hr"></div><div class="r2"><div class="t2">Get camera roll suggestions when you're browsing Facebook</div><div class="tgl big" id="tglB"><b></b></div></div></div>
  <div class="note2" id="noteB">drawn example of the settings row</div>
 </div>
 <div class="scn" id="sC">
- {capblock(4, "", size_for(4), 290)}
+ {capblock(3, "", size_for(3), 290)}
  <div class="bigallow" id="ba">Allow</div><div class="ripple" id="ripple"></div><div class="finger" id="finger"></div>
  <div class="strip" id="strip">{"".join(tile(i, i*322, 0, 300, 230, "st") for i in range(10))}</div>
  <div class="scan" id="scan"></div>
@@ -161,7 +161,7 @@ markup = f'''
   <div class="chips"><div class="chip2">Collage</div><div class="chip2">Edit</div></div></div>
 </div>
 <div class="scn" id="sD">
- {capblock(5, "", size_for(5), 290)}
+ {capblock(4, "", size_for(4), 290)}
  <div class="meta" id="meta"><div class="mh">META SAYS</div>
   <div class="mq" id="mq1">&ldquo;You must opt in to use this feature&rdquo;</div>
   <div class="mq" id="mq2">&ldquo;We don't use photos and videos from your camera roll for ads targeting.&rdquo;</div>
@@ -177,7 +177,7 @@ markup = f'''
   <div class="vshim" id="vshim"></div><div class="vn" id="vn">menu names can differ by app version</div></div>
 </div>
 <div class="scn" id="sG">
- {capblock(7, "", size_for(7), 290)}
+ {capblock(6, "", size_for(6), 290)}
  <div class="out" id="outb"><div class="mini"><div class="mt1">Camera roll sharing suggestions</div><div class="tgl big" id="tglG"><b></b></div></div></div>
  <div class="mum"><div class="av" id="mav">M</div></div>
  <div class="dots2" id="dots2"><b></b><b></b><b></b></div>
@@ -186,7 +186,7 @@ markup = f'''
 <div class="scn" id="sH">
  <div class="lgo" id="lgoH"><img src="assets/facebook.svg"></div>
  {cd("H")}
- {capblock(1, "H", 76, 474)}
+ {capblock(1, "H", 66, 468)}
  {phone("H")}
 </div>
 '''
@@ -196,7 +196,7 @@ styles = '''
 .scn .cap,.scn .lgo,.phone,.setc,.strip,.scan,.collage,.meta,.dlg,.val,.out,.note2,.hunt,.cd,.bigallow{position:absolute}
 .cap{left:65px;width:950px;text-align:center;font-weight:900;letter-spacing:-.045em;opacity:0;visibility:hidden}
 .cw{display:inline-block;color:#2A2A26;margin:0 8px;border-radius:14px}
-.cw.hl{background:rgba(134,217,63,.6);padding:0 10px;font-size:92px;margin:0 6px}
+.cw.hl{background:rgba(134,217,63,.6);padding:0 6px;font-size:70px;margin:0 3px;white-space:nowrap}
 #cap1,#cap1H{opacity:1;visibility:visible;left:45px;width:990px}
 .ab{position:absolute;display:block}
 .lgo{left:65px;top:276px;width:180px;height:180px;border-radius:50%;background:#fff;border:8px solid var(--ink);box-shadow:9px 9px 0 var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -215,6 +215,7 @@ styles = '''
 .tgA{background:var(--acc);color:var(--ink)}
 .shim{position:absolute;left:0;top:44px;width:140px;height:330px;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.65),rgba(255,255,255,0));transform:translateX(-200px) skewX(-12deg);opacity:0}
 .prompt{position:absolute;left:0;top:372px;width:100%;height:100px;background:#F4F4EF;border-top:4px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 34px}
+.plabel{width:640px;font-weight:900;font-size:44px;line-height:48px;letter-spacing:-.03em}
 .sk{width:520px}.sk u{display:block;height:22px;width:100%;border-radius:11px;background:#CFCFC5;margin:10px 0;text-decoration:none}
 .tgl{position:relative;width:124px;height:70px;flex:none;border-radius:35px;background:#BCC0C4;box-shadow:inset 0 0 0 3px rgba(14,14,14,.18)}
 .tgl b{position:absolute;left:5px;top:5px;width:60px;height:60px;border-radius:50%;background:#fff;box-shadow:0 3px 7px rgba(14,14,14,.4);font-style:normal;font-weight:900;font-size:40px;line-height:60px;text-align:center;color:var(--ink2)}
@@ -300,13 +301,12 @@ function phoneAnim(sfx,t0,t1){
   QA('#phone'+sfx+' .tgA').forEach((e,i)=>{ for(let t=t0+.3+i*.25;t<t1-.5;t+=1.4){ tl.to(e,{scale:1.07,duration:.7,ease:EA,transformOrigin:"0% 100%"},t); tl.to(e,{scale:1,duration:.7,ease:EA},t+.7);} });
 }
 // ---- scene A: frame 0 = logo + "Find the switch" + 0:05 timer + gallery with tags + hidden toggle "?"
-const tA1=E(2);
+const tA1=E(1);
 countdown('',0);
 phoneAnim('',0,tA1);
 tl.fromTo('#lgo',{scale:1},{scale:1.06,duration:E(1),ease:EA},0);
 cap('cap1',1,0,E(1)+.04);
 hide('#lgo',E(1)+.04,.22);
-cap('cap2',2,E(1)+.16,tA1);
 const hp=[[25,59,290,152],[329,59,290,152],[633,59,290,152],[25,221,290,152],[329,221,290,152],[742,386,196,92]];  // x,y,w,h in frame offsets from the phone origin (65,760)
 hp.forEach((p,i)=>{
   const t=0.5+i*0.78;
@@ -314,89 +314,89 @@ hp.forEach((p,i)=>{
   if(i==0) tl.fromTo('#hunt',{x:x,y:y,width:p[2],height:p[3],opacity:0},{opacity:1,duration:.3,ease:EA},t);
   else tl.to('#hunt',{x:x,y:y,width:p[2],height:p[3],duration:.6,ease:EI},t);
 });
-tl.to('#hunt',{opacity:0,duration:.3,ease:EA},E(2)-.1);
-for(let t=0.2;t<E(2)-.3;t+=1.1){ tl.to('#tq',{boxShadow:"0 0 0 14px rgba(134,217,63,.75)",duration:.55,ease:EA},t); tl.to('#tq',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
-for(let t=E(7)+.5;t<D-.5;t+=1.1){ tl.to('#tqH',{boxShadow:"0 0 0 14px rgba(134,217,63,.75)",duration:.55,ease:EA},t); tl.to('#tqH',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
+tl.to('#hunt',{opacity:0,duration:.3,ease:EA},E(1)-.1);
+for(let t=0.2;t<E(1)-.3;t+=1.1){ tl.to('#tq',{boxShadow:"0 0 0 14px rgba(134,217,63,.75)",duration:.55,ease:EA},t); tl.to('#tq',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
+for(let t=E(6)+.5;t<D-.5;t+=1.1){ tl.to('#tqH',{boxShadow:"0 0 0 14px rgba(134,217,63,.75)",duration:.55,ease:EA},t); tl.to('#tqH',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
 tl.to('#tq b',{rotate:12,duration:.6,ease:EA,yoyo:true,repeat:5,transformOrigin:"50% 50%"},0.3);
 hide('#sA',tA1+.0,.2);
 // ---- scene B: line 3
-show('#sB',S(3)-.08,.3);
-tl.fromTo('#setc',{y:30,opacity:0},{y:0,opacity:1,duration:.55,ease:EO},S(3)-.05);
-tl.fromTo('#noteB',{opacity:0},{opacity:1,duration:.4},S(3)+.4);
-cap('cap3',3,S(3)-.05,0);
-tl.fromTo('#setc',{scale:1},{scale:1.02,duration:E(3)-S(3)+.3,ease:EA},S(3));
-for(let t=S(3)+.3;t<E(3)-.5;t+=1.2){ tl.to('#tglB',{boxShadow:"0 0 0 12px rgba(134,217,63,.7)",duration:.55,ease:EA},t); tl.to('#tglB',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
-tl.to('#setc',{y:-8,duration:E(3)-S(3),ease:EA,immediateRender:false},S(3)+.6);
-hide('#sB',E(3),.2);
+show('#sB',S(2)-.08,.3);
+tl.fromTo('#setc',{y:30,opacity:0},{y:0,opacity:1,duration:.55,ease:EO},S(2)-.05);
+tl.fromTo('#noteB',{opacity:0},{opacity:1,duration:.4},S(2)+.4);
+cap('cap2',2,S(2)-.05,0);
+tl.fromTo('#setc',{scale:1},{scale:1.02,duration:E(2)-S(2)+.3,ease:EA},S(2));
+for(let t=S(2)+.3;t<E(2)-.5;t+=1.2){ tl.to('#tglB',{boxShadow:"0 0 0 12px rgba(134,217,63,.7)",duration:.55,ease:EA},t); tl.to('#tglB',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.55,ease:EA},t+.55); }
+tl.to('#setc',{y:-8,duration:E(2)-S(2),ease:EA,immediateRender:false},S(2)+.6);
+hide('#sB',E(2),.2);
 // ---- scene C: line 4 (tap Allow -> looks through the gallery -> collages)
-show('#sC',S(4)-.08,.3);
-cap('cap4',4,S(4)-.05,0);
-const tp=W(4,3);
-tl.fromTo('#ba',{y:30,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.5,ease:EO},S(4)+.1);
+show('#sC',S(3)-.08,.3);
+cap('cap3',3,S(3)-.05,0);
+const tp=W(3,3);
+tl.fromTo('#ba',{y:30,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.5,ease:EO},S(3)+.1);
 tl.fromTo('#finger',{opacity:0,y:50},{opacity:1,y:0,duration:.45,ease:EO},tp-.45);
 tl.to('#ba',{scale:.95,duration:.2,ease:EA,transformOrigin:"50% 50%"},tp);
 tl.fromTo('#ripple',{opacity:.9,scale:.5},{opacity:0,scale:2.6,duration:.9,ease:EO},tp+.05);
 tl.to('#ba',{scale:1,duration:.35,ease:EA},tp+.2);
 tl.to('#finger',{opacity:0,duration:.4,ease:EA},tp+.5);
-tl.to('#ba',{opacity:0,y:-20,duration:.35,ease:EA},W(4,4)-.1);
-tl.fromTo('#strip',{x:140,opacity:0},{x:0,opacity:1,duration:.5,ease:EO},W(4,4)-.05);
-tl.fromTo('#strip',{x:0},{x:-1250,duration:E(4)-W(4,4)+.4,ease:EA},W(4,4)+.2);
-tl.fromTo('#scan',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.4,ease:EO},W(4,5));
-tl.to('#scan',{scale:1.05,duration:.8,ease:EA,yoyo:true,repeat:2},W(4,5)+.4);
-tl.fromTo('#collage',{y:50,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.6,ease:EO},W(4,10)-.05);
-tl.fromTo('#collage .mt',{scale:.6,opacity:0},{scale:1,opacity:1,duration:.45,ease:EO,stagger:.12},W(4,10)+.1);
-tl.fromTo('#collage .chip2',{x:-20,opacity:0},{x:0,opacity:1,duration:.45,ease:EO,stagger:.35},W(4,11)+.0);
-tl.to('#collage',{y:-8,duration:E(4)-W(4,10),ease:EA},W(4,10)+.6);
-hide('#sC',E(4),.2);
+tl.to('#ba',{opacity:0,y:-20,duration:.35,ease:EA},W(3,4)-.1);
+tl.fromTo('#strip',{x:140,opacity:0},{x:0,opacity:1,duration:.5,ease:EO},W(3,4)-.05);
+tl.fromTo('#strip',{x:0},{x:-1250,duration:E(3)-W(3,4)+.4,ease:EA},W(3,4)+.2);
+tl.fromTo('#scan',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.4,ease:EO},W(3,5));
+tl.to('#scan',{scale:1.05,duration:.8,ease:EA,yoyo:true,repeat:2},W(3,5)+.4);
+tl.fromTo('#collage',{y:50,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.6,ease:EO},W(3,10)-.05);
+tl.fromTo('#collage .mt',{scale:.6,opacity:0},{scale:1,opacity:1,duration:.45,ease:EO,stagger:.12},W(3,10)+.1);
+tl.fromTo('#collage .chip2',{x:-20,opacity:0},{x:0,opacity:1,duration:.45,ease:EO,stagger:.35},W(3,11)+.0);
+tl.to('#collage',{y:-8,duration:E(3)-W(3,10),ease:EA},W(3,10)+.6);
+hide('#sC',E(3),.2);
 // ---- scene D: line 5
-show('#sD',S(5)-.08,.3);
-cap('cap5',5,S(5)-.05,0);
-tl.fromTo('#meta',{y:30,opacity:0},{y:0,opacity:1,duration:.55,ease:EO},S(5)-.05);
-tl.to('#mq1',{opacity:1,duration:.5,ease:EA},W(5,2));
-tl.to('#mq2',{opacity:1,duration:.5,ease:EA},W(5,5)-.1);
-tl.to('#mf',{opacity:1,duration:.5,ease:EA},W(5,8));
-tl.fromTo('#meta',{scale:1},{scale:1.015,duration:E(5)-S(5)+.3,ease:EA},S(5));
-hide('#sD',E(5),.2);
+show('#sD',S(4)-.08,.3);
+cap('cap4',4,S(4)-.05,0);
+tl.fromTo('#meta',{y:30,opacity:0},{y:0,opacity:1,duration:.55,ease:EO},S(4)-.05);
+tl.to('#mq1',{opacity:1,duration:.5,ease:EA},W(4,2));
+tl.to('#mq2',{opacity:1,duration:.5,ease:EA},W(4,5)-.1);
+tl.to('#mf',{opacity:1,duration:.5,ease:EA},W(4,8));
+tl.fromTo('#meta',{scale:1},{scale:1.015,duration:E(4)-S(4)+.3,ease:EA},S(4));
+hide('#sD',E(4),.2);
 // ---- scene F: line 6 value card (held after speech)
-show('#sF',S(6)-.08,.3);
-tl.fromTo('#val',{y:30,opacity:0},{y:0,opacity:1,duration:.55,ease:EO},S(6)-.05);
-[[1,3],[2,5],[3,8],[4,9],[5,13]].forEach(([r,wi])=>{ tl.fromTo('#vr'+r,{opacity:0,x:-30},{opacity:1,x:0,duration:.5,ease:EO},W(6,wi)-.12); });
-tl.to('#vn',{opacity:1,duration:.5,ease:EA},W(6,13)+.2);
-const tf=W(6,15)-.1;
+show('#sF',S(5)-.08,.3);
+tl.fromTo('#val',{y:30,opacity:0},{y:0,opacity:1,duration:.55,ease:EO},S(5)-.05);
+[[1,3],[2,5],[3,8],[4,9],[5,13]].forEach(([r,wi])=>{ tl.fromTo('#vr'+r,{opacity:0,x:-30},{opacity:1,x:0,duration:.5,ease:EO},W(5,wi)-.12); });
+tl.to('#vn',{opacity:1,duration:.5,ease:EA},W(5,13)+.2);
+const tf=W(5,15)-.1;
 tl.to('#tglF b',{right:90,duration:.5,ease:EI},tf);
 tl.to('#tglF',{backgroundColor:"#BCC0C4",duration:.5,ease:EI},tf);
 tl.to('#offt',{opacity:1,duration:.4,ease:EA},tf+.35);
-for(let t=W(6,13);t<S(7)-1.2;t+=1.7){ tl.fromTo('#vshim',{x:-200,opacity:0},{x:1100,opacity:1,duration:1.5,ease:EA},t); tl.to('#vshim',{opacity:0,duration:.25},t+1.3); }
-for(let t=tf+.6;t<S(7)-.8;t+=1.2){ tl.to('#tglF',{boxShadow:"0 0 0 12px rgba(134,217,63,.55)",duration:.6,ease:EA},t); tl.to('#tglF',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.6,ease:EA},t+.6); }
-tl.fromTo('#val',{y:0},{y:-8,duration:E(6)+GAP6-S(6)-.6,ease:EA,immediateRender:false},S(6)+.6);
-hide('#sF',S(7)-.5,.3);
+for(let t=W(5,13);t<S(6)-1.2;t+=1.7){ tl.fromTo('#vshim',{x:-200,opacity:0},{x:1100,opacity:1,duration:1.5,ease:EA},t); tl.to('#vshim',{opacity:0,duration:.25},t+1.3); }
+for(let t=tf+.6;t<S(6)-.8;t+=1.2){ tl.to('#tglF',{boxShadow:"0 0 0 12px rgba(134,217,63,.55)",duration:.6,ease:EA},t); tl.to('#tglF',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.6,ease:EA},t+.6); }
+tl.fromTo('#val',{y:0},{y:-8,duration:E(5)+GAP5-S(5)-.6,ease:EA,immediateRender:false},S(5)+.6);
+hide('#sF',S(6)-.5,.3);
 // ---- scene G: line 7
-show('#sG',S(7)-.02,.3);
-cap('cap7',7,S(7)-.02,0);
-tl.fromTo('#outb',{x:80,y:20,opacity:0,scale:.94},{x:0,y:0,opacity:1,scale:1,duration:.6,ease:EO},S(7)+.1);
-tl.fromTo('#mav',{opacity:0,scale:.7},{opacity:1,scale:1,duration:.4,ease:EO},W(7,3));
-tl.fromTo('#dots2',{opacity:0,scale:.8},{opacity:1,scale:1,duration:.35,ease:EO},W(7,4));
-tl.to('#dots2 b',{y:-10,duration:.3,ease:EA,yoyo:true,repeat:3,stagger:.1},W(7,4)+.1);
-tl.to('#dots2',{opacity:0,duration:.2},W(7,5)+.08);
-[1,2,3].forEach((k,i)=>tl.fromTo('#al'+k,{opacity:0,scale:.7,y:14},{opacity:1,scale:1,y:0,duration:.45,ease:EO},W(7,5)+.12+i*.3));
-tl.fromTo('#outb',{rotate:0},{rotate:-1.5,duration:E(7)-S(7),ease:EA},S(7)+.7);
-hide('#sG',E(7)+.1,.35);
+show('#sG',S(6)-.02,.3);
+cap('cap6',6,S(6)-.02,0);
+tl.fromTo('#outb',{x:80,y:20,opacity:0,scale:.94},{x:0,y:0,opacity:1,scale:1,duration:.6,ease:EO},S(6)+.1);
+tl.fromTo('#mav',{opacity:0,scale:.7},{opacity:1,scale:1,duration:.4,ease:EO},W(6,3));
+tl.fromTo('#dots2',{opacity:0,scale:.8},{opacity:1,scale:1,duration:.35,ease:EO},W(6,4));
+tl.to('#dots2 b',{y:-10,duration:.3,ease:EA,yoyo:true,repeat:3,stagger:.1},W(6,4)+.1);
+tl.to('#dots2',{opacity:0,duration:.2},W(6,5)+.08);
+[1,2,3].forEach((k,i)=>tl.fromTo('#al'+k,{opacity:0,scale:.7,y:14},{opacity:1,scale:1,y:0,duration:.45,ease:EO},W(6,5)+.12+i*.3));
+tl.fromTo('#outb',{rotate:0},{rotate:-1.5,duration:E(6)-S(6),ease:EA},S(6)+.7);
+hide('#sG',E(6)+.1,.35);
 // ---- loop-back: frame 0 again (timer restarts)
 tl.set('#sH',{autoAlpha:0},0);
-tl.fromTo('#sH',{autoAlpha:0},{autoAlpha:1,duration:.35,ease:EA},E(7)+.38);
+tl.fromTo('#sH',{autoAlpha:0},{autoAlpha:1,duration:.35,ease:EA},E(6)+.38);
 QA('#capH .cw').forEach((e,i)=>{ if(i==0) tl.set(e,{color:"#0E0E0E"},0); });
-tl.set('#cn5H',{opacity:1},E(7)+.38);
-tl.fromTo('#phoneH',{y:0},{y:-6,duration:D-E(7)-.3,ease:EA},E(7)+.4);
-phoneAnim('H',E(7)+.45,D);
-tl.to('#al1,#al2,#al3',{y:-8,duration:.9,ease:EA,yoyo:true,repeat:3,stagger:.2},E(7)-1.6);
-tl.to('#mini,#outb',{y:-6,duration:1.1,ease:EA,yoyo:true,repeat:2},E(7)-2.0);
+tl.set('#cn5H',{opacity:1},E(6)+.38);
+tl.fromTo('#phoneH',{y:0},{y:-6,duration:D-E(6)-.3,ease:EA},E(6)+.4);
+phoneAnim('H',E(6)+.45,D);
+tl.to('#al1,#al2,#al3',{y:-8,duration:.9,ease:EA,yoyo:true,repeat:3,stagger:.2},E(6)-1.6);
+tl.to('#mini,#outb',{y:-6,duration:1.1,ease:EA,yoyo:true,repeat:2},E(6)-2.0);
 '''
 
-GAP6 = GAPS[5]
+GAP5 = GAPS[4]
 shell = open(H + "/shell8.html").read()
 html = (shell.replace("__STYLES__", styles).replace("__MARKUP__", markup).replace("__CHROME__", "").replace("__SCRIPTS__", "")
         .replace("__D__", str(D)).replace("__CUES__", json.dumps(dict(lines=lines, D=D)))
-        .replace("__CALLS__", f"const GAP6={GAP6};\n" + js).replace("__NSC__", "1"))
+        .replace("__CALLS__", f"const GAP5={GAP5};\n" + js).replace("__NSC__", "1"))
 os.makedirs(H + "/hf", exist_ok=True)
 open(H + "/hf/index.html", "w").write(html)
 print("D=", D, [(l["n"], l["start"], l["end"]) for l in lines])

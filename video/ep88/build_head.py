@@ -7,10 +7,10 @@ import json, os, re, sys, subprocess
 import soundfile as sf, numpy as np
 H = os.path.dirname(os.path.abspath(__file__))
 VOICE = os.environ.get("VOICE", H + "/voice/final")
-GAPS = [float(x) for x in os.environ.get("GAPS", "0.32,0.3,0.34,0.36,0.36,5.0").split(",")]
+GAPS = [float(x) for x in os.environ.get("GAPS", "0.32,0.34,0.36,0.36,5.0").split(",")]
 TAIL = float(os.environ.get("TAIL", "1.1"))
 ALL = [l.rstrip("\n") for l in open(H + "/lines.txt") if l.strip()]
-assert len(ALL) == 7 and len(GAPS) == 6
+assert len(ALL) == 6 and len(GAPS) == 5
 sr = 48000
 
 
@@ -54,12 +54,12 @@ def words_for(x, text, t0):
 
 
 lines = []; t = 0.0; parts = []
-for j in range(7):
+for j in range(6):
     n = j + 1
     x, s = sf.read(f"{VOICE}/{n}.wav"); assert s == sr; x = x if x.ndim == 1 else x[:, 0]
     d = len(x) / sr
     ln = dict(n=n, text=ALL[j], start=round(t, 3), end=round(t + d, 3), words=words_for(x, ALL[j], t))
-    lines.append(ln); parts.append((int(t * sr), x)); t += d + (GAPS[j] if j < 6 else 0)
+    lines.append(ln); parts.append((int(t * sr), x)); t += d + (GAPS[j] if j < 5 else 0)
 D = round(lines[-1]["end"] + TAIL, 2)
 nar = np.zeros(int((D + 0.3) * sr))
 for i0, x in parts: nar[i0:i0 + len(x)] += x
