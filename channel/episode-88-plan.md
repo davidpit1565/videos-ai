@@ -65,3 +65,5 @@ Menu names move between app versions; page says "verified Nov 2026".
 - Spoken line 1 reworded "Facebook is asking to see photos you never posted." (the voice turned "asks" into "asked" on every retry; "asking" says the same thing and is unambiguous).
 - Line 7 follows the coordinator's correction: four taps, no "Preferences"; the card says "menu names can differ by app version".
 - Drawn prompt and settings row are labelled "drawn example" on screen: the real EU prompt wording is unverified.
+- 9.11 NEW HOOK (David rejected the first): "Facebook can see photos you never posted. Find the switch." + "Five seconds. Go." with an on-screen 5-4-3-2-1-0 countdown from frame 0. 7 spoken lines. Last line reworded "She taps Allow every time." (the voice trails off on "everything": weak ending -45 dB on every take; "every time" took accent 0.07). Build: video/ep88/build.py; final mp4 video/ep88/out/ep88-final.mp4.
+- Blind reader: NOT run (no Agent tool in this session). Frame 0 still: channel/episode-88-frame0.png.

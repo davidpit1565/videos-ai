@@ -2,7 +2,7 @@ import subprocess,sys,numpy as np,os,json
 H=os.path.dirname(os.path.abspath(__file__)); LIB='/home/user/videos-ai/audio/music-library/'
 # usage: mix.py <narration.wav> <video.mp4> <D> <tag> ; mixes 3 beds -> out/<tag>-<k>.mp4 (+720p preview)
 nar,vid,D,tag=sys.argv[1],sys.argv[2],float(sys.argv[3]),sys.argv[4]
-BEDS=[("H","curious--inquisitive-orchestra--musictown.mp3",0,0),("Q","curious--inquisitive-curiosity--musictown.mp3",0,0),("F","punchy--punchy-brass-groovy-pop-track--moonpub.mp3",0,0)]
+BEDS=[("H","curious--inquisitive-orchestra--musictown.mp3",0,0)]
 def load(p): return np.frombuffer(subprocess.run(['ffmpeg','-v','error','-i',p,'-ac','1','-ar','16000','-f','f32le','-'],capture_output=True).stdout,dtype=np.float32)
 def band(x):
     X=np.abs(np.fft.rfft(x*np.hanning(len(x))))**2; f=np.fft.rfftfreq(len(x),1/16000)

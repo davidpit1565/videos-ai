@@ -114,7 +114,7 @@ markup = f'''
 <div class="scn" id="sA" style="visibility:visible;opacity:1">
  <div class="lgo" id="lgo"><img src="assets/facebook.svg"></div>
  {cd("")}
- {capblock(1, "", 80, 420)}
+ {capblock(1, "", 80, 444)}
  {capblock(2, "", size_for(2), 470)}
  {phone("")}
 </div>
@@ -146,7 +146,7 @@ markup = f'''
   <div class="vr" id="vr3"><i>3</i><p>Settings</p></div>
   <div class="vr big" id="vr4"><i>4</i><p>Camera roll sharing suggestions</p></div>
   <div class="vr act" id="vr5"><p>Switch it off</p><span class="offt" id="offt">OFF</span><div class="tgl on" id="tglF"><b></b></div></div>
-  <div class="vn" id="vn">menu names can differ by app version</div></div>
+  <div class="vshim" id="vshim"></div><div class="vn" id="vn">menu names can differ by app version</div></div>
 </div>
 <div class="scn" id="sG">
  {capblock(7, "", size_for(7), 290)}
@@ -158,7 +158,7 @@ markup = f'''
 <div class="scn" id="sH">
  <div class="lgo" id="lgoH"><img src="assets/facebook.svg"></div>
  {cd("H")}
- {capblock(1, "H", 80, 420)}
+ {capblock(1, "H", 80, 444)}
  {phone("H")}
 </div>
 '''
@@ -213,7 +213,7 @@ styles = '''
 .mt{border-radius:12px}
 .chips{position:absolute;left:310px;top:34px;display:flex;flex-direction:column;gap:22px}
 .chip2{background:var(--acc);border:5px solid var(--ink);border-radius:26px;box-shadow:5px 5px 0 var(--ink);font-weight:900;font-size:56px;padding:2px 34px 8px;width:fit-content}
-.meta{left:80px;top:760px;width:920px;background:#fff;border:7px solid var(--ink);border-radius:44px;box-shadow:12px 12px 0 var(--ink);padding:24px 36px 24px;opacity:0}
+.meta{left:80px;top:748px;width:920px;background:#fff;border:7px solid var(--ink);border-radius:44px;box-shadow:12px 12px 0 var(--ink);padding:24px 36px 24px;opacity:0}
 .mh{display:inline-block;background:var(--ink);color:#fff;font-weight:900;font-size:34px;letter-spacing:.08em;padding:6px 20px 9px;border-radius:16px}
 .mq{margin-top:24px;font-weight:800;font-size:54px;line-height:60px;letter-spacing:-.03em;opacity:0}
 .mf{margin-top:18px;font-weight:700;font-size:28px;letter-spacing:.02em;color:var(--ink2);opacity:0}
@@ -228,7 +228,9 @@ styles = '''
 .vr.big p{font-size:64px;line-height:68px}
 .vr.act{margin-top:6px;height:120px;border:6px solid var(--ink);border-radius:30px;padding:0 24px;background:#F4F4EF}
 .vr.act p{font-size:58px}
-.offt{position:absolute;right:190px;top:34px;font-weight:900;font-size:30px;letter-spacing:.06em;background:var(--ink);color:#fff;padding:2px 14px 5px;border-radius:12px;opacity:0}
+.offt{position:static;margin-right:8px;font-weight:900;font-size:30px;letter-spacing:.06em;background:var(--ink);color:#fff;padding:2px 14px 5px;border-radius:12px;opacity:0}
+.vshim{position:absolute;left:0;top:0;width:150px;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(134,217,63,.28),rgba(255,255,255,0));transform:translateX(-200px) skewX(-12deg);opacity:0;pointer-events:none}
+.val{overflow:hidden}
 .vn{margin-top:18px;font-weight:700;font-size:32px;letter-spacing:.01em;color:var(--ink2);text-align:center;opacity:0}
 .out{left:320px;top:780px;width:665px;background:var(--ink);border-radius:46px 46px 12px 46px;padding:22px;box-shadow:8px 8px 0 rgba(14,14,14,.25);opacity:0}
 .mini{background:#fff;border-radius:30px;padding:22px 24px;display:flex;align-items:center;gap:18px;justify-content:space-between}
@@ -332,6 +334,9 @@ tl.to('#tglF b',{right:70,duration:.5,ease:EI},tf);
 tl.to('#tglF',{backgroundColor:"#D2D2C8",duration:.5,ease:EI},tf);
 tl.to('#offt',{opacity:1,duration:.4,ease:EA},tf+.35);
 tl.fromTo('#val',{scale:1},{scale:1.02,duration:E(6)+GAP6-S(6),ease:EA},S(6)+.3);
+for(let t=W(6,13);t<S(7)-1.2;t+=1.7){ tl.fromTo('#vshim',{x:-200,opacity:0},{x:1100,opacity:1,duration:1.5,ease:EA},t); tl.to('#vshim',{opacity:0,duration:.25},t+1.3); }
+for(let t=tf+.6;t<S(7)-.8;t+=1.2){ tl.to('#tglF',{boxShadow:"0 0 0 12px rgba(134,217,63,.55)",duration:.6,ease:EA},t); tl.to('#tglF',{boxShadow:"0 0 0 0px rgba(134,217,63,0)",duration:.6,ease:EA},t+.6); }
+tl.fromTo('#val',{y:0},{y:-10,duration:E(6)+GAP6-S(6)-.6,ease:EA,immediateRender:false},S(6)+.6);
 hide('#sF',S(7)-.5,.3);
 // ---- scene G: line 7
 show('#sG',S(7)-.02,.3);
