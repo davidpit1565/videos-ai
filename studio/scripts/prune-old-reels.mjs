@@ -54,7 +54,7 @@ async function liveEpisodes() {
   }
 }
 const live = await liveEpisodes();
-const epOf = (f) => { const m = f.match(/(\d+)/); return m ? Number(m[1]) : null; };
+const epOf = (f) => { const m = f.replace(/\.[^.]+$/, "").match(/(\d+)/); return m ? Number(m[1]) : null; };
 const MAX_WAITING = Number(process.env.KEEP_UNPUBLISHED || 14);
 let drop;
 if (live && live.size > 0) {
