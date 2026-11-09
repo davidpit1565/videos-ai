@@ -30,3 +30,9 @@ Real result note: David reports that episode 86 brought exactly 1 new follower (
 - Text-only comparison of 6 strategies: D (collage you never posted) best, hook 76-84; none >= 90.
 - Round 4 hook D on the REAL rendered frame 0 (drawn card, 'drawn example' label): hook 62, virality 55-58, overall 58-60, predicted 150-300 views (score ~50). A text description scored 82; the real frame scored 62: the picture lost ~20 points ("flat clip-art, says drawn example, no real proof, not my phone"). Lesson: score the rendered frame, not the description.
 - Verdict: below the 85 floor (David 9.11). Do not publish unless a real Facebook screenshot / personal proof lifts it.
+
+### Episode 89 candidates (9.11.2026, NOT built) — blind panel on rendered frame 0 (3 Claude role-plays, judgement)
+- C2 iPhone alarm turns down because it checks if you look: overall 74/79/80 (hook 78-82, virality 72-80), predicted 600-2,000. Best, but under the 85 floor; channel-fit risk (Apple attention awareness, not AI).
+- C4 'SCAM OR AI?': 60/62/74. C1 'Which text is the scam?': 60/61/70. C3 '5 free Google AI tools': 46/52/57 (4 logos missing).
+- Note: all readers called the bottom ~35% 'empty'; that area is the Instagram UI zone (y>1248), the card already fills the safe box. Tell readers the safe box next time.
+- Verdict: nothing >= 85, so nothing built (David's rule 9.11).
