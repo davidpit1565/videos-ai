@@ -1,0 +1,7 @@
+      per-line seeds: {1: 4101, 2: 4102, 3: 4103, 4: 4104, 5: 4105, 6: 4106, 7: 4107, 8: 4108, 9: 4109, 10: 4110, 11: 4111, 12: 4112}
+      per-line exaggeration: {1: 0.84, 2: 0.76, 3: 0.76, 4: 0.72, 5: 0.8, 6: 0.76, 7: 0.8, 8: 0.7, 9: 0.7, 10: 0.66, 11: 0.74, 12: 0.7}
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/opt/v311/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+loaded PerthNet (Implicit) at step 250,000
