@@ -15,6 +15,7 @@ HOOK and VIRALITY are my judgement against the written rubric (CLAUDE.md pre-pub
 | Ep | Predicted (who, when) | Real views | Real score | Gap / note |
 |---|---|---|---|---|
 | 86 | Reviewer agents on v10 (judgements, 6-7.11): kid 88, viral critic hook 93 / virality 88, honesty 92, mean 89. Views not predicted. | about 1,475 at 12 h (24 h and 72 h reading: pending, Tue 10.11 and Wed 11.11) | 75 | Hook 93 predicted while Miki did not understand the first second (so hook was over-scored); virality 88 predicted vs views score 75: about -13. First calibration row. |
+| 87 | Main session, 9.11 before posting (judgements): hook 76, virality 66, overall 70, views 250-700 (score 54-66). | pending (48 h Wed 11.11, 72 h Thu 12.11) | pending | to fill |
 | 84, 85 | Not recorded as numbers before this file. | 202, 186 | 50, 48 | No prediction to compare. |
 
 ## Raised bar for the NEXT video after episode 87 (David, 9.11.2026)
