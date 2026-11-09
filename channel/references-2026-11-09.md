@@ -14,3 +14,7 @@ Rule: for each, answer how WE reach its level faceless in our format (CLAUDE.md,
 9. DfEpwT9SRHe @breakingbreach, 63.0 s: 6,830 likes, 7,222 comments.
 10. Profile @crcle.ai (David's screenshot, FACT from the screenshot): 111K followers, 44 posts, bio 'ChatGPT Prompts | AI Tips | Business', series 'Prohibited Prompt #N' (black skull cover, locked template, blurred answer), pinned reels 1.8M, 1.1M, 1.6M views, Patreon, comment-'Circle' gate.
 Analyses by agents: channel/refs-2026-11-09-AB.md, -CD.md, -EFG.md (in progress).
+
+## Batch 3 (9.11.2026 night)
+11. DfWvqYMM7uA @aslaniedits, 6.8 s, FACT: 774 likes, 12 comments (a motion-design/editing showcase, hashtags #aftereffects #motiondesign). Visual: a figure in a white outfit on a white cube in a deep-red studio, the face hidden by a white square; kinetic mono/grotesque words 'Why work / Let Claude / Handle the rest' with corner brackets, a pixel-glitch transition to a white card with the Claude asterisk. David: 'a simple, cool format'. Not proof of virality (low engagement); useful as a format: 3-5 word kinetic statement, one cinematic setting, glitch transition, loopable. Ours would replace the person with an object, and the line with our topic; no face needed.
+12. Style target for ep88 v5 (David, 9.11 night): the torn-paper magazine collage of DeJ_gTHs-FB (@sanji.chien), with REAL photos so it does not look AI/drawn.
