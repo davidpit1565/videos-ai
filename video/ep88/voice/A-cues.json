@@ -1,0 +1,50 @@
+[
+ {
+  "n": 1,
+  "line": "Facebook is asking to see photos you never posted.",
+  "start": 0.08,
+  "end": 3.34
+ },
+ {
+  "n": 2,
+  "line": "Not the ones on your page. The ones only on your phone.",
+  "start": 3.64,
+  "end": 7.52
+ },
+ {
+  "n": 3,
+  "line": "It's called camera roll sharing suggestions.",
+  "start": 7.82,
+  "end": 10.41
+ },
+ {
+  "n": 4,
+  "line": "Facebook looks through them, and suggests collages and edits.",
+  "start": 10.71,
+  "end": 14.26
+ },
+ {
+  "n": 5,
+  "line": "Meta says it's opt-in, and not used for ads. In Europe, that's the rule.",
+  "start": 14.56,
+  "end": 19.32
+ },
+ {
+  "n": 6,
+  "line": "But one tap on Allow, and you may have said yes without noticing.",
+  "start": 19.62,
+  "end": 23.75
+ },
+ {
+  "n": 7,
+  "line": "Check it now. Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions. Switch it off.",
+  "start": 24.05,
+  "end": 30.51
+ },
+ {
+  "n": 8,
+  "line": "Send this to mum. She taps Allow on everything.",
+  "start": 30.81,
+  "end": 33.63
+ }
+]

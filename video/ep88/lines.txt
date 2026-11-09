@@ -1,8 +1,7 @@
-Facebook is asking to see photos you never posted.
-Not the ones on your page. The ones only on your phone.
+Facebook can see photos you never posted. Find the switch.
+Five seconds. Go.
 It's called camera roll sharing suggestions.
-Facebook looks through them, and suggests collages and edits.
-Meta says it's opt-in, and not used for ads. In Europe, that's the rule.
-But one tap on Allow, and you may have said yes without noticing.
-Check it now. Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions. Switch it off.
+If you tap Allow, Facebook looks through your gallery and suggests collages.
+Meta says it's opt-in and not used for ads.
+Here's the switch. Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions. Switch it off.
 Send this to mum. She taps Allow on everything.

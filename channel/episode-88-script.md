@@ -2,18 +2,17 @@
 
 Topic: Facebook's opt-in feature "Camera roll sharing suggestions" (EU and UK, plus the countries Meta lists), and how to check and turn it off. Plan and sources: `channel/episode-88-plan.md`. Hook = plan option 1.
 
-## Spoken lines (no tomorrow line)
-1. Facebook asks to see photos you never posted.
-2. Not the ones on your page. The ones only on your phone.
+## Spoken lines (no tomorrow line) - NEW HOOK, David 9.11.2026 (the old "Facebook asks to see photos you never posted." was rejected: flat, not a story; blind panel ranked the find-the-switch game best)
+1. Facebook can see photos you never posted. Find the switch.
+2. Five seconds. Go.   (on-screen 5-second countdown runs from frame 0 over the drawn phone)
 3. It's called camera roll sharing suggestions.
-4. Facebook looks through them, and suggests collages and edits.
-5. Meta says it's opt-in, and not used for ads. In Europe that's the rule.
-6. But one tap on Allow, and you may have said yes without noticing.
-7. Check it now. Profile picture, Settings and Privacy, Settings, Preferences, Camera roll sharing suggestions. Switch it off.
-8. Send this to mum. She taps Allow on everything.
+4. If you tap Allow, Facebook looks through your gallery and suggests collages.
+5. Meta says it's opt-in and not used for ads.
+6. Here's the switch. Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions. Switch it off.   (VALUE card: four numbered rows + the switch flipping to OFF; "menu names can differ by app version")
+7. Send this to mum. She taps Allow on everything.
 
-Watch twice: line 1 returns at the end with the tile tags flipped to OFF; the path card flashes quickly in line 7.
-Note on line 7: the Which? article (21.10.2025) gives the path Settings & Privacy, Settings, scroll down, Camera roll sharing suggestions, and does not name a Preferences step. Check on a real app before the card is drawn; menu names differ by app version. Line 5 "In Europe that's the rule" is a paraphrase of Meta's "You must opt in": do not read it as a legal claim.
+Claims kept out on purpose: "uploads", "is watching", "private photos", "whole gallery", "mobile app only" as a hard fact. Line 1 is accurate because the feature needs the Allow tap (line 4). Frame 0: Facebook logo, "Find the switch", the countdown (5), the drawn gallery with NEVER POSTED tags and a hidden toggle with a question mark. Loop: the last second returns to frame 0.
+Path (Which?, 21.10.2025): Settings & Privacy, Settings, Camera roll sharing suggestions (no "Preferences" step confirmed).
 
 ## Ground truth (re-opened 9.11.2026)
 - Meta newsroom, "Now Rolling Out: Facebook's Opt-In Camera Roll Suggestions in the EU and UK" (published 16.4.2026, update 31.8.2026): https://about.fb.com/news/2026/04/now-rolling-out-facebooks-opt-in-camera-roll-suggestions-in-the-eu-and-uk/
