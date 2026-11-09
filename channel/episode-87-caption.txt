@@ -1,0 +1,22 @@
+AI broke your app? Git can bring the file back.
+
+The test: I wrote a tiny tip calculator and saved it with Git. Then I made one bad edit on purpose (I wrote it myself, no AI made it) and the app printed "Each pays NaN". One command, git restore app.js, brought the working file back. The real git output is from a run in a local folder on my computer, 7 November 2026, git 2.43.0. One run.
+
+Git and GitHub are not the same thing. Git is the tool on your computer that saves pictures of your files. GitHub is a website that keeps an online copy of what Git saved.
+
+The commands, one line each:
+git init -b main  (start Git in a folder)
+git add app.js  (pick the file for the next picture)
+git commit -m "Tip calculator works"  (take the picture)
+git restore app.js  (undo edits you have NOT committed yet, for good)
+git revert --no-edit HEAD  (undo your last commit by adding a new one)
+
+Careful: git restore only brings back edits that were not committed yet, and the edits you undo are gone for good. After a commit, use git revert.
+
+Not claimed: that an AI broke it, or that this is the only way to undo a mistake.
+
+Every step, from installing Git to your first push, with sources: https://actually-works.com/e/87
+
+Full disclosure: Anthropic makes Claude, and this video was made with help from Claude.
+
+#git #github #ai #vibecoding

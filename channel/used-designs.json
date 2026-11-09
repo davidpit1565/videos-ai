@@ -514,5 +514,12 @@
     "ember": "#B6F23A",
     "mood": "cinematic--dramatic--themountain",
     "date": "2026-11-08"
+  },
+  {
+    "episode": 87,
+    "brass": "#D4FF3A",
+    "ember": "#D4FF3A",
+    "mood": "curious--inquisitive-curiosity--musictown",
+    "date": "2026-11-09"
   }
 ]
