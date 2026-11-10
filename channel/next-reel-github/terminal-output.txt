@@ -1,0 +1,131 @@
+# date: 2026-11-07 ; git version 2.43.0 ; node v22.22.0
+
+$ git init -b main
+Initialized empty Git repository in /tmp/claude-0/-home-user-videos-ai/6fd8d102-d852-578a-aa0a-796b7f4d4fb2/scratchpad/next-reel/demo/work/tipcalc/.git/
+
+$ node app.js 80
+Bill 80 -> tip 12.00, total 92.00
+
+$ git add app.js
+
+$ git commit -m Tip calculator works
+[main (root-commit) ab0955b] Tip calculator works
+ 1 file changed, 4 insertions(+)
+ create mode 100644 app.js
+
+# --- AI edit #1: 'also split the bill between friends' (NOT committed yet) ---
+$ node app.js 80
+Each pays NaN
+
+# the app is broken and we do not remember what was there. Ask git:
+$ git status --short
+ M app.js
+
+$ git diff
+diff --git a/app.js b/app.js
+index e78692e..f08e49f 100644
+--- a/app.js
++++ b/app.js
+@@ -1,4 +1,5 @@
+-// tipcalc: 15% tip on a bill
++// tipcalc: 15% tip on a bill, split between friends
+ const bill = Number(process.argv[2]);
+ const tip = bill * 0.15;
+-console.log("Bill " + bill + " -> tip " + tip.toFixed(2) + ", total " + (bill + tip).toFixed(2));
++const people = Number(process.argv[3]);
++console.log("Each pays " + ((bill + tip) / people.count).toFixed(2));
+
+$ git log --oneline
+ab0955b Tip calculator works
+
+# the fix, said to the AI: 'go back to the last commit that worked'. In git:
+$ git restore app.js
+
+$ node app.js 80
+Bill 80 -> tip 12.00, total 92.00
+
+# --- AI edit #2: this time it WAS committed ---
+$ git commit -am AI: round the tip
+[main 49f0a7d] AI: round the tip
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+$ node app.js 83
+Bill 83 -> tip 12, total 95
+
+$ git log --oneline
+49f0a7d AI: round the tip
+ab0955b Tip calculator works
+
+# undo that commit without erasing history:
+$ git revert --no-edit HEAD
+[main 936e268] Revert "AI: round the tip"
+ Date: Sat Nov 7 21:17:45 2026 +0000
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+$ node app.js 83
+Bill 83 -> tip 12.45, total 95.45
+
+$ git log --oneline
+936e268 Revert "AI: round the tip"
+49f0a7d AI: round the tip
+ab0955b Tip calculator works
+
+# --- push / clone: local bare folder plays the part of GitHub ---
+$ git remote add origin ../remote.git
+
+$ git push -u origin main
+To ../remote.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+$ git clone remote.git friend-copy
+Cloning into 'friend-copy'...
+done.
+
+# --- branch + merge ---
+$ git switch -c split-bill
+Switched to a new branch 'split-bill'
+
+$ git commit -am Split the bill
+[split-bill 8a3b55f] Split the bill
+ 1 file changed, 2 insertions(+)
+
+$ node app.js 80 4
+Bill 80 -> tip 12.00, total 92.00
+Each of 4 pays 23.00
+
+$ git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+$ git merge split-bill
+Updating 936e268..8a3b55f
+Fast-forward
+ app.js | 2 ++
+ 1 file changed, 2 insertions(+)
+
+$ git tag v1.0
+
+$ git push origin main --tags
+To /tmp/claude-0/-home-user-videos-ai/6fd8d102-d852-578a-aa0a-796b7f4d4fb2/scratchpad/next-reel/demo/work/remote.git
+   936e268..8a3b55f  main -> main
+ * [new tag]         v1.0 -> v1.0
+
+$ git log --oneline --decorate
+8a3b55f (HEAD -> main, tag: v1.0, origin/main, origin/HEAD, split-bill) Split the bill
+936e268 Revert "AI: round the tip"
+49f0a7d AI: round the tip
+ab0955b Tip calculator works
+
+$ git pull
+From ../remote
+   936e268..8a3b55f  main       -> origin/main
+ * [new tag]         v1.0       -> v1.0
+Updating 936e268..8a3b55f
+Fast-forward
+ app.js | 2 ++
+ 1 file changed, 2 insertions(+)
+
+$ git tag
+v1.0
+

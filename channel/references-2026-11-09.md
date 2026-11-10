@@ -1,0 +1,56 @@
+# Reference reels David sent (9.11.2026), running list. Views are David's estimates unless marked FACT.
+Rule: for each, answer how WE reach its level faceless in our format (CLAUDE.md, 9.11.2026).
+
+1. DBbQKwGMmTV @adamstewartmarketing, 23.4 s, talking head + screen. FACT: 236,613 likes, 1,200 comments. David: 12M views. Hook 'This prompt has been going viral'. Mechanism (hypothesis): personal result from the viewer's own ChatGPT history, 1-line prompt to copy, answer blurred, escalation 'scarier', comment social proof. Ours: prompt card + our real answer (needs David's account); ep70 is near. Score ~75.
+2. DI7prasxrCZ @hector.corrales.915, 6.4 s, faceless (man from behind, stormy sky), text claim, 9 prompts in the caption, comment-gate 'SIMPLE'. FACT: 228,618 likes, 10,291 comments. David: 20M+ views. Do not copy '126 million use ChatGPT daily' (unverified). Ours: 6-8 s loop + our own tested 9 prompts in caption. Score ~72.
+3. DdZLW3fvyYp @arturrioni, 42.4 s, faceless drawn-UI light beige (almost our style), 'Connect ChatGPT to your Instagram in 2 minutes', 5 step cards, CTA 'Comment AUDIT'. FACT: 2,062 likes, 5,166 comments, posted 17.9.2026. David: 12M views (ratio looks off, unverified). It is an ad for ChatPlace; claim '2-5 days to 30 minutes' unverified. Ours: 'Connect <AI> to <app> in 2 minutes' with steps we really ran. Score ~75.
+
+## Batch 2 (9.11.2026, 22:16). FACT = read by yt-dlp today (views are not returned by Instagram: UNKNOWN unless from David's screenshot).
+4. DOifsT-EyyA @arising.ai, 7.0 s: 240,884 likes, 4,767 comments.
+5. DfbG3p_j3FB @ballauraofficial, 40.7 s: 22,176 likes, 159 comments.
+6. De7V3pbTWX6 @auraguy.ai, 71.6 s: 26,772 likes, 19,101 comments. David: 'Claude Just Killed Instagram', 1M+ views (unverified).
+7. De13S4Gi8El @cookin.code, 28.3 s: 10,410 likes, 18,157 comments.
+8. Der2L0-T376 @auraguy.ai, 72.5 s: 5,518 likes, 4,811 comments.
+9. DfEpwT9SRHe @breakingbreach, 63.0 s: 6,830 likes, 7,222 comments.
+10. Profile @crcle.ai (David's screenshot, FACT from the screenshot): 111K followers, 44 posts, bio 'ChatGPT Prompts | AI Tips | Business', series 'Prohibited Prompt #N' (black skull cover, locked template, blurred answer), pinned reels 1.8M, 1.1M, 1.6M views, Patreon, comment-'Circle' gate.
+Analyses by agents: channel/refs-2026-11-09-AB.md, -CD.md, -EFG.md (in progress).
+
+## Batch 3 (9.11.2026 night)
+11. DfWvqYMM7uA @aslaniedits, 6.8 s, FACT: 774 likes, 12 comments (a motion-design/editing showcase, hashtags #aftereffects #motiondesign). Visual: a figure in a white outfit on a white cube in a deep-red studio, the face hidden by a white square; kinetic mono/grotesque words 'Why work / Let Claude / Handle the rest' with corner brackets, a pixel-glitch transition to a white card with the Claude asterisk. David: 'a simple, cool format'. Not proof of virality (low engagement); useful as a format: 3-5 word kinetic statement, one cinematic setting, glitch transition, loopable. Ours would replace the person with an object, and the line with our topic; no face needed.
+12. Style target for ep88 v5 (David, 9.11 night): the torn-paper magazine collage of DeJ_gTHs-FB (@sanji.chien), with REAL photos so it does not look AI/drawn.
+
+## Batch 4 (10.11.2026, night; David: general knowledge, not urgent, maybe a video on the new Claude model later)
+13. DfiYCJzsbRX @sanji.chien, 108.6 s, FACT: 2,274 likes, 1,062 comments (views unknown). About the new Claude Fable 5.2. Caption claims (vendor/creator claims, UNVERIFIED by us): '30% faster, 20% cheaper', 'codes its own render engines, short films and 3D worlds from scratch'; CTA 'Comment FABLE' for a DM'd 1-click skill. Format: a host with a mic (face) alternating with embedded tweets/screenshots, kinetic one-word captions, bar charts, and example outputs (3D world, animated film, ASCII 'self-portrait'). Not faceless, long (1:48), lower engagement than his other reels. Idea for us later: a faceless 'what the new model made from one prompt' using OUR OWN real generated outputs, claims verified live first; check whether model-release videos fit the 'curious about AI' audience and the top-funnel rule.
+
+## Batch 5 (10.11.2026 night; David: knowledge, plus the idea of building a similar automation)
+14. DchKUcOy4hy @ryansterling, 83 s, FACT: 3,306 likes, 377 comments; caption 'I wasn't gonna post this bc I don't love callout culture but idk dude. Lowkey annoying.' Talking-head callout (INFERRED from frames: accounts with 166K-1M followers repeatedly reposting/copying his content ideas, with on-screen follower counts and comparison cards). The last seconds show a tool screen app.sandcastles.ai > Automations: rules like 'top daily performers / outlier / daily limit' = a tool that finds outlier viral posts automatically. David's idea: maybe build such an automation for us.
+IDEA (not built): 'Viral Radar' = a daily automation that finds outlier posts/videos in the AI niche (views divided by the creator's follower count), lists title/hook, length, link, outlier ratio, and drops the digest into the studio. Feasible source: YouTube Data API for Shorts (official, free quota, key only in Vercel). Instagram has no official API for other accounts' reels (Graph API only for our own); scraping is against Instagram's terms, so for Instagram David's manual links (yt-dlp reads public like/comment counts) stay the input. Decision needed from David: build it, and which sources.
+
+## Batch 6 (10.11.2026)
+### keamhetsi.dube, reel DfiCR8sqgXi: "How to become unskippable" (skip-rate explainer)
+- FACT (seen: downloaded, 47.9 s, 1440x2560, 58 likes, 7 comments at fetch time): a talking-head man in a dark bookcase set, word-by-word bold captions with italic emphasis words, and a WHITE top panel with a drawn Instagram "skip rate" table (65.2% at 100 views, 55.4% at 1,000, 45.1% at 10K, 28.3% at 100K), the row being discussed lit with a green outline, then a hand-drawn phone diagram labelled TEXT HOOK / FIRST VISUAL / VERBAL HOOK. Caption: the skip rate tells you if the hook is good, found under reel analytics.
+- Teaches: text hook opens a loop or asks a question; first visual needs movement; verbal hook must not repeat the text hook, it builds on it and promises a payoff.
+- Our reading (not a measurement): this agrees with David's point on ep88. Skip-rate benchmark numbers come from this creator, not verified by us.
+- Faceless version: not copyable as is (face, talking head). What we can copy: the split frame (top = a proof card that changes with each point, bottom = motion), one lit row per point, word-by-word captions with an emphasis word. Not copyable: the personal authority. Our version is a faceless "hook teardown" using our own real numbers.
+### Reel DfHkXBotUW5: NOT SEEN. Instagram rate-limited anonymous access on 2 tries; retry later.
+
+### @thereneremsik, post DfR-ARYMKKS (10.11.2026): static meme image "Me with Claude / Me with ChatGPT"
+- FACT (seen, downloaded via the embed page after yt-dlp said "no video in this post"): one image, 1088x1344. Top: "Me with Claude": two comic panels, a man in therapy (gentle, helped) and a man at a desk being coached. Bottom: "Me with ChatGPT": a man in a cornfield cracking a whip at figures with ChatGPT logos as heads. Caption: "Who can relate?". Likes at fetch time: 203 (the embed page; David says it reached several million views: UNVERIFIED by us, views are not returned).
+- Mechanism (hypothesis): a relatable two-sided joke that makes people pick a side (Claude vs ChatGPT users), instantly readable, no knowledge needed, tag-a-friend bait ("who can relate"), logos as the faces.
+- Copy the structure, not the art: the artwork is someone else's (probably AI-generated), and a repost would be a repost. Our version is an original image in our own style, same gag shape (two-panel "Me with X / Me with Y"), a different true-to-life joke.
+
+### @navkapoor.ai, reel DehAXjXv0Dy (10.11.2026): "I made this reel without an editor. Just one skill in Claude Code."
+- FACT (downloaded and seen: 20.9 s, 1080x1920, audio mean -16.3 dB): cream background with soft vignette, huge black heavy sans headline with orange and blue accent words and italic serif accent words ("editing."), a small orange ball swinging on a string that wipes each headline in and out, a black "torch light" scene, a how-it-works vertical timeline (Install the skill / Describe your idea / Render the reel 100%), end card "comment REEL for the skill". Made, by its own caption, with Remotion + a Claude Code skill (#hyperframe is in the hashtags).
+- FACT from the caption: "Comment REEL and I'll send you the Claude Code skill that made this motion graphics reel." 7,464 comments at fetch time; like_count read as 3 (probably hidden, not reliable).
+- Mechanism (hypothesis): a comment gate that gives away a REAL asset (a skill), a one-line promise (no editor, no camera), and a motion object (the swinging ball) that carries the eye and the text. The look is the same cream + orange "Claude look" Roni warns about: comments here come from the gate, not from the look.
+- Faceless version for us: we already own such assets (HyperFrames pipeline, explain-steps, voice_doctor, retime). "Everything we build becomes an episode" fits this format. Needs an auto-DM tool (not built here) or a manual DM.
+
+### @duncanrogoff, reel DYnPUfru7aw (10.11.2026): "Graphify" for Claude Code, comment REPO for the GitHub link
+- FACT (downloaded and seen; caption read): talking head in the bottom half, the top half is a fast stream of cards (GitHub logo, Claude Code pricing cards, a knowledge-graph animation, big '70%/times fewer tokens', end 'Just drop REPO in comments'). Likes 48,237, comments 18,524 at fetch time. Caption claims: Graphify maps a codebase into a knowledge graph so Claude re-reads fewer files; fewer tokens, faster sessions; 'reality check: it will not fix messy architecture'.
+- UNCONFIRMED by us: the token-saving number (research agent running, channel/research-graphify-2026-11-10.md). Not installed.
+- Mechanism (hypothesis): a real pain (usage limits) + a named fix + a comment gate for a link + an honest 'reality check' line. Faceless version only with a real before/after test we run ourselves.
+
+### @growai_edtech, post DaslDOThAas (10.11.2026): "When I share my idea with AI" ChatGPT vs Claude meme
+- FACT (seen, image + caption read): one 1080x1080 image, dark background, two columns: green header ChatGPT with a man giving a thumbs up and the bubble "Looks great! :)", orange header Claude with the same man frowning at a paper and the bubble "12 issues found.". The man is a real, recognisable actor (we must NOT use a real person's likeness). Caption: "One tells you what you want to hear, the other tells you what you need to hear. Which one do you actually want giving you feedback? Tag someone who needs the Claude treatment on their next project." 115 likes at fetch time (views unknown).
+- Mechanism (hypothesis): sycophancy joke everyone with AI experience has felt, a forced choice in the caption question, tag-a-friend line.
+- Ours: the same joke SHAPE with our own collage (no real person: paper cut-outs, objects), a tone joke labelled as a joke. The ChatGPT side matches what our own tests found (agrees with you, episodes 72/73/80); the Claude side is untested by us, so it stays a joke, not a result.

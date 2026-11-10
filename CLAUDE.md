@@ -118,6 +118,7 @@ been running for days.
   itself, a log of which type each recent episode used, and the two rejected drafts that
   failed this exact check — read those before assuming a new draft clears the bar.
 - **In the FIRST SECOND the viewer must already know what the video is about (David, 8.11.2026, after Miki watched episode 86: "in the first second I still don't understand what the video is about: 'Don't tell my teacher', no idea what it's about. This is the most important thing, and we miss it every time and tell ourselves it's good, but it isn't").** A hook that is a curiosity line without a stated subject fails this, even if it scores high on the rubric and even if the video later gets views (episode 86 got the most views we have had while failing this test, so views do not prove comprehension). Test, before building and again on the first rendered frame: show ONLY the first frame and the first spoken second to someone who has not seen the script (a fresh agent as the blind reader works) and ask "what is this video about?". The answer must name the product or situation (ChatGPT, GitHub, a school test...) AND the topic (an AI told a secret, an undo button for AI apps). The subject must be both SAID in the first words and SHOWN on the first frame (logo + a few big words), not left for line 2. Log the blind reader's answer in the episode script file.
+- **In the FIRST SECOND the viewer must already know what the video is about (David, 8.11.2026, after Miki watched episode 86: "in the first second I still don't understand what the video is about: 'Don't tell my teacher', no idea what it's about. This is the most important thing, and we miss it every time and tell ourselves it's good, but it isn't").** A hook that is a curiosity line without a stated subject fails this, even if it scores high on the rubric and even if the video later gets views (episode 86 got the most views we have had while failing this test, so views do not prove comprehension). Test, before building and again on the first rendered frame: show ONLY the first frame and the first spoken second to someone who has not seen the script (a fresh agent as the blind reader works) and ask two questions: "what is this video about?" and "would you stop scrolling, and why?" (added 8.11.2026 after a reel that states its subject at once but has no stake and does not make you stop). The first answer must name the product or situation (ChatGPT, GitHub, a school test...) AND the topic (an AI told a secret, an undo button for AI apps). The subject must be both SAID in the first words and SHOWN on the first frame (logo + a few big words), not left for line 2. Log the blind reader's answer in the episode script file.
 - **The viewer has to feel the problem in the first 3 seconds, not just understand it.**
   Decided 30.9.2026, David's own words: understanding a claim intellectually is not the
   same as feeling it — the hook has to land as something the viewer recognizes happening
@@ -516,3 +517,43 @@ When a reel is ready (check.sh passed, merged, deploy verified), send a real pho
 
 ## Claude may read the studio (David, 25.10.2026)
 The studio is gated against the public, not against Claude. When David has given the PIN in the chat of the current session, read real numbers with `POST /api/unlock` (json `{"pin": ...}`, keep the cookie) and then `GET /api/state` on https://www.actually-works.com. The PIN is never written into a file, a commit, a PR or a log. If no PIN was given in the session, ask for it once. Fields: `state.episodes[]` (views, reach, likes, saves, shares, publishedAtPrecise), `state.snapshots[]` (followers). Watch time and reach by follower type are NOT_AVAILABLE for this account.
+
+## Whole frame alive, no wasted space (David, 9.11.2026: "you always forget this, don't forget")
+- The main visual (screen/card/panel) is ENLARGED to fill the usable area (x 65-1015, y 269-1248), not a small block in the top with empty space below. No empty zones inside the safe box. Do NOT fill space with extra decorations: scale up what matters, and keep the whole picture moving. Blind readers flagged ep88 frame 0 for exactly this (panel small, bottom empty).
+- Compaction: after every context compaction, no detail from David's messages may be lost: before a long stretch, write his standing instructions of the session into CLAUDE.md or the episode plan file, and re-read them after compaction.
+
+## We build virality, not videos (David, 9.11.2026)
+- Next videos need OVERALL 85-95/100 (honest, blind panel). If the honest score is below that, DO NOT make the video: report what was tried and why it falls short. "I don't need a video if you can't do it properly: the goal is going viral, not producing a video."
+
+## Every reference reel: how do WE reach its level, faceless and our way (David, 9.11.2026)
+- Whenever David sends a reel as a reference, analyse it AND answer: how do we reach that level of virality in this exact form, faceless and in our own format (drawn UI, calm cloned voice, no face)? Name what makes it spread, what we can copy structurally, what we cannot (face, trend, account size) and what the faceless version looks like beat by beat, with an honest score. Never stop at a description of the reel.
+
+## Hook is visual first, little text (David, 9.11.2026)
+- The hook must be mostly VISUAL: far less text, never more than 3 lines of text on screen at once. The idea has to be understood from the picture and motion, with the text only naming it. Check this on every frame 0 and every title card (this overrides any earlier frame that carried long headlines).
+
+## Reference set = the 3 most viral episodes only (David, 9.11.2026)
+- For judging what works and for planning new videos, the ONLY episodes that count are the 3 most viral ones, listed in `channel/canon-top3.md` (episodes 86, 80, 82 by Instagram views; database in `channel/episodes-database.json`). All other published episodes are forgotten as evidence, style, hooks or results; they stay only as a topic list in `channel/topics-covered.txt` so a topic is not repeated. Do not cite them when analysing or advising.
+
+## Content funnel (Roni via David, 9.11.2026)
+- Every video idea carries a funnel stage: TOP (viral formats, 80% of videos), MID (for our curious-about-AI audience, trust and value), LOW (CTA-heavy, needs a real offer). Think in the funnel whenever ideas or videos are prepared. Details and the rules per idea: `channel/content-funnel.md`.
+
+## Think in formats, not clips (Roni via David, 9.11.2026)
+- Every video is an episode of a named, numbered FORMAT with a locked template and one variable slot (the topic). Design the format first, then the episodes. Spec and candidates: `channel/formats-2026-11-09.md`.
+
+## It must NOT look AI or Claude-like (Roni via David, 10.11.2026)
+- Roni's central point: our videos look too AI, and viewers are tired of that look; it is a main reason they do not go viral. Clean drawn cards, flat clip-art, light base with lime accent and generic gradients are the 'AI/Claude look'. New videos must look REAL and handmade: real photographs, real textures (paper, grain, halftone), real logos and screenshots, unusual fonts. The reference for the look is the torn-paper collage reel DeJ_gTHs-FB. This overrides the drawn-UI/light-base style rules above for new videos until David says otherwise.
+
+## Instagram caption limit (10.11.2026)
+- Instagram refuses a caption over 2,200 characters ("The caption was too long": episode 88's 2,251-character caption failed at publish time). Check `wc -m channel/episode-NN-caption.txt` is under 2,200 BEFORE shipping an episode. YouTube text has its own limits (no `<` or `>`).
+
+## Speak in the present tense (Roni via David, 10.11.2026)
+- Spoken lines, captions and chat talk too much in the past tense. Use the present tense ("Facebook looks through your photos", "AI does this now") in scripts, hooks and captions; past tense only when the claim is truly about something that already happened (a test we ran, a dated announcement).
+
+## When a reference link will not open, try again and use the skills (David, 10.11.2026)
+- A link David sends (Instagram, TikTok, YouTube) is never "unreachable" after one failure. Retry: (1) run `pip install -q -U yt-dlp`, then `yt-dlp` again (the `video-download` skill has the recipes), at most a few tries a few minutes apart, because Instagram rate-limits anonymous requests per IP and the same link can work on the next try (DfiCR8sqgXi opened on retry); (2) Firecrawl does not support Instagram; try Exa or the playwright tools for the page text; (3) only after all of that say plainly what failed. Never analyse a reel that was not actually seen. Download into the scratchpad `refsN/<id>/`, never into the project.
+
+## The surprise comes first in the hook (David, 10.11.2026, after episode 88)
+- The word that carries the surprise or the threat sits in the first 3 words of the first sentence ("Your photos. Facebook is looking."), and the first sentence is about 4-5 words. Episode 88 opened "Facebook can look through photos you never posted." and "never posted" only came at the end: David saw it underperform (about 23 views early on; one episode, a hypothesis, see `content-memory.md`). Check every new hook against this before building.
+
+## Duplicate check comes BEFORE the first idea is shown to David (10.11.2026)
+- Before proposing any topic or prompt, grep `channel/topics-covered.txt` (and `content-memory.md`) for its keywords and say what was found. On 10.11 I proposed "What do you know about me? / ChatGPT Memory" as a new idea; it was already episodes 13, 52, 70 and 84. David: "you forgot our old videos." A proposal that has not passed this check is not shown. The proven winners (86, 80, 82) are a chat AI doing something odd in a short test, and episode 86 is a numbered series ("Can it keep a secret? #1"): extending a proven format with a new subject comes before inventing a new topic.

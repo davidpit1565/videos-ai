@@ -1,0 +1,8 @@
+# Content funnel (Roni via David, 9.11.2026). Every video idea is thought of as a funnel stage first.
+- TOP funnel (80% of videos): always the VIRAL FORMATS. Built for reach with cold viewers: catchy, broad, understood in under 3 s, mostly visual, fast pace. Goal = views, sends, a new viewer. No sales.
+- MID funnel (~15%): made for OUR target audience (people curious about AI at any level, wanting tips or things they did not know). Goal = trust and value: saves, follows, 'this account is useful'. Specific tips, tests, how-tos with a setup path.
+- LOW funnel (~5%): heavily CTA-driven. Goal = an action: comment keyword, DM, newsletter signup, lead magnet, a service enquiry. Needs a real offer to point at.
+Ratio guideline: of 5 English videos per week, about 4 top, up to 1 mid or low. (The 15/5 split inside the remaining 20% is my suggestion, not Roni's.)
+Rules for every idea (write them in the idea): (1) stage; (2) for top: which viral format and why a stranger stops; (3) the NEXT step for a viewer who liked it (which mid/low video or offer they land on); (4) what the funnel's low end actually offers.
+OPEN (David): what is the real offer at the low end today? Newsletter? A setup guide on the site? AI services for businesses (plan/business-model.html: EUR 1,500-8,000, Flemish/Dutch sales channel)? Without a real offer, low-funnel videos have nothing honest to call to action.
+Context from our data: top-funnel reach did not convert on its own (ep86 +1 follower, ep82 +1, ep80 0), so mid and low stages must exist and be reachable from top videos (caption, pinned post, profile link).
