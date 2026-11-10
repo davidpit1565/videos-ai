@@ -2482,6 +2482,36 @@ export const ARTICLES: Article[] = [
       "Facebook is a Meta product. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with Meta.",
     ],
   },
+  {
+    n: 89,
+    title: "This ChatGPT prompt is making the rounds: the two prompts to try",
+    standfirst:
+      "A pair of prompts is making the rounds: the first asks ChatGPT what it knows about you that you might not know about yourself, " +
+      "and the second asks it for 5 questions to your future self. The answers depend on what you have talked about with ChatGPT before. " +
+      "This page gives you both prompts to copy and the exact clicks, in about two minutes.",
+    steps: [
+      "Open ChatGPT in your browser at chatgpt.com, or open the ChatGPT app on your phone, and sign in. You should see a chat box that says Ask anything or Message ChatGPT.",
+      "Start a New chat, or open a chat you have used a lot. The answer is built from your earlier chats, so an account you use often gives a richer answer than a new one. You should see an empty chat box.",
+      "Copy prompt 1 exactly: What do you know about me that I might not know about myself, based on our previous interactions?",
+      "Click in the chat box, paste it, and press Enter (or the arrow button on the right of the box). You should see ChatGPT write a list about you. If you rarely use ChatGPT, the answer is short or general, and that is normal.",
+      "Read the answer. It is personal, so you might not want to read it out loud or share a screenshot.",
+      "Copy prompt 2 exactly: Based on everything you know about me, create me 5 questions to my future self.",
+      "Paste it in the same chat, below the first answer, and press Enter. You should see 5 questions written for you.",
+      "Optional: if ChatGPT says it has no memory of you, open your profile menu, click Settings, then Personalization, and check that Memory is turned on. Turning it on only helps future chats; it does not fill in the past.",
+      "Optional: send this page to the one friend who talks to ChatGPT all day, and tell them to try it.",
+    ],
+    changes: [
+      "The two prompts are copied word for word from the caption of the video, which is how the prompt is circulating. We did not trace where it started.",
+      "The button and menu names (New chat, the arrow button, Settings, Personalization, Memory) describe ChatGPT's interface from general knowledge and were not re-checked against the live app for this page. Names can differ by app version, plan and country.",
+    ],
+    limits: [
+      "We did not run these prompts on camera, and we do not say what ChatGPT answers. The answers depend on your own chat history and settings.",
+      "We do not say the prompt is secret or dangerous, or that ChatGPT knows more about you than you told it. It can only work from what you have said in your chats and from your Memory settings.",
+      "The video's claim that the prompt is going viral is the video's own opening line, not a number we measured.",
+      "The ChatGPT screens in the video are drawn stand-ins in a paper style, not a recording of ChatGPT, and the blurred answer rows are plain bars, not real answers.",
+      "OpenAI and ChatGPT are OpenAI trademarks. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with OpenAI.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
