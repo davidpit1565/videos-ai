@@ -24,6 +24,11 @@ def whisper_words(x, text, t0, key):
         except Exception: c[key] = []
         json.dump(c, open(cache, "w"))
     ws = c[key]
+    m_ = []
+    for w in ws:
+        if m_ and (m_[-1][0] + w[0]).lower() == 'chatgpt': m_[-1] = ['ChatGPT', m_[-1][1], w[2]]
+        else: m_.append(list(w))
+    ws = m_
     return [[round(t0 + a, 3), round(t0 + b, 3)] for _, a, b in ws] if len(ws) == len(text.split()) else None
 
 os.makedirs(H + "/out", exist_ok=True)
@@ -67,6 +72,9 @@ def at(t): return tt(t)
 exec(tl7[tl7.index("def slam"):tl7.index("def fly")])     # slam, settle, drop, tapeslap, thump
 exec(tl7[tl7.index("def cam"):tl7.index("def scraps")])   # cam
 
+def out_(sel, t, d=.16):
+    js(f"tl.to('{sel}',{{opacity:0,scale:.96,duration:{d},ease:'power1.in',transformOrigin:'50% 50%'}},{at(t)});")
+
 def fit(text, font, maxw, size0, minsize=40):
     s = size0
     while s > minsize and ImageFont.truetype(FONTF[font], s).getlength(text.upper()) > maxw: s -= 2
@@ -89,7 +97,7 @@ def card(k, typed):
     for i, w in enumerate(WORDS):
         cls = " hl" if w == "3" else ""
         ws += f'<span class="pw{cls}" id="pw{k}{i}">{w}</span> <span class="cu" id="cu{k}{i}"></span>'
-    inner = (f'<div class="inp"><div class="ph" id="ph{k}">Message ChatGPT<span class="cu on" id="cuS{k}"></span></div><div class="ptx" id="ptx{k}">{ws if typed else ""}</div></div>'
+    inner = (f'<div class="inp"><div class="ph" id="ph{k}"><span class="cu on" id="cuS{k}"></span></div><div class="pnum2" id="pn{k}">PROMPT #1</div><div class="ptx" id="ptx{k}">{ws if typed else ""}</div></div>'
              f'<div class="plus">+</div><div class="snd" id="snd{k}"><svg viewBox="0 0 24 24" width="52" height="52"><path d="M12 19V5M5 12l7-7 7 7" stroke="#17130F" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
              f'<div class="ring2" id="rg{k}"></div>')
     return P(inner, f"card{k}", 100, 650, 880, 590, -.8, "card", (40, 36, 32), 21, 9, 6, "dkcard")
@@ -115,18 +123,18 @@ SCR, SPEC = scraps_markup()
 # phase 2: source strip; phase 3: ask not guess; phase 4: save / send
 src_strip = strip("s2", "OPENAI ACADEMY", STRIP_X, STRIP_Y, 700, 150, -1.0, ("news", None), "#17130F", "BS", fit("OPENAI ACADEMY", "BS", 640, 150), 83, z=9)
 ask_strip = strip("s3", "ASK. NOT GUESS.", STRIP_X, STRIP_Y, 700, 150, 1.0, ("card", YEL), size=fit("ASK. NOT GUESS.", "BS", 640, 150), seed=84, z=9)
-save_strip = strip("s4a", "SAVE IT", STRIP_X, STRIP_Y, 700, 150, -1.2, ("card", YEL), size=fit("SAVE IT", "BS", 640, 170), seed=85, z=9)
-send_strip = strip("s4b", "SEND IT", STRIP_X, STRIP_Y, 700, 150, 1.1, ("card", BLK), "#f1e8d2", "BS", fit("SEND IT", "BS", 640, 170), 86, z=10)
+save_strip = strip("s4a", "SAVE IT", STRIP_X, STRIP_Y, 940, 170, -1.2, ("card", YEL), size=fit("SAVE IT", "BS", 880, 230), seed=85, z=9)
+send_strip = strip("s4b", "SEND IT", STRIP_X, STRIP_Y, 940, 170, 1.1, ("card", BLK), "#f1e8d2", "BS", fit("SEND IT", "BS", 880, 230), 86, z=10)
 
 def qbubble(i, y, rot, seed):
     inner = ('<div class="qm">?</div><div class="qb"><i style="width:78%"></i><i style="width:52%"></i></div>')
     return P(inner, f"qb{i}", 150, y, 780, 150, rot, "news" if i != 1 else "card", CRM if i != 1 else WHT, seed, 8, 14, "qbub")
 
 bubbles = qbubble(0, 690, -1.5, 91) + qbubble(1, 880, 1.2, 92) + qbubble(2, 1070, -.8, 93)
-stampSaved = stamp("saved", "SAVED", 640, 1080, -9, 96, "#B6402B", "A", .9, "BS", True, 30)
+stampSaved = stamp("saved", "SAVED", 330, 1120, -6, 84, "#B6402B", "A", .9, "BS", True, 30)
 # chat for phase 4
 chat4 = ('<div class="mavt" id="fav">?</div>'
-         + P('<div class="shortmsg" id="shm"><span id="shmt">write email</span></div>', "fbub", 250, 960, 560, 150, -.8, "card", WHT, 95, 8, 15, "chb")
+         + P('<div class="shortmsg" id="shm"><span id="shmt">write email</span></div>', "fbub", 250, 1040, 600, 150, -.8, "card", WHT, 95, 8, 15, "chb")
          + '<div class="dots2" id="fdots"><i></i><i></i><i></i></div>')
 
 markup = f'''{svgdefs}
@@ -142,11 +150,15 @@ markup = f'''{svgdefs}
 '''
 
 extra_css = r'''
+#scr{position:absolute;left:0;top:0;width:1080px;height:1920px;z-index:0}
+.sc{z-index:2}
+
 .gsb{position:absolute;z-index:20;border-radius:50%;background:#fff;box-shadow:0 0 0 7px #fff,0 10px 26px rgba(30,18,6,.5);display:flex;align-items:center;justify-content:center}
 .gsb img{width:66%;height:66%}
-.dkcard .inp{position:absolute;left:34px;top:34px;width:812px;height:420px;border-radius:46px;background:#33302c;box-shadow:inset 0 3px 10px rgba(0,0,0,.45);overflow:hidden}
-.ph{position:absolute;left:44px;top:46px;font:500 50px IDisp;color:rgba(241,232,210,.42);white-space:nowrap}
-.ptx{position:absolute;left:44px;top:34px;right:40px;font:800 74px IDisp;line-height:92px;color:#f1e8d2;letter-spacing:-.02em;filter:url(#ink)}
+.dkcard .inp{position:absolute;left:34px;top:34px;width:812px;height:446px;border-radius:46px;background:#33302c;box-shadow:inset 0 3px 10px rgba(0,0,0,.45);overflow:hidden}
+.ph{position:absolute;left:44px;top:46px;font:500 50px IDisp;height:70px;color:rgba(241,232,210,.42);white-space:nowrap}
+.pnum2{position:absolute;left:0;top:70px;width:100%;text-align:center;font:700 168px BS;line-height:240px;white-space:nowrap;color:#E0553B;transform:rotate(-5deg);opacity:1;filter:url(#ink);letter-spacing:.01em}
+.ptx{position:absolute;left:44px;top:26px;right:36px;font:800 76px IDisp;line-height:102px;color:#f1e8d2;letter-spacing:-.02em;filter:url(#ink)}
 .pw{opacity:0;display:inline}
 .pw.hl{background:linear-gradient(0deg,transparent 6%,var(--lime) 6%,var(--lime) 92%,transparent 92%);color:#17130F;padding:0 12px;border-radius:6px;margin:0 2px}
 .cu{display:inline-block;width:6px;height:60px;margin-left:2px;margin-right:6px;vertical-align:-6px;background:#f1e8d2;opacity:0}
@@ -161,7 +173,7 @@ extra_css = r'''
 '''
 
 # ---------------------------------------------------------------- timeline
-T = dict(s2=S(2) - .12, s3=S(3) - .12, s4=S(4) - .1, send=W(4, 2) - .1, short=W(4, 5) - .05, loop=E(4) + .32)
+T = dict(s2=S(2) - .12, s3=S(3) - .12, s4=S(4) - .1, send=W(4, 2) - .1, short=W(4, 5) - .05, loop=E(4) + .22)
 js(f"tl.fromTo('#world',{{scale:1,rotation:-.25}},{{scale:1.02,rotation:.25,duration:{D_:.3f},ease:'sine.inOut'}},0);")
 js(f"tl.fromTo('#bgimg',{{x:0}},{{x:-320,duration:{D_:.3f},ease:'sine.inOut'}},0);")
 g_t = 0.0
@@ -189,12 +201,11 @@ sfx("impactpunch.ogg", 0.02, -3)
 # --- phase 2: strips out, source strip in, the prompt is typed word by word as it is read
 s = T["s2"]
 for sel in ("#sa", "#sb"):
-    js(f"tl.to('{sel}',{{y:-300,rotation:-5,opacity:0,duration:.3,ease:'power2.in'}},{at(s)});")
-js("tl.set('#s2,#s3,#s4a,#s4b',{opacity:0},0);")
-js("tl.set('#s2',{opacity:1},0.001);")
-js(f"tl.fromTo('#s2',{{y:-330,rotation:-6,opacity:0}},{{y:0,rotation:0,opacity:1,duration:.5,ease:'back.out(1.2)'}},{at(s + .12)});")
+    out_(sel, s - .06)
+slam("#s2", s + .14, dx=-280, rot=-1, s0=1.08, dur=.34)
 js(f"tl.fromTo('#lg',{{y:0}},{{y:-160,rotation:-6,duration:.55,ease:'back.out(1.4)'}},{at(s + .12)});")
 sfx("whoosh_a.ogg", s, -3); sfx("pop_a.ogg", s + .3, -4)
+js(f"tl.to('#pn',{{opacity:0,scale:1.1,duration:.2,ease:'power2.in',transformOrigin:'50% 50%'}},{at(s - .1)});")
 js(f"tl.set('#ph',{{opacity:0}},{at(W(2, 0) - .05)});")
 for i, w in enumerate(WORDS):
     t0 = W(2, i) - .04
@@ -214,15 +225,15 @@ sfx("select.ogg", E(2) + .05, -4)
 
 # --- phase 3: "It makes ChatGPT ask, not guess." three question bubbles pop (placeholders, no invented answers)
 s = T["s3"]
-js(f"tl.to('#s2',{{y:-300,rotation:-5,opacity:0,duration:.3,ease:'power2.in'}},{at(s)});")
-js(f"tl.fromTo('#s3',{{y:-330,rotation:6,opacity:0}},{{y:0,rotation:0,opacity:1,duration:.5,ease:'back.out(1.2)'}},{at(s + .12)});")
+out_("#s2", s - .04)
+slam("#s3", s + .14, dx=280, rot=1, s0=1.08, dur=.34)
 sfx("whoosh_b.ogg", s, -3)
-js(f"tl.to('#ptx',{{opacity:.14,duration:.4}},{at(s + .1)});")
+js(f"tl.to('#ptx',{{opacity:0,duration:.2}},{at(s + .05)});")
 js(f"tl.to('#card',{{scale:1.0,rotation:-.6,duration:.6,ease:'sine.inOut'}},{at(s + .1)});")
 bt = [W(3, 3) - .35, W(3, 3) - .05, W(3, 3) + .22]   # around "ChatGPT ask"
 for i in range(3):
     t0 = max(s + .2, bt[i])
-    js(f"tl.fromTo('#qb{i}',{{x:{(-1) ** i * 520},opacity:0,rotation:{(-8, 6, -5)[i]}}},{{x:0,opacity:1,rotation:0,duration:.42,ease:'back.out(1.3)'}},{at(t0)});")
+    js(f"tl.fromTo('#qb{i}',{{scale:.55,opacity:0,rotation:{(-8, 6, -5)[i]}}},{{scale:1,opacity:1,rotation:0,duration:.4,ease:'back.out(1.6)',transformOrigin:'50% 50%'}},{at(t0)});")
     sfx("pop_a.ogg", t0 + .12, -3)
 js("tl.set('#qb0,#qb1,#qb2',{opacity:0},0);")
 for i in range(3):
@@ -231,26 +242,26 @@ for i in range(3):
 # --- phase 4: save it / send it to someone who types short prompts
 s = T["s4"]
 for i in range(3):
-    js(f"tl.to('#qb{i}',{{x:{(-1) ** i * 600},opacity:0,rotation:{(-9, 7, -6)[i]},duration:.4,ease:'power2.in'}},{at(s + .02 + i * .05)});")
-js(f"tl.to('#s3',{{y:-300,rotation:-5,opacity:0,duration:.3,ease:'power2.in'}},{at(s)});")
-js(f"tl.fromTo('#s4a',{{y:-330,rotation:6,opacity:0}},{{y:0,rotation:0,opacity:1,duration:.5,ease:'back.out(1.2)'}},{at(s + .1)});")
+    js(f"tl.to('#qb{i}',{{scale:.7,opacity:0,rotation:{(-9, 7, -6)[i]},duration:.25,ease:'power2.in',transformOrigin:'50% 50%'}},{at(s - .02 + i * .05)});")
+out_("#s3", s - .04)
+slam("#s4a", s + .14, dx=-280, rot=-1, s0=1.08, dur=.34)
 js(f"tl.to('#lg',{{scale:0,opacity:0,rotation:-60,duration:.35,ease:'back.in(1.5)'}},{at(s)});")
-js(f"tl.to('#ptx',{{opacity:1,duration:.3}},{at(s + .2)});")
+js(f"tl.to('#ptx',{{opacity:1,duration:.3}},{at(s + .25)});")
 js(f"tl.fromTo('#saved',{{scale:2.2,opacity:0}},{{scale:1,opacity:.9,duration:.16,ease:'power4.in',transformOrigin:'50% 50%'}},{at(W(4, 0) + .1)});")
 sfx("whoosh_c.ogg", s, -4); sfx("impactsoft.ogg", W(4, 0) + .22, -4); sfx("click_a.ogg", W(4, 0) + .24, -4)
 # send: the card shrinks into a sent message (right), strip changes, friend asks with a short prompt
 t0 = T["send"]
-js(f"tl.to('#s4a',{{y:-300,rotation:-5,opacity:0,duration:.28,ease:'power2.in'}},{at(t0 - .02)});")
-js(f"tl.fromTo('#s4b',{{y:-330,rotation:-6,opacity:0}},{{y:0,rotation:0,opacity:1,duration:.5,ease:'back.out(1.2)'}},{at(t0 + .06)});")
+out_("#s4a", t0 - .2)
+slam("#s4b", t0 + .0, dx=280, rot=1, s0=1.08, dur=.34)
 js(f"tl.to('#saved',{{opacity:0,duration:.2}},{at(t0)});")
-js(f"tl.to('#card',{{x:215,y:-170,scale:.6,rotation:3,duration:.7,ease:'expo.inOut',transformOrigin:'50% 50%'}},{at(t0)});")
+js(f"tl.to('#card',{{x:70,y:-200,scale:.8,rotation:3,duration:.7,ease:'expo.inOut',transformOrigin:'50% 50%'}},{at(t0)});")
 sfx("whoosh_a.ogg", t0, -3); sfx("pop_b.ogg", t0 + .72, -3)
 js("tl.set('#fav,#fbub,#fdots',{opacity:0},0);")
 js(f"tl.fromTo('#fav',{{opacity:0,scale:.4}},{{opacity:1,scale:1,duration:.38,ease:'back.out(2)'}},{at(t0 + .5)});")
 js(f"tl.fromTo('#fdots',{{opacity:0,scale:.8}},{{opacity:1,scale:1,duration:.3,ease:'power2.out'}},{at(t0 + .6)});")
 js(f"tl.to('#fdots i',{{y:-10,duration:.24,ease:'sine.inOut',yoyo:true,repeat:3,stagger:.08}},{at(t0 + .7)});")
 js(f"tl.to('#fdots',{{opacity:0,duration:.16}},{at(T['short'] - .05)});")
-js(f"tl.fromTo('#fbub',{{x:-420,opacity:0,rotation:-5}},{{x:0,opacity:1,rotation:0,duration:.42,ease:'back.out(1.3)'}},{at(T['short'])});")
+js(f"tl.fromTo('#fbub',{{scale:.6,opacity:0,rotation:-5}},{{scale:1,opacity:1,rotation:0,duration:.4,ease:'back.out(1.6)',transformOrigin:'0% 50%'}},{at(T['short'])});")
 sfx("pop_a.ogg", T["short"] + .12, -3); sfx("ding.ogg", E(4) - .05, -7)
 
 # --- loop: a paper sweep covers the frame, scene swaps to the frame-0 copy
