@@ -1,0 +1,26 @@
+[
+ {
+  "n": 1,
+  "line": "Me with Claude. It listens.",
+  "start": 0.08,
+  "end": 1.86
+ },
+ {
+  "n": 2,
+  "line": "Me with ChatGPT. It's way more complex.",
+  "start": 2.71,
+  "end": 5.47
+ },
+ {
+  "n": 3,
+  "line": "Which one are you?",
+  "start": 5.77,
+  "end": 6.63
+ },
+ {
+  "n": 4,
+  "line": "Tag someone who needs the Claude one.",
+  "start": 6.93,
+  "end": 9.2
+ }
+]
