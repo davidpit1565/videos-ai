@@ -36,3 +36,8 @@ Big Shoulders Bold, Gloock Regular, IBM Plex Mono Bold (`src/assets/fonts/`).
 - Logos: src/assets claude.svg and openai.svg. Text and layout are ours. The reference artwork and the actor's likeness in it were NOT used.
 - The face pre-check from CLAUDE.md (Adobe tool) was NOT run; the photos are professionally published stock with an open licence, no model-release check was done.
 - v3/A4.png (final A): same two Pexels photos for ChatGPT; for Claude the photo is Mikhail Nilov "A Man Looking at the Document" https://www.pexels.com/photo/a-man-looking-at-the-document-7534752/ (a stern reviewer, reads as the AI examining the idea). Title "My idea has 3 flaws. I show AI." and the WRONG/RIGHT chips make the direction of the joke explicit. It is a joke: the Claude side is untested by us.
+
+## v4 (10.11.2026): v4/C.png, dog vs cat version (no real people, no recognisable character)
+- Dog: "Golden Retriever in Close Up Photography", Joana, https://www.pexels.com/photo/golden-retriever-in-close-up-photography-6571008/
+- Cat: "Close-Up Shot of Brown Tabby Cat Looking at Camera", Jusdevoyage Lyly, https://www.pexels.com/photo/close-up-shot-of-brown-tabby-cat-looking-at-camera-6012023/
+- Pexels licence (free, no attribution needed). Logos from src/assets. Text ours. It is a joke: the Claude side is untested by us. NOT done on David's request: flipping the "Me with ChatGPT" artwork of another account (declined).
