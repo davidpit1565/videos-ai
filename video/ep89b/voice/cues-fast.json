@@ -1,0 +1,44 @@
+[
+ {
+  "n": 1,
+  "line": "This prompt has been going viral.",
+  "start": 0.07,
+  "end": 1.94
+ },
+ {
+  "n": 2,
+  "line": "What do you know about me that I might not know about myself, based on our previous interactions?",
+  "start": 2.1,
+  "end": 6.37
+ },
+ {
+  "n": 3,
+  "line": "When the response comes back, it takes a while to process.",
+  "start": 6.54,
+  "end": 9.22
+ },
+ {
+  "n": 4,
+  "line": "But here's where it gets even more scary.",
+  "start": 9.38,
+  "end": 11.54
+ },
+ {
+  "n": 5,
+  "line": "Go to ChatGPT and prompt: Based on everything you know about me, create me five questions to my future self.",
+  "start": 12.3,
+  "end": 17.26
+ },
+ {
+  "n": 6,
+  "line": "Fair warning, the responses can shake you a bit.",
+  "start": 17.42,
+  "end": 19.36
+ },
+ {
+  "n": 7,
+  "line": "Test it out. Go.",
+  "start": 19.52,
+  "end": 20.83
+ }
+]
