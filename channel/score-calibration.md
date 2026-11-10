@@ -60,3 +60,5 @@ Method: 30 first frames (t=1.2 s, bottom 10% cropped so the handle does not leak
 - Motion (>0.01/>0.03/>0.08 per s): final7 7.7/3.6/1.85 vs reference 7.4/4.1/2.4.
 - Complaints: yellow strips and tape still uniform; the same scrap pile (ticket, map, stamps) unrelated to Facebook repeated; flat UI card; cake/dog photos look filtered/stock; cork background never changes; no real shadows or curl.
 - Against ep88-publish-criteria.md: criterion 1 (realism >= 70) FAILS (46 vs 70). Round 7 moved realism only ~6 points for a very large effort: code-composited collage is likely capped around 50. NOT published. Options for David: real filmed material, or accept the cut knowingly.
+
+| ep88 (published 10.11.2026) | predicted hook 66-68, virality 58, overall 62, views 150-350 (score ~50) | real 48 h / 72 h: to be filled 12-13.11 |
