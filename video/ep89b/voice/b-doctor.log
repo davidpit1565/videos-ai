@@ -1,0 +1,54 @@
+video/ep89b/voice/b.wav  25.1s  7 lines
+  medians: ending -32.3 dB · level -19.1 dBFS · S residual -0.4 dB (slope +15.4 dB per sibilant/syllable)
+  flagged below: ending -57.5 dB · S residual -10.0 dB  (median - 2.5 robust sd)
+   ln   dur    gap  rate    sib    end    lvl  line
+    1  2.26  +0.18   3.1  -17.7  -43.2  -19.7  This prompt has been going viral.
+    2  4.78  +0.18  5.44  -10.5  -19.4  -17.3  What do you know about me that I might
+    3  3.12  +0.18  4.81   -9.5  -22.9  -18.7  When the response comes back, it takes
+    4  2.41  +0.85  4.56  -15.3  -39.1  -18.6  But here's where it gets even more sca
+    5  6.28  +0.18   4.3  -14.0  -32.3  -19.1  Go to ChatGPT and prompt: Based on eve
+    6  2.35  +0.18  5.11   -5.7  -28.6  -22.2  Fair warning, the responses can shake 
+    7  1.22    —    3.28  -13.8  -35.9  -20.5  Test it out. Go.
+
+  [fix] line  1: only 0.18s before the next line
+         -> raise --gap; anything under 0.3s reads as run-on
+  [fix] line  2: only 0.18s before the next line
+         -> raise --gap; anything under 0.3s reads as run-on
+  [fix] line  3: only 0.18s before the next line
+         -> raise --gap; anything under 0.3s reads as run-on
+  [fix] line  5: only 0.18s before the next line
+         -> raise --gap; anything under 0.3s reads as run-on
+  [fix] line  6: only 0.18s before the next line
+         -> raise --gap; anything under 0.3s reads as run-on
+  [note] line  6: harsh S (-5.7 dB, +5.7 against prediction)
+         -> de-esser is under-doing this line
+  [note] line  6: quiet (-22.2 dBFS vs median -19.1)
+         -> level this line before the mix
+
+  per word: 77 words · ending median -24.0 dB · S median -18.9 dB
+  weakest endings:
+      0.00s  this           ending  -45.2 dB
+      4.46s  know           ending  -42.7 dB
+      1.56s  viral.         ending  -41.1 dB
+      4.24s  not            ending  -40.1 dB
+     11.90s  even           ending  -39.7 dB
+     12.68s  scary.         ending  -39.7 dB
+     20.64s  Fair           ending  -39.2 dB
+     18.40s  five           ending  -37.1 dB
+  held too long (over 0.422s per syllable, median 0.200):
+     14.82s  .gpt           0.480s per syllable (0.48s)
+      0.00s  this           0.460s per syllable (0.46s)
+     10.64s  but            0.440s per syllable (0.44s)
+  rushed / clipped (under 0.107s per syllable):
+     16.72s  everything     0.065s per syllable (0.26s) — likely swallowed, re-roll this line
+      3.16s  about          0.090s per syllable (0.18s) — likely swallowed, re-roll this line
+      4.66s  about          0.090s per syllable (0.18s) — likely swallowed, re-roll this line
+     17.24s  about          0.100s per syllable (0.20s) — likely swallowed, re-roll this line
+     12.68s  scary.         S  -28.9 dB
+     17.84s  create         S  -22.2 dB
+      7.92s  response       S  -20.9 dB
+     22.28s  shake          S  -19.5 dB
+     14.64s  chat           S  -18.9 dB
+     16.02s  based          S  -18.9 dB
+
+  wrote video/ep89b/voice/b-doctor.json
