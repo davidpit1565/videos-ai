@@ -1,0 +1,4 @@
+Two "Me with Claude / Me with ChatGPT" images that David generated himself with ChatGPT on 10.11.2026 (original artwork, not copied from another account). Saved for the record; not published.
+- meme1-portrait.png: calm Claude (checklist: listens, understands, gives clear steps, actually helps) vs overwhelmed ChatGPT ("Not exactly what you asked... let's try again. But harder."), with a 02:37 clock.
+- meme2-square.png: Claude checklist (Listen, Understand, Explain simply, Give clear steps, Find the best solution) vs ChatGPT "Actually, it's a bit more complex... Let me explain step by step..." with an 8-step "Solution" board.
+- Both are a joke about style (opinion), not a test result. The logos on the robots and mugs are drawn by the image model, not copied from the brand pages. Instagram asks for an AI label on AI-generated images.
