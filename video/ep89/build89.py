@@ -136,7 +136,7 @@ def qbubble(i, y, rot, seed):
     return P(inner, f"qb{i}", 150, y, 780, 150, rot, "news" if i != 1 else "card", CRM if i != 1 else WHT, seed, 8, 14, "qbub")
 
 bubbles = qbubble(0, 690, -1.5, 91) + qbubble(1, 880, 1.2, 92) + qbubble(2, 1070, -.8, 93)
-stampSaved = stamp("saved", "SAVED", 330, 1090, -6, 84, "#B6402B", "A", .9, "BS", True, 30)
+stampSaved = stamp("saved", "SAVED", 330, 1090, -6, 84, "#9BE22E", "A", .95, "BS", True, 30)
 # chat for phase 4
 chat4 = ('<div class="mavt" id="fav">?</div>'
          + P('<div class="shortmsg" id="shm"><span id="shmt">write email</span></div>', "fbub", 250, 1040, 600, 150, -.8, "card", WHT, 95, 8, 15, "chb")
@@ -155,6 +155,8 @@ markup = f'''{svgdefs}
 '''
 
 extra_css = r'''
+#s2,#s3,#s4a,#s4b{visibility:hidden}
+#saved{mix-blend-mode:normal!important}
 #scr{position:absolute;left:0;top:0;width:1080px;height:1920px;z-index:0}
 .sc{z-index:2}
 
@@ -251,7 +253,7 @@ s = T["s4"]
 for i in range(3):
     js(f"tl.to('#qb{i}',{{scale:.7,opacity:0,rotation:{(-9, 7, -6)[i]},duration:.25,ease:'power2.in',transformOrigin:'50% 50%'}},{at(s - .02 + i * .05)});")
 out_("#s3", s - .04)
-js(f"tl.to('.dkcard .plus,#snd',{{opacity:1,duration:.2}},{at(s + .1)});")
+js(f"tl.to('.dkcard .plus,#snd',{{opacity:1,duration:.2}},{at(s + .4)});")
 vis("#s4a", s + .13); slam("#s4a", s + .14, dx=-280, rot=-1, s0=1.08, dur=.34)
 js(f"tl.to('#lg',{{scale:0,opacity:0,rotation:-60,duration:.35,ease:'back.in(1.5)'}},{at(s)});")
 js(f"tl.to('#ptx',{{opacity:1,duration:.3}},{at(s + .25)});")
