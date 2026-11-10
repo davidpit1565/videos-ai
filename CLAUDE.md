@@ -546,3 +546,9 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## Speak in the present tense (Roni via David, 10.11.2026)
 - Spoken lines, captions and chat talk too much in the past tense. Use the present tense ("Facebook looks through your photos", "AI does this now") in scripts, hooks and captions; past tense only when the claim is truly about something that already happened (a test we ran, a dated announcement).
+
+## When a reference link will not open, try again and use the skills (David, 10.11.2026)
+- A link David sends (Instagram, TikTok, YouTube) is never "unreachable" after one failure. Retry: (1) run `pip install -q -U yt-dlp`, then `yt-dlp` again (the `video-download` skill has the recipes), at most a few tries a few minutes apart, because Instagram rate-limits anonymous requests per IP and the same link can work on the next try (DfiCR8sqgXi opened on retry); (2) Firecrawl does not support Instagram; try Exa or the playwright tools for the page text; (3) only after all of that say plainly what failed. Never analyse a reel that was not actually seen. Download into the scratchpad `refsN/<id>/`, never into the project.
+
+## The surprise comes first in the hook (David, 10.11.2026, after episode 88)
+- The word that carries the surprise or the threat sits in the first 3 words of the first sentence ("Your photos. Facebook is looking."), and the first sentence is about 4-5 words. Episode 88 opened "Facebook can look through photos you never posted." and "never posted" only came at the end: David saw it underperform (about 23 views early on; one episode, a hypothesis, see `content-memory.md`). Check every new hook against this before building.
