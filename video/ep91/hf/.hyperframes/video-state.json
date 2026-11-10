@@ -84,15 +84,15 @@
   },
   "renders": {
     "latest": {
-      "id": "82803394-5f42-4c6e-a4a4-4c08285daa64",
-      "completedAt": 1794326480041,
+      "id": "670a67d8-3bab-4f92-9cf3-e98ac2ada7de",
+      "completedAt": 1794326535722,
       "output": "/tmp/r91-final1.mp4",
       "status": "completed",
-      "revision": "cfe1966b-e070-44d8-82c8-ae87796336cc"
+      "revision": "222e6aa9-a55d-4db1-b191-539652d5795d"
     },
     "retainedRevisions": [
-      "cfe1966b-e070-44d8-82c8-ae87796336cc",
-      "4e00f14f-c13e-4b9b-88db-cc02d7a4718a"
+      "222e6aa9-a55d-4db1-b191-539652d5795d",
+      "cfe1966b-e070-44d8-82c8-ae87796336cc"
     ]
   },
   "pendingArtifactCleanup": []

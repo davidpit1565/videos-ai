@@ -29,7 +29,7 @@
       line   3  range  3.6 st  end  -0.2    Which one are you?
       line   4  range  8.4 st  end  -1.9    Tag someone who needs the Claude one.
     tone: none steady over 0.6 s
-    music: 28% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.27 = -8.6 dB
+    music: 3% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.47 = -8.9 dB
     
     voice quality: clean
 
