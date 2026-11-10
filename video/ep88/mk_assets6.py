@@ -61,7 +61,7 @@ for f in os.listdir(OUT):
 # background: real cardboard, full frame cover (2880x1920) slightly darkened and warm
 bg = Image.open(f"{A6}/cardboard.jpg").convert("RGB")
 bg = bg.resize((int(bg.width * 1920 / bg.height), 1920), Image.LANCZOS)
-arr = np.asarray(bg, float); arr = arr * np.array((.92, .85, .72)) * 1.0
+arr = np.asarray(bg, float); gr_ = arr.mean(axis=2, keepdims=True); arr = (gr_ * .5 + arr * .5) * np.array((.72, .68, .62))
 Image.fromarray(np.clip(arr, 0, 255).astype("uint8")).save(f"{OUT}/bg_card.jpg", quality=86)
 # film grain overlay from the real Kodak scan: high-pass, rotate to portrait, mid-grey based (overlay blend)
 gr = Image.open(f"{A6}/grain.jpg").convert("L").rotate(90, expand=True)
