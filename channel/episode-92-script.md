@@ -68,3 +68,12 @@ safe-area for the one title: clean, no overlaps. qa.py: 1080x1920, 30 fps, yuv42
 ## Weak points (final2)
 Lower third of the frame is empty on the zoomed frame 0 (safe-area), dark low-contrast grey text on black is hard to read on a phone in daylight, the rewind is sampled (about 27 frames) not motion-blurred, music and sfx not heard by me, no blind-reader check was run on the new f0. Honest label: one run, results vary.
 Scores (judgements): HOOK 78 | VIRALITY 68 | OVERALL 71 | PREDICTED VIEWS ~700 (about 66 on the scale).
+
+---
+# FINAL3 (28.30 s) - David rejected the title and all three music beds; one version
+
+- NO title words. Frame 0 = the zoomed real bubbles ("Now we won't be able to talk for 47 days" + "Wait... can I have a second chance?") with only the real ChatGPT badge (icon alone, 170 px, centred in the band above the chat) which fades before the pull-back. Same smooth pull-back + chat rewind, same cuts, funny ending, whole screen, no captions as final2. Build: video/ep92/build92c.py.
+- NO music bed. Audio = sound design only (video/ep90/sfx), built by video/ep92/mix92c.py: tick/click_b per typing burst (about -19 dB re full scale before the peak is set), pop_a on incoming bubbles, select on "Yes", ding on the begging reply, pop_b on "100", about 1.3 s of true silence while the loading dots run, then impactsoft on the "HAHAHAHA" reply, 0.5 s fade at the end. Peak -6.0 dBFS and -26.8 LUFS integrated in the mp4 (deliberately light so David can add a trending audio inside Instagram; the file keeps its own audio track). Not heard by me.
+- qa.py on final3: still reports the dark-UI blockers (black frames: mean luma < 8 on the real black UI; first frame luma 7.7; frozen 6.1 s at 22-28 s: reading hold of the last reply) and a loudness BLOCKER (-26.8 LUFS vs the -14 target) which is intended for a sfx-only file. Nothing was lifted or faked to pass. No text on screen, so the safe-area text check does not apply.
+- Weak points: nothing in the first frame says what the video is about in words (the badge + the real reply must do it); lower third empty; sound is very sparse and may feel dry on a phone; no blind-reader check was run.
+- Scores (judgements): HOOK 70 | VIRALITY 66 | OVERALL 68 | PREDICTED VIEWS ~600 (about 64 on the scale).
