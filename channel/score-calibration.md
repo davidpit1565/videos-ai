@@ -53,3 +53,10 @@ Method: 30 first frames (t=1.2 s, bottom 10% cropped so the handle does not leak
 - Motion (scene-change per second, >0.01/>0.03/>0.08): final6 7.5/3.6/1.1 vs reference 7.4/4.1/2.4.
 - What gives ours away: flat crisp title strips (no ink bleed/fibre/thickness), identical tape, tiled textures, the same three photos repeated faded in the bottom half as filler, blank fake UI cards, same layout every scene. What works in the reference: halftone portraits, uneven scale and layering, real archival scans, torn cut-outs at different scales, stamps with different details.
 - Against ep88-publish-criteria.md: criterion 1 (realism >= 70) FAILS, criterion 2 partly (third level 46% of reference). Not publishable by the agreed rule; next round started.
+
+### Episode 88 final7 vs reference realism panel (10.11.2026 ~04:45; 3 Claude role-play readers; judgement)
+- Realism: ours 38/55/45 (mean ~46, was ~40 for final6), reference DeJ_gTHs-FB 72/80/80. All three again chose the reference as more real.
+- Subject clear in frame 1: ours YES (all three), reference NO (all three). Readability ours 74-82, reference 55-62. Interest ours 55-58, reference 68-80. Stop scrolling: ours maybe(leaning yes), reference maybe.
+- Motion (>0.01/>0.03/>0.08 per s): final7 7.7/3.6/1.85 vs reference 7.4/4.1/2.4.
+- Complaints: yellow strips and tape still uniform; the same scrap pile (ticket, map, stamps) unrelated to Facebook repeated; flat UI card; cake/dog photos look filtered/stock; cork background never changes; no real shadows or curl.
+- Against ep88-publish-criteria.md: criterion 1 (realism >= 70) FAILS (46 vs 70). Round 7 moved realism only ~6 points for a very large effort: code-composited collage is likely capped around 50. NOT published. Options for David: real filmed material, or accept the cut knowingly.
