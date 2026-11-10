@@ -8,7 +8,7 @@ Strongest option: block photo access at phone level. iPhone: Settings, Privacy a
 
 What Meta says: "You must opt in to use this feature, and you can turn it off at any time." and "We don't use photos and videos from your camera roll for ads targeting." Also "We also don't use photos and videos from your camera roll to improve AI at Meta", unless you choose to share them in an AI at Meta feature.
 
-What we do not know: whether this version uploads photos to Meta's servers (Meta's post does not say; a 2025 test in the US and Canada did), and the exact pop-up wording in Europe. The video is a paper-style collage: three public-domain photos from Wikimedia Commons (a beach, a birthday cake, a desk, none from anyone's Facebook) plus drawn screens, not a recording of a real account. Photo credits are on the page.
+What we do not know: whether this version uploads photos to Meta's servers (Meta's post does not say; a 2025 test in the US and Canada did), and the exact pop-up wording in Europe. The video is a paper-style collage: CC0 and public-domain photos and paper scans (a cake, a dog, a cat, bicycles, a beach, a desk, none from anyone's Facebook) plus printed-style screens we made, not a recording of a real account. Photo credits are on the page.
 
 Sources I read on 9 November 2026:
 Meta newsroom: https://about.fb.com/news/2026/04/now-rolling-out-facebooks-opt-in-camera-roll-suggestions-in-the-eu-and-uk/

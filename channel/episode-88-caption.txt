@@ -10,7 +10,7 @@ Android: Settings, Apps, Facebook, Permissions, Photos and videos, Don't allow (
 
 What Meta says (Meta newsroom, 16 April 2026, updated 31 August 2026): "You must opt in to use this feature, and you can turn it off at any time." and "We don't use photos and videos from your camera roll for ads targeting." Also: "We also don't use photos and videos from your camera roll to improve AI at Meta", unless you choose to share them in an AI at Meta feature.
 
-What we do not know: whether this version uploads your photos to Meta's servers (Meta's post does not say; a 2025 test in the US and Canada did upload them), and the exact pop-up wording in Europe. The video is a paper-style collage: three public-domain photos from Wikimedia Commons (a beach, a birthday cake, a desk, none from anyone's Facebook) plus drawn screens, not a recording of a real account. Photo credits are on the page.
+What we do not know: whether this version uploads your photos to Meta's servers (Meta's post does not say; a 2025 test in the US and Canada did upload them), and the exact pop-up wording in Europe. The video is a paper-style collage: CC0 and public-domain photos and paper scans (a cake, a dog, a cat, bicycles, a beach, a desk, none from anyone's Facebook) plus printed-style screens we made, not a recording of a real account. Photo credits are on the page.
 
 Sources and every step: https://actually-works.com/e/88 (the 4 taps, written out)
 
