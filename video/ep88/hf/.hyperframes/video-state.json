@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "1fb7666a-5dbe-436d-8874-8adbe4ef9342",
-  "currentRevision": "94eab803-6831-44fc-a734-8d08cdd77f85",
+  "currentRevision": "f0f78b65-f07e-4e58-a5c5-e32e51af14e7",
   "pendingChanges": false,
   "files": {
     "assets/facebook.svg": {
@@ -29,8 +29,8 @@
       "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/71/712b76d2f7cabaa50799d5775b8de657b8ca07dd3abb95bd793effb71b754c8d"
     },
     "index.html": {
-      "hash": "e8cfd8753e5f8ce79b95eea096e97fb4efdf62162195dae33e6f612e07709b91",
-      "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/e8/e8cfd8753e5f8ce79b95eea096e97fb4efdf62162195dae33e6f612e07709b91"
+      "hash": "ea9362fa408a28cee60c72ac6f041486fe9fde56adfb716c9ec5f49d9e2e48ae",
+      "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/ea/ea9362fa408a28cee60c72ac6f041486fe9fde56adfb716c9ec5f49d9e2e48ae"
     },
     "assets/fonts/BigShoulders-Bold.ttf": {
       "hash": "b43bcd198b9fdf717dd42aa61a34dba32e01aceaeae659d689afd0ca52c37ea2",
@@ -522,6 +522,21 @@
         "index.html": {
           "before": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/ba/ba76ecaf0bb33a7205cc6136301a727ba4ae70178fa745eb53f7ffb84bbe7094",
           "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/e8/e8cfd8753e5f8ce79b95eea096e97fb4efdf62162195dae33e6f612e07709b91"
+        }
+      }
+    },
+    "f0f78b65-f07e-4e58-a5c5-e32e51af14e7": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794274705411,
+      "endedAt": 1794274705413,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/e8/e8cfd8753e5f8ce79b95eea096e97fb4efdf62162195dae33e6f612e07709b91",
+          "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/ea/ea9362fa408a28cee60c72ac6f041486fe9fde56adfb716c9ec5f49d9e2e48ae"
         }
       }
     }
