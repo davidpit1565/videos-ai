@@ -555,3 +555,8 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## Duplicate check comes BEFORE the first idea is shown to David (10.11.2026)
 - Before proposing any topic or prompt, grep `channel/topics-covered.txt` (and `content-memory.md`) for its keywords and say what was found. On 10.11 I proposed "What do you know about me? / ChatGPT Memory" as a new idea; it was already episodes 13, 52, 70 and 84. David: "you forgot our old videos." A proposal that has not passed this check is not shown. The proven winners (86, 80, 82) are a chat AI doing something odd in a short test, and episode 86 is a numbered series ("Can it keep a secret? #1"): extending a proven format with a new subject comes before inventing a new topic.
+
+## The goal is virality, the score is only a label (David, 10.11.2026, overrides the 85/90 gates above)
+- David: "the goal is virality, not the score." The hook/virality/overall scores (85, 90) no longer block building or publishing a video. Our own validity test (24 episodes, Spearman -0.23) showed my scores do not predict views, so they cannot be a hard gate. Keep writing honest scores and predicted views as labels, log them against the real 48 h / 72 h numbers in `channel/score-calibration.md`, and never inflate a score.
+- What still blocks a video: fabrication, copyright or platform-rule risk (e.g. re-posting another account's artwork, flipped or retexted), a claim we did not test presented as a result, and comprehension: a blind reader must understand what the video is about from frame 0 (a blind reader who "would not stop scrolling" is a finding to fix if cheap, not a veto).
+- Publish as numbered experiments: each experiment states what we test, and the real numbers decide what we repeat.
