@@ -50,3 +50,7 @@ This video was made with help from Claude. OpenAI and ChatGPT are OpenAI tradema
 
 ## Weak spots (honest)
 Frame 0 is clear but not gut-level; the hook is authority plus a gap, not a felt problem. Phase 2 is the longest stretch with a still-looking card (typed text is the motion). The ending hold (about 2.6 s, SEND IT and a static message) is the longest still run and sits right at the limit. The bubbles are placeholders (grey bars), which may read as empty. The collage is the ep88 look, which David's friend Roni already flagged as "too AI" for clean cards: this one is textured, but the dark card is a clean drawn UI.
+
+## Blind reader, run 10.11.2026 (fresh agent, frame 0 + first spoken second)
+- A) Official starting prompt from OpenAI to paste; cannot tell what it does. B) Probably would not stop: "PROMPT #1" with an empty box shows no payoff, looks like a tutorial or ad. C) Guessed a generic system prompt ("act as an expert"). D) Collage of old maps and newspaper has nothing to do with ChatGPT, feels like a template; empty text box; sticker logo reads like an ad. E) Show the prompt's actual result or the surprising thing it does, "OpenAI says paste this first" as a small tag.
+- Verdict: do not publish as is; needs a real result on screen (David's 10 s screen recording).
