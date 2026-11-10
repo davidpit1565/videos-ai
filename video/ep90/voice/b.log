@@ -1,0 +1,4 @@
+      per-line seeds: {1: 6001, 2: 6002}
+      per-line exaggeration: {1: 0.78, 2: 0.72}
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.

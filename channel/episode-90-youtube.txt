@@ -1,0 +1,13 @@
+TITLE: ChatGPT is a golden retriever, Claude is a cat (joke)
+
+DESCRIPTION:
+My idea has 3 flaws. I show AI. One cheers "Perfect idea!", the other lists "3 problems. Fix #1 first." A joke about tone, not a test result: we only tested that ChatGPT tends to agree (episodes 72, 73, 80), never Claude on this.
+
+Real tip: ask any AI "What are the 3 biggest flaws in this idea?" before "Is it good?"
+
+Tag someone who needs the cat.
+
+Photos (Pexels licence): Golden Retriever by Joana https://www.pexels.com/photo/golden-retriever-in-close-up-photography-6571008/ ; Brown Tabby Cat by Jusdevoyage Lyly https://www.pexels.com/photo/close-up-shot-of-brown-tabby-cat-looking-at-camera-6012023/
+ChatGPT/OpenAI and Claude/Anthropic marks are used only to name the products; not affiliated. Made with help from Claude.
+
+TAGS: ai, chatgpt, claude, ai meme, funny ai, prompt tip
