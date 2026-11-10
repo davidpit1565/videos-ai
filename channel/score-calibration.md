@@ -45,3 +45,11 @@ Method: 30 first frames (t=1.2 s, bottom 10% cropped so the handle does not leak
 - Raters agree with each other moderately (Spearman 0.45-0.61), so the panel is consistent but not predictive.
 - Caveats: n=24, views also depend on timing/account/algorithm; the panel sees only a still frame; readers are Claude role-plays.
 - Consequence: the panel can catch confusion (CLEAR) but cannot be used as a virality gate. The 85 floor on panel scores measures nothing proven. Open for David: replace the gate with real experiments (post, read 48 h) and keep the panel only for clarity.
+
+### Episode 88 final6 vs reference realism panel (10.11.2026 ~03:40, 3 Claude role-play readers, blind X/Y boards of 4 frames each; judgement)
+- Realism: ours 35-45/100, reference DeJ_gTHs-FB 80-85/100 (all three picked the reference as more real, ours as more AI/templated).
+- Readability: ours 70-80, reference 55-65. Interest: ours 35-40, reference 78-85. Stop scrolling: ours maybe, reference yes.
+- Subject clear in the first frame: ours yes, reference no (the reference does not state its subject; ours does).
+- Motion (scene-change per second, >0.01/>0.03/>0.08): final6 7.5/3.6/1.1 vs reference 7.4/4.1/2.4.
+- What gives ours away: flat crisp title strips (no ink bleed/fibre/thickness), identical tape, tiled textures, the same three photos repeated faded in the bottom half as filler, blank fake UI cards, same layout every scene. What works in the reference: halftone portraits, uneven scale and layering, real archival scans, torn cut-outs at different scales, stamps with different details.
+- Against ep88-publish-criteria.md: criterion 1 (realism >= 70) FAILS, criterion 2 partly (third level 46% of reference). Not publishable by the agreed rule; next round started.
