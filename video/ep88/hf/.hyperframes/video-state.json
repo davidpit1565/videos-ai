@@ -493,15 +493,15 @@
   },
   "renders": {
     "latest": {
-      "id": "c524de4c-088e-404f-8694-2d4d31b18699",
-      "completedAt": 1794271178377,
-      "output": "/home/user/videos-ai/video/ep88/out/v11.mp4",
+      "id": "c8739577-82cb-4e49-8f20-5a3c5a80efc6",
+      "completedAt": 1794272375832,
+      "output": "/home/user/videos-ai/video/ep88/out/final5.mp4",
       "status": "completed",
-      "revision": "14e9df39-c5bf-4dc5-8190-b6227fc0b631"
+      "revision": "ecbc7b28-15cb-455f-9341-d390212f125e"
     },
     "retainedRevisions": [
-      "14e9df39-c5bf-4dc5-8190-b6227fc0b631",
-      "162d587f-8875-44da-82a3-3dfe07c8500a"
+      "ecbc7b28-15cb-455f-9341-d390212f125e",
+      "14e9df39-c5bf-4dc5-8190-b6227fc0b631"
     ]
   },
   "pendingArtifactCleanup": []
