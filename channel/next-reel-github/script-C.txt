@@ -1,0 +1,11 @@
+Your AI will break your app one day. Do this now.
+Say: save this version. That makes a save point, called a commit.
+Git makes the save. GitHub keeps a copy online.
+Nobody shows you this when AI builds for you.
+Now one bad edit. The app is dead.
+Say: go back to the last save that worked. It lives again.
+Want a copy if your laptop dies? Say: push it to GitHub.
+Want to test a wild idea? Say: make a branch. That is a side copy.
+Like it? Say: merge it back.
+Two sentences to keep: save this version. Go back to the last one that worked.
+Tomorrow, I'll show you why AI says to hide a secret key. Follow for the full story.

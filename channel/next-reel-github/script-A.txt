@@ -1,0 +1,12 @@
+What is GitHub? And why does everyone who builds with AI keep saying it?
+It keeps your app, and every version it ever had.
+The tool inside is Git. It tracks every change.
+If you learned to build with AI, nobody showed you this.
+Watch. One bad edit, and the app is dead.
+Tell your AI: go back to the last version that worked.
+Fixed. That version is a commit. A save point, like in a game.
+Push sends it to GitHub.
+Clone copies it to a new laptop.
+A branch is a side copy, for risky tries. Merge brings it back.
+Now say this to your AI: save this version, and push it to GitHub.
+Tomorrow, I'll show you why AI says to hide a secret key. Follow for the full story.

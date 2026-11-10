@@ -1,0 +1,40 @@
+== A
+ 1   0.0-  4.8  What is GitHub? And why does everyone who builds with AI keep saying it?
+ 2   4.8-  8.3  It keeps your app, and every version it ever had.
+ 3   8.3- 11.8  The tool inside is Git. It tracks every change.
+ 4  11.8- 15.7  If you learned to build with AI, nobody showed you this.
+ 5  15.7- 19.1  Watch. One bad edit, and the app is dead.
+ 6  19.1- 23.0  Tell your AI: go back to the last version that worked.
+ 7  23.0- 27.9  Fixed. That version is a commit. A save point, like in a game.
+ 8  27.9- 29.8  Push sends it to GitHub.
+ 9  29.8- 32.4  Clone copies it to a new laptop.
+10  32.4- 37.1  A branch is a side copy, for risky tries. Merge brings it back.
+11  37.1- 42.0  Now say this to your AI: save this version, and push it to GitHub.
+12  42.0- 48.1  Tomorrow, I'll show you why AI says to hide a secret key. Follow for the full story.
+total 48.1
+== B
+ 1   0.0-  3.4  This app just died. One sentence brought it back.
+ 2   3.4-  7.0  The sentence: go back to the last version that worked.
+ 3   7.0- 11.7  It only works if a save point exists. GitHub is where those live.
+ 4  11.7- 15.0  Nobody shows you this when AI builds your app.
+ 5  15.0- 21.0  In a game, you save ahead of the boss. In an app, that save is a commit.
+ 6  21.0- 24.4  Git makes the save. GitHub keeps a copy online.
+ 7  24.4- 26.4  Push sends your saves there.
+ 8  26.4- 28.9  Clone gets them on a new laptop.
+ 9  28.9- 33.7  A branch is a side copy, for risky tries. Merge brings it back.
+10  33.7- 36.9  So say this to your AI: save this version.
+11  36.9- 43.0  Tomorrow, I'll show you why AI says to hide a secret key. Follow for the full story.
+total 43.0
+== C
+ 1   0.0-  4.1  Your AI will break your app one day. Do this now.
+ 2   4.1-  8.5  Say: save this version. That makes a save point, called a commit.
+ 3   8.5- 11.9  Git makes the save. GitHub keeps a copy online.
+ 4  11.9- 15.1  Nobody shows you this when AI builds for you.
+ 5  15.1- 18.2  Now one bad edit. The app is dead.
+ 6  18.2- 22.6  Say: go back to the last save that worked. It lives again.
+ 7  22.6- 26.8  Want a copy if your laptop dies? Say: push it to GitHub.
+ 8  26.8- 32.2  Want to test a wild idea? Say: make a branch. That is a side copy.
+ 9  32.2- 34.5  Like it? Say: merge it back.
+10  34.5- 39.9  Two sentences to keep: save this version. Go back to the last one that worked.
+11  39.9- 46.0  Tomorrow, I'll show you why AI says to hide a secret key. Follow for the full story.
+total 46.0

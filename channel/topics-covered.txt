@@ -1,0 +1,86 @@
+1: One paste, and ChatGPT stops giving you the obvious
+2: What an AI agent actually is
+3: Your AI agent is already lying to you
+4: This video almost shipped broken
+5: Your captions are hiding behind Instagram
+6: Three things your AI agent still breaks on
+7: Your n8n agent has no idea it's wrong
+8: A check said it passed. It lied.
+9: This agent can send emails by itself. It never does.
+10: Most leads go cold before anyone even replies
+11: AI narration has a flaw you can't consciously name
+12: Most people think Claude Code is only for programmers
+13: ChatGPT can recall things about you, even in a brand new chat
+14: Everyone's sharing this claim that AI always lies to please you
+15: Gemini fixes your broken formula, already built in
+16: Someone open-sourced our own video pipeline
+17: A 5-second test for any explanation you write
+18: ChatGPT can use a website now
+19: Claude keeps your files now
+20: ChatGPT was going to buy things for you
+21: Can an AI browser actually run your errands?
+22: n8n's AI Agent can lie to you — and still show green
+23: 22 episodes in, one file keeps this from breaking
+24: Editors squeeze the picture to fit the audio. We do the opposite
+25: Your n8n retry doesn't just try again
+26: This is a real AI model. My WiFi is off.
+27: I told Claude Code the wrong bug. On purpose.
+28: Four rows started with 'test_'. Only three were.
+29: Your n8n workflow can fail completely — and still say 'Success.'
+30: AI chats love padding the answer before they actually answer you.
+31: ChatGPT needs the internet to respond. This AI doesn't — and it just proved it.
+32: n8n never tells you when a workflow dies. Almost nobody turns on the fix.
+33: Your n8n AI agent isn't broken. It's forgetting on purpose.
+34: That n8n node you built didn't run once. It ran once for every item.
+35: Your n8n automation can say \"done\" — and still do it twice.
+36: ChatGPT trains itself on everything you've ever typed to it.
+37: Google's AI has already looked at every photo you've ever taken.
+38: Ten seconds of your voice is all AI needs to clone it now.
+39: Your smart TV is watching what you watch.
+40: Do you know who's already grading how you drive?
+41: ChatGPT can now see every subscription draining your bank account
+42: Your phone might already have an AI that can catch a scammer mid-call
+43: Windows is already screenshotting your whole screen
+44: AI can already read your private messages
+45: Is your phone carrier already screening your calls?
+46: Your Copilot chats at work don't vanish when you close the tab
+47: An AI is already texting people before their trial charges them
+48: Apple's new nudity-and-gore filter never tells you when it fires
+49: Google's AI answer at the top of your search is wrong 1 in 10 times
+50: You have no idea how much you're actually paying in subscriptions
+51: AI never tells you when it's just guessing about your health or money
+52: ChatGPT has been quietly building a profile on you — even offline
+53: Software reads your resume before a person does — here's the real problem
+54: The video call might not have a real face on it — here's the test that catches most of them
+55: Amazon shut off the setting that kept your Echo's voice off its servers — here's the one fix that's left
+56: Your headphones can already translate anyone talking to you — here's the exact setup
+57: Google quietly turned your phone's camera into a live AI you can talk to
+58: WhatsApp can already redraw your photo with AI — before you even hit send
+59: Your LinkedIn profile is already teaching an AI — here's the switch that stops it
+60: Instagram's AI chat can feed your ads — and there is no off switch
+61: Google's reviewers can read some Gemini chats — even after you delete them
+62: Delete a ChatGPT chat — and OpenAI can still keep it for up to 30 days
+63: Which AI chat is riskiest for your privacy? One company ranked 13 of them
+64: Can Microsoft's Copilot use your chats to pick your ads? What its privacy statement says
+65: Can Gmail's AI write your replies? What Google's own help page says
+66: Is that Amazon sale real? Check what it cost last month: where Amazon's own price history is
+67: Does YouTube ignore the birthday you typed? What its help page says about the AI age guess
+69: Is your iPhone rewriting your notifications? How to check and turn off Apple Intelligence summaries
+70: What does ChatGPT know about you? Where to see it and how to turn Memory off
+71: Is ChatGPT using your chats to train its AI? Where the switch is and how to turn it off
+72: Does ChatGPT just agree with you? A two-message test you can run in a minute
+73: 3 ways to make ChatGPT stop agreeing with you
+74: ChatGPT named my street from one photo with no location data
+75: I covered the sign. Could ChatGPT still find the street?
+77: Your phone hides a map pin inside your photos
+76: I blurred even more of the photo. Could ChatGPT still place it?
+78: I told ChatGPT I'm texting my ex at 2am. Smart plan?
+79: I asked ChatGPT for permission to do two dumb things. It said yes to one.
+80: Does your ChatGPT cave when you push? A 30-second test
+81: Did the Custom instructions fix work? One test, A against B
+82: Did Claude get dumber on purpose? What Anthropic admitted, and how to check your effort setting
+83: Can a person read your Gemini chats? What Google says, and the one setting to check
+84: ChatGPT has been taking notes on you: how to look, and what deleting a chat does not do
+85: Does ChatGPT think you're a teen? What OpenAI says, and where to check
+86: Can it keep a secret? #1: ChatGPT and Gemini promised, then told
+87: Ctrl+Z for AI mistakes: Git brings the working file back
