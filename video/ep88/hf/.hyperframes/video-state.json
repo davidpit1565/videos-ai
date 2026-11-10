@@ -568,15 +568,15 @@
   },
   "renders": {
     "latest": {
-      "id": "07fda3ea-da75-4baf-b55c-3d6afc54d6a3",
-      "completedAt": 1794275253139,
+      "id": "1257f3e2-442a-4479-b00f-690ce334cafb",
+      "completedAt": 1794275920949,
       "output": "/home/user/videos-ai/video/ep88/out/final5.mp4",
       "status": "completed",
-      "revision": "f0f78b65-f07e-4e58-a5c5-e32e51af14e7"
+      "revision": "8cdf16e5-0cb4-45ac-b930-3467f551cf41"
     },
     "retainedRevisions": [
-      "f0f78b65-f07e-4e58-a5c5-e32e51af14e7",
-      "94eab803-6831-44fc-a734-8d08cdd77f85"
+      "8cdf16e5-0cb4-45ac-b930-3467f551cf41",
+      "f0f78b65-f07e-4e58-a5c5-e32e51af14e7"
     ]
   },
   "pendingArtifactCleanup": []
