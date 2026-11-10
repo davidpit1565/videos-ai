@@ -1,0 +1,90 @@
+=== FAIL  frame layout (safe_check_hf.js) (exit 1)
+    index.html  21.60s  109 samples every 0.2s  safe box: x 65-1015, y 269-1248
+       106px past the left line   y 692-1014  worst at 11s, over tol in 6 hits 11-12s   #d3_0  "SCARY."
+        76px past the left line   y 673-1209  worst at 20.4s, over tol in 2 hits 20.4-20.6s   #g3_0  "GO."
+        14px past the left line   y 404-503  worst at 11.8s, over tol in 5 hits 11.2-12s   #d1_0  "But"
+        14px past the left line   y 517-694  worst at 11.8s, over tol in 5 hits 11.2-12s   #d2_0  "EVEN"
+        11px past the left line   y 447-622  worst at 0.2s, over tol in 1 hits 0.2-0.2s   #aT  "THIS"
+        11px past the left line   y 325-526  worst at 20.8s, over tol in 2 hits 20.6-20.8s   #g1_0  "TEST"
+        11px past the left line   y 520-721  worst at 20.8s, over tol in 2 hits 20.6-20.8s   #g2_0  "OUT."
+      within tolerance: 4px past the right line   #aP  "PROMPT"
+      within tolerance: 7px overlap  #aT x #aP
+      within tolerance: 6px overlap  #g1_0 x #g2_0
+      within tolerance: 5px overlap  #d2_0 x #d3_0
+      within tolerance: 5px overlap  #d2_1 x #d3_0
+      within tolerance: 4px overlap  #aP x #aV
+      overlap   50px worst at 20.4s, 1 hits 20.4-20.4s   #g2_0 "OUT."  x  #g3_0 "GO."
+
+=== PASS  rendered file (qa.py --hf)
+    ep89-t1.mp4  1080x1920  30fps  21.60s  2.7MB
+      visual change: median 0.03s, longest 4.80s
+      loudness: -14.3 LUFS integrated, peak -3.7 dBFS, LRA 1.9 LU
+      loop seam: first vs last frame differ by 1.0/255
+    
+      [warn]    21.6s is outside the 30-90s band
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 184.3, std 83.3)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.3 LUFS
+      ok        peak -3.7 dBFS
+
+=== PASS  voice + music quality (voice_quality.py)
+    pitch (semitones vs each line's own median):
+      line   1  range  4.9 st  end  -0.6    This prompt has been going viral.
+      line   2  range  6.6 st  end  -0.5    What do you know about me that I might not know 
+      line   3  range  7.1 st  end  +1.2    When the response comes back, it takes a while t
+      line   4  range  8.7 st  end  -0.6    But here's where it gets even more scary.
+      line   5  range  6.8 st  end  -0.1    Go to ChatGPT and prompt: Based on everything yo
+      line   6  range  2.2 st  end  +nan    Fair warning, the responses can shake you a bit.
+      line   7  range  2.8 st  end  +0.2    Test it out. Go.
+    tone: none steady over 0.6 s
+    music: 17% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.23 = -7.9 dB
+    
+    voice quality: clean
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep89c/out/narration89c.wav  21.6s  7 lines
+      medians: ending -29.4 dB · level -19.4 dBFS · S residual -0.6 dB (slope +34.7 dB per sibilant/syllable)
+      flagged below: ending -50.5 dB · S residual -4.7 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  1.87  +0.16  3.74  -16.5  -35.1  -19.4  This prompt has been going viral.
+        2  4.27  +0.17  6.09  -10.9  -21.9  -18.2  What do you know about me that I might
+        3  2.68  +0.16   5.6   -5.6  -19.0  -19.0  When the response comes back, it takes
+        4  2.16  +0.76  5.09  -11.9  -33.9  -19.4  But here's where it gets even more sca
+        5  4.96  +0.16  5.44  -15.0  -43.9  -18.9  Go to ChatGPT and prompt: Based on eve
+        6  1.94  +0.16  6.19   -3.0  -28.1  -20.9  Fair warning, the responses can shake 
+        7  1.31    —    3.05  -11.9  -29.4  -24.3  Test it out. Go.
+    
+      [fix] line  1: only 0.16s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  2: only 0.17s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  3: only 0.16s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  5: only 0.16s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  6: only 0.16s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [note] line  1: dull S (-16.5 dB, -6.4 against what this line's own sibilants predict)
+             -> lift 6-8 kHz on this line, or re-roll it
+      [note] line  6: harsh S (-3.0 dB, +5.5 against prediction)
+             -> de-esser is under-doing this line
+      [note] line  7: quiet (-24.3 dBFS vs median -19.4)
+             -> level this line before the mix
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  FAIL  frame layout (safe_check_hf.js) (exit 1)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+SOMETHING FAILED - do not send this file

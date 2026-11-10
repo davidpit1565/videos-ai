@@ -1,0 +1,517 @@
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-ExtraBold.otf");font-weight:800}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Medium.otf");font-weight:500}
+@font-face{font-family:"JBM";src:url("assets/fonts/JetBrainsMono-Bold.ttf");font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;font-weight:500;color:#0f0f0f}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
+
+.bgw{position:absolute;left:0;top:0;width:1080px;height:2000px;background-repeat:repeat-y;background:#ecebe5 url(assets/bg.jpg);background-size:1080px 1920px}
+.scene{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#sA{opacity:1}
+.hk{position:absolute;left:65px;width:950px;color:#0f0f0f;white-space:nowrap}
+.w,.v{display:inline-block} .w{opacity:0}
+.hv,.h1,.h2 .hv,.d2,.d3,.g1,.g2,.g3{font-weight:900;letter-spacing:-.045em}
+.l{font-weight:500;letter-spacing:-.02em}
+.h1{top:455px;font-size:148px;line-height:164px;font-weight:900;letter-spacing:-.045em}
+.h2{top:622px;font-size:56px;line-height:170px;display:flex;align-items:baseline;gap:18px}
+.h2 .hv{font-size:140px;letter-spacing:-.045em}
+.org{color:#D97757}
+.badge{position:absolute;left:65px;top:300px;width:128px;height:128px;border-radius:30px;background:#fff;border:4px solid #0f0f0f;display:flex;align-items:center;justify-content:center;box-shadow:7px 7px 0 #0f0f0f}
+.badge img{width:66%;height:66%}
+.badge.big{left:370px;top:560px;width:340px;height:340px;border-radius:70px;box-shadow:14px 14px 0 #0f0f0f;border-width:7px;opacity:0;z-index:50}
+.ul{position:absolute;left:480px;top:775px;width:520px;height:44px}
+.comp{position:absolute;left:80px;width:920px;background:#17181b;border-radius:40px;box-shadow:0 26px 50px rgba(20,20,20,.28),0 3px 0 #000;border:2px solid #2b2c32;z-index:20;font-weight:500}
+.chd{position:absolute;left:44px;top:36px;height:70px;display:flex;align-items:center;gap:22px}
+.chlogo{height:62px;width:62px;filter:invert(1)}
+.txt{position:absolute;left:48px;right:48px;top:136px;font-size:72px;line-height:96px;color:#f2f2ee;letter-spacing:-.015em}
+.tw{display:inline-block;white-space:nowrap;margin-right:.26em}
+.L{opacity:0;position:relative;display:inline-block}
+.L::after{content:"";position:absolute;right:-9px;top:.14em;width:6px;height:.78em;background:#fff;opacity:var(--cur,0)}
+.blA{position:absolute;left:48px;top:150px;width:6px;height:70px;background:#fff}
+.cbt{position:absolute;left:44px;right:44px;bottom:36px;height:88px;display:flex;align-items:center;justify-content:space-between}
+.plus{width:88px;height:88px;border-radius:50%;border:3px solid #3a3b42;display:flex;align-items:center;justify-content:center}
+.send{width:88px;height:88px;border-radius:50%;background:#5c5d63;display:flex;align-items:center;justify-content:center}
+.tag{position:absolute;left:80px;top:296px;height:84px;padding:0 34px;background:#0b0b0b;color:#fff;font-family:JBM,monospace;font-weight:700;font-size:42px;letter-spacing:.04em;display:flex;align-items:center;border-radius:8px;z-index:30;opacity:0}
+.curve{position:absolute;left:0;top:0;width:1080px;height:1920px;z-index:25;opacity:0;pointer-events:none}
+.ans{position:absolute;left:80px;width:920px;background:#17181b;border-radius:40px;box-shadow:0 26px 50px rgba(20,20,20,.28),0 3px 0 #000;border:2px solid #2b2c32;z-index:20;opacity:0;overflow:hidden}
+.dots{display:flex;gap:14px;align-items:center;margin-left:8px}.dots b{display:block;width:20px;height:20px;border-radius:50%;background:#f2f2ee;opacity:.35}
+.rows{position:absolute;left:48px;right:48px;top:136px;filter:blur(9px);}
+.row{display:flex;gap:18px;height:38px;margin-bottom:20px;opacity:0}.row i{display:block;height:26px;margin-top:6px;border-radius:13px;background:#dcdce0}.row.sp{height:20px;margin-bottom:0}
+.c1{top:300px;font-size:60px;line-height:76px} .c2{top:376px;font-size:104px;line-height:116px} .c3{top:492px;font-size:104px;line-height:116px}
+.c1 .w{font-weight:500;letter-spacing:-.02em;margin-right:16px} .c2 .w,.c3 .w{margin-right:24px;letter-spacing:-.045em}
+.sel{position:relative;isolation:isolate;display:inline-block}
+.sel::before{content:"";position:absolute;left:-14px;right:-10px;top:6px;bottom:2px;background:#0b0b0b;transform-origin:0 50%;transform:scaleX(var(--s,0));z-index:-1}
+.d1{top:420px;font-size:78px;line-height:96px} .d1 .w{font-weight:500;letter-spacing:-.02em;margin-right:16px}
+.d2{top:530px;font-size:162px;line-height:172px} .d2 .w{margin-right:30px}
+.d3{top:720px;font-size:238px;line-height:256px}
+.scr{position:absolute;left:40px;width:1000px;height:300px;pointer-events:none}
+#scD{top:700px;left:60px;width:960px;height:320px} #scG{top:880px}
+.g1{top:330px;font-size:180px;line-height:196px} .g1 .w{margin-right:34px} .g2{top:510px;font-size:180px;line-height:196px} .g3{top:760px;font-size:430px;line-height:440px}
+.wipe{position:absolute;left:0;top:0;width:3200px;height:2800px;z-index:100;filter:blur(5px);opacity:0;pointer-events:none;transform-origin:0 0}
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="21.6" data-width="1080" data-height="1920">
+
+<div class="bgw" data-decor></div>
+<div class="scene" id="sA"><div class="badge" id="bdg"><img src="assets/openai.svg"></div>
+ <div class="hk h1" id="hA1"><span class="v" id="aT">THIS</span> <span class="v" id="aP">PROMPT</span></div>
+ <div class="hk h2" id="hA2"><span class="w l" id="aL0">has</span> <span class="w l" id="aL1">been</span> <span class="w l" id="aL2">going</span> <span class="w hv" id="aV">VIRAL.</span></div>
+ <svg class="ul" id="ulA" viewBox="0 0 520 60" preserveAspectRatio="none"><path id="ulAp" d="M6 36 C 90 14, 170 50, 260 28 S 430 14, 514 30" pathLength="1" stroke="#0f0f0f" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg>
+</div>
+<div class="tag" id="tag1">PROMPT 1</div><svg class="curve" id="cv1" viewBox="0 0 1080 1920"><mask id="m1"><path id="mp1" d="M 372 340 C 470 296 600 318 650 404" pathLength="1" stroke="#fff" stroke-width="16" fill="none" stroke-dasharray="1 1" stroke-dashoffset="1"/></mask><path d="M 372 340 C 470 296 600 318 650 404" stroke="#0f0f0f" stroke-width="5" fill="none" stroke-dasharray="4 16" stroke-linecap="round" mask="url(#m1)"/></svg>
+<div class="comp" id="card" style="top:830px;height:410px"><div class="chd"><img class="chlogo" src="assets/openai.svg"></div><div class="txt" id="cardt"><span class="tw"><span class="L" id="a0">W</span><span class="L" id="a1">h</span><span class="L" id="a2">a</span><span class="L" id="a3">t</span></span><span class="tw"><span class="L" id="a4">d</span><span class="L" id="a5">o</span></span><span class="tw"><span class="L" id="a6">y</span><span class="L" id="a7">o</span><span class="L" id="a8">u</span></span><span class="tw"><span class="L" id="a9">k</span><span class="L" id="a10">n</span><span class="L" id="a11">o</span><span class="L" id="a12">w</span></span><span class="tw"><span class="L" id="a13">a</span><span class="L" id="a14">b</span><span class="L" id="a15">o</span><span class="L" id="a16">u</span><span class="L" id="a17">t</span></span><span class="tw"><span class="L" id="a18">m</span><span class="L" id="a19">e</span></span><span class="tw"><span class="L" id="a20">t</span><span class="L" id="a21">h</span><span class="L" id="a22">a</span><span class="L" id="a23">t</span></span><span class="tw"><span class="L" id="a24">I</span></span><span class="tw"><span class="L" id="a25">m</span><span class="L" id="a26">i</span><span class="L" id="a27">g</span><span class="L" id="a28">h</span><span class="L" id="a29">t</span></span><span class="tw"><span class="L" id="a30">n</span><span class="L" id="a31">o</span><span class="L" id="a32">t</span></span><span class="tw"><span class="L" id="a33">k</span><span class="L" id="a34">n</span><span class="L" id="a35">o</span><span class="L" id="a36">w</span></span><span class="tw"><span class="L" id="a37">a</span><span class="L" id="a38">b</span><span class="L" id="a39">o</span><span class="L" id="a40">u</span><span class="L" id="a41">t</span></span><span class="tw"><span class="L" id="a42">m</span><span class="L" id="a43">y</span><span class="L" id="a44">s</span><span class="L" id="a45">e</span><span class="L" id="a46">l</span><span class="L" id="a47">f</span><span class="L" id="a48">,</span></span><span class="tw"><span class="L" id="a49">b</span><span class="L" id="a50">a</span><span class="L" id="a51">s</span><span class="L" id="a52">e</span><span class="L" id="a53">d</span></span><span class="tw"><span class="L" id="a54">o</span><span class="L" id="a55">n</span></span><span class="tw"><span class="L" id="a56">o</span><span class="L" id="a57">u</span><span class="L" id="a58">r</span></span><span class="tw"><span class="L" id="a59">p</span><span class="L" id="a60">r</span><span class="L" id="a61">e</span><span class="L" id="a62">v</span><span class="L" id="a63">i</span><span class="L" id="a64">o</span><span class="L" id="a65">u</span><span class="L" id="a66">s</span></span><span class="tw"><span class="L" id="a67">i</span><span class="L" id="a68">n</span><span class="L" id="a69">t</span><span class="L" id="a70">e</span><span class="L" id="a71">r</span><span class="L" id="a72">a</span><span class="L" id="a73">c</span><span class="L" id="a74">t</span><span class="L" id="a75">i</span><span class="L" id="a76">o</span><span class="L" id="a77">n</span><span class="L" id="a78">s</span><span class="L" id="a79">?</span></span></div><div class="blA" id="blA"></div><div class="cbt"><div class="plus"><svg viewBox="0 0 40 40" width="52" height="52"><path d="M20 8v24M8 20h24" stroke="#d8d8dc" stroke-width="4.5" stroke-linecap="round"/></svg></div><div class="send" id="cards"><svg viewBox="0 0 40 40" width="46" height="46"><path d="M20 31V10M11 18l9-9 9 9" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div>
+<div class="scene" id="sC"><div class="hk c1"><span class="w l" id="c1_0">When</span><span class="w l" id="c1_1">the</span><span class="w l" id="c1_2">response</span><span class="w l" id="c1_3">comes</span><span class="w l" id="c1_4">back,</span></div>
+ <div class="hk c2"><span class="w hv" id="c2_0">IT</span><span class="w hv" id="c2_1">TAKES</span><span class="w hv" id="c2_2">A</span><span class="w hv" id="c2_3">WHILE</span></div>
+ <div class="hk c3"><span class="w hv" id="c3_0">TO</span><span class="w hv" id="c3_1"><span class=sel id=selC>PROCESS.</span></span></div></div>
+<div class="ans" id="ansC" style="top:650px;height:590px"><div class="chd"><img class="chlogo" src="assets/openai.svg"><div class="dots"><b></b><b></b><b></b></div></div><div class="rows" id="ansCr"><div class="row"><i style="width:360px;height:34px"></i></div><div class="row"><i style="width:141px"></i><i style="width:129px"></i><i style="width:127px"></i><i style="width:135px"></i></div><div class="row"><i style="width:93px"></i><i style="width:135px"></i><i style="width:130px"></i><i style="width:150px"></i><i style="width:148px"></i><i style="width:93px"></i></div><div class="row"><i style="width:127px"></i><i style="width:108px"></i><i style="width:88px"></i><i style="width:81px"></i><i style="width:138px"></i><i style="width:75px"></i><i style="width:146px"></i></div><div class="row sp"></div><div class="row"><i style="width:127px"></i><i style="width:148px"></i><i style="width:90px"></i><i style="width:149px"></i><i style="width:71px"></i></div><div class="row"><i style="width:77px"></i><i style="width:74px"></i><i style="width:94px"></i><i style="width:100px"></i><i style="width:146px"></i><i style="width:73px"></i><i style="width:129px"></i></div><div class="row"><i style="width:126px"></i><i style="width:145px"></i><i style="width:95px"></i><i style="width:136px"></i><i style="width:99px"></i><i style="width:107px"></i><i style="width:133px"></i></div><div class="row sp"></div><div class="row"><i style="width:80px"></i><i style="width:128px"></i><i style="width:105px"></i><i style="width:122px"></i><i style="width:140px"></i><i style="width:80px"></i><i style="width:102px"></i></div><div class="row"><i style="width:99px"></i><i style="width:135px"></i><i style="width:106px"></i><i style="width:73px"></i><i style="width:78px"></i><i style="width:142px"></i><i style="width:83px"></i><i style="width:121px"></i></div><div class="row"><i style="width:107px"></i><i style="width:119px"></i><i style="width:78px"></i><i style="width:72px"></i><i style="width:70px"></i><i style="width:97px"></i><i style="width:96px"></i><i style="width:76px"></i></div></div></div>
+<div class="scene" id="sD"><div class="hk d1"><span class="w l" id="d1_0">But</span><span class="w l" id="d1_1">here's</span><span class="w l" id="d1_2">where</span><span class="w l" id="d1_3">it</span><span class="w l" id="d1_4">gets</span></div>
+ <div class="hk d2"><span class="w hv" id="d2_0">EVEN</span><span class="w hv" id="d2_1">MORE</span></div>
+ <div class="hk d3"><span class="w hv org" id="d3_0">SCARY.</span></div>
+ <svg class="scr" id="scD" viewBox="0 0 1000 300" preserveAspectRatio="none"><path id="spD" d="M 40 150 C 20 40, 300 -2, 520 6 C 800 12, 990 60, 975 170 C 960 280, 640 300, 470 296 C 220 292, 28 270, 30 140 C 32 70, 120 40, 200 30" pathLength="1" stroke="#D97757" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg></div>
+<div class="tag" id="tag2">PROMPT 2</div><svg class="curve" id="cv2" viewBox="0 0 1080 1920"><mask id="m2"><path id="mp2" d="M 372 340 C 470 296 600 318 650 404" pathLength="1" stroke="#fff" stroke-width="16" fill="none" stroke-dasharray="1 1" stroke-dashoffset="1"/></mask><path d="M 372 340 C 470 296 600 318 650 404" stroke="#0f0f0f" stroke-width="5" fill="none" stroke-dasharray="4 16" stroke-linecap="round" mask="url(#m2)"/></svg>
+<div class="comp" id="card2" style="top:410px;height:820px"><div class="chd"><img class="chlogo" src="assets/openai.svg"></div><div class="txt" id="card2t"><span class="tw"><span class="L" id="b0">B</span><span class="L" id="b1">a</span><span class="L" id="b2">s</span><span class="L" id="b3">e</span><span class="L" id="b4">d</span></span><span class="tw"><span class="L" id="b5">o</span><span class="L" id="b6">n</span></span><span class="tw"><span class="L" id="b7">e</span><span class="L" id="b8">v</span><span class="L" id="b9">e</span><span class="L" id="b10">r</span><span class="L" id="b11">y</span><span class="L" id="b12">t</span><span class="L" id="b13">h</span><span class="L" id="b14">i</span><span class="L" id="b15">n</span><span class="L" id="b16">g</span></span><span class="tw"><span class="L" id="b17">y</span><span class="L" id="b18">o</span><span class="L" id="b19">u</span></span><span class="tw"><span class="L" id="b20">k</span><span class="L" id="b21">n</span><span class="L" id="b22">o</span><span class="L" id="b23">w</span></span><span class="tw"><span class="L" id="b24">a</span><span class="L" id="b25">b</span><span class="L" id="b26">o</span><span class="L" id="b27">u</span><span class="L" id="b28">t</span></span><span class="tw"><span class="L" id="b29">m</span><span class="L" id="b30">e</span><span class="L" id="b31">,</span></span><span class="tw"><span class="L" id="b32">c</span><span class="L" id="b33">r</span><span class="L" id="b34">e</span><span class="L" id="b35">a</span><span class="L" id="b36">t</span><span class="L" id="b37">e</span></span><span class="tw"><span class="L" id="b38">m</span><span class="L" id="b39">e</span></span><span class="tw"><span class="L" id="b40">5</span></span><span class="tw"><span class="L" id="b41">q</span><span class="L" id="b42">u</span><span class="L" id="b43">e</span><span class="L" id="b44">s</span><span class="L" id="b45">t</span><span class="L" id="b46">i</span><span class="L" id="b47">o</span><span class="L" id="b48">n</span><span class="L" id="b49">s</span></span><span class="tw"><span class="L" id="b50">t</span><span class="L" id="b51">o</span></span><span class="tw"><span class="L" id="b52">m</span><span class="L" id="b53">y</span></span><span class="tw"><span class="L" id="b54">f</span><span class="L" id="b55">u</span><span class="L" id="b56">t</span><span class="L" id="b57">u</span><span class="L" id="b58">r</span><span class="L" id="b59">e</span></span><span class="tw"><span class="L" id="b60">s</span><span class="L" id="b61">e</span><span class="L" id="b62">l</span><span class="L" id="b63">f</span><span class="L" id="b64">.</span></span></div><div class="cbt"><div class="plus"><svg viewBox="0 0 40 40" width="52" height="52"><path d="M20 8v24M8 20h24" stroke="#d8d8dc" stroke-width="4.5" stroke-linecap="round"/></svg></div><div class="send" id="card2s"><svg viewBox="0 0 40 40" width="46" height="46"><path d="M20 31V10M11 18l9-9 9 9" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div>
+<div class="badge big" id="bdg2"><img src="assets/openai.svg"></div>
+<div class="scene" id="sF"><div class="hk c1"><span class="w l" id="f1_0">Fair</span><span class="w l" id="f1_1">warning,</span><span class="w l" id="f1_2">the</span><span class="w l" id="f1_3">responses</span></div>
+ <div class="hk c2"><span class="w hv" id="f2_0">CAN</span><span class="w hv" id="f2_1">SHAKE</span><span class="w hv" id="f2_2">YOU</span></div>
+ <div class="hk c3"><span class="w hv" id="f3_0"><span class=sel id=selF>A BIT.</span></span></div></div>
+<div class="ans" id="ansF" style="top:650px;height:590px"><div class="chd"><img class="chlogo" src="assets/openai.svg"><div class="dots"><b></b><b></b><b></b></div></div><div class="rows" id="ansFr"><div class="row"><i style="width:360px;height:34px"></i></div><div class="row"><i style="width:114px"></i><i style="width:146px"></i><i style="width:147px"></i><i style="width:106px"></i><i style="width:81px"></i><i style="width:135px"></i></div><div class="row"><i style="width:120px"></i><i style="width:123px"></i><i style="width:72px"></i><i style="width:74px"></i><i style="width:83px"></i><i style="width:126px"></i><i style="width:98px"></i><i style="width:114px"></i></div><div class="row"><i style="width:133px"></i><i style="width:112px"></i><i style="width:147px"></i><i style="width:139px"></i><i style="width:123px"></i><i style="width:95px"></i></div><div class="row sp"></div><div class="row"><i style="width:91px"></i><i style="width:98px"></i><i style="width:125px"></i><i style="width:122px"></i><i style="width:142px"></i></div><div class="row"><i style="width:139px"></i><i style="width:124px"></i><i style="width:108px"></i><i style="width:105px"></i><i style="width:135px"></i><i style="width:98px"></i><i style="width:122px"></i></div><div class="row"><i style="width:136px"></i><i style="width:88px"></i><i style="width:109px"></i><i style="width:108px"></i><i style="width:145px"></i></div><div class="row sp"></div><div class="row"><i style="width:120px"></i><i style="width:149px"></i><i style="width:82px"></i><i style="width:117px"></i><i style="width:87px"></i></div><div class="row"><i style="width:89px"></i><i style="width:113px"></i><i style="width:78px"></i><i style="width:140px"></i><i style="width:120px"></i><i style="width:90px"></i><i style="width:123px"></i></div><div class="row"><i style="width:129px"></i><i style="width:106px"></i><i style="width:149px"></i><i style="width:89px"></i><i style="width:111px"></i></div></div></div>
+<div class="scene" id="sG"><div class="hk g1"><span class="w hv" id="g1_0">TEST</span><span class="w hv" id="g1_1">IT</span></div><div class="hk g2"><span class="w hv" id="g2_0">OUT.</span></div>
+ <div class="hk g3"><span class="w hv org" id="g3_0">GO.</span></div>
+ <svg class="scr" id="scG" viewBox="0 0 1000 300" preserveAspectRatio="none"><path id="spG" d="M 30 170 C 10 50, 330 4, 520 8 C 790 12, 985 70, 965 170 C 945 270, 640 296, 450 292 C 200 288, 30 262, 38 150 C 44 80, 130 44, 230 34" pathLength="1" stroke="#D97757" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg></div>
+<div class="wipe" id="wipe"><svg viewBox="0 0 3200 2800" width="3200" height="2800"><path d="M 170 0 L 0 93 L 170 187 L 0 280 L 170 373 L 0 467 L 170 560 L 0 653 L 170 747 L 0 840 L 170 933 L 0 1027 L 170 1120 L 0 1213 L 170 1307 L 0 1400 L 170 1493 L 0 1587 L 170 1680 L 0 1773 L 170 1867 L 0 1960 L 170 2053 L 0 2147 L 170 2240 L 0 2333 L 170 2427 L 0 2520 L 170 2613 L 0 2707 L 170 2800 L 3030 2800 L 3200 2707 L 3030 2613 L 3200 2520 L 3030 2427 L 3200 2333 L 3030 2240 L 3200 2147 L 3030 2053 L 3200 1960 L 3030 1867 L 3200 1773 L 3030 1680 L 3200 1587 L 3030 1493 L 3200 1400 L 3030 1307 L 3200 1213 L 3030 1120 L 3200 1027 L 3030 933 L 3200 840 L 3030 747 L 3200 653 L 3030 560 L 3200 467 L 3030 373 L 3200 280 L 3030 187 L 3200 93 L 3030 0 Z" fill="#0b0b0b"/></svg></div>
+
+</div>
+<script>
+const C={"lines": [{"n": 1, "text": "This prompt has been going viral.", "start": 0.07, "end": 1.94}, {"n": 2, "text": "What do you know about me that I might not know about myself, based on our previous interactions?", "start": 2.1, "end": 6.37}, {"n": 3, "text": "When the response comes back, it takes a while to process.", "start": 6.54, "end": 9.22}, {"n": 4, "text": "But here's where it gets even more scary.", "start": 9.38, "end": 11.54}, {"n": 5, "text": "Go to ChatGPT and prompt: Based on everything you know about me, create me five questions to my future self.", "start": 12.3, "end": 17.26}, {"n": 6, "text": "Fair warning, the responses can shake you a bit.", "start": 17.42, "end": 19.36}, {"n": 7, "text": "Test it out. Go.", "start": 19.52, "end": 20.83}], "D": 21.6}; const D=21.6; window.__cues=C; window.__CUES=C;
+const tl=gsap.timeline({paused:true});
+gsap.set('#bdg2',{opacity:0});
+tl.fromTo('.bgw',{y:0},{y:-70,duration:10.8,ease:'sine.inOut',yoyo:true,repeat:1},0);
+tl.fromTo('#blA',{opacity:1},{opacity:0,duration:.4,ease:'sine.inOut',repeat:4,yoyo:true},0);
+tl.fromTo('#aT',{scale:1},{scale:1.03,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 70%'},0.07);
+tl.fromTo('#aP',{scale:1},{scale:1.03,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 70%'},0.280);
+tl.fromTo('#aL0',{opacity:0,y:34},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},0.550);
+tl.fromTo('#aL1',{opacity:0,y:34},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},0.830);
+tl.fromTo('#aL2',{opacity:0,y:34},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},0.970);
+tl.fromTo('#aV',{opacity:0,y:60},{opacity:1,y:0,duration:0.22,ease:'power2.out',immediateRender:false},1.140);
+tl.to('#ulAp',{strokeDashoffset:0,duration:0.45,ease:'power1.inOut'},1.230);
+tl.fromTo('#aV',{scale:1},{scale:1.06,duration:.25,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 70%'},1.300);
+tl.fromTo('#bdg',{rotation:-3},{rotation:3,duration:1.9,ease:'sine.inOut'},0);
+tl.fromTo('#card',{y:0},{y:-10,duration:1.9,ease:'sine.inOut'},0);
+tl.to('#sA',{opacity:0,filter:'blur(16px)',duration:0.26,ease:'power1.in'},1.880);
+tl.to('#card',{top:410,height:830,duration:.55,ease:'expo.inOut'},1.880);
+tl.set('#blA',{opacity:0},2.080);
+tl.fromTo('#tag1',{opacity:0,x:-30,rotation:-4},{opacity:1,x:0,rotation:-1.5,duration:.3,ease:'power3.out',immediateRender:false},2.000);
+tl.set('#cv1',{opacity:1},2.030);
+tl.to('#mp1',{strokeDashoffset:0,duration:0.5,ease:'power2.inOut'},2.060);
+tl.fromTo('#a0',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.020);
+tl.fromTo('#a1',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.092);
+tl.set('#a0',{'--cur':0},2.092);
+tl.fromTo('#a2',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.164);
+tl.set('#a1',{'--cur':0},2.164);
+tl.fromTo('#a3',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.236);
+tl.set('#a2',{'--cur':0},2.236);
+tl.fromTo('#a4',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.340);
+tl.set('#a3',{'--cur':0},2.340);
+tl.fromTo('#a5',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.403);
+tl.set('#a4',{'--cur':0},2.403);
+tl.fromTo('#a6',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.480);
+tl.set('#a5',{'--cur':0},2.480);
+tl.fromTo('#a7',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.510);
+tl.set('#a6',{'--cur':0},2.510);
+tl.fromTo('#a8',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.540);
+tl.set('#a7',{'--cur':0},2.540);
+tl.fromTo('#a9',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.580);
+tl.set('#a8',{'--cur':0},2.580);
+tl.fromTo('#a10',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.603);
+tl.set('#a9',{'--cur':0},2.603);
+tl.fromTo('#a11',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.625);
+tl.set('#a10',{'--cur':0},2.625);
+tl.fromTo('#a12',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.647);
+tl.set('#a11',{'--cur':0},2.647);
+tl.fromTo('#a13',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.680);
+tl.set('#a12',{'--cur':0},2.680);
+tl.fromTo('#a14',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.712);
+tl.set('#a13',{'--cur':0},2.712);
+tl.fromTo('#a15',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.745);
+tl.set('#a14',{'--cur':0},2.745);
+tl.fromTo('#a16',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.777);
+tl.set('#a15',{'--cur':0},2.777);
+tl.fromTo('#a17',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.810);
+tl.set('#a16',{'--cur':0},2.810);
+tl.fromTo('#a18',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.860);
+tl.set('#a17',{'--cur':0},2.860);
+tl.fromTo('#a19',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},2.959);
+tl.set('#a18',{'--cur':0},2.959);
+tl.fromTo('#a20',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.080);
+tl.set('#a19',{'--cur':0},3.080);
+tl.fromTo('#a21',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.147);
+tl.set('#a20',{'--cur':0},3.147);
+tl.fromTo('#a22',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.215);
+tl.set('#a21',{'--cur':0},3.215);
+tl.fromTo('#a23',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.282);
+tl.set('#a22',{'--cur':0},3.282);
+tl.fromTo('#a24',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.380);
+tl.set('#a23',{'--cur':0},3.380);
+tl.fromTo('#a25',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.480);
+tl.set('#a24',{'--cur':0},3.480);
+tl.fromTo('#a26',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.505);
+tl.set('#a25',{'--cur':0},3.505);
+tl.fromTo('#a27',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.530);
+tl.set('#a26',{'--cur':0},3.530);
+tl.fromTo('#a28',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.556);
+tl.set('#a27',{'--cur':0},3.556);
+tl.fromTo('#a29',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.581);
+tl.set('#a28',{'--cur':0},3.581);
+tl.fromTo('#a30',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.620);
+tl.set('#a29',{'--cur':0},3.620);
+tl.fromTo('#a31',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.680);
+tl.set('#a30',{'--cur':0},3.680);
+tl.fromTo('#a32',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.740);
+tl.set('#a31',{'--cur':0},3.740);
+tl.fromTo('#a33',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.820);
+tl.set('#a32',{'--cur':0},3.820);
+tl.fromTo('#a34',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.856);
+tl.set('#a33',{'--cur':0},3.856);
+tl.fromTo('#a35',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.892);
+tl.set('#a34',{'--cur':0},3.892);
+tl.fromTo('#a36',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.928);
+tl.set('#a35',{'--cur':0},3.928);
+tl.fromTo('#a37',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},3.980);
+tl.set('#a36',{'--cur':0},3.980);
+tl.fromTo('#a38',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.009);
+tl.set('#a37',{'--cur':0},4.009);
+tl.fromTo('#a39',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.038);
+tl.set('#a38',{'--cur':0},4.038);
+tl.fromTo('#a40',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.066);
+tl.set('#a39',{'--cur':0},4.066);
+tl.fromTo('#a41',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.095);
+tl.set('#a40',{'--cur':0},4.095);
+tl.fromTo('#a42',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.140);
+tl.set('#a41',{'--cur':0},4.140);
+tl.fromTo('#a43',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.189);
+tl.set('#a42',{'--cur':0},4.189);
+tl.fromTo('#a44',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.238);
+tl.set('#a43',{'--cur':0},4.238);
+tl.fromTo('#a45',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.287);
+tl.set('#a44',{'--cur':0},4.287);
+tl.fromTo('#a46',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.335);
+tl.set('#a45',{'--cur':0},4.335);
+tl.fromTo('#a47',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.384);
+tl.set('#a46',{'--cur':0},4.384);
+tl.fromTo('#a48',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.433);
+tl.set('#a47',{'--cur':0},4.433);
+tl.fromTo('#a49',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.520);
+tl.set('#a48',{'--cur':0},4.520);
+tl.fromTo('#a50',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.599);
+tl.set('#a49',{'--cur':0},4.599);
+tl.fromTo('#a51',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.678);
+tl.set('#a50',{'--cur':0},4.678);
+tl.fromTo('#a52',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.758);
+tl.set('#a51',{'--cur':0},4.758);
+tl.fromTo('#a53',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.837);
+tl.set('#a52',{'--cur':0},4.837);
+tl.fromTo('#a54',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},4.960);
+tl.set('#a53',{'--cur':0},4.960);
+tl.fromTo('#a55',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.077);
+tl.set('#a54',{'--cur':0},5.077);
+tl.fromTo('#a56',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.220);
+tl.set('#a55',{'--cur':0},5.220);
+tl.fromTo('#a57',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.250);
+tl.set('#a56',{'--cur':0},5.250);
+tl.fromTo('#a58',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.280);
+tl.set('#a57',{'--cur':0},5.280);
+tl.fromTo('#a59',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.320);
+tl.set('#a58',{'--cur':0},5.320);
+tl.fromTo('#a60',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.347);
+tl.set('#a59',{'--cur':0},5.347);
+tl.fromTo('#a61',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.374);
+tl.set('#a60',{'--cur':0},5.374);
+tl.fromTo('#a62',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.401);
+tl.set('#a61',{'--cur':0},5.401);
+tl.fromTo('#a63',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.428);
+tl.set('#a62',{'--cur':0},5.428);
+tl.fromTo('#a64',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.455);
+tl.set('#a63',{'--cur':0},5.455);
+tl.fromTo('#a65',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.482);
+tl.set('#a64',{'--cur':0},5.482);
+tl.fromTo('#a66',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.509);
+tl.set('#a65',{'--cur':0},5.509);
+tl.fromTo('#a67',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.560);
+tl.set('#a66',{'--cur':0},5.560);
+tl.fromTo('#a68',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.596);
+tl.set('#a67',{'--cur':0},5.596);
+tl.fromTo('#a69',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.632);
+tl.set('#a68',{'--cur':0},5.632);
+tl.fromTo('#a70',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.668);
+tl.set('#a69',{'--cur':0},5.668);
+tl.fromTo('#a71',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.704);
+tl.set('#a70',{'--cur':0},5.704);
+tl.fromTo('#a72',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.740);
+tl.set('#a71',{'--cur':0},5.740);
+tl.fromTo('#a73',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.776);
+tl.set('#a72',{'--cur':0},5.776);
+tl.fromTo('#a74',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.812);
+tl.set('#a73',{'--cur':0},5.812);
+tl.fromTo('#a75',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.848);
+tl.set('#a74',{'--cur':0},5.848);
+tl.fromTo('#a76',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.884);
+tl.set('#a75',{'--cur':0},5.884);
+tl.fromTo('#a77',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.920);
+tl.set('#a76',{'--cur':0},5.920);
+tl.fromTo('#a78',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.956);
+tl.set('#a77',{'--cur':0},5.956);
+tl.fromTo('#a79',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},5.992);
+tl.set('#a78',{'--cur':0},5.992);
+tl.to('#card',{y:-22,scale:1.03,duration:4.4,ease:'sine.inOut',transformOrigin:'50% 40%'},2.380);
+tl.to('#cards',{background:'#f4f4f0',duration:.18,ease:'power2.out'},5.920);
+tl.fromTo('#cards',{scale:1},{scale:1.18,duration:.16,ease:'power2.out',yoyo:true,repeat:1},6.120);
+tl.to('#card,#tag1,#cv1',{opacity:0,filter:'blur(16px)',y:-30,duration:.26,ease:'power1.in'},6.340);
+tl.set('#card',{top:830,height:410},6.690);
+tl.set('.comp .L',{opacity:0,'--cur':0},6.640);
+tl.set('#blA',{opacity:1},6.650);
+tl.fromTo('#sC',{opacity:0},{opacity:1,duration:.2,ease:'power2.out',immediateRender:false},6.440);
+tl.fromTo('#ansC',{opacity:0,y:60,filter:'blur(14px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.4,ease:'power3.out',immediateRender:false},6.460);
+tl.fromTo('#c1_0',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},6.430);
+tl.fromTo('#c1_1',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},6.650);
+tl.fromTo('#c1_2',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},6.770);
+tl.fromTo('#c1_3',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},6.970);
+tl.fromTo('#c1_4',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},7.270);
+tl.fromTo('#c2_0',{opacity:0,y:50},{opacity:1,y:0,duration:0.2,ease:'power2.out',immediateRender:false},7.810);
+tl.fromTo('#c2_1',{opacity:0,y:50},{opacity:1,y:0,duration:0.2,ease:'power2.out',immediateRender:false},7.910);
+tl.fromTo('#c2_2',{opacity:0,y:50},{opacity:1,y:0,duration:0.2,ease:'power2.out',immediateRender:false},8.090);
+tl.fromTo('#c2_3',{opacity:0,y:50},{opacity:1,y:0,duration:0.2,ease:'power2.out',immediateRender:false},8.230);
+tl.fromTo('#c3_0',{opacity:0,y:50},{opacity:1,y:0,duration:0.2,ease:'power2.out',immediateRender:false},8.370);
+tl.fromTo('#c3_1',{opacity:0,y:50},{opacity:1,y:0,duration:0.2,ease:'power2.out',immediateRender:false},8.530);
+tl.fromTo('#ansC .dots b',{opacity:.3,y:0},{opacity:1,y:-8,duration:.22,ease:'sine.inOut',yoyo:true,repeat:5,stagger:.12},6.500);
+tl.fromTo('#ansCr .row:nth-child(1)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},7.120);
+tl.fromTo('#ansCr .row:nth-child(2)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},7.260);
+tl.fromTo('#ansCr .row:nth-child(3)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},7.400);
+tl.fromTo('#ansCr .row:nth-child(4)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},7.540);
+tl.fromTo('#ansCr .row:nth-child(5)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},7.680);
+tl.fromTo('#ansCr .row:nth-child(6)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},7.820);
+tl.fromTo('#ansCr .row:nth-child(7)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},7.960);
+tl.fromTo('#ansCr .row:nth-child(8)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},8.100);
+tl.fromTo('#ansCr .row:nth-child(9)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},8.240);
+tl.fromTo('#ansCr .row:nth-child(10)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},8.380);
+tl.fromTo('#ansCr .row:nth-child(11)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},8.520);
+tl.fromTo('#ansCr .row:nth-child(12)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false},8.660);
+tl.to('#ansC .dots',{opacity:0,duration:.2},7.120);
+tl.fromTo('#ansC',{scale:1},{scale:1.02,duration:2.7,ease:'sine.inOut',transformOrigin:'50% 50%'},6.840);
+tl.fromTo('#selC',{'--s':0},{'--s':1,duration:.3,ease:'power2.inOut',immediateRender:false},8.540);
+tl.to('#selC',{color:'#ffffff',duration:.2},8.640);
+tl.fromTo('#wipe',{opacity:1,x:1200,y:-1100,rotation:-12},{opacity:1,x:-3300,y:-1000,rotation:-12,duration:0.9,ease:'power1.inOut',immediateRender:false},8.920);
+tl.set('#wipe',{opacity:0},9.840);
+tl.set('#sC,#ansC',{opacity:0},9.420);
+tl.set('#sD',{opacity:1},9.420);
+tl.fromTo('#d1_0',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},9.420);
+tl.fromTo('#d1_1',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},9.530);
+tl.fromTo('#d1_2',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},10.050);
+tl.fromTo('#d1_3',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},10.210);
+tl.fromTo('#d1_4',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},10.310);
+tl.fromTo('#d2_0',{opacity:0,y:60},{opacity:1,y:0,duration:0.22,ease:'power2.out',immediateRender:false},10.450);
+tl.fromTo('#d2_1',{opacity:0,y:60},{opacity:1,y:0,duration:0.22,ease:'power2.out',immediateRender:false},10.650);
+tl.fromTo('#d3_0',{opacity:0,scale:1.12,y:16},{opacity:1,scale:1,y:0,duration:.34,ease:'expo.out',transformOrigin:'50% 60%',immediateRender:false},10.980);
+tl.set('#d3_0',{opacity:0},9.420);
+tl.set('#scD',{opacity:1},10.980);
+tl.to('#spD',{strokeDashoffset:0,duration:0.55,ease:'power2.inOut'},11.100);
+tl.fromTo('#sD',{scale:1.0},{scale:1.012,duration:2.6,ease:'sine.inOut',transformOrigin:'50% 50%'},9.420);
+tl.to('#d3_0',{rotation:-2,duration:.7,ease:'sine.inOut',yoyo:true,repeat:1},11.380);
+tl.to('#sD',{opacity:0,filter:'blur(16px)',duration:0.24,ease:'power1.in'},11.980);
+tl.set('#sD',{opacity:0},12.280);
+tl.fromTo('#card2',{top:1420,opacity:0,filter:'blur(12px)'},{top:410,opacity:1,filter:'blur(0px)',duration:.6,ease:'expo.out',immediateRender:false},12.100);
+gsap.set('#card2',{opacity:0});
+tl.fromTo('#tag2',{opacity:0,x:-30,rotation:-4},{opacity:1,x:0,rotation:-1.5,duration:.3,ease:'power3.out',immediateRender:false},12.320);
+tl.set('#cv2',{opacity:1},12.360);
+tl.to('#mp2',{strokeDashoffset:0,duration:0.5,ease:'power2.inOut'},12.380);
+tl.fromTo('#bdg2',{opacity:0,scale:.3,rotation:-14},{opacity:1,scale:1,rotation:2,duration:.42,ease:'back.out(1.4)',transformOrigin:'50% 50%',immediateRender:false},12.280);
+tl.to('#bdg2',{scale:.18,x:-300,y:-230,opacity:0,duration:.4,ease:'power2.in'},13.700);
+tl.to('#card2',{y:-14,duration:5.0,ease:'sine.inOut'},12.680);
+tl.fromTo('#bdg2 img',{y:0},{y:-10,duration:.5,ease:'sine.inOut',yoyo:true,repeat:1},12.780);
+tl.fromTo('#b0',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},13.920);
+tl.fromTo('#b1',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},13.949);
+tl.set('#b0',{'--cur':0},13.949);
+tl.fromTo('#b2',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},13.978);
+tl.set('#b1',{'--cur':0},13.978);
+tl.fromTo('#b3',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.006);
+tl.set('#b2',{'--cur':0},14.006);
+tl.fromTo('#b4',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.035);
+tl.set('#b3',{'--cur':0},14.035);
+tl.fromTo('#b5',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.080);
+tl.set('#b4',{'--cur':0},14.080);
+tl.fromTo('#b6',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.170);
+tl.set('#b5',{'--cur':0},14.170);
+tl.fromTo('#b7',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.280);
+tl.set('#b6',{'--cur':0},14.280);
+tl.fromTo('#b8',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.303);
+tl.set('#b7',{'--cur':0},14.303);
+tl.fromTo('#b9',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.327);
+tl.set('#b8',{'--cur':0},14.327);
+tl.fromTo('#b10',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.350);
+tl.set('#b9',{'--cur':0},14.350);
+tl.fromTo('#b11',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.374);
+tl.set('#b10',{'--cur':0},14.374);
+tl.fromTo('#b12',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.397);
+tl.set('#b11',{'--cur':0},14.397);
+tl.fromTo('#b13',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.420);
+tl.set('#b12',{'--cur':0},14.420);
+tl.fromTo('#b14',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.444);
+tl.set('#b13',{'--cur':0},14.444);
+tl.fromTo('#b15',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.467);
+tl.set('#b14',{'--cur':0},14.467);
+tl.fromTo('#b16',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.491);
+tl.set('#b15',{'--cur':0},14.491);
+tl.fromTo('#b17',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.540);
+tl.set('#b16',{'--cur':0},14.540);
+tl.fromTo('#b18',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.594);
+tl.set('#b17',{'--cur':0},14.594);
+tl.fromTo('#b19',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.648);
+tl.set('#b18',{'--cur':0},14.648);
+tl.fromTo('#b20',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.720);
+tl.set('#b19',{'--cur':0},14.720);
+tl.fromTo('#b21',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.742);
+tl.set('#b20',{'--cur':0},14.742);
+tl.fromTo('#b22',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.765);
+tl.set('#b21',{'--cur':0},14.765);
+tl.fromTo('#b23',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.787);
+tl.set('#b22',{'--cur':0},14.787);
+tl.fromTo('#b24',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.820);
+tl.set('#b23',{'--cur':0},14.820);
+tl.fromTo('#b25',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.845);
+tl.set('#b24',{'--cur':0},14.845);
+tl.fromTo('#b26',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.870);
+tl.set('#b25',{'--cur':0},14.870);
+tl.fromTo('#b27',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.896);
+tl.set('#b26',{'--cur':0},14.896);
+tl.fromTo('#b28',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.921);
+tl.set('#b27',{'--cur':0},14.921);
+tl.fromTo('#b29',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},14.960);
+tl.set('#b28',{'--cur':0},14.960);
+tl.fromTo('#b30',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.020);
+tl.set('#b29',{'--cur':0},15.020);
+tl.fromTo('#b31',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.080);
+tl.set('#b30',{'--cur':0},15.080);
+tl.fromTo('#b32',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.440);
+tl.set('#b31',{'--cur':0},15.440);
+tl.fromTo('#b33',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.467);
+tl.set('#b32',{'--cur':0},15.467);
+tl.fromTo('#b34',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.494);
+tl.set('#b33',{'--cur':0},15.494);
+tl.fromTo('#b35',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.521);
+tl.set('#b34',{'--cur':0},15.521);
+tl.fromTo('#b36',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.548);
+tl.set('#b35',{'--cur':0},15.548);
+tl.fromTo('#b37',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.575);
+tl.set('#b36',{'--cur':0},15.575);
+tl.fromTo('#b38',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.620);
+tl.set('#b37',{'--cur':0},15.620);
+tl.fromTo('#b39',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.674);
+tl.set('#b38',{'--cur':0},15.674);
+tl.fromTo('#b40',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.740);
+tl.set('#b39',{'--cur':0},15.740);
+tl.fromTo('#b41',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.940);
+tl.set('#b40',{'--cur':0},15.940);
+tl.fromTo('#b42',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},15.974);
+tl.set('#b41',{'--cur':0},15.974);
+tl.fromTo('#b43',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.008);
+tl.set('#b42',{'--cur':0},16.008);
+tl.fromTo('#b44',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.042);
+tl.set('#b43',{'--cur':0},16.042);
+tl.fromTo('#b45',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.076);
+tl.set('#b44',{'--cur':0},16.076);
+tl.fromTo('#b46',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.110);
+tl.set('#b45',{'--cur':0},16.110);
+tl.fromTo('#b47',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.144);
+tl.set('#b46',{'--cur':0},16.144);
+tl.fromTo('#b48',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.178);
+tl.set('#b47',{'--cur':0},16.178);
+tl.fromTo('#b49',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.212);
+tl.set('#b48',{'--cur':0},16.212);
+tl.fromTo('#b50',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.280);
+tl.set('#b49',{'--cur':0},16.280);
+tl.fromTo('#b51',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.343);
+tl.set('#b50',{'--cur':0},16.343);
+tl.fromTo('#b52',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.420);
+tl.set('#b51',{'--cur':0},16.420);
+tl.fromTo('#b53',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.474);
+tl.set('#b52',{'--cur':0},16.474);
+tl.fromTo('#b54',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.540);
+tl.set('#b53',{'--cur':0},16.540);
+tl.fromTo('#b55',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.567);
+tl.set('#b54',{'--cur':0},16.567);
+tl.fromTo('#b56',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.594);
+tl.set('#b55',{'--cur':0},16.594);
+tl.fromTo('#b57',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.621);
+tl.set('#b56',{'--cur':0},16.621);
+tl.fromTo('#b58',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.648);
+tl.set('#b57',{'--cur':0},16.648);
+tl.fromTo('#b59',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.675);
+tl.set('#b58',{'--cur':0},16.675);
+tl.fromTo('#b60',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.720);
+tl.set('#b59',{'--cur':0},16.720);
+tl.fromTo('#b61',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.770);
+tl.set('#b60',{'--cur':0},16.770);
+tl.fromTo('#b62',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.821);
+tl.set('#b61',{'--cur':0},16.821);
+tl.fromTo('#b63',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.871);
+tl.set('#b62',{'--cur':0},16.871);
+tl.fromTo('#b64',{opacity:0,y:10,scale:.8,'--cur':1},{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false},16.922);
+tl.set('#b63',{'--cur':0},16.922);
+tl.to('#card2s',{background:'#f4f4f0',duration:.18,ease:'power2.out'},16.920);
+tl.fromTo('#card2s',{scale:1},{scale:1.18,duration:.16,ease:'power2.out',yoyo:true,repeat:1},17.120);
+tl.to('#card2,#tag2,#cv2',{opacity:0,filter:'blur(16px)',y:-30,duration:.26,ease:'power1.in'},17.140);
+tl.fromTo('#sF',{opacity:0},{opacity:1,duration:.2,ease:'power2.out',immediateRender:false},17.240);
+tl.fromTo('#ansF',{opacity:0,y:60,filter:'blur(14px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.4,ease:'power3.out',immediateRender:false},17.260);
+tl.fromTo('#f1_0',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},17.310);
+tl.fromTo('#f1_1',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},17.590);
+tl.fromTo('#f1_2',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},18.230);
+tl.fromTo('#f1_3',{opacity:0,y:30},{opacity:1,y:0,duration:0.18,ease:'power2.out',immediateRender:false},18.270);
+tl.fromTo('#f2_0',{opacity:0,y:50},{opacity:1,y:0,duration:0.2,ease:'power2.out',immediateRender:false},18.510);
+tl.fromTo('#f2_1',{opacity:0,y:50},{opacity:1,y:0,duration:0.2,ease:'power2.out',immediateRender:false},18.750);
+tl.fromTo('#f2_2',{opacity:0,y:50},{opacity:1,y:0,duration:0.2,ease:'power2.out',immediateRender:false},18.950);
+tl.fromTo('#f3_0',{opacity:0,y:50},{opacity:1,y:0,duration:0.2,ease:'power2.out',immediateRender:false},19.070);
+tl.fromTo('#ansF .dots b',{opacity:.3,y:0},{opacity:1,y:-8,duration:.22,ease:'sine.inOut',yoyo:true,repeat:3,stagger:.12},17.490);
+tl.fromTo('#ansFr .row:nth-child(1)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},17.990);
+tl.fromTo('#ansFr .row:nth-child(2)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},18.090);
+tl.fromTo('#ansFr .row:nth-child(3)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},18.190);
+tl.fromTo('#ansFr .row:nth-child(4)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},18.290);
+tl.fromTo('#ansFr .row:nth-child(5)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},18.390);
+tl.fromTo('#ansFr .row:nth-child(6)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},18.490);
+tl.fromTo('#ansFr .row:nth-child(7)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},18.590);
+tl.fromTo('#ansFr .row:nth-child(8)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},18.690);
+tl.fromTo('#ansFr .row:nth-child(9)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},18.790);
+tl.fromTo('#ansFr .row:nth-child(10)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},18.890);
+tl.fromTo('#ansFr .row:nth-child(11)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},18.990);
+tl.fromTo('#ansFr .row:nth-child(12)',{opacity:0,x:-24},{opacity:.92,x:0,duration:.22,ease:'power2.out',immediateRender:false},19.090);
+tl.to('#ansF .dots',{opacity:0,duration:.2},17.990);
+tl.fromTo('#ansF',{scale:1},{scale:1.02,duration:2.3,ease:'sine.inOut',transformOrigin:'50% 50%'},17.640);
+tl.fromTo('#selF',{'--s':0},{'--s':1,duration:.28,ease:'power2.inOut',immediateRender:false},19.080);
+tl.to('#selF',{color:'#ffffff',duration:.2},19.160);
+tl.to('#sF',{opacity:0,filter:'blur(16px)',duration:0.22,ease:'power1.in'},19.340);
+tl.to('#ansF',{opacity:0,filter:'blur(16px)',duration:0.22,ease:'power1.in'},19.340);
+tl.set('#sF,#ansF',{opacity:0},19.640);
+tl.set('#sG',{opacity:1},19.360);
+tl.fromTo('#g1_0',{opacity:0,y:70},{opacity:1,y:0,duration:0.22,ease:'power2.out',immediateRender:false},19.410);
+tl.fromTo('#g1_1',{opacity:0,y:70},{opacity:1,y:0,duration:0.22,ease:'power2.out',immediateRender:false},19.750);
+tl.fromTo('#g2_0',{opacity:0,y:70},{opacity:1,y:0,duration:0.22,ease:'power2.out',immediateRender:false},19.890);
+tl.fromTo('#g3_0',{opacity:0,scale:1.1},{opacity:1,scale:1,duration:.34,ease:'expo.out',transformOrigin:'50% 60%',immediateRender:false},20.360);
+tl.set('#scG',{opacity:1},20.360);
+tl.to('#spG',{strokeDashoffset:0,duration:0.55,ease:'power2.inOut'},20.460);
+tl.fromTo('#sG',{scale:1},{scale:1.01,duration:1.5,ease:'sine.inOut',transformOrigin:'50% 50%'},19.540);
+tl.to('#sG',{opacity:0,filter:'blur(16px)',duration:0.3,ease:'power1.in'},20.800);
+tl.set('#card',{opacity:1,filter:'blur(0px)',y:0,top:830,height:410},20.780);
+tl.set('#tag1,#cv1',{opacity:0},20.780);
+tl.set('#sA',{opacity:0},20.780);
+tl.set('#hA2 .w',{opacity:0},20.780);
+tl.set('#aL0,#aL1,#aL2,#aV',{opacity:0,y:46},20.780);
+tl.set('#ulAp',{strokeDashoffset:1},20.780);
+tl.fromTo('#sA',{opacity:0,filter:'blur(16px)'},{opacity:1,filter:'blur(0px)',duration:.5,ease:'power2.out',immediateRender:false},20.850);
+tl.fromTo('#card',{opacity:0,filter:'blur(14px)'},{opacity:1,filter:'blur(0px)',duration:.45,ease:'power2.out',immediateRender:false},21.020);
+tl.set('#blA',{opacity:1},21.400);
+tl.to({},{duration:.001},D-.001);
+window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
+window.__reel={duration:D,seek:t=>tl.seek(t)};
+</script></body></html>
