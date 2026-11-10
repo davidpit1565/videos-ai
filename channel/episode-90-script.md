@@ -44,3 +44,26 @@ HOOK 68: subject said and shown in frame 0 (idea with flaws, two AI logos), a re
 - Line 2 is slow; line 3 ending is soft by voice_doctor.
 - The "Perfect idea!" joke is a generalisation; the Claude side is untested by us (the caption says so).
 - Blind reader NOT run (no agent tool here); no listening, no second human viewing: the rendered file was inspected only as contact sheets plus frame 0, not watched twice.
+
+---
+# REVISION final2 (10.11.2026): frame 0 is the meme
+`video/ep90/out/ep90-final2.mp4` (10.90 s, 1.4 MB) + `ep90-final2-720.mp4` (423 KB). final1 is untouched. Build: `video/ep90/build90b.py`, `run2.sh`, `mix90b.py`, `hf2/` (reads `lines2.txt`, `voice/src2.json`). Audio measured, not heard.
+
+## What changed
+- Frame 0 now: headline "My idea has 3 flaws. / I show AI." plus both photos side by side, large (dog in a green-headed panel left, cat in an orange-headed panel right, real logos as icons in the headers, no names), panels y 540-1245, nothing empty inside the safe box.
+- Beats (D = 10.88 s): 0-2.4 s photos drift, "3 flaws" bumps, the small idea chip pops in on the seam at ~0.4 s and its 3 marks turn red on "three flaws"; 2.4 s dog panel punches in (photo zoom 1.0 to ~1.3, panel grows upward, cat dims), "Perfect idea!" + smiley bubble pops on "perfect" (2.6 s), green check on the chip; 4.9 s cat punches in, dog dims, the chip's marks light red one by one on "three", bubble "3 problems. / Fix #1 first." pops; 8.2 s headline becomes "Tag someone who needs the cat." word by word, both panels bright again, bump on "cat."; last 0.45 s the same scene eases back to the frame-0 pose (no wipe, no copy).
+- Deviation from the request: the "Perfect idea!" bubble is at ~2.6 s, not 0.8 s, because it is synced to the spoken line (a bubble 1.8 s before the voice says it would read as a mistake). 0-2.4 s is carried by the chip and the three marks instead.
+- Voice: first word stamp at 0.00 s (line cue 0.06 s). Line 2 re-rendered as "ChatGPT: perfect idea!" (`voice/b.wav`, 2.11 s instead of 2.89 s). A shorter "Claude: three problems. Start with one." was rendered too (3.18 s, longer, retries heard "Clyde") and NOT used; line 3 stays the old take "Claude says: ..." (2.91 s). Lines 1, 3, 4 are the final1 takes.
+- Music: `bright--feel-good-beat--tunetank.mp3` at exactly 10.88 s, mean -21.7 dB, no quiet stretch (quiet bed, only 1% under 150 Hz). Logged in `music-notes.md`.
+
+## Check results (`check_hf.sh`, tag final2, real output)
+safe_check_hf PASS (clean, no overlaps; two earlier failures fixed: headline and tag text overlapped during the loop-back, and a fromTo that hid the headline at frame 0, caught by looking at the sheet). qa.py --hf PASS: 10.9 s, -14.6 LUFS, peak -3.4 dBFS, visual change median 0.03 s, LONGEST STILL 2.13 s (was 2.93 s), loop seam 1.5/255. voice_quality PASS: pitch ranges 7.8 / 4.2 / 6.3 / 6.4 st, ends -0.1 / -0.1 / -0.3 / -0.9 st, bed -7.3 dB un-ducked at volume 0.50. voice_doctor PASS but flags line 3's ending (-40.0 dB vs median -26.7) and line 2's pitch range of 4.2 st is the flattest line (his liked lines sit at 4.9-8.4). Accent check SKIP (transformers not installed).
+
+## Scores (judgement) for final2
+HOOK 74 (the meme is on frame 0 and the subject is stated, dog vs cat is instantly legible), VIRALITY 74, OVERALL 73, PREDICTED VIEWS 400-1,800 (ASSUMPTION), about 58-78 on the scale. Still under the 85 floor; a joke build requested by David.
+
+## Still weak
+- The bubble/payoff comes at 2.6 s, not at the start; 0-2.4 s is photos + chip only.
+- The chip covers the cat's ears and the dog's forehead area at the seam; the "3 flaws" bump leaves a brief uneven space after "has".
+- No names under or beside the icons (icons and colours only), so a viewer who does not know the Claude mark relies on the voice.
+- Line 3 ending is soft by voice_doctor; line 2 is flat in pitch; the Claude cat-side remains an untested joke (caption says so). Not watched twice by a human, blind reader not run, audio not heard.
