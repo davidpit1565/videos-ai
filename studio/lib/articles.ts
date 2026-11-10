@@ -2478,7 +2478,7 @@ export const ARTICLES: Article[] = [
       "Mobile apps only. Facebook's Help Center says it is not available on computers.",
       "The menu path comes from press reports and Help Center summaries. The Help Center page we could read showed no path, and the Which? article is from October 2025. We did not follow these steps on a live account for this page. Menu names can differ by app version and by phone brand.",
       "We did not confirm the exact pop-up wording people see in Europe. Only the 2025 US pop-up is quoted by the press.",
-      "The video is a paper-style collage: three public-domain photos from Wikimedia Commons (a beach, a birthday cake, a desk; credits in the repo file channel/ep88-image-credits.md) plus drawn screens. It is not a recording of a real account or phone, and the photos are not from anyone's Facebook.",
+      "The video is a paper-style collage: three CC0 photos from Wikimedia Commons (credits: Children playing at the beach, by Barelyhere; Icing around Cherry Topping on a Birthday Cake with Candles, by Brassluff; Laptop and coffee on a desk, by Lauren Mancke) plus drawn screens. It is not a recording of a real account or phone, and the photos are not from anyone's Facebook.",
       "Facebook is a Meta product. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with Meta.",
     ],
   },
