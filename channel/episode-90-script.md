@@ -67,3 +67,7 @@ HOOK 74 (the meme is on frame 0 and the subject is stated, dog vs cat is instant
 - The chip covers the cat's ears and the dog's forehead area at the seam; the "3 flaws" bump leaves a brief uneven space after "has".
 - No names under or beside the icons (icons and colours only), so a viewer who does not know the Claude mark relies on the voice.
 - Line 3 ending is soft by voice_doctor; line 2 is flat in pitch; the Claude cat-side remains an untested joke (caption says so). Not watched twice by a human, blind reader not run, audio not heard.
+
+## Blind reader on final2 frame 0 (10.11.2026, fresh agent)
+- A) Unclear: a dog and a cat under ChatGPT and an orange logo, "My idea has 3 flaws. I show AI."; does not know what idea or what the animals have to do with it. B) No, would not stop: generic cute-animal AI content, nothing at stake. C) Expects a dog-vs-cat comparison. D) "I show AI" reads oddly; whose idea; animals look like stock photos; orange logo unrecognisable; bottom third dead; dark gradient looks like every AI channel. E) State the actual idea in big words, make the animals react to it.
+- Action: final3 requested with a concrete silly idea in the headline, names beside the icons, animal reactions.
