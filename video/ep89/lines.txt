@@ -1,0 +1,4 @@
+OpenAI says: paste this first.
+Before you answer, ask me three clarifying questions you need.
+It makes ChatGPT ask, not guess.
+Save it. Send it to someone who types short prompts.
