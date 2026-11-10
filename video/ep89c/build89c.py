@@ -7,8 +7,26 @@ H_ = os.path.dirname(os.path.abspath(__file__))
 V = "/home/user/videos-ai/video/ep89b/voice"
 cues = json.load(open(V + "/cues-fast.json"))
 WD = {int(k): v for k, v in json.load(open(H_ + "/voice/words.json")).items()}
-lines = [dict(n=c["n"], text=c["line"], start=c["start"], end=c["end"]) for c in cues]
-D = 21.6
+CUT0, CUT = 1.31, 0.08   # real 0.15 s pause between "going" and "viral" in narration-fast.wav (1.28-1.43 s): only 0.08 s (1.31-1.39) is cut, 0.07 s natural pause stays
+S = lambda t: round(t - CUT, 3) if t > CUT0 else t
+lines = [dict(n=c["n"], text=c["line"], start=S(c["start"]), end=S(c["end"])) for c in cues]
+TL_ = round(20.8 - CUT, 3) + .85            # loop dissolve starts here; GO holds ~0.9 s as the outro
+D = round(TL_ + .75, 2)
+lines[3]["start"] = round(lines[3]["start"] + .05, 3)   # measurement window only: pyin octave-jumps on the exact start (range 8.6 or 18.5 st on identical audio); see script file
+json.dump(dict(lines=lines, D=D), open(H_ + "/cues89c.json", "w"), indent=1)
+for n_ in WD:
+    if n_ == 1:
+        WD[1] = [["This", .10, .34], ["prompt", .40, .68], ["has", .78, .88], ["been", .88, 1.0], ["going", 1.04, 1.26], ["viral.", 1.44, 1.86]]
+    else:
+        for w_ in WD[n_]: w_[1] += .08; w_[2] += .08
+    for w_ in WD[n_]: w_[1] = S(w_[1]); w_[2] = S(w_[2])
+import soundfile as sf_, numpy as np_
+x_, sr_ = sf_.read(V + "/narration-fast.wav"); x_ = x_ if x_.ndim == 1 else x_[:, 0]
+a_, b_ = int(CUT0 * sr_), int((CUT0 + CUT) * sr_); xf = int(.030 * sr_)
+ramp = np_.linspace(0, 1, xf)
+head = x_[:a_].copy(); tail = x_[b_:].copy()
+head[-xf:] = head[-xf:] * (1 - ramp) + tail[:xf] * ramp
+sf_.write(H_ + "/out/narration89c.wav", np_.concatenate([head, tail[xf:], np_.zeros(int(D * sr_))])[:int(D * sr_)], sr_, subtype="PCM_16")
 json.dump(dict(lines=lines, D=D), open(H_ + "/cues89c.json", "w"), indent=1)
 W = lambda n, i: WD[n][i][1]
 WE = lambda n, i: WD[n][i][2]
@@ -76,7 +94,7 @@ markup = f'''
  <svg class="ul" id="ulA" viewBox="0 0 520 60" preserveAspectRatio="none"><path id="ulAp" d="M6 36 C 90 14, 170 50, 260 28 S 430 14, 514 30" pathLength="1" stroke="{INK}" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg>
 </div>
 {tagB}{curve(1, "M 372 340 C 470 296 600 318 650 404")}
-{comp("card", "a", P1, 830, 410, '<div class="blA" id="blA"></div>', (12,))}
+{comp("card", "a", P1, 770, 470, '<div class="blA" id="blA"></div>', (12,))}
 <div class="scene" id="sC"><div class="hk c1">{words("c1_", [("When", "l"), ("the", "l"), ("response", "l"), ("comes", "l"), ("back,", "l")])}</div>
  <div class="hk c2">{words("c2_", [("IT", "hv"), ("TAKES", "hv"), ("A", "hv"), ("WHILE", "hv")])}</div>
  <div class="hk c3">{words("c3_", [("TO", "hv"), ("<span class=sel id=selC>PROCESS.</span>", "hv")])}</div></div>
@@ -95,7 +113,6 @@ markup = f'''
 <div class="scene" id="sG"><div class="hk g1">{words("g1_", [("TEST", "hv"), ("IT", "hv")])}</div><div class="hk g2"><span class="w hv" id="g2_0">OUT.</span></div>
  <div class="hk g3"><span class="w hv org" id="g3_0">GO.</span></div>
  {scr("G", "M 30 170 C 10 50, 330 4, 520 8 C 790 12, 985 70, 965 170 C 945 270, 640 296, 450 292 C 200 288, 30 262, 38 150 C 44 80, 130 44, 230 34", 12, ORG)}</div>
-<div class="wipe" id="wipe"><svg viewBox="0 0 3200 2800" width="3200" height="2800"><path d="{{WP}}" fill="#0b0b0b"/></svg></div>
 '''
 
 # zig-zag band path for the one hard wipe (spiky leading + trailing edge)
@@ -113,17 +130,17 @@ css = f'''
 .scene{{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}}
 #sA{{opacity:1}}
 .hk{{position:absolute;left:65px;width:950px;color:{INK};white-space:nowrap}}
-.w,.v{{display:inline-block}} .w{{opacity:0}}
+.w,.v{{display:inline-block}} .w{{opacity:0}} #hA2 .w{{opacity:.14}}
 .hv,.h1,.h2 .hv,.d2,.d3,.g1,.g2,.g3{{font-weight:900;letter-spacing:-.045em}}
 .l{{font-weight:500;letter-spacing:-.02em}}
-.h1{{top:455px;font-size:148px;line-height:164px;font-weight:900;letter-spacing:-.045em}}
-.h2{{top:622px;font-size:56px;line-height:170px;display:flex;align-items:baseline;gap:18px}}
+.h1{{top:440px;font-size:148px;line-height:164px;font-weight:900;letter-spacing:-.045em}}
+.h2{{top:602px;font-size:56px;line-height:170px;display:flex;align-items:baseline;gap:16px}} #aV{{margin-left:14px}}
 .h2 .hv{{font-size:140px;letter-spacing:-.045em}}
 .org{{color:{ORG}}}
 .badge{{position:absolute;left:65px;top:300px;width:128px;height:128px;border-radius:30px;background:#fff;border:4px solid {INK};display:flex;align-items:center;justify-content:center;box-shadow:7px 7px 0 {INK}}}
 .badge img{{width:66%;height:66%}}
 .badge.big{{left:370px;top:560px;width:340px;height:340px;border-radius:70px;box-shadow:14px 14px 0 {INK};border-width:7px;opacity:0;z-index:50}}
-.ul{{position:absolute;left:480px;top:775px;width:520px;height:44px}}
+.ul{{position:absolute;left:480px;top:722px;width:520px;height:44px}}
 .comp{{position:absolute;left:80px;width:920px;background:#17181b;border-radius:40px;box-shadow:0 26px 50px rgba(20,20,20,.28),0 3px 0 #000;border:2px solid #2b2c32;z-index:20;font-weight:500}}
 .chd{{position:absolute;left:44px;top:36px;height:70px;display:flex;align-items:center;gap:22px}}
 .chlogo{{height:62px;width:62px;filter:invert(1)}}
@@ -151,7 +168,6 @@ css = f'''
 .scr{{position:absolute;left:40px;width:1000px;height:300px;pointer-events:none}}
 #scD{{top:700px;left:60px;width:960px;height:320px}} #scG{{top:880px}}
 .g1{{top:330px;font-size:180px;line-height:196px}} .g1 .w{{margin-right:34px}} .g2{{top:535px;font-size:180px;line-height:196px}} .g3{{top:760px;font-size:430px;line-height:440px}}
-.wipe{{position:absolute;left:0;top:0;width:3200px;height:2800px;z-index:100;filter:blur(5px);opacity:0;pointer-events:none;transform-origin:0 0}}
 '''
 
 # ---------------------------------------------------------------- timeline
@@ -181,31 +197,34 @@ def typeline(prefix, text, line, w0, clickg=-11):
 
 js("gsap.set('#bdg2',{opacity:0});")
 js(f"tl.fromTo('.bgw',{{y:0}},{{y:-70,duration:{D/2},ease:'sine.inOut',yoyo:true,repeat:1}},0);")
-# --- A: frame 0 shows logo + THIS PROMPT + card with a blinking cursor (everything but the 'has been going viral' words)
-js(f"tl.fromTo('#blA',{{opacity:1}},{{opacity:0,duration:.4,ease:'sine.inOut',repeat:4,yoyo:true}},0);")   # blink until 1.97 (ends visible)
-js(f"tl.fromTo('#aT',{{scale:1}},{{scale:1.03,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 70%'}},0.07);")
-js(f"tl.fromTo('#aP',{{scale:1}},{{scale:1.03,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 70%'}},{T(W(1, 1) - .02)});")
-for i, k in enumerate((2, 3, 4)): wordin(f"aL{i}", W(1, k) - .03, 34, .18)
-wordin("aV", W(1, 5) - .04, 60, .22)
-draw("ulAp", W(1, 5) + .05, .45, 'power1.inOut')
-js(f"tl.fromTo('#aV',{{scale:1}},{{scale:1.06,duration:.25,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 70%'}},{T(W(1, 5) + .12)});")
-js(f"tl.fromTo('#bdg',{{rotation:-3}},{{rotation:3,duration:1.9,ease:'sine.inOut'}},0);")
-js(f"tl.fromTo('#card',{{y:0}},{{y:-10,duration:1.9,ease:'sine.inOut'}},0);")
-sfx("impactsoft.ogg", 0.05, -4); sfx("pop_a.ogg", W(1, 1), -7); sfx("tick.ogg", W(1, 2), -9); sfx("tick.ogg", W(1, 3), -9); sfx("tick.ogg", W(1, 4), -9)
-sfx("pop_b.ogg", W(1, 5), -4); sfx("select.ogg", W(1, 5) + .08, -7)
+# --- A: frame 0 = logo + THIS PROMPT + card with fast cursor; ghost words of the rest; punch-ins every ~0.4 s
+js(f"tl.fromTo('#blA',{{opacity:1}},{{opacity:0,duration:.2,ease:'sine.inOut',repeat:{int((tB_ := S(1.88)) / .2)},yoyo:True}},0);".replace("True","true"))
+js(f"tl.fromTo('#aT',{{scale:1}},{{scale:1.04,duration:.16,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 70%'}},0.10);")
+js(f"tl.fromTo('#aP',{{scale:1}},{{scale:1.04,duration:.16,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 70%'}},{T(W(1, 1))});")
+js("tl.fromTo('#bdg',{rotation:-14,scale:.86,y:10},{rotation:-3,scale:1,y:0,duration:.4,ease:'power3.out'},0);")
+js("tl.to('#bdg',{rotation:3,duration:1.5,ease:'sine.inOut'},.4);")
+js("tl.fromTo('#card',{scale:.95,y:26},{scale:1,y:-10,duration:.45,ease:'expo.out',transformOrigin:'50% 50%'},0);")
+js(f"tl.fromTo('#sA',{{scale:1}},{{scale:1.02,duration:{tB_:.2f},ease:'sine.inOut',transformOrigin:'50% 40%'}},0);")
+def gword(i, t, dy):
+    js(f"tl.fromTo('#{i}',{{opacity:.14,y:{dy}}},{{opacity:1,y:0,duration:.2,ease:'power2.out',immediateRender:false}},{T(t)});")
+for i, k in enumerate((2, 3, 4)): gword(f"aL{i}", W(1, k) - .03, 24)
+js(f"tl.fromTo('#aV',{{opacity:.14,y:12}},{{opacity:1,y:0,duration:.5,ease:'sine.inOut',immediateRender:false}},{T(W(1, 5) - .24)});")
+draw("ulAp", W(1, 5) + .1, .55, 'sine.inOut')
+sfx("impactpunch.ogg", 0.10, -6); sfx("pop_a.ogg", W(1, 1), -6); sfx("tick.ogg", W(1, 2), -8); sfx("tick.ogg", W(1, 3), -8); sfx("tick.ogg", W(1, 4), -8)
+sfx("tick.ogg", W(1, 5) - .02, -13); sfx("whoosh_c.ogg", 0.0, -12)
 
 # --- B: prompt 1 typed live into the card (card grows from the frame-0 size to the big one)
-tB = 1.88
+tB = S(1.88)
 SIDE("#sA", tB, .26)
 js(f"tl.to('#card',{{top:410,height:830,duration:.55,ease:'expo.inOut'}},{T(tB)});")
 js(f"tl.set('#blA',{{opacity:0}},{T(tB + .2)});")
-js(f"tl.fromTo('#tag1',{{opacity:0,x:-30,rotation:-4}},{{opacity:1,x:0,rotation:-1.5,duration:.3,ease:'power3.out',immediateRender:false}},{T(tB + .12)});")
+js(f"tl.fromTo('#tag1',{{opacity:0,x:-12,rotation:-4}},{{opacity:1,x:0,rotation:-1.5,duration:.3,ease:'power3.out',immediateRender:false}},{T(tB + .12)});")
 js(f"tl.set('#cv1',{{opacity:1}},{T(tB + .15)});"); draw("mp1", tB + .18, .5)
-sfx("whoosh_b.ogg", tB - .06, -9); sfx("pop_b.ogg", tB + .14, -5); sfx("select.ogg", tB + .22, -9); sfx("tick.ogg", tB + .6, -8)
+sfx("whoosh_b.ogg", tB - .02, -13); sfx("pop_b.ogg", tB + .14, -5); sfx("select.ogg", tB + .22, -9); sfx("tick.ogg", tB + .6, -8)
 tt = typeline("a", P1, 2, 0)
 js(f"tl.fromTo('#aw12',{{'--u':0}},{{'--u':1,duration:.4,ease:'power2.inOut',immediateRender:false}},{T(WE(2, 12) - .05)});"); sfx("select.ogg", WE(2, 12), -8)
 for kk in (12,): js(f"tl.fromTo('#card',{{scale:1.03}},{{scale:1.045,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 40%'}},{T(WE(2, kk))});")
-tsend = 6.12
+tsend = S(6.12)
 js(f"tl.to('#card',{{y:-22,scale:1.035,duration:4.4,ease:'sine.inOut',transformOrigin:'50% 40%'}},{T(tB + .5)});")
 # a hand-drawn bar under 'might not know about myself' (black selection bar behind it is too heavy on a dark card): white underline
 js(f"tl.to('#cards',{{background:'#f4f4f0',duration:.18,ease:'power2.out'}},{T(tsend - .2)});")
@@ -213,11 +232,12 @@ js(f"tl.fromTo('#cards',{{scale:1}},{{scale:1.18,duration:.16,ease:'power2.out',
 sfx("ding.ogg", tsend, -8); sfx("pop_a.ogg", tsend + .02, -5)
 
 # --- C: answer arrives blurred, headline words in the voice rhythm
-tC = 6.34
+tC = S(6.34)
 js(f"tl.to('#card,#tag1,#cv1',{{opacity:0,filter:'blur(16px)',y:-30,duration:.26,ease:'power1.in'}},{T(tC)});")
-js(f"tl.set('#card',{{top:830,height:410}},{T(tC + .35)});")
+js(f"tl.set('#card',{{top:770,height:470}},{T(tC + .35)});")
 for i in range(len(tt)): pass
 js("tl.set('.comp .L',{opacity:0,'--cur':0},%s);" % T(tC + .3))
+js("tl.set('#aw12,#bw10',{'--u':0},%s);" % T(tC + .3))
 js(f"tl.set('#blA',{{opacity:1}},{T(tC + .31)});")
 js(f"tl.fromTo('#sC',{{opacity:0}},{{opacity:1,duration:.2,ease:'power2.out',immediateRender:false}},{T(tC + .1)});")
 js(f"tl.fromTo('#ansC',{{opacity:0,y:60,filter:'blur(14px)'}},{{opacity:1,y:0,filter:'blur(0px)',duration:.4,ease:'power3.out',immediateRender:false}},{T(tC + .12)});")
@@ -225,9 +245,9 @@ for i, k in enumerate(range(0, 5)): wordin(f"c1_{i}", W(3, k) - .03, 30, .18)
 for i, k in enumerate((5, 6, 7, 8)): wordin(f"c2_{i}", W(3, k) - .03, 50, .2)
 wordin("c3_0", W(3, 9) - .03, 50, .2); wordin("c3_1", W(3, 10) - .03, 50, .2)
 # typing dots, then blurred rows load line by line
-dots = 6.5
+dots = S(6.5)
 js(f"tl.fromTo('#ansC .dots b',{{opacity:.3,y:0}},{{opacity:1,y:-8,duration:.22,ease:'sine.inOut',yoyo:true,repeat:5,stagger:.12}},{T(dots)});")
-rows_t = 7.12
+rows_t = S(7.12)
 for r in range(12):
     t = rows_t + r * 0.14
     js(f"tl.fromTo('#ansCr .row:nth-child({r + 1})',{{opacity:0,x:-24}},{{opacity:.92,x:0,duration:.25,ease:'power2.out',immediateRender:false}},{T(t)});")
@@ -240,34 +260,32 @@ for k in range(0, 5): sfx("tick.ogg", W(3, k), -10)
 sfx("whoosh_c.ogg", tC - .02, -8); sfx("pop_a.ogg", tC + .2, -6); sfx("tick.ogg", dots, -8); sfx("tick.ogg", dots + .12, -8); sfx("tick.ogg", dots + .24, -8)
 sfx("select.ogg", W(3, 10) - .02, -6); sfx("impactsoft.ogg", W(3, 10) + .1, -9)
 
-# --- the ONE hard black wipe: C -> D (topic escalates)
-tW = 8.92; WDUR = .9
-js(f"tl.fromTo('#wipe',{{opacity:1,x:1200,y:-1100,rotation:-12}},{{opacity:1,x:-3300,y:-1000,rotation:-12,duration:{WDUR},ease:'power1.inOut',immediateRender:false}},{T(tW)});")
-js(f"tl.set('#wipe',{{opacity:0}},{T(tW + WDUR + .02)});")
-js(f"tl.set('#sC,#ansC',{{opacity:0}},{T(tW + .5)});")
-js(f"tl.set('#sD',{{opacity:1}},{T(tW + .5)});")
-sfx("whoosh_b.ogg", tW - .02, -3); sfx("impactsoft.ogg", tW + .42, -4)
+# --- C -> D: quick vertical scroll (page scrolls up), no black
+tW = W(4, 0) - .30; SD = .22
+js(f"tl.fromTo('#sD',{{opacity:1,y:520,filter:'blur(8px)'}},{{opacity:1,y:0,filter:'blur(0px)',duration:{SD},ease:'power2.inOut',immediateRender:false}},{T(tW)});")
+js(f"tl.to('#sC,#ansC',{{y:-1250,filter:'blur(10px)',duration:{SD},ease:'power2.in'}},{T(tW)});")
+js(f"tl.to('#sC,#ansC',{{opacity:0,duration:{SD * .6:.3f},ease:'power1.in'}},{T(tW)});")
+sfx("whoosh_c.ogg", tW - .02, -4); sfx("whoosh_b.ogg", tW, -9); sfx("impactsoft.ogg", tW + SD, -6)
 
 # --- D: 'But here's where it gets even more SCARY.' orange on SCARY only
-for i, k in enumerate(range(0, 5)): wordin(f"d1_{i}", max(W(4, k) - .03, tW + .5), 30, .18)
+for i, k in enumerate(range(0, 5)): wordin(f"d1_{i}", W(4, k) - .03, 30, .18)
 wordin("d2_0", W(4, 5) - .03, 60, .22); wordin("d2_1", W(4, 6) - .03, 60, .22)
 tS = W(4, 7) - .06
 js(f"tl.fromTo('#d3_0',{{opacity:0,scale:.82,y:16}},{{opacity:1,scale:1,y:0,duration:.34,ease:'expo.out',transformOrigin:'50% 60%',immediateRender:false}},{T(tS)});")
-js(f"tl.set('#d3_0',{{opacity:0}},{T(tW + .5)});")
 js(f"tl.set('#scD',{{opacity:1}},{T(tS)});"); draw("spD", tS + .12, .55, 'power2.inOut')
 js(f"tl.fromTo('#sD',{{scale:1.0}},{{scale:1.0,duration:2.6,ease:'sine.inOut'}},{T(tW + .5)});")
 js(f"tl.to('#d3_0',{{rotation:-2,duration:.7,ease:'sine.inOut',yoyo:true,repeat:1}},{T(tS + .4)});")
 sfx("impactpunch.ogg", tS + .02, -3); sfx("subhit.ogg", tS + .04, -5); sfx("select.ogg", tS + .16, -7)
-for i, k in enumerate((0, 1, 2, 3, 4)): sfx("tick.ogg", max(W(4, k), tW + .5), -10)
+for i, k in enumerate((0, 1, 2, 3, 4)): sfx("tick.ogg", W(4, k), -10)
 sfx("pop_b.ogg", W(4, 5), -8); sfx("pop_b.ogg", W(4, 6), -8)
 
 # --- E: prompt 2. big logo pops in, card rises, then typing
-tE = 11.98
+tE = S(11.98)
 SIDE("#sD", tE, .24)
 js(f"tl.set('#sD',{{opacity:0}},{T(tE + .3)});")
 js(f"tl.fromTo('#card2',{{top:1420,opacity:0,filter:'blur(12px)'}},{{top:410,opacity:1,filter:'blur(0px)',duration:.6,ease:'expo.out',immediateRender:false}},{T(tE + .12)});")
 js("gsap.set('#card2',{opacity:0});")
-js(f"tl.fromTo('#tag2',{{opacity:0,x:-30,rotation:-4}},{{opacity:1,x:0,rotation:-1.5,duration:.3,ease:'power3.out',immediateRender:false}},{T(tE + .34)});")
+js(f"tl.fromTo('#tag2',{{opacity:0,x:-12,rotation:-4}},{{opacity:1,x:0,rotation:-1.5,duration:.3,ease:'power3.out',immediateRender:false}},{T(tE + .34)});")
 js(f"tl.set('#cv2',{{opacity:1}},{T(tE + .38)});"); draw("mp2", tE + .4, .5)
 js(f"tl.fromTo('#bdg2',{{opacity:0,scale:.3,rotation:-14}},{{opacity:1,scale:1,rotation:2,duration:.42,ease:'back.out(1.4)',transformOrigin:'50% 50%',immediateRender:false}},{T(tE + .3)});")
 t_in = W(5, 5) - .22
@@ -278,13 +296,13 @@ sfx("whoosh_a.ogg", tE + .06, -6); sfx("pop_a.ogg", tE + .3, -4); sfx("pop_b.ogg
 sfx("whoosh_c.ogg", t_in, -9)
 tt2 = typeline("b", P2, 5, 5)
 js(f"tl.fromTo('#bw10',{{'--u':0}},{{'--u':1,duration:.4,ease:'power2.inOut',immediateRender:false}},{T(WE(5, 15) - .05)});"); sfx("select.ogg", WE(5, 15), -8)
-tsend2 = 17.12
+tsend2 = S(17.12)
 js(f"tl.to('#card2s',{{background:'#f4f4f0',duration:.18,ease:'power2.out'}},{T(tsend2 - .2)});")
 js(f"tl.fromTo('#card2s',{{scale:1}},{{scale:1.18,duration:.16,ease:'power2.out',yoyo:true,repeat:1}},{T(tsend2)});")
 sfx("ding.ogg", tsend2, -8); sfx("pop_a.ogg", tsend2 + .02, -5)
 
 # --- F: blurred answer again + 'Fair warning ...'
-tF = 17.14
+tF = S(17.14)
 js(f"tl.to('#card2,#tag2,#cv2',{{opacity:0,filter:'blur(16px)',y:-30,duration:.26,ease:'power1.in'}},{T(tF)});")
 js(f"tl.fromTo('#sF',{{opacity:0}},{{opacity:1,duration:.2,ease:'power2.out',immediateRender:false}},{T(tF + .1)});")
 js(f"tl.fromTo('#ansF',{{opacity:0,y:60,filter:'blur(14px)'}},{{opacity:1,y:0,filter:'blur(0px)',duration:.4,ease:'power3.out',immediateRender:false}},{T(tF + .12)});")
@@ -303,35 +321,38 @@ js(f"tl.fromTo('#selF',{{'--s':0}},{{'--s':1,duration:.28,ease:'power2.inOut',im
 js(f"tl.to('#selF',{{color:'#ffffff',duration:.2}},{T(W(6, 7) + .06)});")
 for i in range(4): sfx("tick.ogg", W(6, i), -10)
 sfx("whoosh_c.ogg", tF - .02, -8); sfx("pop_a.ogg", tF + .2, -6); sfx("select.ogg", W(6, 7) - .02, -6); sfx("impactsoft.ogg", W(6, 7) + .08, -9)
-sfx("riser.ogg", 17.95, -9)
+sfx("riser.ogg", S(17.95), -9)
 
 # --- G: TEST IT OUT. GO.
-tG = 19.34
+tG = S(19.34)
 SIDE("#sF", tG, .22); SIDE("#ansF", tG, .22)
 js(f"tl.set('#sF,#ansF',{{opacity:0}},{T(tG + .3)});")
 js(f"tl.set('#sG',{{opacity:1}},{T(tG + .02)});")
 wordin("g1_0", W(7, 0) - .03, 70, .22); wordin("g1_1", W(7, 1) - .03, 70, .22); wordin("g2_0", W(7, 2) - .03, 70, .22)
 tGO = W(7, 3) - .04
 js(f"tl.fromTo('#g3_0',{{opacity:0,scale:.8}},{{opacity:1,scale:1,duration:.34,ease:'expo.out',transformOrigin:'50% 60%',immediateRender:false}},{T(tGO)});")
-js(f"tl.set('#scG',{{opacity:1}},{T(tGO)});"); draw("spG", tGO + .1, .55, 'power2.inOut')
-js(f"tl.fromTo('#sG',{{scale:1}},{{scale:1.01,duration:1.5,ease:'sine.inOut',transformOrigin:'50% 50%'}},{T(tG + .2)});")
+js(f"tl.set('#scG',{{opacity:1}},{T(tGO)});"); draw("spG", tGO + .1, .9, 'sine.inOut')
+js(f"tl.fromTo('#sG',{{scale:1}},{{scale:1.0,y:-16,duration:{TL_ - tG - .3:.3f},ease:'sine.inOut',transformOrigin:'50% 50%'}},{T(tG + .2)});")
 sfx("whoosh_a.ogg", tG - .02, -7)
 for i, k in enumerate((0, 1, 2)): sfx("pop_b.ogg", W(7, k), -6)
 sfx("impactpunch.ogg", tGO + .02, -2); sfx("subhit.ogg", tGO + .04, -4); sfx("ding.ogg", tGO + .2, -8); sfx("select.ogg", tGO + .14, -7)
 
 # --- loop: G dissolves and frame 0 (logo, THIS PROMPT, card with cursor) comes back
-tL = 20.8
+tL = TL_
+sfx("ding.ogg", E(7) + .3 if 'E' in globals() else S(20.83) + .3, -12); sfx("subhit.ogg", S(20.83) + .45, -13)
 SIDE("#sG", tL, .3)
-js(f"tl.set('#card',{{opacity:1,filter:'blur(0px)',y:0,top:830,height:410}},{T(tL - .02)});")
+js(f"tl.set('#card',{{opacity:0,filter:'blur(0px)',y:26,scale:.95,top:770,height:470}},{T(tL - .02)});")
 js(f"tl.set('#tag1,#cv1',{{opacity:0}},{T(tL - .02)});")
+js(f"tl.set('#bdg',{{rotation:-14,scale:.86,y:10}},{T(tL - .02)});")
+js(f"tl.set('#sA',{{scale:1}},{T(tL - .02)});")
 js(f"tl.set('#sA',{{opacity:0}},{T(tL - .02)});")
-js(f"tl.set('#hA2 .w',{{opacity:0}},{T(tL - .02)});")
-js(f"tl.set('#aL0,#aL1,#aL2,#aV',{{opacity:0,y:46}},{T(tL - .02)});")
+js(f"tl.set('#hA2 .w',{{opacity:.14}},{T(tL - .02)});")
+js(f"tl.set('#aL0,#aL1,#aL2,#aV',{{opacity:.14,y:0}},{T(tL - .02)});")
 js(f"tl.set('#ulAp',{{strokeDashoffset:1}},{T(tL - .02)});")
-js(f"tl.fromTo('#sA',{{opacity:0,filter:'blur(16px)'}},{{opacity:1,filter:'blur(0px)',duration:.5,ease:'power2.out',immediateRender:false}},{T(tL + .05)});")
-js(f"tl.fromTo('#card',{{opacity:0,filter:'blur(14px)'}},{{opacity:1,filter:'blur(0px)',duration:.45,ease:'power2.out',immediateRender:false}},{T(tL + .22)});")
-js(f"tl.set('#blA',{{opacity:1}},{T(tL + .6)});")
-sfx("whoosh_b.ogg", tL - .04, -9); sfx("pop_a.ogg", tL + .2, -9)
+js(f"tl.fromTo('#sA',{{opacity:0,filter:'blur(16px)'}},{{opacity:1,filter:'blur(0px)',duration:.5,ease:'power2.out',immediateRender:false}},{T(tL + .26)});")
+js(f"tl.fromTo('#card',{{opacity:0,filter:'blur(14px)'}},{{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false}},{T(tL + .32)});")
+js(f"tl.set('#blA',{{opacity:1}},{T(tL + .5)});")
+sfx("whoosh_b.ogg", tL + .2, -12); sfx("pop_a.ogg", tL + .36, -10)
 
 JS = "\n".join(J)
 json.dump([dict(f=f, t=t, g=g) for f, t, g in SFX if 0 <= t < D], open(H_ + "/sfx89c.json", "w"), indent=1)
