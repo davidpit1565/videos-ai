@@ -23,3 +23,8 @@ Big Shoulders Bold, Gloock Regular, IBM Plex Mono Bold (`src/assets/fonts/`).
 - The CC0 tag on the NGA files is what Commons shows; the National Gallery of Art's own open-access page for each print was not opened.
 - The Claude and OpenAI marks come from Commons uploads; whether they are the very latest official versions of each mark was not checked on the companies' brand pages.
 - Rawpixel/Commons pages were fetched through a proxy with rate limits; the Daumier files are the 960 px (or 700 px) thumbnails Commons serves, not the full scans.
+
+## v2 (10.11.2026, plain style on David's request): v2/A2.png, v2/B2.png
+- Figures drawn by us in inline SVG (v2/A.html, v2/B.html), no third-party artwork. Logos: src/assets/claude.svg and openai.svg (marks from Wikimedia Commons, see above), shown on brand-coloured badges (ChatGPT green, Claude orange). Font: Inter Display (SIL OFL).
+- A2 wording is ours: "Perfect idea!" / "3 problems. Fix #1 first." (a joke about tone, not a test result; the Claude side is untested by us).
+- B2 is the real chat from episodes 79/80 (shortened; "Absolutely not." is the start of a longer answer).
