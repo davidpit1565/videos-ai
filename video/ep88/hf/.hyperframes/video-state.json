@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "1fb7666a-5dbe-436d-8874-8adbe4ef9342",
-  "currentRevision": "f0f78b65-f07e-4e58-a5c5-e32e51af14e7",
+  "currentRevision": "8cdf16e5-0cb4-45ac-b930-3467f551cf41",
   "pendingChanges": false,
   "files": {
     "assets/facebook.svg": {
@@ -29,8 +29,8 @@
       "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/71/712b76d2f7cabaa50799d5775b8de657b8ca07dd3abb95bd793effb71b754c8d"
     },
     "index.html": {
-      "hash": "ea9362fa408a28cee60c72ac6f041486fe9fde56adfb716c9ec5f49d9e2e48ae",
-      "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/ea/ea9362fa408a28cee60c72ac6f041486fe9fde56adfb716c9ec5f49d9e2e48ae"
+      "hash": "92e53aa9f6a4f224c7ec80d5e95c2ef4d4bdc2d49298919c5ad49e4a12c3cc08",
+      "content": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/92/92e53aa9f6a4f224c7ec80d5e95c2ef4d4bdc2d49298919c5ad49e4a12c3cc08"
     },
     "assets/fonts/BigShoulders-Bold.ttf": {
       "hash": "b43bcd198b9fdf717dd42aa61a34dba32e01aceaeae659d689afd0ca52c37ea2",
@@ -539,6 +539,21 @@
           "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/ea/ea9362fa408a28cee60c72ac6f041486fe9fde56adfb716c9ec5f49d9e2e48ae"
         }
       }
+    },
+    "8cdf16e5-0cb4-45ac-b930-3467f551cf41": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794275358395,
+      "endedAt": 1794275358396,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/ea/ea9362fa408a28cee60c72ac6f041486fe9fde56adfb716c9ec5f49d9e2e48ae",
+          "after": "/root/.cache/hyperframes/history/1fb7666a-5dbe-436d-8874-8adbe4ef9342/blobs/92/92e53aa9f6a4f224c7ec80d5e95c2ef4d4bdc2d49298919c5ad49e4a12c3cc08"
+        }
+      }
     }
   },
   "checks": {
@@ -553,15 +568,15 @@
   },
   "renders": {
     "latest": {
-      "id": "86d457c1-db1c-4307-8b23-20a06cd40a25",
-      "completedAt": 1794274610618,
+      "id": "07fda3ea-da75-4baf-b55c-3d6afc54d6a3",
+      "completedAt": 1794275253139,
       "output": "/home/user/videos-ai/video/ep88/out/final5.mp4",
       "status": "completed",
-      "revision": "94eab803-6831-44fc-a734-8d08cdd77f85"
+      "revision": "f0f78b65-f07e-4e58-a5c5-e32e51af14e7"
     },
     "retainedRevisions": [
-      "94eab803-6831-44fc-a734-8d08cdd77f85",
-      "c6612d51-bf64-4257-9f8f-ecf6fbe0ba0e"
+      "f0f78b65-f07e-4e58-a5c5-e32e51af14e7",
+      "94eab803-6831-44fc-a734-8d08cdd77f85"
     ]
   },
   "pendingArtifactCleanup": []

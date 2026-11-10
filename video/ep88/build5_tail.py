@@ -28,7 +28,7 @@ def tape(x, y, rot, w=150, h=46):
 
 def print_(k, id, x, y, w, h, rot, z=3, stamp=True, tp=True):
     inner = (f'<div class="pic" style="inset:14px 14px 50px 14px"><img class="pimg" src="assets/photos/{ {0: "beach", 1: "cake", 3: "desk"}[k] }.jpg"><div class="ht2"></div><div class="pvig"></div></div>'
-             + (f'<div class="stamp" id="{id}s" style="left:50%;top:auto;bottom:7px;transform:translateX(-50%) rotate(-2deg)">NEVER POSTED</div>' if stamp else ''))
+             + (f'<div class="stamp" id="{id}s" style="{ "left:14px;" if k == 0 else "left:auto;right:14px;" }top:auto;bottom:7px;transform:rotate(-2deg)">NEVER POSTED</div>' if stamp else ''))
     return (f'<div class="pcw prn" id="{id}" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;transform:rotate({rot}deg);z-index:{z}">'
             f'<div class="pc"><div class="pcb" style="background:#FBF6EA;clip-path:{torn(w, h, 40 + k, 3, 40)}">{inner}</div></div>'
             + (tape(w // 2 - 70, -16, -4 + k) if tp else '') + '</div>')
@@ -38,7 +38,7 @@ def fbsticker(id, x, y, size, rot):
 
 def hookblock(sfx):
     return (f'<div class="cam" id="hcam{sfx}">'
-            + strip(f"hA{sfx}", "FACEBOOK CAN LOOK", 90, 290, 900, 132, -1.2, YEL, size=96, seed=3, left=190, align="left")
+            + strip(f"hA{sfx}", "FACEBOOK CAN LOOK", 90, 290, 900, 132, -1.2, YEL, size=91, seed=3, left=190, align="left")
             + strip(f"hB{sfx}", "THROUGH PHOTOS YOU", 90, 436, 900, 130, 1.0, YEL, size=104, seed=5, z=5)
             + strip(f"hC{sfx}", "never posted", 190, 580, 700, 116, -1.8, BLK, "#fff", "Gloock", 90, 7, z=6)
             + f'<div id="cards{sfx}">' + print_(0, f"pr1{sfx}", 92, 752, 320, 420, -8, 3) + print_(3, f"pr3{sfx}", 668, 762, 320, 420, 9, 3) + print_(1, f"pr2{sfx}", 345, 722, 390, 480, 2, 4, False) + '</div>'
