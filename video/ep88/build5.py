@@ -99,7 +99,7 @@ def tape(x, y, rot, w=150, h=46):
 
 def print_(k, id, x, y, w, h, rot, z=3, stamp=True, tp=True):
     inner = (f'<div class="pic" style="inset:14px 14px 50px 14px"><img class="pimg" src="assets/photos/{ {0: "beach", 1: "cake", 3: "desk"}[k] }.jpg"><div class="ht2"></div><div class="pvig"></div></div>'
-             + (f'<div class="stamp" id="{id}s" style="{ "left:14px;" if k == 0 else "left:auto;right:14px;" }top:auto;bottom:7px;transform:rotate(-2deg)">NEVER POSTED</div>' if stamp else ''))
+             + (f'<div class="stamp" id="{id}s" style="{ "left:14px;" if k == 0 else "left:auto;right:14px;" }top:auto;bottom:14px;transform:rotate(-2deg)">NEVER POSTED</div>' if stamp else ''))
     return (f'<div class="pcw prn" id="{id}" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;transform:rotate({rot}deg);z-index:{z}">'
             f'<div class="pc"><div class="pcb" style="background:#FBF6EA;clip-path:{torn(w, h, 40 + k, 3, 40)}">{inner}</div></div>'
             + (tape(w // 2 - 70, -16, -4 + k) if tp else '') + '</div>')
@@ -284,9 +284,9 @@ tl.fromTo('#news,#news2',{x:0,y:0},{x:-70,y:-60,duration:D,ease:"none"},0);
 tl.fromTo('#npw',{x:0,y:0},{x:-40,y:-30,duration:D,ease:"none"},0);
 function hook(sfx,t0,t1){
   const h='hcam'+sfx;
-  tl.fromTo('#pr1'+sfx,{y:36,rotation:-10},{y:0,rotation:-8,duration:.6,ease:EX},t0);
-  tl.fromTo('#pr3'+sfx,{y:44,rotation:11},{y:0,rotation:9,duration:.6,ease:EX},t0+.05);
-  tl.fromTo('#pr2'+sfx,{y:30,scale:.97},{y:0,scale:1,duration:.6,ease:EX},t0+.1);
+  tl.fromTo('#pr1'+sfx,{y:(sfx=='H'?0:36),rotation:-10},{y:0,rotation:-8,duration:.6,ease:EX},t0);
+  tl.fromTo('#pr3'+sfx,{y:(sfx=='H'?0:44),rotation:11},{y:0,rotation:9,duration:.6,ease:EX},t0+.05);
+  tl.fromTo('#pr2'+sfx,{y:(sfx=='H'?0:30),scale:.97},{y:0,scale:1,duration:.6,ease:EX},t0+.1);
   tl.fromTo('#fbs'+sfx,{scale:.85,rotation:-20},{scale:1,rotation:-8,duration:.5,ease:"back.out(2.2)"},t0+.15);
   if(sfx!='H') tl.fromTo(['#hA'+sfx,'#hB'+sfx,'#hC'+sfx],{x:-26},{x:0,duration:.5,ease:EX,stagger:.06},t0);
   if(sfx=='H') push(h,t0,t1,1.04,1.0); else push(h,t0,t1,1,1.04);
