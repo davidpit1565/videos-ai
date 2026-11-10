@@ -72,8 +72,12 @@ def at(t): return tt(t)
 exec(tl7[tl7.index("def slam"):tl7.index("def fly")])     # slam, settle, drop, tapeslap, thump
 exec(tl7[tl7.index("def cam"):tl7.index("def scraps")])   # cam
 
+def vis(sel, t):
+    js(f"tl.set('{sel}',{{visibility:'visible'}},{at(t)});")
+
 def out_(sel, t, d=.16):
     js(f"tl.to('{sel}',{{opacity:0,scale:.96,duration:{d},ease:'power1.in',transformOrigin:'50% 50%'}},{at(t)});")
+    js(f"tl.set('{sel}',{{visibility:'hidden'}},{at(t + d + .01)});")
 
 def fit(text, font, maxw, size0, minsize=40):
     s = size0
@@ -121,17 +125,18 @@ def scraps_markup():
 
 SCR, SPEC = scraps_markup()
 # phase 2: source strip; phase 3: ask not guess; phase 4: save / send
-src_strip = strip("s2", "OPENAI ACADEMY", STRIP_X, STRIP_Y, 700, 150, -1.0, ("news", None), "#17130F", "BS", fit("OPENAI ACADEMY", "BS", 640, 150), 83, z=9)
-ask_strip = strip("s3", "ASK. NOT GUESS.", STRIP_X, STRIP_Y, 700, 150, 1.0, ("card", YEL), size=fit("ASK. NOT GUESS.", "BS", 640, 150), seed=84, z=9)
-save_strip = strip("s4a", "SAVE IT", STRIP_X, STRIP_Y, 940, 170, -1.2, ("card", YEL), size=fit("SAVE IT", "BS", 880, 230), seed=85, z=9)
-send_strip = strip("s4b", "SEND IT", STRIP_X, STRIP_Y, 940, 170, 1.1, ("card", BLK), "#f1e8d2", "BS", fit("SEND IT", "BS", 880, 230), 86, z=10)
+S2X, S2Y = 90, 322
+src_strip = strip("s2", "OPENAI ACADEMY", S2X, S2Y, 700, 150, -1.0, ("news", None), "#17130F", "BS", fit("OPENAI ACADEMY", "BS", 640, 150), 83, z=9)
+ask_strip = strip("s3", "ASK. NOT GUESS.", S2X, S2Y, 700, 150, 1.0, ("card", YEL), size=fit("ASK. NOT GUESS.", "BS", 640, 150), seed=84, z=9)
+save_strip = strip("s4a", "SAVE IT", S2X, S2Y, 900, 170, -1.2, ("card", YEL), size=fit("SAVE IT", "BS", 840, 210), seed=85, z=9)
+send_strip = strip("s4b", "SEND IT", S2X, S2Y, 900, 170, 1.1, ("card", BLK), "#f1e8d2", "BS", fit("SEND IT", "BS", 840, 210), 86, z=10)
 
 def qbubble(i, y, rot, seed):
     inner = ('<div class="qm">?</div><div class="qb"><i style="width:78%"></i><i style="width:52%"></i></div>')
     return P(inner, f"qb{i}", 150, y, 780, 150, rot, "news" if i != 1 else "card", CRM if i != 1 else WHT, seed, 8, 14, "qbub")
 
 bubbles = qbubble(0, 690, -1.5, 91) + qbubble(1, 880, 1.2, 92) + qbubble(2, 1070, -.8, 93)
-stampSaved = stamp("saved", "SAVED", 330, 1120, -6, 84, "#B6402B", "A", .9, "BS", True, 30)
+stampSaved = stamp("saved", "SAVED", 330, 1090, -6, 84, "#B6402B", "A", .9, "BS", True, 30)
 # chat for phase 4
 chat4 = ('<div class="mavt" id="fav">?</div>'
          + P('<div class="shortmsg" id="shm"><span id="shmt">write email</span></div>', "fbub", 250, 1040, 600, 150, -.8, "card", WHT, 95, 8, 15, "chb")
@@ -189,6 +194,7 @@ cam("cA", T["s2"], T["s3"], 1.012, 1.03, .2, -.2, 0, 0, 0, -8)
 cam("cA", T["s3"], T["s4"], 1.03, 1.02, -.2, .3, 0, 0, -8, 0)
 cam("cA", T["s4"], T["loop"], 1.02, 1.0, .3, 0, 0, 0, 0, 0)
 
+js("tl.set('#s2,#s3,#s4a,#s4b',{visibility:'hidden'},0);")
 # --- phase 1 (frame 0 is settled and readable; only small continuous motion)
 js(f"tl.fromTo('#lg',{{rotation:8,scale:1}},{{rotation:2,scale:1.07,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'}},{at(.05)});")
 js(f"tl.fromTo('#sa',{{x:-10,rotation:-1.5}},{{x:8,rotation:-1.1,duration:{T['s2']:.3f},ease:'sine.inOut',transformOrigin:'50% 50%'}},0);")
@@ -202,7 +208,7 @@ sfx("impactpunch.ogg", 0.02, -3)
 s = T["s2"]
 for sel in ("#sa", "#sb"):
     out_(sel, s - .06)
-slam("#s2", s + .14, dx=-280, rot=-1, s0=1.08, dur=.34)
+vis("#s2", s + .13); slam("#s2", s + .14, dx=-280, rot=-1, s0=1.08, dur=.34)
 js(f"tl.fromTo('#lg',{{y:0}},{{y:-160,rotation:-6,duration:.55,ease:'back.out(1.4)'}},{at(s + .12)});")
 sfx("whoosh_a.ogg", s, -3); sfx("pop_a.ogg", s + .3, -4)
 js(f"tl.to('#pn',{{opacity:0,scale:1.1,duration:.2,ease:'power2.in',transformOrigin:'50% 50%'}},{at(s - .1)});")
@@ -226,10 +232,11 @@ sfx("select.ogg", E(2) + .05, -4)
 # --- phase 3: "It makes ChatGPT ask, not guess." three question bubbles pop (placeholders, no invented answers)
 s = T["s3"]
 out_("#s2", s - .04)
-slam("#s3", s + .14, dx=280, rot=1, s0=1.08, dur=.34)
+vis("#s3", s + .13); slam("#s3", s + .14, dx=280, rot=1, s0=1.08, dur=.34)
 sfx("whoosh_b.ogg", s, -3)
 js(f"tl.to('#ptx',{{opacity:0,duration:.2}},{at(s + .05)});")
 js(f"tl.to('#card',{{scale:1.0,rotation:-.6,duration:.6,ease:'sine.inOut'}},{at(s + .1)});")
+js(f"tl.to('.dkcard .plus,#snd',{{opacity:0,duration:.15}},{at(s + .15)});")
 bt = [W(3, 3) - .35, W(3, 3) - .05, W(3, 3) + .22]   # around "ChatGPT ask"
 for i in range(3):
     t0 = max(s + .2, bt[i])
@@ -244,7 +251,8 @@ s = T["s4"]
 for i in range(3):
     js(f"tl.to('#qb{i}',{{scale:.7,opacity:0,rotation:{(-9, 7, -6)[i]},duration:.25,ease:'power2.in',transformOrigin:'50% 50%'}},{at(s - .02 + i * .05)});")
 out_("#s3", s - .04)
-slam("#s4a", s + .14, dx=-280, rot=-1, s0=1.08, dur=.34)
+js(f"tl.to('.dkcard .plus,#snd',{{opacity:1,duration:.2}},{at(s + .1)});")
+vis("#s4a", s + .13); slam("#s4a", s + .14, dx=-280, rot=-1, s0=1.08, dur=.34)
 js(f"tl.to('#lg',{{scale:0,opacity:0,rotation:-60,duration:.35,ease:'back.in(1.5)'}},{at(s)});")
 js(f"tl.to('#ptx',{{opacity:1,duration:.3}},{at(s + .25)});")
 js(f"tl.fromTo('#saved',{{scale:2.2,opacity:0}},{{scale:1,opacity:.9,duration:.16,ease:'power4.in',transformOrigin:'50% 50%'}},{at(W(4, 0) + .1)});")
@@ -252,7 +260,7 @@ sfx("whoosh_c.ogg", s, -4); sfx("impactsoft.ogg", W(4, 0) + .22, -4); sfx("click
 # send: the card shrinks into a sent message (right), strip changes, friend asks with a short prompt
 t0 = T["send"]
 out_("#s4a", t0 - .2)
-slam("#s4b", t0 + .0, dx=280, rot=1, s0=1.08, dur=.34)
+vis("#s4b", t0 - .01); slam("#s4b", t0 + .0, dx=280, rot=1, s0=1.08, dur=.34)
 js(f"tl.to('#saved',{{opacity:0,duration:.2}},{at(t0)});")
 js(f"tl.to('#card',{{x:70,y:-200,scale:.8,rotation:3,duration:.7,ease:'expo.inOut',transformOrigin:'50% 50%'}},{at(t0)});")
 sfx("whoosh_a.ogg", t0, -3); sfx("pop_b.ogg", t0 + .72, -3)
@@ -268,7 +276,7 @@ sfx("pop_a.ogg", T["short"] + .12, -3); sfx("ding.ogg", E(4) - .05, -7)
 tl_ = T["loop"]
 js(f"tl.fromTo('#sheetA',{{x:1160,y:-100,rotation:-2.5,opacity:1}},{{x:-1560,y:-120,rotation:2.5,duration:.24,ease:'power2.inOut'}},{at(tl_ - .12)});")
 js(f"tl.set('#sheetA',{{opacity:0}},{at(tl_ + .14)});")
-js(f"tl.set('#sA',{{autoAlpha:0}},{at(tl_)});"); js(f"tl.set('#sH',{{autoAlpha:1}},{at(tl_ - .01)});")
+js(f"tl.set('#sA',{{autoAlpha:0}},{at(tl_ - .01)});"); js(f"tl.set('#sH',{{autoAlpha:1}},{at(tl_ - .01)});")
 js("tl.set('#sH',{autoAlpha:0},0);")
 js(f"tl.fromTo('#cH',{{scale:1.012,rotation:.2}},{{scale:1,rotation:0,duration:{D_ - tl_:.3f},ease:'sine.out',transformOrigin:'540px 760px'}},{at(tl_)});")
 js(f"tl.fromTo('#lgH',{{rotation:8}},{{rotation:3,scale:1.05,duration:{D_ - tl_:.3f},ease:'sine.inOut',transformOrigin:'50% 50%'}},{at(tl_)});")

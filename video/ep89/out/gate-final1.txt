@@ -1,0 +1,86 @@
+=== FAIL  frame layout (safe_check_hf.js) (exit 1)
+    index.html  13.74s  69 samples every 0.2s  safe box: x 65-1015, y 269-1248
+        32px past the left line   y 267-447  worst at 0s, over tol in 13 hits 0-2.4s   #s2t  "OPENAI ACADEMY"
+        23px past the top line   y 246-456  worst at 6s, over tol in 27 hits 4.2-9.4s   #s4at  "SAVE IT"
+        21px past the top line   y 248-452  worst at 6.2s, over tol in 32 hits 4.2-10.4s   #s4bt  "SEND IT"
+        19px past the top line   y 250-430  worst at 6.2s, over tol in 16 hits 4.6-7.6s   #s3t  "ASK. NOT GUESS."
+        14px past the top line   y 255-425  worst at 6.2s, over tol in 5 hits 5.4-6.2s   #s2t  "OPENAI ACADEMY"
+        12px past the bottom line   y 1117-1260  worst at 9.6s, over tol in 5 hits 9.6-10.4s   #saved  "SAVED"
+      within tolerance: 5px past the top line   #saHt  "OPENAI SAYS:"
+      within tolerance: 9px overlap  #pw5 x #pw7
+      within tolerance: 8px overlap  #pw6 x #pw8
+      within tolerance: 6px overlap  #pw2 x #pw6
+      within tolerance: 4px overlap  #pw3 x #sbHt
+      overlap  206px worst at 7.2s, 52 hits 0-10.2s   #s4at "SAVE IT"  x  #s4bt "SEND IT"
+      overlap  190px worst at 0.2s, 12 hits 0-2.2s   #sat "OPENAI SAYS:"  x  #s4at "SAVE IT"
+      overlap  187px worst at 0.2s, 12 hits 0-2.2s   #sat "OPENAI SAYS:"  x  #s4bt "SEND IT"
+      overlap  183px worst at 0.2s, 12 hits 0-2.2s   #sat "OPENAI SAYS:"  x  #s2t "OPENAI ACADEMY"
+      overlap  183px worst at 0.2s, 32 hits 0-6.2s   #s2t "OPENAI ACADEMY"  x  #s4at "SAVE IT"
+      overlap  181px worst at 0s, 48 hits 0-9.4s   #s3t "ASK. NOT GUESS."  x  #s4at "SAVE IT"
+      overlap  181px worst at 0s, 48 hits 0-9.4s   #s3t "ASK. NOT GUESS."  x  #s4bt "SEND IT"
+      overlap  180px worst at 0.2s, 32 hits 0-6.2s   #s2t "OPENAI ACADEMY"  x  #s4bt "SEND IT"
+      overlap  179px worst at 0s, 32 hits 0-6.2s   #s2t "OPENAI ACADEMY"  x  #s3t "ASK. NOT GUESS."
+      overlap  178px worst at 0s, 12 hits 0-2.2s   #sat "OPENAI SAYS:"  x  #s3t "ASK. NOT GUESS."
+      overlap  174px worst at 13.4s, 1 hits 13.4-13.4s   #s4bt "SEND IT"  x  #saHt "OPENAI SAYS:"
+      overlap   86px worst at 13.4s, 1 hits 13.4-13.4s   #pw0 "Before"  x  #sbHt "PASTE THIS FIRST"
+      overlap   75px worst at 13.4s, 1 hits 13.4-13.4s   #pw1 "you"  x  #sbHt "PASTE THIS FIRST"
+      overlap   59px worst at 13.4s, 1 hits 13.4-13.4s   #pw2 "answer,"  x  #sbHt "PASTE THIS FIRST"
+      overlap   57px worst at 13.4s, 1 hits 13.4-13.4s   #fav "?"  x  .plus "+"
+      overlap   46px worst at 8s, 9 hits 7.8-9.4s   .plus "+"  x  .qm "?"
+      overlap   17px worst at 0s, 9 hits 0-2.2s   #sbt "PASTE THIS FIRST"  x  #s4bt "SEND IT"
+      overlap   16px worst at 0s, 12 hits 0-2.2s   #sbt "PASTE THIS FIRST"  x  #s4at "SAVE IT"
+      overlap   16px worst at 13.4s, 1 hits 13.4-13.4s   #s4bt "SEND IT"  x  #sbHt "PASTE THIS FIRST"
+
+=== PASS  rendered file (qa.py --hf)
+    ep89-final1.mp4  1080x1920  30fps  13.77s  9.4MB
+      visual change: median 0.03s, longest 2.60s
+      loudness: -14.2 LUFS integrated, peak -3.6 dBFS, LRA 1.9 LU
+      loop seam: first vs last frame differ by 17.4/255
+    
+      [warn]    13.8s is outside the 30-90s band
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 121.7, std 48.5)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.2 LUFS
+      ok        peak -3.6 dBFS
+
+=== PASS  voice + music quality (voice_quality.py)
+    pitch (semitones vs each line's own median):
+      line   1  range  6.2 st  end  -2.2    OpenAI says: paste this first.
+      line   2  range  5.8 st  end  +0.3    Before you answer, ask me three clarifying quest
+      line   3  range  4.9 st  end  -1.5    It makes ChatGPT ask, not guess.
+      line   4  range  6.8 st  end  -0.4    Save it. Send it to someone who types short prom
+    tone: none steady over 0.6 s
+    music: 17% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.43 = -8.0 dB
+    
+    voice quality: clean
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep89/out/narration89.wav  13.7s  4 lines
+      medians: ending -19.8 dB · level -19.5 dBFS · S residual +0.0 dB (slope +0.0 dB per sibilant/syllable)
+      flagged below: ending -32.9 dB · S residual -8.3 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  1.98  +0.36  3.54   -9.0  -21.9  -19.6  OpenAI says: paste this first.
+        2  3.62  +0.36  4.14  -13.2  -38.9  -17.1  Before you answer, ask me three clarif
+        3  2.65  +0.36  2.64   -4.5  -14.8  -19.3  It makes ChatGPT ask, not guess.
+        4   3.8    —    3.16   -7.2  -17.6  -19.8  Save it. Send it to someone who types 
+    
+      [fix] line  2: weak ending (-38.9 dB vs median -19.8)
+             -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  FAIL  frame layout (safe_check_hf.js) (exit 1)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+SOMETHING FAILED - do not send this file
