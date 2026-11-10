@@ -67,3 +67,11 @@ Menu names move between app versions; page says "verified Nov 2026".
 - Drawn prompt and settings row are labelled "drawn example" on screen: the real EU prompt wording is unverified.
 - 9.11 NEW HOOK (David rejected the first): "Facebook can see photos you never posted. Find the switch." + "Five seconds. Go." with an on-screen 5-4-3-2-1-0 countdown from frame 0. 7 spoken lines. Last line reworded "She taps Allow every time." (the voice trails off on "everything": weak ending -45 dB on every take; "every time" took accent 0.07). Build: video/ep88/build.py; final mp4 video/ep88/out/ep88-final.mp4.
 - Blind reader: NOT run (no Agent tool in this session). Frame 0 still: channel/episode-88-frame0.png.
+
+## 8. Round 5 (10.11.2026): top-funnel torn-paper collage, 20 s
+- Format per Roni/David: understand in under 3 s, mostly visual, at most 3 lines of text on screen, new visual about every 2 s, proof (switch OFF) at about 11.6 s, total 20.0 s, loops back to frame 0.
+- Look: torn newsprint and kraft collage, yellow and black torn strips with slam-in typed text (Big Shoulders Bold, Gloock, IBM Plex Mono Bold, all SIL OFL, from /mnt/skills/examples), real CC0 Wikimedia Commons photos (beach, cake, desk) halftoned and sepia, taped prints with NEVER POSTED stamps, real Facebook f icon, lime only on the OFF state. Credits: channel/ep88-image-credits.md.
+- Truth constraints unchanged: no "uploads", no "AI scans"; line 2 keeps it conditional ("only if you tapped Allow"). Meta's two verified sentences are the only claims on the Meta scene (opt-in; not used for ads targeting).
+- SFX (CC0, logged in channel/music-notes.md) mixed by video/ep88/mix5.py under the voice; bed H unchanged.
+- Build: video/ep88/build5.py (= build5_head.py + build5_tail.py), voice takes in video/ep88/voice5/ (X1, Y3, Y6, Z3, Y8), run with video/ep88/fin.sh <tag>.
+- Not done: blind reader (no Agent tool); real-time viewing; the studio file size is about 20 MB (grain-heavy picture), larger than earlier cuts (about 7 MB).

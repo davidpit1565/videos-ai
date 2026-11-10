@@ -28,7 +28,7 @@ def tape(x, y, rot, w=150, h=46):
 
 def print_(k, id, x, y, w, h, rot, z=3, stamp=True, tp=True):
     inner = (f'<div class="pic" style="inset:14px 14px 50px 14px"><img class="pimg" src="assets/photos/{ {0: "beach", 1: "cake", 3: "desk"}[k] }.jpg"><div class="ht2"></div><div class="pvig"></div></div>'
-             + (f'<div class="stamp" id="{id}s" style="{ {0: "left:47%;top:64%", 1: "left:57%;top:72%", 3: "left:56%;top:62%"}[k] }">NEVER POSTED</div>' if stamp else ''))
+             + (f'<div class="stamp" id="{id}s" style="left:50%;top:auto;bottom:12px;transform:translateX(-50%) rotate(-2deg)">NEVER POSTED</div>' if stamp else ''))
     return (f'<div class="pcw prn" id="{id}" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;transform:rotate({rot}deg);z-index:{z}">'
             f'<div class="pc"><div class="pcb" style="background:#FBF6EA;clip-path:{torn(w, h, 40 + k, 3, 40)}">{inner}</div></div>'
             + (tape(w // 2 - 70, -16, -4 + k) if tp else '') + '</div>')
@@ -38,11 +38,11 @@ def fbsticker(id, x, y, size, rot):
 
 def hookblock(sfx):
     return (f'<div class="cam" id="hcam{sfx}">'
-            + strip(f"hA{sfx}", "FACEBOOK CAN LOOK", 90, 290, 900, 132, -1.2, YEL, size=100, seed=3, left=150)
+            + strip(f"hA{sfx}", "FACEBOOK CAN LOOK", 90, 290, 900, 132, -1.2, YEL, size=96, seed=3, left=190, align="left")
             + strip(f"hB{sfx}", "THROUGH PHOTOS YOU", 90, 436, 900, 130, 1.0, YEL, size=104, seed=5, z=5)
             + strip(f"hC{sfx}", "never posted", 190, 580, 700, 116, -1.8, BLK, "#fff", "Gloock", 90, 7, z=6)
-            + f'<div id="cards{sfx}">' + print_(0, f"pr1{sfx}", 92, 782, 320, 430, -8, 3) + print_(3, f"pr3{sfx}", 668, 792, 320, 430, 9, 3) + print_(1, f"pr2{sfx}", 345, 748, 390, 490, 2, 4) + '</div>'
-            + fbsticker(f"fbs{sfx}", 94, 296, 128, -8) + '</div>')
+            + f'<div id="cards{sfx}">' + print_(0, f"pr1{sfx}", 92, 782, 320, 430, -8, 3) + print_(3, f"pr3{sfx}", 668, 792, 320, 430, 9, 3) + print_(1, f"pr2{sfx}", 345, 748, 390, 490, 2, 4, False) + '</div>'
+            + fbsticker(f"fbs{sfx}", 100, 298, 112, -8) + '</div>')
 
 def uiblock(n):
     if n == 1:
@@ -154,7 +154,7 @@ html,body,#root{background:#B8955F}
 .ht2{position:absolute;inset:0;background:radial-gradient(circle,rgba(30,18,6,.42) 1.8px,transparent 2.4px) 0 0/8px 8px;mix-blend-mode:multiply;opacity:.3}
 .pvig{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(0,0,0,.32))}
 .stamp{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%) rotate(-9deg);font:700 44px BS;letter-spacing:.04em;color:var(--red);border:6px solid var(--red);padding:2px 16px 4px;border-radius:8px;mix-blend-mode:multiply;opacity:.93;white-space:nowrap;z-index:11}
-.prn .stamp{font-size:34px}
+.prn .stamp{font-size:21px;border-width:3px;padding:1px 8px 2px;opacity:.78;letter-spacing:.06em}
 .fbs{position:absolute;z-index:20;border-radius:50%;background:#fff;box-shadow:0 0 0 6px #fff,0 8px 20px rgba(30,18,6,.45);overflow:hidden}.fbs img{width:100%;height:100%;padding:6px}
 .pnum{position:absolute;left:92px;top:340px;font:700 440px BS;line-height:400px;color:var(--red);mix-blend-mode:multiply;opacity:.95;letter-spacing:-.02em}
 .of4{position:absolute;left:360px;top:288px;font:700 26px PlexM;letter-spacing:.1em;color:#3b2a14}
@@ -219,8 +219,9 @@ function hook(sfx,t0,t1){
   tl.fromTo('#fbs'+sfx,{scale:.85,rotation:-20},{scale:1,rotation:-8,duration:.5,ease:"back.out(2.2)"},t0+.15);
   if(sfx!='H') tl.fromTo(['#hA'+sfx,'#hB'+sfx,'#hC'+sfx],{x:-26},{x:0,duration:.5,ease:EX,stagger:.06},t0);
   if(sfx=='H') push(h,t0,t1,1.04,1.0); else push(h,t0,t1,1,1.04);
-  [1,2,3].forEach((k,i)=>tl.fromTo('#pr'+k+sfx+'s',{scale:1.14},{scale:1,duration:.3,ease:"power4.out"},t0+.55+i*.3));
+  [1,3].forEach((k,i)=>tl.fromTo('#pr'+k+sfx+'s',{scale:1.14},{scale:1,duration:.3,ease:"power4.out"},t0+.55+i*.3));
   tl.fromTo('#hC'+sfx,{scale:1.07},{scale:1,duration:.5,ease:EX,immediateRender:false,transformOrigin:"50%% 50%%"},T.slam1);
+    if(sfx!='H'){ const m=t0+1.25; tl.to('#pr2'+sfx,{scale:1.06,rotation:-1,duration:.55,ease:EA,yoyo:true,repeat:1},m); tl.to('#pr1'+sfx,{x:-16,rotation:-11,duration:.55,ease:EA,yoyo:true,repeat:1},m); tl.to('#pr3'+sfx,{x:16,rotation:12,duration:.55,ease:EA,yoyo:true,repeat:1},m+.05); [['hA',-5],['hB',3],['hC',3]].forEach((k,i)=>tl.to('#'+k[0]+sfx,{y:k[1],duration:.7,ease:EA,yoyo:true,repeat:1},t0+.6+i*.12)); }
   if(sfx=='H') tl.fromTo('#cards'+sfx,{x:-16},{x:0,duration:t1-t0,ease:EA},t0); else tl.fromTo('#cards'+sfx,{x:0},{x:-16,duration:t1-t0,ease:EA},t0);
   (sfx=='H'?[]:[['pr1',-12,.7],['pr3',-10,.85],['pr2',-14,.75]]).forEach(a=>tl.to('#'+a[0]+sfx,{y:a[1],duration:1.3,ease:EA,yoyo:true,repeat:Math.max(1,Math.floor((t1-t0-a[2])/1.3)-1)},t0+a[2]));
 }
