@@ -33,3 +33,8 @@ IDEA (not built): 'Viral Radar' = a daily automation that finds outlier posts/vi
 - Our reading (not a measurement): this agrees with David's point on ep88. Skip-rate benchmark numbers come from this creator, not verified by us.
 - Faceless version: not copyable as is (face, talking head). What we can copy: the split frame (top = a proof card that changes with each point, bottom = motion), one lit row per point, word-by-word captions with an emphasis word. Not copyable: the personal authority. Our version is a faceless "hook teardown" using our own real numbers.
 ### Reel DfHkXBotUW5: NOT SEEN. Instagram rate-limited anonymous access on 2 tries; retry later.
+
+### @thereneremsik, post DfR-ARYMKKS (10.11.2026): static meme image "Me with Claude / Me with ChatGPT"
+- FACT (seen, downloaded via the embed page after yt-dlp said "no video in this post"): one image, 1088x1344. Top: "Me with Claude": two comic panels, a man in therapy (gentle, helped) and a man at a desk being coached. Bottom: "Me with ChatGPT": a man in a cornfield cracking a whip at figures with ChatGPT logos as heads. Caption: "Who can relate?". Likes at fetch time: 203 (the embed page; David says it reached several million views: UNVERIFIED by us, views are not returned).
+- Mechanism (hypothesis): a relatable two-sided joke that makes people pick a side (Claude vs ChatGPT users), instantly readable, no knowledge needed, tag-a-friend bait ("who can relate"), logos as the faces.
+- Copy the structure, not the art: the artwork is someone else's (probably AI-generated), and a repost would be a repost. Our version is an original image in our own style, same gag shape (two-panel "Me with X / Me with Y"), a different true-to-life joke.
