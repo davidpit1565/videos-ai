@@ -1,0 +1,7 @@
+line 1 whisper word stamps
+line 2 whisper word stamps
+line 3 whisper word stamps
+line 4 sentence-silence estimate
+line 5 whisper word stamps
+D= 19.95 [(1, 0.0, 2.95), (2, 3.25, 6.28), (3, 6.56, 12.24), (4, 13.09, 15.75), (5, 16.05, 18.55)]
+scenes {'s1': 0.0, 's2': 3.2, 's3': 5.1, 'p1': 6.51, 'p2': 7.63, 'p3': 8.89, 'p4': 9.86, 's5': 11.47, 's6': 13.04, 's7': 16.0, 'end': 18.8, 'loop': 19.0} js lines 637 sfx 100

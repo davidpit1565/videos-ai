@@ -1,19 +1,18 @@
 === PASS  frame layout (safe_check_hf.js)
     index.html  19.95s  100 samples every 0.2s  safe box: x 65-1015, y 269-1248
       safe area: clean (tolerance 10px)
-      within tolerance: 7px past the right line   #pr3s  "NEVER POSTED"
-      within tolerance: 6px past the left line   #pr1s  "NEVER POSTED"
-      within tolerance: 3px past the left line   .uinote  "menu names can differ by app versi"
+      within tolerance: 3px past the top line   #of2  "STEP 2 OF 4"
+      within tolerance: 2px past the bottom line   #stHx  "NEVER POSTED"
+      within tolerance: 1px past the top line   #t5t  "SWITCH IT OFF"
       overlaps: none over 10px
-      within tolerance: 5px overlap  #sl20t x #of2
-      within tolerance: 5px overlap  #sl40t x #of4
-      within tolerance: 4px overlap  #hBt x #hCt
+      within tolerance: 4px overlap  #sl20t x #of2
+      within tolerance: 4px overlap  #sl40t x #of4
 
 === PASS  rendered file (qa.py --hf)
-    ep88-t3.mp4  1080x1920  30fps  19.97s  18.0MB
-      visual change: median 0.03s, longest 2.93s
-      loudness: -14.4 LUFS integrated, peak -3.6 dBFS, LRA 1.6 LU
-      loop seam: first vs last frame differ by 30.8/255
+    ep88-t3.mp4  1080x1920  30fps  19.97s  17.1MB
+      visual change: median 0.03s, longest 2.13s
+      loudness: -14.3 LUFS integrated, peak -3.6 dBFS, LRA 1.7 LU
+      loop seam: first vs last frame differ by 21.7/255
     
       [warn]    20.0s is outside the 30-90s band
       ok        1080x1920
@@ -22,10 +21,10 @@
       ok        48kHz stereo
       ok        length matches the build
       ok        no frozen run over 4s
-      ok        first frame carries picture (luma 153.1, std 55.8)
+      ok        first frame carries picture (luma 143.8, std 42.5)
       ok        colour-card check not applicable (HyperFrames build, no cards)
       ok        visual change every 0.03s median
-      ok        -14.4 LUFS
+      ok        -14.3 LUFS
       ok        peak -3.6 dBFS
 
 === PASS  voice + music quality (voice_quality.py)
@@ -41,7 +40,7 @@
     voice quality: clean
 
 === PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
-    video/ep88/out/narration6.wav  19.9s  5 lines
+    video/ep88/out/narration7.wav  19.9s  5 lines
       medians: ending -35.8 dB · level -18.7 dBFS · S residual +0.0 dB (slope +0.0 dB per sibilant/syllable)
       flagged below: ending -62.1 dB · S residual -10.7 dB  (median - 2.5 robust sd)
        ln   dur    gap  rate    sib    end    lvl  line
