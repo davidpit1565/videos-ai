@@ -543,3 +543,6 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## Instagram caption limit (10.11.2026)
 - Instagram refuses a caption over 2,200 characters ("The caption was too long": episode 88's 2,251-character caption failed at publish time). Check `wc -m channel/episode-NN-caption.txt` is under 2,200 BEFORE shipping an episode. YouTube text has its own limits (no `<` or `>`).
+
+## Speak in the present tense (Roni via David, 10.11.2026)
+- Spoken lines, captions and chat talk too much in the past tense. Use the present tense ("Facebook looks through your photos", "AI does this now") in scripts, hooks and captions; past tense only when the claim is truly about something that already happened (a test we ran, a dated announcement).
