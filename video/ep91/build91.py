@@ -76,7 +76,7 @@ sfx("impactpunch.ogg", .02, -6)
 lay(L1, t1, .6)
 view("V1", 650, 250, 1.4, t1, .7, 'expo.out')
 view("V2", 627, 880, 1.04, t1, .7, 'expo.out')
-show("h1", t1 + .3); words("h1", 1, [3, 4])
+show("h1", t1 + .5); words("h1", 1, [3, 4], .16)
 view("V1", 760, 235, 1.52, t1 + .75, tB - t1 - .75)
 sfx("whoosh_a.ogg", t1, -5); sfx("pop_a.ogg", W(1, 3), -6); sfx("tick.ogg", W(1, 4), -5)
 # B: ChatGPT, the bottom window takes over, bubble, then punch in on the Step 1..8 board and scroll down it

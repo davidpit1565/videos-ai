@@ -6,7 +6,7 @@
 === PASS  rendered file (qa.py --hf)
     ep91-final1.mp4  1080x1920  30fps  10.20s  1.9MB
       visual change: median 0.03s, longest 2.47s
-      loudness: -14.4 LUFS integrated, peak -3.4 dBFS, LRA 1.9 LU
+      loudness: -14.4 LUFS integrated, peak -3.4 dBFS, LRA 1.8 LU
       loop seam: first vs last frame differ by 0.6/255
     
       [warn]    10.2s is outside the 30-90s band
@@ -29,7 +29,7 @@
       line   3  range  3.6 st  end  -0.2    Which one are you?
       line   4  range  8.4 st  end  -1.9    Tag someone who needs the Claude one.
     tone: none steady over 0.6 s
-    music: 0% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.26 = -9.7 dB
+    music: 28% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.27 = -8.6 dB
     
     voice quality: clean
 

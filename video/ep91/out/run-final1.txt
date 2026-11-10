@@ -1,0 +1,3 @@
+wrote music/final.wav  10.2s  mood=bright  source=upbeat-energetic--ikoliksaj-2.mp3
+music/final.wav  mean -22.5 dB  peak -1.7 dB  longest quiet stretch 0.00s
+ok — music bed has a real, continuous presence

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "b9772370-bcde-433b-b0c9-4169d4c8f0fa",
-  "currentRevision": "cfe1966b-e070-44d8-82c8-ae87796336cc",
+  "currentRevision": "222e6aa9-a55d-4db1-b191-539652d5795d",
   "pendingChanges": false,
   "files": {
     "assets/fonts/InterDisplay-Black.otf": {
@@ -17,8 +17,8 @@
       "content": "/root/.cache/hyperframes/history/b9772370-bcde-433b-b0c9-4169d4c8f0fa/blobs/cf/cf438d4cd4979fda59150c773af3381d5b18627826672234846722bb6d06b86c"
     },
     "index.html": {
-      "hash": "dbaedd3cba78ca263cf8bc89a650ad61f532173397c45f8bf1e6158685ae2778",
-      "content": "/root/.cache/hyperframes/history/b9772370-bcde-433b-b0c9-4169d4c8f0fa/blobs/db/dbaedd3cba78ca263cf8bc89a650ad61f532173397c45f8bf1e6158685ae2778"
+      "hash": "ba6e70f038bef1f52fe0decfebdc935ab72309d8b9d6bba78be3ca618d25dca6",
+      "content": "/root/.cache/hyperframes/history/b9772370-bcde-433b-b0c9-4169d4c8f0fa/blobs/ba/ba6e70f038bef1f52fe0decfebdc935ab72309d8b9d6bba78be3ca618d25dca6"
     },
     "assets/m2.png": {
       "hash": "ac9e73fee23c84dd8e9b7cd670259d683ee611a012071434dc3133d235033846",
@@ -53,6 +53,21 @@
         "index.html": {
           "before": "/root/.cache/hyperframes/history/b9772370-bcde-433b-b0c9-4169d4c8f0fa/blobs/b4/b4fdf8cd2a64ba90c2a9d2bd5a719b9babd38460148b42a6c36edeed1d2fdf02",
           "after": "/root/.cache/hyperframes/history/b9772370-bcde-433b-b0c9-4169d4c8f0fa/blobs/db/dbaedd3cba78ca263cf8bc89a650ad61f532173397c45f8bf1e6158685ae2778"
+        }
+      }
+    },
+    "222e6aa9-a55d-4db1-b191-539652d5795d": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794326512440,
+      "endedAt": 1794326512442,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/b9772370-bcde-433b-b0c9-4169d4c8f0fa/blobs/db/dbaedd3cba78ca263cf8bc89a650ad61f532173397c45f8bf1e6158685ae2778",
+          "after": "/root/.cache/hyperframes/history/b9772370-bcde-433b-b0c9-4169d4c8f0fa/blobs/ba/ba6e70f038bef1f52fe0decfebdc935ab72309d8b9d6bba78be3ca618d25dca6"
         }
       }
     }
