@@ -44,3 +44,8 @@ IDEA (not built): 'Viral Radar' = a daily automation that finds outlier posts/vi
 - FACT from the caption: "Comment REEL and I'll send you the Claude Code skill that made this motion graphics reel." 7,464 comments at fetch time; like_count read as 3 (probably hidden, not reliable).
 - Mechanism (hypothesis): a comment gate that gives away a REAL asset (a skill), a one-line promise (no editor, no camera), and a motion object (the swinging ball) that carries the eye and the text. The look is the same cream + orange "Claude look" Roni warns about: comments here come from the gate, not from the look.
 - Faceless version for us: we already own such assets (HyperFrames pipeline, explain-steps, voice_doctor, retime). "Everything we build becomes an episode" fits this format. Needs an auto-DM tool (not built here) or a manual DM.
+
+### @duncanrogoff, reel DYnPUfru7aw (10.11.2026): "Graphify" for Claude Code, comment REPO for the GitHub link
+- FACT (downloaded and seen; caption read): talking head in the bottom half, the top half is a fast stream of cards (GitHub logo, Claude Code pricing cards, a knowledge-graph animation, big '70%/times fewer tokens', end 'Just drop REPO in comments'). Likes 48,237, comments 18,524 at fetch time. Caption claims: Graphify maps a codebase into a knowledge graph so Claude re-reads fewer files; fewer tokens, faster sessions; 'reality check: it will not fix messy architecture'.
+- UNCONFIRMED by us: the token-saving number (research agent running, channel/research-graphify-2026-11-10.md). Not installed.
+- Mechanism (hypothesis): a real pain (usage limits) + a named fix + a comment gate for a link + an honest 'reality check' line. Faceless version only with a real before/after test we run ourselves.
