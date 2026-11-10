@@ -1,0 +1,24 @@
+# ep92 gate (no voice: voice_doctor/voice_quality/accent SKIPPED)
+index.html  26.03s  131 samples every 0.2s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  overlaps: none over 10px
+ep92-final1.mp4  1080x1920  30fps  26.03s  1.9MB
+  visual change: median 0.03s, longest 3.43s
+  loudness: -13.3 LUFS integrated, peak -4.2 dBFS, LRA 1.7 LU
+  loop seam: first vs last frame differ by 13.5/255
+
+  [warn]    26.0s is outside the 30-90s band
+  [warn]    picture nearly still 2.17s at 0.03-2.20s
+  [warn]    picture nearly still 2.53s at 13.37-15.90s
+  [warn]    picture nearly still 2.37s at 19.93-22.30s
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 26.1, std 37.2)
+  ok        colour-card check not applicable (HyperFrames build, no cards)
+  ok        visual change every 0.03s median
+  ok        -13.3 LUFS
+  ok        peak -4.2 dBFS

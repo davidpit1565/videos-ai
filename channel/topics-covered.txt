@@ -83,4 +83,4 @@
 84: ChatGPT has been taking notes on you: how to look, and what deleting a chat does not do
 85: Does ChatGPT think you're a teen? What OpenAI says, and where to check
 86: Can it keep a secret? #1: ChatGPT and Gemini promised, then told
-87: Ctrl+Z for AI mistakes: Git brings the working file back
+87: Ctrl+Z for AI mistakes: Git brings the working file backep92: ChatGPT picks a number then gets ghosted that many days, begs for a second chance (ghost test)
