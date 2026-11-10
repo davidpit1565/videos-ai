@@ -6,7 +6,7 @@ import soundfile as sf, numpy as np
 H = os.path.dirname(os.path.abspath(__file__))
 VOICE = os.environ.get("VOICE", H + "/voice5/final")
 GAPS = [float(x) for x in os.environ.get("GAPS", "0.3,0.28,0.85,0.3").split(",")]
-TAIL = float(os.environ.get("TAIL", "0.9"))
+TAIL = float(os.environ.get("TAIL", "1.4"))
 ALL = [l.rstrip("\n") for l in open(H + "/lines5.txt") if l.strip()]
 assert len(ALL) == 5 and len(GAPS) == 4
 sr = 48000
@@ -99,7 +99,7 @@ def tape(x, y, rot, w=150, h=46):
 
 def print_(k, id, x, y, w, h, rot, z=3, stamp=True, tp=True):
     inner = (f'<div class="pic" style="inset:14px 14px 50px 14px"><img class="pimg" src="assets/photos/{ {0: "beach", 1: "cake", 3: "desk"}[k] }.jpg"><div class="ht2"></div><div class="pvig"></div></div>'
-             + (f'<div class="stamp" id="{id}s">NEVER POSTED</div>' if stamp else ''))
+             + (f'<div class="stamp" id="{id}s" style="{ {0: "left:47%;top:64%", 1: "left:57%;top:72%", 3: "left:56%;top:62%"}[k] }">NEVER POSTED</div>' if stamp else ''))
     return (f'<div class="pcw prn" id="{id}" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;transform:rotate({rot}deg);z-index:{z}">'
             f'<div class="pc"><div class="pcb" style="background:#FBF6EA;clip-path:{torn(w, h, 40 + k, 3, 40)}">{inner}</div></div>'
             + (tape(w // 2 - 70, -16, -4 + k) if tp else '') + '</div>')
@@ -225,7 +225,7 @@ html,body,#root{background:#B8955F}
 .ht2{position:absolute;inset:0;background:radial-gradient(circle,rgba(30,18,6,.42) 1.8px,transparent 2.4px) 0 0/8px 8px;mix-blend-mode:multiply;opacity:.3}
 .pvig{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(0,0,0,.32))}
 .stamp{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%) rotate(-9deg);font:700 44px BS;letter-spacing:.04em;color:var(--red);border:6px solid var(--red);padding:2px 16px 4px;border-radius:8px;mix-blend-mode:multiply;opacity:.93;white-space:nowrap;z-index:11}
-.prn .stamp{font-size:36px}
+.prn .stamp{font-size:34px}
 .fbs{position:absolute;z-index:20;border-radius:50%;background:#fff;box-shadow:0 0 0 6px #fff,0 8px 20px rgba(30,18,6,.45);overflow:hidden}.fbs img{width:100%;height:100%;padding:6px}
 .pnum{position:absolute;left:92px;top:340px;font:700 440px BS;line-height:400px;color:var(--red);mix-blend-mode:multiply;opacity:.95;letter-spacing:-.02em}
 .of4{position:absolute;left:360px;top:288px;font:700 26px PlexM;letter-spacing:.1em;color:#3b2a14}
@@ -243,7 +243,7 @@ html,body,#root{background:#B8955F}
 .tg2{position:relative;width:150px;height:84px;border-radius:42px;background:#CBBFA3;flex:none}
 .tg2 i{position:absolute;left:5px;top:5px;width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 4px 10px rgba(14,14,14,.35)}
 .tg2.on{background:#2a2118}.tg2.on i{left:auto;right:5px}
-.uinote{position:absolute;left:0;width:100%;bottom:44px;text-align:center;font:700 26px PlexM;color:#4a3a26}
+.uinote{position:absolute;left:0;width:100%;bottom:70px;text-align:center;font:700 26px PlexM;color:#4a3a26}
 .btg{position:absolute;background:#CBBFA3;box-shadow:inset 0 -10px 0 rgba(0,0,0,.10)}
 .btg i{position:absolute;left:24px;top:24px;border-radius:50%;background:#fff;box-shadow:0 12px 26px rgba(14,14,14,.4)}
 .btg.on{background:#2a2118}.btg.on i{left:auto;right:24px}
@@ -284,16 +284,16 @@ tl.fromTo('#news,#news2',{x:0,y:0},{x:-70,y:-60,duration:D,ease:"none"},0);
 tl.fromTo('#npw',{x:0,y:0},{x:-40,y:-30,duration:D,ease:"none"},0);
 function hook(sfx,t0,t1){
   const h='hcam'+sfx;
-  tl.fromTo('#pr1'+sfx,{y:90,rotation:-14},{y:0,rotation:-8,duration:.6,ease:EX},t0);
-  tl.fromTo('#pr3'+sfx,{y:110,rotation:15},{y:0,rotation:9,duration:.6,ease:EX},t0+.05);
-  tl.fromTo('#pr2'+sfx,{y:70,scale:.94},{y:0,scale:1,duration:.6,ease:EX},t0+.1);
+  tl.fromTo('#pr1'+sfx,{y:36,rotation:-10},{y:0,rotation:-8,duration:.6,ease:EX},t0);
+  tl.fromTo('#pr3'+sfx,{y:44,rotation:11},{y:0,rotation:9,duration:.6,ease:EX},t0+.05);
+  tl.fromTo('#pr2'+sfx,{y:30,scale:.97},{y:0,scale:1,duration:.6,ease:EX},t0+.1);
   tl.fromTo('#fbs'+sfx,{scale:.85,rotation:-20},{scale:1,rotation:-8,duration:.5,ease:"back.out(2.2)"},t0+.15);
-  tl.fromTo(['#hA'+sfx,'#hB'+sfx,'#hC'+sfx],{x:-26},{x:0,duration:.5,ease:EX,stagger:.06},t0);
-  push(h,t0,t1,1,1.04);
-  [1,2,3].forEach((k,i)=>tl.fromTo('#pr'+k+sfx+'s',{scale:1.12,opacity:0},{scale:1,opacity:.93,duration:.22,ease:"power4.in"},t0+.55+i*.3));
+  if(sfx!='H') tl.fromTo(['#hA'+sfx,'#hB'+sfx,'#hC'+sfx],{x:-26},{x:0,duration:.5,ease:EX,stagger:.06},t0);
+  if(sfx=='H') push(h,t0,t1,1.04,1.0); else push(h,t0,t1,1,1.04);
+  [1,2,3].forEach((k,i)=>tl.fromTo('#pr'+k+sfx+'s',{scale:1.14},{scale:1,duration:.3,ease:"power4.out"},t0+.55+i*.3));
   tl.fromTo('#hC'+sfx,{scale:1.07},{scale:1,duration:.5,ease:EX,immediateRender:false,transformOrigin:"50%% 50%%"},T.slam1);
-  tl.fromTo('#cards'+sfx,{x:0},{x:-30,duration:t1-t0,ease:EA},t0);
-  [['pr1',-12,.7],['pr3',-10,.85],['pr2',-14,.75]].forEach(a=>tl.to('#'+a[0]+sfx,{y:a[1],duration:1.3,ease:EA,yoyo:true,repeat:Math.max(1,Math.floor((t1-t0-a[2])/1.3)-1)},t0+a[2]));
+  if(sfx=='H') tl.fromTo('#cards'+sfx,{x:-16},{x:0,duration:t1-t0,ease:EA},t0); else tl.fromTo('#cards'+sfx,{x:0},{x:-16,duration:t1-t0,ease:EA},t0);
+  (sfx=='H'?[]:[['pr1',-12,.7],['pr3',-10,.85],['pr2',-14,.75]]).forEach(a=>tl.to('#'+a[0]+sfx,{y:a[1],duration:1.3,ease:EA,yoyo:true,repeat:Math.max(1,Math.floor((t1-t0-a[2])/1.3)-1)},t0+a[2]));
 }
 hook('',0,T.s2+.1);
 lensCross('lens1',T.s2-.45,.55);

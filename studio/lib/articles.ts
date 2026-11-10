@@ -2448,7 +2448,7 @@ export const ARTICLES: Article[] = [
   },
   {
     n: 88,
-    title: "Facebook may ask to see photos you never posted: how to check and switch it off",
+    title: "Facebook can look through photos you never posted: how to check and switch it off",
     standfirst:
       "Facebook has an opt-in feature called Camera roll sharing suggestions. It looks through the photos on your phone " +
       "and suggests collages and edits. Meta says it is opt-in and that it does not use these photos for ads targeting. " +
@@ -2462,7 +2462,7 @@ export const ARTICLES: Article[] = [
       "Look at the switch called Get camera roll suggestions when you're browsing Facebook, and at any switch that mentions cloud processing. Blue or on means the feature is active. Grey or off means it is not.",
       "Tap the switch to turn it off. You should see it turn grey. Meta says you can turn the feature off at any time.",
       "Optional, strongest: block Facebook from your photos at phone level. iPhone: open the Settings app, tap Privacy & Security, tap Photos, tap Facebook, and choose None. Android: open the Settings app, tap Apps, tap Facebook, tap Permissions, tap Photos and videos, and choose Don't allow. Android menus vary by phone brand. Expect Facebook to ask for photo access again if you later try to post a photo.",
-      "Optional: send this page to someone who taps Allow on everything. The menu names above can differ by app version, so if one is missing, look for the closest name.",
+      "Optional: send this page to someone who always taps Allow. The menu names above can differ by app version, so if one is missing, look for the closest name.",
     ],
     changes: [
       "Verified live on 9 November 2026 against Meta's newsroom post, Now Rolling Out: Facebook's Opt-In Camera Roll Suggestions in the EU and UK (about.fb.com/news/2026/04/now-rolling-out-facebooks-opt-in-camera-roll-suggestions-in-the-eu-and-uk/), published 16 April 2026 and updated 31 August 2026: the feature \"suggests the best photos and videos from your camera roll and creates fun collages and edits\"; \"You must opt in to use this feature, and you can turn it off at any time.\"; \"We also don't use photos and videos from your camera roll to improve AI at Meta\" (unless you choose to publish or share them in an AI at Meta feature); \"We don't use photos and videos from your camera roll for ads targeting.\"; \"Starting today, people in the EU and UK can opt in to a new Facebook feature\"; the expansion list is Bolivia, Colombia, the Dominican Republic, El Salvador, Honduras, Nicaragua, Paraguay and Uruguay. The post says you can manage or disable the feature in your Facebook camera roll settings.",
@@ -2478,7 +2478,7 @@ export const ARTICLES: Article[] = [
       "Mobile apps only. Facebook's Help Center says it is not available on computers.",
       "The menu path comes from press reports and Help Center summaries. The Help Center page we could read showed no path, and the Which? article is from October 2025. We did not follow these steps on a live account for this page. Menu names can differ by app version and by phone brand.",
       "We did not confirm the exact pop-up wording people see in Europe. Only the 2025 US pop-up is quoted by the press.",
-      "The video is drawn. It is not a recording of a real account or phone.",
+      "The video is a paper-style collage: three public-domain photos from Wikimedia Commons (a beach, a birthday cake, a desk; credits in the repo file channel/ep88-image-credits.md) plus drawn screens. It is not a recording of a real account or phone, and the photos are not from anyone's Facebook.",
       "Facebook is a Meta product. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with Meta.",
     ],
   },

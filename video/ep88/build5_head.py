@@ -6,7 +6,7 @@ import soundfile as sf, numpy as np
 H = os.path.dirname(os.path.abspath(__file__))
 VOICE = os.environ.get("VOICE", H + "/voice5/final")
 GAPS = [float(x) for x in os.environ.get("GAPS", "0.3,0.28,0.85,0.3").split(",")]
-TAIL = float(os.environ.get("TAIL", "0.9"))
+TAIL = float(os.environ.get("TAIL", "1.4"))
 ALL = [l.rstrip("\n") for l in open(H + "/lines5.txt") if l.strip()]
 assert len(ALL) == 5 and len(GAPS) == 4
 sr = 48000

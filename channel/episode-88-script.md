@@ -2,17 +2,14 @@
 
 Topic: Facebook's opt-in feature "Camera roll sharing suggestions" (EU and UK, plus the countries Meta lists), and how to check and turn it off. Plan and sources: `channel/episode-88-plan.md`. Hook = plan option 1.
 
-## Spoken lines (no tomorrow line) - ROUND 4 HOOK (9.11.2026; the find-the-switch hook was rejected by a real viewer: "which switch?"; blind panel of 3 scored this one ~81 vs ~58)
-1. Facebook can make you a collage from photos you never posted. Seen one?   (frame 0: ONE giant drawn feed card "Collage made for you", 4 drawn everyday scenes - kids at a beach, birthday table, messy desk, fridge note - each tagged NEVER POSTED; small "drawn example" label; real Facebook f icon; no timer)
-2. If you tapped Allow, it looks through your camera roll.   (drawn Allow button, tap, then a strip of the scenes scanned)
-3. It's called camera roll sharing suggestions.   (drawn settings row, labelled drawn example)
-4. Meta says it's opt-in and not used for ads.   (Meta's two quotes)
-5. Here's the switch. Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions. Switch it off.   (VALUE card: four numbered rows + the switch flipping to OFF; "menu names can differ by app version"; this is the answer to "turn it off")
-6. Send this to mum. She taps Allow every time.   (line reworded from "on everything": the voice trails off on that word)
-
-Truth notes: the collage idea is the verified feature ("suggests ... collages and edits", opt-in, EU/UK); line 1 says "can", line 2 keeps it conditional on Allow. No "uploads", "is watching", "private photos", "whole gallery". The old lines "Five seconds. Go." and "If you tap Allow, Facebook looks through your gallery and suggests collages." were dropped (line 2 now carries the Allow condition). The video loops back to frame 0. Length 30.8 s. Voice takes this round: W2 (line 1) and W5 (line 2) from one 6-take batch; lines 3-6 are the earlier approved takes.
-Blind reader on this frame 0: not run in this session (no Agent tool).
-Path (Which?, 21.10.2025): Settings & Privacy, Settings, Camera roll sharing suggestions (no "Preferences" step confirmed).
+## Spoken lines - ROUND 5 (10.11.2026), top-funnel torn-paper collage, 20 s, 5 spoken lines
+1. Facebook can look through photos you never posted.   (frame 0: yellow torn strips "FACEBOOK CAN LOOK / THROUGH PHOTOS YOU", black strip "never posted", three taped real public-domain photos (beach, cake, desk) halftoned/sepia with NEVER POSTED stamps, real Facebook f badge)
+2. Only if you tapped Allow. Here's how to stop it.   (drawn Allow dialog with the three photos, tap; then a big drawn switch ON)
+3. Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions. Switch it off.   (four step scenes, one cut per tap with a tick sfx each, then the switch flips to OFF lime with a click and ding = the proof; "menu names can differ by app version" on step 4)
+4. Meta says it's opt-in, and not used for ads.   (OPT-IN big, NOT USED FOR ADS, tiny source line: Meta newsroom April 2026, EU and UK)
+5. Send this to someone who always taps Allow.   (chat note + three ALLOW strips; riser into the line; loops back to frame 0)
+Claims kept out: uploads, "AI scans", is watching, private photos, whole gallery. Line 1 is conditional by line 2 ("only if you tapped Allow"). Pacing: about 11 scene changes in 20 s; the proof (switch OFF) lands at about 11.6 s. Photo credits: channel/ep88-image-credits.md. Fonts: Big Shoulders Bold, Gloock, IBM Plex Mono Bold, Inter Display (SIL OFL). Voice: lines 1 (X1), 2 (Y3), 3 (Y6) and 5 (Y8) are fresh takes, line 4 is the earlier approved Meta take.
+Blind reader: not run in this session (no Agent tool).
 
 ## Ground truth (re-opened 9.11.2026)
 - Meta newsroom, "Now Rolling Out: Facebook's Opt-In Camera Roll Suggestions in the EU and UK" (published 16.4.2026, update 31.8.2026): https://about.fb.com/news/2026/04/now-rolling-out-facebooks-opt-in-camera-roll-suggestions-in-the-eu-and-uk/

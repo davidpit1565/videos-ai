@@ -35,6 +35,6 @@ subprocess.run(['ffmpeg','-y','-v','error','-i',tmp,'-af',f'volume={fix}dB,alimi
 print('integrated',I,'-> corrected by',round(fix,2),'dB')
 s16=load(f"{H}/out/sfx-{tag}.wav"); 
 out=f"{H}/out/ep88-{tag}.mp4"
-subprocess.run(['ffmpeg','-y','-v','error','-i',vid,'-i',wav,'-map','0:v','-map','1:a','-c:v','copy','-c:a','aac','-b:a','192k','-ar','48000','-ac','2','-t',str(D),out],check=True)
+subprocess.run(['ffmpeg','-y','-v','error','-i',vid,'-i',wav,'-map','0:v','-map','1:a','-c:v','libx264','-crf','22','-preset','slow','-pix_fmt','yuv420p','-c:a','aac','-b:a','192k','-ar','48000','-ac','2','-t',str(D),out],check=True)
 subprocess.run(['ffmpeg','-y','-v','error','-i',out,'-vf','scale=720:-2','-c:v','libx264','-crf','28','-preset','veryfast','-c:a','aac','-b:a','96k',f"{H}/out/ep88-{tag}-720.mp4"],check=True)
 print('bed ducked vs voice (300-3500 Hz):',round(band(load(duck))-vb,1),'dB; sfx rms vs voice rms (dB):',round(20*np.log10(np.sqrt(np.mean(s16**2)+1e-12)/np.sqrt(np.mean(load(nar)**2)+1e-12)),1),'; fix',round(fix,2),'; lin',10**(g/20)*10**(fix/20))
