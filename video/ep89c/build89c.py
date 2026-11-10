@@ -24,19 +24,19 @@ def words(prefix, items):
     """items: [(text, cls)] -> inline-block word spans with ids prefix0.."""
     return "".join(f'<span class="w {c}" id="{prefix}{i}">{t}</span>' for i, (t, c) in enumerate(items))
 
-def typed(prefix, text):
+def typed(prefix, text, ku=()):
     out = []; k = 0
     for wi, w in enumerate(text.split(" ")):
         ls = "".join(f'<span class="L" id="{prefix}{k + j}">{ch}</span>' for j, ch in enumerate(w))
-        out.append(f'<span class="tw">{ls}</span>'); k += len(w)
+        out.append(f'<span class="tw{" ku" if wi in ku else ""}" id="{prefix}w{wi}">{ls}</span>'); k += len(w)
     return "".join(out)
 
-def comp(cid, prefix, text, top, h, extra=""):
+def comp(cid, prefix, text, top, h, extra="", ku=()):
     logo = '<img class="chlogo" src="assets/openai.svg">'
     plus = '<svg viewBox="0 0 40 40" width="52" height="52"><path d="M20 8v24M8 20h24" stroke="#d8d8dc" stroke-width="4.5" stroke-linecap="round"/></svg>'
     arrow = '<svg viewBox="0 0 40 40" width="46" height="46"><path d="M20 31V10M11 18l9-9 9 9" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
     return (f'<div class="comp" id="{cid}" style="top:{top}px;height:{h}px"><div class="chd">{logo}</div>'
-            f'<div class="txt" id="{cid}t">{typed(prefix, text)}</div>{extra}'
+            f'<div class="txt" id="{cid}t">{typed(prefix, text, ku)}</div>{extra}'
             f'<div class="cbt"><div class="plus">{plus}</div><div class="send" id="{cid}s">{arrow}</div></div></div>')
 
 def blobs(seed, rows, widths=(70, 150)):
@@ -76,7 +76,7 @@ markup = f'''
  <svg class="ul" id="ulA" viewBox="0 0 520 60" preserveAspectRatio="none"><path id="ulAp" d="M6 36 C 90 14, 170 50, 260 28 S 430 14, 514 30" pathLength="1" stroke="{INK}" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg>
 </div>
 {tagB}{curve(1, "M 372 340 C 470 296 600 318 650 404")}
-{comp("card", "a", P1, 830, 410, '<div class="blA" id="blA"></div>')}
+{comp("card", "a", P1, 830, 410, '<div class="blA" id="blA"></div>', (12,))}
 <div class="scene" id="sC"><div class="hk c1">{words("c1_", [("When", "l"), ("the", "l"), ("response", "l"), ("comes", "l"), ("back,", "l")])}</div>
  <div class="hk c2">{words("c2_", [("IT", "hv"), ("TAKES", "hv"), ("A", "hv"), ("WHILE", "hv")])}</div>
  <div class="hk c3">{words("c3_", [("TO", "hv"), ("<span class=sel id=selC>PROCESS.</span>", "hv")])}</div></div>
@@ -86,7 +86,7 @@ markup = f'''
  <div class="hk d3"><span class="w hv org" id="d3_0">SCARY.</span></div>
  {scr("D", "M 40 150 C 20 40, 300 -2, 520 6 C 800 12, 990 60, 975 170 C 960 280, 640 300, 470 296 C 220 292, 28 270, 30 140 C 32 70, 120 40, 200 30", 11, ORG)}</div>
 {tagE}{curve(2, "M 372 340 C 470 296 600 318 650 404")}
-{comp("card2", "b", P2, 410, 820)}
+{comp("card2", "b", P2, 410, 820, "", (10,))}
 <div class="badge big" id="bdg2"><img src="assets/openai.svg"></div>
 <div class="scene" id="sF"><div class="hk c1">{words("f1_", [("Fair", "l"), ("warning,", "l"), ("the", "l"), ("responses", "l")])}</div>
  <div class="hk c2">{words("f2_", [("CAN", "hv"), ("SHAKE", "hv"), ("YOU", "hv")])}</div>
@@ -129,7 +129,7 @@ css = f'''
 .chlogo{{height:62px;width:62px;filter:invert(1)}}
 .txt{{position:absolute;left:48px;right:48px;top:136px;font-size:72px;line-height:96px;color:#f2f2ee;letter-spacing:-.015em}}
 .tw{{display:inline-block;white-space:nowrap;margin-right:.26em}}
-.L{{opacity:0;position:relative;display:inline-block}}
+.ku{{position:relative}}.ku::after{{content:'';position:absolute;left:-6px;right:-12px;bottom:-16px;height:22px;transform-origin:0 50%;transform:scaleX(var(--u,0));background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 22' preserveAspectRatio='none'><path d='M4 14 C 40 4, 70 20, 110 11 S 170 6, 196 12' stroke='%23f2f2ee' stroke-width='6' fill='none' stroke-linecap='round'/></svg>") no-repeat;background-size:100% 100%}}.L{{opacity:0;position:relative;display:inline-block}}
 .L::after{{content:"";position:absolute;right:-9px;top:.14em;width:6px;height:.78em;background:#fff;opacity:var(--cur,0)}}
 .blA{{position:absolute;left:48px;top:150px;width:6px;height:70px;background:#fff}}
 .cbt{{position:absolute;left:44px;right:44px;bottom:36px;height:88px;display:flex;align-items:center;justify-content:space-between}}
@@ -147,10 +147,10 @@ css = f'''
 .sel::before{{content:"";position:absolute;left:-14px;right:-10px;top:6px;bottom:2px;background:#0b0b0b;transform-origin:0 50%;transform:scaleX(var(--s,0));z-index:-1}}
 .d1{{top:420px;font-size:78px;line-height:96px}} .d1 .w{{font-weight:500;letter-spacing:-.02em;margin-right:16px}}
 .d2{{top:530px;font-size:162px;line-height:172px}} .d2 .w{{margin-right:30px}}
-.d3{{top:720px;font-size:238px;line-height:256px}}
+.d3{{top:720px;font-size:226px;line-height:250px}}
 .scr{{position:absolute;left:40px;width:1000px;height:300px;pointer-events:none}}
 #scD{{top:700px;left:60px;width:960px;height:320px}} #scG{{top:880px}}
-.g1{{top:330px;font-size:180px;line-height:196px}} .g1 .w{{margin-right:34px}} .g2{{top:510px;font-size:180px;line-height:196px}} .g3{{top:760px;font-size:430px;line-height:440px}}
+.g1{{top:330px;font-size:180px;line-height:196px}} .g1 .w{{margin-right:34px}} .g2{{top:535px;font-size:180px;line-height:196px}} .g3{{top:760px;font-size:430px;line-height:440px}}
 .wipe{{position:absolute;left:0;top:0;width:3200px;height:2800px;z-index:100;filter:blur(5px);opacity:0;pointer-events:none;transform-origin:0 0}}
 '''
 
@@ -173,7 +173,8 @@ def typeline(prefix, text, line, w0, clickg=-11):
         k += n
     for idx, (i, t) in enumerate(tt):
         cur = f"'--cur':0" if False else ""
-        js(f"tl.fromTo('#{i}',{{opacity:0,y:10,scale:.8,'--cur':1}},{{opacity:1,y:0,scale:1,'--cur':1,duration:.09,ease:'power2.out',immediateRender:false}},{T(t)});")
+        js(f"tl.fromTo('#{i}',{{opacity:0,y:10,scale:.8}},{{opacity:1,y:0,scale:1,duration:.09,ease:'power2.out',immediateRender:false}},{T(t)});")
+        js(f"tl.set('#{i}',{{'--cur':1}},{T(t)});")
         if idx: js(f"tl.set('#{tt[idx - 1][0]}',{{'--cur':0}},{T(t)});")
         sfx("click_a.ogg" if idx % 2 == 0 else "click_b.ogg", t, clickg if idx % 3 else clickg + 3)
     return tt
@@ -202,8 +203,10 @@ js(f"tl.fromTo('#tag1',{{opacity:0,x:-30,rotation:-4}},{{opacity:1,x:0,rotation:
 js(f"tl.set('#cv1',{{opacity:1}},{T(tB + .15)});"); draw("mp1", tB + .18, .5)
 sfx("whoosh_b.ogg", tB - .06, -9); sfx("pop_b.ogg", tB + .14, -5); sfx("select.ogg", tB + .22, -9); sfx("tick.ogg", tB + .6, -8)
 tt = typeline("a", P1, 2, 0)
+js(f"tl.fromTo('#aw12',{{'--u':0}},{{'--u':1,duration:.4,ease:'power2.inOut',immediateRender:false}},{T(WE(2, 12) - .05)});"); sfx("select.ogg", WE(2, 12), -8)
+for kk in (12,): js(f"tl.fromTo('#card',{{scale:1.03}},{{scale:1.045,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 40%'}},{T(WE(2, kk))});")
 tsend = 6.12
-js(f"tl.to('#card',{{y:-22,scale:1.03,duration:4.4,ease:'sine.inOut',transformOrigin:'50% 40%'}},{T(tB + .5)});")
+js(f"tl.to('#card',{{y:-22,scale:1.035,duration:4.4,ease:'sine.inOut',transformOrigin:'50% 40%'}},{T(tB + .5)});")
 # a hand-drawn bar under 'might not know about myself' (black selection bar behind it is too heavy on a dark card): white underline
 js(f"tl.to('#cards',{{background:'#f4f4f0',duration:.18,ease:'power2.out'}},{T(tsend - .2)});")
 js(f"tl.fromTo('#cards',{{scale:1}},{{scale:1.18,duration:.16,ease:'power2.out',yoyo:true,repeat:1}},{T(tsend)});")
@@ -249,10 +252,10 @@ sfx("whoosh_b.ogg", tW - .02, -3); sfx("impactsoft.ogg", tW + .42, -4)
 for i, k in enumerate(range(0, 5)): wordin(f"d1_{i}", max(W(4, k) - .03, tW + .5), 30, .18)
 wordin("d2_0", W(4, 5) - .03, 60, .22); wordin("d2_1", W(4, 6) - .03, 60, .22)
 tS = W(4, 7) - .06
-js(f"tl.fromTo('#d3_0',{{opacity:0,scale:1.12,y:16}},{{opacity:1,scale:1,y:0,duration:.34,ease:'expo.out',transformOrigin:'50% 60%',immediateRender:false}},{T(tS)});")
+js(f"tl.fromTo('#d3_0',{{opacity:0,scale:.82,y:16}},{{opacity:1,scale:1,y:0,duration:.34,ease:'expo.out',transformOrigin:'50% 60%',immediateRender:false}},{T(tS)});")
 js(f"tl.set('#d3_0',{{opacity:0}},{T(tW + .5)});")
 js(f"tl.set('#scD',{{opacity:1}},{T(tS)});"); draw("spD", tS + .12, .55, 'power2.inOut')
-js(f"tl.fromTo('#sD',{{scale:1.0}},{{scale:1.012,duration:2.6,ease:'sine.inOut',transformOrigin:'50% 50%'}},{T(tW + .5)});")
+js(f"tl.fromTo('#sD',{{scale:1.0}},{{scale:1.0,duration:2.6,ease:'sine.inOut'}},{T(tW + .5)});")
 js(f"tl.to('#d3_0',{{rotation:-2,duration:.7,ease:'sine.inOut',yoyo:true,repeat:1}},{T(tS + .4)});")
 sfx("impactpunch.ogg", tS + .02, -3); sfx("subhit.ogg", tS + .04, -5); sfx("select.ogg", tS + .16, -7)
 for i, k in enumerate((0, 1, 2, 3, 4)): sfx("tick.ogg", max(W(4, k), tW + .5), -10)
@@ -274,6 +277,7 @@ js(f"tl.fromTo('#bdg2 img',{{y:0}},{{y:-10,duration:.5,ease:'sine.inOut',yoyo:tr
 sfx("whoosh_a.ogg", tE + .06, -6); sfx("pop_a.ogg", tE + .3, -4); sfx("pop_b.ogg", tE + .36, -6); sfx("select.ogg", tE + .5, -8); sfx("subhit.ogg", tE + .34, -9)
 sfx("whoosh_c.ogg", t_in, -9)
 tt2 = typeline("b", P2, 5, 5)
+js(f"tl.fromTo('#bw10',{{'--u':0}},{{'--u':1,duration:.4,ease:'power2.inOut',immediateRender:false}},{T(WE(5, 15) - .05)});"); sfx("select.ogg", WE(5, 15), -8)
 tsend2 = 17.12
 js(f"tl.to('#card2s',{{background:'#f4f4f0',duration:.18,ease:'power2.out'}},{T(tsend2 - .2)});")
 js(f"tl.fromTo('#card2s',{{scale:1}},{{scale:1.18,duration:.16,ease:'power2.out',yoyo:true,repeat:1}},{T(tsend2)});")
@@ -308,7 +312,7 @@ js(f"tl.set('#sF,#ansF',{{opacity:0}},{T(tG + .3)});")
 js(f"tl.set('#sG',{{opacity:1}},{T(tG + .02)});")
 wordin("g1_0", W(7, 0) - .03, 70, .22); wordin("g1_1", W(7, 1) - .03, 70, .22); wordin("g2_0", W(7, 2) - .03, 70, .22)
 tGO = W(7, 3) - .04
-js(f"tl.fromTo('#g3_0',{{opacity:0,scale:1.1}},{{opacity:1,scale:1,duration:.34,ease:'expo.out',transformOrigin:'50% 60%',immediateRender:false}},{T(tGO)});")
+js(f"tl.fromTo('#g3_0',{{opacity:0,scale:.8}},{{opacity:1,scale:1,duration:.34,ease:'expo.out',transformOrigin:'50% 60%',immediateRender:false}},{T(tGO)});")
 js(f"tl.set('#scG',{{opacity:1}},{T(tGO)});"); draw("spG", tGO + .1, .55, 'power2.inOut')
 js(f"tl.fromTo('#sG',{{scale:1}},{{scale:1.01,duration:1.5,ease:'sine.inOut',transformOrigin:'50% 50%'}},{T(tG + .2)});")
 sfx("whoosh_a.ogg", tG - .02, -7)

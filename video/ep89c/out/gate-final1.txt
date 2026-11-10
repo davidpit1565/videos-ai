@@ -1,25 +1,19 @@
-=== FAIL  frame layout (safe_check_hf.js) (exit 1)
+=== PASS  frame layout (safe_check_hf.js)
     index.html  21.60s  109 samples every 0.2s  safe box: x 65-1015, y 269-1248
-       106px past the left line   y 692-1014  worst at 11s, over tol in 6 hits 11-12s   #d3_0  "SCARY."
-        76px past the left line   y 673-1209  worst at 20.4s, over tol in 2 hits 20.4-20.6s   #g3_0  "GO."
-        14px past the left line   y 404-503  worst at 11.8s, over tol in 5 hits 11.2-12s   #d1_0  "But"
-        14px past the left line   y 517-694  worst at 11.8s, over tol in 5 hits 11.2-12s   #d2_0  "EVEN"
-        11px past the left line   y 447-622  worst at 0.2s, over tol in 1 hits 0.2-0.2s   #aT  "THIS"
-        11px past the left line   y 325-526  worst at 20.8s, over tol in 2 hits 20.6-20.8s   #g1_0  "TEST"
-        11px past the left line   y 520-721  worst at 20.8s, over tol in 2 hits 20.6-20.8s   #g2_0  "OUT."
-      within tolerance: 4px past the right line   #aP  "PROMPT"
-      within tolerance: 7px overlap  #aT x #aP
-      within tolerance: 6px overlap  #g1_0 x #g2_0
-      within tolerance: 5px overlap  #d2_0 x #d3_0
-      within tolerance: 5px overlap  #d2_1 x #d3_0
+      safe area: clean (tolerance 10px)
+      within tolerance: 5px past the left line   #aT  "THIS"
+      within tolerance: 5px past the left line   #d3_0  "SCARY."
+      within tolerance: 4px past the left line   #g1_0  "TEST"
+      within tolerance: 4px past the left line   #g2_0  "OUT."
+      within tolerance: 4px past the left line   #g3_0  "GO."
+      overlaps: none over 10px
       within tolerance: 4px overlap  #aP x #aV
-      overlap   50px worst at 20.4s, 1 hits 20.4-20.4s   #g2_0 "OUT."  x  #g3_0 "GO."
 
 === PASS  rendered file (qa.py --hf)
-    ep89-t1.mp4  1080x1920  30fps  21.60s  2.7MB
+    ep89-final1.mp4  1080x1920  30fps  21.60s  3.6MB
       visual change: median 0.03s, longest 4.80s
-      loudness: -14.3 LUFS integrated, peak -3.7 dBFS, LRA 1.9 LU
-      loop seam: first vs last frame differ by 1.0/255
+      loudness: -14.3 LUFS integrated, peak -3.5 dBFS, LRA 2.1 LU
+      loop seam: first vs last frame differ by 1.7/255
     
       [warn]    21.6s is outside the 30-90s band
       ok        1080x1920
@@ -28,11 +22,11 @@
       ok        48kHz stereo
       ok        length matches the build
       ok        no frozen run over 4s
-      ok        first frame carries picture (luma 184.3, std 83.3)
+      ok        first frame carries picture (luma 182.0, std 84.7)
       ok        colour-card check not applicable (HyperFrames build, no cards)
       ok        visual change every 0.03s median
       ok        -14.3 LUFS
-      ok        peak -3.7 dBFS
+      ok        peak -3.5 dBFS
 
 === PASS  voice + music quality (voice_quality.py)
     pitch (semitones vs each line's own median):
@@ -44,7 +38,7 @@
       line   6  range  2.2 st  end  +nan    Fair warning, the responses can shake you a bit.
       line   7  range  2.8 st  end  +0.2    Test it out. Go.
     tone: none steady over 0.6 s
-    music: 17% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.23 = -7.9 dB
+    music: 17% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.38 = -8.1 dB
     
     voice quality: clean
 
@@ -81,10 +75,10 @@
 === SKIP  accent drift (needs transformers + model, not installed)
 
 ================ SUMMARY
-  FAIL  frame layout (safe_check_hf.js) (exit 1)
+  PASS  frame layout (safe_check_hf.js)
   PASS  rendered file (qa.py --hf)
   PASS  voice + music quality (voice_quality.py)
   PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
   SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
 
-SOMETHING FAILED - do not send this file
+ALL CHECKS THAT RAN PASSED (1 skipped)  -  audio was measured, not heard; watch the file twice before sending

@@ -1,17 +1,13 @@
-OpenAI says: paste this first (PROMPT #1)
+TITLE: This ChatGPT prompt is making the rounds. Test it out.
 
-OpenAI's own learning site tells you to start a ChatGPT chat with this sentence:
+DESCRIPTION:
+Two prompts to try in ChatGPT.
 
-Before you answer, ask me 3 clarifying questions you need.
+Prompt 1: What do you know about me that I might not know about myself, based on our previous interactions?
+Prompt 2: Based on everything you know about me, create me 5 questions to my future self.
 
-Where it is: OpenAI Academy, Quick Tips, Step 1 "Force clarification": https://academy.openai.com/en/public/clubs/small-business-ipf4m/resources/bellevue-small-business-jam-2026-03-02 (checked 10 November 2026).
+The answers depend on what you have talked about with ChatGPT before. Fair warning: they can shake you a bit. Test it out and tell me what it says.
 
-How to use it: open ChatGPT, start a new chat, paste the sentence as your first message, press send, then answer the questions ChatGPT asks and write what you want.
+The ChatGPT screens in this video are drawn stand-ins, not a real recording.
 
-Two more from the same page:
-Step 2: I'm trying to get help with ____. Here's my prompt so far: ____. What details should I add to get a more useful result?
-Step 3: Respond with: (1) ___ (2) ___ (3) ___ in a checklist / table.
-
-We did not test this on camera and we claim no measured result: it is OpenAI's own tip. The video is a paper-style collage, not a screen recording.
-
-OpenAI and ChatGPT are OpenAI trademarks; this channel is not affiliated with OpenAI. Made with help from Claude.
+#chatgpt #chatgptprompts #ai #shorts
