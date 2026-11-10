@@ -540,3 +540,6 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## It must NOT look AI or Claude-like (Roni via David, 10.11.2026)
 - Roni's central point: our videos look too AI, and viewers are tired of that look; it is a main reason they do not go viral. Clean drawn cards, flat clip-art, light base with lime accent and generic gradients are the 'AI/Claude look'. New videos must look REAL and handmade: real photographs, real textures (paper, grain, halftone), real logos and screenshots, unusual fonts. The reference for the look is the torn-paper collage reel DeJ_gTHs-FB. This overrides the drawn-UI/light-base style rules above for new videos until David says otherwise.
+
+## Instagram caption limit (10.11.2026)
+- Instagram refuses a caption over 2,200 characters ("The caption was too long": episode 88's 2,251-character caption failed at publish time). Check `wc -m channel/episode-NN-caption.txt` is under 2,200 BEFORE shipping an episode. YouTube text has its own limits (no `<` or `>`).
