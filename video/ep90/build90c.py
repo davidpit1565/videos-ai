@@ -100,7 +100,7 @@ css = r'''
 .gl2{left:520px;top:900px;width:900px;height:900px;background:radial-gradient(circle,rgba(217,119,87,.26),transparent 68%)}
 .sc{position:absolute;left:0;top:0;width:1080px;height:1920px}
 .head{position:absolute;left:65px;top:290px;width:950px;text-align:center;color:#fff;font-weight:800;letter-spacing:-.035em}
-.hl{font-size:86px;line-height:92px;white-space:nowrap}.hl b{color:#ffd21f;display:inline-block}
+.hl{font-size:86px;line-height:92px;white-space:nowrap;width:fit-content;margin:0 auto}.hl b{color:#ffd21f;display:inline-block}
 .card{position:absolute;left:380px;top:515px;width:840px;height:440px;background:#f6f1e4;border-radius:34px;box-shadow:0 18px 40px rgba(0,0,0,.5);transform-origin:0 0;z-index:30;opacity:0}
 .ctop{position:absolute;left:44px;top:34px;right:44px;height:100px;display:flex;align-items:center;gap:26px}
 .bar{display:block;height:34px;border-radius:17px;background:#cfc8b6}.tb{width:46%;height:42px;background:#17130F;opacity:.85}
@@ -178,7 +178,7 @@ js(f"tl.to('#img_o',{{scale:1.3,duration:{max(.1, tq - .15 - tC - .57):.3f},ease
 js(f"tl.to('#img_o',{{scale:1.55,rotation:-3,duration:.22,ease:'power3.out'}},{T(tq - .15)});")
 js(f"tl.to('#img_o',{{scale:1.4,rotation:0,duration:.7,ease:'sine.inOut'}},{T(tq + .1)});")
 js(f"tl.to('#img_o',{{scale:1.48,duration:{max(.2, tD - W(3, 6) - .1):.3f},ease:'sine.inOut'}},{T(W(3, 6) - .05)});")
-js(f"tl.fromTo('#card',{{opacity:0,scale:.1}},{{opacity:1,scale:{SC},duration:.4,ease:'back.out(1.6)',transformOrigin:'50% 50%',immediateRender:false}},{T(tC + .3)});")
+js(f"tl.fromTo('#card',{{opacity:0,scale:.1,transformOrigin:'0 0'}},{{opacity:1,scale:{SC},duration:.4,ease:'back.out(1.6)',transformOrigin:'0 0',immediateRender:false}},{T(tC + .3)});")
 js(f"tl.to('#chk',{{opacity:0,scale:.2,duration:.2,ease:'power2.in'}},{T(tC)});")
 js(f"tl.set('#mf0,#mf1,#mf2',{{opacity:0}},{T(tC + .1)});")
 tm = [W(3, 2) - .06, W(3, 2) + .28, W(3, 2) + .6]
@@ -192,7 +192,7 @@ sfx("whoosh_b.ogg", tC, -4); sfx("impactsoft.ogg", tm[0], -3); sfx("pop_a.ogg", 
 
 # ---- D: headline line 1 -> tag sentence, panels settle, both bright again, bump on 'cat.'
 js(f"tl.to('#bub_o',{{opacity:0,y:20,duration:.2,ease:'power2.in'}},{T(tD - .02)});")
-js(f"tl.to('#card',{{opacity:0,scale:.2,duration:.25,ease:'power2.in',transformOrigin:'50% 50%'}},{T(tD - .02)});")
+js(f"tl.to('#card',{{opacity:0,scale:.2,duration:.25,ease:'power2.in',transformOrigin:'0 0'}},{T(tD - .02)});")
 js(f"tl.to('#h2s',{{opacity:0,y:-106,duration:.25,ease:'power2.in'}},{T(tD)});")
 js(f"tl.to('#dim_g',{{opacity:0,duration:.3}},{T(tD)});")
 js(f"tl.to('#pan_o',{{scale:1,duration:.3}},{T(tD)});")

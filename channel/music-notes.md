@@ -53,3 +53,5 @@ ep88 round 7 (10.11.2026): sfx layer = CC0 pack files in video/ep88/sfx/ (click,
 | 90 My idea has 3 flaws (dog vs cat meme, 11.81 s) | bright--upbeat--subclair.mp3 (via pick_real_track --mood bright, 11.81 s exact; a first pick of energetic--atlasaudio-2 was discarded because the cut got longer) | bright / playful | check_music_bed: mean -15.5 dB, no quiet stretch; 28% of energy under 150 Hz; bed ducked -14.1 dB vs voice (300-3500 Hz), -8.2 dB un-ducked at volume 0.41 (voice_quality: clean). Not heard; no listener verdict yet. |
 
 | 90 final2 (10.88 s) | bright--feel-good-beat--tunetank.mp3 (pick_real_track --mood bright, exact length) | bright | check_music_bed mean -21.7 dB, no quiet stretch; 1% of energy under 150 Hz; voice_quality: bed -7.3 dB un-ducked at volume 0.50, ducked -11.7 dB (300-3500 Hz). Quiet and thin in the bass; not heard. |
+
+| 90 final3 (12.24 s) | upbeat-energetic--lnplusmusic.mp3 (pick_real_track --mood bright, exact length) | bright | check_music_bed mean -23.8 dB, no quiet stretch; 0% of energy under 150 Hz; voice_quality: bed -7.4 dB un-ducked at volume 0.46. Very quiet in the file, nearly no bass; not heard. |

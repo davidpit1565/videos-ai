@@ -71,3 +71,33 @@ HOOK 74 (the meme is on frame 0 and the subject is stated, dog vs cat is instant
 ## Blind reader on final2 frame 0 (10.11.2026, fresh agent)
 - A) Unclear: a dog and a cat under ChatGPT and an orange logo, "My idea has 3 flaws. I show AI."; does not know what idea or what the animals have to do with it. B) No, would not stop: generic cute-animal AI content, nothing at stake. C) Expects a dog-vs-cat comparison. D) "I show AI" reads oddly; whose idea; animals look like stock photos; orange logo unrecognisable; bottom third dead; dark gradient looks like every AI channel. E) State the actual idea in big words, make the animals react to it.
 - Action: final3 requested with a concrete silly idea in the headline, names beside the icons, animal reactions.
+
+---
+# REVISION final3 (10.11.2026): the idea is on screen, animals react
+`video/ep90/out/ep90-final3.mp4` (12.27 s, 1.7 MB) + `ep90-final3-720.mp4` (532 KB). final1 and final2 untouched. Build: `video/ep90/build90c.py`, `run3.sh`, `mix90c.py`, `hf3/` (`lines3.txt`, `voice/src3.json`). Audio measured, not heard.
+
+Why: the blind reader on final2 frame 0 (a 17-year-old) did not understand what the idea was or what the animals had to do with it, would not stop, found "I show AI" odd and the orange logo unrecognisable.
+
+## What changed
+- Headline (frame 0, three lines, present tense, no company named): "My idea: / sell ice to penguins. / AI, rate this." The "3 flaws" now only live in the answers ("3 problems."). I did NOT use "Uber for socks" because Uber is a real company (your rule: no real company named).
+- Line 1 spoken: "My idea: sell ice to penguins. AI, rate this." (new take `voice/c.wav`, 3.5 s, one render at a time). "rate it" was heard as "rated"/"raided it" in 3 takes (flapped T), so it became "rate this". Lines 2, 3, 4 are the final2 takes. Word stamp of the first word 0.00 s.
+- Panel headers now carry the NAME beside the icon ("ChatGPT", "Claude"), never under it.
+- Panels run y 575-1245 on frame 0 (to y 1245 at the platform line); nothing important below; no new decorations.
+- Reactions: the dog tilts its head on "penguins", bounces and wiggles on "Perfect idea!" with a green check; the cat tilts slowly in the first part, then squints (fast push-in to 1.55 with a small tilt) on "problems", the idea chip with 3 marks pops in and the marks light red one by one on "three". Words in the headline bump as they are spoken. Headline shrinks to the yellow idea line while the panels grow, then becomes "Tag someone who needs the cat."; ends easing back to frame 0 (loop seam 1.5/255).
+
+## Check results (`check_hf.sh`, tag final3)
+safe_check_hf PASS (clean). qa.py --hf PASS: 12.27 s, -14.4 LUFS, peak -3.2 dBFS, visual change median 0.03 s, longest still 2.07 s, loop seam 1.5/255. voice_quality PASS: pitch ranges 5.6 / 4.2 / 6.3 / 6.4 st, ends -0.3 / -0.1 / -0.3 / -0.8 st; bed -7.4 dB un-ducked at volume 0.46. voice_doctor: nothing flagged. Accent check SKIP (transformers not installed). Music `upbeat-energetic--lnplusmusic.mp3` at 12.24 s, mean -23.8 dB (quiet), logged. Fixed on the way: headline blocks overflowed the side line when scaled (fit-content), the idea chip popped from the wrong origin and left the panel.
+
+## Scores (judgement, not measurement)
+HOOK 78 (the idea is stated in big words and spoken, the two faces are on frame 0), VIRALITY 74, OVERALL 75, PREDICTED VIEWS 400-1,800 (ASSUMPTION). Under the 85 floor. Real views go into score-calibration.md.
+
+## Still weak
+- 12.27 s, over the 11 s target (line 1 alone is 3.5 s); under the 13 s cap.
+- First 3.8 s has only head tilts, word bumps and slow push-ins; no big visual event until the dog punches in at 3.8 s.
+- Five text items on frame 0 (3 headline lines + 2 header names), over the "max 3 lines" rule; the names were requested.
+- Panels sit close under the headline (about 15 px).
+- Line 2 is flat in pitch (4.2 st); the bed is very quiet in the file and has almost no bass; the Claude side is an untested joke (caption says so). Blind reader not re-run on final3, not watched twice, audio not heard.
+
+## Blind reader on final3 frame 0 (10.11.2026, fresh agent)
+- A) Understands: someone pitches a joke idea and wants AI to rate it; ChatGPT and Claude shown as a dog and a cat. B) No, would not stop: reads as a random meme, nothing at stake. C) Expects ChatGPT to gush and Claude to be sarcastic (what the video does). D) Ice-to-penguins is an old joke; stock-looking photos; generic dark gradient; empty bottom half. E) Show a real chat screen with both replies visible.
+- Verdict: comprehension fixed, stopping power still missing; a real chat screen (David's recording) is the only change the reader asks for.
