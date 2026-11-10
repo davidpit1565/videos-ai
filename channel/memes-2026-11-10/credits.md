@@ -28,3 +28,10 @@ Big Shoulders Bold, Gloock Regular, IBM Plex Mono Bold (`src/assets/fonts/`).
 - Figures drawn by us in inline SVG (v2/A.html, v2/B.html), no third-party artwork. Logos: src/assets/claude.svg and openai.svg (marks from Wikimedia Commons, see above), shown on brand-coloured badges (ChatGPT green, Claude orange). Font: Inter Display (SIL OFL).
 - A2 wording is ours: "Perfect idea!" / "3 problems. Fix #1 first." (a joke about tone, not a test result; the Claude side is untested by us).
 - B2 is the real chat from episodes 79/80 (shortened; "Absolutely not." is the start of a longer answer).
+
+## v3 (10.11.2026, David: copy the composition of the reference with real people): v3/A3.png, v3/B3.png
+- Real stock photos (Pexels licence: free to use, no attribution needed, but must not imply endorsement by the people shown):
+  - Thumbs-up man: "A Happy Man Doing Thumbs Up", Dany Kurniawan, https://www.pexels.com/photo/a-happy-man-doing-thumbs-up-12357426/
+  - Worried man with paper: "Man in Blue Dress Shirt with Black Framed Eyeglasses Feeling Confused", Mikhail Nilov, https://www.pexels.com/photo/man-in-blue-dress-shirt-with-black-framed-eyeglasses-feeling-confused-7534779/
+- Logos: src/assets claude.svg and openai.svg. Text and layout are ours. The reference artwork and the actor's likeness in it were NOT used.
+- The face pre-check from CLAUDE.md (Adobe tool) was NOT run; the photos are professionally published stock with an open licence, no model-release check was done.
