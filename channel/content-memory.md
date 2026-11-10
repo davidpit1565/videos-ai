@@ -1720,3 +1720,8 @@ FACT: ep86 IG views 1,563, reach 1,180, likes 10, saves 2, shares 0, comments 0;
 ### Episode 88 published (10.11.2026, about 10:35 Brussels)
 David said on 10.11 morning to publish it as it was (he posts Story and Facebook himself). Instagram: https://www.instagram.com/reel/DfjscJ1i8OT/ (first attempt failed: caption 2,251 characters, Instagram limit 2,200; shortened to 1,540, PR #574). YouTube: https://youtu.be/E0O-dNj8O68 (published through /api/yt-backfill; /api/youtube/publish answered 'missing file or title' as before).
 Hook: 'Facebook can look through photos you never posted.' (a stated claim plus the product, no curiosity gap). Look: torn-paper collage from CC0 scans/photos, 20 s, 10 cuts. Honest scores (judgement): hook 66-68, virality 58, overall 62 (blind readers); realism 46 vs reference 77. PREDICTED views 150-350 (score about 50). Read 48 h on 12.11 and 72 h on 13.11; compare with ep87 (216 at ~25 h) and the top 3.
+
+## 10.11.2026 - ep88 early reading (David's observation)
+- FACT: about 23 views a few hours after publishing (David's reading, not yet in /api/state). Prediction was 150-350 views at 72 h; the real checks are 48 h (12.11) and 72 h (13.11).
+- HYPOTHESIS (David noticed, not tested): the hook "Facebook can look through photos you never posted." is long (9 words) and the surprising part ("never posted") comes last, so the viewer waits several seconds. In "Don't tell my teacher" (ep86) the point lands at once.
+- Rule for next hooks: the threat or surprise word sits in the first 3 words; 4-5 word first sentence. One episode is not proof; log the 48 h number next to this.
