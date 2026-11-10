@@ -552,3 +552,6 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## The surprise comes first in the hook (David, 10.11.2026, after episode 88)
 - The word that carries the surprise or the threat sits in the first 3 words of the first sentence ("Your photos. Facebook is looking."), and the first sentence is about 4-5 words. Episode 88 opened "Facebook can look through photos you never posted." and "never posted" only came at the end: David saw it underperform (about 23 views early on; one episode, a hypothesis, see `content-memory.md`). Check every new hook against this before building.
+
+## Duplicate check comes BEFORE the first idea is shown to David (10.11.2026)
+- Before proposing any topic or prompt, grep `channel/topics-covered.txt` (and `content-memory.md`) for its keywords and say what was found. On 10.11 I proposed "What do you know about me? / ChatGPT Memory" as a new idea; it was already episodes 13, 52, 70 and 84. David: "you forgot our old videos." A proposal that has not passed this check is not shown. The proven winners (86, 80, 82) are a chat AI doing something odd in a short test, and episode 86 is a numbered series ("Can it keep a secret? #1"): extending a proven format with a new subject comes before inventing a new topic.
