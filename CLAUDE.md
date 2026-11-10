@@ -537,3 +537,6 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## Think in formats, not clips (Roni via David, 9.11.2026)
 - Every video is an episode of a named, numbered FORMAT with a locked template and one variable slot (the topic). Design the format first, then the episodes. Spec and candidates: `channel/formats-2026-11-09.md`.
+
+## It must NOT look AI or Claude-like (Roni via David, 10.11.2026)
+- Roni's central point: our videos look too AI, and viewers are tired of that look; it is a main reason they do not go viral. Clean drawn cards, flat clip-art, light base with lime accent and generic gradients are the 'AI/Claude look'. New videos must look REAL and handmade: real photographs, real textures (paper, grain, halftone), real logos and screenshots, unusual fonts. The reference for the look is the torn-paper collage reel DeJ_gTHs-FB. This overrides the drawn-UI/light-base style rules above for new videos until David says otherwise.
