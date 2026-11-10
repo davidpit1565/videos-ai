@@ -2446,6 +2446,42 @@ export const ARTICLES: Article[] = [
       "Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with Git, GitHub or Microsoft.",
     ],
   },
+  {
+    n: 88,
+    title: "Facebook can look through photos you never posted: how to check and switch it off",
+    standfirst:
+      "Facebook has an opt-in feature called Camera roll sharing suggestions. It looks through the photos on your phone " +
+      "and suggests collages and edits. Meta says it is opt-in and that it does not use these photos for ads targeting. " +
+      "It is offered in the EU, the UK and a list of other countries, in the mobile apps only. This page shows you where " +
+      "to look and how to switch it off, in about two minutes.",
+    steps: [
+      "Open the Facebook app on your phone (iPhone or Android). Use the app, not the website: Facebook's Help Center says this feature is not available on computers. You should see your Facebook feed.",
+      "Tap your profile picture. On iPhone it is usually the small picture at the bottom right. On Android it is usually the picture or menu icon at the top right. You should see your profile page or a menu.",
+      "Tap Settings & Privacy, then tap Settings. You should see a long list of settings.",
+      "Scroll down and tap Camera roll sharing suggestions. In some app versions it sits under Preferences, so if you do not see it, tap Preferences first. If it is not there at all, your account may not have the feature, and you are done.",
+      "Look at the switch called Get camera roll suggestions when you're browsing Facebook, and at any switch that mentions cloud processing. Blue or on means the feature is active. Grey or off means it is not.",
+      "Tap the switch to turn it off. You should see it turn grey. Meta says you can turn the feature off at any time.",
+      "Optional, strongest: block Facebook from your photos at phone level. iPhone: open the Settings app, tap Privacy & Security, tap Photos, tap Facebook, and choose None. Android: open the Settings app, tap Apps, tap Facebook, tap Permissions, tap Photos and videos, and choose Don't allow. Android menus vary by phone brand. Expect Facebook to ask for photo access again if you later try to post a photo.",
+      "Optional: send this page to someone who always taps Allow. The menu names above can differ by app version, so if one is missing, look for the closest name.",
+    ],
+    changes: [
+      "Verified live on 9 November 2026 against Meta's newsroom post, Now Rolling Out: Facebook's Opt-In Camera Roll Suggestions in the EU and UK (about.fb.com/news/2026/04/now-rolling-out-facebooks-opt-in-camera-roll-suggestions-in-the-eu-and-uk/), published 16 April 2026 and updated 31 August 2026: the feature \"suggests the best photos and videos from your camera roll and creates fun collages and edits\"; \"You must opt in to use this feature, and you can turn it off at any time.\"; \"We also don't use photos and videos from your camera roll to improve AI at Meta\" (unless you choose to publish or share them in an AI at Meta feature); \"We don't use photos and videos from your camera roll for ads targeting.\"; \"Starting today, people in the EU and UK can opt in to a new Facebook feature\"; the expansion list is Bolivia, Colombia, the Dominican Republic, El Salvador, Honduras, Nicaragua, Paraguay and Uruguay. The post says you can manage or disable the feature in your Facebook camera roll settings.",
+      "Verified live on 9 November 2026 against the Facebook Help Center page (facebook.com/help/1020723939310416): \"This feature isn't available on computers, but it is available on these devices.\" The page we could read had no menu path and no toggle name; it links to iPhone and Android help pages that we did not open.",
+      "Verified live on 9 November 2026 against Which?, Facebook privacy settings, dated 21 October 2025 (which.co.uk/news/article/facebook-privacy-settings-aTEZc6r6TaeH): the menu route Settings & Privacy, Settings, then Camera roll sharing suggestions, and the iPhone and Android photo-permission routes used in step 7. It says Facebook uses basic metadata (when photos were taken, which are favourited) to suggest shares. It does not mention cloud processing, and it does not name a Preferences step. The Preferences wording and the toggle name in steps 4 and 5 come from the plan we built from press and Help Center summaries and were not confirmed on a live app.",
+      "Verified live on 9 November 2026 against TechCrunch, 27 June 2025 (techcrunch.com/2025/06/27/facebook-is-asking-to-use-meta-ai-on-photos-in-your-camera-roll-you-havent-yet-shared): in a test in the US and Canada, a prompt asked people to opt into cloud processing, media was sent to Facebook's servers on an ongoing basis, and a Meta spokesperson, Maria Cubeta, said: \"Camera roll media may be used to improve these suggestions, but are not used to improve AI models in this test.\" That was a different rollout from the EU and UK one.",
+    ],
+    limits: [
+      "We do not say Facebook uploads your photos to Meta's servers. Meta's EU and UK post does not say either way. The 2025 US and Canada test did upload them, and that test is a different rollout.",
+      "We do not say Meta uses these photos for AI or for ads. Meta says it does not: no use for ads targeting, and no use to improve AI at Meta unless you choose to share the media in an AI at Meta feature. We have no way to check that ourselves.",
+      "We do not say the switch is on by default or that anyone was switched on without asking. Meta says you must opt in. The video warns about one tap on Allow, which is a risk, not something we found.",
+      "The feature is offered only in the EU, the UK and the countries Meta lists. If you live elsewhere, you may not see it.",
+      "Mobile apps only. Facebook's Help Center says it is not available on computers.",
+      "The menu path comes from press reports and Help Center summaries. The Help Center page we could read showed no path, and the Which? article is from October 2025. We did not follow these steps on a live account for this page. Menu names can differ by app version and by phone brand.",
+      "We did not confirm the exact pop-up wording people see in Europe. Only the 2025 US pop-up is quoted by the press.",
+      "The video is a paper-style collage made from CC0 and public-domain photos and paper scans (photo credits: Children playing at the beach, by Barelyhere; Icing around Cherry Topping on a Birthday Cake with Candles, by Brassluff; Laptop and coffee on a desk, by Lauren Mancke; a cat by Image Catalog; plus a dog, bicycles, paper and newsprint scans from public-domain and CC0 collections, all listed with links in the project's credits file) and printed-style screens we made. It is not a recording of a real account or phone, and the photos are not from anyone's Facebook.",
+      "Facebook is a Meta product. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with Meta.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
