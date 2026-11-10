@@ -1,0 +1,70 @@
+=== FAIL  frame layout (safe_check_hf.js) (exit 1)
+    index.html  19.95s  100 samples every 0.2s  safe box: x 65-1015, y 269-1248
+        19px past the right line   y 1205-1247  worst at 5s, over tol in 5 hits 4.2-5s   #ill2  "illustration"
+        10px past the top line   y 259-297  worst at 8.8s, over tol in 1 hits 8.8-8.8s   #of2  "STEP 2 OF 4"
+        10px past the top line   y 259-296  worst at 11.4s, over tol in 1 hits 11.4-11.4s   #of4  "STEP 4 OF 4"
+      within tolerance: 9px past the top line   #of3  "STEP 3 OF 4"
+      within tolerance: 8px past the top line   #of1  "STEP 1 OF 4"
+      within tolerance: 7px past the right line   #pr3s  "NEVER POSTED"
+      within tolerance: 6px past the left line   #pr1s  "NEVER POSTED"
+      within tolerance: 4px past the top line   #hAt  "FACEBOOK CAN LOOK"
+      within tolerance: 3px past the left line   .uinote  "menu names can differ by app versi"
+      within tolerance: 3px past the top line   #hAHt  "FACEBOOK CAN LOOK"
+      overlap   14px worst at 0s, 1 hits 0-0s   #hBt "THROUGH PHOTOS YOU"  x  #hCt "never posted"
+
+=== PASS  rendered file (qa.py --hf)
+    ep88-t2.mp4  1080x1920  30fps  19.97s  40.2MB
+      visual change: median 0.03s, longest 2.93s
+      loudness: -14.4 LUFS integrated, peak -3.6 dBFS, LRA 1.6 LU
+      loop seam: first vs last frame differ by 30.8/255
+    
+      [warn]    20.0s is outside the 30-90s band
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 152.7, std 55.8)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.4 LUFS
+      ok        peak -3.6 dBFS
+
+=== PASS  voice + music quality (voice_quality.py)
+    pitch (semitones vs each line's own median):
+      line   1  range  7.5 st  end  -0.9    Facebook can look through photos you never poste
+      line   2  range  5.6 st  end  -0.5    Only if you tapped Allow. Here's how to stop it.
+      line   3  range  6.2 st  end  -0.3    Profile picture. Settings and Privacy. Settings.
+      line   4  range  4.8 st  end  -0.2    Meta says it's opt-in, and not used for ads.
+      line   5  range  6.5 st  end  -0.5    Send this to someone who always taps Allow.
+    tone: none steady over 0.6 s
+    music: 6% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.45 = -7.3 dB
+    
+    voice quality: clean
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep88/out/narration6.wav  19.9s  5 lines
+      medians: ending -35.8 dB · level -18.7 dBFS · S residual +0.0 dB (slope +0.0 dB per sibilant/syllable)
+      flagged below: ending -62.1 dB · S residual -10.7 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  2.95  +0.30  4.41  -16.3  -39.7  -18.8  Facebook can look through photos you n
+        2  3.03  +0.28  4.62   -9.7  -28.7  -17.8  Only if you tapped Allow. Here's how t
+        3  5.68  +0.85  4.23   -6.4  -35.8  -19.5  Profile picture. Settings and Privacy.
+        4  2.66  +0.30  4.51  -12.6  -16.1  -18.6  Meta says it's opt-in, and not used fo
+        5   2.5    —     4.4   -7.6  -44.3  -18.7  Send this to someone who always taps A
+    
+      [fix] line  2: only 0.28s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  FAIL  frame layout (safe_check_hf.js) (exit 1)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+SOMETHING FAILED - do not send this file
+done

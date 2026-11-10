@@ -11,3 +11,9 @@ All three photos were downloaded from Wikimedia Commons (960-1280 px thumbnails)
 Rejected after looking: 'Beautiful magnets on a vintage fridge (Unsplash)' (CC0) shows readable text and a child's face on a magnet; 'Children playing in sand on beach' (public domain) not used.
 
 Other assets: Facebook f icon = Wikimedia Commons File:2023_Facebook_icon.svg (trademark; used as the product's real logo, see channel/episode-88-plan.md). Fonts (SIL OFL, from /mnt/skills/examples): Big Shoulders Bold (github.com/xotypeco/big_shoulders), Gloock (github.com/duartp/gloock), IBM Plex Mono Bold (IBM), Fraunces 600 (Undercase Type), Inter Display (existing). Sound effects: CC0 set (see channel/music-notes.md).
+
+## Round 6 textures (retrieved 2026-11-10, Wikimedia Commons)
+- Cardboard-546867.jpg: cardboard photo scan, CC0.
+- Fayetteville Observer 1865 front page scan: public domain (newsprint texture, scaled so text is unreadable).
+- KodakEktar100GrainScan01.jpg: film grain scan, CC0.
+Torn edges are procedural; paper is the real scan. Exact page URLs/authors: see assets6/ source notes.

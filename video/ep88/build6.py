@@ -67,13 +67,15 @@ def pimg(w, h, kind, color, seed, amp=7, rim=True, shadow=True, step=26):
     rel, pad = p6lib.make_piece(w, h, kind, color, seed, amp, rim, shadow, step)
     return f'<img class="pbg" src="{rel}" style="left:{-pad}px;top:{-pad}px;width:{w + 2 * pad}px;height:{h + 2 * pad}px">'
 
+REG = {}
 def P(inner, id, x, y, w, h, rot=0, kind="news", color=CRM, seed=1, amp=7, z=3, cls="", extra=""):
+    REG[id] = (w, h)
     return (f'<div class="pcw {cls}" id="{id}" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;transform:rotate({rot}deg);z-index:{z}">'
             f'{pimg(w, h, kind, color, seed, amp)}{inner}{extra}</div>')
 
 def strip(id, text, x, y, w, h, rot, color=YEL, tcolor="#17130F", font="BS", size=120, seed=1, z=4, left=None, align="center"):
     inner = (f'<div class="stx" id="{id}t" style="font-family:{font};font-size:{size}px;line-height:{h}px;color:{tcolor};text-align:{align};'
-             f'{("padding-left:%dpx" % left) if left else ""}">{text}</div>')
+             f'{("left:%dpx;transform:none;" % left) if left else ""}">{text}</div>')
     return P(inner, id, x, y, w, h, rot, "card", color, seed, 6, z)
 
 def tape(id, x, y, rot, w=150, h=46, seed=0):
@@ -94,9 +96,9 @@ def fbsticker(id, x, y, size, rot):
 
 def hookblock(s):
     return (f'<div class="cam" id="hcam{s}">'
-            + strip(f"hA{s}", "FACEBOOK CAN LOOK", 90, 290, 900, 132, -1.2, YEL, size=91, seed=3, left=190, align="left")
-            + strip(f"hB{s}", "THROUGH PHOTOS YOU", 90, 436, 900, 130, 1.0, YEL, size=104, seed=5, z=5)
-            + strip(f"hC{s}", "never posted", 190, 580, 700, 116, -1.8, BLK, "#fff", "Gloock", 90, 7, z=6)
+            + strip(f"hA{s}", "FACEBOOK CAN LOOK", 90, 300, 900, 132, -1.2, YEL, size=91, seed=3, left=190, align="left")
+            + strip(f"hB{s}", "THROUGH PHOTOS YOU", 90, 446, 900, 130, 1.0, YEL, size=104, seed=5, z=5)
+            + strip(f"hC{s}", "never posted", 190, 600, 700, 116, -1.8, BLK, "#fff", "Gloock", 90, 7, z=6)
             + print_("beach", f"pr1{s}", 92, 752, 320, 420, -8, 3, "L", True, 41) + print_("desk", f"pr3{s}", 668, 762, 320, 420, 9, 3, "R", True, 43)
             + print_("cake", f"pr2{s}", 345, 722, 390, 480, 2, 4, None, True, 42)
             + fbsticker(f"fbs{s}", 100, 298, 112, -8) + '</div>')
@@ -150,7 +152,7 @@ markup = f'''
  <div id="stk">{print_("beach", "d1", 160, 560, 240, 320, -8, 3, None, False, 51)}{print_("cake", "d2", 360, 540, 260, 340, 2, 4, None, False, 52)}{print_("desk", "d3", 580, 560, 240, 320, 9, 3, None, False, 53)}</div>
  {strip("nb", "Not now", 125, 940, 280, 190, 0, (216, 207, 184), "#5d554a", "IDisp", 54, 21, z=4)}
  {strip("b2", "ALLOW", 430, 930, 470, 210, -1.5, BLK, "#fff", "BS", 190, 22, z=5)}
- <div class="ring" id="ring"></div><div class="fing" id="fing"></div><div class="tiny" id="ill2">illustration</div></div></div>
+ <div class="ring" id="ring"></div><div class="fing" id="fing"></div><div class="tiny" id="ill2" data-decor>illustration</div></div></div>
 <div class="sc" id="s3"><div class="cam" id="c3">
  {strip("t3a", "HERE'S HOW", 90, 292, 900, 178, -1.2, YEL, size=150, seed=31, z=5)}
  {strip("t3b", "to stop it", 190, 488, 700, 170, 1.4, BLK, "#fff", "Gloock", 130, 32, z=6)}
@@ -191,14 +193,15 @@ html,body,#root{background:#8c6f48}
 .bgl{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden;background:#a07f52}
 .bgimg{position:absolute;left:-900px;top:0;width:2880px;height:1920px}
 #npl,#dpr,#flys,#fgl{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none}
-.dc{position:absolute}
-.fly{opacity:0}
+.dc{position:absolute;opacity:.82}
+#dpr{opacity:.5}
+.dc.fly{opacity:0}
 .fgs{position:absolute;left:0;top:0;opacity:0}
 .sc{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;visibility:hidden}
 .cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}
 .pcw{position:absolute}
 .pbg{position:absolute;max-width:none;pointer-events:none}
-.stx{position:absolute;left:0;top:0;width:100%;height:100%;white-space:nowrap;letter-spacing:-.005em;text-transform:uppercase;font-weight:700}
+.stx{position:absolute;left:50%;transform:translateX(-50%);top:0;width:auto;height:100%;white-space:nowrap;letter-spacing:-.005em;text-transform:uppercase;font-weight:700}
 .stx[style*="Gloock"]{text-transform:none;letter-spacing:-.01em}
 .stx[style*="PlexM"]{letter-spacing:-.02em}
 .tape{position:absolute;max-width:none;opacity:.88;z-index:12}
@@ -207,7 +210,7 @@ html,body,#root{background:#8c6f48}
 .stamp{position:absolute;font:700 21px BS;letter-spacing:.06em;color:var(--red);border:3px solid var(--red);padding:1px 8px 2px;border-radius:6px;mix-blend-mode:multiply;opacity:.8;white-space:nowrap;transform:rotate(-2deg)}
 .fbs{position:absolute;z-index:20;border-radius:50%;background:#fff;box-shadow:0 0 0 6px #fff,0 8px 20px rgba(30,18,6,.45);overflow:hidden}.fbs img{width:100%;height:100%;padding:6px}
 .pnum{position:absolute;left:92px;top:340px;font:700 440px BS;line-height:400px;color:var(--red);opacity:.95;letter-spacing:-.02em}
-.of4{position:absolute;left:360px;top:288px;font:700 26px PlexM;letter-spacing:.1em;color:#3b2a14}
+.of4{position:absolute;left:360px;top:302px;font:700 26px PlexM;letter-spacing:.1em;color:#3b2a14}
 .uibody{position:absolute;inset:0}
 .sk{display:block;position:absolute;left:44px;height:24px;border-radius:12px;background:#CFC3A6;text-decoration:none}
 .fbtop{position:absolute;left:0;top:0;width:100%;height:180px;background:rgba(239,231,210,.8)}
@@ -243,7 +246,7 @@ html,body,#root{background:#8c6f48}
 .ring{position:absolute;left:720px;top:940px;width:110px;height:110px;border-radius:50%;border:10px solid var(--red);opacity:0;z-index:30}
 .fing{position:absolute;left:740px;top:1020px;width:100px;height:100px;border-radius:50%;background:rgba(23,19,15,.8);opacity:0;z-index:30}
 .tiny{position:absolute;left:65px;width:950px;text-align:center;font:700 26px PlexM;letter-spacing:.06em;color:#3b2a14;text-transform:uppercase}
-#ill2{top:1150px}
+#ill2{top:1196px}
 .sheet{position:absolute;left:0;top:-120px;width:1470px;height:2290px;max-width:none;z-index:80;opacity:0;pointer-events:none}
 .grain{position:absolute;left:-40px;top:-40px;width:1160px;height:2000px;max-width:none;mix-blend-mode:overlay;opacity:.38;z-index:90;pointer-events:none}
 '''
@@ -254,9 +257,21 @@ rnd = _r.Random(6)
 def at(t): return tt(t)
 EA, EX = "sine.inOut", "expo.out"
 
-def slam(sel, t, dx=0, dy=0, rot=0, s0=1.35, dur=.38, typed=False):
-    js(f"tl.fromTo('{sel}',{{x:{dx},y:{dy},scale:{s0},opacity:0,rotation:'+={rot}'}},{{x:0,y:0,scale:1,opacity:1,rotation:'-={rot}',duration:{dur},ease:'expo.out',transformOrigin:'50% 50%'}},{at(t)});")
-    if typed: js(f"tl.fromTo('{sel}t',{{clipPath:'inset(0 100% 0 0)'}},{{clipPath:'inset(0 0% 0 0)',duration:.2,ease:'steps(9)'}},{at(t + .1)});")
+def slam(sel, t, dx=0, dy=0, rot=0, s0=1.35, dur=.3, typed=False):
+    """text-safe entrance: torn-paper wipe at the final position (clip reveal) + tiny slam; the text box never leaves the safe area"""
+    wid, hei = REG.get(sel[1:], (900, 130))
+    sx = min(s0, 1.06); ox = max(-40, min(40, dx * .2)); oy = max(-18, min(18, dy * .15))
+    L = [-60, -60, -60, -60]   # top right bottom left
+    if dy < 0 and abs(dy) >= abs(dx): L[2] = hei + 60
+    elif dy > 0 and abs(dy) > abs(dx): L[0] = hei + 60
+    elif dx > 0: L[3] = wid + 60
+    else: L[1] = wid + 60
+    st = " ".join(f"{v}px" for v in L)
+    js(f"tl.fromTo('{sel}',{{clipPath:'inset({st})',x:{ox},y:{oy},scale:{sx},rotation:'+={rot * .5}'}},{{clipPath:'inset(-60px -60px -60px -60px)',x:0,y:0,scale:1,rotation:'-={rot * .5}',duration:{dur},ease:'expo.out',transformOrigin:'50% 50%'}},{at(t)});")
+
+def settle(sel, t, dx=0, dy=0, rot=0, s0=1.05, dur=.4):
+    """hook strips are readable from frame 0: they only settle (no fade-in)"""
+    js(f"tl.fromTo('{sel}',{{x:{dx},y:{dy},scale:{s0},rotation:'+={rot}'}},{{x:0,y:0,scale:1,rotation:'-={rot}',duration:{dur},ease:'expo.out',transformOrigin:'50% 50%'}},{at(t)});")
 
 def drop(sel, t, dy=-420, dx=0, s0=1, dur=.5, ease="back.out(1.25)", rot=0):
     js(f"tl.fromTo('{sel}',{{y:{dy},x:{dx},scale:{s0},opacity:1,rotation:'+={rot}'}},{{y:0,x:0,scale:1,rotation:'-={rot}',duration:{dur},ease:'{ease}',transformOrigin:'50% 50%'}},{at(t)});")
@@ -279,25 +294,25 @@ def swap(old, new, t, k):
     """newsprint sheet sweeps right->left over the frame; scenes are swapped while it covers the picture (no blank dips)"""
     sh = "sheetA" if k % 2 == 0 else "sheetB"
     r = (-2.5, 2.0, -1.5)[k % 3]
-    js(f"tl.fromTo('#{sh}',{{x:1160,y:{[-80, -140, -30][k % 3]},rotation:{r},opacity:1}},{{x:-1560,y:{[-120, -60, -100][k % 3]},rotation:{-r},duration:.62,ease:'power2.inOut'}},{at(t - .31)});")
-    js(f"tl.set('#{sh}',{{opacity:0}},{at(t + .33)});")
+    js(f"tl.fromTo('#{sh}',{{x:1160,y:{[-80, -140, -30][k % 3]},rotation:{r},opacity:1}},{{x:-1560,y:{[-120, -60, -100][k % 3]},rotation:{-r},duration:.4,ease:'power2.inOut'}},{at(t - .2)});")
+    js(f"tl.set('#{sh}',{{opacity:0}},{at(t + .22)});")
     if old: js(f"tl.set('#{old}',{{autoAlpha:0}},{at(t - .02)});")
     js(f"tl.set('#{new}',{{autoAlpha:1}},{at(t - .01)});")
-    sfx(("whoosh_b.ogg", "whoosh_a.ogg")[k % 2], t - .33, -2)
+    sfx(("whoosh_b.ogg", "whoosh_a.ogg")[k % 2], t - .22, -2)
 
-def push(cam, t0, t1, r0=0, r1=0, s1=1.035):
+def push(cam, t0, t1, r0=0, r1=0, s1=1.025):
     js(f"tl.fromTo('#{cam}',{{scale:1,rotation:{r0}}},{{scale:{s1},rotation:{r1},duration:{max(.3, t1 - t0):.3f},ease:'sine.inOut',transformOrigin:'540px 760px'}},{at(t0)});")
 
 def cap_tap(i, t, sfxn="tick.ogg"):
     sfx(sfxn, t, -2)
 
 # --- global
-js(f"tl.fromTo('#world',{{scale:1,rotation:-.3}},{{scale:1.022,rotation:.32,duration:{D_},ease:'sine.inOut',transformOrigin:'540px 960px'}},0);")
-js(f"tl.fromTo('#bgimg',{{x:0}},{{x:-420,duration:{D_},ease:'none'}},0);")
+js(f"tl.fromTo('#world',{{scale:1,rotation:-.25}},{{scale:1.014,rotation:.25,duration:{D_ / 2:.3f},ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'540px 960px'}},0);")
+js(f"tl.fromTo('#bgimg',{{x:0}},{{x:-300,duration:{D_ / 2:.3f},ease:'sine.inOut',yoyo:true,repeat:1}},0);")
 for i, (dx, dy) in enumerate(((60, -30), (-70, 20), (40, 35), (-50, -25), (80, 15), (-30, 40), (35, -40), (-60, -20))):
-    js(f"tl.fromTo('#nd{i}',{{x:0,y:0}},{{x:{dx},y:{dy},duration:{D_},ease:'none'}},0);")
+    js(f"tl.fromTo('#nd{i}',{{x:0,y:0}},{{x:{dx},y:{dy},duration:{D_ / 2:.3f},ease:'sine.inOut',yoyo:true,repeat:1}},0);")
 for i, (dx, dy) in enumerate(((50, -20), (-60, 15), (40, 30))):
-    js(f"tl.fromTo('#dp{i + 1}',{{x:0,y:0}},{{x:{dx},y:{dy},duration:{D_},ease:'none'}},0);")
+    js(f"tl.fromTo('#dp{i + 1}',{{x:0,y:0}},{{x:{dx},y:{dy},duration:{D_ / 2:.3f},ease:'sine.inOut',yoyo:true,repeat:1}},0);")
 # film grain: jitter at 12 fps (small offsets, soft)
 g_t = 0.0
 while g_t < D_:
@@ -309,9 +324,7 @@ def hook(s, t0, t1, final=False):
     if final:
         js(f"tl.fromTo('#hcam{k}',{{scale:1.035,rotation:.4}},{{scale:1,rotation:0,duration:{t1 - t0:.3f},ease:'sine.inOut',transformOrigin:'540px 760px'}},{at(t0)});")
         return
-    slam(f"#hA{k}", t0, dx=-260, rot=1, s0=1.05, dur=.4)
-    slam(f"#hB{k}", t0 + .06, dx=260, rot=-1, s0=1.05, dur=.4)
-    slam(f"#hC{k}", t0 + .13, dy=-120, rot=2, s0=1.1, dur=.4)
+    settle(f"#hA{k}", t0, dx=-30, rot=1, s0=1.04); settle(f"#hB{k}", t0 + .05, dx=30, rot=-1, s0=1.04); settle(f"#hC{k}", t0 + .1, dy=-14, rot=1.5, s0=1.05)
     js(f"tl.fromTo('#fbs{k}',{{scale:.5,rotation:-48,opacity:1}},{{scale:1,rotation:-8,duration:.5,ease:'back.out(2.2)'}},{at(t0)});")
     drop(f"#pr1{k}", t0, dy=150, dur=.55, ease="power3.out", rot=-10)
     drop(f"#pr3{k}", t0 + .07, dy=170, dur=.55, ease="power3.out", rot=10)
@@ -342,7 +355,7 @@ drop("#dlg2", s + .12, dy=-520, dur=.55, ease="back.out(1.15)"); sfx("pop_b.ogg"
 for j, d in enumerate(("d1", "d2", "d3")):
     drop(f"#{d}", s + .3 + j * .12, dy=-340, dx=(-40, 0, 40)[j], dur=.4, ease="power3.out", rot=(-12, 6, 14)[j]); sfx("tick.ogg", s + .6 + j * .12, -3)
 slam("#nb", s + .62, dx=-320, s0=1.0, dur=.3)
-slam("#b2", s + .74, dx=0, dy=-40, rot=-3, s0=1.6, dur=.34); sfx("impactsoft.ogg", s + .85, -5)
+slam("#b2", s + .74, dx=0, dy=-40, rot=-3, s0=1.06, dur=.34); sfx("impactsoft.ogg", s + .85, -5)
 js(f"tl.fromTo('#fing',{{opacity:0,y:60}},{{opacity:1,y:0,duration:.4,ease:'power2.out'}},{at(T['tapAllow'] - .4)});")
 js(f"tl.to('#b2',{{scale:.93,duration:.14,ease:'sine.inOut',transformOrigin:'50% 50%'}},{at(T['tapAllow'])});")
 js(f"tl.fromTo('#ring',{{opacity:.95,scale:.5}},{{opacity:0,scale:2.6,duration:.7,ease:'power2.out'}},{at(T['tapAllow'] + .02)});")
@@ -373,7 +386,7 @@ for i, (a, b, cam, pn, labs, ui, circ, tr) in enumerate(steps):
     swap(prev, a, s, 2 + i); prev = a
     js(f"tl.fromTo('#{pn}',{{scale:1.7,opacity:0,x:-60}},{{scale:1,opacity:.95,x:0,duration:.34,ease:'expo.out',transformOrigin:'30% 50%'}},{at(s + .02)});")
     for j, l in enumerate(labs): slam("#" + l, s + .08 + j * .07, dx=220, rot=-1, s0=1.0, dur=.3)
-    js(f"tl.fromTo('#{ui}',{{y:120,opacity:0,scale:.94,rotationX:55}},{{y:0,opacity:1,scale:1,rotationX:0,duration:.46,ease:'power3.out',transformOrigin:'50% 100%'}},{at(s + .12)});")
+    slam("#" + ui, s + .12, dy=90, rot=1, s0=1.05, dur=.4)
     js(f"tl.fromTo('#{circ}',{{opacity:0,scale:1.35}},{{opacity:1,scale:1,duration:.26,ease:'expo.out',transformOrigin:'50% 50%'}},{at(s + .5)});")
     js(f"tl.fromTo('#{tr}',{{opacity:.9,scale:.4}},{{opacity:0,scale:2.2,duration:.5,ease:'power2.out'}},{at(s + .5)});")
     sfx("tick.ogg", s + .5, -1); sfx("pop_b.ogg", s + .14, -6)
@@ -402,8 +415,8 @@ push("c5", s, T["s6"], -.3, .4, 1.04)
 # --- S6 Meta
 s = T["s6"]; swap("s5", "s6", s, 7)
 slam("#t6a", s + .02, dy=-100, rot=2, s0=1.3, dur=.34)
-drop("#pin6", s + .1, dy=-460, dur=.5, ease="back.out(1.2)"); sfx("pop_b.ogg", s + .45, -3)
-js(f"tl.fromTo('#optin',{{scale:1.25,opacity:0}},{{scale:1,opacity:1,duration:.4,ease:'expo.out',transformOrigin:'50% 50%'}},{at(s + .3)});")
+slam("#pin6", s + .1, dy=60, rot=1, s0=1.06, dur=.42); sfx("pop_b.ogg", s + .45, -3)
+js(f"tl.fromTo('#optin',{{scale:1.06}},{{scale:1,duration:.4,ease:'expo.out',transformOrigin:'50% 50%'}},{at(s + .3)});")
 slam("#t6b", s + .6, dx=300, rot=-1, s0=1.0, dur=.34, typed=True); sfx("impactsoft.ogg", s + .65, -6)
 slam("#t6c", s + 1.0, dy=60, s0=1.0, dur=.3)
 sfx("pop_a.ogg", W(4, 2), -3)
@@ -413,13 +426,13 @@ push("c6", s, T["s7"], .3, -.4)
 # --- S7 send
 s = T["s7"]; swap("s6", "s7", s, 8)
 slam("#t7a", s + .02, dx=-280, rot=1, s0=1.1, dur=.34); slam("#t7b", s + .16, dx=280, rot=-1, s0=1.1, dur=.34)
-drop("#outb", s + .3, dy=-380, dx=90, dur=.5, ease="back.out(1.1)", rot=4); sfx("pop_b.ogg", s + .65, -3)
+slam("#outb", s + .3, dx=300, rot=3, s0=1.06, dur=.4); sfx("pop_b.ogg", s + .65, -3)
 js(f"tl.fromTo('#mav',{{opacity:0,scale:.5}},{{opacity:1,scale:1,duration:.38,ease:'back.out(2)'}},{at(s + 1.0)});")
 js(f"tl.fromTo('#dots2',{{opacity:0,scale:.8}},{{opacity:1,scale:1,duration:.3,ease:'power2.out'}},{at(s + 1.1)});")
 js(f"tl.to('#dots2 i',{{y:-10,duration:.26,ease:'sine.inOut',yoyo:true,repeat:3,stagger:.09}},{at(s + 1.2)});")
 js(f"tl.to('#dots2',{{opacity:0,duration:.16}},{at(s + 1.72)});")
 for k in (1, 2, 3):
-    slam(f"#al{k}", s + 1.78 + (k - 1) * .26, dy=-70, rot=(4, -4, 4)[k - 1], s0=1.5, dur=.3); sfx("pop_b.ogg", s + 1.9 + (k - 1) * .26, -3)
+    slam(f"#al{k}", s + 1.78 + (k - 1) * .26, dy=-70, rot=(4, -4, 4)[k - 1], s0=1.06, dur=.3); sfx("pop_b.ogg", s + 1.9 + (k - 1) * .26, -3)
 sfx("riser.ogg", s - 2.2, -7); sfx("ding.ogg", E(5) - .1, -6)
 fly(5, s + .5, 1350, 1440, 1, .8); fgcross(1, s + 1.2, 1520, 1.0, 1)
 push("c7", s, T["end"], -.3, .3, 1.035)

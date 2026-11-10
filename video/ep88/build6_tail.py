@@ -43,9 +43,9 @@ def fbsticker(id, x, y, size, rot):
 
 def hookblock(s):
     return (f'<div class="cam" id="hcam{s}">'
-            + strip(f"hA{s}", "FACEBOOK CAN LOOK", 90, 290, 900, 132, -1.2, YEL, size=91, seed=3, left=190, align="left")
-            + strip(f"hB{s}", "THROUGH PHOTOS YOU", 90, 436, 900, 130, 1.0, YEL, size=104, seed=5, z=5)
-            + strip(f"hC{s}", "never posted", 190, 580, 700, 116, -1.8, BLK, "#fff", "Gloock", 90, 7, z=6)
+            + strip(f"hA{s}", "FACEBOOK CAN LOOK", 90, 300, 900, 132, -1.2, YEL, size=91, seed=3, left=190, align="left")
+            + strip(f"hB{s}", "THROUGH PHOTOS YOU", 90, 446, 900, 130, 1.0, YEL, size=104, seed=5, z=5)
+            + strip(f"hC{s}", "never posted", 190, 600, 700, 116, -1.8, BLK, "#fff", "Gloock", 90, 7, z=6)
             + print_("beach", f"pr1{s}", 92, 752, 320, 420, -8, 3, "L", True, 41) + print_("desk", f"pr3{s}", 668, 762, 320, 420, 9, 3, "R", True, 43)
             + print_("cake", f"pr2{s}", 345, 722, 390, 480, 2, 4, None, True, 42)
             + fbsticker(f"fbs{s}", 100, 298, 112, -8) + '</div>')
@@ -99,7 +99,7 @@ markup = f'''
  <div id="stk">{print_("beach", "d1", 160, 560, 240, 320, -8, 3, None, False, 51)}{print_("cake", "d2", 360, 540, 260, 340, 2, 4, None, False, 52)}{print_("desk", "d3", 580, 560, 240, 320, 9, 3, None, False, 53)}</div>
  {strip("nb", "Not now", 125, 940, 280, 190, 0, (216, 207, 184), "#5d554a", "IDisp", 54, 21, z=4)}
  {strip("b2", "ALLOW", 430, 930, 470, 210, -1.5, BLK, "#fff", "BS", 190, 22, z=5)}
- <div class="ring" id="ring"></div><div class="fing" id="fing"></div><div class="tiny" id="ill2">illustration</div></div></div>
+ <div class="ring" id="ring"></div><div class="fing" id="fing"></div><div class="tiny" id="ill2" data-decor>illustration</div></div></div>
 <div class="sc" id="s3"><div class="cam" id="c3">
  {strip("t3a", "HERE'S HOW", 90, 292, 900, 178, -1.2, YEL, size=150, seed=31, z=5)}
  {strip("t3b", "to stop it", 190, 488, 700, 170, 1.4, BLK, "#fff", "Gloock", 130, 32, z=6)}
@@ -157,7 +157,7 @@ html,body,#root{background:#8c6f48}
 .stamp{position:absolute;font:700 21px BS;letter-spacing:.06em;color:var(--red);border:3px solid var(--red);padding:1px 8px 2px;border-radius:6px;mix-blend-mode:multiply;opacity:.8;white-space:nowrap;transform:rotate(-2deg)}
 .fbs{position:absolute;z-index:20;border-radius:50%;background:#fff;box-shadow:0 0 0 6px #fff,0 8px 20px rgba(30,18,6,.45);overflow:hidden}.fbs img{width:100%;height:100%;padding:6px}
 .pnum{position:absolute;left:92px;top:340px;font:700 440px BS;line-height:400px;color:var(--red);opacity:.95;letter-spacing:-.02em}
-.of4{position:absolute;left:360px;top:288px;font:700 26px PlexM;letter-spacing:.1em;color:#3b2a14}
+.of4{position:absolute;left:360px;top:302px;font:700 26px PlexM;letter-spacing:.1em;color:#3b2a14}
 .uibody{position:absolute;inset:0}
 .sk{display:block;position:absolute;left:44px;height:24px;border-radius:12px;background:#CFC3A6;text-decoration:none}
 .fbtop{position:absolute;left:0;top:0;width:100%;height:180px;background:rgba(239,231,210,.8)}
