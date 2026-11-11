@@ -66,3 +66,5 @@ Method: 30 first frames (t=1.2 s, bottom 10% cropped so the handle does not leak
 | ep89 (published 11.11.2026 08:00 Brussels, IG https://www.instagram.com/reel/Dfl5wEBBDWI/, YT mPnfZlI-W14) | predicted: label only, no honest score logged here | real 48 h / 72 h: to be filled 13-14.11 (reminders set) |
 
 | ep87 (48 h reading, 11.11.2026 08:00) | predicted overall 70, views 250-700 | real: views 222, reach 173, likes 3, saves 0, shares 0, comments 0 → scale score ~51 (200=50, 10,000=100). Below the predicted range (222 < 250), gap about 19 points on overall. |
+
+| ep90 (trial reel, uploaded 11.11.2026 by hand, final19) | ours: hook 82 / virality 76 / overall 79, predicted 1,000-2,500 | Meta AI: 87-88, predicted 6,000-10,000 | real 48 h / 72 h: to be filled from David's View insights |
