@@ -29,12 +29,15 @@ Frame 0: paper sheet on dotted grid, heavy REAL ESSAYS / FLAGGED AS AI, black st
 | 13-16 | So Vanderbilt turns it off. | Switch flips OFF, tag AUG 2023 |
 | 16-21 | Stanford tests seven other detectors. About six in ten essays by non-native writers get flagged. | 7 OTHER DETECTORS, 6 in 10 sheets stamped, tag "Turnitin not tested" |
 | 21-25 | Flagged? Do not argue. Bring proof. | Card flies in |
-| 25-30 | Save this. Send it to a friend who writes essays. | SAVE CARD holds 4 s, then loops back to the stamp |
+| 25-30 | Save this. Send it to a friend who writes essays. | SAVE CARD holds 4 s with a slow drift (not frozen: no frame still over about 2.5 s), then loops back to the stamp |
 Closing: spoken question "Did a detector ever flag something you wrote?" is the CTA (Roni's comment-question rule); the standing "tomorrow" final line is not applied (episode 94 has no next episode written): decision for David.
 
 ## Save card (screenshot-able, 3 lines)
 BRING PROOF: 1. Version history (Google Docs) 2. Your drafts and notes 3. Ask: which detector, what error rate?
 (Verify the Docs path live before building. No tip that "beats" a detector: not tested, reads as cheating advice.)
+
+## Hook candidates for the blind readers (11.11, after Meta AI round 2)
+A "Real essays get flagged as AI." / B "Wrongly flagged. Real essay." / C "Flagged as AI. Your own essay." (Meta AI's "Flagged as AI. You wrote it." never says "essay" in the first second). Rejected: "Turnitin flags real essays." (states as fact what we only have as Vanderbilt's estimate) and "Your essay gets flagged." (promises it happens to the viewer). Meta AI scene notes taken: one sheet instead of several, only the stamp moves in the first 2.5 s, 1% x 75,000 shown next to ~750, six of ten sheets stamped and no 61% on screen.
 
 ## Concept checklist (6 items, honest)
 1. Surprising thing on the viewer's own account/phone: NO (a school situation, not their own screen).
