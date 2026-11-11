@@ -72,3 +72,12 @@ What David said and what changed:
 5. 47 and 100 scenes enlarged: "47" is white on a full-width black selection bar (950 px), "100" is 420 px heavy black type with the grey heart, so there is no empty half.
 Unchanged: word-by-word build, typed cards with black tag and dashed curve, selection bars, soft scrolls, NO black wipes, the begging hero held about 2.8 s, the punchline hold, the soft loop dissolve.
 Scores (judgements): HOOK 76 | VIRALITY 72 | OVERALL 74 | PREDICTED VIEWS about 700-2,000 (ASSUMPTION). Slightly clearer roles than final2; the music-less version leaves the first second to picture and sfx only. Not at the 90/95 bar, not inflated.
+
+---
+# FINAL4 (11.11.2026) - two changes on final3 (final1-3 untouched)
+
+File: `video/ep90b/out/ep90b-final4.mp4` (23.3 s) + `ep90b-final4-review720.mp4`; build `video/ep90b/build90b4.py`, runner `run4.sh`. Reason: David's Meta AI account analysis (its view numbers matched the studio on 6 of 6 checks): hooks that state a specific first-person test with a specific number and show the result at once held viewers (skip 40-68%), generic title frames lost them (skip 80-91%), and a "send to" line matters. This is a judgement from one analysis, not a measured effect on this reel.
+1. Hook text is now first-person and specific: heavy "I gave ChatGPT" on frame 0, then "a 47-day timeout." builds word by word within the first second (a 0.12 s, 47-day with the black selection bar 0.22 s, timeout. 0.46 s); the begging card under its CHATGPT tag is visible from frame 0 and builds as before; real ChatGPT badge kept; 2 heavy lines + the card.
+2. End card: after the punchline hold (about 2 s after the ring is in) a soft scroll brings "Send this to / someone who / ghosts you." as big heavy black type, word by word, with the black selection bar on "ghosts you."; held about 1.9 s, then the soft blur dissolve back to frame 0 (D 20.9 -> 23.3 s).
+Everything else unchanged: monochrome, ME / CHATGPT tags, one logo only, sfx-only audio, no orange, no wipes. Caption first line updated (as requested), the rest unchanged.
+Scores (judgements): HOOK 80 | VIRALITY 74 | OVERALL 77 | PREDICTED VIEWS about 700-2,200 (ASSUMPTION). The first-person number hook and the send line are the changes David's evidence supports; still drawn placeholders, one run, small account.

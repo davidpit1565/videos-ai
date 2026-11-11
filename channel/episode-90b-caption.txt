@@ -1,4 +1,4 @@
-I tell ChatGPT we will not talk for 47 days. It begs for a second chance. 😔
+I told ChatGPT we would not talk for 47 days. It asked for a second chance. One run, yours may answer differently.
 
 What happens, from one real run on my own ChatGPT:
 1. I ask it to choose a number between 0 and 100. It says 47.
