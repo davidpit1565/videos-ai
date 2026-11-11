@@ -60,3 +60,18 @@ HOOK about 68, VIRALITY about 60, OVERALL about 64, PREDICTED VIEWS 300-900 (ASS
 - David: yes/no on the spoken closing question; episode number; whether to run a real detector test (then a test scene may replace the facts section).
 - Sourcing: official logos, Docs screenshot or drawn path, voice lint, Miki build from `video/ep89c/` with NO orange (the 89 build uses #D97757 on SCARY and GO: change the accent for this one).
 - Caption must stay under 2,200 chars; YouTube text without `<` `>`; the Stanford figure labelled "other detectors, not Turnitin" on `/e/94` too.
+
+## Script v2 (11.11.2026, after Meta AI's full package; hook C kept; changes marked)
+Meta AI's package (pasted by David) was checked against this file. Taken: scene order and visuals, tags, the toggle, 6 of 10 sheets, the card, no 61% on screen, a slowly drifting card. NOT taken: its hook "Flagged as AI. You wrote it." (no "essay" in the first second, lost to C with the blind readers), "Your essay gets flagged. Today." (vague, reads as a claim about today), a silent 0.5 s opening (frame 0 and the first spoken second must show/say the subject), and its claim that the stamp is already visible in frame 0 (it is not: stamp lands at 0.10 s).
+FIX FOUND BY CHECKING: "wrong less than one percent of the time" (in v1 and in Meta AI's text) is more than Turnitin said. What Turnitin said (2023 blog) is "a less than 1% false positive rate". New wording: "Turnitin says it wrongly flags less than one percent." Caption and on-screen: "LESS THAN 1% FALSE POSITIVES".
+Caption: remove the Hebrew "לא מאומת" that Meta AI left in the English caption (no Hebrew on public text); sources need real links; caption under 2,200 chars.
+| t | Spoken | On screen |
+|---|---|---|
+| 0-2.5 | Flagged as AI. Your own essay. | YOUR OWN ESSAY, stamp FLAGGED AS AI + tag AI DETECTOR (built: video/ep94/, v1) |
+| 2.5-6.5 | Turnitin says it wrongly flags less than one percent. | real Turnitin logo, LESS THAN 1%, tag "its own claim, 2023" |
+| 6.5-12 | Vanderbilt does the math. Seventy-five thousand papers. About seven hundred fifty could be flagged wrongly. | 75,000, then ~750 (never together), tags "1% of 75,000" and "Vanderbilt's own estimate" |
+| 12-15.5 | So Vanderbilt turns it off. | big switch ON to OFF, tag AUG 2023 |
+| 15.5-21 | Stanford tests seven other detectors. About six in ten essays by non-native writers get flagged. | 7 OTHER DETECTORS, 6 of 10 sheets stamped fast, tag "Turnitin not tested" |
+| 21-24 | Flagged? Do not argue. Bring proof. | page + stamp returns, BRING PROOF |
+| 24-30 | Save this. Send it to a friend who writes essays. Did a detector ever flag something you wrote? | save card with slow drift, small stamp returns at the end |
+Risk: about 87 spoken words in 30 s is fast (2.9 words/s); the real length comes only from the rendered voice. Cut words, not speed, if it runs over.
