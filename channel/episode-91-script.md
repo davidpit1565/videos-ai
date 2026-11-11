@@ -92,3 +92,10 @@ safe_check_hf PASS (text-only stand-in hf5/index.html built from the same layout
 - Voice/bed not heard by anyone; "It listens." is very short and fast; the Claude half is static for about 1 s after the last check; no blind reader run (no fresh agent available): the subject (Claude vs ChatGPT) is on frame 0 as the title pill, the joke is carried by 5 calm checks vs 3 growing steps; the picture is now flat drawn cards on a light base (Roni's "looks AI/Claude-like" note: this is closer to the generic drawn-UI look than the art was; the art's mood is reduced to two face circles).
 ## Scores (judgements, not measurements)
 HOOK 66 (product names and mood on frame 0, no stake or surprise) | VIRALITY 58 | OVERALL 60 | PREDICTED VIEWS 200-600 (assumption: unchanged low-effort joke; real 48 h / 72 h views go into score-calibration.md).
+
+---
+# FINAL6 (9.85 s) = final5 rebuilt per the coordinator: fills the safe box, no orange, no asterisk
+Files: video/ep91/out/ep91-final6.mp4, ep91-final6-review720.mp4, cover-ep91-v6.png, f0-final6.png, gate-final6.txt; builders build91_final6.py / mix91_final6.py; same voice (narration91c) and bed (moonpub) as final5.
+- Scenes scaled up to fill y 284-1235 (x 65-1015): list text 88 px (last row wraps to 2 lines), steps 72 px, note 54/66 px, CTA 104 px, CTA faces 340 px. No orange anywhere, no asterisk mark: black/neutral + one lime accent (face rings, step-number circles); "Claude" is plain white text in the dark pill; the black box with white text carries "overcomplicates"; the real ChatGPT mark appears once (title pill).
+- Gates: safe_check PASS, qa.py --hf PASS (-14.6 LUFS, peak -4.1 dBFS, longest still 2.40 s), voice_quality clean, voice_doctor PASS (5-segment cue split), accent check skipped. Audio measured, not heard. Frames viewed once (every 0.25 s to 3 s, every 0.5 s after).
+- Weak: the list's last row wraps; the Claude panel is static about 1 s after the last check; still flat drawn UI on a light base; the two faces are the only picture; no blind reader.

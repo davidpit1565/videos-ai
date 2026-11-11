@@ -107,3 +107,33 @@ David listened: the earlier ghost voice was "mushy, AI"; the ep89 voice he loved
 File: `video/ep90b/out/ep90b-final7.mp4` (+ `-review720.mp4`, `-alt-cinematic-720.mp4` preview, `cover-ep90b.png`, `f0.png`); build `build90b7.py` (picture logic of final5, retimed to cues90b: the punchline holds 1.8 s, line 7 delayed by 4.24 s), mix `mix90b7.py`, runner `run7.sh`. Total 21.9 s (the 15-17 s target is not reachable with this voice plus the 1.8 s hold: levers as in FINAL5).
 Audio: voice dominant; real-library bed `punchy--hip-hop-beat--themountain.mp3` (the hip-hop family used under ep89, no complaint) at exact length, high-passed at 140 Hz for phone speakers, 17.5 dB under the voice in 300-3500 Hz, a -4 dB tender dip under the begging card, a -18 dB near-silence during the typing dots before the punchline, groove back with a +2 dB sting, 1.2 s fade-out; sfx 17 dB under the voice rms; final mix about -14 LUFS. Alternative bed as a preview: `cinematic--dramatic--themountain.mp3` (David loved it in ep85, but dramatic). Details and numbers in `channel/music-notes.md`.
 Picture: unchanged from FINAL5 (REAL CHAT card of real pixels, ME / CHATGPT tags, one badge, selection bars, soft scrolls, no wipes, no orange, pleading-face emoji to match the real recording).
+
+---
+# FINAL8 (11.11.2026) - tight rebuild after Meta AI's critique of final7 (final1-7 untouched)
+
+File: `video/ep90b/out/ep90b-final8.mp4` (17.47 s, 2.2 MB) + `-review720.mp4`, `cover-ep90b-v8.png`, `f0-v8.png` (named so because `f0.png` is final7's), `gate-final8.txt`. Build `video/ep90b/build90b8.py` (composition built into /tmp/e8/hf8 with `bg8.png` = #FAFAF8 + faint 60 px grid, generated in that dir), mix `mix90b8.py`, runner `run8.sh`. Voice = the CURRENT `video/ep90/voice/narration90b.wav` + `cues90b.json` (line 4 "It begged, can I have a second chance?"), not re-rendered, not delayed; padded to 17.47 s.
+
+## Changes vs final7
+- 21.9 s -> 17.5 s: the 4.2 s artificial hold before line 7 is gone (the laugh reply lands WITH line 6, the end card starts with line 7), no typed letters, no typing-dots silence beat, no REAL CHAT proof card.
+- Light #FAFAF8 with a very faint grid (final7 used #ecebe5 dotted). No keyboard/composer. Each user message is a dark bubble under a black ME tag that pops in at once (soft blur/scale, 0.4 s). Every ChatGPT answer sits under a black CHATGPT tag.
+- One thing at a time: 47 giant (640 px, centred) under the number prompt; "Now we won't be able to talk for 47 days" then "Wait... can I have a second chance? 🥺" word by word with the voice; "Yes" then 100 ONCE (430 px, one small heart, grey because no orange); "Fahhhhh" as the user's bubble, then the laugh reply built fast with STILL on a black box (voice "still" 12.16 s, box 12.1 s); end card "Send this to / someone who / ghosts you." with "ghosts" on a black box, held static about 1 s after the last word, then the soft loop dissolve to frame 0. Scene changes are 0.16 s soft dissolves with a gap (no two scenes' text at once), no wipes.
+- Frame 0 reads "I gave ChatGPT" + "a 47-day" fully, "timeout." ghosted and building with the voice; real ChatGPT badge once.
+
+## Taken from Meta / rejected
+Taken: light base + faint grid, no typing, no keyboard, 47 giant, 100 once, Fahhhhh as the user's bubble, the order, STILL and "ghosts" on black boxes, static end hold, one red-free heart. Rejected: (1) Meta's invented "You gave me a second chance and I STILL chose 100" as a ChatGPT line (we show the real reply, split over lines, and the voice says our own "And it still chose 100."); (2) the red heart: the real reply is an ORANGE heart and David's rule is no orange, so it is a small grey heart, as in finals 3-7; (3) removing the skull: it is part of the real reply, kept small, no circle; (4) 12 s length: the voice is 16 s.
+Honest note on "100 once": the real laugh reply itself ends "chose 100", so the digits appear twice in the text; the giant 100 is shown once, the second is ordinary sentence text.
+
+## Correction found while checking against the real frames
+The real laugh reply uses the LOUDLY CRYING FACE (😭), not 😆 (zoomed on the recording frame at 56 s). Finals 1-7 of this version and the recording-version notes say 😆; final8 uses 😭. Any other text that says 😆 is wrong (episode-90-script.md line about the HAHAHAHA reply does not name the emoji; the 90b notes above do). The begging reply emoji 🥺 and the skull 💀 and the heart 🧡 match the recording.
+
+## Gates (gate-final8.txt)
+safe_check_hf PASS (clean at 10 px tolerance; heart 8 px and "chance" 5 px past the right line, inside tolerance; no overlaps over 10 px); qa.py --hf PASS (-14.0 LUFS, peak -4.6 dBFS, loop seam 0.6/255; the only warn is the 30-90 s band); voice_doctor PASS (only the recipe's 0.16 s gap notes); voice_quality FAIL on line 6 pitch range 10.8 st (same as final7; the voice is fixed and not re-rolled; the other lines 3.2-7.2 st; line 4 now 7.2 st), music 36% under 150 Hz, bed minus voice -14.3 dB in 300-3500 Hz at vol 0.20; check_music_bed ok (mean -17.6 dB, no quiet stretch); accent check SKIPPED (no model installed). Music: `punchy--hip-hop-beat--themountain.mp3` as final7, ducks: -4 dB under the begging line, -18 dB for 0.3 s during "Fahhhhh", +2 dB sting at the laugh. Sfx re-timed. Measured, not heard.
+
+## Watched
+Frames every 0.25 s to 3 s, 0.5 s after (360 px contact sheets, not 720; the 720 review file exists). Seen: 47 giant and centred, 100 once, no keyboard, no text-on-text overlap, nothing cut by the safe area, word builds in time with the voice. Not seen live (no playback): motion smoothness beyond frame sampling.
+
+## Weaknesses
+Fahhhhh alone is on screen only about 0.4 s (the voice leaves no room); 100 about 0.6 s; the laugh reply is fully there for about 2.6 s. Frames 0-2.5 s are text only (no picture of a chat). Still a redraw, one run, small account, voice line 6 pitch range flagged, hip-hop bed was rejected by David's ear on the voice-less versions (it is the ep89 family with the voice). Caption unchanged (no claim changed).
+
+## Scores (judgements) and prediction
+HOOK 78 | VIRALITY 72 | OVERALL 76 (Meta rated final7 72; shorter and cleaner should help, but my scores did not predict views before). PREDICTED VIEWS about 800-2,500 (ASSUMPTION), about 65-80 on the scale. Log real 48 h / 72 h next to this.
