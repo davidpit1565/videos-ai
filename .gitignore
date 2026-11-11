@@ -126,3 +126,10 @@ video/ep94/voice/build.log
 video/ep94/out/*.png
 video/ep94/out/render-*.log
 video/ep94/music/
+video/ep94/out/*.wav
+video/ep94/out/pic94-*.mp4
+video/ep94/out/ep94-v[123]*.mp4
+video/ep94/out/ep94-open-v1.mp4
+video/ep94/voice/narration-v3a-backup*
+video/ep94/voice/build-*.log
+video/ep94/out/gate-v[123].txt
