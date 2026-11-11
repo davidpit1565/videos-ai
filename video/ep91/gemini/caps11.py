@@ -73,7 +73,7 @@ def card_layer(wt3, t, t0):
 def frame(t, ctx):
     L, l1, l2, l3 = ctx
     for words, wt, ln in ((["Me", "with", "Claude,", "it", "listens."], l1, 0), (["Me", "with", "ChatGPT,", "it's", "way", "more", "tangled."], l2, 1)):
-        im = cap_layer(words, wt, t, L[ln]["start"] - 0.05, L[ln]["end"] + 0.15)
+        im = cap_layer(words, wt, t, L[ln]["start"] - 0.05, (2.45 if ln == 0 else 5.62))
         if im is not None: return im
     c = card_layer(l3, t, L[2]["start"] + 0.10)
     return c if c is not None else Image.new("RGBA", (W, H), (0, 0, 0, 0))
