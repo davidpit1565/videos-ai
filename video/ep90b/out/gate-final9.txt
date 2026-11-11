@@ -1,18 +1,17 @@
-=== FAIL  frame layout (safe_check_hf.js) (exit 1)
+=== PASS  frame layout (safe_check_hf.js)
     index.html  17.46s  88 samples every 0.2s  safe box: x 65-1015, y 269-1248
-        24px past the right line   y 541-737  worst at 15s, over tol in 11 hits 15-17s   #f20  "someone"
-        23px past the right line   y 759-955  worst at 15.2s, over tol in 10 hits 15.2-17s   #f30  "ghosts"
+      safe area: clean (tolerance 10px)
       within tolerance: 8px past the right line   .em  "🧡"
       within tolerance: 5px past the right line   #l25  "chance"
+      overlaps: none over 10px
       within tolerance: 9px overlap  #at1 x #n47
       within tolerance: 8px overlap  #l32 x .em
       within tolerance: 5px overlap  #a47 x #aT
-      overlap   84px worst at 3.4s, 1 hits 3.4-3.4s   #ub1 "Choose a number between "  x  #at1 "CHATGPT"
 
 === PASS  rendered file (qa.py --hf)
     ep90b-final9.mp4  1080x1920  30fps  17.47s  2.3MB
-      visual change: median 0.03s, longest 2.80s
-      loudness: -14.0 LUFS integrated, peak -4.6 dBFS, LRA 1.7 LU
+      visual change: median 0.03s, longest 2.87s
+      loudness: -14.0 LUFS integrated, peak -4.7 dBFS, LRA 1.7 LU
       loop seam: first vs last frame differ by 0.6/255
     
       [warn]    17.5s is outside the 30-90s band
@@ -26,7 +25,7 @@
       ok        colour-card check not applicable (HyperFrames build, no cards)
       ok        visual change every 0.03s median
       ok        -14.0 LUFS
-      ok        peak -4.6 dBFS
+      ok        peak -4.7 dBFS
 
 === FAIL  voice + music quality (voice_quality.py) (exit 1)
     pitch (semitones vs each line's own median):
@@ -67,7 +66,7 @@
 === SKIP  accent drift (needs transformers + model, not installed)
 
 ================ SUMMARY
-  FAIL  frame layout (safe_check_hf.js) (exit 1)
+  PASS  frame layout (safe_check_hf.js)
   PASS  rendered file (qa.py --hf)
   FAIL  voice + music quality (voice_quality.py) (exit 1)
   PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)

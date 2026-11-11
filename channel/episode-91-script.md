@@ -99,3 +99,13 @@ Files: video/ep91/out/ep91-final6.mp4, ep91-final6-review720.mp4, cover-ep91-v6.
 - Scenes scaled up to fill y 284-1235 (x 65-1015): list text 88 px (last row wraps to 2 lines), steps 72 px, note 54/66 px, CTA 104 px, CTA faces 340 px. No orange anywhere, no asterisk mark: black/neutral + one lime accent (face rings, step-number circles); "Claude" is plain white text in the dark pill; the black box with white text carries "overcomplicates"; the real ChatGPT mark appears once (title pill).
 - Gates: safe_check PASS, qa.py --hf PASS (-14.6 LUFS, peak -4.1 dBFS, longest still 2.40 s), voice_quality clean, voice_doctor PASS (5-segment cue split), accent check skipped. Audio measured, not heard. Frames viewed once (every 0.25 s to 3 s, every 0.5 s after).
 - Weak: the list's last row wraps; the Claude panel is static about 1 s after the last check; still flat drawn UI on a light base; the two faces are the only picture; no blind reader.
+
+---
+# FINAL7 (10.0 s) = final6 + big rounded-square faces, static ticked checklist, 3 ChatGPT steps together, 1.6 s static last frame
+Files: video/ep91/out/ep91-final7.mp4, ep91-final7-review720.mp4, cover-ep91-v7.png, f0-final7.png, gate-final7.txt, bed91-final7.wav; builders build91_final7.py / mix91_final7.py; same voice (narration91c). Bed: same moonpub track re-cut to 10.0 s.
+- Faces: rounded squares with a lime ring, 376 px (+8 ring) under each card (calm hand-on-chin under the Claude card, stressed hand-on-head under the ChatGPT card), and two 440x420 faces under the CTA. The ChatGPT face is cropped from a native 373 px region (about 1.0x), the Claude face downscaled.
+- Claude list: all 5 checks ticked from frame 0, no per-check animation; card text 54 px (36 px at 720 wide) to make room for the face.
+- ChatGPT: pill + note + face fade in at 2.8-3.3 s, the 3 steps (56 px) appear TOGETHER at 3.37 s and stay until 5.55 s (2.2 s).
+- Last frame: CTA + both faces static for 1.63 s (measured, last pixel change at 8.33 s of 10.0 s), no zoom.
+- Gates: safe_check PASS, qa.py --hf PASS (-14.6 LUFS, peak -4.2 dBFS, longest still 1.80 s), voice_quality clean, voice_doctor PASS (5-segment split), accent skipped. Audio measured, not heard.
+- Weak: card text is smaller than final6 (trade-off for big faces); the Claude scene only drifts and breathes (no new information after frame 0); flat drawn UI look; no blind reader.
