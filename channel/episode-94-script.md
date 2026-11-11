@@ -75,3 +75,7 @@ Caption: remove the Hebrew "לא מאומת" that Meta AI left in the English ca
 | 21-24 | Flagged? Do not argue. Bring proof. | page + stamp returns, BRING PROOF |
 | 24-30 | Save this. Send it to a friend who writes essays. Did a detector ever flag something you wrote? | save card with slow drift, small stamp returns at the end |
 Risk: about 87 spoken words in 30 s is fast (2.9 words/s); the real length comes only from the rendered voice. Cut words, not speed, if it runs over.
+
+## Voice render 1 (11.11.2026, MEASURED, NOT HEARD)
+`video/ep94/voice/narration-raw.wav` 31.9 s, 8 lines (`lines.txt`; wording changed to avoid swallowed endings: "wrongly" -> "by mistake", "papers" -> "submissions", "detectors/writers" -> "tools"/"people still learning English", closing "Did an AI ever call your own writing AI?"). Built with --no-verify (the built-in check marks "Seventy-five thousand" as an error because Whisper writes digits). Lines were sped x1.20 (the maximum) to fit.
+Whisper base.en check: "Vanderbilt" was heard as "Then the bill" and "vendor bill" (twice), "Turnitin" as "turn it in" (natural for the brand). Risk: the viewer may not hear VANDERBILT. David's ear decides; re-roll line 3 and 4 if it is swallowed. Cues: `narration-raw-cues.json`. Not run yet: voice_doctor, voice_quality, music, accent check.
