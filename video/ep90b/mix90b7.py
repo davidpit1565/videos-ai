@@ -13,7 +13,7 @@ subprocess.run(['python3',f'{ROOT}/audio/pick_real_track.py',str(D),bedp,'--mood
 raw=load(bedp)[:N]; raw=np.pad(raw,(0,max(0,N-len(raw))))
 raw=np.frombuffer(subprocess.run(['ffmpeg','-v','error','-f','f32le','-ar','48000','-ac','1','-i','-','-af','highpass=f=140','-f','f32le','-'],input=raw.astype(np.float32).tobytes(),capture_output=True).stdout,dtype=np.float32)   # phone speakers: no sub-bass
 act=np.abs(voice)>0.01
-gain=10**((band(voice[act])-14-band(raw))/20)          # bed 14 dB under the voice in 300-3500 Hz (un-ducked)
+gain=10**((band(voice[act])-17.5-band(raw))/20)          # bed 17.5 dB under the voice in 300-3500 Hz (un-ducked)
 g=np.zeros(N)
 def ramp(a,b,db,ra=.3,rb=.2): return db*np.clip((t-a)/ra,0,1)*np.clip((b-t)/rb,0,1)
 g+=ramp(dk['tender'][0],dk['tender'][1],-4,.5,.5)                 # tender dip under the begging card
@@ -31,7 +31,7 @@ w=f"{H}/out/mix7-{tag}.wav"; sfile.write(w,mix,SR,subtype='PCM_16')
 def meas(p):
     m=subprocess.run(['ffmpeg','-v','info','-i',p,'-af','ebur128=peak=true','-f','null','-'],capture_output=True,text=True).stderr
     return float(re.findall(r'I:\s+(-?[\d.]+) LUFS',m)[-1]), float(re.findall(r'Peak:\s+(-?[\d.]+) dBFS',m)[-1])
-I0,_=meas(w); fix=-13.2-I0; lim=0.85
+I0,_=meas(w); fix=-10.8-I0; lim=0.85
 w2=f"{H}/out/mix7b-{tag}.wav"
 for _ in range(3):
     subprocess.run(['ffmpeg','-y','-v','error','-i',w,'-af',f'volume={fix}dB,alimiter=limit={lim}:level=false','-ar','48000',w2],check=True)
