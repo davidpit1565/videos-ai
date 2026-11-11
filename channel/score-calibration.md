@@ -62,3 +62,5 @@ Method: 30 first frames (t=1.2 s, bottom 10% cropped so the handle does not leak
 - Against ep88-publish-criteria.md: criterion 1 (realism >= 70) FAILS (46 vs 70). Round 7 moved realism only ~6 points for a very large effort: code-composited collage is likely capped around 50. NOT published. Options for David: real filmed material, or accept the cut knowingly.
 
 | ep88 (published 10.11.2026) | predicted hook 66-68, virality 58, overall 62, views 150-350 (score ~50) | real 48 h / 72 h: to be filled 12-13.11 |
+
+| ep89 (published 11.11.2026 08:00 Brussels, IG https://www.instagram.com/reel/Dfl5wEBBDWI/, YT mPnfZlI-W14) | predicted: label only, no honest score logged here | real 48 h / 72 h: to be filled 13-14.11 (reminders set) |
