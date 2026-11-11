@@ -64,3 +64,5 @@ Method: 30 first frames (t=1.2 s, bottom 10% cropped so the handle does not leak
 | ep88 (published 10.11.2026) | predicted hook 66-68, virality 58, overall 62, views 150-350 (score ~50) | real 48 h / 72 h: to be filled 12-13.11 |
 
 | ep89 (published 11.11.2026 08:00 Brussels, IG https://www.instagram.com/reel/Dfl5wEBBDWI/, YT mPnfZlI-W14) | predicted: label only, no honest score logged here | real 48 h / 72 h: to be filled 13-14.11 (reminders set) |
+
+| ep87 (48 h reading, 11.11.2026 08:00) | predicted overall 70, views 250-700 | real: views 222, reach 173, likes 3, saves 0, shares 0, comments 0 → scale score ~51 (200=50, 10,000=100). Below the predicted range (222 < 250), gap about 19 points on overall. |
