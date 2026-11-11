@@ -310,8 +310,8 @@
   },
   "renders": {
     "latest": {
-      "id": "b9d0cb0b-68ff-4d7e-a888-c99d61f2d80a",
-      "completedAt": 1794370507394,
+      "id": "4f8ab750-e3c3-4d9f-beb1-7b3edb59f2f3",
+      "completedAt": 1794370732594,
       "output": "/tmp/r90b5.mp4",
       "status": "completed",
       "revision": "6abe9eee-8709-447b-859f-5a3dabf9ad13"
