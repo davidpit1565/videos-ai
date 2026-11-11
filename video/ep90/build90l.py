@@ -41,7 +41,7 @@ from scipy.interpolate import PchipInterpolator
 # voice-driven timeline: anchor pairs (out time, source time) per piece, PCHIP-smoothed (monotone, no speed jumps inside a piece)
 ANCH = [
     # NEW-time anchors (out time, source time); keyboard on screen about 1 s per typed message, typing 10-12x, dots skipped
-    [(2.56, 1.0), (2.85, 3.5), (3.1, 7.0), (3.35, 9.7), (3.5, 10.4), (3.75, 10.9), (4.0, 12.9), (4.12, 13.0), (4.25, 13.1), (5.75, 13.9)],            # typing 1 + real "47" (overlay 4.12-5.75)
+    [(2.56, 1.0), (2.8, 3.5), (3.0, 7.0), (3.2, 9.7), (3.4, 10.4), (3.7, 10.9), (4.0, 12.9), (4.12, 13.0), (4.25, 13.1), (5.75, 13.9)],            # typing 1 + real "47" (overlay 4.12-5.75)
     [(5.78, 17.9), (6.2, 24.4), (6.3, 26.4), (6.8, 30.4), (6.9, 31.0), (7.0, 31.6), (7.3, 33.0), (7.95, 33.3), (9.75, 35.1)],                         # typing 2 (1.07 s keyboard), bubble + dots, begging reply 1:1
     [(9.93, 40.4), (10.45, 41.6), (10.5, 41.7), (10.65, 42.2), (10.8, 43.8), (10.9, 44.0), (11.0, 44.2)],                                            # "Yes" -> real "100"
     [(11.05, 48.3), (11.4, 49.7), (11.45, 49.9), (11.55, 50.5), (11.9, 54.2), (12.2, 54.7), (13.4, 56.2), (14.3, 57.0)],                              # Fahhhhh (hidden under the 100 overlay), dots, laughing reply
