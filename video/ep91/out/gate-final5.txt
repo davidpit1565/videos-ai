@@ -10,7 +10,6 @@
       loop seam: first vs last frame differ by 30.7/255
     
       [warn]    9.8s is outside the 30-90s band
-      [warn]    picture nearly still 2.53s at 0.03-2.57s
       ok        1080x1920
       ok        yuv420p
       ok        30fps
@@ -31,7 +30,7 @@
       line   4  range  5.2 st  end  +0.1    It's way more tangled.
       line   5  range  5.3 st  end  +0.8    Send this to the friend who overcomplicates ever
     tone: none steady over 0.6 s
-    music: 58% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.26 = -10.5 dB
+    music: 58% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.27 = -10.4 dB
     
     voice quality: clean
 

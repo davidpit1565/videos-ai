@@ -36,13 +36,12 @@ markup = f'''
 <div class="scene" id="s2">{ub(1, "Choose a number between 0 and 100")}{at(1)}{dots(1)}
  <div class="n47" id="n47">47</div></div>
 <div class="scene" id="s3">{ub(2, 'Now we won\'t be able to talk for <span class="ul" id="ul2">47 days</span>')}{at(2)}{dots(2)}
- <div class="beg" id="beg"><div class="bl" id="bl0"><span class="w" id="bw0">Wait...</span></div>
-  <div class="bl" id="bl1"><span class="w" id="bw1">can</span> <span class="w" id="bw2">I</span></div>
+ <div class="beg" id="beg"><div class="bl" id="bl0"><span class="w" id="bw0">Wait...</span> <span class="w" id="bw1">can</span> <span class="w" id="bw2">I</span></div>
   <div class="bl" id="bl2"><span class="w" id="bw3">have</span> <span class="w" id="bw4">a</span> <span class="w" id="bw5">second</span></div>
   <div class="bl" id="bl3"><span class="w" id="bw6">chance?</span> <span class="w" id="bw7">{EM("🥺")}</span></div></div></div>
 <div class="scene" id="s4">{ub(3, "Yes", "big")}{at(3)}{dots(3)}
  <div class="n100" id="n100">100</div><div class="heart" id="heart">{EM("🧡")}</div></div>
-<div class="scene" id="s5">{ub(4, "Fahhhhh", "big")}{at(4, 660)}
+<div class="scene" id="s5">{ub(4, "Fahhhhh", "big")}{at(4, 640)}
  <div class="lol1" id="lol1">{"".join(f'<span class="hl_" id="ha{i}">{c}</span>' for i, c in enumerate("HAHAHAHA"))}<span class="hl_ em2" id="cry">{EM("😭")}</span></div>
  <div class="lol2" id="lol2"><span class="w" id="l20">You</span> <span class="w" id="l21">gave</span> <span class="w" id="l22">me</span> <span class="w" id="l23">a</span> <span class="w" id="l24">second</span> <span class="w" id="l25">chance</span></div>
  <div class="lol3" id="lol3"><span class="w" id="l30">and</span> <span class="w" id="l31">I</span> <span class="sel" id="selE"><span class="w" id="l32">STILL</span></span></div>
@@ -80,10 +79,10 @@ css = f'''
 .n100{{position:absolute;left:90px;top:790px;font-size:430px;line-height:420px;font-weight:900;letter-spacing:-.06em;color:{INK};opacity:0;white-space:nowrap}}
 .heart{{position:absolute;left:845px;top:790px;font-size:130px;line-height:130px;opacity:0;filter:grayscale(1)}}
 .beg{{position:absolute;left:90px;top:810px;width:900px;font-weight:900;letter-spacing:-.045em;color:{INK}}}
-.bl{{font-size:120px;line-height:132px;white-space:nowrap}} .bl .w{{margin-right:.2em}} .bl .em{{font-size:100px;vertical-align:.02em}}
-.lol1{{position:absolute;left:90px;top:750px;font-size:132px;line-height:140px;font-weight:900;letter-spacing:-.045em;color:{INK};white-space:nowrap;display:flex;align-items:baseline}} .hl_{{display:inline-block;opacity:0}} .em2{{margin-left:22px;font-size:104px}}
-.lol2{{position:absolute;left:90px;top:905px;font-size:66px;line-height:80px;font-weight:800;letter-spacing:-.025em;color:{INK};white-space:nowrap}} .lol2 .w{{margin-right:.14em}}
-.lol4,.lol3{{position:absolute;left:90px;top:1000px;font-size:112px;line-height:124px;font-weight:900;letter-spacing:-.04em;color:{INK};white-space:nowrap}} .lol3 .w,.lol4 .w{{margin-right:.15em}} .lol4{{top:1124px;font-weight:900;letter-spacing:-.04em;color:{INK};white-space:nowrap}} .lol4 .em{{font-size:100px}}
+.bl{{font-size:112px;line-height:130px;white-space:nowrap}} .bl .w{{margin-right:.2em}} .bl .em{{font-size:100px;vertical-align:.02em}}
+.lol1{{position:absolute;left:90px;top:730px;font-size:126px;line-height:140px;font-weight:900;letter-spacing:-.045em;color:{INK};white-space:nowrap;display:flex;align-items:baseline}} .hl_{{display:inline-block;opacity:0}} .em2{{margin-left:22px;font-size:104px}}
+.lol2{{position:absolute;left:90px;top:900px;font-size:66px;line-height:80px;font-weight:800;letter-spacing:-.025em;color:{INK};white-space:nowrap}} .lol2 .w{{margin-right:.14em}}
+.lol4,.lol3{{position:absolute;left:90px;top:985px;font-size:112px;line-height:124px;font-weight:900;letter-spacing:-.04em;color:{INK};white-space:nowrap}} .lol3 .w,.lol4 .w{{margin-right:.15em}} .lol4{{top:1105px;font-weight:900;letter-spacing:-.04em;color:{INK};white-space:nowrap}} .lol4 .em{{font-size:100px}}
 .f1{{top:470px;font-size:140px;line-height:160px}} .f2{{top:650px;font-size:140px;line-height:160px}} .f3{{top:830px;font-size:156px;line-height:180px}} .f1 .w,.f2 .w,.f3 .w{{margin-right:.16em}}
 '''
 
@@ -133,7 +132,7 @@ dots_run(1, 3.3, Wd(2, 9) - .3); tag_in("#at1", 3.3)
 t47 = Wd(2, 9) - .1
 js(f"tl.set('#n47',{{opacity:1}},{T(t47)});")
 js(f"tl.fromTo('#n47',{{scale:.82,y:30,filter:'blur(8px)'}},{{scale:1,y:0,filter:'blur(0px)',duration:.45,ease:'expo.out',transformOrigin:'50% 55%',immediateRender:false}},{T(t47)});")
-js(f"tl.to('#n47',{{scale:1.03,duration:1.1,ease:'sine.inOut'}},{T(t47 + .5)});")
+
 sfx("pop_b.ogg", t47, -8); sfx("impactsoft.ogg", t47 + .04, -9); sfx("ding.ogg", t47 + .05, -11)
 
 # ============================== S3 lines 3-4: bubble, 47 days underline, dots, begging reply
