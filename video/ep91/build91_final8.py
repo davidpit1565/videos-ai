@@ -20,7 +20,7 @@ def rface(path, box, w, h, r=40, bw=4):
 SRC_C = Image.open("/tmp/ep91v5/w_claude.png").convert("RGB"); SRC_G = Image.open("/tmp/ep91v5/w_gpt.png").convert("RGB")
 def face_push(src, k, w, h, r=40, bw=4):
     """slow push-in INSIDE the frame (crop window shrinks 0..4%): smooth, no scaling of the card itself"""
-    sw, sh = src.size; z = 1 - 0.08 * k; cw, ch = sw * z, sh * z; x0 = (sw - cw) * 0.3; y0 = (sh - ch) * 0.5
+    sw, sh = src.size; z = 1 - 0.12 * k; cw, ch = sw * z, sh * z; x0 = (sw - cw) * 0.3; y0 = (sh - ch) * 0.5
     im = src.crop((int(x0), int(y0), int(x0 + cw), int(y0 + ch))).resize((w, h), Image.LANCZOS); S = 4
     m = Image.new("L", (w * S, h * S), 0); ImageDraw.Draw(m).rounded_rectangle((0, 0, w * S - 1, h * S - 1), r * S, fill=255); m = m.resize((w, h), Image.LANCZOS)
     o = Image.new("RGBA", (w + 2 * bw, h + 2 * bw), (0, 0, 0, 0)); rm = Image.new("L", ((w + 2 * bw) * S, (h + 2 * bw) * S), 0)
@@ -55,7 +55,7 @@ def frame(k):
         for li, row in enumerate(CTA):
             tot = sum(tl(w, fc) for w in row) + (len(row) - 1) * 28; x = (W - tot) / 2; y = CTA_Y0 + li * CTA_LH
             for w in row:
-                tw_ = tl(w, fc); tin = max(times[w.lower()] - 0.05, TC0 + 0.1); a = ss((t - tin) / 0.12)
+                tw_ = tl(w, fc); tin = max(times[w.lower()] - 0.05, TC0 + 0.1); a = ss((t - tin) / 0.08)
                 if w.lower() == "overcomplicates":
                     hb = Image.new("RGBA", (int(tw_) + 44, 112), (0, 0, 0, 0)); ImageDraw.Draw(hb).rounded_rectangle((0, 0, hb.width - 1, 111), 22, fill=INK + (255,))
                     paste(canvas, hb, x - 22, y + 12, in3 * a); paste(canvas, text_layer(w, fc, WHITE), x - 4, y + 4 * (1 - a), a * in3)

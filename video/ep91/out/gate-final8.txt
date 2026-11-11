@@ -4,10 +4,10 @@
       overlaps: none over 10px
 
 === PASS  rendered file (qa.py --hf)
-    ep91-final8.mp4  1080x1920  30fps  9.60s  1.2MB
+    ep91-final8.mp4  1080x1920  30fps  9.60s  1.3MB
       visual change: median 0.03s, longest 2.80s
       loudness: -14.6 LUFS integrated, peak -4.2 dBFS, LRA 1.0 LU
-      loop seam: first vs last frame differ by 45.1/255
+      loop seam: first vs last frame differ by 45.3/255
     
       [warn]    9.6s is outside the 30-90s band
       ok        1080x1920
@@ -16,7 +16,7 @@
       ok        48kHz stereo
       ok        length matches the build
       ok        no frozen run over 4s
-      ok        first frame carries picture (luma 188.8, std 84.0)
+      ok        first frame carries picture (luma 188.7, std 84.1)
       ok        colour-card check not applicable (HyperFrames build, no cards)
       ok        visual change every 0.03s median
       ok        -14.6 LUFS

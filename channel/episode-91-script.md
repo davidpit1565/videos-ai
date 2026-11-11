@@ -109,3 +109,12 @@ Files: video/ep91/out/ep91-final7.mp4, ep91-final7-review720.mp4, cover-ep91-v7.
 - Last frame: CTA + both faces static for 1.63 s (measured, last pixel change at 8.33 s of 10.0 s), no zoom.
 - Gates: safe_check PASS, qa.py --hf PASS (-14.6 LUFS, peak -4.2 dBFS, longest still 1.80 s), voice_quality clean, voice_doctor PASS (5-segment split), accent skipped. Audio measured, not heard.
 - Weak: card text is smaller than final6 (trade-off for big faces); the Claude scene only drifts and breathes (no new information after frame 0); flat drawn UI look; no blind reader.
+
+---
+# FINAL8 (9.60 s) = PURE MEME variant (final7 untouched; no checklist, no steps)
+Files: video/ep91/out/ep91-final8.mp4, ep91-final8-review720.mp4, cover-ep91-v8.png, f0-final8.png, gate-final8.txt, bed91-final8.wav; builders build91_final8.py / mix91_final8.py (imports helpers from build91_final7.py); voice narration91c unchanged; bed moonpub re-cut to 9.6 s.
+- Length is 9.6 s, NOT 6.5 s: the picture follows the voice (3 lines = 8.86 s of speech) and the voice was not shortened. Beats: A 0-2.5 s calm face (820x674 rounded, 4 px dark border, no ring) + pill "Me with Claude" + line "Do this -> Done."; B 2.7-5.7 s stressed face + pill "Me with ChatGPT" (the one real mark) + "Do this -> / 47 steps, error, try again..." ("47 steps" is a joke number, the caption says joke); C 5.85-9.6 s CTA with "overcomplicates" white on black + both faces (440x420) side by side, static for the last 1.37 s (measured), no zoom.
+- Transitions are dips (0.15 s out, 0.15 s in) rather than overlapping cross-fades, so no two scenes' text is ever on screen together. Motion: a slow 12% push-in INSIDE each face frame plus an 18 px lift over each scene; the CTA words appear one by one (0.08 s fades).
+- Everything ends by y 1210 (safe box, bottom UI zone left free). No orange, no asterisk, no lime.
+- Gates: safe_check PASS, qa.py --hf PASS (-14.6 LUFS, peak -4.2 dBFS, longest still 2.80 s: above the 2.5 s target, the push-in is too subtle for qa's detector), voice_quality clean, voice_doctor PASS (5-segment split), accent skipped. Audio measured, not heard.
+- Weak: faces are upscaled 1.5-1.8x from the AI art (slightly soft), the Claude face is 820 px wide not near-full width (950) to limit blur; the ChatGPT crop keeps a sliver of the art's robot at the right edge and a paper corner top-left; the joke now leans on the faces only; no blind reader.
