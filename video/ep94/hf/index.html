@@ -10,41 +10,126 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
 .bgw{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#ecebe5 url(assets/bg.jpg);background-size:1080px 1920px}
 #cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}
-.hd{position:absolute;left:65px;top:290px;width:950px;font-size:176px;line-height:176px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
+#s1,#s4,#s5,#s6,#s7{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#s4,#s5,#s6,#s7,#card,#card2,#tgs{opacity:0}
+.hd{position:absolute;left:75px;top:335px;width:950px;font-size:176px;line-height:176px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
 .hd .w{display:inline-block;margin-right:34px} .hd .br{display:block;height:0}
 .hd .ul{position:absolute;left:0;top:326px;width:620px;height:40px}
 .sheet{position:absolute;left:110px;top:760px;width:860px;height:470px;background:#fbfbf8;border:4px solid #0f0f0f;border-radius:6px;box-shadow:14px 14px 0 #0f0f0f}
 .ln{position:absolute;left:60px;height:30px;border-radius:15px;background:#d4d4d8;filter:blur(6px)}
-.stamp{position:absolute;left:100px;top:890px;width:880px;height:230px;border:14px solid #0f0f0f;border-radius:14px;background:rgba(251,251,248,.0);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-7deg);opacity:0}
-.stamp b{font-size:106px;line-height:110px;font-weight:900;letter-spacing:-.04em;white-space:nowrap}
-.stamp i{position:absolute;left:-14px;top:-62px;height:56px;padding:0 24px;background:#0f0f0f;color:#fff;font:700 34px/56px JBM,monospace;letter-spacing:.06em;font-style:normal;border-radius:6px}
+.stamp{position:absolute;left:100px;top:890px;width:880px;height:230px;border:14px solid #0f0f0f;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-7deg);opacity:0}
+.stamp b{font-size:106px;line-height:110px;margin-top:10px;font-weight:900;letter-spacing:-.04em;white-space:nowrap}
+.stamp i{position:absolute;left:-14px;top:-104px;height:56px;padding:0 24px;background:#0f0f0f;color:#fff;font:700 34px/56px JBM,monospace;letter-spacing:.06em;font-style:normal;border-radius:6px}
+.card{position:absolute;left:100px;top:340px;width:880px;height:850px;background:#fbfbf8;border:4px solid #0f0f0f;border-radius:8px;box-shadow:14px 14px 0 #0f0f0f}
+.ct{position:absolute;left:50px;top:40px;font-size:128px;line-height:130px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
+.row{position:absolute;left:50px;width:780px;height:170px;display:flex;align-items:center;gap:34px;opacity:0}
+.row:nth-of-type(2){top:230px} .row:nth-of-type(3){top:430px} .row:nth-of-type(4){top:630px}
+.num{flex:none;width:120px;height:120px;border-radius:14px;background:#0f0f0f;color:#fff;font-size:80px;line-height:120px;text-align:center;font-weight:900}
+.rt{display:flex;flex-direction:column;gap:8px} .r1{font-size:66px;line-height:70px;font-weight:900;letter-spacing:-.03em;white-space:nowrap} .r2{font:700 34px/38px JBM,monospace;letter-spacing:.05em;color:#55565c;white-space:nowrap}
+.tag{position:absolute;height:64px;padding:0 26px;background:#0f0f0f;color:#fff;font:700 34px/64px JBM,monospace;letter-spacing:.05em;border-radius:6px;white-space:nowrap;opacity:0}
+.why{position:absolute;left:65px;top:300px;font-size:130px;line-height:130px;font-weight:900;letter-spacing:-.045em;opacity:0;white-space:nowrap}
+.tnlogo{position:absolute;left:100px;top:310px;width:880px;opacity:0}
+.big1{position:absolute;left:65px;top:560px;font-size:150px;line-height:150px;font-weight:900;letter-spacing:-.045em;opacity:0;white-space:nowrap}
+.big2{position:absolute;left:85px;top:735px;font-size:380px;line-height:340px;font-weight:900;letter-spacing:-.06em;opacity:0}
+.num5{position:absolute;left:65px;top:300px;font-size:240px;line-height:240px;font-weight:900;letter-spacing:-.05em;opacity:0;white-space:nowrap}
+.n750{font-size:270px}
+.win{position:absolute;left:100px;top:560px;width:880px;height:572px;background:#fff;border:4px solid #0f0f0f;border-radius:8px;box-shadow:14px 14px 0 #0f0f0f;overflow:visible;opacity:0}
+.win img{position:absolute;left:0;top:0;width:880px;height:572px;display:block}
+.rings{position:absolute;left:0;top:0;width:880px;height:572px;overflow:visible}
+.tgl{position:absolute;left:140px;top:500px;width:800px;height:300px;border:10px solid #0f0f0f;border-radius:150px;background:#fbfbf8;box-shadow:14px 14px 0 #0f0f0f}
+.knob{position:absolute;left:520px;top:30px;width:230px;height:230px;border-radius:50%;background:#0f0f0f}
+.onl,.ofl{position:absolute;top:96px;font-size:110px;line-height:110px;font-weight:900;letter-spacing:-.03em} .onl{left:60px} .ofl{left:520px;opacity:0;color:#bbb}
+.h7{position:absolute;left:85px;top:300px;font-size:104px;line-height:112px;font-weight:900;letter-spacing:-.045em;white-space:nowrap;opacity:0}
+.grid7{position:absolute;left:111px;top:500px;width:860px;display:flex;flex-wrap:wrap;gap:56px 18px}
+.mini{position:relative;width:152px;height:250px;background:#fbfbf8;border:4px solid #0f0f0f;border-radius:6px;box-shadow:6px 6px 0 #0f0f0f;opacity:0}
+.mln{position:absolute;left:14px;height:14px;border-radius:7px;background:#d4d4d8}
+.mst{position:absolute;left:8px;top:100px;width:130px;height:62px;border:7px solid #0f0f0f;border-radius:8px;font-size:44px;line-height:48px;font-weight:900;text-align:center;transform:rotate(-8deg);background:rgba(251,251,248,.9);opacity:0}
 
 </style></head><body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="2.5" data-width="1080" data-height="1920">
+<div id="root" data-composition-id="main" data-start="0" data-duration="36.88" data-width="1080" data-height="1920">
+
 <div class="bgw" data-decor></div>
 <div id="cam">
- <div class="hd" id="hd"><span class="w" id="w1">YOUR</span><span class="w" id="w2">OWN</span><span class="br"></span><span class="w" id="w3">ESSAY</span>
-  <svg class="ul" viewBox="0 0 620 40" preserveAspectRatio="none"><path id="ulp" d="M6 24 C 100 6, 200 34, 320 18 S 520 8, 614 20" pathLength="1" stroke="#0f0f0f" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg></div>
- <div class="sheet" id="sheet">
-  <div class="ln" style="top:50px;width:420px"></div><div class="ln" style="top:110px;width:700px"></div><div class="ln" style="top:170px;width:640px"></div>
-  <div class="ln" style="top:330px;width:690px"></div><div class="ln" style="top:390px;width:520px"></div>
+ <div id="s1">
+  <div class="hd" id="hd"><span class="w" id="w1">YOUR</span><span class="w" id="w2">OWN</span><span class="br"></span><span class="w" id="w3">ESSAY</span>
+   <svg class="ul" viewBox="0 0 620 40" preserveAspectRatio="none"><path id="ulp" d="M6 24 C 100 6, 200 34, 320 18 S 520 8, 614 20" pathLength="1" stroke="#0f0f0f" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg></div>
+  <div class="sheet" id="sheet"><div class="ln" style="top:50px;width:420px"></div><div class="ln" style="top:110px;width:700px"></div><div class="ln" style="top:170px;width:640px"></div><div class="ln" style="top:330px;width:690px"></div><div class="ln" style="top:390px;width:520px"></div></div>
+  <div class="stamp" id="stamp"><i>AI DETECTOR</i><b>FLAGGED AS AI</b></div>
  </div>
- <div class="stamp" id="stamp"><i>AI DETECTOR</i><b>FLAGGED AS AI</b></div>
+ <div class="card" id="card"><div class="ct" id="cardt">BRING PROOF</div><div class="row" id="q0"><b class="num">1</b><div class="rt"><span class="r1">VERSION HISTORY</span><span class="r2">GOOGLE DOCS</span></div></div><div class="row" id="q1"><b class="num">2</b><div class="rt"><span class="r1">YOUR DRAFTS</span><span class="r2">AND NOTES</span></div></div><div class="row" id="q2"><b class="num">3</b><div class="rt"><span class="r1">ASK THE TOOL</span><span class="r2">WHICH ONE? ERROR RATE?</span></div></div></div>
+ <div id="s4"><div class="why" id="why">HERE'S WHY</div><img class="tnlogo" id="tn" src="assets/turnitin.svg">
+  <div class="big1" id="lt">LESS THAN</div><div class="big2" id="pc">1%</div><div class="tag" id="tg4" style="top:1110px;left:80px">FALSE POSITIVES · ITS OWN CLAIM, 2023</div></div>
+ <div id="s5"><div class="num5" id="n75">75,000</div><div class="num5 n750" id="n750">~750</div>
+  <div class="win" id="win"><img src="assets/vanderbilt-para.png"/>
+   <svg class="rings" viewBox="0 0 880 572"><rect id="rg1" x="-6" y="237" width="177" height="44" rx="10" pathLength="1" fill="none" stroke="#0f0f0f" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/><rect id="rg2" x="58" y="277" width="320" height="44" rx="10" pathLength="1" fill="none" stroke="#0f0f0f" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg></div>
+  <div class="tag" id="tg5" style="top:1155px;left:100px">VANDERBILT'S OWN ESTIMATE</div></div>
+ <div id="s6"><div class="tgl" id="tgl"><span class="onl" id="onl">ON</span><span class="ofl" id="ofl">OFF</span><div class="knob" id="knob"></div></div><div class="tag" id="tg6" style="top:850px;left:100px">VANDERBILT · AUG 2023</div></div>
+ <div id="s7"><div class="h7" id="h7">7 OTHER TOOLS</div><div class="grid7"><div class="mini" id="m0"><div class="mln" style="top:26px;width:70%"></div><div class="mln" style="top:62px;width:92%"></div><div class="mln" style="top:98px;width:60%"></div><div class="mst" id="ms0">AI</div></div><div class="mini" id="m1"><div class="mln" style="top:26px;width:70%"></div><div class="mln" style="top:62px;width:92%"></div><div class="mln" style="top:98px;width:60%"></div><div class="mst" id="ms1">AI</div></div><div class="mini" id="m2"><div class="mln" style="top:26px;width:70%"></div><div class="mln" style="top:62px;width:92%"></div><div class="mln" style="top:98px;width:60%"></div><div class="mst" id="ms2">AI</div></div><div class="mini" id="m3"><div class="mln" style="top:26px;width:70%"></div><div class="mln" style="top:62px;width:92%"></div><div class="mln" style="top:98px;width:60%"></div><div class="mst" id="ms3">AI</div></div><div class="mini" id="m4"><div class="mln" style="top:26px;width:70%"></div><div class="mln" style="top:62px;width:92%"></div><div class="mln" style="top:98px;width:60%"></div><div class="mst" id="ms4">AI</div></div><div class="mini" id="m5"><div class="mln" style="top:26px;width:70%"></div><div class="mln" style="top:62px;width:92%"></div><div class="mln" style="top:98px;width:60%"></div><div class="mst" id="ms5">AI</div></div><div class="mini" id="m6"><div class="mln" style="top:26px;width:70%"></div><div class="mln" style="top:62px;width:92%"></div><div class="mln" style="top:98px;width:60%"></div><div class="mst" id="ms6">AI</div></div><div class="mini" id="m7"><div class="mln" style="top:26px;width:70%"></div><div class="mln" style="top:62px;width:92%"></div><div class="mln" style="top:98px;width:60%"></div><div class="mst" id="ms7">AI</div></div><div class="mini" id="m8"><div class="mln" style="top:26px;width:70%"></div><div class="mln" style="top:62px;width:92%"></div><div class="mln" style="top:98px;width:60%"></div><div class="mst" id="ms8">AI</div></div><div class="mini" id="m9"><div class="mln" style="top:26px;width:70%"></div><div class="mln" style="top:62px;width:92%"></div><div class="mln" style="top:98px;width:60%"></div><div class="mst" id="ms9">AI</div></div></div><div class="tag" id="tg7" style="top:1110px;left:100px">TURNITIN NOT TESTED</div></div>
+ <div class="card" id="card2"><div class="ct" id="card2t">BRING PROOF</div><div class="row" id="p0"><b class="num">1</b><div class="rt"><span class="r1">VERSION HISTORY</span><span class="r2">GOOGLE DOCS</span></div></div><div class="row" id="p1"><b class="num">2</b><div class="rt"><span class="r1">YOUR DRAFTS</span><span class="r2">AND NOTES</span></div></div><div class="row" id="p2"><b class="num">3</b><div class="rt"><span class="r1">ASK THE TOOL</span><span class="r2">WHICH ONE? ERROR RATE?</span></div></div></div>
+ <div class="tag" id="tgs" style="top:292px;left:100px;z-index:60">SAVE THIS</div>
 </div>
+
 </div>
 <script>
-const D=2.5; const tl=gsap.timeline({paused:true});
-// whole picture drifts slowly the whole time (never still)
-tl.fromTo('#cam',{scale:1.0,y:0},{scale:1.035,y:-14,duration:D,ease:'sine.inOut'},0);
-// frame 0 already shows the subject: heading + sheet. Words go from grey to black as they are spoken (ghost -> ink).
-
-// only the stamp moves first: drops, lands, the sheet shudders once
-tl.fromTo('#stamp',{opacity:0,y:-520,scale:1.25},{opacity:1,y:0,scale:1,duration:.34,ease:'expo.out'},0.1);
-tl.to('#sheet',{x:-7,duration:.06,ease:'sine.out'},0.44000000000000006);
-tl.to('#sheet',{x:5,duration:.1,ease:'sine.inOut'},0.5);
-tl.to('#sheet',{x:0,duration:.18,ease:'sine.out'},0.6);
-// underline draws under the heading while "essay" is said
+const D=36.88; const tl=gsap.timeline({paused:true});
+tl.fromTo('#cam',{scale:1.0,y:0},{scale:1.03,y:-12,duration:36.88,ease:'sine.inOut'},0);
+gsap.set('#s4,#s5,#s6,#s7',{opacity:1}); gsap.set('#tn,#why,#lt,#pc,#tg4,#n75,#n750,#win,#tg5,#tgl,#tg6,#h7,#tg7,.mini',{opacity:0});
+tl.fromTo('#stamp',{opacity:0,y:-520,scale:1.25},{opacity:1,y:0,scale:1,duration:.34,ease:'expo.out'},0.100);
+tl.to('#sheet',{x:-7,duration:.06,ease:'sine.out'},0.440);tl.to('#sheet',{x:5,duration:.1,ease:'sine.inOut'},0.500);tl.to('#sheet',{x:0,duration:.18,ease:'sine.out'},0.600);
 tl.to('#ulp',{strokeDashoffset:0,duration:.5,ease:'sine.inOut'},1.45);
+tl.to('#s1',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},2.740);
+gsap.set('#card',{opacity:0});
+tl.fromTo('#card',{opacity:0,y:40,filter:'blur(14px)',scale:0.96},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},2.800);
+tl.fromTo('#q0',{opacity:0,y:34,filter:'blur(10px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},5.660);
+tl.fromTo('#q1',{opacity:0,y:34,filter:'blur(10px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},6.980);
+tl.fromTo('#q2',{opacity:0,y:34,filter:'blur(10px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},8.000);
+tl.to('#card',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},9.360);
+tl.fromTo('#why',{opacity:0,y:20,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},9.480);
+tl.to('#why',{opacity:0,y:-10,filter:'blur(10px)',duration:0.28,ease:'power1.in'},10.310);
+tl.fromTo('#tn',{opacity:0,y:30,filter:'blur(10px)',scale:0.96},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},10.600);
+tl.fromTo('#lt',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},11.500);
+tl.fromTo('#pc',{opacity:0,y:30,filter:'blur(10px)',scale:0.92},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},12.050);
+tl.fromTo('#tg4',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},13.300);
+tl.to('#s4',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},15.380);
+tl.fromTo('#win',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.5,ease:'power2.out',immediateRender:false},15.530);
+tl.fromTo('#n75',{opacity:0,y:30,filter:'blur(10px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},17.800);
+tl.to('#rg1',{strokeDashoffset:0,duration:.5,ease:'sine.inOut'},17.8);
+tl.to('#n75',{opacity:0,y:-10,filter:'blur(10px)',duration:0.25,ease:'power1.in'},19.600);
+tl.fromTo('#n750',{opacity:0,y:30,filter:'blur(10px)',scale:0.92},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},19.720);
+tl.to('#rg2',{strokeDashoffset:0,duration:.5,ease:'sine.inOut'},19.72);
+tl.fromTo('#tg5',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},20.900);
+tl.to('#s5',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},22.290);
+tl.fromTo('#tgl',{opacity:0,y:30,filter:'blur(10px)',scale:0.95},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},22.410);
+tl.fromTo('#tg6',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},22.700);
+tl.to('#knob',{left:40,duration:.34,ease:'power3.inOut'},23.300);tl.to('#onl',{opacity:0,duration:.2},23.300);tl.to('#ofl',{opacity:1,color:'#0f0f0f',duration:.25},23.400);
+tl.to('#s6',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},23.890);
+tl.fromTo('#h7',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},24.010);
+tl.fromTo('#tg7',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},24.340);
+tl.fromTo('#m0',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.25,ease:'power2.out',immediateRender:false},24.290);
+tl.fromTo('#m1',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.25,ease:'power2.out',immediateRender:false},24.340);
+tl.fromTo('#m2',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.25,ease:'power2.out',immediateRender:false},24.390);
+tl.fromTo('#m3',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.25,ease:'power2.out',immediateRender:false},24.440);
+tl.fromTo('#m4',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.25,ease:'power2.out',immediateRender:false},24.490);
+tl.fromTo('#m5',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.25,ease:'power2.out',immediateRender:false},24.540);
+tl.fromTo('#m6',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.25,ease:'power2.out',immediateRender:false},24.590);
+tl.fromTo('#m7',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.25,ease:'power2.out',immediateRender:false},24.640);
+tl.fromTo('#m8',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.25,ease:'power2.out',immediateRender:false},24.690);
+tl.fromTo('#m9',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.25,ease:'power2.out',immediateRender:false},24.740);
+tl.fromTo('#ms0',{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.14,ease:'expo.out',immediateRender:false},26.450);
+tl.fromTo('#ms2',{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.14,ease:'expo.out',immediateRender:false},26.580);
+tl.fromTo('#ms3',{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.14,ease:'expo.out',immediateRender:false},26.710);
+tl.fromTo('#ms5',{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.14,ease:'expo.out',immediateRender:false},26.840);
+tl.fromTo('#ms7',{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.14,ease:'expo.out',immediateRender:false},26.970);
+tl.fromTo('#ms8',{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.14,ease:'expo.out',immediateRender:false},27.100);
+tl.to('#s7',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},29.830);
+gsap.set('#card2 .row',{opacity:1});
+tl.fromTo('#card2',{opacity:0,y:40,filter:'blur(14px)',scale:0.96},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},29.910);
+tl.fromTo('#tgs',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},30.180);
+tl.fromTo('#card2',{y:0},{y:-14,duration:3.450,ease:'sine.inOut'},30.330);
+tl.to('#card2,#tgs',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},33.180);
+tl.fromTo('#s1',{opacity:0,filter:'blur(14px)'},{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false},33.260);
+tl.set('#stamp',{opacity:1,y:0,scale:1},33.250);
+tl.to('#stamp',{opacity:0,duration:.25,ease:'sine.in'},36.430);
 tl.to({},{duration:.001},D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
 window.__reel={duration:D,seek:t=>tl.seek(t)};
