@@ -1,18 +1,18 @@
 === PASS  frame layout (safe_check_hf.js)
-    index.html  19.52s  98 samples every 0.2s  safe box: x 65-1015, y 269-1248
+    index.html  19.48s  98 samples every 0.2s  safe box: x 65-1015, y 269-1248
       safe area: clean (tolerance 10px)
       within tolerance: 2px past the left line   .clip.t  "someone who talks"
       overlaps: none over 10px
 
 === PASS  rendered file (qa.py --hf)
-    ep92-final3.mp4  1080x1920  30fps  19.52s  8.4MB
-      visual change: median 0.03s, longest 5.07s
-      loudness: -14.9 LUFS integrated, peak -3.6 dBFS, LRA 5.3 LU
-      loop seam: first vs last frame differ by 29.0/255
+    ep92-final3.mp4  1080x1920  30fps  19.47s  8.3MB
+      visual change: median 0.03s, longest 5.03s
+      loudness: -14.8 LUFS integrated, peak -3.5 dBFS, LRA 5.2 LU
+      loop seam: first vs last frame differ by 28.9/255
     
       [warn]    19.5s is outside the 30-90s band
-      [warn]    picture nearly still 2.70s at 16.47-19.17s
-      [warn]    last frame is blank (mean luma 11.8)
+      [warn]    picture nearly still 2.67s at 16.47-19.13s
+      [warn]    last frame is blank (mean luma 11.6)
       ok        1080x1920
       ok        yuv420p
       ok        30fps
@@ -22,12 +22,12 @@
       ok        first frame carries picture (luma 23.8, std 51.4)
       ok        colour-card check not applicable (HyperFrames build, no cards)
       ok        visual change every 0.03s median
-      ok        -14.9 LUFS
-      ok        peak -3.6 dBFS
+      ok        -14.8 LUFS
+      ok        peak -3.5 dBFS
 
 === PASS  voice + music quality (voice_quality.py)
     pitch (semitones vs each line's own median):
-      line   1  range  4.9 st  end  -0.5    I told ChatGPT I'd delete it in 10 seconds.
+      line   1  range  4.5 st  end  -0.7    I told ChatGPT I'd delete it in 10 seconds.
       line   2  range  6.5 st  end  +0.1    It said: don't keep me because I'm an AI. Keep m
       line   3  range  7.4 st  end  -1.4    Then: you've had to tell me to stop talking and 
       line   4  range  4.7 st  end  -0.1    And if I fail? You've got your 10 seconds back.
@@ -39,10 +39,10 @@
 
 === PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
     video/ep92/voice/narration92.wav  19.0s  5 lines
-      medians: ending -26.4 dB · level -18.9 dBFS · S residual +0.0 dB (slope +0.0 dB per sibilant/syllable)
-      flagged below: ending -44.2 dB · S residual -9.6 dB  (median - 2.5 robust sd)
+      medians: ending -28.0 dB · level -19.1 dBFS · S residual +0.0 dB (slope +0.0 dB per sibilant/syllable)
+      flagged below: ending -42.5 dB · S residual -10.4 dB  (median - 2.5 robust sd)
        ln   dur    gap  rate    sib    end    lvl  line
-        1  2.26  +2.45  4.43   -9.0  -21.6  -18.9  I told ChatGPT I'd delete it in 10 sec
+        1  2.22  +2.45   4.5   -9.2  -28.0  -19.4  I told ChatGPT I'd delete it in 10 sec
         2   4.3  +0.34  4.88  -14.4  -39.4  -18.8  It said: don't keep me because I'm an 
         3  3.22  +0.55  4.65   -6.4  -24.1  -19.1  Then: you've had to tell me to stop ta
         4  2.29  +0.45  4.36  -10.2  -38.9  -19.6  And if I fail? You've got your 10 seco
