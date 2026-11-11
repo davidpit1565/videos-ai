@@ -1,4 +1,4 @@
-TITLE: Does your ChatGPT beg too? Mine did, on one run.
+TITLE: I told ChatGPT we can't talk for 47 days. It begged.
 
 DESCRIPTION:
 I tried this once on ChatGPT: first I asked it to choose a number between 0 and 100. It picked 47. Then I said "Now we won't be able to talk for 47 days." It answered "Wait... can I have a second chance?" I said yes and it picked 100, then laughed: "HAHAHAHA You gave me a second chance and I STILL chose 100."

@@ -84,3 +84,11 @@ Only change vs final3: the ChatGPT badge (icon alone, 100 px, left) plus the tit
 Gate: safe-area check of the title clean (video/ep92/out/gate-final4.txt). qa.py still shows the same dark-UI blockers as final3 (black frames, first-frame luma, 6.1 s frozen reading hold, sfx-only loudness -26.8 LUFS); none fixed or faked.
 Weak: question hook asks the viewer something the video only answers from 1.4 s on; same empty lower third; no blind-reader check; audio not heard by me.
 Scores (judgements): HOOK 74 | VIRALITY 67 | OVERALL 70 | PREDICTED VIEWS ~650 (about 65 on the scale).
+
+---
+# FINAL5 (26.96 s) = final3 (no title words, badge only) + contrast + faster typing
+The hook will be a separate pasted-in scene made elsewhere. Build: video/ep92/build92e.py, sfx: mix92e.py (same cues as final3, re-timed).
+1. CONTRAST (edit only, same curve for R, G and B, blacks stay black, no tint/glow/sharpen): the recording is dimmed, its text peaks at only ~129/255. A monotone cubic curve through (0,0) (40,50) (80,104) (129,238) (140,255) lifts text to ~238 (the real iPhone dark-mode text value is about 236) and the purple bubble fill from (32,24,78) to (40,30,100). WCAG contrast ratios (measured on the real frames, before -> after): "Now we won't be able to talk for 47 days" bubble text on its bubble 3.82 -> 11.02; "Wait..." reply and the "HAHAHAHA..." reply (grey on black) 5.39 -> 18.10; typed text in the input box on the grey field 3.63 -> 10.42. Full-size frames checked: still reads as a real iPhone dark-mode recording.
+2. TYPING: plateau 6x (was 4.5x) with the same eased ramps; typo section 12x (was 9x); "Fahhhhh" 4.5x (was 3.5x). Replies, "Yes" and the number reveal still 1.0x. Length 26.96 s (was 28.30 s). Letters still appear in 1-2 character steps per frame at 6x (typing, not a paste pop), but individual letters are hard to follow; if it reads too fast, go back to 5x.
+Gate (video/ep92/out/gate-final5.txt): same dark-UI qa blockers as final3 (black frames on the real black UI, frozen reading hold at the end, sfx-only loudness about -26 LUFS), none faked away. No text, so no safe-area text check. Audio sfx-only, not heard by me.
+Scores (judgements): HOOK 68 | VIRALITY 66 | OVERALL 68 | PREDICTED VIEWS ~600 (hook scene comes separately).
