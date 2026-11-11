@@ -1,0 +1,6 @@
+[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
+[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
+[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
+[INFO] [Compiler] Fetched 1 font face(s) for "Noto Color Emoji" from Google Fonts (cached to /root/.cache/hyperframes/fonts/noto-color-emoji)
+[INFO] [Compiler] Injected deterministic @font-face rules for 4 requested font families
+[hyperframes] browserGpuMode probe → software (WebGL unavailable)

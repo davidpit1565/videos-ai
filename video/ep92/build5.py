@@ -44,7 +44,7 @@ T2L = [["Don't", "keep", "me"], ["because", "I'm"], ["an", "AI."], ["Keep", "me"
 T3A = [["And", "if"], ["I", "fail?"]]
 T3B = [["You've", "got"], ["your", "10", "seconds"], ["back."]]
 ENDL = [["Send", "this"], ["to", "someone"], ["who", "talks", "to"], ["ChatGPT"], ["all", "day."]]
-S2 = fit(T2L, MAXW); S3A = fit(T3A, MAXW, 200); S3B = fit(T3B, MAXW, 130); SQ = fit(Q, 850); SE = fit(ENDL, MAXW, 150)
+S2 = fit(T2L, MAXW); S3A = fit(T3A, MAXW, 200); S3B = fit(T3B, MAXW, 130); SQ = fit(Q, 850); SE = fit(ENDL, MAXW, 128)
 W2 = L[2]["words"]; W3 = L[3]["words"]
 s2, e2, s3, e3, s4, e4 = L[2]["start"], L[2]["end"], L[3]["start"], L[3]["end"], L[4]["start"], L[4]["end"]
 # spoken word times: line 2 words index 2..17 ("It said," skipped), line 3 words 0..9, line 4 words
@@ -111,7 +111,7 @@ def compose(t):
     if ea > 0.002:
         lay = np.zeros((H, W, 3), np.float32); b.add_badge(lay, 1.0, W / 2, E_BADGE_CY, 170)
         draw_words(lay, EW, t, rise=0)
-        z = 1 + 0.025 * ease((min(t, HOLD_FROM) - END_T) / (HOLD_FROM - END_T)); canvas += zoom(lay, z, 758) * min(1.0, ea * 1.0 + (1 if t > END_T + 0.5 else 0))
+        z = 1 + 0.02 * ease((min(t, HOLD_FROM) - END_T) / (HOLD_FROM - END_T)); canvas += zoom(lay, z, 758) * min(1.0, ea * 1.0 + (1 if t > END_T + 0.5 else 0))
     return np.clip(canvas, 0, 255)
 def main():
     a = sys.argv[1:]

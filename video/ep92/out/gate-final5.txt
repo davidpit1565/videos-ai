@@ -7,14 +7,14 @@
     ep92-final5.mp4  1080x1920  30fps  13.45s  1.7MB
       visual change: median 0.03s, longest 3.67s
       loudness: -14.7 LUFS integrated, peak -3.7 dBFS, LRA 1.6 LU
-      loop seam: first vs last frame differ by 33.0/255
+      loop seam: first vs last frame differ by 28.4/255
     
       [BLOCKER] black frames 3.17-4.10s
       [BLOCKER] black frames 7.00-7.63s
-      [BLOCKER] black frames 9.80-10.33s
+      [BLOCKER] black frames 9.80-10.40s
       [warn]    13.4s is outside the 30-90s band
       [warn]    picture nearly still 2.93s at 0.03-2.97s
-      [warn]    picture nearly still 2.27s at 11.13-13.40s
+      [warn]    picture nearly still 2.23s at 11.10-13.33s
       ok        1080x1920
       ok        yuv420p
       ok        30fps
