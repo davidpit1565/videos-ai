@@ -15,6 +15,8 @@ export { SITE_URL };
 
 // ───────────────────────── Instagram ─────────────────────────
 
+export type IgTrialStrategy = "MANUAL" | "SS_PERFORMANCE";
+
 export type IgPublishResult =
   | { ok: true; mediaId: string; permalink: string | null }
   | { ok: false; reason: string; detail?: string };
@@ -34,12 +36,17 @@ async function createAndPublishIgMedia(
   caption?: string,
   timeoutMs = 45_000,
   thumbOffsetMs?: number,
+  trial?: IgTrialStrategy,
 ): Promise<IgPublishResult> {
   const createUrl = new URL(`${host}/${user}/media`);
   createUrl.searchParams.set("media_type", mediaType);
   createUrl.searchParams.set("video_url", videoUrl);
   if (caption) createUrl.searchParams.set("caption", caption);
   if (thumbOffsetMs != null) createUrl.searchParams.set("thumb_offset", String(thumbOffsetMs));
+  // Trial Reel (Meta's Content Publishing docs, `trial_params`): shown to non-followers only until it is
+  // graduated. MANUAL = graduate by hand in the Instagram app (no API for that step); SS_PERFORMANCE =
+  // Instagram graduates it by itself when it performs well. Off unless asked for, so a normal publish is unchanged.
+  if (trial) createUrl.searchParams.set("trial_params", JSON.stringify({ graduation_strategy: trial }));
   createUrl.searchParams.set("access_token", token);
   const created = await fetch(createUrl, { method: "POST", cache: "no-store" });
   const createdBody = (await created.json()) as { id?: string; error?: { message?: string } };
@@ -153,7 +160,7 @@ export async function igMediaIsGone(mediaId: string): Promise<boolean> {
  *  no link back to the Reel, while tapping Instagram's native "Share to Story" on the
  *  Reel itself produces the linked, branded version in five seconds. He asked for the
  *  automatic one to stop rather than keep shipping the worse one by default. */
-export async function publishToInstagram(file: string, caption: string): Promise<IgFullPublishResult> {
+export async function publishToInstagram(file: string, caption: string, trial?: IgTrialStrategy): Promise<IgFullPublishResult> {
   const token = await igToken();
   if (!token) return { reel: { ok: false, reason: "IG_ACCESS_TOKEN לא מוגדר" }, story: null };
   const { host, via } = igRoute(token);
@@ -162,7 +169,7 @@ export async function publishToInstagram(file: string, caption: string): Promise
 
   const videoUrl = `${SITE_URL}/reels/${encodeURIComponent(file)}`;
   const reel = await createAndPublishIgMedia(
-    host, user, token, "REELS", videoUrl, caption, 75_000, REEL_COVER_OFFSET_MS,
+    host, user, token, "REELS", videoUrl, caption, 75_000, REEL_COVER_OFFSET_MS, trial,
   );
   return { reel, story: null };
 }
@@ -323,7 +330,7 @@ export type EpisodePublishResult =
  *  not left for a later best-effort pull to reconstruct by matching text. */
 export async function publishEpisode(
   episodeNumber: number,
-  opts?: { skipFacebook?: boolean },
+  opts?: { skipFacebook?: boolean; trial?: IgTrialStrategy },
 ): Promise<EpisodePublishResult> {
   const state = await loadState();
   if (!state) return { ok: false, reason: "אין מסד נתונים מוגדר" };
@@ -356,9 +363,15 @@ export async function publishEpisode(
   if (!reel) return { ok: false, reason: `אין רנדר שעבר את השער (או אושר ידנית) לפרק ${episodeNumber}` };
   if (!reel.caption?.trim()) return { ok: false, reason: `אין קובץ כיתוב לפרק ${episodeNumber} — לא מפרסם בלי כיתוב` };
 
-  const ig = await publishToInstagram(reel.file, reel.caption);
+  // A Trial Reel is not "live": it is shown to non-followers only, so the row keeps its status and the trial is
+  // recorded in `notes` instead (one trial per episode: a second one is refused, never silently doubled).
+  const trial = opts?.trial;
+  if (trial && /(^|\n)TRIAL /.test(row.notes ?? "")) {
+    return { ok: false, reason: `לפרק ${episodeNumber} כבר פורסם טרייל. מקדמים אותו באפליקציה (Graduate) במקום להעלות שוב.` };
+  }
+  const ig = await publishToInstagram(reel.file, reel.caption, trial);
   // David can ask for Instagram only (1.11.2026, episode 81: he posts to Facebook and Stories by hand).
-  const fb = ig.reel.ok && !opts?.skipFacebook ? await publishToFacebookBoth(reel.file, reel.caption) : null;
+  const fb = ig.reel.ok && !opts?.skipFacebook && !trial ? await publishToFacebookBoth(reel.file, reel.caption) : null;
 
   // Write the real outcome into state from the same request that published, rather than
   // waiting on the next /api/track pull to reconstruct it by matching caption text —
@@ -369,7 +382,10 @@ export async function publishEpisode(
   const loadedAt = state.updatedAt;
   const freshRow = state.episodes.find((e) => e.number === episodeNumber);
   if (freshRow) {
-    if (ig.reel.ok) {
+    if (ig.reel.ok && trial) {
+      const line = `TRIAL ${trial} ${ig.reel.mediaId} ${ig.reel.permalink ?? ""} ${new Date().toISOString().slice(0, 10)}`;
+      freshRow.notes = freshRow.notes ? `${freshRow.notes}\n${line}` : line;
+    } else if (ig.reel.ok) {
       freshRow.status = "live";
       freshRow.igMediaId = ig.reel.mediaId;
       freshRow.igPermalink = ig.reel.permalink;
