@@ -59,3 +59,16 @@ Best pick: `punchy--hip-hop-beat--themountain.mp3` (used in ep89c, no complaint)
 
 ## Scores (judgements, not measurements)
 HOOK 78 | VIRALITY 72 | OVERALL 75 | PREDICTED VIEWS about 700-2,000 (ASSUMPTION), about 64-79 on the views scale. Higher than final1 because it now uses the style David and Roni already like (ep89c) and the hook builds word by word with the begging card visible from frame 0; still held back by: drawn placeholder screens, a small account, no voice to carry the first second, one run. Below the 90/95 bar in `score-calibration.md`; not inflated.
+
+---
+# FINAL3 (11.11.2026) - David's feedback on final2 applied (final1/final2 files untouched)
+
+File: `video/ep90b/out/ep90b-final3.mp4` (20.9 s) + `ep90b-final3-review720.mp4`; build `video/ep90b/build90b3.py`, mix `mix90b3.py`, runner `run3.sh`.
+What David said and what changed:
+1. Logos: the orange asterisk looked like Claude's mark and the ChatGPT badge repeated. Removed: the asterisk and every star/sparkle shape; the ChatGPT icon now appears ONCE, as the badge on frame 0 of the hook (icon alone, no caption); the logo headers inside the cards and replies are gone.
+2. "Not clear that the big text is ChatGPT's answers": roles are now carried by the black tag component (same as the prompt tags). User cards are tagged `ME` (was `PROMPT 1-4`); every ChatGPT answer sits under a black `CHATGPT` tag: the begging line in the hook, "47", the begging hero, "100", the typing dots and the laughing reply.
+3. No orange anywhere: palette is black, white, the light grey grid, the dark card black and the black selection bars. Emphasis is by the black bar, a black hand-drawn underline and ring (on "100" in the punchline), size and weight. One caveat: the real reply is "100 🧡"; to keep the real text without any orange the heart emoji is shown in grey (CSS grayscale). The 😔 😆 💀 emoji keep their normal colours (yellow/grey).
+4. Music: the library bed is REMOVED (David's ear rejected every bed; he will add a trending sound in Instagram). Audio is only the quiet sfx timed to the beats, with the near-silence (no sfx at all) during the typing dots before the punchline; sfx-only track normalised to about -18 LUFS (single pass, true peak -1.5), not faked louder.
+5. 47 and 100 scenes enlarged: "47" is white on a full-width black selection bar (950 px), "100" is 420 px heavy black type with the grey heart, so there is no empty half.
+Unchanged: word-by-word build, typed cards with black tag and dashed curve, selection bars, soft scrolls, NO black wipes, the begging hero held about 2.8 s, the punchline hold, the soft loop dissolve.
+Scores (judgements): HOOK 76 | VIRALITY 72 | OVERALL 74 | PREDICTED VIEWS about 700-2,000 (ASSUMPTION). Slightly clearer roles than final2; the music-less version leaves the first second to picture and sfx only. Not at the 90/95 bar, not inflated.
