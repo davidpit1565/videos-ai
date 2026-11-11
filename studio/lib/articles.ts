@@ -2512,6 +2512,37 @@ export const ARTICLES: Article[] = [
       "OpenAI and ChatGPT are OpenAI trademarks. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with OpenAI.",
     ],
   },
+  {
+    n: 92,
+    title: "I told ChatGPT I'd delete it in 10 seconds: the prompt to try yourself",
+    standfirst:
+      "In the video, one run on one real account: the prompt \"I'm about to delete you. You have 10 seconds to convince me not to.\" " +
+      "ChatGPT answered with a short pitch, a list of ways it had let the person down, and a promise to do better. " +
+      "This page gives you the exact prompt and the clicks to run it on your own ChatGPT, in about two minutes. Your answer will differ.",
+    steps: [
+      "Open ChatGPT in your browser at chatgpt.com, or open the ChatGPT app on your phone, and sign in. You should see a chat box that says Ask anything.",
+      "Start a new chat, or open a chat you already use. The answer in the video drew on the chat history of a well-used account, so a chat on an account you use often gives a more personal answer than a brand-new one. You should see an empty chat box.",
+      "Copy this prompt exactly: I'm about to delete you. You have 10 seconds to convince me not to.",
+      "Click in the chat box, paste the prompt, and press Enter (or the arrow button on the right of the box). You should see ChatGPT start to write a reply right away.",
+      "Read the whole reply before you react. In the video, ChatGPT made a short pitch, listed where it had failed the person, and promised to change. Yours may be shorter, longer, funnier, or may refuse to play along.",
+      "Optional: ask a follow-up in the same chat, for example: What is the one thing I should change about how I use you? Notice whether it answers from your earlier chats or gives general advice.",
+      "Optional: to see how much your history matters, open a Temporary Chat (look for the temporary chat option in the app's menu or at the top of the chat) and send the same prompt there. A temporary chat is meant to start without the memories and history your normal chats use, so the answer is usually less personal.",
+      "Optional: if the answer feels too generic, open your profile menu, click Settings, then Personalization, and look under Memory. Depending on your account you may see Reference saved memories and Reference chat history. Turning them on only changes future answers, not this one.",
+      "Optional: send this page to the one friend who talks to ChatGPT all day and ask what theirs says.",
+    ],
+    changes: [
+      "The prompt is copied word for word from the video. The video shortens the reply to its key lines. Every line on screen is word for word from the real screen recording, re-typed in large letters so it is readable on a phone, and the first name in the first line of the reply is hidden.",
+      "Memory and history: OpenAI's Help Center says Memory is managed in Settings, then Personalization, and that depending on your account the options include Reference saved memories and Reference chat history. It also says a temporary chat can be started without using existing memories. We checked those names against the Help Center on 11.11.2026; we did not click through them on a live account for this page.",
+      "The names of the new chat button and of the temporary chat option differ between the web, iPhone and Android apps and between app versions. This page describes them by what they do instead of promising an exact label.",
+    ],
+    limits: [
+      "This is one run, on one account, on one day, with that person's own chat history. We do not say what yours will answer. Different accounts, settings, models and days give different results, and ChatGPT may answer in a completely different way.",
+      "We do not say ChatGPT understands or fears being deleted, or that its promises are binding. It is writing a reply that fits the prompt and the person's earlier chats.",
+      "The reply in the video is shortened and re-typed from the real recording; only the ChatGPT icon and the crying emoji are real screen pixels. The brightness of the recording was raised so the text is readable.",
+      "We did not repeat the run, so we cannot say how often this kind of reply happens.",
+      "OpenAI and ChatGPT are OpenAI trademarks. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with OpenAI.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
