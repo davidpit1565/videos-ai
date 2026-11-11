@@ -1,0 +1,80 @@
+=== PASS  frame layout (safe_check_hf.js)
+    index.html  16.80s  85 samples every 0.2s  safe box: x 65-1015, y 269-1248
+      safe area: clean (tolerance 10px)
+      overlaps: none over 10px
+
+=== FAIL  rendered file (qa.py --hf) (exit 1)
+    ep90-final14.mp4  1080x1920  30fps  16.80s  2.3MB
+      visual change: median 0.03s, longest 2.13s
+      loudness: -14.7 LUFS integrated, peak -3.8 dBFS, LRA 1.6 LU
+      loop seam: first vs last frame differ by 19.8/255
+    
+      [BLOCKER] black frames 5.20-5.33s
+      [BLOCKER] black frames 9.87-9.90s
+      [BLOCKER] black frames 9.93-10.00s
+      [BLOCKER] black frames 10.47-11.33s
+      [BLOCKER] black frames 11.63-12.37s
+      [BLOCKER] black frames 13.90-13.93s
+      [BLOCKER] black frames 13.97-14.43s
+      [BLOCKER] black frames 16.60-16.77s
+      [warn]    16.8s is outside the 30-90s band
+      [warn]    picture nearly still 2.43s at 12.00-14.43s
+      [warn]    last frame is blank (mean luma 2.4)
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 21.4, std 51.8)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.7 LUFS
+      ok        peak -3.8 dBFS
+
+=== FAIL  voice + music quality (voice_quality.py) (exit 1)
+    pitch (semitones vs each line's own median):
+      line   1  range  5.2 st  end  +0.6    I gave ChatGPT a 47-day timeout.
+      line   2  range  3.2 st  end  +0.4    I asked it to pick a number. It picked 47.
+      line   3  range  5.7 st  end  +0.8    So I said: no talking for 47 days.
+      line   4  range  5.8 st  end  -0.7    It begged: can I have a second chance?
+      line   5  range  3.9 st  end  -0.3    I said yes.
+      line   6  range 10.8 st  end  -1.1  <-- range over 10 st  And it still chose 100.
+      line   7  range  4.6 st  end  -1.3    Send this to someone who ghosts you.
+    tone: none steady over 0.6 s
+    music: 7% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.29 = -9.5 dB
+    
+    FAILED — listen to the flagged part before shipping
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep90/voice/narration90b.wav  16.8s  7 lines
+      medians: ending -28.3 dB · level -19.9 dBFS · S residual +0.0 dB (slope +3.5 dB per sibilant/syllable)
+      flagged below: ending -64.6 dB · S residual -6.3 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  2.48  +0.16  2.82   -9.5  -28.3  -19.5  I gave ChatGPT a 47-day timeout.
+        2  2.51  +0.16  4.78  -16.0  -45.1  -18.9  I asked it to pick a number. It picked
+        3  2.32  +0.16  3.45   -8.2  -19.7  -18.6  So I said: no talking for 47 days.
+        4  1.96  +0.16  5.09   -7.4  -17.2  -22.3  It begged: can I have a second chance?
+        5  1.22  +0.76  2.45  -10.3  -13.0  -20.8  I said yes.
+        6   1.7  +0.76  2.36   -9.1  -33.4  -21.6  And it still chose 100.
+        7  1.59    —    5.03  -11.2  -38.1  -19.9  Send this to someone who ghosts you.
+    
+      [fix] line  1: only 0.16s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  2: only 0.16s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  3: only 0.16s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  4: only 0.16s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  PASS  frame layout (safe_check_hf.js)
+  FAIL  rendered file (qa.py --hf) (exit 1)
+  FAIL  voice + music quality (voice_quality.py) (exit 1)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+SOMETHING FAILED - do not send this file

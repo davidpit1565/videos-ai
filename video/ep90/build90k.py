@@ -111,7 +111,7 @@ def _text_block(lines, y, alpha, size):
         y += int(size * 1.03)
     return np.asarray(lay, np.float32) / 255 * alpha
 def title_alpha(t):
-    return 1.0 - sstep((t - (HOOK_HOLD - 0.15)) / 0.35)            # fully visible from frame 0, soft fade 1.95-2.3 s
+    return 1.0 - sstep((t - (HOOK_HOLD - 0.4)) / 0.4)            # fully visible from frame 0, soft fade 1.95-2.3 s
 def draw_title(canvas, a):
     if a <= 0.003: return
     size = _size_for([HOOK_LINE1, HOOK_LINE2])

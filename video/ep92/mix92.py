@@ -5,6 +5,7 @@ bed    = narration + real-library bed (exact length, from audio/pick_real_track.
          slightly lower under line 2 (tender), lifted under line 4 (groove), fade-out; quiet sfx; -14 LUFS, true peak < -1 dBTP."""
 import sys, subprocess, re, numpy as np, soundfile as sf
 from scipy.signal import butter, sosfilt
+from scipy.ndimage import uniform_filter1d
 cues, mode, outp = sys.argv[1], sys.argv[2], sys.argv[3]; bedp = sys.argv[4] if len(sys.argv) > 4 else None
 sys.argv = [sys.argv[0], cues]
 import build92 as b
@@ -31,8 +32,8 @@ if mode == "bed":
     bed = load(bedp); bed = np.pad(bed, (0, max(0, N - len(bed))))[:N]
     sos = butter(4, [300, 3500], btype="band", fs=SR, output="sos")
     # speech envelope (smoothed) -> duck
-    sp = np.abs(nar); k = int(0.12 * SR); sp = np.convolve(sp, np.ones(k) / k, "same"); on = (sp > 0.02).astype(float)
-    k2 = int(0.25 * SR); on = np.clip(np.convolve(on, np.ones(k2) / k2, "same") * 2.0, 0, 1)
+    sp = np.abs(nar); k = int(0.12 * SR); sp = uniform_filter1d(sp, k); on = (sp > 0.02).astype(float)
+    k2 = int(0.25 * SR); on = np.clip(uniform_filter1d(on, k2) * 2.0, 0, 1)
     duck = 1.0 - (1.0 - 10 ** (-6 / 20)) * on                      # 6 dB extra duck while speaking; bed is louder in the gaps
     shape = np.ones(N)
     shape *= 1 - (1 - 10 ** (-2.0 / 20)) * sst((t - b.s2) / 0.6) * (1 - sst((t - b.e2) / 0.8))       # tender: a little lower under line 2

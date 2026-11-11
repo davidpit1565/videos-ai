@@ -1,0 +1,2 @@
+video/ep90b/out/bed-main.wav  mean -16.3 dB  peak 0.0 dB  longest quiet stretch 0.00s
+ok — music bed has a real, continuous presence

@@ -29,7 +29,7 @@ for s_ in (10.3, 13.0, 31.5, 50.0): put("pop_a", ot(s_), -26)
 put("select", ot(41.8), -25); put("ding", ot(33.5), -24); put("pop_b", ot(44.0), -26); put("impactsoft", ot(54.95), -22); put("pop_a", b.end_card_start(), -27)
 nar *= 10 ** (-3 / 20) / np.abs(nar).max(); vb = band(nar)
 sf.write(f"{H}/out/nar14.wav", nar, SR, subtype='PCM_16'); sf.write(f"{H}/out/sfx14.wav", lay[:N], SR, subtype='PCM_16')
-# bed: exact length, highpass 140, fade-out, tender dip under line 4 (the begging line), level about 14 dB under the voice before ducking
+# bed: exact length, highpass 140, fade-out, tender dip under line 4 (the begging line), level about 11 dB under the voice before ducking
 bed = load(bedp); bed = np.pad(bed, (0, max(0, N - len(bed))))[:N]; t_ = np.arange(N) / SR
 def ss(x): x = np.clip(x, 0, 1); return x * x * (3 - 2 * x)
 l4 = cues[3]; dip = 1 - (1 - 10 ** (-4 / 20)) * ss((t_ - (l4["start"] - 0.1)) / 0.3) * (1 - ss((t_ - (l4["end"] + 0.1)) / 0.4))
@@ -37,7 +37,7 @@ bed *= dip * (1 - ss((t_ - (D - 0.8)) / 0.8))
 sf.write(f"{H}/out/bedraw14-{tag}.wav", bed, SR, subtype='PCM_16')
 raw = f"{H}/out/bedshaped14-{tag}.wav"
 subprocess.run(['ffmpeg', '-y', '-v', 'error', '-i', f"{H}/out/bedraw14-{tag}.wav", '-af', 'highpass=f=140', '-ar', '48000', raw], check=True)
-g = vb - 14 - band(load(raw))
+g = vb - 11 - band(load(raw))
 fc = ("[0:a]asplit=2[v1][key];[1:a]volume=%.2fdB[b];[b][key]sidechaincompress=threshold=0.05:ratio=4:attack=12:release=420[duck];[duck]asplit=2[d1][d2];"
       "[v1][d1][2:a]amix=inputs=3:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[o]") % g
 wav = f"{H}/out/mix14-{tag}.wav"; duck = f"{H}/out/duck14-{tag}.wav"

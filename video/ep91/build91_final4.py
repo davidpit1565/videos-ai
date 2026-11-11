@@ -9,11 +9,11 @@ from build91_final2 import kf, win, ss, draw_line, TOP, BOT, X0, WW, Y0, W, H, F
 HERE = os.path.dirname(os.path.abspath(__file__))
 CP = HERE + "/voice/cues91b.json"
 L = json.load(open(CP if os.path.exists(CP) else HERE + "/cues91.json"))["lines"]
-Wd = lambda n, i: L[n - 1]["words"][i][0]; We = lambda n, i: L[n - 1]["words"][i][1]
+Wd = lambda n, i: L[n - 1]["words"][i][-2]; We = lambda n, i: L[n - 1]["words"][i][-1]   # words are [text, start, end] (or [start, end])
 D = round(L[3]["end"] + 1.1, 2)
 t1 = Wd(1, 3); s2 = L[1]["start"]; s3 = L[2]["start"]; s4 = L[3]["start"]
-tA = max(0.9, t1 - 0.5); tB0 = s2 - 0.15; tC0 = s3 - 0.1; tD0 = s4 - 0.2
-punch = We(2, 2) + 0.05; scroll1 = punch + 0.35; scroll2 = tC0 - 0.65          # board punch after "ChatGPT", scroll to Step 8, hold ~0.5 s before the layout changes
+tA = max(0.9, t1 - 0.5); tB0 = s2 - 0.15; tC0 = s3 + 0.45; tD0 = s4 - 0.2
+punch = We(2, 3) + 0.05; scroll1 = punch + 0.35; scroll2 = tC0 - 0.55          # board punch after "ChatGPT", scroll to Step 8, hold ~0.5 s before the layout changes
 tS = s4 + 0.35                                                                    # static camera for the last part
 LAY = kf([(0, 755, 6, 170), (tA, 755, 6, 170), (tA + 0.6, 560, 110, 290), (tB0, 560, 110, 290), (tB0 + 0.7, 200, 112, 648), (tC0, 200, 112, 648),
           (tC0 + 0.55, 410, 120, 410), (tD0, 410, 120, 410), (tD0 + 0.5, 330, 170, 440), (D, 330, 170, 440)])
@@ -30,9 +30,9 @@ def frame(k):
     canvas[by:by + tb, X0:X0 + WW] = np.asarray(win(by, tb, V2(t), BOT), np.float32)
     cy = gy + g / 2; fo = 1.0 - ss((t - (D - 0.4)) / 0.4)
     def seg(t0, t1_, fade=0.15): return ss((t - t0) / 0.05) * (1 - ss((t - (t1_ - fade)) / fade))
-    e1 = seg(t1 - 0.1, tB0 + 0.2); e2 = seg(Wd(2, 3) - 0.1, tC0 + 0.4); e3 = seg(s3 - 0.05, tD0 + 0.1)
+    e1 = seg(t1 - 0.1, tB0 + 0.2); e2 = seg(Wd(2, 4) - 0.1, s3 - 0.02); e3 = seg(s3 - 0.05, tD0 + 0.1)
     if e1 > 0.01: draw_line(canvas, [("It", WHT, Wd(1, 3) - .03), ("listens.", ORG, Wd(1, 4) - .03)], t, cy, 70, e1 * fo)
-    if e2 > 0.01: draw_line(canvas, [("It's", WHT, Wd(2, 3) - .03), ("way", WHT, Wd(2, 4) - .03), ("more", WHT, Wd(2, 5) - .03), ("tangled.", TEAL, Wd(2, 6) - .03)], t, cy, 70, e2 * fo)
+    if e2 > 0.01: draw_line(canvas, [("It's", WHT, Wd(2, 4) - .03), ("way", WHT, Wd(2, 5) - .03), ("more", WHT, Wd(2, 6) - .03), ("tangled.", TEAL, Wd(2, 7) - .03)], t, cy, 70, e2 * fo)
     if e3 > 0.01: draw_line(canvas, [("Which", WHT, Wd(3, 0) - .03), ("one", WHT, Wd(3, 1) - .03), ("are", WHT, Wd(3, 2) - .03), ("you?", WHT, Wd(3, 3) - .03)], t, cy, 70, e3 * fo)
     if t >= s4 - 0.05:
         es = ss((t - s4) / 0.4) * fo

@@ -47,8 +47,8 @@ _SRCMAP = PchipInterpolator(_x, _y)
 D = e4 + 0.25 + END_HOLD + 0.2
 if len(sys.argv) > 1 and "--endcard-after-e5" in sys.argv: pass
 D = max(D, e5 + 0.5)
-END_T = max(e4 + 0.25, e5 - 0.6)                                   # end card appears while line 5 plays
-D = max(D, END_T + END_HOLD)
+END_T = max(e4 + 0.2, s5 - 0.05)                                   # end card appears as line 5 starts
+D = max(e5 + 1.0, END_T + END_HOLD) if s5 - e4 < 1.5 else max(D, END_T + END_HOLD)
 def src_at(t):
     if t < HOOK_END: return HOOK_SRC, "hook"
     if t < P0:
@@ -79,7 +79,8 @@ KEYS = [
     (tG, 1.055, 524, 1445, 540, 780),
     (tG2, 1.04, 524, 2150, 540, 800),
     (tH + 0.25, 1.07, 500, 2590, 540, 800),
-    (1000, 1.075, 500, 2590, 540, 800),
+    (tI + 1.2, 1.085, 500, 2615, 540, 800),
+    (1000, 1.10, 500, 2640, 540, 800),
 ]
 # make times strictly increasing
 for i in range(1, len(KEYS)):
