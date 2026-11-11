@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """ep91 final3 audio: NO narration. The same quiet sfx layer as final2 (sfx91.json + one pop on the send line), no bed, scaled to about -18 LUFS, limited under -1 dBTP."""
 import subprocess, json, re, os, numpy as np, soundfile as sf
-H = os.path.dirname(os.path.abspath(__file__)); SR = 48000; D = 11.9
+H = os.path.dirname(os.path.abspath(__file__)); SR = 48000; D = 10.1
 def load(p): return np.frombuffer(subprocess.run(['ffmpeg', '-v', 'error', '-i', p, '-ac', '1', '-ar', str(SR), '-f', 'f32le', '-'], capture_output=True).stdout, dtype=np.float32)
+EV = [dict(f=f, t=t, g=g) for f, t, g in [("impactpunch.ogg", .02, -6), ("whoosh_a.ogg", 1.0, -6), ("pop_a.ogg", 1.15, -6), ("tick.ogg", 1.32, -6), ("whoosh_b.ogg", 2.4, -5),
+      ("pop_a.ogg", 3.25, -5), ("pop_b.ogg", 3.9, -6), ("whoosh_a.ogg", 4.3, -6), ("impactsoft.ogg", 4.6, -6), ("tick.ogg", 5.2, -7), ("tick.ogg", 5.8, -7), ("tick.ogg", 6.3, -7),
+      ("whoosh_c.ogg", 7.0, -5), ("pop_a.ogg", 7.4, -5), ("pop_a.ogg", 8.25, -5)]]
 N = int(D * SR); lay = np.zeros(N + SR)
-for e in json.load(open(H + '/sfx91.json')) + [dict(f='pop_a.ogg', t=9.78, g=-5)]:
+for e in EV:
     x = load(f"{H}/sfx/{e['f']}"); x = x / (np.abs(x).max() + 1e-9) * 10 ** ((-14 + e['g']) / 20); i0 = int(e['t'] * SR); n = min(len(x), len(lay) - i0)
     if n > 0 and e['t'] < D - 0.1: lay[i0:i0 + n] += x[:n]
 sf.write(f"{H}/out/sfx3-pre.wav", lay[:N], SR, subtype='PCM_16')
