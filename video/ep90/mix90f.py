@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""mix90c.py <out.wav> : sound design only (no music bed) for ep90 final3, from video/ep91/sfx. Light: peak -6 dBFS."""
+"""mix90c.py <out.wav> : sound design only (no music bed) for ep90 final3, from video/ep93/sfx. Light: peak -6 dBFS."""
 import sys, subprocess, random, numpy as np
 import build90f as b
-SFX = "/home/user/videos-ai/video/ep91/sfx/"; SR = 48000
+SFX = "/home/user/videos-ai/video/ep93/sfx/"; SR = 48000
 def sfx(name):
     p = subprocess.run(["ffmpeg", "-v", "error", "-i", SFX + name + ".ogg", "-ar", str(SR), "-ac", "1", "-f", "f32le", "-"], capture_output=True)
     s = np.frombuffer(p.stdout, np.float32).astype(np.float64); return s / (np.abs(s).max() + 1e-9)

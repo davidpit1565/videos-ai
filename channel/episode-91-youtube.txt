@@ -1,13 +1,10 @@
-TITLE: I asked AI to rate "sell ice to penguins" (joke: dog vs cat)
+TITLE: Me with Claude vs me with ChatGPT (AI joke)
 
 DESCRIPTION:
-My idea: sell ice to penguins. AI, rate this. One cheers "Perfect idea!", the other lists "3 problems. Fix #1 first." A joke about tone, not a test result: we only tested that ChatGPT tends to agree (episodes 72, 73, 80), never Claude on this.
+Me with Claude. It listens. Me with ChatGPT. It's way more complex. A joke about style and opinion, not a test result: we never tested Claude against ChatGPT on this.
 
-Real tip: ask any AI "What are the 3 biggest flaws in this idea?" before "Is it good?"
+The artwork is AI-generated: an original image made by the channel owner with ChatGPT. The logos in it are drawn by the image model, not the real brand marks. Not affiliated with OpenAI or Anthropic.
 
-Tag someone who needs the cat.
+Which one are you? Tag someone who needs the Claude one.
 
-Photos (Pexels licence): Golden Retriever by Joana https://www.pexels.com/photo/golden-retriever-in-close-up-photography-6571008/ ; Brown Tabby Cat by Jusdevoyage Lyly https://www.pexels.com/photo/close-up-shot-of-brown-tabby-cat-looking-at-camera-6012023/
-ChatGPT/OpenAI and Claude/Anthropic marks are used only to name the products; not affiliated. Made with help from Claude.
-
-TAGS: ai, chatgpt, claude, ai meme, funny ai, prompt tip
+TAGS: ai, chatgpt, claude, ai meme, funny ai, ai humor

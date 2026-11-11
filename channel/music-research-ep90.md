@@ -32,7 +32,7 @@ The three searches (Instagram audio guidance, ChatGPT chat reels, comedic silenc
   - Yes / ChatGPT picks 100 (~19-24 s): bed returns to the opening groove, slightly brighter, as the setup for the reveal.
   - Punchline ("HAHAHAHA ... I STILL chose 100"): a deliberate cut of the bed to near silence for ~0.3-0.5 s right before the line appears (comedy-timing, claim 4), then the groove comes back with a small sting; hold the last 2 s as a clean loop-friendly tail or an abrupt stop on the 💀. Fade-out only if the reel does not loop.
 - Sting / sfx placement (cues only; exact times come from the build's timeline, I do not have ep90's final timings):
-  - Begging reply: one soft cue only, as the bubble appears. `video/ep91/sfx/ding.ogg` (0.53 s) is the best fit, a gentle confirmation tone that reads as "tender"; alternative `pop_b.ogg` (0.24 s, a soft plop). No impact or whoosh here.
+  - Begging reply: one soft cue only, as the bubble appears. `video/ep93/sfx/ding.ogg` (0.53 s) is the best fit, a gentle confirmation tone that reads as "tender"; alternative `pop_b.ogg` (0.24 s, a soft plop). No impact or whoosh here.
   - "yes" from the user: `select.ogg` (0.21 s) or `click_a.ogg` (0.10 s).
   - Punchline: gap of silence, then `impactsoft.ogg` (0.57 s) on the 💀 beat; use `impactpunch.ogg` only if the bed is cut and the hit has to stand alone. Do not use `riser.ogg` (2.46 s): it telegraphs the joke; the comedy guides say the gap is the build-up.
   - Typing: `tick.ogg` (0.077 s) or `click_b.ogg` (0.009 s) per keystroke burst, not per character (sped-up typing); keep them 12-15 dB under the bed. `pop_a.ogg` (0.10 s) for each incoming message bubble.

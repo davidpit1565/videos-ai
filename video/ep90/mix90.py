@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""mix90.py <music_picked.wav> <out.wav> [--eq]  : bed shaped to the ep90 timeline + quiet sfx (video/ep91/sfx), loudnorm -14 LUFS."""
+"""mix90.py <music_picked.wav> <out.wav> [--eq]  : bed shaped to the ep90 timeline + quiet sfx (video/ep93/sfx), loudnorm -14 LUFS."""
 import sys, subprocess, numpy as np, random
 import build90b as b
-SFX = "/home/user/videos-ai/video/ep91/sfx/"
+SFX = "/home/user/videos-ai/video/ep93/sfx/"
 SR = 48000
 def load(path, eq=False):
     af = "highpass=f=140,equalizer=f=1800:t=q:w=0.8:g=3" if eq else "anull"

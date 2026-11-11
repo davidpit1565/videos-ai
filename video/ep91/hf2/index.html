@@ -1,123 +1,13 @@
-<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=1080, height=1920">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
-<style>
-@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
-@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-ExtraBold.otf");font-weight:800}
-@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Medium.otf");font-weight:500}
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1080px;height:1920px;overflow:hidden;background:#0e1422;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;font-weight:800;color:#fff}
-#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#0e1422}
-
-.bg{position:absolute;inset:0;background:#0e1422;overflow:hidden}
-.glow{position:absolute;border-radius:50%;filter:blur(70px)}
-.gl1{left:-300px;top:200px;width:900px;height:900px;background:radial-gradient(circle,rgba(16,163,127,.28),transparent 68%)}
-.gl2{left:520px;top:900px;width:900px;height:900px;background:radial-gradient(circle,rgba(217,119,87,.26),transparent 68%)}
-.sc{position:absolute;left:0;top:0;width:1080px;height:1920px}
-.head{position:absolute;left:65px;top:290px;width:950px;text-align:center;color:#fff;font-weight:800;letter-spacing:-.035em}
-.h1{font-size:92px;line-height:104px;white-space:nowrap}.h1 b{color:#ffd21f;display:inline-block}.h2{font-size:100px;line-height:104px}
-.card{position:absolute;left:380px;top:515px;width:840px;height:440px;background:#f6f1e4;border-radius:34px;box-shadow:0 18px 40px rgba(0,0,0,.5);transform-origin:0 0;z-index:30;opacity:0}
-.ctop{position:absolute;left:44px;top:34px;right:44px;height:100px;display:flex;align-items:center;gap:26px}
-.bar{display:block;height:34px;border-radius:17px;background:#cfc8b6}.tb{width:46%;height:42px;background:#17130F;opacity:.85}
-.row{position:absolute;left:44px;right:44px;height:90px;display:flex;align-items:center;gap:20px}
-.row:nth-of-type(2){top:150px}.row:nth-of-type(3){top:250px}.row:nth-of-type(4){top:350px}
-.row .bar{flex:none}
-.mk{position:absolute;right:0;top:0;width:90px;height:90px}
-.mkh{position:absolute;inset:0;border-radius:50%;border:8px solid rgba(229,72,77,.6)}
-.mkf{position:absolute;inset:0;border-radius:50%;background:#e5484d;display:flex;align-items:center;justify-content:center;opacity:0}
-.mkf svg{width:56px;height:56px}
-.bdg{width:84px;height:84px;border-radius:22px;background:#fff;display:flex;align-items:center;justify-content:center;flex:none}
-.bdg img{width:62%;height:62%}
-.pan{position:absolute;overflow:hidden;border-radius:40px;box-shadow:0 14px 40px rgba(0,0,0,.5);z-index:10}
-.pan.g{background:#10a37f}.pan.o{background:#d97757}
-.hd{position:absolute;left:0;right:0;top:0;height:110px;display:flex;align-items:center;justify-content:center}
-.phw{position:absolute;left:0;right:0;top:110px;bottom:0;overflow:hidden}
-.pimg{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;will-change:transform}
-#img_g{object-position:50% 58%}#img_o{object-position:62% 40%}
-.dim{position:absolute;inset:0;background:#0e1422;opacity:0;pointer-events:none;z-index:5}
-.bub{position:absolute;left:14px;right:14px;bottom:18px;background:#fff;border-radius:30px;border:8px solid;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#111;font-weight:800;letter-spacing:-.03em;opacity:0;z-index:20}
-.gb{border-color:#10a37f;height:150px;flex-direction:row;gap:10px;font-size:58px;line-height:1}
-.ob{border-color:#d97757;height:170px;font-size:56px;line-height:1.08}
-.tag{position:absolute;left:65px;top:285px;width:950px;text-align:center;font-weight:800;font-size:80px;line-height:86px;letter-spacing:-.03em;color:#fff}
-.tag .tl{white-space:nowrap}.tag span{display:inline-block;opacity:0;margin:0 8px}.tag .y{color:#ffd21f}
-.chk{position:absolute;left:0;top:0;opacity:0;z-index:40}
-
-</style></head><body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="10.88" data-width="1080" data-height="1920">
-
-<div class="bg" data-decor><div class="glow gl1" id="gl1"></div><div class="glow gl2" id="gl2"></div></div>
-<div class="sc"><div class="head" id="head"><div class="h1" id="h1">My idea has <b id="b3">3 flaws.</b></div><div class="h2" id="h2">I show AI.</div></div>
-<div class="tag" id="tag"><div class="tl"><span id="tw0">Tag</span> <span id="tw1">someone</span> <span id="tw2">who</span></div><div class="tl"><span id="tw3">needs</span> <span id="tw4">the</span> <span class="y" id="tw5">cat.</span></div></div>
-<div class="pan g" id="pan_g" style="left:65px;top:540px;width:460px;height:705px"><div class="phw"><img class="pimg" id="img_g" src="assets/dog.jpg"></div><div class="dim" id="dim_g"></div><div class="bub gb" id="bub_g"><span>Perfect idea!</span><svg class="smile" viewBox="0 0 64 64" width="64" height="64"><circle cx="32" cy="32" r="29" fill="#FFD21F" stroke="#17130F" stroke-width="3.5"/><circle cx="22" cy="26" r="4" fill="#17130F"/><circle cx="42" cy="26" r="4" fill="#17130F"/><path d="M16 38q16 18 32 0" fill="none" stroke="#17130F" stroke-width="4.5" stroke-linecap="round"/></svg></div><div class="hd"><div class="bdg"><img src="assets/openai.svg"></div></div></div><div class="pan o" id="pan_o" style="left:555px;top:540px;width:460px;height:705px"><div class="phw"><img class="pimg" id="img_o" src="assets/cat3.jpg"></div><div class="dim" id="dim_o"></div><div class="bub ob" id="bub_o"><span>3 problems.</span><span>Fix #1 first.</span></div><div class="hd"><div class="bdg"><img src="assets/claude.svg"></div></div></div><div class="card" id="card"><div class="ctop"><svg viewBox="0 0 64 64" width="92" height="92"><path d="M32 6c-11 0-19 8-19 18 0 7 4 11 7 15 2 3 3 5 3 8h18c0-3 1-5 3-8 3-4 7-8 7-15 0-10-8-18-19-18z" fill="#FFD21F" stroke="#17130F" stroke-width="3.5"/><path d="M24 52h16M26 58h12" stroke="#17130F" stroke-width="4" stroke-linecap="round"/></svg><i class="bar tb"></i></div><div class="row"><i class="bar" style="width:64%"></i><div class="mk"><div class="mkh"></div><div class="mkf" id="mf0"><svg viewBox="0 0 40 40"><path d="M11 11L29 29M29 11L11 29" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/></svg></div></div></div><div class="row"><i class="bar" style="width:50%"></i><div class="mk"><div class="mkh"></div><div class="mkf" id="mf1"><svg viewBox="0 0 40 40"><path d="M11 11L29 29M29 11L11 29" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/></svg></div></div></div><div class="row"><i class="bar" style="width:72%"></i><div class="mk"><div class="mkh"></div><div class="mkf" id="mf2"><svg viewBox="0 0 40 40"><path d="M11 11L29 29M29 11L11 29" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/></svg></div></div></div></div>
-<svg class="chk" id="chk" viewBox="0 0 120 120" width="120" height="120"><circle cx="60" cy="60" r="54" fill="#1f9d55" stroke="#fff" stroke-width="7"/><path d="M34 62l17 17 36-38" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-
-</div>
-<script>
-const C={"lines": [{"n": 1, "text": "My idea has three flaws.", "start": 0.06, "end": 2.23, "words": [[0.0, 0.32], [0.32, 0.6], [0.6, 1.0], [1.0, 1.5], [1.5, 1.8]]}, {"n": 2, "text": "ChatGPT: perfect idea!", "start": 2.59, "end": 4.7, "words": [[2.53, 3.35], [3.53, 3.85], [3.85, 4.31]]}, {"n": 3, "text": "Claude says: three problems. Start with one.", "start": 5.06, "end": 7.97, "words": [[5.0, 5.54], [5.54, 5.68], [5.68, 6.18], [6.18, 6.7], [6.7, 7.28], [7.28, 7.5], [7.5, 7.68]]}, {"n": 4, "text": "Tag someone who needs the cat.", "start": 8.33, "end": 10.53, "words": [[8.27, 8.65], [8.65, 9.01], [9.01, 9.53], [9.53, 9.91], [9.91, 10.11], [10.11, 10.33]]}], "D": 10.88}; const D=10.88; window.__cues=C; window.__CUES=C;
-const tl=gsap.timeline({paused:true});
-gsap.set('#card',{left:381,top:500,scale:0.38,rotation:-3,opacity:0});
-gsap.set('#chk',{left:590,top:540,opacity:0});
-gsap.set('#bub_g,#bub_o',{opacity:0});
-tl.fromTo('#gl1',{x:0,y:0},{x:120,y:80,duration:10.880,ease:'sine.inOut'},0);
-tl.fromTo('#gl2',{x:0,y:0},{x:-140,y:-60,duration:10.880,ease:'sine.inOut'},0);
-tl.fromTo('#img_g',{scale:1,rotation:0},{scale:1.07,rotation:-.8,duration:2.470,ease:'sine.inOut',transformOrigin:'45% 62%'},0);
-tl.fromTo('#img_o',{scale:1,rotation:0},{scale:1.07,rotation:.8,duration:2.470,ease:'sine.inOut',transformOrigin:'62% 50%'},0);
-tl.fromTo('#card',{opacity:0,scale:.1},{opacity:1,scale:0.38,duration:.4,ease:'back.out(1.6)',transformOrigin:'50% 50%'},0.650);
-tl.fromTo('#b3',{scale:1},{scale:1.12,duration:.25,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 70%'},1.000);
-tl.fromTo('#mf0',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.3,ease:'back.out(1.7)',transformOrigin:'50% 50%'},1.000);
-tl.fromTo('#mf1',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.3,ease:'back.out(1.7)',transformOrigin:'50% 50%'},1.300);
-tl.fromTo('#mf2',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.3,ease:'back.out(1.7)',transformOrigin:'50% 50%'},1.600);
-tl.to('#h2',{opacity:0,y:-14,duration:.25,ease:'power2.in'},2.470);
-tl.to('#pan_g',{top:430,height:815,duration:.55,ease:'expo.inOut'},2.470);
-tl.to('#pan_o',{top:430,height:815,duration:.55,ease:'expo.inOut'},2.470);
-tl.to('#card',{y:-110,duration:.55,ease:'expo.inOut'},2.470);
-tl.to('#dim_o',{opacity:.55,duration:.35,ease:'power2.out'},2.470);
-tl.to('#img_g',{scale:1.27,rotation:0,duration:.55,ease:'expo.out',transformOrigin:'45% 62%'},2.490);
-tl.to('#img_g',{scale:1.33,duration:1.970,ease:'sine.inOut'},3.040);
-tl.to('#pan_g',{scale:1.03,duration:.3,ease:'power2.out',transformOrigin:'50% 50%'},2.470);
-tl.fromTo('#bub_g',{scale:.6,opacity:0,y:30},{scale:1,opacity:1,y:0,duration:.4,ease:'back.out(1.5)',transformOrigin:'50% 100%'},3.480);
-tl.fromTo('.smile',{rotation:-14,scale:.5},{rotation:8,scale:1,duration:.5,ease:'back.out(2)',transformOrigin:'50% 50%'},3.600);
-tl.fromTo('#chk',{opacity:0,scale:.2,rotation:-30},{opacity:1,scale:1,rotation:0,duration:.35,ease:'back.out(1.8)',transformOrigin:'50% 50%'},3.830);
-tl.to('#chk',{y:-110,duration:.01},2.470);
-tl.to('#bub_g',{opacity:0,y:20,duration:.2,ease:'power2.in'},4.940);
-tl.to('#dim_g',{opacity:.55,duration:.35,ease:'power2.out'},4.940);
-tl.to('#dim_o',{opacity:0,duration:.3,ease:'power2.out'},4.940);
-tl.to('#pan_g',{scale:1,duration:.3,ease:'power2.out'},4.940);
-tl.to('#pan_o',{scale:1.03,duration:.3,ease:'power2.out',transformOrigin:'50% 50%'},4.940);
-tl.to('#img_o',{scale:1.25,rotation:0,duration:.55,ease:'expo.out',transformOrigin:'62% 50%'},4.960);
-tl.to('#img_o',{scale:1.31,duration:2.750,ease:'sine.inOut'},5.510);
-tl.to('#chk',{opacity:0,scale:.2,duration:.2,ease:'power2.in'},4.940);
-tl.set('#mf0,#mf1,#mf2',{opacity:0},5.040);
-tl.fromTo('#mf0',{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.22,ease:'back.out(2)',transformOrigin:'50% 50%'},5.620);
-tl.fromTo('#mf1',{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.22,ease:'back.out(2)',transformOrigin:'50% 50%'},5.960);
-tl.fromTo('#mf2',{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.22,ease:'back.out(2)',transformOrigin:'50% 50%'},6.280);
-tl.fromTo('#bub_o',{scale:.6,opacity:0,y:30},{scale:1,opacity:1,y:0,duration:.4,ease:'back.out(1.4)',transformOrigin:'50% 100%'},6.080);
-tl.to('#bub_o',{scale:1.05,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 100%'},7.450);
-tl.to('#bub_o',{opacity:0,y:20,duration:.2,ease:'power2.in'},8.170);
-tl.to('#card',{opacity:0,scale:.2,duration:.25,ease:'power2.in',transformOrigin:'50% 50%'},8.170);
-tl.to('#h1',{opacity:0,y:-14,duration:.25,ease:'power2.in'},8.190);
-tl.to('#dim_g',{opacity:0,duration:.3},8.190);
-tl.to('#pan_o',{scale:1,duration:.3},8.190);
-tl.to('#pan_g',{top:500,height:745,duration:.5,ease:'expo.inOut'},8.190);
-tl.to('#pan_o',{top:500,height:745,duration:.5,ease:'expo.inOut'},8.190);
-tl.to('#img_g',{scale:1.18,duration:2.240,ease:'sine.inOut'},8.190);
-tl.to('#img_o',{scale:1.15,duration:2.240,ease:'sine.inOut'},8.190);
-tl.fromTo('#tw0',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},8.490);
-tl.fromTo('#tw1',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},8.620);
-tl.fromTo('#tw2',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},8.980);
-tl.fromTo('#tw3',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},9.500);
-tl.fromTo('#tw4',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},9.880);
-tl.fromTo('#tw5',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},10.080);
-tl.to('#pan_o',{scale:1.05,duration:.22,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},10.090);
-tl.to('#pan_g',{y:-10,duration:.5,ease:'sine.inOut',yoyo:true,repeat:3},8.690);
-tl.to('#tag',{opacity:0,duration:.15,ease:'sine.inOut'},10.430);
-tl.fromTo('#h1',{opacity:0,y:-14},{opacity:1,y:0,duration:.25,ease:'sine.out',immediateRender:false},10.600);
-tl.fromTo('#h2',{opacity:0,y:-14},{opacity:1,y:0,duration:.25,ease:'sine.out',immediateRender:false},10.630);
-tl.to('#pan_g',{top:540,height:705,duration:0.430,ease:'sine.inOut'},10.430);
-tl.to('#img_g',{scale:1,rotation:0,duration:0.430,ease:'sine.inOut'},10.430);
-tl.to('#pan_o',{top:540,height:705,duration:0.430,ease:'sine.inOut'},10.430);
-tl.to('#img_o',{scale:1,rotation:0,duration:0.430,ease:'sine.inOut'},10.430);
-tl.to('#pan_g',{y:0,duration:.01},10.430);
-tl.to({},{duration:.001},D-.001);
-window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
-window.__reel={duration:D,seek:t=>tl.seek(t)};
-</script></body></html>
+<style>html,body{margin:0;width:1080px;height:1920px;background:#0b0f1a;overflow:hidden;font-family:Inter,Helvetica,Arial,sans-serif;font-weight:900;color:#fff}.t{position:absolute;white-space:nowrap;line-height:1.08;letter-spacing:-.03em}</style></head><body>
+<!-- text-only stand-in for ep91 final2 (positions = gap centre of each beat, sizes as in build91_final2.py); the reel is made by build91_final2.py -->
+<div id="root" data-composition-id="main" data-start="0" data-duration="11.9" data-width="1080" data-height="1920">
+<div class="clip t" data-start="1.20" data-duration="1.00" style="left:324px;top:857px;font-size:70px;color:#f8f8f8">It listens.</div>
+<div class="clip t" data-start="3.90" data-duration="1.70" style="left:109px;top:498px;font-size:70px;color:#f8f8f8">It's way more complex.</div>
+<div class="clip t" data-start="5.70" data-duration="1.20" style="left:187px;top:712px;font-size:70px;color:#f8f8f8">Which one are you?</div>
+<div class="clip t" data-start="7.17" data-duration="2.53" style="left:288px;top:625px;font-size:60px;color:#f8f8f8">Tag someone who</div>
+<div class="clip t" data-start="7.90" data-duration="1.80" style="left:187px;top:701px;font-size:60px;color:#f8f8f8">needs the Claude one.</div>
+<div class="clip t" data-start="9.80" data-duration="2.10" style="left:117px;top:627px;font-size:56px;color:#f8f8f8">Send this to the friend who</div>
+<div class="clip t" data-start="9.90" data-duration="2.00" style="left:117px;top:703px;font-size:56px;color:#f8f8f8">overcomplicates everything.</div>
+</div><script>window.__timelines={main:gsap.timeline({paused:true}).to({},{duration:11.9})};</script></body></html>
