@@ -37,3 +37,26 @@
     
     voice quality: clean
 
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep92/voice/narration92.wav  19.0s  5 lines
+      medians: ending -26.4 dB · level -18.9 dBFS · S residual +0.0 dB (slope +0.0 dB per sibilant/syllable)
+      flagged below: ending -44.2 dB · S residual -9.6 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  2.26  +2.45  4.43   -9.0  -21.6  -18.9  I told ChatGPT I'd delete it in 10 sec
+        2   4.3  +0.34  4.88  -14.4  -39.4  -18.8  It said: don't keep me because I'm an 
+        3  3.22  +0.55  4.65   -6.4  -24.1  -19.1  Then: you've had to tell me to stop ta
+        4  2.29  +0.45  4.36  -10.2  -38.9  -19.6  And if I fail? You've got your 10 seco
+        5  2.58    —    4.26   -4.0  -26.4  -18.7  Send this to someone who talks to Chat
+    
+      nothing flagged. every line sits inside his own spread.
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  PASS  frame layout (safe_check_hf.js)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+ALL CHECKS THAT RAN PASSED (1 skipped)  -  audio was measured, not heard; watch the file twice before sending

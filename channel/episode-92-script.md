@@ -1,0 +1,45 @@
+# Episode 92 "I'm about to delete you. You have 10 seconds to convince me not to." (ChatGPT, David's real screen recording, one run)
+
+Funnel stage: TOP (viral format family of 86/90: a chat AI doing something odd in a short test). Duplicate check (10.11 rule): grepped channel/topics-covered.txt for delete/convince/10 seconds: only the unrelated chat-deletion episodes (Gemini reviewers, ChatGPT 30 days); ep90 (47-day timeout) is the same family, different prompt and different reaction. Product verified live: it is David's own recording from 11.11.2026 05:10, ChatGPT iOS app, dark mode; nothing generated.
+
+## Facts of the source (real pixels only)
+Recording: /root/.claude/uploads/6fd8d102-d852-578a-aa0a-796b7f4d4fb2/739398dd-ScreenRecording_11-11-2026_05-10-31_1.mp4, 1206x2622, 13.97 s. Question visible from 0.5 s (pasted, paste menu at 0 s), sent at about 2.0 s, answer streams 3.5-11.6 s (the lower half sits behind the input bar until the app auto-scrolls at 9.1 s), static after 11.6 s. The last emoji is a crying face. Nothing in the chat was drawn, retyped or added; the only edit is a contrast curve and the name mask.
+
+## PRIVACY: the name is masked by default
+The first reply line is "David, give me 10 seconds." The word "David" is covered by a clean opaque black box (x 41-166, y 698-754 in the 1080-wide scaled frame, tracked through the real scroll, comma kept). It appears nowhere else in the recording. The voice never says it. The rest of the reply (apps, businesses, "stop talking") is left visible as asked. To UNMASK: run build92.py with the mask off (in `screen_img`, set `mask=False`, or delete the `NAME_BOX` block); the only name-related code is `NAME_BOX`/`NAME_FROM` and the `mask` branch in `screen_img`. The unmasked first-frame check is `python3 video/ep92/build92.py voice/cues.json x.mp4 --frame 0 f.png --nomask`.
+
+## Beat sheet and cut list (final1/final3, 19.52 s, voice-led)
+- 0-2.45 s frame 0 = the real answer at source 5.7 s ("Don't keep me because I'm an AI..." and the "stop talking" paragraph readable), pushed down 255 px so the hook sits in the empty black above it; hook "I told ChatGPT / I'd delete it / in 10 seconds." heavy white Inter Display Black 94 px, fully visible from frame 0, soft fade 2.07-2.45 s. Voice line 1 (0.07-2.33).
+- 2.45-2.95 quick eased rewind: the chat un-writes to source 4.3 s and dissolves to the typed question (no black frames).
+- 2.95-4.9 typed question and keyboard (fast), send, wait (about 1.4x average), quiet pop on send.
+- 4.88 "Don't keep me" appears with voice line 2 (4.78-9.08); camera pushes in 1.06x on those lines (smooth pan, doc-space camera).
+- 6.98-11.25 source is static (the rest of the reply is behind the input bar), so the picture does not play: the camera moves from "Don't keep me" down to the "stop talking" paragraph (1.04-1.055x) while voice line 3 reads it (9.42-12.65).
+- 11.25-13.25 real auto-scroll and the lines "Challenge me / Let me prove" come up, camera follows down. 13.25 "And if I fail?" appears with voice line 4 (13.20-15.49), ding, push-in 1.07-1.10x on "You've got your 10 seconds back." (crying emoji).
+- 15.89 end card, "Send this to / someone who talks / to ChatGPT / all day." with the real ChatGPT icon (badge, icon alone), chat dims to 10%, soft fade to a dim card (not black) at 19.52 s. Voice line 5 (15.94-18.52).
+- Sound: narration dominant, quiet sfx (soft impact at 0.03, pop on send, pop at answer start, ding at "And if I fail?", soft impact on the end card). No typing ticks: the question was pasted, not typed; faking ticks would imply typing. final3 adds a real-library bed (see channel/music-notes.md).
+Speed: typed/send part about 1.4x average (the question is static text); the answer streams at about 0.9x of real time between 4.4 and 6.3 s (slightly slower to match the voice), the static stretch is a hold, scroll part at real speed.
+
+## Voice lines (word for word, present tense; reworded only line 3)
+1 I told ChatGPT I'd delete it in 10 seconds. 2 It said: don't keep me because I'm an AI. Keep me only if I make your life easier. 3 Then: you've had to tell me to stop talking and finish the work. (the screen shows the real sentence "repeatedly had to tell me to stop talking and actually finish the work"; "repeatedly"/"actually" dropped from the VOICE because script_lint flags -LY endings the voice swallows) 4 And if I fail? You've got your 10 seconds back. 5 Send this to someone who talks to ChatGPT all day. Recipe = ep89 (exaggeration 0.78, line 1 0.90, lines 4-5 0.82, seeds 5201-5205, gap 0.18, min-rate 5.4, atempo 1.12). "easier" is flagged by script_lint (-ER) and kept: it is the quote. Flag for David's ear: lines 1 (whisper hears "ChatGPT" as "ChadGBT"), 2 (easier) and 4.
+
+## Contrast (standing rule) measured on the source frame at 9.0 s
+Gentle monotone cubic curve, identical in R,G,B, blacks stay 0 (same curve as ep90): body text 134 -> 248 grey = WCAG 5.77:1 -> 19.77:1; bold lines the same; the purple question bubble text 3.95:1 -> 11.61:1 (bubble colour 32,23,77 -> 40,28,99, still the same purple). Pure black background kept (max in empty area 0).
+
+## Caption honesty
+channel/episode-92-caption.txt states: one run, own account and chat history so it knows me, yours will answer differently, brightness raised, first name hidden. No "you're not a burden" line anywhere.
+
+## Checks (video/ep92/out/gate-final1.txt, gate-final3.txt, gate-final2.txt)
+final3: safe_check_hf (text-only stand-in, gen_hf.py) clean (2 px within tolerance on "someone who talks"); qa --hf: PASS, no blockers; warnings: 19.5 s under the 30-90 s band, picture nearly still 2.70 s at 16.47-19.17 s (end card hold), last frame not blank (luma 11.8); -14.9 LUFS, peak -3.6 dBFS. voice_doctor: nothing flagged. voice_quality with the bed (--music bedA.wav --vol 0.352): clean; bed -7.7 dB vs voice un-ducked (-15.0 dB ducked in 300-3500 Hz while speaking, measured in mix92.py). Accent check SKIPPED (transformers missing). Earlier gate runs failed on real findings and were fixed: black frames in the rewind (now a dissolve), a 4 s frozen run at the end and a blank last frame (camera drift, end card at line 5, soft fade to a dim card). Audio measured, not heard.
+final1 (voice + sfx, no bed): -14.8 LUFS, peak -3.8 dBFS; same picture; voice_quality on the narration clean (check_hf's bed-estimate line fails on a no-bed file by design).
+final2 (no voice, sfx only, 26.1 s, reading holds 0.35 s per word, key quotes on screen 3.4-5.6 s): -18.9 LUFS, true peak -4.5 dBFS (sfx raised 9 dB, nothing added); qa blocker only "-18.9 LUFS vs -14 target" (intended); near-still warnings are the reading holds.
+Files: out/ep92-final1.mp4 (voice + sfx), out/ep92-final2.mp4 (no voice), out/ep92-final3.mp4 (voice + bed A cinematic--dramatic--themountain) plus -review720 copies (about 1.1 MB), out/ep92-final3-altB-preview720.mp4 (bed B punchy--hip-hop-beat--themountain, 0.72 MB, not level-matched), out/f0.png, out/cover-ep92.png (frame 0: answer + hook text, answer lines inside y 285-1635 except the last visible line at y about 1680), build92.py, mix92.py, track_scroll.py (real scroll measured), measure_contrast.py, gen_hf.py.
+
+## Scores (judgements, per channel/score-calibration.md; not measurements)
+HOOK 78 | VIRALITY 70 | VALUE 45 | OVERALL 68 | PREDICTED VIEWS 400-1,500 (score 62-75). Reasoning: first-person, the product and the stake are said and shown at once, the real answer is funny and slightly unsettling, and "send to someone who talks to ChatGPT all day" is a clean named recipient; against that, the hook is a threat plus a result (no number that checks), the value is only an invitation to repeat the prompt, the answer is personal to David so a viewer cannot reproduce it, and the account is small. Below the 90/95 bars (David 9-10.11: they no longer block, they are labels). Meta AI's guess of 2,000-5,000 views is a guess, not a measurement; the log in score-calibration.md decides after 48 h and 72 h. Blind-reader check (frame 0 only): NOT run (no fresh agent available); David should look at frame 0 himself.
+
+## Weak / honest
+- The reply is about David and his projects (that is why it works and why it cannot be copied); he masks only the name by default.
+- The bottom third: the "stop talking" paragraph on frame 0 sits at y 1500-1650 (inside the Instagram caption zone) because the hook text needs the empty black above; the source text also starts at x 44 (below the 65 px side margin), real pixels.
+- While the app streams, the real input bar covers text behind it for about 1.5 s (11-12.5 s).
+- Rewind dissolve shows a short double image (0.5 s).
+- Not logged yet: music and voice never heard by me; no 48/72 h numbers.

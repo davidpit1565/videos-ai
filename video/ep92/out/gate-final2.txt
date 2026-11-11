@@ -1,0 +1,8 @@
+  loudness: -18.9 LUFS integrated, peak -4.5 dBFS, LRA 12.4 LU
+  [BLOCKER] -18.9 LUFS — target -14.0 +/-1.5
+  [warn]    26.1s is outside the 30-90s band
+  [warn]    picture nearly still 2.00s at 0.70-2.70s
+  [warn]    picture nearly still 2.07s at 19.53-21.60s
+  [warn]    picture nearly still 3.60s at 22.17-25.77s
+  [warn]    last frame is blank (mean luma 11.5)
+  ok        peak -4.5 dBFS

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Text-only stand-in of ep92's two overlays (same sizes/windows as build92.py) so export/safe_check_hf.js and qa.py --hf can run. The real reel is made by build92.py (ffmpeg + PIL)."""
 import sys
-sys.argv = ["x", "voice/cues.json"]
+CU = sys.argv[1] if len(sys.argv) > 1 else "voice/cues.json"; OUTH = sys.argv[2] if len(sys.argv) > 2 else "hf/index.html"; sys.argv = ["x", CU]
 import build92 as b
 els = []
 def blk(lines, size, t0, t1, top, lh):
@@ -17,4 +17,4 @@ html = f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport
 {chr(10).join(els)}
 </div>
 <script>window.__timelines={{main:gsap.timeline({{paused:true}}).to({{}},{{duration:{D:.3f}}})}};</script></body></html>'''
-open("hf/index.html", "w").write(html); print("hf", D)
+open(OUTH, "w").write(html); print("hf", D)
