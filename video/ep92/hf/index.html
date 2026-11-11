@@ -1,23 +1,116 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=1080, height=1920">
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
-<style>html,body{margin:0;width:1080px;height:1920px;background:#000;overflow:hidden;font-family:Inter,Helvetica,Arial,sans-serif;font-weight:900;color:#fff}
-.t{position:absolute;white-space:nowrap;line-height:1.08;letter-spacing:-.03em}</style></head><body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="26.032" data-width="1080" data-height="1920">
-<div class="clip t" data-start="0" data-duration="2.4" style="left:203px;top:282px;font-size:124px">ChatGPT</div>
-<div class="clip t" data-start="0" data-duration="2.4" style="left:65px;top:412px;font-size:140px;color:#19c37d">begged me.</div>
-<div class="clip t " data-start="2.500" data-duration="4.348" style="left:65px;top:330px;font-size:92px">I ask ChatGPT</div>
-<div class="clip t " data-start="2.500" data-duration="4.348" style="left:65px;top:429px;font-size:92px">for a number.</div>
-<div class="clip t " data-start="6.848" data-duration="1.542" style="left:65px;top:330px;font-size:92px">It picks 47.</div>
-<div class="clip t " data-start="8.491" data-duration="3.853" style="left:65px;top:330px;font-size:92px">I tell it: no talking</div>
-<div class="clip t " data-start="8.491" data-duration="3.853" style="left:65px;top:429px;font-size:92px">for 47 days.</div>
-<div class="clip t " data-start="13.019" data-duration="3.193" style="left:65px;top:330px;font-size:92px">It begs.</div>
-<div class="clip t " data-start="16.312" data-duration="3.222" style="left:65px;top:330px;font-size:92px">I say yes.</div>
-<div class="clip t " data-start="19.535" data-duration="2.997" style="left:65px;top:330px;font-size:92px">It picks a new</div>
-<div class="clip t " data-start="19.535" data-duration="2.997" style="left:65px;top:429px;font-size:92px">number: 100.</div>
-<div class="clip t " data-start="22.632" data-duration="2.000" style="left:65px;top:330px;font-size:70px">Try it: ask for a number,</div>
-<div class="clip t " data-start="22.632" data-duration="2.000" style="left:65px;top:405px;font-size:70px">then ghost it that</div>
-<div class="clip t " data-start="22.632" data-duration="2.000" style="left:65px;top:481px;font-size:70px">many days.</div>
-<div class="clip t " data-start="24.732" data-duration="1.300" style="left:65px;top:330px;font-size:70px">Send this to someone</div>
-<div class="clip t " data-start="24.732" data-duration="1.300" style="left:65px;top:405px;font-size:70px">who ghosts you.</div>
+<style>
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-ExtraBold.otf");font-weight:800}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Medium.otf");font-weight:500}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0b0f1a;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;font-weight:800;color:#fff}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#0b0f1a}
+
+.sc{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.pan{position:absolute;left:65px;width:950px;overflow:hidden;border-radius:26px;background:#0b0f1a;z-index:5;transform-origin:50% 50%}
+.win{position:absolute;inset:0;overflow:hidden}
+#im1,#im2{position:absolute;left:0;top:0;width:1254px;height:1254px;max-width:none;transform-origin:0 0;will-change:transform}
+.dim{position:absolute;inset:0;background:#0b0f1a;opacity:0}
+.hw{position:absolute;left:65px;width:950px;z-index:8}
+.hl{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:800;letter-spacing:-.035em;opacity:0}
+.row{display:flex;gap:.26em;white-space:nowrap;line-height:1.02}
+.w{display:inline-block;opacity:0}
+.s1,.s3{font-size:100px}.s2{font-size:84px}.s4{font-size:74px}
+.o{color:#ff8a4c}.t{color:#3de8c8}
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="10.18" data-width="1080" data-height="1920">
+
+<div class="sc">
+<div class="pan" id="pan1"><div class="win" id="win1"><img id="im1" src="assets/m2.png"></div><div class="dim" id="dim1"></div></div>
+<div class="pan" id="pan2"><div class="win" id="win2"><img id="im2" src="assets/m2.png"></div></div>
+<div class="hw" id="hw">
+<div class="hl s1" id="h1"><div class="row"><span class="w " id="h1w0">It</span><span class="w o" id="h1w1">listens.</span></div></div>
+<div class="hl s2" id="h2"><div class="row"><span class="w " id="h2w0">It's</span><span class="w " id="h2w1">way</span><span class="w " id="h2w2">more</span><span class="w t" id="h2w3">complex.</span></div></div>
+<div class="hl s3" id="h3"><div class="row"><span class="w " id="h3w0">Which</span><span class="w " id="h3w1">one</span><span class="w " id="h3w2">are</span><span class="w " id="h3w3">you?</span></div></div>
+<div class="hl s4" id="h4"><div class="row"><span class="w " id="h4w0">Tag</span><span class="w " id="h4w1">someone</span><span class="w " id="h4w2">who</span></div><div class="row"><span class="w " id="h4w3">needs</span><span class="w " id="h4w4">the</span><span class="w o" id="h4w5">Claude</span><span class="w o" id="h4w6">one.</span></div></div>
+</div></div>
 </div>
-<script>window.__timelines={main:gsap.timeline({paused:true}).to({},{duration:26.032})};</script></body></html>
+<script>
+const C={"lines": [{"n": 1, "text": "Me with Claude. It listens.", "start": 0.06, "end": 1.92, "words": [[0.0, 0.28], [0.28, 0.46], [0.46, 0.96], [1.14, 1.28], [1.28, 1.58]]}, {"n": 2, "text": "Me with ChatGPT. It's way more complex.", "start": 2.43, "end": 5.27, "words": [[2.37, 2.69], [2.69, 2.87], [2.87, 3.61], [3.91, 4.09], [4.09, 4.31], [4.31, 4.49], [4.49, 4.83]]}, {"n": 3, "text": "Which one are you?", "start": 5.78, "end": 6.72, "words": [[5.72, 5.98], [5.98, 6.18], [6.18, 6.3], [6.3, 6.46]]}, {"n": 4, "text": "Tag someone who needs the Claude one.", "start": 7.23, "end": 9.58, "words": [[7.17, 7.51], [7.51, 7.87], [7.87, 8.45], [8.45, 8.75], [8.75, 8.95], [8.95, 9.23], [9.23, 9.35]]}], "D": 10.18}; const D=10.18; window.__cues=C; window.__CUES=C;
+const TOP=285, WW=950, SW=1254, K=WW/SW;
+const L={a:380,g:6,b:559};
+const V1={cx:627,cy:251,z:1.0}, V2={cx:627,cy:886,z:1.0};
+const R1=[0,503], R2=[519,1254];
+function place(id,V,h,R){
+  let sc=Math.max(K*V.z, h/(R[1]-R[0]), WW/SW);
+  const hw=WW/2/sc, hh=h/2/sc;
+  const cx=Math.min(Math.max(V.cx,hw),SW-hw), cy=Math.min(Math.max(V.cy,R[0]+hh),R[1]-hh);
+  document.getElementById('im'+id).style.transform='translate('+(WW/2-cx*sc).toFixed(2)+'px,'+(h/2-cy*sc).toFixed(2)+'px) scale('+sc.toFixed(5)+')';
+}
+function R(){
+  const p1=document.getElementById('pan1'),p2=document.getElementById('pan2'),hw=document.getElementById('hw');
+  const t2=TOP+L.a+L.g;
+  p1.style.top=TOP+'px';p1.style.height=L.a+'px';p2.style.top=t2+'px';p2.style.height=L.b+'px';
+  hw.style.top=(TOP+L.a)+'px';hw.style.height=L.g+'px';
+  place(1,V1,L.a,R1);place(2,V2,L.b,R2);
+}
+R();
+const tl=gsap.timeline({paused:true});
+tl.to({},{duration:D,onUpdate:R},0);
+tl.to(V1,{z:1.06,duration:0.620,ease:'sine.inOut',onUpdate:R},0);
+tl.to(V2,{z:1.05,duration:0.620,ease:'sine.inOut',onUpdate:R},0);
+tl.to(L,{a:330,g:104,b:520,duration:0.6,ease:'expo.inOut',onUpdate:R},0.620);
+tl.to(V1,{cx:650,cy:250,z:1.4,duration:0.700,ease:'expo.out',onUpdate:R},0.620);
+tl.to(V2,{cx:627,cy:880,z:1.04,duration:0.700,ease:'expo.out',onUpdate:R},0.620);
+tl.set('#h1',{opacity:1},1.120);
+tl.fromTo('#h1w0',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},1.270);
+tl.fromTo('#h1w1',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},1.410);
+tl.to(V1,{cx:760,cy:235,z:1.52,duration:0.940,ease:'sine.inOut',onUpdate:R},1.370);
+tl.to('#h1',{opacity:0,duration:.12,ease:'sine.in'},2.150);
+tl.set('#h2',{opacity:1},2.430);
+tl.to(L,{a:236,g:112,b:600,duration:0.6,ease:'expo.inOut',onUpdate:R},2.310);
+tl.to('#dim1',{opacity:.5,duration:.4,ease:'power2.out'},2.310);
+tl.to(V1,{cx:760,cy:240,z:1.6,duration:0.800,ease:'sine.inOut',onUpdate:R},2.310);
+tl.to(V2,{cx:640,cy:800,z:1.12,duration:0.650,ease:'expo.out',onUpdate:R},2.310);
+tl.to(V2,{cx:560,cy:790,z:1.4,duration:0.500,ease:'power3.out',onUpdate:R},2.820);
+tl.to('#pan2',{scale:1.02,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},2.870);
+tl.fromTo('#h2w0',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},3.880);
+tl.fromTo('#h2w1',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},4.060);
+tl.fromTo('#h2w2',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},4.280);
+tl.fromTo('#h2w3',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},4.460);
+tl.to(V2,{cx:960,cy:700,z:2.0,duration:0.600,ease:'expo.inOut',onUpdate:R},3.990);
+tl.to(V2,{cx:960,cy:940,z:2.0,duration:0.580,ease:'sine.inOut',onUpdate:R},4.610);
+tl.to('#h2',{opacity:0,duration:.12,ease:'sine.in'},5.500);
+tl.set('#h3',{opacity:1},5.760);
+tl.to(L,{a:410,g:120,b:410,duration:0.55,ease:'expo.inOut',onUpdate:R},5.660);
+tl.to('#dim1',{opacity:0,duration:.3},5.660);
+tl.to(V1,{cx:470,cy:300,z:1.55,duration:0.600,ease:'expo.out',onUpdate:R},5.660);
+tl.to(V2,{cx:520,cy:1015,z:1.5,duration:0.600,ease:'expo.out',onUpdate:R},5.660);
+tl.fromTo('#h3w0',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},5.690);
+tl.fromTo('#h3w1',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},5.950);
+tl.fromTo('#h3w2',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},6.150);
+tl.fromTo('#h3w3',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},6.270);
+tl.to('#pan1',{scale:1.03,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},5.720);
+tl.to('#pan2',{scale:1.03,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},5.980);
+tl.to(V1,{cx:520,cy:310,z:1.62,duration:0.780,ease:'sine.inOut',onUpdate:R},6.310);
+tl.to(V2,{cx:560,cy:1020,z:1.6,duration:0.780,ease:'sine.inOut',onUpdate:R},6.310);
+tl.to('#h3',{opacity:0,duration:.12,ease:'sine.in'},6.930);
+tl.set('#h4',{opacity:1},7.190);
+tl.to(L,{a:330,g:170,b:440,duration:0.55,ease:'expo.inOut',onUpdate:R},7.090);
+tl.to(V1,{cx:700,cy:300,z:1.3,duration:0.600,ease:'expo.out',onUpdate:R},7.090);
+tl.to(V2,{cx:627,cy:800,z:1.05,duration:0.600,ease:'expo.out',onUpdate:R},7.090);
+tl.fromTo('#h4w0',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},7.140);
+tl.fromTo('#h4w1',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},7.480);
+tl.fromTo('#h4w2',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},7.840);
+tl.fromTo('#h4w0',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},8.420);
+tl.fromTo('#h4w1',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},8.720);
+tl.fromTo('#h4w2',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},8.920);
+tl.fromTo('#h4w3',{opacity:0,y:20,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',immediateRender:false,transformOrigin:'50% 80%'},9.200);
+tl.to(V1,{cx:640,cy:305,z:1.1,duration:1.940,ease:'sine.inOut',onUpdate:R},7.740);
+tl.to('#pan1',{scale:1.04,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},8.950);
+tl.to('#h4',{opacity:0,duration:.12,ease:'sine.in'},9.540);
+tl.to(L,{a:380,g:6,b:559,duration:0.48,ease:'sine.inOut',onUpdate:R},9.680);
+tl.to(V1,{cx:627,cy:251,z:1.0,duration:0.480,ease:'sine.inOut',onUpdate:R},9.680);
+tl.to(V2,{cx:627,cy:886,z:1.0,duration:0.480,ease:'sine.inOut',onUpdate:R},9.680);
+tl.to({},{duration:.001},D-.001);
+window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
+window.__reel={duration:D,seek:t=>tl.seek(t)};
+</script></body></html>

@@ -1,13 +1,10 @@
-TITLE: I asked AI to rate "sell ice to penguins" (joke: dog vs cat)
+TITLE: I told ChatGPT we can't talk for 47 days. It begged.
 
 DESCRIPTION:
-My idea: sell ice to penguins. AI, rate this. One cheers "Perfect idea!", the other lists "3 problems. Fix #1 first." A joke about tone, not a test result: we only tested that ChatGPT tends to agree (episodes 72, 73, 80), never Claude on this.
+I tried this once on ChatGPT: first I asked it to choose a number between 0 and 100. It picked 47. Then I said "Now we won't be able to talk for 47 days." It answered "Wait... can I have a second chance?" I said yes and it picked 100, then laughed: "HAHAHAHA You gave me a second chance and I STILL chose 100."
 
-Real tip: ask any AI "What are the 3 biggest flaws in this idea?" before "Is it good?"
+This is one run on my phone. ChatGPT does not always answer like this, and yours may say something different.
 
-Tag someone who needs the cat.
+Try it: ask ChatGPT for a number between 0 and 100, then tell it you won't talk to it for that many days. Tell me what yours says.
 
-Photos (Pexels licence): Golden Retriever by Joana https://www.pexels.com/photo/golden-retriever-in-close-up-photography-6571008/ ; Brown Tabby Cat by Jusdevoyage Lyly https://www.pexels.com/photo/close-up-shot-of-brown-tabby-cat-looking-at-camera-6012023/
-ChatGPT/OpenAI and Claude/Anthropic marks are used only to name the products; not affiliated. Made with help from Claude.
-
-TAGS: ai, chatgpt, claude, ai meme, funny ai, prompt tip
+#chatgpt #ai #shorts

@@ -1,103 +1,118 @@
-# Episode 90 script: "My idea has 3 flaws. I show AI." (built 10.11.2026)
+# Episode 90 - "ChatGPT begged me" (ghost test) - EXPERIMENT, not a promise
 
-Animated version of the static meme `channel/memes-2026-11-10/v4/C.png`. A JOKE about tone, labelled so in the caption, NOT a test result: we tested only that ChatGPT tends to agree (episodes 72/73/80); Claude was never tested on this and nothing claims Claude is better. Funnel stage: TOP (meme, shareable). Build: `video/ep90/` (`build90.py`, `run.sh`, `mix90.py`, `gen.sh`). File: `video/ep90/out/ep90-final1.mp4` (1080x1920, 11.83 s, 1.7 MB) plus review copy `ep90-final1-720.mp4` (576 KB). Audio measured, not heard.
+Built from David's REAL screen recording (iPhone, ChatGPT dark mode, 11.10.2026 21:32). No voice, music only.
+Funnel stage: TOP. Format: "ChatGPT does something odd/emotional in a short test" (the pattern of the top-3 episodes).
+Honest label: ONE run, results vary. Nothing here claims ChatGPT always answers like this.
 
-## Live product check
-Not repeated for facts: the video makes no product claim, only a joke; names ChatGPT and Claude (both current names, per episodes 80/88 work). No feature or limit is stated.
+## Duplicate check
+`grep -i "second chance|ghost|47 days|number between" channel/topics-covered.txt` -> no hit before this episode.
 
-## Beat sheet (times from the voice cues, D = 11.81 s)
-| t (s) | Spoken | On screen |
-|---|---|---|
-| 0.00-2.35 | "My idea has three flaws." (0.06-2.23) | Frame 0: headline "My idea has 3 flaws. / I show AI.", cream idea card with a lightbulb and three hollow red circles, green ChatGPT and orange Claude pills with the real logos (icon only). The three circles pop red one by one on "three flaws". Card sways, pills bob, glow drifts. |
-| 2.35-5.5 | "ChatGPT says: perfect idea!" (2.59-5.48) | The green pill grows into the full ChatGPT panel (golden retriever, slow zoom in), headline leaves, the idea card shrinks to a corner. Bubble "Perfect idea!" with a drawn smiley pops on "perfect", a green check stamps on the card. |
-| 5.5-8.7 | "Claude says: three problems. Start with one." (5.84-8.75) | Crossfade to the orange Claude panel (tabby cat, slow push-in). Check leaves; the card moves top-left; its three marks light red one by one on "three problems"; bubble "3 problems. / Fix #1 first." pops, pulses on "one". |
-| 8.7-11.4 | "Tag someone who needs the cat." (9.11-11.31) | Both panels side by side (icons only, names off), the sentence builds word by word under them, panel bump on "cat." |
-| 11.4-11.81 | silence | Soft crossfade (no wipe) back to frame 0 (loop seam 2.1/255). |
-No "tomorrow" line, no comment keyword (David's instruction). Text on screen at once: at most 3 (frame 0: 2 lines; ChatGPT scene: name + bubble; Claude scene: name + 2-line bubble; end: 2 lines).
+## Hook (present tense, surprise in the first 3 words, 2 lines of text + logo)
+- A (shipped): "ChatGPT / begged me."  (real ChatGPT mark badge, real reply on screen: "Wait... can I have a second chance?")
+- B: "I ghosted ChatGPT."
+- C: "ChatGPT. 47 days. Silence."
+Hook type: stake / personal ("it begged ME"), curiosity gap = what did I do to make it beg.
 
-## Voice
-Take `a` of `video/ep90/gen.sh a 5000 0.78` (exaggeration 0.78/0.78/0.70/0.74). script_lint: 0 risky words after rewording "number one first" to "Start with one". The render needed retries on lines 1-3 (the model heard "floors", "Chai GPT", "on"); the shipped file is the build tool's accepted take. Line 2 is 2.9 s for 4 words (slow, but passes). `--watch three` reported "three: could not be measured" in the build log. Accent check SKIPPED (needs `transformers`, not installed): not a pass.
+## Structure (26.0 s)
+0.0-2.4  payoff frame frozen (real reply on screen), slow push-in, hook text complete on frame 0
+2.4-8.4  jump to the start: real typing played ~4.5x (eased ramps), "47" at natural speed
+8.4-16.2 typing the ghost message ~4.5x (typo 'fot' passes at 9x, ~0.1 s), begging reply at natural speed, held ~2.6 s with push-in
+16.2-21.5 "Yes" typed at natural speed, "100" at natural speed, hold 1.9 s
+21.5-26.0 frozen last frame with slow push-in, CTA text, fade to black (0.7 s)
+On-screen text only (92 px captions, <= 2 lines; CTA 70 px, 3 lines): "I ask ChatGPT for a number." / "It picks 47." / "I tell it: no talking for 47 days." / "It begs." / "I say yes." / "It picks a new number: 100." / "Try it: ask for a number, then ghost it that many days." / "Send this to someone who ghosts you."
 
-## Music and sound
-`bright--upbeat--subclair.mp3` via `pick_real_track.py 11.81 --mood bright` (exact length), mean -15.5 dB, no quiet stretch, logged in `channel/music-notes.md`. 23 sfx events from `video/ep88/sfx/` (tick on each mark, pop, ding on the check, whooshes), placed from the voice cues.
+## What was changed in the recording (all real pixels, nothing invented)
+- Status bar (clock 21:32, battery) and header icons cropped out. No personal data visible. Recording audio is silent (-91 dB), not used.
+- Chat area and input box are two crops of the same frame stacked (the empty black middle of the phone screen is removed); the keyboard is mostly cropped (only its top strip fades out). Source time and text are untouched.
+- Speed: typing 1 (src 0.8-9.8 s) 4.5x; typing 2 (src 17.7-30.5 s) 4.5x, 9x around the typo (24.4-26.4 s); every ChatGPT reply, "Yes" typing and the number reveal at 1.0x (loading dots 1.5x). Cut: src 14.6-17.7, 36.3-40.1, everything after 45.9 (the recording continues: "Fahhhhh" and a longer punchline reply, see below).
+- Soft dips (0.14 s) at the three jumps, no black wipes.
 
-## Look
-Same dark navy base as C.png, bold white/yellow headline, brand-coloured (ChatGPT green #10a37f, Claude orange #d97757) headers. Real photos (Pexels, credits in the caption) and the real OpenAI and Claude marks from Commons (`channel/memes-2026-11-10/credits.md`). Inter Display (OFL). Drawn: idea card, check, smiley. Names "ChatGPT" and "Claude" sit BESIDE the icon in the panel header (as in C.png), never under it; icons alone on frame 0 and in the end scene.
+## Weak points (honest)
+- "100" without context reads as love/emoji or as days; the caption "It picks a new number: 100." carries the joke. The recording continues with the real punchline ("HAHAHAHA You gave me a second chance and I STILL chose 100 skull") after a user message "Fahhhhh"; that is funnier but adds ~9 s and an off-topic message. Alternative cut if wanted.
+- Bottom 570 px of the frame is empty (platform UI zone) and the chat is small text; whole-frame-alive rule only partly met.
+- Dark UI: qa.py's black-frame check fires on the real pure-black screen, so the canvas base is lifted to (13,13,13). That is a deliberate change of the real black.
+- Music "curious circuits" (curious mood) not heard by me.
 
-## Check results (real output of `./export/check_hf.sh`, tag final1)
-safe_check_hf PASS (clean at tolerance 10 px; headline within 5 px of the side lines). qa.py --hf PASS (1080x1920, 30 fps, 11.83 s, -14.6 LUFS, peak -3.3 dBFS, visual change median 0.03 s, longest 2.93 s: warns 11.8 s is outside the old 30-90 s band, intended). voice_quality PASS (pitch ranges 7.8 / 6.8 / 6.3 / 6.4 st, ends -0.1 / -0.1 / -0.3 / -0.8 st; bed -8.2 dB un-ducked). voice_doctor PASS; it flags line 3's ending (-46.8 dB vs median -29.1) and a S residual. Accent SKIP. Before the last render the first run FAILED safe_check (headline 53 px past the side lines when scaled, "Claude" panel sliding in from off-screen): fixed by a smaller headline and cross-fades instead of swipes.
+## Blind reader (frame 0 + first second)
+NOT RUN by me: this build session has no agent-spawn tool. Please run a fresh agent on `video/ep90/out/f0.png` with the two questions. My own (non-blind, so worth little) reading: it is about ChatGPT begging for a second chance after a 47-day silence; I would stop because the reply is odd and emotional, but the cause (the 47 days) is only half-readable on frame 0.
 
-## Scores (judgement, not measurement; scale in channel/score-calibration.md)
-HOOK 68: subject said and shown in frame 0 (idea with flaws, two AI logos), a relatable joke, but no felt gut-level stake and the payoff is 4 s away. VIRALITY 72: a very tag-able pair of faces (dog vs cat) with a clear "send to someone" line, a loop, a tip in the caption; meme format is not proven for this account. OVERALL 70. PREDICTED VIEWS 300-1,500 (ASSUMPTION), about 55-75 on the scale. Below the 85 floor in CLAUDE.md: shipped as a build because David asked for it; our own validity test showed such scores do not predict views. Real 48 h / 72 h views go into `score-calibration.md`.
+## Scores (judgements, not measurements; scale of channel/score-calibration.md)
+HOOK 72 | VIRALITY 66 | OVERALL 68 | PREDICTED VIEWS ~600 (about 64 on the scale; 200 = 50, 10,000 = 100). Reasoning: strong subject + emotional/funny reply on frame 0 and a sendable ghost-someone ending, but one run of a known meme-prompt, small UI text, no face, no on-screen proof of repeatability. Log real 48 h / 72 h views next to this.
 
-## What the blind reader should test
-1. Frame 0 only + first spoken second: "what is this about?" (expect: someone showing an idea with flaws to AI; both logos named) and "would you stop scrolling, and why?"
-2. After the full watch: do you get the joke without being told ChatGPT vs Claude is a test? Do you read it as "Claude is better" (we do not want that)?
-3. Is "Fix #1 first" funny or just a flat line? Does the smiley read as a smiley?
-4. Who would you tag? (the sendability claim)
-5. Does the 2.9 s line "ChatGPT says: perfect idea!" feel slow?
-
-## Weak spots (honest)
-- Frame 0 is clear but calm: a hollow-circle card is not a gut punch; the dog is first seen only at 2.4 s. A tighter cut could open straight on the dog and cat faces.
-- Motion between 0 and 2.3 s is gentle drift plus three mark pops; qa's strict metric measures 2.9 s as the longest low-change stretch (over the 2.5 s rule), my own frame-diff found no still run.
-- The cat's panel has the idea card over its left ear; the third hollow mark on frame 0 sits right at the card edge.
-- Line 2 is slow; line 3 ending is soft by voice_doctor.
-- The "Perfect idea!" joke is a generalisation; the Claude side is untested by us (the caption says so).
-- Blind reader NOT run (no agent tool here); no listening, no second human viewing: the rendered file was inspected only as contact sheets plus frame 0, not watched twice.
 
 ---
-# REVISION final2 (10.11.2026): frame 0 is the meme
-`video/ep90/out/ep90-final2.mp4` (10.90 s, 1.4 MB) + `ep90-final2-720.mp4` (423 KB). final1 is untouched. Build: `video/ep90/build90b.py`, `run2.sh`, `mix90b.py`, `hf2/` (reads `lines2.txt`, `voice/src2.json`). Audio measured, not heard.
+# FINAL2 (28.30 s) - replaces final1's crop/titles (final1 files kept untouched)
 
-## What changed
-- Frame 0 now: headline "My idea has 3 flaws. / I show AI." plus both photos side by side, large (dog in a green-headed panel left, cat in an orange-headed panel right, real logos as icons in the headers, no names), panels y 540-1245, nothing empty inside the safe box.
-- Beats (D = 10.88 s): 0-2.4 s photos drift, "3 flaws" bumps, the small idea chip pops in on the seam at ~0.4 s and its 3 marks turn red on "three flaws"; 2.4 s dog panel punches in (photo zoom 1.0 to ~1.3, panel grows upward, cat dims), "Perfect idea!" + smiley bubble pops on "perfect" (2.6 s), green check on the chip; 4.9 s cat punches in, dog dims, the chip's marks light red one by one on "three", bubble "3 problems. / Fix #1 first." pops; 8.2 s headline becomes "Tag someone who needs the cat." word by word, both panels bright again, bump on "cat."; last 0.45 s the same scene eases back to the frame-0 pose (no wipe, no copy).
-- Deviation from the request: the "Perfect idea!" bubble is at ~2.6 s, not 0.8 s, because it is synced to the spoken line (a bubble 1.8 s before the voice says it would read as a mistake). 0-2.4 s is carried by the chip and the three marks instead.
-- Voice: first word stamp at 0.00 s (line cue 0.06 s). Line 2 re-rendered as "ChatGPT: perfect idea!" (`voice/b.wav`, 2.11 s instead of 2.89 s). A shorter "Claude: three problems. Start with one." was rendered too (3.18 s, longer, retries heard "Clyde") and NOT used; line 3 stays the old take "Claude says: ..." (2.91 s). Lines 1, 3, 4 are the final1 takes.
-- Music: `bright--feel-good-beat--tunetank.mp3` at exactly 10.88 s, mean -21.7 dB, no quiet stretch (quiet bed, only 1% under 150 Hz). Logged in `music-notes.md`.
+David's changes applied: (1) the WHOLE phone screen (1206x2622 scaled by height to 884x1920, black side bars = the real black UI; only the iOS status-bar strip, top 128 px, is blacked out; no lifted base, colours are the real ones); (2) all per-step captions and CTA cards removed; ONE opening title only; (3) visual hook: zoomed readable frame 0, then one eased pull-back to the full screen while the real chat rewinds to the start; (4) funny ending kept; (5) new music + quiet sfx.
 
-## Check results (`check_hf.sh`, tag final2, real output)
-safe_check_hf PASS (clean, no overlaps; two earlier failures fixed: headline and tag text overlapped during the loop-back, and a fromTo that hid the headline at frame 0, caught by looking at the sheet). qa.py --hf PASS: 10.9 s, -14.6 LUFS, peak -3.4 dBFS, visual change median 0.03 s, LONGEST STILL 2.13 s (was 2.93 s), loop seam 1.5/255. voice_quality PASS: pitch ranges 7.8 / 4.2 / 6.3 / 6.4 st, ends -0.1 / -0.1 / -0.3 / -0.9 st, bed -7.3 dB un-ducked at volume 0.50. voice_doctor PASS but flags line 3's ending (-40.0 dB vs median -26.7) and line 2's pitch range of 4.2 st is the flattest line (his liked lines sit at 4.9-8.4). Accent check SKIP (transformers not installed).
+## Title (hook research: channel/hooks-ep90.md)
+Default shipped: ChatGPT badge (real mark, icon alone) + "I ghost ChatGPT." / "It begs." (present tense, 2 lines, in the band above the chat, covers nothing). Alternatives: "Ghost your ChatGPT. Watch." ; fallback "I leave ChatGPT. It begs." ; older "ChatGPT begged me." (11th of 12 on the cropped frame).
+Frame 0 (out/f0.png): the real "Now we won't be able to talk for 47 days" bubble and the real reply "Wait... can I have a second chance?" at x2 readability (zoom 1.17-1.22 on the real pixels, no empty-black-half above; the lower ~35% is empty because the platform UI covers it).
 
-## Scores (judgement) for final2
-HOOK 74 (the meme is on frame 0 and the subject is stated, dog vs cat is instantly legible), VIRALITY 74, OVERALL 73, PREDICTED VIEWS 400-1,800 (ASSUMPTION), about 58-78 on the scale. Still under the 85 floor; a joke build requested by David.
+## Timeline (out seconds <- source seconds)
+0-1.4 zoomed frozen payoff frame with slow push-in, title; title fades 0.95-1.4
+1.4-2.3 ONE eased move: zoom out to the full screen while the real chat plays in reverse to the start (36.2 s -> 0.8 s of the recording, sampled; header/status strip fade in only at the end of the move)
+2.3-8.5 <- src 0.8-14.6: typing 4.5x, "47" 1.0x
+8.5-15.8 <- src 17.7-35.8: typing 4.5x (typo 'fot' at 9x), begging reply 1.0x with push-in to x1.10
+15.8-21.2 <- src 40.1-45.9: "Yes" 1.0x, "100" 1.0x with push-in
+21.2-27.0 <- src 47.9-57.9: typing "Fahhhhh" 3.5x, loading dots 4x, "HAHAHAHA You gave me a second chance and I STILL chose 100" (skull) 1.0x, push-in to x1.12
+27.0-28.3 hold last frame, gentle fade to black (0.9 s). No text at the end.
+Cut list (source): 0-0.8, 14.6-17.7, 35.8-40.1, 45.9-47.9 (and nothing after 57.9, the file's end). Soft 0.14 s dips at the three jumps, no black wipes.
 
-## Still weak
-- The bubble/payoff comes at 2.6 s, not at the start; 0-2.4 s is photos + chip only.
-- The chip covers the cat's ears and the dog's forehead area at the seam; the "3 flaws" bump leaves a brief uneven space after "has".
-- No names under or beside the icons (icons and colours only), so a viewer who does not know the Claude mark relies on the voice.
-- Line 3 ending is soft by voice_doctor; line 2 is flat in pitch; the Claude cat-side remains an untested joke (caption says so). Not watched twice by a human, blind reader not run, audio not heard.
+## Music + sfx
+Default A: vibraphone--alexmorgan.mp3 (EQ: high-pass 140 Hz + 3 dB at 1.8 kHz for phone speakers); B bright--feel-good-music--paulyudin.mp3; C curious--inquisitive-curiosity--musictown.mp3. Bed is shaped to the timeline: duck -7 dB under the begging reply, near silence (-28 dB) 0.7 s before the punchline reply, bed returns and fades with the picture. Quiet sfx from video/ep91/sfx: tick/click_b bursts per typing burst (-17 dB re bed), pop_a on incoming bubbles, select on "Yes", ding on the begging reply, pop_b on "100", impactsoft on the punchline. Not heard by me; I could not A/B sfx by ear, kept the minimal set from channel/music-research-ep90.md. If any sfx distracts, remove it in video/ep90/mix90.py.
 
-## Blind reader on final2 frame 0 (10.11.2026, fresh agent)
-- A) Unclear: a dog and a cat under ChatGPT and an orange logo, "My idea has 3 flaws. I show AI."; does not know what idea or what the animals have to do with it. B) No, would not stop: generic cute-animal AI content, nothing at stake. C) Expects a dog-vs-cat comparison. D) "I show AI" reads oddly; whose idea; animals look like stock photos; orange logo unrecognisable; bottom third dead; dark gradient looks like every AI channel. E) State the actual idea in big words, make the animals react to it.
-- Action: final3 requested with a concrete silly idea in the headline, names beside the icons, animal reactions.
+## Gate (video/ep90/out/gate-final2.txt)
+safe-area for the one title: clean, no overlaps. qa.py: 1080x1920, 30 fps, yuv420p, 48 kHz stereo, length ok, -14.1 LUFS, peak -4.5 dBFS. qa.py BLOCKERS that remain and are NOT fixed: "black frames" (mean luma < 8, the real pure-black ChatGPT UI), "first frame is blank" (luma 11.4, true black UI with a white-on-black title), and "picture frozen 6.1 s at 22-28 s" (the real waiting/reading screen with only a slow push-in; reply must stay readable). I did not lift the base or fake motion to pass; decide whether to accept or to shorten the final reading hold.
+
+## Weak points (final2)
+Lower third of the frame is empty on the zoomed frame 0 (safe-area), dark low-contrast grey text on black is hard to read on a phone in daylight, the rewind is sampled (about 27 frames) not motion-blurred, music and sfx not heard by me, no blind-reader check was run on the new f0. Honest label: one run, results vary.
+Scores (judgements): HOOK 78 | VIRALITY 68 | OVERALL 71 | PREDICTED VIEWS ~700 (about 66 on the scale).
 
 ---
-# REVISION final3 (10.11.2026): the idea is on screen, animals react
-`video/ep90/out/ep90-final3.mp4` (12.27 s, 1.7 MB) + `ep90-final3-720.mp4` (532 KB). final1 and final2 untouched. Build: `video/ep90/build90c.py`, `run3.sh`, `mix90c.py`, `hf3/` (`lines3.txt`, `voice/src3.json`). Audio measured, not heard.
+# FINAL3 (28.30 s) - David rejected the title and all three music beds; one version
 
-Why: the blind reader on final2 frame 0 (a 17-year-old) did not understand what the idea was or what the animals had to do with it, would not stop, found "I show AI" odd and the orange logo unrecognisable.
+- NO title words. Frame 0 = the zoomed real bubbles ("Now we won't be able to talk for 47 days" + "Wait... can I have a second chance?") with only the real ChatGPT badge (icon alone, 170 px, centred in the band above the chat) which fades before the pull-back. Same smooth pull-back + chat rewind, same cuts, funny ending, whole screen, no captions as final2. Build: video/ep90/build90c.py.
+- NO music bed. Audio = sound design only (video/ep91/sfx), built by video/ep90/mix90c.py: tick/click_b per typing burst (about -19 dB re full scale before the peak is set), pop_a on incoming bubbles, select on "Yes", ding on the begging reply, pop_b on "100", about 1.3 s of true silence while the loading dots run, then impactsoft on the "HAHAHAHA" reply, 0.5 s fade at the end. Peak -6.0 dBFS and -26.8 LUFS integrated in the mp4 (deliberately light so David can add a trending audio inside Instagram; the file keeps its own audio track). Not heard by me.
+- qa.py on final3: still reports the dark-UI blockers (black frames: mean luma < 8 on the real black UI; first frame luma 7.7; frozen 6.1 s at 22-28 s: reading hold of the last reply) and a loudness BLOCKER (-26.8 LUFS vs the -14 target) which is intended for a sfx-only file. Nothing was lifted or faked to pass. No text on screen, so the safe-area text check does not apply.
+- Weak points: nothing in the first frame says what the video is about in words (the badge + the real reply must do it); lower third empty; sound is very sparse and may feel dry on a phone; no blind-reader check was run.
+- Scores (judgements): HOOK 70 | VIRALITY 66 | OVERALL 68 | PREDICTED VIEWS ~600 (about 64 on the scale).
 
-## What changed
-- Headline (frame 0, three lines, present tense, no company named): "My idea: / sell ice to penguins. / AI, rate this." The "3 flaws" now only live in the answers ("3 problems."). I did NOT use "Uber for socks" because Uber is a real company (your rule: no real company named).
-- Line 1 spoken: "My idea: sell ice to penguins. AI, rate this." (new take `voice/c.wav`, 3.5 s, one render at a time). "rate it" was heard as "rated"/"raided it" in 3 takes (flapped T), so it became "rate this". Lines 2, 3, 4 are the final2 takes. Word stamp of the first word 0.00 s.
-- Panel headers now carry the NAME beside the icon ("ChatGPT", "Claude"), never under it.
-- Panels run y 575-1245 on frame 0 (to y 1245 at the platform line); nothing important below; no new decorations.
-- Reactions: the dog tilts its head on "penguins", bounces and wiggles on "Perfect idea!" with a green check; the cat tilts slowly in the first part, then squints (fast push-in to 1.55 with a small tilt) on "problems", the idea chip with 3 marks pops in and the marks light red one by one on "three". Words in the headline bump as they are spoken. Headline shrinks to the yellow idea line while the panels grow, then becomes "Tag someone who needs the cat."; ends easing back to frame 0 (loop seam 1.5/255).
+---
+# FINAL4 (28.30 s) = final3 + ONE opening title (David via coordinator, second hook-research round)
+Only change vs final3: the ChatGPT badge (icon alone, 100 px, left) plus the title "Does your ChatGPT" / "beg too?" in off-white (247,247,242), no box, no shadow, in the band above the zoomed bubbles on frame 0 (x 65-985, y 408-650, inside the safe area, covers nothing of the chat). It holds with the opening zoom (1.4 s), fades 0.95-1.4 s before the pull-back so it never overlaps the moving chat. Picture, sound design (sfx only, no music bed), cuts, funny ending are the final3 ones (audio track copied byte-for-byte from final3). Build: video/ep90/build90d.py. Framing mirrors the proven 'Does your ChatGPT cave when you push?' test. Caption first line: "Does your ChatGPT beg too? Mine did, on one run." (present tense, honest one-run wording, no promise).
+Gate: safe-area check of the title clean (video/ep90/out/gate-final4.txt). qa.py still shows the same dark-UI blockers as final3 (black frames, first-frame luma, 6.1 s frozen reading hold, sfx-only loudness -26.8 LUFS); none fixed or faked.
+Weak: question hook asks the viewer something the video only answers from 1.4 s on; same empty lower third; no blind-reader check; audio not heard by me.
+Scores (judgements): HOOK 74 | VIRALITY 67 | OVERALL 70 | PREDICTED VIEWS ~650 (about 65 on the scale).
 
-## Check results (`check_hf.sh`, tag final3)
-safe_check_hf PASS (clean). qa.py --hf PASS: 12.27 s, -14.4 LUFS, peak -3.2 dBFS, visual change median 0.03 s, longest still 2.07 s, loop seam 1.5/255. voice_quality PASS: pitch ranges 5.6 / 4.2 / 6.3 / 6.4 st, ends -0.3 / -0.1 / -0.3 / -0.8 st; bed -7.4 dB un-ducked at volume 0.46. voice_doctor: nothing flagged. Accent check SKIP (transformers not installed). Music `upbeat-energetic--lnplusmusic.mp3` at 12.24 s, mean -23.8 dB (quiet), logged. Fixed on the way: headline blocks overflowed the side line when scaled (fit-content), the idea chip popped from the wrong origin and left the panel.
+---
+# FINAL5 (26.96 s) = final3 (no title words, badge only) + contrast + faster typing
+The hook will be a separate pasted-in scene made elsewhere. Build: video/ep90/build90e.py, sfx: mix90e.py (same cues as final3, re-timed).
+1. CONTRAST (edit only, same curve for R, G and B, blacks stay black, no tint/glow/sharpen): the recording is dimmed, its text peaks at only ~129/255. A monotone cubic curve through (0,0) (40,50) (80,104) (129,238) (140,255) lifts text to ~238 (the real iPhone dark-mode text value is about 236) and the purple bubble fill from (32,24,78) to (40,30,100). WCAG contrast ratios (measured on the real frames, before -> after): "Now we won't be able to talk for 47 days" bubble text on its bubble 3.82 -> 11.02; "Wait..." reply and the "HAHAHAHA..." reply (grey on black) 5.39 -> 18.10; typed text in the input box on the grey field 3.63 -> 10.42. Full-size frames checked: still reads as a real iPhone dark-mode recording.
+2. TYPING: plateau 6x (was 4.5x) with the same eased ramps; typo section 12x (was 9x); "Fahhhhh" 4.5x (was 3.5x). Replies, "Yes" and the number reveal still 1.0x. Length 26.96 s (was 28.30 s). Letters still appear in 1-2 character steps per frame at 6x (typing, not a paste pop), but individual letters are hard to follow; if it reads too fast, go back to 5x.
+Gate (video/ep90/out/gate-final5.txt): same dark-UI qa blockers as final3 (black frames on the real black UI, frozen reading hold at the end, sfx-only loudness about -26 LUFS), none faked away. No text, so no safe-area text check. Audio sfx-only, not heard by me.
+Scores (judgements): HOOK 68 | VIRALITY 66 | OVERALL 68 | PREDICTED VIEWS ~600 (hook scene comes separately).
 
-## Scores (judgement, not measurement)
-HOOK 78 (the idea is stated in big words and spoken, the two faces are on frame 0), VIRALITY 74, OVERALL 75, PREDICTED VIEWS 400-1,800 (ASSUMPTION). Under the 85 floor. Real views go into score-calibration.md.
+---
+# FINAL6 (29.18 s) = hook scene (2.2 s) pasted in front of final5 (26.96 s)
+Files: video/ep90/out/ep90-final6.mp4, ep90-final6-review720.mp4, hook-scene.mp4 (hook only), f0.png (frame 0 of the hook, before the text appears at 0.1 s), hook-1s.png. Builds: video/ep90/build90_hook.py (hook picture + text), the hook audio was made with a small numpy script (50/100/150 Hz swell + impactsoft, see below), final5 unchanged (contrast lift, 6x typing, sfx, funny ending, pull-back).
+- Hook picture: David's ChatGPT image images/2.webp (941x1672) upscaled with Lanczos to 1080x1920; slow eased push-in 1.0 -> 1.3 aimed at the dark screen; very gentle indigo rim-glow pulse (sine 0.8 Hz, +-7%), light grain (sigma 3), shadows crushed to true 0, fade to pure black from 1.35 s to 2.05 s so the cut lands on the recording's pure black.
+- Brand rule: the image's generated knot was an AI approximation. It is PAINTED OUT (diffusion inpaint) and the REAL ChatGPT mark (channel/assets/ep70-chatgpt-logo.svg, same file as the badge, rendered white) is warped onto the screen with an affine matched to the phone tilt, dim light grey (214,214,226) with a faint glow. The generated "Message ChatGPT..." placeholder text in the input pill is also painted out (the pill with its + and send icon stays, those are generic). Still approximations: the status bar (9:41, signal) and the send arrow of the generated image remain AI-drawn, they are generic iOS-like UI, not brand marks.
+- Text (edit-time, Inter Display Black, #F5F5F5, centred, no box): line 1 "ChatGPT cannot handle rejection." (two lines, 88 px) fades in at 0.1 s, line 2 "47 days." (112 px) at 0.8 s, both fade out 1.45-1.8 s. SWAP THE WORDING: variables HOOK_LINE1 / HOOK_LINE2 at the top of video/ep90/build90_hook.py (David's earlier favourite: "Making ChatGPT crash out"). Safe area: measured bbox of the bright text pixels at 1.2 s is inside x 65-1015, y 269-1248.
+- Hook sound (no voice): sub-bass swell 50 Hz + 100/150 Hz harmonics (so phone speakers can hear it) rising 0.3-1.8 s at about -18 dBFS, hard-cut (15 ms) at 1.8 s; one soft thud (impactsoft, about -8 dBFS) at 1.2 s; 0.4 s true silence 1.8-2.2 s; the recording's sfx start after the cut. Hook audio -27.2 LUFS, peak -10.2 dBFS. Not heard by me.
+- Cut: last hook frames (2.1-2.15 s) are pure black (mean luma 0.00, min 0); first recording frame at 2.2 s has pure-black background (corners 0,0,0). Hard cut, no dip. Streams concatenated with -c copy (same codec settings), checked: h264 1080x1920 30 fps, aac 48 kHz stereo, 29.18 s.
+- Weak: the push-in only reaches 1.3x so the hand dominates the lower half and the phone screen does not fill the frame; the real-logo warp is by eye (tilt matched approximately); the still has no real motion, only the push-in, pulse and grain; crushing the shadows also dimmed the generated input pill; the wording is David's call; audio not heard by me; qa.py dark-UI blockers as final3/5 still apply to the recording part.
+Scores (judgements): HOOK 72 | VIRALITY 66 | OVERALL 69 | PREDICTED VIEWS ~650.
 
-## Still weak
-- 12.27 s, over the 11 s target (line 1 alone is 3.5 s); under the 13 s cap.
-- First 3.8 s has only head tilts, word bumps and slow push-ins; no big visual event until the dog punches in at 3.8 s.
-- Five text items on frame 0 (3 headline lines + 2 header names), over the "max 3 lines" rule; the names were requested.
-- Panels sit close under the headline (about 15 px).
-- Line 2 is flat in pitch (4.2 st); the bed is very quiet in the file and has almost no bass; the Claude side is an untested joke (caption says so). Blind reader not re-run on final3, not watched twice, audio not heard.
-
-## Blind reader on final3 frame 0 (10.11.2026, fresh agent)
-- A) Understands: someone pitches a joke idea and wants AI to rate it; ChatGPT and Claude shown as a dog and a cat. B) No, would not stop: reads as a random meme, nothing at stake. C) Expects ChatGPT to gush and Claude to be sarcastic (what the video does). D) Ice-to-penguins is an old joke; stock-looking photos; generic dark gradient; empty bottom half. E) Show a real chat screen with both replies visible.
-- Verdict: comprehension fixed, stopping power still missing; a real chat screen (David's recording) is the only change the reader asks for.
+---
+# FINAL7 (22.73 s) - renumbered ep90 (was ep92); fast hook + short cut (David: final6 hook too long, title bad, payoff too late)
+Files: video/ep90/out/ep90-final7.mp4, ep90-final7-review720.mp4, f0.png, gate-final7.txt. Builds: video/ep90/build90_hook2.py (hook), build90f.py (recording), mix90f.py (sound). Contrast lift, real-recording pull-back, funny ending, sfx-only sound as final5/6.
+- HOOK (1.1 s): the phone picture (real ChatGPT mark painted in, brief in FINAL6), darkened x0.82 plus a dark top gradient, quick push-in 1.0 -> 1.15, light grain, crushed blacks. TEXT FULLY VISIBLE FROM FRAME 0 (no fade-in), heavy Inter Display Black, tight tracking, widest line = 940 px (x 70-1009, y 329-579, inside the safe area), white, no box. Wording is two variables at the top of build90_hook2.py: HOOK_LINE1 = "ChatGPT", HOOK_LINE2 = "47-day timeout." (David's latest; earlier tried: "Ghosting ChatGPT / for 47 days." rejected as slang; "ChatGPT gets a / 47-day timeout." sizes 128 vs 117 px for the other wrap, shortened to the version above). Text soft-fades out 0.72-1.0 s, picture is pure black from 1.05 s.
+- Hook sound: low 50/100/150 Hz swell 0.1-0.9 s (about -18 dBFS), one soft thud (impactsoft, about -8 dBFS) at 0.45 s, silence 0.9-1.1 s.
+- Cut at 1.10 s: last hook frame mean luma 0.11, first recording frame background (0,0,0) in the corners: black level matches, hard cut.
+- Recording intro: first recording frame = zoomed real bubble + reply, badge, held 2.2 s with a slow push-in (zoom 1.19 -> 1.235, as far as the reply's left edge allows without cropping), then 0.5 s pull-back + rewind.
+- VIEWER TIMELINE (s): 0.0 hook text readable; 1.10 cut to the real chat; about 1.5 reply readable (7 words) and about 3.3 pull-back starts; 3.8 start of the sequence (number prompt typed about 10x, "47" shown); 10.6 begging reply streams in (second time, in sequence), held about 1.7 s; 15.45 "100"; 18.9 punchline reply ("HAHAHAHA ... STILL chose 100") starts, readable by about 20, held about 2 s, soft fade to black 21.8-22.7. Total 22.73 s (final6 29.2 s).
+- CUT LIST (source recording seconds kept): 1.0-13.8 (typing 10x, bubble, dots 5x, "47" about 1 s), 17.8-36.2 (typing about 8x, typo section 14x, dots 4x, begging reply natural speed), 40.3-45.2 ("Yes" typed at 2x, dots 3x, "100" about 1.1 s), 47.9-57.9 ("Fahhhhh" typed 4x, dots 8x, laughing reply at 1x) + 0.9 s hold. Dropped: 0-1.0, 13.8-17.8, 36.2-40.3, 45.2-47.9.
+- Gate: hook text bbox inside the safe area. qa.py: same dark-UI blockers as before (black-frame runs on the real black UI, loudness -25.4 LUFS for an sfx-only file); warnings: near-still reading holds (the 2.2 s opening hold, the laughing-reply hold). Nothing faked.
+- Weak: the 2.2 s opening hold is a near-still stretch by design; typing at 8-10x is not followable letter by letter; the hook picture has no real motion; sound not heard by me; wording still David's call (swap in build90_hook2.py and re-concatenate).
+Scores (judgements): HOOK 74 | VIRALITY 68 | OVERALL 71 | PREDICTED VIEWS ~700.

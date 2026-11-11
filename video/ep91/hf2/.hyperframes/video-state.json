@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "historyId": "96cebb38-37e7-4cfd-aa4d-aaa757951bb6",
+  "currentRevision": "103534e8-9097-41f7-8c2b-d375c1438b95",
+  "pendingChanges": false,
+  "files": {
+    "index.html": {
+      "hash": "e4ed05dd1e3bc785639806dae00e75b8fb87869c7adc31f990a457804a853075",
+      "content": "/root/.cache/hyperframes/history/96cebb38-37e7-4cfd-aa4d-aaa757951bb6/blobs/e4/e4ed05dd1e3bc785639806dae00e75b8fb87869c7adc31f990a457804a853075"
+    }
+  },
+  "revisions": {
+    "8c5616c0-202e-4b8f-98a4-4470a9670a10": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794324311834,
+      "endedAt": 1794324311836,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/96cebb38-37e7-4cfd-aa4d-aaa757951bb6/blobs/1f/1f44ca5969c474469c14723c8c7388edd74e29a0c41b60600b357c56ac197496",
+          "after": "/root/.cache/hyperframes/history/96cebb38-37e7-4cfd-aa4d-aaa757951bb6/blobs/fc/fc6b63a1626d4ef9e3195a59cc23949bb1386d21e03378bf2b15ac4af6356f09"
+        }
+      }
+    },
+    "103534e8-9097-41f7-8c2b-d375c1438b95": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794324402910,
+      "endedAt": 1794324402916,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/96cebb38-37e7-4cfd-aa4d-aaa757951bb6/blobs/fc/fc6b63a1626d4ef9e3195a59cc23949bb1386d21e03378bf2b15ac4af6356f09",
+          "after": "/root/.cache/hyperframes/history/96cebb38-37e7-4cfd-aa4d-aaa757951bb6/blobs/e4/e4ed05dd1e3bc785639806dae00e75b8fb87869c7adc31f990a457804a853075"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "6cee256e-571d-4457-9039-8e3bf713c512",
+      "completedAt": 1794324455412,
+      "output": "/tmp/r91-final2.mp4",
+      "status": "completed",
+      "revision": "103534e8-9097-41f7-8c2b-d375c1438b95"
+    },
+    "retainedRevisions": [
+      "103534e8-9097-41f7-8c2b-d375c1438b95",
+      "8c5616c0-202e-4b8f-98a4-4470a9670a10"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

@@ -1,11 +1,13 @@
-Me with Claude. It listens. Me with ChatGPT. It's way more complex.
+My idea: sell ice to penguins. AI, rate this.
 
-This is a joke about style, not a test result. We never tested Claude against ChatGPT on this, and the image says more about how some of us feel on a bad day with a chatbot than about which one is better. Both tools can be great and both can ramble.
+One AI cheers like a golden retriever: "Perfect idea!" The other stares like a tabby cat and lists the problems: "3 problems. Fix #1 first."
 
-The artwork is AI-generated: made by the channel owner with ChatGPT, an original image, not taken from anyone else. The logos on the robots are drawn by the image model, not the real brand marks. Not affiliated with OpenAI or Anthropic.
+This is a joke about tone, not a test result. We tested that ChatGPT tends to agree with you (episodes 72, 73 and 80). We never tested Claude on this, so no, this does not prove one is better. The Claude cat is just how the meme plays it.
 
-Which one are you?
+Real tip, no joke: whichever AI you use, ask it "What are the 3 biggest flaws in this idea?" before you ask "Is it good?"
 
-Tag someone who needs the Claude one.
+Tag someone who needs the cat.
 
-#ai #chatgpt #claude #aimemes #funnyai #aihumor #chatbot #aitools #meme #relatable #actuallyworks
+Photos (Pexels licence, free to use): "Golden Retriever in Close Up Photography" by Joana, https://www.pexels.com/photo/golden-retriever-in-close-up-photography-6571008/ and "Close-Up Shot of Brown Tabby Cat Looking at Camera" by Jusdevoyage Lyly, https://www.pexels.com/photo/close-up-shot-of-brown-tabby-cat-looking-at-camera-6012023/. Logos: ChatGPT/OpenAI and Claude/Anthropic marks, used only to name the products. Not affiliated with OpenAI or Anthropic. Made with help from Claude.
+
+#ai #chatgpt #claude #aimemes #funnyai #promptengineering #aitools #chatbot #productivity #startupideas #meme #actuallyworks

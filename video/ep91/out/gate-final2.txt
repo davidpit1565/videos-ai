@@ -1,0 +1,58 @@
+=== PASS  frame layout (safe_check_hf.js)
+    index.html  10.88s  55 samples every 0.2s  safe box: x 65-1015, y 269-1248
+      safe area: clean (tolerance 10px)
+      overlaps: none over 10px
+
+=== PASS  rendered file (qa.py --hf)
+    ep91-final2.mp4  1080x1920  30fps  10.90s  1.4MB
+      visual change: median 0.03s, longest 2.13s
+      loudness: -14.6 LUFS integrated, peak -3.4 dBFS, LRA 2.0 LU
+      loop seam: first vs last frame differ by 1.5/255
+    
+      [warn]    10.9s is outside the 30-90s band
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 49.4, std 51.1)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.6 LUFS
+      ok        peak -3.4 dBFS
+
+=== PASS  voice + music quality (voice_quality.py)
+    pitch (semitones vs each line's own median):
+      line   1  range  7.8 st  end  -0.1    My idea has three flaws.
+      line   2  range  4.2 st  end  -0.1    ChatGPT: perfect idea!
+      line   3  range  6.3 st  end  -0.3    Claude says: three problems. Start with one.
+      line   4  range  6.4 st  end  -0.9    Tag someone who needs the cat.
+    tone: none steady over 0.6 s
+    music: 1% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.50 = -7.3 dB
+    
+    voice quality: clean
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep91/out/narration91b.wav  10.9s  4 lines
+      medians: ending -26.7 dB · level -21.3 dBFS · S residual +0.0 dB (slope +0.0 dB per sibilant/syllable)
+      flagged below: ending -35.2 dB · S residual -4.1 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  2.17  +0.36  2.76  -13.7  -22.1  -17.1  My idea has three flaws.
+        2  2.11  +0.36  2.37  -10.3  -26.7  -23.3  ChatGPT: perfect idea!
+        3  2.91  +0.36  2.75  -10.5  -40.0  -19.3  Claude says: three problems. Start wit
+        4   2.2    —    3.18  -12.5  -26.7  -23.5  Tag someone who needs the cat.
+    
+      [fix] line  3: weak ending (-40.0 dB vs median -26.7)
+             -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  PASS  frame layout (safe_check_hf.js)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+ALL CHECKS THAT RAN PASSED (1 skipped)  -  audio was measured, not heard; watch the file twice before sending

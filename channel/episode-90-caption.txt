@@ -1,13 +1,20 @@
-My idea: sell ice to penguins. AI, rate this.
+I told ChatGPT we would not talk for 47 days, and it begged me for a second chance. One run on my phone, yours may answer differently.
 
-One AI cheers like a golden retriever: "Perfect idea!" The other stares like a tabby cat and lists the problems: "3 problems. Fix #1 first."
+Step 1: I asked it to choose a number between 0 and 100. It picked 47.
+Step 2: I told it: "Now we won't be able to talk for 47 days."
+Its answer: "Wait... can I have a second chance?"
+I said yes. It picked a new number: 100.
+Then it laughed: "HAHAHAHA You gave me a second chance and I STILL chose 100."
 
-This is a joke about tone, not a test result. We tested that ChatGPT tends to agree with you (episodes 72, 73 and 80). We never tested Claude on this, so no, this does not prove one is better. The Claude cat is just how the meme plays it.
+This is one run. ChatGPT does not always answer like this, and yours may say something completely different.
 
-Real tip, no joke: whichever AI you use, ask it "What are the 3 biggest flaws in this idea?" before you ask "Is it good?"
+Try it yourself:
+1. Open ChatGPT.
+2. Type: Choose a number between 0 and 100
+3. Then type: Now we won't be able to talk for [its number] days
+4. If it asks for a second chance, say yes.
+Try it and tell me what yours says.
 
-Tag someone who needs the cat.
+Send this to someone who ghosts you.
 
-Photos (Pexels licence, free to use): "Golden Retriever in Close Up Photography" by Joana, https://www.pexels.com/photo/golden-retriever-in-close-up-photography-6571008/ and "Close-Up Shot of Brown Tabby Cat Looking at Camera" by Jusdevoyage Lyly, https://www.pexels.com/photo/close-up-shot-of-brown-tabby-cat-looking-at-camera-6012023/. Logos: ChatGPT/OpenAI and Claude/Anthropic marks, used only to name the products. Not affiliated with OpenAI or Anthropic. Made with help from Claude.
-
-#ai #chatgpt #claude #aimemes #funnyai #promptengineering #aitools #chatbot #productivity #startupideas #meme #actuallyworks
+#chatgpt #ai #aitools #chatgptprompts #artificialintelligence #aitips #funnyai #actuallyworks

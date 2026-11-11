@@ -1,0 +1,22 @@
+# ep90 final4 gate (no voice, no music bed: voice/music checks N/A; title checked via text-only stand-in hf4/index.html)
+index.html  28.30s  284 samples every 0.1s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  overlaps: none over 10px
+ep90-final4.mp4  1080x1920  30fps  28.30s  1.8MB
+  visual change: median 0.03s, longest 3.93s
+  loudness: -26.8 LUFS integrated, peak -6.0 dBFS, LRA 10.2 LU
+  loop seam: first vs last frame differ by 11.3/255
+
+  [BLOCKER] picture frozen 6.10s at 22.13-28.23s
+  [BLOCKER] black frames 1.23-1.60s
+  [BLOCKER] black frames 1.87-1.97s
+  [BLOCKER] black frames 4.83-8.63s
+  [BLOCKER] black frames 11.97-15.93s
+  [BLOCKER] black frames 17.43-21.27s
+  [BLOCKER] black frames 21.90-28.23s
+  [BLOCKER] -26.8 LUFS — target -14.0 +/-1.5
+  [warn]    28.3s is outside the 30-90s band
+  [warn]    picture nearly still 3.33s at 5.10-8.43s
+  [warn]    picture nearly still 3.57s at 12.20-15.77s
+  [warn]    picture nearly still 3.43s at 17.67-21.10s
+  [warn]    last frame is blank (mean luma 1.9)
