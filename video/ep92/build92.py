@@ -52,7 +52,7 @@ D = max(e5 + 1.0, END_T + END_HOLD) if s5 - e4 < 1.5 else max(D, END_T + END_HOL
 def src_at(t):
     if t < HOOK_END: return HOOK_SRC, "hook"
     if t < P0:
-        return HOOK_SRC - (HOOK_SRC - 0.5) * sstep((t - HOOK_END) / REWIND), "rew"
+        return HOOK_SRC - (HOOK_SRC - 4.3) * sstep((t - HOOK_END) / REWIND / 0.65), "rew"
     s = float(_SRCMAP(t))
     if 6.45 < s < 8.85: s = 6.45
     return s, "play"
@@ -129,7 +129,7 @@ def hook_alpha(t):
     return 1.0 - sstep((t - (HOOK_END - 0.38)) / 0.36) if t < HOOK_END else 0.0
 def end_alpha(t):
     a = sstep((t - END_T) / 0.5)
-    return a * (1.0 - sstep((t - (D - FINAL_FADE)) / FINAL_FADE))
+    return a * (1.0 - 0.30 * sstep((t - (D - FINAL_FADE)) / FINAL_FADE))
 def add_layer(canvas, layer, a):
     if a > 0.002: canvas[:] = canvas * (1 - layer[..., None] * a) + 250.0 * layer[..., None] * a
 def add_badge(canvas, a, cx, cy, bs=120):
@@ -160,6 +160,9 @@ def screen_img(s, mask=True):
 def compose(t, canvas, mask=True):
     s, mode = src_at(t)
     img = screen_img(s, mask)
+    if mode == "rew":                                   # quick rewind: the chat un-writes, then dissolves to the typed question (no black frames in between)
+        u = (t - HOOK_END) / REWIND; w = sstep((u - 0.35) / 0.65)
+        img = (img.astype(np.float32) * (1 - w) + screen_img(0.5, mask).astype(np.float32) * w).astype(np.uint8)
     z, fx, fy, ox, oy = cam(t)
     sc = scroll_at(s)
     fys = fy - sc                                 # focus in screen coords
@@ -169,7 +172,7 @@ def compose(t, canvas, mask=True):
     ea = end_alpha(t)
     # chat dims softly under the end card, then everything fades to black
     dim = 1.0 - 0.9 * sstep((t - END_T) / 0.6)
-    fade = 1.0 - sstep((t - (D - FINAL_FADE)) / FINAL_FADE)
+    fade = 1.0 - 0.40 * sstep((t - (D - FINAL_FADE)) / FINAL_FADE)      # soft fade to a dim end card (not to pure black)
     canvas[:] = out * dim * (fade if t > D - FINAL_FADE else 1.0)
     add_layer(canvas, HOOK_LAYER, hook_alpha(t))
     if ea > 0:

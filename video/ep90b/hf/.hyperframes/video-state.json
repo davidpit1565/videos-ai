@@ -81,13 +81,14 @@
   },
   "renders": {
     "latest": {
-      "id": "400a2b53-69f2-45c7-877c-2bab4c83a360",
-      "completedAt": 1794372900108,
+      "id": "84469005-b33a-406f-86bb-9cfc8aa40845",
+      "completedAt": 1794373998118,
       "output": "/tmp/r90b7.mp4",
       "status": "completed",
-      "revision": "b84eff4e-2933-4beb-8572-6a396757c5f5"
+      "revision": "5ab1344d-efe7-4324-9f9b-badc14cf8481"
     },
     "retainedRevisions": [
+      "5ab1344d-efe7-4324-9f9b-badc14cf8481",
       "b84eff4e-2933-4beb-8572-6a396757c5f5"
     ]
   },
