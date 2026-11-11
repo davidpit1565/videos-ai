@@ -84,7 +84,7 @@ css = f'''
 .lol1{{position:absolute;left:90px;top:730px;font-size:126px;line-height:140px;font-weight:900;letter-spacing:-.045em;color:{INK};white-space:nowrap;display:flex;align-items:baseline}} .hl_{{display:inline-block;opacity:0}} .em2{{margin-left:22px;font-size:104px}}
 .lol2{{position:absolute;left:90px;top:900px;font-size:66px;line-height:80px;font-weight:800;letter-spacing:-.025em;color:{INK};white-space:nowrap}} .lol2 .w{{margin-right:.14em}}
 .lol4,.lol3{{position:absolute;left:90px;top:985px;font-size:112px;line-height:124px;font-weight:900;letter-spacing:-.04em;color:{INK};white-space:nowrap}} .lol3 .w,.lol4 .w{{margin-right:.15em}} .lol4{{top:1105px;font-weight:900;letter-spacing:-.04em;color:{INK};white-space:nowrap}} .lol4 .em{{font-size:100px}}
-.f1,.f2,.f3,.f4{{font-size:176px;line-height:196px}} .f1{{top:340px}} .f2{{top:540px}} .f3{{top:740px}} .f4{{top:940px}} .f1 .w,.f2 .w,.f3 .w{{margin-right:.16em}}
+.f1,.f2,.f3,.f4{{font-size:152px;line-height:196px}} .f1{{top:340px}} .f2{{top:540px}} .f3{{top:740px}} .f4{{top:940px}} .f1 .w,.f2 .w,.f3 .w{{margin-right:.16em}}
 '''
 
 # ---------------------------------------------------------------- helpers
@@ -131,7 +131,7 @@ sfx("impactsoft.ogg", 0.04, -8); sfx("pop_a.ogg", Wd(1, 3), -9); sfx("tick.ogg",
 # ============================== S2 line 2: bubble, dots, 47 giant
 swap("#s1", "#s2", T2)
 js("tl.set('#me1,#ub1',{y:284},0);"); pop("#ub1", T2 + .08, .4, 30, 284); tag_in("#me1", T2 + .1); sfx("pop_a.ogg", T2 + .1, -9)
-slide(1, 3.15, 284); dots_run(1, 3.3, Wd(2, 9) - .3); tag_in("#at1", 3.3)
+slide(1, 2.95, 284, .5); dots_run(1, 3.5, Wd(2, 9) - .3); tag_in("#at1", 3.5)
 t47 = Wd(2, 9) - .1
 js(f"tl.set('#n47',{{opacity:1}},{T(t47)});")
 js(f"tl.fromTo('#n47',{{scale:.82,y:30,filter:'blur(8px)'}},{{scale:1,y:0,filter:'blur(0px)',duration:.45,ease:'expo.out',transformOrigin:'50% 55%',immediateRender:false}},{T(t47)});")
@@ -143,7 +143,7 @@ swap("#s2", "#s3", T3)
 js("tl.set('#me2,#ub2',{y:284},0);"); pop("#ub2", T3 + .08, .4, 30, 284); tag_in("#me2", T3 + .1); sfx("pop_a.ogg", T3 + .1, -9)
 js(f"tl.fromTo('#ul2',{{'--u':0}},{{'--u':1,duration:.4,ease:'power2.inOut',immediateRender:false}},{T(Wd(3, 6) - .05)});"); sfx("select.ogg", Wd(3, 6), -10)
 tb = Wd(4, 0) - .05
-slide(2, 7.25, 284); dots_run(2, 7.4, tb - .2); tag_in("#at2", 7.4)
+slide(2, 7.0, 284, .5); dots_run(2, 7.52, tb - .12); tag_in("#at2", 7.52)
 wordin("bw0", tb, 34, .26); sfx("ding.ogg", tb, -10); sfx("pop_b.ogg", tb + .05, -10)
 for idn, (n, i) in [("bw1", (4, 2)), ("bw2", (4, 3)), ("bw3", (4, 4)), ("bw4", (4, 5)), ("bw5", (4, 6)), ("bw6", (4, 7))]:
     wordin(idn, Wd(n, i) - .06, 34, .22); sfx("tick.ogg", Wd(n, i) - .06, -12)
@@ -155,7 +155,7 @@ sfx("pop_a.ogg", We(4, 7) + .05, -11)
 swap("#s3", "#s4", T4)
 js("tl.set('#me3,#ub3',{y:304},0);"); pop("#ub3", T4 + .08, .4, 30, 304); tag_in("#me3", T4 + .1); sfx("pop_a.ogg", T4 + .1, -9)
 t100 = Wd(5, 2) - .05
-slide(3, t100 - .45, 304, .5); tag_in("#at3", t100 - .12)
+slide(3, t100 - .5, 304, .45); tag_in("#at3", t100 - .05)
 js(f"tl.set('#n100',{{opacity:1}},{T(t100)});")
 js(f"tl.fromTo('#n100',{{scale:.86,y:30,filter:'blur(8px)'}},{{scale:1,y:0,filter:'blur(0px)',duration:.42,ease:'expo.out',transformOrigin:'0% 55%',immediateRender:false}},{T(t100)});")
 js(f"tl.fromTo('#heart',{{opacity:0,scale:.4,rotation:-20}},{{opacity:1,scale:1,rotation:8,duration:.5,ease:'back.out(1.5)',transformOrigin:'50% 60%',immediateRender:false}},{T(t100 + .2)});")
@@ -165,7 +165,7 @@ sfx("pop_b.ogg", t100, -8); sfx("ding.ogg", t100 + .05, -11); sfx("pop_a.ogg", t
 swap("#s4", "#s5", T5)
 js("tl.set('#me4,#ub4',{y:304},0);"); pop("#ub4", T5 + .08, .4, 30, 304); tag_in("#me4", T5 + .1); sfx("pop_a.ogg", T5 + .1, -9)
 tl_ = S_(6) - .24          # 'And it still ...' starts; laugh reply lands with it
-slide(4, T5 + .25, 304, .45); tag_in("#at4", tl_)
+slide(4, T5 + .15, 304, .4); tag_in("#at4", tl_)
 for i in range(8):
     js(f"tl.fromTo('#ha{i}',{{opacity:0,y:50,scale:.85}},{{opacity:1,y:0,scale:1,duration:.24,ease:'power3.out',immediateRender:false}},{T(tl_ + .06 + i * .03)});")
     if i % 3 == 0: sfx("pop_a.ogg", tl_ + .06 + i * .03, -11)

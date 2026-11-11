@@ -75,22 +75,22 @@ def pill(lbl, lg):
     d.text((x, pad + 17), lbl, font=f, fill=WHITE + (255,)); return im, pad, pw
 PILL_C, PADC, PWC = pill("Me with Claude", None)
 PILL_G, PADG, PWG = pill("Me with ChatGPT", gpt_logo_w)
-FS = 396   # large rounded-square faces next to the cards
+FS = 376   # large rounded-square faces next to the cards
 FCL = "/tmp/ep91v5/face_claude2.png"; FGP = "/tmp/ep91v5/face_gpt2.png"
 FACE_C = face(FCL, (0, 0, 520, 520), FS, FS, LIME); FACE_G = face(FGP, (0, 55, 373, 428), FS, FS, LIME)
-FW, FH = 460, 440
+FW, FH = 440, 420
 FACE_C2 = face(FCL, (0, 0, 520, 480), FW, FH, LIME); FACE_G2 = face(FGP, (0, 30, 373, 30 + 353), FW, FH, LIME)
 ROWS = [["Listen"], ["Understand"], ["Explain simply"], ["Give clear steps"], ["Find the best solution"]]
 FS_L = 54; fl = fnt(FB, FS_L); RH = 72; LH2 = 0
-CARD_H = 5 * RH + 26
+CARD_H = 5 * RH + 38
 CARD_C, CPAD = rrect((950, CARD_H), 40, WHITE + (255,), shadow=10)
 CARD_Y = 404
-FACE_Y = 820
+FACE_Y = 826
 def check(col):
     im = rgba((54, 54)); d = ImageDraw.Draw(im); d.rounded_rectangle((0, 0, 53, 53), 15, fill=col + (255,))
     d.line([(13, 28), (23, 38), (41, 17)], fill=WHITE + (255,), width=7, joint="curve"); return im
 CHK = check(INK)
-ROW_Y = [CARD_Y + 13 + i * RH for i in range(5)]
+ROW_Y = [CARD_Y + 18 + i * RH for i in range(5)]
 # ChatGPT scene starts arriving
 T_SW2 = s3 - 0.25                                      # ChatGPT scene leaves
 T_IN3 = T_SW2 + 0.30
@@ -143,17 +143,17 @@ def pill(lbl, lg):
     d.text((x, pad + 17), lbl, font=f, fill=WHITE + (255,)); return im, pad, pw
 PILL_C, PADC, PWC = pill("Me with Claude", None)
 PILL_G, PADG, PWG = pill("Me with ChatGPT", gpt_logo_w)
-FS = 396   # large rounded-square faces next to the cards
+FS = 376   # large rounded-square faces next to the cards
 FCL = "/tmp/ep91v5/face_claude2.png"; FGP = "/tmp/ep91v5/face_gpt2.png"
 FACE_C = face(FCL, (0, 0, 520, 520), FS, FS, LIME); FACE_G = face(FGP, (0, 55, 373, 428), FS, FS, LIME)
-FW, FH = 460, 440
+FW, FH = 440, 420
 FACE_C2 = face(FCL, (0, 0, 520, 480), FW, FH, LIME); FACE_G2 = face(FGP, (0, 30, 373, 30 + 353), FW, FH, LIME)
 ROWS = [["Listen"], ["Understand"], ["Explain simply"], ["Give clear steps"], ["Find the best solution"]]
 FS_L = 54; fl = fnt(FB, FS_L); RH = 72; LH2 = 0
-CARD_H = 5 * RH + 26
+CARD_H = 5 * RH + 38
 CARD_C, CPAD = rrect((950, CARD_H), 40, WHITE + (255,), shadow=10)
 CARD_Y = 404
-FACE_Y = 820
+FACE_Y = 826
 def check(col):
     im = rgba((54, 54)); d = ImageDraw.Draw(im); d.rounded_rectangle((0, 0, 53, 53), 15, fill=col + (255,))
     d.line([(13, 28), (23, 38), (41, 17)], fill=WHITE + (255,), width=7, joint="curve"); return im
@@ -169,7 +169,7 @@ nd.rounded_rectangle((npad + 30, npad + 68, npad + 30 + 46, npad + 68 + 46), 11,
 nd.line([(npad + 30 + 9, npad + 68 + 25), (npad + 30 + 19, npad + 68 + 35), (npad + 30 + 37, npad + 68 + 11)], fill=(70, 60, 30, 255), width=6)
 nd.text((npad + 92, npad + 62), "Do this simple thing", font=fnt(FX, 50), fill=(40, 34, 16, 255))
 NOTE = note.rotate(1.6, resample=Image.BICUBIC, expand=True)
-NOTE_Y = 392
+NOTE_Y = 380
 STEPS = ["Set up environment", "Configure everything", "Test and debug"]
 fs = fnt(FB, 56); SH = 88
 def step_img(i, txt):
@@ -178,7 +178,7 @@ def step_img(i, txt):
     nf = fnt(FK, 38); nb = str(i + 1); d.text((pad + 26 + 28 - tl(nb, nf) / 2, pad + 16 + 6), nb, font=nf, fill=INK + (255,))
     d.text((pad + 108, pad + 12), txt, font=fs, fill=INK + (255,)); return im, pad
 STEP_IM = [step_img(i, t) for i, t in enumerate(STEPS)]
-STEP_Y = [538, 636, 734]
+STEP_Y = [552, 648, 744]
 ARROW = rgba((1, 1))
 # CTA
 CTA = [["Send", "this", "to"], ["the", "friend", "who"], ["overcomplicates"], ["everything."]]
@@ -209,12 +209,12 @@ def frame(k):
         si = ss((t - T_STEPS) / 0.45)
         for i in range(3):
             im, pad = STEP_IM[i]; paste(canvas, im, PIX - pad, STEP_Y[i] - pad + dy + 18 * (1 - si), a2 * si)
-        fd = FACE_G.resize((int((FS + 16) * br), int((FS + 16) * br)), Image.LANCZOS); paste(canvas, fd, 540 - fd.width / 2, 838 + (FS + 16) / 2 - fd.height / 2 + dy, a2 * n2)
+        fd = FACE_G.resize((int((FS + 16) * br), int((FS + 16) * br)), Image.LANCZOS); paste(canvas, fd, 540 - fd.width / 2, 850 + (FS + 16) / 2 - fd.height / 2 + dy, a2 * n2)
     # ===== scene 3: CTA =====
     in3 = ss((t - T_IN3) / 0.3)
     if in3 > 0.003:
-        paste(canvas, FACE_C2, 65 + (FW + 16) / 2 + 0 - FACE_C2.width / 2 , 1010 - FACE_C2.height / 2 + 30 * (1 - in3), in3)
-        paste(canvas, FACE_G2, 1015 - (FW + 16) / 2 - FACE_G2.width / 2, 1010 - FACE_G2.height / 2 + 30 * (1 - in3), in3)
+        paste(canvas, FACE_C2, 65 + (FW + 16) / 2 + 0 - FACE_C2.width / 2 , 1022 - FACE_C2.height / 2 + 30 * (1 - in3), in3)
+        paste(canvas, FACE_G2, 1015 - (FW + 16) / 2 - FACE_G2.width / 2, 1022 - FACE_G2.height / 2 + 30 * (1 - in3), in3)
         times = {"send": wordt(3, "send"), "this": wordt(3, "this"), "to": wordt(3, "to"), "the": wordt(3, "the"), "friend": wordt(3, "friend"), "who": wordt(3, "who"),
                  "overcomplicates": wordt(3, "over"), "everything.": wordt(3, "everything")}
         for li, row in enumerate(CTA):
