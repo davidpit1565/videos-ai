@@ -2,58 +2,58 @@
  "lines": [
   {
    "n": 1,
-   "text": "Flagged as AI. Your own essay.",
+   "text": "Your teacher says AI wrote your essay. You wrote it.",
    "start": 0.08,
-   "end": 2.64
+   "end": 3.09
   },
   {
    "n": 2,
    "text": "Flagged? Do not argue. Bring proof.",
-   "start": 2.82,
-   "end": 5.47
+   "start": 3.27,
+   "end": 5.92
   },
   {
    "n": 3,
    "text": "Show your version history. Show your drafts. Ask what the error rate is.",
-   "start": 5.65,
-   "end": 9.28
+   "start": 6.1,
+   "end": 9.74
   },
   {
    "n": 4,
    "text": "Here's why. Turnitin says fewer than one in a hundred get flagged by mistake.",
-   "start": 9.46,
-   "end": 14.63
+   "start": 9.92,
+   "end": 15.08
   },
   {
    "n": 5,
    "text": "Vanderbilt University does the math. Seventy-five thousand submissions. About seven hundred fifty could have been flagged by mistake.",
-   "start": 15.48,
-   "end": 22.21
+   "start": 15.93,
+   "end": 22.67
   },
   {
    "n": 6,
    "text": "So Vanderbilt turns it off.",
-   "start": 22.39,
-   "end": 23.81
+   "start": 22.85,
+   "end": 24.27
   },
   {
    "n": 7,
    "text": "Stanford tests seven other tools. About six in ten essays by people still learning English get flagged.",
-   "start": 23.99,
-   "end": 29.75
+   "start": 24.45,
+   "end": 30.21
   },
   {
    "n": 8,
    "text": "Save this. Send it to a friend who writes essays.",
-   "start": 29.93,
-   "end": 32.43
+   "start": 30.39,
+   "end": 32.89
   },
   {
    "n": 9,
    "text": "Has an AI ever called your essay AI?",
-   "start": 33.28,
-   "end": 35.88
+   "start": 33.74,
+   "end": 36.34
   }
  ],
- "D": 36.88
+ "D": 37.34
 }

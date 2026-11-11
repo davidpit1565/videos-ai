@@ -10,6 +10,8 @@ s = lambda n: L[n][0]
 e = lambda n: L[n][1]
 wt = lambda n, f: round(L[n][0] + f * (L[n][1] - L[n][0]), 3)
 D = round(e(9) + 1.0, 2)
+HOOK_AI = 0.95   # refine from whisper words
+K = round(s(2) - 2.82, 3)   # shift of everything after line 1 (hardcoded word times below come from the first voice take)
 INK = "#0f0f0f"
 J = []; SFX = []
 def js(x): J.append(x)
@@ -63,7 +65,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .ln{{position:absolute;left:60px;height:30px;border-radius:15px;background:#d4d4d8;filter:blur(6px)}}
 .stamp{{position:absolute;left:100px;top:890px;width:880px;height:230px;border:14px solid {INK};border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-7deg);opacity:0}}
 .stamp b{{font-size:106px;line-height:110px;margin-top:10px;font-weight:900;letter-spacing:-.04em;white-space:nowrap}}
-.stamp i{{position:absolute;left:-14px;top:-104px;height:56px;padding:0 24px;background:{INK};color:#fff;font:700 34px/56px JBM,monospace;letter-spacing:.06em;font-style:normal;border-radius:6px}}
+.stamp i{{position:absolute;left:-14px;top:-122px;height:78px;padding:0 30px;background:{INK};color:#fff;font:700 46px/78px JBM,monospace;letter-spacing:.06em;font-style:normal;border-radius:6px}}
 .card{{position:absolute;left:100px;top:340px;width:880px;height:850px;background:#fbfbf8;border:4px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK}}}
 .ct{{position:absolute;left:50px;top:40px;font-size:128px;line-height:130px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}}
 .row{{position:absolute;left:50px;width:780px;height:170px;display:flex;align-items:center;gap:34px;opacity:0}}
@@ -75,7 +77,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .tnlogo{{position:absolute;left:100px;top:310px;width:880px;opacity:0}}
 .big1{{position:absolute;left:65px;top:560px;font-size:150px;line-height:150px;font-weight:900;letter-spacing:-.045em;opacity:0;white-space:nowrap}}
 .big2{{position:absolute;left:85px;top:735px;font-size:380px;line-height:340px;font-weight:900;letter-spacing:-.06em;opacity:0}}
-.num5{{position:absolute;left:65px;top:300px;font-size:240px;line-height:240px;font-weight:900;letter-spacing:-.05em;opacity:0;white-space:nowrap}}
+.num5{{position:absolute;left:88px;top:300px;font-size:240px;line-height:240px;font-weight:900;letter-spacing:-.05em;opacity:0;white-space:nowrap}}
 .n750{{font-size:270px}}
 .win{{position:absolute;left:100px;top:560px;width:880px;height:572px;background:#fff;border:4px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK};overflow:visible;opacity:0}}
 .win img{{position:absolute;left:0;top:0;width:880px;height:572px;display:block}}
@@ -93,39 +95,39 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 js(f"tl.fromTo('#cam',{{scale:1.0,y:0}},{{scale:1.03,y:-12,duration:{D},ease:'sine.inOut'}},0);")
 js("gsap.set('#s4,#s5,#s6,#s7',{opacity:1}); gsap.set('#tn,#why,#lt,#pc,#tg4,#n75,#n750,#win,#tg5,#tgl,#tg6,#h7,#tg7,.mini',{opacity:0});")
 # S1: stamp lands at once (voice starts ~0.08)
-t1 = s(1) + .02
+t1 = s(1) + HOOK_AI
 js(f"tl.fromTo('#stamp',{{opacity:0,y:-520,scale:1.25}},{{opacity:1,y:0,scale:1,duration:.34,ease:'expo.out'}},{t1:.3f});")
 js(f"tl.to('#sheet',{{x:-7,duration:.06,ease:'sine.out'}},{t1+.34:.3f});tl.to('#sheet',{{x:5,duration:.1,ease:'sine.inOut'}},{t1+.40:.3f});tl.to('#sheet',{{x:0,duration:.18,ease:'sine.out'}},{t1+.50:.3f});")
-js("tl.to('#ulp',{strokeDashoffset:0,duration:.5,ease:'sine.inOut'},1.45);")
+js("tl.to('#ulp',{strokeDashoffset:0,duration:.6,ease:'sine.inOut'},0.25);")
 sfx("impactpunch.ogg", t1 + .1, -3); sfx("subhit.ogg", t1 + .14, -6)
 fout("#s1", s(2) - .08, .3)
 # S2: card builds with the spoken items
 js(f"gsap.set('#card',{{opacity:0}});")
 fin("#card", s(2) - .02, .45, 40, 14, .96)
 sfx("whoosh_b.ogg", s(2) - .05, -9); sfx("pop_a.ogg", s(2) + .35, -8)
-for i, tr in enumerate((5.66, 6.98, 8.0)):
+for i, tr in enumerate((K+5.66, K+6.98, K+8.0)):
     fin(f"#q{i}", tr, .35, 34, 10)
     sfx("pop_b.ogg", tr + .05, -8)
 fout("#card", s(4) - .1, .3)
 # S4: Turnitin
 fin("#why", s(4) + .02, .3, 20, 8); fout("#why", s(4) + .85, .28, 10, -10)
-fin("#tn", 10.6, .4, 30, 10, .96); sfx("pop_a.ogg", 10.6 + .08, -8)
-fin("#lt", 11.5, .3, 24, 8)
-fin("#pc", 12.05, .45, 30, 10, .92); sfx("impactsoft.ogg", 12.05 + .1, -4)
-fin("#tg4", 13.3, .35, 16, 6); sfx("tick.ogg", 13.3 + .05, -8)
+fin("#tn", (K+10.6), .4, 30, 10, .96); sfx("pop_a.ogg", (K+10.6) + .08, -8)
+fin("#lt", (K+11.5), .3, 24, 8)
+fin("#pc", (K+12.05), .45, 30, 10, .92); sfx("impactsoft.ogg", (K+12.05) + .1, -4)
+fin("#tg4", (K+13.3), .35, 16, 6); sfx("tick.ogg", (K+13.3) + .05, -8)
 fout("#s4", s(5) - .1, .3)
 # S5: Vanderbilt real page
 fin("#win", s(5) + .05, .5, 40, 12, .97); sfx("whoosh_a.ogg", s(5), -9)
-fin("#n75", 17.8, .4, 30, 10); sfx("pop_b.ogg", 17.8 + .06, -6)
-js(f"tl.to('#rg1',{{strokeDashoffset:0,duration:.5,ease:'sine.inOut'}},17.8);")
-fout("#n75", 19.6, .25, 10, -10)
-fin("#n750", 19.72, .45, 30, 10, .92); sfx("impactsoft.ogg", 19.72 + .1, -4)
-js(f"tl.to('#rg2',{{strokeDashoffset:0,duration:.5,ease:'sine.inOut'}},19.72);")
-fin("#tg5", 20.9, .35, 16, 6); sfx("tick.ogg", 20.9 + .05, -8)
+fin("#n75", (K+17.8), .4, 30, 10); sfx("pop_b.ogg", (K+17.8) + .06, -6)
+js(f"tl.to('#rg1',{{strokeDashoffset:0,duration:.5,ease:'sine.inOut'}},{(K+17.8):.3f});")
+fout("#n75", (K+19.6), .25, 10, -10)
+fin("#n750", (K+19.72), .45, 30, 10, .92); sfx("impactsoft.ogg", (K+19.72) + .1, -4)
+js(f"tl.to('#rg2',{{strokeDashoffset:0,duration:.5,ease:'sine.inOut'}},{(K+19.72):.3f});")
+fin("#tg5", (K+20.9), .35, 16, 6); sfx("tick.ogg", (K+20.9) + .05, -8)
 fout("#s5", s(6) - .1, .3)
 # S6: switch ON -> OFF
-fin("#tgl", s(6) + .02, .4, 30, 10, .95); fin("#tg6", 22.7, .35, 16, 6)
-tf = 23.3
+fin("#tgl", s(6) + .02, .4, 30, 10, .95); fin("#tg6", (K+22.7), .35, 16, 6)
+tf = (K+23.3)
 js(f"tl.to('#knob',{{left:40,duration:.34,ease:'power3.inOut'}},{tf:.3f});tl.to('#onl',{{opacity:0,duration:.2}},{tf:.3f});tl.to('#ofl',{{opacity:1,color:'#0f0f0f',duration:.25}},{tf+.1:.3f});")
 sfx("toggle.ogg", tf + .12, -4); sfx("impactsoft.ogg", tf + .3, -8)
 fout("#s6", s(7) - .1, .3)
@@ -134,7 +136,7 @@ fin("#h7", s(7) + .02, .35, 24, 8); fin("#tg7", s(7) + .35, .35, 16, 6)
 for i in range(10):
     fin(f"#m{i}", s(7) + .3 + i * .05, .25, 20, 6)
 for k, i in enumerate((0, 2, 3, 5, 7, 8)):
-    ts = 26.45 + k * .13
+    ts = (K+26.45) + k * .13
     js(f"tl.fromTo('#ms{i}',{{opacity:0,scale:1.5}},{{opacity:1,scale:1,duration:.14,ease:'expo.out',immediateRender:false}},{ts:.3f});")
     sfx("tick.ogg" if k % 2 else "click_a.ogg", ts + .05, -8)
 fout("#s7", s(8) - .1, .3)

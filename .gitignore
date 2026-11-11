@@ -134,3 +134,7 @@ video/ep94/voice/narration-v3a-backup*
 video/ep94/voice/build-*.log
 video/ep94/out/gate-v[123].txt
 video/ep94/out/gain5-*.json
+video/ep94/out/ep94-v[45]*.mp4
+video/ep94/out/gate-v[45].txt
+video/ep94/voice/narration-v3b-backup*
+video/ep94/out/*.png
