@@ -53,16 +53,16 @@ markup = f'''
 </div>
 {tag(1, "PROMPT 1")}{curve(1, CV)}{c1}
 <div class="scene" id="sB1"><div class="ans47" id="a47b"><span class="sel big" id="sel47"><span id="t47">47</span></span></div>
- <div class="mini" id="mini1"><img src="assets/chatgpt.svg"></div></div>
+</div>
 {tag(2, "PROMPT 2")}{curve(2, CV)}{c2}
 <div class="scene" id="sB2"><div class="hk h2a" id="hb0"><span class="w" id="hb00">Wait...</span><span class="w" id="hb01">can</span><span class="w" id="hb02">I</span><span class="w" id="hb03">have</span></div>
  <div class="hk h2b" id="hb1"><span class="w" id="hb10">a</span><span class="w" id="hb11">second</span></div>
  <div class="hk h2c" id="hb2"><span class="sel" id="selB"><span class="w" id="hb20">chance?</span></span><span class="w" id="hb21">{EM("😔")}</span></div>
  <div class="ast" id="ast"><svg viewBox="0 0 100 100" width="100" height="100"><g stroke="{ORG}" stroke-width="13" stroke-linecap="round"><path d="M50 10 V90"/><path d="M15 30 L85 70"/><path d="M85 30 L15 70"/></g></svg></div>
- <div class="mini" id="mini2"><img src="assets/chatgpt.svg"></div></div>
+</div>
 {tag(3, "PROMPT 3")}{curve(3, CV)}{c3}
 <div class="scene" id="sC"><div class="hk h100" id="h100"><span class="w org" id="n100">100</span></div><div class="heart" id="heart">{EM("🧡")}</div>
- <div class="mini" id="mini3"><img src="assets/chatgpt.svg"></div></div>
+</div>
 {tag(4, "PROMPT 4")}{curve(4, CV)}{c4}
 <div class="rep dotsc" id="rep4" style="top:800px;height:430px"><div class="chd"><img class="chlogo" src="assets/chatgpt.svg"></div><div class="bigdots" id="bd"><b></b><b></b><b></b></div></div>
 <div class="scene" id="sE">
@@ -106,24 +106,24 @@ css = f'''
 .send{{width:88px;height:88px;border-radius:50%;background:#5c5d63;display:flex;align-items:center;justify-content:center}}
 .tag{{position:absolute;left:80px;top:296px;height:84px;padding:0 34px;background:#0b0b0b;color:#fff;font-family:JBM,monospace;font-weight:700;font-size:42px;letter-spacing:.04em;display:flex;align-items:center;border-radius:8px;z-index:30;opacity:0}}
 .curve{{position:absolute;left:0;top:0;width:1080px;height:1920px;z-index:25;opacity:0;pointer-events:none}}
-.ans47{{position:absolute;left:210px;top:905px;height:330px}} .sel.big{{font-size:400px;line-height:330px;font-weight:900;letter-spacing:-.06em;color:{INK};padding:0 10px}}
+.ans47{{position:absolute;left:65px;top:870px;height:330px}} .sel.big{{font-size:330px;line-height:330px;font-weight:900;letter-spacing:-.06em;color:{INK};padding:0 10px}}
 #mini1{{left:65px;top:960px}} #mini2{{left:65px;top:760px}} #mini3{{left:65px;top:760px}}
 .sel.big::before{{left:0;right:0;top:0;bottom:0;border-radius:0}}
 .h2a{{top:870px;font-size:100px;line-height:108px}} .h2b{{top:978px;font-size:100px;line-height:108px}} .h2c{{top:1086px;font-size:100px;line-height:114px;display:flex;align-items:baseline}}
 .h2a .w,.h2b .w{{margin-right:.22em}}
 .h2c .em{{font-size:96px;margin-left:24px}}
 .ast{{position:absolute;left:830px;top:880px;opacity:0}}
-.h100{{top:790px;font-size:420px;line-height:440px;letter-spacing:-.06em}}
-.heart{{position:absolute;left:770px;top:810px;font-size:170px;line-height:170px;opacity:0}}
+.h100{{top:775px;font-size:400px;line-height:420px;letter-spacing:-.06em}}
+.heart{{position:absolute;left:770px;top:800px;font-size:170px;line-height:170px;opacity:0}}
 .bigdots{{position:absolute;left:60px;top:200px;display:flex;gap:34px}} .bigdots b{{display:block;width:78px;height:78px;border-radius:50%;background:#f2f2ee;opacity:.35}}
 .rep.dotsc{{opacity:0}}
-.e1{{top:330px;font-size:150px;line-height:160px;white-space:nowrap}} .hl_{{display:inline-block;opacity:0}}
-.lol{{position:absolute;left:800px;top:285px;font-size:150px;line-height:150px;opacity:0;font-family:"Noto Color Emoji"}}
-.e2{{top:545px;font-size:66px;line-height:80px;font-weight:500;letter-spacing:-.02em}} .e2 .w{{margin-right:.1em}}
-.e3{{top:650px;font-size:150px;line-height:164px}} .e3 .w{{margin-right:.22em}}
-.e4{{top:860px;font-size:96px;line-height:260px;display:flex;align-items:baseline;gap:24px}}
-.e4 .l2b{{font-weight:500;letter-spacing:-.02em}} .e4 .n100{{font-size:250px;letter-spacing:-.06em;line-height:260px}} .e4 .em{{font-size:130px}}
-.ringE{{position:absolute;left:290px;top:880px;width:520px;height:280px;opacity:0}}
+.e1{{top:455px;font-size:146px;line-height:156px;white-space:nowrap}} .hl_{{display:inline-block;opacity:0}}
+.lol{{position:absolute;left:800px;top:298px;font-size:130px;line-height:130px;opacity:0;font-family:"Noto Color Emoji"}}
+.e2{{top:650px;font-size:66px;line-height:80px;font-weight:500;letter-spacing:-.02em}} .e2 .w{{margin-right:.1em}}
+.e3{{top:740px;font-size:150px;line-height:164px}} .e3 .w{{margin-right:.22em}}
+.e4{{top:925px;font-size:96px;line-height:240px;display:flex;align-items:baseline;gap:24px}}
+.e4 .l2b{{font-weight:500;letter-spacing:-.02em}} .e4 .n100{{font-size:250px;letter-spacing:-.06em;line-height:240px}} .e4 .em{{font-size:130px}}
+.ringE{{position:absolute;left:290px;top:945px;width:520px;height:280px;opacity:0}}
 '''
 
 # ------------------------------------------------------------- timeline helpers
@@ -185,7 +185,6 @@ type_in(ids1, tB1 + .55, .75)
 sendpulse("c1", tB1 + 1.45)
 js(f"tl.fromTo('#a47b',{{opacity:0,y:40}},{{opacity:1,y:0,duration:.01,immediateRender:false}},{T(tB1 + 1.7)});")
 js(f"tl.set('#sB1',{{opacity:1}},{T(tB1 + 1.69)});")
-js(f"tl.fromTo('#mini1',{{opacity:0,scale:.8}},{{opacity:1,scale:1,duration:.3,ease:'power3.out',immediateRender:false}},{T(tB1 + 1.7)});")
 sel_in("sel47", tB1 + 1.75, .4)
 js(f"tl.fromTo('#t47',{{scale:.9}},{{scale:1,duration:.35,ease:'expo.out',transformOrigin:'50% 60%',immediateRender:false}},{T(tB1 + 1.8)});")
 js(f"tl.fromTo('#a47b',{{y:0}},{{y:-10,duration:1.0,ease:'sine.inOut'}},{T(tB1 + 2.0)});")
@@ -199,7 +198,6 @@ js(f"tl.fromTo('#qw8,#qw9',{{'--u':0}},{{'--u':1,duration:.4,ease:'power2.inOut'
 sendpulse("c2", tB2 + 1.9)
 tH = tB2 + 2.2
 js(f"tl.set('#sB2',{{opacity:1}},{T(tH - .01)});")
-js(f"tl.fromTo('#mini2',{{opacity:0,scale:.8}},{{opacity:1,scale:1,duration:.3,ease:'power3.out',immediateRender:false}},{T(tH)});")
 for i, (idn, dt) in enumerate([("hb00", 0), ("hb01", .12), ("hb02", .22), ("hb03", .32), ("hb10", .44), ("hb11", .54), ("hb20", .7)]):
     wordin(idn, tH + dt, 40, .24); sfx("tick.ogg", tH + dt, -12)
 js(f"tl.fromTo('#hb21',{{opacity:0,scale:.5,rotation:-14}},{{opacity:1,scale:1,rotation:0,duration:.45,ease:'back.out(1.4)',transformOrigin:'50% 60%',immediateRender:false}},{T(tH + .95)});")
@@ -218,7 +216,6 @@ type_in(ids3, tC + .55, .3, clickg=-14)
 sendpulse("c3", tC + 1.05)
 t100 = tC + 1.35
 js(f"tl.set('#sC',{{opacity:1}},{T(t100 - .01)});")
-js(f"tl.fromTo('#mini3',{{opacity:0,scale:.8}},{{opacity:1,scale:1,duration:.3,ease:'power3.out',immediateRender:false}},{T(t100)});")
 js(f"tl.fromTo('#n100',{{opacity:0,y:50,scale:.9}},{{opacity:1,y:0,scale:1,duration:.6,ease:'sine.inOut',transformOrigin:'0% 60%',immediateRender:false}},{T(t100)});")
 js(f"tl.fromTo('#heart',{{opacity:0,scale:.4,rotation:-20}},{{opacity:1,scale:1,rotation:10,duration:.55,ease:'back.out(1.5)',transformOrigin:'50% 60%',immediateRender:false}},{T(t100 + .3)});")
 js(f"tl.to('#heart',{{y:-14,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1}},{T(t100 + .9)});")

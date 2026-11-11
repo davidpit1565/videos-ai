@@ -33,3 +33,29 @@ HOOK 76 | VIRALITY 70 | OVERALL 73 | PREDICTED VIEWS about 600-1,800 (ASSUMPTION
 
 ## Blind reader
 NOT run (no agent-spawn tool here). Please run a fresh agent on `video/ep90b/out/f0.png`: "what is this about?" and "would you stop, why?".
+
+---
+# FINAL2 (11.11.2026) - rebuilt in the ep89c "Miki" language (final1 was rejected: it looked like the older generic drawn style)
+
+File: `video/ep90b/out/ep90b-final2.mp4` (20.9 s) + `ep90b-final2-review720.mp4`; build `video/ep90b/build90b2.py`, mix `mix90b2.py`, runner `run2.sh` (final1 and its files untouched). Same REAL run (David's own ChatGPT, one run, redrawn; caption/YouTube text unchanged and still say so). No voice. A music bed from the real library + quiet sfx.
+
+## Beat sheet
+| t (s) | Picture |
+|---|---|
+| 0-3.3 hook | Real ChatGPT badge (icon alone). Heavy "ChatGPT" on frame 0, "47-day" gets a black selection bar (white text) at 0.18 s, "timeout." rises at 0.32 s. The begging line sits in a dark reply card (ChatGPT logo header) from frame 0 and builds word by word: "Wait..." on frame 0, then can / I / have / a / second / chance? / 😔 by 1.0 s; held to 3.3 s (about 2.3 s fully readable). Text on frame 0: 2 heavy lines + the card (the begging line is in a card, as asked). |
+| 3.3-5.7 | Soft scroll. Black tag "PROMPT 1" + dashed curve, dark prompt card types "Choose a number between 0 and 100" letter by letter, send button lights, then "47" appears huge inside a black selection bar (white digits). |
+| 5.7-10.7 | Card fades up/out, "PROMPT 2" card types "Now we won't be able to talk for 47 days" (hand-drawn white underline under "47 days"), send lights, then the begging line as black hero type built word by word, black selection bar on "chance?", an orange hand-drawn asterisk turning slowly; held about 2.8 s |
+| 10.7-13.3 | "PROMPT 3" card types "Yes", send lights, then "100" in orange (soft fade-up, no pop) with a floating 🧡 |
+| 13.3-15.9 | "PROMPT 4" card types "Fahhhhh", send lights, then a dark reply card with three big typing dots for about 1.3 s (music at near-silence, sfx off) |
+| 15.9-19.95 | The punchline: HAHAHAHA builds letter by letter with a wobbling 😆, "You gave me a second chance" word by word, "and I STILL" with a black selection bar on STILL, "chose 100 💀" with the orange ring on 100 fading in softly (scale 0.96 -> 1, no stroke drawing) and breathing; clean hold of 1.8 s after the ring is in |
+| 19.95-20.9 | Soft blur dissolve back to frame 0 (loop; first vs last frame differ by 1.0/255) |
+
+## Miki-rules checklist (insiderforce, from `channel/style-research-31-10.md` and ep89c)
+IN: light grey dotted grid with grain (static grid, slow vertical drift of the page); black heavy type built word by word (hook, begging line, punchline) with the rise-and-fade word entrance; dark rounded prompt card with a small black mono tag (PROMPT 1-4) and a dashed curve joining tag and card; letters typed into the card with a cursor; black selection bar with white text on key words (47-day, 47, chance?, STILL); hand-drawn underline (under "47 days") and an orange hand-drawn asterisk and ring; orange #D97757 as the one accent, only on "100" (digits and ring) and the asterisk; real ChatGPT icon badge alone; soft scrolls and blur dissolves only, ZERO black wipes; smooth eased motion, something moving at least every ~2 s (typing, drift, wobble, scroll).
+NOT IN / DIFFERENT: no star-shaped black blurred wipe at all (David: none is fine); no spoken voice-over; block structure is a story (one run), not "#N command name" tips; the screens are drawn placeholders of the real chat (the words are real); light connector words are not used on the hook (the heavy lines carry it); the word cadence is not tied to a voice, it is timed by the build.
+
+## Music (no voice, so the bed carries the feel) - details in `channel/music-notes.md`
+Best pick: `punchy--hip-hop-beat--themountain.mp3` (used in ep89c, no complaint). Ducking plan: full groove from 0.0 s (no slow fade-in), -8 dB "tender" dip while the begging hero is on screen (7.8-11.1 s), near-silence (-30 dB, sfx also off) during the typing dots (14.75-16.2 s), the groove returns with a +1.5 dB sting as the punchline lands, 1 s fade-out at the end. Previews with two other beds are in `video/ep90b/out/ep90b-final2-alt-A-720.mp4` (cinematic--dramatic--themountain, David loved it in ep85, but it is dramatic: may over-serious the joke) and `-alt-B-720.mp4` (punchy--trending-instagram-reels-music--delosound, lighter, same family as ep89c). Not heard by me.
+
+## Scores (judgements, not measurements)
+HOOK 78 | VIRALITY 72 | OVERALL 75 | PREDICTED VIEWS about 700-2,000 (ASSUMPTION), about 64-79 on the views scale. Higher than final1 because it now uses the style David and Roni already like (ep89c) and the hook builds word by word with the begging card visible from frame 0; still held back by: drawn placeholder screens, a small account, no voice to carry the first second, one run. Below the 90/95 bar in `score-calibration.md`; not inflated.

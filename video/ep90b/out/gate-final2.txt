@@ -1,0 +1,24 @@
+index.html  20.90s  105 samples every 0.2s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  within tolerance: 5px past the left line   #aC  "ChatGPT"
+  within tolerance: 5px past the left line   #a47  "47-day"
+  overlaps: none over 10px
+  within tolerance: 5px overlap  #g4 x .em
+====
+ep90b-final2.mp4  1080x1920  30fps  20.90s  4.8MB
+  visual change: median 0.03s, longest 4.60s
+  loudness: -17.3 LUFS integrated, peak -2.7 dBFS, LRA 7.4 LU
+  loop seam: first vs last frame differ by 1.0/255
+
+  [BLOCKER] -17.3 LUFS — target -14.0 +/-1.5
+  [warn]    20.9s is outside the 30-90s band
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 187.8, std 80.7)
+  ok        colour-card check not applicable (HyperFrames build, no cards)
+  ok        visual change every 0.03s median
+  ok        peak -2.7 dBFS
