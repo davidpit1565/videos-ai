@@ -9,6 +9,21 @@ Follow-up in the same chat. Important correction to how you should think about t
 - Text: all text is added by us in editing, never generated inside your video. Put text only inside the safe area x 65-1015 and y 269-1248 of the 1080x1920 frame, at most 3 short lines, and tell me exactly what text, in which position, in which style (we use a bold, clean sans-serif in white), at which second it appears and disappears. Never put text over the chat recording. The text must be gone before the recording starts.
 - Sound: the recording has only quiet sound effects (typing ticks, soft pops, a ding on the begging reply, silence before the punchline). Give the hook scene its own sound: either no voice or one short line with a neutral synthetic voice (not my voice), plus 1-3 small sound effects, with exact timings and levels in dB, and make sure the sound ends or ducks before the first sound effect of the recording at the cut.
 
+
+# Measured values of the real recording (use these exact numbers for the colour match)
+- Source: iPhone screen recording, 1206x2622 (portrait, ratio 0.46). In the final 1080x1920 frame it is scaled by height to 884x1920 and centred, with pure black bars left and right (the app is black, so the bars are invisible).
+- Background: pure black, RGB 0,0,0 (#000000). Nothing else is behind it.
+- User message bubbles: solid dark indigo/purple, RGB 32,24,78 (#20184E), rounded corners, light grey text.
+- Chat text: mid grey, about RGB 129,129,129 (#818181); we raise it toward near-white in the edit, so the final text will be light grey to white. ChatGPT's replies have no bubble, only text on black.
+- Keyboard and input bar: dark greys, RGB 42,42,42 (#2A2A2A) and 65,65,65 (#414141), with white-ish key labels.
+- Only accent colour in the whole recording: the soft blue-purple of the send button and the typing cursor. No red, no orange, no green.
+- The recording has no motion blur, no film grain, no vignette and no glow. Anything you add (grain, light) must be subtle so the cut does not look like two different videos.
+
+# Text we plan to put on the hook scene (propose better only if you have a clear reason)
+- Line 1: "Making ChatGPT crash out"
+- Line 2: "47 days." (a real number from the video; it adds specificity; it appears slightly after line 1)
+- Bold clean sans-serif, white, centred in the safe area, gone before the cut. Maximum 3 lines. Tell me the exact seconds.
+
 # What to deliver now
 1. The single best hook scene for this video (you choose; use the hook family "Making ChatGPT crash out" which I like, and tell me honestly if a different family would be stronger). 
 2. The complete video-generation prompt (and a negative list) tuned to the facts above, including the first frame, the last frame, the camera motion, the light, the grade, the duration, and 9:16. If you can generate the video, generate it. If you cannot, say so and give the prompt. If a generated clip is likely to look fake for this concept, say so and describe how to build it from real footage or a simple physical set.
