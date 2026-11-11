@@ -77,3 +77,10 @@ Scores (judgements): HOOK 78 | VIRALITY 68 | OVERALL 71 | PREDICTED VIEWS ~700 (
 - qa.py on final3: still reports the dark-UI blockers (black frames: mean luma < 8 on the real black UI; first frame luma 7.7; frozen 6.1 s at 22-28 s: reading hold of the last reply) and a loudness BLOCKER (-26.8 LUFS vs the -14 target) which is intended for a sfx-only file. Nothing was lifted or faked to pass. No text on screen, so the safe-area text check does not apply.
 - Weak points: nothing in the first frame says what the video is about in words (the badge + the real reply must do it); lower third empty; sound is very sparse and may feel dry on a phone; no blind-reader check was run.
 - Scores (judgements): HOOK 70 | VIRALITY 66 | OVERALL 68 | PREDICTED VIEWS ~600 (about 64 on the scale).
+
+---
+# FINAL4 (28.30 s) = final3 + ONE opening title (David via coordinator, second hook-research round)
+Only change vs final3: the ChatGPT badge (icon alone, 100 px, left) plus the title "Does your ChatGPT" / "beg too?" in off-white (247,247,242), no box, no shadow, in the band above the zoomed bubbles on frame 0 (x 65-985, y 408-650, inside the safe area, covers nothing of the chat). It holds with the opening zoom (1.4 s), fades 0.95-1.4 s before the pull-back so it never overlaps the moving chat. Picture, sound design (sfx only, no music bed), cuts, funny ending are the final3 ones (audio track copied byte-for-byte from final3). Build: video/ep92/build92d.py. Framing mirrors the proven 'Does your ChatGPT cave when you push?' test. Caption first line: "Does your ChatGPT beg too? Mine did, on one run." (present tense, honest one-run wording, no promise).
+Gate: safe-area check of the title clean (video/ep92/out/gate-final4.txt). qa.py still shows the same dark-UI blockers as final3 (black frames, first-frame luma, 6.1 s frozen reading hold, sfx-only loudness -26.8 LUFS); none fixed or faked.
+Weak: question hook asks the viewer something the video only answers from 1.4 s on; same empty lower third; no blind-reader check; audio not heard by me.
+Scores (judgements): HOOK 74 | VIRALITY 67 | OVERALL 70 | PREDICTED VIEWS ~650 (about 65 on the scale).
