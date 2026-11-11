@@ -17,3 +17,7 @@ Tomorrow, do that first walk at the time you picked.
 
 ## Status
 ChatGPT's answer to Prompt 1 is NOT yet available (needs David to paste it as text from a fresh ChatGPT chat). No video without it.
+
+## ChatGPT's real answer to Prompt 1 (David's screen recording 11.11.2026 04:52, saved by David in the chat, read from frames)
+"Put on your walking shoes and take a 10-minute walk today. That's it. Don't start with a complicated schedule, step goals, or expensive equipment. Your first goal is to make walking a daily habit, not to hit a particular distance. My recommendation: Pick a consistent time each day. / Walk for 10 minutes, even if you don't feel motivated. / Make it so easy that skipping feels harder than doing it. The rule: Never miss two days in a row. Start today. Build the habit first; increase the distance later."
+Count: ChatGPT 87 words, Claude 115 words. Both gave ONE main thing. RESULT: the test does NOT show ChatGPT overcomplicating (ChatGPT was shorter). The claim 'Claude simple, ChatGPT complicated' cannot be made from this test. Only the labelled joke image can say it, never as a test result.
