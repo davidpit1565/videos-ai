@@ -39,6 +39,12 @@ BRING PROOF: 1. Version history (Google Docs) 2. Your drafts and notes 3. Ask: w
 ## Hook candidates for the blind readers (11.11, after Meta AI round 2)
 A "Real essays get flagged as AI." / B "Wrongly flagged. Real essay." / C "Flagged as AI. Your own essay." (Meta AI's "Flagged as AI. You wrote it." never says "essay" in the first second). Rejected: "Turnitin flags real essays." (states as fact what we only have as Vanderbilt's estimate) and "Your essay gets flagged." (promises it happens to the viewer). Meta AI scene notes taken: one sheet instead of several, only the stamp moves in the first 2.5 s, 1% x 75,000 shown next to ~750, six of ten sheets stamped and no 61% on screen.
 
+## Blind-reader results (11.11.2026; one fresh sub-agent per hook, persona: 17-year-old ChatGPT/TikTok user, saw only a DESCRIPTION of frame 0 + first 1.5 s of voice; simulated readers, judgements not measurements)
+- A "Real essays get flagged as AI.": understood (real essays wrongly flagged, students accused). Stop scrolling: MAYBE ("looks like a basic explainer"). About me: partly. Open question: who flags (teacher? checker tool?) and is it new.
+- B "Wrongly flagged. Real essay.": understood (probably flagged as AI). MAYBE ("nothing makes me stay yet"). About me: partly. Product not named, "REAL ESSAY" twice reads repetitive, reader was guessing the topic.
+- C "Flagged as AI. Your own essay.": understood fully (own essay marked AI by a detector). MAYBE (still picture, only holds if the next second shows something). About me: YES (strongest). Wants "teacher"/"school" or the flagger named; the small REAL ESSAY tag is unclear.
+Read: all three pass comprehension, none gets a clear stop. Common gap: WHO flags (detector/teacher) is not in the first second, and frame 0 looks still. C is the most personal. Next: C plus a small "AI DETECTOR" tag on the stamp, REAL ESSAY tag bigger, motion in the first second.
+
 ## Concept checklist (6 items, honest)
 1. Surprising thing on the viewer's own account/phone: NO (a school situation, not their own screen).
 2. Curiosity gap only the video closes: PARTLY ("how wrong?" closes at 13 s).
