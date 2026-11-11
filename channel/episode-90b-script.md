@@ -137,3 +137,7 @@ Fahhhhh alone is on screen only about 0.4 s (the voice leaves no room); 100 abou
 
 ## Scores (judgements) and prediction
 HOOK 78 | VIRALITY 72 | OVERALL 76 (Meta rated final7 72; shorter and cleaner should help, but my scores did not predict views before). PREDICTED VIEWS about 800-2,500 (ASSUMPTION), about 65-80 on the scale. Log real 48 h / 72 h next to this.
+
+---
+# FINAL9 (11.11.2026) - fill-the-frame fix on final8 (final1-8 untouched)
+Files `video/ep90b/out/ep90b-final9.mp4` (17.47 s) + `-review720.mp4`, `cover-ep90b-v9.png`, `f0-v9.png`, `gate-final9.txt`; build `build90b9.py`, `mix90b9.py`, `run9.sh`. Change: every user bubble now starts centred vertically in the safe box (y 269-1248) and glides up (0.5 s, eased) when ChatGPT's answer arrives, so the bubble-only moments no longer leave the bottom 40% empty; the end card is 4 lines at 152 px (Send this / to someone / who ghosts / you.) spanning y 340-1140; "Wait..." now enters with the voice's "begged" (final8 used "It"), and a dots fade-out overlap bug (dots lingered under "Wait...") is fixed. Same gates as final8: safe_check PASS, qa PASS, voice_doctor PASS, voice_quality FAIL on line 6 (10.8 st, unchanged voice), accent SKIP. Still weak: the hook and the end card end near y 1100-1140 (about 100-150 px above the bottom of the safe box); Fahhhhh about 0.4 s; sheets viewed at 540-720 px, no live playback.

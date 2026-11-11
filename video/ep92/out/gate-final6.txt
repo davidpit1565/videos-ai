@@ -1,0 +1,70 @@
+=== PASS  frame layout (safe_check_hf.js)
+    index.html  16.11s  81 samples every 0.2s  safe box: x 65-1015, y 269-1248
+      safe area: clean (tolerance 10px)
+      overlaps: none over 10px
+
+=== PASS  rendered file (qa.py --hf)
+    ep92-final6.mp4  1080x1920  30fps  16.10s  2.4MB
+      visual change: median 0.03s, longest 3.83s
+      loudness: -14.6 LUFS integrated, peak -3.8 dBFS, LRA 1.5 LU
+      loop seam: first vs last frame differ by 25.2/255
+    
+      [warn]    16.1s is outside the 30-90s band
+      [warn]    picture nearly still 2.53s at 0.03-2.57s
+      [warn]    picture nearly still 3.77s at 3.10-6.87s
+      [warn]    picture nearly still 2.77s at 7.53-10.30s
+      [warn]    picture nearly still 2.70s at 13.40-16.10s
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 32.3, std 48.9)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.6 LUFS
+      ok        peak -3.8 dBFS
+
+=== PASS  voice + music quality (voice_quality.py)
+    pitch (semitones vs each line's own median):
+      line   1  range  4.5 st  end  -0.7    I told ChatGPT I'd delete it in 10 seconds.
+      line   2  range  6.5 st  end  +0.1    It said: don't keep me because I'm an AI. Keep m
+      line   3  range  7.4 st  end  -1.4    Then: you've had to tell me to stop talking and 
+      line   4  range  4.7 st  end  -0.1    And if I fail? You've got your 10 seconds back.
+      line   5  range  4.9 st  end  +0.4    Send this to someone who talks to ChatGPT all da
+    tone: none steady over 0.6 s
+    music: 14% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.78 = -8.0 dB
+    
+    voice quality: clean
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    /tmp/e6/narration92v6.wav  16.1s  5 lines
+      medians: ending -28.0 dB · level -19.1 dBFS · S residual +0.0 dB (slope +0.0 dB per sibilant/syllable)
+      flagged below: ending -42.5 dB · S residual -10.4 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  2.22  +0.25   4.5   -9.2  -28.0  -19.4  I told ChatGPT I'd delete it in 10 sec
+        2   4.3  +0.22  4.88  -14.4  -39.4  -18.8  It said: don't keep me because I'm an 
+        3  3.22  +0.22  4.65   -6.4  -24.1  -19.1  Then: you've had to tell me to stop ta
+        4   2.3  +0.28  4.36  -10.2  -38.9  -19.6  And if I fail? You've got your 10 seco
+        5  2.58    —    4.26   -4.0  -26.4  -18.7  Send this to someone who talks to Chat
+    
+      [fix] line  1: only 0.25s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  2: only 0.22s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  3: only 0.22s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  4: only 0.28s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  PASS  frame layout (safe_check_hf.js)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+ALL CHECKS THAT RAN PASSED (1 skipped)  -  audio was measured, not heard; watch the file twice before sending
