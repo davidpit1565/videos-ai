@@ -11,7 +11,7 @@
 === PASS  rendered file (qa.py --hf)
     ep90b-final9.mp4  1080x1920  30fps  17.47s  2.3MB
       visual change: median 0.03s, longest 2.87s
-      loudness: -14.0 LUFS integrated, peak -4.7 dBFS, LRA 1.7 LU
+      loudness: -14.0 LUFS integrated, peak -4.5 dBFS, LRA 1.7 LU
       loop seam: first vs last frame differ by 0.6/255
     
       [warn]    17.5s is outside the 30-90s band
@@ -25,7 +25,7 @@
       ok        colour-card check not applicable (HyperFrames build, no cards)
       ok        visual change every 0.03s median
       ok        -14.0 LUFS
-      ok        peak -4.7 dBFS
+      ok        peak -4.5 dBFS
 
 === FAIL  voice + music quality (voice_quality.py) (exit 1)
     pitch (semitones vs each line's own median):

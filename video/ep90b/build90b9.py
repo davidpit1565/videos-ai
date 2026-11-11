@@ -142,8 +142,8 @@ sfx("pop_b.ogg", t47, -8); sfx("impactsoft.ogg", t47 + .04, -9); sfx("ding.ogg",
 swap("#s2", "#s3", T3)
 js("tl.set('#me2,#ub2',{y:284},0);"); pop("#ub2", T3 + .08, .4, 30, 284); tag_in("#me2", T3 + .1); sfx("pop_a.ogg", T3 + .1, -9)
 js(f"tl.fromTo('#ul2',{{'--u':0}},{{'--u':1,duration:.4,ease:'power2.inOut',immediateRender:false}},{T(Wd(3, 6) - .05)});"); sfx("select.ogg", Wd(3, 6), -10)
-tb = Wd(4, 0) - .05
-slide(2, 7.0, 284, .5); dots_run(2, 7.52, tb - .12); tag_in("#at2", 7.52)
+tb = Wd(4, 1) - .05
+slide(2, 7.0, 284, .5); dots_run(2, 7.45, tb - .1); tag_in("#at2", 7.45)
 wordin("bw0", tb, 34, .26); sfx("ding.ogg", tb, -10); sfx("pop_b.ogg", tb + .05, -10)
 for idn, (n, i) in [("bw1", (4, 2)), ("bw2", (4, 3)), ("bw3", (4, 4)), ("bw4", (4, 5)), ("bw5", (4, 6)), ("bw6", (4, 7))]:
     wordin(idn, Wd(n, i) - .06, 34, .22); sfx("tick.ogg", Wd(n, i) - .06, -12)
