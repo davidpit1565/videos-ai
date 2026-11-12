@@ -160,3 +160,16 @@ video/ep94/voice/s8-*
 video/ep94/voice/t3-*
 video/ep94/out/ep94-v8-nobed*.mp4
 video/ep94/voice/narration-v3*-backup*
+video/ep94/out/ep94-v1[01].mp4
+video/ep94/out/ep94-v1[01]-720.mp4
+video/ep94/out/ep94-v12.mp4
+video/ep94/out/ep94-v12-720.mp4
+video/ep94/out/gate-v1[01].txt
+video/ep94/out/ep94-v10-nobed*.mp4
+video/ep94/out/ep94-v11-nobed*.mp4
+video/ep94/voice/narr-b*
+video/ep94/voice/z7-*
+video/ep94/voice/n-*
+video/ep94/voice/accent-*
+video/ep94/voice/narration-v5a-backup*
+video/ep94/build94-v4-backup.py

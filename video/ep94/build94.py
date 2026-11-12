@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
 """ep94 'Flagged as AI. Your own essay.' full reel, Miki style, script v3 (card early, facts, card again, loop).
-Reads voice/narration-v4-raw-cues.json (line start/end) -> hf/index.html, sfx94.json, cues94.json. Word times inside a line are FRACTIONS of the line (refine with whisper words later)."""
+Reads voice/narration-v5-raw-cues.json (line start/end) -> hf/index.html, sfx94.json, cues94.json. Word times inside a line are FRACTIONS of the line (refine with whisper words later)."""
 import json, os, re
 H_ = os.path.dirname(os.path.abspath(__file__))
-C = json.load(open(H_ + "/voice/narration-v4-raw-cues.json"))
+C = json.load(open(H_ + "/voice/narration-v5-raw-cues.json"))
 C = C if isinstance(C, list) else C["lines"]
 L = {c["n"]: (c["start"], c["end"]) for c in C}
 s = lambda n: L[n][0]
 e = lambda n: L[n][1]
 wt = lambda n, f: round(L[n][0] + f * (L[n][1] - L[n][0]), 3)
-D = round(e(9) + 1.0, 2)
-HOOK_AI = 0.95   # fallback; real value from words
-K = round(s(2) - 2.82, 3)
-K3 = round(s(3) - 5.65, 3); K4 = round(s(4) - 9.46, 3); K5 = round(s(5) - 15.48, 3); K6 = round(s(6) - 22.39, 3); K7 = round(s(7) - 23.99, 3)  # per-block shifts vs the first voice take   # shift of everything after line 1 (hardcoded word times below come from the first voice take)
+D = round(e(8) + 1.0, 2)
 INK = "#0f0f0f"
 J = []; SFX = []
 def js(x): J.append(x)
@@ -25,7 +22,7 @@ def fout(sel, t, d=.3, blur=14, y=-20):
 
 
 try:
-    WORDS = json.load(open(H_ + "/voice/words-v4.json"))
+    WORDS = json.load(open(H_ + "/voice/words-v5.json"))
 except Exception:
     WORDS = []
 def W(word, k=0, after=0.0, default=None):
@@ -47,10 +44,13 @@ markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam">
  <div id="s1">
-  <div class="hd" id="hd"><span class="w" id="w1">YOUR</span><span class="w" id="w2">OWN</span><span class="br"></span><span class="w" id="w3">ESSAY</span>
-   <svg class="ul" viewBox="0 0 620 40" preserveAspectRatio="none"><path id="ulp" d="M6 24 C 100 6, 200 34, 320 18 S 520 8, 614 20" pathLength="1" stroke="{INK}" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg></div>
-  <div class="sheet" id="sheet"><div class="ln" style="top:50px;width:420px"></div><div class="ln" style="top:110px;width:700px"></div><div class="ln" style="top:170px;width:640px"></div><div class="ln" style="top:330px;width:690px"></div><div class="ln" style="top:390px;width:520px"></div></div>
-  <div class="stamp" id="stamp"><i>COMPUTER SAYS</i><b>AI WROTE THIS</b></div>
+  <div class="pg" id="pg"></div>
+  <div class="who" id="who">TEACHER</div>
+  <div class="bub" id="bub">I think <b>AI</b> wrote your <b>essay</b>.</div>
+  <div class="exm" id="exm">EXAMPLE MESSAGE</div>
+  <div class="yw" id="yw"><span id="yw1">YOU</span><span id="yw2">WROTE</span><span id="yw3">IT.</span></div>
+  <div class="t3" id="t3">3 THINGS PROVE IT</div>
+  <div class="bx" id="bx"><i id="bx1"></i><i id="bx2"></i><i id="bx3"></i></div>
  </div>
  {card("card", "q")}
  <div id="s4"><div class="why" id="why">HERE'S WHY</div><img class="tnlogo" id="tn" src="assets/turnitin.svg">
@@ -60,7 +60,7 @@ markup = f'''
    <svg class="rings" viewBox="0 0 880 572"><rect id="rg1" x="-6" y="237" width="177" height="44" rx="10" pathLength="1" fill="none" stroke="{INK}" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/><rect id="rg2" x="58" y="277" width="320" height="44" rx="10" pathLength="1" fill="none" stroke="{INK}" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg></div></div>
   <div class="tag" id="tg5" style="top:1155px;left:100px">VANDERBILT'S OWN ESTIMATE</div></div>
  <div id="s6"><div class="tgl" id="tgl"><span class="onl" id="onl">ON</span><span class="ofl" id="ofl">OFF</span><div class="knob" id="knob"></div></div><div class="tag" id="tg6" style="top:850px;left:100px">VANDERBILT · AUG 2023</div></div>
- <div id="s7"><div class="h7" id="h7">7 OTHER TOOLS</div><div class="grid7">{sheets}</div><div class="tag" id="tg7" style="top:1110px;left:100px">TURNITIN NOT TESTED</div></div>
+ <div id="s7"><div class="h7" id="h7">7 OTHER TOOLS</div><div class="grid7">{sheets}</div><div class="tag" id="tg7" style="top:1110px;left:100px">91 ESSAYS · TURNITIN NOT TESTED</div></div>
  {card("card2", "p")}
  <div class="tag" id="tgs" style="top:292px;left:100px;z-index:60">SAVE THIS</div>
 </div>
@@ -73,14 +73,15 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 #cam{{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}}
 #s1,#s4,#s5,#s6,#s7{{position:absolute;left:0;top:0;width:1080px;height:1920px}}
 #s4,#s5,#s6,#s7,#card,#card2,#tgs{{opacity:0}}
-.hd{{position:absolute;left:75px;top:335px;width:950px;font-size:176px;line-height:176px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}}
-.hd .w{{display:inline-block;margin-right:34px}} .hd .br{{display:block;height:0}}
-.hd .ul{{position:absolute;left:0;top:326px;width:620px;height:40px}}
-.sheet{{position:absolute;left:110px;top:760px;width:860px;height:470px;background:#fbfbf8;border:4px solid {INK};border-radius:6px;box-shadow:14px 14px 0 {INK}}}
-.ln{{position:absolute;left:60px;height:30px;border-radius:15px;background:#d4d4d8;filter:blur(6px)}}
-.stamp{{position:absolute;left:100px;top:890px;width:880px;height:230px;border:14px solid {INK};border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-7deg);opacity:0}}
-.stamp b{{font-size:106px;line-height:110px;margin-top:10px;font-weight:900;letter-spacing:-.04em;white-space:nowrap}}
-.stamp i{{position:absolute;left:-14px;top:-122px;height:78px;padding:0 30px;background:{INK};color:#fff;font:700 46px/78px JBM,monospace;letter-spacing:.06em;font-style:normal;border-radius:6px}}
+.pg{{position:absolute;left:60px;top:285px;width:960px;height:960px;background:#fbfbf8 repeating-linear-gradient(0deg,transparent 0,transparent 63px,#dedcd4 63px,#dedcd4 66px);border:4px solid {INK};border-radius:6px;box-shadow:14px 14px 0 {INK}}}
+.who{{position:absolute;left:90px;top:318px;height:56px;padding:0 24px;background:{INK};color:#fff;font:700 40px/56px JBM,monospace;letter-spacing:.06em;border-radius:6px}}
+.bub{{position:absolute;left:90px;top:384px;width:900px;padding:22px 30px;background:#fff;border:5px solid {INK};border-radius:28px;font-size:66px;line-height:74px;font-weight:500;letter-spacing:-.02em;box-shadow:8px 8px 0 {INK}}}
+.bub b{{font-weight:900}}
+.exm{{position:absolute;left:96px;top:598px;font:700 30px/34px JBM,monospace;letter-spacing:.06em;color:#55565c}}
+.yw{{position:absolute;left:90px;top:630px;font-size:180px;line-height:164px;font-weight:900;letter-spacing:-.05em}}
+.yw span{{display:block;opacity:.14}}
+.t3{{position:absolute;left:90px;top:1150px;height:60px;padding:0 24px;background:{INK};color:#fff;font:700 38px/60px JBM,monospace;letter-spacing:.05em;border-radius:6px;opacity:0}}
+.bx{{position:absolute;left:560px;top:1152px;display:flex;gap:18px;opacity:0}} .bx i{{display:block;width:56px;height:56px;border:5px dashed {INK};border-radius:8px;background:#fbfbf8}}
 .card{{position:absolute;left:100px;top:340px;width:880px;height:850px;background:#fbfbf8;border:4px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK}}}
 .ct{{position:absolute;left:50px;top:40px;font-size:128px;line-height:130px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}}
 .row{{position:absolute;left:50px;width:780px;height:170px;display:flex;align-items:center;gap:34px;opacity:0}}
@@ -109,27 +110,43 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .mst{{position:absolute;left:8px;top:100px;width:130px;height:62px;border:7px solid {INK};border-radius:8px;font-size:44px;line-height:48px;font-weight:900;text-align:center;transform:rotate(-8deg);background:rgba(251,251,248,.9);opacity:0}}
 '''
 
-t_show1 = W("show", 0, default=K3+5.66); t_show2 = W("show", 1, default=K3+6.98); t_ask = W("ask", 0, default=K3+8.0)
-t_tn = W("turnitin", default=K4+10.7) - .1
-t_less = W("less", after=t_tn, default=K4+11.5); t_one = W("one", after=t_less, default=K4+12.05); t_hund = W("hundred", after=t_one, default=K4+13.0) + .15
-t_75 = W("75", after=s(5), default=K5+17.8); t_750 = W("750", after=t_75, default=K5+19.72); t_could = W("could", after=t_750, default=K5+20.9)
-t_mist = W("mistake", after=t_750, default=K5+21.5); t_out = t_mist + .5
-t_off = W("off", after=s(6), default=K6+23.5) - .05
-t_six = W("six", after=s(7), default=K7+26.45) - .05
+t_show1 = W("show", 0, default=1.0); t_show2 = W("show", 1, default=1.0); t_ask = W("ask", 0, default=1.0)
+t_tn = W("turnitin", default=1.0) - .1
+t_less = W("less", after=t_tn, default=1.0); t_one = W("one", after=t_less, default=1.0); t_hund = W("hundred", after=t_one, default=1.0) + .15
+t_75 = W("75", after=s(5), default=1.0); t_750 = W("750", after=t_75, default=1.0); t_could = W("could", after=t_750, default=1.0)
+t_mist = W("mistake", after=t_750, default=1.0); t_out = t_mist + .5
+t_off = W("off", after=s(6), default=1.0) - .05
+t_six = W("six", after=s(2), default=1.0) - .05
+t_you = W("you", 0, default=2.4); t_wrote = W("wrote", 1, default=2.7); t_it = W("it", 0, after=t_wrote, default=3.0); t_three = W("three", 0, default=3.4); t_things = W("things", 0, after=t_three, default=3.7); t_prove = W("prove", 0, after=t_things, default=4.0)
 # ------------------------------------------------------------------ timeline
 js(f"tl.fromTo('#cam',{{scale:1.0,y:0}},{{scale:1.03,y:-12,duration:{D},ease:'sine.inOut'}},0);")
 js("gsap.set('#s4,#s5,#s6,#s7',{opacity:1}); gsap.set('#tn,#why,#lt,#pc,#tg4,#n75,#n750,#win,#tg5,#tgl,#tg6,#h7,#tg7,.mini',{opacity:0});")
-# S1: stamp lands at once (voice starts ~0.08)
-t1 = (W('ai', 0, default=s(1)+HOOK_AI+.1) - .12)
-js(f"tl.fromTo('#stamp',{{opacity:0,y:-520,scale:1.25}},{{opacity:1,y:0,scale:1,duration:.34,ease:'expo.out'}},{t1:.3f});")
-js(f"tl.to('#sheet',{{x:-7,duration:.06,ease:'sine.out'}},{t1+.34:.3f});tl.to('#sheet',{{x:5,duration:.1,ease:'sine.inOut'}},{t1+.40:.3f});tl.to('#sheet',{{x:0,duration:.18,ease:'sine.out'}},{t1+.50:.3f});")
-js("tl.to('#ulp',{strokeDashoffset:0,duration:.6,ease:'sine.inOut'},0.25);")
-sfx("impactpunch.ogg", t1 + .1, -3); sfx("subhit.ogg", t1 + .14, -6)
+# S1: hook = teacher message over an essay page; words fill with the voice; tag + three empty boxes (open loop)
+js("gsap.set('#exm,#t3,#bx',{opacity:0});")
+js("tl.to('#bub',{x:-9,duration:.05,ease:'sine.inOut'},.25);tl.to('#bub',{x:8,duration:.07,ease:'sine.inOut'},.3);tl.to('#bub',{x:-5,duration:.07,ease:'sine.inOut'},.37);tl.to('#bub',{x:0,duration:.1,ease:'sine.out'},.44);")
+sfx("impactsoft.ogg", .27, -6); sfx("pop_a.ogg", .32, -9)
+fin("#exm", .9, .35, 10, 4)
+for nm, tt in (("yw1", t_you), ("yw2", t_wrote), ("yw3", t_it)):
+    js(f"tl.to('#{nm}',{{opacity:1,duration:.3,ease:'sine.out'}},{tt-.05:.3f});")
+    sfx("impactsoft.ogg", tt + .02, -7)
+fin("#t3", t_three, .35, 14, 6); fin("#bx", t_three + .1, .3, 10, 4)
+for k, tt in enumerate((t_three + .15, t_things + .05, t_prove + .05)):
+    js(f"tl.fromTo('#bx{k+1}',{{scale:1}},{{scale:1.25,duration:.18,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'}},{tt:.3f});")
+    sfx("tick.ogg", tt, -8)
 fout("#s1", s(2) - .08, .3)
-# S2: card builds with the spoken items
+# S2 (line 2): the surprising fact first: Stanford, 6 of 10 sheets called AI
+fin("#h7", s(2) + .02, .35, 24, 8); fin("#tg7", s(2) + .4, .35, 16, 6)
+for i in range(10):
+    fin(f"#m{i}", s(2) + .35 + i * .05, .25, 20, 6)
+for k, i in enumerate((0, 2, 3, 5, 7, 8)):
+    ts = t_six + k * .13
+    js(f"tl.fromTo('#ms{i}',{{opacity:0,scale:1.5}},{{opacity:1,scale:1,duration:.14,ease:'expo.out',immediateRender:false}},{ts:.3f});")
+    sfx("tick.ogg" if k % 2 else "click_a.ogg", ts + .05, -8)
+fout("#s7", s(3) - .1, .3)
+# S3 (line 3): the card builds with the spoken items
 js(f"gsap.set('#card',{{opacity:0}});")
-fin("#card", s(2) - .02, .45, 40, 14, .96)
-sfx("whoosh_b.ogg", s(2) - .05, -9); sfx("pop_a.ogg", s(2) + .35, -8)
+fin("#card", s(3) - .02, .45, 40, 14, .96)
+sfx("whoosh_b.ogg", s(3) - .05, -9); sfx("pop_a.ogg", s(3) + .35, -8)
 for i, tr in enumerate((t_show1, t_show2, t_ask)):
     fin(f"#q{i}", tr - .05, .3, 24, 8)
     nl = len(ROWS[i][1]); span = 0.34 + 0.045 * nl
@@ -165,26 +182,15 @@ tf = t_off
 js(f"tl.to('#knob',{{left:40,duration:.34,ease:'power3.inOut'}},{tf:.3f});tl.to('#onl',{{opacity:0,duration:.2}},{tf:.3f});tl.to('#ofl',{{opacity:1,color:'#0f0f0f',duration:.25}},{tf+.1:.3f});")
 sfx("toggle.ogg", tf + .12, -4); sfx("impactsoft.ogg", tf + .3, -8)
 fout("#s6", s(7) - .1, .3)
-# S7: Stanford
-fin("#h7", s(7) + .02, .35, 24, 8); fin("#tg7", s(7) + .35, .35, 16, 6)
-for i in range(10):
-    fin(f"#m{i}", s(7) + .3 + i * .05, .25, 20, 6)
-for k, i in enumerate((0, 2, 3, 5, 7, 8)):
-    ts = t_six + k * .13
-    js(f"tl.fromTo('#ms{i}',{{opacity:0,scale:1.5}},{{opacity:1,scale:1,duration:.14,ease:'expo.out',immediateRender:false}},{ts:.3f});")
-    sfx("tick.ogg" if k % 2 else "click_a.ogg", ts + .05, -8)
-fout("#s7", s(8) - .1, .3)
 # S8: card returns with SAVE THIS
 js("gsap.set('#card2 .row,#card2 .L',{opacity:1});")
-fin("#card2", s(8) - .02, .45, 40, 14, .96); fin("#tgs", s(8) + .25, .3, 14, 6)
-sfx("whoosh_b.ogg", s(8) - .05, -9); sfx("ding.ogg", s(8) + .45, -9)
-js(f"tl.fromTo('#card2',{{y:0}},{{y:-14,duration:{s(9)-s(8)+.1:.3f},ease:'sine.inOut'}},{s(8)+.4:.3f});")
-fout("#card2,#tgs", s(9) - .1, .3)
-# S9: loop back to the first frame (heading + sheet, stamp removed at the very end)
-js(f"tl.fromTo('#s1',{{opacity:0,filter:'blur(14px)'}},{{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false}},{s(9)-.02:.3f});")
-js(f"tl.set('#stamp',{{opacity:1,y:0,scale:1}},{s(9)-.03:.3f});")
-js(f"tl.to('#stamp',{{opacity:0,duration:.25,ease:'sine.in'}},{D-.45:.3f});")
-sfx("whoosh_c.ogg", s(9) - .05, -10)
+fin("#card2", s(7) - .02, .45, 40, 14, .96); fin("#tgs", s(7) + .25, .3, 14, 6)
+sfx("whoosh_b.ogg", s(7) - .05, -9); sfx("ding.ogg", s(7) + .45, -9)
+js(f"tl.fromTo('#card2',{{y:0}},{{y:-14,duration:{s(8)-s(7)+.1:.3f},ease:'sine.inOut'}},{s(7)+.4:.3f});")
+fout("#card2,#tgs", s(8) - .1, .3)
+# S8: loop back to the hook frame while the question is asked
+js(f"tl.fromTo('#s1',{{opacity:0,filter:'blur(14px)'}},{{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false}},{s(8)-.02:.3f});")
+sfx("whoosh_c.ogg", s(8) - .05, -10)
 JS = "\n".join(J)
 json.dump(SFX, open(H_ + "/sfx94.json", "w"), indent=1)
 json.dump(dict(lines=[dict(n=c["n"], text=c["line"], start=c["start"], end=c["end"]) for c in C], D=D), open(H_ + "/cues94.json", "w"), indent=1)

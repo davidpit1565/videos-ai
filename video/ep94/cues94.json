@@ -2,58 +2,52 @@
  "lines": [
   {
    "n": 1,
-   "text": "A computer says AI wrote your essay. You wrote it.",
+   "text": "Your teacher thinks AI wrote your essay. You wrote it. Three things prove it.",
    "start": 0.08,
-   "end": 3.15
+   "end": 4.4
   },
   {
    "n": 2,
-   "text": "Do not argue. Bring proof.",
-   "start": 3.33,
-   "end": 5.32
+   "text": "Here's why you need them. In one test, six in ten essays by people still learning English were called AI.",
+   "start": 4.58,
+   "end": 10.02
   },
   {
    "n": 3,
    "text": "Show your version history. Show your notes. Ask how often it is wrong.",
-   "start": 5.5,
-   "end": 8.89
+   "start": 10.2,
+   "end": 13.6
   },
   {
    "n": 4,
-   "text": "Here's why. The checker Turnitin says it makes this mistake less than one time in a hundred.",
-   "start": 9.07,
-   "end": 14.03
+   "text": "The checker Turnitin says it makes this mistake less than one time in a hundred.",
+   "start": 13.78,
+   "end": 17.8
   },
   {
    "n": 5,
    "text": "Vanderbilt University does the math. Seventy-five thousand submissions. About seven hundred fifty could have been called AI by mistake.",
-   "start": 14.88,
-   "end": 22.05
+   "start": 18.65,
+   "end": 25.82
   },
   {
    "n": 6,
    "text": "So Vanderbilt turns it off.",
-   "start": 22.23,
-   "end": 23.66
+   "start": 26.0,
+   "end": 27.43
   },
   {
    "n": 7,
-   "text": "Stanford tests seven other tools. About six in ten essays by people still learning English get called AI.",
-   "start": 23.84,
-   "end": 30.53
+   "text": "Save this. Send this to your friend who writes essays.",
+   "start": 27.61,
+   "end": 30.41
   },
   {
    "n": 8,
-   "text": "Save this. Send this to your friend who writes essays.",
-   "start": 30.71,
-   "end": 34.39
-  },
-  {
-   "n": 9,
-   "text": "Did a computer ever say AI wrote your essay?",
-   "start": 35.24,
-   "end": 37.99
+   "text": "Did a teacher ever ask if you used AI?",
+   "start": 30.59,
+   "end": 32.63
   }
  ],
- "D": 38.99
+ "D": 33.63
 }
