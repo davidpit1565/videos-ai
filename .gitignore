@@ -150,3 +150,12 @@ video/ep94/voice/build*.log
 video/ep94/voice/mix-*
 video/ep94/out/ep94-v8.mp4
 video/ep94/out/ep94-v8-720.mp4
+video/ep94/out/ep94-v9.mp4
+video/ep94/out/ep94-v9-720.mp4
+video/ep94/out/gate-v[89].txt
+video/ep94/voice/narration-v4[a-d]-backup*
+video/ep94/voice/r-*
+video/ep94/voice/r8-*
+video/ep94/voice/s8-*
+video/ep94/voice/t3-*
+video/ep94/out/ep94-v8-nobed*.mp4

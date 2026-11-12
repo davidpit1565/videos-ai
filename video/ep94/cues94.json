@@ -2,58 +2,58 @@
  "lines": [
   {
    "n": 1,
-   "text": "Your teacher says AI wrote your essay. You wrote it.",
+   "text": "A computer says AI wrote your essay. You wrote it.",
    "start": 0.08,
-   "end": 3.09
+   "end": 3.15
   },
   {
    "n": 2,
-   "text": "Flagged? Do not argue. Bring proof.",
-   "start": 3.27,
-   "end": 5.92
+   "text": "Do not argue. Bring proof.",
+   "start": 3.33,
+   "end": 5.32
   },
   {
    "n": 3,
-   "text": "Show your version history. Show your drafts. Ask what the error rate is.",
-   "start": 6.1,
-   "end": 9.81
+   "text": "Show your version history. Show your notes. Ask how often it is wrong.",
+   "start": 5.5,
+   "end": 8.89
   },
   {
    "n": 4,
-   "text": "Here's why. Turnitin says fewer than one in a hundred get flagged by mistake.",
-   "start": 9.99,
-   "end": 15.16
+   "text": "Here's why. The checker Turnitin says it makes this mistake less than one time in a hundred.",
+   "start": 9.07,
+   "end": 14.03
   },
   {
    "n": 5,
-   "text": "Vanderbilt University does the math. Seventy-five thousand submissions. About seven hundred fifty could have been flagged by mistake.",
-   "start": 16.01,
-   "end": 22.74
+   "text": "Vanderbilt University does the math. Seventy-five thousand submissions. About seven hundred fifty could have been called AI by mistake.",
+   "start": 14.88,
+   "end": 22.05
   },
   {
    "n": 6,
    "text": "So Vanderbilt turns it off.",
-   "start": 22.92,
-   "end": 24.35
+   "start": 22.23,
+   "end": 23.66
   },
   {
    "n": 7,
-   "text": "Stanford tests seven other tools. About six in ten essays by people still learning English get flagged.",
-   "start": 24.53,
-   "end": 30.75
+   "text": "Stanford tests seven other tools. About six in ten essays by people still learning English get called AI.",
+   "start": 23.84,
+   "end": 30.53
   },
   {
    "n": 8,
-   "text": "Save this. Send it to your friend who writes essays.",
-   "start": 30.93,
-   "end": 33.69
+   "text": "Save this. Send this to your friend who writes essays.",
+   "start": 30.71,
+   "end": 34.39
   },
   {
    "n": 9,
-   "text": "Has an AI ever called your essay AI?",
-   "start": 34.54,
-   "end": 37.15
+   "text": "Did a computer ever say AI wrote your essay?",
+   "start": 35.24,
+   "end": 37.99
   }
  ],
- "D": 38.15
+ "D": 38.99
 }

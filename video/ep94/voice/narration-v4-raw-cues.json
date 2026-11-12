@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "A computer says AI wrote your essay. You wrote it.",
+  "start": 0.08,
+  "end": 3.15
+ },
+ {
+  "n": 2,
+  "line": "Do not argue. Bring proof.",
+  "start": 3.33,
+  "end": 5.32
+ },
+ {
+  "n": 3,
+  "line": "Show your version history. Show your notes. Ask how often it is wrong.",
+  "start": 5.5,
+  "end": 8.89
+ },
+ {
+  "n": 4,
+  "line": "Here's why. The checker Turnitin says it makes this mistake less than one time in a hundred.",
+  "start": 9.07,
+  "end": 14.03
+ },
+ {
+  "n": 5,
+  "line": "Vanderbilt University does the math. Seventy-five thousand submissions. About seven hundred fifty could have been called AI by mistake.",
+  "start": 14.88,
+  "end": 22.05
+ },
+ {
+  "n": 6,
+  "line": "So Vanderbilt turns it off.",
+  "start": 22.23,
+  "end": 23.66
+ },
+ {
+  "n": 7,
+  "line": "Stanford tests seven other tools. About six in ten essays by people still learning English get called AI.",
+  "start": 23.84,
+  "end": 30.53
+ },
+ {
+  "n": 8,
+  "line": "Save this. Send this to your friend who writes essays.",
+  "start": 30.71,
+  "end": 34.39
+ },
+ {
+  "n": 9,
+  "line": "Did a computer ever say AI wrote your essay?",
+  "start": 35.24,
+  "end": 37.99
+ }
+]

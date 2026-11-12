@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """ep94 'Flagged as AI. Your own essay.' full reel, Miki style, script v3 (card early, facts, card again, loop).
-Reads voice/narration-v3-raw-cues.json (line start/end) -> hf/index.html, sfx94.json, cues94.json. Word times inside a line are FRACTIONS of the line (refine with whisper words later)."""
-import json, os
+Reads voice/narration-v4-raw-cues.json (line start/end) -> hf/index.html, sfx94.json, cues94.json. Word times inside a line are FRACTIONS of the line (refine with whisper words later)."""
+import json, os, re
 H_ = os.path.dirname(os.path.abspath(__file__))
-C = json.load(open(H_ + "/voice/narration-v3-raw-cues.json"))
+C = json.load(open(H_ + "/voice/narration-v4-raw-cues.json"))
 C = C if isinstance(C, list) else C["lines"]
 L = {c["n"]: (c["start"], c["end"]) for c in C}
 s = lambda n: L[n][0]
 e = lambda n: L[n][1]
 wt = lambda n, f: round(L[n][0] + f * (L[n][1] - L[n][0]), 3)
 D = round(e(9) + 1.0, 2)
-HOOK_AI = 0.95   # refine from whisper words
+HOOK_AI = 0.95   # fallback; real value from words
 K = round(s(2) - 2.82, 3)
 K3 = round(s(3) - 5.65, 3); K4 = round(s(4) - 9.46, 3); K5 = round(s(5) - 15.48, 3); K6 = round(s(6) - 22.39, 3); K7 = round(s(7) - 23.99, 3)  # per-block shifts vs the first voice take   # shift of everything after line 1 (hardcoded word times below come from the first voice take)
 INK = "#0f0f0f"
@@ -23,8 +23,20 @@ def fin(sel, t, d=.4, y=30, blur=14, sc=None):
 def fout(sel, t, d=.3, blur=14, y=-20):
     js(f"tl.to('{sel}',{{opacity:0,y:{y},filter:'blur({blur}px)',duration:{d},ease:'power1.in'}},{max(0,t):.3f});")
 
+
+try:
+    WORDS = json.load(open(H_ + "/voice/words-v4.json"))
+except Exception:
+    WORDS = []
+def W(word, k=0, after=0.0, default=None):
+    n = 0
+    for w, a, b in WORDS:
+        if a >= after and re.sub(r"[^a-z0-9]", "", w.lower()) == word:
+            if n == k: return a
+            n += 1
+    return default
 # ------------------------------------------------------------------ markup
-ROWS = [("1", "VERSION HISTORY", "GOOGLE DOCS"), ("2", "YOUR DRAFTS", "AND NOTES"), ("3", "ASK THE TOOL", "WHICH ONE? ERROR RATE?")]
+ROWS = [("1", "VERSION HISTORY", "GOOGLE DOCS"), ("2", "YOUR NOTES", "AND DRAFTS"), ("3", "ASK THE TOOL", "HOW OFTEN IT IS WRONG")]
 def letters(rid, i, text):
     return "".join(f'<span class="L" id="{rid}{i}L{j}">{"&nbsp;" if ch == " " else ch}</span>' for j, ch in enumerate(text))
 def card(cid, rid):
@@ -38,11 +50,11 @@ markup = f'''
   <div class="hd" id="hd"><span class="w" id="w1">YOUR</span><span class="w" id="w2">OWN</span><span class="br"></span><span class="w" id="w3">ESSAY</span>
    <svg class="ul" viewBox="0 0 620 40" preserveAspectRatio="none"><path id="ulp" d="M6 24 C 100 6, 200 34, 320 18 S 520 8, 614 20" pathLength="1" stroke="{INK}" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg></div>
   <div class="sheet" id="sheet"><div class="ln" style="top:50px;width:420px"></div><div class="ln" style="top:110px;width:700px"></div><div class="ln" style="top:170px;width:640px"></div><div class="ln" style="top:330px;width:690px"></div><div class="ln" style="top:390px;width:520px"></div></div>
-  <div class="stamp" id="stamp"><i>AI DETECTOR</i><b>FLAGGED AS AI</b></div>
+  <div class="stamp" id="stamp"><i>COMPUTER SAYS</i><b>AI WROTE THIS</b></div>
  </div>
  {card("card", "q")}
  <div id="s4"><div class="why" id="why">HERE'S WHY</div><img class="tnlogo" id="tn" src="assets/turnitin.svg">
-  <div class="big1" id="lt">LESS THAN</div><div class="big2" id="pc">1%</div><div class="tag" id="tg4" style="top:1110px;left:80px">FALSE POSITIVES · ITS OWN CLAIM, 2023</div></div>
+  <div class="big1" id="lt">LESS THAN</div><div class="big2" id="pc">1%</div><div class="tag" id="tg4" style="top:1110px;left:80px">THIS MISTAKE · ITS OWN CLAIM, 2023</div></div>
  <div id="s5"><div class="num5" id="n75">75,000</div><div class="num5 n750" id="n750">~750</div>
   <div class="win" id="win"><div class="wini" id="wini"><img src="assets/vanderbilt-para.png"/>
    <svg class="rings" viewBox="0 0 880 572"><rect id="rg1" x="-6" y="237" width="177" height="44" rx="10" pathLength="1" fill="none" stroke="{INK}" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/><rect id="rg2" x="58" y="277" width="320" height="44" rx="10" pathLength="1" fill="none" stroke="{INK}" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg></div></div>
@@ -96,11 +108,19 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .mln{{position:absolute;left:14px;height:14px;border-radius:7px;background:#d4d4d8}}
 .mst{{position:absolute;left:8px;top:100px;width:130px;height:62px;border:7px solid {INK};border-radius:8px;font-size:44px;line-height:48px;font-weight:900;text-align:center;transform:rotate(-8deg);background:rgba(251,251,248,.9);opacity:0}}
 '''
+
+t_show1 = W("show", 0, default=K3+5.66); t_show2 = W("show", 1, default=K3+6.98); t_ask = W("ask", 0, default=K3+8.0)
+t_tn = W("turnitin", default=K4+10.7) - .1
+t_less = W("less", after=t_tn, default=K4+11.5); t_one = W("one", after=t_less, default=K4+12.05); t_hund = W("hundred", after=t_one, default=K4+13.0) + .15
+t_75 = W("75", after=s(5), default=K5+17.8); t_750 = W("750", after=t_75, default=K5+19.72); t_could = W("could", after=t_750, default=K5+20.9)
+t_mist = W("mistake", after=t_750, default=K5+21.5); t_out = t_mist + .5
+t_off = W("off", after=s(6), default=K6+23.5) - .05
+t_six = W("six", after=s(7), default=K7+26.45) - .05
 # ------------------------------------------------------------------ timeline
 js(f"tl.fromTo('#cam',{{scale:1.0,y:0}},{{scale:1.03,y:-12,duration:{D},ease:'sine.inOut'}},0);")
 js("gsap.set('#s4,#s5,#s6,#s7',{opacity:1}); gsap.set('#tn,#why,#lt,#pc,#tg4,#n75,#n750,#win,#tg5,#tgl,#tg6,#h7,#tg7,.mini',{opacity:0});")
 # S1: stamp lands at once (voice starts ~0.08)
-t1 = s(1) + HOOK_AI
+t1 = (W('ai', 0, default=s(1)+HOOK_AI+.1) - .12)
 js(f"tl.fromTo('#stamp',{{opacity:0,y:-520,scale:1.25}},{{opacity:1,y:0,scale:1,duration:.34,ease:'expo.out'}},{t1:.3f});")
 js(f"tl.to('#sheet',{{x:-7,duration:.06,ease:'sine.out'}},{t1+.34:.3f});tl.to('#sheet',{{x:5,duration:.1,ease:'sine.inOut'}},{t1+.40:.3f});tl.to('#sheet',{{x:0,duration:.18,ease:'sine.out'}},{t1+.50:.3f});")
 js("tl.to('#ulp',{strokeDashoffset:0,duration:.6,ease:'sine.inOut'},0.25);")
@@ -110,7 +130,7 @@ fout("#s1", s(2) - .08, .3)
 js(f"gsap.set('#card',{{opacity:0}});")
 fin("#card", s(2) - .02, .45, 40, 14, .96)
 sfx("whoosh_b.ogg", s(2) - .05, -9); sfx("pop_a.ogg", s(2) + .35, -8)
-for i, tr in enumerate((K3+5.66, K3+6.98, K3+8.0)):
+for i, tr in enumerate((t_show1, t_show2, t_ask)):
     fin(f"#q{i}", tr - .05, .3, 24, 8)
     nl = len(ROWS[i][1]); span = 0.34 + 0.045 * nl
     for j in range(nl):
@@ -120,28 +140,28 @@ for i, tr in enumerate((K3+5.66, K3+6.98, K3+8.0)):
 fout("#card", s(4) - .1, .3)
 # S4: Turnitin
 fin("#why", s(4) + .02, .3, 20, 8); fout("#why", s(4) + .85, .28, 10, -10)
-fin("#tn", (K4+10.6), .4, 30, 10, .96); sfx("pop_a.ogg", (K4+10.6) + .08, -8)
-fin("#lt", (K4+11.5), .3, 24, 8)
-fin("#pc", (K4+12.05), .45, 30, 10, .92); sfx("impactsoft.ogg", (K4+12.05) + .1, -4)
-fin("#tg4", (K4+13.3), .35, 16, 6); sfx("tick.ogg", (K4+13.3) + .05, -8)
+fin("#tn", t_tn, .4, 30, 10, .96); sfx("pop_a.ogg", t_tn + .08, -8)
+fin("#lt", t_less, .3, 24, 8)
+fin("#pc", t_one, .45, 30, 10, .92); sfx("impactsoft.ogg", t_one + .1, -4)
+fin("#tg4", t_hund, .35, 16, 6); sfx("tick.ogg", t_hund + .05, -8)
 fout("#s4", s(5) - .1, .3)
 # S5: Vanderbilt real page
 fin("#win", s(5) + .05, .5, 40, 12, .97); sfx("whoosh_a.ogg", s(5), -9)
 k1 = 1.55; kx1, ky1 = 440 - k1 * 100, 262 - k1 * 259
-js(f"tl.fromTo('#wini',{{scale:1,x:0,y:0}},{{scale:{k1},x:{kx1},y:{ky1},duration:.9,ease:'sine.inOut',immediateRender:false}},{(K5+17.6):.3f});")
+js(f"tl.fromTo('#wini',{{scale:1,x:0,y:0}},{{scale:{k1},x:{kx1},y:{ky1},duration:.9,ease:'sine.inOut',immediateRender:false}},{(t_75-.2):.3f});")
 k2 = 1.55; kx2, ky2 = 440 - k2 * 215, 262 - k2 * 299
-js(f"tl.to('#wini',{{x:{kx2},y:{ky2},duration:.7,ease:'sine.inOut'}},{(K5+19.55):.3f});")
-js(f"tl.to('#wini',{{scale:1,x:0,y:0,duration:.8,ease:'sine.inOut'}},{(K5+21.0):.3f});")
-fin("#n75", (K5+17.8), .4, 30, 10); sfx("pop_b.ogg", (K5+17.8) + .06, -6)
-js(f"tl.to('#rg1',{{strokeDashoffset:0,duration:.5,ease:'sine.inOut'}},{(K5+17.8):.3f});")
-fout("#n75", (K5+19.6), .25, 10, -10)
-fin("#n750", (K5+19.72), .45, 30, 10, .92); sfx("impactsoft.ogg", (K5+19.72) + .1, -4)
-js(f"tl.to('#rg2',{{strokeDashoffset:0,duration:.5,ease:'sine.inOut'}},{(K5+19.72):.3f});")
-fin("#tg5", (K5+20.9), .35, 16, 6); sfx("tick.ogg", (K5+20.9) + .05, -8)
+js(f"tl.to('#wini',{{x:{kx2},y:{ky2},duration:.7,ease:'sine.inOut'}},{(t_750-.17):.3f});")
+js(f"tl.to('#wini',{{scale:1,x:0,y:0,duration:.8,ease:'sine.inOut'}},{t_out:.3f});")
+fin("#n75", t_75, .4, 30, 10); sfx("pop_b.ogg", t_75 + .06, -6)
+js(f"tl.to('#rg1',{{strokeDashoffset:0,duration:.5,ease:'sine.inOut'}},{t_75:.3f});")
+fout("#n75", (t_750-.12), .25, 10, -10)
+fin("#n750", t_750, .45, 30, 10, .92); sfx("impactsoft.ogg", t_750 + .1, -4)
+js(f"tl.to('#rg2',{{strokeDashoffset:0,duration:.5,ease:'sine.inOut'}},{t_750:.3f});")
+fin("#tg5", t_could, .35, 16, 6); sfx("tick.ogg", t_could + .05, -8)
 fout("#s5", s(6) - .1, .3)
 # S6: switch ON -> OFF
-fin("#tgl", s(6) + .02, .4, 30, 10, .95); fin("#tg6", (K6+22.7), .35, 16, 6)
-tf = (K6+23.3)
+fin("#tgl", s(6) + .02, .4, 30, 10, .95); fin("#tg6", (s(6)+.5), .35, 16, 6)
+tf = t_off
 js(f"tl.to('#knob',{{left:40,duration:.34,ease:'power3.inOut'}},{tf:.3f});tl.to('#onl',{{opacity:0,duration:.2}},{tf:.3f});tl.to('#ofl',{{opacity:1,color:'#0f0f0f',duration:.25}},{tf+.1:.3f});")
 sfx("toggle.ogg", tf + .12, -4); sfx("impactsoft.ogg", tf + .3, -8)
 fout("#s6", s(7) - .1, .3)
@@ -150,7 +170,7 @@ fin("#h7", s(7) + .02, .35, 24, 8); fin("#tg7", s(7) + .35, .35, 16, 6)
 for i in range(10):
     fin(f"#m{i}", s(7) + .3 + i * .05, .25, 20, 6)
 for k, i in enumerate((0, 2, 3, 5, 7, 8)):
-    ts = (K7+26.45) + k * .13
+    ts = t_six + k * .13
     js(f"tl.fromTo('#ms{i}',{{opacity:0,scale:1.5}},{{opacity:1,scale:1,duration:.14,ease:'expo.out',immediateRender:false}},{ts:.3f});")
     sfx("tick.ogg" if k % 2 else "click_a.ogg", ts + .05, -8)
 fout("#s7", s(8) - .1, .3)
