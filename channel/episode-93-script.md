@@ -121,3 +121,5 @@ v16 (final candidate, track B Mixkit "Hip Hop 03"): Vanderbilt page now blurred 
 
 ## 12.11.2026 merge status
 PR #580 merged to main (5b31b49: reel-93 + /e/93 + Trials tab + renders filter). Vercel status on that commit: failure, "Deployment rate limited - retry in 24 hours" (limit hit at 02:36 UTC 12.11). So reel-93.mp4 is NOT live on the studio site, and the API publish (which fetches the file from the deployed site) cannot run until a deploy succeeds (next successful commit on main after about 02:36 UTC 13.11, or Pro). David has the file and caption and can post by hand. Nothing was published by Claude.
+
+## 12.11.2026 about 08:13 Belgium: David posted episode 93 BY HAND as a normal (not trial) reel, caption from `channel/episode-93-caption.txt`. Not published through the studio (deploy blocked). Readings due: 48 h 14.11 about 08:13, 72 h 15.11 about 08:13 (Belgium). Number of the first-hour views not known.
