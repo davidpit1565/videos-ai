@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "Claude turns a boring report into a video.",
+  "start": 0.08,
+  "end": 2.99
+ },
+ {
+  "n": 2,
+  "line": "It's called Claude Motion, and it's new.",
+  "start": 3.17,
+  "end": 5.6
+ },
+ {
+  "n": 3,
+  "line": "You give it your report, and tell it who is watching and how long.",
+  "start": 5.78,
+  "end": 9.18
+ },
+ {
+  "n": 4,
+  "line": "Anthropic says Claude builds the whole animation from what's in your report.",
+  "start": 9.36,
+  "end": 13.33
+ },
+ {
+  "n": 5,
+  "line": "And there's no AI footage. Anthropic says Claude writes code, not footage.",
+  "start": 14.18,
+  "end": 18.65
+ },
+ {
+  "n": 6,
+  "line": "So you change one word, and everything else stays put.",
+  "start": 18.83,
+  "end": 22.25
+ },
+ {
+  "n": 7,
+  "line": "Then you export it as an MP4.",
+  "start": 22.43,
+  "end": 24.34
+ },
+ {
+  "n": 8,
+  "line": "It's in beta, for Team and Enterprise plans. I haven't tested it. This is what Anthropic says.",
+  "start": 24.52,
+  "end": 29.32
+ },
+ {
+  "n": 9,
+  "line": "Send this to the person at work who pays for Claude.",
+  "start": 30.17,
+  "end": 32.89
+ }
+]

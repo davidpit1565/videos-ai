@@ -1,0 +1,288 @@
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Medium.otf");font-weight:500}
+@font-face{font-family:"JBM";src:url("assets/fonts/JetBrainsMono-Bold.ttf");font-weight:700}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;font-weight:500;color:#0f0f0f}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
+.bgw{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#ecebe5 url(assets/bg.jpg);background-size:1080px 1920px}
+#cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}
+#s1,#s2,#s3,#s4,#s5,#s6,#s7,#s8{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#s2,#s3,#s4,#s5,#s6,#s7,#s8,#tgs{opacity:0}
+.mk{position:absolute;width:150px;height:150px;left:90px;top:332px}
+.h1c{position:absolute;left:260px;top:318px;font-size:118px;line-height:118px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
+.h1a{position:absolute;left:92px;top:470px;font-size:104px;line-height:104px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
+.h1b{position:absolute;left:260px;top:444px;font-size:112px;line-height:112px;font-weight:900;letter-spacing:-.045em;white-space:nowrap;opacity:.4}
+.card1{position:absolute;left:100px;top:620px;width:880px;height:610px;background:#fbfbf8;border:4px solid #0f0f0f;border-radius:8px;box-shadow:14px 14px 0 #0f0f0f;overflow:hidden}
+.sheet{position:absolute;left:50px;top:30px;width:780px;height:540px}
+.rt1{position:absolute;left:0;top:18px;font:700 36px/40px JBM,monospace;letter-spacing:.06em}
+.sl{position:absolute;left:0;height:14px;border-radius:7px;background:#d4d4d8}
+.chart{position:absolute;left:10px;bottom:60px}
+.bar{position:absolute;bottom:0;width:90px;background:#0f0f0f;border-radius:6px 6px 0 0;transform-origin:50% 100%}
+.ql{position:absolute;bottom:-52px;width:90px;text-align:center;font:700 30px/34px JBM,monospace}
+.axis{position:absolute;left:0;right:0;bottom:-6px;height:6px;background:#0f0f0f;border-radius:3px}
+.film{position:absolute;left:14px;top:14px;right:14px;bottom:14px;border:10px solid #0f0f0f;border-radius:12px;opacity:0}
+.play{position:absolute;left:350px;top:190px;width:0;height:0;border-left:140px solid #0f0f0f;border-top:90px solid transparent;border-bottom:90px solid transparent;opacity:0}
+.mkbig{position:absolute;left:340px;top:330px;width:400px;height:400px} .mkbig .mk{left:0;top:0;width:400px;height:400px}
+.h2a{position:absolute;left:100px;width:880px;text-align:center;top:770px;font-size:160px;line-height:160px;font-weight:900;letter-spacing:-.05em}
+.h2b{position:absolute;left:100px;width:880px;text-align:center;top:935px;font-size:160px;line-height:160px;font-weight:900;letter-spacing:-.05em}
+.ui{position:absolute;left:100px;top:420px;width:880px;height:640px;background:#fff;border:4px solid #0f0f0f;border-radius:28px;box-shadow:14px 14px 0 #0f0f0f}
+.uih{position:absolute;left:34px;top:30px;display:flex;gap:16px}
+.chip{display:inline-block;height:56px;padding:0 24px;border:4px solid #0f0f0f;border-radius:28px;font:700 30px/48px JBM,monospace;background:#fbfbf8;white-space:nowrap}
+.chip.dark{background:#0f0f0f;color:#fff} .chip.big{height:78px;font-size:38px;line-height:70px;padding:0 30px;border-radius:39px;border-style:dashed} .chip.lit{border-style:solid;background:#0f0f0f;color:#fff}
+.typed{position:absolute;left:44px;top:130px;width:790px;font-size:62px;line-height:72px;font-weight:500;letter-spacing:-.02em}
+.chips{position:absolute;left:34px;bottom:34px;display:flex;gap:18px}
+.tag{position:absolute;height:64px;padding:0 26px;background:#0f0f0f;color:#fff;font:700 34px/64px JBM,monospace;letter-spacing:.05em;border-radius:6px;white-space:nowrap;opacity:0}
+.c4{top:330px;height:790px} .mt{position:absolute;left:50px;top:36px;font-size:70px;line-height:70px;font-weight:900;letter-spacing:-.04em}
+.c4 .chart{left:50px;bottom:40px}
+.big18{position:absolute;right:50px;top:30px;font-size:130px;line-height:130px;font-weight:900;letter-spacing:-.05em;opacity:0} .big18.q{opacity:0}
+.rings6{position:absolute;left:0;top:0;width:880px;height:790px;overflow:visible}
+.h5a{position:absolute;left:75px;top:300px;font-size:170px;line-height:170px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}
+.h5b{position:absolute;left:75px;top:470px;font-size:170px;line-height:170px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}
+.codep{position:absolute;left:100px;top:700px;width:880px;height:440px;background:#0f0f0f;border-radius:14px;box-shadow:14px 14px 0 #8a8a86;padding:30px 40px;color:#fff;font:700 38px/58px JBM,monospace;opacity:0}
+.dots{position:absolute;right:30px;top:20px} .dots i{display:inline-block;width:18px;height:18px;border-radius:50%;background:#555;margin-left:10px}
+.cl{white-space:nowrap;margin-top:0} .cl:first-of-type{margin-top:34px} .L{opacity:0}
+.exp{position:absolute;left:290px;top:560px;width:500px;height:150px;border:6px solid #0f0f0f;border-radius:28px;background:#fbfbf8;box-shadow:12px 12px 0 #0f0f0f;font-size:84px;line-height:138px;text-align:center;font-weight:900;letter-spacing:-.03em;opacity:0}
+.cursor{position:absolute;left:560px;top:690px;width:0;height:0;border-left:30px solid #0f0f0f;border-top:22px solid transparent;border-bottom:22px solid transparent;transform:rotate(-30deg);opacity:0}
+.mp4{position:absolute;left:230px;top:820px;width:620px;height:300px;border:5px solid #0f0f0f;border-radius:16px;background:#fff;box-shadow:12px 12px 0 #0f0f0f;opacity:0}
+.mp4 b{position:absolute;left:34px;top:24px;font-size:150px;line-height:150px;font-weight:900;letter-spacing:-.05em} .mp4 span{position:absolute;left:38px;bottom:30px;font:700 36px/40px JBM,monospace;color:#55565c}
+.plans{position:absolute;left:100px;top:420px;width:880px;display:flex;flex-direction:column;gap:18px}
+.pl{display:block;height:110px;border:6px dashed #9a9a96;border-radius:70px;font-size:64px;line-height:98px;text-align:center;font-weight:900;letter-spacing:-.03em;color:#9a9a96;opacity:0}
+.pl.on{border:6px solid #0f0f0f;background:#0f0f0f;color:#fff}
+.beta{position:absolute;left:700px;top:300px;height:90px;padding:0 34px;border:6px solid #0f0f0f;border-radius:45px;font:700 48px/78px JBM,monospace;opacity:0;transform:rotate(-6deg);background:#fbfbf8}
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="33.89" data-width="1080" data-height="1920">
+
+<div class="bgw" data-decor></div>
+<div id="cam">
+ <div id="s1">
+  <img class="mk" id="mk1" src="assets/claude-mark.svg">
+  <div class="h1c" id="h1c">CLAUDE</div><div class="h1a" id="h1a">REPORT → VIDEO</div>
+  <div class="card1" id="card1"><div class="sheet" id="ash"><div class="rt1">QUARTERLY REPORT</div><div class="sl" style="top:84px;width:88%"></div><div class="sl" style="top:114px;width:76%"></div><div class="chart" id="ach" style="width:760px;height:250px"><i class="bar" id="ab0" style="left:40px;height:95px"></i><i class="bar" id="ab1" style="left:180px;height:155px"></i><i class="bar" id="ab2" style="left:320px;height:120px"></i><i class="bar" id="ab3" style="left:460px;height:215px"></i><i class="bar" id="ab4" style="left:600px;height:175px"></i><div class="axis"></div><b class="ql" style="left:40px">Q1</b><b class="ql" style="left:180px">Q2</b><b class="ql" style="left:320px">Q3</b><b class="ql" style="left:460px">Q4</b><b class="ql" style="left:600px">Q5</b></div></div>
+   <div class="film" id="film"></div><div class="play" id="play"></div></div>
+  <div class="tag" id="tg1" style="top:1180px;left:100px">NEW · CLAUDE MOTION</div>
+ </div>
+ <div id="s2"><div class="mkbig" id="mkbig"><img class="mk" id="mk2" src="assets/claude-mark.svg"></div><div class="h2a" id="h2a">CLAUDE</div><div class="h2b" id="h2b">MOTION</div>
+  <div class="tag" id="tg2a" style="top:1150px;left:330px">NEW</div><div class="tag" id="tg2b" style="top:1150px;left:490px">BETA</div></div>
+ <div id="s3"><div class="ui" id="ui"><div class="uih"><span class="chip dark" id="chOut">Output ▾ Motion</span><span class="chip" id="chFile">quarterly-report</span></div>
+   <div class="typed" id="typed"></div>
+   <div class="chips"><span class="chip big" id="cWho">WHO WATCHES</span><span class="chip big" id="cLong">HOW LONG</span></div></div>
+  <div class="tag" id="tg3" style="top:1130px;left:100px">EXAMPLE FROM ANTHROPIC'S HELP PAGE</div></div>
+ <div id="s4"><div class="card1 c4" id="card4"><div class="mt">Q3 at a glance</div><div class="chart" id="dch" style="width:760px;height:330px"><i class="bar" id="db0" style="left:40px;height:125px"></i><i class="bar" id="db1" style="left:180px;height:204px"></i><i class="bar" id="db2" style="left:320px;height:158px"></i><i class="bar" id="db3" style="left:460px;height:283px"></i><i class="bar" id="db4" style="left:600px;height:231px"></i><div class="axis"></div><b class="ql" style="left:40px">Q1</b><b class="ql" style="left:180px">Q2</b><b class="ql" style="left:320px">Q3</b><b class="ql" style="left:460px">Q4</b><b class="ql" style="left:600px">Q5</b></div><div class="big18" id="n4">+18%</div></div>
+  <div class="tag" id="tg4" style="top:1170px;left:100px">ANTHROPIC SAYS · DRAWN EXAMPLE</div></div>
+ <div id="s5"><div class="h5a" id="h5a">NO AI</div><div class="h5b" id="h5b">FOOTAGE</div>
+  <div class="codep" id="codep"><div class="dots"><i></i><i></i><i></i></div><div class="cl" id="cl0"><span class=L>s</span><span class=L>c</span><span class=L>e</span><span class=L>n</span><span class=L>e</span><span class=L> </span><span class=L>=</span><span class=L> </span><span class=L>M</span><span class=L>o</span><span class=L>t</span><span class=L>i</span><span class=L>o</span><span class=L>n</span><span class=L>(</span></div><div class="cl" id="cl1"><span class=L> </span><span class=L> </span><span class=L>t</span><span class=L>i</span><span class=L>t</span><span class=L>l</span><span class=L>e</span><span class=L>=</span><span class=L>"</span><span class=L>Q</span><span class=L>3</span><span class=L> </span><span class=L>a</span><span class=L>t</span><span class=L> </span><span class=L>a</span><span class=L> </span><span class=L>g</span><span class=L>l</span><span class=L>a</span><span class=L>n</span><span class=L>c</span><span class=L>e</span><span class=L>"</span><span class=L>,</span></div><div class="cl" id="cl2"><span class=L> </span><span class=L> </span><span class=L>b</span><span class=L>a</span><span class=L>r</span><span class=L>s</span><span class=L>=</span><span class=L>[</span><span class=L>3</span><span class=L>8</span><span class=L>,</span><span class=L> </span><span class=L>6</span><span class=L>2</span><span class=L>,</span><span class=L> </span><span class=L>4</span><span class=L>8</span><span class=L>,</span><span class=L> </span><span class=L>8</span><span class=L>6</span><span class=L>,</span><span class=L> </span><span class=L>7</span><span class=L>0</span><span class=L>]</span><span class=L>,</span></div><div class="cl" id="cl3"><span class=L> </span><span class=L> </span><span class=L>s</span><span class=L>p</span><span class=L>e</span><span class=L>e</span><span class=L>d</span><span class=L>=</span><span class=L>1</span><span class=L>.</span><span class=L>0</span><span class=L>,</span></div><div class="cl" id="cl4"><span class=L>)</span></div><div class="cl" id="cl5"><span class=L>s</span><span class=L>c</span><span class=L>e</span><span class=L>n</span><span class=L>e</span><span class=L>.</span><span class=L>p</span><span class=L>l</span><span class=L>a</span><span class=L>y</span><span class=L>(</span><span class=L>)</span></div></div>
+  <div class="tag" id="tg5" style="top:1170px;left:100px">CODE · STAND-IN EXAMPLE</div></div>
+ <div id="s6"><div class="card1 c4" id="card6"><div class="mt">Q3 at a glance</div><div class="chart" id="fch" style="width:760px;height:330px"><i class="bar" id="fb0" style="left:40px;height:125px"></i><i class="bar" id="fb1" style="left:180px;height:204px"></i><i class="bar" id="fb2" style="left:320px;height:158px"></i><i class="bar" id="fb3" style="left:460px;height:283px"></i><i class="bar" id="fb4" style="left:600px;height:231px"></i><div class="axis"></div><b class="ql" style="left:40px">Q1</b><b class="ql" style="left:180px">Q2</b><b class="ql" style="left:320px">Q3</b><b class="ql" style="left:460px">Q4</b><b class="ql" style="left:600px">Q5</b></div><div class="big18 q" id="n6a">12%</div><div class="big18 q" id="n6b">18%</div>
+   <svg class="rings6" viewBox="0 0 880 700"><rect id="rg6" x="560" y="24" width="290" height="140" rx="22" pathLength="1" fill="none" stroke="#0f0f0f" stroke-width="7" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg></div>
+  <div class="tag" id="tg6" style="top:1170px;left:100px">ONE NUMBER CHANGES. THE REST STAYS.</div></div>
+ <div id="s7"><div class="exp" id="exp">Export</div><div class="cursor" id="cursor"></div><div class="mp4" id="mp4"><b>MP4</b><span>explainer.mp4</span></div></div>
+ <div id="s8"><div class="plans" id="plans"><span class="pl" id="pl0">Free</span><span class="pl" id="pl1">Pro</span><span class="pl" id="pl2">Max</span><span class="pl on" id="pl3">Team</span><span class="pl on" id="pl4">Enterprise</span></div>
+  <div class="beta" id="beta">BETA</div><div class="tag" id="tg8" style="top:1140px;left:100px">ANTHROPIC SAYS · WE HAVEN'T TESTED IT</div></div>
+ <div class="tag" id="tgs" style="top:1160px;left:100px;z-index:60">SEND THIS</div>
+</div>
+
+</div>
+<script>
+const D=33.89; const tl=gsap.timeline({paused:true});
+tl.fromTo('#cam',{scale:1.0,y:0},{scale:1.03,y:-12,duration:33.89,ease:'sine.inOut'},0);
+gsap.set('#film,#play',{opacity:0});
+tl.fromTo('#ab0',{scaleY:.05},{scaleY:1,duration:.8,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},0.120);
+tl.fromTo('#ab1',{scaleY:.05},{scaleY:1,duration:.8,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},0.210);
+tl.fromTo('#ab2',{scaleY:.05},{scaleY:1,duration:.8,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},0.300);
+tl.fromTo('#ab3',{scaleY:.05},{scaleY:1,duration:.8,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},0.390);
+tl.fromTo('#ab4',{scaleY:.05},{scaleY:1,duration:.8,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},0.480);
+tl.to('#ab0',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},1.000);
+tl.to('#ab1',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},1.120);
+tl.to('#ab2',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},1.240);
+tl.to('#ab3',{scaleY:0.63,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},1.360);
+tl.to('#ab4',{scaleY:0.58,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},1.480);
+tl.fromTo('#mk1',{rotate:-25},{rotate:0,duration:.7,ease:'sine.out',immediateRender:false},0);
+tl.fromTo('#h1c',{x:-18},{x:0,duration:.5,ease:'power2.out',immediateRender:false},0);
+tl.fromTo('#h1a',{scale:1},{scale:1.03,duration:.2,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'0% 50%'},2.300);
+tl.to('#film',{opacity:1,duration:.4,ease:'sine.out'},2.350);tl.to('#ash .sl',{opacity:.0,duration:.3},2.400);tl.to('#play',{opacity:1,duration:.35,ease:'sine.out'},2.520);
+gsap.set('#tg1',{opacity:0});
+tl.fromTo('#tg1',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},2.750);
+tl.to('#s1',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},3.090);
+gsap.set('#s2',{opacity:1}); gsap.set('#mkbig,#h2a,#h2b,#tg2a,#tg2b',{opacity:0});
+tl.fromTo('#mkbig',{opacity:0,y:30,filter:'blur(10px)',scale:0.9},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.5,ease:'power2.out',immediateRender:false},3.190);
+tl.to('#mk2',{rotate:360,duration:2.63,ease:'sine.inOut'},3.170);
+tl.fromTo('#h2a',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},3.290);
+tl.fromTo('#h2b',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},4.170);
+tl.fromTo('#tg2a',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},5.110);
+tl.fromTo('#tg2b',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},5.310);
+tl.to('#s2',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},5.700);
+gsap.set('#s3',{opacity:1}); gsap.set('#ui,#tg3,#chOut,#chFile,#typed,#cWho,#cLong',{opacity:0});
+tl.fromTo('#ui',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},5.800);
+tl.fromTo('#chOut',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},6.080);
+tl.fromTo('#chFile',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},6.230);
+gsap.set('#typed',{opacity:1}); (function(){var el=document.getElementById('typed');el.innerHTML='';var sp=[];for(var i=0;i<72;i++){var q=document.createElement('span');q.textContent="Turn this quarterly report into a 30-second explainer for our all-hands."[i];q.style.opacity=0;el.appendChild(q);sp.push(q);}window.__sp=sp;})();
+tl.to(window.__sp,{opacity:1,duration:.02,stagger:0.0222},6.480);
+tl.fromTo('#cWho',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},7.280);
+tl.fromTo('#cLong',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},8.430);
+tl.to('#cWho',{backgroundColor:'#0f0f0f',color:'#fff',borderStyle:'solid',duration:.25},7.580);tl.to('#cLong',{backgroundColor:'#0f0f0f',color:'#fff',borderStyle:'solid',duration:.25},8.680);
+tl.fromTo('#tg3',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},6.780);
+tl.to('#s3',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},9.280);
+gsap.set('#s4',{opacity:1}); gsap.set('#card4,#tg4,#n4',{opacity:0});
+tl.fromTo('#card4',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},9.380);
+tl.fromTo('#db0',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},9.810);
+tl.fromTo('#db1',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},9.930);
+tl.fromTo('#db2',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},10.050);
+tl.fromTo('#db3',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},10.170);
+tl.fromTo('#db4',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},10.290);
+tl.fromTo('#n4',{opacity:0,y:20,filter:'blur(8px)',scale:0.9},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},11.820);
+tl.to('#db0',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},10.960);
+tl.to('#db0',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},12.760);
+tl.to('#db1',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},11.080);
+tl.to('#db1',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},12.880);
+tl.to('#db2',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},11.200);
+tl.to('#db2',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},13.000);
+tl.to('#db3',{scaleY:0.63,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},11.320);
+tl.to('#db3',{scaleY:0.63,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},13.120);
+tl.to('#db4',{scaleY:0.58,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},11.440);
+tl.to('#db4',{scaleY:0.58,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},13.240);
+tl.fromTo('#tg4',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},10.160);
+tl.to('#s4',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},14.100);
+gsap.set('#s5',{opacity:1}); gsap.set('#h5a,#h5b,#codep,#tg5',{opacity:0});
+tl.fromTo('#h5a',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},14.200);
+tl.fromTo('#h5b',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},14.880);
+tl.fromTo('#codep',{opacity:0,y:30,filter:'blur(10px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},14.680);
+tl.to('#cl0 .L:nth-child(1)',{opacity:1,duration:.02},16.720);
+tl.to('#cl0 .L:nth-child(2)',{opacity:1,duration:.02},16.748);
+tl.to('#cl0 .L:nth-child(3)',{opacity:1,duration:.02},16.776);
+tl.to('#cl0 .L:nth-child(4)',{opacity:1,duration:.02},16.804);
+tl.to('#cl0 .L:nth-child(5)',{opacity:1,duration:.02},16.832);
+tl.to('#cl0 .L:nth-child(6)',{opacity:1,duration:.02},16.860);
+tl.to('#cl0 .L:nth-child(7)',{opacity:1,duration:.02},16.888);
+tl.to('#cl0 .L:nth-child(8)',{opacity:1,duration:.02},16.916);
+tl.to('#cl0 .L:nth-child(9)',{opacity:1,duration:.02},16.944);
+tl.to('#cl0 .L:nth-child(10)',{opacity:1,duration:.02},16.972);
+tl.to('#cl0 .L:nth-child(11)',{opacity:1,duration:.02},17.000);
+tl.to('#cl0 .L:nth-child(12)',{opacity:1,duration:.02},17.028);
+tl.to('#cl0 .L:nth-child(13)',{opacity:1,duration:.02},17.056);
+tl.to('#cl0 .L:nth-child(14)',{opacity:1,duration:.02},17.084);
+tl.to('#cl0 .L:nth-child(15)',{opacity:1,duration:.02},17.112);
+tl.to('#cl1 .L:nth-child(1)',{opacity:1,duration:.02},17.190);
+tl.to('#cl1 .L:nth-child(2)',{opacity:1,duration:.02},17.168);
+tl.to('#cl1 .L:nth-child(3)',{opacity:1,duration:.02},17.196);
+tl.to('#cl1 .L:nth-child(4)',{opacity:1,duration:.02},17.224);
+tl.to('#cl1 .L:nth-child(5)',{opacity:1,duration:.02},17.252);
+tl.to('#cl1 .L:nth-child(6)',{opacity:1,duration:.02},17.280);
+tl.to('#cl1 .L:nth-child(7)',{opacity:1,duration:.02},17.308);
+tl.to('#cl1 .L:nth-child(8)',{opacity:1,duration:.02},17.336);
+tl.to('#cl1 .L:nth-child(9)',{opacity:1,duration:.02},17.364);
+tl.to('#cl1 .L:nth-child(10)',{opacity:1,duration:.02},17.392);
+tl.to('#cl1 .L:nth-child(11)',{opacity:1,duration:.02},17.420);
+tl.to('#cl1 .L:nth-child(12)',{opacity:1,duration:.02},17.448);
+tl.to('#cl1 .L:nth-child(13)',{opacity:1,duration:.02},17.476);
+tl.to('#cl1 .L:nth-child(14)',{opacity:1,duration:.02},17.504);
+tl.to('#cl1 .L:nth-child(15)',{opacity:1,duration:.02},17.532);
+tl.to('#cl1 .L:nth-child(16)',{opacity:1,duration:.02},17.560);
+tl.to('#cl1 .L:nth-child(17)',{opacity:1,duration:.02},17.588);
+tl.to('#cl1 .L:nth-child(18)',{opacity:1,duration:.02},17.616);
+tl.to('#cl1 .L:nth-child(19)',{opacity:1,duration:.02},17.644);
+tl.to('#cl1 .L:nth-child(20)',{opacity:1,duration:.02},17.672);
+tl.to('#cl1 .L:nth-child(21)',{opacity:1,duration:.02},17.700);
+tl.to('#cl1 .L:nth-child(22)',{opacity:1,duration:.02},17.728);
+tl.to('#cl1 .L:nth-child(23)',{opacity:1,duration:.02},17.756);
+tl.to('#cl1 .L:nth-child(24)',{opacity:1,duration:.02},17.784);
+tl.to('#cl1 .L:nth-child(25)',{opacity:1,duration:.02},17.812);
+tl.to('#cl2 .L:nth-child(1)',{opacity:1,duration:.02},17.940);
+tl.to('#cl2 .L:nth-child(2)',{opacity:1,duration:.02},17.868);
+tl.to('#cl2 .L:nth-child(3)',{opacity:1,duration:.02},17.896);
+tl.to('#cl2 .L:nth-child(4)',{opacity:1,duration:.02},17.924);
+tl.to('#cl2 .L:nth-child(5)',{opacity:1,duration:.02},17.952);
+tl.to('#cl2 .L:nth-child(6)',{opacity:1,duration:.02},17.980);
+tl.to('#cl2 .L:nth-child(7)',{opacity:1,duration:.02},18.008);
+tl.to('#cl2 .L:nth-child(8)',{opacity:1,duration:.02},18.036);
+tl.to('#cl2 .L:nth-child(9)',{opacity:1,duration:.02},18.064);
+tl.to('#cl2 .L:nth-child(10)',{opacity:1,duration:.02},18.092);
+tl.to('#cl2 .L:nth-child(11)',{opacity:1,duration:.02},18.120);
+tl.to('#cl2 .L:nth-child(12)',{opacity:1,duration:.02},18.148);
+tl.to('#cl2 .L:nth-child(13)',{opacity:1,duration:.02},18.176);
+tl.to('#cl2 .L:nth-child(14)',{opacity:1,duration:.02},18.204);
+tl.to('#cl2 .L:nth-child(15)',{opacity:1,duration:.02},18.232);
+tl.to('#cl2 .L:nth-child(16)',{opacity:1,duration:.02},18.260);
+tl.to('#cl2 .L:nth-child(17)',{opacity:1,duration:.02},18.288);
+tl.to('#cl2 .L:nth-child(18)',{opacity:1,duration:.02},18.316);
+tl.to('#cl2 .L:nth-child(19)',{opacity:1,duration:.02},18.344);
+tl.to('#cl2 .L:nth-child(20)',{opacity:1,duration:.02},18.372);
+tl.to('#cl2 .L:nth-child(21)',{opacity:1,duration:.02},18.400);
+tl.to('#cl2 .L:nth-child(22)',{opacity:1,duration:.02},18.428);
+tl.to('#cl2 .L:nth-child(23)',{opacity:1,duration:.02},18.456);
+tl.to('#cl2 .L:nth-child(24)',{opacity:1,duration:.02},18.484);
+tl.to('#cl2 .L:nth-child(25)',{opacity:1,duration:.02},18.512);
+tl.to('#cl2 .L:nth-child(26)',{opacity:1,duration:.02},18.540);
+tl.to('#cl2 .L:nth-child(27)',{opacity:1,duration:.02},18.568);
+tl.to('#cl2 .L:nth-child(28)',{opacity:1,duration:.02},18.596);
+tl.to('#cl3 .L:nth-child(1)',{opacity:1,duration:.02},18.774);
+tl.to('#cl3 .L:nth-child(2)',{opacity:1,duration:.02},18.652);
+tl.to('#cl3 .L:nth-child(3)',{opacity:1,duration:.02},18.680);
+tl.to('#cl3 .L:nth-child(4)',{opacity:1,duration:.02},18.708);
+tl.to('#cl3 .L:nth-child(5)',{opacity:1,duration:.02},18.736);
+tl.to('#cl3 .L:nth-child(6)',{opacity:1,duration:.02},18.764);
+tl.to('#cl3 .L:nth-child(7)',{opacity:1,duration:.02},18.792);
+tl.to('#cl3 .L:nth-child(8)',{opacity:1,duration:.02},18.820);
+tl.to('#cl3 .L:nth-child(9)',{opacity:1,duration:.02},18.848);
+tl.to('#cl3 .L:nth-child(10)',{opacity:1,duration:.02},18.876);
+tl.to('#cl3 .L:nth-child(11)',{opacity:1,duration:.02},18.904);
+tl.to('#cl3 .L:nth-child(12)',{opacity:1,duration:.02},18.932);
+tl.to('#cl4 .L:nth-child(1)',{opacity:1,duration:.02},19.160);
+tl.to('#cl5 .L:nth-child(1)',{opacity:1,duration:.02},19.238);
+tl.to('#cl5 .L:nth-child(2)',{opacity:1,duration:.02},19.016);
+tl.to('#cl5 .L:nth-child(3)',{opacity:1,duration:.02},19.044);
+tl.to('#cl5 .L:nth-child(4)',{opacity:1,duration:.02},19.072);
+tl.to('#cl5 .L:nth-child(5)',{opacity:1,duration:.02},19.100);
+tl.to('#cl5 .L:nth-child(6)',{opacity:1,duration:.02},19.128);
+tl.to('#cl5 .L:nth-child(7)',{opacity:1,duration:.02},19.156);
+tl.to('#cl5 .L:nth-child(8)',{opacity:1,duration:.02},19.184);
+tl.to('#cl5 .L:nth-child(9)',{opacity:1,duration:.02},19.212);
+tl.to('#cl5 .L:nth-child(10)',{opacity:1,duration:.02},19.240);
+tl.to('#cl5 .L:nth-child(11)',{opacity:1,duration:.02},19.268);
+tl.to('#cl5 .L:nth-child(12)',{opacity:1,duration:.02},19.296);
+tl.fromTo('#tg5',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},15.480);
+tl.to('#s5',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},18.750);
+gsap.set('#s6',{opacity:1}); gsap.set('#card6,#tg6,#n6a,#n6b',{opacity:0});
+tl.fromTo('#card6',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},18.850);
+tl.fromTo('#n6a',{opacity:0,y:20,filter:'blur(8px)',scale:0.92},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},19.330);
+tl.to('#rg6',{strokeDashoffset:0,duration:.5,ease:'sine.inOut'},20.040);
+tl.to('#n6a',{opacity:0,y:-24,filter:'blur(8px)',duration:.25,ease:'power1.in'},20.340);tl.fromTo('#n6b',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.35,ease:'power2.out',immediateRender:false},20.440);
+tl.to('#fb0',{scaleY:0.88,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},19.330);
+tl.to('#fb0',{scaleY:0.88,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},21.130);
+tl.to('#fb1',{scaleY:0.83,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},19.450);
+tl.to('#fb1',{scaleY:0.83,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},21.250);
+tl.to('#fb2',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},19.570);
+tl.to('#fb2',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},21.370);
+tl.to('#fb3',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},19.690);
+tl.to('#fb3',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},21.490);
+tl.to('#fb4',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},19.810);
+tl.to('#fb4',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},21.610);
+tl.fromTo('#tg6',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},21.060);
+tl.to('#s6',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},22.350);
+gsap.set('#s7',{opacity:1}); gsap.set('#exp,#cursor,#mp4',{opacity:0});
+tl.fromTo('#exp',{opacity:0,y:26,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},22.490);
+tl.fromTo('#cursor',{opacity:0,x:180,y:180},{opacity:1,x:0,y:0,duration:.5,ease:'sine.inOut',immediateRender:false},22.840);
+tl.to('#exp',{scale:.94,duration:.1,ease:'sine.inOut',yoyo:true,repeat:1},23.390);
+tl.fromTo('#mp4',{opacity:0,y:50,filter:'blur(12px)',scale:0.96},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},23.590);
+tl.to('#s7',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},24.440);
+gsap.set('#s8',{opacity:1}); gsap.set('#plans .pl,#beta,#tg8',{opacity:0});
+tl.fromTo('#pl0',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},24.570);
+tl.fromTo('#pl1',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},24.670);
+tl.fromTo('#pl2',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},24.770);
+tl.fromTo('#pl3',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},24.870);
+tl.fromTo('#pl4',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},24.970);
+tl.fromTo('#pl3',{scale:1},{scale:1.04,duration:.25,ease:'sine.out',yoyo:true,repeat:1},25.720);tl.fromTo('#pl4',{scale:1},{scale:1.04,duration:.25,ease:'sine.out',yoyo:true,repeat:1},26.260);
+tl.fromTo('#beta',{opacity:0,y:14,filter:'blur(6px)',scale:0.8},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},25.070);
+tl.fromTo('#tg8',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},27.240);
+tl.to('#s8',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},30.070);
+tl.fromTo('#s1',{opacity:0,filter:'blur(14px)'},{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false},30.150);
+tl.set('#tg1',{opacity:0},30.150);
+tl.fromTo('#tgs',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},30.470);
+tl.to({},{duration:.001},D-.001);
+window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
+window.__reel={duration:D,seek:t=>tl.seek(t)};
+</script></body></html>

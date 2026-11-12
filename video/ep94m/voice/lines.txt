@@ -1,0 +1,9 @@
+Claude turns a boring report into a video.
+It's called Claude Motion, and it's new.
+You give it your report, and tell it who is watching and how long.
+Anthropic says Claude builds the whole animation from what's in your report.
+And there's no AI footage. Anthropic says Claude writes code, not footage.
+So you change one word, and everything else stays put.
+Then you export it as an MP4.
+It's in beta, for Team and Enterprise plans. I haven't tested it. This is what Anthropic says.
+Send this to the person at work who pays for Claude.
