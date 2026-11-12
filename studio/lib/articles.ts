@@ -2512,6 +2512,34 @@ export const ARTICLES: Article[] = [
       "OpenAI and ChatGPT are OpenAI trademarks. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with OpenAI.",
     ],
   },
+  {
+    n: 93,
+    title: "A school AI tool says you used AI on your own essay: 3 things that help you prove you wrote it",
+    standfirst:
+      "AI detectors sometimes call writing that a person wrote by hand or on a keyboard AI. " +
+      "This page gives you the three things to bring if a teacher says an AI wrote your essay, with the exact clicks for the first one, in about five minutes.",
+    steps: [
+      "Open your essay in Google Docs at docs.google.com and sign in with the account you wrote it with. You should see the essay and the menu bar (File, Edit, View) above it.",
+      "Click File in the menu bar, then Version history, then See version history. You should see a panel on the right that lists dates and times, and each one shows how the essay looked then.",
+      "Click an early entry in that list and look at it. If the essay grew step by step over days, that is your proof of writing it yourself. Take screenshots of a few early and late versions, with the dates visible.",
+      "Optional: click the three dots next to a version and choose Name this version, so you can find the important ones fast.",
+      "Gather your notes and drafts: the outline, the photos of handwritten notes, the first draft, the search history or sources you used. Put them in one folder so you can show them in one go.",
+      "Ask the teacher or the school, politely, which tool flagged the essay and how often it is wrong. Many tools publish an error rate, and a school can decide what to do with a flag. Write down the answer.",
+      "Optional: if you are writing in a second language and this keeps happening, tell the teacher that studies found AI detectors often wrongly flag writing by people still learning English.",
+    ],
+    changes: [
+      "The Google Docs menu names (File, Version history, See version history, Name this version) describe the interface from general knowledge and were not re-checked against the live app for this page. Names can differ by account type and language.",
+      "The Stanford figure comes from the study by Liang and others, 'GPT detectors are biased against non-native English writers' (arXiv 2304.02819), which tested 7 detectors on 91 essays. About 61 percent of them were flagged as AI on average.",
+    ],
+    limits: [
+      "The Stanford study did not test Turnitin, so we do not say its number applies to Turnitin.",
+      "Turnitin's 'less than 1 percent' is Turnitin's own statement from March 2023, not our measurement.",
+      "Vanderbilt's 750 is Vanderbilt's own estimate of what could have been wrongly flagged out of about 75,000 papers; it is not a count of real cases. Vanderbilt turned the detector off in August 2023.",
+      "The message from the teacher at the start of the video is an example, not a real conversation. The Vanderbilt page in the video is a real screenshot with the surrounding text blurred.",
+      "Bringing these three things does not guarantee a school will accept your explanation; the decision is the school's. We did not test any detector ourselves.",
+      "Turnitin, Google Docs and Vanderbilt University are trademarks of their owners. This channel is not affiliated with them.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

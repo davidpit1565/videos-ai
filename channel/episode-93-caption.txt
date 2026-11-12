@@ -1,0 +1,19 @@
+Your teacher says an AI wrote your essay. You wrote it. Here are 3 things that help you prove it.
+
+1. Show your version history. In Google Docs: File, Version history, See version history.
+2. Show your notes and drafts.
+3. Ask the tool how often it is wrong.
+
+Why bother? A Stanford study tested 7 other AI detectors on 91 essays written by people still learning English. About 6 in 10 were flagged as AI. Turnitin was not part of that test.
+
+Turnitin says its detector has a false positive rate under 1% (Turnitin blog, March 2023). Vanderbilt University did the math on its own numbers: about 75,000 papers submitted in 2022 means around 750 could have been wrongly labeled. That is Vanderbilt's own estimate, not a count of real cases. Vanderbilt turned the detector off in August 2023.
+
+The message at the start is an example, not a real conversation. In the Vanderbilt screenshot the text around the numbers is blurred so they are easy to read; the page is real.
+
+Sources:
+Stanford study, Liang et al., "GPT detectors are biased against non-native English writers": arxiv.org/abs/2304.02819
+Vanderbilt: vanderbilt.edu/brightspace/2023/08/16/guidance-on-ai-detection-and-why-were-disabling-turnitins-ai-detector/
+
+Save this. Send it to your friend who writes essays.
+
+#ai #aidetector #turnitin #essay #students #chatgpt #actuallyworks

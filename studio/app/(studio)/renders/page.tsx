@@ -4,6 +4,19 @@ import { localDT } from "@/lib/fmt";
 import { loadState } from "@/lib/db";
 import { PUBLISH_ORDER, PUBLISHED_MANUALLY } from "@/lib/publish-order";
 import { igMediaState } from "@/lib/publish";
+import { parseTrial } from "@/lib/trials";
+
+/** The publish status filters. There is no "failed" filter: a failed publish is returned to the
+ *  button that asked for it and is not recorded anywhere in state, so there is nothing real to filter on. */
+const FILTERS = [
+  { key: "all", label: "הכל" },
+  { key: "published", label: "פורסם" },
+  { key: "trial", label: "פורסם כטרייל" },
+  { key: "graduated", label: "הוקדם לכולם" },
+  { key: "ready", label: "מוכן לפרסום" },
+  { key: "unpublished", label: "עוד לא פורסם" },
+] as const;
+type Pub = "published" | "trial" | "graduated" | "ready" | "untested" | null;
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "רנדרים" };
@@ -12,7 +25,9 @@ export const metadata = { title: "רנדרים" };
  *  /renders/[file], because a page that grows by one section per episode becomes the thing
  *  he cannot find anything in. He said so directly: once there are many reels, getting to
  *  the one he wants gets hard. This page's only job now is pointing at the right one fast. */
-export default async function Renders() {
+export default async function Renders({ searchParams }: { searchParams: Promise<{ f?: string }> }) {
+  const { f } = await searchParams;
+  const filter = FILTERS.some((x) => x.key === f) ? f! : "all";
   const all = reels();
   // Whether an episode already went out is state the studio's own database holds, not
   // something a rendered file on disk can say by itself — a render sitting here doesn't
@@ -47,6 +62,23 @@ export default async function Renders() {
   // nobody added to the list still sorts after the listed ones, and the badge never goes missing.
   const nextFile = rs.find(waiting)?.file ?? null;
 
+  // Trials come from the episode's notes lines (lib/trials.ts), the same source as /trials.
+  const trialOf = new Map((state?.episodes ?? []).map((e) => [e.number, parseTrial(e.notes)] as const));
+  const pub = (r: (typeof all)[number]): Pub => {
+    if (r.kind !== "video") return null;
+    const t = r.episode !== null ? trialOf.get(r.episode) : null;
+    if (t?.graduated) return "graduated";
+    if (t) return "trial";
+    if (r.episode !== null && liveNumbers.has(r.episode)) return "published";
+    return canPublish(r) ? "ready" : "untested";
+  };
+  const shown = rs.filter((r) => {
+    const p = pub(r);
+    if (filter === "all") return true;
+    if (filter === "unpublished") return p === "ready" || p === "untested";
+    return p === filter;
+  });
+
   return (
     <main>
       <h1>רנדרים</h1>
@@ -54,6 +86,26 @@ export default async function Renders() {
         סרטונים שממתינים לאישור שלך. לחיצה על אחד פותחת אותו עם תוצאת השער, הקפשן, וכפתורי
         הפרסום (ריל+סטורי+פייסבוק לאינסטגרם, והעלאה ל-YouTube) — מיד אחרי הנגן.
       </p>
+
+      <nav className="rbadges" style={{ marginTop: 14 }} aria-label="סינון לפי סטטוס פרסום">
+        {FILTERS.map((x) => (
+          <Link
+            key={x.key}
+            href={x.key === "all" ? "/renders" : `/renders?f=${x.key}`}
+            className="pill"
+            aria-current={filter === x.key ? "page" : undefined}
+            style={filter === x.key ? { background: "var(--brass)", color: "#000", borderColor: "var(--brass)", textDecoration: "none" } : { color: "inherit", textDecoration: "none" }}
+          >
+            {x.label}
+          </Link>
+        ))}
+      </nav>
+
+      {rs.length > 0 && shown.length === 0 && (
+        <div className="empty" style={{ marginTop: 14 }}>
+          <b>אין רנדרים בסטטוס הזה.</b>
+        </div>
+      )}
 
       {rs.length === 0 && (
         <div className="empty">
@@ -66,7 +118,7 @@ export default async function Renders() {
       )}
 
       <div className="rlist">
-        {rs.map((r) => (
+        {shown.map((r) => (
           <Link key={r.file} href={`/renders/${encodeURIComponent(r.file)}`} className="rrow">
             <b className="rname">
               {r.kind === "audio"
@@ -79,9 +131,14 @@ export default async function Renders() {
               {r.file === nextFile && (
                 <span className="pill" style={{ background: "var(--brass)", color: "#000" }}>הבא לפרסום</span>
               )}
-              {r.episode !== null && liveNumbers.has(r.episode) && (
-                <span className="pill pass">כבר פורסם</span>
+              {pub(r) === "published" && <span className="pill pass">פורסם</span>}
+              {pub(r) === "trial" && (
+                <span className="pill" style={{ background: "#6D28D9", borderColor: "#6D28D9", color: "#fff" }}>פורסם כטרייל</span>
               )}
+              {pub(r) === "graduated" && (
+                <span className="pill" style={{ background: "#DDD6FE", borderColor: "#A78BFA", color: "#2E1065" }}>הוקדם לכולם</span>
+              )}
+              {pub(r) === "untested" && <span className="pill fail">עוד לא עבר בדיקות</span>}
               {r.episode !== null && SEQUEL_FOR[r.episode] !== undefined && (
                 <span className="pill unknown">
                   חלק 2: ריל {String(SEQUEL_FOR[r.episode]).padStart(2, "0")}
@@ -101,9 +158,9 @@ export default async function Renders() {
               ) : (
                 <span className="pill fail">נפל בשער</span>
               )}
-              {r.kind === "video" && canPublish(r) && (!r.episode || !liveNumbers.has(r.episode)) && (
+              {pub(r) === "ready" && (
                 <span className="pill" style={{ borderColor: "var(--brass)", color: "var(--brass)" }}>
-                  אפשר לפרסם ⇢
+                  מוכן לפרסום ⇢
                 </span>
               )}
             </span>

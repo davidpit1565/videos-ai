@@ -1,0 +1,16 @@
+Title: A teacher says AI wrote your essay. 3 things that prove you wrote it
+
+Description:
+Your teacher says an AI wrote your essay. You wrote it. 3 things that help:
+1. Show your version history (Google Docs: File, Version history, See version history).
+2. Show your notes and drafts.
+3. Ask the tool how often it is wrong.
+
+A Stanford study tested 7 other AI detectors on 91 essays by people still learning English: about 6 in 10 were flagged as AI. Turnitin was not part of that test.
+Turnitin says its false positive rate is under 1% (March 2023). Vanderbilt's own estimate: about 750 of 75,000 papers could be wrongly labeled. Vanderbilt turned the detector off in August 2023.
+
+The message at the start is an example, not a real conversation.
+
+Sources:
+https://arxiv.org/abs/2304.02819
+https://www.vanderbilt.edu/brightspace/2023/08/16/guidance-on-ai-detection-and-why-were-disabling-turnitins-ai-detector/
