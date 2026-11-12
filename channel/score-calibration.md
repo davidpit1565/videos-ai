@@ -75,3 +75,7 @@ Method: 30 first frames (t=1.2 s, bottom 10% cropped so the handle does not leak
 | ep87 (72 h reading, 12.11.2026 08:00 Brussels) | predicted overall 70, views 250-700 | real: views 228, reach 181, likes 4, saves 0, shares 0, comments 0 → scale score ~52 (200=50, 10,000=100). Still under the predicted range (228 < 250). The 48 h to 72 h gain was only +6 views: it has stopped. |
 
 | ep88 (48 h reading, 12.11.2026 ~10:45 Brussels, studio) | predicted views 150-350 (score ~50), hook 66-68 / virality 58 / overall 62 | real: Instagram 185 views, reach 128, 5 likes, 0 saves, 0 shares, 0 comments; YouTube 54 views → scale score ~49. INSIDE the predicted range; the one prediction of the last four that held. |
+
+| ep93 first-hours reading (12.11.2026 about 14:30 Belgium, David-reported from the Instagram app, not the studio) | predicted views about 300 (range 180-600) | real: "over 500 views" about 6 h after the manual post (David's words; platform not split; exact number not given). Above the predicted range already at 6 h; log the real 48 h / 72 h from the studio/Insights. |
+| ep91 (trial, posted by hand 12.11.2026, then "Share to everyone") | prediction: none logged (joke reel, label only) | David-reported: about 350 views in total at graduation, of which Instagram only about 130 and the rest Facebook. Studio row does not exist yet (deploy blocked). |
+| ep89 (11.11.2026) | predicted views 600-1,500 | David-reported 12.11: about 1,300 views including Facebook. Studio IG-only reading at 12.11 about 14:00: 1,183 views, reach 940, 18 saves, 3 shares. |

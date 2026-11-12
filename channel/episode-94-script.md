@@ -49,3 +49,14 @@ HOOK 70 | VIRALITY 52 | OVERALL 58 | PREDICTED VIEWS 150-450 as a trial (score a
 
 ## Decision for David (not a build blocker, a real choice)
 A) Build this as is (feature news, trial). B) Keep the animated-UI cut-away LOOK but put it on a topic every viewer can try (a free-plan thing or a proven "chat AI does something odd" test). Claude's recommendation: B for the next TRIAL if the goal is the highest expected views; A only if David wants a news reel. Nothing is built until he picks.
+
+## 12.11.2026 about 14:30 Belgium - David's answer: "Claude makes videos now" is too weak; we HAVE a Team seat (David has a premium seat) -> we can TEST Claude Motion for real
+Consequence: the reel can be a REAL TEST with a real Motion output made by David, not a news reel with stand-ins. That is the strongest fix to weakness 2 (no proof). Weakness 1 (most viewers cannot use it) stays: say it plainly in the reel.
+Needed from David (a short screen recording, iPhone or screen capture, whatever he can; per the contrast rule it is measured before building): (1) open Claude on his Team seat, new chat; (2) message box: Output, then Motion (or Artifacts tab, a Motion template); (3) attach or paste the Stanford / Vanderbilt fact sheet from episode 93 (real, verified content) and ask: "Turn this into a 25-second explainer for students who were flagged by an AI checker. Calm, no AI footage."; (4) record the whole thing from pressing send to the result playing, and note how long it took; (5) change ONE word or number by asking Claude, record that; (6) Export, MP4, send the MP4 and the recording. Nothing is claimed beyond what that run shows (one run, one account, yours will differ).
+New hook options (all must carry the surprise in the first 3 words, name the subject on frame 0, present tense; to be tested with a blind reader once the real output exists):
+1. "Claude animates now. Watch." (weak, kept only as the baseline)
+2. "I typed one sentence. Claude made this." (frame 0 = the real animation playing + the Claude mark; personal, the proof is the frame)
+3. "This video has no camera. Claude coded it." (the surprising true fact: code, not generated footage)
+4. "One sentence in. A finished video out." (promise + proof, depends on what the real run shows)
+5. "Claude fixed one word. Nothing else moved." (the editing difference vs normal AI video; needs the real change-a-word clip)
+Recommendation: build on 2 or 3; choose after seeing the real output and the real timing. Scores stay unassigned until then (label only).
