@@ -1,50 +1,44 @@
 [
  {
   "n": 1,
-  "line": "Your ChatGPT caricature comes with a privacy warning.",
+  "line": "ChatGPT draws you as a cartoon.",
   "start": 0.08,
-  "end": 2.97
+  "end": 2.04
  },
  {
   "n": 2,
-  "line": "The prompt: create a caricature of me and my job, based on everything you know about me.",
-  "start": 3.07,
-  "end": 7.63
+  "line": "This year it took over social media.",
+  "start": 2.14,
+  "end": 3.87
  },
  {
   "n": 3,
-  "line": "Forbes says it took over social media in February.",
-  "start": 7.73,
-  "end": 10.18
+  "line": "Here's how to do it. Open ChatGPT.",
+  "start": 3.97,
+  "end": 5.58
  },
  {
   "n": 4,
-  "line": "A security CEO told Forbes: users keep adding personal details until it looks right.",
-  "start": 10.28,
-  "end": 14.97
+  "line": "Type this: create a caricature of me and my job.",
+  "start": 5.68,
+  "end": 8.47
  },
  {
   "n": 5,
-  "line": "Experts advise skipping the real photo and keeping the prompt generic.",
-  "start": 15.22,
-  "end": 18.71
+  "line": "Tell it a bit about you first. Skip the real photo.",
+  "start": 8.72,
+  "end": 10.77
  },
  {
   "n": 6,
-  "line": "Forbes says memory is off by default in the UK and EU.",
-  "start": 18.81,
-  "end": 22.18
+  "line": "Then watch it draw you.",
+  "start": 10.87,
+  "end": 12.23
  },
  {
   "n": 7,
-  "line": "Instead: describe yourself, or use Temporary Chat.",
-  "start": 22.28,
-  "end": 25.27
- },
- {
-  "n": 8,
-  "line": "Send this to the friend who posted one.",
-  "start": 25.37,
-  "end": 28.19
+  "line": "Save this. Send it to a friend.",
+  "start": 12.33,
+  "end": 14.19
  }
 ]

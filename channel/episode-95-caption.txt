@@ -1,18 +1,14 @@
-Your ChatGPT caricature comes with a privacy warning.
+ChatGPT draws you as a cartoon. Here's how:
 
-The trend: ask ChatGPT "Create a caricature of me and my job based on everything you know about me." (Prompt wording as published by Forbes, 9 Feb 2026.)
+1. Open ChatGPT.
+2. Type: "Create a caricature of me and my job based on everything you know about me."
+3. Watch it draw you.
 
-What Forbes reports (Kate O'Flaherty, 9 Feb 2026):
-- The trend took over social media in February.
-- A security CEO says users keep adding personal details until the result looks right.
-- Experts advise skipping real photos and keeping the prompt generic.
-- Memory (referencing saved memories and chat history) is off by default for users in the UK and EU, Forbes wrote in February. Check your own settings.
-- Safer: describe yourself in words, or use Temporary Chat.
+Tip: tell it a bit about yourself first, and skip uploading your real photo. The more private details you give an AI, the more it keeps.
 
-The drawing in this video is a drawn example, not a real ChatGPT result. Everything else comes from the Forbes article.
+The drawing in this video is a drawn example, not a real ChatGPT result.
+(Prompt wording and the photo tip are from Forbes, 9 Feb 2026: forbes.com/sites/kateoflahertyuk/2026/02/09/the-new-chatgpt-caricature-trend-comes-with-a-privacy-warning/)
 
-Source: forbes.com/sites/kateoflahertyuk/2026/02/09/the-new-chatgpt-caricature-trend-comes-with-a-privacy-warning/
+Save this. Send it to a friend who would try it.
 
-Send this to the friend who posted theirs.
-
-#chatgpt #privacy #aitrends #caricature #actuallyworks
+#chatgpt #caricature #aitrends #chatgptprompts #actuallyworks
