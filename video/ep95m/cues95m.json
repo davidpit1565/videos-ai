@@ -2,46 +2,40 @@
  "lines": [
   {
    "n": 1,
-   "text": "ChatGPT draws you as a cartoon.",
+   "text": "Ask ChatGPT to draw you.",
    "start": 0.08,
-   "end": 2.04
+   "end": 1.44
   },
   {
    "n": 2,
-   "text": "This year it took over social media.",
-   "start": 2.14,
-   "end": 3.87
+   "text": "It took over social media this year.",
+   "start": 1.54,
+   "end": 3.32
   },
   {
    "n": 3,
-   "text": "Here's how to do it. Open ChatGPT.",
-   "start": 3.97,
-   "end": 5.58
+   "text": "Here's how. Open ChatGPT.",
+   "start": 3.42,
+   "end": 5.05
   },
   {
    "n": 4,
    "text": "Type this: create a caricature of me and my job.",
-   "start": 5.68,
-   "end": 8.47
+   "start": 5.15,
+   "end": 8.77
   },
   {
    "n": 5,
-   "text": "Tell it a bit about you first. Skip the real photo.",
-   "start": 8.72,
-   "end": 10.77
+   "text": "Then watch it draw you.",
+   "start": 9.02,
+   "end": 10.26
   },
   {
    "n": 6,
-   "text": "Then watch it draw you.",
-   "start": 10.87,
-   "end": 12.23
-  },
-  {
-   "n": 7,
    "text": "Save this. Send it to a friend.",
-   "start": 12.33,
-   "end": 14.19
+   "start": 10.36,
+   "end": 12.72
   }
  ],
- "D": 15.59
+ "D": 14.12
 }

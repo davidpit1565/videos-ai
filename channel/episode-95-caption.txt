@@ -1,4 +1,4 @@
-ChatGPT draws you as a cartoon. Here's how:
+Ask ChatGPT to draw you. Here's how:
 
 1. Open ChatGPT.
 2. Type: "Create a caricature of me and my job based on everything you know about me."

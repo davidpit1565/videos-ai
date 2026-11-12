@@ -1,4 +1,4 @@
-Title: ChatGPT draws you as a cartoon (the prompt)
+Title: Ask ChatGPT to draw you (the prompt)
 
 Description:
 How: open ChatGPT, type "Create a caricature of me and my job based on everything you know about me." and watch it draw you.
