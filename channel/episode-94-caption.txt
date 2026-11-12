@@ -3,11 +3,12 @@ Claude turns a boring report into a video. It's called Claude Motion, and it's n
 How it works, according to Anthropic's own help page:
 1. Ask Claude for an animation in a chat, for example: "Turn this quarterly report into a 30-second explainer for our all-hands." Or choose Output, then Motion, in the message box.
 2. Say who will watch it and roughly how long it should be, and attach the report, data or images you want it built from.
-3. Claude writes code that animates your text, charts, shapes and images. Anthropic says there is no video generation model, so no generated footage and no AI-generated people.
-4. Change one word, number or timing, by asking Claude or in the editor, and the rest stays as it was.
-5. Click Export and choose MP4.
+3. Anthropic's own examples: an all-hands explainer, an animated chart, a product walkthrough.
+4. Claude writes code that animates your text, charts, shapes and images. Anthropic says there is no video generation model, so no generated footage and no AI-generated people.
+5. Change one word, number or timing, by asking Claude or in the editor, and the rest stays as it was.
+6. Click Export and choose MP4.
 
-We have NOT tested it. This is what Anthropic says. It is in beta on Team and Enterprise plans only (on Enterprise an owner has to switch it on). The animations in this video are drawn examples, not real Claude Motion output.
+Everything here comes from Anthropic's own pages. It is in beta on Team and Enterprise plans (on Enterprise an owner has to switch it on). The animations in this video are drawn examples, not real Claude Motion output.
 
 Sources:
 Anthropic help page: support.claude.com/en/articles/17454997-get-started-with-claude-motion

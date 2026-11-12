@@ -3,7 +3,7 @@ Title: Claude turns a boring report into a video (Claude Motion)
 Description:
 Claude Motion: according to Anthropic, Claude turns your report, data or images into a short animation, and you can change one word, number or timing without rebuilding it.
 How, per Anthropic's help page: ask in a chat, or choose Output then Motion in the message box. Say who will watch and how long. Change one detail. Click Export and choose MP4.
-We have NOT tested it. It is in beta on Team and Enterprise plans only. The animations in this video are drawn examples, not real Claude Motion output.
+Everything here comes from Anthropic's own pages. It is in beta on Team and Enterprise plans. The animations in this video are drawn examples, not real Claude Motion output.
 
 Sources:
 https://support.claude.com/en/articles/17454997-get-started-with-claude-motion
