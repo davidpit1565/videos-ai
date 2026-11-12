@@ -23,3 +23,9 @@ Recommendation: 1, written so the voice says only what Anthropic says ("Anthropi
 
 ## Decision for David
 A) build the Slides prompt-card now (no David time, expected 190-600). B) wait for his secret-series recording (expected 220-1,600, more variance). Claude's recommendation: build A now, record B whenever there is time.
+
+## 12.11.2026 evening: Slides dropped (explainer class, not viral); the "secret #2" idea dropped (David: another topic). NEW CANDIDATE from "proven viral, not done yet"
+Trend: people ask ChatGPT to make a CARICATURE of them based on what it already knows about them (chat history). Source read live: New York Post, 9 Feb 2026, "ChatGPT's new viral trend proves how well it knows you" ("Worldwide, people have taken to asking ChatGPT to create a caricature of them based on what it already knows"; shared on X; also covered by KWTX, 7 Feb 2026 with a privacy angle). Not a citable view count: the article gives none. It is 9 months old, so "still circulating now" is UNVERIFIED. A commenter says an uploaded photo was often needed (the exact prompt and whether it needs a photo are UNVERIFIED: do not publish a prompt as "the" prompt until David's real run shows what works).
+Duplicate check: `grep -i caricature|draw` in topics-covered.txt and channel/*.md -> no hit. Same family as ep89 (ChatGPT "what do you know about me", 1,187 views, 18 saves), but a new, visual output.
+Why this fits "proven, new to us": personal (felt in 3 s), the output is a picture people send to friends, a prompt worth saving, rotates to image generation and can rotate the AI (ChatGPT / Gemini / Meta AI each draw images; same prompt). Needs David's real output (his own caricature, his approval; no first name, no location, nothing personal he does not choose to show).
+Honest estimate (class: prompt card with personal pull, n=1 for the class): 400-1,500 views; one data point, wide.
