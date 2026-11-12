@@ -1,0 +1,1 @@
+   ln 1  top=indian 0.88  not-american=0.92   {'indian': 0.878, 'england': 0.031, 'australia': 0.015}   Save this. Send this to your friend who writ

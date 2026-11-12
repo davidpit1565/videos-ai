@@ -1,0 +1,90 @@
+=== FAIL  frame layout (safe_check_hf.js) (exit 1)
+    index.html  37.34s  187 samples every 0.2s  safe box: x 65-1015, y 269-1248
+        10px past the left line   y 282-527  worst at 22.8s, over tol in 1 hits 22.8-22.8s   #n750  "~750"
+      within tolerance: 8px past the left line   #n75  "75,000"
+      within tolerance: 5px past the left line   #lt  "LESS THAN"
+      within tolerance: 4px past the left line   #w1  "YOUR"
+      within tolerance: 4px past the left line   #w3  "ESSAY"
+      within tolerance: 3px past the left line   #why  "HERE'S WHY"
+      within tolerance: 3px past the left line   I  "AI DETECTOR"
+      within tolerance: 2px past the top line   #tgs  "SAVE THIS"
+      overlaps: none over 10px
+      within tolerance: 5px overlap  I x B
+
+=== PASS  rendered file (qa.py --hf)
+    ep94-v5.mp4  1080x1920  30fps  37.37s  5.0MB
+      visual change: median 0.03s, longest 6.37s
+      loudness: -14.3 LUFS integrated, peak -3.5 dBFS, LRA 2.2 LU
+      loop seam: first vs last frame differ by 22.7/255
+    
+      [warn]    picture nearly still 2.50s at 3.63-6.13s
+      [warn]    picture nearly still 2.47s at 34.47-36.93s
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length 37.4s inside 30-90s
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 216.4, std 54.3)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.3 LUFS
+      ok        peak -3.5 dBFS
+
+=== PASS  voice + music quality (voice_quality.py)
+    pitch (semitones vs each line's own median):
+      line   1  range  6.9 st  end  +0.5    Your teacher says AI wrote your essay. You wrote
+      line   2  range  7.4 st  end  +0.8    Flagged? Do not argue. Bring proof.
+      line   3  range  9.9 st  end  +2.0    Show your version history. Show your drafts. Ask
+      line   4  range  8.3 st  end  +0.2    Here's why. Turnitin says fewer than one in a hu
+      line   5  range  4.6 st  end  +0.1    Vanderbilt University does the math. Seventy-fiv
+      line   6  range  5.1 st  end  -0.1    So Vanderbilt turns it off.
+      line   7  range  8.9 st  end  +0.9    Stanford tests seven other tools. About six in t
+      line   8  range  8.0 st  end  +1.3    Save this. Send it to a friend who writes essays
+      line   9  range  7.5 st  end  +1.7    Has an AI ever called your essay AI?
+    tone: none steady over 0.6 s
+    music: 19% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.28 = -7.7 dB
+    
+    voice quality: clean
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep94/voice/narration-v3-raw.wav  37.2s  9 lines
+      medians: ending -27.8 dB · level -19.1 dBFS · S residual +1.2 dB (slope +4.0 dB per sibilant/syllable)
+      flagged below: ending -39.7 dB · S residual -6.2 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  3.01  +0.18  3.99  -15.4  -29.3  -18.9  Your teacher says AI wrote your essay.
+        2  2.65  +0.18  3.02  -15.3  -24.8  -18.9  Flagged? Do not argue. Bring proof.
+        3  3.64  +0.18  4.67   -7.4  -19.7  -19.5  Show your version history. Show your d
+        4  5.16  +0.85  4.07   -9.8  -31.0  -19.7  Here's why. Turnitin says fewer than o
+        5  6.74  +0.18  5.34   -7.1  -22.5  -17.0  Vanderbilt University does the math. S
+        6  1.42  +0.18  4.93   -9.2  -30.7  -19.2  So Vanderbilt turns it off.
+        7  5.76  +0.18  4.34  -10.8  -44.6  -18.2  Stanford tests seven other tools. Abou
+        8   2.5  +0.85   4.8  -12.1  -24.3  -19.1  Save this. Send it to a friend who wri
+        9   2.6    —    4.23   -8.6  -27.8  -19.4  Has an AI ever called your essay AI?
+    
+      [fix] line  1: only 0.18s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  2: only 0.18s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  3: only 0.18s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  5: only 0.18s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  6: only 0.18s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  7: only 0.18s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  7: weak ending (-44.6 dB vs median -27.8)
+             -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  FAIL  frame layout (safe_check_hf.js) (exit 1)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+SOMETHING FAILED - do not send this file

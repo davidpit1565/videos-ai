@@ -1,0 +1,1 @@
+   ln 1  top=us 0.69  not-american=0.03   {'england': 0.013, 'australia': 0.009, 'indian': 0.006}   Your teacher thinks AI wrote your essay. You

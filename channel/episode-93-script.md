@@ -1,103 +1,120 @@
-# Episode 93 script: "My idea has 3 flaws. I show AI." (built 10.11.2026)
+# Episode 93 (provisional number): "Real essays get flagged as AI" (Miki style, concept + script v1, 11.11.2026)
 
-Animated version of the static meme `channel/memes-2026-11-10/v4/C.png`. A JOKE about tone, labelled so in the caption, NOT a test result: we tested only that ChatGPT tends to agree (episodes 72/73/80); Claude was never tested on this and nothing claims Claude is better. Funnel stage: TOP (meme, shareable). Build: `video/ep93/` (`build93.py`, `run.sh`, `mix93.py`, `gen.sh`). File: `video/ep93/out/ep93-final1.mp4` (1080x1920, 11.83 s, 1.7 MB) plus review copy `ep93-final1-720.mp4` (576 KB). Audio measured, not heard.
+Status: CONCEPT + SCRIPT ONLY. Nothing built, no voice rendered. Funnel stage: TOP (format test, Miki style). Faceless, drawn, cloned voice. Not 91 (91 is the finished Gemini clip, untouched).
+Why this topic: not in `channel/topics-covered.txt` (grep 11.11: no essay/detector entry); it was concept 3 in `channel/episode-89-concept.md` (blind readers ranked it first for the 17-year-old persona). Works only as facts + a save card: we have NOT run any detector ourselves, so no scene may show or claim a test result.
 
-## Live product check
-Not repeated for facts: the video makes no product claim, only a joke; names ChatGPT and Claude (both current names, per episodes 80/88 work). No feature or limit is stated.
-
-## Beat sheet (times from the voice cues, D = 11.81 s)
-| t (s) | Spoken | On screen |
+## Verified live 11.11.2026 (web)
+| Claim | Source | Allowed wording |
 |---|---|---|
-| 0.00-2.35 | "My idea has three flaws." (0.06-2.23) | Frame 0: headline "My idea has 3 flaws. / I show AI.", cream idea card with a lightbulb and three hollow red circles, green ChatGPT and orange Claude pills with the real logos (icon only). The three circles pop red one by one on "three flaws". Card sways, pills bob, glow drifts. |
-| 2.35-5.5 | "ChatGPT says: perfect idea!" (2.59-5.48) | The green pill grows into the full ChatGPT panel (golden retriever, slow zoom in), headline leaves, the idea card shrinks to a corner. Bubble "Perfect idea!" with a drawn smiley pops on "perfect", a green check stamps on the card. |
-| 5.5-8.7 | "Claude says: three problems. Start with one." (5.84-8.75) | Crossfade to the orange Claude panel (tabby cat, slow push-in). Check leaves; the card moves top-left; its three marks light red one by one on "three problems"; bubble "3 problems. / Fix #1 first." pops, pulses on "one". |
-| 8.7-11.4 | "Tag someone who needs the cat." (9.11-11.31) | Both panels side by side (icons only, names off), the sentence builds word by word under them, panel bump on "cat." |
-| 11.4-11.81 | silence | Soft crossfade (no wipe) back to frame 0 (loop seam 2.1/255). |
-No "tomorrow" line, no comment keyword (David's instruction). Text on screen at once: at most 3 (frame 0: 2 lines; ChatGPT scene: name + bubble; Claude scene: name + 2-line bubble; end: 2 lines).
+| Vanderbilt disabled Turnitin's AI detector, 16 Aug 2023 | vanderbilt.edu/brightspace/2023/08/16/guidance-on-ai-detection-and-why-were-disabling-turnitins-ai-detector/ (fetched) | "Vanderbilt turns it off. August 2023." |
+| Turnitin "claimed ... a 1% false positive rate"; Vanderbilt submitted 75,000 papers in 2022; "around 750 student papers could have been incorrectly labeled" | same page (fetched), Vanderbilt's OWN estimate | "Vanderbilt's own math: about 750 papers could be wrong." Never "750 students were wrongly accused" |
+| Turnitin blog (16 Mar 2023): "a less than 1% false positive rate" | turnitin.co.uk blog (fetched) | "Turnitin says less than one percent." (a 2023 statement) |
+| Detectors label non-native English writing as AI more often | same Vanderbilt page (fetched) | ok as Vanderbilt's statement |
+| Stanford (Liang, Yuksekgonul, Mao, Wu, Zou; journal Patterns): seven detectors flagged 61% of TOEFL essays by non-native writers as AI | search results via Times Higher Education / BHRRC (secondary; paper itself NOT opened) | "Seven other detectors" + "about six in ten", labelled "7 OTHER DETECTORS". **Turnitin was NOT tested: never put the number next to Turnitin** |
+UNCONFIRMED, do not use: Turnitin's ">20% AI" threshold and the asterisk for 1-19% (Turnitin page did not show them to us); the "15% false positive / 31% ESL" figures (small, non-peer-reviewed site review); anything about which detector is "most accurate".
+Still to verify before building: Google Docs version history path (File > Version history > See version history), current Turnitin FAQ wording, official logos (Turnitin, Vanderbilt, Google Docs).
 
-## Voice
-Take `a` of `video/ep93/gen.sh a 5000 0.78` (exaggeration 0.78/0.78/0.70/0.74). script_lint: 0 risky words after rewording "number one first" to "Start with one". The render needed retries on lines 1-3 (the model heard "floors", "Chai GPT", "on"); the shipped file is the build tool's accepted take. Line 2 is 2.9 s for 4 words (slow, but passes). `--watch three` reported "three: could not be measured" in the build log. Accent check SKIPPED (needs `transformers`, not installed): not a pass.
+## Hook options (hypotheses; surprise in the first 3 words; present tense; subject named in the first second)
+1. "Real essays get flagged as AI." (6 words; recommended)
+2. "Real essays. Flagged as AI." (4 words, punchier, no verb)
+3. "AI detectors flag real students."
+Frame 0: paper sheet on dotted grid, heavy REAL ESSAYS / FLAGGED AS AI, black stamp. Max 3 lines on screen.
 
-## Music and sound
-`bright--upbeat--subclair.mp3` via `pick_real_track.py 11.81 --mood bright` (exact length), mean -15.5 dB, no quiet stretch, logged in `channel/music-notes.md`. 23 sfx events from `video/ep88/sfx/` (tick on each mark, pop, ding on the check, whooshes), placed from the voice cues.
+## Script v1 (about 28 s, present tense, plain words; voice-risk words to lint: Vanderbilt, Turnitin, Stanford)
+| t | Spoken | On screen |
+|---|---|---|
+| 0.0-2.5 | Real essays get flagged as AI. | Paper sheet, REAL ESSAYS, black stamp FLAGGED AS AI lands, sheet shudders |
+| 2.5-7 | Turnitin says its detector is wrong less than one percent of the time. | Real Turnitin logo, heavy LESS THAN 1%, small tag "its own claim, 2023" |
+| 7-13 | Vanderbilt does the math. Seventy-five thousand papers. About seven hundred fifty could be wrong. | Real Vanderbilt mark, 75,000 then ~750 counting up, tag "Vanderbilt's own estimate" |
+| 13-16 | So Vanderbilt turns it off. | Switch flips OFF, tag AUG 2023 |
+| 16-21 | Stanford tests seven other detectors. About six in ten essays by non-native writers get flagged. | 7 OTHER DETECTORS, 6 in 10 sheets stamped, tag "Turnitin not tested" |
+| 21-25 | Flagged? Do not argue. Bring proof. | Card flies in |
+| 25-30 | Save this. Send it to a friend who writes essays. | SAVE CARD holds 4 s with a slow drift (not frozen: no frame still over about 2.5 s), then loops back to the stamp |
+Closing: spoken question "Did a detector ever flag something you wrote?" is the CTA (Roni's comment-question rule); the standing "tomorrow" final line is not applied (episode 94 has no next episode written): decision for David.
 
-## Look
-Same dark navy base as C.png, bold white/yellow headline, brand-coloured (ChatGPT green #10a37f, Claude orange #d97757) headers. Real photos (Pexels, credits in the caption) and the real OpenAI and Claude marks from Commons (`channel/memes-2026-11-10/credits.md`). Inter Display (OFL). Drawn: idea card, check, smiley. Names "ChatGPT" and "Claude" sit BESIDE the icon in the panel header (as in C.png), never under it; icons alone on frame 0 and in the end scene.
+## Save card (screenshot-able, 3 lines)
+BRING PROOF: 1. Version history (Google Docs) 2. Your drafts and notes 3. Ask: which detector, what error rate?
+(Verify the Docs path live before building. No tip that "beats" a detector: not tested, reads as cheating advice.)
 
-## Check results (real output of `./export/check_hf.sh`, tag final1)
-safe_check_hf PASS (clean at tolerance 10 px; headline within 5 px of the side lines). qa.py --hf PASS (1080x1920, 30 fps, 11.83 s, -14.6 LUFS, peak -3.3 dBFS, visual change median 0.03 s, longest 2.93 s: warns 11.8 s is outside the old 30-90 s band, intended). voice_quality PASS (pitch ranges 7.8 / 6.8 / 6.3 / 6.4 st, ends -0.1 / -0.1 / -0.3 / -0.8 st; bed -8.2 dB un-ducked). voice_doctor PASS; it flags line 3's ending (-46.8 dB vs median -29.1) and a S residual. Accent SKIP. Before the last render the first run FAILED safe_check (headline 53 px past the side lines when scaled, "Claude" panel sliding in from off-screen): fixed by a smaller headline and cross-fades instead of swipes.
+## Hook candidates for the blind readers (11.11, after Meta AI round 2)
+A "Real essays get flagged as AI." / B "Wrongly flagged. Real essay." / C "Flagged as AI. Your own essay." (Meta AI's "Flagged as AI. You wrote it." never says "essay" in the first second). Rejected: "Turnitin flags real essays." (states as fact what we only have as Vanderbilt's estimate) and "Your essay gets flagged." (promises it happens to the viewer). Meta AI scene notes taken: one sheet instead of several, only the stamp moves in the first 2.5 s, 1% x 75,000 shown next to ~750, six of ten sheets stamped and no 61% on screen.
 
-## Scores (judgement, not measurement; scale in channel/score-calibration.md)
-HOOK 68: subject said and shown in frame 0 (idea with flaws, two AI logos), a relatable joke, but no felt gut-level stake and the payoff is 4 s away. VIRALITY 72: a very tag-able pair of faces (dog vs cat) with a clear "send to someone" line, a loop, a tip in the caption; meme format is not proven for this account. OVERALL 70. PREDICTED VIEWS 300-1,500 (ASSUMPTION), about 55-75 on the scale. Below the 85 floor in CLAUDE.md: shipped as a build because David asked for it; our own validity test showed such scores do not predict views. Real 48 h / 72 h views go into `score-calibration.md`.
+## Blind-reader results (11.11.2026; one fresh sub-agent per hook, persona: 17-year-old ChatGPT/TikTok user, saw only a DESCRIPTION of frame 0 + first 1.5 s of voice; simulated readers, judgements not measurements)
+- A "Real essays get flagged as AI.": understood (real essays wrongly flagged, students accused). Stop scrolling: MAYBE ("looks like a basic explainer"). About me: partly. Open question: who flags (teacher? checker tool?) and is it new.
+- B "Wrongly flagged. Real essay.": understood (probably flagged as AI). MAYBE ("nothing makes me stay yet"). About me: partly. Product not named, "REAL ESSAY" twice reads repetitive, reader was guessing the topic.
+- C "Flagged as AI. Your own essay.": understood fully (own essay marked AI by a detector). MAYBE (still picture, only holds if the next second shows something). About me: YES (strongest). Wants "teacher"/"school" or the flagger named; the small REAL ESSAY tag is unclear.
+Read: all three pass comprehension, none gets a clear stop. Common gap: WHO flags (detector/teacher) is not in the first second, and frame 0 looks still. C is the most personal. Next: C plus a small "AI DETECTOR" tag on the stamp, REAL ESSAY tag bigger, motion in the first second.
 
-## What the blind reader should test
-1. Frame 0 only + first spoken second: "what is this about?" (expect: someone showing an idea with flaws to AI; both logos named) and "would you stop scrolling, and why?"
-2. After the full watch: do you get the joke without being told ChatGPT vs Claude is a test? Do you read it as "Claude is better" (we do not want that)?
-3. Is "Fix #1 first" funny or just a flat line? Does the smiley read as a smiley?
-4. Who would you tag? (the sendability claim)
-5. Does the 2.9 s line "ChatGPT says: perfect idea!" feel slow?
+## Concept checklist (6 items, honest)
+1. Surprising thing on the viewer's own account/phone: NO (a school situation, not their own screen).
+2. Curiosity gap only the video closes: PARTLY ("how wrong?" closes at 13 s).
+3. Worth saving, shown as a card: YES.
+4. Named person to send it to: YES (a friend who writes essays).
+5. Reason to watch twice: PARTLY (loop to the stamp; numbers go fast).
+6. Claim a stranger can check in 30 s: YES (the Vanderbilt page).
 
-## Weak spots (honest)
-- Frame 0 is clear but calm: a hollow-circle card is not a gut punch; the dog is first seen only at 2.4 s. A tighter cut could open straight on the dog and cat faces.
-- Motion between 0 and 2.3 s is gentle drift plus three mark pops; qa's strict metric measures 2.9 s as the longest low-change stretch (over the 2.5 s rule), my own frame-diff found no still run.
-- The cat's panel has the idea card over its left ear; the third hollow mark on frame 0 sits right at the card edge.
-- Line 2 is slow; line 3 ending is soft by voice_doctor.
-- The "Perfect idea!" joke is a generalisation; the Claude side is untested by us (the caption says so).
-- Blind reader NOT run (no agent tool here); no listening, no second human viewing: the rendered file was inspected only as contact sheets plus frame 0, not watched twice.
+## Scores (judgements, not measurements; scale `channel/score-calibration.md`)
+HOOK about 68, VIRALITY about 60, OVERALL about 64, PREDICTED VIEWS 300-900 (ASSUMPTION; our median is about 230, best 1,576). 10,000 is NOT a realistic prediction for this concept: no personal stake, no real chat on screen (the formats that held viewers best were real-chat recordings, and 89's 45% skip rate came with a copied viral structure). Blind readers: NOT run yet.
 
----
-# REVISION final2 (10.11.2026): frame 0 is the meme
-`video/ep93/out/ep93-final2.mp4` (10.90 s, 1.4 MB) + `ep93-final2-720.mp4` (423 KB). final1 is untouched. Build: `video/ep93/build93b.py`, `run2.sh`, `mix93b.py`, `hf2/` (reads `lines2.txt`, `voice/src2.json`). Audio measured, not heard.
+## Open items
+- David: yes/no on the spoken closing question; episode number; whether to run a real detector test (then a test scene may replace the facts section).
+- Sourcing: official logos, Docs screenshot or drawn path, voice lint, Miki build from `video/ep89c/` with NO orange (the 89 build uses #D97757 on SCARY and GO: change the accent for this one).
+- Caption must stay under 2,200 chars; YouTube text without `<` `>`; the Stanford figure labelled "other detectors, not Turnitin" on `/e/94` too.
 
-## What changed
-- Frame 0 now: headline "My idea has 3 flaws. / I show AI." plus both photos side by side, large (dog in a green-headed panel left, cat in an orange-headed panel right, real logos as icons in the headers, no names), panels y 540-1245, nothing empty inside the safe box.
-- Beats (D = 10.88 s): 0-2.4 s photos drift, "3 flaws" bumps, the small idea chip pops in on the seam at ~0.4 s and its 3 marks turn red on "three flaws"; 2.4 s dog panel punches in (photo zoom 1.0 to ~1.3, panel grows upward, cat dims), "Perfect idea!" + smiley bubble pops on "perfect" (2.6 s), green check on the chip; 4.9 s cat punches in, dog dims, the chip's marks light red one by one on "three", bubble "3 problems. / Fix #1 first." pops; 8.2 s headline becomes "Tag someone who needs the cat." word by word, both panels bright again, bump on "cat."; last 0.45 s the same scene eases back to the frame-0 pose (no wipe, no copy).
-- Deviation from the request: the "Perfect idea!" bubble is at ~2.6 s, not 0.8 s, because it is synced to the spoken line (a bubble 1.8 s before the voice says it would read as a mistake). 0-2.4 s is carried by the chip and the three marks instead.
-- Voice: first word stamp at 0.00 s (line cue 0.06 s). Line 2 re-rendered as "ChatGPT: perfect idea!" (`voice/b.wav`, 2.11 s instead of 2.89 s). A shorter "Claude: three problems. Start with one." was rendered too (3.18 s, longer, retries heard "Clyde") and NOT used; line 3 stays the old take "Claude says: ..." (2.91 s). Lines 1, 3, 4 are the final1 takes.
-- Music: `bright--feel-good-beat--tunetank.mp3` at exactly 10.88 s, mean -21.7 dB, no quiet stretch (quiet bed, only 1% under 150 Hz). Logged in `music-notes.md`.
+## Script v2 (11.11.2026, after Meta AI's full package; hook C kept; changes marked)
+Meta AI's package (pasted by David) was checked against this file. Taken: scene order and visuals, tags, the toggle, 6 of 10 sheets, the card, no 61% on screen, a slowly drifting card. NOT taken: its hook "Flagged as AI. You wrote it." (no "essay" in the first second, lost to C with the blind readers), "Your essay gets flagged. Today." (vague, reads as a claim about today), a silent 0.5 s opening (frame 0 and the first spoken second must show/say the subject), and its claim that the stamp is already visible in frame 0 (it is not: stamp lands at 0.10 s).
+FIX FOUND BY CHECKING: "wrong less than one percent of the time" (in v1 and in Meta AI's text) is more than Turnitin said. What Turnitin said (2023 blog) is "a less than 1% false positive rate". New wording: "Turnitin says it wrongly flags less than one percent." Caption and on-screen: "LESS THAN 1% FALSE POSITIVES".
+Caption: remove the Hebrew "לא מאומת" that Meta AI left in the English caption (no Hebrew on public text); sources need real links; caption under 2,200 chars.
+| t | Spoken | On screen |
+|---|---|---|
+| 0-2.5 | Flagged as AI. Your own essay. | YOUR OWN ESSAY, stamp FLAGGED AS AI + tag AI DETECTOR (built: video/ep94/, v1) |
+| 2.5-6.5 | Turnitin says it wrongly flags less than one percent. | real Turnitin logo, LESS THAN 1%, tag "its own claim, 2023" |
+| 6.5-12 | Vanderbilt does the math. Seventy-five thousand papers. About seven hundred fifty could be flagged wrongly. | 75,000, then ~750 (never together), tags "1% of 75,000" and "Vanderbilt's own estimate" |
+| 12-15.5 | So Vanderbilt turns it off. | big switch ON to OFF, tag AUG 2023 |
+| 15.5-21 | Stanford tests seven other detectors. About six in ten essays by non-native writers get flagged. | 7 OTHER DETECTORS, 6 of 10 sheets stamped fast, tag "Turnitin not tested" |
+| 21-24 | Flagged? Do not argue. Bring proof. | page + stamp returns, BRING PROOF |
+| 24-30 | Save this. Send it to a friend who writes essays. Did a detector ever flag something you wrote? | save card with slow drift, small stamp returns at the end |
+Risk: about 87 spoken words in 30 s is fast (2.9 words/s); the real length comes only from the rendered voice. Cut words, not speed, if it runs over.
 
-## Check results (`check_hf.sh`, tag final2, real output)
-safe_check_hf PASS (clean, no overlaps; two earlier failures fixed: headline and tag text overlapped during the loop-back, and a fromTo that hid the headline at frame 0, caught by looking at the sheet). qa.py --hf PASS: 10.9 s, -14.6 LUFS, peak -3.4 dBFS, visual change median 0.03 s, LONGEST STILL 2.13 s (was 2.93 s), loop seam 1.5/255. voice_quality PASS: pitch ranges 7.8 / 4.2 / 6.3 / 6.4 st, ends -0.1 / -0.1 / -0.3 / -0.9 st, bed -7.3 dB un-ducked at volume 0.50. voice_doctor PASS but flags line 3's ending (-40.0 dB vs median -26.7) and line 2's pitch range of 4.2 st is the flattest line (his liked lines sit at 4.9-8.4). Accent check SKIP (transformers not installed).
+## Voice render 1 (11.11.2026, MEASURED, NOT HEARD)
+`video/ep94/voice/narration-raw.wav` 31.9 s, 8 lines (`lines.txt`; wording changed to avoid swallowed endings: "wrongly" -> "by mistake", "papers" -> "submissions", "detectors/writers" -> "tools"/"people still learning English", closing "Did an AI ever call your own writing AI?"). Built with --no-verify (the built-in check marks "Seventy-five thousand" as an error because Whisper writes digits). Lines were sped x1.20 (the maximum) to fit.
+Whisper base.en check: "Vanderbilt" was heard as "Then the bill" and "vendor bill" (twice), "Turnitin" as "turn it in" (natural for the brand). Risk: the viewer may not hear VANDERBILT. David's ear decides; re-roll line 3 and 4 if it is swallowed. Cues: `narration-raw-cues.json`. Not run yet: voice_doctor, voice_quality, music, accent check.
 
-## Scores (judgement) for final2
-HOOK 74 (the meme is on frame 0 and the subject is stated, dog vs cat is instantly legible), VIRALITY 74, OVERALL 73, PREDICTED VIEWS 400-1,800 (ASSUMPTION), about 58-78 on the scale. Still under the 85 floor; a joke build requested by David.
+## Build v1 (11.11.2026, evening) - MEASURED, NOT HEARD
+Order changed (Meta AI + our check): hook, BRING PROOF card early (5.7-9 s), Turnitin 1%, Vanderbilt real page, switch OFF, Stanford 6 of 10, card again with SAVE THIS, loop to the hook. Voice `video/ep94/voice/narration-v3-raw.wav` (36.7 s; line 9 changed to "Has an AI ever called your essay AI?"; lines.txt). Picture `video/ep94/build94.py` -> hf/index.html; mix `video/ep94/mix94.py`; files `video/ep94/out/ep94-v4.mp4` (+ -720). 36.88 s. Real assets: Turnitin logo (Wikimedia Commons "Turnitin logo (2021).svg", public domain textlogo, trademark applies), real screenshot of the Vanderbilt page (11.11.2026) with rings on "75,000 papers" and "around 750 student papers" (the page says: IF the tool had been available in 2022).
+Gate (export/check_hf.sh, gate-v4.txt): frame layout PASS, rendered file PASS, voice+music quality PASS, voice_doctor PASS, accent drift SKIPPED (transformers not installed). Whisper small.en heard Vanderbilt, Stanford, drafts, Turnitin correctly (base.en did not: a weak model, not proof of the voice).
+Music: only two real tracks exist in this container; used trending-vibe--alexmorgan.mp3 looped (22.5 s -> 36.9 s) as a STAND-IN. The approved tracks (themountain etc.) are not in the container: re-mix when they are available (mix94.py).
+Not done: watched twice in full by me (frames only), blind reader on the rendered first frame, caption/youtube text, /e/94 page, studio package, real Google Docs path check (card says only GOOGLE DOCS / VERSION HISTORY).
 
-## Still weak
-- The bubble/payoff comes at 2.6 s, not at the start; 0-2.4 s is photos + chip only.
-- The chip covers the cat's ears and the dog's forehead area at the seam; the "3 flaws" bump leaves a brief uneven space after "has".
-- No names under or beside the icons (icons and colours only), so a viewer who does not know the Claude mark relies on the voice.
-- Line 3 ending is soft by voice_doctor; line 2 is flat in pitch; the Claude cat-side remains an untested joke (caption says so). Not watched twice by a human, blind reader not run, audio not heard.
+## Hook round 2 and build v2 (11.11.2026, late; MEASURED, NOT HEARD)
+Blind readers (17-year-old persona, description of frame 0 + first 3 s of voice; simulated): D "Your teacher says AI wrote your essay. You wrote it." = YES stop, YES about me ("a situation I'm scared of", "I'd think of a friend this happened to"); E "Your teacher flags your essay. As AI." = MAYBE ("plain paper and a stamp, I'd scroll on if the next beat is slow"); F "Accused of using AI. You didn't." = MAYBE ("calm voice, aggressive stamp: warning or solution video?"). All three: the AI DETECTOR tag was too small. D chosen. It is 7 words before the point and 3.0 s long: longer than the 4-5 word rule, a deliberate trade for stakes (teacher) + who flags; the first sentence "Your teacher says" carries no surprise until "AI wrote". Hypothesis.
+Meta AI's storyboard review of the contact sheet was WRONG on four points (it read a sampled contact sheet as the video): toggle "shows ON" (the flip to OFF happens at about 23.8 s; the sampled frame was before it), "8 tiles" (there are 10 sheets, 6 stamped), "small unreadable document" (the real Vanderbilt page, intended), "duplicates" (several frames of the same scene). Its rebuilt frame list went back to v2 wording ("wrong less than one percent of the time"), dropped the early card and the real-page window: NOT used.
+Changes in v2: hook line 1 re-rendered (voice cached for the rest), stamp lands on the spoken "AI" (about 1.0 s), underline draws during "Your teacher says", AI DETECTOR tag 46 px, all later beats shifted by K from the first take (hardcoded word times came from words-v3.json of take 1), n75/n750 moved right (safe box). Gate gate-v6: PASS x4, accent SKIPPED. Files: out/ep94-v6.mp4 (+720). Review page updated (Artifact 3F9VGMnDHAPesjUT5k6Qww).
 
-## Blind reader on final2 frame 0 (10.11.2026, fresh agent)
-- A) Unclear: a dog and a cat under ChatGPT and an orange logo, "My idea has 3 flaws. I show AI."; does not know what idea or what the animals have to do with it. B) No, would not stop: generic cute-animal AI content, nothing at stake. C) Expects a dog-vs-cat comparison. D) "I show AI" reads oddly; whose idea; animals look like stock photos; orange logo unrecognisable; bottom third dead; dark gradient looks like every AI channel. E) State the actual idea in big words, make the animals react to it.
-- Action: final3 requested with a concrete silly idea in the headline, names beside the icons, animal reactions.
+## Build v3 (11.11.2026, night; voice fixed; MEASURED, NOT HEARD)
+David's ear (11.11): from "7 other tools" on the voice sounds a bit Indian; the background track is bad and must not be used again; the voice of ep89 was much better; this reel is weaker than 89 in aliveness.
+Cause found: the accent gate had been SKIPPED (it ran with system python3, which has no transformers; /opt/v311/bin/python has it: run the gate with PATH=/opt/v311/bin:$PATH). check_accent flagged exactly lines 7 (not-american 0.98, "indian" 0.97) and 8 (0.68), the ones David heard. Fix: line 7 re-rolled at exaggeration 0.64 (seed 5 in the full build) = 0.01; line 8 reworded to "Save this. Send it to your friend who writes essays." at 0.62 (seed 5) = 0.21; line 3 re-rolled at 0.62 (seed 19) = 0.13. All 9 lines clean in gate-v8 (check_hf: 5 of 5 PASS, 0 skipped).
+Voice recipe note: line seeds in the full build are base + idx, so a take tested alone as line 1 (seed S) is reproduced in line N with base S + 1 - N.
+Music: NONE in the review copy (out/ep94-v8-nobed.mp4 and -720). The stand-in track trending-vibe is dropped. The approved tracks are not in this container and Pixabay does not expose the mp3 without a browser: David or a session on his Mac must supply a track name from audio/music-library; re-mix with mix94.py.
+Visual changes vs v2 toward ep89's feel: card rows are typed letter by letter with key clicks in the voice rhythm; the real Vanderbilt page now pushes in on the sentence (camera zoom 1.55x to the 75,000 ring, then to the 750 ring, then back out). Honest gap vs 89: still fewer kinetic words per line and no typed prompt card with a dare; 89 copied a proven viral structure, this one is an explainer.
+Files: voice/narration-v3-raw.wav (38.0 s), out/ep94-v8-nobed.mp4 (+720), gate-v8.txt.
 
----
-# REVISION final3 (10.11.2026): the idea is on screen, animals react
-`video/ep93/out/ep93-final3.mp4` (12.27 s, 1.7 MB) + `ep93-final3-720.mp4` (532 KB). final1 and final2 untouched. Build: `video/ep93/build93c.py`, `run3.sh`, `mix93c.py`, `hf3/` (`lines3.txt`, `voice/src3.json`). Audio measured, not heard.
+## Build v4 (12.11.2026, after David: "the hook is not understood, too complicated, I still do not know what the video is about"; MEASURED, NOT HEARD)
+Plain-language blind readers (persona: 45-year-old, English second language, never heard of an "AI detector"): P "AI detectors say real essays are fake." = understood partly ("AI detector" strange; guessed it is about schools; "not a student, not about me"); Q "You wrote it. The detector says AI did." = partly ("detector is a strange word"; got the stamp from the picture); R "A robot says you cheated. You didn't." = partly (understood the accusation; did not know "AI detector"; "I would send it to my child or niece at university, not to friends my age"). Common finding: the JARGON ("AI detector", "flagged", "detector") is the barrier, and a viewer who is not a student feels it is not about them.
+Decision: remove jargon everywhere, keep the claim accurate. New hook: "A computer says AI wrote your essay. You wrote it." Screen: YOUR OWN ESSAY, stamp AI WROTE THIS, tag COMPUTER SAYS. Other lines plain: "Do not argue. Bring proof." / "Ask how often it is wrong." / "The checker Turnitin says it makes this mistake less than one time in a hundred." (false-positive claim, accurate) / "could have been called AI by mistake" / "get called AI". Row 2 "YOUR NOTES / AND DRAFTS" (Whisper heard "drafts" as "dress"). Whisper small.en heard "version history" as "virgin history" on one take: re-rolled (seed 62) and the transcript is now fully correct.
+Voice: all 9 lines re-rolled where needed; check_accent clean on all 9 (max 0.19); recipe: line seeds in a full build are base+idx; takes tested alone as line 1 reproduce with base = seed + 1 - N; stdin of build_voice must be closed (< /dev/null) when it runs inside a read loop. Length 38.8 s.
+Gate (gate-v9.txt): 5 of 5 PASS, 0 skipped. Files: voice/narration-v4-raw.wav, lines.txt, words-v4.json, out/ep94-v9-nobed.mp4 (+720). Beat times now come from Whisper word times (build94.py W()). No music (see v3 note).
+Open: hook is still a hypothesis; a viewer who is not a student still feels "not about me" (the readers said they would send it to a niece or child): possible later change of the closing line to name a parent/relative; the video is 39 s.
 
-Why: the blind reader on final2 frame 0 (a 17-year-old) did not understand what the idea was or what the animals had to do with it, would not stop, found "I show AI" odd and the orange logo unrecognisable.
+## Hook search and build v5 (12.11.2026; David: "the hook must reach at least 90, honestly; clear to an 8-year-old AND scary/surprising AND make people watch to the end and then save or follow"; MEASURED/SIMULATED, NOT REAL VIEWERS)
+Process: 3 strongest-model ideators (2 x Fable, 1 x Opus) wrote 24 hooks; 8 finalists went to 4 blind-reader personas (round 1), 6 hooks to 4 more (round 2), a Fable judge scored them; round 3 (4 readers) tested the 85-point variant; round 4 (8, 12, 16, 22 yo) added "watch to the end" and "save or send"; round 5 (8, 13, 17, 23 yo) compared 4 variants; a final Fable judge decided. All readers are simulated personas (Opus), each saw only frame 0 + the first 3-4 s of voice.
+Key findings: (1) the word "essay" (or the picture of it) is required: without it readers ask "for what?" (understood "partly" in 14 of 16 readings); (2) a threat word plus a numbered promise ("Three things prove it") lifted "watch to the end" from 0-1/4 to 4/4 and "save or send" to 4/4; (3) "Teacher says you cheated" without AI is unclear to most; (4) the parent angle fails for 3 of 4 readers; (5) "Simple English can look like AI" works for non-native adults (it rests on Liang et al. 2023: 7 detectors, 91 TOEFL essays, 61.22% average false positives, 11.77% after the language was enriched; Turnitin not tested) but is weak for the young: kept as a fact beat.
+Final readers (round 5, 4 personas): K5 "Your teacher thinks you cheated with AI. You didn't. Three things prove it." and K6 "Your teacher thinks AI wrote your essay. You wrote it. Three things prove it." both scored understood 4/4, stop 4/4, watch to the end 4/4, save or send 4/4. K2 (a question) stop 1/4.
+JUDGE (Fable, final): chose K6 (truer: the tools label text "AI-written", they do not say "cheated"; version history and drafts show you wrote it, not that you never used AI). Honest HOOK SCORE 80 (K6), 78 (K5), 62 (K2). Predicted views 180-600, most likely about 300; 10-15% chance of 1,000+. Does NOT honestly reach 90: the hook is a generic scenario and the one startling fact (61%) was buried mid-video; no real-viewer data; students-only topic; the accusation-then-proof shape is common.
+Applied from the judge: the Stanford fact moves to the first beat after the hook ("In one test, six in ten essays by people still learning English were called AI", screen "7 OTHER TOOLS / 91 ESSAYS . TURNITIN NOT TESTED", 6 of 10 sheets stamped); frame 0 shows the teacher bubble ("EXAMPLE MESSAGE" label) over an essay page, "YOU WROTE IT." fills with the voice, tag "3 THINGS PROVE IT" with three empty boxes that pulse (open loop closed by the card). Not applied: "YOU DIDN'T." dropped; the third card item is a QUESTION to ask, not proof (residual overclaim: "Three things prove it" is a promise slightly wider than item 3).
+New order: hook, Stanford fact, BRING PROOF card (typed), Turnitin, Vanderbilt real page, switch OFF, save card, question "Did a teacher ever ask if you used AI?" (echoes the hook, loops). 33.6 s.
+Gate (gate-v12): 5 of 5 PASS, 0 skipped (accent check on all 8 lines clean; the line "Save this. Send this to your friend who writes essays." is the stubborn one: 4 of 4 standalone seeds failed, one in-context take passed at 0.16).
+Next real step to reach a measured 90: publish as a numbered experiment (trial reel to non-followers) and compare the real 3-second hold and shares; log in channel/score-calibration.md.
 
-## What changed
-- Headline (frame 0, three lines, present tense, no company named): "My idea: / sell ice to penguins. / AI, rate this." The "3 flaws" now only live in the answers ("3 problems."). I did NOT use "Uber for socks" because Uber is a real company (your rule: no real company named).
-- Line 1 spoken: "My idea: sell ice to penguins. AI, rate this." (new take `voice/c.wav`, 3.5 s, one render at a time). "rate it" was heard as "rated"/"raided it" in 3 takes (flapped T), so it became "rate this". Lines 2, 3, 4 are the final2 takes. Word stamp of the first word 0.00 s.
-- Panel headers now carry the NAME beside the icon ("ChatGPT", "Claude"), never under it.
-- Panels run y 575-1245 on frame 0 (to y 1245 at the platform line); nothing important below; no new decorations.
-- Reactions: the dog tilts its head on "penguins", bounces and wiggles on "Perfect idea!" with a green check; the cat tilts slowly in the first part, then squints (fast push-in to 1.55 with a small tilt) on "problems", the idea chip with 3 marks pops in and the marks light red one by one on "three". Words in the headline bump as they are spoken. Headline shrinks to the yellow idea line while the panels grow, then becomes "Tag someone who needs the cat."; ends easing back to frame 0 (loop seam 1.5/255).
-
-## Check results (`check_hf.sh`, tag final3)
-safe_check_hf PASS (clean). qa.py --hf PASS: 12.27 s, -14.4 LUFS, peak -3.2 dBFS, visual change median 0.03 s, longest still 2.07 s, loop seam 1.5/255. voice_quality PASS: pitch ranges 5.6 / 4.2 / 6.3 / 6.4 st, ends -0.3 / -0.1 / -0.3 / -0.8 st; bed -7.4 dB un-ducked at volume 0.46. voice_doctor: nothing flagged. Accent check SKIP (transformers not installed). Music `upbeat-energetic--lnplusmusic.mp3` at 12.24 s, mean -23.8 dB (quiet), logged. Fixed on the way: headline blocks overflowed the side line when scaled (fit-content), the idea chip popped from the wrong origin and left the panel.
-
-## Scores (judgement, not measurement)
-HOOK 78 (the idea is stated in big words and spoken, the two faces are on frame 0), VIRALITY 74, OVERALL 75, PREDICTED VIEWS 400-1,800 (ASSUMPTION). Under the 85 floor. Real views go into score-calibration.md.
-
-## Still weak
-- 12.27 s, over the 11 s target (line 1 alone is 3.5 s); under the 13 s cap.
-- First 3.8 s has only head tilts, word bumps and slow push-ins; no big visual event until the dog punches in at 3.8 s.
-- Five text items on frame 0 (3 headline lines + 2 header names), over the "max 3 lines" rule; the names were requested.
-- Panels sit close under the headline (about 15 px).
-- Line 2 is flat in pitch (4.2 st); the bed is very quiet in the file and has almost no bass; the Claude side is an untested joke (caption says so). Blind reader not re-run on final3, not watched twice, audio not heard.
-
-## Blind reader on final3 frame 0 (10.11.2026, fresh agent)
-- A) Understands: someone pitches a joke idea and wants AI to rate it; ChatGPT and Claude shown as a dog and a cat. B) No, would not stop: reads as a random meme, nothing at stake. C) Expects ChatGPT to gush and Claude to be sarcastic (what the video does). D) Ice-to-penguins is an old joke; stock-looking photos; generic dark gradient; empty bottom half. E) Show a real chat screen with both replies visible.
-- Verdict: comprehension fixed, stopping power still missing; a real chat screen (David's recording) is the only change the reader asks for.
+## 12.11.2026 - renumbered 94 -> 93 (David: the dog-and-cat reel is not a number; its files moved, untouched, to `channel/parked-dogcat/`). Build folder stays `video/ep94/` (internal name; `video/ep93/sfx` is episode 89's SFX pool, do not delete).
+v16 (final candidate, track B Mixkit "Hip Hop 03"): Vanderbilt page now blurred except the two lines with the numbers (original kept as `hf/assets/vanderbilt-para-orig.png`; real page, partial blur for legibility, say so in the caption). Meta AI review (it only had the music's NAME, not the audio): its "91 is not verified" was WRONG - 91 TOEFL essays and 7 detectors confirmed in arXiv 2304.02819 and Stanford HAI; kept. Gate `out/gate-v16.txt`: 5 of 5 PASS, 0 skipped (bed -7.7 dB under voice in 300-3500 Hz). Audio measured, not heard. The "Oh" at 0 s in the bed (speech detector, no_speech 0.58) is possibly a vocal chop: David to listen. File: `out/ep93-final-B-v16.mp4` (+ -720 review copy). Still open: Mixkit license UNVERIFIED, caption, YouTube text, /e/93 page, studio entry.

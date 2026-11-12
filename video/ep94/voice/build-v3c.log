@@ -1,0 +1,32 @@
+      per-line exaggeration: {1: 0.9, 8: 0.82, 9: 0.82}
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/opt/v311/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+loaded PerthNet (Implicit) at step 250,000
+/usr/lib/python3.11/contextlib.py:105: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+`sdpa` attention does not support `output_attentions=True`. Please set your attention to `eager` if you want any of these features.
+Sampling:   0%|          | 0/1000 [00:00<?, ?it/s]Sampling:   0%|          | 2/1000 [00:00<01:34, 10.55it/s]Sampling:   0%|          | 4/1000 [00:00<01:44,  9.54it/s]Sampling:   1%|          | 6/1000 [00:00<01:34, 10.53it/s]Sampling:   1%|          | 8/1000 [00:00<01:25, 11.66it/s]Sampling:   1%|          | 10/1000 [00:00<01:24, 11.65it/s]Sampling:   1%|          | 12/1000 [00:01<01:19, 12.35it/s]Sampling:   1%|▏         | 14/1000 [00:01<01:17, 12.66it/s]Sampling:   2%|▏         | 16/1000 [00:01<01:14, 13.29it/s]Sampling:   2%|▏         | 18/1000 [00:01<01:13, 13.30it/s]Sampling:   2%|▏         | 20/1000 [00:01<01:11, 13.62it/s]Sampling:   2%|▏         | 22/1000 [00:01<01:15, 13.01it/s]Sampling:   2%|▏         | 24/1000 [00:01<01:15, 12.89it/s]Sampling:   3%|▎         | 26/1000 [00:02<01:14, 13.10it/s]Sampling:   3%|▎         | 28/1000 [00:02<01:12, 13.39it/s]Sampling:   3%|▎         | 30/1000 [00:02<01:15, 12.80it/s]Sampling:   3%|▎         | 32/1000 [00:02<01:25, 11.37it/s]Sampling:   3%|▎         | 34/1000 [00:02<01:34, 10.22it/s]Sampling:   4%|▎         | 36/1000 [00:03<01:31, 10.50it/s]Sampling:   4%|▍         | 38/1000 [00:03<01:33, 10.31it/s]Sampling:   4%|▍         | 40/1000 [00:03<01:45,  9.10it/s]Sampling:   4%|▍         | 42/1000 [00:03<01:33, 10.21it/s]Sampling:   4%|▍         | 44/1000 [00:03<01:25, 11.19it/s]Sampling:   5%|▍         | 46/1000 [00:03<01:23, 11.40it/s]Sampling:   5%|▍         | 48/1000 [00:04<01:20, 11.83it/s]Sampling:   5%|▌         | 50/1000 [00:04<01:26, 11.03it/s]Sampling:   5%|▌         | 52/1000 [00:04<01:20, 11.82it/s]Sampling:   5%|▌         | 54/1000 [00:04<01:15, 12.50it/s]Sampling:   6%|▌         | 56/1000 [00:04<01:14, 12.65it/s]Sampling:   6%|▌         | 58/1000 [00:04<01:14, 12.65it/s]Sampling:   6%|▌         | 60/1000 [00:05<01:24, 11.17it/s]Sampling:   6%|▌         | 62/1000 [00:05<01:24, 11.12it/s]Sampling:   6%|▋         | 64/1000 [00:05<01:26, 10.79it/s]Sampling:   7%|▋         | 66/1000 [00:05<01:38,  9.48it/s]Sampling:   7%|▋         | 67/1000 [00:05<01:39,  9.40it/s]Sampling:   7%|▋         | 69/1000 [00:06<01:32, 10.04it/s]Sampling:   7%|▋         | 71/1000 [00:06<01:35,  9.75it/s]Sampling:   7%|▋         | 73/1000 [00:06<01:37,  9.49it/s]Sampling:   7%|▋         | 74/1000 [00:06<01:36,  9.56it/s]Sampling:   8%|▊         | 75/1000 [00:06<01:37,  9.48it/s]Sampling:   8%|▊         | 76/1000 [00:06<01:41,  9.13it/s]Sampling:   8%|▊         | 77/1000 [00:06<01:42,  8.99it/s]Sampling:   8%|▊         | 79/1000 [00:07<01:35,  9.64it/s]Sampling:   8%|▊         | 81/1000 [00:07<01:35,  9.62it/s]Sampling:   8%|▊         | 82/1000 [00:07<01:38,  9.29it/s]Sampling:   8%|▊         | 83/1000 [00:07<01:40,  9.08it/s]Sampling:   8%|▊         | 84/1000 [00:07<01:42,  8.92it/s]Sampling:   8%|▊         | 85/1000 [00:07<01:42,  8.90it/s]Sampling:   9%|▊         | 86/1000 [00:07<01:46,  8.59it/s]Sampling:   9%|▉         | 88/1000 [00:08<01:33,  9.79it/s]Sampling:   9%|▉         | 90/1000 [00:08<01:25, 10.67it/s]Sampling:   9%|▉         | 92/1000 [00:08<01:17, 11.70it/s]Sampling:   9%|▉         | 93/1000 [00:08<01:23, 10.89it/s]
+      3.8 syl/s, sped up x1.20
+  01/9   3.01s  Your teacher says AI wrote your essay. You wrote it.
+      02/09   cached take (restart-safe, no regeneration): Flagged? Do not argue. Bring proof.
+  02/9   2.65s  Flagged? Do not argue. Bring proof.
+      03/09   cached take (restart-safe, no regeneration): Show your version history. Show your drafts. Ask what the error rate is.
+  03/9   3.63s  Show your version history. Show your drafts. Ask wha
+      04/09   cached take (restart-safe, no regeneration): Here's why. Turnitin says fewer than one in a hundred get flagged by mistake.
+  04/9   5.17s  Here's why. Turnitin says fewer than one in a hundre
+      05/09   cached take (restart-safe, no regeneration): Vanderbilt University does the math. Seventy-five thousand submissions. About seven hundred fifty could have been flagged by mistake.
+  05/9   6.73s  Vanderbilt University does the math. Seventy-five th
+      06/09   cached take (restart-safe, no regeneration): So Vanderbilt turns it off.
+  06/9   1.43s  So Vanderbilt turns it off.
+      07/09   cached take (restart-safe, no regeneration): Stanford tests seven other tools. About six in ten essays by people still learning English get flagged.
+  07/9   5.76s  Stanford tests seven other tools. About six in ten e
+      08/09   cached take (restart-safe, no regeneration): Save this. Send it to a friend who writes essays.
+  08/9   2.49s  Save this. Send it to a friend who writes essays.
+      09/09   cached take (restart-safe, no regeneration): Has an AI ever called your essay AI?
+  09/9   2.60s  Has an AI ever called your essay AI?
+  placed 7 breaths from his own recording
+  room tone bed at -55 dBFS
+
+wrote video/ep94/voice/narration-v3-raw.wav  37.2s  9 lines

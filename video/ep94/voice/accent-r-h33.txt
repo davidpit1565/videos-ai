@@ -1,0 +1,1 @@
+   ln 1  top=indian 0.67  not-american=0.74   {'indian': 0.673, 'england': 0.049, 'australia': 0.016}   A computer says AI wrote your essay. You wro

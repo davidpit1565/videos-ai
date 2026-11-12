@@ -1,0 +1,2 @@
+   ln 1  top=us 0.59  not-american=0.01   {'australia': 0.003, 'england': 0.002, 'indian': 0.001}   Stanford tests seven other tools. About six 
+   ln 2  top=indian 0.64  not-american=0.85   {'indian': 0.644, 'england': 0.145, 'australia': 0.063}   Save this. Send it to a friend who writes es

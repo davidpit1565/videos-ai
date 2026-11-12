@@ -1,0 +1,1 @@
+   ln 7  top=us 0.74  not-american=0.16   {'england': 0.073, 'australia': 0.063, 'indian': 0.026}   Save this. Send this to your friend who writ

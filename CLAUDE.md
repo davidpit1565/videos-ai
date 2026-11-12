@@ -574,3 +574,9 @@ The studio is gated against the public, not against Claude. When David has given
 
 ## "Miki style" is the name of the style (David, 11.11.2026)
 - The drawn style of episode 89 is called **Miki style** from now on. It is NOT the generic light-and-lime drawn cards of the other episodes: it looks higher quality, and in practice viewers watch it more (89: 600 views, 440 reach, 11 saves vs 0-2 saves on the other recent episodes; one episode, a hypothesis). New videos use Miki style unless David says otherwise; this sits next to Roni's "must not look AI" rule (10.11), and David's choice decides. Build recipe: `video/ep89c/`.
+
+## Every rule David says gets saved the same day (David, 12.11.2026)
+- "Every rule I tell you, save it." When he gives a rule or preference, write it into this file (or the file it belongs to) in the same turn, with the date, so it survives a new session. No waiting to be asked.
+- **Numbering (12.11.2026):** the dog-and-cat reel is not a numbered episode (files parked in `channel/parked-dogcat/`, not deleted). The essay-flagged-as-AI reel is episode **93**; its build folder is still `video/ep94/` (internal name; `video/ep93/sfx` belongs to episode 89, keep it).
+- **Music rules experiment (12.11.2026, one week):** see `channel/experiments.md`. The rules came from Meta AI as a hypothesis (it cannot hear audio, and judged "Hip Hop 03" by its name only); they are tested, not law. Each episode logs track, type, measured level and views in `channel/music-notes.md`.
+- **Trial Reels are David's to post by hand when he chooses (12.11.2026):** he may publish a trial earlier than scheduled; before any API trial or scheduled publish, check with him that he has not already posted it by hand. The studio PIN is never saved anywhere: he gives it in chat each time it is needed.

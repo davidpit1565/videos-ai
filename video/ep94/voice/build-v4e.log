@@ -1,0 +1,33 @@
+      per-line seeds: {1: 32, 2: 31, 3: 60, 7: 5, 8: 46}
+      per-line exaggeration: {1: 0.72, 2: 0.62, 3: 0.62, 4: 0.7, 7: 0.64, 8: 0.66, 9: 0.78}
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/opt/v311/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+loaded PerthNet (Implicit) at step 250,000
+      01/09   cached take (restart-safe, no regeneration): A computer says AI wrote your essay. You wrote it.
+  01/9   3.07s  A computer says AI wrote your essay. You wrote it.
+      02/09   cached take (restart-safe, no regeneration): Do not argue. Bring proof.
+  02/9   1.99s  Do not argue. Bring proof.
+/usr/lib/python3.11/contextlib.py:105: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+`sdpa` attention does not support `output_attentions=True`. Please set your attention to `eager` if you want any of these features.
+Sampling:   0%|          | 0/1000 [00:00<?, ?it/s]Sampling:   0%|          | 1/1000 [00:00<02:52,  5.80it/s]Sampling:   0%|          | 2/1000 [00:00<02:12,  7.51it/s]Sampling:   0%|          | 3/1000 [00:00<02:04,  8.03it/s]Sampling:   0%|          | 5/1000 [00:00<01:43,  9.65it/s]Sampling:   1%|          | 6/1000 [00:00<01:45,  9.43it/s]Sampling:   1%|          | 8/1000 [00:00<01:42,  9.64it/s]Sampling:   1%|          | 10/1000 [00:01<01:30, 10.92it/s]Sampling:   1%|          | 12/1000 [00:01<01:26, 11.48it/s]Sampling:   1%|▏         | 14/1000 [00:01<01:22, 11.96it/s]Sampling:   2%|▏         | 16/1000 [00:01<01:22, 11.86it/s]Sampling:   2%|▏         | 18/1000 [00:01<01:24, 11.61it/s]Sampling:   2%|▏         | 20/1000 [00:01<01:20, 12.11it/s]Sampling:   2%|▏         | 22/1000 [00:01<01:17, 12.70it/s]Sampling:   2%|▏         | 24/1000 [00:02<01:13, 13.23it/s]Sampling:   3%|▎         | 26/1000 [00:02<01:12, 13.47it/s]Sampling:   3%|▎         | 28/1000 [00:02<01:22, 11.79it/s]Sampling:   3%|▎         | 30/1000 [00:02<01:24, 11.44it/s]Sampling:   3%|▎         | 32/1000 [00:02<01:20, 12.00it/s]Sampling:   3%|▎         | 34/1000 [00:02<01:20, 11.99it/s]Sampling:   4%|▎         | 36/1000 [00:03<01:18, 12.33it/s]Sampling:   4%|▍         | 38/1000 [00:03<01:18, 12.26it/s]Sampling:   4%|▍         | 40/1000 [00:03<01:15, 12.71it/s]Sampling:   4%|▍         | 42/1000 [00:03<01:15, 12.74it/s]Sampling:   4%|▍         | 44/1000 [00:03<01:13, 13.03it/s]Sampling:   5%|▍         | 46/1000 [00:03<01:11, 13.31it/s]Sampling:   5%|▍         | 48/1000 [00:04<01:12, 13.21it/s]Sampling:   5%|▌         | 50/1000 [00:04<01:12, 13.13it/s]Sampling:   5%|▌         | 52/1000 [00:04<01:11, 13.30it/s]Sampling:   5%|▌         | 54/1000 [00:04<01:13, 12.95it/s]Sampling:   6%|▌         | 56/1000 [00:04<01:21, 11.54it/s]Sampling:   6%|▌         | 58/1000 [00:04<01:23, 11.32it/s]Sampling:   6%|▌         | 60/1000 [00:05<01:19, 11.81it/s]Sampling:   6%|▌         | 62/1000 [00:05<01:19, 11.83it/s]Sampling:   6%|▋         | 64/1000 [00:05<01:16, 12.30it/s]Sampling:   7%|▋         | 66/1000 [00:05<01:13, 12.79it/s]Sampling:   7%|▋         | 68/1000 [00:05<01:10, 13.23it/s]Sampling:   7%|▋         | 70/1000 [00:05<01:18, 11.84it/s]Sampling:   7%|▋         | 72/1000 [00:06<01:21, 11.41it/s]Sampling:   7%|▋         | 74/1000 [00:06<01:21, 11.40it/s]Sampling:   8%|▊         | 76/1000 [00:06<01:29, 10.31it/s]Sampling:   8%|▊         | 78/1000 [00:06<01:29, 10.28it/s]Sampling:   8%|▊         | 80/1000 [00:06<01:25, 10.71it/s]Sampling:   8%|▊         | 82/1000 [00:06<01:22, 11.12it/s]Sampling:   8%|▊         | 84/1000 [00:07<01:19, 11.56it/s]Sampling:   9%|▊         | 86/1000 [00:07<01:25, 10.72it/s]Sampling:   9%|▉         | 88/1000 [00:07<01:26, 10.51it/s]Sampling:   9%|▉         | 90/1000 [00:07<01:24, 10.77it/s]Sampling:   9%|▉         | 92/1000 [00:07<01:21, 11.14it/s]Sampling:   9%|▉         | 94/1000 [00:08<01:20, 11.25it/s]Sampling:  10%|▉         | 96/1000 [00:08<01:17, 11.65it/s]Sampling:  10%|▉         | 98/1000 [00:08<01:14, 12.13it/s]Sampling:  10%|█         | 100/1000 [00:08<01:10, 12.78it/s]Sampling:  10%|█         | 102/1000 [00:08<01:10, 12.81it/s]Sampling:  10%|█         | 104/1000 [00:08<01:11, 12.57it/s]Sampling:  11%|█         | 106/1000 [00:08<01:09, 12.92it/s]Sampling:  11%|█         | 108/1000 [00:09<01:09, 12.88it/s]Sampling:  11%|█         | 108/1000 [00:09<01:15, 11.80it/s]
+      4.2 syl/s, sped up x1.20
+  03/9   3.39s  Show your version history. Show your notes. Ask how 
+      04/09   cached take (restart-safe, no regeneration): Here's why. The checker Turnitin says it makes this mistake less than one time in a hundred.
+  04/9   4.96s  Here's why. The checker Turnitin says it makes this 
+      05/09   cached take (restart-safe, no regeneration): Vanderbilt University does the math. Seventy-five thousand submissions. About seven hundred fifty could have been called AI by mistake.
+  05/9   7.17s  Vanderbilt University does the math. Seventy-five th
+      06/09   cached take (restart-safe, no regeneration): So Vanderbilt turns it off.
+  06/9   1.43s  So Vanderbilt turns it off.
+      07/09   cached take (restart-safe, no regeneration): Stanford tests seven other tools. About six in ten essays by people still learning English get called AI.
+  07/9   6.69s  Stanford tests seven other tools. About six in ten e
+      08/09   cached take (restart-safe, no regeneration): Save this. Send this to your friend who writes essays.
+  08/9   3.68s  Save this. Send this to your friend who writes essay
+      09/09   cached take (restart-safe, no regeneration): Did a computer ever say AI wrote your essay?
+  09/9   2.76s  Did a computer ever say AI wrote your essay?
+  placed 7 breaths from his own recording
+  room tone bed at -55 dBFS
+
+wrote video/ep94/voice/narration-v4-raw.wav  38.8s  9 lines
