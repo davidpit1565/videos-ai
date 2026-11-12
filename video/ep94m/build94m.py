@@ -8,7 +8,7 @@ C = C if isinstance(C, list) else C["lines"]
 L = {c["n"]: (c["start"], c["end"]) for c in C}
 s = lambda n: L[n][0]
 e = lambda n: L[n][1]
-D = round(e(10) + 1.0, 2)
+D = round(e(9) + 1.0, 2)
 INK = "#0f0f0f"
 J = []; SFX = []
 def js(x): J.append(x)
@@ -45,9 +45,9 @@ markup = f'''
 <div id="cam">
  <div id="s1">
   {MARK.format(id="mk1")}
-  <div class="h1c" id="h1c">CLAUDE</div><div class="h1a" id="h1a">REPORT → VIDEO</div>
+  <div class="h1c" id="h1c">CLAUDE</div><div class="h1n" id="h1n">NOBODY READS<br>YOUR REPORT</div><div class="h1a" id="h1a">REPORT → VIDEO</div>
   <div class="card1" id="card1">{sheet("a")}
-   <div class="film" id="film"></div><div class="play" id="play"></div></div>
+   <div class="stamp" id="stamp">UNREAD</div><div class="film" id="film"></div><div class="play" id="play"></div></div>
   <div class="tag" id="tg1" style="top:1180px;left:100px">NEW · CLAUDE MOTION</div>
  </div>
  <div id="s2"><div class="mkbig" id="mkbig">{MARK.format(id="mk2")}</div><div class="h2a" id="h2a">CLAUDE</div><div class="h2b" id="h2b">MOTION</div>
@@ -58,8 +58,6 @@ markup = f'''
   <div class="tag" id="tg3" style="top:1130px;left:100px">EXAMPLE FROM ANTHROPIC'S HELP PAGE</div></div>
  <div id="s4"><div class="card1 c4" id="card4"><div class="mt">Q3 at a glance</div>{chart("d", 330, 760)}<div class="big18" id="n4">+18%</div></div>
   <div class="tag" id="tg4" style="top:1170px;left:100px">ANTHROPIC SAYS · DRAWN EXAMPLE</div></div>
- <div id="s4b"><div class="ex" id="ex0"><b>1</b><span>ALL-HANDS EXPLAINER</span></div><div class="ex" id="ex1"><b>2</b><span>ANIMATED CHART</span></div><div class="ex" id="ex2"><b>3</b><span>PRODUCT WALKTHROUGH</span></div>
-  <div class="tag" id="tg4b" style="top:1170px;left:100px">ANTHROPIC'S OWN EXAMPLES</div></div>
  <div id="s5"><div class="h5a" id="h5a">NO AI</div><div class="h5b" id="h5b">FOOTAGE</div>
   <div class="codep" id="codep"><div class="dots"><i></i><i></i><i></i></div>{code_html}</div>
   <div class="tag" id="tg5" style="top:1170px;left:100px">CODE · STAND-IN EXAMPLE</div></div>
@@ -68,7 +66,7 @@ markup = f'''
   <div class="tag" id="tg6" style="top:1170px;left:100px">ONE NUMBER CHANGES. THE REST STAYS.</div></div>
  <div id="s7"><div class="exp" id="exp">Export</div><div class="cursor" id="cursor"></div><div class="mp4" id="mp4"><b>MP4</b><span>explainer.mp4</span></div></div>
  <div id="s8"><div class="plans" id="plans"><span class="pl" id="pl0">Free</span><span class="pl" id="pl1">Pro</span><span class="pl" id="pl2">Max</span><span class="pl on" id="pl3">Team</span><span class="pl on" id="pl4">Enterprise</span></div>
-  <div class="beta" id="beta">BETA</div><div class="tag" id="tg8" style="top:1140px;left:100px">ON ENTERPRISE, AN OWNER SWITCHES IT ON</div></div>
+  <div class="beta" id="beta">BETA</div><div class="tag" id="tg8" style="top:1140px;left:100px">ANTHROPIC SAYS</div></div>
  <div class="tag" id="tgs" style="top:350px;left:740px;z-index:60">SEND THIS</div>
 </div>
 '''
@@ -78,14 +76,16 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 #root{{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}}
 .bgw{{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#ecebe5 url(assets/bg.jpg);background-size:1080px 1920px}}
 #cam{{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}}
-#s1,#s2,#s3,#s4,#s4b,#s5,#s6,#s7,#s8{{position:absolute;left:0;top:0;width:1080px;height:1920px}}
-#s2,#s3,#s4,#s4b,#s5,#s6,#s7,#s8,#tgs{{opacity:0}}
+#s1,#s2,#s3,#s4,#s5,#s6,#s7,#s8{{position:absolute;left:0;top:0;width:1080px;height:1920px}}
+#s2,#s3,#s4,#s5,#s6,#s7,#s8,#tgs{{opacity:0}}
 .mk{{position:absolute;width:150px;height:150px;left:90px;top:332px}}
-.h1c{{position:absolute;left:260px;top:318px;font-size:118px;line-height:118px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}}
-.h1a{{position:absolute;left:92px;top:470px;font-size:104px;line-height:104px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}}
+.h1c{{position:absolute;left:250px;top:326px;font-size:100px;line-height:100px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}}
+.h1a{{position:absolute;left:92px;top:446px;font-size:104px;line-height:104px;font-weight:900;letter-spacing:-.045em;white-space:nowrap;opacity:0}}
+.h1n{{position:absolute;left:92px;top:444px;font-size:96px;line-height:98px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}}
+.stamp{{position:absolute;left:380px;top:140px;padding:0 26px;height:120px;border:9px solid {INK};border-radius:14px;font-size:84px;line-height:102px;font-weight:900;letter-spacing:-.03em;transform:rotate(-9deg);background:rgba(251,251,248,.92);opacity:0;z-index:5}}
 .h1b{{position:absolute;left:260px;top:444px;font-size:112px;line-height:112px;font-weight:900;letter-spacing:-.045em;white-space:nowrap;opacity:.4}}
-.card1{{position:absolute;left:100px;top:620px;width:880px;height:550px;background:#fbfbf8;border:4px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK};overflow:hidden}}
-.sheet{{position:absolute;left:50px;top:30px;width:780px;height:490px}}
+.card1{{position:absolute;left:100px;top:660px;width:880px;height:510px;background:#fbfbf8;border:4px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK};overflow:hidden}}
+.sheet{{position:absolute;left:50px;top:26px;width:780px;height:458px}}
 .rt1{{position:absolute;left:0;top:18px;font:700 36px/40px JBM,monospace;letter-spacing:.06em}}
 .sl{{position:absolute;left:0;height:14px;border-radius:7px;background:#d4d4d8}}
 .chart{{position:absolute;left:10px;bottom:60px}}
@@ -108,9 +108,6 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .c4 .chart{{left:50px;bottom:40px}}
 .big18{{position:absolute;right:50px;top:30px;font-size:130px;line-height:130px;font-weight:900;letter-spacing:-.05em;opacity:0}} .big18.q{{opacity:0}}
 .rings6{{position:absolute;left:0;top:0;width:880px;height:790px;overflow:visible}}
-.ex{{position:absolute;left:100px;width:880px;height:250px;background:#fbfbf8;border:4px solid {INK};border-radius:10px;box-shadow:12px 12px 0 {INK};display:flex;align-items:center;gap:36px;padding:0 40px;opacity:0}}
-.ex b{{flex:none;width:130px;height:130px;border-radius:16px;background:{INK};color:#fff;font-size:92px;line-height:130px;text-align:center;font-weight:900}}
-.ex span{{font-size:70px;line-height:76px;font-weight:900;letter-spacing:-.04em}}
 .h5a{{position:absolute;left:75px;top:300px;font-size:170px;line-height:170px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}}
 .h5b{{position:absolute;left:75px;top:470px;font-size:170px;line-height:170px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}}
 .codep{{position:absolute;left:100px;top:700px;width:880px;height:440px;background:{INK};border-radius:14px;box-shadow:14px 14px 0 #8a8a86;padding:30px 40px;color:#fff;font:700 38px/58px JBM,monospace;opacity:0}}
@@ -129,11 +126,11 @@ t_report = W("report", 0, default=1.0); t_video = W("video", 0, default=1.8)
 t_motion = W("motion", 0, default=s(2) + .6); t_new = W("new", 0, after=s(2), default=s(2) + 1.4)
 t_watch = W("watching", 0, after=s(3), default=s(3) + 1.8); t_long = W("long", 0, after=t_watch, default=s(3) + 2.8)
 t_anim = W("animation", 0, after=s(4), default=s(4) + 1.0)
-t_nofoot = W("footage", 0, after=s(6), default=s(6) + .8); t_code = W("code", 0, after=t_nofoot, default=s(6) + 2.4)
-t_word = W("word", 0, after=s(7), default=s(7) + 1.2); t_stays = W("stays", 0, after=t_word, default=s(7) + 2.4)
-t_exp = W("export", 0, after=s(8), default=s(8) + .5); t_mp4 = W("mp4", 0, after=t_exp, default=s(8) + 1.4)
-t_beta = W("beta", 0, after=s(9), default=s(9) + .2); t_team = W("team", 0, after=t_beta, default=s(9) + 1.0); t_ent = W("enterprise", 0, after=t_team, default=s(9) + 1.6)
-t_hav = W("owner", 0, after=t_ent, default=s(9) + 3.6); t_says = t_hav
+t_nofoot = W("footage", 0, after=s(5), default=s(5) + .8); t_code = W("code", 0, after=t_nofoot, default=s(5) + 2.4)
+t_word = W("word", 0, after=s(6), default=s(6) + 1.2); t_stays = W("stays", 0, after=t_word, default=s(6) + 2.4)
+t_exp = W("export", 0, after=s(7), default=s(7) + .5); t_mp4 = W("mp4", 0, after=t_exp, default=s(7) + 1.4)
+t_beta = W("beta", 0, after=s(8), default=s(8) + .2); t_team = W("team", 0, after=t_beta, default=s(8) + 1.0); t_ent = W("enterprise", 0, after=t_team, default=s(8) + 1.6)
+t_hav = t_ent + .35; t_says = t_hav
 # ---------------------------------------------------------------- timeline
 js(f"tl.fromTo('#cam',{{scale:1.0,y:0}},{{scale:1.03,y:-12,duration:{D},ease:'sine.inOut'}},0);")
 def pulse_bars(p, t0, t1, amp=.22):
@@ -149,7 +146,10 @@ for i in range(5):
 pulse_bars("a", 1.0, s(2))
 js(f"tl.fromTo('#mk1',{{rotate:-25}},{{rotate:0,duration:.7,ease:'sine.out',immediateRender:false}},0);")
 js(f"tl.fromTo('#h1c',{{x:-18}},{{x:0,duration:.5,ease:'power2.out',immediateRender:false}},0);")
-js(f"tl.fromTo('#h1a',{{scale:1}},{{scale:1.03,duration:.2,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'0% 50%'}},{max(.1,t_video-.1):.3f});")
+js(f"tl.fromTo('#stamp',{{opacity:0,scale:1.6}},{{opacity:1,scale:1,duration:.18,ease:'expo.out',immediateRender:false}},{max(.45,t_report+.05):.3f});")
+js(f"tl.to('#stamp',{{opacity:0,scale:.92,duration:.2,ease:'power1.in'}},{t_video-.12:.3f});")
+js(f"tl.to('#h1n',{{opacity:0,y:-14,filter:'blur(8px)',duration:.22,ease:'power1.in'}},{t_video-.18:.3f});tl.fromTo('#h1a',{{opacity:0,y:16,filter:'blur(8px)'}},{{opacity:1,y:0,filter:'blur(0px)',duration:.3,ease:'power2.out',immediateRender:false}},{t_video-.02:.3f});")
+sfx("impactpunch.ogg", max(.45,t_report+.05)+.04, -6)
 js(f"tl.to('#film',{{opacity:1,duration:.4,ease:'sine.out'}},{t_video-.05:.3f});tl.to('#ash .sl',{{opacity:.0,duration:.3}},{t_video:.3f});tl.to('#play',{{opacity:1,duration:.35,ease:'sine.out'}},{t_video+.12:.3f});")
 js("gsap.set('#tg1',{opacity:0});")
 fin("#tg1", t_video + .35, .35, 14, 6)
@@ -181,38 +181,31 @@ fin("#card4", s(4) + .02, .45, 40, 12, .97); sfx("whoosh_a.ogg", s(4) - .04, -9)
 for i in range(5):
     js(f"tl.fromTo('#db{i}',{{scaleY:.05}},{{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false}},{s(4)+.45+i*.12:.3f});")
 fin("#n4", t_anim + .3, .45, 20, 8, .9); sfx("pop_b.ogg", t_anim + .35, -7)
-pulse_bars("d", s(4) + 1.6, s(6))
+pulse_bars("d", s(4) + 1.6, s(5))
 fin("#tg4", s(4) + .8, .35, 14, 6)
 fout("#s4", s(5) - .08, .3)
-t_allh = W("all", 0, after=s(5), default=s(5) + 1.2); t_chart = W("chart", 0, after=s(5), default=s(5) + 2.6); t_walk = W("walkthrough", 0, after=s(5), default=s(5) + 3.4)
-js("gsap.set('#s4b',{opacity:1}); gsap.set('#ex0,#ex1,#ex2,#tg4b',{opacity:0});")
-for k, (tt, ty) in enumerate(((t_allh - .15, 330), (t_chart - .55, 600), (t_walk - .5, 870))):
-    js(f"gsap.set('#ex{k}',{{top:{ty}}});")
-    fin(f"#ex{k}", tt, .4, 36, 10, .96); sfx("pop_a.ogg" if k % 2 == 0 else "pop_b.ogg", tt + .1, -8)
-fin("#tg4b", s(5) + .6, .35, 14, 6)
-fout("#s4b", s(6) - .08, .3)
 # S5 no AI footage = code
 js("gsap.set('#s5',{opacity:1}); gsap.set('#h5a,#h5b,#codep,#tg5',{opacity:0});")
-fin("#h5a", s(6) + .02, .35, 24, 8); fin("#h5b", t_nofoot - .12, .4, 24, 8); sfx("impactsoft.ogg", t_nofoot - .05, -5)
-fin("#codep", s(6) + .5, .45, 30, 10)
+fin("#h5a", s(5) + .02, .35, 24, 8); fin("#h5b", t_nofoot - .12, .4, 24, 8); sfx("impactsoft.ogg", t_nofoot - .05, -5)
+fin("#codep", s(5) + .5, .45, 30, 10)
 n = 0
 for i, tline in enumerate(CODE):
     for j in range(len(tline)):
         tj = t_code - .5 + n * .028 + (0 if j else .05 * i)
         js(f"tl.to('#cl{i} .L:nth-child({j+1})',{{opacity:1,duration:.02}},{tj:.3f});"); n += 1
 for k in range(0, 18, 3): sfx("click_a.ogg" if k % 2 == 0 else "click_b.ogg", t_code - .5 + k * .09, -14)
-fin("#tg5", s(6) + 1.3, .35, 14, 6)
-fout("#s5", s(7) - .08, .3)
+fin("#tg5", s(5) + 1.3, .35, 14, 6)
+fout("#s5", s(6) - .08, .3)
 # S6 change one word / number
 js("gsap.set('#s6',{opacity:1}); gsap.set('#card6,#tg6,#n6a,#n6b',{opacity:0});")
-fin("#card6", s(7) + .02, .45, 40, 12, .97); sfx("whoosh_a.ogg", s(7) - .04, -9)
-fin("#n6a", s(7) + .5, .4, 20, 8, .92)
+fin("#card6", s(6) + .02, .45, 40, 12, .97); sfx("whoosh_a.ogg", s(6) - .04, -9)
+fin("#n6a", s(6) + .5, .4, 20, 8, .92)
 js(f"tl.to('#rg6',{{strokeDashoffset:0,duration:.5,ease:'sine.inOut'}},{t_word-.1:.3f});")
 js(f"tl.to('#n6a',{{opacity:0,y:-24,filter:'blur(8px)',duration:.25,ease:'power1.in'}},{t_word+.2:.3f});tl.fromTo('#n6b',{{opacity:0,y:24,filter:'blur(8px)'}},{{opacity:1,y:0,filter:'blur(0px)',duration:.35,ease:'power2.out',immediateRender:false}},{t_word+.3:.3f});")
 sfx("tick.ogg", t_word + .1, -7); sfx("pop_b.ogg", t_word + .35, -6)
-pulse_bars("f", s(7) + .5, s(8), .12)
+pulse_bars("f", s(6) + .5, s(7), .12)
 fin("#tg6", t_stays - .5, .35, 14, 6)
-fout("#s6", s(8) - .08, .3)
+fout("#s6", s(7) - .08, .3)
 # S7 export -> MP4
 js("gsap.set('#s7',{opacity:1}); gsap.set('#exp,#cursor,#mp4',{opacity:0});")
 fin("#exp", t_exp - .35, .4, 26, 8); sfx("pop_a.ogg", t_exp - .3, -8)
@@ -220,20 +213,20 @@ js(f"tl.fromTo('#cursor',{{opacity:0,x:180,y:180}},{{opacity:1,x:0,y:0,duration:
 js(f"tl.to('#exp',{{scale:.94,duration:.1,ease:'sine.inOut',yoyo:true,repeat:1}},{t_exp+.55:.3f});")
 sfx("click_a.ogg", t_exp + .58, -6)
 fin("#mp4", t_mp4 - .05, .45, 50, 12, .96); sfx("ding.ogg", t_mp4 + .1, -9)
-fout("#s7", s(9) - .08, .3)
+fout("#s7", s(8) - .08, .3)
 # S8 plans
 js("gsap.set('#s8',{opacity:1}); gsap.set('#plans .pl,#beta,#tg8',{opacity:0});")
 for i in range(5):
-    fin(f"#pl{i}", s(9) + .05 + i * .1, .3, 20, 6)
+    fin(f"#pl{i}", s(8) + .05 + i * .1, .3, 20, 6)
 js(f"tl.fromTo('#pl3',{{scale:1}},{{scale:1.04,duration:.25,ease:'sine.out',yoyo:true,repeat:1}},{t_team:.3f});tl.fromTo('#pl4',{{scale:1}},{{scale:1.04,duration:.25,ease:'sine.out',yoyo:true,repeat:1}},{t_ent:.3f});")
 sfx("tick.ogg", t_team, -7); sfx("tick.ogg", t_ent, -7)
 fin("#beta", t_beta - .05, .35, 14, 6, .8); sfx("pop_b.ogg", t_beta, -8)
 fin("#tg8", t_hav - .1, .35, 14, 6)
-fout("#s8", s(10) - .1, .3)
+fout("#s8", s(9) - .1, .3)
 # S9 loop: back to hook frame
-js(f"tl.fromTo('#s1',{{opacity:0,filter:'blur(14px)'}},{{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false}},{s(10)-.02:.3f});")
-js(f"tl.set('#tg1',{{opacity:0}},{s(10)-.02:.3f});")
-fin("#tgs", s(10) + .3, .3, 14, 6); sfx("whoosh_c.ogg", s(10) - .05, -10)
+js(f"tl.fromTo('#s1',{{opacity:0,filter:'blur(14px)'}},{{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false}},{s(9)-.02:.3f});")
+js(f"tl.set('#tg1',{{opacity:0}},{s(9)-.02:.3f});")
+fin("#tgs", s(9) + .3, .3, 14, 6); sfx("whoosh_c.ogg", s(9) - .05, -10)
 JS = "\n".join(J)
 json.dump(SFX, open(H_ + "/sfx94m.json", "w"), indent=1)
 json.dump(dict(lines=[dict(n=c["n"], text=c["line"], start=c["start"], end=c["end"]) for c in C], D=D), open(H_ + "/cues94m.json", "w"), indent=1)

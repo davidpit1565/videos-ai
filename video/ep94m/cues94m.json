@@ -2,64 +2,58 @@
  "lines": [
   {
    "n": 1,
-   "text": "Claude turns a boring report into a video.",
+   "text": "Nobody reads your report. Claude turns it into a video.",
    "start": 0.08,
-   "end": 2.99
+   "end": 2.83
   },
   {
    "n": 2,
    "text": "It's called Claude Motion, and it's new.",
-   "start": 3.11,
-   "end": 5.54
+   "start": 2.93,
+   "end": 5.1
   },
   {
    "n": 3,
-   "text": "You give it your report, and tell it who is watching and how long.",
-   "start": 5.66,
-   "end": 9.06
+   "text": "You give it your report, and say who's watching and how long.",
+   "start": 5.2,
+   "end": 8.01
   },
   {
    "n": 4,
-   "text": "Anthropic says Claude builds the whole animation from what's in your report.",
-   "start": 9.18,
-   "end": 13.15
+   "text": "Anthropic says Claude builds the whole animation from your report.",
+   "start": 8.11,
+   "end": 11.18
   },
   {
    "n": 5,
-   "text": "Anthropic's examples are an all-hands explainer, an animated chart, and a product walkthrough.",
-   "start": 13.45,
-   "end": 18.31
+   "text": "There's no AI footage. Anthropic says Claude writes code.",
+   "start": 11.43,
+   "end": 14.81
   },
   {
    "n": 6,
-   "text": "And there's no AI footage. Anthropic says Claude writes code, not footage.",
-   "start": 18.43,
-   "end": 22.75
+   "text": "So you change one word, and the rest stays put.",
+   "start": 14.91,
+   "end": 17.44
   },
   {
    "n": 7,
-   "text": "So you change one word, and everything else stays put.",
-   "start": 22.87,
-   "end": 27.05
+   "text": "Then you export an MP4.",
+   "start": 17.54,
+   "end": 18.93
   },
   {
    "n": 8,
-   "text": "Then you export it as an MP4.",
-   "start": 27.17,
-   "end": 29.58
+   "text": "It's in beta, for Team and Enterprise plans.",
+   "start": 19.03,
+   "end": 21.85
   },
   {
    "n": 9,
-   "text": "It's in beta, for Team and Enterprise plans. On Enterprise, an owner has to switch it on.",
-   "start": 29.88,
-   "end": 34.95
-  },
-  {
-   "n": 10,
    "text": "Send this to the person at work who pays for Claude.",
-   "start": 35.07,
-   "end": 38.19
+   "start": 22.1,
+   "end": 24.53
   }
  ],
- "D": 39.19
+ "D": 25.53
 }

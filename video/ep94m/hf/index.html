@@ -10,14 +10,16 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
 .bgw{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#ecebe5 url(assets/bg.jpg);background-size:1080px 1920px}
 #cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}
-#s1,#s2,#s3,#s4,#s4b,#s5,#s6,#s7,#s8{position:absolute;left:0;top:0;width:1080px;height:1920px}
-#s2,#s3,#s4,#s4b,#s5,#s6,#s7,#s8,#tgs{opacity:0}
+#s1,#s2,#s3,#s4,#s5,#s6,#s7,#s8{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#s2,#s3,#s4,#s5,#s6,#s7,#s8,#tgs{opacity:0}
 .mk{position:absolute;width:150px;height:150px;left:90px;top:332px}
-.h1c{position:absolute;left:260px;top:318px;font-size:118px;line-height:118px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
-.h1a{position:absolute;left:92px;top:470px;font-size:104px;line-height:104px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
+.h1c{position:absolute;left:250px;top:326px;font-size:100px;line-height:100px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
+.h1a{position:absolute;left:92px;top:446px;font-size:104px;line-height:104px;font-weight:900;letter-spacing:-.045em;white-space:nowrap;opacity:0}
+.h1n{position:absolute;left:92px;top:444px;font-size:96px;line-height:98px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
+.stamp{position:absolute;left:380px;top:140px;padding:0 26px;height:120px;border:9px solid #0f0f0f;border-radius:14px;font-size:84px;line-height:102px;font-weight:900;letter-spacing:-.03em;transform:rotate(-9deg);background:rgba(251,251,248,.92);opacity:0;z-index:5}
 .h1b{position:absolute;left:260px;top:444px;font-size:112px;line-height:112px;font-weight:900;letter-spacing:-.045em;white-space:nowrap;opacity:.4}
-.card1{position:absolute;left:100px;top:620px;width:880px;height:550px;background:#fbfbf8;border:4px solid #0f0f0f;border-radius:8px;box-shadow:14px 14px 0 #0f0f0f;overflow:hidden}
-.sheet{position:absolute;left:50px;top:30px;width:780px;height:490px}
+.card1{position:absolute;left:100px;top:660px;width:880px;height:510px;background:#fbfbf8;border:4px solid #0f0f0f;border-radius:8px;box-shadow:14px 14px 0 #0f0f0f;overflow:hidden}
+.sheet{position:absolute;left:50px;top:26px;width:780px;height:458px}
 .rt1{position:absolute;left:0;top:18px;font:700 36px/40px JBM,monospace;letter-spacing:.06em}
 .sl{position:absolute;left:0;height:14px;border-radius:7px;background:#d4d4d8}
 .chart{position:absolute;left:10px;bottom:60px}
@@ -40,9 +42,6 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .c4 .chart{left:50px;bottom:40px}
 .big18{position:absolute;right:50px;top:30px;font-size:130px;line-height:130px;font-weight:900;letter-spacing:-.05em;opacity:0} .big18.q{opacity:0}
 .rings6{position:absolute;left:0;top:0;width:880px;height:790px;overflow:visible}
-.ex{position:absolute;left:100px;width:880px;height:250px;background:#fbfbf8;border:4px solid #0f0f0f;border-radius:10px;box-shadow:12px 12px 0 #0f0f0f;display:flex;align-items:center;gap:36px;padding:0 40px;opacity:0}
-.ex b{flex:none;width:130px;height:130px;border-radius:16px;background:#0f0f0f;color:#fff;font-size:92px;line-height:130px;text-align:center;font-weight:900}
-.ex span{font-size:70px;line-height:76px;font-weight:900;letter-spacing:-.04em}
 .h5a{position:absolute;left:75px;top:300px;font-size:170px;line-height:170px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}
 .h5b{position:absolute;left:75px;top:470px;font-size:170px;line-height:170px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}
 .codep{position:absolute;left:100px;top:700px;width:880px;height:440px;background:#0f0f0f;border-radius:14px;box-shadow:14px 14px 0 #8a8a86;padding:30px 40px;color:#fff;font:700 38px/58px JBM,monospace;opacity:0}
@@ -58,15 +57,15 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .beta{position:absolute;left:700px;top:300px;height:90px;padding:0 34px;border:6px solid #0f0f0f;border-radius:45px;font:700 48px/78px JBM,monospace;opacity:0;transform:rotate(-6deg);background:#fbfbf8}
 
 </style></head><body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="39.19" data-width="1080" data-height="1920">
+<div id="root" data-composition-id="main" data-start="0" data-duration="25.53" data-width="1080" data-height="1920">
 
 <div class="bgw" data-decor></div>
 <div id="cam">
  <div id="s1">
   <img class="mk" id="mk1" src="assets/claude-mark.svg">
-  <div class="h1c" id="h1c">CLAUDE</div><div class="h1a" id="h1a">REPORT → VIDEO</div>
+  <div class="h1c" id="h1c">CLAUDE</div><div class="h1n" id="h1n">NOBODY READS<br>YOUR REPORT</div><div class="h1a" id="h1a">REPORT → VIDEO</div>
   <div class="card1" id="card1"><div class="sheet" id="ash"><div class="rt1">QUARTERLY REPORT</div><div class="sl" style="top:84px;width:88%"></div><div class="sl" style="top:114px;width:76%"></div><div class="chart" id="ach" style="width:760px;height:250px"><i class="bar" id="ab0" style="left:40px;height:95px"></i><i class="bar" id="ab1" style="left:180px;height:155px"></i><i class="bar" id="ab2" style="left:320px;height:120px"></i><i class="bar" id="ab3" style="left:460px;height:215px"></i><i class="bar" id="ab4" style="left:600px;height:175px"></i><div class="axis"></div><b class="ql" style="left:40px">Q1</b><b class="ql" style="left:180px">Q2</b><b class="ql" style="left:320px">Q3</b><b class="ql" style="left:460px">Q4</b><b class="ql" style="left:600px">Q5</b></div></div>
-   <div class="film" id="film"></div><div class="play" id="play"></div></div>
+   <div class="stamp" id="stamp">UNREAD</div><div class="film" id="film"></div><div class="play" id="play"></div></div>
   <div class="tag" id="tg1" style="top:1180px;left:100px">NEW · CLAUDE MOTION</div>
  </div>
  <div id="s2"><div class="mkbig" id="mkbig"><img class="mk" id="mk2" src="assets/claude-mark.svg"></div><div class="h2a" id="h2a">CLAUDE</div><div class="h2b" id="h2b">MOTION</div>
@@ -77,8 +76,6 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
   <div class="tag" id="tg3" style="top:1130px;left:100px">EXAMPLE FROM ANTHROPIC'S HELP PAGE</div></div>
  <div id="s4"><div class="card1 c4" id="card4"><div class="mt">Q3 at a glance</div><div class="chart" id="dch" style="width:760px;height:330px"><i class="bar" id="db0" style="left:40px;height:125px"></i><i class="bar" id="db1" style="left:180px;height:204px"></i><i class="bar" id="db2" style="left:320px;height:158px"></i><i class="bar" id="db3" style="left:460px;height:283px"></i><i class="bar" id="db4" style="left:600px;height:231px"></i><div class="axis"></div><b class="ql" style="left:40px">Q1</b><b class="ql" style="left:180px">Q2</b><b class="ql" style="left:320px">Q3</b><b class="ql" style="left:460px">Q4</b><b class="ql" style="left:600px">Q5</b></div><div class="big18" id="n4">+18%</div></div>
   <div class="tag" id="tg4" style="top:1170px;left:100px">ANTHROPIC SAYS · DRAWN EXAMPLE</div></div>
- <div id="s4b"><div class="ex" id="ex0"><b>1</b><span>ALL-HANDS EXPLAINER</span></div><div class="ex" id="ex1"><b>2</b><span>ANIMATED CHART</span></div><div class="ex" id="ex2"><b>3</b><span>PRODUCT WALKTHROUGH</span></div>
-  <div class="tag" id="tg4b" style="top:1170px;left:100px">ANTHROPIC'S OWN EXAMPLES</div></div>
  <div id="s5"><div class="h5a" id="h5a">NO AI</div><div class="h5b" id="h5b">FOOTAGE</div>
   <div class="codep" id="codep"><div class="dots"><i></i><i></i><i></i></div><div class="cl" id="cl0"><span class=L>s</span><span class=L>c</span><span class=L>e</span><span class=L>n</span><span class=L>e</span><span class=L> </span><span class=L>=</span><span class=L> </span><span class=L>M</span><span class=L>o</span><span class=L>t</span><span class=L>i</span><span class=L>o</span><span class=L>n</span><span class=L>(</span></div><div class="cl" id="cl1"><span class=L> </span><span class=L> </span><span class=L>t</span><span class=L>i</span><span class=L>t</span><span class=L>l</span><span class=L>e</span><span class=L>=</span><span class=L>"</span><span class=L>Q</span><span class=L>3</span><span class=L> </span><span class=L>a</span><span class=L>t</span><span class=L> </span><span class=L>a</span><span class=L> </span><span class=L>g</span><span class=L>l</span><span class=L>a</span><span class=L>n</span><span class=L>c</span><span class=L>e</span><span class=L>"</span><span class=L>,</span></div><div class="cl" id="cl2"><span class=L> </span><span class=L> </span><span class=L>b</span><span class=L>a</span><span class=L>r</span><span class=L>s</span><span class=L>=</span><span class=L>[</span><span class=L>3</span><span class=L>8</span><span class=L>,</span><span class=L> </span><span class=L>6</span><span class=L>2</span><span class=L>,</span><span class=L> </span><span class=L>4</span><span class=L>8</span><span class=L>,</span><span class=L> </span><span class=L>8</span><span class=L>6</span><span class=L>,</span><span class=L> </span><span class=L>7</span><span class=L>0</span><span class=L>]</span><span class=L>,</span></div><div class="cl" id="cl3"><span class=L> </span><span class=L> </span><span class=L>s</span><span class=L>p</span><span class=L>e</span><span class=L>e</span><span class=L>d</span><span class=L>=</span><span class=L>1</span><span class=L>.</span><span class=L>0</span><span class=L>,</span></div><div class="cl" id="cl4"><span class=L>)</span></div><div class="cl" id="cl5"><span class=L>s</span><span class=L>c</span><span class=L>e</span><span class=L>n</span><span class=L>e</span><span class=L>.</span><span class=L>p</span><span class=L>l</span><span class=L>a</span><span class=L>y</span><span class=L>(</span><span class=L>)</span></div></div>
   <div class="tag" id="tg5" style="top:1170px;left:100px">CODE · STAND-IN EXAMPLE</div></div>
@@ -87,14 +84,14 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
   <div class="tag" id="tg6" style="top:1170px;left:100px">ONE NUMBER CHANGES. THE REST STAYS.</div></div>
  <div id="s7"><div class="exp" id="exp">Export</div><div class="cursor" id="cursor"></div><div class="mp4" id="mp4"><b>MP4</b><span>explainer.mp4</span></div></div>
  <div id="s8"><div class="plans" id="plans"><span class="pl" id="pl0">Free</span><span class="pl" id="pl1">Pro</span><span class="pl" id="pl2">Max</span><span class="pl on" id="pl3">Team</span><span class="pl on" id="pl4">Enterprise</span></div>
-  <div class="beta" id="beta">BETA</div><div class="tag" id="tg8" style="top:1140px;left:100px">ON ENTERPRISE, AN OWNER SWITCHES IT ON</div></div>
+  <div class="beta" id="beta">BETA</div><div class="tag" id="tg8" style="top:1140px;left:100px">ANTHROPIC SAYS</div></div>
  <div class="tag" id="tgs" style="top:350px;left:740px;z-index:60">SEND THIS</div>
 </div>
 
 </div>
 <script>
-const D=39.19; const tl=gsap.timeline({paused:true});
-tl.fromTo('#cam',{scale:1.0,y:0},{scale:1.03,y:-12,duration:39.19,ease:'sine.inOut'},0);
+const D=25.53; const tl=gsap.timeline({paused:true});
+tl.fromTo('#cam',{scale:1.0,y:0},{scale:1.03,y:-12,duration:25.53,ease:'sine.inOut'},0);
 gsap.set('#film,#play',{opacity:0});
 tl.fromTo('#ab0',{scaleY:.05},{scaleY:1,duration:.8,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},0.120);
 tl.fromTo('#ab1',{scaleY:.05},{scaleY:1,duration:.8,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},0.210);
@@ -108,205 +105,177 @@ tl.to('#ab3',{scaleY:0.63,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,trans
 tl.to('#ab4',{scaleY:0.58,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},1.480);
 tl.fromTo('#mk1',{rotate:-25},{rotate:0,duration:.7,ease:'sine.out',immediateRender:false},0);
 tl.fromTo('#h1c',{x:-18},{x:0,duration:.5,ease:'power2.out',immediateRender:false},0);
-tl.fromTo('#h1a',{scale:1},{scale:1.03,duration:.2,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'0% 50%'},2.280);
-tl.to('#film',{opacity:1,duration:.4,ease:'sine.out'},2.330);tl.to('#ash .sl',{opacity:.0,duration:.3},2.380);tl.to('#play',{opacity:1,duration:.35,ease:'sine.out'},2.500);
+tl.fromTo('#stamp',{opacity:0,scale:1.6},{opacity:1,scale:1,duration:.18,ease:'expo.out',immediateRender:false},0.890);
+tl.to('#stamp',{opacity:0,scale:.92,duration:.2,ease:'power1.in'},2.300);
+tl.to('#h1n',{opacity:0,y:-14,filter:'blur(8px)',duration:.22,ease:'power1.in'},2.240);tl.fromTo('#h1a',{opacity:0,y:16,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.3,ease:'power2.out',immediateRender:false},2.400);
+tl.to('#film',{opacity:1,duration:.4,ease:'sine.out'},2.370);tl.to('#ash .sl',{opacity:.0,duration:.3},2.420);tl.to('#play',{opacity:1,duration:.35,ease:'sine.out'},2.540);
 gsap.set('#tg1',{opacity:0});
-tl.fromTo('#tg1',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},2.730);
-tl.to('#s1',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},3.030);
+tl.fromTo('#tg1',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},2.770);
+tl.to('#s1',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},2.850);
 gsap.set('#s2',{opacity:1}); gsap.set('#mkbig,#h2a,#h2b,#tg2a,#tg2b',{opacity:0});
-tl.fromTo('#mkbig',{opacity:0,y:30,filter:'blur(10px)',scale:0.9},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.5,ease:'power2.out',immediateRender:false},3.130);
-tl.to('#mk2',{rotate:360,duration:2.63,ease:'sine.inOut'},3.110);
-tl.fromTo('#h2a',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},3.230);
-tl.fromTo('#h2b',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},4.110);
-tl.fromTo('#tg2a',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},5.050);
-tl.fromTo('#tg2b',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},5.250);
-tl.to('#s2',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},5.580);
+tl.fromTo('#mkbig',{opacity:0,y:30,filter:'blur(10px)',scale:0.9},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.5,ease:'power2.out',immediateRender:false},2.950);
+tl.to('#mk2',{rotate:360,duration:2.37,ease:'sine.inOut'},2.930);
+tl.fromTo('#h2a',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},3.050);
+tl.fromTo('#h2b',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},3.810);
+tl.fromTo('#tg2a',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},4.650);
+tl.fromTo('#tg2b',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},4.850);
+tl.to('#s2',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},5.120);
 gsap.set('#s3',{opacity:1}); gsap.set('#ui,#tg3,#chOut,#chFile,#typed,#cWho,#cLong',{opacity:0});
-tl.fromTo('#ui',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},5.680);
-tl.fromTo('#chOut',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},5.960);
-tl.fromTo('#chFile',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},6.110);
+tl.fromTo('#ui',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},5.220);
+tl.fromTo('#chOut',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},5.500);
+tl.fromTo('#chFile',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},5.650);
 gsap.set('#typed',{opacity:1}); (function(){var el=document.getElementById('typed');el.innerHTML='';var sp=[];for(var i=0;i<72;i++){var q=document.createElement('span');q.textContent="Turn this quarterly report into a 30-second explainer for our all-hands."[i];q.style.opacity=0;el.appendChild(q);sp.push(q);}window.__sp=sp;})();
-tl.to(window.__sp,{opacity:1,duration:.02,stagger:0.0222},6.360);
-tl.fromTo('#cWho',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},7.160);
-tl.fromTo('#cLong',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},8.290);
-tl.to('#cWho',{backgroundColor:'#0f0f0f',color:'#fff',borderStyle:'solid',duration:.25},7.460);tl.to('#cLong',{backgroundColor:'#0f0f0f',color:'#fff',borderStyle:'solid',duration:.25},8.540);
-tl.fromTo('#tg3',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},6.660);
-tl.to('#s3',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},9.100);
+tl.to(window.__sp,{opacity:1,duration:.02,stagger:0.0222},5.900);
+tl.fromTo('#cWho',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},6.520);
+tl.fromTo('#cLong',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},7.350);
+tl.to('#cWho',{backgroundColor:'#0f0f0f',color:'#fff',borderStyle:'solid',duration:.25},6.820);tl.to('#cLong',{backgroundColor:'#0f0f0f',color:'#fff',borderStyle:'solid',duration:.25},7.600);
+tl.fromTo('#tg3',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},6.200);
+tl.to('#s3',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},8.030);
 gsap.set('#s4',{opacity:1}); gsap.set('#card4,#tg4,#n4',{opacity:0});
-tl.fromTo('#card4',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},9.200);
-tl.fromTo('#db0',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},9.630);
-tl.fromTo('#db1',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},9.750);
-tl.fromTo('#db2',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},9.870);
-tl.fromTo('#db3',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},9.990);
-tl.fromTo('#db4',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},10.110);
-tl.fromTo('#n4',{opacity:0,y:20,filter:'blur(8px)',scale:0.9},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},11.640);
-tl.to('#db0',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},10.780);
-tl.to('#db0',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},12.580);
-tl.to('#db0',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},14.380);
-tl.to('#db0',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},16.180);
-tl.to('#db0',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},17.980);
-tl.to('#db1',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},10.900);
-tl.to('#db1',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},12.700);
-tl.to('#db1',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},14.500);
-tl.to('#db1',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},16.300);
-tl.to('#db2',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},11.020);
-tl.to('#db2',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},12.820);
-tl.to('#db2',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},14.620);
-tl.to('#db2',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},16.420);
-tl.to('#db3',{scaleY:0.63,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},11.140);
-tl.to('#db3',{scaleY:0.63,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},12.940);
-tl.to('#db3',{scaleY:0.63,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},14.740);
-tl.to('#db3',{scaleY:0.63,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},16.540);
-tl.to('#db4',{scaleY:0.58,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},11.260);
-tl.to('#db4',{scaleY:0.58,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},13.060);
-tl.to('#db4',{scaleY:0.58,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},14.860);
-tl.to('#db4',{scaleY:0.58,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},16.660);
-tl.fromTo('#tg4',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},9.980);
-tl.to('#s4',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},13.370);
-gsap.set('#s4b',{opacity:1}); gsap.set('#ex0,#ex1,#ex2,#tg4b',{opacity:0});
-gsap.set('#ex0',{top:330});
-tl.fromTo('#ex0',{opacity:0,y:36,filter:'blur(10px)',scale:0.96},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},14.730);
-gsap.set('#ex1',{top:600});
-tl.fromTo('#ex1',{opacity:0,y:36,filter:'blur(10px)',scale:0.96},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},15.970);
-gsap.set('#ex2',{top:870});
-tl.fromTo('#ex2',{opacity:0,y:36,filter:'blur(10px)',scale:0.96},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},17.180);
-tl.fromTo('#tg4b',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},14.050);
-tl.to('#s4b',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},18.350);
+tl.fromTo('#card4',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},8.130);
+tl.fromTo('#db0',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},8.560);
+tl.fromTo('#db1',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},8.680);
+tl.fromTo('#db2',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},8.800);
+tl.fromTo('#db3',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},8.920);
+tl.fromTo('#db4',{scaleY:.05},{scaleY:1,duration:.9,ease:'power2.out',transformOrigin:'50% 100%',immediateRender:false},9.040);
+tl.fromTo('#n4',{opacity:0,y:20,filter:'blur(8px)',scale:0.9},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},10.360);
+tl.to('#db0',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},9.710);
+tl.to('#db1',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},9.830);
+tl.to('#db2',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},9.950);
+tl.to('#db3',{scaleY:0.63,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},10.070);
+tl.to('#db4',{scaleY:0.58,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},10.190);
+tl.fromTo('#tg4',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},8.910);
+tl.to('#s4',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},11.350);
 gsap.set('#s5',{opacity:1}); gsap.set('#h5a,#h5b,#codep,#tg5',{opacity:0});
-tl.fromTo('#h5a',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},18.450);
-tl.fromTo('#h5b',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},19.080);
-tl.fromTo('#codep',{opacity:0,y:30,filter:'blur(10px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},18.930);
-tl.to('#cl0 .L:nth-child(1)',{opacity:1,duration:.02},20.720);
-tl.to('#cl0 .L:nth-child(2)',{opacity:1,duration:.02},20.748);
-tl.to('#cl0 .L:nth-child(3)',{opacity:1,duration:.02},20.776);
-tl.to('#cl0 .L:nth-child(4)',{opacity:1,duration:.02},20.804);
-tl.to('#cl0 .L:nth-child(5)',{opacity:1,duration:.02},20.832);
-tl.to('#cl0 .L:nth-child(6)',{opacity:1,duration:.02},20.860);
-tl.to('#cl0 .L:nth-child(7)',{opacity:1,duration:.02},20.888);
-tl.to('#cl0 .L:nth-child(8)',{opacity:1,duration:.02},20.916);
-tl.to('#cl0 .L:nth-child(9)',{opacity:1,duration:.02},20.944);
-tl.to('#cl0 .L:nth-child(10)',{opacity:1,duration:.02},20.972);
-tl.to('#cl0 .L:nth-child(11)',{opacity:1,duration:.02},21.000);
-tl.to('#cl0 .L:nth-child(12)',{opacity:1,duration:.02},21.028);
-tl.to('#cl0 .L:nth-child(13)',{opacity:1,duration:.02},21.056);
-tl.to('#cl0 .L:nth-child(14)',{opacity:1,duration:.02},21.084);
-tl.to('#cl0 .L:nth-child(15)',{opacity:1,duration:.02},21.112);
-tl.to('#cl1 .L:nth-child(1)',{opacity:1,duration:.02},21.190);
-tl.to('#cl1 .L:nth-child(2)',{opacity:1,duration:.02},21.168);
-tl.to('#cl1 .L:nth-child(3)',{opacity:1,duration:.02},21.196);
-tl.to('#cl1 .L:nth-child(4)',{opacity:1,duration:.02},21.224);
-tl.to('#cl1 .L:nth-child(5)',{opacity:1,duration:.02},21.252);
-tl.to('#cl1 .L:nth-child(6)',{opacity:1,duration:.02},21.280);
-tl.to('#cl1 .L:nth-child(7)',{opacity:1,duration:.02},21.308);
-tl.to('#cl1 .L:nth-child(8)',{opacity:1,duration:.02},21.336);
-tl.to('#cl1 .L:nth-child(9)',{opacity:1,duration:.02},21.364);
-tl.to('#cl1 .L:nth-child(10)',{opacity:1,duration:.02},21.392);
-tl.to('#cl1 .L:nth-child(11)',{opacity:1,duration:.02},21.420);
-tl.to('#cl1 .L:nth-child(12)',{opacity:1,duration:.02},21.448);
-tl.to('#cl1 .L:nth-child(13)',{opacity:1,duration:.02},21.476);
-tl.to('#cl1 .L:nth-child(14)',{opacity:1,duration:.02},21.504);
-tl.to('#cl1 .L:nth-child(15)',{opacity:1,duration:.02},21.532);
-tl.to('#cl1 .L:nth-child(16)',{opacity:1,duration:.02},21.560);
-tl.to('#cl1 .L:nth-child(17)',{opacity:1,duration:.02},21.588);
-tl.to('#cl1 .L:nth-child(18)',{opacity:1,duration:.02},21.616);
-tl.to('#cl1 .L:nth-child(19)',{opacity:1,duration:.02},21.644);
-tl.to('#cl1 .L:nth-child(20)',{opacity:1,duration:.02},21.672);
-tl.to('#cl1 .L:nth-child(21)',{opacity:1,duration:.02},21.700);
-tl.to('#cl1 .L:nth-child(22)',{opacity:1,duration:.02},21.728);
-tl.to('#cl1 .L:nth-child(23)',{opacity:1,duration:.02},21.756);
-tl.to('#cl1 .L:nth-child(24)',{opacity:1,duration:.02},21.784);
-tl.to('#cl1 .L:nth-child(25)',{opacity:1,duration:.02},21.812);
-tl.to('#cl2 .L:nth-child(1)',{opacity:1,duration:.02},21.940);
-tl.to('#cl2 .L:nth-child(2)',{opacity:1,duration:.02},21.868);
-tl.to('#cl2 .L:nth-child(3)',{opacity:1,duration:.02},21.896);
-tl.to('#cl2 .L:nth-child(4)',{opacity:1,duration:.02},21.924);
-tl.to('#cl2 .L:nth-child(5)',{opacity:1,duration:.02},21.952);
-tl.to('#cl2 .L:nth-child(6)',{opacity:1,duration:.02},21.980);
-tl.to('#cl2 .L:nth-child(7)',{opacity:1,duration:.02},22.008);
-tl.to('#cl2 .L:nth-child(8)',{opacity:1,duration:.02},22.036);
-tl.to('#cl2 .L:nth-child(9)',{opacity:1,duration:.02},22.064);
-tl.to('#cl2 .L:nth-child(10)',{opacity:1,duration:.02},22.092);
-tl.to('#cl2 .L:nth-child(11)',{opacity:1,duration:.02},22.120);
-tl.to('#cl2 .L:nth-child(12)',{opacity:1,duration:.02},22.148);
-tl.to('#cl2 .L:nth-child(13)',{opacity:1,duration:.02},22.176);
-tl.to('#cl2 .L:nth-child(14)',{opacity:1,duration:.02},22.204);
-tl.to('#cl2 .L:nth-child(15)',{opacity:1,duration:.02},22.232);
-tl.to('#cl2 .L:nth-child(16)',{opacity:1,duration:.02},22.260);
-tl.to('#cl2 .L:nth-child(17)',{opacity:1,duration:.02},22.288);
-tl.to('#cl2 .L:nth-child(18)',{opacity:1,duration:.02},22.316);
-tl.to('#cl2 .L:nth-child(19)',{opacity:1,duration:.02},22.344);
-tl.to('#cl2 .L:nth-child(20)',{opacity:1,duration:.02},22.372);
-tl.to('#cl2 .L:nth-child(21)',{opacity:1,duration:.02},22.400);
-tl.to('#cl2 .L:nth-child(22)',{opacity:1,duration:.02},22.428);
-tl.to('#cl2 .L:nth-child(23)',{opacity:1,duration:.02},22.456);
-tl.to('#cl2 .L:nth-child(24)',{opacity:1,duration:.02},22.484);
-tl.to('#cl2 .L:nth-child(25)',{opacity:1,duration:.02},22.512);
-tl.to('#cl2 .L:nth-child(26)',{opacity:1,duration:.02},22.540);
-tl.to('#cl2 .L:nth-child(27)',{opacity:1,duration:.02},22.568);
-tl.to('#cl2 .L:nth-child(28)',{opacity:1,duration:.02},22.596);
-tl.to('#cl3 .L:nth-child(1)',{opacity:1,duration:.02},22.774);
-tl.to('#cl3 .L:nth-child(2)',{opacity:1,duration:.02},22.652);
-tl.to('#cl3 .L:nth-child(3)',{opacity:1,duration:.02},22.680);
-tl.to('#cl3 .L:nth-child(4)',{opacity:1,duration:.02},22.708);
-tl.to('#cl3 .L:nth-child(5)',{opacity:1,duration:.02},22.736);
-tl.to('#cl3 .L:nth-child(6)',{opacity:1,duration:.02},22.764);
-tl.to('#cl3 .L:nth-child(7)',{opacity:1,duration:.02},22.792);
-tl.to('#cl3 .L:nth-child(8)',{opacity:1,duration:.02},22.820);
-tl.to('#cl3 .L:nth-child(9)',{opacity:1,duration:.02},22.848);
-tl.to('#cl3 .L:nth-child(10)',{opacity:1,duration:.02},22.876);
-tl.to('#cl3 .L:nth-child(11)',{opacity:1,duration:.02},22.904);
-tl.to('#cl3 .L:nth-child(12)',{opacity:1,duration:.02},22.932);
-tl.to('#cl4 .L:nth-child(1)',{opacity:1,duration:.02},23.160);
-tl.to('#cl5 .L:nth-child(1)',{opacity:1,duration:.02},23.238);
-tl.to('#cl5 .L:nth-child(2)',{opacity:1,duration:.02},23.016);
-tl.to('#cl5 .L:nth-child(3)',{opacity:1,duration:.02},23.044);
-tl.to('#cl5 .L:nth-child(4)',{opacity:1,duration:.02},23.072);
-tl.to('#cl5 .L:nth-child(5)',{opacity:1,duration:.02},23.100);
-tl.to('#cl5 .L:nth-child(6)',{opacity:1,duration:.02},23.128);
-tl.to('#cl5 .L:nth-child(7)',{opacity:1,duration:.02},23.156);
-tl.to('#cl5 .L:nth-child(8)',{opacity:1,duration:.02},23.184);
-tl.to('#cl5 .L:nth-child(9)',{opacity:1,duration:.02},23.212);
-tl.to('#cl5 .L:nth-child(10)',{opacity:1,duration:.02},23.240);
-tl.to('#cl5 .L:nth-child(11)',{opacity:1,duration:.02},23.268);
-tl.to('#cl5 .L:nth-child(12)',{opacity:1,duration:.02},23.296);
-tl.fromTo('#tg5',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},19.730);
-tl.to('#s5',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},22.790);
+tl.fromTo('#h5a',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},11.450);
+tl.fromTo('#h5b',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},11.920);
+tl.fromTo('#codep',{opacity:0,y:30,filter:'blur(10px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},11.930);
+tl.to('#cl0 .L:nth-child(1)',{opacity:1,duration:.02},13.840);
+tl.to('#cl0 .L:nth-child(2)',{opacity:1,duration:.02},13.868);
+tl.to('#cl0 .L:nth-child(3)',{opacity:1,duration:.02},13.896);
+tl.to('#cl0 .L:nth-child(4)',{opacity:1,duration:.02},13.924);
+tl.to('#cl0 .L:nth-child(5)',{opacity:1,duration:.02},13.952);
+tl.to('#cl0 .L:nth-child(6)',{opacity:1,duration:.02},13.980);
+tl.to('#cl0 .L:nth-child(7)',{opacity:1,duration:.02},14.008);
+tl.to('#cl0 .L:nth-child(8)',{opacity:1,duration:.02},14.036);
+tl.to('#cl0 .L:nth-child(9)',{opacity:1,duration:.02},14.064);
+tl.to('#cl0 .L:nth-child(10)',{opacity:1,duration:.02},14.092);
+tl.to('#cl0 .L:nth-child(11)',{opacity:1,duration:.02},14.120);
+tl.to('#cl0 .L:nth-child(12)',{opacity:1,duration:.02},14.148);
+tl.to('#cl0 .L:nth-child(13)',{opacity:1,duration:.02},14.176);
+tl.to('#cl0 .L:nth-child(14)',{opacity:1,duration:.02},14.204);
+tl.to('#cl0 .L:nth-child(15)',{opacity:1,duration:.02},14.232);
+tl.to('#cl1 .L:nth-child(1)',{opacity:1,duration:.02},14.310);
+tl.to('#cl1 .L:nth-child(2)',{opacity:1,duration:.02},14.288);
+tl.to('#cl1 .L:nth-child(3)',{opacity:1,duration:.02},14.316);
+tl.to('#cl1 .L:nth-child(4)',{opacity:1,duration:.02},14.344);
+tl.to('#cl1 .L:nth-child(5)',{opacity:1,duration:.02},14.372);
+tl.to('#cl1 .L:nth-child(6)',{opacity:1,duration:.02},14.400);
+tl.to('#cl1 .L:nth-child(7)',{opacity:1,duration:.02},14.428);
+tl.to('#cl1 .L:nth-child(8)',{opacity:1,duration:.02},14.456);
+tl.to('#cl1 .L:nth-child(9)',{opacity:1,duration:.02},14.484);
+tl.to('#cl1 .L:nth-child(10)',{opacity:1,duration:.02},14.512);
+tl.to('#cl1 .L:nth-child(11)',{opacity:1,duration:.02},14.540);
+tl.to('#cl1 .L:nth-child(12)',{opacity:1,duration:.02},14.568);
+tl.to('#cl1 .L:nth-child(13)',{opacity:1,duration:.02},14.596);
+tl.to('#cl1 .L:nth-child(14)',{opacity:1,duration:.02},14.624);
+tl.to('#cl1 .L:nth-child(15)',{opacity:1,duration:.02},14.652);
+tl.to('#cl1 .L:nth-child(16)',{opacity:1,duration:.02},14.680);
+tl.to('#cl1 .L:nth-child(17)',{opacity:1,duration:.02},14.708);
+tl.to('#cl1 .L:nth-child(18)',{opacity:1,duration:.02},14.736);
+tl.to('#cl1 .L:nth-child(19)',{opacity:1,duration:.02},14.764);
+tl.to('#cl1 .L:nth-child(20)',{opacity:1,duration:.02},14.792);
+tl.to('#cl1 .L:nth-child(21)',{opacity:1,duration:.02},14.820);
+tl.to('#cl1 .L:nth-child(22)',{opacity:1,duration:.02},14.848);
+tl.to('#cl1 .L:nth-child(23)',{opacity:1,duration:.02},14.876);
+tl.to('#cl1 .L:nth-child(24)',{opacity:1,duration:.02},14.904);
+tl.to('#cl1 .L:nth-child(25)',{opacity:1,duration:.02},14.932);
+tl.to('#cl2 .L:nth-child(1)',{opacity:1,duration:.02},15.060);
+tl.to('#cl2 .L:nth-child(2)',{opacity:1,duration:.02},14.988);
+tl.to('#cl2 .L:nth-child(3)',{opacity:1,duration:.02},15.016);
+tl.to('#cl2 .L:nth-child(4)',{opacity:1,duration:.02},15.044);
+tl.to('#cl2 .L:nth-child(5)',{opacity:1,duration:.02},15.072);
+tl.to('#cl2 .L:nth-child(6)',{opacity:1,duration:.02},15.100);
+tl.to('#cl2 .L:nth-child(7)',{opacity:1,duration:.02},15.128);
+tl.to('#cl2 .L:nth-child(8)',{opacity:1,duration:.02},15.156);
+tl.to('#cl2 .L:nth-child(9)',{opacity:1,duration:.02},15.184);
+tl.to('#cl2 .L:nth-child(10)',{opacity:1,duration:.02},15.212);
+tl.to('#cl2 .L:nth-child(11)',{opacity:1,duration:.02},15.240);
+tl.to('#cl2 .L:nth-child(12)',{opacity:1,duration:.02},15.268);
+tl.to('#cl2 .L:nth-child(13)',{opacity:1,duration:.02},15.296);
+tl.to('#cl2 .L:nth-child(14)',{opacity:1,duration:.02},15.324);
+tl.to('#cl2 .L:nth-child(15)',{opacity:1,duration:.02},15.352);
+tl.to('#cl2 .L:nth-child(16)',{opacity:1,duration:.02},15.380);
+tl.to('#cl2 .L:nth-child(17)',{opacity:1,duration:.02},15.408);
+tl.to('#cl2 .L:nth-child(18)',{opacity:1,duration:.02},15.436);
+tl.to('#cl2 .L:nth-child(19)',{opacity:1,duration:.02},15.464);
+tl.to('#cl2 .L:nth-child(20)',{opacity:1,duration:.02},15.492);
+tl.to('#cl2 .L:nth-child(21)',{opacity:1,duration:.02},15.520);
+tl.to('#cl2 .L:nth-child(22)',{opacity:1,duration:.02},15.548);
+tl.to('#cl2 .L:nth-child(23)',{opacity:1,duration:.02},15.576);
+tl.to('#cl2 .L:nth-child(24)',{opacity:1,duration:.02},15.604);
+tl.to('#cl2 .L:nth-child(25)',{opacity:1,duration:.02},15.632);
+tl.to('#cl2 .L:nth-child(26)',{opacity:1,duration:.02},15.660);
+tl.to('#cl2 .L:nth-child(27)',{opacity:1,duration:.02},15.688);
+tl.to('#cl2 .L:nth-child(28)',{opacity:1,duration:.02},15.716);
+tl.to('#cl3 .L:nth-child(1)',{opacity:1,duration:.02},15.894);
+tl.to('#cl3 .L:nth-child(2)',{opacity:1,duration:.02},15.772);
+tl.to('#cl3 .L:nth-child(3)',{opacity:1,duration:.02},15.800);
+tl.to('#cl3 .L:nth-child(4)',{opacity:1,duration:.02},15.828);
+tl.to('#cl3 .L:nth-child(5)',{opacity:1,duration:.02},15.856);
+tl.to('#cl3 .L:nth-child(6)',{opacity:1,duration:.02},15.884);
+tl.to('#cl3 .L:nth-child(7)',{opacity:1,duration:.02},15.912);
+tl.to('#cl3 .L:nth-child(8)',{opacity:1,duration:.02},15.940);
+tl.to('#cl3 .L:nth-child(9)',{opacity:1,duration:.02},15.968);
+tl.to('#cl3 .L:nth-child(10)',{opacity:1,duration:.02},15.996);
+tl.to('#cl3 .L:nth-child(11)',{opacity:1,duration:.02},16.024);
+tl.to('#cl3 .L:nth-child(12)',{opacity:1,duration:.02},16.052);
+tl.to('#cl4 .L:nth-child(1)',{opacity:1,duration:.02},16.280);
+tl.to('#cl5 .L:nth-child(1)',{opacity:1,duration:.02},16.358);
+tl.to('#cl5 .L:nth-child(2)',{opacity:1,duration:.02},16.136);
+tl.to('#cl5 .L:nth-child(3)',{opacity:1,duration:.02},16.164);
+tl.to('#cl5 .L:nth-child(4)',{opacity:1,duration:.02},16.192);
+tl.to('#cl5 .L:nth-child(5)',{opacity:1,duration:.02},16.220);
+tl.to('#cl5 .L:nth-child(6)',{opacity:1,duration:.02},16.248);
+tl.to('#cl5 .L:nth-child(7)',{opacity:1,duration:.02},16.276);
+tl.to('#cl5 .L:nth-child(8)',{opacity:1,duration:.02},16.304);
+tl.to('#cl5 .L:nth-child(9)',{opacity:1,duration:.02},16.332);
+tl.to('#cl5 .L:nth-child(10)',{opacity:1,duration:.02},16.360);
+tl.to('#cl5 .L:nth-child(11)',{opacity:1,duration:.02},16.388);
+tl.to('#cl5 .L:nth-child(12)',{opacity:1,duration:.02},16.416);
+tl.fromTo('#tg5',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},12.730);
+tl.to('#s5',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},14.830);
 gsap.set('#s6',{opacity:1}); gsap.set('#card6,#tg6,#n6a,#n6b',{opacity:0});
-tl.fromTo('#card6',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},22.890);
-tl.fromTo('#n6a',{opacity:0,y:20,filter:'blur(8px)',scale:0.92},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},23.370);
-tl.to('#rg6',{strokeDashoffset:0,duration:.5,ease:'sine.inOut'},23.580);
-tl.to('#n6a',{opacity:0,y:-24,filter:'blur(8px)',duration:.25,ease:'power1.in'},23.880);tl.fromTo('#n6b',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.35,ease:'power2.out',immediateRender:false},23.980);
-tl.to('#fb0',{scaleY:0.88,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},23.370);
-tl.to('#fb0',{scaleY:0.88,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},25.170);
-tl.to('#fb1',{scaleY:0.83,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},23.490);
-tl.to('#fb1',{scaleY:0.83,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},25.290);
-tl.to('#fb2',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},23.610);
-tl.to('#fb2',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},25.410);
-tl.to('#fb3',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},23.730);
-tl.to('#fb3',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},25.530);
-tl.to('#fb4',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},23.850);
-tl.to('#fb4',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},25.650);
-tl.fromTo('#tg6',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},24.520);
-tl.to('#s6',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},27.090);
+tl.fromTo('#card6',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},14.930);
+tl.fromTo('#n6a',{opacity:0,y:20,filter:'blur(8px)',scale:0.92},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},15.410);
+tl.to('#rg6',{strokeDashoffset:0,duration:.5,ease:'sine.inOut'},15.840);
+tl.to('#n6a',{opacity:0,y:-24,filter:'blur(8px)',duration:.25,ease:'power1.in'},16.140);tl.fromTo('#n6b',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.35,ease:'power2.out',immediateRender:false},16.240);
+tl.to('#fb0',{scaleY:0.88,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},15.410);
+tl.to('#fb1',{scaleY:0.83,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},15.530);
+tl.to('#fb2',{scaleY:0.78,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},15.650);
+tl.to('#fb3',{scaleY:0.73,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},15.770);
+tl.to('#fb4',{scaleY:0.68,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 100%'},15.890);
+tl.fromTo('#tg6',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},16.320);
+tl.to('#s6',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},17.460);
 gsap.set('#s7',{opacity:1}); gsap.set('#exp,#cursor,#mp4',{opacity:0});
-tl.fromTo('#exp',{opacity:0,y:26,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},27.570);
-tl.fromTo('#cursor',{opacity:0,x:180,y:180},{opacity:1,x:0,y:0,duration:.5,ease:'sine.inOut',immediateRender:false},27.920);
-tl.to('#exp',{scale:.94,duration:.1,ease:'sine.inOut',yoyo:true,repeat:1},28.470);
-tl.fromTo('#mp4',{opacity:0,y:50,filter:'blur(12px)',scale:0.96},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},28.770);
-tl.to('#s7',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},29.800);
+tl.fromTo('#exp',{opacity:0,y:26,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},17.450);
+tl.fromTo('#cursor',{opacity:0,x:180,y:180},{opacity:1,x:0,y:0,duration:.5,ease:'sine.inOut',immediateRender:false},17.800);
+tl.to('#exp',{scale:.94,duration:.1,ease:'sine.inOut',yoyo:true,repeat:1},18.350);
+tl.fromTo('#mp4',{opacity:0,y:50,filter:'blur(12px)',scale:0.96},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},18.290);
+tl.to('#s7',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},18.950);
 gsap.set('#s8',{opacity:1}); gsap.set('#plans .pl,#beta,#tg8',{opacity:0});
-tl.fromTo('#pl0',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},29.930);
-tl.fromTo('#pl1',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},30.030);
-tl.fromTo('#pl2',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},30.130);
-tl.fromTo('#pl3',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},30.230);
-tl.fromTo('#pl4',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},30.330);
-tl.fromTo('#pl3',{scale:1},{scale:1.04,duration:.25,ease:'sine.out',yoyo:true,repeat:1},30.960);tl.fromTo('#pl4',{scale:1},{scale:1.04,duration:.25,ease:'sine.out',yoyo:true,repeat:1},31.420);
-tl.fromTo('#beta',{opacity:0,y:14,filter:'blur(6px)',scale:0.8},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},30.170);
-tl.fromTo('#tg8',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},33.640);
-tl.to('#s8',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},34.970);
-tl.fromTo('#s1',{opacity:0,filter:'blur(14px)'},{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false},35.050);
-tl.set('#tg1',{opacity:0},35.050);
-tl.fromTo('#tgs',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},35.370);
+tl.fromTo('#pl0',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},19.080);
+tl.fromTo('#pl1',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},19.180);
+tl.fromTo('#pl2',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},19.280);
+tl.fromTo('#pl3',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},19.380);
+tl.fromTo('#pl4',{opacity:0,y:20,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},19.480);
+tl.fromTo('#pl3',{scale:1},{scale:1.04,duration:.25,ease:'sine.out',yoyo:true,repeat:1},20.100);tl.fromTo('#pl4',{scale:1},{scale:1.04,duration:.25,ease:'sine.out',yoyo:true,repeat:1},20.860);
+tl.fromTo('#beta',{opacity:0,y:14,filter:'blur(6px)',scale:0.8},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},19.370);
+tl.fromTo('#tg8',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},21.110);
+tl.to('#s8',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},22.000);
+tl.fromTo('#s1',{opacity:0,filter:'blur(14px)'},{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false},22.080);
+tl.set('#tg1',{opacity:0},22.080);
+tl.fromTo('#tgs',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},22.400);
 tl.to({},{duration:.001},D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
 window.__reel={duration:D,seek:t=>tl.seek(t)};
