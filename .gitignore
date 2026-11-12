@@ -173,3 +173,6 @@ video/ep94/voice/n-*
 video/ep94/voice/accent-*
 video/ep94/voice/narration-v5a-backup*
 video/ep94/build94-v4-backup.py
+video/ep94/music/cand/
+video/ep94/out/ep94-v1[34]*.mp4
+video/ep94/out/gate-v1[234].txt
