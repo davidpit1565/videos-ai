@@ -34,3 +34,14 @@ Q1 Association: when people hear 'Actually Works' or see our video they must fee
 Q2 Story: half a year to a year ago David started really working with AI (beyond writing messages to ChatGPT), moving to more advanced uses. He did not study AI, he started working with it and learned much the hard way. The videos exist so people can learn the EASY way, the way he wishes he had: if he had known then what he knows now he would be much further along.
 Remaining questions (3-11): David answers tomorrow.
 Brand line implied (my wording, to confirm): 'Actually Works: the AI answer you would otherwise learn the hard way.'
+
+## David's answers to the remaining brand questions (13.11.2026, his words, translated)
+Q3 End goal: RIGHT NOW the goal is followers and tens of millions of views. Money: probably building systems for companies or similar; he also wants to earn from the reels themselves but does not know how, or whether it is possible as a side thing in our situation (OPEN: research monetisation options for a small faceless account; do not promise).
+Q4 Known for: yes to "the account that tests AI and shows what really works", but deeper: for literally any question someone has about AI, our channel probably has the solution.
+Q5 Why: as he said (learned the hard way; wants others to learn the easy way).
+Q6 Different: the videos come from SELF EXPERIENCE, and cover everything, not only Claude or one product: really everything about AI.
+Q7 Proof: nothing he built for a client yet. He has apps in the App Store, unsure how much that counts as proof (ask which apps before ever mentioning them; never present them as client results).
+Q8 Audience: as he said (curious about AI, any level).
+Q9 Three accounts whose vibe he likes: @mavgpt, @tylermommsen, @eilon.grouper, @juanbergman (four given).
+Q10 Tone: EXCITING / enthusiastic, in the direction of @juanbergman ("really viral, everyone is on fire about him"). This replaces "calm" as the target tone for hooks and delivery (the cloned voice is capped by the calm reference clip: say so honestly; a new, more energetic reference recording may be needed).
+Q11 Colours/fonts/logo: he does not know; maybe something with white, viral, memorable, fitting the branding and the profile. Wants a SEPARATE RESEARCH AGENT for this. Verdict on logo directions v1 (check card / aw / switch / stamp): the colour direction may be fine, but the logo itself is "not professional at all". Do not iterate on v1; research first.
