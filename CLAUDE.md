@@ -580,3 +580,6 @@ The studio is gated against the public, not against Claude. When David has given
 - **Numbering (12.11.2026):** the dog-and-cat reel is not a numbered episode (files parked in `channel/parked-dogcat/`, not deleted). The essay-flagged-as-AI reel is episode **93**; its build folder is still `video/ep94/` (internal name; `video/ep93/sfx` belongs to episode 89, keep it).
 - **Music rules experiment (12.11.2026, one week):** see `channel/experiments.md`. The rules came from Meta AI as a hypothesis (it cannot hear audio, and judged "Hip Hop 03" by its name only); they are tested, not law. Each episode logs track, type, measured level and views in `channel/music-notes.md`.
 - **Trial Reels are David's to post by hand when he chooses (12.11.2026):** he may publish a trial earlier than scheduled; before any API trial or scheduled publish, check with him that he has not already posted it by hand. The studio PIN is never saved anywhere: he gives it in chat each time it is needed.
+
+## Times to David are always Belgium time (David, 12.11.2026)
+- Every clock time in a message to David is Belgium time (CET, UTC+1 in winter; CEST, UTC+2 in summer), never UTC. Convert before writing. UTC only inside files and commands when a tool needs it. Example: the Vercel limit ends about 02:36 UTC on 13.11 = about 03:36 Belgium time.
