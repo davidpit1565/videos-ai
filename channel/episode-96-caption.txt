@@ -1,14 +1,13 @@
-AI solves black hole math.
+This AI solved two physics problems.
 
-What Anthropic says its new model, Claude Fable 5.2, did in testing:
-- solved two open problems in the physics of black holes
-- formalized the proof of Fermat's Last Theorem in 30 hours (turned the famous proof into code a computer can check)
-- designed three working electronic devices from scratch
+Both are about black holes. This is what Anthropic says its new model, Claude Fable 5.2, did in testing:
+1. A calculation set out in 2003 that was too long to finish. Anthropic says the AI finished it, working mostly on its own.
+2. The exact limit of a method physicists have used for more than 15 years.
 
-These are Anthropic's own claims from its launch post. No outside physicist has confirmed the black hole results yet. We have not tested any of this ourselves.
+These are Anthropic's own claims from its launch post. Outside scientists have not checked them yet, and we have not tested this ourselves.
 
-What would you ask it? Tell me below.
+Would you trust an AI with physics? Yes or no, tell me below.
 
 Source: anthropic.com/news/claude-fable-and-mythos-5-2
 
-#ai #claude #anthropic #blackholes #actuallyworks
+#ai #claude #anthropic #blackholes #physics #actuallyworks

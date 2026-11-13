@@ -1,44 +1,50 @@
 [
  {
   "n": 1,
-  "line": "AI solves black hole math.",
+  "line": "This AI solved two physics problems.",
   "start": 0.08,
-  "end": 1.83
+  "end": 2.42
  },
  {
   "n": 2,
-  "line": "Two open problems. Both about black holes.",
-  "start": 1.93,
-  "end": 4.3
+  "line": "Both are about black holes.",
+  "start": 2.52,
+  "end": 3.92
  },
  {
   "n": 3,
-  "line": "It turns a famous math proof into code. In thirty hours.",
-  "start": 4.4,
-  "end": 7.96
+  "line": "One was set out in 2003. Too long for anyone to finish.",
+  "start": 4.02,
+  "end": 7.25
  },
  {
   "n": 4,
-  "line": "It designs three working devices. From scratch.",
-  "start": 8.06,
-  "end": 10.93
+  "line": "The AI finished it. Almost alone.",
+  "start": 7.35,
+  "end": 9.26
  },
  {
   "n": 5,
-  "line": "It's called Claude Fable five point two.",
-  "start": 11.18,
-  "end": 13.68
+  "line": "The second: the exact limit of a method used for over a decade.",
+  "start": 9.51,
+  "end": 12.94
  },
  {
   "n": 6,
-  "line": "These are Anthropic's own claims. Nobody outside has checked the black holes yet.",
-  "start": 13.78,
-  "end": 17.72
+  "line": "It's Claude Fable five point two.",
+  "start": 13.04,
+  "end": 15.07
  },
  {
   "n": 7,
-  "line": "What would you ask it?",
-  "start": 17.82,
-  "end": 18.66
+  "line": "Anthropic says so. Outside scientists haven't checked yet.",
+  "start": 15.17,
+  "end": 18.03
+ },
+ {
+  "n": 8,
+  "line": "Would you trust an AI with physics?",
+  "start": 18.13,
+  "end": 20.28
  }
 ]
