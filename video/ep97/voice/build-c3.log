@@ -1,29 +1,0 @@
-      per-line seeds: {1: 32, 2: 12, 3: 27, 4: 14, 5: 22, 6: 16, 7: 82}
-      per-line exaggeration: {1: 0.86, 2: 0.74, 3: 0.6599999999999999, 4: 0.76, 5: 0.74, 6: 0.74, 7: 0.6}
-      watching consonant onset: three (band +4 to +13 dB)
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-/opt/v311/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
-  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
-loaded PerthNet (Implicit) at step 250,000
-      01/07   cached take (restart-safe, no regeneration): Four Claude AIs. One pelican. Watch it level up.
-  01/7   3.29s  Four Claude AIs. One pelican. Watch it level up.
-      02/07   cached take (restart-safe, no regeneration): The smallest one: no seat. It lies on the bike.
-  02/7   2.86s  The smallest one: no seat. It lies on the bike.
-/usr/lib/python3.11/contextlib.py:105: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
-  self.gen = func(*args, **kwds)
-`sdpa` attention does not support `output_attentions=True`. Please set your attention to `eager` if you want any of these features.
-Sampling:   0%|          | 0/1000 [00:00<?, ?it/s]Sampling:   0%|          | 1/1000 [00:00<02:38,  6.30it/s]Sampling:   0%|          | 3/1000 [00:00<01:44,  9.54it/s]Sampling:   0%|          | 5/1000 [00:00<01:33, 10.67it/s]Sampling:   1%|          | 7/1000 [00:00<01:20, 12.26it/s]Sampling:   1%|          | 9/1000 [00:00<01:14, 13.26it/s]Sampling:   1%|          | 11/1000 [00:00<01:23, 11.85it/s]Sampling:   1%|▏         | 13/1000 [00:01<01:26, 11.35it/s]Sampling:   2%|▏         | 15/1000 [00:01<01:22, 11.89it/s]Sampling:   2%|▏         | 17/1000 [00:01<01:22, 11.89it/s]Sampling:   2%|▏         | 19/1000 [00:01<01:20, 12.21it/s]Sampling:   2%|▏         | 21/1000 [00:01<01:26, 11.34it/s]Sampling:   2%|▏         | 23/1000 [00:02<01:30, 10.78it/s]Sampling:   2%|▎         | 25/1000 [00:02<01:38,  9.88it/s]Sampling:   3%|▎         | 27/1000 [00:02<01:30, 10.80it/s]Sampling:   3%|▎         | 29/1000 [00:02<01:24, 11.52it/s]Sampling:   3%|▎         | 31/1000 [00:02<01:26, 11.24it/s]Sampling:   3%|▎         | 33/1000 [00:02<01:25, 11.27it/s]Sampling:   4%|▎         | 35/1000 [00:03<01:20, 11.92it/s]Sampling:   4%|▎         | 37/1000 [00:03<01:26, 11.08it/s]Sampling:   4%|▍         | 39/1000 [00:03<01:28, 10.88it/s]Sampling:   4%|▍         | 41/1000 [00:03<01:33, 10.27it/s]Sampling:   4%|▍         | 43/1000 [00:03<01:26, 11.01it/s]Sampling:   4%|▍         | 45/1000 [00:04<01:23, 11.42it/s]Sampling:   5%|▍         | 47/1000 [00:04<01:30, 10.58it/s]Sampling:   5%|▍         | 49/1000 [00:04<01:36,  9.89it/s]Sampling:   5%|▌         | 51/1000 [00:04<01:39,  9.57it/s]Sampling:   5%|▌         | 53/1000 [00:04<01:35,  9.87it/s]Sampling:   6%|▌         | 55/1000 [00:05<01:39,  9.53it/s]Sampling:   6%|▌         | 57/1000 [00:05<01:33, 10.12it/s]Sampling:   6%|▌         | 59/1000 [00:05<01:32, 10.22it/s]Sampling:   6%|▌         | 61/1000 [00:05<01:27, 10.69it/s]Sampling:   6%|▋         | 63/1000 [00:05<01:25, 11.00it/s]Sampling:   6%|▋         | 65/1000 [00:06<01:31, 10.27it/s]Sampling:   7%|▋         | 67/1000 [00:06<01:32, 10.13it/s]Sampling:   7%|▋         | 69/1000 [00:06<01:27, 10.59it/s]Sampling:   7%|▋         | 69/1000 [00:06<01:26, 10.78it/s]
-      3.3 syl/s, sped up x1.30
-  03/7   1.84s  The next one: legs on the pedals.
-      04/07   cached take (restart-safe, no regeneration): The big one: it moves fast.
-  04/7   1.94s  The big one: it moves fast.
-      05/07   cached take (restart-safe, no regeneration): The newest one adds the sun, a shadow, a real bike.
-  05/7   3.34s  The newest one adds the sun, a shadow, a real bike.
-      06/07   cached take (restart-safe, no regeneration): Same company. Not the same pelican.
-  06/7   1.99s  Same company. Not the same pelican.
-      07/07   cached take (restart-safe, no regeneration): Send it to the friend who thinks every AI is the same.
-  07/7   2.73s  Send it to the friend who thinks every AI is the sam
-  placed 3 breaths from his own recording
-  room tone bed at -55 dBFS
-
-wrote video/ep97/voice/narration-raw.wav  18.8s  7 lines
