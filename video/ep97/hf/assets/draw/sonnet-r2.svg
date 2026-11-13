@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfe6ff"/>
+      <stop offset="1" stop-color="#eaf8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#sky)"/>
+  <circle cx="680" cy="90" r="46" fill="#ffe27a"/>
+  <rect y="500" width="800" height="100" fill="#8fcf7a"/>
+  <rect y="494" width="800" height="12" fill="#6fb35e"/>
+
+  <!-- bicycle -->
+  <g fill="none" stroke="#222" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="240" cy="440" r="75"/>
+    <circle cx="560" cy="440" r="75"/>
+    <circle cx="240" cy="440" r="6" fill="#222"/>
+    <circle cx="560" cy="440" r="6" fill="#222"/>
+    <!-- frame -->
+    <path d="M240 440 L350 330 L500 330 L560 440"/>
+    <path d="M240 440 L400 440 L350 330"/>
+    <path d="M400 440 L500 330"/>
+    <!-- fork and handlebar -->
+    <path d="M500 330 L520 290 L555 280"/>
+    <path d="M520 290 L560 440"/>
+    <!-- seat post and seat -->
+    <path d="M350 330 L342 300"/>
+    <path d="M318 298 L368 298" stroke-width="10"/>
+    <!-- pedal crank -->
+    <path d="M400 440 L425 475 M400 440 L375 405" stroke-width="6"/>
+  </g>
+  <rect x="360" y="468" width="30" height="8" rx="3" fill="#222" transform="rotate(0 375 472)"/>
+  <rect x="415" y="470" width="32" height="9" rx="3" fill="#222"/>
+
+  <!-- pelican body -->
+  <ellipse cx="345" cy="255" rx="70" ry="50" fill="#f4f4f4" stroke="#333" stroke-width="4"/>
+  <!-- tail -->
+  <path d="M280 250 L235 280 L285 285 Z" fill="#dcdcdc" stroke="#333" stroke-width="4" stroke-linejoin="round"/>
+  <!-- wing -->
+  <path d="M310 240 Q350 215 395 250 Q360 295 318 275 Z" fill="#d6dde3" stroke="#333" stroke-width="3"/>
+  <!-- legs -->
+  <path d="M345 295 L380 400 L418 468" fill="none" stroke="#f08a1c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M335 292 L360 380 L378 408" fill="none" stroke="#f08a1c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M418 468 L445 474" stroke="#f08a1c" stroke-width="7" stroke-linecap="round"/>
+  <!-- neck -->
+  <path d="M385 235 Q440 215 435 165 Q432 135 455 125" fill="none" stroke="#333" stroke-width="30" stroke-linecap="round"/>
+  <path d="M385 235 Q440 215 435 165 Q432 135 455 125" fill="none" stroke="#f4f4f4" stroke-width="23" stroke-linecap="round"/>
+  <!-- head -->
+  <circle cx="462" cy="118" r="30" fill="#f4f4f4" stroke="#333" stroke-width="4"/>
+  <!-- beak -->
+  <path d="M485 108 L630 128 L486 138 Z" fill="#f6b23c" stroke="#333" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M486 138 Q560 190 628 130 Q560 150 486 138 Z" fill="#f08a1c" stroke="#333" stroke-width="4" stroke-linejoin="round"/>
+  <!-- eye -->
+  <circle cx="468" cy="108" r="6" fill="#111"/>
+  <circle cx="470" cy="106" r="2" fill="#fff"/>
+  <!-- arm to handlebar -->
+  <path d="M400 255 Q480 280 553 282" fill="none" stroke="#333" stroke-width="12" stroke-linecap="round"/>
+  <path d="M400 255 Q480 280 553 282" fill="none" stroke="#d6dde3" stroke-width="6" stroke-linecap="round"/>
+</svg>

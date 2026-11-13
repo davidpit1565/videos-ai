@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <title>Pelican riding a bicycle</title>
+  <!-- sky and ground -->
+  <rect x="0" y="0" width="400" height="300" fill="#dff1ff"/>
+  <rect x="0" y="250" width="400" height="50" fill="#9bd38a"/>
+
+  <!-- wheels -->
+  <g fill="none" stroke="#222" stroke-width="6">
+    <circle cx="105" cy="200" r="48"/>
+    <circle cx="275" cy="200" r="48"/>
+  </g>
+  <g stroke="#777" stroke-width="2">
+    <line x1="105" y1="152" x2="105" y2="248"/>
+    <line x1="57" y1="200" x2="153" y2="200"/>
+    <line x1="73" y1="168" x2="137" y2="232"/>
+    <line x1="137" y1="168" x2="73" y2="232"/>
+    <line x1="275" y1="152" x2="275" y2="248"/>
+    <line x1="227" y1="200" x2="323" y2="200"/>
+    <line x1="243" y1="168" x2="307" y2="232"/>
+    <line x1="307" y1="168" x2="243" y2="232"/>
+  </g>
+
+  <!-- frame -->
+  <g fill="none" stroke="#d33" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M105 200 L165 200 L190 120 Z"/>
+    <path d="M165 200 L240 120 L190 120"/>
+    <path d="M240 120 L240 100 L256 94"/>
+    <path d="M240 120 L275 200"/>
+    <path d="M190 120 L184 104"/>
+  </g>
+  <!-- saddle and handlebar grips -->
+  <line x1="172" y1="102" x2="200" y2="102" stroke="#222" stroke-width="7" stroke-linecap="round"/>
+  <line x1="240" y1="94" x2="262" y2="94" stroke="#222" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- pedal and crank -->
+  <circle cx="165" cy="200" r="7" fill="#444"/>
+  <line x1="165" y1="200" x2="155" y2="212" stroke="#444" stroke-width="4" stroke-linecap="round"/>
+  <line x1="150" y1="212" x2="168" y2="212" stroke="#444" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- tail -->
+  <path d="M150 84 L118 70 L124 96 Z" fill="#7a5a3a"/>
+
+  <!-- legs to pedal -->
+  <path d="M190 108 L178 150 L166 196" fill="none" stroke="#f08c1c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- body -->
+  <ellipse cx="186" cy="84" rx="46" ry="27" transform="rotate(-14 186 84)" fill="#f2f2f2" stroke="#444" stroke-width="2"/>
+
+  <!-- wing -->
+  <path d="M162 72 Q132 58 142 94 Q166 92 188 88 Z" fill="#8c8c8c" stroke="#444" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- neck -->
+  <path d="M218 72 Q236 60 232 44" fill="none" stroke="#f2f2f2" stroke-width="16" stroke-linecap="round"/>
+  <path d="M218 72 Q236 60 232 44" fill="none" stroke="#444" stroke-width="18" stroke-linecap="round" opacity="0.18"/>
+
+  <!-- head -->
+  <circle cx="236" cy="38" r="16" fill="#f2f2f2" stroke="#444" stroke-width="2"/>
+
+  <!-- beak and pouch -->
+  <path d="M248 32 L300 50 Q292 56 286 54 L250 44 Z" fill="#f5c542" stroke="#444" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M250 42 Q282 46 302 62 Q284 74 262 58 Z" fill="#f08c1c" stroke="#444" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- eye -->
+  <circle cx="240" cy="34" r="3.5" fill="#111"/>
+  <circle cx="241" cy="33" r="1" fill="#fff"/>
+</svg>
