@@ -1,14 +1,13 @@
-4 Claude AIs. One pelican. Watch it level up.
+Guess the newest Claude.
 
-Same request to four Claude models: "Draw a pelican riding a bicycle."
-Haiku 5.5, Sonnet 5.5, Opus 5 and Fable 5.2. Every drawing in this video is the real code each model wrote, shown as it came out. One try each, no picking the best.
+Same request to four Claude models: "Draw a pelican riding a bicycle." Which pelican is from the newest one? Type A, B, C or D below before you watch the end.
 
-The smallest one forgets the seat. The newest one adds the sun, a shadow and a real bike.
+The answers: B is Haiku 5.5, D is Sonnet 5.5, A is Opus 5.5, C is Fable 5.2.
 
-The pelican test is Simon Willison's: he made it up in 2024 as a fun way to compare AI models. It does not measure everything an AI can do.
+Every drawing is the real code each model wrote, one try per model, and this is the second round of two (in the first round Opus was an older version, so I used the round where all four are current). It ran through Claude Code agents, not the chat app.
 
-Try it yourself: ask your AI for "an SVG of a pelican riding a bicycle" and send me what you get.
+The pelican test is Simon Willison's, made up in 2024 as a fun way to compare AI models. It does not measure everything an AI can do.
 
-Send this to the friend who thinks every AI is the same.
+Send it to a friend and see if they guess it.
 
 #ai #claude #anthropic #aiart #pelican #actuallyworks

@@ -39,6 +39,12 @@ try:
     WORDS = [] if STALE else json.load(open(H_ + "/voice/words.json"))
 except Exception:
     WORDS = []
+# words.json is trusted only if it belongs to THIS recording: most of its words are words of lines.txt,
+# it is about as long as the script, and it does not run past the last cue (an old words.json fails this)
+VOC = {norm(w) for l in LINES for w in l.split()} | {"clawed", "claud", "cloud", "hiku"}
+NW = sum(len(l.split()) for l in LINES)
+WORDS_OK = bool(WORDS) and sum(norm(w[0]) in VOC for w in WORDS) >= .7 * len(WORDS) and abs(len(WORDS) - NW) <= 8 and WORDS[-1][1] <= e(7) + 1.0
+if not WORDS_OK: WORDS = []
 def W(word, n, k=0, frac=0.5):
     """start time of the k-th `word` inside line n; default = s(n) + frac * line length."""
     c = 0
@@ -63,25 +69,25 @@ CW, CH = 936, 711                      # card at scale 1 (border 6, pad 12, imag
 CARD = {"A": ("opus", "Opus 5.5"), "B": ("haiku", "Haiku 5.5"), "C": ("fable", "Fable 5.2"), "D": ("sonnet", "Sonnet 5.5")}
 ORDER = "ABCD"
 FAN = {  # frame 0: a pile of taped cards, A in front
-    "B": dict(x=365, y=728, s=.62, r=-7, o=1),
-    "C": dict(x=716, y=772, s=.62, r=6, o=1),
-    "D": dict(x=362, y=1022, s=.62, r=3, o=1),
-    "A": dict(x=690, y=1004, s=.68, r=-2.5, o=1),
+    "B": dict(x=366, y=764, s=.62, r=-5, o=1),
+    "C": dict(x=704, y=790, s=.62, r=6, o=1),
+    "D": dict(x=362, y=1030, s=.62, r=3, o=1),
+    "A": dict(x=686, y=1012, s=.68, r=-2.5, o=1),
 }
 FANZ = {"B": 1, "C": 2, "D": 3, "A": 4}
 STAGE_R = {"A": -1.2, "B": 1.0, "C": -0.8, "D": 1.2}
-def stage(k): return dict(x=65 + CW / 2, y=412 + CH / 2, s=1, r=STAGE_R[k], o=1)
+def stage(k): return dict(x=65 + CW / 2, y=424 + CH / 2, s=1, r=STAGE_R[k], o=1)
 TW, TG, TY = 225, 16.6, 1152           # tray tiles
 def tile_x(k): return 65 + ORDER.index(k) * (TW + TG)
 def tray(k, o=0): return dict(x=tile_x(k) + 96 + 58, y=TY + 48, s=116 / CW, r=0, o=o)
 COL = {  # countdown collage, unequal sizes
-    "A": dict(x=320, y=632, s=.53, r=-5, o=1),
-    "B": dict(x=772, y=652, s=.49, r=4, o=1),
-    "C": dict(x=312, y=1046, s=.51, r=-3, o=1),
-    "D": dict(x=750, y=1030, s=.54, r=6, o=1),
+    "A": dict(x=326, y=622, s=.54, r=-4, o=1),
+    "B": dict(x=768, y=640, s=.50, r=4, o=1),
+    "C": dict(x=300, y=1078, s=.47, r=3, o=1),
+    "D": dict(x=772, y=1082, s=.45, r=-4, o=1),
 }
 # ladder end card (thumb left, top, width)
-LAD = {"B": (65, 968, 280), "D": (400, 933, 280), "A": (735, 898, 280), "C": (395, 425, 620)}
+LAD = {"B": (65, 935, 260), "D": (410, 900, 260), "A": (755, 895, 260), "C": (387, 425, 620)}
 def lad(k, o=0):
     x, y, w = LAD[k]
     return dict(x=x + w / 2, y=y + w * .75 / 2, s=w / CW, r=0, o=o)
@@ -152,7 +158,7 @@ revs = ""
 for k in "BDAC":
     f, name = CARD[k]
     st = f'<div class="stamp{" acc" if k == "C" else ""}" id="st{k}">{STAMP[k]}</div>' if k in STAMP else ""
-    revs += f'<div class="rv" id="rv{k}"><span class="rl">{k}</span><span class="rn">{name.upper()}</span></div>{st}'
+    revs += f'<div class="rv" id="rv{k}"><span class="rn">{k} = {name.upper()}</span></div>{st}'
 ADDS = {"B": "no sun", "D": "+ sun", "A": "+ road"}
 ladder = '<div class="lt1 lx" id="lt1">SAME REQUEST, 4 CLAUDES</div><div class="lt2 lx" id="lt2">&ldquo;Draw a pelican riding a bicycle.&rdquo;</div>'
 for k in "BDA":
@@ -187,7 +193,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .hl{{position:absolute;left:65px;font-size:{HF}px;line-height:{HF}px;height:{HF}px;font-weight:900;letter-spacing:-.035em;white-space:nowrap;transform-origin:0 0;display:flex;align-items:center}}
 #h1{{top:283px}} #h2{{top:{283 + HF - 6}px}}
 #h2 img{{width:{LOGO}px;height:{LOGO}px;margin-right:16px}}
-.chip{{position:absolute;left:67px;top:463px;font:700 30px/34px JBM,monospace;letter-spacing:-.01em;white-space:nowrap;transform-origin:0 0;padding-bottom:6px;border-bottom:4px solid {INK}}}
+.chip{{position:absolute;left:67px;top:456px;font:700 30px/34px JBM,monospace;letter-spacing:-.01em;white-space:nowrap;transform-origin:0 0;padding-bottom:6px;border-bottom:4px solid {INK}}}
 #chip2{{opacity:0;top:354px;border-bottom-color:{ACC}}}
 .card{{position:absolute;left:0;top:0;width:{CW}px;height:{CH}px;transform-origin:50% 50%;will-change:transform}}
 .in{{position:absolute;inset:0;background:{PAPER};border:6px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK};transform-origin:50% 50%}}
@@ -198,27 +204,27 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .rg{{fill:none;stroke:{ACC};stroke-width:9;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}}
 .rg.dash{{stroke-dasharray:.045 .035;stroke-dashoffset:0;opacity:0;transform-origin:690px 92px}}
 .an{{font:700 40px JBM,monospace;fill:{INK};stroke:#fff;stroke-width:9;paint-order:stroke;stroke-linejoin:round;opacity:0}}
-.tab{{position:absolute;left:22px;top:-26px;width:112px;height:106px;background:{PAPER};border:6px solid {INK};border-radius:8px;box-shadow:6px 6px 0 {INK};font-size:84px;line-height:92px;font-weight:900;text-align:center;transform:rotate(-4deg)}}
+.tab{{position:absolute;left:22px;top:-16px;width:112px;height:106px;background:{PAPER};border:6px solid {INK};border-radius:8px;box-shadow:6px 6px 0 {INK};font-size:84px;line-height:92px;font-weight:900;text-align:center;transform:rotate(-4deg)}}
 .tape{{position:absolute;width:150px;height:44px;background:rgba(232,221,186,.86);border:1px solid rgba(0,0,0,.14);z-index:3}}
-.tape.t1{{right:-46px;top:-14px;transform:rotate(34deg)}} .tape.t2{{left:-46px;bottom:-14px;transform:rotate(34deg)}}
+.tape.t1{{right:-40px;top:-12px;transform:rotate(34deg)}} .tape.t2{{left:-40px;bottom:-4px;transform:rotate(34deg)}}
 #tray{{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}}
 .tile{{position:absolute;top:{TY}px;width:{TW}px;height:96px}}
 .tl{{position:absolute;left:0;top:4px;width:86px;height:88px;font-size:74px;line-height:88px;font-weight:900;text-align:center}}
 .tt{{position:absolute;left:96px;top:4px;width:116px;height:88px;border:4px solid {INK};border-radius:5px;background:{PAPER};box-shadow:5px 5px 0 {INK};overflow:hidden}}
 .tt img{{position:absolute;left:0;top:0;width:108px;height:81px;opacity:0}}
-.tk{{position:absolute;left:52px;top:-4px;width:44px;height:44px;overflow:visible}}
+.tk{{position:absolute;left:64px;top:-14px;width:44px;height:44px;overflow:visible}}
 .tk path{{fill:none;stroke:{ACC};stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}}
 .ul{{position:absolute;left:6px;top:92px;width:74px;height:7px;border-radius:4px;background:{ACC};transform:scaleX(0);transform-origin:0 50%}}
-.rv{{position:absolute;left:65px;top:290px;height:100px;display:flex;align-items:center;gap:22px;opacity:0;white-space:nowrap}}
+.rv{{position:absolute;left:65px;top:280px;height:100px;display:flex;align-items:center;gap:22px;opacity:0;white-space:nowrap}}
 .rl{{width:100px;height:96px;border:6px solid {INK};border-radius:8px;background:{PAPER};box-shadow:6px 6px 0 {INK};font-size:76px;line-height:84px;font-weight:900;text-align:center;transform:rotate(-4deg)}}
 .rn{{font-size:84px;line-height:100px;font-weight:900;letter-spacing:-.035em}}
-.stamp{{position:absolute;right:68px;top:306px;height:70px;padding:0 18px;border:6px solid {INK};border-radius:8px;font:700 42px/58px JBM,monospace;letter-spacing:.04em;opacity:0;transform-origin:50% 50%}}
+.stamp{{position:absolute;right:118px;top:306px;height:62px;padding:0 16px;border:6px solid {INK};border-radius:8px;font:700 36px/50px JBM,monospace;letter-spacing:.04em;opacity:0;transform-origin:50% 50%}}
 .stamp.acc{{border-color:{ACC};color:{ACC}}}
-#count{{position:absolute;left:410px;top:708px;width:260px;height:260px;opacity:0;z-index:30}}
+#count{{position:absolute;left:435px;top:700px;width:210px;height:210px;opacity:0;z-index:30}}
 #count svg{{position:absolute;inset:0;overflow:visible}}
 .cbg{{fill:{PAPER};stroke:{INK};stroke-width:6;filter:drop-shadow(10px 10px 0 {INK})}}
 #cring{{fill:none;stroke:{ACC};stroke-width:20;stroke-dasharray:1;stroke-dashoffset:0}}
-.num{{position:absolute;inset:0;font-size:150px;line-height:260px;font-weight:900;text-align:center;opacity:0}}
+.num{{position:absolute;inset:0;font-size:124px;line-height:210px;font-weight:900;text-align:center;opacity:0}}
 #ladder{{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}}
 .lx,.li,.lc{{opacity:0}}
 .lt1{{position:absolute;left:65px;top:283px;font-size:66px;line-height:70px;font-weight:900;letter-spacing:-.035em;white-space:nowrap}}
@@ -265,7 +271,7 @@ sfx("subhit.ogg", .05, -6); sfx("tick.ogg", max(.15, tn), -8)
 # beat 2: A to the big stage, the rest into the tray, headline to one line
 js(f"tl.to('#h1',{{scale:{K1:.4f},duration:.5,ease:'power3.inOut'}},{tA:.3f});")
 js(f"tl.to('#h2',{{scale:{K1:.4f},x:{H2X:.1f},y:{-(HF - 6):.1f},duration:.5,ease:'power3.inOut'}},{tA:.3f});")
-js(f"tl.to('#chip',{{y:-109,scale:.93,duration:.5,ease:'power3.inOut'}},{tA:.3f});")
+js(f"tl.to('#chip',{{y:-102,scale:.93,duration:.5,ease:'power3.inOut'}},{tA:.3f});")
 js(f"tl.to('#tray',{{opacity:1,duration:.35,ease:'sine.inOut'}},{tA + .1:.3f});")
 z("A", tA, 10); mv("A", tA, FLY, stage("A")); lit("A", tA + .2, True); zoom("A", tA + FLY, tB + .2)
 js(f"tl.set('#thA',{{opacity:.22}},{tA:.3f});")
@@ -311,7 +317,7 @@ def ring(sel, t, d=.45):
 def label(sel, t):
     js(f"tl.fromTo('{sel}',{{opacity:0,y:10}},{{opacity:1,y:0,duration:.3,ease:'power2.out',immediateRender:false}},{t:.3f});")
 def stamp(k, t, rot):
-    js(f"tl.fromTo('#st{k}',{{opacity:0,scale:1.35,rotation:{rot - 8}}},{{opacity:1,scale:1,rotation:{rot},duration:.42,ease:'power3.out',immediateRender:false}},{t:.3f});")
+    js(f"tl.fromTo('#st{k}',{{opacity:0,scale:1.22,rotation:{rot - 8}}},{{opacity:1,scale:1,rotation:{rot},duration:.42,ease:'power3.out',immediateRender:false}},{t:.3f});")
 def reveal_hdr(k, t, t_end):
     fin(f"#rv{k}", t)
     if t_end: fout(f"#rv{k}", t_end)
@@ -371,7 +377,7 @@ js(f"tl.set('#h1',{{scale:1,x:0,y:0}},{tF:.3f}); tl.set('#h2',{{scale:1,x:0,y:0}
 for q in ("#h1", "#h2", "#chip"): fin(q, tF + .3, .45)
 sfx("whoosh_c.ogg", tF, -10)
 
-JS = "\n".join(J)
+JS = re.sub(r"tl\.set\(([^,]+),\{", r"tl.set(\1,{immediateRender:false,", "\n".join(J))   # a timeline set must not render at build time
 json.dump(SFX, open(H_ + "/sfx97.json", "w"), indent=1)
 json.dump(dict(lines=[dict(n=n, text=LINES[n - 1], start=s(n), end=e(n)) for n in range(1, 8)], D=D, stale_voice=STALE), open(H_ + "/cues97.json", "w"), indent=1)
 html = f'''<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
@@ -390,9 +396,10 @@ const D={D}; const tl=gsap.timeline({{paused:true}});
 {JS}
 tl.to({{}},{{duration:.001}},D-.001);
 window.__timelines=window.__timelines||{{}}; window.__timelines["main"]=tl; tl.seek(0);
-window.__reel={{duration:D,seek:t=>tl.seek(t)}};
+window.__reel={{duration:D,seek:t=>{{tl.seek(t)}}}};   // returns nothing: a returned timeline hangs page.evaluate (safe_check.js)
 </script></body></html>'''
 open(H_ + "/hf/index.html", "w").write(html)
 print(f"D={D} sfx={len(SFX)} js={len(J)} stale_voice={STALE} est={FORCE_EST}")
 print("beats: " + " ".join(f"{n}={v:.2f}" for n, v in dict(tA=tA, tB=tB, tC=tC, tD=tD, cd0=cd0, tR=tR, D5=s(5), A5=t5a, C6=s(6), ladder=tL, refan=tF).items()))
+if not WORDS_OK: print("NOTE: voice/words.json is missing or from another recording: word-timed beats (stamps, rings, the swap to A) use fractions of their line. Re-run after whisper writes words.json.")
 if STALE: print("WARNING: cue text does not match voice/lines.txt (old voice) or EST=1: word times replaced by line fractions.")
