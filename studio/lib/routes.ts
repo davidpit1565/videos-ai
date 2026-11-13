@@ -63,6 +63,11 @@ export const SITE = [
   // file's own comment on why the two must never share a path or a send)
   "/api/subscribe-push",
   "/manifest.json", "/icon-", "/apple-touch-icon",
+  // "/apple-touch-icon" above matches only that exact path or a folder under it, so the
+  // real file, /apple-touch-icon.png, sat behind the PIN gate and iOS got the /unlock
+  // page instead of an icon. Named exactly (rebrand, 13.11.2026). The new tab icons
+  // (/icon-mark.svg, /icon-32.png) are already covered by the "/icon-" prefix.
+  "/apple-touch-icon.png",
   // the service worker must be fetchable at the root scope or push cannot register
   "/sw.js",
   // crawlers and readers, not browsers with a cookie: Google reading sitemap.xml,

@@ -1,14 +1,24 @@
 {
   "name": "Actually Works",
   "short_name": "Actually Works",
-  "description": "AI setups that actually work. One setup per episode.",
+  "description": "AI setups that actually work: short reels about AI tools, and a page for every episode with the steps.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0E1116",
-  "theme_color": "#0E1116",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
   "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ],
   "scope": "/"
 }

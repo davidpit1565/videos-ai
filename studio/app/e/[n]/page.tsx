@@ -104,20 +104,9 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }} />
       )}
       <SiteNav />
-      <div className="kicker-row">
-        <p className="kicker">
-          <Link href="/">Actually Works</Link> · Episode {String(n).padStart(2, "0")}
-        </p>
-        {/* brand/house-style.md §4, "the index chip": top-right, monospace, X / Y —
-            here, this episode's position among every episode actually published, so a
-            reader can tell at a glance how deep the library already goes. */}
-        {e && allPub.length ? (
-          <span className="index-chip">
-            {String(allPub.findIndex((x) => x.number === n) + 1).padStart(2, "0")} /{" "}
-            {String(allPub.length).padStart(2, "0")}
-          </span>
-        ) : null}
-      </div>
+      {/* The old eyebrow ("Actually Works · Episode 93") and the "07 / 87" index chip
+          were template chrome (site audit 13.11.2026). The number stays, as plain text. */}
+      <p className="ep-no">Episode {n}</p>
       <h1>{title}</h1>
       {a ? <p className="sub">{a.standfirst}</p> : e?.topic ? <p className="sub">{e.topic}</p> : null}
       {part1 ? (
@@ -145,7 +134,7 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
           <IgEmbed permalink={e.igPermalink} />
         </div>
       ) : e?.ytVideoId ? (
-        <div className="vid">
+        <div className="vid-yt">
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${e.ytVideoId}`}
             title={title}
@@ -154,7 +143,7 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
           />
         </div>
       ) : (
-        <p className="empty">Not posted yet — check back soon.</p>
+        <p className="empty">Not posted yet.</p>
       )}
 
       {/* A YouTube link alongside the Instagram embed above, when both exist — the
@@ -187,8 +176,8 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
                 <h2>The prompt</h2>
                 <pre className="body">{prompt.body}</pre>
                 <p className="sub">
-                  Copy all of it. <Link href={`/p/${prompt.slug}`}>Its own page</Link> has it
-                  too, if this one is awkward to select on a phone.
+                  Copy all of it. <Link href={`/p/${prompt.slug}`}>Its own page</Link> has a
+                  copy button, if this one is awkward to select on a phone.
                 </p>
               </section>
             </Reveal>
@@ -233,13 +222,24 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         </section>
       ) : null}
 
-      <footer className="sfoot">
-        {more.map((x) => (
-          <Link key={x.n} href={`/e/${x.n}`}>
-            {String(x.n).padStart(2, "0")} · {x.t}
-          </Link>
-        ))}
-      </footer>
+      {more.length ? (
+        <section className="block">
+          <div className="block-head">
+            <h2>More episodes</h2>
+            <Link href="/episodes">All episodes</Link>
+          </div>
+          <ol className="rows">
+            {more.map((x) => (
+              <li key={x.n}>
+                <Link href={`/e/${x.n}`}>
+                  <span className="row-no">{x.n}</span>
+                  <span className="row-t">{x.t}</span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ) : null}
     </main>
   );
 }

@@ -32,9 +32,6 @@ export default async function About() {
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/about" />
-      <p className="kicker">
-        <Link href="/">Actually Works</Link> · About
-      </p>
       <h1>Every setup here was run before it was published.</h1>
 
       <section>
@@ -94,18 +91,19 @@ export default async function About() {
           <p>
             If you want the same kind of thing built for your business, that is the paid
             side, and it is the same promise: it gets tested before it gets handed over.
+            To ask about it, send a message to{" "}
+            <a href="https://www.instagram.com/actually_works.ai/">@actually_works.ai</a> on
+            Instagram.
           </p>
           <p>
             One example: Flow, a personal finance app — every transaction, subscription,
             and budget stored only on the device, no account or server. Built through
-            Actually Works, currently heading toward the App Store.
+            Actually Works and available on the{" "}
+            <a href="https://apps.apple.com/us/app/id6807543350">App Store</a>.
           </p>
         </section>
       </Reveal>
 
-      <footer className="sfoot">
-        <Link href="/">Episodes</Link>
-      </footer>
     </main>
   );
 }

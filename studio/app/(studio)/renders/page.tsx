@@ -94,7 +94,7 @@ export default async function Renders({ searchParams }: { searchParams: Promise<
             href={x.key === "all" ? "/renders" : `/renders?f=${x.key}`}
             className="pill"
             aria-current={filter === x.key ? "page" : undefined}
-            style={filter === x.key ? { background: "var(--brass)", color: "#000", borderColor: "var(--brass)", textDecoration: "none" } : { color: "inherit", textDecoration: "none" }}
+            style={filter === x.key ? { color: "var(--text)", borderColor: "var(--brass)", fontWeight: 700, textDecoration: "none" } : { color: "inherit", textDecoration: "none" }}
           >
             {x.label}
           </Link>
@@ -129,7 +129,7 @@ export default async function Renders({ searchParams }: { searchParams: Promise<
             </b>
             <span className="rbadges">
               {r.file === nextFile && (
-                <span className="pill" style={{ background: "var(--brass)", color: "#000" }}>הבא לפרסום</span>
+                <span className="pill" style={{ borderColor: "var(--brass)", color: "var(--brass)", fontWeight: 700 }}>הבא לפרסום</span>
               )}
               {pub(r) === "published" && <span className="pill pass">פורסם</span>}
               {pub(r) === "trial" && (

@@ -1,5 +1,7 @@
 "use client";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { isStudio } from "@/lib/routes";
 
 /** Next's default crash screen says "a client-side exception has occurred" and nothing
  *  else — no message, no line, nothing to act on. This replaces it with the actual
@@ -22,6 +24,7 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const path = usePathname();
   useEffect(() => {
     if (isChunkLoadError(error)) {
       const key = "chunk-reload-" + (typeof location === "undefined" ? "" : location.pathname);
@@ -54,16 +57,38 @@ export default function Error({
     if (!sessionStorage.getItem(key)) return null;
   }
 
+  // The studio is David's own Hebrew tool and keeps the raw message he can send on.
+  // Every other page is the English site: a visitor gets a plain sentence and a retry,
+  // never Hebrew and never a stack message (site audit 13.11.2026, finding 1).
+  if (path && isStudio(path)) {
+    return (
+      <div className="crash" lang="he" dir="rtl">
+        <h1>משהו נשבר בדף הזה</h1>
+        <p>זו השגיאה עצמה, ולא הודעה כללית. היא נרשמה גם בשרת.</p>
+        <pre>{error.message || "אין הודעה"}</pre>
+        {error.digest ? <p className="dg">digest: {error.digest}</p> : null}
+        <button className="btn" onClick={reset}>לנסות שוב</button>
+        <p className="dg">אם זה חוזר, הדף לא תקין, לא אתה. תשלח לי את השורה שבמסגרת.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="crash">
-      <h1>משהו נשבר בדף הזה</h1>
-      <p>זו השגיאה עצמה, ולא הודעה כללית. היא נרשמה גם בשרת.</p>
-      <pre>{error.message || "אין הודעה"}</pre>
-      {error.digest ? <p className="dg">digest: {error.digest}</p> : null}
-      <button onClick={reset}>לנסות שוב</button>
-      <p className="dg">
-        אם זה חוזר — הדף לא תקין, לא אתה. תשלח לי את השורה שבמסגרת.
+    <main className="site" dir="ltr">
+      <h1>This page did not load.</h1>
+      <p className="lede">
+        Something went wrong on our side, not yours. It has been logged. Try again, or open
+        the episode list.
       </p>
-    </div>
+      <p className="actions-row">
+        <button className="button solid" onClick={reset}>
+          Try again
+        </button>
+        <a className="button" href="/episodes">
+          All episodes
+        </a>
+      </p>
+      {error.digest ? <p className="fine">Reference: {error.digest}</p> : null}
+    </main>
   );
 }

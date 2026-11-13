@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { isCron, isSite } from "@/lib/routes";
+import { isCron, isSite, isStudio } from "@/lib/routes";
 import { hashPin } from "@/lib/pin";
 
 /** The studio holds the whole business. Its URL is unguessable but not private, so when
@@ -25,6 +25,19 @@ export async function middleware(req: NextRequest) {
   // that swallowed it dropped the studio to stale local data without saying so.
   if (pathname.startsWith("/api/")) {
     return NextResponse.json({ error: "locked" }, { status: 401 });
+  }
+
+  // A page address no list claims (a typo, an old link to the removed /prompts or
+  // /skills pages) is not the studio: an English-speaking visitor from a reel used to land
+  // on the Hebrew PIN screen for it. It now gets the English 404 page (app/not-found.tsx).
+  // Rewritten to a path that has no route, NOT passed through: passing it through would
+  // serve any unlisted file in public/ to anyone, which the PIN gate used to stop.
+  // Real studio pages, and every API path above, are gated exactly as before.
+  if (!isStudio(pathname)) {
+    const missing = req.nextUrl.clone();
+    missing.pathname = "/__not-found";
+    missing.search = "";
+    return NextResponse.rewrite(missing);
   }
 
   const url = req.nextUrl.clone();

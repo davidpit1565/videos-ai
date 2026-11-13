@@ -1,20 +1,36 @@
+/* ══ Rebrand 13.11.2026 (logo direction A) ═══════════════════════════════════════════
+   One palette for both surfaces: ink #0B0B0B, white, and signal yellow #FFE600 as the
+   only accent. The public site is light (white page, ink type, see the public block
+   further down); the studio, David's private Hebrew tool, stays dark, on the same ink.
+   Rule from CLAUDE.md (13.11): no word ever sits inside a filled coloured box or bar.
+   Yellow marks things (a check, an underline stroke, a focus ring, a dot, a chart line);
+   it is never the fill behind text. Status colours (green/red/blue/violet) stay as text
+   and outline colours only, for the same reason.
+   ══════════════════════════════════════════════════════════════════════════════════ */
 /* Comfort first. The previous pass put a Latin monospace with wide letter-spacing on
    Hebrew labels — Hebrew has no uppercase, so the tracking bought nothing and the font
    fell back to something different from the rest of the page. Mono is now for digits
    only, type is bigger, and every row is thumb-sized. */
 :root{
-  --ink:#0B0F16;--panel:#141B25;--panel-2:#1B2430;--raise:#222D3B;
-  --line:#2B3644;--line-2:#3C4959;
-  --brass:#F3D07A;--brass-hot:#FFE7A8;--brass-dim:#8A7434;
+  /* brand tokens, shared by the studio and the public site */
+  --aw-ink:#0B0B0B;--aw-white:#FFFFFF;--aw-yellow:#FFE600;
+  /* studio (dark): neutral greys on the brand ink, no blue tint */
+  --ink:#0B0B0B;--panel:#151515;--panel-2:#1C1C1C;--raise:#252525;
+  --line:#2C2C2C;--line-2:#3D3D3D;
+  /* --brass is the old name of the one accent, kept so every studio rule and inline
+     style that says var(--brass) follows the new yellow without being rewritten */
+  --brass:#FFE600;--brass-hot:#FFF27A;--brass-dim:#7A6F00;
   --ok:#74C79C;--clay:#E88462;--steel:#86B8DC;--violet:#A497DD;
-  --text:#F6F8FB;--muted:#A7B3C3;--faint:#778393;
+  --text:#F5F5F5;--muted:#B4B4B4;--faint:#8C8C8C;
   /* Assistant was doing all the work and reads flat at UI sizes. IBM Plex Sans Hebrew
      carries a real Hebrew subset (U+0590-05FF) AND Latin in one family, is drawn for
      interfaces rather than adapted to them, and is a sibling of the mono already used
      for the numbers — so the studio is one type system instead of three borrowed ones.
      Frank Ruhl Libre stays for headings: in Hebrew it is the face that reads serious. */
-  --d:'Frank Ruhl Libre',Georgia,serif;
-  --b:'IBM Plex Sans Hebrew','Assistant','Segoe UI',system-ui,sans-serif;
+  /* headings: Archivo Black for Latin (self-hosted, layout.tsx); Hebrew has no glyphs in
+     it and falls through to Plex Sans Hebrew, the studio's own face, at its heaviest */
+  --d:var(--font-display),'IBM Plex Sans Hebrew','Arial Black',system-ui,sans-serif;
+  --b:'IBM Plex Sans Hebrew','Segoe UI',system-ui,-apple-system,sans-serif;
   --m:'IBM Plex Mono',ui-monospace,Menlo,monospace;
   --r:10px;
 }
@@ -41,18 +57,9 @@ html{overflow-x:hidden}
    than a 320px phone and creating a horizontal scrollbar on every public page.
    Found by measuring document.documentElement.scrollWidth directly, not by eye —
    the glow is behind everything else, so nothing looked wrong on screen. */
-body{background:#0E1116;color:#EEF0F3;font-family:var(--b);font-size:17px;
+body{background:#FFFFFF;color:#0B0B0B;font-family:var(--b);font-size:17px;
   line-height:1.65;direction:ltr;-webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent;overflow-x:hidden}
-/* A faint dot grid, brass at 5% opacity, on the public pages only — a flat single
-   color read as an empty void rather than a considered surface once the palette
-   itself stopped being the thing carrying "distinctive." Kept out of the studio
-   (.shell): that surface is dense working UI, not a marketing page, and a texture
-   under a data table is noise, not craft. */
-body:not(:has(.shell)){
-  background-image:radial-gradient(circle at 1px 1px, rgba(232,200,106,.05) 1px, transparent 0);
-  background-size:30px 30px;
-}
 body:has(.shell){background:var(--ink);color:var(--text)}
 /* digits only — never Hebrew */
 .num{font-family:var(--m);direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap;
@@ -61,6 +68,9 @@ a{color:inherit;text-decoration:none}
 button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+/* On the light site a yellow ring alone is 1.27:1 against white: ink ring, yellow halo. */
+body:not(:has(.shell)) :focus-visible{outline:3px solid #0B0B0B;outline-offset:2px;
+  box-shadow:0 0 0 6px #FFE600}
 
 .shell{max-width:1120px;margin:0 auto;padding:0 20px 40px}
 /* The document is LTR because the visitor-facing site is English. The studio is the
@@ -88,11 +98,16 @@ button{cursor:pointer}
   overflow:hidden;text-overflow:ellipsis;min-width:0;max-width:40vw}
 
 /* ── nav: tabs on desktop, a thumb bar on a phone ─ */
-nav{display:flex;gap:8px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:24px}
-nav a{font-size:16px;font-weight:600;border:1px solid var(--line);border-radius:999px;
+/* scoped to .shell: the bare `nav` rule used to leak a border and a 24px gap into the
+   public header (site audit 13.11.2026). The current tab is white with a yellow stroke
+   under it; it used to be the word inside a filled gold pill. */
+.shell nav{display:flex;gap:8px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.shell nav a{font-size:16px;font-weight:600;border:1px solid var(--line);border-radius:999px;
   padding:10px 18px;color:var(--muted);transition:.15s;white-space:nowrap}
-nav a:hover{border-color:var(--brass-dim);color:var(--brass)}
-nav a[aria-current=page]{background:var(--brass);color:#141014;border-color:var(--brass);font-weight:700}
+.shell nav a:hover{border-color:var(--line-2);color:var(--text)}
+.shell nav a[aria-current=page]{color:var(--text);border-color:var(--line-2);font-weight:700;
+  text-decoration:underline;text-decoration-color:var(--brass);text-decoration-thickness:3px;
+  text-underline-offset:7px}
 
 /* ── headings ────────────────────────────────── */
 h1{font-family:var(--d);font-weight:800;font-size:clamp(28px,4.4vw,38px);margin:0 0 6px;line-height:1.14}
@@ -124,7 +139,8 @@ p.sub b{color:var(--text)}
 .tplcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px}
 .tplthumb{position:relative;border-radius:8px;overflow:hidden;margin-bottom:10px}
 .tplthumb img{width:100%;height:auto;display:block}
-.tplnum{position:absolute;top:8px;left:8px;background:var(--brass);color:#141014;
+.tplnum{position:absolute;top:8px;left:8px;background:var(--ink);color:var(--text);
+  border:1px solid var(--line-2);
   font-family:var(--m);font-weight:800;font-size:13px;width:24px;height:24px;
   border-radius:6px;display:flex;align-items:center;justify-content:center}
 .tile{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
@@ -163,7 +179,7 @@ tbody tr:hover .sticky{background:#1a2331}
 input.cell,textarea.cell,select.cell{width:100%;background:var(--panel-2);
   border:1px solid var(--line);border-radius:7px;padding:9px 11px;min-width:64px;min-height:40px}
 input.cell:hover,select.cell:hover{border-color:var(--line-2)}
-input.cell:focus,textarea.cell:focus,select.cell:focus{background:rgba(243,208,122,.10);
+input.cell:focus,textarea.cell:focus,select.cell:focus{background:var(--raise);
   border-color:var(--brass);outline:none}
 input.n{width:96px;font-family:var(--m);direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
 
@@ -179,19 +195,21 @@ input.n{width:96px;font-family:var(--m);direction:ltr;text-align:right;font-vari
 .s-live{color:var(--ok);border-color:#37674E}
 
 /* ── buttons ─────────────────────────────────── */
-.btn{background:var(--brass);color:#141014;border:0;border-radius:8px;font-weight:800;
+/* Solid white with ink text on the dark studio (it was the word inside a filled gold
+   button). Listed in channel/brand/rebrand-notes.md as a solid button David may veto. */
+.btn{background:var(--text);color:var(--ink);border:0;border-radius:8px;font-weight:800;
   font-size:16px;padding:12px 20px;min-height:46px}
-.btn:hover{background:var(--brass-hot)}
+.btn:hover{background:#FFFFFF;box-shadow:0 0 0 2px var(--brass)}
 .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line-2)}
 .btn.ghost:hover{border-color:var(--brass);color:var(--brass)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 /* was --faint on transparent — a thin "×" in that color was nearly invisible,
    especially at the far end of a scrollable table where he never spotted it */
-.del{background:rgba(232,132,98,.10);border:1px solid rgba(232,132,98,.35);color:var(--clay);
+.del{background:transparent;border:1px solid rgba(232,132,98,.45);color:var(--clay);
   font-size:18px;font-weight:700;padding:6px 10px;border-radius:8px;line-height:1;
   min-width:40px;min-height:40px}
-.del:hover{color:#fff;background:var(--clay);border-color:var(--clay)}
+.del:hover{color:#fff;border-color:var(--clay)}
 /* the bare × alone kept getting missed inside a busy row on the phone-width card view —
    spelled out here so it reads as a control, not a stray character */
 .del-labeled{font-size:14px;font-weight:600;width:auto;margin-inline-start:auto}
@@ -230,8 +248,8 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 .feed li:last-child{border-bottom:0}
 /* the newest pull's rows, so a fresh sync is visibly its own batch instead of blending
    into everything pulled before it — every new pull moves this to its own rows only */
-.feed li.latest{background:color-mix(in srgb, var(--brass) 10%, transparent);
-  border-inline-start:2px solid var(--brass);padding-inline-start:11px;margin-inline-start:-2px;
+.feed li.latest{
+  border-inline-start:3px solid var(--brass);padding-inline-start:11px;margin-inline-start:-2px;
   border-radius:0 6px 6px 0}
 .feed .dt{font-family:var(--m);font-size:13px;color:var(--faint);direction:ltr}
 .feed .what{font-size:16px}
@@ -247,8 +265,8 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 .presets button{background:transparent;border:1px solid var(--line);border-radius:999px;
   padding:10px 15px;font-size:15px;color:var(--muted)}
 .presets button:hover{border-color:var(--brass);color:var(--brass)}
-.answer{border:1px solid var(--brass-dim);border-radius:var(--r);
-  background:linear-gradient(180deg,rgba(243,208,122,.06),transparent 55%),var(--panel);
+.answer{border:1px solid var(--line-2);border-radius:var(--r);
+  background:var(--panel);
   padding:22px 24px;white-space:pre-wrap;font-size:17px;line-height:1.75;
   /* Same reasoning as .note above — the agent's answer is free-form prose and a 1120px-
      wide shell let it run a full line width nobody can comfortably read in one pass. */
@@ -411,7 +429,7 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
      keeps the swipe smooth on iOS; the bar still never moves vertically (see above). */
   .shell:not(.pub) nav{order:2;flex:0 0 auto;position:static;margin:0;padding:8px 10px;
     padding-bottom:calc(8px + env(safe-area-inset-bottom));
-    background:rgba(11,15,22,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);
+    background:var(--ink);border-top:1px solid var(--line);
     border-bottom:0;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;
     scrollbar-width:none;
     /* A bar that just stops at "רנדרים" with no fade reads as broken or complete, not
@@ -421,30 +439,14 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
     mask-image:linear-gradient(to right,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%);
     -webkit-mask-image:linear-gradient(to right,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%)}
   .shell:not(.pub) nav::-webkit-scrollbar{display:none}
-  nav a{flex:0 0 auto;text-align:center;padding:11px 14px;border:0;font-size:15px;border-radius:8px}
-  nav a[aria-current=page]{background:rgba(243,208,122,.14);color:var(--brass)}
+  .shell nav a{flex:0 0 auto;text-align:center;padding:11px 14px;border:0;font-size:15px;border-radius:8px}
+  .shell nav a[aria-current=page]{color:var(--text);border:0}
+  /* the PIN page is a .shell for its dark ground, not the full-height tab layout: with
+     padding 0 and overflow hidden here, its heading was cut off at 390 px */
+  .shell.unlock{height:auto;display:block;overflow:visible;padding:20px 20px 40px}
   th,td{padding:11px 12px;font-size:15px}
   td.name{min-width:160px}
 }
-
-/* ── public funnel pages (English, LTR) ───────── */
-.pub{direction:ltr;text-align:left;max-width:760px}
-.pub h1{font-size:clamp(30px,5vw,44px)}
-.pub h1 em{font-style:normal;color:var(--brass)}
-.pub .sub{max-width:60ch}
-ol.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 8px;
-  border:1px solid var(--line);border-radius:var(--r);background:var(--panel);overflow:hidden}
-ol.steps li{counter-increment:s;display:grid;grid-template-columns:38px 1fr;gap:12px;
-  padding:14px 16px;border-bottom:1px solid var(--line);font-size:16.5px}
-ol.steps li:last-child{border-bottom:0}
-ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m);font-size:14px;
-  color:var(--brass)}
-.promptbox{white-space:pre-wrap;word-break:break-word;font-family:var(--m);font-size:14px;
-  line-height:1.7;background:var(--panel);border:1px solid var(--line);
-  border-left:4px solid var(--brass);border-radius:var(--r);padding:18px 20px;margin:0;
-  overflow-x:auto}
-.beehiiv{width:100%;height:270px;border:1px solid var(--line);border-radius:var(--r);
-  background:var(--panel);margin:0 0 8px}
 
 /* ── the week ────────────────────────────────── */
 .week{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:14px 0 8px}
@@ -471,7 +473,9 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .chs{display:flex;flex-wrap:wrap;gap:5px}
 .ch{background:transparent;border:1px solid var(--line-2);border-radius:999px;
   padding:5px 10px;font-size:13px;color:var(--muted)}
-.ch.on{background:var(--brass);border-color:var(--brass);color:#141014;font-weight:700}
+.ch.on{border-color:var(--brass);color:var(--text);font-weight:700}
+.ch.on::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:var(--brass);margin-inline-end:6px;vertical-align:1px}
 .wcard .mini{margin-top:8px;font-size:13px;color:var(--faint)}
 @media(max-width:900px){
   .week{grid-template-columns:repeat(2,1fr)}
@@ -481,623 +485,249 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
   .day{min-height:0}
 }
 
+.shell.unlock{max-width:420px}
+.shell.unlock h1{margin-top:18px}
 
-/* ══ The public surface ══════════════════════════════════════════════════════════
-   First pass here (mint-on-black) landed generic in a different way — he pointed out
-   directly that it read as the same palette as another, unrelated product of his. That
-   pass invented colors instead of using ones this channel already owns: `brand/house-
-   style.md` is the documented "Brass on Ink" identity every VIDEO already ships in —
-   ink background, brass as the one accent that ever marks a takeaway, clay reserved
-   specifically for "limitations, warnings, honest caveats." That's a real, bespoke
-   asset — nobody else's product can accidentally match it — and it was sitting unused
-   on the public site the whole time. This pass just brings the web surface into the
-   same identity the videos and the studio already have, instead of inventing a fourth
-   one: video brand, studio, and now the public site all read as one channel. */
-.site, .pub {
-  /* --faint measured at 4.01:1 on --paper as first shipped — under the 4.5:1 normal
-     text needs, and it was carrying the footer links, the fine print under the signup
-     button, and the episode-card byline text. Computed, not eyeballed: #7A8393 is the
-     same blue-grey at 4.95:1, found by lightening in HSL until it cleared the floor. */
-  --paper:#0E1116; --card:#151A22; --ink:#EEF0F3; --soft:#8C97A8; --faint:#7A8393;
-  --rule:#2A313D; --wash:#1B2029; --gold:#E8C86A; --gold-lit:#FFE7A8;
-  /* Archivo/Assistant are the house style's own documented pair (`brand/house-
-     style.md` §3) — display/headline face and body/caption face, respectively. Latin +
-     Hebrew coverage on Assistant means nothing here breaks if this surface ever needs
-     Hebrew, but the public pages stay English regardless. The studio's Hebrew-RTL
-     surface keeps its own Frank Ruhl Libre (--d) untouched — this swap is public-only. */
-  /* Remap the STUDIO's own tokens, not just our own. Any studio rule that reaches a
-     public page — ol.steps, .promptbox, .note, .list — paints itself from --panel,
-     --line, --text and --brass. Chasing those selectors one at a time is how "The
-     exact clicks" shipped as dark text on a dark panel; redefining the four tokens
-     fixes every one of them at once, including the ones nobody has hit yet. */
-  --panel:#151A22; --line:#2A313D; --text:#EEF0F3; --muted:#8C97A8;
-  --brass:#E8C86A; --brass-dim:#8A7434; --clay:#C96A4E; --steel:#6FA8CF; --r:.75rem;
-  --serif:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --sans:"Assistant","Helvetica Neue",Arial,sans-serif;
-  --code:"IBM Plex Mono",ui-monospace,monospace;
+/* ══ The public site (English, LTR, light) ═══════════════════════════════════════════
+   Rebrand 13.11.2026, logo direction A. White page, ink type, Archivo Black for the
+   headings, a plain system face for reading. Signal yellow is the one accent, and on
+   white it is only 1.27:1, so it never carries text or a thin line by itself: it shows
+   up as the keylined check in the logo and the list bullets, as a thick stroke under the
+   current page's name, and as the halo of the focus ring.
+
+   What the site audit of the same day asked to remove, and is gone from this block:
+   gradients and glows, the film grain, the eyebrow label above every heading, words in
+   filled gold pills, identical lifted cards with tinted shadows, the uppercase mono
+   labels, the count-up numbers, and about ten motion effects. Lists are plain rows with
+   a rule between them; the only motion left is colour and underline changes on hover. */
+.site{
+  --paper:#FFFFFF; --ink:#0B0B0B; --soft:#454545; --faint:#666666;
+  --rule:#E2E2E2; --rule-strong:#0B0B0B; --wash:#F4F4F4; --yellow:#FFE600;
+  --serif:var(--font-display),"Arial Black","Helvetica Neue",Arial,sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --code:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  /* the studio tokens a shared rule (ol.steps, .note, .btn) still paints from */
+  --panel:#FFFFFF; --line:#E2E2E2; --text:#0B0B0B; --muted:#454545;
+  --brass:#0B0B0B; --brass-dim:#0B0B0B; --clay:#B4401E; --r:10px;
   direction:ltr; text-align:left;
   background:var(--paper); color:var(--ink); font-family:var(--sans);
-  max-width:64rem; margin:0 auto; padding:clamp(1.7rem,5vw,3.6rem) clamp(1.1rem,4.5vw,1.7rem) 5rem;
-  font-size:17.5px; line-height:1.62;
+  max-width:46rem; margin:0 auto; padding:0 16px 3rem;
+  font-size:17px; line-height:1.6;
 }
-/* The dark ground is body's own default now (see the top of this file) — .site/.pub no
-   longer need to ask for it back, only .shell (the studio) keeps its own separate dark
-   token set (a deliberately different near-black — see :root above). */
+.site.home{max-width:72rem}
+.site a{color:inherit}
+.site p{margin:.75rem 0}
+.site p a, .site .changes a, .site .limits-list a, .site ol.steps a, .site .sub a, .site .lede a{
+  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.site p a:hover, .site .sub a:hover, .site .lede a:hover{text-decoration-thickness:2px}
 
-/* house-style.md §4, "the eyebrow rule": a short brass hairline before every section
-   label — one of the channel's own documented signature devices, present in every
-   video but only ever applied to two of six public pages here. A competitor can copy
-   "dark background, gold accent" (Futurepedia already has, near-identically) in an
-   afternoon; a specific, consistently-applied device like this one is what actually
-   reads as "one channel" across a three-second scroll, which is the whole point a
-   house style exists to solve. */
-.site .kicker, .pub .kicker{font-family:var(--code);font-size:.7rem;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--faint);margin:0 0 1.1rem;
-  display:flex;align-items:center;gap:.6rem}
-.site .kicker::before, .pub .kicker::before{content:"";width:22px;height:2px;
-  background:var(--gold);border-radius:2px;flex:none}
-.site .kicker a, .pub .kicker a{color:inherit;text-decoration:none}
-.site .kicker-row{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
-  margin:0 0 1.1rem}
-.site .kicker-row .kicker{margin:0}
-.site .index-chip{font-family:var(--code);font-size:.72rem;letter-spacing:.06em;
-  color:var(--faint);white-space:nowrap;font-variant-numeric:tabular-nums}
-.site .brandline{display:flex;align-items:center;gap:.5rem;margin:0 0 2.2rem;
-  font-family:var(--serif);font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
-.site .brandline .tick{color:var(--gold);font-size:1.15rem}
-.site h1, .pub h1{font-family:var(--serif);font-weight:700;
-  font-size:clamp(2.15rem,7.5vw,3.2rem);line-height:1.06;margin:0 0 .85rem;
-  letter-spacing:-.015em;text-wrap:balance}
-/* Flat brass on a monochrome dark field read as one muted note, not a bold one — he
-   said so directly. A warm gradient (brass into a hotter amber) on exactly the one
-   emphasized word keeps the "one accent, sparingly" rule from house-style.md intact —
-   it's still a single warm family, just given more range — while giving the headline
-   the kind of punch a flat fill can't. background-clip text is the one property this
-   needs; the plain --gold color is the fallback for anything that can't render it. */
-.site h1 em, .pub h1 em{font-style:normal;color:var(--gold);
-  background:linear-gradient(100deg,#E8C86A 10%,#FFB454 55%,#E8C86A 90%);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+/* type: one display face, used large; no single word set in another colour */
+.site h1{font-family:var(--serif);font-weight:400;color:var(--ink);
+  font-size:clamp(2rem,7.4vw,3rem);line-height:1.04;letter-spacing:-.01em;
+  margin:1.6rem 0 .9rem;text-wrap:balance}
+.site .ep-no + h1{margin-top:.4rem}
+.site h1.display{font-size:clamp(2.35rem,10.5vw,4.6rem);line-height:.98;letter-spacing:-.02em;
+  margin:1.2rem 0 1rem}
+.site h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.3rem,4.6vw,1.65rem);
+  line-height:1.15;margin:2.8rem 0 .8rem;text-wrap:balance}
+.site h2 a{text-decoration:none}
+.site h2 a:hover{text-decoration:underline;text-decoration-thickness:2px}
+.site .lede{font-size:1.12rem;color:var(--soft);max-width:36rem;margin:0 0 1.2rem}
+.site .sub{color:var(--soft);max-width:38rem}
+.site .fine{color:var(--faint);font-size:.9rem}
+.site .ep-no{font-family:var(--serif);font-size:1rem;margin:1.6rem 0 0;color:var(--ink)}
+.site .ep-no a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
 
-/* The hero headline's own karaoke reveal — house-style's word-by-word caption device
-   (export/karaoke.py), played once on the one line that earns a bold moment instead of
-   the quiet fade every other element gets. .hk starts dim, flashes brass as it "lands"
-   (.on), then settles: plain words to --ink, "actually work." to --gold.
-   Deliberately plain solid colors only, no gradient/background-clip anywhere in this
-   sequence — mixing that with the animated states was the first version's real bug: a
-   gradient clipped to transparent text can't transition smoothly to a solid color, so
-   swapping between them on .on read as a visible pop/glitch rather than a blend. Plain
-   `color` is the one property that reliably animates, so every state here uses only that. */
-.site h1.herokar{font-family:var(--serif);font-weight:700;
-  font-size:clamp(2.15rem,7.5vw,3.2rem);line-height:1.06;margin:0 0 .85rem;
-  letter-spacing:-.015em;text-wrap:balance}
-/* Word-by-word spans lose the space between them if it's left as trailing text inside
-   an inline-block box — a real CSS quirk (trailing whitespace at an inline-block's own
-   edge collapses), and exactly what happened here first: "AIsetupsthat actuallywork."
-   with every space silently gone. A margin between spans is unambiguous where a text
-   node wasn't. .42em (asked for more room) read as too much once seen live; .28em is
-   close to what a plain text space in this font actually renders as. */
-.site .hk{display:inline-block;margin-inline-end:.28em;
-  transform:translateY(0) scale(1);
-  transition:color .45s ease,transform .3s cubic-bezier(.2,1.4,.4,1),text-shadow .3s ease}
-.site .hk:last-child{margin-inline-end:0}
-.site .hk.dim{color:var(--rule)}
-.site .hk.text{color:var(--ink)}
-.site .hk.brass{color:var(--gold)}
-.site .hk.on{color:var(--gold-lit);transform:translateY(-2px) scale(1.03);
-  text-shadow:0 0 18px rgba(232,200,106,.55)}
-@media(prefers-reduced-motion:reduce){.site .hk{transition:none;transform:none}}
-.site h2, .pub h2{font-family:var(--serif);font-weight:700;
-  font-size:clamp(1.3rem,3.6vw,1.7rem);margin:3.2rem 0 .7rem;text-wrap:balance;
-  letter-spacing:-.01em}
-.site p, .pub p{margin:.75rem 0}
-.site .sub, .pub .sub{color:var(--soft);max-width:34rem;font-size:1.06rem}
-/* A flat brass fill on a near-black button read as one more muted dark-mode SaaS
-   button — a warm two-stop gradient gives it real presence as the single boldest
-   object on the page without adding a color outside the brass family. */
-.site .cta, .pub .cta{display:inline-block;margin-top:1.5rem;
-  background:linear-gradient(135deg,#F0C674,#E29A3E);
-  color:#1A1200;font-weight:700;padding:.8rem 1.7rem;border-radius:9999px;
-  text-decoration:none;font-size:1rem}
-.site .cta:hover, .pub .cta:hover{background:linear-gradient(135deg,#FFDD94,#F0B458)}
+/* header: one row, mark + name on the left, two links on the right, 44 px targets */
+.site .sitenav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  min-height:64px;border-bottom:1px solid var(--rule)}
+.site .sitenav .mark{display:inline-flex;align-items:center;gap:.55rem;min-height:44px;
+  font-family:var(--serif);font-size:1.02rem;letter-spacing:-.005em;text-decoration:none;
+  color:var(--ink);white-space:nowrap}
+.site .sitenav .links{display:flex;align-items:center;gap:.15rem}
+.site .sitenav .links a{display:inline-flex;align-items:center;min-height:44px;padding:0 .6rem;
+  font-weight:600;font-size:.98rem;text-decoration:none;color:var(--ink);
+  text-decoration-thickness:0}
+.site .sitenav .links a:hover{text-decoration:underline;text-decoration-thickness:2px;
+  text-underline-offset:.35em}
+/* the current page: a thick yellow stroke under its name, with an ink hairline under the
+   stroke so it still reads on white (yellow alone is 1.27:1) */
+.site .sitenav .links a[aria-current=page]{text-decoration:underline;
+  text-decoration-color:var(--yellow);text-decoration-thickness:.32em;text-underline-offset:.28em;
+  text-decoration-skip-ink:none}
+@media (max-width:359px){.site .sitenav .mark span{font-size:.9rem}}
 
-/* the personal-intro hero. Single column when there's no video to show yet; once an
-   episode has a YouTube id, the newest one plays beside the text so the channel's whole
-   premise — the exact screen — is visible before anyone scrolls, not just promised. */
-/* A brass glow behind the hero, so the near-black ground doesn't sit completely flat
-   above the fold. An adversarial review of the first version (an infinite 9s pulse)
-   flagged it correctly: layered on top of the scroll reveal and the hover-lifts, a
-   never-ending ambient loop was a second, competing motion system running at the same
-   time as the first, which reads as "trying hard" rather than calm and premium. One
-   settle-in on load, then it holds still — the glow is doing its job by existing, not
-   by moving forever. */
-.site .hero{display:grid;gap:2.2rem;grid-template-columns:1fr;position:relative}
-/* hero-parallax.tsx writes --hero-px on scroll — a separate `translate` property
-   rather than another `transform`, so it composes with this element's own one-time
-   `transform:scale()` entrance below instead of one silently overwriting the other. */
-.site .hero::before{content:"";position:absolute;top:-8rem;inset-inline-end:-10rem;
-  width:32rem;height:32rem;border-radius:50%;pointer-events:none;z-index:-1;
-  background:radial-gradient(circle,rgba(232,200,106,.2) 0%,rgba(226,154,62,.08) 45%,rgba(232,200,106,0) 72%);
-  animation:heroglow .9s ease-out both;
-  translate:0 var(--hero-px,0px);transition:translate .1s linear}
-@keyframes heroglow{
-  from{transform:scale(.85);opacity:0}
-  to{transform:scale(1);opacity:1}
-}
-@media (prefers-reduced-motion:reduce){
-  .site .hero::before{animation:none;translate:none;transition:none}
+/* buttons: an outlined ink button, and a solid ink one for the single main action of a
+   screen (listed in rebrand-notes.md: David has not said whether buttons count as a
+   "word in a filled box") */
+.site .button, .site .btn{display:inline-flex;align-items:center;justify-content:center;
+  gap:.4rem;min-height:48px;padding:0 1.15rem;border:2px solid var(--ink);border-radius:10px;
+  background:transparent;color:var(--ink);font:inherit;font-weight:700;font-size:1rem;
+  text-decoration:none;cursor:pointer;transition:background-color .15s,color .15s}
+.site .button:hover, .site .btn.ghost:hover{background:var(--wash)}
+.site .button.solid, .site .btn{background:var(--ink);color:#FFFFFF}
+.site .button.solid:hover, .site .btn:hover{background:#2A2A2A;color:#FFFFFF}
+.site .btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.site .actions, .site .actions-row{display:flex;flex-wrap:wrap;gap:.7rem;margin:1rem 0}
+
+/* home: the hero. On a phone: name, one sentence, follow, then the newest reel, all
+   inside the first screen. On a wide screen the reel sits beside the text. */
+.site .hero{display:grid;grid-template-columns:1fr;gap:1.6rem;padding-bottom:1rem}
+.site .hero-follow{margin:0}
+.site .hero-reel{min-width:0}
+.site .newest-title{font-family:var(--sans);font-weight:700;font-size:1.08rem;line-height:1.35;
+  margin:0 0 .7rem}
+.site .newest-title .newest-no{display:block;font-family:var(--serif);font-weight:400;
+  font-size:.95rem;color:var(--ink)}
+.site .newest-title a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.site .newest-links{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;margin:.6rem 0 0}
+.site .newest-links a{display:inline-flex;align-items:center;min-height:44px;font-weight:600;
+  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+@media (min-width:900px){
+  .site .hero{grid-template-columns:minmax(0,1fr) 380px;gap:4rem;align-items:start;
+    padding-top:1.5rem}
+  .site .hero-text{padding-top:2.5rem}
 }
 
-/* Film grain — every video carries this at 5% opacity (video/reel-*.html's own .grain);
-   the site never did, which is the difference between "a dark page" and "the same
-   material as the videos." A pre-baked 96x96 noise PNG tiled over the viewport, not a
-   live SVG feTurbulence filter — the first version used one, and it turned out to be
-   real, measurable cost: .site remounts fresh on every route change (each page.tsx
-   returns its own <main class="site">), so the filter was being recomputed from
-   scratch on every navigation, which is exactly the second or two of new lag he
-   reported between pages. A static raster tile costs nothing to repaint regardless of
-   how often it remounts. Static, not animated (crawling grain reads as a loading
-   indicator, not texture) — nothing to skip under reduced-motion, there's no motion
-   here to begin with. */
-.site::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
-  mix-blend-mode:overlay;
-  background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAAAAADH8yjkAAAka0lEQVR42gFgJJ/bA6+ZEM+7gsAh/LZHc5OulP0bdfBTm2cExBq4NJ8LA4YkIlcbzDyQY+Jnlmwc0/+I/SdKElwZpcz8Y7r52iHl3j6l/YPoZm+5+6X50gOnJNB6AeLgPFptB6oQmFZtIZ5B/AT9aypOPN5lzRFyrS8nwrVbTu4thjP2sEB8HKYNA6YLPXsQQzyJwuMKt9dZ6iFXZmCr7PVuyd8ELUfa7vRGAtaPISgFVST/LgEZY0O4L0/T67EdE42P7yVOov6oI5/z9XYCWEg3h+6bcYw+MDYSIFRGxul1Ozy9aFy2Nb0/2Jdy16qEB6R1QhPu2XtBAARYGsMs3nkNRuhnVjioCkN3PK/q3WEIl8Y/RkWyh0f7h/WoWoDS3bUjIPI7GlX2GEqau9+oAjlyCtyZXDEFDpBKLgWBErsUNZkNHaARwk1KkYYRSt268xCpyODYmFuDJJ7j6zaxNmVX23RCOtLNtn8t4e+Qq06ohDMWF4Fqe9qq7z5kk+sSFNcPDNB0sLbCj4oSiTLZWQO/msazdwRabAg+DTkTVmXE4Sp7E60JpW4no880KgQFTnRslDa2zvlLzqiY6kvjxvAscJT8iuB75tNRtKO/dyHMBkQajlax+PihGhkM8Tedg9nznTSkp5sQpC7pIxE4KgwAfJKZ9BTRSn01cdOu/Mc49I/XmQ07c1snI/gQTzCnLKYESbSXK6eyjsjZMDzaFVje+lYI9zbOxCQrru7x79upctfMMNnNg8OosjnqeCfQZamDBGvXnU2s1ox3kCHMsVWIAE8rCU8dPyYKiO6GdjYieRimsum9dWGEzMYKX3yV7gJnLFAKI9srta6HAvJX0Q5+gOqXDVPvca1lxUDoTGRIK8m0TF4q6cOK86kAN2odUAlCGgm4ckD3FoX83l/Gvgg83gOvwrs0biYqJI7fSu0p/sT8hxAIoS3mFiHynwltvPQmEBn/8b+VyBSelQASHZ9AzX0Bc80tDWdHvo1yqJZb1hSE1x4EwbjG/bUyqg6Vzkd73CudBael5DejQdZCsRuBcT4DRA5F6s/MfCqQnSgmubZcj7a9+5Wh+AswGUsq88PEsmBg3WhDCchB6E+8h9EcueD8Mg9TYPj92yQQmUK2ZXkYjMukVUx323sdf6nvFrAj/Ie+ElmS2h82JauIPS3Qic82BJ3YTjZs4qmAPsSitHDf5Y3xwxpRRGwiJzkO/tnY7q2S63OoeaE2BZy94i4Ft1TS7l5DAATH5txjFxSc15RZ/j70PT5StBEU7+i6lT1C4yuK4MOD1jdHPwgvshk4DOMQXgOC0dgKIQXMSkRKx0nh98QrzcapvvcsaRkUDAihiTFlj4M3tGXctVubFTnkbIpL2cmrtB3xAO+lyXvI+FEh0zYKuZXbmLLkOK1dOU8PpNP5zpLZ0bIJ167PPai/mKrSZZQE8fdjKAm86wcTUg6fb0vRNmov8WliKPjkF5mH8PLiXEeRyQb9bh2wGaU4/SNTs7/0GP/gTwrjTyXxU4EATz9HbBdPqpOzdBjbe+f19eCcAjWwBq7xSzGD99whednOuP9nAbPsMf5oJexAo6OollHpFXg1c6Do70k5MOxZqsokxqD29rq9x9cNBalKz4niij7jLsENIhYnEFH3hQFKMqiBL3Vl8bFYMFEW0Jew8xoSG316Goo+r+PZOSBePgCBPChM/wDp5yCXC2CZTGovz/CgbPoJKEMY/iQm6flFsNk9nAcsjWtdtQJd/lsSMdik1D2vDldugTbt6tkuPrQJZ3XwV3sb3z59xYdiNMVcOL/d7wXBWTq3D5yyWgkwsH5k306bo+kDu/fNrHbHDXwbzf6KW5WJU4xRfUw0bQ6h5UYTj7u/zgfUNIjW5PUGYcBaCTjI0WmsTmWXIFb/j8HIJ+e22kbce3bbEMx1TCpuGkdg+dA9j2+FqSiogXbGAqLRGOX101dWAh+214LumRDK7YaiDH+FYhy98bp2CAmIJS1CIguCX4EfnbMkSPXClxS6XfdTdzLgLmhNsbSTqoKjE9WMIgb8+D2LatSPsDk6Blle9Wg4uq3HJ8Ts7RsMcETHczXZziHw7gE3Hjur2dHQHli4lvo+6C901qcDinIw4Cil1QwKMvVvvKc/d72qhyPNBS6sdWTG7odnaJ84URk+39ib2h7twZCzvcF5QB+OTs4Ur31GgcWugCcZ6RI47hs+cXUcs1KIyG0A7uCCmmaow73N1p5JwtUfc4xjIKw2S+3fWNRItv1/D2NbIA2o+6MQAbc5nSUQzI4l7rE1+XwVYwmFApT0aKCuRV1CtGxJGDtDrJ34l7eS95snGSUKzqT2JcYjF/2+hCs1ApRlFze/4uL7iftTWS/PYdGiELYW0wpoUEvm2noSD2RsOVO1pqVbPRasbnYahTuk/Nj7YZ9Y+Jek+xHzI2wwai7EcJJ5zN6FIJYaX99UJ3cOCCC6Z71oud1eObcdCmXHDQJrmbzehgTtCKclLi/Wln+rB8BU3/5WpH3yd9MNb0oosH/iT3tH4S6v85g45pg2dW/stTI7DzvNoP4IIn19GwUIAKTOZfPV5e0yNAwNxBlNYJsuHS+Hm/ePt49kKPMgaboBUY3wCgJNZdMI4Y+UFc+2qZryNnSpBq7eeayd9DfxumCaJZiryVrNmSEliDXXSCNgGTLq04vYyMsMUGi4CouP/p5nAaGbAvIb8Q7yUEF9U8Sm0XWv5HrUdc/QfWbF/4xZBNqATuIktdb40LP26FeMx+8nPVuZf0uF92L+BesyQdWDo+iSIVfENPO88nb+C59lWSrblXLGjOqhR+I+lSQlYPmvbd3FuPGz393ZMH4HvICuy41BKJwAnqvBAOWt4nFKdAIkSkXQQncm1ln+lwmkSgzf2r1d1+EDBoEv7uOT5sO0CVSFxlTTzuEc47D2wPS3wc6M8hW7Jeb5dz2o9rnVirJfliKIQmNVbbPcfkra2rV+qetQSFplVb+HyNdqbd7k824BsuayAiC9lHvtdLGcUzRwVrv7Uu8tyo4+WJFLphHedKw1cgmc+Mz+hYzwONks02iRYjoxzKLuUuII3N7+F2X3LhNMSJsEhScZk2EJp+lHzlcTqdJ9SaodeCVSV3UB8UYjAjjYacvOovUNSxncNckM1hM5svj8YRIK6gWRI2JwdnInUur76+qYQ0gLKewWktkERCGoEWuuoPnGwbdRDFr/svceStCUhyTXP9XbqsMsQlRGbuq+e2xPXCGC9kc9DwTxBwMpE4PQ3TKw4eqeIUtl20Qn6En4tvND7IxRoJyF7vOvclpli+n4+bRGeJRABFewAIf+NEqRx52lIBz2x7Xspyh5v/ppNn7Q3vEEVnCNYIq31V1LJkbtRUVE2K9CJCGfmUIEuUVR7mrJiSHYNfZnrIc/hCRFskZURZG/kXo8EX0Yd1oS1jUSWDPgaMLjAhl7A5heEcatNvIr+tbAuwbxDsobM881BFplNfuuUdsiDnTmNM8i48GUOPFM8jm/IfGwHoaXADhEHjL1sLCuBD8Eev5KCGyu0IIaQ1QMX/D8RDbXvsuHrptn7xxjKq+sduhQJOkCHR8kmuQwPSylKLo4hnpiii+VE/4JuwRe6P/YAMtAmZu/HAxNDQd8KmsrkrLTWo2yjwNpRN3J0d8CCu1PSSYA5UtMn6YO536CLTA8tU/Zwi0fv2a7cgjz36/CeIefGBabaLdX0fQQDEv5OzIhHCp++ipP3vWHBtlGwLv9l5MTCw1CGJ6SfGjH1qAjYfEeWaLvCTUDyO+SH+LYBV0TMeWpEyEZxrnWYluvv98AvC18vqApPpvWpJ/vGfXkvtCERBK6FtxvRkeVXWwynAoGP+pk6BFaX8hr4aoiyhGteth1YLZEUO9Ckzv0xwz38CkVdEr5BUtsAZpGS/4+A4nZRgXT0ZmprlUXS3H76VeRPMGTvMeqMQ/WCbDV9wIETDVR3+Sv7MribhqKb+KEtzcyId7RdfP3fN/9H5B0sGlX/S0j+yTECGLQywUaDftV9TfU2lGfDHqfHwBUZkhGyFycElc1FwGumus1M6fEeH2526MbXqBGI4kA/84EJXOWuAsVdMLK7VkK/GV1TNMtvWZMAbcfMqMZ4zV67l/4pB7yBERq1AJITCq1/7kdjHiuDz4Q7Xc4+FfvBJUCEhFjETEWpeShC0W1DYfYuyXzVF/ZJCJ1gOK2Fl8k0f1k/0aK/PnP5/c1brOM32cWnEZtU3fKiMYaDtIU6+OfQGu/iMi/kiqE4TdZbhmou1ZFVc3OMZEJek0PJfWsa4nAAJ4TvorNL5XExb3cPfj0agDnHuxvPuyqhgAMJeXq+dUFbC2bzngQ0ktPKAZ8vLV3B/UeCVpkeGL8LMBRYI32MBZgni/7dMzinjf6uRz6d6sS4BGX47Z+qGZLQYzb60AEgQQjcbPI1jo8N9+rshyO2zWOSY/iIhQ9okog9c7oavu2ozb3tVgMX6qZ91HhFmsSwccprzFJwEngwQL97eDX/7IDRC6sgcJfQ7xVhztyICES7Vy7UREx6LLRlFhKQKdXydQE1BLzbEcUN13t7XAM36B6+mOsfKB3lPEIfwdvJPWPkHbDD7v5ToQ1VfRdDvjp09xQGVBaxeLLEenjblVq+Or5gZ9r4NdAWBQAWtmWOyTO+O3U8krNnVN1o9cqAtk0moGuBJ7ozLPmjwFbbdnLEFPteuN9Lit1wUekoo+wDvZH9j7XFuxn5rLN0BbwI0DuKdX6PxFmDDMSvDwM1Odr36PiFHdcOA7y37LdnslB6T65vZgoaIXd+R1/mc4F/6EGjR+DdwFX+FBQvDCqhCugbpcxgf+0SswVsDJ8PXn6P0E981Ke3EW3usDavse/aK7LPc4fyvrxvPNsDtKeECCbvtcGRMgYnYyoHfW45PwrLP76yFZcYvJKVzmLXh0MlpJpMxD5BusBHRcFMHxv+fcJLNZkDCkc5i7jEXk7zDNrq0mbzd1EuPEbmQdTkdEWTLgGG4Fh2Unb9fuAsojGx823GyL2Jg7Eb2yPuu/Z2Rwdul0BSauL8gxIfv9pPzWeuQnjtXC8Cg1vAG2bwhbDM0qdBeAwZYCrXGSt9v0SEUHuJUq36Dsn3/phl7Z7zOc5uFDC8quv07tKk9bz07JMU2+zNMxQFBhfyPACvvopx8biutyJhgVlFizHR7b2GPs4tT+yeekZvDRasQDpCsz1I2mGD2D92eRyOp6GGf1JNKkMuO/U4vlAuq8pHjMX/PUFlenLtl3rkXzPmyn/ildeox1VD09yb3coKSvQBI2vRZvtvNkIUmWVQdjxoRRqq7kC2f4urmr0g+sRaMkCZCZL3eX6pc81YCI4GRKURycDQGZhpBq3lbFdvb7roNk+9C4xnNSwkmVSz+2jYXrzjKn6Q3wv6lSV4fnf+cLPGQWcQrFCzQUhRone5wH4dnA1leDBya/95EiNIGQOLPnFAHm0EgRBra8/4kFv3r+yRu5R9AohhdBVmW8uEWG72aqfpnYLfV9nPmwywP95jlwEj/atFgp43B0k0e4tUdZN5SuQ5VZbcBMdtAUryPRxe+/Pp42/6nz4i6NU35eVfHixCgGCrcL9KFJh9ca928ER0F5QdXvTMQfQEQXmV2csQw2TANiFEC4WVds/FonxojhJa88DbAKEpyxChEWxnc18vuBSDAeo1jPKBlpla0cdCgefTotZ1l0Op8ZWYwhgcQ4ct+sAAKQx7fn7k24Mpq53LQTblRWBN5UQ02WLroD+Ods1cv+8zw0+0gFWYQ8lqYVqFWmJ+iytOtwXG9OTpb4HyrZHIO/7T171w3dMrGf8v+tN4l5ZEu5GQIdtblgq2twgXn6PACcy17OwNlT+zus/p6VNJH16xnnkJ1xIc45H5RIbhj3Zs5HDLfECPsTw7sXoAouEZfaZM+jRaIbtuFIJFIESdEPuCTTGQj8M7vJg8wPvP8y8HsyeIkmBy7fXRBkc8Mo80wMxELLQsBji6IYE/t3gok+YP1XvYMg6LAm3fuMLb2keY9b2Cq9lL+o45c4Ddbf2XWTdbRM9xjip1G6YC+Y7/oeNxlMB3nNIjcRTgkJz0haXL/3lcbDhCPItZWTjM7C1SV8EVskTpLoHMSoh50MA/os/6NvFtXvj/X6Vl+Gi0OP9cArJwCVglOmLNZBoS/BwQW+Ab/wnSYAeCms2cidW6ZdEQqCn6epUUOhdwExjxFiFsJVciCy1GwvL8He1ip2YUerjAYZN523SLDW4QoKyLOIUqx8U71Px1koGIhwLdEPmTtyWo6Pddyh+TKainD6Vm6hqVy8u7sPDuFqn4q8LWfvnBITvS2ccPZPQwRnsxv7iWapnNdTmZdlM6/wWzuPOKA3f3AAAZf6yO1UnU56UT9vbH18I46Etc/oIB8uwE92ElDHKG8CoujE7Sw5E6OZjUPaNzggCT8G6xhBhmaKIgfVwR7gesTbwJk0q92tt+fYM9gTyOhyURBGE5/iq+RN7b758X2sCLxzuGFmrSZHz+kJeTC4XO/Oy+AdYzRfJL1IU/8PXL/1OArml1TMfWKkum9mRY85TO0oDSYGJskVQnDOMs+HSM78vATRzj+ppKGDVPmejrriCwG20xR20CMCffD9vqmgQBIkvkJlbowFdSPfQU/WhmSe+OOxSRJbWHvutfGUGOiThcXTujdoS/s0Qhr2lVQ1R4WeJeQjM/U25rlDrLSqiZjW8vBiDILXqJFPB7KkzMuEjgbXu3MIa6Yy1sDVjLnzazADAM5+rFeRnJ/92QkErvrUkAUj61I7OrqJS5g0It73WOaOQ+lKKkHzU4uYqrXoSXOOxrtcnBgzERQoVcqWubJbAOVN9sprPCUV12ti7bsNwDI73FeAHMp26P0HFad2YEWIC3pDaeVXcptSuRmEBLUndgiskyI86PLiVZuXrBcECMT825GljlVKnR0eR92PwsY4Yp1Lv50iCJQIvNUZJNW+ifxbO6RxwBwi7LGMZhdwJ/7HxN2V34zYU/vE4qmr+CRQ8ACw3hp4xENkpHaTRQx/nCY4I7PJy/gS1TuvzBdtwVnH6+U4tAMiljsdXhg3+/0xiCSQF4ZC0MWshPt6YLpDVPCiFb9nM3x7jWSqHgRPM54UF7MP1aFMDAiLDy7iSTIUnOAHmOij38iuoyXBhAEQPGOOVS9nCSwPQMM4f79y8R9rID6T9ThcpaMTuOTcANTVjNDMMoJNFG2yBhPOqNT8EZIOHB0EXi8oHpCGjLtYJAUz5FbVjzs8iazxQxWOnVDHPnRoCHWPFFgBS8rVJhDuIZWdoAhEAwLACWIARVM7LQlcs//Z8+7FO/VpgPRJt07IPdOO4TI7pvBcTLPso7foondGrZ3wr59j28EiSD07uVfYYOKhe407AXyVRAj1jrUkBeMsFA7taBXzb69iuPPG0ee9/N9VMQNGTIffFVQSsyAUAHhGRGTNxbd8bOrvVZ54FbaBuRQLobY3zJryDoaTJVjyqDOr65aQn/g4cSRUvRrW/878irz/SVk+rFUGvT4qrrfmE3QDPZwSzOnIOSe/2uOkf9oOjfiPfSJm2YgZWErZWJG/mVlbJJw9fMib0Xobv3cQL7uzFzXont7bJQ5xGI40kAuZSD6FagtBowiStDF7QFZoZCQJHU2OVqmmrHayFJATKnSgCnzINr1t2LVlNC5UjDrUZeLP9TgWuJ4lcPsmRS/CWDVR+JXn/j02TA/A1bSB+JskAauPJYlG8vgirPK6/8oCMDZdzGVM9W8lPYN/SU4PfCkYM9BnvuwImJelkZMuYpN61A/vcQ9a9WRGPCa8RZgT24g9BiDSSAu1QYJxdDBAZBqxkYWWtZV8QbnhkqU5fmDxXKuAUdZ8xDGvwPJZx726UXP57L68oK6cpLeQ3/Nnrl6q9AWavLJHZ2vBcJDoRtYpmBAJ51x8V+aoSTwdKbw7ObVDGxB7lH7G2Nqm5jcDuF03nF1vKLdy9JKrT1T/kY9jyVRCaidlkXp9GPbGf0j/xaI8AZs41HLdzj9o55CqnV+wE59XbpnmdDVDTFg2OVDiRJbsDowJARRqwOqoWEvISMBqVbuA0rfRDajYKN7D/ysJeL5uJjOgoRQxTSbPWgdlwYM9DjDOGqfa8hDWf7dT/OwBQq/A2FH6qoNXCFdWq6cA+sZzjO4EGyQ7ZOYnDIUPGz6zyA09fAIoGc4X+o803jMJBJyaGzRw3LbaxVWRqCG6I3Cz4IhA38/hffqhUKkAC5TsVyB2QnTGXrm2DcSGA7v/jB/21ATOVvCp5d48Dot5BvOQ2JTGihzMV167LlcbTXBHBJQGdSzgYa2fIb5HXogDFEBlcGFzJ6NvnD+WIlwlKkZRR5B0MOtkq4k0QU3Z9ixgMkaVP8T2aVpvU0vstBJuQnijwAPiSHqceTMqct+DxwS7HB9G1cg0rtVf1p5HaMS4juyYASe4MrNmnQm8OHuaiTc6VtylHJb7IBb2baB9OdeYtOBrU9UPannQ5gmf2OpIUCZah6Ey+4VAFw0fg5v9oWSnoGcNIPLPV6evChdBhMrc0yRXh4EMViFzsx93wdu4NA6yeA8tKzZFd7OYqnl/NYQRa7If5wcQWOCTWw9QOqT98z3XxjT1Z6TACTQCJuYJVsSnZB/ZYm03ZKDvg5h+y8tuX5yaqNIJxU9rjGXz8R5555LDg6UYV5hubBRdBOz3AgvEspgSX9EG5t9hratCKvfVLa25OCLH0M0twjR+/Cb0QM9ojZ8p1qewPIQCvyrgAJLGvQ4y0+HoemXTgsb8V/khpk60yLONScYXC0yjfp/5OaiBoyRhRPBP7yy+3xIALrbDZoOsBTWicrRDtnc6bLQCoSMpRlAS/1JXpiabGioaDZ2ph4bs77xX+S/WZIeRlpHySMErf2fI5a9O83M4puNuFp7gklGVAUoKFNocNry0S68kVFXx8Hrm5MEDqMMxjMaPlk/2yA+M0WACg+aKdrZIJ8CfGueflboe2kGLHMnhOEYeeea4q4s6SVyhmvs0YakXsCNn6sF7JCmcDPTp8/dJhoJqxy+9YEPwFOPWtaVf4VlnzLjCRN5CemgzsWT/Eo9Obj1kS7gTcjQgJJXLq1P015eCzZCuI/kd1+9Lh38T/Dr3OhW4xxuStR4T9z82TzYQWMHsjthokTntB7dY5YQTfp99w8w8XHZ6wjdLFLkS3124fGnVpacpEKYdIQHYOyshg3nacvGIBzrkB7X/+bhEV1MBv/iaEcWRewynfODQLv559zOhUZVJimHjcIfjzqQm85dJa5ZtUEreM7QIsjqomdRYqC0ZpfFjkAcLrZ/ttD0kSLfa5ve9/1FRNC2MQAjHH1tLdJCWuArlENRztI+NFcws5mxa7l9GUT2lM7JLdTEoE9q36BZh0E6VNuCC/VZ04XRu9g1uE/pLV3PDG1JEMAWlaFe4nD0rPYtdUwRoSMUh1EZXcXxz+IWSx8pbdFxVSDfvrr+a3fwDwPFygTZjyWUvjZdv6EHqqEn4UdAndL8Asg3h9fiyhMQnpMc+CloZAYYf0GkQW+IEC1YTz3gH/YtjX+nbFa76YQgHnVDHPlnfIt07HwjLn6pgwqEH9LJrd/t58JdjAcZABMRLRLmxUQJLSVS+CCA6o8CDmZVSx7IhYQySL61TRthA5BrDv17fcSY8SIdr3KEevKY8OvQJcX9hzfHukDwmyVdDT/WfDNRZ5Ff47kE5zK2LenqSbwep8R3rb/328yRjZANgyI71DKOnTNgbrDhYwH1+dQ76sKYH5Q6OSctCZUdhqnqviyggLwxQWLkhw983r+0YVodJFh719vTcNjFdXro0gN80vq2wnLK0MJknfm05WPIu9l6pUTaQE/W6N+uwA5QJ4tDcQPwJnIQ88GKmZMJWemtnNim06EvS6ikmV5kT5B/ozTf3MOIywvgz/BTkka0IMgPpn/GgbmZE62GOjIHH+HWcpQ9B0W9GrruIGZqN5ci1HJOt21x/dQP+awJqg2oMCb/jdeB0O0fdr41fyvQnJprdMCZWKWaOwABbuA0uNnmJjgQRi3dwHoB5/hgSEFka3Jbk0LdrYqxlJVaWAkFTlGDvlcsv8a7gz+Zv8diO9G5PsXuSxhl2F68TB3Lx2yvldAIOlOrM5s+jtHo4UvjfgnwRCVR899n/MS4BUZCwxFeajpbKdlGab1lpk5mzr1eIXfKEMBUFXkgoaBbc9ihP38FJoSq5DAkGN/Rqh3L39ZxorBaGTd7bPxE2LSANhPVANLQPuanHStl6MrCil8yRP40fnxFIs1u+UUFcKXOkO97LU4aRLLTxZ2zH1KHTITP4CT59ALtFW8B1w93Bx51opb9Kz9TjhytNK4FVRg1SnOADCmSQccaEv5QeJOz7T7EgJ3cMCFl5nVEpA9EJ3shJR7xGPhjaRKHy6uTCaZfMZ9e8X8Cm1orYjpDmGSU0zWX6iq6M8TmWYOlcfBuASQtvC0szcl0l8F6nkiPooqWZ3ziXqsgVKV8/t5l3F8UWeCKzOVsejAMPp4bj/iEF4MkU6NBqC8bncaQ85vSl4zPSYdRCljl3m2RUiDeNlRzLWqjO9iBeR3cEI1H2fyjXIKWbywi5atZmeDWJI3EbXx/xoY1gEPVNCY0sL5bhXVeywhFT/W2iz+QBkrQwauTP1aLEQfcfnN5pT2sBfjolEWYwaHCoBHfN8FPI61p1q7aGztF+pR5OhIlREgL5Z5c9aUVypIvip80AOzyMgvlw7Yy0PI/UNbnZFHhhuVK4dMeJP+a5TAwHgtbcAupnd4hOKxPdpL8CYLufatWCBfaHxsRcFUvw1BMODgkmg/XIVWMybHvX0sYbjnWz+8Vu5YQAXB9L5z3vRuPoSoc9kskgYFdkeYn1QZn60Z/nKPLge1+ZGICImvIAUzSixATcUMXhA0nUUtI5AMyjpHcbV5IJXkKKCSFrn8jDmITy0y51CGN/4oXLUTU5I/sAx+WsgPuwd1jXIcU2Qag3f1K6z+FerAYzMk78saAPjgKtF5JwWEPWbeed1e1zmCRsKNAIjXlePw7X/j1SdKa8/naX1NEndEtVLBcr3qSEqqDfhvvBWvyct95pXzWJFFffUlGeUpe9z/t3Xn1Gcd3XGD0bDoRJKt7uQ98EqCSfWTCQDzqeT6AahjvSM5eU8EN7gSrIAWiwS2TYCtrJgr78otcmg5+f99iB26kQ6zZ8JLIf9M+oa5grFO4qpeC5BnyC9c0VO2PBTF9skyq4wQ4CgEQbrPp37TsSdZZEqleufwUucUgri1N9uN0pbTi9RpurG0hiNBOuX3E0jgCKjGN95alXLX6ujTe8+wBe3+QoLybm2ZpJ9ibxvbFQUAjkMVNEFzrUBFmYhaqg30Pu8AOEVzQH7Qe7se56TBX8R3Yb7ACly+89kzufj32KDYwc0ujNzChjyYwTkLGdqgEmbGLBOZaA3JYnR33HxCV3e5t62AoXP3UrPmiJO3+Wpb3G8da0p709L9CxVuAKMyD0Qvz0sKittFCscGAuJTfiybbfRFL3x+e/0XgxPhOsbuwcaefoQeRzLF1UAjl4rNbR9N8OxN8XB9ve0Y9GvOScgyaAd84hS78G8IqCkoPvFP827Q7A/UYCYAcnomdklbxSNxNL0ia6SFdxaINXJPql1Yonp+WXRjnYkiWwOEyGyGiM0cs1DchZ1k7TvAxVEZeqmkVBmDNpn7jAuwwRf/rBBaY2qx1UQGkKJf9ZaJqYZzEbeBB3QRCTC8CCEcpYJ/H3Op9WfyiR1GCDmbNcxDErOSuf8xUvlvEUzKxkWeufmcfhTqJNImQHcpDtIyQQXwxB1GqRe6+bf/NJ19uY/QQ2YjoxBxs/YXzJd9CEektLCWaYq0NxPHbmgo7r90PnmB02nrNwLg9NHla3ncvW1oSQ3qQRBn3zeCUNgBVoZ2fEEYzHoeBiIDX9NRxdUpMAAuwxFlhWlAwVeHq0B6y/XAjeq/y9Fwu1Cm4ERFuYF3Zi3C/M/hQnCYg0E0S6DNNr0kw7RH+zMjScJOiQhimiOOiuOE1/mVu/Tme/0IOS7UTTH+f7FvNpn7OzFHGcCscZwA/8Mpl6O1rM7blH6R/P5NZ3sExBPCc8Mqbz350i5VqNR86sUmUUCYKrlXtRXzn3r0jIMX68Bv7nJky5Lf00TOtJ5eXw+By21Vmv+5yPzsQ6pfbUmi+nNkqbOO+rVkVmyUAEUi/x1bTgG12fo3BRYJ7+dgeZdH/YI7nFHXiKWSphDG1cs3TYDk6Lf+eDDd7Fppv9fsuXDcYXdu54gMfksDmNk5H68t0HKHfXgxXsX46UQ6+PbVV7Utr674PhBQcu2/FIBgJFFOAvMn0T6TnN2WOPS7Wkn3Rljlpg0kwy7wMICvI4zejtSes8zPvj4zKkoCZu9+q3sEACo2FJD2/TDJPEeGA0tfq1wofIFcs6dHUwXSVM8WIVuoQ/RgDLiZiJPgRKJSzTpDXIaprUAAAAASUVORK5CYII=")}
+/* the videos: Instagram's own embed, a YouTube frame, never a second player */
+.site .vid-ig{display:flex;justify-content:center;margin:1rem 0}
+.site .vid-ig, .site .vid-ig blockquote{max-width:380px;width:100%;margin-inline:auto}
+.site .vid-ig iframe{border-radius:10px!important;border:1px solid var(--rule)!important}
+.site .vid-yt{position:relative;aspect-ratio:16/9;margin:1.4rem 0;border-radius:10px;
+  overflow:hidden;background:var(--wash);border:1px solid var(--rule)}
+.site .vid-yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
-/* The brass wipe, brought to page navigation (page-wipe.tsx) — the same 3px/350ms sweep
-   brand/house-style.md §4 documents as the channel's only transition, so far only used
-   between video sections and the scroll reveal. A full route change was still an instant,
-   silent swap; this is the one place site navigation didn't yet feel like the channel.
-   RESTORED: an earlier edit to the grain rule right above this accidentally deleted this
-   whole block along with it — the component (page-wipe.tsx) kept rendering the div, but
-   with no CSS behind ".pagewipe" it was invisible on every navigation since. */
-.pagewipe{position:fixed;inset-block-start:0;inset-inline:0;height:3px;z-index:9999;
-  pointer-events:none;transform-origin:left;
-  background:linear-gradient(90deg,#E8C86A,#FFE7A8,#E8C86A);
-  box-shadow:0 0 16px rgba(232,200,106,.75);
-  animation:pagewipe-sweep .35s cubic-bezier(.2,.8,.3,1) both,
-            pagewipe-fade .2s ease .35s both}
-@keyframes pagewipe-sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@keyframes pagewipe-fade{to{opacity:0}}
-
-/* A thin read-progress line, always present (unlike the pagewipe, which fires once per
-   navigation and fades) — scroll-progress.tsx writes the scale directly, no state, no
-   re-render per pixel. Sits one layer below the pagewipe's z-index so a fresh navigation's
-   sweep still reads as the topmost event. */
-.scrollbar{position:fixed;inset-block-start:0;inset-inline:0;height:2px;z-index:9998;
-  pointer-events:none;transform-origin:left;transform:scaleX(0);
-  background:linear-gradient(90deg,#E8C86A,#FFE7A8);
-  box-shadow:0 0 10px rgba(232,200,106,.5)}
-@media(prefers-reduced-motion:reduce){.scrollbar{display:none}}
-
-/* A staggered entrance instead of one flat block — the first version of Reveal (still
-   used for the section as a whole) played every list item at once, which reads as a
-   panel appearing rather than a list arriving. Delays are hardcoded per position rather
-   than computed: CSS has no way to multiply nth-child's own index, and ten explicit
-   steps covers every list on the site (episodes: 3 on the home page, up to a page of
-   search hits; tool pills: a handful) without a build-time index prop threaded through
-   four different page components just to name a number CSS could otherwise guess at. */
-.reveal .eps li,.reveal .prompts li,.reveal .tracks li,.reveal .hits > li{
-  opacity:0;transform:translateY(14px);
-  transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.3,1)}
-.reveal.in .eps li,.reveal.in .prompts li,.reveal.in .tracks li,.reveal.in .hits > li{
-  opacity:1;transform:translateY(0)}
-.reveal.in .eps li:nth-child(1),.reveal.in .prompts li:nth-child(1),.reveal.in .tracks li:nth-child(1),.reveal.in .hits > li:nth-child(1){transition-delay:.02s}
-.reveal.in .eps li:nth-child(2),.reveal.in .prompts li:nth-child(2),.reveal.in .tracks li:nth-child(2),.reveal.in .hits > li:nth-child(2){transition-delay:.06s}
-.reveal.in .eps li:nth-child(3),.reveal.in .prompts li:nth-child(3),.reveal.in .tracks li:nth-child(3),.reveal.in .hits > li:nth-child(3){transition-delay:.10s}
-.reveal.in .eps li:nth-child(4),.reveal.in .prompts li:nth-child(4),.reveal.in .tracks li:nth-child(4),.reveal.in .hits > li:nth-child(4){transition-delay:.14s}
-.reveal.in .eps li:nth-child(5),.reveal.in .prompts li:nth-child(5),.reveal.in .tracks li:nth-child(5),.reveal.in .hits > li:nth-child(5){transition-delay:.18s}
-.reveal.in .eps li:nth-child(6),.reveal.in .prompts li:nth-child(6),.reveal.in .tracks li:nth-child(6),.reveal.in .hits > li:nth-child(6){transition-delay:.22s}
-.reveal.in .eps li:nth-child(7),.reveal.in .prompts li:nth-child(7),.reveal.in .tracks li:nth-child(7),.reveal.in .hits > li:nth-child(7){transition-delay:.26s}
-.reveal.in .eps li:nth-child(8),.reveal.in .prompts li:nth-child(8),.reveal.in .tracks li:nth-child(8),.reveal.in .hits > li:nth-child(8){transition-delay:.30s}
-.reveal.in .eps li:nth-child(n+9),.reveal.in .prompts li:nth-child(n+9),.reveal.in .tracks li:nth-child(n+9),.reveal.in .hits > li:nth-child(n+9){transition-delay:.32s}
-@media(prefers-reduced-motion:reduce){
-  .reveal .eps li,.reveal .prompts li,.reveal .tracks li,.reveal .hits > li{
-    transition:none;opacity:1;transform:none}
-}
-
-.site .herotext{min-width:0}
-/* Used to force the video ABOVE the headline on a phone (order:-1) — meant to put "the
-   exact screen" first, but a full-height 9:16 video is most of a phone's first
-   screen, so the actual effect was the headline, the CTA and the stats all landing
-   below the fold behind a giant video with nothing to explain it yet. Flagged
-   directly, with a screenshot: the video first, tiny bit of black at first paint, and
-   only "Also on YouTube" visible before a long scroll. Document order (text, then
-   video) is the right order below the two-column breakpoint; the explicit order swap
-   only ever needs to happen once the layout actually goes side-by-side, see below. */
-.site .hero .herovid{margin:0}
-/* Sits directly under the Instagram/self-hosted video that now takes the primary hero
-   slot — a quiet, secondary way to reach YouTube instead of YouTube occupying the slot
-   Instagram's own post is meant to have. */
-.site .herovidlink{margin:.6rem 0 0;font-size:.85rem;text-align:center}
-.site .herovidlink a{color:var(--steel);font-weight:600;text-decoration:none}
-.site .herovidlink a:hover{text-decoration:underline}
-/* .vid-native/.vid-ig are shared with the episode page, where they only ever wrap one
-   child (the player). The hero variant adds a second child (the YouTube link below it),
-   which .vid-*'s row-flex would otherwise place beside the video instead of under it. */
-.site .hero .herovid.vid-native,.site .hero .herovid.vid-ig{flex-direction:column}
-/* The episode page's own player (.vid-native video) is the main content there and
-   earns a generous size; in the hero it's a supporting preview beside real copy, and
-   at the same width it was most of a phone's first screen before anything else on the
-   page. Capped smaller specifically in the hero, on top of the shared rule below. */
-.site .hero .herovid.vid-native video{max-width:min(62vw,300px)}
-/* Same reasoning as the self-hosted player above, for the Instagram embed case:
-   Instagram's own embed.js sizes its iframe to fill whatever width its blockquote
-   is given, so an unconstrained 100%-width blockquote in the hero would size itself
-   to the full column width — same "preview beside real text, not the main event"
-   problem, just via a script instead of a fixed aspect-ratio. */
-.site .hero .herovid.vid-ig{max-width:min(62vw,300px);margin-inline:auto}
-/* Fills the hero's second column on wide screens when there's no video yet — that
-   column rendered nothing at all before, a bare gap beside the headline. Hidden on
-   phones on purpose: below 860px the grid is single-column already (headline stacks
-   above where this would go), so a decorative panel there would just add scroll
-   length before the real content — the stats, the signup — with nothing gained. */
-.herodiag{display:none}
-@media (min-width:860px){
-  .site .hero{grid-template-columns:1.05fr 1fr;align-items:center}
-  .herodiag{display:flex;flex-direction:column;gap:1rem;padding:1.6rem 1.8rem;
-    border:1px solid var(--rule);border-radius:1rem;background:var(--card);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
-  .herodiag-label{font-family:var(--code);font-size:.72rem;letter-spacing:.12em;
-    color:var(--faint)}
-  .herodiag-caption{font-family:var(--code);font-size:.72rem;letter-spacing:.06em;
-    color:var(--faint);text-align:center}
-}
-/* section headers with a link to the full list, so "recent episodes" on the home page
-   reads as a teaser of something bigger rather than the whole thing. */
-.site .sechead{display:flex;align-items:baseline;justify-content:space-between;
-  gap:1rem;margin-top:3.2rem}
-.site .sechead h2{margin:0}
-.site .sechead a{color:var(--gold);font-weight:600;font-size:.95rem;
-  text-decoration:none;white-space:nowrap}
-.site .sechead a:hover{color:var(--gold-lit)}
-.site .herocta{display:flex;align-items:center;gap:1.3rem;margin-top:1.5rem;flex-wrap:wrap}
-.site .herocta .cta{margin-top:0}
-.site .herocta a:not(.cta){color:var(--ink);font-weight:600;text-decoration:none;
-  border-bottom:1px solid var(--rule)}
-.site .herocta a:not(.cta):hover{border-color:var(--gold-lit);color:var(--gold-lit)}
-.site .issueteaser{display:block;margin-top:1.4rem;padding:.85rem 1.1rem;
-  background:var(--card);border:1px solid var(--rule);border-radius:.8rem;
-  text-decoration:none;color:inherit;max-width:26rem}
-.site .issueteaser:hover{border-color:var(--gold-lit)}
-.site .issueteaser .ilabel{display:block;font-family:var(--code);font-size:.68rem;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--gold-lit)}
-.site .issueteaser .ititle{display:block;font-weight:600;margin-top:.2rem}
-/* He circled these on a screenshot and asked for them bigger, clearer, and to actually
-   stand out — as plain inline numbers they read as an afterthought under the CTAs. Cards
-   with a gold number give them the same weight the rest of the hero has. */
-/* Deliberately not a card — the competitor pattern this borrows from (Saraev's own
-   about page) states hard numbers plain, once, with no box or adjective doing the
-   convincing instead of the figure itself. Sits inline in running text, not styled as
-   a separate "stats module." */
-.site .proofline{list-style:none;display:flex;flex-wrap:wrap;gap:1.6rem 2rem;
-  padding:0;margin:1.4rem 0 .4rem;border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);padding-block:1.1rem}
-.site .proofline li{display:flex;align-items:baseline;gap:.5rem}
-.site .proofline b{font-family:var(--code);font-size:1.3rem;color:var(--gold-lit);
-  font-variant-numeric:tabular-nums}
-.site .proofline span{color:var(--faint);font-size:.86rem}
-/* He asked directly: the boxed cards were making the numbers *less* clear, not more —
-   a small figure boxed in a border reads as a UI widget; the same figure set large and
-   bare on the page reads as a fact. Dropped the card entirely (background, border,
-   padding-box) and let the number itself carry the weight — nearly 40% larger, tighter
-   line-height so it doesn't float, and the label demoted to a small tracked caption
-   underneath it rather than competing at similar size inside a box. */
-.site .herostats{display:flex;flex-wrap:wrap;gap:2.4rem;margin-top:2rem}
-.site .herostats b{display:block;font-family:var(--serif);font-weight:700;
-  font-size:clamp(2.6rem,7vw,3.7rem);line-height:1;letter-spacing:-.015em;
-  color:var(--gold-lit);font-variant-numeric:tabular-nums}
-/* Three numbers in a row, all one color, read as one flat block instead of three
-   distinct facts — steel is house-style's own documented "the other option in any
-   comparison" (§2), and the middle stat (the count with no competitor equivalent —
-   nobody else in this niche counts failure modes) earns the break in rhythm. One
-   color swap, not a new hue introduced. */
-.site .herostats > div:nth-child(2) b{color:var(--steel)}
-.site .herostats span{display:block;color:var(--faint);font-size:.76rem;margin-top:.5rem;
-  font-weight:700;text-transform:uppercase;letter-spacing:.09em}
-/* The one stat that links somewhere (failure modes → its own page) needs to read as
-   clickable without the other two, which don't link anywhere, looking clickable too. An
-   arrow after the label (matching the hero CTA's own "Browse episodes →") turned out to
-   duplicate itself — CountUp wraps the number in its own <span>, nested inside the <b>,
-   and a plain ".stat-link span" selector matched that one too ("0 →" under the number,
-   then the label's own arrow again). Rather than chase a more specific selector for a
-   small effect, dropped the arrow for a permanent (not hover-only) underline on the
-   number instead — one property, on the one element it's meant for, no second span to
-   collide with. */
-.site .stat-link{display:block;text-decoration:none;color:inherit}
-.site .stat-link b{text-decoration:underline;text-decoration-color:var(--gold);
+/* sections and rows: a rule between items, no cards */
+.site .block{margin-top:2.8rem}
+.site .block-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  border-bottom:2px solid var(--ink);padding-bottom:.5rem}
+.site .block-head h2{margin:0}
+.site .block-head a{font-weight:600;white-space:nowrap;text-decoration:underline;
+  text-decoration-thickness:1px;text-underline-offset:.2em}
+.site .rows{list-style:none;padding:0;margin:0}
+.site .rows li{border-bottom:1px solid var(--rule)}
+.site .rows a{display:grid;grid-template-columns:auto 1fr;column-gap:1rem;row-gap:.15rem;
+  padding:.95rem 0;text-decoration:none;color:inherit;min-height:44px}
+.site .rows a:not(:has(.row-no)){grid-template-columns:1fr}
+.site .row-no{font-family:var(--serif);font-size:1rem;min-width:2.2ch;grid-row:span 2;
+  font-variant-numeric:tabular-nums;padding-top:.08rem}
+.site .row-t{font-weight:700;font-size:1.06rem;line-height:1.35}
+.site .row-b{color:var(--soft);font-size:.96rem;line-height:1.5;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+.site .rows a:hover .row-t{text-decoration:underline;text-decoration-thickness:2px;
   text-underline-offset:.18em}
-.site .empty{background:var(--card);border:1px solid var(--rule);border-radius:1rem;
-  padding:1.1rem 1.25rem;color:var(--soft)}
-
-/* Two columns once there is room: a single narrow column of cards read as sparse and
-   half-empty on a wide screen even with several episodes filtered in. */
-.site .eps{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.7rem;
-  grid-template-columns:1fr;align-items:stretch}
-@media (min-width:760px){.site .eps{grid-template-columns:1fr 1fr}}
-/* CSS Grid stretches each <li> to the tallest card in its row by default — the card
-   he flagged as "not symmetric" wasn't the <li>, it was this <a>, which only ever grew
-   to fit its own two lines of blurb text and sat flush at the top of that taller <li>,
-   leaving the extra row height as dead space below the card instead of inside it. A
-   grid item's own default height is `auto`, not 100% of its parent, so nothing here
-   was stretching until this said so explicitly. */
-.site .eps a{display:grid;grid-template-columns:auto 1fr;gap:.15rem .9rem;
-  align-content:start;height:100%;box-sizing:border-box;position:relative;overflow:hidden;
-  background:var(--card);border:1px solid var(--rule);border-radius:1rem;
-  padding:1.1rem 1.25rem;text-decoration:none;color:inherit;transition:border-color .15s}
-.site .eps a:hover{border-color:var(--gold-lit)}
-/* Cursor spotlight (premium-motion.tsx writes --mx/--my as the pointer moves over the
-   card): a soft brass highlight that tracks the cursor, on top of the border/lift hover
-   already here. Low opacity on purpose — a highlight, not a mask over the title. */
-.site .eps a::after,.site .tracks a::after{content:"";position:absolute;inset:0;
-  pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .25s ease;
-  background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),
-    rgba(232,200,106,.14),transparent 70%)}
-.site .eps a:hover::after,.site .tracks a:hover::after{opacity:1}
-@media (hover:none),(prefers-reduced-motion:reduce){
-  .site .eps a::after,.site .tracks a::after{display:none}
+@media (min-width:900px){
+  .site.home .block{max-width:46rem}
 }
-.site .eps .n{font-family:var(--code);font-size:.8rem;color:var(--gold);
-  font-variant-numeric:tabular-nums;grid-row:span 3;padding-top:.28rem}
-/* the real YouTube thumbnail instead of a bare number, once an episode has a video —
-   the number-only card read as a spec sheet, not a preview of something to watch */
-.site .eps .ethumb{width:6rem;height:6rem;object-fit:cover;
-  display:block;border-radius:.6rem;background:var(--wash)}
-/* Swiss-numeral badge over the thumbnail, the same "the sequence is real, say so"
-   device as the homepage's bare .n column — episodes-browser.tsx always has a thumb,
-   so the numeral rides on top of it instead of taking its own grid column. */
-.site .eps .ethumbwrap{position:relative;grid-row:span 3}
-.site .eps .eno{position:absolute;top:.35rem;left:.35rem;font-family:var(--code);
-  font-size:.72rem;font-weight:700;letter-spacing:.02em;color:#fff;
-  background:rgba(10,12,16,.62);padding:.1rem .38rem;border-radius:.3rem;
-  font-variant-numeric:tabular-nums}
-.site .eps .tag{font-family:var(--code);font-size:.68rem;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--gold-lit)}
-.site .eps .t{font-family:var(--serif);font-weight:700;font-size:1.14rem;line-height:1.25}
-.site .eps .tp{color:var(--faint);font-size:.95rem}
-/* The "Won't:" preview line on list cards (episodes-browser.tsx / prompts-browser.tsx)
-   was removed after he saw it live — a bold, colored line inside every card read as
-   heavy/unbalanced across a whole grid of them, not as a trust signal. The real
-   disclosure stays exactly where it always was: the episode page's own "What it will
-   not do" section, and the prompt page's own "What it isn't" note — both untouched. */
 
-/* the browse controls above the episode list — chips for the tool an episode is
-   actually about (read from its own title, never a separate field to keep in sync),
-   plus a plain-text search. Both are client-side over data the server already sent. */
+.site .empty{border:1px dashed #BDBDBD;border-radius:10px;padding:1rem 1.15rem;color:var(--soft);
+  background:none}
+
+/* the episode page */
+.site ol.steps{list-style:none;counter-reset:s;padding:0;margin:.4rem 0 1rem;border:0;
+  background:none;border-radius:0}
+.site ol.steps li{counter-increment:s;display:grid;grid-template-columns:2.4rem 1fr;gap:.6rem;
+  padding:.85rem 0;border-bottom:1px solid var(--rule);font-size:1rem}
+.site ol.steps li:first-child{border-top:1px solid var(--rule)}
+.site ol.steps li::before{content:counter(s);font-family:var(--serif);font-size:1.05rem;
+  color:var(--ink);line-height:1.5}
+.site pre.body, .site .promptbox{white-space:pre-wrap;word-break:break-word;margin:.6rem 0;
+  font-family:var(--code);font-size:.86rem;line-height:1.6;color:var(--ink);
+  background:#FFFFFF;border:1px solid var(--ink);border-radius:10px;padding:1rem 1.1rem;
+  overflow-x:auto;max-width:100%}
+/* "What changes": the brand's own check (the yellow half of the W, keylined) as the
+   bullet, because each line is a thing that now works */
+.site .changes{list-style:none;padding:0;margin:.6rem 0;display:grid;gap:.6rem}
+.site .changes li{position:relative;padding-inline-start:1.9rem}
+.site .changes li::before{content:"";position:absolute;inset-inline-start:0;top:.28em;
+  width:1.2rem;height:1rem;background:no-repeat center/contain
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='500 0 440 600'%3E%3Cg stroke='%230B0B0B' stroke-width='52' fill='%230B0B0B'%3E%3Cpolygon points='538.4,145.7 626.7,145.7 748,545.7 659.8,545.7'/%3E%3Cpolygon points='659.8,545.7 748,545.7 901.5,40 813.2,40'/%3E%3C/g%3E%3Cpolygon fill='%23FFE600' points='538.4,145.7 626.7,145.7 748,545.7 659.8,545.7'/%3E%3Cpolygon fill='%23FFE600' points='659.8,545.7 748,545.7 901.5,40 813.2,40'/%3E%3C/svg%3E")}
+/* "What it will not do": an ink rule on the left, read carefully, nothing animated */
+.site .limits-list{list-style:none;padding:0;margin:.6rem 0;display:grid;gap:.6rem}
+.site .limits-list li{border-inline-start:3px solid var(--ink);padding:.15rem 0 .15rem 1rem}
+.site .note{border:1px solid var(--ink);border-radius:10px;background:none;color:var(--ink);
+  padding:1rem 1.1rem;margin:1.4rem 0;max-width:none}
+.site .note .t{font-family:var(--serif);font-weight:400;color:var(--ink);font-size:1.02rem;
+  margin-bottom:.35rem}
+.site .note.warn{border-inline-start:6px solid var(--ink)}
+
+/* about */
+.site .proofline{list-style:none;display:flex;flex-wrap:wrap;gap:1rem 2rem;padding:1rem 0;
+  margin:1.4rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.site .proofline li{display:flex;align-items:baseline;gap:.45rem}
+.site .proofline b{font-family:var(--serif);font-weight:400;font-size:1.35rem;
+  font-variant-numeric:tabular-nums}
+.site .proofline span{color:var(--soft);font-size:.95rem}
+.site .stat-link{display:flex;align-items:center;gap:.45rem;text-decoration:none;min-height:44px}
+.site .stat-link b{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.15em}
+
+/* /episodes: filter, search, and rows with the share card as a small picture */
 .site .ebrowse{margin:1.2rem 0}
-.site .echips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.9rem}
-.site .echips button{font:inherit;font-size:.85rem;font-weight:600;padding:.4rem .95rem;
-  border-radius:9999px;border:1px solid var(--rule);background:var(--card);color:var(--soft);
-  cursor:pointer;transition:border-color .15s,color .15s}
-.site .echips button:hover{border-color:var(--gold-lit);color:var(--ink)}
-.site .echips button.on{background:var(--gold);border-color:var(--gold);color:var(--paper)}
-/* "General" reads as a leftover bucket with no explanation next to it — this is the one
-   filter that gets a sentence, since it's the one whose name doesn't say what's in it. */
-.site .efilter-note{color:var(--faint);font-size:.86rem;margin:-.3rem 0 .9rem}
-.site .esearch{display:block;width:100%;font:inherit;font-size:1rem;padding:.7rem 1rem;
-  border-radius:.75rem;border:1px solid var(--rule);background:var(--card);color:var(--ink);
-  margin-bottom:1rem}
-.site .esearch:focus{outline:none;border-color:var(--gold-lit)}
-.site .herostat{font-family:var(--code);font-size:.82rem;letter-spacing:.03em;
-  color:var(--gold);margin-top:-.4rem}
+.site .echips{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.8rem}
+.site .echips button{font:inherit;font-size:.95rem;font-weight:600;min-height:44px;
+  padding:0 .9rem;border-radius:10px;border:1px solid #BDBDBD;background:#FFFFFF;
+  color:var(--ink);cursor:pointer}
+.site .echips button:hover{border-color:var(--ink)}
+.site .echips button.on{border:2px solid var(--ink);font-weight:700;
+  text-decoration:underline;text-decoration-color:var(--yellow);
+  text-decoration-thickness:.3em;text-underline-offset:.25em;text-decoration-skip-ink:none}
+.site .efilter-note{color:var(--soft);font-size:.92rem;margin:-.2rem 0 .8rem}
+.site .esearch, .site .find{display:block;width:100%;font:inherit;font-size:1rem;
+  min-height:48px;padding:.6rem .9rem;border-radius:10px;border:1px solid #9E9E9E;
+  background:#FFFFFF;color:var(--ink);margin:0 0 1rem}
+.site .esearch:focus, .site .find:focus{border-color:var(--ink)}
+.site .find{margin-top:1.2rem}
+.site .eps{list-style:none;padding:0;margin:0}
+.site .eps li{border-bottom:1px solid var(--rule)}
+.site .eps li:first-child{border-top:1px solid var(--rule)}
+.site .eps a{display:grid;row-gap:.1rem;padding:.9rem 0;text-decoration:none;color:inherit}
+.site .eps .tag{color:var(--faint);font-size:.88rem}
+.site .eps .t{font-weight:700;font-size:1.04rem;line-height:1.35}
+.site .eps .tp{color:var(--soft);font-size:.95rem;line-height:1.5;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+.site .eps a:hover .t{text-decoration:underline;text-decoration-thickness:2px;
+  text-underline-offset:.18em}
 
-/* Named tracks, not tags — the homepage's own way of splitting "one flat feed" into
-   self-selectable verticals (see page.tsx). Pill-shaped like the nav/filter chips
-   elsewhere, so it reads as navigation, not as one more content list. */
-.site .tracks{list-style:none;padding:0;margin:1.2rem 0;display:flex;flex-wrap:wrap;gap:.6rem}
-.site .tracks a{display:flex;align-items:center;gap:.5rem;background:var(--card);
-  border:1px solid var(--rule);border-radius:9999px;padding:.55rem 1.1rem;
-  text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;
-  position:relative;overflow:hidden;
-  transition:border-color .18s ease,transform .18s ease}
-.site .tracks a:hover{border-color:var(--gold-lit);transform:translateY(-2px)}
-.site .tracks .tcount{font-family:var(--code);font-size:.76rem;color:var(--faint);
-  background:var(--wash);border-radius:9999px;padding:.1rem .5rem;
-  font-variant-numeric:tabular-nums}
+/* /search */
+.site .count{color:var(--faint);font-size:.92rem;margin:0 0 .6rem}
+.site .hits{list-style:none;padding:0;margin:0}
+.site .hits > li{border-bottom:1px solid var(--rule);padding:.9rem 0}
+.site .hits > li:first-child{border-top:1px solid var(--rule)}
+.site .hits a{display:block;text-decoration:none;color:inherit}
+.site .hits .kind{display:block;color:var(--faint);font-size:.88rem;margin-bottom:.1rem}
+.site .hits b{display:block;font-size:1.04rem;line-height:1.35}
+.site .hits a:hover b{text-decoration:underline;text-decoration-thickness:2px;
+  text-underline-offset:.18em}
+.site .hits .bl{display:block;color:var(--soft);font-size:.95rem}
+.site .hits .ext{display:flex;gap:1.2rem;margin:.3rem 0 0}
+.site .hits .ext a{display:inline-flex;align-items:center;min-height:44px;font-weight:600;
+  font-size:.95rem;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
 
-/* ── the safe-area demo — a real frame, dragged instead of read ──────────
-   Numbers from Meta's own published 9:16 safe-area spec (see CLAUDE.md's frame-layout
-   section): 14% off the top, 35% off the bottom, 6% off each side. Same box
-   export/safe_check.js enforces on every episode before it ships — this just lets a
-   visitor drag to see it on a real frame instead of taking the percentage on faith. */
-.szdemo{display:grid;gap:1.4rem;justify-items:center;margin:1.4rem 0 .6rem}
-@media (min-width:640px){.szdemo{grid-template-columns:auto 1fr;align-items:center;justify-items:start;gap:2.2rem}}
-.szframe{position:relative;width:min(220px,60vw);aspect-ratio:9/16;border-radius:14px;
-  overflow:hidden;border:1px solid var(--rule);box-shadow:0 1.2rem 2.4rem rgba(0,0,0,.35);
-  flex:0 0 auto}
-.szframe img{width:100%;height:100%;object-fit:cover;display:block}
-.szmask{position:absolute;inset-inline:0;background:rgba(196,58,58,.55);
-  display:flex;align-items:center;justify-content:center;text-align:center;
-  transition:opacity .1s linear;pointer-events:none}
-.szmask span{font-family:var(--code);font-size:.58rem;line-height:1.3;color:#fff;
-  padding:0 .4rem;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-.szmask-top{top:0;height:14%}
-.szmask-bottom{bottom:0;height:35%}
-.szmask-left{inset-block:14% 35%;left:0;width:6%}
-.szmask-right{inset-block:14% 35%;right:0;width:6%}
-.szcontrol{max-width:38ch}
-.szcontrol label{display:block;font-weight:700;color:var(--ink);margin-bottom:.6rem;
-  font-size:1.02rem}
-.szcontrol input[type=range]{width:100%;accent-color:var(--gold);margin-bottom:.9rem}
-.szcaption{color:var(--soft);font-size:.92rem;line-height:1.55;margin:0}
-
-.site .prompts{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.7rem}
-.site .prompts a{display:block;background:var(--card);border:1px solid var(--rule);
-  border-radius:1rem;padding:1.1rem 1.25rem;text-decoration:none;color:inherit;
-  transition:border-color .15s}
-.site .prompts a:hover{border-color:var(--gold-lit)}
-.site .prompts b{display:block;font-family:var(--serif);font-size:1.1rem;font-weight:700;
-  margin-bottom:.15rem}
-.site .prompts span{color:var(--faint);font-size:.95rem}
-
-.site .vid{position:relative;aspect-ratio:16/9;margin:1.8rem 0;border-radius:1rem;
-  overflow:hidden;background:#111;border:1px solid var(--rule)}
-.site .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-/* The Instagram Reel is vertical, and its embed.js-processed iframe carries its own
-   inline width/height — the opposite shape of the YouTube box above, which forces a
-   16:9 child to fill it absolutely. Forcing that here would crop and distort the clip. */
-.site .vid-ig{margin:1.8rem 0;display:flex;justify-content:center}
-.site .vid-ig iframe{border-radius:1rem}
-/* Instagram's embed.js reads the blockquote's own computed width to size its iframe —
-   the blockquote ships with width:100% (ig-embed.tsx) so it fills whatever it's given.
-   Without a cap here it fills the whole page column on a wide desktop viewport, the
-   opposite of the vertical reel it's showing. Match .vid-native's cap so every video
-   shape on this page reads the same width regardless of source. */
-.site .vid-ig, .site .vid-ig blockquote{max-width:380px;margin-inline:auto;width:100%}
-/* The self-hosted fallback (the actual rendered mp4, when no Instagram/YouTube link is
-   recorded yet) — same vertical shape as the Instagram embed, a plain native player. */
-.site .vid-native{margin:1.8rem 0;display:flex;justify-content:center}
-.site .vid-native video{display:block;width:100%;max-width:min(100%,380px);
-  aspect-ratio:9/16;border-radius:1rem;background:#111}
-.site .steps{padding-inline-start:1.3rem}
-.site .steps li{margin:.5rem 0}
-.site .body, .pub pre{white-space:pre-wrap;background:var(--card);
-  border:1px solid var(--rule);border-radius:1rem;padding:1.15rem 1.25rem;
-  font-family:var(--code);font-size:.85rem;line-height:1.6;overflow-x:auto;max-width:100%}
-.site .limits{border-inline-start:3px solid var(--gold);background:var(--wash);
-  padding:.85rem 1.15rem;border-radius:0 .6rem .6rem 0;margin-top:1.2rem}
-.site .sfoot, .pub .sfoot{margin-top:4rem;padding-top:1.4rem;border-top:1px solid var(--rule);
-  display:flex;flex-wrap:wrap;gap:1.3rem;font-size:.93rem}
-.site .sfoot a, .pub .sfoot a{color:var(--faint);text-decoration:none}
-.site .sfoot a:hover, .pub .sfoot a:hover{color:var(--gold)}
-
-/* The /join page predates the light surface: its .note and .list still carry the
-   studio's dark panel, so the hero came out light and the boxes stayed black — with
-   the prompt titles in brass on near-black, effectively invisible. These override the
-   studio values inside a public page only, which is why every colour below is stated
-   rather than inherited. */
-.pub .note{background:var(--card);border-color:var(--rule);color:var(--ink)}
-.pub .note b{color:var(--ink)}
-.pub .note .t{color:#C96A4E}
-.pub .note.warn{border-inline-start-color:#C96A4E}
-.pub .list, .pub .list > *{background:var(--card);border-color:var(--rule);color:var(--ink)}
-.pub .list{border-radius:1rem;overflow:hidden}
-.pub .list > * + *{border-top:1px solid var(--rule)}
-.pub .list b, .pub .list strong, .pub .list .t{color:var(--ink);
-  font-family:var(--serif);font-weight:700;font-size:1.1rem}
-.pub .list p, .pub .list span, .pub .list div{color:var(--soft)}
-.pub .beehiiv{background:var(--card);border:1px solid var(--rule);border-radius:1rem}
-.pub .top{margin-bottom:2rem}
-.pub .brand{font-family:var(--serif);font-weight:700;color:var(--ink);
-  text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
-.pub .brand .tick{color:var(--gold)}
-/* Real profile links, rendered once by Shell for every public page — not scoped
-   inside .site/.pub, so it can't rely on their custom properties; the same paper
-   palette is repeated here as literal values instead. */
-.ssocial-wrap{background:#0E1116;padding-top:1.6rem}
-/* A pill, not a bare line of small gray text — the bare version read as a leftover
-   fragment rather than a deliberate credit, especially where it used to sit mid-hero
-   (moved to the real page footer instead, see page.tsx). Same rounded-pill language the
-   nav tabs already use, so it reads as one more considered element of the page rather
-   than a stray link. */
-.ssocial-crosslink{display:flex;justify-content:center;align-items:baseline;gap:.4em;
-  flex-wrap:wrap;text-align:center;margin:0 1.1rem 1.1rem;padding:.5rem 1.1rem;
-  border:1px solid #2A313D;border-radius:999px;text-decoration:none;
-  font-size:.82rem;color:#8C97A8;transition:border-color .15s,color .15s}
-.ssocial-crosslink:hover{border-color:#E8C86A;color:#E8C86A}
-.ssocial-crosslink-label{color:#8C97A8}
-.ssocial-crosslink-name{font-family:"Archivo",Helvetica,Arial,sans-serif;font-weight:700;color:#EEF0F3}
-.ssocial-crosslink:hover .ssocial-crosslink-name{color:#E8C86A}
-.ssocial-crosslink-desc{color:#8C97A8}
-.ssocial{display:flex;justify-content:center;gap:1.4rem;padding:0 1.1rem 3rem}
-.ssocial a{color:#8C97A8;display:flex;transition:color .15s}
-.ssocial a:hover{color:#E8C86A}
-.pub .foot{color:var(--faint);border-top:1px solid var(--rule);margin-top:3rem;
-  padding-top:1.3rem;font-size:.93rem}
-.pub .lbl{color:var(--faint)}
-
-/* the signup: the one thing on the public pages that has to work */
-.site .signup, .pub .signup{display:grid;gap:.6rem;margin:1.5rem 0 0;max-width:26rem}
-.site .signup input, .pub .signup input{font:inherit;padding:.78rem .95rem;
-  border:1px solid var(--rule);border-radius:.7rem;background:var(--card);color:var(--ink)}
-.site .signup input:focus-visible, .pub .signup input:focus-visible{outline:2px solid var(--gold);
-  outline-offset:1px;border-color:var(--gold)}
-.site .signup button, .pub .signup button{font:inherit;font-weight:700;cursor:pointer;
-  padding:.8rem 1.5rem;border:0;border-radius:9999px;background:var(--gold);color:var(--paper)}
-.site .signup button:hover:enabled, .pub .signup button:hover:enabled{background:var(--gold-lit)}
-.site .signup button:disabled, .pub .signup button:disabled{opacity:.45;cursor:default}
-.site .signup .fine, .pub .signup .fine{color:var(--faint);font-size:.87rem;margin:0}
-.site .signup .err, .pub .signup .err{color:var(--clay);font-size:.9rem;margin:0;font-weight:600}
-.site .pushnote, .pub .pushnote{color:var(--faint);font-size:.87rem;margin:.6rem 0 0}
-.site .linklike, .pub .linklike{font:inherit;color:var(--brass);background:none;border:0;
-  padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
-.site .linklike:disabled, .pub .linklike:disabled{opacity:.6;cursor:default}
-.site .signed, .pub .signed{background:var(--wash);border-inline-start:3px solid var(--gold);
-  border-radius:0 .6rem .6rem 0;padding:.9rem 1.15rem;margin:1.5rem 0 0;max-width:26rem}
-
-/* the episode page: steps are a sequence, limits are a warning, and they should not
-   look like the same list */
-.site .changes, .site .limits-list{list-style:none;padding:0;display:grid;gap:.55rem;margin:1rem 0}
-.site .changes li{padding-inline-start:1.5rem;position:relative}
-.site .changes li::before{content:"→";position:absolute;inset-inline-start:0;color:var(--gold);
-  font-family:var(--code)}
-/* brand/house-style.md §2: clay is reserved specifically for "limitations, warnings,
-   honest caveats" — brass is the takeaway, the opposite semantic. This list is the
-   channel's limitations section by definition, so it was the one place still wearing
-   the wrong half of the two-color system. The drawn underline is this surface's take
-   on house-style §4's "strike cards" — a literal struck-through line would fight this
-   text's own legibility, since these warnings are meant to be read carefully, not
-   dismissed, so the device becomes a clay rule drawing in under each line instead,
-   staggered per item so the cascade itself reads as motion, not just a fade. */
-.site .limits-list li{background:var(--wash);border-inline-start:3px solid var(--clay);
-  border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;position:relative;overflow:hidden}
-.site .limits-list li::after{content:"";position:absolute;inset-inline-start:1rem;
-  inset-inline-end:1rem;bottom:.5rem;height:2px;width:0;background:var(--clay);
-  opacity:.55;transition:width .5s ease-out}
-.site .reveal.in .limits-list li::after{width:calc(100% - 2rem)}
-.site .reveal.in .limits-list li:nth-child(1)::after{transition-delay:.05s}
-.site .reveal.in .limits-list li:nth-child(2)::after{transition-delay:.16s}
-.site .reveal.in .limits-list li:nth-child(3)::after{transition-delay:.27s}
-.site .reveal.in .limits-list li:nth-child(4)::after{transition-delay:.38s}
-.site .reveal.in .limits-list li:nth-child(n+5)::after{transition-delay:.45s}
-@media (prefers-reduced-motion:reduce){
-  .site .limits-list li::after{display:none}
-}
-
-/* the header and the search page */
-.site .sitenav{display:flex;flex-wrap:wrap;gap:.7rem 1.2rem;align-items:baseline;
-  justify-content:space-between;padding-bottom:1rem;margin-bottom:2.2rem;
-  border-bottom:1px solid var(--rule)}
-.site .sitenav .mark{font-family:var(--serif);font-weight:700;font-size:1.08rem;
-  text-decoration:none;color:var(--ink);display:inline-flex;align-items:center;gap:.5rem}
-.site .sitenav .mark .logo{border-radius:7px;flex:0 0 auto}
-.site .sitenav .links{display:flex;flex-wrap:wrap;gap:.35rem}
-.site .sitenav .links a{font-size:.94rem;text-decoration:none;color:var(--soft);
-  padding:.3rem .7rem;border-radius:9999px;border:1px solid transparent}
-.site .sitenav .links a:hover{color:var(--ink);border-color:var(--rule)}
-.site .sitenav .links a[aria-current=page]{color:var(--ink);background:var(--wash);
-  border-color:var(--rule);font-weight:700}
-/* Groups the nav links and the social icons on the same side of the header, so the
-   two-item flex (.mark / .sitenav-right) keeps space-between's original left-right
-   split instead of spreading three items evenly across the row. */
-.site .sitenav-right{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem}
-/* Icon-only, no wrapper background — sits right beside the nav links in the header so
-   the real accounts are visible on arrival, not only after scrolling to the footer. A
-   thin divider separates it from the text links without a hard box around it. */
-.ssocial-inline{display:flex;align-items:center;gap:.7rem;padding-inline-start:.75rem;
-  border-inline-start:1px solid var(--rule)}
-.ssocial-inline a{color:#8C97A8;display:flex;transition:color .15s}
-.ssocial-inline a:hover{color:#E8C86A}
-/* Replaces every bare "↗" character on the public site (see external-icon.tsx) — a
-   raw arrow glyph renders through the phone's own emoji font, a colored boxed icon
-   that clashes with every hand-drawn SVG icon elsewhere on the page. */
 .ext-icon{display:inline-block;vertical-align:-1px;margin-inline-start:.2em;opacity:.72}
-@media (max-width:520px){
-  .ssocial-inline{border-inline-start:0;padding-inline-start:0;width:100%;
-    justify-content:flex-start;margin-top:.2rem}
-}
-.site .find{width:100%;font:inherit;font-size:1.05rem;padding:.8rem 1rem;margin:1.3rem 0 .6rem;
-  border:1px solid var(--rule);border-radius:.7rem;background:var(--card);color:var(--ink)}
-.site .find:focus-visible{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
-.site .count{font-family:var(--code);font-size:.8rem;color:var(--faint);margin:0 0 1rem}
-.site .hits{list-style:none;padding:0;display:grid;gap:.7rem}
-.site .hits > li{background:var(--card);border:1px solid var(--rule);border-radius:1rem;
-  padding:1rem 1.2rem}
-.site .hits a{text-decoration:none;color:inherit;display:block}
-.site .hits .kind{font-family:var(--code);font-size:.66rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.3rem}
-.site .hits b{font-family:var(--serif);font-size:1.08rem;display:block;margin-bottom:.15rem}
-.site .hits .bl{color:var(--soft);font-size:.95rem;display:block}
-.site .hits .ext{display:flex;gap:.9rem;margin:.7rem 0 0}
-.site .hits .ext a{font-size:.87rem;color:var(--gold);text-decoration:underline;display:inline}
+
+/* the one footer (site-footer.tsx), on every public page */
+.sitefoot{background:#FFFFFF;color:#0B0B0B;border-top:2px solid #0B0B0B;margin-top:3rem;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif}
+.sitefoot-in{max-width:72rem;margin:0 auto;padding:1.4rem 16px 2.4rem}
+.sitefoot-follow{font-size:1.02rem;margin:0 0 .8rem}
+.sitefoot-follow a{font-weight:700;text-decoration:underline;text-decoration-thickness:2px;
+  text-underline-offset:.2em;display:inline-flex;align-items:center;min-height:44px}
+.sitefoot-links{display:flex;flex-wrap:wrap;gap:0 1.3rem}
+.sitefoot-links a{display:inline-flex;align-items:center;min-height:44px;color:#454545;
+  text-decoration:none}
+.sitefoot-links a:hover{color:#0B0B0B;text-decoration:underline;text-underline-offset:.2em}
+.sitefoot-brand{display:flex;align-items:center;gap:.5rem;margin:1rem 0 0;
+  font-family:var(--font-display),"Arial Black",sans-serif;font-size:.9rem}
+
+/* Reveal (reveal.tsx) used to fade, slide, sweep a line and un-clip images on scroll.
+   The content is now simply there: nothing waits for JavaScript to become visible. */
+.site .reveal{opacity:1;transform:none}
+
+/* the studio's crash screen (app/error.tsx, studio routes only) */
+.crash{max-width:40rem;margin:0 auto;padding:2rem 20px;color:var(--text)}
+.crash pre{white-space:pre-wrap;background:var(--panel);border:1px solid var(--clay);
+  border-radius:8px;padding:.9rem 1rem;font-size:.85rem;overflow-x:auto}
+.crash .dg{color:var(--faint);font-size:.85rem}
 
 /* ---- renders: a reel waiting for approval, with the gate's verdict beside it ---- */
 /* the index — one line per reel, so it stays scannable once there are twenty of them
@@ -1127,8 +757,9 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .rhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .pill{font-family:var(--m);font-size:12px;padding:3px 9px;border-radius:999px;
   border:1px solid var(--line)}
-.pill.pass{color:#0B3D2C;background:#CFEBD9;border-color:#9FD2B4}
-.pill.fail{color:#4A1414;background:#F3CFCF;border-color:#DCA5A5}
+/* outlined, not filled: no word inside a filled coloured box (rebrand 13.11.2026) */
+.pill.pass{color:var(--ok);border-color:var(--ok)}
+.pill.fail{color:var(--clay);border-color:var(--clay)}
 .pill.unknown{color:var(--faint)}
 /* 9:16 capped by height, so a phone-shaped video does not push the page off the screen */
 .player{display:block;width:100%;max-width:min(100%,320px);aspect-ratio:9/16;
@@ -1155,113 +786,4 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--m)
 .notify .hint.mono{font-family:var(--m);font-size:13px}
 .aplayer{display:block;width:100%;margin:0 auto}
 
-/* ── motion, public site only ─────────────────────────────────────────────────────
-   He asked directly for real movement, not just hover states on buttons — and for it
-   to trace back to something specific to this channel rather than a generic animation
-   library. `brand/house-style.md` §4 already names its signature transition, "the
-   brass wipe": a 3px brass line sweeps across and the new section is revealed behind
-   it. This is that device, ported from a video cut to a scroll trigger (see
-   app/reveal.tsx) — the same identity the palette swap above already borrowed. */
-.site .reveal, .pub .reveal{opacity:0;transform:translateY(20px);position:relative;
-  transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
-.site .reveal.in, .pub .reveal.in{opacity:1;transform:none}
-.site .reveal::before, .pub .reveal::before{content:"";position:absolute;inset-inline-start:0;top:-1px;
-  height:3px;width:0;background:var(--gold);transition:width .35s ease-out .12s}
-.site .reveal.in::before, .pub .reveal.in::before{width:64px}
-/* Kinetic type settle, borrowed from the type-foundry sites David pointed at (GT Era
-   and its kin): the heading itself carries motion, not just the box around it — every
-   <h2> a Reveal wraps starts a touch oversized and wide-tracked, then settles to its
-   resting size right as the brass line finishes sweeping. One rule, every section
-   heading on the public site inherits it automatically through the shared .reveal
-   wrapper — home, episodes, articles, skills, search, join. */
-.site .reveal h2, .pub .reveal h2{
-  display:inline-block;transform:scale(1.06);letter-spacing:.04em;
-  transition:transform .6s cubic-bezier(.16,1,.3,1) .05s,letter-spacing .6s cubic-bezier(.16,1,.3,1) .05s}
-.site .reveal.in h2, .pub .reveal.in h2{transform:none;letter-spacing:normal}
-/* A real wipe, not just a fade, on the one element type where it reads as intentional:
-   an image inside a Reveal uncovers left-to-right right as the brass line finishes its
-   own sweep — the same wipe brand/house-style.md already names for video cuts, applied
-   to every episode thumbnail and article image the public site reveals on scroll. */
-.site .reveal img, .pub .reveal img{
-  clip-path:inset(0 100% 0 0);transition:clip-path .65s cubic-bezier(.16,1,.3,1) .15s}
-.site .reveal.in img, .pub .reveal.in img{clip-path:inset(0 0 0 0)}
-@media (prefers-reduced-motion:reduce){
-  .site .reveal, .pub .reveal{opacity:1;transform:none;transition:none}
-  .site .reveal::before, .pub .reveal::before{display:none}
-  .site .reveal h2, .pub .reveal h2{transform:none;letter-spacing:normal;transition:none}
-  .site .reveal img, .pub .reveal img{clip-path:none;transition:none}
-}
-
-/* The ticker band under the hero — a continuous scroll, the other half of "scrolling
-   animation": everything else on this page reveals once and settles; this one never
-   stops, so the page reads as alive even before anything crosses into view. Masked at
-   both edges so tool names never appear to clip mid-character at the container's own
-   border, doubled in the markup so the 50%-translate loop has no visible seam. */
-.site .marquee{overflow:hidden;margin:1.4rem 0 0;padding:.6rem 0;
-  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
-  mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
-.site .marquee-track{display:flex;width:max-content;gap:3rem;
-  animation:marquee 26s linear infinite}
-.site .marquee-track span{font-family:var(--code);font-size:.82rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--faint);white-space:nowrap}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.site .marquee-track{animation:none}}
-
-/* A flat 1px border reads as an outline, not a surface — a hairline highlight along
-   the top edge (a common cue for "this is raised, catching light from above") gives
-   every card a resting-state sense of depth instead of only reacting on hover. */
-.site .eps a,.site .prompts a,.site .hits > li{
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
-/* Cards already had a border-color hover; a small lift plus a brass-tinted shadow
-   reads as "this is a real surface, not flat text" without becoming a bounce or a
-   distraction — one direction of movement (up), one property doing the work. */
-.site .eps a,.site .prompts a,.site .hits > li,.site .issueteaser{
-  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
-.site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover{
-  transform:translateY(-3px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 10px 24px -12px rgba(232,200,106,.28)}
-.site .issueteaser:hover{transform:translateY(-3px);box-shadow:0 10px 24px -12px rgba(232,200,106,.28)}
-.site .cta,.site .signup button,.pub .cta,.pub .signup button{
-  transition:transform .15s ease,background .15s ease,box-shadow .15s ease}
-.site .cta:hover,.site .signup button:hover:enabled,
-.pub .cta:hover,.pub .signup button:hover:enabled{
-  transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(232,200,106,.45)}
-.site .cta:active,.site .signup button:active:enabled,
-.pub .cta:active,.pub .signup button:active:enabled{transform:translateY(0)}
-/* Magnetic pull, the primary CTA only (premium-motion.tsx writes --mtx/--mty as the
-   cursor approaches, on top of everything the rule above already does — this is the one
-   button the whole page points at). Its own transition is a touch springier than the
-   plain hover-lift's, since a magnet that snaps back linearly reads as broken, not calm. */
-.site .herocta .cta{transform:translate(var(--mtx,0px),var(--mty,0px));
-  transition:transform .35s cubic-bezier(.2,1.6,.4,1),background .15s ease,box-shadow .15s ease}
-.site .herocta .cta:hover{transform:translate(var(--mtx,0px),var(--mty,0px)) translateY(-2px)}
-.site .herocta .cta:active{transform:translate(var(--mtx,0px),var(--mty,0px))}
-@media (prefers-reduced-motion:reduce){
-  .site .eps a,.site .prompts a,.site .hits > li,.site .issueteaser,
-  .site .cta,.site .signup button,.pub .cta,.pub .signup button{transition:none}
-  .site .eps a:hover,.site .prompts a:hover,.site .hits > li:hover,.site .issueteaser:hover,
-  .site .cta:hover,.site .signup button:hover:enabled,
-  .pub .cta:hover,.pub .signup button:hover:enabled{transform:none;box-shadow:none}
-  .site .herocta .cta,.site .herocta .cta:hover,.site .herocta .cta:active{transform:none}
-}
-
-.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--faint)}
-
-/* --- Motion additions, David 1.11.2026 (2: rotating word, 3: aurora, 4: arrow button; the scroll tilt was removed again the same day).
-   Plain CSS, no library; all of it is off under prefers-reduced-motion. --- */
-.site .hrot{display:inline-grid;vertical-align:bottom;overflow:hidden}
-.site .hrot > span{grid-area:1/1;opacity:0;transform:translateY(55%);
-  transition:opacity .45s ease,transform .45s cubic-bezier(.2,.9,.3,1)}
-.site .hrot > span.ron{opacity:1;transform:none}
-.site .cta .arr{display:inline-block;transition:transform .25s cubic-bezier(.2,.9,.3,1)}
-.site .cta:hover .arr{transform:translateX(5px)}
-.site .hero::after{content:"";position:absolute;bottom:-6rem;inset-inline-start:-9rem;
-  width:26rem;height:26rem;border-radius:50%;pointer-events:none;z-index:-1;
-  background:radial-gradient(circle,rgba(226,154,62,.13) 0%,rgba(232,200,106,.05) 48%,rgba(232,200,106,0) 72%);
-  animation:herodrift 38s ease-in-out infinite alternate}
-@keyframes herodrift{from{transform:translate(0,0) scale(1)}to{transform:translate(5rem,-3rem) scale(1.12)}}
-@media (prefers-reduced-motion:reduce){
-  .site .hero::after{animation:none}
-  .site .hrot > span{transition:none}
-}
+.btn.ghost{background:transparent;border:1px solid var(--line-2);color:var(--muted)}

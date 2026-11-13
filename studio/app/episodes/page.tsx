@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import Link from "next/link";
 import SiteNav from "../sitenav";
 import EpisodesBrowser from "../episodes-browser";
 import Reveal from "../reveal";
@@ -17,9 +16,6 @@ export default async function EpisodesPage() {
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/episodes" />
-      <p className="kicker">
-        <Link href="/">Actually Works</Link> · Episodes
-      </p>
       <h1>Episodes</h1>
       <p className="sub">
         One AI setup per episode. The exact screen, the exact paste, and the part that
@@ -37,10 +33,6 @@ export default async function EpisodesPage() {
           </Suspense>
         </Reveal>
       )}
-      <footer className="sfoot">
-        <Link href="/">Home</Link>
-        <Link href="/search">Search</Link>
-      </footer>
     </main>
   );
 }

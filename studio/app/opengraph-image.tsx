@@ -1,47 +1,34 @@
 import { ImageResponse } from "next/og";
+import { displayFont, OgMark } from "./og-parts";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/** The generic card for any page a per-page image doesn't override (episode pages do,
- *  in app/e/[n]/opengraph-image.tsx). Same palette as the public site itself — near-
- *  black ground, mint accent — so a shared link looks like it came from here even
- *  before the page loads. Helvetica rather than the site's own Space Grotesk: next/og
- *  needs an actual font file fetched at request time to use a Google Font, and a
- *  system fallback is a safer bet than a network fetch on every crawler hit. */
-export default function OG() {
+/** The generic share card for any page a per-page image doesn't override (episode pages
+ *  do, in app/e/[n]/opengraph-image.tsx). Rebrand 13.11.2026: the light site's own look,
+ *  white ground, ink type in Archivo Black, the AW mark. The old card's line "One setup a
+ *  week" was wrong (the channel posts several a week) and is gone; the words now are the
+ *  site title and the handle, both true. */
+export default async function OG() {
   return new ImageResponse(
     (
       <div
         style={{
           width: "100%", height: "100%", display: "flex", flexDirection: "column",
-          justifyContent: "center", padding: "80px",
-          background: "#0E1116", color: "#EEF0F3",
-          fontFamily: "Helvetica, Arial, sans-serif",
+          justifyContent: "space-between", padding: "72px 80px",
+          background: "#FFFFFF", color: "#0B0B0B", fontFamily: "Archivo Black",
         }}
       >
-        <div
-          style={{
-            fontSize: 28, letterSpacing: 4, textTransform: "uppercase",
-            color: "#E8C86A", fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700,
-            marginBottom: 28,
-          }}
-        >
-          Actually Works
+        <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
+          <OgMark height={64} />
+          <div style={{ fontSize: 40 }}>Actually Works</div>
         </div>
-        <div style={{ fontSize: 64, lineHeight: 1.15, maxWidth: 980, fontWeight: 700 }}>
+        <div style={{ fontSize: 92, lineHeight: 1.02, maxWidth: 1000, letterSpacing: -2 }}>
           AI setups that actually work.
         </div>
-        <div
-          style={{
-            fontSize: 26, marginTop: 30, color: "#8C97A8",
-            fontFamily: "Helvetica, Arial, sans-serif",
-          }}
-        >
-          One setup a week — the exact screen, the exact click.
-        </div>
+        <div style={{ display: "flex", fontSize: 30, color: "#3A3A3A" }}>@actually_works.ai</div>
       </div>
     ),
-    size,
+    { ...size, fonts: await displayFont() },
   );
 }
