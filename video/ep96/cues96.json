@@ -1,0 +1,47 @@
+{
+ "lines": [
+  {
+   "n": 1,
+   "text": "AI solves black hole math.",
+   "start": 0.08,
+   "end": 1.95
+  },
+  {
+   "n": 2,
+   "text": "So I give it one sentence.",
+   "start": 2.05,
+   "end": 3.89
+  },
+  {
+   "n": 3,
+   "text": "A cat runs from a vacuum.",
+   "start": 3.99,
+   "end": 5.67
+  },
+  {
+   "n": 4,
+   "text": "Seventy-five seconds. I'm playing it.",
+   "start": 5.77,
+   "end": 7.99
+  },
+  {
+   "n": 5,
+   "text": "It's called Claude Fable five point two.",
+   "start": 8.24,
+   "end": 10.39
+  },
+  {
+   "n": 6,
+   "text": "The black hole part is Anthropic's claim. Nobody outside has checked it yet.",
+   "start": 10.49,
+   "end": 14.07
+  },
+  {
+   "n": 7,
+   "text": "What should I ask it next?",
+   "start": 14.17,
+   "end": 15.58
+  }
+ ],
+ "D": 17.08
+}

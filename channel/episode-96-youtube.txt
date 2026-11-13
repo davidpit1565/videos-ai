@@ -1,0 +1,7 @@
+Title: AI solves black hole math. So I give it one sentence
+
+Description:
+The sentence: "Build me a game where a cat runs from a vacuum cleaner." 75 seconds later the game runs; the game in the video is the real one, played by its own bot.
+The model is Claude Fable 5.2 (paid plans), run inside Claude Code. One run, one simple game.
+The black hole part is Anthropic's own claim ("solved two open problems in the physics of black holes"); no outside physicist has confirmed it yet.
+Source: https://www.anthropic.com/news/claude-fable-and-mythos-5-2

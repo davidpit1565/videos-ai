@@ -1,0 +1,104 @@
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script><script src="assets/game.js"></script>
+<style>
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Medium.otf");font-weight:500}
+@font-face{font-family:"JBM";src:url("assets/fonts/JetBrainsMono-Bold.ttf");font-weight:700}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;font-weight:500;color:#0f0f0f}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
+.bgw{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#ecebe5 url(assets/bg.jpg);background-size:1080px 1920px}
+#cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}
+#s1,#s2,#s3,#s5,#s6,#s7{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#s2,#s3,#s5,#s6,#s7{opacity:0}
+.h1a{position:absolute;left:88px;top:322px;font-size:150px;line-height:150px;font-weight:900;letter-spacing:-.05em;white-space:nowrap}
+.h1b{position:absolute;left:88px;top:478px;font-size:96px;line-height:96px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
+.card1{position:absolute;left:100px;top:640px;width:880px;height:520px;background:#fbfbf8;border:4px solid #0f0f0f;border-radius:8px;box-shadow:14px 14px 0 #0f0f0f;overflow:hidden}
+.hole{position:absolute;left:0;top:0}
+.tag{position:absolute;height:64px;padding:0 26px;background:#0f0f0f;color:#fff;font:700 34px/64px JBM,monospace;letter-spacing:.05em;border-radius:6px;white-space:nowrap;opacity:0}
+.h2{position:absolute;left:88px;top:300px;font-size:116px;line-height:116px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}
+.ui{position:absolute;left:100px;top:470px;width:880px;height:560px;background:#fff;border:4px solid #0f0f0f;border-radius:28px;box-shadow:14px 14px 0 #0f0f0f;opacity:0}
+.uih{position:absolute;left:34px;top:30px}
+.chip{display:inline-block;height:56px;padding:0 24px;border:4px solid #0f0f0f;border-radius:28px;font:700 30px/48px JBM,monospace;background:#0f0f0f;color:#fff;white-space:nowrap}
+.typed{position:absolute;left:44px;top:120px;width:790px;font-size:68px;line-height:80px;font-weight:500;letter-spacing:-.02em}
+.n3{position:absolute;left:88px;top:286px;font-size:128px;line-height:128px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}
+.n5{font-size:92px;top:300px}
+.gcard{position:absolute;left:100px;top:420px;width:880px;height:760px;background:#fbfbf8;border:4px solid #0f0f0f;border-radius:8px;box-shadow:14px 14px 0 #0f0f0f;overflow:hidden;opacity:0}
+.gcard canvas{display:block;width:880px;height:760px}
+.mkbig{position:absolute;left:340px;top:330px;width:400px;height:400px;opacity:0}
+.h5a{position:absolute;left:100px;width:880px;text-align:center;top:770px;font-size:150px;line-height:150px;font-weight:900;letter-spacing:-.05em;opacity:0}
+.h5b{position:absolute;left:100px;width:880px;text-align:center;top:920px;font-size:150px;line-height:150px;font-weight:900;letter-spacing:-.05em;opacity:0}
+.row6{position:absolute;left:100px;width:880px;height:240px;background:#fbfbf8;border:4px solid #0f0f0f;border-radius:10px;box-shadow:12px 12px 0 #0f0f0f;display:flex;align-items:center;gap:36px;padding:0 44px;opacity:0} #r6a{top:400px} #r6b{top:690px}
+.row6 b{flex:none;width:130px;height:130px;border-radius:16px;font-size:100px;line-height:126px;text-align:center;font-weight:900} .no{background:#fff;color:#0f0f0f;border:7px solid #0f0f0f} .yes{background:#0f0f0f;color:#fff}
+.row6 span{font-size:58px;line-height:62px;font-weight:900;letter-spacing:-.04em}
+.h7a{position:absolute;left:88px;top:300px;font-size:230px;line-height:210px;font-weight:900;letter-spacing:-.055em;opacity:0}
+.h7b{position:absolute;left:88px;top:510px;font-size:230px;line-height:210px;font-weight:900;letter-spacing:-.055em;opacity:0}
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="17.08" data-width="1080" data-height="1920">
+
+<div class="bgw" data-decor></div>
+<div id="cam">
+ <div id="s1">
+  <div class="h1a" id="h1a">AI SOLVES</div><div class="h1b" id="h1b">BLACK HOLE MATH</div>
+  <div class="card1" id="card1"><svg viewBox="0 0 880 520" width="880" height="520" class="hole"><g id="hg">
+<ellipse cx="440" cy="270" rx="330" ry="92" fill="none" stroke="#0f0f0f" stroke-width="10" stroke-dasharray="26 22" id="ring1"/>
+<ellipse cx="440" cy="270" rx="250" ry="62" fill="none" stroke="#0f0f0f" stroke-width="16" id="ring2"/>
+<circle cx="440" cy="250" r="150" fill="#0f0f0f" id="disc"/>
+<path d="M190 270 A250 62 0 0 0 690 270" fill="none" stroke="#fbfbf8" stroke-width="16"/>
+<path d="M190 270 A250 62 0 0 0 690 270" fill="none" stroke="#0f0f0f" stroke-width="16" stroke-dasharray="1 0" opacity="1" transform="translate(0,0)" id="ringfront"/>
+</g></svg></div>
+  <div class="tag" id="tg1" style="top:1180px;left:100px">ANTHROPIC'S CLAIM · NOT CHECKED YET</div>
+ </div>
+ <div id="s2"><div class="h2" id="h2">ONE SENTENCE</div><div class="ui" id="ui"><div class="uih"><span class="chip dark" id="chip">Claude Fable 5.2</span></div><div class="typed" id="typed"></div></div></div>
+ <div id="s3"><div class="n3" id="n3">75 SECONDS</div><div class="n3 n5" id="n5">CLAUDE FABLE 5.2</div><div class="gcard" id="gcard"><canvas id="gc" width="880" height="760"></canvas></div>
+  <div class="tag" id="tg3" style="top:1184px;left:100px">THE REAL GAME · PLAYED BY ITS BOT</div></div>
+ <div id="s5"><img class="mkbig" id="mk5" src="assets/claude-mark.svg"><div class="h5a" id="h5a">CLAUDE</div><div class="h5b" id="h5b">FABLE 5.2</div>
+  <div class="tag" id="tg5" style="top:1090px;left:100px">NEW · PAID PLANS</div></div>
+ <div id="s6"><div class="row6" id="r6a"><b class="yes">?</b><span>ANTHROPIC'S CLAIM</span></div><div class="row6" id="r6b"><b class="no">✕</b><span>NOT CHECKED YET</span></div></div>
+ <div id="s7"><div class="h7a" id="h7a">WHAT</div><div class="h7b" id="h7b">NEXT?</div><div class="tag" id="tg7" style="top:760px;left:100px">COMMENT ONE SENTENCE</div></div>
+</div>
+
+</div>
+<script>
+const D=17.08; const tl=gsap.timeline({paused:true});
+tl.fromTo('#cam',{scale:1.0,y:0},{scale:1.03,y:-12,duration:17.08,ease:'sine.inOut'},0);
+gsap.set('#tg1',{opacity:0});
+tl.fromTo('#ring1',{strokeDashoffset:0},{strokeDashoffset:-960,duration:3.05,ease:'none'},0);
+tl.fromTo('#disc',{scale:.9,transformOrigin:'440px 250px'},{scale:1.06,duration:2.05,ease:'sine.inOut'},0);
+tl.fromTo('#h1a',{x:-20},{x:0,duration:.5,ease:'power2.out',immediateRender:false},0);
+tl.fromTo('#h1b',{scale:1},{scale:1.04,duration:.2,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'0% 50%'},1.000);
+tl.fromTo('#tg1',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},0.800);
+tl.to('#s1',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},1.970);
+gsap.set('#s2',{opacity:1}); gsap.set('#h2,#ui',{opacity:0});
+tl.fromTo('#h2',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},2.070);
+tl.fromTo('#ui',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.45,ease:'power2.out',immediateRender:false},2.200);
+(function(){var el=document.getElementById('typed');el.innerHTML='';var sp=[];for(var i=0;i<55;i++){var q=document.createElement('span');q.textContent="Build me a game where a cat runs from a vacuum cleaner."[i];q.style.opacity=0;el.appendChild(q);sp.push(q);}window.__sp=sp;})();
+tl.to(window.__sp,{opacity:1,duration:.02,stagger:0.0513},2.600);
+tl.to('#s2',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},5.690);
+gsap.set('#s3',{opacity:1}); gsap.set('#n3,#n5,#gcard,#tg3',{opacity:0});
+window.__g=CatGame.make(document.getElementById('gc')); window.__g.simulateTo(1.5);
+(function(){var o={t:1.5};tl.to(o,{t:6.170,duration:4.670,ease:'none',onUpdate:function(){window.__g.simulateTo(o.t)}},5.720);})();
+tl.fromTo('#gcard',{opacity:0,y:40,filter:'blur(12px)',scale:0.97},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},5.720);
+tl.fromTo('#n3',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},5.770);
+tl.fromTo('#tg3',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},7.440);
+tl.to('#n3',{opacity:0,y:-10,filter:'blur(8px)',duration:0.25,ease:'power1.in'},8.090);
+tl.fromTo('#n5',{opacity:0,y:20,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},8.290);
+tl.to('#s3',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},10.390);
+gsap.set('#s5',{opacity:0});
+gsap.set('#s6',{opacity:1}); gsap.set('#r6a,#r6b',{opacity:0});
+tl.fromTo('#r6a',{opacity:0,y:36,filter:'blur(10px)',scale:0.96},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},10.540);
+tl.fromTo('#r6b',{opacity:0,y:36,filter:'blur(10px)',scale:0.96},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},12.640);
+tl.to('#s6',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},14.090);
+gsap.set('#s7',{opacity:1}); gsap.set('#h7a,#h7b,#tg7',{opacity:0});
+tl.fromTo('#h7a',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},14.190);
+tl.fromTo('#h7b',{opacity:0,y:24,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},14.470);
+tl.fromTo('#tg7',{opacity:0,y:14,filter:'blur(6px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},14.970);
+tl.to('#s7',{opacity:0,y:-20,filter:'blur(14px)',duration:0.3,ease:'power1.in'},16.080);
+tl.fromTo('#s1',{opacity:0,filter:'blur(14px)'},{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false},16.130);
+tl.set('#tg1',{opacity:0},16.130);
+tl.to({},{duration:.001},D-.001);
+window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
+window.__reel={duration:D,seek:t=>tl.seek(t)};
+</script></body></html>
