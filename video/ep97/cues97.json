@@ -2,46 +2,47 @@
  "lines": [
   {
    "n": 1,
-   "text": "Four Claude AIs. One pelican. Watch it level up.",
+   "text": "Guess the newest Claude.",
    "start": 0.08,
-   "end": 3.37
+   "end": 1.4
   },
   {
    "n": 2,
-   "text": "The smallest one: no seat. It lies on the bike.",
-   "start": 3.45,
-   "end": 6.31
+   "text": "Same request, four Claude models: a pelican on a bike.",
+   "start": 1.48,
+   "end": 4.4
   },
   {
    "n": 3,
-   "text": "The next one: legs on the pedals.",
-   "start": 6.39,
-   "end": 8.24
+   "text": "Pause. Type A, B, C or D below.",
+   "start": 4.48,
+   "end": 6.7
   },
   {
    "n": 4,
-   "text": "The big one: it moves fast.",
-   "start": 8.32,
-   "end": 10.26
+   "text": "B is Haiku, the smallest: no sun.",
+   "start": 6.78,
+   "end": 9.0
   },
   {
    "n": 5,
-   "text": "The newest one adds the sun, a shadow, a real bike.",
-   "start": 10.44,
-   "end": 13.78
+   "text": "D adds a sun. A adds a road.",
+   "start": 9.08,
+   "end": 11.2
   },
   {
    "n": 6,
-   "text": "Same company. Not the same pelican.",
-   "start": 13.86,
-   "end": 15.85
+   "text": "C is Fable, the newest: clouds and a shadow.",
+   "start": 11.28,
+   "end": 14.0
   },
   {
    "n": 7,
-   "text": "Send it to the friend who thinks every AI is the same.",
-   "start": 15.93,
-   "end": 18.66
+   "text": "Send it to a buddy. See if they get it.",
+   "start": 14.08,
+   "end": 16.6
   }
  ],
- "D": 19.86
+ "D": 17.8,
+ "stale_voice": true
 }
