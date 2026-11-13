@@ -1,0 +1,13 @@
+Black hole math. Stuck for twenty years. AI finished it.
+
+This is what Anthropic says its new model, Claude Fable 5.2, did in testing:
+1. A black hole calculation set out in 2003 that was too long to finish. Anthropic says the AI finished it, working mostly on its own.
+2. A second one: the exact limit of a method physicists have used for more than 15 years.
+
+These are Anthropic's own claims from its launch post. The full work is online, outside scientists have not checked it yet, and we have not tested this ourselves.
+
+Would you let AI do physics? Yes or no, tell me below.
+
+Source: anthropic.com/news/claude-fable-and-mythos-5-2
+
+#ai #claude #anthropic #blackholes #physics #actuallyworks
