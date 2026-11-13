@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <rect x="0" y="0" width="400" height="300" fill="#f4f8fb"/>
+  <!-- ground -->
+  <line x1="0" y1="282" x2="400" y2="282" stroke="#b9c7d1" stroke-width="3"/>
+  <!-- rear wheel -->
+  <circle cx="100" cy="220" r="60" fill="none" stroke="#222" stroke-width="6"/>
+  <circle cx="100" cy="220" r="5" fill="#222"/>
+  <!-- front wheel -->
+  <circle cx="300" cy="220" r="60" fill="none" stroke="#222" stroke-width="6"/>
+  <circle cx="300" cy="220" r="5" fill="#222"/>
+  <!-- frame -->
+  <g fill="none" stroke="#d1462f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M100 220 L170 220 L150 140"/>
+    <path d="M170 220 L225 135 L290 135"/>
+    <path d="M100 220 L150 140 L225 135"/>
+    <path d="M290 135 L300 220"/>
+    <path d="M290 135 L302 112 L314 112"/>
+    <path d="M140 136 L166 136"/>
+  </g>
+  <!-- pedal crank -->
+  <circle cx="170" cy="220" r="6" fill="#444"/>
+  <!-- pelican leg on pedal -->
+  <path d="M176 118 L172 170 L168 214" fill="none" stroke="#e8842a" stroke-width="5" stroke-linecap="round"/>
+  <path d="M158 214 L178 214" stroke="#e8842a" stroke-width="5" stroke-linecap="round"/>
+  <!-- tail -->
+  <path d="M124 96 L96 80 L104 106 Z" fill="#7d8fa3"/>
+  <!-- body -->
+  <ellipse cx="178" cy="106" rx="56" ry="30" transform="rotate(-10 178 106)" fill="#f2f2f2" stroke="#444" stroke-width="3"/>
+  <!-- wing -->
+  <path d="M130 100 Q165 70 215 92 Q180 110 130 100 Z" fill="#c9d3dc" stroke="#444" stroke-width="3" stroke-linejoin="round"/>
+  <!-- neck -->
+  <path d="M218 92 Q232 70 238 52" fill="none" stroke="#f2f2f2" stroke-width="22" stroke-linecap="round"/>
+  <path d="M218 92 Q232 70 238 52" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" stroke-dasharray="0"/>
+  <!-- head -->
+  <circle cx="250" cy="48" r="17" fill="#f2f2f2" stroke="#444" stroke-width="3"/>
+  <!-- eye -->
+  <circle cx="255" cy="43" r="3.5" fill="#222"/>
+  <!-- bill -->
+  <path d="M264 42 L346 62 Q344 70 336 70 L266 56 Z" fill="#f0b429" stroke="#444" stroke-width="3" stroke-linejoin="round"/>
+  <!-- throat pouch -->
+  <path d="M266 56 L336 70 Q322 98 296 88 Q282 80 266 56 Z" fill="#e8842a" stroke="#444" stroke-width="3" stroke-linejoin="round"/>
+  <!-- scarf -->
+  <path d="M222 98 L236 116 L226 124 L212 106 Z" fill="#2a9d8f"/>
+  <!-- motion lines -->
+  <g stroke="#9aa9b6" stroke-width="3" stroke-linecap="round">
+    <line x1="30" y1="150" x2="60" y2="150"/>
+    <line x1="20" y1="170" x2="55" y2="170"/>
+    <line x1="36" y1="190" x2="62" y2="190"/>
+  </g>
+</svg>

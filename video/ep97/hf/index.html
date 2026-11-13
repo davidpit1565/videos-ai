@@ -1,0 +1,112 @@
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Medium.otf");font-weight:500}
+@font-face{font-family:"JBM";src:url("assets/fonts/JetBrainsMono-Bold.ttf");font-weight:700}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;color:#0f0f0f}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
+.bgw{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#ecebe5 url(assets/bg.jpg);background-size:1080px 1920px}
+#cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 860px}
+.ttl{position:absolute;left:92px;width:860px;top:292px;height:170px;display:flex;align-items:center;font-size:66px;line-height:70px;font-weight:900;letter-spacing:-.035em;opacity:0}
+#t5{font-size:54px;line-height:58px} #t6{font-size:48px;line-height:54px}
+#t0{opacity:1}
+.card{position:absolute;width:460px;height:372px;background:#fbfbf8;border:4px solid #0f0f0f;border-radius:10px;box-shadow:10px 10px 0 #0f0f0f;transform-origin:50% 50%}
+.tag{position:absolute;left:0;top:0;width:100%;height:56px;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:3px solid #0f0f0f}
+.tag img{width:34px;height:34px}
+.tag span{font:700 30px/1 JBM,monospace;letter-spacing:.02em;white-space:nowrap}
+.box{position:absolute;left:10px;top:64px;width:432px;height:292px;overflow:hidden;border-radius:6px}
+.ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:150px;font-weight:900;color:#c9c6bc;border:4px dashed #c9c6bc;border-radius:6px}
+.dr{position:absolute;left:0;top:0;width:432px;height:292px;object-fit:contain;background:#fff;clip-path:inset(0 100% 0 0)}
+.ring{position:absolute;left:-12px;top:-12px;width:476px;height:388px;border:7px solid #D97757;border-radius:16px;opacity:0}
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="19.86" data-width="1080" data-height="1920">
+
+<div class="bgw" data-decor></div>
+<div id="cam">
+ <div class="ttl" id="t0">4 CLAUDE AIs DRAW<br>A PELICAN ON A BIKE</div><div class="ttl" id="t1">NO SEAT</div><div class="ttl" id="t2">LEGS ON<br>THE PEDALS</div><div class="ttl" id="t3">IT MOVES FAST</div><div class="ttl" id="t4">SUN, SHADOW,<br>A REAL BIKE</div><div class="ttl" id="t5">SAME COMPANY.<br>NOT THE SAME PELICAN.</div><div class="ttl" id="t6">SEND IT TO THE FRIEND<br>WHO THINKS EVERY AI<br>IS THE SAME</div><div class="ttl" id="t7">4 CLAUDE AIs DRAW<br>A PELICAN ON A BIKE</div>
+ <div class="card" id="c0" style="left:65px;top:470px">
+ <div class="tag"><img src="assets/claude-mark.svg"><span>Haiku 5.5</span></div>
+ <div class="box"><div class="ph" id="ph0">?</div><img class="dr" id="d0" src="assets/draw/haiku.svg"></div>
+ <div class="ring" id="r0"></div></div><div class="card" id="c1" style="left:555px;top:470px">
+ <div class="tag"><img src="assets/claude-mark.svg"><span>Sonnet 5.5</span></div>
+ <div class="box"><div class="ph" id="ph1">?</div><img class="dr" id="d1" src="assets/draw/sonnet.svg"></div>
+ <div class="ring" id="r1"></div></div><div class="card" id="c2" style="left:65px;top:866px">
+ <div class="tag"><img src="assets/claude-mark.svg"><span>Opus 5</span></div>
+ <div class="box"><div class="ph" id="ph2">?</div><img class="dr" id="d2" src="assets/draw/opus.svg"></div>
+ <div class="ring" id="r2"></div></div><div class="card" id="c3" style="left:555px;top:866px">
+ <div class="tag"><img src="assets/claude-mark.svg"><span>Fable 5.2</span></div>
+ <div class="box"><div class="ph" id="ph3">?</div><img class="dr" id="d3" src="assets/draw/fable.svg"></div>
+ <div class="ring" id="r3"></div></div>
+</div>
+
+</div>
+<script>
+const D=19.86; const tl=gsap.timeline({paused:true});
+tl.fromTo('#cam',{scale:1.0,y:0},{scale:1.012,y:-6,duration:19.86,ease:'sine.inOut'},0);
+tl.fromTo('#ph0',{y:0},{y:-10,duration:.55,ease:'sine.inOut',yoyo:true,repeat:6},0.00);
+tl.fromTo('#ph1',{y:0},{y:-10,duration:.55,ease:'sine.inOut',yoyo:true,repeat:6},0.12);
+tl.fromTo('#ph2',{y:0},{y:-10,duration:.55,ease:'sine.inOut',yoyo:true,repeat:6},0.24);
+tl.fromTo('#ph3',{y:0},{y:-10,duration:.55,ease:'sine.inOut',yoyo:true,repeat:6},0.36);
+tl.fromTo('#t0',{scale:1},{scale:1.04,duration:.25,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'0% 50%'},2.900);
+tl.to('#r0',{opacity:1,duration:.2,ease:'power2.out'},3.450);
+tl.to('#ph0',{opacity:0,duration:.25},3.500);
+gsap.set('#d0',{clipPath:'inset(0 62% 0 0)'}); gsap.set('#ph0',{opacity:0});
+tl.fromTo('#d0',{clipPath:'inset(0 62% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:3.85,ease:'sine.inOut',immediateRender:false},0);
+tl.fromTo('#c0',{scale:1},{scale:1.035,duration:.25,ease:'sine.out',yoyo:true,repeat:1},4.000);
+tl.to('#t0',{opacity:0,y:-14,filter:'blur(10px)',duration:0.25,ease:'power1.in'},4.140);
+tl.fromTo('#t1',{opacity:0,y:24,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},4.320);
+tl.to('#r0',{opacity:0,duration:.2},6.340);
+tl.to('#r1',{opacity:1,duration:.2,ease:'power2.out'},6.390);
+tl.to('#ph1',{opacity:0,duration:.25},6.440);
+tl.to('#d1',{clipPath:'inset(0 0% 0 0)',duration:.55,ease:'power2.inOut'},6.440);
+tl.fromTo('#c1',{scale:1},{scale:1.035,duration:.25,ease:'sine.out',yoyo:true,repeat:1},6.940);
+tl.to('#t1',{opacity:0,y:-14,filter:'blur(10px)',duration:0.25,ease:'power1.in'},7.440);
+tl.fromTo('#t2',{opacity:0,y:24,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},7.620);
+tl.to('#r1',{opacity:0,duration:.2},8.270);
+tl.to('#r2',{opacity:1,duration:.2,ease:'power2.out'},8.320);
+tl.to('#ph2',{opacity:0,duration:.25},8.370);
+tl.to('#d2',{clipPath:'inset(0 0% 0 0)',duration:.55,ease:'power2.inOut'},8.370);
+tl.fromTo('#c2',{scale:1},{scale:1.035,duration:.25,ease:'sine.out',yoyo:true,repeat:1},8.870);
+tl.to('#t2',{opacity:0,y:-14,filter:'blur(10px)',duration:0.25,ease:'power1.in'},9.200);
+tl.fromTo('#t3',{opacity:0,y:24,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},9.380);
+tl.to('#r2',{opacity:0,duration:.2},10.390);
+tl.to('#r3',{opacity:1,duration:.2,ease:'power2.out'},10.440);
+tl.to('#ph3',{opacity:0,duration:.25},10.490);
+tl.to('#d3',{clipPath:'inset(0 0% 0 0)',duration:.55,ease:'power2.inOut'},10.490);
+tl.fromTo('#c3',{scale:1},{scale:1.035,duration:.25,ease:'sine.out',yoyo:true,repeat:1},10.990);
+tl.to('#t3',{opacity:0,y:-14,filter:'blur(10px)',duration:0.25,ease:'power1.in'},11.240);
+tl.fromTo('#t4',{opacity:0,y:24,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},11.420);
+tl.to('#c3',{x:-245,y:-199,scale:1.95,zIndex:5,duration:.6,ease:'power3.inOut'},11.890);
+tl.set('#c3',{zIndex:5},11.890);
+tl.to('#c3',{x:0,y:0,scale:1,duration:.55,ease:'power3.inOut'},13.760);
+tl.to('#r3',{opacity:0,duration:.2},13.860);
+tl.to('#t4',{opacity:0,y:-14,filter:'blur(10px)',duration:0.25,ease:'power1.in'},13.760);
+tl.fromTo('#t5',{opacity:0,y:24,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},14.010);
+tl.fromTo('#c0',{y:0},{y:-14,duration:.22,ease:'sine.out',yoyo:true,repeat:1},14.360);
+tl.fromTo('#c1',{y:0},{y:-14,duration:.22,ease:'sine.out',yoyo:true,repeat:1},14.520);
+tl.fromTo('#c2',{y:0},{y:-14,duration:.22,ease:'sine.out',yoyo:true,repeat:1},14.680);
+tl.fromTo('#c3',{y:0},{y:-14,duration:.22,ease:'sine.out',yoyo:true,repeat:1},14.840);
+tl.to('#t5',{opacity:0,y:-14,filter:'blur(10px)',duration:0.25,ease:'power1.in'},15.830);
+tl.fromTo('#t6',{opacity:0,y:24,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},15.980);
+tl.fromTo('#r0',{opacity:0},{opacity:1,duration:.25,yoyo:true,repeat:1,ease:'sine.inOut'},16.130);
+tl.fromTo('#r1',{opacity:0},{opacity:1,duration:.25,yoyo:true,repeat:1,ease:'sine.inOut'},16.680);
+tl.fromTo('#r2',{opacity:0},{opacity:1,duration:.25,yoyo:true,repeat:1,ease:'sine.inOut'},17.230);
+tl.fromTo('#r3',{opacity:0},{opacity:1,duration:.25,yoyo:true,repeat:1,ease:'sine.inOut'},17.780);
+tl.fromTo('#cam',{rotation:0},{rotation:.35,duration:.9,ease:'sine.inOut',yoyo:true,repeat:3},15.930);
+tl.to('#t6',{opacity:0,y:-14,filter:'blur(10px)',duration:0.25,ease:'power1.in'},19.060);
+tl.to('#d0',{clipPath:'inset(0 62% 0 0)',duration:.4,ease:'power2.in'},19.110);
+tl.to('#d1',{clipPath:'inset(0 100% 0 0)',duration:.4,ease:'power2.in'},19.150);
+tl.to('#ph1',{opacity:1,duration:.3},19.360);
+tl.to('#d2',{clipPath:'inset(0 100% 0 0)',duration:.4,ease:'power2.in'},19.190);
+tl.to('#ph2',{opacity:1,duration:.3},19.360);
+tl.to('#d3',{clipPath:'inset(0 100% 0 0)',duration:.4,ease:'power2.in'},19.230);
+tl.to('#ph3',{opacity:1,duration:.3},19.360);
+tl.fromTo('#t7',{opacity:0,y:24,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.35,ease:'power2.out',immediateRender:false},19.360);
+tl.to({},{duration:.001},D-.001);
+window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
+window.__reel={duration:D,seek:t=>tl.seek(t)};
+</script></body></html>

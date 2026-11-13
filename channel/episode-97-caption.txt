@@ -1,0 +1,14 @@
+4 Claude AIs. One pelican. Watch it level up.
+
+Same request to four Claude models: "Draw a pelican riding a bicycle."
+Haiku 5.5, Sonnet 5.5, Opus 5 and Fable 5.2. Every drawing in this video is the real code each model wrote, shown as it came out. One try each, no picking the best.
+
+The smallest one forgets the seat. The newest one adds the sun, a shadow and a real bike.
+
+The pelican test is Simon Willison's: he made it up in 2024 as a fun way to compare AI models. It does not measure everything an AI can do.
+
+Try it yourself: ask your AI for "an SVG of a pelican riding a bicycle" and send me what you get.
+
+Send this to the friend who thinks every AI is the same.
+
+#ai #claude #anthropic #aiart #pelican #actuallyworks
