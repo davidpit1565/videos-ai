@@ -44,7 +44,7 @@ markup = f'''
 <div id="cam">
  <div id="s1">
   <div class="h1a" id="h1a">THIS AI SOLVED</div><div class="h1b" id="h1b">2 PHYSICS PROBLEMS</div>
-  <div class="card1" id="card1">{HOLE}<img class="mk1" id="mk1" src="assets/claude-mark.svg"><div class="ck" id="ck1">1 ✓</div><div class="ck" id="ck2">2 ✓</div></div>
+  <div class="card1" id="card1">{HOLE}<img class="mk1" id="mk1" src="assets/claude-mark.svg"><div class="nm1" id="nm1">CLAUDE<br>FABLE 5.2</div><div class="ck" id="ck1">1 ✓</div><div class="ck" id="ck2">2 ✓</div></div>
   <div class="tag" id="tg1" style="top:1184px;left:100px">BOTH: BLACK HOLES</div>
  </div>
  <div id="s3"><div class="h3" id="h3">2003</div><div class="h3s" id="h3s">PROBLEM 1</div><div class="h4" id="h4">AI FINISHED IT</div>
@@ -55,7 +55,7 @@ markup = f'''
   <div class="tag" id="tg5x" style="top:1184px;left:100px">A METHOD USED 15+ YEARS</div></div>
  <div id="s5"><img class="mkbig" id="mk5" src="assets/claude-mark.svg"><div class="h5a" id="h5a">CLAUDE</div><div class="h5b" id="h5b">FABLE 5.2</div>
   <div class="tag" id="tg5" style="top:1100px;left:100px">NEW THIS WEEK</div></div>
- <div id="s6"><div class="row6" id="r6a"><b class="yes">?</b><span>ANTHROPIC SAYS SO</span></div><div class="row6" id="r6b"><b class="no">✕</b><span>NOT CHECKED OUTSIDE YET</span></div></div>
+ <div id="s6"><div class="row6" id="r6a"><b class="yes">?</b><span>ANTHROPIC SAYS SO</span></div><div class="row6" id="r6b"><b class="no">✓</b><span>THE FULL WORK IS ONLINE</span></div></div>
  <div id="s7"><div class="h7a" id="h7a">WOULD YOU TRUST</div><div class="h7b" id="h7b">AI WITH PHYSICS?</div><div class="q7" id="q7"><div class="qm" id="qm">?</div><div class="opt" id="oy">YES</div><div class="opt" id="on">NO</div></div></div>
 </div>
 '''
@@ -71,6 +71,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .h1b{{position:absolute;left:88px;top:430px;font-size:86px;line-height:96px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}}
 .card1{{position:absolute;left:100px;top:556px;width:880px;height:600px;background:#fbfbf8;border:4px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK};overflow:hidden}}
 .hole{{position:absolute;left:0;top:60px}}
+.nm1{{position:absolute;left:166px;top:36px;font:700 36px/50px JBM,monospace;letter-spacing:.04em;white-space:nowrap}}
 .mk1{{position:absolute;left:30px;top:28px;width:120px;height:120px}}
 .ck{{position:absolute;top:30px;width:150px;height:92px;background:{INK};color:#fff;border-radius:10px;font-size:64px;line-height:92px;text-align:center;font-weight:900;opacity:0}} #ck1{{left:540px}} #ck2{{left:704px}}
 .h3s{{position:absolute;left:740px;top:340px;height:64px;padding:0 24px;border:5px solid {INK};border-radius:6px;font:700 38px/54px JBM,monospace;white-space:nowrap;opacity:0}}
@@ -119,7 +120,7 @@ t_fin = W("finished", 0, after=s(4), default=s(4) + .4)
 t_alm = W("almost", 0, after=s(4), default=s(4) + 1.1)
 t_exact = W("exact", 0, after=s(5), default=s(5) + .7)
 t_meth = W("method", 0, after=s(5), default=s(5) + 1.6)
-t_out = W("outside", 0, after=s(7), default=s(7) + 1.0)
+t_out = W("full", 0, after=s(7), default=s(7) + 1.0)
 js(f"tl.fromTo('#cam',{{scale:1.0,y:0}},{{scale:1.03,y:-12,duration:{D},ease:'sine.inOut'}},0);")
 # S1 hook + line 2
 js("gsap.set('#tg1,#ck1,#ck2',{opacity:0});")
