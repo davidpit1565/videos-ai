@@ -9,7 +9,7 @@ C = C if isinstance(C, list) else C["lines"]
 L = {c["n"]: (c["start"], c["end"]) for c in C}
 s = lambda n: L[n][0]
 e = lambda n: L[n][1]
-D = round(e(8) + 1.5, 2)
+D = round(e(7) + 1.3, 2)
 INK = "#0f0f0f"
 J = []; SFX = []
 def js(x): J.append(x)
@@ -43,20 +43,20 @@ markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam">
  <div id="s1">
-  <div class="h1a" id="h1a">THIS AI SOLVED</div><div class="h1b" id="h1b">2 PHYSICS PROBLEMS</div>
-  <div class="card1" id="card1">{HOLE}<img class="mk1" id="mk1" src="assets/claude-mark.svg"><div class="nm1" id="nm1">CLAUDE<br>FABLE 5.2</div><div class="ck" id="ck1">1 ✓</div><div class="ck" id="ck2">2 ✓</div></div>
-  <div class="tag" id="tg1" style="top:1184px;left:100px">BOTH: BLACK HOLES</div>
+  <div class="h1a" id="h1a">BLACK HOLE MATH</div><div class="h1b" id="h1b">STUCK FOR 20 YEARS</div>
+  <div class="card1" id="card1">{HOLE}<img class="mk1" id="mk1" src="assets/claude-mark.svg"><div class="nm1" id="nm1">CLAUDE<br>FABLE 5.2</div><div class="st1" id="st1">AI FINISHED IT ✓</div></div>
+  <div class="tag" id="tg1" style="top:1184px;left:100px">SET OUT IN 2003</div>
  </div>
- <div id="s3"><div class="h3" id="h3">2003</div><div class="h3s" id="h3s">PROBLEM 1</div><div class="h4" id="h4">AI FINISHED IT</div>
+ <div id="s3"><div class="h3" id="h3">TOO LONG</div><div class="h3s" id="h3s">BY HAND</div><div class="h4" id="h4">ALMOST ALONE</div>
   <div class="paper" id="paper"><div class="scroll" id="scroll"><div class="bar" style="width:620px"></div><div class="bar" style="width:760px"></div><div class="sym" data-decor>∫</div><div class="bar" style="width:540px"></div><div class="bar" style="width:700px"></div><div class="bar" style="width:680px"></div><div class="sym" data-decor>Σ</div><div class="bar" style="width:600px"></div><div class="bar" style="width:740px"></div><div class="bar" style="width:480px"></div><div class="sym" data-decor>∂</div><div class="bar" style="width:720px"></div><div class="bar" style="width:560px"></div><div class="bar" style="width:690px"></div><div class="sym" data-decor>∫</div><div class="bar" style="width:640px"></div><div class="bar" style="width:750px"></div><div class="bar" style="width:520px"></div><div class="sym" data-decor>Σ</div><div class="bar" style="width:700px"></div><div class="bar" style="width:610px"></div><div class="bar" style="width:730px"></div><div class="sym" data-decor>∂</div><div class="bar" style="width:580px"></div><div class="bar" style="width:760px"></div><div class="bar" style="width:660px"></div><div class="bar" style="width:500px"></div><div class="sym" data-decor>∫</div><div class="bar" style="width:720px"></div><div class="bar" style="width:640px"></div><div class="bar" style="width:700px"></div><div class="bar" style="width:560px"></div></div><div class="prog"><div class="pfill" id="pfill"></div></div><div class="stamp" id="stamp">DONE ✓</div></div>
-  <div class="tag" id="tg3" style="top:1184px;left:100px">TOO LONG TO FINISH</div><div class="tag" id="tg4" style="top:1184px;left:100px">ALMOST ALONE</div></div>
- <div id="s5x"><div class="h5x" id="h5x">PROBLEM 2</div>
+  <div class="tag" id="tg3" style="top:1184px;left:100px">NOBODY FINISHED IT</div><div class="tag" id="tg4" style="top:1184px;left:100px">THE AI DID IT</div></div>
+ <div id="s5x"><div class="h5x" id="h5x">A SECOND ONE</div>
   <div class="gauge" id="gauge"><div class="axis"></div><div class="tk" style="left:60px;height:46px"></div><div class="tk" style="left:136px;height:26px"></div><div class="tk" style="left:212px;height:26px"></div><div class="tk" style="left:288px;height:26px"></div><div class="tk" style="left:364px;height:26px"></div><div class="tk" style="left:440px;height:46px"></div><div class="tk" style="left:516px;height:26px"></div><div class="tk" style="left:592px;height:26px"></div><div class="tk" style="left:668px;height:26px"></div><div class="tk" style="left:744px;height:26px"></div><div class="tk" style="left:820px;height:46px"></div><div class="mark" id="mark"></div><div class="lim" id="lim">EXACT LIMIT</div></div>
   <div class="tag" id="tg5x" style="top:1184px;left:100px">A METHOD USED 15+ YEARS</div></div>
  <div id="s5"><img class="mkbig" id="mk5" src="assets/claude-mark.svg"><div class="h5a" id="h5a">CLAUDE</div><div class="h5b" id="h5b">FABLE 5.2</div>
   <div class="tag" id="tg5" style="top:1100px;left:100px">NEW THIS WEEK</div></div>
  <div id="s6"><div class="row6" id="r6a"><b class="yes">?</b><span>ANTHROPIC SAYS SO</span></div><div class="row6" id="r6b"><b class="no">✓</b><span>THE FULL WORK IS ONLINE</span></div></div>
- <div id="s7"><div class="h7a" id="h7a">WOULD YOU TRUST</div><div class="h7b" id="h7b">AI WITH PHYSICS?</div><div class="q7" id="q7"><div class="qm" id="qm">?</div><div class="opt" id="oy">YES</div><div class="opt" id="on">NO</div></div></div>
+ <div id="s7"><div class="h7a" id="h7a">WOULD YOU LET</div><div class="h7b" id="h7b">AI DO PHYSICS?</div><div class="q7" id="q7"><div class="qm" id="qm">?</div><div class="opt" id="oy">YES</div><div class="opt" id="on">NO</div></div></div>
 </div>
 '''
 css = f'''
@@ -72,15 +72,16 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .card1{{position:absolute;left:100px;top:556px;width:880px;height:600px;background:#fbfbf8;border:4px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK};overflow:hidden}}
 .hole{{position:absolute;left:0;top:60px}}
 .nm1{{position:absolute;left:166px;top:36px;font:700 36px/50px JBM,monospace;letter-spacing:.04em;white-space:nowrap}}
+.st1{{position:absolute;left:120px;top:400px;width:640px;height:130px;background:#fbfbf8;border:10px solid {INK};border-radius:14px;font-size:68px;line-height:110px;text-align:center;font-weight:900;letter-spacing:-.04em;white-space:nowrap;opacity:0}}
 .mk1{{position:absolute;left:30px;top:28px;width:120px;height:120px}}
 .ck{{position:absolute;top:30px;width:150px;height:92px;background:{INK};color:#fff;border-radius:10px;font-size:64px;line-height:92px;text-align:center;font-weight:900;opacity:0}} #ck1{{left:540px}} #ck2{{left:704px}}
-.h3s{{position:absolute;left:740px;top:340px;height:64px;padding:0 24px;border:5px solid {INK};border-radius:6px;font:700 38px/54px JBM,monospace;white-space:nowrap;opacity:0}}
+.h3s{{position:absolute;left:88px;top:462px;height:64px;padding:0 24px;border:5px solid {INK};border-radius:6px;font:700 38px/54px JBM,monospace;white-space:nowrap;opacity:0}}
 .h4{{position:absolute;left:88px;top:320px;font-size:116px;line-height:116px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}}
-.paper{{position:absolute;left:100px;top:520px;width:880px;height:640px;background:#fbfbf8;border:4px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK};overflow:hidden;opacity:0}}
+.paper{{position:absolute;left:100px;top:556px;width:880px;height:604px;background:#fbfbf8;border:4px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK};overflow:hidden;opacity:0}}
 .scroll{{position:absolute;left:54px;top:40px;width:780px}} .bar{{height:22px;background:{INK};border-radius:11px;margin-bottom:30px}} .sym{{font-size:92px;line-height:96px;font-weight:900;margin-bottom:22px}}
 .prog{{position:absolute;left:0;bottom:0;width:880px;height:44px;background:#fbfbf8;border-top:4px solid {INK}}} .pfill{{position:absolute;left:0;top:0;height:40px;width:880px;background:{INK};transform-origin:0 50%;transform:scaleX(0)}}
 .stamp{{position:absolute;left:150px;top:200px;width:580px;height:190px;background:#fbfbf8;border:12px solid {INK};border-radius:18px;font-size:130px;line-height:166px;text-align:center;font-weight:900;letter-spacing:-.04em;opacity:0}}
-.h5x{{position:absolute;left:88px;top:310px;font-size:150px;line-height:150px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}}
+.h5x{{position:absolute;left:88px;top:320px;font-size:128px;line-height:130px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}}
 .gauge{{position:absolute;left:100px;top:520px;width:880px;height:640px;background:#fbfbf8;border:4px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK};overflow:hidden;opacity:0}}
 .axis{{position:absolute;left:60px;top:430px;width:760px;height:12px;background:{INK};border-radius:6px}} .tk{{position:absolute;top:442px;width:8px;background:{INK};border-radius:4px}}
 .mark{{position:absolute;left:60px;top:150px;width:14px;height:290px;background:{INK};border-radius:7px}} .mark:before{{content:"";position:absolute;left:-33px;top:-60px;width:80px;height:80px;border-radius:40px;background:{INK}}}
@@ -101,7 +102,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .row6{{position:absolute;left:100px;width:880px;height:240px;background:#fbfbf8;border:4px solid {INK};border-radius:10px;box-shadow:12px 12px 0 {INK};display:flex;align-items:center;gap:36px;padding:0 44px;opacity:0}} #r6a{{top:400px}} #r6b{{top:690px}}
 .row6 b{{flex:none;width:130px;height:130px;border-radius:16px;font-size:100px;line-height:126px;text-align:center;font-weight:900}} .no{{background:#fff;color:{INK};border:7px solid {INK}}} .yes{{background:{INK};color:#fff}}
 .row6 span{{font-size:50px;line-height:56px;font-weight:900;letter-spacing:-.04em}}
-.h3{{position:absolute;left:88px;top:290px;font-size:230px;line-height:220px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}}
+.h3{{position:absolute;left:88px;top:300px;font-size:170px;line-height:170px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;opacity:0}}
 .eq{{position:absolute;left:100px;top:470px;width:880px;height:220px;background:#fbfbf8;border:4px solid {INK};border-radius:8px;box-shadow:12px 12px 0 {INK};font-size:124px;line-height:210px;text-align:center;font-weight:900;letter-spacing:-.03em;opacity:0}} .eq sup{{font-size:64px}}
 .arrow{{position:absolute;left:480px;top:700px;font-size:110px;line-height:110px;font-weight:900;opacity:0}}
 .code3{{position:absolute;left:100px;top:820px;width:880px;height:200px;background:{INK};border-radius:14px;box-shadow:12px 12px 0 #8a8a86;padding:28px 40px;color:#fff;font:700 50px/72px JBM,monospace;opacity:0}} .code3 span{{display:block;white-space:nowrap}}
@@ -113,75 +114,71 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .q7{{position:absolute;left:100px;top:612px;width:880px;height:580px;background:#fbfbf8;border:4px solid {INK};border-radius:8px;box-shadow:14px 14px 0 {INK};opacity:0}} .qm{{position:absolute;left:290px;top:50px;width:300px;text-align:center;font-size:280px;line-height:290px;font-weight:900}} .opt{{position:absolute;top:410px;width:370px;height:130px;border:7px solid {INK};border-radius:14px;font-size:84px;line-height:116px;text-align:center;font-weight:900}} #oy{{left:50px;background:{INK};color:#fff}} #on{{left:460px}}
 .h7b{{position:absolute;left:88px;top:440px;font-size:100px;line-height:110px;white-space:nowrap;font-weight:900;letter-spacing:-.055em;opacity:0}}
 '''
-t_two = W("two", 0, default=.9)
-t_hole = W("black", 0, after=s(2), default=s(2) + .5)
-t_too = W("too", 0, after=s(3), default=s(3) + 1.6)
-t_fin = W("finished", 0, after=s(4), default=s(4) + .4)
-t_alm = W("almost", 0, after=s(4), default=s(4) + 1.1)
-t_exact = W("exact", 0, after=s(5), default=s(5) + .7)
-t_meth = W("method", 0, after=s(5), default=s(5) + 1.6)
-t_out = W("full", 0, after=s(7), default=s(7) + 1.0)
+t_stuck = W("stuck", 0, default=1.0)
+t_ai = W("ai", 0, default=2.2)
+t_hand = W("hand", 0, after=s(2), default=e(2) - .4)
+t_alm = W("almost", 0, after=s(3), default=s(3) + .8)
+t_sec = W("second", 0, after=s(4), default=s(4) + .9)
+t_out = W("full", 0, after=s(6), default=s(6) + 1.0)
 js(f"tl.fromTo('#cam',{{scale:1.0,y:0}},{{scale:1.03,y:-12,duration:{D},ease:'sine.inOut'}},0);")
-# S1 hook + line 2
-js("gsap.set('#tg1,#ck1,#ck2',{opacity:0});")
-js(f"tl.fromTo('#ring1',{{strokeDashoffset:0}},{{strokeDashoffset:-1400,duration:{s(3)+1:.2f},ease:'none'}},0);")
-js(f"tl.fromTo('#disc',{{scale:.88,transformOrigin:'440px 250px'}},{{scale:1.1,duration:{s(3):.2f},ease:'sine.inOut'}},0);")
+# S1 hook
+js("gsap.set('#tg1,#st1',{opacity:0});")
+js(f"tl.fromTo('#ring1',{{strokeDashoffset:0}},{{strokeDashoffset:-1400,duration:{s(2)+1:.2f},ease:'none'}},0);")
+js(f"tl.fromTo('#disc',{{scale:.88,transformOrigin:'440px 250px'}},{{scale:1.1,duration:{s(2):.2f},ease:'sine.inOut'}},0);")
 js("tl.fromTo('#h1a',{x:-20},{x:0,duration:.5,ease:'power2.out',immediateRender:false},0);")
-js(f"tl.fromTo('#mk1',{{rotate:0}},{{rotate:180,duration:{s(3):.2f},ease:'sine.inOut'}},0);")
-js(f"tl.fromTo('#h1b',{{scale:1}},{{scale:1.04,duration:.2,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'0% 50%'}},{max(.1,t_two):.3f});")
-sfx("subhit.ogg", .05, -6)
-fin("#ck1", t_two, .3, 20, 6, .8); sfx("pop_a.ogg", t_two + .03, -8)
-fin("#ck2", t_two + .28, .3, 20, 6, .8); sfx("pop_b.ogg", t_two + .31, -8)
-fin("#tg1", t_hole - .1, .35, 14, 6); sfx("impactsoft.ogg", t_hole, -6)
-js(f"tl.fromTo('#hg',{{scale:1,svgOrigin:'440 260'}},{{scale:1.08,duration:.35,ease:'sine.out',yoyo:true,repeat:1}},{t_hole:.3f});")
-fout("#s1", s(3) - .08, .3)
-# S3 problem 1: set out in 2003, too long -> S4 finished
+js(f"tl.fromTo('#mk1',{{rotate:0}},{{rotate:180,duration:{s(2):.2f},ease:'sine.inOut'}},0);")
+js(f"tl.fromTo('#h1b',{{scale:1}},{{scale:1.05,duration:.2,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'0% 50%'}},{max(.1,t_stuck):.3f});")
+sfx("subhit.ogg", .05, -6); sfx("tick.ogg", t_stuck, -7)
+fin("#tg1", t_stuck + .15, .35, 14, 6)
+js(f"tl.fromTo('#st1',{{opacity:0,scale:1.7,rotate:-16}},{{opacity:1,scale:1,rotate:-6,duration:.3,ease:'power3.out',immediateRender:false}},{t_ai+.1:.3f});"); sfx("impactpunch.ogg", t_ai + .16, -5)
+js(f"tl.fromTo('#hg',{{scale:1,svgOrigin:'440 260'}},{{scale:1.08,duration:.35,ease:'sine.out',yoyo:true,repeat:1}},{t_ai+.1:.3f});")
+fout("#s1", s(2) - .08, .25)
+# S3 too long by hand -> AI did it almost alone
 js("gsap.set('#s3',{opacity:1}); gsap.set('#h3,#h3s,#h4,#paper,#tg3,#tg4,#stamp',{opacity:0});")
-fin("#h3", s(3) + .02, .35, 24, 8); fin("#h3s", s(3) + .2, .3, 14, 6); fin("#paper", s(3) + .12, .4, 36, 10, .96); sfx("whoosh_b.ogg", s(3) - .04, -9)
-js(f"tl.fromTo('#scroll',{{y:0}},{{y:-620,duration:{s(4)-s(3):.2f},ease:'none'}},{s(3):.3f});")
-js(f"tl.fromTo('#pfill',{{scaleX:0}},{{scaleX:.22,duration:{s(4)-s(3):.2f},ease:'power2.out'}},{s(3):.3f});")
-fin("#tg3", t_too - .08, .35, 14, 6); sfx("tick.ogg", t_too, -7)
-fout("#h3", s(4) - .1, .25); fout("#h3s", s(4) - .1, .25); fout("#tg3", s(4) - .1, .25)
-fin("#h4", s(4) + .04, .35, 24, 8)
-js(f"tl.to('#scroll',{{y:-1700,duration:{max(.5,t_fin-s(4)+.35):.2f},ease:'power2.in'}},{s(4):.3f});")
-js(f"tl.to('#pfill',{{scaleX:1,duration:{max(.5,t_fin-s(4)+.35):.2f},ease:'power2.in'}},{s(4):.3f});"); sfx("whoosh_c.ogg", s(4), -9)
-js(f"tl.fromTo('#stamp',{{opacity:0,scale:1.7,rotate:-18}},{{opacity:1,scale:1,rotate:-7,duration:.32,ease:'power3.out',immediateRender:false}},{t_fin+.3:.3f});"); sfx("impactpunch.ogg", t_fin + .36, -5)
-fin("#tg4", t_alm - .08, .35, 14, 6); sfx("tick.ogg", t_alm, -7)
-js(f"tl.to('#stamp',{{rotate:-4,scale:1.04,duration:{max(.4,s(5)-t_fin-.7):.2f},ease:'sine.inOut'}},{t_fin+.62:.3f});")
-fout("#s3", s(5) - .08, .3)
-# S5x problem 2: exact limit
+fin("#h3", s(2) + .02, .3, 24, 8); fin("#paper", s(2) + .1, .35, 36, 10, .96); sfx("whoosh_b.ogg", s(2) - .04, -9)
+js(f"tl.fromTo('#scroll',{{y:0}},{{y:-520,duration:{s(3)-s(2):.2f},ease:'none'}},{s(2):.3f});")
+js(f"tl.fromTo('#pfill',{{scaleX:0}},{{scaleX:.2,duration:{s(3)-s(2):.2f},ease:'power2.out'}},{s(2):.3f});")
+fin("#h3s", t_hand - .12, .3, 14, 6); fin("#tg3", t_hand - .3, .3, 14, 6); sfx("tick.ogg", t_hand, -7)
+fout("#h3", s(3) - .1, .22); fout("#h3s", s(3) - .1, .22); fout("#tg3", s(3) - .1, .22)
+js(f"tl.to('#scroll',{{y:-1700,duration:{max(.45,t_alm-s(3)):.2f},ease:'power2.in'}},{s(3):.3f});")
+js(f"tl.to('#pfill',{{scaleX:1,duration:{max(.45,t_alm-s(3)):.2f},ease:'power2.in'}},{s(3):.3f});"); sfx("whoosh_c.ogg", s(3), -9)
+fin("#tg4", s(3) + .1, .3, 14, 6)
+fin("#h4", t_alm - .1, .3, 24, 8)
+js(f"tl.fromTo('#stamp',{{opacity:0,scale:1.7,rotate:-18}},{{opacity:1,scale:1,rotate:-7,duration:.3,ease:'power3.out',immediateRender:false}},{t_alm+.05:.3f});"); sfx("impactpunch.ogg", t_alm + .1, -5)
+js(f"tl.to('#stamp',{{rotate:-4,scale:1.04,duration:{max(.3,s(4)-t_alm-.4):.2f},ease:'sine.inOut'}},{t_alm+.36:.3f});")
+fout("#s3", s(4) - .08, .25)
+# S5x a second one: exact limit
 js("gsap.set('#s5x',{opacity:1}); gsap.set('#h5x,#gauge,#tg5x,#lim',{opacity:0});")
-fin("#h5x", s(5) + .02, .35, 24, 8); fin("#gauge", s(5) + .12, .4, 36, 10, .96); sfx("whoosh_b.ogg", s(5) - .04, -9)
-js(f"tl.fromTo('#mark',{{x:0}},{{x:700,duration:{max(.3,(t_exact-s(5))*.5):.2f},ease:'sine.inOut'}},{s(5)+.1:.3f});")
-js(f"tl.to('#mark',{{x:240,duration:{max(.3,(t_exact-s(5))*.4):.2f},ease:'sine.inOut'}},{s(5)+.1+max(.3,(t_exact-s(5))*.5):.3f});")
-js(f"tl.to('#mark',{{x:433,duration:.4,ease:'back.out(2.2)'}},{t_exact:.3f});")
-fin("#lim", t_exact + .25, .3, 20, 6, .85); sfx("impactpunch.ogg", t_exact + .3, -6)
-fin("#tg5x", t_meth - .1, .35, 14, 6); sfx("tick.ogg", t_meth, -7)
-js(f"tl.fromTo('#lim',{{scale:1}},{{scale:1.06,duration:.5,ease:'sine.inOut',yoyo:true,repeat:{max(1,int((s(6)-t_exact-.6)/.5))}}},{t_exact+.6:.3f});")
-fout("#s5x", s(6) - .08, .3)
+fin("#h5x", s(4) + .02, .3, 24, 8); fin("#gauge", s(4) + .1, .35, 36, 10, .96); sfx("whoosh_b.ogg", s(4) - .04, -9)
+js(f"tl.fromTo('#mark',{{x:0}},{{x:700,duration:{max(.3,(t_sec-s(4))*.55):.2f},ease:'sine.inOut'}},{s(4)+.1:.3f});")
+js(f"tl.to('#mark',{{x:240,duration:{max(.25,(t_sec-s(4))*.4):.2f},ease:'sine.inOut'}},{s(4)+.1+max(.3,(t_sec-s(4))*.55):.3f});")
+js(f"tl.to('#mark',{{x:433,duration:.35,ease:'back.out(2.2)'}},{t_sec:.3f});")
+fin("#lim", t_sec + .2, .3, 20, 6, .85); sfx("impactpunch.ogg", t_sec + .25, -6)
+fin("#tg5x", t_sec + .3, .3, 14, 6)
+fout("#s5x", s(5) - .08, .25)
 # S5 name
 js("gsap.set('#s5',{opacity:1}); gsap.set('#mk5,#h5a,#h5b,#tg5',{opacity:0});")
-fin("#mk5", s(6) + .02, .45, 30, 10, .9)
-js(f"tl.to('#mk5',{{rotate:360,duration:{e(6)-s(6)+.2:.2f},ease:'sine.inOut'}},{s(6):.3f});")
-fin("#h5a", s(6) + .15, .35, 24, 8); fin("#h5b", s(6) + .55, .4, 24, 8); sfx("impactsoft.ogg", s(6) + .6, -5)
-fin("#tg5", s(6) + 1.1, .3, 14, 6)
-fout("#s5", s(7) - .08, .3)
+fin("#mk5", s(5) + .02, .45, 30, 10, .9)
+js(f"tl.to('#mk5',{{rotate:360,duration:{e(5)-s(5)+.2:.2f},ease:'sine.inOut'}},{s(5):.3f});")
+fin("#h5a", s(5) + .15, .35, 24, 8); fin("#h5b", s(5) + .55, .4, 24, 8); sfx("impactsoft.ogg", s(5) + .6, -5)
+fin("#tg5", s(5) + 1.1, .3, 14, 6)
+fout("#s5", s(6) - .08, .3)
 # S6 caveat
 js("gsap.set('#s6',{opacity:1}); gsap.set('#r6a,#r6b',{opacity:0});")
-fin("#r6a", s(7) + .05, .4, 36, 10, .96); sfx("tick.ogg", s(7) + .15, -7)
+fin("#r6a", s(6) + .05, .4, 36, 10, .96); sfx("tick.ogg", s(6) + .15, -7)
 fin("#r6b", t_out - .1, .4, 36, 10, .96); sfx("tick.ogg", t_out, -7)
-js(f"tl.fromTo('#r6b',{{x:0}},{{x:10,duration:.6,ease:'sine.inOut',yoyo:true,repeat:{max(1,int((s(8)-t_out)/.6))}}},{t_out+.4:.3f});")
-fout("#s6", s(8) - .08, .3)
+js(f"tl.fromTo('#r6b',{{x:0}},{{x:10,duration:.6,ease:'sine.inOut',yoyo:true,repeat:{max(1,int((s(7)-t_out)/.6))}}},{t_out+.4:.3f});")
+fout("#s6", s(7) - .08, .3)
 # S7 question, then loop
 js("gsap.set('#s7',{opacity:1}); gsap.set('#h7a,#h7b,#q7',{opacity:0});")
-fin('#q7', s(8) + .15, .4, 36, 10, .96)
-js(f"tl.fromTo('#qm',{{rotate:-8,scale:.92}},{{rotate:8,scale:1.06,duration:.7,ease:'sine.inOut',yoyo:true,repeat:5}},{s(8)+.15:.3f});")
-js(f"tl.fromTo('#oy',{{scale:1}},{{scale:1.07,duration:.4,ease:'sine.inOut',yoyo:true,repeat:1}},{s(8)+.9:.3f});")
-js(f"tl.fromTo('#on',{{scale:1}},{{scale:1.07,duration:.4,ease:'sine.inOut',yoyo:true,repeat:1}},{s(8)+1.7:.3f});")
-fin("#h7a", s(8) + .02, .35, 24, 8); fin("#h7b", s(8) + .3, .35, 24, 8); sfx("impactsoft.ogg", s(8) + .32, -6)
-fout("#s7", e(8) + .5, .3)
-js(f"tl.fromTo('#s1',{{opacity:0,filter:'blur(14px)'}},{{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false}},{e(8)+.55:.3f});")
-js(f"tl.set('#tg1,#ck1,#ck2',{{opacity:0}},{e(8)+.55:.3f});"); sfx("whoosh_c.ogg", e(8) + .5, -10)
+fin('#q7', s(7) + .15, .4, 36, 10, .96)
+js(f"tl.fromTo('#qm',{{rotate:-8,scale:.92}},{{rotate:8,scale:1.06,duration:.7,ease:'sine.inOut',yoyo:true,repeat:5}},{s(7)+.15:.3f});")
+js(f"tl.fromTo('#oy',{{scale:1}},{{scale:1.07,duration:.4,ease:'sine.inOut',yoyo:true,repeat:1}},{s(7)+.9:.3f});")
+js(f"tl.fromTo('#on',{{scale:1}},{{scale:1.07,duration:.4,ease:'sine.inOut',yoyo:true,repeat:1}},{s(7)+1.7:.3f});")
+fin("#h7a", s(7) + .02, .35, 24, 8); fin("#h7b", s(7) + .3, .35, 24, 8); sfx("impactsoft.ogg", s(7) + .32, -6)
+fout("#s7", e(7) + .5, .3)
+js(f"tl.fromTo('#s1',{{opacity:0,filter:'blur(14px)'}},{{opacity:1,filter:'blur(0px)',duration:.4,ease:'power2.out',immediateRender:false}},{e(7)+.55:.3f});")
+js(f"tl.set('#tg1,#st1',{{opacity:0}},{e(7)+.55:.3f});"); sfx("whoosh_c.ogg", e(7) + .5, -10)
 JS = "\n".join(J)
 json.dump(SFX, open(H_ + "/sfx96.json", "w"), indent=1)
 json.dump(dict(lines=[dict(n=c["n"], text=c["line"], start=c["start"], end=c["end"]) for c in C], D=D), open(H_ + "/cues96.json", "w"), indent=1)

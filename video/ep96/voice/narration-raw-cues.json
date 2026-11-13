@@ -1,50 +1,44 @@
 [
  {
   "n": 1,
-  "line": "This AI solved two physics problems.",
+  "line": "Black hole math. Stuck for twenty years. AI finished it.",
   "start": 0.08,
-  "end": 2.42
+  "end": 2.78
  },
  {
   "n": 2,
-  "line": "Both are about black holes.",
-  "start": 2.52,
-  "end": 3.92
+  "line": "It was too long to finish by hand.",
+  "start": 2.84,
+  "end": 4.38
  },
  {
   "n": 3,
-  "line": "One was set out in 2003. Too long for anyone to finish.",
-  "start": 4.02,
-  "end": 7.25
+  "line": "The AI did it almost alone.",
+  "start": 4.44,
+  "end": 5.94
  },
  {
   "n": 4,
-  "line": "The AI finished it. Almost alone.",
-  "start": 7.35,
-  "end": 9.26
+  "line": "Then it did a second one.",
+  "start": 6.0,
+  "end": 7.34
  },
  {
   "n": 5,
-  "line": "The second: the exact limit of a method used for over a decade.",
-  "start": 9.51,
-  "end": 12.94
+  "line": "It's Claude Fable five point two.",
+  "start": 7.49,
+  "end": 9.53
  },
  {
   "n": 6,
-  "line": "It's Claude Fable five point two.",
-  "start": 13.04,
-  "end": 15.07
+  "line": "The company says so. The full work is online.",
+  "start": 9.59,
+  "end": 11.68
  },
  {
   "n": 7,
-  "line": "Anthropic says so. The full work is online.",
-  "start": 15.17,
-  "end": 17.26
- },
- {
-  "n": 8,
-  "line": "Would you trust an AI with physics?",
-  "start": 17.36,
-  "end": 19.51
+  "line": "Would you let AI do physics?",
+  "start": 11.74,
+  "end": 13.16
  }
 ]

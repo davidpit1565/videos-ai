@@ -1,12 +1,12 @@
-This AI solved two physics problems.
+Black hole math. Stuck for twenty years. AI finished it.
 
-Both are about black holes. This is what Anthropic says its new model, Claude Fable 5.2, did in testing:
-1. A calculation set out in 2003 that was too long to finish. Anthropic says the AI finished it, working mostly on its own.
-2. The exact limit of a method physicists have used for more than 15 years.
+This is what Anthropic says its new model, Claude Fable 5.2, did in testing:
+1. A black hole calculation set out in 2003 that was too long to finish. Anthropic says the AI finished it, working mostly on its own.
+2. A second one: the exact limit of a method physicists have used for more than 15 years.
 
-These are Anthropic's own claims from its launch post. Outside scientists have not checked them yet, and we have not tested this ourselves.
+These are Anthropic's own claims from its launch post. The full work is online, outside scientists have not checked it yet, and we have not tested this ourselves.
 
-Would you trust an AI with physics? Yes or no, tell me below.
+Would you let AI do physics? Yes or no, tell me below.
 
 Source: anthropic.com/news/claude-fable-and-mythos-5-2
 

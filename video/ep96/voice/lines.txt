@@ -1,8 +1,7 @@
-This AI solved two physics problems.
-Both are about black holes.
-One was set out in 2003. Too long for anyone to finish.
-The AI finished it. Almost alone.
-The second: the exact limit of a method used for over a decade.
+Black hole math. Stuck for twenty years. AI finished it.
+It was too long to finish by hand.
+The AI did it almost alone.
+Then it did a second one.
 It's Claude Fable five point two.
-Anthropic says so. The full work is online.
-Would you trust an AI with physics?
+The company says so. The full work is online.
+Would you let AI do physics?
