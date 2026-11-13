@@ -47,7 +47,7 @@ markup = f'''
   <div class="card1" id="card1">{HOLE}<img class="mk1" id="mk1" src="assets/claude-mark.svg"><div class="nm1" id="nm1">CLAUDE<br>FABLE 5.2</div><div class="st1" id="st1">AI FINISHED IT ✓</div></div>
   <div class="tag" id="tg1" style="top:1184px;left:100px">SET OUT IN 2003</div>
  </div>
- <div id="s3"><div class="h3" id="h3">TOO LONG</div><div class="h3s" id="h3s">BY HAND</div><div class="h4" id="h4">ALMOST ALONE</div>
+ <div id="s3"><div class="h3" id="h3">TOO LONG</div><div class="h3s" id="h3s">FOR ANYONE</div><div class="h4" id="h4">ALMOST ALONE</div>
   <div class="paper" id="paper"><div class="scroll" id="scroll"><div class="bar" style="width:620px"></div><div class="bar" style="width:760px"></div><div class="sym" data-decor>∫</div><div class="bar" style="width:540px"></div><div class="bar" style="width:700px"></div><div class="bar" style="width:680px"></div><div class="sym" data-decor>Σ</div><div class="bar" style="width:600px"></div><div class="bar" style="width:740px"></div><div class="bar" style="width:480px"></div><div class="sym" data-decor>∂</div><div class="bar" style="width:720px"></div><div class="bar" style="width:560px"></div><div class="bar" style="width:690px"></div><div class="sym" data-decor>∫</div><div class="bar" style="width:640px"></div><div class="bar" style="width:750px"></div><div class="bar" style="width:520px"></div><div class="sym" data-decor>Σ</div><div class="bar" style="width:700px"></div><div class="bar" style="width:610px"></div><div class="bar" style="width:730px"></div><div class="sym" data-decor>∂</div><div class="bar" style="width:580px"></div><div class="bar" style="width:760px"></div><div class="bar" style="width:660px"></div><div class="bar" style="width:500px"></div><div class="sym" data-decor>∫</div><div class="bar" style="width:720px"></div><div class="bar" style="width:640px"></div><div class="bar" style="width:700px"></div><div class="bar" style="width:560px"></div></div><div class="prog"><div class="pfill" id="pfill"></div></div><div class="stamp" id="stamp">DONE ✓</div></div>
   <div class="tag" id="tg3" style="top:1184px;left:100px">NOBODY FINISHED IT</div><div class="tag" id="tg4" style="top:1184px;left:100px">THE AI DID IT</div></div>
  <div id="s5x"><div class="h5x" id="h5x">A SECOND ONE</div>
@@ -116,7 +116,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 '''
 t_stuck = W("stuck", 0, default=1.0)
 t_ai = W("ai", 0, default=2.2)
-t_hand = W("hand", 0, after=s(2), default=e(2) - .4)
+t_hand = W("anyone", 0, after=s(2), default=e(2) - .4)
 t_alm = W("almost", 0, after=s(3), default=s(3) + .8)
 t_sec = W("second", 0, after=s(4), default=s(4) + .9)
 t_out = W("full", 0, after=s(6), default=s(6) + 1.0)

@@ -2,43 +2,43 @@
  {
   "n": 1,
   "line": "Black hole math. Stuck for twenty years. AI finished it.",
-  "start": 0.08,
-  "end": 2.78
+  "start": 0.084,
+  "end": 2.926
  },
  {
   "n": 2,
-  "line": "It was too long to finish by hand.",
-  "start": 2.84,
-  "end": 4.38
+  "line": "It was too long for anyone to finish.",
+  "start": 3.011,
+  "end": 5.189
  },
  {
   "n": 3,
   "line": "The AI did it almost alone.",
-  "start": 4.44,
-  "end": 5.94
+  "start": 5.274,
+  "end": 6.863
  },
  {
   "n": 4,
   "line": "Then it did a second one.",
-  "start": 6.0,
-  "end": 7.34
+  "start": 6.947,
+  "end": 8.347
  },
  {
   "n": 5,
-  "line": "It's Claude Fable five point two.",
-  "start": 7.49,
-  "end": 9.53
+  "line": "This is Claude Fable five point two.",
+  "start": 8.537,
+  "end": 11.011
  },
  {
   "n": 6,
   "line": "The company says so. The full work is online.",
-  "start": 9.59,
-  "end": 11.68
+  "start": 11.095,
+  "end": 13.284
  },
  {
   "n": 7,
   "line": "Would you let AI do physics?",
-  "start": 11.74,
-  "end": 13.16
+  "start": 13.368,
+  "end": 14.863
  }
 ]

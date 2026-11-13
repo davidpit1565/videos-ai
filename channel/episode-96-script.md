@@ -30,3 +30,6 @@ Spoken lines (7, 14.46 s; gap 0.06, long 0.15, max speed-up 1.45): Black hole ma
 Words with THR/TR clusters removed (three, trust, Anthropic spoken; "Anthropic" stays on screen). Basis: calculation "laid out in 2003 but was too laborious to complete" (Anthropic), "not computed in the two decades since" (preprint 2611.00175v1). "Stuck" is our plain wording for that.
 Gate `video/ep96/out/gate-v7.txt` 5 of 5, 0 skipped; per-line Whisper match word for word; accent clean; audio measured, not heard. Blind reader not re-run on the v7 frame.
 Scores (judgements): HOOK 84 | VIRALITY 70 | OVERALL 73 | PREDICTED 350-1,100.
+
+## 13.11.2026 v8 (David on v7: the end of "hand" is off, "It's" is unclear, the first three words are a bit too fast: slow the whole video a touch)
+Line 2 -> "It was too long for anyone to finish." Line 5 -> "This is Claude Fable five point two." Voice built with gap 0.08, long 0.18, max speed-up 1.3, then the whole narration slowed 5% (atempo 0.95, pitch kept; cues and word times scaled). 16.16 s. Gate `video/ep96/out/gate-v8.txt` 5 of 5, 0 skipped; Whisper per-line match before the slow-down; audio measured, not heard.
