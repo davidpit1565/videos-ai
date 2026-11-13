@@ -1,0 +1,7 @@
+Title: Ask ChatGPT to draw you (the prompt)
+
+Description:
+How: open ChatGPT, type "Create a caricature of me and my job based on everything you know about me." and watch it draw you.
+Tip: tell it a bit about yourself first and skip uploading your real photo.
+The drawing in this video is a drawn example, not a real ChatGPT result.
+Prompt wording and the photo tip: Forbes, 9 Feb 2026, https://www.forbes.com/sites/kateoflahertyuk/2026/02/09/the-new-chatgpt-caricature-trend-comes-with-a-privacy-warning/

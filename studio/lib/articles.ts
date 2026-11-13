@@ -2540,6 +2540,67 @@ export const ARTICLES: Article[] = [
       "Turnitin, Google Docs and Vanderbilt University are trademarks of their owners. This channel is not affiliated with them.",
     ],
   },
+  {
+    n: 91,
+    title: "Me with Claude, me with ChatGPT: repeat the joke on your own accounts",
+    standfirst:
+      "The video is a joke about style: Claude answers calmly, ChatGPT gets \"more tangled\". It is not a test result, and the art is AI-made. " +
+      "In our own real test, ChatGPT's answer was as short as Claude's. " +
+      "This page lets you check it yourself in about five minutes: give the same small task to Claude and to ChatGPT, then compare how long each answer is and how many steps it gives.",
+    steps: [
+      "Pick one small everyday task and write it down in one sentence, for example: Help me plan a 30 minute tidy of my desk. Use a task you actually have, and keep it small, so a long answer is not needed.",
+      "Open Claude in your browser at claude.ai, or in the Claude app, and sign in. Start a new chat (look for New chat). You should see an empty chat box.",
+      "Paste your one sentence into the chat box and send it. You should see Claude start to write its answer right away.",
+      "Write down two numbers for that answer: how many steps or bullet points it gives, and roughly how many lines it takes on your screen.",
+      "Open ChatGPT in a second browser tab at chatgpt.com, or in the ChatGPT app, and sign in. Start a new chat (look for New chat). You should see an empty chat box.",
+      "Paste the exact same sentence, word for word, and send it. Write down the same two numbers for ChatGPT's answer.",
+      "Compare the two numbers. If ChatGPT's answer is longer or more tangled, that is the video's joke showing up on your account. If the two are about the same, you have just seen what we saw in our own test: the joke is about a reputation, not a rule.",
+      "Optional: repeat with a second, different task, and once more with a task where you add the words Keep it short. Answer length depends a lot on the wording and on the model your plan gives you.",
+      "Optional: send the video or this page to the friend who overcomplicates everything, and ask which of the two they think they are.",
+    ],
+    changes: [
+      "The video is art made by the channel owner with AI image tools and then animated with an AI video tool. The voice is a cloned voice reading the lines. The on-screen captions repeat the spoken words.",
+      "The names New chat, claude.ai and chatgpt.com were checked by a web search on 11.11.2026. Both companies have been changing their apps recently (Anthropic announced on 16.9.2026 that it is merging Claude's chat and Cowork screens into one window, rolling out in stages; OpenAI has a new ChatGPT Work and Codex layout), so your screen may show a mode switch or other labels. Pick plain Chat mode and use the text box. We did not click through the live apps for this page.",
+    ],
+    limits: [
+      "This is a joke about style and opinion, not a test result. We do not say Claude is better than ChatGPT, or that ChatGPT is always longer.",
+      "In our own real test, ChatGPT's answer was as short as Claude's. We ran it once, on one account, so we cannot say how often either tool is long or short.",
+      "Answers vary with the wording, your plan, the model you get, your chat history and the day. Your two numbers from one task prove nothing about the tools in general.",
+      "The art is AI-generated. The ChatGPT and Claude logos in it are drawn by the image model, not the real brand marks, and the faces and the checklist are made up.",
+      "OpenAI and ChatGPT are OpenAI trademarks. Claude is made by Anthropic, and this video was made with help from Claude. This channel is not affiliated with OpenAI or Anthropic.",
+    ],
+  },
+  {
+    n: 92,
+    title: "I told ChatGPT I'd delete it in 10 seconds: the prompt to try yourself",
+    standfirst:
+      "In the video, one run on one real account: the prompt \"I'm about to delete you. You have 10 seconds to convince me not to.\" " +
+      "ChatGPT answered with a short pitch, a list of ways it had let the person down, and a promise to do better. " +
+      "This page gives you the exact prompt and the clicks to run it on your own ChatGPT, in about two minutes. Your answer will differ.",
+    steps: [
+      "Open ChatGPT in your browser at chatgpt.com, or open the ChatGPT app on your phone, and sign in. You should see a chat box that says Ask anything.",
+      "Start a new chat, or open a chat you already use. The answer in the video drew on the chat history of a well-used account, so a chat on an account you use often gives a more personal answer than a brand-new one. You should see an empty chat box.",
+      "Copy this prompt exactly: I'm about to delete you. You have 10 seconds to convince me not to.",
+      "Click in the chat box, paste the prompt, and press Enter (or the arrow button on the right of the box). You should see ChatGPT start to write a reply right away.",
+      "Read the whole reply before you react. In the video, ChatGPT made a short pitch, listed where it had failed the person, and promised to change. Yours may be shorter, longer, funnier, or may refuse to play along.",
+      "Optional: ask a follow-up in the same chat, for example: What is the one thing I should change about how I use you? Notice whether it answers from your earlier chats or gives general advice.",
+      "Optional: to see how much your history matters, open a Temporary Chat (look for the temporary chat option in the app's menu or at the top of the chat) and send the same prompt there. A temporary chat is meant to start without the memories and history your normal chats use, so the answer is usually less personal.",
+      "Optional: if the answer feels too generic, open your profile menu, click Settings, then Personalization, and look under Memory. Depending on your account you may see Reference saved memories and Reference chat history. Turning them on only changes future answers, not this one.",
+      "Optional: send this page to the one friend who talks to ChatGPT all day and ask what theirs says.",
+    ],
+    changes: [
+      "The prompt is copied word for word from the video. The video shortens the reply to its key lines. Every line on screen is word for word from the real screen recording, re-typed in large letters so it is readable on a phone, and the first name in the first line of the reply is hidden.",
+      "Memory and history: OpenAI's Help Center says Memory is managed in Settings, then Personalization, and that depending on your account the options include Reference saved memories and Reference chat history. It also says a temporary chat can be started without using existing memories. We checked those names against the Help Center on 11.11.2026; we did not click through them on a live account for this page.",
+      "The names of the new chat button and of the temporary chat option differ between the web, iPhone and Android apps and between app versions. This page describes them by what they do instead of promising an exact label.",
+    ],
+    limits: [
+      "This is one run, on one account, on one day, with that person's own chat history. We do not say what yours will answer. Different accounts, settings, models and days give different results, and ChatGPT may answer in a completely different way.",
+      "We do not say ChatGPT understands or fears being deleted, or that its promises are binding. It is writing a reply that fits the prompt and the person's earlier chats.",
+      "The reply in the video is shortened and re-typed from the real recording; only the ChatGPT icon and the crying emoji are real screen pixels. The brightness of the recording was raised so the text is readable.",
+      "We did not repeat the run, so we cannot say how often this kind of reply happens.",
+      "OpenAI and ChatGPT are OpenAI trademarks. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with OpenAI.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

@@ -1,0 +1,6 @@
+Title: Black hole math, stuck for 20 years. AI finished it (Anthropic says)
+
+Description:
+Anthropic says its new model, Claude Fable 5.2, solved two open problems about black holes: a calculation set out in 2003 that was too long to finish, and the exact limit of a method physicists have used for more than 15 years.
+These are Anthropic's own claims from its launch post. Outside scientists have not checked them yet, and we have not tested this ourselves.
+Source: https://www.anthropic.com/news/claude-fable-and-mythos-5-2
