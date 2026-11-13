@@ -1,0 +1,4 @@
+# Design skills installed 13.11.2026 (David's request, from a reel by instagram.com/danaellag)
+- `frontend-design`: github.com/anthropics/skills, commit 2c5958e, skills/frontend-design (SKILL.md + LICENSE.txt). Text only.
+- `impeccable`: github.com/pbakaus/impeccable, commit b4bff16, plugin/skills/impeccable, version 4.8.2, Apache 2.0. Copied WITHOUT the plugin's hooks and agents. Its launcher `scripts/impeccable` downloads a native engine binary (checksum-verified) from the project's release channel on first use and calls impeccable.style when a new design starts. Telemetry is switched off in `.impeccable/config.json`. NOT run in this repo yet: the first run needs network and David's go-ahead.
+- `template-site-audit`: our own skill, adapted from the public Hebrew prompt in David's Google Doc "a site that screams vibe coding". Audit first, nothing changes without approval, never invents numbers or testimonials.
