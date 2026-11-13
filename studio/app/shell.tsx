@@ -4,12 +4,10 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useStudio } from "./providers";
 import { Suspense, useEffect, useState } from "react";
-import { isSite } from "@/lib/routes";
+import { isSite, isStudio } from "@/lib/routes";
 import { localDT } from "@/lib/fmt";
-import SiteSocial from "./site-social";
+import SiteFooter from "./site-footer";
 import Mark from "./mark";
-import PageWipe from "./page-wipe";
-import ScrollProgress from "./scroll-progress";
 
 /** ?debug=1 on any studio page — reads the actual numbers behind the nav-bar-gap report
  *  straight off this device's own DOM, instead of another guess from a screenshot. Env
@@ -94,7 +92,9 @@ const TABS = [
 export default function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   const { mode, saving, saveError, update } = useStudio();
-  const site = isSite(path);
+  // A path no list claims is a 404 (middleware.ts rewrites it to app/not-found.tsx), and a
+  // 404 is a public page: it must not wear the studio's Hebrew tab bar.
+  const site = isSite(path) || !isStudio(path);
 
   /* He asked directly: he cannot tell whether the page in front of him is the current
    * deploy without asking. This is the answer — the real commit this build was made
@@ -138,13 +138,14 @@ export default function Shell({ children }: { children: React.ReactNode }) {
    * never the thing that goes missing — worst case is a harmless gap of background below
    * it once the chrome does collapse. See globals.css. */
 
+  // The page-wipe line and the scroll-progress bar were removed in the 13.11.2026 rebrand:
+  // two of about ten motion effects the site audit counted. One footer for every public
+  // page, except the PIN page, which is the studio's door and not part of the site.
   if (site)
     return (
       <>
-        <PageWipe />
-        <ScrollProgress />
         {children}
-        <SiteSocial />
+        {path === "/unlock" ? null : <SiteFooter />}
       </>
     );
 
@@ -169,7 +170,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       </Suspense>
       <div className="top">
         <Link className="brand" href="/studio">
-          <Mark />
+          <Mark size={22} tone="dark" />
           <b>Actually Works</b>
         </Link>
         <div className="top-right">

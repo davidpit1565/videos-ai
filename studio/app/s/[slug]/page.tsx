@@ -12,25 +12,24 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const s = skillBySlug((await params).slug);
-  return s ? { title: `${s.title} — Actually Works`, description: s.blurb } : {};
+  // bare title: the layout template already adds "· Actually Works"
+  return s ? { title: s.title, description: s.blurb } : {};
 }
 
 export default async function SkillPage({ params }: { params: Promise<{ slug: string }> }) {
   const s = skillBySlug((await params).slug);
   if (!s) notFound();
   return (
-    <div className="shell pub" dir="ltr">
+    <main className="site" dir="ltr">
       <SiteNav />
-      <p className="kicker">
-        {s.episode ? (
-          <Link href={`/e/${s.episode}`}>Episode {String(s.episode).padStart(2, "0")}</Link>
-        ) : (
-          "SKILL.md"
-        )}
-      </p>
+      {s.episode ? (
+        <p className="ep-no">
+          A skill from <Link href={`/e/${s.episode}`}>episode {s.episode}</Link>
+        </p>
+      ) : null}
 
       <h1>{s.title}</h1>
-      <p className="sub" style={{ fontSize: 18 }}>{s.blurb}</p>
+      <p className="lede">{s.blurb}</p>
 
       <Reveal>
         <h2>Install it</h2>
@@ -46,15 +45,6 @@ export default async function SkillPage({ params }: { params: Promise<{ slug: st
         <CopyOrDownload text={s.body} filename={`${s.slug}.md`} />
       </Reveal>
 
-      <div className="foot">
-        Every skill on this list is one we actually run, on this project, today. Reply to
-        any issue and it reaches a person.
-      </div>
-      <footer className="sfoot">
-        <Link href="/">Episodes</Link>
-        <Link href="/search">Search</Link>
-        <Link href="/about">About</Link>
-      </footer>
-    </div>
+    </main>
   );
 }

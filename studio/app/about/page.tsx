@@ -32,9 +32,6 @@ export default async function About() {
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/about" />
-      <p className="kicker">
-        <Link href="/">Actually Works</Link> · About
-      </p>
       <h1>Every setup here was run before it was published.</h1>
 
       <section>
@@ -103,9 +100,6 @@ export default async function About() {
         </section>
       </Reveal>
 
-      <footer className="sfoot">
-        <Link href="/">Episodes</Link>
-      </footer>
     </main>
   );
 }

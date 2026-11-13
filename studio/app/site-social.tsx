@@ -1,12 +1,14 @@
 
-/** Real profile links, once — every public page gets the same row, and changing an
- *  account only means changing it here. Icons are plain inline SVGs, no icon library.
- *  Exported so layout.tsx can reuse the same real URLs as JSON-LD sameAs — one list,
- *  not a second hardcoded copy that drifts the moment an account changes. */
+/** Real profile links, once: the shared footer (site-footer.tsx) and the JSON-LD sameAs in
+ *  layout.tsx both read this list, so changing an account means changing it here only.
+ *  The icon paths are kept for any page that wants them; the footer writes the names. */
+export const IG_HANDLE = "@actually_works.ai";
+export const IG_URL = "https://www.instagram.com/actually_works.ai/";
+
 export const LINKS = [
   {
     name: "Instagram",
-    href: "https://www.instagram.com/actually_works.ai/",
+    href: IG_URL,
     icon: (
       <path d="M12 2.2c2.7 0 3 0 4.1.06 1.1.05 1.8.22 2.4.46.65.25 1.2.6 1.7 1.1.5.5.85 1.05 1.1 1.7.24.6.4 1.3.46 2.4.05 1.1.06 1.4.06 4.1s0 3-.06 4.1c-.05 1.1-.22 1.8-.46 2.4-.25.65-.6 1.2-1.1 1.7-.5.5-1.05.85-1.7 1.1-.6.24-1.3.4-2.4.46-1.1.05-1.4.06-4.1.06s-3 0-4.1-.06c-1.1-.05-1.8-.22-2.4-.46a4.6 4.6 0 0 1-1.7-1.1 4.6 4.6 0 0 1-1.1-1.7c-.24-.6-.4-1.3-.46-2.4C2.2 15 2.2 14.7 2.2 12s0-3 .06-4.1c.05-1.1.22-1.8.46-2.4.25-.65.6-1.2 1.1-1.7.5-.5 1.05-.85 1.7-1.1.6-.24 1.3-.4 2.4-.46C9 2.2 9.3 2.2 12 2.2zm0 1.8c-2.66 0-2.97 0-4.02.06-.9.04-1.4.19-1.72.31-.43.17-.74.37-1.07.7-.33.33-.53.64-.7 1.07-.12.32-.27.82-.31 1.72C4.13 9.03 4.12 9.34 4.12 12s0 2.97.06 4.02c.04.9.19 1.4.31 1.72.17.43.37.74.7 1.07.33.33.64.53 1.07.7.32.12.82.27 1.72.31 1.05.06 1.36.06 4.02.06s2.97 0 4.02-.06c.9-.04 1.4-.19 1.72-.31.43-.17.74-.37 1.07-.7.33-.33.53-.64.7-1.07.12-.32.27-.82.31-1.72.06-1.05.06-1.36.06-4.02s0-2.97-.06-4.02c-.04-.9-.19-1.4-.31-1.72a2.8 2.8 0 0 0-.7-1.07 2.8 2.8 0 0 0-1.07-.7c-.32-.12-.82-.27-1.72-.31C14.97 4 14.66 4 12 4zm0 3.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3zm5.15-1.98a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0z" />
     ),
@@ -26,37 +28,3 @@ export const LINKS = [
     ),
   },
 ];
-
-/** The icon row alone, no wrapper, no Agently pill — for reuse inside the header
- *  (SiteNav), where the accounts need to be visible on arrival instead of only after
- *  scrolling to the very bottom of the page. He flagged this directly: the icons
- *  existed, but only in the footer, and on a long page that reads as "gone." */
-export function SocialIcons({ size = 18 }: { size?: number }) {
-  return (
-    <div className="ssocial-inline" aria-label="Social links">
-      {LINKS.map((l) => (
-        <a key={l.name} href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.name}>
-          <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size}>
-            {l.icon}
-          </svg>
-        </a>
-      ))}
-    </div>
-  );
-}
-
-export default function SiteSocial() {
-  return (
-    <div className="ssocial-wrap">
-      <div className="ssocial" aria-label="Social links">
-        {LINKS.map((l) => (
-          <a key={l.name} href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.name}>
-            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-              {l.icon}
-            </svg>
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-}

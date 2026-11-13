@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import Link from "next/link";
 import SiteNav from "../sitenav";
 import Search from "./search";
 import Reveal from "../reveal";
@@ -22,8 +21,9 @@ export default async function SearchPage() {
       const a = ARTICLES.find((x) => x.n === e.n);
       return {
         kind: "episode" as const,
+        label: `Episode ${e.n}`,
         href: `/e/${e.n}`,
-        title: `${String(e.n).padStart(2, "0")} · ${e.title}`,
+        title: e.title,
         blurb: e.blurb,
         views: e.views,
         yt: e.ytVideoId ? `https://youtu.be/${e.ytVideoId}` : null,
@@ -34,6 +34,7 @@ export default async function SearchPage() {
     }),
     ...PROMPTS.map((p) => ({
       kind: "prompt" as const,
+      label: "Prompt",
       href: `/p/${p.slug}`,
       title: p.title,
       blurb: p.blurb,
@@ -47,12 +48,9 @@ export default async function SearchPage() {
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/search" />
-      <p className="kicker">
-        <Link href="/">Actually Works</Link> · Search
-      </p>
       <h1>Search</h1>
       <p className="sub">
-        Every episode, every prompt, and the link to each video. Type anything — a tool, a
+        Every episode, every prompt, and the link to each video. Type a tool, a
         word from a prompt, or what you are trying to get done.
       </p>
       <Reveal>
