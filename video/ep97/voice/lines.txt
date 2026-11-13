@@ -1,7 +1,7 @@
-Four Claude AIs. One pelican. Watch it level up.
-The smallest one: no seat. It lies on the bike.
-The next one: legs on the pedals.
-The big one: it moves fast.
-The newest one adds the sun, a shadow, a real bike.
-Same company. Not the same pelican.
-Send it to the friend who thinks every AI is the same.
+Guess the newest Claude.
+Same request, four Claude models: a pelican on a bike.
+Pause. Type A, B, C or D below.
+B is Haiku, the smallest: no sun.
+D adds a sun. A adds a road.
+C is Fable, the newest: clouds and a shadow.
+Send it to a buddy. See if they get it.
