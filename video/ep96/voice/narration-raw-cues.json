@@ -3,42 +3,42 @@
   "n": 1,
   "line": "AI solves black hole math.",
   "start": 0.08,
-  "end": 1.95
+  "end": 1.83
  },
  {
   "n": 2,
-  "line": "So I give it one sentence.",
-  "start": 2.05,
-  "end": 3.89
+  "line": "Two open problems. Both about black holes.",
+  "start": 1.93,
+  "end": 4.3
  },
  {
   "n": 3,
-  "line": "A cat runs from a vacuum.",
-  "start": 3.99,
-  "end": 5.67
+  "line": "It turns a famous math proof into code. In thirty hours.",
+  "start": 4.4,
+  "end": 7.96
  },
  {
   "n": 4,
-  "line": "Seventy-five seconds. I'm playing it.",
-  "start": 5.77,
-  "end": 7.99
+  "line": "It designs three working devices. From scratch.",
+  "start": 8.06,
+  "end": 10.93
  },
  {
   "n": 5,
   "line": "It's called Claude Fable five point two.",
-  "start": 8.24,
-  "end": 10.39
+  "start": 11.18,
+  "end": 13.68
  },
  {
   "n": 6,
-  "line": "The black hole part is Anthropic's claim. Nobody outside has checked it yet.",
-  "start": 10.49,
-  "end": 14.07
+  "line": "These are Anthropic's own claims. Nobody outside has checked the black holes yet.",
+  "start": 13.78,
+  "end": 17.72
  },
  {
   "n": 7,
-  "line": "What should I ask it next?",
-  "start": 14.17,
-  "end": 15.58
+  "line": "What would you ask it?",
+  "start": 17.82,
+  "end": 18.66
  }
 ]

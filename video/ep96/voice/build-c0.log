@@ -1,0 +1,25 @@
+      per-line seeds: {1: 51, 2: 66, 3: 67, 4: 54, 5: 55, 6: 56}
+      per-line exaggeration: {1: 0.88, 2: 0.74, 3: 0.74, 4: 0.74, 5: 0.74, 6: 0.66, 7: 0.8}
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/opt/v311/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+loaded PerthNet (Implicit) at step 250,000
+      01/07   cached take (restart-safe, no regeneration): AI solves black hole math.
+  01/7   1.75s  AI solves black hole math.
+      02/07   cached take (restart-safe, no regeneration): Two open problems. Both about black holes.
+  02/7   2.38s  Two open problems. Both about black holes.
+      03/07   cached take (restart-safe, no regeneration): It turns a famous math proof into code. In thirty hours.
+  03/7   3.11s  It turns a famous math proof into code. In thirty ho
+      04/07   cached take (restart-safe, no regeneration): It designs three working devices. From scratch.
+  04/7   3.09s  It designs three working devices. From scratch.
+      05/07   cached take (restart-safe, no regeneration): It's called Claude Fable five point two.
+  05/7   2.51s  It's called Claude Fable five point two.
+      06/07   cached take (restart-safe, no regeneration): These are Anthropic's own claims. Nobody outside has checked the black holes yet.
+  06/7   3.94s  These are Anthropic's own claims. Nobody outside has
+      07/07   cached take (restart-safe, no regeneration): What would you ask it?
+  07/7   0.84s  What would you ask it?
+  placed 4 breaths from his own recording
+  room tone bed at -55 dBFS
+
+wrote video/ep96/voice/narration-raw.wav  18.7s  7 lines

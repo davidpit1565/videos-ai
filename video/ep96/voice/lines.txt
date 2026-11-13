@@ -1,7 +1,7 @@
 AI solves black hole math.
-So I give it one sentence.
-A cat runs from a vacuum.
-Seventy-five seconds. I'm playing it.
+Two open problems. Both about black holes.
+It turns a famous math proof into code. In thirty hours.
+It designs three working devices. From scratch.
 It's called Claude Fable five point two.
-The black hole part is Anthropic's claim. Nobody outside has checked it yet.
-What should I ask it next?
+These are Anthropic's own claims. Nobody outside has checked the black holes yet.
+What would you ask it?
