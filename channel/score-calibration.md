@@ -96,3 +96,5 @@ FACT: ranked 8 of our published hooks that have real views: Spearman -0.23 (n=8)
 
 - **ep95 (ChatGPT caricature, v8) published 13.11.2026 08:02 Belgium as a REGULAR reel** (Instagram https://www.instagram.com/reel/DfrDI0sBned/, YouTube y8mzez1BSPQ, no Facebook). Prediction: no score was written before publishing; label only, to be filled at the 48 h reading (15.11 about 08:05). Note: the drawing is a drawn example, not a real ChatGPT result (said in the caption).
 | ep89 (48 h reading, 13.11.2026 08:00 Brussels, studio; published 11.11 08:05) | no honest predicted-views number was logged before publishing (label only) | real: 1,194 views, reach 947, 14 likes, 18 saves, 3 shares, 0 comments → scale score ~73 (200=50, 10,000=100). Second best of the channel after ep86 (1,583); the most saves and shares so far. |
+
+| ep88 (72 h reading, 13.11.2026 ~10:50 Brussels, studio) | predicted views 150-350 (score ~50) | real: Instagram 186 views (+1 since 48 h), reach 130, 5 likes, 0 saves, 0 shares; YouTube 77 views; followers 340 (includes the purchased ones) → scale score ~49. Inside the predicted range, stopped growing at 48 h. |
