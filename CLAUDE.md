@@ -607,3 +607,6 @@ The studio is gated against the public, not against Claude. When David has given
 - No needless gaps: build the voice with `--gap 0.06 --long 0.15 --max-speedup 1.45` and short lines; the hook must be punchy (three short beats worked: "Black hole math. Stuck for twenty years. AI finished it.").
 - Hook choice: a stake over time ("stuck for twenty years, AI finished it") beat a flat report ("this AI solved two physics problems") with both blind readers. Compare hook options with blind agents before building.
 - Voice re-rolls: check each line against its own text with Whisper and re-roll only the lines that are wrong (roll script pattern of ep96 v7), never all seeds at once.
+
+## Logo status (David, 13.11.2026, night)
+- Round 3 (mascots: A-character, raised eyebrow, plug, red button) is REJECTED: "the earlier examples were much better". The live candidates are the three v2 directions in `channel/brand/logo-v2/` (A = AW with the check, B = A with the marker swipe, C = the wink); he leans to A (the AW). Full kits for all three, dark and light, go in `channel/brand/logo-kit-ABC/`. No word inside a filled box (rule above). Nothing goes on the profile, site or app until he picks; then ONE merge.
