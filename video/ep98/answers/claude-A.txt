@@ -1,0 +1,41 @@
+function steer(s) {
+  const st = steer.state || (steer.state = { turn: 0 });
+  if (s.speed < 0.5 && s.front > 150) st.turn = 0; // reset on fresh start
+
+  const { left, right, front, speed } = s;
+  const roadWidth = left + right;
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+  // Center on the road
+  let target = ((right - left) / Math.max(roadWidth, 1)) * 2.2;
+
+  // Wall repulsion
+  if (left < 35)  target += (35 - left)  / 35 * 0.9;
+  if (right < 35) target -= (35 - right) / 35 * 0.9;
+
+  // Look-ahead: steer toward the more open side as the wall approaches
+  if (front < 110) target += (right - left) / 90;
+  if (front < 55)  target *= 1.5;
+  target = clamp(target, -1, 1);
+
+  // Adaptive smoothing: react faster when the wall is close
+  const alpha = front < 80 ? 0.7 : 0.35;
+  const turn = st.turn * (1 - alpha) + target * alpha;
+  st.turn = turn;
+
+  // Speed planning: pick a target speed from available room and upcoming turn
+  const room = clamp(front / 180, 0, 1);
+  const sharpness = Math.abs(target);              // leading indicator
+  const narrow = clamp((140 - roadWidth) / 140, 0, 1);
+  const targetSpeed = 3 + 9 * room * (1 - 0.6 * sharpness) * (1 - 0.4 * narrow);
+
+  // Proportional speed control (tune the 0.5 gain)
+  let gas = clamp((targetSpeed - speed) * 0.5 + 0.3, 0, 1);
+
+  // Hard lift when too fast for the room ahead
+  if (front < 70 && speed > 4) gas = 0;
+  // Never stall from a standstill
+  if (speed < 1.5) gas = Math.max(gas, 0.35);
+
+  return { turn, gas };
+}

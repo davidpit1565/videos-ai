@@ -1,0 +1,27 @@
+function steer(s) {
+  const f = s.front;
+  const l = s.left;
+  const r = s.right;
+  const v = s.speed;
+  const dx = 0.7071 * (r - l);
+  const dy = f + 0.7071 * (l + r);
+  const angle = Math.atan2(dx, dy);
+  let turn = angle * (2.8 + Math.max(0, 140 - f) / 70) + (r - l) / 220;
+  if (l < 28 && r < 28) {
+    turn = r >= l ? 1 : -1;
+  } else {
+    if (l < 28) turn = Math.max(turn, 1 - l / 40);
+    if (r < 28) turn = Math.min(turn, -1 + r / 40);
+  }
+  if (f < 35) {
+    turn = Math.max(-1, Math.min(1, turn * 1.5));
+    if (Math.abs(turn) < 0.8) turn = r >= l ? 1 : -1;
+  }
+  turn = Math.max(-1, Math.min(1, turn));
+  let target = Math.min(1.5 + f * 0.02125, 10 - Math.abs(turn) * 7);
+  if (Math.min(l, r) < 30) target = Math.min(target, 2.2);
+  if (f < 25) target = Math.min(target, 1.4);
+  let gas = 0.2 + (target - v) * 0.35;
+  gas = Math.max(0, Math.min(1, gas));
+  return { turn, gas };
+}

@@ -1,0 +1,47 @@
+function steer(s) {
+  const { front, left, right, speed } = s;
+
+  // Centering & corner-entry steering
+  // Steer toward whichever side has more open space, scaled by how tight the road is
+  const diff = right - left;
+  const sideSum = Math.max(1, left + right);
+  const lateralError = diff / sideSum;
+
+  // Increase steering authority as front wall approaches
+  const urgency = Math.max(0.6, Math.min(2.2, 220 / Math.max(25, front)));
+  let turn = lateralError * urgency * 1.8;
+
+  // Emergency wall-avoidance override (car is 20px wide -> 10px radius)
+  if (left < 32) {
+    turn += ((32 - left) / 32) * 1.5;
+  }
+  if (right < 32) {
+    turn -= ((32 - right) / 32) * 1.5;
+  }
+
+  // Hairpin / dead-end commitment: if front is very close and sides are nearly equal, commit hard
+  if (front < 75 && Math.abs(diff) < 12) {
+    turn = right >= left ? 1 : -1;
+  }
+
+  turn = Math.max(-1, Math.min(1, turn));
+
+  // Speed management: target speed proportional to clear distance ahead and inverse to turn sharpness
+  const safeStoppingDist = speed * speed * 2.1 + 28;
+  const cornerTargetSpeed = Math.max(2.6, Math.min(10, (front / 26) * (1 - 0.55 * Math.abs(turn))));
+
+  let gas;
+  if (front < safeStoppingDist && speed > cornerTargetSpeed) {
+    // Active braking (< 0.2 brakes) scaled by how overspeed we are
+    const overshoot = (speed - cornerTargetSpeed) / 10;
+    gas = Math.max(0, 0.18 - overshoot * 0.4);
+  } else if (speed > cornerTargetSpeed + 0.5) {
+    // Coasting (0.2 to 0.45 maintains/gently bleeds speed without harsh braking)
+    gas = 0.25;
+  } else {
+    // Full throttle on straights, smooth power out of corners
+    gas = Math.max(0.55, Math.min(1, (cornerTargetSpeed - speed + 2) / 3));
+  }
+
+  return { turn, gas };
+}
