@@ -2513,6 +2513,32 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
+    n: 97,
+    title: "One pelican, four AIs, one clear winner: run the same drawing test on Claude yourself",
+    standfirst:
+      "We gave four Claude models the same request, \"Draw a pelican riding a bicycle.\", and put their drawings side by side. " +
+      "This page shows how to run the same test yourself in about five minutes and compare the results.",
+    steps: [
+      "Open claude.ai in your browser and sign in. You should see a message box at the bottom of the page.",
+      "Click the model name next to the message box. A list of Claude models opens. Which models you see depends on your plan.",
+      "Pick the smallest model in the list. Type exactly: Draw a pelican riding a bicycle. Press Enter. Claude answers with a drawing or with code that makes one.",
+      "If Claude answers with code (SVG), ask: Show it as an image I can see. Wait for the picture. Save or screenshot it and write the model name on it.",
+      "Start a New chat for each model, so the earlier drawing cannot influence the next one. Pick the next model in the list and send the same sentence word for word.",
+      "Repeat for every model you can pick, then put the drawings side by side. Look for what each one adds: a sun, a road, clouds, a shadow.",
+      "Optional: show the drawings to a friend without the model names and ask which one they think came from the newest model. Write down their guess.",
+    ],
+    changes: [
+      "In our test, the Haiku 5.5 drawing had no sun and no road, the Sonnet 5.5 drawing added a sun, the Opus 5.5 drawing added a road, and the Fable 5.2 drawing added clouds and a shadow.",
+      "We ran the test twice. This video shows the second round, because in the first round Opus was an older version and we wanted all four models to be current. In both rounds the drawings are the real files each model produced.",
+    ],
+    limits: [
+      "We ran it through Claude Code agents, one try per model, not through the claude.ai chat app. The steps above describe the chat app from general knowledge and were not re-run there, so the menu names and the model list may look different for you.",
+      "One drawing per model is one sample. Another try can look different, so this is not a ranking of the models.",
+      "The pelican-on-a-bicycle test was made up by Simon Willison in 2024 as a fun comparison. It does not measure everything an AI can do.",
+      "Claude, Haiku, Sonnet, Opus and Fable are names of Anthropic's products. This channel is not affiliated with Anthropic.",
+    ],
+  },
+  {
     n: 93,
     title: "A school AI tool says you used AI on your own essay: 3 things that help you prove you wrote it",
     standfirst:
