@@ -254,3 +254,6 @@ Curiosity-gap family (the winner is the secret). Short forms to test after the r
 
 ## Clarity requirement (David, 14.11.2026): "the video must be clear about itself"
 Frame 0 (3 text lines max): small line "same request" + the four logos on four cars + one big line (the hook). Second line spoken (within 4 s) states the premise in plain words: "Each AI wrote the code that drives its car. Same request." The result stays hidden until the end; the premise never is. Blind reader on frame 0 must answer: "four AIs, code they wrote, a car race". If not, rewrite before building.
+
+## Plain-words premise test, 14.11.2026 (non-technical blind reader, judgement)
+Clearest: V4 "Who is the best AI driver?" / "These four AIs each drive their own car. Let's see who finishes." (9). Strongest stop: V5 "AI drives. AI crashes." (9). Worst: V3 "AI built the driver / wrote the program" (5; IT words). Reader's own: "Four AIs, one race track. Watch which one crashes first." Chosen direction (true whatever happens, as long as at least one car fails; it does): screen "WHO CRASHES FIRST?" + four logo cars on the start line; spoken "Four AIs drive their own cars. Watch who crashes." Known weak spot from the reader: a non-technical viewer assumes the AI is the driver; that is close enough, and the site page explains that each AI wrote the program.
