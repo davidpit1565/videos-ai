@@ -640,3 +640,6 @@ Check every reel before publishing, in this order (J = my judgement before, M = 
 
 ## The video must be CLEAR about what it is (David, 14.11.2026, ep98)
 - A viewer must understand in the first second WHAT is happening and WHY, in plain words and picture, not only what the video is called: for ep98 the frame 0 and the first spoken line must say "four AIs wrote the code that drives these cars, now they race" (the request shown or named, the four logos on the cars, the cars on one road). A curiosity hook that hides the setup fails; the secret may be the RESULT, never the premise. Test with a blind reader on frame 0 before building: "what is happening here, and what did the AI do?" Applies to every episode.
+
+## No code on screen, plain words only (David, 14.11.2026, ep98)
+- David: "I have no idea what the video is about, it looks too code-like." Anything technical (code, function names, 'sensors', 'steer', 'JavaScript') stays OFF the screen and out of the spoken lines of reels; say it as a normal person would ("I asked four AIs to teach a car to drive. Now they race."). The code lives only on the site page for people who want it. Same test as the clarity rule: a non-technical blind reader must get the premise from frame 0. Also applies to my chat messages to David: no jargon, no code blocks unless he asked for them.
