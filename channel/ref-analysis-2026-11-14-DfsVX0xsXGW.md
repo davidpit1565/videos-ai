@@ -1,0 +1,8 @@
+# Reference reel DfsVX0xsXGW (@beker.dev, "Day 3 of repos you should know"), 14.11.2026
+Seen in full (transcript + frames). ~35 s, dark drawn cards on black, word-by-word captions with blue highlight, no face, no voice of a person on screen. Series ("Day 3", "Follow so you don't miss Day 4"), CTA: comment REPO and a DM sends the link.
+## The repo it names (verified, README read 14.11.2026): jub0t/Concat
+Free open-source video editor (Rust), AGPL-3.0, beta (README says so), ~17.5k stars on GitHub search (the reel's frame shows 17.2k then says "more than 17,000"; the "3,555" card is a motion graphic, not the real count). Built-in MCP server (`concat --mcp`, docs/MCP.md) and JSON-RPC API. Needs FFmpeg 7+, Rust 1.93+, cmake to build from source. Reel claims (auto captions, TTS, background removal, keyframes, 100 effects, 4K, no watermark, offline models): taken from the README by the reel, NOT tested by us.
+## For us
+- Our pipeline (HyperFrames + ffmpeg + our own scripts) already gives frame-exact, scripted renders. Concat is a GUI editor with an MCP door: useful only if Claude should cut REAL screen recordings/clips without us writing code. Unproven here: it is a desktop app (no screen in this container), not run, not tested. As a TOOL it is of unclear value to us; as an EPISODE ("Claude edits a video through MCP") it is a possible new format only if we run it for real and show the result.
+- Format of the reel (numbered series, comment-keyword DM) is a structure we can copy; the DM automation needs Instagram tooling we do not have set up (hypothesis).
+- AGPL: using it as a tool is fine; do not copy its code into our site/studio.
