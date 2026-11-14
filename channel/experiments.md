@@ -405,3 +405,6 @@ Test: does posting a new reel as a trial for about 72 h and then graduating it (
 
 ## 14.11.2026 (David): ep96 black hole moved from trial to regular by hand
 David graduated episode 96 himself ("Share to everyone") on 14.11.2026, earlier than the 72 h plan (trial posted about 03:30 on 13.11). The reminder trig_01AiDsa7yTpy7kWDrh4mssxf (16.11 03:30) is therefore obsolete: do not ask him to graduate it. Also: no more reels to trial for now (David, 14.11).
+
+## 14.11.2026: ep97 published as TRIAL through the API (David's instruction)
+Posted 14.11.2026 22:59 Belgium via `/api/instagram/publish {"episode":97,"trial":"MANUAL"}`; the API accepted it (first API trial on this account), permalink https://www.instagram.com/reel/DfvOi-Asv9s/, studio notes line `TRIAL MANUAL 18142313740622184 ... 2026-11-14`. No Facebook post. Graduation by hand in the app: reminder 17.11 22:59 (trig_01Tdh6Q9tWhMJuczu1erASZs). To check in the app that it really shows as Trial (David): profile, Reels tab, it should NOT be visible publicly until "Share to everyone".

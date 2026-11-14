@@ -145,3 +145,5 @@ Rules of this table: anything the repo does not say is UNKNOWN. Episodes 1-87 ar
 ## David's answers 14.11.2026
 - Ep50 (Flow): he is uploading a NEW version soon; it will be improved and published this week. Old version is not to be published as is.
 - Ep94 and ep90b: he does not yet know which videos these are; he will check at the office. Ask again later (ep94 = "Claude Motion" cut sent to Roni; ep90b = alternative cut of the ghost test).
+
+- Ep97 (pelican, One pelican four AIs one clear winner): TRIAL via API 14.11.2026 22:59 Belgium, shipped in studio (PR #583, #584).
