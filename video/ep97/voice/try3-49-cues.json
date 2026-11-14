@@ -1,0 +1,44 @@
+[
+ {
+  "n": 1,
+  "line": "Four AIs. One pelican on a bike. Pick the smartest.",
+  "start": 0.08,
+  "end": 3.34
+ },
+ {
+  "n": 2,
+  "line": "Same request to four Claude AIs.",
+  "start": 3.42,
+  "end": 6.34
+ },
+ {
+  "n": 3,
+  "line": "Pause. Type your guess below.",
+  "start": 6.42,
+  "end": 8.04
+ },
+ {
+  "n": 4,
+  "line": "B is Haiku, the smallest: no sun.",
+  "start": 8.12,
+  "end": 10.71
+ },
+ {
+  "n": 5,
+  "line": "D adds a sun. A adds a road.",
+  "start": 10.89,
+  "end": 13.48
+ },
+ {
+  "n": 6,
+  "line": "C is Fable, the newest: clouds and a shadow.",
+  "start": 13.56,
+  "end": 16.57
+ },
+ {
+  "n": 7,
+  "line": "Send it to a buddy. See if they get it.",
+  "start": 16.65,
+  "end": 18.57
+ }
+]

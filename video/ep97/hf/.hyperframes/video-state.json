@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "84b8db92-dc1b-40b2-915d-f2cd85c52939",
-  "currentRevision": "91142a9c-2c3c-4796-b98d-ded6e9e7910c",
+  "currentRevision": "c3904ff6-443b-4095-ae57-b5999410b820",
   "pendingChanges": false,
   "files": {
     "assets/bg.jpg": {
@@ -45,8 +45,8 @@
       "content": "/root/.cache/hyperframes/history/84b8db92-dc1b-40b2-915d-f2cd85c52939/blobs/58/587fe1c01c3c1a8c579edd0d213476b3db625269bd5f43a7ec4ead6826f64557"
     },
     "index.html": {
-      "hash": "548f1199a2f7d0c9210ef3b9d90f593276de9251852c27d2dd91578206c9e55b",
-      "content": "/root/.cache/hyperframes/history/84b8db92-dc1b-40b2-915d-f2cd85c52939/blobs/54/548f1199a2f7d0c9210ef3b9d90f593276de9251852c27d2dd91578206c9e55b"
+      "hash": "9b8f29112ddaf1b7469850f3a774cc11050559b702ac4385d197866b5f5e2d9b",
+      "content": "/root/.cache/hyperframes/history/84b8db92-dc1b-40b2-915d-f2cd85c52939/blobs/9b/9b8f29112ddaf1b7469850f3a774cc11050559b702ac4385d197866b5f5e2d9b"
     },
     "assets/draw/fable-r2.svg": {
       "hash": "6920ee26d45ee2e31e04ea98752462e4c04fdc67fee294a15fbc9199ba862766",
@@ -156,6 +156,21 @@
           "after": "/root/.cache/hyperframes/history/84b8db92-dc1b-40b2-915d-f2cd85c52939/blobs/54/548f1199a2f7d0c9210ef3b9d90f593276de9251852c27d2dd91578206c9e55b"
         }
       }
+    },
+    "c3904ff6-443b-4095-ae57-b5999410b820": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794683184579,
+      "endedAt": 1794683184580,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/84b8db92-dc1b-40b2-915d-f2cd85c52939/blobs/54/548f1199a2f7d0c9210ef3b9d90f593276de9251852c27d2dd91578206c9e55b",
+          "after": "/root/.cache/hyperframes/history/84b8db92-dc1b-40b2-915d-f2cd85c52939/blobs/9b/9b8f29112ddaf1b7469850f3a774cc11050559b702ac4385d197866b5f5e2d9b"
+        }
+      }
     }
   },
   "checks": {
@@ -170,15 +185,15 @@
   },
   "renders": {
     "latest": {
-      "id": "cabe84b8-afbc-4b86-be1c-5d25c41bdf59",
-      "completedAt": 1794680554702,
-      "output": "/home/user/videos-ai/video/ep97/out/pic-v6.mp4",
+      "id": "429d69ae-b254-45e2-b593-03449cc97006",
+      "completedAt": 1794683246863,
+      "output": "/home/user/videos-ai/video/ep97/out/pic-v7.mp4",
       "status": "completed",
-      "revision": "91142a9c-2c3c-4796-b98d-ded6e9e7910c"
+      "revision": "c3904ff6-443b-4095-ae57-b5999410b820"
     },
     "retainedRevisions": [
-      "91142a9c-2c3c-4796-b98d-ded6e9e7910c",
-      "c38989ff-af99-4194-a51c-4abf5d13f9a1"
+      "c3904ff6-443b-4095-ae57-b5999410b820",
+      "91142a9c-2c3c-4796-b98d-ded6e9e7910c"
     ]
   },
   "pendingArtifactCleanup": []

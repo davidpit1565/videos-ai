@@ -19,3 +19,6 @@ Scores (judgements): HOOK 78 | VIRALITY 70 | OVERALL 73 | PREDICTED 300-1,500 vi
 
 ## v6 (14.11.2026): new hook "Which pelican is Claude's newest?"
 Voice seed 49 (accent all lines <=0.06). Gate 4/5: layout fails only on transient cross-fade overlaps (checked by eye). Scores are judgement labels, not 100: hook ~85, predicted views 300-1,500. Real 48 h views decide.
+
+## v7 (14.11.2026): hook "Four AIs. One pelican on a bike. Pick the smartest."
+David: v6 hook not clear/convincing. Two blind readers: v6 hook ranked last (clarity 3: viewer does not know Claude; "newest" is no stake). Best: "AI drew a pelican on a bike. Which AI is smartest?" (clarity 8/stop 7) and "Cheap AI or best AI?". Chosen: names AI + the image + one easy question, "smartest" is what viewers care about. Voice seed combo 1:73,2:52,5:56,7:995 (accent max 0.13). Reveal wording stays factual (newest, more detail); we do NOT claim a model is "smartest" beyond what the drawings show. Gate 4/5 (layout: transient cross-fade overlaps, checked by eye). Frame-0 blind reader not rerun. Labels only: hook ~85, views 300-1,500.

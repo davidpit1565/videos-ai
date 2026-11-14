@@ -1,5 +1,5 @@
-Which pelican is Claude's newest?
-Four Claude models, same request: a pelican on a bike.
+Four AIs. One pelican on a bike. Pick the smartest.
+Same request to four Claude AIs.
 Pause. Type your guess below.
 B is Haiku, the smallest: no sun.
 D adds a sun. A adds a road.
