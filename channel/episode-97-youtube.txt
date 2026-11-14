@@ -1,4 +1,4 @@
-Title: Four AIs, one pelican on a bike: pick the smartest
+Title: Four AIs, one pelican on a bike: one clearly wins
 
 Description:
 Same request to four Claude models: "Draw a pelican riding a bicycle." Haiku 5.5, Sonnet 5.5, Opus 5.5 and Fable 5.2. Every drawing is the real SVG code each model wrote, one try each (round 2 of 2, the round where all four are current versions), run through Claude Code agents.
