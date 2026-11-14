@@ -141,3 +141,7 @@ Rules of this table: anything the repo does not say is UNKNOWN. Episodes 1-87 ar
 - **68**: never built (script only, `channel/episode-68-script.md`, Spotify Prompted Playlists; promised by ep67 last line but ep69 went out instead). Numbering skips it everywhere (no reel, no caption, no article).
 - **90b** is a suffix, not a number; **dog-cat** is not numbered by David's decision; internal build folder `video/ep94/` belongs to episode **93**, and `video/ep93/sfx` belongs to episode 89; `video/ep94m/` is the real episode 94.
 - **50** is numbered but not in the Instagram snapshot (see above).
+
+## David's answers 14.11.2026
+- Ep50 (Flow): he is uploading a NEW version soon; it will be improved and published this week. Old version is not to be published as is.
+- Ep94 and ep90b: he does not yet know which videos these are; he will check at the office. Ask again later (ep94 = "Claude Motion" cut sent to Roni; ep90b = alternative cut of the ghost test).

@@ -25,3 +25,6 @@ David: v6 hook not clear/convincing. Two blind readers: v6 hook ranked last (cla
 
 ## v9 (14.11.2026): hook "Four AIs. One pelican. One clearly wins."
 David: v7 hook too long and a boring question. Short-hook blind panel (10 options, one reader): #9 "Four AIs. One pelican. One is clearly better." ranked first (clarity 7, stop 6; a claim plus a game); trimmed to "...One clearly wins." Honest limits: "clearly wins" rests on the drawings (C adds the most: clouds + shadow); the reveal says only what each drawing shows. Voice 1:77 (hook range 5.9 st, accent max 0.20). Gate 4/5 (layout: transient overlaps only; voice quality PASS). 20.7 s. Frame-0 blind reader not rerun on v9. Labels only: hook ~85, views 300-1,500.
+
+## v11 (14.11.2026): hook "One pelican, four AIs, one clear winner."
+David on v9: the first sentence sounded like "4 ... gap ... " with big pauses between words. Measured: v9 hook line took 4.4 s; v11 hook takes about 2.3 s (commas instead of full stops, --gap 0.06 --long 0.15 --max-speedup 1.45). Total 17.2 s. Gate 4/5 (voice quality, accent, pacing, file PASS; layout = transient overlaps only). Voice seeds 1:81 7:44 (line 7 range 9.9 st, borderline). Measured, not heard. No blind reader on frame 0 for this wording.
