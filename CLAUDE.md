@@ -637,3 +637,6 @@ Check every reel before publishing, in this order (J = my judgement before, M = 
 
 ## Voice gaps in the hook (David, 14.11.2026, ep97 v9)
 - "Four AIs. One pelican. One clearly wins." sounded like "4 ... [gap] ..." with big pauses between words. Hook lines must flow: commas instead of full stops between short beats, and build with `--gap 0.06 --long 0.15 --max-speedup 1.45`; measure the hook's length from the cues (a 3-beat hook of ~7 words should take about 2 s) and listen/inspect gaps before sending.
+
+## The video must be CLEAR about what it is (David, 14.11.2026, ep98)
+- A viewer must understand in the first second WHAT is happening and WHY, in plain words and picture, not only what the video is called: for ep98 the frame 0 and the first spoken line must say "four AIs wrote the code that drives these cars, now they race" (the request shown or named, the four logos on the cars, the cars on one road). A curiosity hook that hides the setup fails; the secret may be the RESULT, never the premise. Test with a blind reader on frame 0 before building: "what is happening here, and what did the AI do?" Applies to every episode.
