@@ -20,7 +20,7 @@ export default async function OG() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
-          <OgMark height={64} />
+          <OgMark height={84} />
           <div style={{ fontSize: 40 }}>Actually Works</div>
         </div>
         <div style={{ fontSize: 92, lineHeight: 1.02, maxWidth: 1000, letterSpacing: -2 }}>

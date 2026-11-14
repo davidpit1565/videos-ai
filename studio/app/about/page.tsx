@@ -1,12 +1,12 @@
 import Link from "next/link";
 import SiteNav from "../sitenav";
-import Reveal from "../reveal";
+import { IG_HANDLE, IG_URL } from "../site-social";
 import { catalogue } from "@/lib/site";
 import { ARTICLES } from "@/lib/articles";
 
 export const metadata = {
   title: "About",
-  description: "Who runs this channel, and the one rule it holds to.",
+  description: "Who makes Actually Works, how every episode is tested before it goes out, and Flow, the app built here.",
 };
 
 export const revalidate = 300;
@@ -66,43 +66,76 @@ export default async function About() {
         )}
       </section>
 
-      <Reveal>
-        <section>
-          <h2>The rule</h2>
-          <p>
-            Nothing gets published that has not been run. If a setup only half works, the
-            episode says which half. If a number is an estimate, it is labelled as one.
-            There is no reason to trust me yet, so the only thing I can offer is being
-            checkable.
-          </p>
-        </section>
-      </Reveal>
+      <section>
+        <h2>The rule</h2>
+        <p>
+          Nothing gets published that has not been run. If a setup only half works, the
+          episode says which half. If a number is an estimate, it is labelled as one.
+          There is no reason to trust me yet, so the only thing I can offer is being
+          checkable.
+        </p>
+      </section>
 
-      <Reveal>
-        <section>
-          <h2>The work behind it</h2>
-          <p>
-            The episodes are produced by a pipeline I built: the narration is my own voice,
-            cloned locally, and every reel passes a set of measurements before it is sent —
-            speech pacing, caption position against the platform's safe area, loudness,
-            frozen frames. Each of those checks exists because a real defect got through
-            first.
-          </p>
-          <p>
-            If you want the same kind of thing built for your business, that is the paid
-            side, and it is the same promise: it gets tested before it gets handed over.
-            To ask about it, send a message to{" "}
-            <a href="https://www.instagram.com/actually_works.ai/">@actually_works.ai</a> on
-            Instagram.
-          </p>
-          <p>
-            One example: Flow, a personal finance app — every transaction, subscription,
-            and budget stored only on the device, no account or server. Built through
-            Actually Works and available on the{" "}
-            <a href="https://apps.apple.com/us/app/id6807543350">App Store</a>.
-          </p>
-        </section>
-      </Reveal>
+      <section>
+        <h2>How an episode is made</h2>
+        <ol className="steps">
+          <li>
+            The topic comes from data: what people search for, and what earlier reels
+            showed about what gets watched.
+          </li>
+          <li>
+            The tool gets checked live before a word is written: its current name, what it
+            does today, and its limits. AI products rename and change features within weeks.
+          </li>
+          <li>
+            It gets run for real. The text on screen is what the tool actually answered; when
+            a chat is retyped for the screen, the reel says so.
+          </li>
+          <li>
+            The narration is my own voice, cloned locally, and every line is measured for
+            pacing and for word endings the clone swallows.
+          </li>
+          <li>
+            The rendered file is checked before it is posted: text kept out of the parts
+            Instagram covers, loudness, frozen or black frames. Each of those checks exists
+            because a real defect got through first.
+          </li>
+          <li>
+            Then the episode&apos;s page goes up here: the exact clicks, the prompt, and what
+            it will not do.
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Built here: Flow</h2>
+        <p>
+          Flow is a personal finance app: every transaction, subscription and budget is
+          stored only on the device, with no account and no server. It was built through
+          Actually Works and is on the App Store.
+        </p>
+        <p className="actions-row">
+          <a
+            className="button"
+            href="https://apps.apple.com/us/app/id6807543350"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Flow on the App Store
+          </a>
+        </p>
+      </section>
+
+      <section>
+        <h2>Work with me</h2>
+        <p>
+          If you want the same kind of thing built for your business, that is the paid
+          side, and it is the same promise: it gets tested before it gets handed over.
+          To ask about it, send a message to{" "}
+          <a href={IG_URL} target="_blank" rel="noopener noreferrer">{IG_HANDLE}</a> on
+          Instagram.
+        </p>
+      </section>
 
     </main>
   );

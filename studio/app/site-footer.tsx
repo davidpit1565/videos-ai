@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Mark from "./mark";
+import { Badge } from "./mark";
 import { LINKS, IG_HANDLE, IG_URL } from "./site-social";
 
 /** One footer for every public page, rendered once by Shell. Before the 13.11.2026
@@ -27,7 +27,7 @@ export default function SiteFooter() {
           ))}
         </nav>
         <p className="sitefoot-brand">
-          <Mark size={16} tone="light" />
+          <Badge size={32} />
           <span>Actually Works</span>
         </p>
       </div>

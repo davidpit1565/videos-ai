@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import EpRows from "./ep-rows";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { Entry } from "@/lib/site";
@@ -67,26 +67,24 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
         onChange={(e) => setQ(e.target.value)}
         aria-label="Search episodes"
       />
+      <p className="ecount" aria-live="polite">
+        {filtered.length === tagged.length
+          ? `${tagged.length} episodes, newest first.`
+          : `${filtered.length} of ${tagged.length} episodes.`}
+      </p>
       {filtered.length === 0 ? (
         <p className="empty">No episode matches that yet.</p>
       ) : (
-        <ol className="eps">
-          {filtered.map((e) => (
-            <li key={e.n}>
-              <Link href={`/e/${e.n}`}>
-                {/* No thumbnail: the only picture available was the share card, which is
-                    the same title as text, shrunk until unreadable (rebrand 13.11.2026).
-                    A real frame per reel would be the right picture; none is stored yet. */}
-                <span className="tag">
-                  Episode {e.n}, {e.tool}
-                  {publicMonth(e.publishedAt) ? `, ${publicMonth(e.publishedAt)}` : ""}
-                </span>
-                <span className="t">{e.title}</span>
-                <span className="tp">{e.blurb}</span>
-              </Link>
-            </li>
-          ))}
-        </ol>
+        <EpRows
+          items={filtered.map((e) => ({
+            n: e.n,
+            title: e.title,
+            blurb: e.blurb,
+            meta: [`Episode ${e.n}`, publicMonth(e.publishedAt), e.tool !== "General" ? e.tool : null]
+              .filter(Boolean)
+              .join(", "),
+          }))}
+        />
       )}
     </div>
   );

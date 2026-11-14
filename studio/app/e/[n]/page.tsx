@@ -7,6 +7,8 @@ import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor } from "@/lib/reels"
 import IgEmbed from "../../ig-embed";
 import Reveal from "../../reveal";
 import ExternalIcon from "../../external-icon";
+import EpRows from "../../ep-rows";
+import { IG_HANDLE, IG_URL } from "../../site-social";
 import { SITE_URL } from "@/lib/site";
 
 export const revalidate = 300;
@@ -62,7 +64,7 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
   const allPub = await published();
   const others = allPub.filter((x) => x.number !== n);
   const more = others.length
-    ? others.slice(0, 3).map((x) => ({ n: x.number, t: x.title }))
+    ? others.slice(0, 4).map((x) => ({ n: x.number, t: x.title }))
     : ARTICLES.filter((x) => x.n !== n).slice(0, 3).map((x) => ({ n: x.n, t: x.title }));
 
   // Part 2 recaps this episode's problem, then gives the fix it didn't have — only
@@ -222,22 +224,21 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
         </section>
       ) : null}
 
+      <section className="follow-box" aria-labelledby="follow-h">
+        <h2 id="follow-h">The next test goes out on Instagram first.</h2>
+        <p className="sub">Several reels a week, each with a page like this one.</p>
+        <a className="button solid" href={IG_URL} target="_blank" rel="noopener noreferrer">
+          Follow {IG_HANDLE}
+        </a>
+      </section>
+
       {more.length ? (
         <section className="block">
           <div className="block-head">
             <h2>More episodes</h2>
             <Link href="/episodes">All episodes</Link>
           </div>
-          <ol className="rows">
-            {more.map((x) => (
-              <li key={x.n}>
-                <Link href={`/e/${x.n}`}>
-                  <span className="row-no">{x.n}</span>
-                  <span className="row-t">{x.t}</span>
-                </Link>
-              </li>
-            ))}
-          </ol>
+          <EpRows items={more.map((x) => ({ n: x.n, title: x.t }))} compact />
         </section>
       ) : null}
     </main>

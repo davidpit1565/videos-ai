@@ -7,7 +7,7 @@ import { Suspense, useEffect, useState } from "react";
 import { isSite, isStudio } from "@/lib/routes";
 import { localDT } from "@/lib/fmt";
 import SiteFooter from "./site-footer";
-import Mark from "./mark";
+import { Badge } from "./mark";
 
 /** ?debug=1 on any studio page — reads the actual numbers behind the nav-bar-gap report
  *  straight off this device's own DOM, instead of another guess from a screenshot. Env
@@ -170,7 +170,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       </Suspense>
       <div className="top">
         <Link className="brand" href="/studio">
-          <Mark size={22} tone="dark" />
+          <Badge size={36} />
           <b>Actually Works</b>
         </Link>
         <div className="top-right">

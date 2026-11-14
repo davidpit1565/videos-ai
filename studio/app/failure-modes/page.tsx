@@ -29,7 +29,7 @@ export default async function FailureModes() {
       <SiteNav here="/failure-modes" />
       <h1>What breaks, written down.</h1>
       <p className="sub">
-        Every episode ships with its own limits section — the part most tutorials leave
+        Every episode ships with its own limits section, the part most tutorials leave
         out. This is all of them in one place: {total} documented so far, across{" "}
         {rows.length} episode{rows.length === 1 ? "" : "s"}.
       </p>
@@ -42,7 +42,7 @@ export default async function FailureModes() {
             <section>
               <h2>
                 <Link href={`/e/${e.n}`}>
-                  Episode {e.n} — {e.title}
+                  Episode {e.n}: {e.title}
                 </Link>
               </h2>
               <ul className="limits-list">

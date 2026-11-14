@@ -38,9 +38,14 @@ export type PublicEpisode = {
   publishedAt: string | null;
 };
 
+/** Episode 89's stored title starts with "TITLE: " (a caption-file label that leaked into
+ *  the studio data, seen on the live site 13.11.2026). The stored value is left alone;
+ *  the public pages just never print the label. */
+const cleanTitle = (t: string) => t.replace(/^\s*TITLE:\s*/i, "");
+
 const toPublic = (e: Episode): PublicEpisode => ({
   number: e.number,
-  title: realTitleFor(e.number) || e.title,
+  title: cleanTitle(realTitleFor(e.number) || e.title),
   topic: e.topic,
   // Studio bookkeeping lines (TRIAL ..., TRIAL-MANUAL ..., TRIAL-GRADUATED ...) are internal: never show them to visitors.
   notes: (e.notes ?? "").split("\n").filter((l) => !/^\s*TRIAL\b/.test(l)).join("\n").trim(),
@@ -106,7 +111,7 @@ export async function catalogue(): Promise<Entry[]> {
     const prev = byNumber.get(e.number);
     byNumber.set(e.number, {
       n: e.number,
-      title: realTitleFor(e.number) || e.title || prev?.title || `Episode ${e.number}`,
+      title: cleanTitle(realTitleFor(e.number) || e.title || prev?.title || `Episode ${e.number}`),
       blurb: e.topic || prev?.blurb || "",
       views: e.views ?? null,
       live: true,

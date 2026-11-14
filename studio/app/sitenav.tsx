@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Mark from "./mark";
+import { Badge } from "./mark";
 
 /** The same header on every public page, because a visitor who lands on one of them from
  *  a caption has no other way to discover the rest.
@@ -17,7 +17,7 @@ export default function SiteNav({ here }: { here?: string }) {
   return (
     <header className="sitenav">
       <Link className="mark" href="/" aria-label="Actually Works, home">
-        <Mark size={22} tone="light" />
+        <Badge size={38} />
         <span>Actually Works</span>
       </Link>
       <nav className="links" aria-label="Site">

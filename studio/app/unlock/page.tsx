@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Mark from "../mark";
+import { Badge } from "../mark";
 import StudioFonts from "../studio-fonts";
 
 export default function Unlock() {
@@ -16,7 +16,7 @@ export default function Unlock() {
       <StudioFonts />
       <div className="top">
         <span className="brand">
-          <Mark size={22} tone="dark" />
+          <Badge size={36} />
           <b>Actually Works</b>
         </span>
       </div>

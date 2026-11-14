@@ -33,3 +33,12 @@ export const publicMonth = (iso: string | null) => {
   if (isNaN(d.getTime())) return null;
   return d.toLocaleString("en-US", { month: "short", year: "numeric" });
 };
+
+/** English day and month for the public site ("12 November"), in Belgium time, where the
+ *  reels are published from. */
+export const publicDay = (iso: string | null) => {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return null;
+  return d.toLocaleString("en-GB", { day: "numeric", month: "long", timeZone: "Europe/Brussels" });
+};

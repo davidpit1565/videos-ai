@@ -570,23 +570,102 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 .site .btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
 .site .actions, .site .actions-row{display:flex;flex-wrap:wrap;gap:.7rem;margin:1rem 0}
 
-/* home: the hero. On a phone: name, one sentence, follow, then the newest reel, all
-   inside the first screen. On a wide screen the reel sits beside the text. */
-.site .hero{display:grid;grid-template-columns:1fr;gap:1.6rem;padding-bottom:1rem}
-.site .hero-follow{margin:0}
-.site .hero-reel{min-width:0}
-.site .newest-title{font-family:var(--sans);font-weight:700;font-size:1.08rem;line-height:1.35;
-  margin:0 0 .7rem}
-.site .newest-title .newest-no{display:block;font-family:var(--serif);font-weight:400;
-  font-size:.95rem;color:var(--ink)}
-.site .newest-title a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
-.site .newest-links{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;margin:.6rem 0 0}
-.site .newest-links a{display:inline-flex;align-items:center;min-height:44px;font-weight:600;
-  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+/* home: the hero. On a phone: name, one sentence, the follow action and one plain line
+   of real counts; the strip of real reel frames starts inside the first screen.
+   Rebrand 2 (13.11.2026): the frames are the one memorable thing on the page, everything
+   around them stays quiet. */
+.site .hero{padding:.4rem 0 .4rem}
+.site .hero h1.display{max-width:14ch;margin:1.4rem 0 .9rem}
+.site .hero .lede{margin-bottom:1.1rem}
+.site .hero-act{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.2rem}
+.site .hero-fact{margin:0;color:var(--soft);font-size:.98rem}
 @media (min-width:900px){
-  .site .hero{grid-template-columns:minmax(0,1fr) 380px;gap:4rem;align-items:start;
-    padding-top:1.5rem}
-  .site .hero-text{padding-top:2.5rem}
+  .site .hero{padding-top:1.6rem}
+  .site .hero h1.display{font-size:clamp(4rem,6.4vw,5.6rem)}
+  .site .hero .lede{font-size:1.2rem}
+}
+
+/* section heads: the ink rule with a short yellow stroke on it, the logo's swipe */
+.site .block-head{position:relative}
+.site .block-head::after{content:"";position:absolute;inset-inline-start:0;bottom:-5px;
+  width:2.6rem;height:8px;background:var(--yellow);border:2px solid var(--ink);border-radius:2px}
+
+/* the newest reels: real frames, 9:16. A row that scrolls sideways inside itself on a
+   phone (the page itself never scrolls sideways), six across on a wide screen. */
+.site .reels{margin-top:2rem}
+.site .strip{list-style:none;margin:1.1rem -16px 0;padding:.2rem 16px .9rem;display:grid;
+  grid-auto-flow:column;grid-auto-columns:min(40vw,210px);gap:14px;overflow-x:auto;
+  overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:16px;
+  scrollbar-width:thin}
+.site .strip li{scroll-snap-align:start;min-width:0;
+  animation:aw-rise .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 70ms)}
+.site .strip a{display:block;text-decoration:none;color:inherit}
+.site .strip img{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;
+  border:2px solid var(--ink);border-radius:12px;background:var(--wash);
+  transition:transform .18s ease-out,box-shadow .18s ease-out}
+.site .strip a:hover img, .site .strip a:focus-visible img{transform:translate(-3px,-3px);
+  box-shadow:5px 5px 0 var(--ink)}
+.site .strip-no{display:block;font-family:var(--serif);font-size:.95rem;margin:.6rem 0 .1rem}
+.site .strip-t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;
+  overflow:hidden;font-weight:600;font-size:.94rem;line-height:1.35}
+.site .strip a:hover .strip-t{text-decoration:underline;text-decoration-thickness:2px;
+  text-underline-offset:.18em}
+.site .strip-note{margin:.2rem 0 0}
+@keyframes aw-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (min-width:640px){.site .strip{grid-auto-columns:min(27vw,210px)}}
+@media (min-width:900px){
+  .site .strip{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:repeat(6,minmax(0,1fr));
+    overflow:visible;margin-inline:0;padding-inline:0}
+}
+
+/* below the reels: the lists on the left, prompts and "who makes this" on the right */
+.site .home-cols{display:grid;grid-template-columns:minmax(0,1fr);column-gap:4rem}
+@media (min-width:900px){
+  .site .home-cols{grid-template-columns:minmax(0,1fr) minmax(0,22rem)}
+}
+.site .whois p{margin:.9rem 0 .4rem}
+.site .whois-links{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+.site .whois-links a{display:inline-flex;align-items:center;min-height:44px;font-weight:600;
+  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+.site .whois-links a:hover{text-decoration-thickness:2px}
+
+/* "What breaks": the limit itself, read as a quote from the episode page */
+.site .breaks{list-style:none;padding:0;margin:.4rem 0 0}
+.site .breaks li{padding:1rem 0;border-bottom:1px solid var(--rule)}
+.site .breaks-limit{margin:0 0 .3rem;padding-inline-start:1rem;border-inline-start:3px solid var(--ink);
+  font-size:1.02rem;line-height:1.55}
+.site .breaks-src{display:inline-flex;align-items:center;min-height:44px;font-weight:600;
+  font-size:.94rem;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+.site .breaks-src:hover{text-decoration-thickness:2px}
+
+/* episode rows with a real frame (ep-rows.tsx): home, /episodes, "More episodes", 404 */
+.site .eprows{list-style:none;padding:0;margin:0}
+.site .eprows li{border-bottom:1px solid var(--rule)}
+.site .eprows a{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:1rem;
+  align-items:start;padding:.9rem 0;text-decoration:none;color:inherit;min-height:44px}
+.site .eprow-img{display:block;width:64px;height:auto;aspect-ratio:9/16;object-fit:cover;
+  border:1.5px solid var(--ink);border-radius:8px;background:var(--wash)}
+.site .eprow-none{background:#FFFFFF;border-style:dashed;border-color:#9E9E9E}
+.site .eprow-text{display:grid;row-gap:.15rem;min-width:0;padding-top:.1rem}
+.site .eprow-meta{font-family:var(--serif);font-size:.86rem;color:var(--ink)}
+.site .eprow-t{font-weight:700;font-size:1.05rem;line-height:1.35}
+.site .eprow-b{color:var(--soft);font-size:.95rem;line-height:1.5;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+.site .eprows a:hover .eprow-t{text-decoration:underline;text-decoration-thickness:2px;
+  text-underline-offset:.18em}
+.site .eprows.compact a{grid-template-columns:48px minmax(0,1fr);padding:.7rem 0;align-items:center}
+.site .eprows.compact .eprow-img{width:48px}
+.site .ecount{color:var(--faint);font-size:.92rem;margin:0 0 .2rem}
+
+/* episode page: the follow action after the content, before "More episodes" */
+.site .follow-box{margin:3rem 0 0;padding-top:1.1rem;border-top:2px solid var(--ink)}
+.site .follow-box h2{margin:0 0 .3rem}
+.site .follow-box .sub{margin:0 0 1rem}
+
+@media (prefers-reduced-motion:reduce){
+  .site .strip li{animation:none}
+  .site .strip img{transition:none}
+  .site .strip a:hover img, .site .strip a:focus-visible img{transform:none}
 }
 
 /* the videos: Instagram's own embed, a YouTube frame, never a second player */
@@ -602,7 +681,7 @@ ul.list li.done .lbl{color:var(--faint);text-decoration:line-through}
 .site .block-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
   border-bottom:2px solid var(--ink);padding-bottom:.5rem}
 .site .block-head h2{margin:0}
-.site .block-head a{font-weight:600;white-space:nowrap;text-decoration:underline;
+.site .block-head a{display:inline-flex;align-items:center;min-height:44px;margin-bottom:-.5rem;font-weight:600;white-space:nowrap;text-decoration:underline;
   text-decoration-thickness:1px;text-underline-offset:.2em}
 .site .rows{list-style:none;padding:0;margin:0}
 .site .rows li{border-bottom:1px solid var(--rule)}

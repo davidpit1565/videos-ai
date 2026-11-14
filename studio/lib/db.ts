@@ -1,4 +1,4 @@
-import { Pool } from "pg";
+import { Pool, PoolClient } from "pg";
 import { ReelInsightSnapshot, State } from "./types";
 import { seed } from "./seed";
 
@@ -65,7 +65,7 @@ export const dbVar = () => pick()?.name ?? null;
 /** Schema statements (CREATE ... IF NOT EXISTS) race when Next prerenders several pages at once
  *  against an empty database: Postgres answers 23505 / 42P07 for the loser even with IF NOT EXISTS
  *  (the 1.11.2026 production build failed on exactly this). Retry a few times; the table exists by then. */
-async function ddl(p: Pool, sql: string): Promise<void> {
+async function ddl(p: Pool | PoolClient, sql: string): Promise<void> {
   for (let i = 0; i < 4; i++) {
     try {
       await p.query(sql);
@@ -96,7 +96,7 @@ async function ensure(p: Pool) {
  *  three weeks, ~1 MB), and while it lived inside studio_state every page load, poll and
  *  cron run downloaded all of it — 9.35 GB of Supabase egress against a 5 GB free quota.
  *  Nothing is ever overwritten or deleted here either (see ReelInsightSnapshot). */
-async function ensureSnapshots(p: Pool) {
+async function ensureSnapshots(p: Pool | PoolClient) {
   await ddl(p, `CREATE TABLE IF NOT EXISTS reel_insight_snapshots (
     id text PRIMARY KEY,
     episode_number int NOT NULL,
@@ -120,7 +120,10 @@ async function migrateSnapshots(p: Pool) {
   if (migrated) return;
   const c = await p.connect();
   try {
-    await ensureSnapshots(p);
+    // On the client already held, not on the pool: with max 3 connections, three
+    // concurrent first loads each held one client here and then waited for a fourth to
+    // run the CREATE TABLE, and every page hung (found 13.11.2026, local build).
+    await ensureSnapshots(c);
     await c.query("BEGIN");
     await c.query(
       `INSERT INTO reel_insight_snapshots (id, episode_number, collected_at, data)
