@@ -78,7 +78,7 @@ get around a runtime failure. The only edit to the code: an ES-module `export` i
   5 ms each step) and never more than 50 ms in one call. Results come back as plain strings
   built inside the sandbox, so no getter or proxy runs outside the time limit.
 - Each car runs in its own child process (256 MB heap, empty environment, no stdio); the
-  parent kills it after 28 s without a result. A crash or kill stops only that car, with the
+  parent kills it after 23.1 s without a result. A crash or kill stops only that car, with the
   reason recorded.
 
 ## race.json
