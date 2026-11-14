@@ -125,7 +125,7 @@ try:
 except Exception:
     tw = lambda t: 60 * len(t)
 HF = 86                                                 # headline px (2-line form)
-w1 = tw("GUESS THE NEWEST") * HF / 100; w2 = tw("CLAUDE") * HF / 100
+w1 = tw("WHICH PELICAN IS") * HF / 100; w2 = tw("CLAUDE'S NEWEST?") * HF / 100
 LOGO = 78
 K1 = min(.76, 950 / (w1 + 26 + LOGO + 16 + w2))         # scale of the one-line form
 H2X = (w1 + 26) * K1                                    # where line 2 lands in the one-line form
@@ -172,10 +172,10 @@ ladder += f'''<div class="li" id="liC" style="left:{x}px;top:{y}px;width:{w}px">
 markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam">
- <div class="hl" id="h1">GUESS THE NEWEST</div>
- <div class="hl" id="h2"><img src="assets/claude-mark.svg">CLAUDE</div>
- <div class="chip" id="chip">4 models &middot; same request: a pelican on a bike</div>
- <div class="chip" id="chip2">type A, B, C or D below</div>
+ <div class="hl" id="h1">WHICH PELICAN IS</div>
+ <div class="hl" id="h2"><img src="assets/claude-mark.svg">CLAUDE&rsquo;S NEWEST?</div>
+ <div class="chip" id="chip">4 Claude models &middot; same request: a pelican on a bike</div>
+ <div class="chip" id="chip2">guess: A, B, C or D, below</div>
  {revs}
  <div id="tray">{tiles}</div>
  {cards}

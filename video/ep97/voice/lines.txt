@@ -1,6 +1,6 @@
-Guess the newest Claude.
-Same request, four Claude models: a pelican on a bike.
-Pause. Guess the newest. Type it below.
+Which pelican is Claude's newest?
+Four Claude models, same request: a pelican on a bike.
+Pause. Type your guess below.
 B is Haiku, the smallest: no sun.
 D adds a sun. A adds a road.
 C is Fable, the newest: clouds and a shadow.

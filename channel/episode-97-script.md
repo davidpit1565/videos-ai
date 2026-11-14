@@ -16,3 +16,6 @@ Lines (7, 19.4 s): Guess the newest Claude. / Same request, four Claude models: 
 Voice: exact whole-file Whisper match (letters and "four/for" aside); accent: line 3 re-rolled until not-american 0.03 (the old line with spoken letters scored 0.99). Gate `video/ep97/out/gate-v5.txt`: 4 of 5; the layout check fails ONLY on transient overlaps of cross-fading text boxes (#h1/#h2 headline pieces 1.4-2.6 s, chip under tab D at 6.2 s), checked by eye on the frames: no text collides. Safe area clean. Audio measured, not heard.
 Blind reader frame 0 (v5): understood "a guessing game: pelicans A-D, guess the newest Claude"; would maybe not stop ("generic clip-art; nothing surprising"); would comment a guess if the payoff is clear; asked for a 2x2 grid (rejected: the owner asked for no four boxes) and to fill the bottom third (not used on purpose: it is the Instagram interface zone). Honest risk: low stakes, 46 of 50 recent reels got no comments.
 Scores (judgements): HOOK 78 | VIRALITY 70 | OVERALL 73 | PREDICTED 300-1,500 views (2,500+ only if people comment).
+
+## v6 (14.11.2026): new hook "Which pelican is Claude's newest?"
+Voice seed 49 (accent all lines <=0.06). Gate 4/5: layout fails only on transient cross-fade overlaps (checked by eye). Scores are judgement labels, not 100: hook ~85, predicted views 300-1,500. Real 48 h views decide.
