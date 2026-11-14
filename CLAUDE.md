@@ -630,3 +630,7 @@ Check every reel before publishing, in this order (J = my judgement before, M = 
 - Hooks: short (about 6 words max), NOT a question, no "newest"/"Claude" assumed known; "long" and "a boring question" were his verdicts on ep97 v6/v7. A statement with a surprise first.
 - Skills from the 5-skills reel (@post2all): ig-* and marketing skills and skill-creator already present; no commercial posting service (the studio does that); remocn/Remotion is checked, not installed (see `channel/remocn-check-2026-11-14.md` when written).
 - He wants a standing inventory of produced vs published episodes so none is skipped: `channel/episode-inventory-2026-11-14.md`; keep it current.
+
+## Deploy and merge rule: batch by episode (David, 14.11.2026)
+- Do NOT merge or deploy for every small change. Merge to main (one Vercel build) only when there is something serious: a finished episode, or a bundle of several episodes/site changes together. Reason (his words): otherwise the pipeline gets stuck every time (Vercel free plan rate limit, failed deploys, the PIN-gated studio).
+- Small fixes, notes, docs and reference analyses stay on the working branch (`ep86-build`) and ride along with the next real merge. After every merge: check Vercel status on the merge commit and the reel file size (existing rule). Never more than one merge a day unless he insists.
