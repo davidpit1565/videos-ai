@@ -402,3 +402,6 @@ Test: does posting a new reel as a trial for about 72 h and then graduating it (
 
 - **ep96 trial (13.11.2026):** "Black hole math. Stuck for twenty years. AI finished it." (Claude Fable 5.2 news reel, v8, 16.2 s) posted by David by hand as a TRIAL at about 03:30 Belgium time on 13.11.2026. Prediction (label): 350-1,100 views. 72 h reminder set for 16.11.2026 03:30 Belgium. Readings: pending.
 - **Trials posted by hand, update 13.11.2026 (David, about 05:50 Belgium):** ep90 (13.11 00:43), ep92 (12.11 17:55) and ep96 (13.11 about 03:30) are TRIAL-MANUAL in the studio notes. The dog-and-cat reel (parked, not a numbered episode) was also posted as a trial; no time recorded. ep91's trial time and graduation date are NOT recorded (I have no source for them): ask David before writing them. ep95 goes out as a regular reel at 08:00 Belgium (scheduled).
+
+## 14.11.2026 (David): ep96 black hole moved from trial to regular by hand
+David graduated episode 96 himself ("Share to everyone") on 14.11.2026, earlier than the 72 h plan (trial posted about 03:30 on 13.11). The reminder trig_01AiDsa7yTpy7kWDrh4mssxf (16.11 03:30) is therefore obsolete: do not ask him to graduate it. Also: no more reels to trial for now (David, 14.11).
