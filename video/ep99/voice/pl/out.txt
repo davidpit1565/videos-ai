@@ -16,3 +16,44 @@ L2 seed 77 accent 0.10 WHISPER False | I ask each AI to guide1 .out. | metagap N
 L2 seed 88 accent 0.37 WHISPER True | I ask each AI to guide one, Dot out. | metagap None
 L3 seed 11 accent 0.24 WHISPER True | None of them can see the maze. GO! | metagap None
 L3 seed 22 accent 0.99 WHISPER True | None of them can see the maze. Go! | metagap None
+L3 seed 33 accent 0.02 WHISPER True | None of them can see the maze. Go! | metagap None
+L4 seed 11 accent 0.02 WHISPER True | Perplexity is stuck at the start. | metagap None
+L5 seed 11 accent 0.52 WHISPER False | Chad GPT goes the wrong way. Claude leads! | metagap None
+L5 seed 22 accent 0.59 WHISPER False | Wait, chat GPT goes the wrong way, Claude leads! | metagap None
+L5 seed 33 accent 0.68 WHISPER True | ChatGPT goes the wrong way. Claude leads! | metagap None
+L5 seed 44 accent 0.10 WHISPER False | Chad GPT goes the wrong way. Claude leads! | metagap None
+L5 seed 55 accent 0.45 WHISPER False | Chad GPT goes the wrong way. Claude leads! | metagap None
+L5 seed 66 accent 0.72 WHISPER True | Chat GPT goes the wrong way, Claude leads! | metagap None
+L5 seed 77 accent 0.05 WHISPER True | Chat GPT goes the wrong way. Claude leads! | metagap None
+L6 seed 11 accent 0.69 WHISPER True | Two dots are out on the same step. | metagap None
+L6 seed 22 accent 0.02 WHISPER False | Way! Two dots are out, on the same step. | metagap None
+L6 seed 33 accent 0.23 WHISPER True | Two dots are out, on the same step. | metagap None
+L6 seed 44 accent 0.05 WHISPER True | Two dots are out on the same step. | metagap None
+L7 seed 11 accent 0.01 WHISPER True | Claude turns back 10 steps short, then makes it. Chat GPT walks in circles. | metagap None
+L8 seed 11 accent 0.44 WHISPER True | Gemini, and Meta AI tie. Same path, every step. | metagap 0.0
+L8 seed 22 accent 0.58 WHISPER True | Gemini, and meta AI tie. Same path, every step. | metagap 0.0
+L8 seed 33 accent 0.50 WHISPER True | Gemini and Meta AI tie, same path every step. | metagap 0.0
+L8 seed 44 accent 0.34 WHISPER True | Gemini and Meta AI tie, same path, every step. | metagap 0.0
+L8 seed 55 accent 0.87 WHISPER True | Gemini and Meta AI tie. Same path, every step. | metagap 0.0
+L8 seed 66 accent 0.67 WHISPER True | Gemini and Meta AI tie. Same path every step. | metagap 0.0
+L8 seed 77 accent 0.50 WHISPER True | Gemini, and Meta AI tie. Same path, every step. | metagap 0.0
+L8 seed 88 accent 0.05 WHISPER True | Gemini and Meta AI tie. Same path, every step. | metagap 0.0
+L9 seed 11 accent 0.04 WHISPER True | the setups in the link in bio. | metagap None
+L10 seed 11 accent 0.49 WHISPER False | Tomorrow, a free tool says it fixes cloud code. Follow, so you see if it works. | metagap None
+L10 seed 22 accent 0.06 WHISPER True | Tomorrow, a free tool says it fixes Claude code. Follow, so you see if it works. | metagap None
+DONE
+L1 seed 101 accent 0.99 WHISPER False | Lost enemies, 5 AIs, no map. | metagap None
+L1 seed 102 accent 0.80 WHISPER True | Lost in a maze. 5 AIs. No map. | metagap None
+L1 seed 103 accent 0.94 WHISPER True | Lost in a maze, 5 AIs, no map. | metagap None
+L1 seed 104 accent 0.26 WHISPER False | Lost in Amaze, 5 AIs, Nomad | metagap None
+L1 seed 105 accent 0.14 WHISPER False | Lost in a maze, 5 AIs, no math. | metagap None
+L1 seed 106 accent 0.49 WHISPER True | Lost in a maze, 5 AIs, no map. | metagap None
+L1 seed 107 accent 0.76 WHISPER False | Lost in the maze, 5 AIs, no map. | metagap None
+L1 seed 108 accent 0.92 WHISPER False | Lost in the mains, 5 AIs, no map. | metagap None
+L1 seed 109 accent 0.23 WHISPER True | Lost in a maze, 5 AIs, no map. | metagap None
+L1 seed 110 accent 0.72 WHISPER True | Lost in Amaze, 5 AIs, no map. | metagap None
+L1 seed 111 accent 0.79 WHISPER False | Lost in Amaze, 5 AIs, Nomad | metagap None
+L1 seed 112 accent 0.08 WHISPER True | Lost in Amaze, 5 AIs, no map. | metagap None
+DONE
+L2 seed 101 accent 0.02 WHISPER True | I ask each AI to guide one dot out. | metagap None
+DONE
