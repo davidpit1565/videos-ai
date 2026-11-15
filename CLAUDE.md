@@ -646,3 +646,8 @@ Check every reel before publishing, in this order (J = my judgement before, M = 
 
 ## Episode 98 will be published as a REGULAR reel, not a trial (David, 15.11.2026)
 - David: "I prefer to upload it regular." Ep97 stays the trial test (reading 17.11); ep98 regular gives a rough comparison (two different episodes, so only a hint). Before any API publish of 98, check with him that he has not posted by hand.
+
+## Trials are the exception, not the default (David, 15.11.2026; replaces the "every reel goes out as a trial first" plan of 12.11)
+- NOT every video goes out as a trial. A video is a trial only if it was prepared as one in advance, or David decides so for that video. Everything else is published as a regular reel.
+- Every episode's script file starts with `Publish mode: TRIAL` or `Publish mode: REGULAR`, decided with David before publishing; when unclear, ask, default REGULAR. Known so far: ep98 REGULAR (David, 15.11), ep94 REGULAR (David, 15.11, 08:00 Belgium).
+- The studio has NO trials list today: the only trace of a trial is the `TRIAL ...` line in an episode's `notes` (hidden on public pages). If David wants a trials list in the studio, it is a new feature (one merge with other changes), to be agreed first.
