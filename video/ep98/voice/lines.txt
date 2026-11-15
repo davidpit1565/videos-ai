@@ -1,6 +1,6 @@
 Each AI taught a car. One hits the wall.
 Same job for all five: teach this car to drive.
-Each AI writes its own driving rules.
+Each AI sets its own driving rules.
 Pick one. Go!
 Perplexity stops dead in the bend!
 Meta AI hits the wall!

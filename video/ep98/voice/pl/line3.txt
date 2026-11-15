@@ -1,1 +1,1 @@
-Each AI writes its own driving rules.
+Each AI sets its own driving rules.

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """ep98 'AI RACE #1' scene, v4 (T8c), Miki style, HyperFrames + GSAP paused timeline, 1080x1920.
-Script: voice/lines.txt (11 lines). v4 (David, 15.11): (A) the stage is full-bleed under the headline band and fills the
+Script: voice/lines.txt (12 lines). v4 (David, 15.11): (A) the stage is full-bleed under the headline band and fills the
 safe box (track turned 90 degrees so the cars leave upward, cars big); (B) the first seconds SHOW the process on a
 line-up: the request goes to the five logo chips, each answers (dots, check), each car gets its colour and logo.
-TIMELINE: lines 1-3 always come from the voice cues. If the event lines (4-8) of the take are more than 0.45 s
-away from their race targets (a stitch without padding), lines 4-11 are placed on the TARGETS (real durations),
+TIMELINE: lines 1-4 always come from the voice cues. If the event lines (5-9) of the take are more than 0.45 s
+away from their race targets (a stitch without padding), lines 5-12 are placed on the TARGETS (real durations),
 so the picture matches the re-stitched voice; cues98.json says which (timeline). PLACE=cues forces the cue times.
 
 Reads  arena/race.json, arena/track.json, voice/lines.txt, voice/narration-raw-cues.json, voice/words.json.
@@ -108,7 +108,7 @@ for n in range(1, NL + 1):
     t = LINES[n - 1]
     if not STALE: DUR[n] = float(CUE[n]["end"]) - float(CUE[n]["start"])
     elif norm(t) in OLD: DUR[n] = round(OLD[norm(t)], 2)                 # same words in the old take: its real length
-    elif n == 3: DUR[n] = 1.25                                          # "Pick one. Go!"
+    elif n == 4: DUR[n] = 1.25                                          # "Pick one. Go!"
     else: DUR[n] = round(.3 + .045 * len(t), 2)
 WORDS = []
 if not STALE:
@@ -118,11 +118,11 @@ if not STALE:
     except Exception:
         WORDS = []
 SRC = {}
-# lines 1-3 and the word "Go" (the race starts on it)
+# lines 1-4 and the word "Go" (the race starts on it)
 SHIFT = {}
 if STALE:
     L = {1: (.08, round(.08 + DUR[1], 2))}
-    for n in (2, 3): L[n] = (round(L[n - 1][1] + .1, 2), round(L[n - 1][1] + .1 + DUR[n], 2))
+    for n in (2, 3, 4): L[n] = (round(L[n - 1][1] + .1, 2), round(L[n - 1][1] + .1 + DUR[n], 2))
 else:
     L = {n: (float(CUE[n]["start"]), float(CUE[n]["end"])) for n in range(1, NL + 1)}
 s = lambda n: L[n][0]
@@ -158,29 +158,29 @@ def speech(n, gap):
         return [x for x in out if x[1] - x[0] >= .05]
     except Exception:
         return []
-if STALE: T0 = s(3) + .6 * DUR[3]; SRC["go"] = "ESTIMATE (stale cues)"
+if STALE: T0 = s(4) + .63 * DUR[4]; SRC["go"] = "ESTIMATE (stale cues)"
 else:
-    T0 = W("go", 3)
+    T0 = W("go", 4)
     if T0 is not None: SRC["go"] = "words.json"
     else:
-        sg = speech(3, .15)
+        sg = speech(4, .15)
         if len(sg) >= 2: T0 = sg[-1][0]; SRC["go"] = "speech gap in the wav"
-        else: T0 = s(3) + .6 * (e(3) - s(3)); SRC["go"] = "line fraction"
+        else: T0 = s(4) + .63 * (e(4) - s(4)); SRC["go"] = "line fraction"
 T0 = round(T0, 3)
 V = lambda r: T0 + r                                         # video time of a race time, live part (1x)
 vP, vM, vC, vGm, vCh = V(tP), V(tM), V(tC), V(tGm), V(tCh)
 # where each line should start so the words land on the race (targets for the voice; also the estimated timeline)
-TG = {1: L[1][0], 2: L[2][0], 3: L[3][0]}
-TG[4] = round(vP - .45, 2)                                   # "stops" lands as Perplexity stops
-TG[5] = round(max(TG[4] + DUR[4] + .06, vM - .5), 2)         # "hits" lands on the wall
-TG[6] = round(max(TG[5] + DUR[5] + .08, vC - DUR[6] - .15), 2)   # ends as the two cross the line
-TG[7] = round(max(TG[6] + DUR[6] + .08, vGm + .45), 2)
-TG[8] = round(max(TG[7] + DUR[7] + .1, vCh + .2), 2)         # the replay
-for n in range(9, NL + 1): TG[n] = round(TG[n - 1] + DUR[n - 1] + .12, 2)
-DRIFT = {n: round(L[n][0] - TG[n], 2) for n in range(4, 9)} if not STALE else {}
+TG = {1: L[1][0], 2: L[2][0], 3: L[3][0], 4: L[4][0]}
+TG[5] = round(vP - .45, 2)                                   # "stops" lands as Perplexity stops
+TG[6] = round(max(TG[5] + DUR[5] + .06, vM - .5), 2)         # "hits" lands on the wall
+TG[7] = round(max(TG[6] + DUR[6] + .08, vC - DUR[7] - .15), 2)   # ends as the two cross the line
+TG[8] = round(max(TG[7] + DUR[7] + .08, vGm + .45), 2)
+TG[9] = round(max(TG[8] + DUR[8] + .1, vCh + .2), 2)         # the replay
+for n in range(10, NL + 1): TG[n] = round(TG[n - 1] + DUR[n - 1] + .12, 2)
+DRIFT = {n: round(L[n][0] - TG[n], 2) for n in range(5, 10)} if not STALE else {}
 ONTG = STALE or (os.environ.get("PLACE") != "cues" and any(abs(v) > .45 for v in DRIFT.values()))
 if ONTG:
-    for n in range(4, NL + 1):
+    for n in range(5, NL + 1):
         if not STALE: SHIFT[n] = TG[n] - L[n][0]
         L[n] = (TG[n], round(TG[n] + DUR[n], 2))
 D = round(e(NL) + .45, 2)
@@ -188,12 +188,12 @@ tF = D - .58                                                 # the frame-0 layou
 
 # ---------------------------------------------------------------- race clock r(v): 1x live, then the 1/4-speed replay
 SLOW = .25
-vR0 = max(s(8) - .35, vGm + .9)                              # replay: the dip starts
+vR0 = max(s(9) - .35, vGm + .9)                              # replay: the dip starts
 vRm = vR0 + .14                                              # the clock jumps here, under the dip
-tw7 = W("wins", 8)
-vX = max(vRm + .62, tw7 if tw7 is not None else s(8) + .32 * (e(8) - s(8)))   # Claude's nose crosses the line in the replay
+tw7 = W("wins", 9)
+vX = max(vRm + .62, tw7 if tw7 is not None else s(9) + .32 * (e(9) - s(9)))   # Claude's nose crosses the line in the replay
 vXg = vX + (tGm - tC) / SLOW                                 # Gemini crosses in the replay
-tK = max(s(9) - .05, vXg + .45)                              # result card
+tK = max(s(10) - .05, vXg + .45)                              # result card
 vJ = tK + .55                                                # card covers the stage: the clock goes to the end state
 rA = tC - SLOW * (vX - vRm)
 def r_of(v):
@@ -284,14 +284,15 @@ def head(i, t_in, t_out, l1, l2="", logos=(), t2=None, size=92, extra=""):
             js(f"tl.fromTo('#h{i}b',{{opacity:0,x:34}},{{opacity:1,x:0,duration:.3,ease:'power3.out',immediateRender:false}},{t2:.3f});")
     if t_out is not None: fout(f"#h{i}", t_out - .24)
 tA2 = T0 + .82
-tA3 = clamp(s(4), vP - .6, vP - .12)                        # the event headlines follow the race, the voice is told where to land (targets)
-tA4 = clamp(s(5), vM - .7, vM - .12)
-tA5 = clamp(s(6), vM + 1.0, vC - .9)
-tA6 = clamp(s(7), vGm + .5, max(vGm + .5, vR0 - 1.2))
-tS8 = W("send", 9); tS8 = tS8 if tS8 is not None else s(9) + .52 * (e(9) - s(9))
+tA3 = clamp(s(5), vP - .6, vP - .12)                        # the event headlines follow the race, the voice is told where to land (targets)
+tA4 = clamp(s(6), vM - .7, vM - .12)
+tA5 = clamp(s(7), vM + 1.0, vC - .9)
+tA6 = clamp(s(8), vGm + .5, max(vGm + .5, vR0 - 1.2))
+tS8 = W("send", 10); tS8 = tS8 if tS8 is not None else s(10) + .52 * (e(10) - s(10))
 head(0, None, s(2) - .02, "EACH AI TAUGHT A CAR.", "ONE HITS THE WALL.")
 head(11, s(2), s(3) - .02, "SAME JOB FOR ALL FIVE")
-head(1, s(3), T0 - .04, "PICK ONE.", size=132)
+head(12, s(3), s(4) - .02, "EACH SETS ITS OWN RULES")
+head(1, s(4), T0 - .04, "PICK ONE.", size=132)
 HEADS.append('<div class="hd go" id="hgo"><div class="hl1"><span>GO!</span></div></div>')
 js(f"tl.fromTo('#hgo',{{opacity:0,scale:.6}},{{opacity:1,scale:1,duration:.3,ease:'power3.out',immediateRender:false}},{T0:.3f});")
 js(f"tl.to('#hgo',{{opacity:0,scale:1.2,duration:.26,ease:'power2.in'}},{tA2 - .3:.3f});")
@@ -302,8 +303,8 @@ head(5, tA5, tA6, "NECK AND NECK", logos=("claude", "gemini"))
 head(6, tA6, vR0 + .1, "CHATGPT", "ROLLS IN NEXT", logos=("chatgpt",))
 head(7, vR0 + .12, vX, "WHO WON?", size=120)
 head(8, vX, tK, "CLAUDE WINS", f"{GAP} s AHEAD OF GEMINI", logos=("claude",), t2=vXg)
-head(9, tK, s(11) - .04, "SEND IT TO A FRIEND", "SEE WHO THEY PICK", t2=tS8)
-head(10, s(11), tF + .04, "NEXT: A MAZE", size=120)
+head(9, tK, s(12) - .04, "SEND IT TO A FRIEND", "SEE WHO THEY PICK", t2=tS8)
+head(10, s(12), tF + .04, "NEXT: A MAZE", size=120)
 fin("#h0", tF + .06, .42)
 
 # ---------------------------------------------------------------- markup: the world (ground, road, trails, cars, effects), drawn turned 90 degrees by render()
@@ -392,6 +393,10 @@ sa += f'''<div id="bub"><svg class="bcar" viewBox="-42 -26 84 52">{bodyparts("#f
  <svg class="btail" data-decor viewBox="0 0 60 44"><path d="M4 0 C10 22 30 36 56 40 C36 40 18 30 4 0Z" fill="#fff" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/><rect x="0" y="-6" width="40" height="9" fill="#fff"/></svg></div>'''
 sa += "".join(f'<div class="nt" id="nt{c}"><i></i><i></i></div>' for c in range(5))
 
+RULES3 = ["Stay in the middle of the road", "Slow down for bends", "Steer away from walls"]   # plain-words summary of what all five answers do (coordinator's reading of the answers)
+sa += '<div id="rules"><div class="rt">RULES</div><div class="rs">plain-words summary</div>' + "".join(f'<div class="rl" id="rl{q}"><b></b>{x}</div>' for q, x in enumerate(RULES3)) + "</div>"
+sa += "".join(f'<div class="mr" id="mr{c}" style="left:{CXS[c] - 62}px;top:{CHY - 112}px"><span>RULES</span><i></i><i></i><i></i></div>' for c in range(5))
+
 # ---------------------------------------------------------------- markup: chips (the AIs; later the status strip: fixed order, status only), maze, result card
 strip = '<div id="strip">'
 for c, k in enumerate(IDS):
@@ -430,7 +435,7 @@ ROWS = [("claude", "1", f"{RES['claude']['timeS']:.2f} s"), ("gemini", "2", f"{R
 card = '<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">AI RACE #1 &middot; 2 LAPS</div>'
 for i, (k, pl, res) in enumerate(ROWS):
     card += f'<div class="cr" id="cr{i}" style="top:{112 + i * 100}px"><span class="cp">{pl}</span>{badge(k, 78)}<span class="cn">{NAME[k]}</span><span class="cv">{res}</span>{"<i></i>" if i == 0 else ""}</div>'
-card += '<div class="cl" id="cl">rules locked first, one try each</div><div class="cf" id="cf">race your own AI: link in bio<i></i></div></div>'
+card += '<div class="cl" id="cl">rules locked first, one try each</div></div>'
 markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam">
@@ -493,6 +498,14 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .btail{position:absolute;right:46px;bottom:-42px;width:60px;height:44px;overflow:visible}
 .nt{position:absolute;left:506px;top:1010px;width:68px;height:50px;background:#fff;border:4px solid INK;border-radius:14px;opacity:0;padding:10px 10px 0}
 .nt i{display:block;height:5px;border-radius:3px;background:INK;margin-bottom:8px} .nt i+i{width:60%}
+#rules{position:absolute;left:120px;top:1000px;width:840px;height:232px;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:9px 9px 0 INK;opacity:0;padding:16px 34px 0;transform-origin:50% 0}
+.rt{display:inline-block;font-weight:900;font-size:46px;line-height:50px;letter-spacing:-.02em}
+.rs{position:absolute;right:30px;top:28px;font-weight:500;font-size:24px;line-height:28px;opacity:.7}
+.rl{opacity:0;font-weight:800;font-size:40px;line-height:50px;letter-spacing:-.01em;white-space:nowrap;display:flex;align-items:center;gap:16px}
+.rl b{display:block;width:16px;height:16px;border-radius:50%;background:INK;flex:none}
+.mr{position:absolute;width:124px;height:104px;background:PAPER;border:4px solid INK;border-radius:8px;box-shadow:5px 5px 0 INK;opacity:0;padding:8px 12px 0;transform-origin:50% 100%;z-index:3}
+.mr span{display:block;font-weight:900;font-size:22px;line-height:24px;letter-spacing:-.01em;margin-bottom:7px}
+.mr i{display:block;height:6px;border-radius:3px;background:INK;margin-bottom:9px} .mr i:nth-child(3){width:72%} .mr i:nth-child(4){width:86%}
 .sl{position:absolute;width:100px;height:100px;will-change:transform}
 .sl .tb{position:absolute;left:0;top:0;border-width:5px;box-shadow:5px 5px 0 INK}
 .ring{position:absolute;left:-13px;top:-13px;width:126px;height:126px;border-radius:50%;border:8px solid INK;opacity:0}
@@ -522,7 +535,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .cn{font-weight:900;font-size:52px;line-height:60px;letter-spacing:-.03em;margin-left:20px;white-space:nowrap}
 .cv{margin-left:auto;font-weight:800;font-size:39px;line-height:60px;letter-spacing:-.01em;white-space:nowrap}
 .cr i{position:absolute;left:0;right:0;bottom:2px;height:9px;border-radius:5px;background:#D97757;transform-origin:0 50%;transform:scaleX(0)}
-.cl{position:absolute;left:40px;top:622px;font-weight:800;font-size:34px;line-height:40px;letter-spacing:-.01em;white-space:nowrap;opacity:0}
+.cl{position:absolute;left:40px;top:640px;font-weight:800;font-size:38px;line-height:46px;letter-spacing:-.01em;white-space:nowrap;opacity:0}
 .cf{position:absolute;left:40px;top:672px;font-weight:800;font-size:36px;line-height:42px;white-space:nowrap;opacity:0}
 .cf i{position:absolute;left:0;right:0;bottom:-7px;height:6px;border-radius:3px;background:INK;transform-origin:0 50%;transform:scaleX(0)}
 '''
@@ -561,24 +574,41 @@ for c in range(5):
     js(f"tl.to('#nt{c}',{{opacity:0,scale:.3,y:{dy - 40},duration:.14,ease:'sine.in'}},{ta:.3f});")
     js(f"tl.fromTo('#sl{c}',{{y:0}},{{y:-10,duration:.15,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{ta + .05:.3f});")
     js(f"tl.fromTo('#tk{c}',{{opacity:0,scale:.3}},{{opacity:1,scale:1,duration:.18,ease:'power3.out',immediateRender:false}},{ta + .06:.3f});")
-    th = .5 * f2 + .05 * c                                   # each AI takes its own time
+    th = .62 * f2 + .06 * c                                   # each AI takes its own time
     for q in range(3):
         js(f"tl.fromTo('#tk{c} i:nth-child({q + 1})',{{y:0}},{{y:-9,duration:.14,ease:'sine.inOut',yoyo:true,repeat:{max(1, 2 * round(th / .3)) - 1},immediateRender:false}},{ta + .1 + .07 * q:.3f});")
     tc = ta + .06 + th
     js(f"tl.to('#tk{c}',{{opacity:0,scale:.5,duration:.14,ease:'sine.in'}},{tc:.3f});")
     js(f"tl.to('#ck{c}',{{scale:1,duration:.28,ease:'back.out(2)'}},{tc + .06:.3f});")
     js(f"tl.fromTo('#ck{c} path',{{strokeDashoffset:1}},{{strokeDashoffset:0,duration:.22,ease:'power2.out',immediateRender:false}},{tc + .12:.3f});")
-    tv = tc + .2; ALIVE.append(round(tv, 3))
+    sfx("tick.ogg", tc + .06, -11)
+sfx("whoosh_b.ogg", tN, -11)
+# beat 3: WHAT each AI wrote. The request leaves; one big card shows the rules in plain words; a small copy pops out of
+# every AI and slides into its car, which gets its colour and logo
+a3 = s(3); f3 = clamp((e(3) - s(3)) / 2.0, .8, 1.3)
+js(f"tl.to('#bub',{{opacity:0,y:40,scale:.9,duration:.24,ease:'power2.in'}},{a3 - .3:.3f});")
+js(f"tl.fromTo('#rules',{{opacity:0,y:60,rotation:2}},{{opacity:1,y:0,rotation:-.6,duration:.42,ease:'power3.out',immediateRender:false}},{a3 - .04:.3f});")
+for q in range(3):
+    js(f"tl.fromTo('#rl{q}',{{opacity:0,x:-30}},{{opacity:1,x:0,duration:.3,ease:'power3.out',immediateRender:false}},{a3 + .16 + .17 * q * f3:.3f});")
+    sfx("pop_a.ogg" if q % 2 == 0 else "pop_b.ogg", a3 + .16 + .17 * q * f3, -11)
+js(f"tl.to('#rules',{{rotation:.5,y:-6,duration:{max(.4, (s(4) - a3 - .6) / 2):.3f},ease:'sine.inOut',yoyo:true,repeat:1}},{a3 + .44:.3f});")
+sfx("whoosh_b.ogg", a3, -11)
+for c in range(5):
+    tm = a3 + .14 + .06 * c
+    js(f"tl.fromTo('#mr{c}',{{opacity:0,scale:.2,y:60,rotation:0}},{{opacity:1,scale:1,y:0,rotation:{(-3, 2, -2, 3, -1)[c]},duration:.34,ease:'back.out(1.5)',immediateRender:false}},{tm:.3f});")
+    ts = a3 + (.92 + .08 * c) * f3
+    js(f"tl.to('#mr{c}',{{y:{CARY - (CHY - 60)},scale:.5,rotation:0,duration:.32,ease:'power2.inOut'}},{ts:.3f});")
+    js(f"tl.to('#mr{c}',{{opacity:0,duration:.12,ease:'sine.in'}},{ts + .24:.3f});")
+    tv = ts + .26; ALIVE.append(round(tv, 3))
     js(f"tl.to('#lk{c}',{{opacity:1,duration:.2}},{tv - .08:.3f});")
     js(f"tl.to('#lb{c}',{{opacity:1,duration:.26,ease:'sine.out'}},{tv:.3f});")
     js(f"tl.to('#lc{c} .lbd',{{scale:1,duration:.34,ease:'back.out(1.7)'}},{tv:.3f});")
     js(f"tl.fromTo('#lc{c}',{{y:0,scale:1}},{{y:-20,scale:1.07,duration:.2,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tv:.3f});")
     js(f"tl.to('#lpw{c}',{{opacity:1,duration:.2}},{tv + .05:.3f});")
-    sfx("tick.ogg", tc + .06, -11); sfx("pop_a.ogg" if c % 2 == 0 else "pop_b.ogg", tv, -10)
-sfx("whoosh_b.ogg", tN, -11)
-# beat 3: "Pick one": the request leaves, the five logos light up as choices, one after another, and stay lit until Go
-js(f"tl.to('#bub',{{opacity:0,y:40,scale:.9,duration:.28,ease:'power2.in'}},{s(3) - .16:.3f});")
-tPk = s(3) - .08; stepk = min(.13, max(.06, (T0 - .3 - tPk) / 5))
+    sfx("pop_a.ogg" if c % 2 == 0 else "pop_b.ogg", tv, -10)
+# beat 4: "Pick one": the rules card leaves, the five logos light up as choices, one after another, and stay lit until Go
+js(f"tl.to('#rules',{{opacity:0,y:40,scale:.94,duration:.28,ease:'power2.in'}},{s(4) - .16:.3f});")
+tPk = s(4) - .08; stepk = min(.13, max(.06, (T0 - .3 - tPk) / 5))
 PICK = [round(tPk + c * stepk, 3) for c in range(5)]
 for c in range(5):
     js(f"tl.fromTo('#sl{c}',{{y:0}},{{y:-18,duration:.2,ease:'power2.out',yoyo:true,repeat:1,immediateRender:false}},{PICK[c]:.3f});")
@@ -623,33 +653,30 @@ tU = tK + 1.25
 js(f"tl.to('#cr0 i',{{scaleX:1,duration:.5,ease:'power2.inOut'}},{tU:.3f});")
 js(f"tl.fromTo('#cr0 .bdg',{{scale:1}},{{scale:1.14,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tU:.3f});")
 fin("#cl", tU + .25, .4, 14, 6)
-hold = max(.8, s(11) - tK - .7)
+hold = max(.8, s(12) - tK - .7)
 js(f"tl.to('#card',{{rotation:.6,y:-8,duration:{hold / 2:.3f},ease:'sine.inOut',yoyo:true,repeat:1}},{tK + .55:.3f});")
 for q, i in enumerate((3, 4, 2, 1)):                         # a slow wave keeps the list alive while it is read
     js(f"tl.fromTo('#cr{i} .bdg',{{rotation:0}},{{rotation:{-10 if q % 2 else 10},duration:.28,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tU + .7 + q * .3:.3f});")
-fin("#cf", s(10) + .05)
-js(f"tl.to('#cf i',{{scaleX:1,duration:.6,ease:'power2.inOut'}},{s(10) + .3:.3f});")
-sfx("tick.ogg", s(10) + .05, -9)
 for q, i in enumerate((0, 1, 2)):
-    js(f"tl.fromTo('#cr{i} .cv',{{scale:1}},{{scale:1.1,transformOrigin:'100% 50%',duration:.24,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{s(10) + .95 + q * .2:.3f});")
+    js(f"tl.fromTo('#cr{i} .cv',{{scale:1}},{{scale:1.1,transformOrigin:'100% 50%',duration:.24,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{s(11) + .95 + q * .2:.3f});")
 # last line: the maze sheet covers the road, then the frame-0 picture (the line-up) returns
-tG = s(11) + .15
-js(f"tl.fromTo('#msheet',{{opacity:0}},{{opacity:1,duration:.22,ease:'sine.inOut',immediateRender:false}},{s(11) - .36:.3f});")
-js(f"tl.to('#sl{ci} .ring',{{opacity:0,duration:.2,ease:'sine.inOut'}},{s(11) - .36:.3f});")
-js(f"tl.to('.sl',{{opacity:0,duration:.22,ease:'sine.inOut'}},{s(11) - .36:.3f});")
-js(f"tl.set('.sl',{{x:0,y:0,scale:1}},{s(11) + .2:.3f});"); js(f"tl.set('.dots',{{opacity:0}},{s(11) + .2:.3f});"); js(f"tl.set('.ck',{{opacity:1,scale:1}},{s(11) + .2:.3f});")
-js(f"tl.to('#card',{{opacity:0,scale:.82,y:-50,rotation:-4,duration:.36,ease:'power2.in'}},{s(11) - .12:.3f});")
-sfx("whoosh_c.ogg", s(11) - .12, -10)
-mzD = tF - s(11)
-js(f"tl.to('#mzw',{{strokeDashoffset:0,duration:{min(1.2, mzD * .45):.3f},ease:'power2.inOut'}},{s(11) - .2:.3f});")
-js(f"tl.to('#mzp',{{strokeDashoffset:0,duration:{max(.5, mzD * .5):.3f},ease:'sine.inOut'}},{s(11) + min(1.2, mzD * .45):.3f});")
-js(f"tl.fromTo('#msheet svg',{{rotation:-2,scale:.96}},{{rotation:1.5,scale:1,duration:{mzD:.3f},ease:'sine.inOut',immediateRender:false}},{s(11) - .1:.3f});")
-tq = W("lost", 11); tq = tq if tq is not None else s(11) + .86 * (e(11) - s(11))
+tG = s(12) + .15
+js(f"tl.fromTo('#msheet',{{opacity:0}},{{opacity:1,duration:.22,ease:'sine.inOut',immediateRender:false}},{s(12) - .36:.3f});")
+js(f"tl.to('#sl{ci} .ring',{{opacity:0,duration:.2,ease:'sine.inOut'}},{s(12) - .36:.3f});")
+js(f"tl.to('.sl',{{opacity:0,duration:.22,ease:'sine.inOut'}},{s(12) - .36:.3f});")
+js(f"tl.set('.sl',{{x:0,y:0,scale:1}},{s(12) + .2:.3f});"); js(f"tl.set('.dots',{{opacity:0}},{s(12) + .2:.3f});"); js(f"tl.set('.ck',{{opacity:1,scale:1}},{s(12) + .2:.3f});")
+js(f"tl.to('#card',{{opacity:0,scale:.82,y:-50,rotation:-4,duration:.36,ease:'power2.in'}},{s(12) - .12:.3f});")
+sfx("whoosh_c.ogg", s(12) - .12, -10)
+mzD = tF - s(12)
+js(f"tl.to('#mzw',{{strokeDashoffset:0,duration:{min(1.2, mzD * .45):.3f},ease:'power2.inOut'}},{s(12) - .2:.3f});")
+js(f"tl.to('#mzp',{{strokeDashoffset:0,duration:{max(.5, mzD * .5):.3f},ease:'sine.inOut'}},{s(12) + min(1.2, mzD * .45):.3f});")
+js(f"tl.fromTo('#msheet svg',{{rotation:-2,scale:.96}},{{rotation:1.5,scale:1,duration:{mzD:.3f},ease:'sine.inOut',immediateRender:false}},{s(12) - .1:.3f});")
+tq = W("lost", 12); tq = tq if tq is not None else s(12) + .86 * (e(12) - s(12))
 tq = min(tq, tF - .45)
 js(f"tl.fromTo('#mzq',{{opacity:0,scale:.5,rotation:-14}},{{opacity:1,scale:1,rotation:8,duration:.35,ease:'power3.out',immediateRender:false}},{tq:.3f});")
 js(f"tl.fromTo('#sa',{{opacity:0,scale:1.06,filter:'blur(8px)'}},{{opacity:1,scale:1,filter:'blur(0px)',duration:.42,ease:'power2.out',immediateRender:false}},{tF:.3f});")
 js(f"tl.fromTo('.sl',{{opacity:0}},{{opacity:1,duration:.42,ease:'power2.out',immediateRender:false}},{tF:.3f});")
-sfx("tick.ogg", s(11) + .1, -10); sfx("whoosh_c.ogg", tF, -12)
+sfx("tick.ogg", s(12) + .1, -10); sfx("whoosh_c.ogg", tF, -12)
 
 # ---------------------------------------------------------------- render(): the race and the camera, driven by the timeline clock
 DATA = dict(T0=T0, D=D, NF=NF, RT=RT, X=X, Y=Y, A=A, CL=CLEN, TL=[CLEN[c][STOP[k]] + 2 for c, k in enumerate(IDS)],
@@ -736,14 +763,14 @@ function render(v){
 JS = re.sub(r"tl\.set\(([^,]+),\{", r"tl.set(\1,{immediateRender:false,", "\n".join(J))
 SFX.sort(key=lambda x: x["t"])
 json.dump(SFX, open(H_ + "/sfx98.json", "w"), indent=1)
-TLN = "ESTIMATED (cue texts do not match voice/lines.txt)" if STALE else ("lines 1-3 from the voice cues, lines 4-11 on the TARGETS (the take is not padded yet: re-stitch on the targets)" if ONTG else "voice cues")
+TLN = "ESTIMATED (cue texts do not match voice/lines.txt)" if STALE else ("lines 1-4 from the voice cues, lines 5-12 on the TARGETS (the take is not padded yet: re-stitch on the targets)" if ONTG else "voice cues")
 json.dump(dict(lines=[dict(n=n, text=LINES[n - 1], start=round(s(n), 3), end=round(e(n), 3)) for n in range(1, NL + 1)], D=D, go=T0,
                stale_cues=STALE, lines_on_targets=ONTG, timeline=TLN,
                targets={str(n): round(TG[n], 2) for n in range(1, NL + 1)}, drift_vs_targets=DRIFT,
                race=dict(start=T0, live_until_race_s=LIVE_END, perplexity_stops=round(vP, 3), meta_wall=round(vM, 3), claude=round(vC, 3), gemini=round(vGm, 3),
                          chatgpt=round(vCh, 3) if vCh < vRm else None,
                          replay_from=round(vRm, 3), replay_to=round(vJ, 3), replay_rate=SLOW, replay_race_from=round(rA, 3), replay_claude=round(vX, 3), replay_gemini=round(vXg, 3)),
-               premise=dict(start=round(a2, 3), notes=round(tN, 3), cars_alive=ALIVE, pick=PICK),
+               premise=dict(start=round(a2, 3), notes=round(tN, 3), rules=round(a3, 3), cars_alive=ALIVE, pick=PICK),
                sources=SRC), open(H_ + "/cues98.json", "w"), indent=1)
 html = f'''<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
@@ -778,11 +805,11 @@ if STALE:
 say("lines: " + "  ".join(f"{n}:{s(n):.2f}-{e(n):.2f}" for n in range(1, NL + 1)))
 say("voice targets (line start so the words land on the race): " + "  ".join(f"{n}:{TG[n]:.2f}" for n in range(1, NL + 1)) +
     ("" if STALE else "   drift of the take on disk: " + "  ".join(f"{n}:{DRIFT[n]:+.2f}" for n in DRIFT)))
-say(f"premise: reset {a2 - .1:.2f}, notes fly {tN:.2f}, cars alive {ALIVE[0]:.2f}-{ALIVE[-1]:.2f}, pick {PICK[0]:.2f}-{PICK[-1]:.2f}, go {T0}")
+say(f"premise: reset {a2 - .1:.2f}, notes fly {tN:.2f}, rules {a3:.2f}, cars alive {ALIVE[0]:.2f}-{ALIVE[-1]:.2f}, pick {PICK[0]:.2f}-{PICK[-1]:.2f}, go {T0}")
 say(f"race clock: 1x from {T0} to {vRm:.2f} (race {LIVE_END}); video times: Perplexity stops {vP:.2f}, Meta AI wall {vM:.2f}, Claude {vC:.2f}, Gemini {vGm:.2f}, "
     f"ChatGPT {vCh:.2f}{'' if vCh < vRm else ' (NOT SHOWN live: the replay starts first)'}")
-say(f"SLOW MOTION REPLAY {SLOW}x video {vRm:.2f}-{vJ:.2f} (race from {rA:.2f}), label until {tSO:.2f}; Claude crosses {vX:.2f}, Gemini {vXg:.2f}; card {tK:.2f}; maze {s(11):.2f}; frame-0 layout from {tF:.2f}")
+say(f"SLOW MOTION REPLAY {SLOW}x video {vRm:.2f}-{vJ:.2f} (race from {rA:.2f}), label until {tSO:.2f}; Claude crosses {vX:.2f}, Gemini {vXg:.2f}; card {tK:.2f}; maze {s(12):.2f}; frame-0 layout from {tF:.2f}")
 say(f"headlines in: two-laps {tA2:.2f}, Perplexity {tA3:.2f}, Meta AI {tA4:.2f}, neck {tA5:.2f}, ChatGPT {tA6:.2f}, who-won {vR0 + .12:.2f}, wins {vX:.2f}, send {tK:.2f}/{tS8:.2f}")
 say(f"camera: zoom {min(CZ):.2f}-{max(CZ):.2f}; smallest car on screen in the race {MINCAR:.0f} px long, {MINCAR * .6:.0f} px wide")
 if not WORDS: say("NOTE: no usable voice/words.json for this take: word-timed beats use line fractions.")
-open(H_ + "/out/build-v4.log", "w").write("\n".join(LOG) + "\n")
+open(H_ + "/out/build-v6.log", "w").write("\n".join(LOG) + "\n")

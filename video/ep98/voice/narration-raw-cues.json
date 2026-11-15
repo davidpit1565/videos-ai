@@ -2,67 +2,73 @@
  {
   "n": 1,
   "line": "Each AI taught a car. One hits the wall.",
-  "start": 0.04,
-  "end": 2.36
+  "start": 0.08,
+  "end": 2.4
  },
  {
   "n": 2,
   "line": "Same job for all five: teach this car to drive.",
-  "start": 2.55,
-  "end": 5.14
+  "start": 2.59,
+  "end": 5.18
  },
  {
   "n": 3,
-  "line": "Pick one. Go!",
-  "start": 5.33,
-  "end": 6.39
+  "line": "Each AI sets its own driving rules.",
+  "start": 5.37,
+  "end": 7.04
  },
  {
   "n": 4,
-  "line": "Perplexity stops dead in the bend!",
-  "start": 9.77,
-  "end": 12.28
+  "line": "Pick one. Go!",
+  "start": 7.26,
+  "end": 8.32
  },
  {
   "n": 5,
-  "line": "Meta AI hits the wall!",
-  "start": 12.47,
-  "end": 14.35
+  "line": "Perplexity stops dead in the bend!",
+  "start": 11.69,
+  "end": 14.2
  },
  {
   "n": 6,
-  "line": "Claude and Gemini, neck and neck.",
-  "start": 14.54,
-  "end": 16.37
+  "line": "Meta AI hits the wall!",
+  "start": 14.39,
+  "end": 16.27
  },
  {
   "n": 7,
-  "line": "ChatGPT rolls in next.",
-  "start": 16.56,
-  "end": 17.84
+  "line": "Claude and Gemini, neck and neck.",
+  "start": 16.46,
+  "end": 18.29
  },
  {
   "n": 8,
-  "line": "Claude wins. Gemini is right behind.",
-  "start": 18.03,
-  "end": 19.88
+  "line": "ChatGPT rolls in next.",
+  "start": 18.48,
+  "end": 19.76
  },
  {
   "n": 9,
-  "line": "Send it to a friend. See who they pick.",
-  "start": 20.07,
-  "end": 22.42
+  "line": "Claude wins. Gemini is right behind.",
+  "start": 19.95,
+  "end": 21.8
  },
  {
   "n": 10,
-  "line": "The setup's in the link in bio.",
-  "start": 22.61,
-  "end": 24.42
+  "line": "Send it to a friend. See who they pick.",
+  "start": 21.99,
+  "end": 24.34
  },
  {
   "n": 11,
+  "line": "The setup's in the link in bio.",
+  "start": 24.53,
+  "end": 26.34
+ },
+ {
+  "n": 12,
   "line": "Tomorrow, they face a maze. Follow, so you see who gets lost.",
-  "start": 24.61,
-  "end": 28.03
+  "start": 26.53,
+  "end": 29.95
  }
 ]

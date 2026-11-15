@@ -1,0 +1,9 @@
+D=30.4 go=7.92 (words.json) stale_cues=False lines_on_targets=False js=229 sfx=43
+timeline: voice cues
+lines: 1:0.08-2.40  2:2.59-5.18  3:5.37-7.04  4:7.26-8.32  5:11.69-14.20  6:14.39-16.27  7:16.46-18.29  8:18.48-19.76  9:19.95-21.80  10:21.99-24.34  11:24.53-26.34  12:26.53-29.95
+voice targets (line start so the words land on the race): 1:0.08  2:2.59  3:5.37  4:7.26  5:11.69  6:14.26  7:16.22  8:18.13  9:19.51  10:21.48  11:23.95  12:25.88   drift of the take on disk: 5:+0.00  6:+0.13  7:+0.24  8:+0.35  9:+0.44
+premise: reset 2.49, notes fly 3.13, rules 5.37, cars alive 6.40-6.67, pick 7.18-7.53, go 7.92
+race clock: 1x from 7.92 to 19.74 (race 11.82); video times: Perplexity stops 12.14, Meta AI wall 14.07, Claude 16.40, Gemini 16.60, ChatGPT 18.50
+SLOW MOTION REPLAY 0.25x video 19.74-22.49 (race from 8.33), label until 21.24; Claude crosses 20.36, Gemini 21.16; card 21.94; maze 26.53; frame-0 layout from 29.82
+headlines in: two-laps 8.74, Perplexity 11.69, Meta AI 13.95, neck 15.50, ChatGPT 18.40, who-won 19.72, wins 20.36, send 21.94/22.12
+camera: zoom 1.62-2.71; smallest car on screen in the race 128 px long, 77 px wide
