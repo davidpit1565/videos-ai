@@ -7,56 +7,62 @@
  },
  {
   "n": 2,
-  "line": "Pick one. Go!",
+  "line": "Same job for all five: teach this car to drive.",
   "start": 2.55,
-  "end": 3.61
+  "end": 5.14
  },
  {
   "n": 3,
-  "line": "Perplexity stops dead in the bend!",
-  "start": 6.99,
-  "end": 9.5
+  "line": "Pick one. Go!",
+  "start": 5.33,
+  "end": 6.39
  },
  {
   "n": 4,
-  "line": "Meta AI hits the wall!",
-  "start": 9.69,
-  "end": 11.57
+  "line": "Perplexity stops dead in the bend!",
+  "start": 6.58,
+  "end": 9.09
  },
  {
   "n": 5,
-  "line": "Claude and Gemini, neck and neck.",
-  "start": 11.76,
-  "end": 13.59
+  "line": "Meta AI hits the wall!",
+  "start": 9.28,
+  "end": 11.16
  },
  {
   "n": 6,
-  "line": "ChatGPT rolls in next.",
-  "start": 13.78,
-  "end": 15.06
+  "line": "Claude and Gemini, neck and neck.",
+  "start": 11.35,
+  "end": 13.18
  },
  {
   "n": 7,
-  "line": "Claude wins. Gemini is right behind.",
-  "start": 15.25,
-  "end": 17.1
+  "line": "ChatGPT rolls in next.",
+  "start": 13.37,
+  "end": 14.65
  },
  {
   "n": 8,
-  "line": "Send it to a friend. See who they pick.",
-  "start": 17.29,
-  "end": 19.64
+  "line": "Claude wins. Gemini is right behind.",
+  "start": 14.84,
+  "end": 16.69
  },
  {
   "n": 9,
-  "line": "The setup's in the link in bio.",
-  "start": 19.83,
-  "end": 21.64
+  "line": "Send it to a friend. See who they pick.",
+  "start": 16.88,
+  "end": 19.23
  },
  {
   "n": 10,
+  "line": "The setup's in the link in bio.",
+  "start": 19.42,
+  "end": 21.23
+ },
+ {
+  "n": 11,
   "line": "Tomorrow, they face a maze. Follow, so you see who gets lost.",
-  "start": 21.83,
-  "end": 25.25
+  "start": 21.42,
+  "end": 24.84
  }
 ]

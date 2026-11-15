@@ -4,7 +4,9 @@ lines=[l.rstrip('\n') for l in open(D+'lines.txt') if l.strip()]
 out=[];cues=[];t=0.0;sr=None
 gap=0.07
 targets={}
+import sys
 try:
+    if '--notargets' in sys.argv: raise Exception('notargets')
     targets={int(k):v for k,v in json.load(open('/home/user/videos-ai/video/ep98/cues98.json'))['targets'].items()}
 except Exception as e: print('no targets',e)
 for i,l in enumerate(lines,1):
