@@ -65,7 +65,7 @@ Video time = race time + 5.4 s (the race starts on "Go").
 | 8 | 13.9-15.0 | At the line, a photo finish! | 1.1 | 8.48 vs 8.68 s, spoken as they cross |
 | 9 | 15.0-15.9 | ChatGPT takes its time. | 0.9 | finishes 10.58 s, crosses right after the line ends |
 | 10 | 16.6-17.8 | Claude wins, by a hair. | 1.2 | on the slow-motion replay, "Claude" lands as its nose crosses |
-| 11 | 18.0-19.6 | Send it to someone who uses Meta AI. | 1.6 | sendable: a named person; optional cut (saves 1.7 s) |
+| 11 | 18.0-19.6 | Send it to a friend who uses Meta AI. | 1.6 | sendable: a named person; optional cut (saves 1.7 s) |
 | 12 | 19.7-21.2 | The setup's in the link in bio. | 1.5 | LOCKED clip, `canonical-lines.json`, byte for byte |
 | 13 | 21.3-24.2 | Tomorrow, they face a maze. Follow, so you see who gets lost. | 2.9 | **PROMISE TO CONFIRM**: true only if episode 99 (AI RACE #2, the maze, the same five AIs) publishes the next day |
 Total about 24.2 s (about 22.5 s without line 11).
@@ -158,4 +158,4 @@ HOOK 78 (clear subject at word one and a picture to match; the threat sits at wo
 3. Episode 99 (maze): not started (no arena, no PROMPT B answers). Confirm it can go out the day after 98, or line 13 changes to "Next race".
 
 ## Honesty fix 15.11.2026 (Claude, orchestrator)
-The first script said "nose to nose", "photo finish", "by a hair". Measured in race.json: when Claude crosses the line, Gemini is about 78 px behind (roughly two car lengths) and crosses 12 frames (0.20 s) later. Lines changed to: "Claude and Gemini are neck and neck." / "Claude crosses the line ahead!" / "Claude wins. Gemini is two tenths behind." The ending promise "Tomorrow, they face a maze" is NOT confirmed (ep99 not started): PROMISE TO CONFIRM with David before shipping.
+The first script said "nose to nose", "photo finish", "by a hair". Measured in race.json: when Claude crosses the line, Gemini is about 78 px behind (roughly two car lengths) and crosses 12 frames (0.20 s) later. Lines changed to: "Claude and Gemini are neck and neck." / "Claude pulls ahead!" / "Claude wins. Gemini is two tenths behind." The ending promise "Tomorrow, they face a maze" is NOT confirmed (ep99 not started): PROMISE TO CONFIRM with David before shipping.
