@@ -1,0 +1,6 @@
+# AI RACE #2 maze, frozen 2026-11-15 before any AI answer existed.
+# run_maze.mjs refuses to run if any of these files no longer match.
+e82cbb3c12f3c07efa7edb6efdddb04e9c62e2c421599645d4212be351b6f5ee  maze.js
+022ad448b4c261a66497602e22e9b9b5e7c2ba27fd058f2cb411a2e7ccafc475  maze.json
+dfba00a566064cfa106778dd4cb92cfd05394333422b52faf4b21c8309388b31  run_maze.mjs
+149017912a3c7f179063ba879f4db96310699954485919fa2a71c497e826859d  PROMPT-B.txt

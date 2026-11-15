@@ -1,0 +1,16 @@
+Write one JavaScript function for a maze game. Reply with only the code.
+
+function move(v) { ... }
+
+A dot starts in the middle of a 21 x 21 maze and must find the way out.
+The game calls move once per step. v has:
+v.up, v.down, v.left, v.right: what is next to the dot on that side,
+"wall", "open" or "exit" ("exit" means that move leaves the maze).
+v.x, v.y: the dot's own cell, x 0 to 20 from left to right,
+y 0 to 20 from top to bottom. The dot starts at x 10, y 10.
+Return "up", "down", "left" or "right". Up is y minus 1, right is x plus 1.
+Anything else, or a move into a wall, keeps the dot where it is for that step.
+The exit is one gap in the outer wall. The maze has dead ends and loops.
+You never see the maze, only the four sides of the dot.
+Your code may keep its own memory between calls. You get 500 steps.
+Goal: reach the exit in as few steps as possible. No libraries.
