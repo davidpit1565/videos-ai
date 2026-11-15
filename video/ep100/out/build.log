@@ -1,4 +1,32 @@
-estimated timeline=False  line 10 placeholder=True  D=35.54  js=215 sfx=56
+estimated timeline=False  line 10 placeholder=True  D=35.54  js=207 sfx=53
 lines: 1:0.04-3.56  2:3.75-6.30  3:6.49-9.94  4:10.13-13.53  5:13.72-16.86  6:17.05-20.63  7:20.82-23.35  8:23.54-29.03  9:29.22-31.03  10:31.22-35.14
-sync: killed=1.46(w)  now=4.6(w)  so=8.22(w)  about=11.54(w)  once=14.4(w)  looks=15.42(w)  but=19.24(w)  one_saves=21.7(w)  one_uses=22.44(w)  five=25.407(EST)  nothing=27.1(w)  close=28.5(w)
+sync: killed=1.46(w)  now=4.6(w)  so=8.22(w)  about=11.54(w)  once=14.4(w)  looks=15.42(w)  but=19.24(w)  one_saves=21.7(w)  one_uses=22.44(w)  five=24.88(w)  nothing=27.1(w)  close=28.5(w)  seventy=17.72(w)  free=0.72(w)  tool=1.14(w)  claude=2.0(w)  twenty=3.98(w)  hundred=5.18(w)  does=4.84(w)  graphify=10.68(w)
+  new   0.00  the viral claim, the two marks, the usage bar
+  new   0.72  FREE
+  new   1.46  the tool plugs in, the bar refills (the claim looks true)
+  new   2.00  the name Claude Code
+  new   3.98  PRO $20
+  new   4.84  the '=' (claim)
+  new   5.18  MAX $100
+  new   6.49  six file cards: a new chat starts from zero
+  new   8.12  files read again, counters rise, the bar drains (to 9.8 s)
+  new  10.58  Graphify card, free + open source
+  new  11.54  the star count runs to 148.2k (to 13.0 s)
+  new  13.72  the map: nodes and links
+  new  15.42  one look-up along the links, the bar refills (to 16.6 s)
+  new  17.05  status CHECKING, the claim headline
+  new  17.72  the giant 70x
+  new  19.54  BEST CASE stamp, then: one example, about 52 files
+  new  20.82  REAL TESTS, the bar turns to '?'
+  new  21.70  18% fewer
+  new  22.44  +49.5% more
+  new  23.24  issue #985: no savings
+  new  23.66  Pro bar, 1x
+  new  24.88  Max bar grows to 5x (to 25.9 s)
+  new  27.10  the best test as a thin slice on the Pro bar
+  new  28.80  NOT CLOSE stamp
+  new  29.22  the saveable card, five rows (to 30.8 s)
+  new  31.22  tomorrow headline (PLACEHOLDER: no picture of the next episode yet)
+  new  34.96  frame 0 returns (loop)
+FLAT stretches over 2.5 s with nothing new: [(31.22, 34.96, 'tomorrow headline (PLACEHOLDER: no picture of the next episode yet)')]
 headlines (draft): 0.00 &ldquo;70x FEWER TOKENS&rdquo; | 3.75 &ldquo;$20 DOES $100 WORK&rdquo; | 6.49 NEW CHAT = FROM ZERO | 8.22 READS YOUR FILES AGAIN | 10.13 THE TOOL: GRAPHIFY | 13.72 MAPS YOUR CODE ONCE | 17.05 &ldquo;70 TIMES LESS&rdquo; | 19.24 ONLY IN ITS BEST CASE | 20.82 REAL TESTS: | 23.54 MAX = 5x PRO USAGE | 27.10 NOTHING COMES CLOSE | 29.22 SETUP: LINK IN BIO | 31.22 TOMORROW: [PLACEHOLDER]

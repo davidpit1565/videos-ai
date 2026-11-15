@@ -10,13 +10,14 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
 .bgw{position:absolute;left:-20px;top:-20px;width:1120px;height:1960px;background:#ecebe5 url(assets/bg.jpg);background-size:1120px 1960px}
 #cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}
+#fit{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 758.5px;transform:scale(0.9095)}
 .lg{display:block;flex:none}
 .stamp{position:absolute;border:6px solid #D9281C;color:#D9281C;border-radius:10px;padding:0 16px;font-weight:900;font-size:44px;line-height:56px;letter-spacing:.05em;white-space:nowrap;transform:rotate(-3deg);z-index:7}
 #vc{left:72px;top:283px}
 .stamp.big.nc{font-size:84px;line-height:100px}
 .stamp.big{font-size:92px;line-height:110px;border-width:10px;border-radius:16px;padding:0 26px;opacity:0;background:rgba(251,251,248,.86);transform-origin:50% 50%;z-index:9}
 .stt{position:absolute;right:78px;top:287px;font-weight:900;font-size:48px;line-height:56px;letter-spacing:.02em;white-space:nowrap;opacity:0;z-index:7}
-#st0{opacity:1} #st1{color:#B8502C} #st2{color:#D9281C}
+#st1{color:#B8502C} #st2{color:#D9281C}
 .hd{position:absolute;left:65px;font-weight:900;letter-spacing:-.03em;white-space:nowrap;opacity:0;z-index:6;display:flex;align-items:center}
 .hd .hlg{margin-right:.16em} #h0{opacity:1}
 .sc{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:3} #sc1{opacity:1}
@@ -24,9 +25,9 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .src{position:absolute;font-weight:500;color:#3a3a36;white-space:nowrap;letter-spacing:0}
 /* 1 */
 .tile{width:350px;height:350px;background:#fff;border:6px solid #0f0f0f;border-radius:34px;box-shadow:11px 11px 0 #0f0f0f;display:flex;align-items:center;justify-content:center;transform-origin:50% 60%}
-.tn{width:350px;text-align:center;font-weight:900;font-size:54px;line-height:62px;letter-spacing:-.03em;white-space:nowrap}
+.tn{opacity:0;width:350px;text-align:center;font-weight:900;font-size:54px;line-height:62px;letter-spacing:-.03em;white-space:nowrap}
 #plus{width:120px;text-align:center;font-weight:900;font-size:130px;line-height:130px}
-.free{position:absolute;right:18px;top:-24px;font-weight:900;font-size:46px;line-height:54px;letter-spacing:.03em;color:#1F8A4C;transform:rotate(9deg);text-shadow:3px 3px 0 #fff,-3px 3px 0 #fff,3px -3px 0 #fff,-3px -3px 0 #fff}
+.free{opacity:0;position:absolute;right:18px;top:-24px;font-weight:900;font-size:46px;line-height:54px;letter-spacing:.03em;color:#1F8A4C;transform:rotate(9deg);text-shadow:3px 3px 0 #fff,-3px 3px 0 #fff,3px -3px 0 #fff,-3px -3px 0 #fff}
 /* 2 */
 .plan{width:430px;height:456px;background:#fff;border:6px solid #0f0f0f;border-radius:22px;box-shadow:8px 8px 0 #0f0f0f;opacity:0;transform-origin:50% 100%}
 .plan .lg{position:absolute;left:28px;top:30px} .pn{position:absolute;left:118px;top:22px;font-weight:900;font-size:88px;line-height:92px;letter-spacing:-.02em}
@@ -52,7 +53,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .nd{opacity:0} .nd circle{fill:#fff;stroke:#0f0f0f;stroke-width:6} .nd path{fill:none;stroke:#0f0f0f;stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
 .nl{width:200px;text-align:center;font-weight:900;font-size:34px;line-height:40px;opacity:0;text-shadow:2px 2px 0 #fbfbf8,-2px 2px 0 #fbfbf8,2px -2px 0 #fbfbf8,-2px -2px 0 #fbfbf8}
 /* 6 */
-#big70{left:110px;top:478px;width:860px;text-align:center;font-weight:900;font-size:350px;line-height:400px;letter-spacing:-.05em;color:#D97757;text-shadow:9px 9px 0 #0f0f0f;white-space:nowrap;transform-origin:50% 60%}
+#big70{left:110px;top:478px;width:860px;text-align:center;font-weight:900;font-size:350px;line-height:400px;letter-spacing:-.05em;color:#D97757;text-shadow:9px 9px 0 #0f0f0f;white-space:nowrap;transform-origin:50% 60%;opacity:0}
 #big70 i{font-style:normal;font-size:200px;vertical-align:top;line-height:330px;color:#0f0f0f;text-shadow:none}
 .sub1{left:65px;width:950px;text-align:center;font-weight:900;font-size:50px;line-height:54px;letter-spacing:-.01em;opacity:0;white-space:nowrap}
 .sub2{left:65px;width:950px;text-align:center;font-weight:800;font-size:40px;line-height:44px;opacity:0;white-space:nowrap}
@@ -66,7 +67,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #bext{width:240px;border:6px solid #0f0f0f;border-bottom:none;background:repeating-linear-gradient(45deg,#fff 0 7px,#D97757 7px 14px);transform-origin:50% 100%;transform:scaleY(0)}
 #dash{height:0;border-top:6px dashed #0f0f0f;opacity:0;transform-origin:100% 50%}
 .bx{width:240px;text-align:center;font-weight:900;font-size:104px;line-height:104px;letter-spacing:-.03em;opacity:0}
-.bl{width:320px;text-align:center;font-weight:900;font-size:54px;line-height:60px;letter-spacing:-.02em;white-space:nowrap}
+.bl{width:320px;text-align:center;font-weight:900;font-size:47px;line-height:60px;letter-spacing:-.02em;white-space:nowrap}
 #call{width:196px;text-align:right;font-weight:900;font-size:34px;line-height:38px;opacity:0}
 #carr{width:60px;height:40px;opacity:0;overflow:visible}
 /* 9 */
@@ -77,13 +78,13 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .cr{position:absolute;left:34px;right:34px;height:100px;display:flex;align-items:center;opacity:0;border-top:4px solid rgba(15,15,15,.14);white-space:nowrap}
 .cnm{width:62px;height:62px;border-radius:50%;border:5px solid #0f0f0f;background:#fff;text-align:center;font-weight:900;font-size:40px;line-height:52px;margin-right:20px;flex:none}
 .cx{font-weight:900;font-size:44px;line-height:52px;letter-spacing:-.02em}
-.cf{position:absolute;left:34px;bottom:20px;font-weight:500;font-size:23.5px;line-height:30px;white-space:nowrap;color:#3a3a36}
+.cf{position:absolute;left:34px;bottom:20px;font-weight:500;font-size:26px;line-height:30px;white-space:nowrap;color:#3a3a36}
 /* the usage bar: the spine of the video (an illustration, tagged) */
 #use{position:absolute;left:65px;top:1040px;width:950px;height:208px;z-index:5;transform-origin:50% 100%}
 #ul{position:absolute;left:0;top:14px;font-weight:900;font-size:58px;line-height:64px;letter-spacing:-.01em;white-space:nowrap}
 #ul em{font-style:normal;font-weight:500;font-size:28px;letter-spacing:0;margin-left:18px;color:#3a3a36}
-#up{position:absolute;right:0;top:0;font-weight:900;font-size:86px;line-height:86px;letter-spacing:-.04em;white-space:nowrap}
-#ut{position:absolute;left:0;top:92px;width:942px;height:108px;background:#fff;border:6px solid #0f0f0f;border-radius:16px;box-shadow:8px 8px 0 #0f0f0f;overflow:hidden}
+#up{position:absolute;right:119px;top:0;transform-origin:100% 50%;font-weight:900;font-size:86px;line-height:86px;letter-spacing:-.04em;white-space:nowrap}
+#ut{position:absolute;left:0;top:92px;width:823px;height:108px;background:#fff;border:6px solid #0f0f0f;border-radius:16px;box-shadow:8px 8px 0 #0f0f0f;overflow:hidden}
 #uf{position:absolute;left:0;top:0;height:100%;width:100%;background:repeating-linear-gradient(115deg,#D97757 0 34px,#E58D6F 34px 68px);background-size:200% 100%;border-right:6px solid #0f0f0f}
 .phb{position:absolute;left:0;width:1080px;text-align:center;font-weight:900;font-size:30px;line-height:40px;color:#D9281C;letter-spacing:.02em;z-index:20;white-space:nowrap}
 
@@ -92,12 +93,13 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 
 <div class="bgw" data-decor></div>
 <div id="cam">
+ <div id="fit">
  <div class="stamp" id="vc">VIRAL CLAIM</div>
  <div class="stt" id="st0">TRUE?</div><div class="stt" id="st1">CHECKING&hellip;</div><div class="stt" id="st2">NOT CLOSE</div>
  <div class="hd" id="h0" style="top:377px;font-size:90.6px;line-height:90.6px"><span>&ldquo;70x FEWER TOKENS&rdquo;</span></div><div class="hd" id="h1" style="top:381px;font-size:82.9px;line-height:82.9px"><span>&ldquo;$20 DOES $100 WORK&rdquo;</span></div><div class="hd" id="h2" style="top:382px;font-size:80.9px;line-height:80.9px"><span>NEW CHAT = FROM ZERO</span></div><div class="hd" id="h3" style="top:383px;font-size:77.5px;line-height:77.5px"><span>READS YOUR FILES AGAIN</span></div><div class="hd" id="h4" style="top:379px;font-size:85.8px;line-height:85.8px"><img class="lg hlg" src="assets/logos/graphify-icon.svg" style="height:72px;width:62.8px"><span>THE TOOL: GRAPHIFY</span></div><div class="hd" id="h5" style="top:381px;font-size:82.0px;line-height:82.0px"><span>MAPS YOUR CODE ONCE</span></div><div class="hd" id="h6" style="top:372px;font-size:100.0px;line-height:100.0px"><span>&ldquo;70 TIMES LESS&rdquo;</span></div><div class="hd" id="h7" style="top:378px;font-size:87.2px;line-height:87.2px"><span>ONLY IN ITS BEST CASE</span></div><div class="hd" id="h8" style="top:372px;font-size:100.0px;line-height:100.0px"><span>REAL TESTS:</span></div><div class="hd" id="h9" style="top:375px;font-size:94.1px;line-height:94.1px"><span>MAX = 5x PRO USAGE</span></div><div class="hd" id="h10" style="top:381px;font-size:82.1px;line-height:82.1px"><span>NOTHING COMES CLOSE</span></div><div class="hd" id="h11" style="top:372px;font-size:100.0px;line-height:100.0px"><span>SETUP: LINK IN BIO</span></div><div class="hd" id="h12" style="top:388px;font-size:67.7px;line-height:67.7px"><span>TOMORROW: [PLACEHOLDER]</span></div>
- <div class="sc" id="sc1"><div class="tile" id="t1a" style="left:95px;top:500px"><img class="lg " src="assets/logos/claude.svg" style="width:210px;height:210px"></div><div class="tn" style="left:95px;top:866px">Claude Code</div>
+ <div class="sc" id="sc1"><div class="tile" id="t1a" style="left:95px;top:500px"><img class="lg " src="assets/logos/claude.svg" style="width:210px;height:210px"></div><div class="tn" id="tn_a" style="left:95px;top:866px">Claude Code</div>
 <div id="plus" style="left:480px;top:612px">+</div>
-<div class="tile" id="t1b" style="left:615px;top:500px"><img class="lg " src="assets/logos/graphify-icon.svg" style="height:220px;width:191.9px"><div class="free" id="free">FREE</div></div><div class="tn" style="left:615px;top:866px">Graphify</div></div><div class="sc" id="sc2"><div class="plan" id="p1" style="left:65px;top:500px"><img class="lg " src="assets/logos/claude.svg" style="width:74px;height:74px"><div class="pn">PRO</div><div class="pp">$20</div><div class="pm">a month</div></div><div class="plan" id="p2" style="left:577px;top:500px"><img class="lg " src="assets/logos/claude.svg" style="width:74px;height:74px"><div class="pn">MAX</div><div class="pp">$100</div><div class="pm">a month</div></div><div id="eq" style="left:481px;top:508px">=</div><div class="src" style="left:65px;top:978px;font-size:26.0px;line-height:32.5px">prices: claude.com/pricing, read 15.11.2026</div></div><div class="sc" id="sc3"><div class="fc" id="fc0" style="left:65px;top:500px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd0">read &times;1</div><div class="fn">login</div></div><div class="fc" id="fc1" style="left:392px;top:500px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd1">read &times;1</div><div class="fn">users</div></div><div class="fc" id="fc2" style="left:719px;top:500px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd2">read &times;1</div><div class="fn">orders</div></div><div class="fc" id="fc3" style="left:65px;top:730px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd3">read &times;1</div><div class="fn">payments</div></div><div class="fc" id="fc4" style="left:392px;top:730px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd4">read &times;1</div><div class="fn">search</div></div><div class="fc" id="fc5" style="left:719px;top:730px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd5">read &times;1</div><div class="fn">emails</div></div><div class="bdg" id="scan" style="left:287px;top:638px;width:74px;height:74px"><img class="lg " src="assets/logos/claude.svg" style="width:46px;height:46px"></div></div><div class="sc" id="sc4"><div id="gcard"><img class="lg " src="assets/logos/graphify-icon.svg" style="height:170px;width:148.3px"><img class="lg" src="assets/logos/graphify-word.svg" style="height:104px;width:441.3px"></div>
+<div class="tile" id="t1b" style="left:615px;top:500px"><img class="lg " src="assets/logos/graphify-icon.svg" style="height:220px;width:191.9px"><div class="free" id="free">FREE</div></div><div class="tn" id="tn_b" style="left:615px;top:866px">Graphify</div></div><div class="sc" id="sc2"><div class="plan" id="p1" style="left:65px;top:500px"><img class="lg " src="assets/logos/claude.svg" style="width:74px;height:74px"><div class="pn">PRO</div><div class="pp">$20</div><div class="pm">a month</div></div><div class="plan" id="p2" style="left:577px;top:500px"><img class="lg " src="assets/logos/claude.svg" style="width:74px;height:74px"><div class="pn">MAX</div><div class="pp">$100</div><div class="pm">a month</div></div><div id="eq" style="left:481px;top:508px">=</div><div class="src" style="left:65px;top:978px;font-size:26.0px;line-height:32.5px">prices: claude.com/pricing, read 15.11.2026</div></div><div class="sc" id="sc3"><div class="fc" id="fc0" style="left:65px;top:500px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd0">read &times;1</div><div class="fn">login</div></div><div class="fc" id="fc1" style="left:392px;top:500px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd1">read &times;1</div><div class="fn">users</div></div><div class="fc" id="fc2" style="left:719px;top:500px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd2">read &times;1</div><div class="fn">orders</div></div><div class="fc" id="fc3" style="left:65px;top:730px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd3">read &times;1</div><div class="fn">payments</div></div><div class="fc" id="fc4" style="left:392px;top:730px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd4">read &times;1</div><div class="fn">search</div></div><div class="fc" id="fc5" style="left:719px;top:730px"><svg class="doc" viewBox="0 0 60 72"><path d="M6 4 H38 L54 20 V68 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/><path d="M38 4 V20 H54 M16 34 H44 M16 46 H44 M16 58 H34" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="rd" id="rd5">read &times;1</div><div class="fn">emails</div></div><div class="bdg" id="scan" style="left:287px;top:638px;width:74px;height:74px"><img class="lg " src="assets/logos/claude.svg" style="width:46px;height:46px"></div></div><div class="sc" id="sc4"><div id="gcard"><img class="lg " src="assets/logos/graphify-icon.svg" style="height:170px;width:148.3px"><img class="lg" src="assets/logos/graphify-word.svg" style="height:104px;width:441.3px"></div>
 <div id="gfree" style="left:65px;top:752px"><svg class="chk" viewBox="-20 -20 40 40"><circle r="17" fill="#1F8A4C" stroke="#0f0f0f" stroke-width="3.5"/><path d="M-9 1 L-3 7 L10 -7" fill="none" stroke="#fff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>free</span><svg class="chk" viewBox="-20 -20 40 40"><circle r="17" fill="#1F8A4C" stroke="#0f0f0f" stroke-width="3.5"/><path d="M-9 1 L-3 7 L10 -7" fill="none" stroke="#fff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>open source</span></div>
 <div id="grow" style="left:65px;top:820px"><img class="lg" src="assets/logos/github-mark.svg" style="width:120px;height:120px"><svg class="star" viewBox="-52 -52 104 104"><path d="M0 -44 L12.6 -15.4 L43.7 -12.6 L20.2 8 L27.1 38.4 L0 22.6 L-27.1 38.4 L-20.2 8 L-43.7 -12.6 L-12.6 -15.4Z" fill="#F5B301" stroke="#0f0f0f" stroke-width="6" stroke-linejoin="round"/></svg><span id="stn">0.0k</span><span id="stw">stars</span></div><div class="src" style="left:65px;top:978px;font-size:26.0px;line-height:32.5px">github.com/Graphify-Labs/graphify, read 15.11.2026</div></div><div class="sc" id="sc5"><svg id="gsv" viewBox="0 0 950 520" width="950" height="520" style="left:65px;top:495px">
  <path class="ed" id="ed0" d="M150 100 L430 64" stroke-dasharray="284" stroke-dashoffset="284"/><path class="ed" id="ed1" d="M150 100 L300 215" stroke-dasharray="191" stroke-dashoffset="191"/><path class="ed" id="ed2" d="M300 215 L500 290" stroke-dasharray="216" stroke-dashoffset="216"/><path class="ed" id="ed3" d="M430 64 L625 200" stroke-dasharray="240" stroke-dashoffset="240"/><path class="ed" id="ed4" d="M625 200 L770 110" stroke-dasharray="173" stroke-dashoffset="173"/><path class="ed" id="ed5" d="M625 200 L500 290" stroke-dasharray="156" stroke-dashoffset="156"/><path class="ed" id="ed6" d="M500 290 L810 350" stroke-dasharray="318" stroke-dashoffset="318"/><path class="ed" id="ed7" d="M500 290 L345 452" stroke-dasharray="226" stroke-dashoffset="226"/><path class="ed" id="ed8" d="M345 452 L170 370" stroke-dasharray="195" stroke-dashoffset="195"/><path class="ed" id="ed9" d="M170 370 L50 235" stroke-dasharray="183" stroke-dashoffset="183"/><path class="ed" id="ed10" d="M50 235 L150 100" stroke-dasharray="170" stroke-dashoffset="170"/><path class="ed" id="ed11" d="M770 110 L905 225" stroke-dasharray="179" stroke-dashoffset="179"/><path class="ed" id="ed12" d="M905 225 L810 350" stroke-dasharray="159" stroke-dashoffset="159"/><path class="ed" id="ed13" d="M810 350 L660 440" stroke-dasharray="177" stroke-dashoffset="177"/><path class="ed" id="ed14" d="M660 440 L345 452" stroke-dasharray="317" stroke-dashoffset="317"/>
@@ -105,21 +107,22 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
  <g class="nd" id="nd0"><circle cx="150" cy="100" r="36"/><path d="M137 83 H155 L163 91 V117 H137Z M144 99 H156 M144 108 H156"/></g><g class="nd" id="nd1"><circle cx="430" cy="64" r="36"/><path d="M417 47 H435 L443 55 V81 H417Z M424 63 H436 M424 72 H436"/></g><g class="nd" id="nd2"><circle cx="770" cy="110" r="36"/><path d="M757 93 H775 L783 101 V127 H757Z M764 109 H776 M764 118 H776"/></g><g class="nd" id="nd3"><circle cx="810" cy="350" r="36"/><path d="M797 333 H815 L823 341 V367 H797Z M804 349 H816 M804 358 H816"/></g><g class="nd" id="nd4"><circle cx="500" cy="290" r="36"/><path d="M487 273 H505 L513 281 V307 H487Z M494 289 H506 M494 298 H506"/></g><g class="nd" id="nd5"><circle cx="170" cy="370" r="36"/><path d="M157 353 H175 L183 361 V387 H157Z M164 369 H176 M164 378 H176"/></g>
 </svg><div class="nl" style="left:115px;top:635px">login</div><div class="nl" style="left:395px;top:599px">users</div><div class="nl" style="left:735px;top:645px">orders</div><div class="nl" style="left:775px;top:885px">payments</div><div class="nl" style="left:465px;top:825px">search</div><div class="nl" style="left:135px;top:905px">emails</div><div class="bdg" id="walk" style="left:173px;top:553px"><img class="lg " src="assets/logos/claude.svg" style="width:52px;height:52px"></div></div><div class="sc" id="sc6"><div id="big70"><i>&ldquo;</i>70x<i>&rdquo;</i></div><div class="stamp big" id="bc" style="left:351px;top:722px">BEST CASE</div>
 <div class="sub1" id="s6a" style="top:893px">ONE EXAMPLE &middot; ABOUT 52 FILES</div><div class="sub2" id="s6b" style="top:949px">compared with reading every file at once</div><div class="src" style="left:65px;top:1002px;font-size:24.0px;line-height:30.0px">source: the project's own early example, via roborhythms.com, read 15.11.2026</div></div><div class="sc" id="sc7"><div class="tr" id="tr1" style="top:495px"><span class="tnum" style="color:#1F8A4C" id="tn1">18%</span><span class="tw_" style="color:#1F8A4C">FEWER</span><span class="td">one YouTube run<br>$5.16 &rarr; $4.29</span></div><div class="tr" id="tr2" style="top:655px"><span class="tnum" style="color:#D9281C" id="tn2">+49.5%</span><span class="tw_" style="color:#D9281C">MORE</span><span class="td">FastAPI project<br>11 questions</span></div><div class="tr" id="tr3" style="top:815px"><span class="tnum" style="color:#0f0f0f" id="tn3">NO</span><span class="tw_" style="color:#0f0f0f">SAVINGS</span><span class="td">GitHub issue #985<br>a user&rsquo;s report</span></div><div class="src" style="left:65px;top:978px;font-size:26.0px;line-height:32.5px">tests by other people, not by us &middot; source: graphify.com/blog, GitHub issue #985</div></div><div class="sc" id="sc8"><div class="src" style="left:65px;top:492px;font-size:26.0px;line-height:32.5px">usage: claude.com/pricing (&ldquo;5x Pro usage&rdquo;), read 15.11.2026</div>
-<div id="dash" style="left:100px;top:647px;width:600px"></div>
-<div class="bar" id="bpro" style="left:330px;top:1050px;height:100px"></div>
-<div id="bext" style="left:330px;top:1028px;height:22px"></div>
-<div class="bar seg" id="bm0" style="left:700px;top:1050px;height:100px"></div><div class="bar seg" id="bm1" style="left:700px;top:950px;height:100px"></div><div class="bar seg" id="bm2" style="left:700px;top:850px;height:100px"></div><div class="bar seg" id="bm3" style="left:700px;top:750px;height:100px"></div><div class="bar seg" id="bm4" style="left:700px;top:650px;height:100px"></div>
-<div class="bx" id="x1" style="left:330px;top:916px">1x</div><div class="bx" id="x5" style="left:700px;top:542px">5x</div>
-<div id="call" style="left:65px;top:968px">best test<br>we found</div>
-<svg id="carr" viewBox="0 0 60 40" style="left:262px;top:1006px"><path d="M4 8 C22 4 40 12 54 30 M54 30 L36 28 M54 30 L52 12" fill="none" stroke="#0f0f0f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-<div class="bl" style="left:290px;top:1164px">PRO $20</div><div class="bl" style="left:660px;top:1164px">MAX $100</div>
-<div class="stamp big nc" id="nc" style="left:128px;top:712px">NOT CLOSE</div></div><div class="sc" id="sc9"><div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct"><img class="lg " src="assets/logos/graphify-icon.svg" style="height:66px;width:57.6px"><span>BEFORE YOU INSTALL</span></div><div class="cr" id="cr0" style="top:112px"><span class="cnm">1</span><span class="cx">Free, open source, 148.2k stars</span></div><div class="cr" id="cr1" style="top:215px"><span class="cnm">2</span><span class="cx">&ldquo;70x&rdquo; = one best case</span></div><div class="cr" id="cr2" style="top:318px"><span class="cnm">3</span><span class="cx">Real tests: 18% fewer &hellip; 49.5% more</span></div><div class="cr" id="cr3" style="top:421px"><span class="cnm">4</span><span class="cx">Max is 5x Pro: no test comes near</span></div><div class="cr" id="cr4" style="top:524px"><span class="cnm">5</span><span class="cx">Measure your own project first</span></div><div class="cf">VIRAL CLAIM, CHECKED #1 &middot; tests by other people, not by us &middot; sources in caption</div></div></div>
+<div id="dash" style="left:100px;top:647px;width:540px"></div>
+<div class="bar" id="bpro" style="left:296px;top:1050px;height:100px"></div>
+<div id="bext" style="left:296px;top:1028px;height:22px"></div>
+<div class="bar seg" id="bm0" style="left:640px;top:1050px;height:100px"></div><div class="bar seg" id="bm1" style="left:640px;top:950px;height:100px"></div><div class="bar seg" id="bm2" style="left:640px;top:850px;height:100px"></div><div class="bar seg" id="bm3" style="left:640px;top:750px;height:100px"></div><div class="bar seg" id="bm4" style="left:640px;top:650px;height:100px"></div>
+<div class="bx" id="x1" style="left:296px;top:916px">1x</div><div class="bx" id="x5" style="left:640px;top:542px">5x</div>
+<div id="call" style="left:30px;top:968px">best test<br>we found</div>
+<svg id="carr" viewBox="0 0 60 40" style="left:232px;top:1006px"><path d="M4 8 C22 4 40 12 54 30 M54 30 L36 28 M54 30 L52 12" fill="none" stroke="#0f0f0f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="bl" style="left:256px;top:1164px">PRO $20</div><div class="bl" style="left:600px;top:1164px">MAX $100</div>
+<div class="stamp big nc" id="nc" style="left:82px;top:712px">NOT CLOSE</div></div><div class="sc" id="sc9"><div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct"><img class="lg " src="assets/logos/graphify-icon.svg" style="height:66px;width:57.6px"><span>BEFORE YOU INSTALL</span></div><div class="cr" id="cr0" style="top:112px"><span class="cnm">1</span><span class="cx">Free, open source, 148.2k stars</span></div><div class="cr" id="cr1" style="top:215px"><span class="cnm">2</span><span class="cx">&ldquo;70x&rdquo; = one best case</span></div><div class="cr" id="cr2" style="top:318px"><span class="cnm">3</span><span class="cx">Real tests: 18% fewer &hellip; 49.5% more</span></div><div class="cr" id="cr3" style="top:421px"><span class="cnm">4</span><span class="cx">Max is 5x Pro: no test comes near</span></div><div class="cr" id="cr4" style="top:524px"><span class="cnm">5</span><span class="cx">Measure your own project first</span></div><div class="cf">VIRAL CLAIM, CHECKED #1 &middot; tests by other people, not by us</div></div></div>
  <div id="use"><div id="ul">USAGE LEFT<em>illustration</em></div><div id="up">100%</div><div id="ut"><div id="uf"></div></div></div>
+ </div>
 </div><div class="phb" data-decor style="top:196px">SCAFFOLD &middot; LINE 10 PLACEHOLDER</div><div class="phb" data-decor style="top:1272px">SCAFFOLD &middot; LINE 10 PLACEHOLDER</div>
 </div>
 <script>
 
-const Dt={"D":35.54,"tF":34.96,"KF":[[0,100],[0.25,100],[1.38,31],[2.16,100],[8.12,100],[10.52,17],[14.22,17],[16.55,97],[19.52,97],[19.84,78],[20.82,70]],"HOPS":[[8.12,0],[8.32,1],[8.52,2],[8.72,3],[8.92,4],[9.12,5],[9.32,0],[9.52,1],[9.72,2],[9.92,3],[10.12,4],[10.32,5]],"tQ":20.82,"tS":11.54,"sD":1.5,"STARS":148.2};
+const Dt={"D":35.54,"tF":34.96,"KF":[[0,100],[0.25,100],[1.38,31],[2.16,100],[8.12,100],[9.83,17],[14.22,17],[16.55,97],[19.52,97],[19.84,78],[20.82,70]],"HOPS":[[8.12,0],[8.334,1],[8.548,2],[8.761,3],[8.975,4],[9.189,5],[9.402,0],[9.616,1]],"tQ":20.82,"tS":11.54,"sD":1.5,"STARS":148.2};
 const ez=p=>{p=p<0?0:p>1?1:p;return p*p*(3-2*p)}, lerp=(a,b,t)=>a+(b-a)*t, $=s=>document.querySelector(s);
 const uf=$('#uf'), up=$('#up'), stn=$('#stn'), rd=[0,1,2,3,4,5].map(c=>$('#rd'+c));
 function pct(v){const K=Dt.KF; if(v>=Dt.tF) return 100; if(v<=K[0][0]) return K[0][1];
@@ -174,16 +177,20 @@ tl.fromTo('#t1a',{y:0},{y:-10,duration:0.625,ease:'sine.inOut',yoyo:true,repeat:
 tl.fromTo('#t1b',{x:44,rotation:7},{x:0,rotation:-3,duration:.34,ease:'power3.in',immediateRender:false},1.120);
 tl.fromTo('#t1a',{scale:1},{scale:1.07,duration:.16,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},1.460);
 tl.fromTo('#plus',{scale:1,rotation:0},{scale:1.35,rotation:90,duration:.22,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},1.460);
-tl.fromTo('#free',{rotation:0},{rotation:9,duration:0.469,ease:'sine.inOut',yoyo:true,repeat:7,immediateRender:false},0.000);
+tl.fromTo('#free',{opacity:0,scale:0.3},{opacity:1,scale:1,duration:0.3,ease:'back.out(1.8)',immediateRender:false},0.720);
+tl.fromTo('#free',{rotation:0},{rotation:9,duration:0.447,ease:'sine.inOut',yoyo:true,repeat:5,immediateRender:false},1.070);
+tl.fromTo('#tn_b',{opacity:0,y:12,filter:'blur(4px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},1.140);
+tl.fromTo('#tn_a',{opacity:0,y:12,filter:'blur(4px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},2.000);
+tl.fromTo('#st0',{opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.3,ease:'back.out(1.8)',immediateRender:false},3.850);
 tl.fromTo('#t1b',{y:0},{y:-10,duration:0.473,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},1.860);
 tl.fromTo('#sc2',{opacity:0,y:22,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},3.750);
 tl.to('#sc2',{opacity:0,y:-12,filter:'blur(8px)',duration:0.22,ease:'power2.inOut'},6.250);
-tl.fromTo('#p1',{opacity:0,y:70,rotation:4},{opacity:1,y:0,rotation:-1.5,duration:.42,ease:'back.out(1.4)',immediateRender:false},3.790);
-tl.fromTo('#p2',{opacity:0,y:70,rotation:-4},{opacity:1,y:0,rotation:1.5,duration:.42,ease:'back.out(1.4)',immediateRender:false},3.930);
-tl.fromTo('#eq',{opacity:0,scale:0.3},{opacity:1,scale:1,duration:0.32,ease:'back.out(1.8)',immediateRender:false},4.600);
-tl.fromTo('#p1',{scale:1},{scale:1.06,duration:.4,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},4.700);
-tl.fromTo('#eq',{rotation:0},{rotation:14,duration:0.385,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},4.950);
-tl.fromTo('#p2',{y:0},{y:-8,duration:0.510,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},4.450);
+tl.fromTo('#p1',{opacity:0,y:70,rotation:4},{opacity:1,y:0,rotation:-1.5,duration:.42,ease:'back.out(1.4)',immediateRender:false},3.860);
+tl.fromTo('#p2',{opacity:0,y:70,rotation:-4},{opacity:1,y:0,rotation:1.5,duration:.42,ease:'back.out(1.4)',immediateRender:false},5.060);
+tl.fromTo('#eq',{opacity:0,scale:0.3},{opacity:1,scale:1,duration:0.32,ease:'back.out(1.8)',immediateRender:false},4.840);
+tl.fromTo('#p1',{scale:1},{scale:1.06,duration:.4,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},4.940);
+tl.fromTo('#eq',{rotation:0},{rotation:14,duration:0.325,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},5.190);
+tl.fromTo('#p2',{y:0},{y:-8,duration:0.228,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},5.580);
 tl.fromTo('#sc3',{opacity:0,y:22,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},6.490);
 tl.to('#sc3',{opacity:0,y:-12,filter:'blur(8px)',duration:0.22,ease:'power2.inOut'},9.890);
 tl.fromTo('#fc0',{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:.32,ease:'back.out(1.5)',immediateRender:false},6.540);
@@ -199,46 +206,34 @@ tl.fromTo('#fc3',{rotation:0},{rotation:2.5,duration:.3,ease:'sine.inOut',yoyo:t
 tl.fromTo('#fc4',{rotation:0},{rotation:-2.5,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},7.590);
 tl.fromTo('#fc5',{rotation:0},{rotation:2.5,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},7.690);
 tl.fromTo('#scan',{opacity:0,scale:0.3},{opacity:1,scale:1,duration:0.26,ease:'back.out(1.8)',immediateRender:false},7.840);
-tl.to('#scan',{x:0,y:0,duration:0.160,ease:'power2.inOut'},7.960);
-tl.fromTo('#fc0',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.120);
-tl.fromTo('#rd0',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.120);
-tl.to('#scan',{x:327,y:0,duration:0.160,ease:'power2.inOut'},8.160);
-tl.fromTo('#fc1',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.320);
-tl.fromTo('#rd1',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.320);
-tl.to('#scan',{x:654,y:0,duration:0.160,ease:'power2.inOut'},8.360);
-tl.fromTo('#fc2',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.520);
-tl.fromTo('#rd2',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.520);
-tl.to('#scan',{x:0,y:230,duration:0.160,ease:'power2.inOut'},8.560);
-tl.fromTo('#fc3',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.720);
-tl.fromTo('#rd3',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.720);
-tl.to('#scan',{x:327,y:230,duration:0.160,ease:'power2.inOut'},8.760);
-tl.fromTo('#fc4',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.920);
-tl.fromTo('#rd4',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.920);
-tl.to('#scan',{x:654,y:230,duration:0.160,ease:'power2.inOut'},8.960);
-tl.fromTo('#fc5',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.120);
-tl.fromTo('#rd5',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.120);
-tl.to('#scan',{x:0,y:0,duration:0.160,ease:'power2.inOut'},9.160);
-tl.fromTo('#fc0',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.320);
-tl.fromTo('#rd0',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.320);
-tl.to('#scan',{x:327,y:0,duration:0.160,ease:'power2.inOut'},9.360);
-tl.fromTo('#fc1',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.520);
-tl.fromTo('#rd1',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.520);
-tl.to('#scan',{x:654,y:0,duration:0.160,ease:'power2.inOut'},9.560);
-tl.fromTo('#fc2',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.720);
-tl.fromTo('#rd2',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.720);
-tl.to('#scan',{x:0,y:230,duration:0.160,ease:'power2.inOut'},9.760);
-tl.fromTo('#fc3',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.920);
-tl.fromTo('#rd3',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.920);
-tl.to('#scan',{x:327,y:230,duration:0.160,ease:'power2.inOut'},9.960);
-tl.fromTo('#fc4',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},10.120);
-tl.fromTo('#rd4',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},10.120);
-tl.to('#scan',{x:654,y:230,duration:0.160,ease:'power2.inOut'},10.160);
-tl.fromTo('#fc5',{scale:1},{scale:1.07,duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},10.320);
-tl.fromTo('#rd5',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.090,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},10.320);
+tl.to('#scan',{x:0,y:0,duration:0.171,ease:'power2.inOut'},7.949);
+tl.fromTo('#fc0',{scale:1},{scale:1.07,duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.120);
+tl.fromTo('#rd0',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.120);
+tl.to('#scan',{x:327,y:0,duration:0.171,ease:'power2.inOut'},8.163);
+tl.fromTo('#fc1',{scale:1},{scale:1.07,duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.334);
+tl.fromTo('#rd1',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.334);
+tl.to('#scan',{x:654,y:0,duration:0.171,ease:'power2.inOut'},8.377);
+tl.fromTo('#fc2',{scale:1},{scale:1.07,duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.548);
+tl.fromTo('#rd2',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.548);
+tl.to('#scan',{x:0,y:230,duration:0.171,ease:'power2.inOut'},8.590);
+tl.fromTo('#fc3',{scale:1},{scale:1.07,duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.761);
+tl.fromTo('#rd3',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.761);
+tl.to('#scan',{x:327,y:230,duration:0.171,ease:'power2.inOut'},8.804);
+tl.fromTo('#fc4',{scale:1},{scale:1.07,duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.975);
+tl.fromTo('#rd4',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},8.975);
+tl.to('#scan',{x:654,y:230,duration:0.171,ease:'power2.inOut'},9.018);
+tl.fromTo('#fc5',{scale:1},{scale:1.07,duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.189);
+tl.fromTo('#rd5',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.189);
+tl.to('#scan',{x:0,y:0,duration:0.171,ease:'power2.inOut'},9.232);
+tl.fromTo('#fc0',{scale:1},{scale:1.07,duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.402);
+tl.fromTo('#rd0',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.402);
+tl.to('#scan',{x:327,y:0,duration:0.171,ease:'power2.inOut'},9.445);
+tl.fromTo('#fc1',{scale:1},{scale:1.07,duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.616);
+tl.fromTo('#rd1',{scale:1},{scale:1.28,transformOrigin:'100% 50%',duration:0.096,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},9.616);
 tl.fromTo('#sc4',{opacity:0,y:22,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},10.130);
 tl.to('#sc4',{opacity:0,y:-12,filter:'blur(8px)',duration:0.22,ease:'power2.inOut'},13.480);
-tl.fromTo('#gcard',{opacity:0,scale:.8,rotation:-4},{opacity:1,scale:1,rotation:-1,duration:.42,ease:'back.out(1.6)',immediateRender:false},10.170);
-tl.fromTo('#gfree',{opacity:0,y:14,filter:'blur(4px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},10.580);
+tl.fromTo('#gcard',{opacity:0,scale:.8,rotation:-4},{opacity:1,scale:1,rotation:-1,duration:.42,ease:'back.out(1.6)',immediateRender:false},10.580);
+tl.fromTo('#gfree',{opacity:0,y:14,filter:'blur(4px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},11.080);
 tl.fromTo('#grow',{opacity:0,y:14,filter:'blur(4px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},11.440);
 tl.fromTo('#grow .star',{rotation:-30,scale:.6},{rotation:360,scale:1,duration:1.500,ease:'power2.out',immediateRender:false},11.540);
 tl.fromTo('#grow .star',{scale:1},{scale:1.14,transformOrigin:'50% 50%',duration:0.340,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},13.040);
@@ -295,8 +290,8 @@ tl.fromTo('#sc6',{opacity:0,y:22,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur
 tl.to('#sc6',{opacity:0,y:-12,filter:'blur(8px)',duration:0.22,ease:'power2.inOut'},20.580);
 tl.to('#st0',{opacity:0,y:-12,filter:'blur(8px)',duration:0.18,ease:'power2.inOut'},16.950);
 tl.fromTo('#st1',{opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.3,ease:'back.out(1.8)',immediateRender:false},17.150);
-tl.fromTo('#big70',{scale:.55},{scale:1,duration:.5,ease:'back.out(1.5)',immediateRender:false},17.050);
-tl.fromTo('#big70',{scale:1},{scale:1.05,duration:0.422,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},17.550);
+tl.fromTo('#big70',{scale:.55,opacity:0},{scale:1,opacity:1,duration:.45,ease:'back.out(1.5)',immediateRender:false},17.640);
+tl.fromTo('#big70',{scale:1},{scale:1.05,duration:0.268,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},18.170);
 tl.fromTo('#bc',{opacity:0,scale:1.25,rotation:-17},{opacity:1,scale:1,rotation:-8,duration:.3,ease:'power3.in',immediateRender:false},19.240);
 tl.fromTo('#bc',{y:0},{y:7,duration:.09,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},19.540);
 tl.to('#big70',{scale:.93,rotation:-2,color:'#E3B5A3',duration:.4,ease:'power2.out'},19.540);
@@ -317,13 +312,13 @@ tl.to('#sc8',{opacity:0,y:-12,filter:'blur(8px)',duration:0.22,ease:'power2.inOu
 tl.to('#use',{opacity:0,y:30,duration:.25,ease:'power2.in'},23.280);
 tl.to('#bpro',{scaleY:1,duration:0.34,ease:'power2.out'},23.660);
 tl.fromTo('#x1',{opacity:0,scale:0.3},{opacity:1,scale:1,duration:0.28,ease:'back.out(1.8)',immediateRender:false},23.940);
-tl.to('#bm0',{scaleY:1,duration:0.30000000000000004,ease:'power2.out'},25.407);
-tl.to('#bm1',{scaleY:1,duration:0.30000000000000004,ease:'power2.out'},25.607);
-tl.to('#bm2',{scaleY:1,duration:0.30000000000000004,ease:'power2.out'},25.807);
-tl.to('#bm3',{scaleY:1,duration:0.30000000000000004,ease:'power2.out'},26.007);
-tl.to('#bm4',{scaleY:1,duration:0.30000000000000004,ease:'power2.out'},26.207);
-tl.fromTo('#x5',{opacity:0,scale:0.3},{opacity:1,scale:1,duration:0.3,ease:'back.out(1.8)',immediateRender:false},26.407);
-tl.fromTo('#dash',{opacity:0,scaleX:0},{opacity:1,scaleX:1,duration:.4,ease:'power2.inOut',immediateRender:false},26.507);
+tl.to('#bm0',{scaleY:1,duration:0.30000000000000004,ease:'power2.out'},24.880);
+tl.to('#bm1',{scaleY:1,duration:0.30000000000000004,ease:'power2.out'},25.080);
+tl.to('#bm2',{scaleY:1,duration:0.30000000000000004,ease:'power2.out'},25.280);
+tl.to('#bm3',{scaleY:1,duration:0.30000000000000004,ease:'power2.out'},25.480);
+tl.to('#bm4',{scaleY:1,duration:0.30000000000000004,ease:'power2.out'},25.680);
+tl.fromTo('#x5',{opacity:0,scale:0.3},{opacity:1,scale:1,duration:0.3,ease:'back.out(1.8)',immediateRender:false},25.880);
+tl.fromTo('#dash',{opacity:0,scaleX:0},{opacity:1,scaleX:1,duration:.4,ease:'power2.inOut',immediateRender:false},25.980);
 tl.to('#bext',{scaleY:1,duration:0.3,ease:'power2.out'},27.100);
 tl.fromTo('#call',{opacity:0,y:10,filter:'blur(4px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.28,ease:'power2.out',immediateRender:false},27.150);
 tl.fromTo('#carr',{opacity:0,y:10,filter:'blur(4px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.28,ease:'power2.out',immediateRender:false},27.250);
@@ -331,7 +326,7 @@ tl.to('#st1',{opacity:0,y:-12,filter:'blur(8px)',duration:0.18,ease:'power2.inOu
 tl.fromTo('#st2',{opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.3,ease:'back.out(1.8)',immediateRender:false},28.500);
 tl.fromTo('#nc',{opacity:0,scale:1.25,rotation:-16},{opacity:1,scale:1,rotation:-7,duration:.3,ease:'power3.in',immediateRender:false},28.500);
 tl.fromTo('#nc',{y:0},{y:7,duration:.09,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},28.800);
-tl.fromTo('#x5',{scale:1},{scale:1.1,duration:0.402,ease:'sine.inOut',yoyo:true,repeat:5,immediateRender:false},26.807);
+tl.fromTo('#x5',{scale:1},{scale:1.1,duration:0.490,ease:'sine.inOut',yoyo:true,repeat:5,immediateRender:false},26.280);
 tl.fromTo('#bext',{opacity:1},{opacity:0.45,duration:0.287,ease:'sine.inOut',yoyo:true,repeat:5,immediateRender:false},27.500);
 tl.fromTo('#sc9',{opacity:0},{opacity:1,duration:.05,immediateRender:false},29.220);
 tl.fromTo('#card',{opacity:0,y:90,rotation:3,scale:1},{opacity:1,y:0,rotation:-1,duration:.5,ease:'power3.out',immediateRender:false},29.250);
@@ -352,9 +347,9 @@ tl.fromTo('#cr2 .cnm',{scale:1,rotation:0},{scale:1.2,rotation:-12,duration:.26,
 tl.to('#card',{opacity:0,scale:.9,y:-40,rotation:-3,duration:.32,ease:'power2.in'},34.700);
 tl.fromTo('#sc1',{opacity:0,y:22,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.42,ease:'power2.out',immediateRender:false},35.020);
 tl.set('#t1b',{immediateRender:false,x:44,rotation:7},34.960);
+tl.set('#tn_a,#tn_b,#free',{opacity:0},34.960);
 tl.fromTo('#use',{opacity:0,y:30},{opacity:1,y:0,duration:.4,ease:'power2.out',immediateRender:false},35.020);
 tl.to('#st2',{opacity:0,y:-12,filter:'blur(8px)',duration:0.18,ease:'power2.inOut'},34.760);
-tl.fromTo('#st0',{opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.3,ease:'back.out(1.8)',immediateRender:false},35.020);
 tl.to({},{duration:.001},D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0); render(0);
 window.__reel={duration:D,seek:t=>{tl.seek(t)}};

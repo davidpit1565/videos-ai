@@ -82,3 +82,22 @@ Before publishing the page: re-read the README live (commands, flags, uninstall)
 
 ## Revision 15.11.2026 (David's instruction, twice): same hook and same lines as the reference reel
 David asked for the reference's hook and texts, only the "comment REPO" ending replaced by "The setup's in the link in bio." Kept: hook shape and line order (claim, "$20 does $100 work", the problem, the fix, Graphify + stars, maps once, the big 70x number, the plan). Changed on purpose, because of the never-fabricate rule (verify file `channel/ref-graphify-verify-2026-11-15.md`): the claims are attributed ("They say...", "the big number ... is its best case") instead of stated as facts; one extra truthful beat (real tests: one saves a little, another uses more; the $100 plan is 5x usage, nothing we found comes close). Not copied word for word. Current lines: `video/ep100/voice/lines.txt`. Line 3 ("every new chat starts from zero") rests on Anthropic's memory docs (each session begins with a fresh context window, https://code.claude.com/docs/en/memory); "reads your files again" means on demand, not a full re-scan: UNCONFIRMED beyond that. Line 10 is a placeholder: it must name the real next episode after 100.
+
+## BUILD-UP check on the real voice (15.11.2026, scaffold `video/ep100/out/pic-v3.mp4`, cues from `voice/narration-raw-cues.json`, word times from `voice/words.json`)
+Beat list with what is NEW on screen and when (times in seconds; the same list is written by `build100.py` into `cues100.json` under `buildup`). Open question after the hook: is the claim true, and if not, what do tests show? It closes in three steps: where 70 comes from (19.2), what tests show (21.7-23.2), the money claim (24.9-28.8).
+| Line | Time | What is new here | Tension |
+|---|---|---|---|
+| 1 | 0.00 | Frame 0: VIRAL CLAIM tag, "70x FEWER TOKENS" in quote marks, the Claude and Graphify marks, the usage bar already draining | the claim is stated, as a claim |
+| 1 | 0.72 / 1.46 / 2.00 | "FREE" on the tool; on "killed" the tool plugs in and the bar refills to 100%; the names appear | the claim looks true |
+| 2 | 3.98 / 4.84 / 5.18 | PRO $20 card, the "=", MAX $100 card; the word "TRUE?" appears top right | the money claim: the viewer's own plan |
+| 3 | 6.49 / 8.12-9.8 | six file cards; then the Claude badge hops over them, "read x2 / x3", the bar drains to 17% | the problem is real |
+| 4 | 10.58 / 11.54-13.0 | Graphify card (free, open source); the star count runs to 148.2k | it is huge: maybe the claim is real (reason to stay at about 10 s) |
+| 5 | 13.72 / 15.42-16.6 | the map: nodes and links; one look-up along three links; the bar refills to 97% | the idea is good; the claim looks best here |
+| 6 | 17.05 / 17.72 / 19.54 | status turns to CHECKING; the giant "70x"; BEST CASE stamp, "one example, about 52 files" | reveal 1 |
+| 7 | 20.82 / 21.70 / 22.44 / 23.24 | bar shows "?"; 18% fewer; +49.5% more; issue #985 no savings | reveal 2, each row worse (about two thirds) |
+| 8 | 23.66 / 24.88-25.9 / 27.10 / 28.80 | Pro bar 1x; Max bar grows to 5x; the best test as a thin slice on the Pro bar; NOT CLOSE stamp | reveal 3, the money verdict, last |
+| 9 | 29.22-30.8 | the saveable card, five rows | value to keep |
+| 10 | 31.22-34.96 | only the headline changes (placeholder) | FLAT, see below |
+Flat stretches over 2.5 s with nothing new: **one, 31.22-34.96 (line 10)**: the card is held and only its numbers wiggle. Fix when the final line is known: show a picture of the next episode there. Longest gaps elsewhere: 2.00-3.98 (the bar and tiles move, nothing new; the hook's second half) and 25.9-27.1.
+Weak beats by my own reading (not a blind reader): line 5 repeats the "problem solved" picture of line 1; line 8 is 5.5 s long and its first 1.3 s shows only the small Pro bar.
+Blind reader on the beat list: NOT RUN.

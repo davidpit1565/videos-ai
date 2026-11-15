@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "9a7688a1-a15b-4d6c-98ad-a4c4f03f427c",
-  "currentRevision": "4d4b38af-53b0-447f-a151-1fb5077da733",
+  "currentRevision": "2c5f38eb-f94b-49ad-ba05-d6d96d7fb0b7",
   "pendingChanges": false,
   "files": {
     "assets/bg.jpg": {
@@ -41,8 +41,8 @@
       "content": "/root/.cache/hyperframes/history/9a7688a1-a15b-4d6c-98ad-a4c4f03f427c/blobs/35/35a3b9df063d916391917437bc69c291be594cf6e760a865e49e761c3a094007"
     },
     "index.html": {
-      "hash": "1f65fcda3645eae570fd0ccc532d4172cd3b8af220112a74ec1fd225d03fce27",
-      "content": "/root/.cache/hyperframes/history/9a7688a1-a15b-4d6c-98ad-a4c4f03f427c/blobs/1f/1f65fcda3645eae570fd0ccc532d4172cd3b8af220112a74ec1fd225d03fce27"
+      "hash": "0cc64878476a3f5ec07bfdb1acf313d3ce64414a29d159786de3bafbebd792d0",
+      "content": "/root/.cache/hyperframes/history/9a7688a1-a15b-4d6c-98ad-a4c4f03f427c/blobs/0c/0cc64878476a3f5ec07bfdb1acf313d3ce64414a29d159786de3bafbebd792d0"
     }
   },
   "revisions": {
@@ -75,6 +75,21 @@
           "after": "/root/.cache/hyperframes/history/9a7688a1-a15b-4d6c-98ad-a4c4f03f427c/blobs/1f/1f65fcda3645eae570fd0ccc532d4172cd3b8af220112a74ec1fd225d03fce27"
         }
       }
+    },
+    "2c5f38eb-f94b-49ad-ba05-d6d96d7fb0b7": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794763624654,
+      "endedAt": 1794763624655,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9a7688a1-a15b-4d6c-98ad-a4c4f03f427c/blobs/1f/1f65fcda3645eae570fd0ccc532d4172cd3b8af220112a74ec1fd225d03fce27",
+          "after": "/root/.cache/hyperframes/history/9a7688a1-a15b-4d6c-98ad-a4c4f03f427c/blobs/0c/0cc64878476a3f5ec07bfdb1acf313d3ce64414a29d159786de3bafbebd792d0"
+        }
+      }
     }
   },
   "checks": {
@@ -89,13 +104,14 @@
   },
   "renders": {
     "latest": {
-      "id": "5770b234-c418-4617-84f0-cc31bebd3a85",
-      "completedAt": 1794762622276,
-      "output": "/home/user/videos-ai/video/ep100/out/pic-v2.mp4",
+      "id": "b0a5989e-241d-41bb-a80c-669667eea696",
+      "completedAt": 1794763755444,
+      "output": "/home/user/videos-ai/video/ep100/out/pic-v3.mp4",
       "status": "completed",
-      "revision": "4d4b38af-53b0-447f-a151-1fb5077da733"
+      "revision": "2c5f38eb-f94b-49ad-ba05-d6d96d7fb0b7"
     },
     "retainedRevisions": [
+      "2c5f38eb-f94b-49ad-ba05-d6d96d7fb0b7",
       "4d4b38af-53b0-447f-a151-1fb5077da733"
     ]
   },

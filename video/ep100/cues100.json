@@ -117,8 +117,8 @@
    "source": "words.json"
   },
   "five": {
-   "t": 25.407,
-   "source": "ESTIMATE (line fraction)"
+   "t": 24.88,
+   "source": "words.json"
   },
   "nothing": {
    "t": 27.1,
@@ -126,6 +126,38 @@
   },
   "close": {
    "t": 28.5,
+   "source": "words.json"
+  },
+  "seventy": {
+   "t": 17.72,
+   "source": "words.json"
+  },
+  "free": {
+   "t": 0.72,
+   "source": "words.json"
+  },
+  "tool": {
+   "t": 1.14,
+   "source": "words.json"
+  },
+  "claude": {
+   "t": 2.0,
+   "source": "words.json"
+  },
+  "twenty": {
+   "t": 3.98,
+   "source": "words.json"
+  },
+  "hundred": {
+   "t": 5.18,
+   "source": "words.json"
+  },
+  "does": {
+   "t": 4.84,
+   "source": "words.json"
+  },
+  "graphify": {
+   "t": 10.68,
    "source": "words.json"
   }
  },
@@ -153,7 +185,7 @@
     100
    ],
    [
-    10.52,
+    9.83,
     17
    ],
    [
@@ -176,6 +208,125 @@
     20.82,
     70
    ]
+  ]
+ },
+ "buildup": {
+  "new_on_screen": [
+   {
+    "t": 0,
+    "what": "the viral claim, the two marks, the usage bar"
+   },
+   {
+    "t": 0.72,
+    "what": "FREE"
+   },
+   {
+    "t": 1.46,
+    "what": "the tool plugs in, the bar refills (the claim looks true)"
+   },
+   {
+    "t": 2.0,
+    "what": "the name Claude Code"
+   },
+   {
+    "t": 3.98,
+    "what": "PRO $20"
+   },
+   {
+    "t": 4.84,
+    "what": "the '=' (claim)"
+   },
+   {
+    "t": 5.18,
+    "what": "MAX $100"
+   },
+   {
+    "t": 6.49,
+    "what": "six file cards: a new chat starts from zero"
+   },
+   {
+    "t": 8.12,
+    "what": "files read again, counters rise, the bar drains (to 9.8 s)"
+   },
+   {
+    "t": 10.58,
+    "what": "Graphify card, free + open source"
+   },
+   {
+    "t": 11.54,
+    "what": "the star count runs to 148.2k (to 13.0 s)"
+   },
+   {
+    "t": 13.72,
+    "what": "the map: nodes and links"
+   },
+   {
+    "t": 15.42,
+    "what": "one look-up along the links, the bar refills (to 16.6 s)"
+   },
+   {
+    "t": 17.05,
+    "what": "status CHECKING, the claim headline"
+   },
+   {
+    "t": 17.72,
+    "what": "the giant 70x"
+   },
+   {
+    "t": 19.54,
+    "what": "BEST CASE stamp, then: one example, about 52 files"
+   },
+   {
+    "t": 20.82,
+    "what": "REAL TESTS, the bar turns to '?'"
+   },
+   {
+    "t": 21.7,
+    "what": "18% fewer"
+   },
+   {
+    "t": 22.44,
+    "what": "+49.5% more"
+   },
+   {
+    "t": 23.24,
+    "what": "issue #985: no savings"
+   },
+   {
+    "t": 23.66,
+    "what": "Pro bar, 1x"
+   },
+   {
+    "t": 24.88,
+    "what": "Max bar grows to 5x (to 25.9 s)"
+   },
+   {
+    "t": 27.1,
+    "what": "the best test as a thin slice on the Pro bar"
+   },
+   {
+    "t": 28.8,
+    "what": "NOT CLOSE stamp"
+   },
+   {
+    "t": 29.22,
+    "what": "the saveable card, five rows (to 30.8 s)"
+   },
+   {
+    "t": 31.22,
+    "what": "tomorrow headline (PLACEHOLDER: no picture of the next episode yet)"
+   },
+   {
+    "t": 34.96,
+    "what": "frame 0 returns (loop)"
+   }
+  ],
+  "flat_over_2_5s": [
+   {
+    "start": 31.22,
+    "end": 34.96,
+    "after": "tomorrow headline (PLACEHOLDER: no picture of the next episode yet)"
+   }
   ]
  },
  "numbers_on_screen": [

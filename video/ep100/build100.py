@@ -86,7 +86,7 @@ def W(name, word, n, frac, k=0):
     """time of a spoken word inside line n (words.json), else a fraction of the line (ESTIMATE)"""
     c = 0
     for w, a, b in WORDS:
-        if s(n) - .12 <= a <= e(n) + .12 and norm(w) == word:
+        if s(n) - .12 <= a <= e(n) + .12 and norm(w) in (word if isinstance(word, tuple) else (word,)):
             if c == k: SRC[name] = "words.json"; return round(a, 3)
             c += 1
     SRC[name] = "ESTIMATE (line fraction)"
@@ -104,7 +104,15 @@ tBut = W("but", "but", 6, .66)
 tR1 = W("one_saves", "one", 7, .30, 0)
 tR2 = W("one_uses", "one", 7, .66, 1)
 tR3 = min(e(7) + .05, tR2 + .8)
-tFive = W("five", "five", 8, .34)
+tFive = W("five", ("five", "5"), 8, .34)
+t70 = W("seventy", ("seventy", "70"), 6, .2)
+tFree = W("free", "free", 1, .2)
+tTool = W("tool", "tool", 1, .3)
+tCC = W("claude", "claude", 1, .55)
+tP20 = W("twenty", ("twenty", "20", "twentydollar"), 2, .1)
+tP100 = W("hundred", ("hundred", "100", "hundreddollar"), 2, .55)
+tDoes = W("does", "does", 2, .42)
+tGraph = W("graphify", "graphify", 4, .16)
 tNo = W("nothing", "nothing", 8, .62)
 tClose = W("close", "close", 8, .90)
 
@@ -175,9 +183,9 @@ fin("#h0", tF + .06, .42)
 # ---------------------------------------------------------------- scenes (page px; every scene is a full-page layer)
 SC = {}
 # 1 the claim: the two real marks, the free tool plugs in
-SC[1] = f'''<div class="tile" id="t1a" style="left:95px;top:500px">{clg(210)}</div><div class="tn" style="left:95px;top:866px">Claude Code</div>
+SC[1] = f'''<div class="tile" id="t1a" style="left:95px;top:500px">{clg(210)}</div><div class="tn" id="tn_a" style="left:95px;top:866px">Claude Code</div>
 <div id="plus" style="left:480px;top:612px">+</div>
-<div class="tile" id="t1b" style="left:615px;top:500px">{gicon(220)}<div class="free" id="free">FREE</div></div><div class="tn" style="left:615px;top:866px">Graphify</div>'''
+<div class="tile" id="t1b" style="left:615px;top:500px">{gicon(220)}<div class="free" id="free">FREE</div></div><div class="tn" id="tn_b" style="left:615px;top:866px">Graphify</div>'''
 # 2 the money claim: real prices, shown as a claim
 def plan(i, x, name, price):
     return f'''<div class="plan" id="p{i}" style="left:{x}px;top:500px">{clg(74)}<div class="pn">{name}</div><div class="pp">{price}</div><div class="pm">a month</div></div>'''
@@ -218,7 +226,7 @@ SC[7] = row(1, 495, "18%", "FEWER", GREEN, "one YouTube run", "$5.16 &rarr; $4.2
         row(3, 815, "NO", "SAVINGS", INK, "GitHub issue #985", "a user&rsquo;s report") + \
         srcline("tests by other people, not by us &middot; source: graphify.com/blog, GitHub issue #985", 978)
 # 8 the money verdict: bars to scale
-U = 100; BASE = 1150; PX, MX_, BW = 330, 700, 240
+U = 100; BASE = 1150; PX, MX_, BW = 296, 640, 240
 EXT = round(U * (1 / (1 - .18) - 1))                           # 22 px: our arithmetic, see the docstring
 SC[8] = srcline("usage: claude.com/pricing (&ldquo;5x Pro usage&rdquo;), read 15.11.2026", 492) + f'''
 <div id="dash" style="left:100px;top:{BASE - 5 * U - 3}px;width:{MX_ - 100}px"></div>
@@ -226,15 +234,15 @@ SC[8] = srcline("usage: claude.com/pricing (&ldquo;5x Pro usage&rdquo;), read 15
 <div id="bext" style="left:{PX}px;top:{BASE - U - EXT}px;height:{EXT}px"></div>
 {"".join(f'<div class="bar seg" id="bm{i}" style="left:{MX_}px;top:{BASE - (i + 1) * U}px;height:{U}px"></div>' for i in range(5))}
 <div class="bx" id="x1" style="left:{PX}px;top:{BASE - U - EXT - 112}px">1x</div><div class="bx" id="x5" style="left:{MX_}px;top:{BASE - 5 * U - 108}px">5x</div>
-<div id="call" style="left:65px;top:{BASE - U - EXT - 60}px">best test<br>we found</div>
-<svg id="carr" viewBox="0 0 60 40" style="left:262px;top:{BASE - U - EXT - 22}px"><path d="M4 8 C22 4 40 12 54 30 M54 30 L36 28 M54 30 L52 12" fill="none" stroke="{INK}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div id="call" style="left:30px;top:{BASE - U - EXT - 60}px">best test<br>we found</div>
+<svg id="carr" viewBox="0 0 60 40" style="left:232px;top:{BASE - U - EXT - 22}px"><path d="M4 8 C22 4 40 12 54 30 M54 30 L36 28 M54 30 L52 12" fill="none" stroke="{INK}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 <div class="bl" style="left:{PX - 40}px;top:{BASE + 14}px">PRO $20</div><div class="bl" style="left:{MX_ - 40}px;top:{BASE + 14}px">MAX $100</div>
-<div class="stamp big nc" id="nc" style="left:128px;top:712px">NOT CLOSE</div>'''
+<div class="stamp big nc" id="nc" style="left:82px;top:712px">NOT CLOSE</div>'''
 # 9 the saveable card (stays through line 10)
 ROWS = ["Free, open source, 148.2k stars", "&ldquo;70x&rdquo; = one best case", "Real tests: 18% fewer &hellip; 49.5% more", "Max is 5x Pro: no test comes near", "Measure your own project first"]
 SC[9] = f'<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">{gicon(66)}<span>BEFORE YOU INSTALL</span></div>' + \
         "".join(f'<div class="cr" id="cr{i}" style="top:{112 + i * 103}px"><span class="cnm">{i + 1}</span><span class="cx">{t}</span></div>' for i, t in enumerate(ROWS)) + \
-        '<div class="cf">VIRAL CLAIM, CHECKED #1 &middot; tests by other people, not by us &middot; sources in caption</div></div>'
+        '<div class="cf">VIRAL CLAIM, CHECKED #1 &middot; tests by other people, not by us</div></div>'
 scenes = "".join(f'<div class="sc" id="sc{n}">{SC[n]}</div>' for n in sorted(SC))
 PHB = ""
 if STALE or PH_L10:
@@ -243,11 +251,13 @@ if STALE or PH_L10:
 markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam">
+ <div id="fit">
  <div class="stamp" id="vc">VIRAL CLAIM</div>
  <div class="stt" id="st0">TRUE?</div><div class="stt" id="st1">CHECKING&hellip;</div><div class="stt" id="st2">NOT CLOSE</div>
  {"".join(HEADS)}
  {scenes}
  <div id="use"><div id="ul">USAGE LEFT<em>illustration</em></div><div id="up">100%</div><div id="ut"><div id="uf"></div></div></div>
+ </div>
 </div>{PHB}'''
 
 CSS = '''
@@ -256,13 +266,14 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
 .bgw{position:absolute;left:-20px;top:-20px;width:1120px;height:1960px;background:#ecebe5 url(assets/bg.jpg);background-size:1120px 1960px}
 #cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}
+#fit{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 758.5px;transform:scale(FITS)}
 .lg{display:block;flex:none}
 .stamp{position:absolute;border:6px solid RED;color:RED;border-radius:10px;padding:0 16px;font-weight:900;font-size:44px;line-height:56px;letter-spacing:.05em;white-space:nowrap;transform:rotate(-3deg);z-index:7}
 #vc{left:72px;top:283px}
 .stamp.big.nc{font-size:84px;line-height:100px}
 .stamp.big{font-size:92px;line-height:110px;border-width:10px;border-radius:16px;padding:0 26px;opacity:0;background:rgba(251,251,248,.86);transform-origin:50% 50%;z-index:9}
 .stt{position:absolute;right:78px;top:287px;font-weight:900;font-size:48px;line-height:56px;letter-spacing:.02em;white-space:nowrap;opacity:0;z-index:7}
-#st0{opacity:1} #st1{color:ORD} #st2{color:RED}
+#st1{color:ORD} #st2{color:RED}
 .hd{position:absolute;left:65px;font-weight:900;letter-spacing:-.03em;white-space:nowrap;opacity:0;z-index:6;display:flex;align-items:center}
 .hd .hlg{margin-right:.16em} #h0{opacity:1}
 .sc{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:3} #sc1{opacity:1}
@@ -270,9 +281,9 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .src{position:absolute;font-weight:500;color:#3a3a36;white-space:nowrap;letter-spacing:0}
 /* 1 */
 .tile{width:350px;height:350px;background:#fff;border:6px solid INK;border-radius:34px;box-shadow:11px 11px 0 INK;display:flex;align-items:center;justify-content:center;transform-origin:50% 60%}
-.tn{width:350px;text-align:center;font-weight:900;font-size:54px;line-height:62px;letter-spacing:-.03em;white-space:nowrap}
+.tn{opacity:0;width:350px;text-align:center;font-weight:900;font-size:54px;line-height:62px;letter-spacing:-.03em;white-space:nowrap}
 #plus{width:120px;text-align:center;font-weight:900;font-size:130px;line-height:130px}
-.free{position:absolute;right:18px;top:-24px;font-weight:900;font-size:46px;line-height:54px;letter-spacing:.03em;color:GREEN;transform:rotate(9deg);text-shadow:3px 3px 0 #fff,-3px 3px 0 #fff,3px -3px 0 #fff,-3px -3px 0 #fff}
+.free{opacity:0;position:absolute;right:18px;top:-24px;font-weight:900;font-size:46px;line-height:54px;letter-spacing:.03em;color:GREEN;transform:rotate(9deg);text-shadow:3px 3px 0 #fff,-3px 3px 0 #fff,3px -3px 0 #fff,-3px -3px 0 #fff}
 /* 2 */
 .plan{width:430px;height:456px;background:#fff;border:6px solid INK;border-radius:22px;box-shadow:8px 8px 0 INK;opacity:0;transform-origin:50% 100%}
 .plan .lg{position:absolute;left:28px;top:30px} .pn{position:absolute;left:118px;top:22px;font-weight:900;font-size:88px;line-height:92px;letter-spacing:-.02em}
@@ -298,7 +309,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .nd{opacity:0} .nd circle{fill:#fff;stroke:INK;stroke-width:6} .nd path{fill:none;stroke:INK;stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
 .nl{width:200px;text-align:center;font-weight:900;font-size:34px;line-height:40px;opacity:0;text-shadow:2px 2px 0 PAPER,-2px 2px 0 PAPER,2px -2px 0 PAPER,-2px -2px 0 PAPER}
 /* 6 */
-#big70{left:110px;top:478px;width:860px;text-align:center;font-weight:900;font-size:350px;line-height:400px;letter-spacing:-.05em;color:ORA;text-shadow:9px 9px 0 INK;white-space:nowrap;transform-origin:50% 60%}
+#big70{left:110px;top:478px;width:860px;text-align:center;font-weight:900;font-size:350px;line-height:400px;letter-spacing:-.05em;color:ORA;text-shadow:9px 9px 0 INK;white-space:nowrap;transform-origin:50% 60%;opacity:0}
 #big70 i{font-style:normal;font-size:200px;vertical-align:top;line-height:330px;color:INK;text-shadow:none}
 .sub1{left:65px;width:950px;text-align:center;font-weight:900;font-size:50px;line-height:54px;letter-spacing:-.01em;opacity:0;white-space:nowrap}
 .sub2{left:65px;width:950px;text-align:center;font-weight:800;font-size:40px;line-height:44px;opacity:0;white-space:nowrap}
@@ -312,7 +323,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #bext{width:BWpx;border:6px solid INK;border-bottom:none;background:repeating-linear-gradient(45deg,#fff 0 7px,ORA 7px 14px);transform-origin:50% 100%;transform:scaleY(0)}
 #dash{height:0;border-top:6px dashed INK;opacity:0;transform-origin:100% 50%}
 .bx{width:BWpx;text-align:center;font-weight:900;font-size:104px;line-height:104px;letter-spacing:-.03em;opacity:0}
-.bl{width:320px;text-align:center;font-weight:900;font-size:54px;line-height:60px;letter-spacing:-.02em;white-space:nowrap}
+.bl{width:320px;text-align:center;font-weight:900;font-size:47px;line-height:60px;letter-spacing:-.02em;white-space:nowrap}
 #call{width:196px;text-align:right;font-weight:900;font-size:34px;line-height:38px;opacity:0}
 #carr{width:60px;height:40px;opacity:0;overflow:visible}
 /* 9 */
@@ -323,17 +334,18 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .cr{position:absolute;left:34px;right:34px;height:100px;display:flex;align-items:center;opacity:0;border-top:4px solid rgba(15,15,15,.14);white-space:nowrap}
 .cnm{width:62px;height:62px;border-radius:50%;border:5px solid INK;background:#fff;text-align:center;font-weight:900;font-size:40px;line-height:52px;margin-right:20px;flex:none}
 .cx{font-weight:900;font-size:44px;line-height:52px;letter-spacing:-.02em}
-.cf{position:absolute;left:34px;bottom:20px;font-weight:500;font-size:23.5px;line-height:30px;white-space:nowrap;color:#3a3a36}
+.cf{position:absolute;left:34px;bottom:20px;font-weight:500;font-size:26px;line-height:30px;white-space:nowrap;color:#3a3a36}
 /* the usage bar: the spine of the video (an illustration, tagged) */
 #use{position:absolute;left:65px;top:1040px;width:950px;height:208px;z-index:5;transform-origin:50% 100%}
 #ul{position:absolute;left:0;top:14px;font-weight:900;font-size:58px;line-height:64px;letter-spacing:-.01em;white-space:nowrap}
 #ul em{font-style:normal;font-weight:500;font-size:28px;letter-spacing:0;margin-left:18px;color:#3a3a36}
-#up{position:absolute;right:0;top:0;font-weight:900;font-size:86px;line-height:86px;letter-spacing:-.04em;white-space:nowrap}
-#ut{position:absolute;left:0;top:92px;width:942px;height:108px;background:#fff;border:6px solid INK;border-radius:16px;box-shadow:8px 8px 0 INK;overflow:hidden}
+#up{position:absolute;right:119px;top:0;transform-origin:100% 50%;font-weight:900;font-size:86px;line-height:86px;letter-spacing:-.04em;white-space:nowrap}
+#ut{position:absolute;left:0;top:92px;width:823px;height:108px;background:#fff;border:6px solid INK;border-radius:16px;box-shadow:8px 8px 0 INK;overflow:hidden}
 #uf{position:absolute;left:0;top:0;height:100%;width:100%;background:repeating-linear-gradient(115deg,ORA 0 34px,#E58D6F 34px 68px);background-size:200% 100%;border-right:6px solid INK}
 .phb{position:absolute;left:0;width:1080px;text-align:center;font-weight:900;font-size:30px;line-height:40px;color:RED;letter-spacing:.02em;z-index:20;white-space:nowrap}
 '''
-for a_, b_ in (("BW", BW), ("GREEN", GREEN), ("INK", INK), ("PAPER", PAPER), ("RED", RED), ("ORA", ORA), ("ORD", ORD)):
+FITS = round(864 / 950, 4)                                     # safe box x 108-972 (CLAUDE.md 15.11); in screen y 1056-1632 the right edge stays <= 864 = design x 896
+for a_, b_ in (("FITS", FITS), ("BW", BW), ("GREEN", GREEN), ("INK", INK), ("PAPER", PAPER), ("RED", RED), ("ORA", ORA), ("ORD", ORD)):
     CSS = CSS.replace(a_, str(b_))
 
 # ---------------------------------------------------------------- timeline
@@ -350,18 +362,20 @@ idle("#t1a", 0, a[2], "y", -10, .7)
 js(f"tl.fromTo('#t1b',{{x:44,rotation:7}},{{x:0,rotation:-3,duration:.34,ease:'power3.in',immediateRender:false}},{tPlug - .34:.3f});")
 js(f"tl.fromTo('#t1a',{{scale:1}},{{scale:1.07,duration:.16,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tPlug:.3f});")
 js(f"tl.fromTo('#plus',{{scale:1,rotation:0}},{{scale:1.35,rotation:90,duration:.22,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tPlug:.3f});")
-idle("#free", 0, a[2], "rotation", 9, .5)
+pop("#free", tFree, .3); idle("#free", tFree + .35, a[2], "rotation", 9, .5); sfx("pop_b.ogg", tFree, -11)
+fin("#tn_b", tTool, .3, 12, 4); fin("#tn_a", tCC, .3, 12, 4)
+pop("#st0", a[2] + .1, .3, .6)
 idle("#t1b", tPlug + .4, a[2], "y", -10, .7)
 sfx("subhit.ogg", .05, -6); sfx("whoosh_a.ogg", tPlug - .3, -10); sfx("impactsoft.ogg", tPlug, -8); sfx("riser.ogg", tPlug + .05, -14)
 # --- 2 the money claim
 scene(2, a[2], a[3])
-for i, dl in ((1, 0), (2, .14)):
+for i, dl in ((1, tP20 - .12 - a[2] - .04), (2, tP100 - .12 - a[2] - .04)):
     js(f"tl.fromTo('#p{i}',{{opacity:0,y:70,rotation:{4 if i == 1 else -4}}},{{opacity:1,y:0,rotation:{-1.5 if i == 1 else 1.5},duration:.42,ease:'back.out(1.4)',immediateRender:false}},{a[2] + .04 + dl:.3f});")
     sfx("pop_a.ogg" if i == 1 else "pop_b.ogg", a[2] + .04 + dl, -10)
-pop("#eq", tNow, .32); sfx("select.ogg", tNow, -9)
-js(f"tl.fromTo('#p1',{{scale:1}},{{scale:1.06,duration:.4,ease:'sine.inOut',yoyo:true,repeat:{max(1, int((a[3] - tNow - .3) / .4)) | 1},immediateRender:false}},{tNow + .1:.3f});")
-idle("#eq", tNow + .35, a[3], "rotation", 14, .5)
-idle("#p2", a[2] + .7, a[3], "y", -8, .8)
+pop("#eq", tDoes, .32); sfx("select.ogg", tDoes, -9)
+js(f"tl.fromTo('#p1',{{scale:1}},{{scale:1.06,duration:.4,ease:'sine.inOut',yoyo:true,repeat:{max(1, int((a[3] - tDoes - .4) / .4)) | 1},immediateRender:false}},{tDoes + .1:.3f});")
+idle("#eq", tDoes + .35, a[3], "rotation", 14, .5)
+idle("#p2", tP100 + .4, a[3], "y", -8, .4)
 # --- 3 the problem: the files are read again, the bar drains
 scene(3, a[3], a[4])
 for c in range(6):
@@ -369,7 +383,7 @@ for c in range(6):
     sfx("pop_a.ogg" if c % 2 == 0 else "pop_b.ogg", a[3] + .05 + .06 * c, -13)
 for c in range(6):                                              # while "from zero" is said the cards breathe in a wave
     js(f"tl.fromTo('#fc{c}',{{rotation:0}},{{rotation:{2.5 if c % 2 else -2.5},duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{a[3] + .7 + .1 * c:.3f});")
-NH = 12; h0 = tSo - .1; hstep = max(.2, (a[4] - .35 - h0) / NH)
+h0 = tSo - .1; NH = max(6, min(12, int((a[4] - .3 - h0) / .2))); hstep = (a[4] - .3 - h0) / NH
 HOPS = []
 pop("#scan", h0 - .28, .26)
 for k in range(NH):
@@ -380,9 +394,9 @@ for k in range(NH):
     HOPS.append([round(t, 3), c]); sfx("tick.ogg", t, -12)
 # --- 4 the tool + the stars
 scene(4, a[4], a[5])
-js(f"tl.fromTo('#gcard',{{opacity:0,scale:.8,rotation:-4}},{{opacity:1,scale:1,rotation:-1,duration:.42,ease:'back.out(1.6)',immediateRender:false}},{a[4] + .04:.3f});")
-sfx("whoosh_b.ogg", a[4], -10)
-fin("#gfree", a[4] + .45, .3, 14, 4)
+js(f"tl.fromTo('#gcard',{{opacity:0,scale:.8,rotation:-4}},{{opacity:1,scale:1,rotation:-1,duration:.42,ease:'back.out(1.6)',immediateRender:false}},{tGraph - .1:.3f});")
+sfx("whoosh_b.ogg", tGraph - .1, -10)
+fin("#gfree", tGraph + .4, .3, 14, 4)
 fin("#grow", tAbout - .1, .3, 14, 4)
 STAR_D = max(.8, min(1.5, a[5] - tAbout - .5))
 js(f"tl.fromTo('#grow .star',{{rotation:-30,scale:.6}},{{rotation:360,scale:1,duration:{STAR_D:.3f},ease:'power2.out',immediateRender:false}},{tAbout:.3f});")
@@ -409,9 +423,9 @@ for i in range(6): idle(f"#dt{i}", a[5] + .9 + .1 * i, a[6], "scale", 1.3, .5)
 # --- 6 the big number, then where it comes from
 scene(6, a[6], a[7])
 status(1, a[6] + .1)
-js(f"tl.fromTo('#big70',{{scale:.55}},{{scale:1,duration:.5,ease:'back.out(1.5)',immediateRender:false}},{a[6]:.3f});")
-idle("#big70", a[6] + .5, tBut, "scale", 1.05, .5)
-sfx("impactpunch.ogg", a[6] + .05, -8)
+js(f"tl.fromTo('#big70',{{scale:.55,opacity:0}},{{scale:1,opacity:1,duration:.45,ease:'back.out(1.5)',immediateRender:false}},{t70 - .08:.3f});")
+idle("#big70", t70 + .45, tBut, "scale", 1.05, .5)
+sfx("impactpunch.ogg", t70, -8)
 slam("#bc", tBut, -8); sfx("impactpunch.ogg", tBut + .28, -5)
 js(f"tl.to('#big70',{{scale:.93,rotation:-2,color:'#E3B5A3',duration:.4,ease:'power2.out'}},{tBut + .3:.3f});")
 fin("#s6a", tBut + .5, .3, 12, 4); fin("#s6b", tBut + .68, .3, 12, 4)
@@ -455,9 +469,9 @@ js(f"tl.to('#card',{{opacity:0,scale:.9,y:-40,rotation:-3,duration:.32,ease:'pow
 sfx("whoosh_c.ogg", tF - .2, -12)
 # --- loop seam: frame 0 comes back
 fin("#sc1", tF + .06, .42)
-js(f"tl.set('#t1b',{{x:44,rotation:7}},{tF:.3f});")
+js(f"tl.set('#t1b',{{x:44,rotation:7}},{tF:.3f});"); js(f"tl.set('#tn_a,#tn_b,#free',{{opacity:0}},{tF:.3f});")
 js(f"tl.fromTo('#use',{{opacity:0,y:30}},{{opacity:1,y:0,duration:.4,ease:'power2.out',immediateRender:false}},{tF + .06:.3f});")
-fout("#st2", tF - .2, .18); pop("#st0", tF + .06, .3, .6)
+fout("#st2", tF - .2, .18)
 
 # ---------------------------------------------------------------- render(): the usage bar, the read counters, the star counter (all from the clock)
 KF = [(0, 100), (.25, 100), (tPlug - .08, 31), (tPlug + .7, 100), (tSo - .1, 100), (h0 + NH * hstep, 17), (a[5] + .5, 17), (tLook + 3 * wstep, 97),
@@ -482,6 +496,15 @@ function render(v){
 }
 '''.replace("__DATA__", json.dumps(DATA, separators=(",", ":")))
 
+NEWS = [(0, "the viral claim, the two marks, the usage bar"), (tFree, "FREE"), (tPlug, "the tool plugs in, the bar refills (the claim looks true)"), (tCC, "the name Claude Code"),
+        (tP20, "PRO $20"), (tDoes, "the '=' (claim)"), (tP100, "MAX $100"), (a[3], "six file cards: a new chat starts from zero"), (h0, "files read again, counters rise, the bar drains (to " + f"{h0 + NH * hstep:.1f} s)"),
+        (tGraph - .1, "Graphify card, free + open source"), (tAbout, f"the star count runs to 148.2k (to {tAbout + STAR_D:.1f} s)"), (a[5], "the map: nodes and links"),
+        (tLook, f"one look-up along the links, the bar refills (to {tLook + 3 * wstep:.1f} s)"), (a[6], "status CHECKING, the claim headline"), (t70, "the giant 70x"),
+        (tBut + .3, "BEST CASE stamp, then: one example, about 52 files"), (a[7], "REAL TESTS, the bar turns to '?'"), (tR1, "18% fewer"), (tR2, "+49.5% more"), (tR3, "issue #985: no savings"),
+        (a[8] + .12, "Pro bar, 1x"), (tFive, f"Max bar grows to 5x (to {tFive + 5 * seg:.1f} s)"), (tNo, "the best test as a thin slice on the Pro bar"), (tClose + .3, "NOT CLOSE stamp"),
+        (a[9], f"the saveable card, five rows (to {a[9] + .3 + 5 * rstep:.1f} s)"), (a[10], "tomorrow headline (PLACEHOLDER: no picture of the next episode yet)"), (tF, "frame 0 returns (loop)")]
+NEWS = sorted((round(t, 2), x) for t, x in NEWS)
+FLAT = [(NEWS[i][0], NEWS[i + 1][0], NEWS[i][1]) for i in range(len(NEWS) - 1) if NEWS[i + 1][0] - NEWS[i][0] > 2.5]
 JS = re.sub(r"tl\.set\(([^,]+),\{", r"tl.set(\1,{immediateRender:false,", "\n".join(J))
 SFX.sort(key=lambda x: x["t"])
 json.dump(SFX, open(H_ + "/sfx100.json", "w"), indent=1)
@@ -494,9 +517,9 @@ json.dump(dict(placeholder=dict(estimated_timeline=STALE, line10=PH_L10, claude_
                lines=[dict(n=n, text=LINES[n - 1], start=round(s(n), 3), end=round(e(n), 3), role=ROLE[n - 1]) for n in range(1, NL + 1)],
                D=D, frame0_returns=round(tF, 3),
                sync={k: dict(t=v, source=SRC[k]) for k, v in (("killed", tPlug), ("now", tNow), ("so", tSo), ("about", tAbout), ("once", tOnce), ("looks", tLook), ("but", tBut),
-                                                             ("one_saves", tR1), ("one_uses", tR2), ("five", tFive), ("nothing", tNo), ("close", tClose))},
+                                                             ("one_saves", tR1), ("one_uses", tR2), ("five", tFive), ("nothing", tNo), ("close", tClose), ("seventy", t70), ("free", tFree), ("tool", tTool), ("claude", tCC), ("twenty", tP20), ("hundred", tP100), ("does", tDoes), ("graphify", tGraph))},
                usage_bar=dict(note="ILLUSTRATION, tagged on screen; '?' from line 7 on; hidden in line 8", keyframes=DATA["KF"]),
-               numbers_on_screen=NUMBERS, headlines_draft=[dict(t=t, text=x) for t, x in sorted(HLOG)]), open(H_ + "/cues100.json", "w"), indent=1)
+               buildup=dict(new_on_screen=[dict(t=t, what=x) for t, x in NEWS], flat_over_2_5s=[dict(start=a_, end=b_, after=x) for a_, b_, x in FLAT]), numbers_on_screen=NUMBERS, headlines_draft=[dict(t=t, text=x) for t, x in sorted(HLOG)]), open(H_ + "/cues100.json", "w"), indent=1)
 html = f'''<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
 <style>
@@ -524,6 +547,8 @@ open(H_ + "/hf/index.html", "w").write(html)
 say(f"estimated timeline={STALE}  line 10 placeholder={PH_L10}  D={D}  js={len(J)} sfx={len(SFX)}")
 say("lines: " + "  ".join(f"{n}:{s(n):.2f}-{e(n):.2f}" for n in range(1, NL + 1)))
 say("sync: " + "  ".join(f"{k}={v['t']}({'w' if v['source'] == 'words.json' else 'EST'})" for k, v in json.load(open(H_ + '/cues100.json'))["sync"].items()))
+for t, x in NEWS: say(f"  new {t:6.2f}  {x}")
+say("FLAT stretches over 2.5 s with nothing new: " + (str(FLAT) if FLAT else "none"))
 hs = sorted(HLOG)
 say("headlines (draft): " + " | ".join(f"{t:.2f} {x}" for t, x in hs))
 open(H_ + "/out/build.log", "w").write("\n".join(LOG) + "\n")
