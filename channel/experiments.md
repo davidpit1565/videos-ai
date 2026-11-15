@@ -408,3 +408,6 @@ David graduated episode 96 himself ("Share to everyone") on 14.11.2026, earlier 
 
 ## 14.11.2026: ep97 published as TRIAL through the API (David's instruction)
 Posted 14.11.2026 22:59 Belgium via `/api/instagram/publish {"episode":97,"trial":"MANUAL"}`; the API accepted it (first API trial on this account), permalink https://www.instagram.com/reel/DfvOi-Asv9s/, studio notes line `TRIAL MANUAL 18142313740622184 ... 2026-11-14`. No Facebook post. Graduation by hand in the app: reminder 17.11 22:59 (trig_01Tdh6Q9tWhMJuczu1erASZs). To check in the app that it really shows as Trial (David): profile, Reels tab, it should NOT be visible publicly until "Share to everyone".
+
+## 15.11.2026: same content, trial first then regular (David's plan)
+The "Me with Claude / Me with ChatGPT" picture got almost 7,000 views as a trial (David's report). David will post it again as a regular reel in 1-2 days. Read both numbers at 72 h (Insights, not the studio) and log them here. Caveat: the second post is a re-post of known content; Instagram's help says re-sharing can limit reach, so a low second number may not mean regular is worse.
