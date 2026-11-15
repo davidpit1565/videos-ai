@@ -86,7 +86,8 @@
   "chatgpt(7)": "words.json",
   "see": "words.json",
   "same": "words.json",
-  "follow": "words.json"
+  "follow": "words.json",
+  "killed": "words.json"
  },
  "targets": {
   "4": 6.86,
@@ -442,12 +443,8 @@
  ],
  "headlines": [
   {
-   "t": 0,
-   "text": "AI MAZE RACE"
-  },
-  {
-   "t": 2.51,
-   "text": "FIVE AIs. SAME REQUEST."
+   "t": 3.06,
+   "text": "SAME JOB FOR ALL FIVE."
   },
   {
    "t": 4.71,
