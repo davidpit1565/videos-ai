@@ -162,3 +162,6 @@ The first script said "nose to nose", "photo finish", "by a hair". Measured in r
 
 ## v2 script 15.11.2026 after the red team (channel/episode-98-redteam.md)
 Red team: current cut HOOK 68 / VIRALITY 64 / VALUE 50 / OVERALL 63 (judgement), fixes lift it to about 71; cannot honestly reach 85 without a big early crash or a personal stake. Changes made (all true to the race): hook "Each AI taught a car. One hits the wall." (premise + stake in line 1), "Pick one. Go!" (pick-before-race comment mechanic), race starts about 3 s, roll call and "Hands off" cut, no live positions (status only: lap dots, ?, X) so the winner is not given away, winner revealed on the slow-motion replay, send line = "Send it to a friend. See who they pick.", result card adds "rules locked first". Ending promise (maze) still PROMISE TO CONFIRM.
+
+## 15.11.2026: claims about a public page removed
+The caption and YouTube text said the five answers are public and that a page lets viewers race their own AI. Neither exists yet. Removed until the /e/98 page is really built (or the answers are really published). David has not decided whether to build the page.
