@@ -159,3 +159,6 @@ HOOK 78 (clear subject at word one and a picture to match; the threat sits at wo
 
 ## Honesty fix 15.11.2026 (Claude, orchestrator)
 The first script said "nose to nose", "photo finish", "by a hair". Measured in race.json: when Claude crosses the line, Gemini is about 78 px behind (roughly two car lengths) and crosses 12 frames (0.20 s) later. Lines changed to: "Claude and Gemini are neck and neck." / "Claude pulls ahead!" / "Claude wins. Gemini is right behind." The ending promise "Tomorrow, they face a maze" is NOT confirmed (ep99 not started): PROMISE TO CONFIRM with David before shipping.
+
+## v2 script 15.11.2026 after the red team (channel/episode-98-redteam.md)
+Red team: current cut HOOK 68 / VIRALITY 64 / VALUE 50 / OVERALL 63 (judgement), fixes lift it to about 71; cannot honestly reach 85 without a big early crash or a personal stake. Changes made (all true to the race): hook "Each AI taught a car. One hits the wall." (premise + stake in line 1), "Pick one. Go!" (pick-before-race comment mechanic), race starts about 3 s, roll call and "Hands off" cut, no live positions (status only: lap dots, ?, X) so the winner is not given away, winner revealed on the slow-motion replay, send line = "Did you pick Claude? Send it to a friend.", result card adds "rules locked first". Ending promise (maze) still PROMISE TO CONFIRM.
