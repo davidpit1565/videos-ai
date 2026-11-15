@@ -660,3 +660,12 @@ Check every reel before publishing, in this order (J = my judgement before, M = 
 ## Direction decisions of 15.11.2026 (David): videos stay Miki-style; pure images are a separate, occasional thing
 - Videos continue in the Miki style direction. The "Me with Claude / Me with ChatGPT" picture is NOT a new video format: David posts pure pictures now and then, only for virality and for trial reels. Do not turn videos into that style, and do not propose "Me with X" as a video series.
 - Ep98: fix the comprehension (David: "the video is still not understandable enough"; the hook is OK). Fix = show WHAT the AI wrote in plain words (three plain rules on each AI's card: stay in the middle of the road, slow down for bends, steer away from walls: a plain-words summary of what the code really does, labelled as such, no code) and say it in one new line: "Each AI writes its own driving rules."
+
+## Topic first, then hook: the test-before-build rules (from the 15.11.2026 reference reel, David: "maybe worth keeping the rules there"; HYPOTHESIS, creator's claims unverified, see `channel/ref-analysis-2026-11-15-DfviVXUK359.md`)
+- A reel dies at a few hundred views because of its TOPIC more often than its hook. The four numbers that matter: watch time, skip rate, saves, shares; the topic moves all four.
+- Before building a produced video, test the TOPIC cheaply: a 7-second plain-text reel or one picture as a trial (David posts it by hand), read 24-48 h in Insights; build the produced video only for topics that pass (his reading of "passes": a couple of thousand views). Evidence on our side: the "Me with Claude / Me with ChatGPT" picture got about 7,000 views as a trial.
+- Find topics from what people keep asking: top Reddit posts and their comments (r/ChatGPT, r/ClaudeAI, r/artificial, r/OpenAI), summarised by an agent; always run the duplicate check against `channel/topics-covered.txt` first.
+- Make it travel: steps with an outcome get saved; something that makes the sender look smart, or a friend who recognises themselves, gets shared. Shares are our weakest number (0-3 per reel).
+
+## Voice: product names are one word (David, 15.11.2026, ep98)
+- "Meta AI" must sound like ONE name: a pause between "Meta" and "AI" ("Meta. AI hits the wall") is a defect. Check with Whisper word times: the gap between the two words must be under about 0.12 s; re-roll until it is. Same for other two-word names (Claude Code, Gemini Flash...).
