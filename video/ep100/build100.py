@@ -125,14 +125,17 @@ def fin(sel, t, d=.4, y=22, blur=8):
 def fout(sel, t, d=.22):
     js(f"tl.to('{sel}',{{opacity:0,y:-12,filter:'blur(8px)',duration:{d},ease:'power2.inOut'}},{max(0, t):.3f});")
 def pop(sel, t, d=.34, frm=.3, ease="back.out(1.8)"):
-    js(f"tl.fromTo('{sel}',{{opacity:0,scale:{frm}}},{{opacity:1,scale:1,duration:{d},ease:'{ease}',immediateRender:false}},{max(0, t):.3f});")
+    xo = ",transformOrigin:'50% 50%'" if sel.startswith(("#dt", "#nd")) else ""
+    js(f"tl.fromTo('{sel}',{{opacity:0,scale:{frm}}},{{opacity:1,scale:1{xo},duration:{d},ease:'{ease}',immediateRender:false}},{max(0, t):.3f});")
 def slam(sel, t, rot):
-    js(f"tl.fromTo('{sel}',{{opacity:0,scale:2.3,rotation:{rot - 14}}},{{opacity:1,scale:1,rotation:{rot},duration:.3,ease:'power3.in',immediateRender:false}},{max(0, t):.3f});")
+    js(f"tl.fromTo('{sel}',{{opacity:0,scale:1.25,rotation:{rot - 9}}},{{opacity:1,scale:1,rotation:{rot},duration:.3,ease:'power3.in',immediateRender:false}},{max(0, t):.3f});")
     js(f"tl.fromTo('{sel}',{{y:0}},{{y:7,duration:.09,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false}},{t + .3:.3f});")
 def idle(sel, t0, t1, prop="y", amp=-9, per=.9):
     if t1 - t0 < per: return
     rep = max(1, int((t1 - t0) / per)) | 1
-    js(f"tl.fromTo('{sel}',{{{prop}:0}},{{{prop}:{amp},duration:{(t1 - t0) / (rep + 1):.3f},ease:'sine.inOut',yoyo:true,repeat:{rep},immediateRender:false}},{t0:.3f});")
+    b0 = 1 if prop in ("scale", "opacity") else 0
+    xo = ",transformOrigin:'50% 50%'" if sel.startswith(("#dt", "#nd", "#grow")) else ""
+    js(f"tl.fromTo('{sel}',{{{prop}:{b0}}},{{{prop}:{amp}{xo},duration:{(t1 - t0) / (rep + 1):.3f},ease:'sine.inOut',yoyo:true,repeat:{rep},immediateRender:false}},{t0:.3f});")
 def srcline(txt, top, mx=950, size=26, left=65):
     fs = min(size, 100 * mx / twm(txt))
     return f'<div class="src" style="left:{left}px;top:{top}px;font-size:{fs:.1f}px;line-height:{fs * 1.25:.1f}px">{txt}</div>'
@@ -178,13 +181,13 @@ SC[1] = f'''<div class="tile" id="t1a" style="left:95px;top:500px">{clg(210)}</d
 # 2 the money claim: real prices, shown as a claim
 def plan(i, x, name, price):
     return f'''<div class="plan" id="p{i}" style="left:{x}px;top:500px">{clg(74)}<div class="pn">{name}</div><div class="pp">{price}</div><div class="pm">a month</div></div>'''
-SC[2] = plan(1, 65, "PRO", "$20") + plan(2, 577, "MAX", "$100") + '<div id="eq" style="left:481px;top:675px">=</div>' + \
+SC[2] = plan(1, 65, "PRO", "$20") + plan(2, 577, "MAX", "$100") + '<div id="eq" style="left:481px;top:508px">=</div>' + \
         srcline("prices: claude.com/pricing, read 15.11.2026", 978)
 # 3 the problem: every new chat, the files are read again
 FILES = ["login", "users", "orders", "payments", "search", "emails"]
 FX = [65, 392, 719]; FY = [500, 730]
 SC[3] = "".join(f'<div class="fc" id="fc{c}" style="left:{FX[c % 3]}px;top:{FY[c // 3]}px">{DOC}<div class="rd" id="rd{c}">read &times;1</div><div class="fn">{FILES[c]}</div></div>' for c in range(6)) + \
-        f'<div class="bdg" id="scan" style="left:{FX[0] + 186}px;top:{FY[0] + 110}px">{clg(52)}</div>'
+        f'<div class="bdg" id="scan" style="left:{FX[0] + 222}px;top:{FY[0] + 138}px;width:74px;height:74px">{clg(46)}</div>'
 # 4 the tool and its real size
 SC[4] = f'''<div id="gcard">{gicon(170)}{gword(104)}</div>
 <div id="gfree" style="left:65px;top:752px">{CHK}<span>free</span>{CHK}<span>open source</span></div>
@@ -205,9 +208,9 @@ SC[5] = f'''<svg id="gsv" viewBox="0 0 950 520" width="950" height="520" style="
 </svg>''' + "".join(f'<div class="nl" style="left:{65 + x - 100}px;top:{495 + y + 40}px">{FILES[i]}</div>' for i, (x, y) in enumerate(NODE)) + \
         f'<div class="bdg" id="walk" style="left:{65 + NODE[0][0] - 42}px;top:{495 + NODE[0][1] - 42}px">{clg(52)}</div>'
 # 6 the big number and where it comes from
-SC[6] = f'''<div id="big70"><i>&ldquo;</i>70x<i>&rdquo;</i></div><div class="stamp big" id="bc" style="left:440px;top:770px">BEST CASE</div>
-<div class="sub1" id="s6a" style="top:908px">ONE EXAMPLE &middot; ABOUT 52 FILES</div><div class="sub2" id="s6b" style="top:962px">compared with reading every file at once</div>''' + \
-        srcline("source: the project's own early example, via roborhythms.com, read 15.11.2026", 1008, size=24)
+SC[6] = f'''<div id="big70"><i>&ldquo;</i>70x<i>&rdquo;</i></div><div class="stamp big" id="bc" style="left:{round(985 - (tw("BEST CASE") * .92 + .05 * 92 * 9 + 72)) - 34}px;top:742px">BEST CASE</div>
+<div class="sub1" id="s6a" style="top:893px">ONE EXAMPLE &middot; ABOUT 52 FILES</div><div class="sub2" id="s6b" style="top:949px">compared with reading every file at once</div>''' + \
+        srcline("source: the project's own early example, via roborhythms.com, read 15.11.2026", 1002, size=24)
 # 7 other people's tests
 def row(i, y, num, word, col, d1, d2):
     return f'<div class="tr" id="tr{i}" style="top:{y}px"><span class="tnum" style="color:{col}" id="tn{i}">{num}</span><span class="tw_" style="color:{col}">{word}</span><span class="td">{d1}<br>{d2}</span></div>'
@@ -226,16 +229,16 @@ SC[8] = srcline("usage: claude.com/pricing (&ldquo;5x Pro usage&rdquo;), read 15
 <div id="call" style="left:65px;top:{BASE - U - EXT - 60}px">best test<br>we found</div>
 <svg id="carr" viewBox="0 0 60 40" style="left:262px;top:{BASE - U - EXT - 22}px"><path d="M4 8 C22 4 40 12 54 30 M54 30 L36 28 M54 30 L52 12" fill="none" stroke="{INK}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 <div class="bl" style="left:{PX - 40}px;top:{BASE + 14}px">PRO $20</div><div class="bl" style="left:{MX_ - 40}px;top:{BASE + 14}px">MAX $100</div>
-<div class="stamp big" id="nc" style="left:88px;top:700px">NOT CLOSE</div>'''
+<div class="stamp big nc" id="nc" style="left:128px;top:728px">NOT CLOSE</div>'''
 # 9 the saveable card (stays through line 10)
 ROWS = ["Free, open source, 148.2k stars", "&ldquo;70x&rdquo; = one best case", "Real tests: 18% fewer &hellip; 49.5% more", "Max is 5x Pro: no test comes near", "Measure your own project first"]
 SC[9] = f'<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">{gicon(66)}<span>BEFORE YOU INSTALL</span></div>' + \
-        "".join(f'<div class="cr" id="cr{i}" style="top:{118 + i * 108}px"><span class="cnm">{i + 1}</span><span class="cx">{t}</span></div>' for i, t in enumerate(ROWS)) + \
+        "".join(f'<div class="cr" id="cr{i}" style="top:{112 + i * 103}px"><span class="cnm">{i + 1}</span><span class="cx">{t}</span></div>' for i, t in enumerate(ROWS)) + \
         '<div class="cf">VIRAL CLAIM, CHECKED #1 &middot; tests by other people, not by us &middot; sources in caption</div></div>'
 scenes = "".join(f'<div class="sc" id="sc{n}">{SC[n]}</div>' for n in sorted(SC))
 PHB = ""
 if STALE or PH_L10:
-    what = " &middot; ".join(x for x in ("ESTIMATED TIMING, NO VOICE YET" if STALE else "", "LINE 10 IS A PLACEHOLDER" if PH_L10 else "") if x)
+    what = " &middot; ".join(x for x in ("ESTIMATED TIMING" if STALE else "", "LINE 10 PLACEHOLDER" if PH_L10 else "") if x)
     PHB = f'<div class="phb" data-decor style="top:196px">SCAFFOLD &middot; {what}</div><div class="phb" data-decor style="top:1272px">SCAFFOLD &middot; {what}</div>'
 markup = f'''
 <div class="bgw" data-decor></div>
@@ -256,8 +259,9 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .lg{display:block;flex:none}
 .stamp{position:absolute;border:6px solid RED;color:RED;border-radius:10px;padding:0 16px;font-weight:900;font-size:44px;line-height:56px;letter-spacing:.05em;white-space:nowrap;transform:rotate(-3deg);z-index:7}
 #vc{left:72px;top:283px}
-.stamp.big{font-size:100px;line-height:118px;border-width:10px;border-radius:16px;padding:0 26px;opacity:0;background:rgba(251,251,248,.86);transform-origin:50% 50%;z-index:9}
-.stt{position:absolute;right:65px;top:287px;font-weight:900;font-size:48px;line-height:56px;letter-spacing:.02em;white-space:nowrap;opacity:0;z-index:7}
+.stamp.big.nc{font-size:84px;line-height:100px}
+.stamp.big{font-size:92px;line-height:110px;border-width:10px;border-radius:16px;padding:0 26px;opacity:0;background:rgba(251,251,248,.86);transform-origin:50% 50%;z-index:9}
+.stt{position:absolute;right:78px;top:287px;font-weight:900;font-size:48px;line-height:56px;letter-spacing:.02em;white-space:nowrap;opacity:0;z-index:7}
 #st0{opacity:1} #st1{color:ORD} #st2{color:RED}
 .hd{position:absolute;left:65px;font-weight:900;letter-spacing:-.03em;white-space:nowrap;opacity:0;z-index:6;display:flex;align-items:center}
 .hd .hlg{margin-right:.16em} #h0{opacity:1}
@@ -268,7 +272,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .tile{width:350px;height:350px;background:#fff;border:6px solid INK;border-radius:34px;box-shadow:11px 11px 0 INK;display:flex;align-items:center;justify-content:center;transform-origin:50% 60%}
 .tn{width:350px;text-align:center;font-weight:900;font-size:54px;line-height:62px;letter-spacing:-.03em;white-space:nowrap}
 #plus{width:120px;text-align:center;font-weight:900;font-size:130px;line-height:130px}
-.free{position:absolute;right:-16px;top:-22px;font-weight:900;font-size:46px;line-height:54px;letter-spacing:.03em;color:GREEN;transform:rotate(9deg);text-shadow:3px 3px 0 #fff,-3px 3px 0 #fff,3px -3px 0 #fff,-3px -3px 0 #fff}
+.free{position:absolute;right:18px;top:-24px;font-weight:900;font-size:46px;line-height:54px;letter-spacing:.03em;color:GREEN;transform:rotate(9deg);text-shadow:3px 3px 0 #fff,-3px 3px 0 #fff,3px -3px 0 #fff,-3px -3px 0 #fff}
 /* 2 */
 .plan{width:430px;height:456px;background:#fff;border:6px solid INK;border-radius:22px;box-shadow:8px 8px 0 INK;opacity:0;transform-origin:50% 100%}
 .plan .lg{position:absolute;left:28px;top:30px} .pn{position:absolute;left:118px;top:22px;font-weight:900;font-size:88px;line-height:92px;letter-spacing:-.02em}
@@ -278,7 +282,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 /* 3 */
 .fc{width:288px;height:205px;background:#fff;border:6px solid INK;border-radius:18px;box-shadow:8px 8px 0 INK;opacity:0;transform-origin:50% 50%}
 .fc .doc{position:absolute;left:20px;top:18px;width:72px;height:86px}
-.fn{position:absolute;left:22px;bottom:14px;font-weight:900;font-size:50px;line-height:56px;letter-spacing:-.02em}
+.fn{position:absolute;left:22px;bottom:14px;font-weight:900;font-size:46px;line-height:54px;letter-spacing:-.02em}
 .rd{position:absolute;right:16px;top:20px;font-weight:900;font-size:36px;line-height:42px;color:ORD;white-space:nowrap}
 .bdg{width:84px;height:84px;border-radius:50%;background:#fff;border:5px solid INK;box-shadow:5px 5px 0 INK;display:flex;align-items:center;justify-content:center;opacity:0;z-index:5}
 /* 4 */
@@ -290,17 +294,17 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #stw{font-weight:900;font-size:56px;line-height:60px;align-self:flex-end;margin-bottom:16px}
 /* 5 */
 #gsv{overflow:visible} .ed{fill:none;stroke:INK;stroke-width:6;stroke-linecap:round}
-.dt{fill:ORA;stroke:INK;stroke-width:5;opacity:0;transform-box:fill-box;transform-origin:50% 50%}
-.nd{opacity:0;transform-box:fill-box;transform-origin:50% 50%} .nd circle{fill:#fff;stroke:INK;stroke-width:6} .nd path{fill:none;stroke:INK;stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
+.dt{fill:ORA;stroke:INK;stroke-width:5;opacity:0}
+.nd{opacity:0} .nd circle{fill:#fff;stroke:INK;stroke-width:6} .nd path{fill:none;stroke:INK;stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
 .nl{width:200px;text-align:center;font-weight:900;font-size:34px;line-height:40px;opacity:0;text-shadow:2px 2px 0 PAPER,-2px 2px 0 PAPER,2px -2px 0 PAPER,-2px -2px 0 PAPER}
 /* 6 */
-#big70{left:65px;top:478px;width:950px;text-align:center;font-weight:900;font-size:390px;line-height:410px;letter-spacing:-.05em;color:ORA;text-shadow:9px 9px 0 INK;white-space:nowrap;transform-origin:50% 60%}
-#big70 i{font-style:normal;font-size:230px;vertical-align:top;line-height:330px;color:INK;text-shadow:none}
+#big70{left:65px;top:478px;width:950px;text-align:center;font-weight:900;font-size:350px;line-height:400px;letter-spacing:-.05em;color:ORA;text-shadow:9px 9px 0 INK;white-space:nowrap;transform-origin:50% 60%}
+#big70 i{font-style:normal;font-size:200px;vertical-align:top;line-height:330px;color:INK;text-shadow:none}
 .sub1{left:65px;width:950px;text-align:center;font-weight:900;font-size:50px;line-height:54px;letter-spacing:-.01em;opacity:0;white-space:nowrap}
 .sub2{left:65px;width:950px;text-align:center;font-weight:800;font-size:40px;line-height:44px;opacity:0;white-space:nowrap}
 /* 7 */
 .tr{left:65px;width:942px;height:146px;background:#fff;border:6px solid INK;border-radius:18px;box-shadow:8px 8px 0 INK;display:flex;align-items:center;padding:0 26px;opacity:0;transform-origin:0 50%;white-space:nowrap}
-.tnum{font-weight:900;font-size:104px;line-height:110px;letter-spacing:-.04em} .tw_{font-weight:900;font-size:52px;line-height:60px;margin-left:16px;align-self:flex-end;margin-bottom:26px}
+.tnum{font-weight:900;font-size:96px;line-height:110px;letter-spacing:-.04em} .tw_{font-weight:900;font-size:52px;line-height:60px;margin-left:28px;align-self:flex-end;margin-bottom:26px}
 .td{margin-left:auto;text-align:right;font-weight:800;font-size:35px;line-height:42px}
 /* 8 */
 .bar{width:BWpx;background:ORA;border:6px solid INK;transform-origin:50% 100%;transform:scaleY(0)}
@@ -312,11 +316,11 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #call{width:196px;text-align:right;font-weight:900;font-size:34px;line-height:38px;opacity:0}
 #carr{width:60px;height:40px;opacity:0;overflow:visible}
 /* 9 */
-#card{left:78px;top:490px;width:916px;height:746px;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:14px 14px 0 INK;opacity:0;transform-origin:50% 0%}
+#card{left:78px;top:490px;width:916px;height:716px;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:14px 14px 0 INK;opacity:0;transform-origin:50% 0%}
 .tape{position:absolute;width:130px;height:40px;background:rgba(232,221,186,.86);border:1px solid rgba(0,0,0,.14);z-index:3}
 .tape.t1{right:-34px;top:-12px;transform:rotate(34deg)} .tape.t2{left:-34px;bottom:-6px;transform:rotate(34deg)}
 .ct{position:absolute;left:34px;top:24px;display:flex;align-items:center;gap:18px;font-weight:900;font-size:62px;line-height:70px;letter-spacing:-.03em;white-space:nowrap}
-.cr{position:absolute;left:34px;right:34px;height:104px;display:flex;align-items:center;opacity:0;border-top:4px solid rgba(15,15,15,.14);white-space:nowrap}
+.cr{position:absolute;left:34px;right:34px;height:100px;display:flex;align-items:center;opacity:0;border-top:4px solid rgba(15,15,15,.14);white-space:nowrap}
 .cnm{width:62px;height:62px;border-radius:50%;border:5px solid INK;background:#fff;text-align:center;font-weight:900;font-size:40px;line-height:52px;margin-right:20px;flex:none}
 .cx{font-weight:900;font-size:44px;line-height:52px;letter-spacing:-.02em}
 .cf{position:absolute;left:34px;bottom:20px;font-weight:500;font-size:23.5px;line-height:30px;white-space:nowrap;color:#3a3a36}
@@ -327,7 +331,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #up{position:absolute;right:0;top:0;font-weight:900;font-size:86px;line-height:86px;letter-spacing:-.04em;white-space:nowrap}
 #ut{position:absolute;left:0;top:92px;width:942px;height:108px;background:#fff;border:6px solid INK;border-radius:16px;box-shadow:8px 8px 0 INK;overflow:hidden}
 #uf{position:absolute;left:0;top:0;height:100%;width:100%;background:repeating-linear-gradient(115deg,ORA 0 34px,#E58D6F 34px 68px);background-size:200% 100%;border-right:6px solid INK}
-.phb{position:absolute;left:0;width:1080px;text-align:center;font-weight:900;font-size:32px;line-height:40px;color:RED;letter-spacing:.02em;z-index:20;white-space:nowrap}
+.phb{position:absolute;left:0;width:1080px;text-align:center;font-weight:900;font-size:30px;line-height:40px;color:RED;letter-spacing:.02em;z-index:20;white-space:nowrap}
 '''
 for a_, b_ in (("BW", BW), ("GREEN", GREEN), ("INK", INK), ("PAPER", PAPER), ("RED", RED), ("ORA", ORA), ("ORD", ORD)):
     CSS = CSS.replace(a_, str(b_))
@@ -372,7 +376,7 @@ for k in range(NH):
     c = k % 6; t = h0 + k * hstep
     js(f"tl.to('#scan',{{x:{FX[c % 3] - FX[0]},y:{FY[c // 3] - FY[0]},duration:{min(.22, hstep * .8):.3f},ease:'power2.inOut'}},{t - min(.22, hstep * .8):.3f});")
     js(f"tl.fromTo('#fc{c}',{{scale:1}},{{scale:1.07,duration:{hstep * .45:.3f},ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t:.3f});")
-    js(f"tl.fromTo('#rd{c}',{{scale:1}},{{scale:1.5,duration:{hstep * .45:.3f},ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t:.3f});")
+    js(f"tl.fromTo('#rd{c}',{{scale:1}},{{scale:1.28,transformOrigin:'100% 50%',duration:{hstep * .45:.3f},ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t:.3f});")
     HOPS.append([round(t, 3), c]); sfx("tick.ogg", t, -12)
 # --- 4 the tool + the stars
 scene(4, a[4], a[5])
@@ -402,7 +406,6 @@ for k in range(1, 4):
     js(f"tl.to('#ed{PATHE[k - 1]}',{{stroke:'{ORA}',strokeWidth:13,duration:{wstep * .8:.3f},ease:'power2.inOut'}},{t:.3f});")
     sfx("select.ogg", t + wstep * .8, -12)
 for i in range(6): idle(f"#dt{i}", a[5] + .9 + .1 * i, a[6], "scale", 1.3, .5)
-idle("#gsv", a[5] + .5, a[6], "rotation", 1.2, 1.0)
 # --- 6 the big number, then where it comes from
 scene(6, a[6], a[7])
 status(1, a[6] + .1)
@@ -417,7 +420,7 @@ idle("#bc", tBut + .7, a[7], "rotation", -5.5, .6)
 scene(7, a[7], a[8])
 for i, t in ((1, tR1), (2, tR2), (3, tR3)):
     js(f"tl.fromTo('#tr{i}',{{opacity:0,x:-70,rotation:-2}},{{opacity:1,x:0,rotation:0,duration:.36,ease:'back.out(1.4)',immediateRender:false}},{t - .1:.3f});")
-    js(f"tl.fromTo('#tn{i}',{{scale:1}},{{scale:1.18,duration:.22,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false,transformOrigin:'0% 60%'}},{t + .26:.3f});")
+    js(f"tl.fromTo('#tn{i}',{{scale:1}},{{scale:1.08,duration:.22,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false,transformOrigin:'0% 60%'}},{t + .26:.3f});")
     sfx("pop_a.ogg" if i == 1 else "impactsoft.ogg" if i == 2 else "click_b.ogg", t, -8 if i == 2 else -10)
     idle(f"#tr{i}", t + .75, a[8], "x", 8, .6)
 # --- 8 the money verdict: Pro 1x against Max 5x, to scale

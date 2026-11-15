@@ -1,0 +1,1 @@
+It maps your code once, so Claude looks things up instead of rereading.

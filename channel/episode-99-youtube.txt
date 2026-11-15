@@ -1,0 +1,7 @@
+Lost in a maze, five AIs, no map (AI Race #2)
+
+Description:
+ChatGPT, Gemini, Claude, Meta AI and Perplexity each get the same request: write the moves that guide one dot out of a maze it cannot see. Five real answers, one maze, one try each, nothing fixed by hand. The maze and the rules were locked before any answer came in.
+Result: Gemini and Meta AI tie, out in 117 steps on the exact same path. Claude gets out in 171 steps. ChatGPT never gets out (closest: 52 steps from the exit) and walks in circles. Perplexity stays stuck next to the start. The best possible way out is 89 steps.
+One small task, not a ranking of intelligence. The channel's tools are built with Claude.
+The request and the replay: https://www.actually-works.com/e/99 [CONFIRM: page live with the real race]
