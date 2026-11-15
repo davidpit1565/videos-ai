@@ -7,7 +7,7 @@ targets={}
 import sys
 try:
     if '--notargets' in sys.argv: raise Exception('notargets')
-    targets={int(k):v for k,v in json.load(open('/home/user/videos-ai/video/ep99/cues98.json'))['targets'].items()}
+    targets={int(k):v for k,v in json.load(open('/home/user/videos-ai/video/ep99/cues99.json'))['targets'].items()}
 except Exception as e: print('no targets',e)
 for i,l in enumerate(lines,1):
     seed=open(D+f'pl/L{i}.ok').read().strip()

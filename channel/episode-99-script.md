@@ -68,3 +68,19 @@ Blind readers, ep99: NOT RUN YET.
 
 ## Scores (labels, not gates)
 HOOK 76 · VIRALITY 72 · OVERALL 72 · predicted views 300-1,200, most likely about 550. Reasoning in the plan, section 7. Log 48 h / 72 h in `channel/score-calibration.md`.
+
+## BUILD-UP beat list, as built (pic-v1, 15.11.2026; video times from `video/ep99/cues99.json`, D 30.1 s; every race headline is asserted against `maze-race.json` in `build99.py`)
+| Video s | Line | Real step | What is NEW here |
+|---|---|---|---|
+| 0.0 | 1 | 0 | frame 0: the maze, five logo dots in the centre, EXIT, "LOST IN A MAZE. / FIVE AIs. NO MAP." (3 text items) |
+| 2.35 | 2 | 0 | the request goes to the five chips, each thinks, each answers, its dot lights up |
+| 4.5 | 3 | 0 | the walls fade (they cannot see the maze); "pick one before it starts"; Go at 5.98 |
+| 6.6 | 4 | 3-27 | Perplexity only paces 2 cells from step 5 (first casualty, the reason to stay at about 8 s) |
+| 9.0 | 5 | 29-44 | ChatGPT's way out grows (76 to 82, 102 at step 61); "Claude leads" is said on steps 39-43, where Claude is the only front dot |
+| 11.5-14.7 | none | 44-117 | race only: at step 61 Gemini and Meta AI (one doubled dot) take the front; dead-end marks; the numbers under the chips fall; the clock slows for the last 12 steps |
+| 14.7 | 6 | 117 | two dots leave on the same step (the twist, at about half; names not said) |
+| 16.75 | 7 | 118-500 | Claude 10 steps short, back to 22, out at step 171 on "makes it"; ChatGPT circles while the counter runs to 500 |
+| 20.8 | 8 | replay | the tie is named late: both winning trails are drawn again and close into one line |
+| 23.9 | 9 | board | rows land worst first, the tie last |
+| 25.9 | 10 | board | tomorrow line: UNCONFIRMED, red banner on screen |
+Longest stretch without a visual change, measured on the mixed file: 3.43 s (qa.py limit 4 s; the 2.5 s target is not met there: check where before v2). Headline holds over 2.5 s: "CLAUDE: 10 STEPS SHORT" (the stage moves under it) and "SAME PATH. EVERY STEP." (the trails redraw under it).

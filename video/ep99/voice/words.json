@@ -12,21 +12,21 @@
  {
   "word": "a",
   "start": 0.4,
-  "end": 0.5
+  "end": 0.56
  },
  {
   "word": "maze,",
-  "start": 0.5,
+  "start": 0.56,
   "end": 0.64
  },
  {
-  "word": "five",
-  "start": 0.92,
-  "end": 1.08
+  "word": "5",
+  "start": 0.88,
+  "end": 1.1
  },
  {
   "word": "AIs,",
-  "start": 1.08,
+  "start": 1.1,
   "end": 1.4
  },
  {
@@ -41,7 +41,7 @@
  },
  {
   "word": "I",
-  "start": 2.5,
+  "start": 2.48,
   "end": 2.54
  },
  {
@@ -72,11 +72,11 @@
  {
   "word": "one",
   "start": 3.44,
-  "end": 3.8
+  "end": 3.82
  },
  {
   "word": "dot",
-  "start": 3.8,
+  "start": 3.82,
   "end": 4.0
  },
  {
@@ -97,16 +97,16 @@
  {
   "word": "them",
   "start": 4.9,
-  "end": 5.02
+  "end": 5.04
  },
  {
   "word": "can",
-  "start": 5.02,
-  "end": 5.2
+  "start": 5.04,
+  "end": 5.18
  },
  {
   "word": "see",
-  "start": 5.2,
+  "start": 5.18,
   "end": 5.42
  },
  {
@@ -117,7 +117,7 @@
  {
   "word": "maze.",
   "start": 5.52,
-  "end": 5.7
+  "end": 5.72
  },
  {
   "word": "Go!",
@@ -125,343 +125,343 @@
   "end": 6.12
  },
  {
-  "word": "Perplexity",
-  "start": 6.78,
-  "end": 7.22
+  "word": "Proplexity",
+  "start": 6.8,
+  "end": 7.24
  },
  {
   "word": "is",
-  "start": 7.22,
-  "end": 7.56
+  "start": 7.24,
+  "end": 7.62
  },
  {
   "word": "stuck",
-  "start": 7.56,
-  "end": 7.92
+  "start": 7.62,
+  "end": 7.96
  },
  {
   "word": "at",
-  "start": 7.92,
-  "end": 8.34
+  "start": 7.96,
+  "end": 8.38
  },
  {
   "word": "the",
-  "start": 8.34,
-  "end": 8.46
+  "start": 8.38,
+  "end": 8.5
  },
  {
   "word": "start.",
-  "start": 8.46,
-  "end": 8.66
+  "start": 8.5,
+  "end": 8.7
  },
  {
   "word": "Chat",
-  "start": 9.12,
-  "end": 9.16
+  "start": 9.16,
+  "end": 9.2
  },
  {
   "word": "GPT",
-  "start": 9.16,
-  "end": 9.42
+  "start": 9.2,
+  "end": 9.48
  },
  {
   "word": "goes",
-  "start": 9.42,
-  "end": 9.62
+  "start": 9.48,
+  "end": 9.68
  },
  {
   "word": "the",
-  "start": 9.62,
-  "end": 9.78
+  "start": 9.68,
+  "end": 9.84
  },
  {
   "word": "wrong",
-  "start": 9.78,
-  "end": 9.92
+  "start": 9.84,
+  "end": 9.98
  },
  {
   "word": "way.",
-  "start": 9.92,
-  "end": 10.22
+  "start": 9.98,
+  "end": 10.24
  },
  {
   "word": "Claude",
-  "start": 10.64,
-  "end": 10.64
+  "start": 10.7,
+  "end": 10.7
  },
  {
   "word": "leads!",
-  "start": 10.64,
-  "end": 10.96
+  "start": 10.7,
+  "end": 11.0
  },
  {
   "word": "Two",
-  "start": 11.42,
-  "end": 11.7
+  "start": 14.66,
+  "end": 15.1
  },
  {
   "word": "dots",
-  "start": 11.7,
-  "end": 11.9
+  "start": 15.1,
+  "end": 15.3
  },
  {
   "word": "are",
-  "start": 11.9,
-  "end": 12.02
+  "start": 15.3,
+  "end": 15.42
  },
  {
   "word": "out,",
-  "start": 12.02,
-  "end": 12.22
+  "start": 15.42,
+  "end": 15.62
  },
  {
   "word": "on",
-  "start": 12.36,
-  "end": 12.4
+  "start": 15.78,
+  "end": 15.8
  },
  {
   "word": "the",
-  "start": 12.4,
-  "end": 12.52
+  "start": 15.8,
+  "end": 15.92
  },
  {
   "word": "same",
-  "start": 12.52,
-  "end": 12.66
+  "start": 15.92,
+  "end": 16.08
  },
  {
   "word": "step.",
-  "start": 12.66,
-  "end": 13.0
+  "start": 16.08,
+  "end": 16.42
  },
  {
   "word": "Claude",
-  "start": 13.34,
-  "end": 13.58
+  "start": 16.72,
+  "end": 16.98
  },
  {
   "word": "turns",
-  "start": 13.58,
-  "end": 13.8
+  "start": 16.98,
+  "end": 17.22
  },
  {
   "word": "back",
-  "start": 13.8,
-  "end": 14.08
+  "start": 17.22,
+  "end": 17.48
  },
  {
-  "word": "ten",
-  "start": 14.08,
-  "end": 14.32
+  "word": "10",
+  "start": 17.48,
+  "end": 17.74
  },
  {
   "word": "steps",
-  "start": 14.32,
-  "end": 14.58
+  "start": 17.74,
+  "end": 17.98
  },
  {
   "word": "short,",
-  "start": 14.58,
-  "end": 14.84
+  "start": 17.98,
+  "end": 18.26
  },
  {
   "word": "then",
-  "start": 15.08,
-  "end": 15.24
+  "start": 18.48,
+  "end": 18.66
  },
  {
   "word": "makes",
-  "start": 15.24,
-  "end": 15.44
+  "start": 18.66,
+  "end": 18.84
  },
  {
   "word": "it.",
-  "start": 15.44,
-  "end": 15.64
+  "start": 18.84,
+  "end": 19.06
  },
  {
   "word": "Chat",
-  "start": 15.9,
-  "end": 16.04
+  "start": 19.36,
+  "end": 19.46
  },
  {
   "word": "GPT",
-  "start": 16.04,
-  "end": 16.4
+  "start": 19.46,
+  "end": 19.8
  },
  {
   "word": "walks",
-  "start": 16.4,
-  "end": 16.58
- },
- {
-  "word": "in",
-  "start": 16.58,
-  "end": 16.76
- },
- {
-  "word": "circles.",
-  "start": 16.76,
-  "end": 17.02
- },
- {
-  "word": "Gemini",
-  "start": 17.6,
-  "end": 17.7
- },
- {
-  "word": "and",
-  "start": 17.7,
-  "end": 18.12
- },
- {
-  "word": "meta",
-  "start": 18.12,
-  "end": 18.4
- },
- {
-  "word": "AI",
-  "start": 18.4,
-  "end": 18.72
- },
- {
-  "word": "tie.",
-  "start": 18.72,
-  "end": 18.94
- },
- {
-  "word": "Same",
-  "start": 19.22,
-  "end": 19.4
- },
- {
-  "word": "path,",
-  "start": 19.4,
-  "end": 19.64
- },
- {
-  "word": "every",
-  "start": 19.84,
+  "start": 19.8,
   "end": 20.0
  },
  {
-  "word": "step.",
+  "word": "in",
   "start": 20.0,
-  "end": 20.22
+  "end": 20.16
  },
  {
-  "word": "The",
-  "start": 20.54,
-  "end": 20.64
+  "word": "circles.",
+  "start": 20.16,
+  "end": 20.46
  },
  {
-  "word": "setup's",
-  "start": 20.64,
-  "end": 21.02
- },
- {
-  "word": "in",
+  "word": "Gemini",
   "start": 21.02,
-  "end": 21.2
+  "end": 21.12
  },
  {
-  "word": "the",
-  "start": 21.2,
-  "end": 21.32
+  "word": "and",
+  "start": 21.12,
+  "end": 21.56
  },
  {
-  "word": "link",
-  "start": 21.32,
-  "end": 21.54
- },
- {
-  "word": "in",
-  "start": 21.54,
+  "word": "meta",
+  "start": 21.56,
   "end": 21.82
  },
  {
-  "word": "bio.",
+  "word": "AI",
   "start": 21.82,
-  "end": 22.06
+  "end": 22.16
+ },
+ {
+  "word": "tie.",
+  "start": 22.16,
+  "end": 22.36
+ },
+ {
+  "word": "Same",
+  "start": 22.68,
+  "end": 22.84
+ },
+ {
+  "word": "path,",
+  "start": 22.84,
+  "end": 23.08
+ },
+ {
+  "word": "every",
+  "start": 23.26,
+  "end": 23.44
+ },
+ {
+  "word": "step.",
+  "start": 23.44,
+  "end": 23.66
+ },
+ {
+  "word": "The",
+  "start": 23.96,
+  "end": 24.08
+ },
+ {
+  "word": "setup's",
+  "start": 24.08,
+  "end": 24.46
+ },
+ {
+  "word": "in",
+  "start": 24.46,
+  "end": 24.64
+ },
+ {
+  "word": "the",
+  "start": 24.64,
+  "end": 24.78
+ },
+ {
+  "word": "link",
+  "start": 24.78,
+  "end": 24.98
+ },
+ {
+  "word": "in",
+  "start": 24.98,
+  "end": 25.26
+ },
+ {
+  "word": "bio.",
+  "start": 25.26,
+  "end": 25.48
  },
  {
   "word": "Tomorrow,",
-  "start": 22.58,
-  "end": 22.8
+  "start": 25.98,
+  "end": 26.24
  },
  {
   "word": "a",
-  "start": 23.04,
-  "end": 23.1
+  "start": 26.48,
+  "end": 26.52
  },
  {
   "word": "free",
-  "start": 23.1,
-  "end": 23.26
+  "start": 26.52,
+  "end": 26.68
  },
  {
   "word": "tool",
-  "start": 23.26,
-  "end": 23.42
+  "start": 26.68,
+  "end": 26.86
  },
  {
   "word": "says,",
-  "start": 23.42,
-  "end": 23.64
+  "start": 26.86,
+  "end": 27.06
  },
  {
   "word": "it",
-  "start": 23.9,
-  "end": 23.98
+  "start": 27.3,
+  "end": 27.4
  },
  {
   "word": "fixes",
-  "start": 23.98,
-  "end": 24.2
+  "start": 27.4,
+  "end": 27.66
  },
  {
   "word": "Claude",
-  "start": 24.2,
-  "end": 24.5
+  "start": 27.66,
+  "end": 27.92
  },
  {
   "word": "code.",
-  "start": 24.5,
-  "end": 24.76
+  "start": 27.92,
+  "end": 28.18
  },
  {
   "word": "Follow,",
-  "start": 25.04,
-  "end": 25.16
+  "start": 28.42,
+  "end": 28.6
  },
  {
   "word": "so",
-  "start": 25.44,
-  "end": 25.54
+  "start": 28.88,
+  "end": 28.98
  },
  {
   "word": "you",
-  "start": 25.54,
-  "end": 25.62
+  "start": 28.98,
+  "end": 29.06
  },
  {
   "word": "see",
-  "start": 25.62,
-  "end": 25.74
+  "start": 29.06,
+  "end": 29.16
  },
  {
   "word": "if",
-  "start": 25.74,
-  "end": 25.82
+  "start": 29.16,
+  "end": 29.26
  },
  {
   "word": "it",
-  "start": 25.82,
-  "end": 25.9
+  "start": 29.26,
+  "end": 29.34
  },
  {
   "word": "works.",
-  "start": 25.9,
-  "end": 26.08
+  "start": 29.34,
+  "end": 29.52
  }
 ]

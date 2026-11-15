@@ -1,34 +1,32 @@
 #!/usr/bin/env python3
-"""ep99 'AI RACE #2' (the maze) scene SCAFFOLD, Miki style, HyperFrames + GSAP paused timeline, 1080x1920.
-Model: video/ep98/build98.py. Everything on the stage is driven by the results file, so it works for any outcome
-(one winner, several, nobody out, a dot that never starts).
+"""ep99 'AI RACE: the maze', Miki style, HyperFrames + GSAP paused timeline, 1080x1920. Model: video/ep98/build98.py.
 
-Reads   RESULTS (env) or arena/maze-race.json (the real run); if that file is missing: arena/ref-maze-race.json
-        = PLACEHOLDER (our two reference bots, not AIs). arena/maze.json. voice/lines.txt,
-        voice/narration-raw-cues.json, voice/words.json (all optional: without them PLACEHOLDER lines and an
-        ESTIMATED timeline are used).
-Writes  hf/index.html, cues99.json (lines, D, race clock, EVENTS with video times), sfx99.json.
+Reads   RESULTS (env) or arena/maze-race.json (the REAL run of the five answers), arena/maze.json,
+        voice/lines.txt (10 lines), voice/narration-raw-cues.json, voice/words.json.
+Writes  hf/index.html, cues99.json (lines, D, TARGETS for voice/stitch.py, race clock, events), sfx99.json.
 
-PLACEHOLDER GUARD: if the results file does not hold exactly the five AI ids, or the script is the built-in
-placeholder, a red PLACEHOLDER banner is drawn on every frame, cues99.json says so, and SHIP=1 refuses to build.
+LINES: 1 hook  2 premise  3 rules, last word "Go" (race starts on it)  4-7 race lines  8 the tie reveal
+       9 setup line (the board)  10 tomorrow line (UNCONFIRMED: the only red PLACEHOLDER banner sits on it).
 
-LINES (voice/lines.txt, one per line, at least 7):
-  1 hook   2 premise (the request is shown going to the five AIs)   3 rules, LAST WORD "Go" (the race starts on it)
-  4 .. NL-3  race lines (one or more; the race plays from "Go" to just before line NL-2)
-  NL-2 result (the board lands, winner row last)   NL-1 send line   NL tomorrow line
+VOICE TARGETS: the race clock is fitted to the voice, and the voice is padded to the race. This build computes
+where lines 4-10 must START (cues99.json "targets") from the line lengths; voice/stitch.py pads to them.
+If the take on disk is more than 0.2 s off a target, the picture uses the targets (and says so).
+Race clock anchors (step -> video time): Go = step 0; line 5 starts on step 29 and ends by step 44 (Claude is the
+only front dot on steps 29-44); the first exit lands just before line 6; line 7: turn-back steps on the first
+clause, Claude's exit on "makes it", the rest of the 500 steps under "walks in circles".
 
 What is true on screen, and what is a scene choice:
-  - Every dot position is paths[] of the results file, cell by cell. The trail is that same path.
-  - The step counter is the real step number. The race clock is COMPRESSED and not uniform (scene choice):
-    the steps before the first and before the last exit play slower; after the last exit the rest of the 500
-    steps runs fast (the counter shows it). cues99.json lists steps per second for each part.
-  - 'steps to the exit' under each chip = shortest way out from the dot's cell (computed here from maze.json).
-  - Scene choices: dots are drawn larger than a cell so the logos read; they start fanned around the centre
-    cell and run a few px apart in a corridor (all five really share the same cells); a dot that got out
-    flies to its chip.
+  - Every dot position is paths[] of the results file, cell by cell; the trail is that same path.
+  - The step counter is the real step. The clock is COMPRESSED and not uniform (scene choice; cues99.json lists it).
+  - The number under each chip = shortest way out from the dot's cell (computed here from maze.json).
+  - A ring marks the front dot ONLY when it is strictly in front: one dot, or dots standing on the same cell.
+  - Every race headline is asserted against the data below (the build stops if the data does not carry it).
+  - Scene choices: dots are drawn larger than a cell; they start fanned around the centre cell; dots with the
+    same path are drawn side by side (they are really on the same cell); a dot that got out flies to its chip.
+Safe area (15.11): text and key things inside x 108-972, y 269-1248; below y 1056 nothing important right of x 864.
 No TTS, no audio is written here.
 """
-import json, os, re, math, shutil, sys
+import json, os, re, math, shutil, sys, bisect
 from collections import deque
 H_ = os.path.dirname(os.path.abspath(__file__))
 INK = "#0f0f0f"; PAPER = "#fbfbf8"; RED = "#E5372B"; GREEN = "#27A35B"
@@ -36,7 +34,6 @@ norm = lambda t: re.sub(r"[^a-z0-9]", "", t.lower())
 LOG = []
 def say(x): LOG.append(x); print(x)
 
-# ---------------------------------------------------------------- assets (fonts, paper, real logos: copied from the ep98 build, unchanged)
 for sub in ("fonts/InterDisplay-Black.otf", "fonts/InterDisplay-ExtraBold.otf", "fonts/InterDisplay-Medium.otf", "bg.jpg",
             "logos/chatgpt.svg", "logos/gemini.svg", "logos/claude.svg", "logos/meta-ai.svg", "logos/perplexity.svg", "logos/SOURCES.md"):
     dst = f"{H_}/hf/assets/{sub}"
@@ -49,27 +46,18 @@ NAME = {"chatgpt": "ChatGPT", "gemini": "Gemini", "claude": "Claude", "meta": "M
 COL = {"chatgpt": "#10A37F", "gemini": "#4285F4", "claude": "#D97757", "meta": "#B44BFF", "perplexity": "#20808D"}
 LOGO = {"chatgpt": "chatgpt.svg", "gemini": "gemini.svg", "claude": "claude.svg", "meta": "meta-ai.svg", "perplexity": "perplexity.svg"}
 
-# ---------------------------------------------------------------- results
+# ---------------------------------------------------------------- results (real file only)
 MZ = json.load(open(H_ + "/arena/maze.json"))
 RPATH = os.environ.get("RESULTS") or H_ + "/arena/maze-race.json"
-if not os.path.exists(RPATH): RPATH = H_ + "/arena/ref-maze-race.json"
 R = json.load(open(RPATH))
 MAXS = R.get("constants", {}).get("MAX_STEPS", 500); SHORT = R.get("shortestSteps")
-rres = {x["id"]: x for x in R["result"]}; rpath = {x["id"]: x["path"] for x in R["paths"]}
-PH_DATA = sorted(rres) != sorted(IDS)
-if PH_DATA:                                                 # PLACEHOLDER: the bots of the file fill the five slots in turn
-    src = [x["id"] for x in R["result"]]
-    RES = {k: dict(rres[src[c % len(src)]]) for c, k in enumerate(IDS)}
-    PATH = {k: rpath[src[c % len(src)]] for c, k in enumerate(IDS)}
-    PH_MAP = {k: src[c % len(src)] for c, k in enumerate(IDS)}
-else:
-    RES = {k: dict(rres[k]) for k in IDS}; PATH = {k: rpath[k] for k in IDS}; PH_MAP = {}
+RES = {x["id"]: x for x in R["result"]}; PATH = {x["id"]: x["path"] for x in R["paths"]}
+assert sorted(RES) == sorted(IDS), "the results file must hold exactly the five AIs"
 W_, HH = MZ["width"], MZ["height"]; OPEN = [[int(ch, 16) for ch in row] for row in MZ["open"]]
 START = (MZ["start"]["x"], MZ["start"]["y"]); EXIT = (MZ["exit"]["x"], MZ["exit"]["y"])
-assert MZ["exit"]["side"] == "left" and W_ == HH, "the stage is laid out for a square maze with the exit on the left wall"
+assert MZ["exit"]["side"] == "left" and W_ == HH
 inside = lambda x, y: 0 <= x < W_ and 0 <= y < HH
 MOVES = ((0, -1, 1), (1, 0, 2), (0, 1, 4), (-1, 0, 8))
-# steps to get out from every cell (breadth-first from the exit; the exit cell = 1 step)
 DIST = {EXIT: 1}; dq = deque([EXIT])
 while dq:
     x, y = dq.popleft()
@@ -78,39 +66,35 @@ while dq:
         if OPEN[y][x] & b and inside(*n) and n not in DIST: DIST[n] = DIST[(x, y)] + 1; dq.append(n)
 dist = lambda c: DIST.get((c[0], c[1]), 0) if inside(c[0], c[1]) else 0
 DEG = {(x, y): sum(1 for dx, dy, b in MOVES if OPEN[y][x] & b and inside(x + dx, y + dy)) for x in range(W_) for y in range(HH)}
-if SHORT is not None: assert DIST[START] == SHORT, "maze.json and the results file disagree on the shortest way out"
+assert DIST[START] == SHORT, "maze.json and the results file disagree on the shortest way out"
 for k in IDS:                                               # every step of every path must be a legal move
     p = PATH[k]; assert tuple(p[0]) == START, k
     for i in range(1, len(p)):
         a, b = p[i - 1], p[i]
         if a == b: continue
         assert inside(*a) and abs(a[0] - b[0]) + abs(a[1] - b[1]) == 1, f"{k}: jump at step {i}"
-        bit = next(bb for dx, dy, bb in MOVES if (dx, dy) == (b[0] - a[0], b[1] - a[1]))
-        assert OPEN[a[1]][a[0]] & bit, f"{k}: through a wall at step {i}"
-STATUS = {k: RES[k]["status"] for k in IDS}                # exit | dnf | error
-LAST = {k: len(PATH[k]) - 1 for k in IDS}                   # last step the dot has a cell for
+        assert OPEN[a[1]][a[0]] & next(bb for dx, dy, bb in MOVES if (dx, dy) == (b[0] - a[0], b[1] - a[1])), f"{k}: through a wall at step {i}"
+STATUS = {k: RES[k]["status"] for k in IDS}
+LAST = {k: len(PATH[k]) - 1 for k in IDS}
 XSTEP = {k: RES[k]["exitStep"] for k in IDS if STATUS[k] == "exit"}
 FINS = sorted(XSTEP, key=lambda k: (XSTEP[k], IDS.index(k)))
-ERRS = [k for k in IDS if STATUS[k] == "error"]; DNFS = [k for k in IDS if STATUS[k] == "dnf"]
-def rank(k):
-    r = RES[k]
-    return (0, r["exitStep"], 0, IDS.index(k)) if STATUS[k] == "exit" else (1, r.get("closestDist") or 9999, r.get("closestStep") or 9999, IDS.index(k))
-ORDER = sorted(IDS, key=(rank if PH_DATA else lambda k: RES[k]["place"]))
-PLACE = {k: i + 1 for i, k in enumerate(ORDER)}
-WINNER = FINS[0] if FINS else None
+DNFS = [k for k in IDS if STATUS[k] == "dnf"]; ERRS = [k for k in IDS if STATUS[k] == "error"]
+assert not ERRS, "an AI with status error needs its own beat: not laid out in this build"
+ORDER = sorted(IDS, key=lambda k: RES[k]["place"])
 cell = lambda k, i: PATH[k][min(i, LAST[k])]
-S1 = max(XSTEP.values()) if FINS else MAXS                  # the main part of the race clock ends here
-S1 = max(S1, 1)
-TAIL = bool(FINS) and S1 < MAXS and any(LAST[k] > S1 for k in IDS if k not in XSTEP)
+d_at = lambda k, i: dist(cell(k, i))
+F1 = XSTEP[FINS[0]]; S1 = max(XSTEP.values())               # first exit, last exit
+WINS = [k for k in FINS if XSTEP[k] == F1]                   # the winner(s): a tie = more than one
+TWIN = {k: next(j for j in IDS if PATH[j] == PATH[k]) for k in IDS}   # first AI in chip order with the identical path
+PAIRS = [k for k in IDS if TWIN[k] != k or any(TWIN[j] == k for j in IDS if j != k)]
 
 # ---------------------------------------------------------------- race events (data only; steps)
-EV = []                                                     # dict(kind, id, step, ...)
-for k in FINS: EV.append(dict(kind="exit", id=k, step=XSTEP[k], place=FINS.index(k) + 1))
-for k in ERRS: EV.append(dict(kind="error_stop", id=k, step=LAST[k]))
-for k in DNFS: EV.append(dict(kind="dnf_freeze", id=k, step=LAST[k], closest=RES[k].get("closestDist"), closestAt=RES[k].get("closestAt")))
-DEADS = {k: [] for k in IDS}
+EV = []
+for k in FINS: EV.append(dict(kind="exit", id=k, step=XSTEP[k], place=1 + sum(1 for j in FINS if XSTEP[j] < XSTEP[k])))
+for k in DNFS: EV.append(dict(kind="dnf_freeze", id=k, step=LAST[k], closest=RES[k].get("closestDist"), closestAt=RES[k].get("closestAt"), closestStep=RES[k].get("closestStep")))
+DEADS = {k: [] for k in IDS}; PACE = {}
 for k in IDS:
-    p = PATH[k]; best = dist(p[0]); bi = 0; flagged = None; nm = 0
+    p = PATH[k]; best = dist(p[0]); bi = 0; flagged = None
     for i in range(1, LAST[k] + 1):
         c = tuple(p[i])
         if not inside(*c): break
@@ -118,123 +102,130 @@ for k in IDS:
             DEADS[k].append([i, c[0], c[1]]); EV.append(dict(kind="dead_end", id=k, step=i, cell=list(c)))
         d = dist(c)
         if d < best: best, bi = d, i
-        elif d - best >= 12 and best <= 30 and flagged != best and nm < 2 and (STATUS[k] != "exit" or i < XSTEP[k]):
-            flagged = best; nm += 1; EV.append(dict(kind="near_miss", id=k, step=bi, closest=best, cell=list(p[bi])))
-D0 = DIST[START]; half = None
-for i in range(S1 + 1):                                     # milestones of the front dot
-    m = min(dist(cell(k, i)) for k in IDS if inside(*cell(k, i))) if any(inside(*cell(k, i)) for k in IDS) else 0
-    if half is None and m <= D0 // 2 and not (FINS and i >= XSTEP[FINS[0]]):
-        half = i; EV.append(dict(kind="halfway", id=min(IDS, key=lambda k: dist(cell(k, i)) if inside(*cell(k, i)) else 999), step=i, steps_to_exit=m))
-if FINS and XSTEP[FINS[0]] > 14: EV.append(dict(kind="final_stretch", id=FINS[0], step=XSTEP[FINS[0]] - 12, steps_to_exit=12))
-# leader = the dot still running with the fewest steps to the exit; a change counts once it has held 8 steps
-LEADRAW = []
-for i in range(S1 + 1):
-    alive = [k for k in IDS if not (k in XSTEP and i >= XSTEP[k]) and not (k in ERRS and i >= LAST[k])]
-    if FINS and i >= XSTEP[FINS[0]] or not alive or i < 6: LEADRAW.append(-1); continue
-    LEADRAW.append(IDS.index(min(alive, key=lambda k: (dist(cell(k, i)), IDS.index(k)))))
-LEAD = [-1] * (S1 + 1); cur = -1
-for i in range(S1 + 1):
-    if LEADRAW[i] == -1: cur = -1
-    elif LEADRAW[i] != cur and all(LEADRAW[min(S1, j)] == LEADRAW[i] for j in range(i, i + 8)):
-        if cur != -1: EV.append(dict(kind="lead_change", id=IDS[LEADRAW[i]], step=i, was=IDS[cur], steps_to_exit=dist(cell(IDS[LEADRAW[i]], i))))
-        else: EV.append(dict(kind="first_leader", id=IDS[LEADRAW[i]], step=i))
-        cur = LEADRAW[i]
-    LEAD[i] = cur
+        elif d - best >= 12 and best <= 30 and flagged != best:
+            flagged = best; EV.append(dict(kind="near_miss", id=k, step=bi, closest=best, back_to=d, back_at=i, cell=list(p[bi])))
+    if STATUS[k] == "dnf":                                  # from which step on the dot only paces a few cells
+        for lim, nm in ((2, "paces_2_cells"), (4, "paces_4_cells")):
+            sset = next((s_ for s_ in range(LAST[k]) if len(set(map(tuple, p[s_:]))) <= lim), None)
+            if sset is not None and sset < LAST[k] - 20: PACE[k] = (sset, lim); EV.append(dict(kind=nm, id=k, step=sset, until=LAST[k])); break
+        cs = RES[k].get("closestStep")
+        if cs is not None and cs > 20: EV.append(dict(kind="circles_after_closest", id=k, step=cs, cells_after=len(set(map(tuple, p[cs:]))), steps_after=LAST[k] - cs))
+# the front: FRONT[i] = the dots strictly in front at step i (one dot, or dots on the same cell), else []. Only until the first exit.
+def front(i):
+    alive = [k for k in IDS if not (k in XSTEP and i >= XSTEP[k])]
+    m = min(d_at(k, i) for k in alive); f = [k for k in alive if d_at(k, i) == m]
+    return f if len({tuple(cell(k, i)) for k in f}) == 1 and len(f) < len(alive) else []
+FRONT = [front(i) if i < F1 else [] for i in range(MAXS + 1)]
+runs = []; i = 0
+while i < F1:
+    j = i
+    while j + 1 < F1 and FRONT[j + 1] == FRONT[i]: j += 1
+    if FRONT[i]: runs.append((i, j, FRONT[i]))
+    i = j + 1
+for a, b, f in runs:
+    if b - a >= 2: EV.append(dict(kind="front", ids=f, id=f[0], step=a, until=b, steps_to_exit=d_at(f[0], a)))
 EV.sort(key=lambda x: (x["step"], x["kind"]))
+def sole(k, a, b): return all(FRONT[i] == [k] for i in range(a, b + 1))
 
-# ---------------------------------------------------------------- script lines + cues (placeholder lines and an estimated timeline until the voice exists)
-PH_LINES = ["PLACEHOLDER HOOK: five AIs, one maze, not all get out.",
-            "PLACEHOLDER: same job for all five, get the dot out of the maze.",
-            "PLACEHOLDER: no map, five hundred steps. Go!",
-            "PLACEHOLDER race line one, on a real event.", "PLACEHOLDER race line two, on a real event.", "PLACEHOLDER race line three, on a real event.",
-            "PLACEHOLDER result line, the winner is named here.",
-            "PLACEHOLDER: send it to a friend.",
-            "PLACEHOLDER tomorrow line."]
-LP = H_ + "/voice/lines.txt"
-PH_SCRIPT = not os.path.exists(LP)
-LINES = PH_LINES if PH_SCRIPT else [l.strip() for l in open(LP) if l.strip()]
-NL = len(LINES); assert NL >= 7, "need at least 7 lines: hook, premise, rules+Go, 1+ race lines, result, send, tomorrow"
-nRES, nSEND, nTOM = NL - 2, NL - 1, NL; RACE_LINES = list(range(4, NL - 2))
-try:
-    C = json.load(open(H_ + "/voice/narration-raw-cues.json")); C = C if isinstance(C, list) else C["lines"]
-except Exception:
-    C = []
+# ---------------------------------------------------------------- lines, cues, words
+LINES = [l.strip() for l in open(H_ + "/voice/lines.txt") if l.strip()]; NL = len(LINES)
+assert NL == 10, "this build is laid out for the 10 lines of channel/episode-99-script.md"
+C = json.load(open(H_ + "/voice/narration-raw-cues.json")); C = C if isinstance(C, list) else C["lines"]
 ctext = lambda c: c.get("line", c.get("text", ""))
-CUE = {c["n"]: c for c in C if "n" in c}
-STALE = os.environ.get("EST") == "1" or len(CUE) != NL or any(n not in CUE or norm(ctext(CUE[n])) != norm(LINES[n - 1]) for n in range(1, NL + 1))
-WORDS = []
-if not STALE:
-    try:
-        WORDS = json.load(open(H_ + "/voice/words.json"))
-        if not (WORDS and norm(WORDS[0][0]) == norm(LINES[0].split()[0])): WORDS = []
-    except Exception:
-        WORDS = []
-if STALE:
-    L = {}; t = .08
-    for n in range(1, NL + 1):
-        d = 2.9 if (PH_SCRIPT and n in RACE_LINES) else 2.2 if (PH_SCRIPT and n in (1, 3)) else round(.3 + .045 * len(LINES[n - 1]), 2)
-        L[n] = (round(t, 2), round(t + d, 2)); t += d + .12
-else:
-    L = {n: (float(CUE[n]["start"]), float(CUE[n]["end"])) for n in range(1, NL + 1)}
-s = lambda n: L[n][0]
-e = lambda n: L[n][1]
-def W(word, n, k=0):
+CUE = {c["n"]: c for c in C}
+assert len(CUE) == NL and all(norm(ctext(CUE[n])) == norm(LINES[n - 1]) for n in range(1, NL + 1)), "voice/narration-raw-cues.json does not hold the lines of voice/lines.txt"
+L = {n: (float(CUE[n]["start"]), float(CUE[n]["end"])) for n in range(1, NL + 1)}
+DUR = {n: L[n][1] - L[n][0] for n in L}
+try:
+    WORDS = [(w["word"], w["start"], w["end"]) if isinstance(w, dict) else tuple(w) for w in json.load(open(H_ + "/voice/words.json"))]
+except Exception:
+    WORDS = []
+SRC = {}
+def woff(word, n, frac, k=0, name=None):
+    """offset of a spoken word inside line n (words.json, relative to the line start), else a fraction of the line (ESTIMATE)"""
     c = 0
     for w, a, b in WORDS:
-        if s(n) - .12 <= a <= e(n) + .12 and norm(w) == word:
-            if c == k: return a
+        if L[n][0] - .15 <= a <= L[n][1] + .1 and word in norm(w):
+            if c == k: SRC[name or word] = "words.json"; return max(0.0, a - L[n][0])
             c += 1
-    return None
-SRC = {}
-T0 = W("go", 3)
-if T0 is None: T0 = s(3) + .86 * (e(3) - s(3)); SRC["go"] = "ESTIMATE (line fraction)"
-else: SRC["go"] = "words.json"
-T0 = round(T0, 3)
+    SRC[name or word] = "ESTIMATE (line fraction)"; return frac * DUR[n]
+oGO = woff("go", 3, .86); oCL5 = woff("claude", 5, .72, name="claude(5)"); oSHORT = woff("short", 7, .32); oMAKES = woff("makes", 7, .49)
+oCG7 = woff("chat", 7, .66, name="chatgpt(7)"); oPICK = woff("see", 3, .3)
+T0 = round(L[3][0] + oGO, 3)
+# targets: where each line must start so its words land on the race
+RACEONLY = float(os.environ.get("RACEONLY", "3.3"))          # the stretch with no voice (steps 44 -> first exit)
+TG = {1: L[1][0], 2: L[2][0], 3: L[3][0]}
+TG[4] = round(T0 + .6, 2)
+TG[5] = round(TG[4] + DUR[4] + .12, 2)
+vA44 = TG[5] + DUR[5] + .2
+vX = round(vA44 + RACEONLY, 3)                               # the first exit
+TG[6] = round(vX + .12, 2)
+TG[7] = round(TG[6] + DUR[6] + .15, 2)
+TG[8] = round(TG[7] + DUR[7] + .25, 2)
+TG[9] = round(TG[8] + DUR[8] + .15, 2)
+TG[10] = round(TG[9] + DUR[9] + .19, 2)
+DRIFT = {n: round(L[n][0] - TG[n], 2) for n in range(4, NL + 1)}
+ONTG = any(abs(v) > .2 for v in DRIFT.values())
+if ONTG: L = {n: ((TG[n], TG[n] + DUR[n]) if n >= 4 else L[n]) for n in L}
+s = lambda n: L[n][0]
+e = lambda n: L[n][1]
 D = round(e(NL) + .4, 2)
 tF = D - .58                                                 # the frame-0 layout comes back from here
-tK = s(nRES)                                                 # the board
-vEND = tK - .35                                              # the race clock has reached its last step
-TAILD = 1.1 if TAIL else 0.0
-vM0 = T0 + .25; vM1 = vEND - TAILD                           # main part: steps 0..S1
-assert vM1 - vM0 > 2.0, "the race lines leave under 2 s for the race"
-
-# ---------------------------------------------------------------- race clock: step for every video frame (compressed, slower before the first and the last exit)
-wt = [1.0] * (S1 + 1)                                        # wt[i] = screen-time weight of step i-1 -> i
-if FINS:
-    f1 = XSTEP[FINS[0]]
-    for i in range(max(1, f1 - 12), f1 + 1): wt[i] = 3.2
-    if len(FINS) > 1:
-        for i in range(max(1, S1 - 8), S1 + 1): wt[i] = max(wt[i], 2.4)
-else:
-    for i in range(max(1, S1 - 25), S1 + 1): wt[i] = 2.0     # nobody gets out: the last steps play slower (will anyone make it?)
-for i in range(1, min(8, S1) + 1): wt[i] = max(wt[i], 2.5 - .2 * i)   # soft start
-cumw = [0.0]
-for i in range(1, S1 + 1): cumw.append(cumw[-1] + wt[i])
-def v_of(step):                                              # video time of a (fractional) step
-    if step <= S1:
-        i = int(step); f = step - i
-        w_ = cumw[i] + (f * wt[i + 1] if i < S1 else 0)
-        return vM0 + (vM1 - vM0) * w_ / cumw[S1]
-    return vM1 + TAILD * (step - S1) / max(1, MAXS - S1)
+tRV = s(8); tK = s(9)                                        # the tie reveal on the maze; the board
+# anchors of the race clock: (video time, step)
+near = next((x for x in EV if x["kind"] == "near_miss" and x["id"] not in WINS and x["step"] >= F1 - 3), None)
+assert near and near["id"] == "claude" and "claude" in XSTEP, "line 7 needs Claude's turn-back after the first exit and Claude's exit"
+ANCH = [(T0 + .15, 0), (s(5), 29), (s(5) + DUR[5] + .2, 44), (s(6) - .12, F1), (s(7), F1 + 1), (s(7) + oSHORT, near["back_at"]),
+        (s(7) + oMAKES + .2, XSTEP["claude"]), (e(7) - .05, MAXS)]
+assert all(ANCH[i][0] < ANCH[i + 1][0] and ANCH[i][1] < ANCH[i + 1][1] for i in range(len(ANCH) - 1)), ANCH
+wt = [1.0] * (MAXS + 1)                                      # screen-time weight of step i-1 -> i inside its anchor segment
+for i in range(1, 9): wt[i] = 2.6 - .2 * i                   # soft start
+for i in range(F1 - 11, F1 + 1): wt[i] = 3.0                 # the last steps before the first exit play slower
+VT = [0.0] * (MAXS + 1)
+for (va, sa), (vb, sb) in zip(ANCH, ANCH[1:]):
+    tot = sum(wt[sa + 1:sb + 1]); acc = 0.0
+    for i in range(sa, sb + 1):
+        VT[i] = va + (vb - va) * acc / tot
+        if i < sb: acc += wt[i + 1]
+vEND = VT[MAXS]
+v_of = lambda st: VT[int(st)]
 def step_of(v):
-    if v <= vM0: return 0.0
-    if v >= vEND: return float(MAXS if (TAIL or not FINS) else S1)
-    if v >= vM1: return S1 + (MAXS - S1) * (v - vM1) / TAILD
-    tgt = (v - vM0) / (vM1 - vM0) * cumw[S1]; lo, hi = 0, S1
-    while lo < hi:
-        m = (lo + hi + 1) // 2
-        if cumw[m] <= tgt: lo = m
-        else: hi = m - 1
-    return lo + ((tgt - cumw[lo]) / wt[lo + 1] if lo < S1 else 0)
+    if v <= VT[0]: return 0.0
+    if v >= VT[MAXS]: return float(MAXS)
+    i = bisect.bisect_right(VT, v) - 1
+    return i + (v - VT[i]) / max(1e-6, VT[i + 1] - VT[i])
 ST = [round(step_of(n / 60), 3) for n in range(int(D * 60) + 4)]
-for x in EV: x["v"] = round(v_of(x["step"]) if x["kind"] != "dnf_freeze" else vEND, 3)
-VX = {k: round(v_of(XSTEP[k]), 3) for k in FINS}
-VE = {k: round(v_of(LAST[k]), 3) for k in ERRS}
+for x in EV: x["v"] = round(vEND if x["kind"] == "dnf_freeze" else v_of(x["step"]), 3)
+VXT = {k: round(v_of(XSTEP[k]), 3) for k in FINS}
 
-# ---------------------------------------------------------------- page geometry
-CELL = 38; MW = CELL * W_                                    # maze 798 px at race scale
-MXR, MYR = (1080 - MW) // 2, 1248 - MW                       # race: x 141-939, y 450-1248 (down to the edge of the safe box)
-CXS = [160, 350, 540, 730, 920]; CHD = 100                   # frame 0: the five chips in a row
+# ---------------------------------------------------------------- facts the words and headlines rest on (the build stops if one is not in the data)
+FACTS = []
+def fact(ok, txt): FACTS.append(("OK  " if ok else "FAIL") + " " + txt); assert ok, "not carried by the data: " + txt
+st5a, st5c, st5e = int(step_of(s(5))), int(step_of(s(5) + oCL5)), int(math.ceil(step_of(e(5))))
+fact("perplexity" in PACE and PACE["perplexity"][0] <= 5, f"line 4 'Perplexity is stuck at the start': it only paces {PACE.get('perplexity', (0, 0))[1]} cells from step {PACE.get('perplexity', (0, 0))[0]} to step {MAXS}")
+fact(all(d_at("chatgpt", i) >= d_at("chatgpt", st5a) for i in range(st5a, 62)) and d_at("chatgpt", st5e) > d_at("chatgpt", st5c) > d_at("chatgpt", st5a) > DIST[START] - 15 and d_at("chatgpt", 61) > DIST[START],
+     f"line 5 'ChatGPT goes the wrong way': its way out grows from {d_at('chatgpt', st5a)} steps (step {st5a}) to {d_at('chatgpt', st5c)} (step {st5c}); it is {d_at('chatgpt', 61)} at step 61")
+fact(sole("claude", st5c, st5e), f"line 5 'Claude leads': Claude is the only front dot on steps {st5c}-{st5e} (spoken there); data: alone in front on steps " +
+     ", ".join(f"{a}-{b}" for a, b, f in runs if f == ["claude"]))
+fact(len(WINS) == 2 and PATH[WINS[0]] == PATH[WINS[1]], f"lines 6 and 8: {NAME[WINS[0]]} and {NAME[WINS[1]]} leave on the same step ({F1}) with the identical path")
+pair_run = next(((a, b) for a, b, f in runs if sorted(f) == sorted(WINS) and b == F1 - 1), None)
+fact(pair_run is not None, f"headline 'two dots take the lead': {NAME[WINS[0]]} and {NAME[WINS[1]]} are the front (same cell) on steps {pair_run[0] if pair_run else '?'}-{F1 - 1}")
+fact(near["closest"] == 10 and near["step"] == F1, f"line 7 'Claude turns back ten steps short': {near['closest']} steps from the exit at step {near['step']}, back to {near['back_to']} by step {near['back_at']}, out at step {XSTEP['claude']}")
+cgc = next(x for x in EV if x["kind"] == "circles_after_closest" and x["id"] == "chatgpt")
+fact(STATUS["chatgpt"] == "dnf" and cgc["cells_after"] <= 40, f"line 7 'ChatGPT walks in circles': after its closest point (step {cgc['step']}, {RES['chatgpt']['closestDist']} away) it walks {cgc['cells_after']} cells for {cgc['steps_after']} steps" +
+     (f", and only {PACE['chatgpt'][1]} cells from step {PACE['chatgpt'][0]}" if "chatgpt" in PACE else ""))
+
+# ---------------------------------------------------------------- page geometry (safe: x 108-972, y 269-1248; below y 1056 nothing important right of x 864)
+CELL = 34; MW = CELL * W_                                    # maze 714 px: x 150-864, y 534-1248
+MX, MY = 864 - MW, 1248 - MW
+CHX, CHD = 924, 70; CHYS = [576 + 99 * c for c in range(5)]  # the five chips: a column right of the maze, above y 1056
+FANR, FANS = 58, 1.42                                        # before Go: the dots fanned around the centre cell, drawn larger
+FAN = [[round(FANR * math.cos(math.radians(-90 + 72 * c)), 1), round(FANR * math.sin(math.radians(-90 + 72 * c)), 1)] for c in range(5)]
+OFF = []; TOFF = []                                          # dot offset in the corridor; trail offset (stays inside the corridor)
+for c, k in enumerate(IDS):
+    if k in PAIRS: sgn = -1 if TWIN[k] == k else 1; OFF.append([15 * sgn, 0]); TOFF.append([3.5 * sgn, 3.5 * sgn])
+    else: a_ = math.radians(-90 + 120 * [j for j in IDS if j not in PAIRS].index(k)); OFF.append([round(5 * math.cos(a_), 1), round(5 * math.sin(a_), 1)]); TOFF.append([round(6 * math.cos(a_), 1), round(6 * math.sin(a_), 1)])
+lx = lambda x: (x + .5) * CELL
 try:
     from PIL import ImageFont
     _f = ImageFont.truetype(H_ + "/hf/assets/fonts/InterDisplay-Black.otf", 100)
@@ -243,15 +234,6 @@ try:
     tw8 = lambda t: _f8.getlength(t) - 1.0 * len(t)
 except Exception:
     tw = lambda t: 62 * len(t); tw8 = lambda t: 56 * len(t)
-HOOK = ["FIVE AIs. ONE MAZE.", "[HOOK PLACEHOLDER]"] if PH_SCRIPT else [x.strip() for x in open(H_ + "/voice/hook-display.txt") if x.strip()][:2] if os.path.exists(H_ + "/voice/hook-display.txt") else ["FIVE AIs. ONE MAZE."]
-HFS = min(104, 900 / max(tw(x) / 100 for x in HOOK))
-HBOT = 338 + len(HOOK) * HFS * .98
-CHY = round(HBOT + 26 + CHD / 2)                             # chips row centre (frame 0)
-MY0 = CHY + CHD // 2 + 30; S0 = round((1248 - MY0) / MW, 4); MX0 = round(540 - MW * S0 / 2, 1)   # frame-0 maze: under the chips, down to y 1248
-RXS = [93 + 128 * c for c in range(5)]; RY, RS = 309, .56     # each chip is followed by its steps-to-the-exit number     # race: the chips as a status row at the top of the safe box
-FAN = [[round(46 * math.cos(math.radians(-90 + 72 * c)), 1), round(46 * math.sin(math.radians(-90 + 72 * c)), 1)] for c in range(5)]
-OFF = [[round(6.5 * math.cos(math.radians(-90 + 72 * c)), 1), round(6.5 * math.sin(math.radians(-90 + 72 * c)), 1)] for c in range(5)]
-lx = lambda x: (x + .5) * CELL
 def logo(k, h, cls=""):
     if k == "perplexity":                                   # raw file, icon part only (x 0-28.14 of 149.82)
         return f'<span class="pxl {cls}" style="width:{h * 28.14 / 36:.1f}px;height:{h}px"><img src="assets/logos/perplexity.svg" style="height:{h}px;width:{h * 149.82 / 36:.1f}px"></span>'
@@ -261,82 +243,48 @@ def badge(k, d, cls="", st=""):
 J = []; SFX = []
 def js(x): J.append(x)
 def sfx(f, t, g=-8): SFX.append(dict(f=f, t=round(max(0, t), 3), g=g))
-def fin(sel, t, d=.36, y=20, blur=8):
+def fin(sel, t, d=.34, y=20, blur=8):
     js(f"tl.fromTo('{sel}',{{opacity:0,y:{y},filter:'blur({blur}px)'}},{{opacity:1,y:0,filter:'blur(0px)',duration:{d},ease:'power2.out',immediateRender:false}},{max(0, t):.3f});")
 def fout(sel, t, d=.22):
     js(f"tl.to('{sel}',{{opacity:0,y:-12,filter:'blur(8px)',duration:{d},ease:'power2.inOut'}},{max(0, t):.3f});")
 
-# ---------------------------------------------------------------- headlines (one line under the status row; plain ink, no boxes, no code words). ALL TEXT IS DRAFT.
-HEADS = []; HLOG = []
-def head(i, t_in, t_out, l1, logos=(), size=96, top=None, l2=""):
+# ---------------------------------------------------------------- headlines (x 108-972; plain ink, no boxes, no code words)
+HEADS = []; HLOG = []; HW = 864
+def head(i, t_in, t_out, l1, logos=(), size=96, top=None, l2="", t2=None, l2s=.62):
     wl = len(logos) * 86
-    fs = min(size, 900 / max((tw(l1) + wl * 100 / 84) / 100, tw(l2) / 100 if l2 else .01))
+    fs = min(size, HW / max((tw(l1) + wl * 100 / 84) / 100, tw(l2) * l2s / 100 if l2 else .01))
     lg = "".join(logo(k, round(fs * .86), "hlg") for k in logos)
-    tp = top if top is not None else 342 + max(0, (100 - fs) / 2)
-    l2h = f'<div class="hl2">{l2}</div>' if l2 else ""
+    tp = top if top is not None else (338 if l2 else 336 + max(0, (120 - fs) / 2))
+    l2h = f'<div class="hl2" id="h{i}b" style="{"opacity:0;" if t2 is not None else ""}font-size:{fs * l2s:.1f}px;line-height:{fs * l2s * 1.12:.1f}px">{l2}</div>' if l2 else ""
     HEADS.append(f'<div class="hd" id="h{i}" style="top:{tp:.0f}px;font-size:{fs:.1f}px;line-height:{fs * .98:.1f}px"><div class="hl1">{lg}<span>{l1}</span></div>{l2h}</div>')
     if t_in is not None: fin(f"#h{i}", t_in)
+    if l2 and t2 is not None: js(f"tl.fromTo('#h{i}b',{{opacity:0,x:34}},{{opacity:1,x:0,duration:.3,ease:'power3.out',immediateRender:false}},{t2:.3f});")
     if t_out is not None: fout(f"#h{i}", t_out - .24)
-    HLOG.append((round(t_in or 0, 2), l1))
-a2, d2, a3, d3 = s(2), e(2) - s(2), s(3), e(3) - s(3)
-t500 = W("five", 3); t500 = t500 if t500 is not None else a3 + .42 * d3
-t500 = min(max(t500, a3 + .5), T0 - .5)
-head(0, None, a2 - .02, HOOK[0], size=104, top=338, l2=HOOK[1] if len(HOOK) > 1 else "")
-head(1, a2, a3, "ONE JOB: GET OUT.")
-head(2, a3, t500, "NO MAP.", size=110)
-head(3, t500, T0 - .04, f"{MAXS} STEPS.", size=110)
+    HLOG.append((round(t_in or 0, 2), l1 + (" / " + l2 if l2 else "")))
+a2, d2, a3 = s(2), DUR[2], s(3)
+vCL = s(5) + oCL5; v45 = v_of(st5e + 1) if st5e + 1 <= 45 else v_of(45)
+vPAIR = v_of(pair_run[0]); vCLX = VXT["claude"]; vCG = max(s(7) + oCG7, vCLX + .6)
+head(0, None, a2 - .02, "LOST IN A MAZE.", size=104, top=285, l2="FIVE AIs. NO MAP.", l2s=1.0)
+head(1, a2, a3, "SAME REQUEST", l2="FOR EACH AI", l2s=1.0, size=92)
+head(2, a3, T0 - .04, "THEY CAN&rsquo;T SEE THE MAZE", l2="pick one before it starts", t2=a3 + oPICK, l2s=.66)
 HEADS.append('<div class="hd go" id="hgo"><div class="hl1"><span>GO!</span></div></div>')
 js(f"tl.fromTo('#hgo',{{opacity:0,scale:.6}},{{opacity:1,scale:1,duration:.3,ease:'power3.out',immediateRender:false}},{T0:.3f});")
-js(f"tl.to('#hgo',{{opacity:0,scale:1.2,duration:.26,ease:'power2.in'}},{T0 + .55:.3f});")
-# race headlines: picked from the events. exit > near miss > lead change > first dead end; at least 1.25 s apart (an exit always shows)
-PRI = dict(exit=4, error_stop=3, near_miss=3, final_stretch=3, lead_change=2, halfway=2, dead_end=1, first_leader=0)
-DEADTX = ["DEAD END!", "WRONG WAY!", "BACK AGAIN!"]
-def htext(x):
-    n = NAME[x["id"]].upper()
-    if x["kind"] == "exit": return (f"{n} IS OUT!" if x["place"] == 1 else f"{n} IS OUT TOO")
-    if x["kind"] == "error_stop": return f"{n} STOPS"
-    if x["kind"] == "near_miss": return f"SO CLOSE! {x['closest']} TO GO"
-    if x["kind"] == "lead_change": return f"{n} LEADS NOW"
-    if x["kind"] == "halfway": return "HALFWAY THERE"
-    if x["kind"] == "final_stretch": return "12 STEPS TO GO..."
-    if x["kind"] == "dead_end": return DEADTX[x.get("_n", 0) % 3]
-picked = []; seen_dead = False
-for x in sorted((x for x in EV if x["kind"] in PRI and PRI[x["kind"]] > 0 and T0 + 1.3 < x["v"] < vEND - .2 or x["kind"] == "exit"), key=lambda x: x["v"]):
-    if x["kind"] == "dead_end":
-        if seen_dead: continue
-    if picked and x["v"] - picked[-1]["v"] < 1.25:
-        if PRI[x["kind"]] > PRI[picked[-1]["kind"]] and x["v"] - picked[-1]["v"] < .5: picked[-1] = x
-        elif x["kind"] == "exit": picked.append(x)
-        continue
-    picked.append(x); seen_dead = seen_dead or x["kind"] == "dead_end"
-RH = [(T0 + .62, "FIND THE EXIT", ())] + [(x["v"], htext(x), (x["id"],)) for x in picked]
-# no flat stretch: a hold longer than 2.5 s gets a dead-end beat of some dot from the data (if there is one in it)
-nfill = 1
-for _ in range(12):
-    RH.sort(); ts = [x[0] for x in RH] + [vEND]
-    g = next((i for i in range(len(RH)) if ts[i + 1] - ts[i] > 2.5), None)
-    if g is None: break
-    mid = (ts[g] + ts[g + 1]) / 2
-    cand = [x for x in EV if x["kind"] == "dead_end" and ts[g] + 1.1 < x["v"] < ts[g + 1] - 1.1]
-    if not cand: break
-    x = min(cand, key=lambda x: abs(x["v"] - mid)); x["_n"] = nfill; nfill += 1
-    RH.append((x["v"], htext(x), (x["id"],)))
-RH.sort()
-nd = len(DNFS) + len(ERRS)
-if not FINS: RH.append((vEND, "NOBODY GETS OUT", ()))
-elif nd and TAIL: RH.append((vM1 + .1, (f"{NAME[DNFS[0]].upper()} IS STILL LOST" if nd == 1 and DNFS else f"{nd} STILL INSIDE"), tuple(DNFS[:1]) if nd == 1 else ()))
-RH = [x for i, x in enumerate(RH) if i == 0 or x[0] - RH[i - 1][0] > .35]
-tS8 = s(nSEND)
-for i, (t, txt, lg) in enumerate(RH):
-    head(10 + i, t, RH[i + 1][0] if i + 1 < len(RH) else tK, txt, logos=lg)
-head(40, tK, tS8, (f"{NAME[WINNER].upper()} WINS" if WINNER else "NOBODY WINS"), logos=(WINNER,) if WINNER else ())
-head(41, tS8, s(nTOM), "SEND IT TO A FRIEND")
-head(42, s(nTOM), tF + .04, "NEXT: [PLACEHOLDER]" if PH_SCRIPT else "NEXT RACE", size=100)
+js(f"tl.to('#hgo',{{opacity:0,scale:1.2,duration:.26,ease:'power2.in'}},{s(4) - .28:.3f});")
+head(3, s(4), s(5), "PERPLEXITY: STUCK", logos=("perplexity",))
+head(4, s(5), vCL, "CHATGPT: WRONG WAY", logos=("chatgpt",))
+head(5, vCL, min(v45, vPAIR - .3), "CLAUDE LEADS", logos=("claude",))
+head(6, vPAIR, vX, "TWO DOTS TAKE THE LEAD")
+head(7, vX, s(7), "TWO OUT. SAME STEP.")
+head(8, s(7), vCG, f"CLAUDE: {near['closest']} STEPS SHORT...", logos=("claude",), l2=f"...OUT IN {XSTEP['claude']}", t2=vCLX, l2s=.86)
+head(9, vCG, tRV, "CHATGPT: IN CIRCLES", logos=("chatgpt",))
+head(10, tRV, tK, "SAME PATH. EVERY STEP.", logos=tuple(WINS))
+head(11, tK, s(10), "THE REQUEST: LINK IN BIO")
+head(12, s(10), tF + .04, "TOMORROW: A CLAUDE CODE FIX?")
 fin("#h0", tF + .06, .42)
 
-# ---------------------------------------------------------------- markup: the maze (local px, scaled by render()), trails, exit, start, marks
+# ---------------------------------------------------------------- markup
 hw = []; vw = []
-for gy in range(HH + 1):                                    # horizontal wall runs
+for gy in range(HH + 1):
     run = None
     for x in range(W_ + 1):
         wall = x < W_ and (not OPEN[gy][x] & 1 if gy < HH else not OPEN[gy - 1][x] & 4)
@@ -350,64 +298,56 @@ for gx in range(W_ + 1):
         if not wall and run is not None: vw.append(f"M{gx * CELL} {run * CELL} V{y * CELL}"); run = None
 TRD = []; CLEN = []
 for c, k in enumerate(IDS):
-    pts_ = [(lx(p[0]) + OFF[c][0], lx(p[1]) + OFF[c][1]) for p in PATH[k]]
+    pts_ = [(lx(p[0]) + TOFF[c][0], lx(p[1]) + TOFF[c][1]) for p in PATH[k]]
     acc = [0.0]
     for i in range(1, len(pts_)): acc.append(acc[-1] + math.hypot(pts_[i][0] - pts_[i - 1][0], pts_[i][1] - pts_[i - 1][1]))
     CLEN.append([round(v, 1) for v in acc]); TRD.append("M" + " L".join(f"{x:.1f} {y:.1f}" for x, y in pts_))
 ey = lx(EXIT[1])
-dead_marks = "".join(f'<path class="dm" data-c="{c}" data-s="{i}" d="M{lx(x) - 8:.0f} {lx(y) - 8:.0f} l16 16 m0 -16 l-16 16"/>' for c, k in enumerate(IDS) for i, x, y in DEADS[k][:14])
-close_marks = "".join(f'<circle class="cm" data-c="{c}" cx="{lx(RES[k]["closestAt"][0]):.0f}" cy="{lx(RES[k]["closestAt"][1]):.0f}" r="15" stroke="{COL[k]}"/>'
-                      for c, k in enumerate(IDS) if STATUS[k] != "exit" and RES[k].get("closestAt"))
-maze = f'''<div id="maze"><div class="floor" data-decor></div>
+dead_marks = "".join(f'<path class="dm" data-c="{c}" data-s="{i}" d="M{lx(x) - 7:.0f} {lx(y) - 7:.0f} l14 14 m0 -14 l-14 14"/>' for c, k in enumerate(IDS) if TWIN[k] == k for i, x, y in DEADS[k][:14])
+close_marks = "".join(f'<circle class="cm" data-c="{c}" cx="{lx(RES[k]["closestAt"][0]):.0f}" cy="{lx(RES[k]["closestAt"][1]):.0f}" r="14" stroke="{COL[k]}"/>' for c, k in enumerate(IDS) if STATUS[k] != "exit")
+maze = f'''<div id="maze" style="left:{MX}px;top:{MY}px"><div class="floor" data-decor></div>
  <svg class="msv" viewBox="0 0 {MW} {MW}" width="{MW}" height="{MW}">
-  <defs><filter id="wob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.6"/></filter></defs>
+  <defs><filter id="wob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs>
   <rect id="stc" x="{START[0] * CELL + 3}" y="{START[1] * CELL + 3}" width="{CELL - 6}" height="{CELL - 6}" rx="6" fill="#FFE28A"/>
   <rect id="exc" x="{EXIT[0] * CELL + 3}" y="{EXIT[1] * CELL + 3}" width="{CELL - 6}" height="{CELL - 6}" rx="6" fill="{GREEN}" opacity=".3"/>
   <g id="trs">{"".join(f'<path class="trl" d="{TRD[c]}" stroke="{COL[k]}" stroke-dasharray="{CLEN[c][-1] + 2:.1f}" stroke-dashoffset="{CLEN[c][-1] + 2:.1f}"/>' for c, k in enumerate(IDS))}</g>
-  <g id="walls" filter="url(#wob)" fill="none" stroke="{INK}" stroke-width="5" stroke-linecap="round"><path d="{" ".join(hw)} {" ".join(vw)}"/></g>
+  <g id="walls" filter="url(#wob)" fill="none" stroke="{INK}" stroke-width="4.6" stroke-linecap="round"><path d="{" ".join(hw)} {" ".join(vw)}"/></g>
   <g id="dms">{dead_marks}</g><g id="cms">{close_marks}</g>
-  <g id="exm"><path d="M-12 {ey} H-62 M-40 {ey - 20} L-64 {ey} L-40 {ey + 20}" fill="none" stroke="{GREEN}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="exm"><path d="M-7 {ey} H-33 M-22 {ey - 12} L-35 {ey} L-22 {ey + 12}" fill="none" stroke="{GREEN}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></g>
  </svg>
- <div id="ext" style="top:{ey - 66:.0f}px">EXIT</div><div id="dot0" style="left:{lx(START[0]):.0f}px;top:{lx(START[1]):.0f}px"></div></div>'''
-dots = '<div id="dots">' + "".join(f'<div class="dot" data-c="{c}">{badge(k, 52, "db", f"border-color:{COL[k]}")}</div>' for c, k in enumerate(IDS)) + "</div>"
+ <div id="ext" style="top:{ey - 104:.0f}px">EXIT</div></div>'''
+dots = '<div id="dots">' + "".join(f'<div class="dot" data-c="{c}">{badge(k, 50, "db")}<i class="dr" style="border-color:{COL[k]}"></i></div>' for c, k in enumerate(IDS)) + "</div>"
 check = '<path d="M-10 1 L-3 8 L11 -8" pathLength="1"/>'
 chips = '<div id="chips">'
 for c, k in enumerate(IDS):
-    chips += f'''<div class="sl" id="sl{c}"><i class="ring" style="border-color:{COL[k]}"></i>{badge(k, CHD, "tb")}
+    chips += f'''<div class="sl" id="sl{c}" style="left:{CHX}px;top:{CHYS[c]}px"><i class="ring" style="border-color:{COL[k]}"></i>{badge(k, CHD, "tb")}
  <div class="tk" id="tk{c}"><i></i><i></i><i></i></div><svg class="ck" id="ck{c}" viewBox="-20 -20 40 40"><circle r="17"/>{check}</svg>
  <svg class="ok" viewBox="-20 -20 40 40"><circle r="17"/>{check}</svg>
  <svg class="tm qm" viewBox="-22 -24 44 48"><path d="M-9 -9 C-9 -22 11 -22 11 -9 C11 0 1 0 1 8 M1 17 V17.5"/></svg>
- <svg class="tm xm" viewBox="-22 -24 44 48"><path d="M-13 -13 L13 13 M13 -13 L-13 13"/></svg>
  <div class="dn"></div></div>'''
 chips += "</div>"
-REQ = "Get the dot out of the maze."
-BFS = min(62, 100 * 640 / tw8(REQ)); BUBY = round(MY0 + MW * S0 * .5 - 190)
+REQ = "Get this dot out of the maze."
+BFS = min(54, 100 * 560 / tw8(REQ)); BUBY = MY + 70
 bub = f'<div id="bub" style="top:{BUBY}px"><i class="bdot"></i><div id="btx" style="font-size:{BFS:.1f}px;line-height:{BFS * 1.2:.1f}px">{REQ}</div></div>' + \
-      "".join(f'<div class="nt" id="nt{c}" style="top:{BUBY + 50}px"><i></i><i></i></div>' for c in range(5))
+      "".join(f'<div class="nt" id="nt{c}" style="top:{BUBY + 40}px"><i></i><i></i></div>' for c in range(5))
 def rowtext(k):
     r = RES[k]
-    if STATUS[k] == "exit": return f"{r['exitStep']} steps"
-    if STATUS[k] == "dnf": return f"lost, {r['closestDist']} steps away"
-    return "did not start" if r.get("loadError") or LAST[k] == 0 else f"stopped at step {LAST[k]}"
-card = f'<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">AI MAZE CONTEST</div>'
+    if STATUS[k] == "exit": return f"out in {r['exitStep']} steps" + (", same path" if TWIN[k] != k else "")
+    return "stuck by the start" if r.get("cellsVisited", 99) <= 6 else f"lost, closest {r['closestDist']} steps away"
+RH = 104
+card = f'<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">AI RACE &middot; THE MAZE</div>'
 for i, k in enumerate(ORDER):
-    pl = str(i + 1) if STATUS[k] == "exit" else "&ndash;"
-    card += f'<div class="cr" id="cr{i}" style="top:{108 + i * 108}px"><span class="cp">{pl}</span>{badge(k, 74)}<span class="cn">{NAME[k]}</span><span class="cv">{rowtext(k)}</span>{f"""<i style="background:{COL[k]}"></i>""" if i == 0 and WINNER else ""}</div>'
-card += (f'<div class="cf">Shortest way out: {SHORT} steps</div>' if SHORT else "") + "</div>"
-PHB = ""
-if PH_DATA or PH_SCRIPT:
-    what = " + ".join(x for x in ("DATA" if PH_DATA else "", "SCRIPT" if PH_SCRIPT else "") if x)
-    PHB = f'<div class="phb" data-decor style="top:196px">PLACEHOLDER {what} &middot; NOT REAL AI RESULTS</div><div class="phb" data-decor style="top:1272px">PLACEHOLDER {what} &middot; NOT REAL AI RESULTS</div>'
-flag = '<svg viewBox="0 0 40 40"><path d="M6 38 V3" stroke="#0f0f0f" stroke-width="5" stroke-linecap="round"/><path d="M6 4 H36 V24 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="3"/><path d="M6 4 h10 v10 h-10z M26 4 h10 v10 h-10z M16 14 h10 v10 h-10z" fill="#0f0f0f"/></svg>'
+    pl = str(1 + sum(1 for j in FINS if XSTEP[j] < XSTEP[k])) if STATUS[k] == "exit" else "&ndash;"
+    card += f'<div class="cr" id="cr{i}" style="top:{100 + i * RH}px"><span class="cp">{pl}</span>{badge(k, 72)}<div class="cx"><span class="cn">{NAME[k]}</span><span class="cv">{rowtext(k)}</span></div>{f"""<i style="background:{COL[k]}"></i>""" if k in WINS else ""}</div>'
+card += f'<div class="cf">best possible: {SHORT} steps</div></div>'
 markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam">
  {maze}{dots}{bub}{chips}
- <div id="lab">{flag}AI MAZE CONTEST</div>
  <div id="cnt"><em>STEP</em><span id="cnn">0</span><em>/ {MAXS}</em></div>
  {"".join(HEADS)}
  {card}
-</div>{PHB}'''
+</div><div class="phb" id="phb" data-decor>PLACEHOLDER &middot; FINAL LINE NOT CONFIRMED</div>'''
 
 CSS = '''
 *{margin:0;padding:0;box-sizing:border-box}
@@ -415,199 +355,197 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
 .bgw{position:absolute;left:-20px;top:-20px;width:1120px;height:1960px;background:#ecebe5 url(assets/bg.jpg);background-size:1120px 1960px}
 #cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 844px}
-#maze{position:absolute;left:0;top:0;width:MWpx;height:MWpx;transform-origin:0 0;will-change:transform;z-index:1}
-.floor{position:absolute;left:-14px;top:-14px;right:-14px;bottom:-14px;background:PAPER;border:5px solid INK;border-radius:10px;box-shadow:12px 12px 0 INK}
+#maze{position:absolute;width:MWpx;height:MWpx;z-index:1}
+.floor{position:absolute;left:-12px;top:-12px;right:-12px;bottom:-12px;background:PAPER;border:5px solid INK;border-radius:10px;box-shadow:-10px 10px 0 INK}
 .msv{position:absolute;left:0;top:0;overflow:visible}
-.trl{fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;opacity:0}
-.dm{fill:none;stroke:RED;stroke-width:5;stroke-linecap:round;opacity:0}
+.trl{fill:none;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.dm{fill:none;stroke:RED;stroke-width:4.5;stroke-linecap:round;opacity:0}
 .cm{fill:none;stroke-width:6;stroke-dasharray:7 6;opacity:0;transform-box:fill-box;transform-origin:50% 50%}
-#ext{position:absolute;left:-84px;width:84px;text-align:center;font-weight:900;font-size:27px;line-height:30px;letter-spacing:.02em;color:GREEN;
- text-shadow:2px 2px 0 PAPER,-2px 2px 0 PAPER,2px -2px 0 PAPER,-2px -2px 0 PAPER}
-#dot0{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:#fff;border:5px solid INK}
+#ext{position:absolute;left:-39px;width:30px;height:84px;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-weight:900;font-size:26px;line-height:30px;letter-spacing:.04em;color:GREEN}
 #dots,#chips{position:absolute;left:0;top:0;width:0;height:0}
 #dots{z-index:3} #chips{z-index:4} #bub,.nt{z-index:4}
-.dot{position:absolute;left:0;top:0;width:0;height:0;opacity:0;will-change:transform}
+.dot{position:absolute;left:0;top:0;width:0;height:0;will-change:transform}
 .bdg{position:relative;border-radius:50%;background:#fff;border:3.5px solid INK;display:flex;align-items:center;justify-content:center;flex:none}
 .bdg .lg{display:block}
 .pxl{display:block;overflow:hidden;flex:none} .pxl img{display:block;max-width:none}
-.dot .db{position:absolute;left:-26px;top:-26px;border-width:6px;box-shadow:0 0 0 2.5px INK}
-.sl{position:absolute;left:0;top:0;width:0;height:0;will-change:transform}
-.sl .tb{position:absolute;left:-50px;top:-50px;border-width:5px;box-shadow:5px 5px 0 INK}
-.ring{position:absolute;left:-63px;top:-63px;width:126px;height:126px;border-radius:50%;border:9px solid INK;opacity:0}
-.tk{position:absolute;left:2px;top:-84px;width:74px;height:40px;border-radius:20px;background:#fff;border:4px solid INK;display:flex;align-items:center;justify-content:center;gap:7px;opacity:0;transform-origin:20% 100%}
-.tk i{display:block;width:10px;height:10px;border-radius:50%;background:INK}
-.ck,.ok{position:absolute;left:12px;top:-72px;width:52px;height:52px;overflow:visible;transform-origin:50% 50%;opacity:0}
-.ok{left:8px;top:-76px;width:68px;height:68px}
+.dot .db{position:absolute;left:-25px;top:-25px;border-width:3.5px}
+.dr{position:absolute;left:-25px;top:-25px;width:50px;height:50px;border-radius:50%;border:6px solid INK;box-shadow:0 0 0 2.5px INK;opacity:0}
+.sl{position:absolute;width:0;height:0;will-change:transform}
+.sl .tb{position:absolute;left:-35px;top:-35px;border-width:4.5px;box-shadow:-4px 4px 0 INK}
+.ring{position:absolute;left:-44px;top:-44px;width:88px;height:88px;border-radius:50%;border:8px solid INK;opacity:0}
+.tk{position:absolute;left:-88px;top:-62px;width:68px;height:36px;border-radius:18px;background:#fff;border:4px solid INK;display:flex;align-items:center;justify-content:center;gap:6px;opacity:0;transform-origin:80% 100%}
+.tk i{display:block;width:9px;height:9px;border-radius:50%;background:INK}
+.ck,.ok{position:absolute;left:-60px;top:-58px;width:46px;height:46px;overflow:visible;transform-origin:50% 50%;opacity:0}
 .ck circle,.ok circle{fill:GREEN;stroke:INK;stroke-width:3.5} .ck path,.ok path{fill:none;stroke:#fff;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round}
-.tm{position:absolute;left:-46px;top:-50px;width:92px;height:100px;overflow:visible;opacity:0}
+.tm{position:absolute;left:-31px;top:-35px;width:62px;height:70px;overflow:visible;opacity:0}
 .tm path{fill:none;stroke:RED;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
-.dn{position:absolute;left:64px;top:-34px;width:130px;text-align:left;font-weight:900;font-size:62px;line-height:68px;letter-spacing:-.02em;opacity:0;white-space:nowrap}
-#bub{position:absolute;left:130px;width:820px;height:150px;background:#fff;border:6px solid INK;border-radius:50px;box-shadow:9px 9px 0 INK;display:flex;align-items:center;justify-content:center;gap:24px;opacity:0;transform-origin:50% 60%}
-.bdot{display:block;width:44px;height:44px;border-radius:50%;background:#fff;border:7px solid INK;flex:none}
+.dn{position:absolute;left:-50px;top:37px;width:100px;text-align:center;font-weight:900;font-size:27px;line-height:24px;letter-spacing:-.02em;opacity:0;white-space:nowrap}
+#bub{position:absolute;left:176px;width:662px;height:124px;background:#fff;border:6px solid INK;border-radius:44px;box-shadow:-8px 8px 0 INK;display:flex;align-items:center;justify-content:center;gap:20px;opacity:0;transform-origin:50% 60%}
+.bdot{display:block;width:38px;height:38px;border-radius:50%;background:#fff;border:7px solid INK;flex:none}
 #btx{font-weight:800;letter-spacing:-.01em;white-space:nowrap}
-.nt{position:absolute;left:506px;width:68px;height:50px;background:#fff;border:4px solid INK;border-radius:14px;opacity:0;padding:10px 10px 0}
-.nt i{display:block;height:5px;border-radius:3px;background:INK;margin-bottom:8px} .nt i+i{width:60%}
-#lab{position:absolute;left:65px;top:279px;z-index:5;font-weight:900;font-size:44px;line-height:48px;letter-spacing:.04em;white-space:nowrap;display:flex;align-items:center;gap:14px;transform-origin:0 0}
-#lab svg{width:42px;height:42px;flex:none}
-#cnt{position:absolute;right:65px;top:281px;z-index:5;font-weight:900;font-size:56px;line-height:60px;letter-spacing:-.03em;white-space:nowrap;opacity:0;display:flex;align-items:baseline;gap:10px}
-#cnt em{font-style:normal;font-size:26px;letter-spacing:0}
-.hd{position:absolute;left:65px;top:342px;font-weight:900;letter-spacing:-.03em;white-space:nowrap;opacity:0;transform-origin:0 50%;z-index:5}
+.nt{position:absolute;left:474px;width:64px;height:46px;background:#fff;border:4px solid INK;border-radius:13px;opacity:0;padding:9px 9px 0}
+.nt i{display:block;height:5px;border-radius:3px;background:INK;margin-bottom:7px} .nt i+i{width:60%}
+#cnt{position:absolute;right:108px;top:269px;z-index:5;font-weight:900;font-size:50px;line-height:50px;letter-spacing:-.03em;white-space:nowrap;opacity:0;display:flex;align-items:baseline;gap:9px}
+#cnt em{font-style:normal;font-size:24px;letter-spacing:0}
+.hd{position:absolute;left:108px;top:336px;font-weight:900;letter-spacing:-.03em;white-space:nowrap;opacity:0;transform-origin:0 50%;z-index:5}
 #h0{opacity:1}
 .hl1{display:flex;align-items:center} .hlg{margin-right:.16em;flex:none} .hl2{display:block}
-.hd.go{font-size:150px;line-height:150px;top:318px;left:auto;right:80px;transform-origin:100% 50%}
-#card{position:absolute;left:78px;top:462px;width:916px;height:HCARDpx;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:14px 14px 0 INK;opacity:0;transform-origin:50% 0%;z-index:6}
-.tape{position:absolute;width:130px;height:40px;background:rgba(232,221,186,.86);border:1px solid rgba(0,0,0,.14);z-index:3}
-.tape.t1{right:-34px;top:-12px;transform:rotate(34deg)} .tape.t2{left:-34px;bottom:-6px;transform:rotate(34deg)}
-.ct{position:absolute;left:38px;top:24px;font-weight:900;font-size:56px;line-height:64px;letter-spacing:-.03em;white-space:nowrap}
-.cr{position:absolute;left:38px;right:38px;height:104px;display:flex;align-items:center;opacity:0;border-top:4px solid rgba(15,15,15,.14)}
-.cp{width:56px;font-weight:900;font-size:54px;line-height:60px;text-align:center;margin-right:14px}
-.cn{font-weight:900;font-size:52px;line-height:60px;letter-spacing:-.03em;margin-left:18px;white-space:nowrap}
-.cv{margin-left:auto;font-weight:800;font-size:38px;line-height:60px;letter-spacing:-.01em;white-space:nowrap}
-.cr i{position:absolute;left:0;right:0;bottom:2px;height:9px;border-radius:5px;transform-origin:0 50%;transform:scaleX(0)}
-.cf{position:absolute;left:38px;bottom:22px;font-weight:800;font-size:36px;line-height:42px;white-space:nowrap;opacity:0}
-.phb{position:absolute;left:0;width:1080px;text-align:center;font-weight:900;font-size:34px;line-height:40px;color:RED;letter-spacing:.02em;z-index:20;white-space:nowrap}
+#h2b{font-weight:800;letter-spacing:-.01em;border-bottom:5px solid INK;display:inline-block;padding-bottom:2px;margin-top:8px}
+.hd.go{font-size:150px;line-height:150px;top:318px;left:108px}
+#card{position:absolute;left:112px;top:520px;width:748px;height:HCARDpx;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:-12px 12px 0 INK;opacity:0;transform-origin:50% 0%;z-index:6}
+.tape{position:absolute;width:120px;height:38px;background:rgba(232,221,186,.86);border:1px solid rgba(0,0,0,.14);z-index:3}
+.tape.t1{right:-30px;top:-12px;transform:rotate(34deg)} .tape.t2{left:-30px;bottom:-6px;transform:rotate(34deg)}
+.ct{position:absolute;left:34px;top:22px;font-weight:900;font-size:52px;line-height:60px;letter-spacing:-.03em;white-space:nowrap}
+.cr{position:absolute;left:34px;right:34px;height:RHpx;display:flex;align-items:center;opacity:0;border-top:4px solid rgba(15,15,15,.14)}
+.cp{width:48px;font-weight:900;font-size:52px;line-height:60px;text-align:center;margin-right:14px}
+.cx{margin-left:18px;display:flex;flex-direction:column}
+.cn{font-weight:900;font-size:44px;line-height:46px;letter-spacing:-.03em;white-space:nowrap}
+.cv{font-weight:800;font-size:31px;line-height:38px;letter-spacing:-.01em;white-space:nowrap}
+.cr i{position:absolute;left:0;right:0;bottom:1px;height:8px;border-radius:4px;transform-origin:0 50%;transform:scaleX(0)}
+.cf{position:absolute;left:34px;bottom:18px;font-weight:800;font-size:33px;line-height:40px;white-space:nowrap;opacity:0}
+.phb{position:absolute;left:0;top:212px;width:1080px;text-align:center;font-weight:900;font-size:34px;line-height:40px;color:RED;letter-spacing:.02em;z-index:20;white-space:nowrap;opacity:0}
 '''
-for a_, b_ in (("HCARD", 108 + 5 * 108 + (70 if SHORT else 14)), ("MW", MW), ("GREEN", GREEN), ("INK", INK), ("PAPER", PAPER), ("RED", RED)):
+for a_, b_ in (("HCARD", 100 + 5 * RH + 66), ("RH", RH), ("MW", MW), ("GREEN", GREEN), ("INK", INK), ("PAPER", PAPER), ("RED", RED)):
     CSS = CSS.replace(a_, str(b_))
 
-# ---------------------------------------------------------------- timeline (GSAP: text, premise, card; maze, dots, chips, marks are driven by render())
+# ---------------------------------------------------------------- timeline (GSAP: text, premise, board; maze, dots, chips, marks are driven by render())
 js(f"tl.fromTo('#cam',{{scale:1,rotation:0}},{{scale:1.012,rotation:.2,duration:{D / 4:.3f},ease:'sine.inOut',yoyo:true,repeat:3}},0);")
 js(f"tl.fromTo('.bgw',{{x:0,y:0}},{{x:-14,y:-12,duration:{D / 2:.3f},ease:'sine.inOut',yoyo:true,repeat:1}},0);")
-# beat 1: hook over the whole picture (five logos, the maze, the dot in the middle, the exit). The chips ripple so nothing sits still
+# beat 1: hook over the whole picture. The chips ripple so nothing sits still
 for c in range(5):
-    js(f"tl.fromTo('#sl{c} .tb',{{y:0}},{{y:-10,duration:.34,ease:'sine.inOut',yoyo:true,repeat:{max(1, int(a2 / .34) | 1)},immediateRender:false}},{.06 * c:.2f});")
+    js(f"tl.fromTo('#sl{c} .tb',{{x:0}},{{x:-9,duration:.34,ease:'sine.inOut',yoyo:true,repeat:{max(1, int(a2 / .34) | 1)},immediateRender:false}},{.06 * c:.2f});")
 sfx("subhit.ogg", .05, -6)
-# beat 2: the premise as a process: the request -> a note to each AI -> each thinks -> each answers -> each gets its own dot in the middle
+# beat 2: the premise as a process: the request -> a note to each AI -> each thinks -> each answers -> its dot lights up
 js(f"tl.fromTo('#bub',{{opacity:0,y:50,scale:.9}},{{opacity:1,y:0,scale:1,duration:.36,ease:'back.out(1.6)',immediateRender:false}},{a2:.3f});")
 sfx("whoosh_b.ogg", a2, -11)
-tN = a2 + min(.5, .2 * d2); tC = a2 + .56 * d2; SPAWN = []
+tN = a2 + min(.42, .2 * d2); tC = a2 + .56 * d2; SPAWN = []
 for c in range(5):
     t = tN + .06 * c
     js(f"tl.fromTo('#nt{c}',{{opacity:0,x:0,y:0,scale:.5}},{{opacity:1,scale:1,duration:.12,ease:'power2.out',immediateRender:false}},{t:.3f});")
-    js(f"tl.to('#nt{c}',{{x:{CXS[c] - 540},y:{CHY - (BUBY + 75)},rotation:{(c - 2) * 9},duration:.38,ease:'power2.inOut'}},{t + .06:.3f});")
+    js(f"tl.to('#nt{c}',{{x:{CHX - 32 - 506},y:{CHYS[c] - 23 - (BUBY + 40)},rotation:{(c - 2) * 9},duration:.38,ease:'power2.inOut'}},{t + .06:.3f});")
     js(f"tl.to('#nt{c}',{{opacity:0,scale:.4,duration:.12,ease:'power2.in'}},{t + .4:.3f});")
     js(f"tl.fromTo('#tk{c}',{{opacity:0,scale:.4}},{{opacity:1,scale:1,duration:.2,ease:'back.out(2)',immediateRender:false}},{t + .46:.3f});")
-    js(f"tl.fromTo('#tk{c} i',{{y:0}},{{y:-7,duration:.16,ease:'sine.inOut',yoyo:true,repeat:5,stagger:.07,immediateRender:false}},{t + .5:.3f});")
-    tc = max(tC + .07 * c, t + .9)
+    js(f"tl.fromTo('#tk{c} i',{{y:0}},{{y:-6,duration:.16,ease:'sine.inOut',yoyo:true,repeat:5,stagger:.07,immediateRender:false}},{t + .5:.3f});")
+    tc = max(tC + .07 * c, t + .86)
     js(f"tl.to('#tk{c}',{{opacity:0,scale:.5,duration:.14,ease:'power2.in'}},{tc - .1:.3f});")
     js(f"tl.fromTo('#ck{c}',{{opacity:0,scale:.2}},{{opacity:1,scale:1,duration:.28,ease:'back.out(2)',immediateRender:false}},{tc:.3f});")
     sfx("pop_a.ogg" if c % 2 == 0 else "pop_b.ogg", t, -11); sfx("tick.ogg", tc, -11)
-    SPAWN.append(round(tc + .14, 3))
+    SPAWN.append(round(tc + .12, 3))
 js(f"tl.to('#bub',{{opacity:0,y:30,scale:.92,duration:.24,ease:'power2.in'}},{min(tC - .1, a3 - .4):.3f});")
-# beat 3: the rule the viewer must feel: the AIs never see the maze (the walls fade for a moment), and the step limit
+# beat 3: the AIs never see the maze: the walls fade for a moment
 js(f"tl.to('#walls',{{opacity:.13,duration:.4,ease:'sine.inOut'}},{a3 + .08:.3f});")
 js(f"tl.to('#walls',{{opacity:1,duration:.4,ease:'sine.inOut'}},{T0 - .3:.3f});")
 js(f"tl.to('.ck',{{opacity:0,scale:.4,duration:.25,ease:'sine.in'}},{T0 - .1:.3f});")
-js(f"tl.to('#lab',{{opacity:0,duration:.2,ease:'sine.in'}},{T0 - .16:.3f});")
-js(f"tl.to('#lab',{{opacity:1,duration:.4,ease:'sine.out'}},{tF + .06:.3f});")
-sfx("toggle.ogg", a3 + .08, -10); sfx("tick.ogg", t500, -9); sfx("whoosh_a.ogg", T0 - .03, -6)
+sfx("toggle.ogg", a3 + .08, -10); sfx("whoosh_a.ogg", T0 - .03, -6)
 # race sounds, from the events
 nde = 0
 for x in EV:
     if not (T0 < x["v"] <= vEND + .01): continue
-    if x["kind"] == "exit": sfx("ding.ogg" if x["place"] == 1 else "click_a.ogg", x["v"], -6 if x["place"] == 1 else -9)
-    elif x["kind"] == "error_stop": sfx("toggle.ogg", x["v"], -9)
-    elif x["kind"] == "lead_change": sfx("select.ogg", x["v"], -12)
-    elif x["kind"] == "near_miss": sfx("impactsoft.ogg", x["v"], -10)
-    elif x["kind"] == "dead_end" and nde < 8 and (not SFX or x["v"] - SFX[-1]["t"] > .35): sfx("tick.ogg", x["v"], -13); nde += 1
-if FINS: sfx("riser.ogg", max(T0, VX[FINS[0]] - 1.6), -13)
-if TAIL: sfx("whoosh_c.ogg", vM1, -11)
-if DNFS: sfx("impactsoft.ogg", vEND, -8)
-# the board: rows land from the last place up, the winner last (its line is drawn under it after a beat)
+    if x["kind"] == "exit": sfx("ding.ogg" if x["id"] == WINS[0] else "click_a.ogg", x["v"] + (.07 if x["id"] in WINS[1:] else 0), -6 if x["id"] == WINS[0] else -8)
+    elif x["kind"] == "front" and x["step"] in (st5a, pair_run[0], 29): sfx("select.ogg", x["v"], -11)
+    elif x["kind"] == "near_miss": sfx("impactsoft.ogg", x["v"] + .3, -10)
+    elif x["kind"] == "dead_end" and nde < 8 and TWIN[x["id"]] == x["id"] and x["v"] - SFX[-1]["t"] > .3: sfx("tick.ogg", x["v"], -13); nde += 1
+sfx("riser.ogg", max(T0, vX - 1.6), -13); sfx("whoosh_c.ogg", vCG, -11); sfx("impactsoft.ogg", vEND, -9)
+# the tie reveal (line 8): on the maze, the two winning trails are drawn again and close into one line
+sfx("whoosh_b.ogg", tRV + .15, -10); sfx("ding.ogg", tRV + 1.75, -8)
+# the board (line 9): rows land from the last place up, the tie last (both together), then their lines
 js(f"tl.fromTo('#card',{{opacity:0,y:90,rotation:3,scale:1}},{{opacity:1,y:0,rotation:-1,duration:.5,ease:'power3.out',immediateRender:false}},{tK + .03:.3f});")
 sfx("whoosh_b.ogg", tK, -10)
-dres = max(1.2, s(nSEND) - tK); stp = min(.3, (dres - .9) / 4)
-for q, i in enumerate((4, 3, 2, 1, 0)):
-    t = tK + .3 + q * stp + (.3 if i == 0 else 0)
-    js(f"tl.fromTo('#cr{i}',{{opacity:0,x:-46}},{{opacity:1,x:0,duration:.36,ease:'power3.out',immediateRender:false}},{t:.3f});")
-    sfx("pop_a.ogg" if q % 2 == 0 else "pop_b.ogg", t, -10)
-tU = tK + .3 + 4 * stp + .6
-js(f"tl.to('#cr0 i',{{scaleX:1,duration:.5,ease:'power2.inOut'}},{tU:.3f});")
-js(f"tl.fromTo('#cr0 .bdg',{{scale:1}},{{scale:1.16,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tU:.3f});")
+nw = len(WINS); t = tK + .3; RT_ = {}
+for i in range(4, -1, -1):
+    k = ORDER[i]
+    if k in WINS and k != ORDER[nw - 1]: RT_[i] = RT_[nw - 1]; continue
+    if k in WINS: t += .22
+    RT_[i] = t; sfx("pop_a.ogg" if i % 2 == 0 else "pop_b.ogg", t, -10); t += .2
+for i in range(5):
+    js(f"tl.fromTo('#cr{i}',{{opacity:0,x:-46}},{{opacity:1,x:0,duration:.36,ease:'power3.out',immediateRender:false}},{RT_[i]:.3f});")
+tU = RT_[0] + .5
+for i in range(nw):
+    js(f"tl.to('#cr{i} i',{{scaleX:1,duration:.5,ease:'power2.inOut'}},{tU:.3f});")
+    js(f"tl.fromTo('#cr{i} .bdg',{{scale:1}},{{scale:1.16,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tU + .1 * i:.3f});")
 js(f"tl.fromTo('.cf',{{opacity:0}},{{opacity:1,duration:.3,ease:'sine.out',immediateRender:false}},{tU + .3:.3f});")
-hold = max(.8, (tF - tK - .8) / 2)
-js(f"tl.to('#card',{{rotation:.6,y:-8,duration:{hold / 2:.3f},ease:'sine.inOut',yoyo:true,repeat:3}},{tK + .55:.3f});")
+js(f"tl.to('#card',{{rotation:.6,y:-8,duration:{max(.8, (tF - tK - .8) / 6):.3f},ease:'sine.inOut',yoyo:true,repeat:5}},{tK + .55:.3f});")
 t = tU + .9; q = 0
 while t < tF - .5:                                           # a slow wave keeps the board alive while it is read
     js(f"tl.fromTo('#cr{q % 5} .bdg',{{rotation:0}},{{rotation:{-10 if q % 2 else 10},duration:.28,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t:.3f});"); t += .45; q += 1
 js(f"tl.to('#card',{{opacity:0,scale:.9,y:-40,rotation:-3,duration:.32,ease:'power2.in'}},{tF - .26:.3f});")
-sfx("whoosh_c.ogg", tF - .2, -12)
+# the only placeholder banner: the tomorrow line is not confirmed
+js(f"tl.fromTo('#phb',{{opacity:0}},{{opacity:1,duration:.2,ease:'sine.out',immediateRender:false}},{s(10):.3f});")
+js(f"tl.to('#phb',{{opacity:0,duration:.2,ease:'sine.in'}},{tF:.3f});")
+sfx("tick.ogg", s(10) + .1, -10); sfx("whoosh_c.ogg", tF - .2, -12)
 
-# ---------------------------------------------------------------- render(): maze layout, dots, trails, chips, marks, counter: all from the clock
-DATA = dict(T0=T0, D=D, tF=round(tF, 3), tK=round(tK, 3), vEND=round(vEND, 3), ST=ST, MAXS=MAXS, CELL=CELL,
-            MXR=MXR, MYR=MYR, MX0=MX0, MY0=MY0, S0=S0, CXS=CXS, CHY=CHY, RXS=RXS, RY=RY, RS=RS, FAN=FAN, OFF=OFF,
+# ---------------------------------------------------------------- render(): dots, trails, chips, marks, counter: all from the clock
+ci = lambda ks: [IDS.index(k) for k in ks]
+DATA = dict(T0=T0, D=D, tF=round(tF, 3), tK=round(tK, 3), tRV=round(tRV, 3), vEND=round(vEND, 3), ST=ST, MAXS=MAXS, CELL=CELL, MX=MX, MY=MY,
+            CHX=CHX, CHYS=CHYS, FAN=FAN, FANS=FANS, OFF=OFF, TOFF=TOFF,
             P=[[v for p in PATH[k] for v in p] for k in IDS], LAST=[LAST[k] for k in IDS], CL=CLEN,
-            DS=[[dist(p) for p in PATH[k]] for k in IDS], LEAD=LEAD, S1=S1,
-            VX=[VX.get(k) for k in IDS], VE=[VE.get(k) for k in IDS], DNF=[k in DNFS for k in IDS], SP=SPAWN,
-            DEAD=[[i for i, _, _ in DEADS[k][:14]] for k in IDS], START=list(START), WIN=IDS.index(WINNER) if WINNER else -1)
+            DS=[[dist(p) for p in PATH[k]] for k in IDS], FR=[sum(1 << IDS.index(k) for k in f) for f in FRONT[:F1 + 1]], F1=F1,
+            VX=[VXT.get(k) for k in IDS], DNF=[k in DNFS for k in IDS], SP=SPAWN, WIN=ci(WINS), TW=[IDS.index(TWIN[k]) for k in IDS],
+            NM=[IDS.index(near["id"]), round(v_of(near["step"]), 3), round(v_of(near["back_at"]), 3)])
 RJS = r'''
 const Dt=__DATA__;
 const ez=p=>{p=p<0?0:p>1?1:p;return p*p*(3-2*p)}, lerp=(a,b,t)=>a+(b-a)*t, bump=p=>p>0&&p<1?Math.sin(Math.PI*p):0, $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function St(v){const i=Math.max(0,v*60),k=Math.min(Dt.ST.length-2,Math.floor(i));return lerp(Dt.ST[k],Dt.ST[k+1],Math.min(1,i-k))}
-const maze=$('#maze'), dots=$$('.dot'), trs=$$('.trl'), cnt=$('#cnt'), cnn=$('#cnn'), dot0=$('#dot0'), exm=$('#exm'), exc=$('#exc'), stc=$('#stc');
-const chips=[0,1,2,3,4].map(c=>{const el=$('#sl'+c);return {el,tb:el.querySelector('.tb'),ring:el.querySelector('.ring'),ok:el.querySelector('.ok'),qm:el.querySelector('.qm'),xm:el.querySelector('.xm'),dn:el.querySelector('.dn')}});
+const dots=$$('.dot').map(el=>({el,dr:el.querySelector('.dr')})), trs=$$('.trl'), cnt=$('#cnt'), cnn=$('#cnn'), exm=$('#exm'), exc=$('#exc'), stc=$('#stc');
+const chips=[0,1,2,3,4].map(c=>{const el=$('#sl'+c);return {el,tb:el.querySelector('.tb'),ring:el.querySelector('.ring'),ok:el.querySelector('.ok'),qm:el.querySelector('.qm'),dn:el.querySelector('.dn')}});
 const dms=$$('.dm').map(el=>({el,c:+el.dataset.c,s:+el.dataset.s})), cms=$$('.cm').map(el=>({el,c:+el.dataset.c}));
-const C=Dt.CELL, sx=(Dt.START[0]+.5)*C, sy=(Dt.START[1]+.5)*C;
+const C=Dt.CELL;
 function render(v){
-  const st=St(v), pOut=ez((v-Dt.tF)/.5), p=Math.max(1-ez((v-(Dt.T0-.05))/.65),pOut), on=v<Dt.tF?1:1-pOut;   // p: 1 = frame-0 layout, 0 = race layout
-  const s=lerp(1,Dt.S0,p), ox=lerp(Dt.MXR,Dt.MX0,p), oy=lerp(Dt.MYR,Dt.MY0,p), race=v>=Dt.T0&&v<Dt.tF;
-  maze.style.transform='translate('+ox.toFixed(2)+'px,'+oy.toFixed(2)+'px) scale('+s.toFixed(4)+')';
-  exm.style.transform='translate('+(Math.sin(v*5.2)*7).toFixed(1)+'px,0)'; exc.style.opacity=(.22+.16*Math.sin(v*5.2)).toFixed(3);
+  const st=St(v), pOut=ez((v-Dt.tF)/.5), on=1-pOut, race=v>=Dt.T0&&v<Dt.tF, pre=v<Dt.T0?1:Math.max(1-ez(st/5),pOut);   // pre: 1 = the dots fanned and large in the centre
+  exm.style.transform='translate('+(Math.sin(v*5.2)*4).toFixed(1)+'px,0)'; exc.style.opacity=(.22+.16*Math.sin(v*5.2)).toFixed(3);
   stc.style.opacity=(.75+.25*Math.sin(v*3.1)).toFixed(3);
-  dot0.style.opacity=v<Dt.SP[0]?1:v<Dt.SP[4]?.5:pOut; dot0.style.transform='scale('+(1+.18*Math.sin(v*6)).toFixed(3)+')';
-  const si=Math.min(Math.floor(st),Dt.S1), lead=race&&v<Dt.vEND?Dt.LEAD[si]:-1, fanw=v<Dt.T0?1:1-ez(st/5);
+  const si=Math.min(Math.floor(st),Dt.F1), fr=race&&v<Dt.vEND?Dt.FR[si]:0, rv=v>=Dt.tRV&&v<Dt.tF, rp=ez((v-Dt.tRV-.2)/1.4), rm=ez((v-Dt.tRV-1.55)/.5);
   for(let c=0;c<5;c++){
-    // chip: frame-0 row <-> status row
-    const cx=lerp(Dt.RXS[c],Dt.CXS[c],p), cy=lerp(Dt.RY,Dt.CHY,p), cs=lerp(Dt.RS,1,p), ch=chips[c];
-    const vx=Dt.VX[c], ve=Dt.VE[c], out=vx!==null&&v>=vx, okp=out?(v-vx-.45)/.4:-1;
-    ch.el.style.transform='translate('+cx.toFixed(2)+'px,'+cy.toFixed(2)+'px) scale('+(cs*(1+.3*bump(okp))).toFixed(4)+')';
-    ch.ring.style.opacity=((lead===c?1:0)*on+(c===Dt.WIN&&v>=Dt.tK?on:0)).toFixed(2); ch.ring.style.transform='scale('+(1+.06*Math.sin(v*7)).toFixed(3)+')';
+    const ch=chips[c], lead=(fr>>c)&1, win=Dt.WIN.includes(c), cx=Dt.CHX, cy=Dt.CHYS[c];
+    const vx=Dt.VX[c], out=vx!==null&&v>=vx&&v<Dt.tF, okp=out?(v-vx-.45)/.4:-1, stuck=Dt.DNF[c]&&v>=Dt.vEND&&v<Dt.tF;
+    ch.el.style.transform='scale('+(1+.25*bump(okp)+(win&&rv?.12*bump((v-Dt.tRV-1.6)/.5):0)).toFixed(4)+')';
+    ch.ring.style.opacity=((lead?1:0)+(win&&v>=Dt.tRV+1.6?on:0)).toFixed(2); ch.ring.style.transform='scale('+(1+.06*Math.sin(v*7)).toFixed(3)+')';
     ch.ok.style.opacity=(okp>0?on:0); ch.ok.style.transform='scale('+(.4+.6*ez(okp/.5)).toFixed(3)+')';
-    const stuck=Dt.DNF[c]&&v>=Dt.vEND, err=ve!==null&&v>=ve;
-    ch.qm.style.opacity=stuck?on:0; ch.qm.style.transform='scale('+(stuck?.6+.4*ez((v-Dt.vEND)/.3)+.1*Math.sin(v*5):1).toFixed(3)+')';
-    ch.xm.style.opacity=err?on:0; ch.tb.style.opacity=(1-.55*((stuck||err)?on:0)).toFixed(2);
+    ch.qm.style.opacity=stuck?on:0; ch.qm.style.transform='scale('+(stuck?.6+.4*ez((v-Dt.vEND)/.3)+.08*Math.sin(v*5):1).toFixed(3)+')';
+    ch.tb.style.opacity=(1-.55*(stuck?on:0)).toFixed(2);
     // dot
-    const n=Dt.LAST[c], k=Math.min(Math.floor(st),Math.max(0,n-1)), f=n===0?0:Math.min(1,Math.max(0,st-k)), P=Dt.P[c];
-    const gx=n===0?P[0]:lerp(P[2*k],P[2*k+2],f), gy=n===0?P[1]:lerp(P[2*k+1],P[2*k+3],f);
-    let x=ox+((gx+.5)*C+lerp(Dt.OFF[c][0],Dt.FAN[c][0],fanw))*s, y=oy+((gy+.5)*C+lerp(Dt.OFF[c][1],Dt.FAN[c][1],fanw))*s, o=v>=Dt.SP[c]?1:0, k_=s;
-    const q0=ez((v-Dt.SP[c])/.45); x=lerp(cx,x,q0); y=lerp(cy,y,q0)-70*bump(q0)*s; k_*=lerp(.5,1,q0);
+    const n=Dt.LAST[c], k=Math.min(Math.floor(st),n-1), f=Math.min(1,Math.max(0,st-k)), P=Dt.P[c];
+    const gx=lerp(P[2*k],P[2*k+2],f), gy=lerp(P[2*k+1],P[2*k+3],f);
+    let x=Dt.MX+(gx+.5)*C+lerp(Dt.OFF[c][0],Dt.FAN[c][0],pre), y=Dt.MY+(gy+.5)*C+lerp(Dt.OFF[c][1],Dt.FAN[c][1],pre), o=1, k_=lerp(1,Dt.FANS,pre);
+    const lit=v>=Dt.tF?on:ez((v-Dt.SP[c])/.25); k_*=1+.3*bump((v-Dt.SP[c])/.4);
     if(out){const q=ez((v-vx)/.6); x=lerp(x,cx,q); y=lerp(y,cy,q)-90*bump(q); o=1-ez((q-.75)/.25); k_*=lerp(1,.7,q)*(1+.5*bump((v-vx)/.3))}
-    else if(lead===c) k_*=1.12+.05*Math.sin(v*9);
-    if(race&&!out&&!err&&!stuck) k_*=1+.04*Math.sin(v*11+c*1.3);
-    const d=dots[c]; d.style.opacity=(o*on*(v>=Dt.tF?0:1)).toFixed(3); d.style.zIndex=lead===c?9:5-c;
-    d.style.transform='translate('+x.toFixed(2)+'px,'+y.toFixed(2)+'px) scale('+k_.toFixed(4)+')';
-    // trail
-    const cl=Dt.CL[c], len=n===0?0:lerp(cl[k],cl[k+1],f);
-    trs[c].style.strokeDashoffset=(cl[cl.length-1]+2-len).toFixed(1); trs[c].style.opacity=(ez((v-Dt.T0-.2)/.5)*on*(v>=Dt.tF?0:1)*.8).toFixed(3);
+    else if(lead) k_*=1.14+.05*Math.sin(v*9);
+    if(c===Dt.NM[0]&&v>=Dt.NM[1]&&v<Dt.NM[2]) k_*=1.16+.08*Math.sin(v*10);
+    if(race&&!out&&!stuck) k_*=1+.04*Math.sin(v*11+c*1.3);
+    if(v>=Dt.tF){o=pOut; x=Dt.MX+(P[0]+.5)*C+Dt.FAN[c][0]; y=Dt.MY+(P[1]+.5)*C+Dt.FAN[c][1]; k_=Dt.FANS}
+    const d=dots[c]; d.el.style.opacity=o.toFixed(3); d.el.style.zIndex=lead?9:5-c; d.dr.style.opacity=lit.toFixed(3);
+    d.el.style.transform='translate('+x.toFixed(2)+'px,'+y.toFixed(2)+'px) scale('+k_.toFixed(4)+')';
+    // trail: live during the race; in the reveal the winners' trails are drawn again and close into one line
+    const cl=Dt.CL[c], tot=cl[cl.length-1]+2, len=lerp(cl[k],cl[k+1],f), t_=trs[c];
+    let off=tot-len, op=ez((v-Dt.T0-.2)/.5)*on*.8, tx=0, ty=0, sw=5.5;
+    if(rv){ if(win){off=tot*(1-rp); op=on; sw=5.5+3*rp-1.5*rm; tx=-Dt.TOFF[c][0]*rm; ty=-Dt.TOFF[c][1]*rm} else op=lerp(.8,.13,ez((v-Dt.tRV)/.3))*on }
+    t_.style.strokeDashoffset=off.toFixed(1); t_.style.opacity=op.toFixed(3); t_.style.strokeWidth=sw.toFixed(2); t_.style.transform='translate('+tx.toFixed(2)+'px,'+ty.toFixed(2)+'px)';
     // steps to the exit, under the chip (race only)
-    const ds=Dt.DS[c][Math.min(Math.round(st),n)];
-    ch.dn.textContent=out?'':ds; ch.dn.style.opacity=(race&&!out?(1-p)*on:0).toFixed(2); ch.dn.style.color=lead===c?'#E5372B':'#0f0f0f';
+    const ds=Dt.DS[c][Math.min(Math.round(st),n)], nm=c===Dt.NM[0]&&v>=Dt.NM[1]-.3&&v<Dt.NM[2]+.4;
+    ch.dn.textContent=out?'':ds; ch.dn.style.opacity=(race&&!out&&v<Dt.tK?ez((v-Dt.T0)/.4):0).toFixed(2); ch.dn.style.color=(lead||nm)?'#E5372B':'#0f0f0f';
+    ch.dn.style.transform='scale('+(nm?1.25+.1*Math.sin(v*10):1).toFixed(3)+')';
   }
-  for(const m of dms){const q=(st-m.s)/6; m.el.style.opacity=(race&&st>=m.s?(.35+.65*(1-ez(q)))*on:0).toFixed(2)}
-  for(const m of cms){const a=v>=Dt.vEND&&v<Dt.tF; m.el.style.opacity=a?1:0; m.el.style.transform='scale('+(1+.22*Math.sin(v*6)).toFixed(3)+')'}
-  cnt.style.opacity=(race?(1-p)*on:0).toFixed(2); cnn.textContent=Math.min(Dt.MAXS,Math.round(st));
+  for(const m of dms){const q=(st-m.s)/6; m.el.style.opacity=(race&&st>=m.s&&!rv?(.35+.65*(1-ez(q))):0).toFixed(2)}
+  for(const m of cms){const a=v>=Dt.vEND&&v<Dt.tRV; m.el.style.opacity=a?1:0; m.el.style.transform='scale('+(1+.22*Math.sin(v*6)).toFixed(3)+')'}
+  cnt.style.opacity=(race&&v<Dt.tK?ez((v-Dt.T0-.2)/.4):0).toFixed(2); cnn.textContent=Math.min(Dt.MAXS,Math.round(st));
 }
 '''.replace("__DATA__", json.dumps(DATA, separators=(",", ":")))
 
 JS = re.sub(r"tl\.set\(([^,]+),\{", r"tl.set(\1,{immediateRender:false,", "\n".join(J))
 SFX.sort(key=lambda x: x["t"])
 json.dump(SFX, open(H_ + "/sfx99.json", "w"), indent=1)
-PLACEHOLDER = dict(data=PH_DATA, script=PH_SCRIPT, data_map=PH_MAP, results_file=os.path.relpath(RPATH, H_))
-if os.environ.get("SHIP") == "1" and (PH_DATA or PH_SCRIPT or STALE):
-    sys.exit(f"SHIP=1 refused: placeholder data={PH_DATA}, placeholder script={PH_SCRIPT}, estimated timeline={STALE}")
-sps = lambda a, b: round((b - a) / max(.001, v_of(b) - v_of(a)), 1) if b > a else None
-json.dump(dict(placeholder=PLACEHOLDER, estimated_timeline=STALE,
-               lines=[dict(n=n, text=LINES[n - 1], start=round(s(n), 3), end=round(e(n), 3),
-                           role=("hook" if n == 1 else "premise" if n == 2 else "rules+Go" if n == 3 else "result" if n == nRES else "send" if n == nSEND else "tomorrow" if n == nTOM else "race")) for n in range(1, NL + 1)],
-               D=D, go=T0, sources=SRC,
-               race=dict(start=T0, main_from=round(vM0, 3), main_to=round(vM1, 3), tail_to=round(vEND, 3), main_last_step=S1, max_steps=MAXS,
-                         steps_per_second=dict(normal=sps(min(20, S1), max(min(20, S1) + 1, (XSTEP[FINS[0]] - 13) if FINS else S1 - 26)),
-                                               before_first_exit=sps(max(0, XSTEP[FINS[0]] - 12), XSTEP[FINS[0]]) if FINS else None,
-                                               tail=round((MAXS - S1) / TAILD, 1) if TAIL else None),
-                         board=round(tK, 3), frame0_returns=round(tF, 3),
-                         order=[dict(place=PLACE[k], id=k, status=STATUS[k], steps=RES[k].get("exitStep"), closest=RES[k].get("closestDist"), board_text=rowtext(k)) for k in ORDER],
-                         events=[x for x in EV if x["kind"] != "dead_end"] , dead_ends={k: [dict(step=i, v=round(v_of(i), 3)) for i, _, _ in DEADS[k]] for k in IDS}),
-               headlines_draft=[dict(t=t, text=x) for t, x in sorted(HLOG)]), open(H_ + "/cues99.json", "w"), indent=1)
+if os.environ.get("SHIP") == "1": sys.exit("SHIP=1 refused: line 10 (the tomorrow line) is not confirmed; remove the banner and this guard once it is")
+sps = lambda a, b: round((b - a) / max(.001, VT[b] - VT[a]), 1)
+ROLE = {1: "hook", 2: "premise", 3: "rules+Go", 8: "tie reveal", 9: "setup (board)", 10: "tomorrow (UNCONFIRMED)"}
+json.dump(dict(placeholder=dict(data=False, script=False, line10="UNCONFIRMED: red banner on screen during line 10", results_file=os.path.relpath(RPATH, H_)),
+               lines=[dict(n=n, text=LINES[n - 1], start=round(s(n), 3), end=round(e(n), 3), role=ROLE.get(n, "race")) for n in range(1, NL + 1)],
+               D=D, go=T0, sources=SRC, targets={str(n): TG[n] for n in range(4, NL + 1)}, drift_vs_targets=DRIFT, lines_on_targets=ONTG,
+               race=dict(anchors=[dict(v=round(v, 3), step=st_) for v, st_ in ANCH], race_only_s=RACEONLY,
+                         steps_per_second={f"{a}-{b}": sps(a, b) for (_, a), (_, b) in zip(ANCH, ANCH[1:])},
+                         first_exit=round(vX, 3), end=round(vEND, 3), reveal=round(tRV, 3), board=round(tK, 3), frame0_returns=round(tF, 3),
+                         order=[dict(place=RES[k]["place"], id=k, status=STATUS[k], steps=RES[k].get("exitStep"), closest=RES[k].get("closestDist"), board_text=rowtext(k)) for k in ORDER],
+                         events=[x for x in EV if x["kind"] != "dead_end"], dead_ends={k: [dict(step=i, v=round(v_of(i), 3)) for i, _, _ in DEADS[k]] for k in IDS}),
+               facts=FACTS, headlines=[dict(t=t, text=x) for t, x in sorted(HLOG)]), open(H_ + "/cues99.json", "w"), indent=1)
 html = f'''<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
 <style>
@@ -632,18 +570,16 @@ window.__reel={{duration:D,seek:t=>{{tl.seek(t)}}}};
 </script></body></html>'''
 os.makedirs(H_ + "/out", exist_ok=True)
 open(H_ + "/hf/index.html", "w").write(html)
-say(f"results: {os.path.relpath(RPATH, H_)}  PLACEHOLDER data={PH_DATA} script={PH_SCRIPT}  estimated timeline={STALE}" + (f"  slots: {PH_MAP}" if PH_DATA else ""))
-say(f"D={D} go={T0} ({SRC['go']}) lines={NL} (race lines {RACE_LINES}) js={len(J)} sfx={len(SFX)}")
+say(f"results: {os.path.relpath(RPATH, H_)} (real)  D={D} go={T0}  lines on targets (take not padded)={ONTG}  js={len(J)} sfx={len(SFX)}")
 say("lines: " + "  ".join(f"{n}:{s(n):.2f}-{e(n):.2f}" for n in range(1, NL + 1)))
-say(f"race clock: steps 0-{S1} over video {vM0:.2f}-{vM1:.2f}" + (f", then steps {S1}-{MAXS} fast until {vEND:.2f}" if TAIL else "") + f"; board {tK:.2f}; frame 0 back {tF:.2f}")
-say("order: " + "  ".join(f"{PLACE[k]}.{k}({rowtext(k)})" for k in ORDER))
-cnt_ = {}
-for x in EV: cnt_[x["kind"]] = cnt_.get(x["kind"], 0) + 1
-say("events: " + ", ".join(f"{k} x{v}" for k, v in sorted(cnt_.items())))
+say("targets (line starts for voice/stitch.py): " + "  ".join(f"{n}:{TG[n]:.2f}" for n in range(4, NL + 1)) + "   drift of the take on disk: " + "  ".join(f"{n}:{DRIFT[n]:+.2f}" for n in DRIFT))
+say("race clock anchors: " + "  ".join(f"step {st_}@{v:.2f}" for v, st_ in ANCH) + "   steps/s: " + ", ".join(f"{a}-{b}: {sps(a, b)}" for (_, a), (_, b) in zip(ANCH, ANCH[1:])))
+say("word sources: " + ", ".join(f"{k}={v}" for k, v in SRC.items()))
+for f in FACTS: say("  " + f)
+say("front runs (strict): " + "  ".join(f"{a}-{b}:{'+'.join(f)}" for a, b, f in runs))
 for x in EV:
-    if x["kind"] != "dead_end": say(f"  {x['v']:6.2f}s step {x['step']:3d} {x['kind']:12s} {x['id']}" + (f" closest {x['closest']}" if x.get("closest") else ""))
-hs = sorted(HLOG); gaps = [(round(hs[i + 1][0] - hs[i][0], 2), hs[i][1]) for i in range(len(hs) - 1) if hs[i + 1][0] - hs[i][0] > 2.5 and hs[i][0] >= T0]
-say("headlines (draft): " + " | ".join(f"{t:.2f} {x}" for t, x in hs))
-if gaps: say("NOTE headline holds over 2.5 s (the stage still moves; hang a spoken line or pick another event here): " + str(gaps))
-if vM1 - vM0 < 6: say("NOTE: the race lines leave under 6 s for the race; the dots will move very fast.")
+    if x["kind"] not in ("dead_end", "front"): say(f"  {x['v']:6.2f}s step {x['step']:3d} {x['kind']:22s} {x['id']}" + (f" closest {x['closest']}" if x.get("closest") else ""))
+hs = sorted(HLOG); say("headlines: " + " | ".join(f"{t:.2f} {x}" for t, x in hs))
+gaps = [(round(hs[i + 1][0] - hs[i][0], 2), hs[i][1]) for i in range(len(hs) - 1) if hs[i + 1][0] - hs[i][0] > 2.5]
+if gaps: say("NOTE headline holds over 2.5 s (the stage moves under them): " + str(gaps))
 open(H_ + "/out/build.log", "w").write("\n".join(LOG) + "\n")

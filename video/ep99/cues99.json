@@ -1,391 +1,495 @@
 {
  "placeholder": {
-  "data": true,
-  "script": true,
-  "data_map": {
-   "chatgpt": "careful",
-   "gemini": "naive",
-   "claude": "careful",
-   "meta": "naive",
-   "perplexity": "careful"
-  },
-  "results_file": "arena/ref-maze-race.json"
+  "data": false,
+  "script": false,
+  "line10": "UNCONFIRMED: red banner on screen during line 10",
+  "results_file": "arena/maze-race.json"
  },
- "estimated_timeline": true,
  "lines": [
   {
    "n": 1,
-   "text": "PLACEHOLDER HOOK: five AIs, one maze, not all get out.",
-   "start": 0.08,
-   "end": 2.28,
+   "text": "Lost in a maze, five AIs, no map.",
+   "start": 0.04,
+   "end": 2.16,
    "role": "hook"
   },
   {
    "n": 2,
-   "text": "PLACEHOLDER: same job for all five, get the dot out of the maze.",
-   "start": 2.4,
-   "end": 5.58,
+   "text": "I ask each AI to guide one dot out.",
+   "start": 2.35,
+   "end": 4.32,
    "role": "premise"
   },
   {
    "n": 3,
-   "text": "PLACEHOLDER: no map, five hundred steps. Go!",
-   "start": 5.7,
-   "end": 7.9,
+   "text": "None of them can see the maze. Go!",
+   "start": 4.51,
+   "end": 6.34,
    "role": "rules+Go"
   },
   {
    "n": 4,
-   "text": "PLACEHOLDER race line one, on a real event.",
-   "start": 8.02,
-   "end": 10.92,
+   "text": "Perplexity is stuck at the start!",
+   "start": 6.58,
+   "end": 8.79,
    "role": "race"
   },
   {
    "n": 5,
-   "text": "PLACEHOLDER race line two, on a real event.",
-   "start": 11.04,
-   "end": 13.94,
+   "text": "ChatGPT goes the wrong way. Claude leads!",
+   "start": 8.98,
+   "end": 11.31,
    "role": "race"
   },
   {
    "n": 6,
-   "text": "PLACEHOLDER race line three, on a real event.",
-   "start": 14.06,
-   "end": 16.96,
+   "text": "Two dots are out, on the same step!",
+   "start": 14.86,
+   "end": 16.56,
    "role": "race"
   },
   {
    "n": 7,
-   "text": "PLACEHOLDER result line, the winner is named here.",
-   "start": 17.08,
-   "end": 19.63,
-   "role": "result"
+   "text": "Claude turns back ten steps short, then makes it. ChatGPT walks in circles.",
+   "start": 16.75,
+   "end": 20.63,
+   "role": "race"
   },
   {
    "n": 8,
-   "text": "PLACEHOLDER: send it to a friend.",
-   "start": 19.75,
-   "end": 21.53,
-   "role": "send"
+   "text": "Gemini and Meta AI tie. Same path, every step.",
+   "start": 20.84,
+   "end": 23.71,
+   "role": "tie reveal"
   },
   {
    "n": 9,
-   "text": "PLACEHOLDER tomorrow line.",
-   "start": 21.65,
-   "end": 23.12,
-   "role": "tomorrow"
+   "text": "The setup's in the link in bio.",
+   "start": 23.9,
+   "end": 25.71,
+   "role": "setup (board)"
+  },
+  {
+   "n": 10,
+   "text": "Tomorrow, a free tool says it fixes Claude Code. Follow, so you see if it works.",
+   "start": 25.9,
+   "end": 29.7,
+   "role": "tomorrow (UNCONFIRMED)"
   }
  ],
- "D": 23.52,
- "go": 7.592,
+ "D": 30.1,
+ "go": 5.98,
  "sources": {
-  "go": "ESTIMATE (line fraction)"
+  "go": "words.json",
+  "claude(5)": "words.json",
+  "short": "words.json",
+  "makes": "words.json",
+  "chatgpt(7)": "words.json",
+  "see": "words.json"
  },
+ "targets": {
+  "4": 6.58,
+  "5": 8.91,
+  "6": 14.86,
+  "7": 16.71,
+  "8": 20.84,
+  "9": 23.86,
+  "10": 25.86
+ },
+ "drift_vs_targets": {
+  "4": 0.0,
+  "5": 0.07,
+  "6": 0.0,
+  "7": 0.04,
+  "8": 0.0,
+  "9": 0.04,
+  "10": 0.04
+ },
+ "lines_on_targets": false,
  "race": {
-  "start": 7.592,
-  "main_from": 7.842,
-  "main_to": 15.63,
-  "tail_to": 16.73,
-  "main_last_step": 183,
-  "max_steps": 500,
+  "anchors": [
+   {
+    "v": 6.13,
+    "step": 0
+   },
+   {
+    "v": 8.98,
+    "step": 29
+   },
+   {
+    "v": 11.51,
+    "step": 44
+   },
+   {
+    "v": 14.74,
+    "step": 117
+   },
+   {
+    "v": 16.75,
+    "step": 118
+   },
+   {
+    "v": 17.98,
+    "step": 129
+   },
+   {
+    "v": 18.86,
+    "step": 171
+   },
+   {
+    "v": 20.58,
+    "step": 500
+   }
+  ],
+  "race_only_s": 3.3,
   "steps_per_second": {
-   "normal": 27.8,
-   "before_first_exit": 8.7,
-   "tail": 288.2
+   "0-29": 10.2,
+   "29-44": 5.9,
+   "44-117": 22.6,
+   "117-118": 0.5,
+   "118-129": 8.9,
+   "129-171": 47.7,
+   "171-500": 191.3
   },
-  "board": 17.08,
-  "frame0_returns": 22.94,
+  "first_exit": 14.74,
+  "end": 20.58,
+  "reveal": 20.84,
+  "board": 23.9,
+  "frame0_returns": 29.52,
   "order": [
    {
     "place": 1,
-    "id": "chatgpt",
+    "id": "gemini",
     "status": "exit",
-    "steps": 183,
+    "steps": 117,
     "closest": 0,
-    "board_text": "183 steps"
+    "board_text": "out in 117 steps"
    },
    {
     "place": 2,
-    "id": "claude",
+    "id": "meta",
     "status": "exit",
-    "steps": 183,
+    "steps": 117,
     "closest": 0,
-    "board_text": "183 steps"
+    "board_text": "out in 117 steps, same path"
    },
    {
     "place": 3,
-    "id": "perplexity",
+    "id": "claude",
     "status": "exit",
-    "steps": 183,
+    "steps": 171,
     "closest": 0,
-    "board_text": "183 steps"
+    "board_text": "out in 171 steps"
    },
    {
     "place": 4,
-    "id": "gemini",
+    "id": "chatgpt",
     "status": "dnf",
     "steps": null,
-    "closest": 86,
-    "board_text": "lost, 86 steps away"
+    "closest": 52,
+    "board_text": "lost, closest 52 steps away"
    },
    {
     "place": 5,
-    "id": "meta",
+    "id": "perplexity",
     "status": "dnf",
     "steps": null,
     "closest": 86,
-    "board_text": "lost, 86 steps away"
+    "board_text": "stuck by the start"
    }
   ],
   "events": [
    {
-    "kind": "first_leader",
+    "kind": "front",
+    "ids": [
+     "chatgpt",
+     "gemini",
+     "claude",
+     "meta"
+    ],
     "id": "chatgpt",
-    "step": 6,
-    "v": 8.231
+    "step": 4,
+    "until": 7,
+    "steps_to_exit": 85,
+    "v": 6.822
    },
    {
-    "kind": "lead_change",
+    "kind": "paces_2_cells",
+    "id": "perplexity",
+    "step": 5,
+    "until": 500,
+    "v": 6.954
+   },
+   {
+    "kind": "front",
+    "ids": [
+     "gemini",
+     "claude",
+     "meta"
+    ],
     "id": "gemini",
-    "step": 17,
-    "was": "chatgpt",
-    "steps_to_exit": 86,
-    "v": 8.63
+    "step": 8,
+    "until": 28,
+    "steps_to_exit": 81,
+    "v": 7.25
    },
    {
-    "kind": "lead_change",
-    "id": "chatgpt",
-    "step": 62,
-    "was": "gemini",
-    "steps_to_exit": 87,
-    "v": 10.249
+    "kind": "front",
+    "ids": [
+     "claude"
+    ],
+    "id": "claude",
+    "step": 29,
+    "until": 44,
+    "steps_to_exit": 68,
+    "v": 8.98
    },
    {
-    "kind": "halfway",
-    "id": "chatgpt",
-    "step": 119,
-    "steps_to_exit": 44,
-    "v": 12.299
+    "kind": "front",
+    "ids": [
+     "gemini",
+     "meta"
+    ],
+    "id": "gemini",
+    "step": 46,
+    "until": 55,
+    "steps_to_exit": 53,
+    "v": 11.577
    },
    {
-    "kind": "final_stretch",
-    "id": "chatgpt",
-    "step": 171,
-    "steps_to_exit": 12,
-    "v": 14.249
+    "kind": "front",
+    "ids": [
+     "claude"
+    ],
+    "id": "claude",
+    "step": 57,
+    "until": 59,
+    "steps_to_exit": 48,
+    "v": 11.943
+   },
+   {
+    "kind": "front",
+    "ids": [
+     "gemini",
+     "meta"
+    ],
+    "id": "gemini",
+    "step": 61,
+    "until": 116,
+    "steps_to_exit": 46,
+    "v": 12.076
    },
    {
     "kind": "exit",
-    "id": "chatgpt",
-    "step": 183,
+    "id": "gemini",
+    "step": 117,
     "place": 1,
-    "v": 15.63
+    "v": 14.74
+   },
+   {
+    "kind": "exit",
+    "id": "meta",
+    "step": 117,
+    "place": 1,
+    "v": 14.74
+   },
+   {
+    "kind": "near_miss",
+    "id": "claude",
+    "step": 117,
+    "closest": 10,
+    "back_to": 22,
+    "back_at": 129,
+    "cell": [
+     5,
+     18
+    ],
+    "v": 14.74
+   },
+   {
+    "kind": "circles_after_closest",
+    "id": "chatgpt",
+    "step": 125,
+    "cells_after": 29,
+    "steps_after": 375,
+    "v": 17.533
+   },
+   {
+    "kind": "paces_2_cells",
+    "id": "chatgpt",
+    "step": 152,
+    "until": 500,
+    "v": 18.462
    },
    {
     "kind": "exit",
     "id": "claude",
-    "step": 183,
-    "place": 2,
-    "v": 15.63
-   },
-   {
-    "kind": "exit",
-    "id": "perplexity",
-    "step": 183,
+    "step": 171,
     "place": 3,
-    "v": 15.63
+    "v": 18.86
    },
    {
     "kind": "dnf_freeze",
-    "id": "gemini",
+    "id": "chatgpt",
+    "step": 500,
+    "closest": 52,
+    "closestAt": [
+     5,
+     2
+    ],
+    "closestStep": 125,
+    "v": 20.58
+   },
+   {
+    "kind": "dnf_freeze",
+    "id": "perplexity",
     "step": 500,
     "closest": 86,
     "closestAt": [
      11,
      12
     ],
-    "v": 16.73
-   },
-   {
-    "kind": "dnf_freeze",
-    "id": "meta",
-    "step": 500,
-    "closest": 86,
-    "closestAt": [
-     11,
-     12
-    ],
-    "v": 16.73
+    "closestStep": 3,
+    "v": 20.58
    }
   ],
   "dead_ends": {
    "chatgpt": [
     {
-     "step": 55,
-     "v": 9.997
+     "step": 13,
+     "v": 7.662
     },
     {
-     "step": 60,
-     "v": 10.177
-    },
-    {
-     "step": 94,
-     "v": 11.4
-    },
-    {
-     "step": 123,
-     "v": 12.443
-    },
-    {
-     "step": 125,
-     "v": 12.515
-    },
-    {
-     "step": 132,
-     "v": 12.767
-    },
-    {
-     "step": 143,
-     "v": 13.162
-    },
-    {
-     "step": 170,
-     "v": 14.134
-    },
-    {
-     "step": 177,
-     "v": 14.939
+     "step": 88,
+     "v": 12.975
     }
    ],
-   "gemini": [],
+   "gemini": [
+    {
+     "step": 57,
+     "v": 11.943
+    },
+    {
+     "step": 67,
+     "v": 12.276
+    },
+    {
+     "step": 92,
+     "v": 13.108
+    }
+   ],
    "claude": [
     {
-     "step": 55,
-     "v": 9.997
+     "step": 48,
+     "v": 11.643
     },
     {
-     "step": 60,
-     "v": 10.177
+     "step": 63,
+     "v": 12.143
     },
     {
-     "step": 94,
-     "v": 11.4
+     "step": 73,
+     "v": 12.476
     },
     {
-     "step": 123,
-     "v": 12.443
+     "step": 86,
+     "v": 12.909
     },
     {
-     "step": 125,
-     "v": 12.515
+     "step": 108,
+     "v": 13.841
     },
     {
-     "step": 132,
-     "v": 12.767
+     "step": 130,
+     "v": 18.001
     },
     {
      "step": 143,
-     "v": 13.162
+     "v": 18.273
     },
     {
-     "step": 170,
-     "v": 14.134
-    },
-    {
-     "step": 177,
-     "v": 14.939
+     "step": 149,
+     "v": 18.399
     }
    ],
-   "meta": [],
-   "perplexity": [
+   "meta": [
     {
-     "step": 55,
-     "v": 9.997
+     "step": 57,
+     "v": 11.943
     },
     {
-     "step": 60,
-     "v": 10.177
+     "step": 67,
+     "v": 12.276
     },
     {
-     "step": 94,
-     "v": 11.4
-    },
-    {
-     "step": 123,
-     "v": 12.443
-    },
-    {
-     "step": 125,
-     "v": 12.515
-    },
-    {
-     "step": 132,
-     "v": 12.767
-    },
-    {
-     "step": 143,
-     "v": 13.162
-    },
-    {
-     "step": 170,
-     "v": 14.134
-    },
-    {
-     "step": 177,
-     "v": 14.939
+     "step": 92,
+     "v": 13.108
     }
-   ]
+   ],
+   "perplexity": []
   }
  },
- "headlines_draft": [
+ "facts": [
+  "OK   line 4 'Perplexity is stuck at the start': it only paces 2 cells from step 5 to step 500",
+  "OK   line 5 'ChatGPT goes the wrong way': its way out grows from 76 steps (step 29) to 82 (step 39); it is 102 at step 61",
+  "OK   line 5 'Claude leads': Claude is the only front dot on steps 39-43 (spoken there); data: alone in front on steps 29-44, 57-59",
+  "OK   lines 6 and 8: Gemini and Meta AI leave on the same step (117) with the identical path",
+  "OK   headline 'two dots take the lead': Gemini and Meta AI are the front (same cell) on steps 61-116",
+  "OK   line 7 'Claude turns back ten steps short': 10 steps from the exit at step 117, back to 22 by step 129, out at step 171",
+  "OK   line 7 'ChatGPT walks in circles': after its closest point (step 125, 52 away) it walks 29 cells for 375 steps, and only 2 cells from step 152"
+ ],
+ "headlines": [
   {
    "t": 0,
-   "text": "FIVE AIs. ONE MAZE."
+   "text": "LOST IN A MAZE. / FIVE AIs. NO MAP."
   },
   {
-   "t": 2.4,
-   "text": "ONE JOB: GET OUT."
+   "t": 2.35,
+   "text": "SAME REQUEST / FOR EACH AI"
   },
   {
-   "t": 5.7,
-   "text": "NO MAP."
+   "t": 4.51,
+   "text": "THEY CAN&rsquo;T SEE THE MAZE / pick one before it starts"
   },
   {
-   "t": 6.62,
-   "text": "500 STEPS."
+   "t": 6.58,
+   "text": "PERPLEXITY: STUCK"
   },
   {
-   "t": 8.21,
-   "text": "FIND THE EXIT"
+   "t": 8.98,
+   "text": "CHATGPT: WRONG WAY"
   },
   {
-   "t": 10.25,
-   "text": "CHATGPT LEADS NOW"
+   "t": 10.7,
+   "text": "CLAUDE LEADS"
   },
   {
-   "t": 12.3,
-   "text": "HALFWAY THERE"
+   "t": 12.08,
+   "text": "TWO DOTS TAKE THE LEAD"
   },
   {
-   "t": 14.25,
-   "text": "12 STEPS TO GO..."
+   "t": 14.74,
+   "text": "TWO OUT. SAME STEP."
   },
   {
-   "t": 15.63,
-   "text": "CHATGPT IS OUT!"
+   "t": 16.75,
+   "text": "CLAUDE: 10 STEPS SHORT... / ...OUT IN 171"
   },
   {
-   "t": 17.08,
-   "text": "CHATGPT WINS"
+   "t": 19.46,
+   "text": "CHATGPT: IN CIRCLES"
   },
   {
-   "t": 19.75,
-   "text": "SEND IT TO A FRIEND"
+   "t": 20.84,
+   "text": "SAME PATH. EVERY STEP."
   },
   {
-   "t": 21.65,
-   "text": "NEXT: [PLACEHOLDER]"
+   "t": 23.9,
+   "text": "THE REQUEST: LINK IN BIO"
+  },
+  {
+   "t": 25.9,
+   "text": "TOMORROW: A CLAUDE CODE FIX?"
   }
  ]
 }
