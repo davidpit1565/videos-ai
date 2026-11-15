@@ -208,7 +208,7 @@ SC[5] = f'''<svg id="gsv" viewBox="0 0 950 520" width="950" height="520" style="
 </svg>''' + "".join(f'<div class="nl" style="left:{65 + x - 100}px;top:{495 + y + 40}px">{FILES[i]}</div>' for i, (x, y) in enumerate(NODE)) + \
         f'<div class="bdg" id="walk" style="left:{65 + NODE[0][0] - 42}px;top:{495 + NODE[0][1] - 42}px">{clg(52)}</div>'
 # 6 the big number and where it comes from
-SC[6] = f'''<div id="big70"><i>&ldquo;</i>70x<i>&rdquo;</i></div><div class="stamp big" id="bc" style="left:{round(985 - (tw("BEST CASE") * .92 + .05 * 92 * 9 + 72)) - 34}px;top:742px">BEST CASE</div>
+SC[6] = f'''<div id="big70"><i>&ldquo;</i>70x<i>&rdquo;</i></div><div class="stamp big" id="bc" style="left:{round(985 - (tw("BEST CASE") * .92 + .05 * 92 * 9 + 72)) - 34}px;top:722px">BEST CASE</div>
 <div class="sub1" id="s6a" style="top:893px">ONE EXAMPLE &middot; ABOUT 52 FILES</div><div class="sub2" id="s6b" style="top:949px">compared with reading every file at once</div>''' + \
         srcline("source: the project's own early example, via roborhythms.com, read 15.11.2026", 1002, size=24)
 # 7 other people's tests
@@ -229,7 +229,7 @@ SC[8] = srcline("usage: claude.com/pricing (&ldquo;5x Pro usage&rdquo;), read 15
 <div id="call" style="left:65px;top:{BASE - U - EXT - 60}px">best test<br>we found</div>
 <svg id="carr" viewBox="0 0 60 40" style="left:262px;top:{BASE - U - EXT - 22}px"><path d="M4 8 C22 4 40 12 54 30 M54 30 L36 28 M54 30 L52 12" fill="none" stroke="{INK}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 <div class="bl" style="left:{PX - 40}px;top:{BASE + 14}px">PRO $20</div><div class="bl" style="left:{MX_ - 40}px;top:{BASE + 14}px">MAX $100</div>
-<div class="stamp big nc" id="nc" style="left:128px;top:728px">NOT CLOSE</div>'''
+<div class="stamp big nc" id="nc" style="left:128px;top:712px">NOT CLOSE</div>'''
 # 9 the saveable card (stays through line 10)
 ROWS = ["Free, open source, 148.2k stars", "&ldquo;70x&rdquo; = one best case", "Real tests: 18% fewer &hellip; 49.5% more", "Max is 5x Pro: no test comes near", "Measure your own project first"]
 SC[9] = f'<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">{gicon(66)}<span>BEFORE YOU INSTALL</span></div>' + \
@@ -298,7 +298,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .nd{opacity:0} .nd circle{fill:#fff;stroke:INK;stroke-width:6} .nd path{fill:none;stroke:INK;stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
 .nl{width:200px;text-align:center;font-weight:900;font-size:34px;line-height:40px;opacity:0;text-shadow:2px 2px 0 PAPER,-2px 2px 0 PAPER,2px -2px 0 PAPER,-2px -2px 0 PAPER}
 /* 6 */
-#big70{left:65px;top:478px;width:950px;text-align:center;font-weight:900;font-size:350px;line-height:400px;letter-spacing:-.05em;color:ORA;text-shadow:9px 9px 0 INK;white-space:nowrap;transform-origin:50% 60%}
+#big70{left:110px;top:478px;width:860px;text-align:center;font-weight:900;font-size:350px;line-height:400px;letter-spacing:-.05em;color:ORA;text-shadow:9px 9px 0 INK;white-space:nowrap;transform-origin:50% 60%}
 #big70 i{font-style:normal;font-size:200px;vertical-align:top;line-height:330px;color:INK;text-shadow:none}
 .sub1{left:65px;width:950px;text-align:center;font-weight:900;font-size:50px;line-height:54px;letter-spacing:-.01em;opacity:0;white-space:nowrap}
 .sub2{left:65px;width:950px;text-align:center;font-weight:800;font-size:40px;line-height:44px;opacity:0;white-space:nowrap}

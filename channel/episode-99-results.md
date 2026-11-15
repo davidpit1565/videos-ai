@@ -12,3 +12,6 @@ Frozen arena (hashes in `video/ep99/arena/HASH.txt`, written before any answer e
 
 Facts checked in the run: no wall bumps or invalid answers by anyone. Gemini and Meta AI path arrays are identical cell by cell (checked 15.11). Perplexity's code keeps its own position and ignores v.x/v.y (visible in its answer file); the cause of its stall was not analysed beyond that. ChatGPT's loop cause was not analysed. The Claude answer redefines `move` at the end of the file (it runs fine in the sandbox).
 Not claimed: any ranking of "intelligence"; one run, one prompt, one maze.
+
+
+David, 15.11.2026: the Claude answer came from Sonnet 5.5 (his words, no screenshot). The other four models are UNCONFIRMED.
