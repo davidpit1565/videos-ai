@@ -414,3 +414,6 @@ The "Me with Claude / Me with ChatGPT" picture got almost 7,000 views as a trial
 
 ## 15.11.2026: ep98 AI Race #1 (new format: five AIs, one request, a real race)
 David approved v12 on 15.11.2026 (after versions that failed on comprehension: the contest was not named, the premise not shown). Test: does a produced "AI contest" with a named competition and a real, checkable result reach more people than our earlier produced tests (pelican 246 as trial, 400-1,800 regular)? Prediction logged in score-calibration.md. Published as REGULAR (David's choice). Readings at 48 h and 72 h from Insights.
+
+## 15.11.2026: "Can you code without bugs for once?" picture as a 7-second zoom (trial, David)
+Pure picture (Claude chat screenshot, dark), slow zoom 100% to 115% over 7 s, anchored at the top so the text is never cut, no voice, no music (file `channel/posts/can-you-code-zoom.mp4`). Meta AI's recipe, executed with ffmpeg instead of CapCut. David posts it as a trial; not a numbered episode. Read at 24-48 h.
