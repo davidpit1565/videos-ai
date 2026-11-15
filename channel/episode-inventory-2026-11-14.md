@@ -147,3 +147,5 @@ Rules of this table: anything the repo does not say is UNKNOWN. Episodes 1-87 ar
 - Ep94 and ep90b: he does not yet know which videos these are; he will check at the office. Ask again later (ep94 = "Claude Motion" cut sent to Roni; ep90b = alternative cut of the ghost test).
 
 - Ep97 (pelican, One pelican four AIs one clear winner): TRIAL via API 14.11.2026 22:59 Belgium, shipped in studio (PR #583, #584).
+
+- Ep94 (Claude Motion): PUBLISHED regular on Instagram 15.11.2026 08:00 Belgium (via API, David's instruction): https://www.instagram.com/reel/DfwMdOqyWCT/ . Facebook posts FAILED: "Error validating access token: the session has been invalidated because the user changed their password or Facebook changed the session" (both profile and page). David must re-authorize the Facebook token in Vercel env (his action). YouTube not done.
