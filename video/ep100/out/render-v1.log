@@ -1,9 +1,0 @@
-[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
-[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
-[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
-[INFO] [Compiler] Injected deterministic @font-face rules for 3 requested font families
-[hyperframes] browserGpuMode probe → software (WebGL unavailable)
-
-real	2m30.686s
-user	3m17.081s
-sys	0m18.933s
