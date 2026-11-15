@@ -1,10 +1,10 @@
-Lost in a maze, five AIs, no map.
-I ask each AI to guide one dot out.
-None of them can see the maze. Go!
+I put five AIs in a race.
+The fastest one out wins.
+But none of them can see it. Go!
 Perplexity is stuck at the start!
 ChatGPT goes the wrong way. Claude leads!
 Two dots are out, on the same step!
 Claude turns back ten steps short, then makes it. ChatGPT walks in circles.
 Gemini and Meta AI tie. Same path, every step.
 The setup's in the link in bio.
-Tomorrow, a free tool says it fixes Claude Code. Follow, so you see if it works.
+Want the next one? Follow, and you'll see it.

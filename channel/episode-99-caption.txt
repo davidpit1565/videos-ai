@@ -1,4 +1,4 @@
-Lost in a maze, five AIs, no map. Which one would you bet on?
+I put five AIs in a race. Which one would you bet on?
 
 The test: ChatGPT, Gemini, Claude, Meta AI and Perplexity each get the same request, word for word: write the moves that guide one dot out of a maze. The AI never sees the maze, only the four sides next to the dot. Then all five dots run at once, in the same maze, and nobody touches them.
 
