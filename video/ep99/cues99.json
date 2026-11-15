@@ -1,0 +1,418 @@
+{
+ "placeholder": {
+  "data": true,
+  "script": true,
+  "data_map": {
+   "chatgpt": "ph2",
+   "gemini": "ph3",
+   "claude": "ph1",
+   "meta": "ph4",
+   "perplexity": "ph5"
+  },
+  "results_file": "../../../../../tmp/claude-0/-home-user-videos-ai/2effda64-8e71-5ab6-95b7-5d1257c9dd3f/scratchpad/ph99/ph-mixed.json"
+ },
+ "estimated_timeline": true,
+ "lines": [
+  {
+   "n": 1,
+   "text": "PLACEHOLDER HOOK: five AIs, one maze, not all get out.",
+   "start": 0.08,
+   "end": 2.28,
+   "role": "hook"
+  },
+  {
+   "n": 2,
+   "text": "PLACEHOLDER: same job for all five, get the dot out of the maze.",
+   "start": 2.4,
+   "end": 5.58,
+   "role": "premise"
+  },
+  {
+   "n": 3,
+   "text": "PLACEHOLDER: no map, five hundred steps. Go!",
+   "start": 5.7,
+   "end": 7.9,
+   "role": "rules+Go"
+  },
+  {
+   "n": 4,
+   "text": "PLACEHOLDER race line one, on a real event.",
+   "start": 8.02,
+   "end": 10.92,
+   "role": "race"
+  },
+  {
+   "n": 5,
+   "text": "PLACEHOLDER race line two, on a real event.",
+   "start": 11.04,
+   "end": 13.94,
+   "role": "race"
+  },
+  {
+   "n": 6,
+   "text": "PLACEHOLDER race line three, on a real event.",
+   "start": 14.06,
+   "end": 16.96,
+   "role": "race"
+  },
+  {
+   "n": 7,
+   "text": "PLACEHOLDER result line, the winner is named here.",
+   "start": 17.08,
+   "end": 19.63,
+   "role": "result"
+  },
+  {
+   "n": 8,
+   "text": "PLACEHOLDER: send it to a friend.",
+   "start": 19.75,
+   "end": 21.53,
+   "role": "send"
+  },
+  {
+   "n": 9,
+   "text": "PLACEHOLDER tomorrow line.",
+   "start": 21.65,
+   "end": 23.12,
+   "role": "tomorrow"
+  }
+ ],
+ "D": 23.52,
+ "go": 7.592,
+ "sources": {
+  "go": "ESTIMATE (line fraction)"
+ },
+ "race": {
+  "start": 7.592,
+  "main_from": 7.842,
+  "main_to": 15.63,
+  "tail_to": 16.73,
+  "main_last_step": 183,
+  "max_steps": 500,
+  "steps_per_second": {
+   "normal": 29.4,
+   "before_first_exit": 9.2,
+   "tail": 288.2
+  },
+  "board": 17.08,
+  "frame0_returns": 22.94,
+  "order": [
+   {
+    "place": 1,
+    "id": "chatgpt",
+    "status": "exit",
+    "steps": 129,
+    "closest": 0,
+    "board_text": "129 steps"
+   },
+   {
+    "place": 2,
+    "id": "gemini",
+    "status": "exit",
+    "steps": 139,
+    "closest": 0,
+    "board_text": "139 steps"
+   },
+   {
+    "place": 3,
+    "id": "claude",
+    "status": "exit",
+    "steps": 183,
+    "closest": 0,
+    "board_text": "183 steps"
+   },
+   {
+    "place": 4,
+    "id": "meta",
+    "status": "dnf",
+    "steps": null,
+    "closest": 25,
+    "board_text": "lost, 25 steps away"
+   },
+   {
+    "place": 5,
+    "id": "perplexity",
+    "status": "error",
+    "steps": null,
+    "closest": 86,
+    "board_text": "stopped at step 60"
+   }
+  ],
+  "events": [
+   {
+    "kind": "first_leader",
+    "id": "gemini",
+    "step": 11,
+    "v": 8.383
+   },
+   {
+    "kind": "halfway",
+    "id": "gemini",
+    "step": 59,
+    "steps_to_exit": 44,
+    "v": 10.014
+   },
+   {
+    "kind": "error_stop",
+    "id": "perplexity",
+    "step": 60,
+    "v": 10.048
+   },
+   {
+    "kind": "near_miss",
+    "id": "meta",
+    "step": 92,
+    "closest": 25,
+    "cell": [
+     0,
+     10
+    ],
+    "v": 11.136
+   },
+   {
+    "kind": "lead_change",
+    "id": "chatgpt",
+    "step": 106,
+    "was": "gemini",
+    "steps_to_exit": 23,
+    "v": 11.612
+   },
+   {
+    "kind": "final_stretch",
+    "id": "chatgpt",
+    "step": 117,
+    "steps_to_exit": 12,
+    "v": 12.061
+   },
+   {
+    "kind": "exit",
+    "id": "chatgpt",
+    "step": 129,
+    "place": 1,
+    "v": 13.366
+   },
+   {
+    "kind": "exit",
+    "id": "gemini",
+    "step": 139,
+    "place": 2,
+    "v": 13.706
+   },
+   {
+    "kind": "exit",
+    "id": "claude",
+    "step": 183,
+    "place": 3,
+    "v": 15.63
+   },
+   {
+    "kind": "dnf_freeze",
+    "id": "meta",
+    "step": 500,
+    "closest": 25,
+    "closestAt": [
+     0,
+     10
+    ],
+    "v": 16.73
+   }
+  ],
+  "dead_ends": {
+   "chatgpt": [
+    {
+     "step": 52,
+     "v": 9.776
+    },
+    {
+     "step": 81,
+     "v": 10.762
+    },
+    {
+     "step": 83,
+     "v": 10.83
+    },
+    {
+     "step": 90,
+     "v": 11.068
+    }
+   ],
+   "gemini": [
+    {
+     "step": 53,
+     "v": 9.81
+    },
+    {
+     "step": 63,
+     "v": 10.15
+    },
+    {
+     "step": 88,
+     "v": 11.0
+    },
+    {
+     "step": 106,
+     "v": 11.612
+    }
+   ],
+   "claude": [
+    {
+     "step": 55,
+     "v": 9.878
+    },
+    {
+     "step": 60,
+     "v": 10.048
+    },
+    {
+     "step": 94,
+     "v": 11.204
+    },
+    {
+     "step": 123,
+     "v": 12.713
+    },
+    {
+     "step": 125,
+     "v": 12.931
+    },
+    {
+     "step": 132,
+     "v": 13.468
+    },
+    {
+     "step": 143,
+     "v": 13.842
+    },
+    {
+     "step": 170,
+     "v": 14.76
+    },
+    {
+     "step": 177,
+     "v": 15.14
+    }
+   ],
+   "meta": [
+    {
+     "step": 13,
+     "v": 8.45
+    },
+    {
+     "step": 50,
+     "v": 9.708
+    },
+    {
+     "step": 78,
+     "v": 10.66
+    },
+    {
+     "step": 111,
+     "v": 11.782
+    },
+    {
+     "step": 113,
+     "v": 11.85
+    },
+    {
+     "step": 142,
+     "v": 13.808
+    },
+    {
+     "step": 182,
+     "v": 15.548
+    },
+    {
+     "step": 209,
+     "v": 15.72
+    },
+    {
+     "step": 246,
+     "v": 15.849
+    },
+    {
+     "step": 274,
+     "v": 15.946
+    },
+    {
+     "step": 307,
+     "v": 16.06
+    },
+    {
+     "step": 309,
+     "v": 16.067
+    },
+    {
+     "step": 338,
+     "v": 16.168
+    },
+    {
+     "step": 378,
+     "v": 16.307
+    },
+    {
+     "step": 405,
+     "v": 16.4
+    },
+    {
+     "step": 442,
+     "v": 16.529
+    },
+    {
+     "step": 470,
+     "v": 16.626
+    }
+   ],
+   "perplexity": []
+  }
+ },
+ "headlines_draft": [
+  {
+   "t": 0,
+   "text": "FIVE AIs. ONE MAZE."
+  },
+  {
+   "t": 2.4,
+   "text": "ONE JOB: GET OUT."
+  },
+  {
+   "t": 5.7,
+   "text": "NO MAP."
+  },
+  {
+   "t": 6.62,
+   "text": "500 STEPS."
+  },
+  {
+   "t": 8.21,
+   "text": "FIND THE EXIT"
+  },
+  {
+   "t": 10.05,
+   "text": "PERPLEXITY STOPS"
+  },
+  {
+   "t": 12.06,
+   "text": "12 STEPS TO GO..."
+  },
+  {
+   "t": 13.37,
+   "text": "CHATGPT IS OUT!"
+  },
+  {
+   "t": 15.63,
+   "text": "CLAUDE IS OUT TOO"
+  },
+  {
+   "t": 17.08,
+   "text": "CHATGPT WINS"
+  },
+  {
+   "t": 19.75,
+   "text": "SEND IT TO A FRIEND"
+  },
+  {
+   "t": 21.65,
+   "text": "NEXT: [PLACEHOLDER]"
+  }
+ ]
+}
