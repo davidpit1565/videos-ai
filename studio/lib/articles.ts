@@ -2627,6 +2627,39 @@ export const ARTICLES: Article[] = [
       "OpenAI and ChatGPT are OpenAI trademarks. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with OpenAI.",
     ],
   },
+  {
+    n: 98,
+    title: "Five AIs each wrote the code that drives a race car: watch the race and race your own AI",
+    standfirst:
+      "We sent ChatGPT, Gemini, Claude, Meta AI and Perplexity the same request: write the code that steers a car round a road with one hairpin. " +
+      "Each answer drove its own car, one try each, on a road and rules we locked before any answer came in. " +
+      "On this page you can replay the real race, read every answer, and race your own AI as a sixth car, in about five minutes.",
+    steps: [
+      "Scroll up to The race on this page and press Play the race. The race from the video plays again in your browser, with the same five answers, at true speed.",
+      "Under any car, click Show code. You see the exact answer that AI gave, as we received it, with nothing changed.",
+      "Scroll to The request and click Copy the request. This copies the request we sent, word for word.",
+      "Open the AI you want to test (ChatGPT, Gemini, Claude, Meta AI, Perplexity or any other) in a new tab and start a new chat. Leave the settings as they are, with no extra modes turned on.",
+      "Click in the message box, paste (Ctrl+V on Windows, Cmd+V on Mac) and send. Wait until the answer stops writing.",
+      "In the answer, click Copy on the code block. If there is no Copy button, select the whole answer with the mouse and copy it (Ctrl+C or Cmd+C). Prose around the code is fine: the page takes the code out of it.",
+      "Come back to this page, scroll to Race your own AI and click Add my AI. Paste the answer into the box and click Race.",
+      "Your car joins the same road as a sixth car (the yellow one) and the race plays from the start. If it stops, touches a wall or does not start, that is the real result of that code, and the list under the road says why.",
+      "Optional: tell your AI what went wrong (for example: the car touches the wall in the hairpin, fix it), paste the new answer and click Race again. That is a second try, so it does not compare with the one try each AI got in our race.",
+      "Optional: send this page to a friend and see whose AI drives better.",
+    ],
+    changes: [
+      "Our result (one try each, run on 14.11.2026): Claude finished 2 laps in 8.48 s, Gemini in 8.68 s, ChatGPT in 10.58 s. Meta AI's car touched the wall in the hairpin at 6.15 s. Perplexity's car got stuck in the hairpin and was still there when the race stopped at 60 s.",
+      "The road, the physics and the request were locked (and their fingerprints, sha256, written down) before any AI answered, and nothing was changed after. The race is the same every time it is run with the same answers.",
+      "Your own car runs on the same road with the same rules and time limits as the race in the video: 60 steps a second, 2 laps, a car that touches a wall stops.",
+    ],
+    limits: [
+      "One try per AI on one day. Another try, another day or another model setting can give a different answer and a different result, so this is not a ranking of the AIs.",
+      "The answers were copied from the free chat apps. We do not know for sure which model each app used that day. Perplexity was an extra car, not planned at first, and its steering code uses the same numbers as Claude's answer, so it may have been running a Claude model; we have not confirmed this.",
+      "The code you paste runs only in your browser, inside a sandbox with no access to this page and no internet. Nothing is uploaded or saved, and a reload clears it. A very slow or endless answer is stopped by a time limit.",
+      "On a very slow phone, an answer that uses almost all of its time budget could stop where it would not on a faster computer. Normal answers use a tiny fraction of the budget. Different browsers can also round tiny maths differences in their own way, so a car that only just scrapes past a wall in one browser could touch it in another.",
+      "The road on this page is the same locked road the race used; the video may show it zoomed in or turned. The physics is a simple top-down model with no skidding.",
+      "ChatGPT is OpenAI's, Gemini is Google's, Meta AI is Meta's and Perplexity is Perplexity AI's. Claude is made by Anthropic, and this channel's videos and this page are made with help from Claude. This channel is not affiliated with any of them.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

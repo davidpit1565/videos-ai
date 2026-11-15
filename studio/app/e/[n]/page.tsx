@@ -8,6 +8,7 @@ import IgEmbed from "../../ig-embed";
 import Reveal from "../../reveal";
 import ExternalIcon from "../../external-icon";
 import { SITE_URL } from "@/lib/site";
+import Race98 from "./race98";
 
 export const revalidate = 300;
 
@@ -156,6 +157,10 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
           </a>
         </p>
       ) : null}
+
+      {/* Episode 98 only: the playable race, the request and "Add my AI" (race98.tsx).
+          Its steps below point at these sections. */}
+      {n === 98 ? <Race98 /> : null}
 
       {a ? (
         <>
