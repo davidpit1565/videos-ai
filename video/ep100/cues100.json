@@ -1,0 +1,269 @@
+{
+ "placeholder": {
+  "estimated_timeline": true,
+  "line10": true,
+  "claude_code_mark": "Claude symbol + the words 'Claude Code' (no Claude Code-specific mark sourced)",
+  "screenshots": "none: drawn cards with dated numbers instead of real repo/pricing screenshots"
+ },
+ "lines": [
+  {
+   "n": 1,
+   "text": "They say this free tool killed Claude Code's token problem,",
+   "start": 0.08,
+   "end": 3.15,
+   "role": "hook: the viral claim"
+  },
+  {
+   "n": 2,
+   "text": "and your twenty-dollar plan now does hundred-dollar work.",
+   "start": 3.25,
+   "end": 6.23,
+   "role": "the money claim"
+  },
+  {
+   "n": 3,
+   "text": "Every new chat starts from zero, so Claude Code reads your files again.",
+   "start": 6.33,
+   "end": 9.97,
+   "role": "the problem (real)"
+  },
+  {
+   "n": 4,
+   "text": "The fix is Graphify, with about a hundred fifty thousand stars on GitHub.",
+   "start": 10.07,
+   "end": 13.8,
+   "role": "the tool + stars"
+  },
+  {
+   "n": 5,
+   "text": "It maps your code once, so Claude looks things up instead of rereading.",
+   "start": 13.9,
+   "end": 17.54,
+   "role": "how it works"
+  },
+  {
+   "n": 6,
+   "text": "The big claim is seventy times less token use, but only in its best case.",
+   "start": 17.64,
+   "end": 21.37,
+   "role": "reveal 1: where 70 comes from"
+  },
+  {
+   "n": 7,
+   "text": "Real tests? One saves some. One uses more.",
+   "start": 21.47,
+   "end": 23.74,
+   "role": "reveal 2: other people's tests"
+  },
+  {
+   "n": 8,
+   "text": "And the hundred-dollar plan is five times the usage. Nothing we found comes close.",
+   "start": 23.84,
+   "end": 27.99,
+   "role": "reveal 3: the money verdict"
+  },
+  {
+   "n": 9,
+   "text": "The setup's in the link in bio.",
+   "start": 28.09,
+   "end": 29.85,
+   "role": "saveable card + link in bio"
+  },
+  {
+   "n": 10,
+   "text": "Tomorrow, five AIs face a maze. Follow, so you see who gets lost.",
+   "start": 29.95,
+   "end": 33.3,
+   "role": "tomorrow (PLACEHOLDER)"
+  }
+ ],
+ "D": 33.7,
+ "frame0_returns": 33.12,
+ "sync": {
+  "killed": {
+   "t": 1.369,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "now": {
+   "t": 4.502,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "so": {
+   "t": 8.004,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "about": {
+   "t": 11.338,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "once": {
+   "t": 14.992,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "looks": {
+   "t": 15.938,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "but": {
+   "t": 20.102,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "one_saves": {
+   "t": 22.151,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "one_uses": {
+   "t": 22.968,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "five": {
+   "t": 25.251,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "nothing": {
+   "t": 26.413,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "close": {
+   "t": 27.575,
+   "source": "ESTIMATE (line fraction)"
+  }
+ },
+ "usage_bar": {
+  "note": "ILLUSTRATION, tagged on screen; '?' from line 7 on; hidden in line 8",
+  "keyframes": [
+   [
+    0,
+    100
+   ],
+   [
+    0.25,
+    100
+   ],
+   [
+    1.289,
+    31
+   ],
+   [
+    2.069,
+    100
+   ],
+   [
+    7.904,
+    100
+   ],
+   [
+    10.304,
+    17
+   ],
+   [
+    14.4,
+    17
+   ],
+   [
+    17.14,
+    97
+   ],
+   [
+    20.382,
+    97
+   ],
+   [
+    20.702,
+    78
+   ],
+   [
+    21.47,
+    70
+   ]
+  ]
+ },
+ "numbers_on_screen": [
+  {
+   "text": "70x (as the viral claim, in quote marks)",
+   "source": "the viral posts; the project's earlier worked example was 71.5x"
+  },
+  {
+   "text": "about 52 files, compared with reading every file",
+   "source": "verify file section 2 (pyshine.com, themenonlab.blog, roborhythms.com)"
+  },
+  {
+   "text": "Pro $20 a month, Max $100 a month, Max = 5x Pro usage",
+   "source": "claude.com/pricing, read 15.11.2026"
+  },
+  {
+   "text": "148.2k stars",
+   "source": "github.com/Graphify-Labs/graphify repo page, 15.11.2026"
+  },
+  {
+   "text": "18% fewer tokens, $5.16 to $4.29, one YouTube run (The Gray Cat)",
+   "source": "graphify.com/blog/reduce-claude-code-token-usage"
+  },
+  {
+   "text": "+49.5% input tokens, FastAPI, 11 questions (Constantin Ponfick)",
+   "source": "same Graphify blog post"
+  },
+  {
+   "text": "GitHub issue #985: no savings on common queries (a user's report)",
+   "source": "verify file section 5"
+  },
+  {
+   "text": "hatched slice on the Pro bar = 1.22x",
+   "source": "OUR ARITHMETIC: 1 / (1 - 0.18); not a measurement"
+  }
+ ],
+ "headlines_draft": [
+  {
+   "t": 0,
+   "text": "&ldquo;70x FEWER TOKENS&rdquo;"
+  },
+  {
+   "t": 3.25,
+   "text": "&ldquo;$20 DOES $100 WORK&rdquo;"
+  },
+  {
+   "t": 6.33,
+   "text": "NEW CHAT = FROM ZERO"
+  },
+  {
+   "t": 8.0,
+   "text": "READS YOUR FILES AGAIN"
+  },
+  {
+   "t": 10.07,
+   "text": "THE TOOL: GRAPHIFY"
+  },
+  {
+   "t": 13.9,
+   "text": "MAPS YOUR CODE ONCE"
+  },
+  {
+   "t": 17.64,
+   "text": "&ldquo;70 TIMES LESS&rdquo;"
+  },
+  {
+   "t": 20.1,
+   "text": "ONLY IN ITS BEST CASE"
+  },
+  {
+   "t": 21.47,
+   "text": "REAL TESTS:"
+  },
+  {
+   "t": 23.84,
+   "text": "MAX = 5x PRO USAGE"
+  },
+  {
+   "t": 26.41,
+   "text": "NOTHING COMES CLOSE"
+  },
+  {
+   "t": 28.09,
+   "text": "SETUP: LINK IN BIO"
+  },
+  {
+   "t": 29.95,
+   "text": "TOMORROW: [PLACEHOLDER]"
+  }
+ ]
+}

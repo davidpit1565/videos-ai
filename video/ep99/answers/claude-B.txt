@@ -1,0 +1,136 @@
+const _m = {
+  visits: new Map(),
+  walls: new Set(),
+  last: null,
+  px: null,
+  py: null
+};
+
+function move(v) {
+  const D = {
+    up: [0, -1],
+    down: [0, 1],
+    left: [-1, 0],
+    right: [1, 0]
+  };
+  const names = ["up", "down", "left", "right"];
+  const key = (x, y) => x + "," + y;
+
+  // If the last move did not change position, it was blocked: record the wall.
+  if (_m.last !== null && _m.px === v.x && _m.py === v.y) {
+    const d = D[_m.last];
+    _m.walls.add(key(v.x, v.y) + ">" + _m.last);
+    _m.walls.add(key(v.x + d[0], v.y + d[1]) + ">" + opposite(_m.last));
+  }
+
+  // Take an immediate exit if one is adjacent.
+  for (const n of names) {
+    if (v[n] === "exit") {
+      _m.last = n;
+      _m.px = v.x;
+      _m.py = v.y;
+      return n;
+    }
+  }
+
+  const here = key(v.x, v.y);
+  _m.visits.set(here, (_m.visits.get(here) || 0) + 1);
+
+  // Candidate moves: open sides, scored by how often the target was visited.
+  // Unvisited cells get priority; ties broken by preferring directions that
+  // head toward the nearest outer edge (a mild heuristic for finding the exit).
+  const cands = [];
+  for (const n of names) {
+    if (v[n] !== "open") continue;
+    const nx = v.x + D[n][0];
+    const ny = v.y + D[n][1];
+    const c = _m.visits.get(key(nx, ny)) || 0;
+    cands.push({ n, c, nx, ny });
+  }
+
+  let choice;
+  if (cands.length === 0) {
+    choice = "up";
+  } else {
+    const unvisited = cands.filter(o => o.c === 0);
+    if (unvisited.length > 0) {
+      // Prefer the unvisited neighbour that keeps going straight, else any.
+      const straight = unvisited.find(o => o.n === _m.last);
+      choice = (straight || unvisited[0]).n;
+    } else {
+      // All neighbours visited: use BFS over known-open graph to reach the
+      // nearest cell that still has an unexplored open side.
+      const path = bfsToFrontier(v.x, v.y);
+      if (path) {
+        choice = path;
+      } else {
+        cands.sort((a, b) => a.c - b.c);
+        choice = cands[0].n;
+      }
+    }
+  }
+
+  _m.last = choice;
+  _m.px = v.x;
+  _m.py = v.y;
+  return choice;
+
+  function opposite(n) {
+    return n === "up" ? "down" : n === "down" ? "up" : n === "left" ? "right" : "left";
+  }
+
+  // Record of open edges discovered so far is stored lazily via _m.edges.
+  function bfsToFrontier(sx, sy) {
+    if (!_m.edges) return null;
+    const startKey = key(sx, sy);
+    const seen = new Set([startKey]);
+    const queue = [[sx, sy, null]];
+    while (queue.length) {
+      const [x, y, first] = queue.shift();
+      const k = key(x, y);
+      const info = _m.edges.get(k);
+      if (info && k !== startKey && info.frontier) return first;
+      if (!info) continue;
+      for (const n of names) {
+        if (!info.open.has(n)) continue;
+        const nx = x + D[n][0];
+        const ny = y + D[n][1];
+        const nk = key(nx, ny);
+        if (seen.has(nk)) continue;
+        seen.add(nk);
+        queue.push([nx, ny, first || n]);
+      }
+    }
+    return null;
+  }
+}
+
+// Wrap move so every call also records the open edges of the current cell.
+// This keeps the BFS graph up to date before the decision logic runs.
+const _origMove = move;
+move = function (v) {
+  if (!_m.edges) _m.edges = new Map();
+  const names = ["up", "down", "left", "right"];
+  const D = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
+  const key = (x, y) => x + "," + y;
+
+  const open = new Set();
+  for (const n of names) if (v[n] === "open") open.add(n);
+  _m.edges.set(key(v.x, v.y), { open, frontier: false });
+
+  // Update frontier flags: a cell is a frontier if any open neighbour is unvisited.
+  for (const [k, info] of _m.edges) {
+    const [cx, cy] = k.split(",").map(Number);
+    let f = false;
+    for (const n of info.open) {
+      const nk = key(cx + D[n][0], cy + D[n][1]);
+      if (!_m.visits.has(nk) && !(nk === key(v.x, v.y))) {
+        f = true;
+        break;
+      }
+    }
+    info.frontier = f;
+  }
+
+  return _origMove(v);
+};
