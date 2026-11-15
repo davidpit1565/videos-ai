@@ -1,0 +1,20 @@
+70x more Claude Code? The viral Graphify claim, checked
+Viral posts say a free tool, Graphify, cuts Claude Code tokens up to 70 times and makes the $20 Claude plan do the work of the $100 plan. We checked the public sources on 15.11.2026. We have not installed or tested Graphify ourselves.
+
+What is true: Graphify is real, free and open source (about 148,000 GitHub stars on 15.11.2026). It maps your code once so Claude Code can look things up instead of reading files again.
+
+Where 70x comes from: one best-case example, 52 files, about 1,700 tokens per question against about 123,000 for reading every file at once.
+
+What others measured on real projects: one run about 18% less ($5.16 to $4.29); a FastAPI test with 11 questions used 49.5% MORE input tokens and cost 9.5% more. Both are reported on Graphify's own blog, which says: measure your own repo.
+
+The money claim: Claude Max ($100) is 5x the usage of Pro ($20). No test we found shows a 5x cut.
+
+Before you install: the package name is graphifyy, with two y's. Measure before and after on your own project.
+
+Setup steps and sources: https://www.actually-works.com/e/100
+
+Sources:
+https://github.com/Graphify-Labs/graphify
+https://graphify.com/blog/reduce-claude-code-token-usage
+https://claude.com/pricing
+https://www.roborhythms.com/graphify-review/
