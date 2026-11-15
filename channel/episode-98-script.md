@@ -156,3 +156,6 @@ HOOK 78 (clear subject at word one and a picture to match; the threat sits at wo
 1. Which model did Perplexity use (and is it set to a Claude model)? Its answer shares Claude's constants.
 2. Screenshots of the five chats (app, date, model label) for the caption date and the `/e/98` page.
 3. Episode 99 (maze): not started (no arena, no PROMPT B answers). Confirm it can go out the day after 98, or line 13 changes to "Next race".
+
+## Honesty fix 15.11.2026 (Claude, orchestrator)
+The first script said "nose to nose", "photo finish", "by a hair". Measured in race.json: when Claude crosses the line, Gemini is about 78 px behind (roughly two car lengths) and crosses 12 frames (0.20 s) later. Lines changed to: "Claude and Gemini are neck and neck." / "Claude crosses the line ahead!" / "Claude wins. Gemini is two tenths behind." The ending promise "Tomorrow, they face a maze" is NOT confirmed (ep99 not started): PROMISE TO CONFIRM with David before shipping.

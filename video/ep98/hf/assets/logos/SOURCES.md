@@ -12,3 +12,8 @@ Each file is the raw SVG as published by the source below, with no edits.
 ## Verification
 - Each file was rasterised with ffmpeg (librsvg) and viewed side by side. ChatGPT blossom, Claude sunburst, Gemini sparkle and Meta orbit all render as the known marks.
 - Doubt: the ChatGPT and Gemini files come from Wikimedia Commons, not the owners' own brand pages (openai.com/brand blocked with 403; Gemini's live page SVGs did not match). Check those pages by hand before publishing if the mark must be certified.
+
+## Added 15.11.2026 (T8, the scene build)
+| File | Mark | Source URL | Licence / usage note |
+|---|---|---|---|
+| perplexity.svg | Perplexity logo (icon + wordmark, raw file, no edits) | https://commons.wikimedia.org/wiki/File:Perplexity_AI_logo.svg (fetched through Special:FilePath/Perplexity_AI_logo.svg, 4,476 bytes) | The scene shows only the icon part of this file (x 0-28.14 of the 149.82 x 36 viewBox), cropped with CSS; the file itself is untouched. NOT checked: the licence tag on the Commons page and Perplexity's own brand page (perplexity.ai press kit not fetched). Trademark: Perplexity's; use only as an identifying mark. Check by hand before publishing. |
