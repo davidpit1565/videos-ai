@@ -1,18 +1,18 @@
-results: ../../../../../tmp/claude-0/-home-user-videos-ai/2effda64-8e71-5ab6-95b7-5d1257c9dd3f/scratchpad/ph99/ph-mixed.json  PLACEHOLDER data=True script=True  estimated timeline=True  slots: {'chatgpt': 'ph2', 'gemini': 'ph3', 'claude': 'ph1', 'meta': 'ph4', 'perplexity': 'ph5'}
-D=23.52 go=7.592 (ESTIMATE (line fraction)) lines=9 (race lines [4, 5, 6]) js=92 sfx=39
+results: arena/ref-maze-race.json  PLACEHOLDER data=True script=True  estimated timeline=True  slots: {'chatgpt': 'careful', 'gemini': 'naive', 'claude': 'careful', 'meta': 'naive', 'perplexity': 'careful'}
+D=23.52 go=7.592 (ESTIMATE (line fraction)) lines=9 (race lines [4, 5, 6]) js=92 sfx=36
 lines: 1:0.08-2.28  2:2.40-5.58  3:5.70-7.90  4:8.02-10.92  5:11.04-13.94  6:14.06-16.96  7:17.08-19.63  8:19.75-21.53  9:21.65-23.12
 race clock: steps 0-183 over video 7.84-15.63, then steps 183-500 fast until 16.73; board 17.08; frame 0 back 22.94
-order: 1.chatgpt(129 steps)  2.gemini(139 steps)  3.claude(183 steps)  4.meta(lost, 25 steps away)  5.perplexity(stopped at step 60)
-events: dead_end x34, dnf_freeze x1, error_stop x1, exit x3, final_stretch x1, first_leader x1, halfway x1, lead_change x1, near_miss x1
-    8.38s step  11 first_leader gemini
-   10.01s step  59 halfway      gemini
-   10.05s step  60 error_stop   perplexity
-   11.14s step  92 near_miss    meta closest 25
-   11.61s step 106 lead_change  chatgpt
-   12.06s step 117 final_stretch chatgpt
-   13.37s step 129 exit         chatgpt
-   13.71s step 139 exit         gemini
+order: 1.chatgpt(183 steps)  2.claude(183 steps)  3.perplexity(183 steps)  4.gemini(lost, 86 steps away)  5.meta(lost, 86 steps away)
+events: dead_end x27, dnf_freeze x2, exit x3, final_stretch x1, first_leader x1, halfway x1, lead_change x2
+    8.23s step   6 first_leader chatgpt
+    8.63s step  17 lead_change  gemini
+   10.25s step  62 lead_change  chatgpt
+   12.30s step 119 halfway      chatgpt
+   14.25s step 171 final_stretch chatgpt
+   15.63s step 183 exit         chatgpt
    15.63s step 183 exit         claude
-   16.73s step 500 dnf_freeze   meta closest 25
-headlines (draft): 0.00 FIVE AIs. ONE MAZE. | 2.40 ONE JOB: GET OUT. | 5.70 NO MAP. | 6.62 500 STEPS. | 8.21 FIND THE EXIT | 10.05 PERPLEXITY STOPS | 12.06 12 STEPS TO GO... | 13.37 CHATGPT IS OUT! | 15.63 CLAUDE IS OUT TOO | 17.08 CHATGPT WINS | 19.75 SEND IT TO A FRIEND | 21.65 NEXT: [PLACEHOLDER]
+   15.63s step 183 exit         perplexity
+   16.73s step 500 dnf_freeze   gemini closest 86
+   16.73s step 500 dnf_freeze   meta closest 86
+headlines (draft): 0.00 FIVE AIs. ONE MAZE. | 2.40 ONE JOB: GET OUT. | 5.70 NO MAP. | 6.62 500 STEPS. | 8.21 FIND THE EXIT | 10.25 CHATGPT LEADS NOW | 12.30 HALFWAY THERE | 14.25 12 STEPS TO GO... | 15.63 CHATGPT IS OUT! | 17.08 CHATGPT WINS | 19.75 SEND IT TO A FRIEND | 21.65 NEXT: [PLACEHOLDER]
 NOTE headline holds over 2.5 s (the stage still moves; hang a spoken line or pick another event here): [(2.67, 'CHATGPT WINS')]
