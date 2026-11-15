@@ -15,3 +15,4 @@ L2 seed 66 accent 0.83 WHISPER False | I ask each AI to guide 1 .out. | metagap 
 L2 seed 77 accent 0.10 WHISPER False | I ask each AI to guide1 .out. | metagap None
 L2 seed 88 accent 0.37 WHISPER True | I ask each AI to guide one, Dot out. | metagap None
 L3 seed 11 accent 0.24 WHISPER True | None of them can see the maze. GO! | metagap None
+L3 seed 22 accent 0.99 WHISPER True | None of them can see the maze. Go! | metagap None
