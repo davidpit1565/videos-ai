@@ -1,4 +1,4 @@
-Publish mode: REGULAR (proposed, David to confirm)
+Publish mode: TRIAL (David, 15.11.2026)
 
 # Episode 100 (internal name ep100): VIRAL CLAIM, CHECKED #1: Graphify and "70x" (script)
 

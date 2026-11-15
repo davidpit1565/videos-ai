@@ -1,4 +1,4 @@
-Publish mode: REGULAR (David, 15.11.2026: 99 goes first)
+Publish mode: TRIAL (David, 15.11.2026: 'probably a trial too, we will see'; confirm before posting)
 
 # Episode 99: AI RACE #2, the maze (script, written 15.11.2026)
 
