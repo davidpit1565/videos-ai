@@ -411,3 +411,6 @@ Posted 14.11.2026 22:59 Belgium via `/api/instagram/publish {"episode":97,"trial
 
 ## 15.11.2026: same content, trial first then regular (David's plan)
 The "Me with Claude / Me with ChatGPT" picture got almost 7,000 views as a trial (David's report). David will post it again as a regular reel in 1-2 days. Read both numbers at 72 h (Insights, not the studio) and log them here. Caveat: the second post is a re-post of known content; Instagram's help says re-sharing can limit reach, so a low second number may not mean regular is worse.
+
+## 15.11.2026: ep98 AI Race #1 (new format: five AIs, one request, a real race)
+David approved v12 on 15.11.2026 (after versions that failed on comprehension: the contest was not named, the premise not shown). Test: does a produced "AI contest" with a named competition and a real, checkable result reach more people than our earlier produced tests (pelican 246 as trial, 400-1,800 regular)? Prediction logged in score-calibration.md. Published as REGULAR (David's choice). Readings at 48 h and 72 h from Insights.

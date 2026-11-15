@@ -1,3 +1,5 @@
+Publish mode: REGULAR (David, 15.11.2026)
+
 # Episode 98: AI RACE #1 (working log)
 ## Arena frozen 14.11.2026 (before any AI answer existed)
 sha256 arena.js = bac5a096044057aaa6e7810b40259451f79f62198313ad1189e0c499fa5025fa
