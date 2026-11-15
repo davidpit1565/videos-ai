@@ -149,3 +149,10 @@ Rules of this table: anything the repo does not say is UNKNOWN. Episodes 1-87 ar
 - Ep97 (pelican, One pelican four AIs one clear winner): TRIAL via API 14.11.2026 22:59 Belgium, shipped in studio (PR #583, #584).
 
 - Ep94 (Claude Motion): PUBLISHED regular on Instagram 15.11.2026 08:00 Belgium (via API, David's instruction): https://www.instagram.com/reel/DfwMdOqyWCT/ . Facebook posts FAILED: "Error validating access token: the session has been invalidated because the user changed their password or Facebook changed the session" (both profile and page). David must re-authorize the Facebook token in Vercel env (his action). YouTube not done.
+
+## Studio state updated 15.11.2026 (David's request; backup of the state before the write kept in the scratchpad, not in the repo)
+- Ep96: notes `TRIAL-MANUAL 2026-11-13 03:30` + `TRIAL-GRADUATED 2026-11-14`, status live (David moved it to regular on 14.11).
+- Ep91: status live (David's profile screenshot of 15.11 shows the "Me with Claude / Me with ChatGPT" reel among his regular reels with 486 views incl. Facebook); graduation date not recorded.
+- Ep94 and ep95: already live (94 published by API 15.11 08:00; 95 on 13.11); no note lines added because only lines starting with TRIAL are hidden from public episode pages (internal text would show publicly).
+- Ep97: trial (notes line from the API publish, 14.11 22:59). Ep90 and ep92: trial notes unchanged (David has not said whether they were graduated; the trial list on his profile screenshot shows 4 trials: 97 (246), the dog-cat reel (146), a 380-view reel and a 150-view reel: not mapped to episode numbers, ask David).
+- Ep98: not in the studio yet (needs the /e/98 page, one merge).
