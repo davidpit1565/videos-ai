@@ -165,7 +165,7 @@ def head(i, t_in, t_out, l1, size=100, lg=""):
     if t_in is not None: fin(f"#h{i}", t_in)
     if t_out is not None: fout(f"#h{i}", t_out - .24)
     HLOG.append((round(t_in or 0, 2), l1))
-head(0, None, a[2], "&ldquo;70x FEWER TOKENS&rdquo;")
+head(0, None, a[2], "&ldquo;70x LESS USAGE&rdquo;")
 head(1, a[2], a[3], "&ldquo;$20 DOES $100 WORK&rdquo;")
 head(2, a[3], tSo, "NEW CHAT = FROM ZERO")
 head(3, tSo, a[4], "READS YOUR FILES AGAIN")
@@ -185,7 +185,7 @@ SC = {}
 # 1 the claim: the two real marks, the free tool plugs in
 SC[1] = f'''<div class="tile" id="t1a" style="left:95px;top:500px">{clg(210)}</div><div class="tn" id="tn_a" style="left:95px;top:866px">Claude Code</div>
 <div id="plus" style="left:480px;top:612px">+</div>
-<div class="tile" id="t1b" style="left:615px;top:500px">{gicon(220)}<div class="free" id="free">FREE</div></div><div class="tn" id="tn_b" style="left:615px;top:866px">Graphify</div>'''
+<div class="tile" id="t1b" style="left:615px;top:500px">{gicon(220)}<div class="free" id="free">FREE TOOL</div></div><div class="tn" id="tn_b" style="left:615px;top:866px">Graphify</div>'''
 # 2 the money claim: real prices, shown as a claim
 def plan(i, x, name, price):
     return f'''<div class="plan" id="p{i}" style="left:{x}px;top:500px">{clg(74)}<div class="pn">{name}</div><div class="pp">{price}</div><div class="pm">a month</div></div>'''
@@ -241,7 +241,7 @@ SC[8] = srcline("usage: claude.com/pricing (&ldquo;5x Pro usage&rdquo;), read 15
 # 9 the saveable card (stays through line 10)
 ROWS = ["Free, open source, 148.2k stars", "&ldquo;70x&rdquo; = one best case", "Real tests: 18% fewer &hellip; 49.5% more", "Max is 5x Pro: no test comes near", "Measure your own project first"]
 SC[9] = f'<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">{gicon(66)}<span>BEFORE YOU INSTALL</span></div>' + \
-        "".join(f'<div class="cr" id="cr{i}" style="top:{112 + i * 103}px"><span class="cnm">{i + 1}</span><span class="cx">{t}</span></div>' for i, t in enumerate(ROWS)) + \
+        "".join(f'<div class="cr" id="cr{i}" style="top:{112 + i * 103}px"><span class="cnm">{i + 1}</span><span class="cx">{t}</span><i class="mk"></i></div>' for i, t in enumerate(ROWS)) + \
         '<div class="cf">VIRAL CLAIM, CHECKED #1 &middot; tests by other people, not by us</div></div>'
 scenes = "".join(f'<div class="sc" id="sc{n}">{SC[n]}</div>' for n in sorted(SC))
 PHB = ""
@@ -256,7 +256,7 @@ markup = f'''
  <div class="stt" id="st0">TRUE?</div><div class="stt" id="st1">CHECKING&hellip;</div><div class="stt" id="st2">NOT CLOSE</div>
  {"".join(HEADS)}
  {scenes}
- <div id="use"><div id="ul">USAGE LEFT<em>illustration</em></div><div id="up">100%</div><div id="ut"><div id="uf"></div></div></div>
+ <div id="use"><div id="utag">ILLUSTRATION</div><div id="ul">YOUR CLAUDE USAGE</div><div id="up"><span id="upn">100%</span><em>left</em></div><div id="ut"><div id="uf"></div></div></div>
  </div>
 </div>{PHB}'''
 
@@ -283,7 +283,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .tile{width:350px;height:350px;background:#fff;border:6px solid INK;border-radius:34px;box-shadow:11px 11px 0 INK;display:flex;align-items:center;justify-content:center;transform-origin:50% 60%}
 .tn{opacity:0;width:350px;text-align:center;font-weight:900;font-size:54px;line-height:62px;letter-spacing:-.03em;white-space:nowrap}
 #plus{width:120px;text-align:center;font-weight:900;font-size:130px;line-height:130px}
-.free{opacity:0;position:absolute;right:18px;top:-24px;font-weight:900;font-size:46px;line-height:54px;letter-spacing:.03em;color:GREEN;transform:rotate(9deg);text-shadow:3px 3px 0 #fff,-3px 3px 0 #fff,3px -3px 0 #fff,-3px -3px 0 #fff}
+.free{position:absolute;right:-6px;top:-12px;font-weight:900;font-size:36px;line-height:50px;letter-spacing:.04em;color:INK;background:#fff;border:5px solid INK;border-radius:30px;padding:0 18px;box-shadow:4px 4px 0 INK;white-space:nowrap;transform:rotate(5deg)}
 /* 2 */
 .plan{width:430px;height:456px;background:#fff;border:6px solid INK;border-radius:22px;box-shadow:8px 8px 0 INK;opacity:0;transform-origin:50% 100%}
 .plan .lg{position:absolute;left:28px;top:30px} .pn{position:absolute;left:118px;top:22px;font-weight:900;font-size:88px;line-height:92px;letter-spacing:-.02em}
@@ -332,13 +332,15 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .tape.t1{right:-34px;top:-12px;transform:rotate(34deg)} .tape.t2{left:-34px;bottom:-6px;transform:rotate(34deg)}
 .ct{position:absolute;left:34px;top:24px;display:flex;align-items:center;gap:18px;font-weight:900;font-size:62px;line-height:70px;letter-spacing:-.03em;white-space:nowrap}
 .cr{position:absolute;left:34px;right:34px;height:100px;display:flex;align-items:center;opacity:0;border-top:4px solid rgba(15,15,15,.14);white-space:nowrap}
+.mk{position:absolute;left:82px;right:0;bottom:12px;height:10px;border-radius:5px;background:ORA;transform-origin:0 50%;transform:scaleX(0);opacity:.85}
 .cnm{width:62px;height:62px;border-radius:50%;border:5px solid INK;background:#fff;text-align:center;font-weight:900;font-size:40px;line-height:52px;margin-right:20px;flex:none}
 .cx{font-weight:900;font-size:44px;line-height:52px;letter-spacing:-.02em}
 .cf{position:absolute;left:34px;bottom:20px;font-weight:500;font-size:26px;line-height:30px;white-space:nowrap;color:#3a3a36}
 /* the usage bar: the spine of the video (an illustration, tagged) */
 #use{position:absolute;left:65px;top:1040px;width:950px;height:208px;z-index:5;transform-origin:50% 100%}
-#ul{position:absolute;left:0;top:14px;font-weight:900;font-size:58px;line-height:64px;letter-spacing:-.01em;white-space:nowrap}
-#ul em{font-style:normal;font-weight:500;font-size:28px;letter-spacing:0;margin-left:18px;color:#3a3a36}
+#utag{position:absolute;left:2px;top:-12px;font-weight:900;font-size:38px;line-height:42px;letter-spacing:.08em;color:#3a3a36;white-space:nowrap}
+#ul{position:absolute;left:0;top:32px;font-weight:900;font-size:47px;line-height:54px;letter-spacing:-.01em;white-space:nowrap}
+#up em{font-style:normal;font-weight:900;font-size:36px;letter-spacing:0;margin-left:8px}
 #up{position:absolute;right:119px;top:0;transform-origin:100% 50%;font-weight:900;font-size:86px;line-height:86px;letter-spacing:-.04em;white-space:nowrap}
 #ut{position:absolute;left:0;top:92px;width:823px;height:108px;background:#fff;border:6px solid INK;border-radius:16px;box-shadow:8px 8px 0 INK;overflow:hidden}
 #uf{position:absolute;left:0;top:0;height:100%;width:100%;background:repeating-linear-gradient(115deg,ORA 0 34px,#E58D6F 34px 68px);background-size:200% 100%;border-right:6px solid INK}
@@ -359,10 +361,11 @@ status = lambda i, t: (fout(f"#st{i - 1}", t - .2, .18), pop(f"#st{i}", t, .3, .
 # --- 1 the claim. The bar drains (the "token problem"), the free tool plugs in, the bar is full again: the claim looks true
 scene(1, None, a[2])
 idle("#t1a", 0, a[2], "y", -10, .7)
-js(f"tl.fromTo('#t1b',{{x:44,rotation:7}},{{x:0,rotation:-3,duration:.34,ease:'power3.in',immediateRender:false}},{tPlug - .34:.3f});")
+js(f"tl.fromTo('#t1b',{{x:0,rotation:0}},{{x:30,rotation:6,duration:{max(.2, tPlug - .34 - tFree - .1):.3f},ease:'sine.inOut',immediateRender:false}},{tFree + .1:.3f});")
+js(f"tl.to('#t1b',{{x:0,rotation:-3,duration:.34,ease:'power3.in'}},{tPlug - .34:.3f});")
 js(f"tl.fromTo('#t1a',{{scale:1}},{{scale:1.07,duration:.16,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tPlug:.3f});")
 js(f"tl.fromTo('#plus',{{scale:1,rotation:0}},{{scale:1.35,rotation:90,duration:.22,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tPlug:.3f});")
-pop("#free", tFree, .3); idle("#free", tFree + .35, a[2], "rotation", 9, .5); sfx("pop_b.ogg", tFree, -11)
+js(f"tl.fromTo('#free',{{scale:1}},{{scale:1.3,duration:.18,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tFree:.3f});"); idle("#free", tFree + .4, a[2], "rotation", 9, .5); sfx("pop_b.ogg", tFree, -11)
 fin("#tn_b", tTool, .3, 12, 4); fin("#tn_a", tCC, .3, 12, 4)
 pop("#st0", a[2] + .1, .3, .6)
 idle("#t1b", tPlug + .4, a[2], "y", -10, .7)
@@ -465,31 +468,36 @@ idle("#card", a[9] + .6, tF - .3, "rotation", .7, 1.2)
 t = a[9] + .3 + 5 * rstep + .3; q = 0
 while t < tF - .5:                                              # a slow wave keeps the card alive while it is read
     js(f"tl.fromTo('#cr{q % 5} .cnm',{{scale:1,rotation:0}},{{scale:1.2,rotation:{-12 if q % 2 else 12},duration:.26,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t:.3f});"); t += .42; q += 1
+t = a[9] + .3 + 5 * rstep + .2; q = 0
+while t < tF - .75:
+    js(f"tl.fromTo('#cr{q % 5} .mk',{{scaleX:0,opacity:.85}},{{scaleX:1,duration:.5,ease:'power2.inOut',immediateRender:false}},{t:.3f});")
+    js(f"tl.to('#cr{q % 5} .mk',{{opacity:0,duration:.25,ease:'sine.in'}},{t + .5:.3f});"); t += .62; q += 1
+idle("#card", a[9] + .6, tF - .3, "y", -12, .8)
 js(f"tl.to('#card',{{opacity:0,scale:.9,y:-40,rotation:-3,duration:.32,ease:'power2.in'}},{tF - .26:.3f});")
 sfx("whoosh_c.ogg", tF - .2, -12)
 # --- loop seam: frame 0 comes back
 fin("#sc1", tF + .06, .42)
-js(f"tl.set('#t1b',{{x:44,rotation:7}},{tF:.3f});"); js(f"tl.set('#tn_a,#tn_b,#free',{{opacity:0}},{tF:.3f});")
+js(f"tl.set('#t1b',{{x:0,y:0,rotation:0}},{tF:.3f});"); js(f"tl.set('#tn_a,#tn_b',{{opacity:0}},{tF:.3f});")
 js(f"tl.fromTo('#use',{{opacity:0,y:30}},{{opacity:1,y:0,duration:.4,ease:'power2.out',immediateRender:false}},{tF + .06:.3f});")
 fout("#st2", tF - .2, .18)
 
 # ---------------------------------------------------------------- render(): the usage bar, the read counters, the star counter (all from the clock)
-KF = [(0, 100), (.25, 100), (tPlug - .08, 31), (tPlug + .7, 100), (tSo - .1, 100), (h0 + NH * hstep, 17), (a[5] + .5, 17), (tLook + 3 * wstep, 97),
+KF = [(0, 88), (tPlug - .08, 31), (tPlug + .7, 100), (tSo - .1, 100), (h0 + NH * hstep, 17), (a[5] + .5, 17), (tLook + 3 * wstep, 97),
       (tBut + .28, 97), (tBut + .6, 78), (a[7], 70)]
 DATA = dict(D=D, tF=round(tF, 3), KF=[[round(t, 3), p] for t, p in KF], HOPS=HOPS, tQ=round(a[7], 3), tS=tAbout, sD=round(STAR_D, 3), STARS=STARS)
 RJS = r'''
 const Dt=__DATA__;
 const ez=p=>{p=p<0?0:p>1?1:p;return p*p*(3-2*p)}, lerp=(a,b,t)=>a+(b-a)*t, $=s=>document.querySelector(s);
-const uf=$('#uf'), up=$('#up'), stn=$('#stn'), rd=[0,1,2,3,4,5].map(c=>$('#rd'+c));
-function pct(v){const K=Dt.KF; if(v>=Dt.tF) return 100; if(v<=K[0][0]) return K[0][1];
+const uf=$('#uf'), up=$('#upn'), upe=$('#up em'), stn=$('#stn'), rd=[0,1,2,3,4,5].map(c=>$('#rd'+c));
+function pct(v){const K=Dt.KF; if(v>=Dt.tF) return 100+(K[0][1]-100)*ez((v-Dt.tF)/.5); if(v<=K[0][0]) return K[0][1];
   for(let i=1;i<K.length;i++) if(v<K[i][0]) return lerp(K[i-1][1],K[i][1],ez((v-K[i-1][0])/(K[i][0]-K[i-1][0])));
   return K[K.length-1][1]}
 function render(v){
   const q=v>=Dt.tQ&&v<Dt.tF;                                  // from the tests on: nobody can say (it depends on the project)
   const p=q?52+20*Math.sin((v-Dt.tQ)*2.6):pct(v);
   uf.style.width=p.toFixed(2)+'%'; uf.style.backgroundPosition=(-(v*46)%136).toFixed(1)+'px 0';
-  up.textContent=q?'?':Math.round(p)+'%'; up.style.color=(!q&&p<35)?'#D9281C':'#0f0f0f';
-  up.style.transform='scale('+(1+(q?.08*Math.sin(v*5):0)).toFixed(3)+')';
+  up.textContent=q?'?':Math.round(p)+'%'; upe.style.opacity=q?0:1; up.style.color=(!q&&p<35)?'#D9281C':'#0f0f0f';
+  up.style.display='inline-block'; up.style.transform='scale('+(1+(q?.08*Math.sin(v*5):0)).toFixed(3)+')';
   const n=[1,1,1,1,1,1]; for(const h of Dt.HOPS) if(v>=h[0]) n[h[1]]++;
   for(let c=0;c<6;c++) rd[c].textContent='read ×'+n[c];
   stn.textContent=(Dt.STARS*ez((v-Dt.tS)/Dt.sD)).toFixed(1)+'k';

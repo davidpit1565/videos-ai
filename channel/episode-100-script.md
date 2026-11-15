@@ -87,7 +87,7 @@ David asked for the reference's hook and texts, only the "comment REPO" ending r
 Beat list with what is NEW on screen and when (times in seconds; the same list is written by `build100.py` into `cues100.json` under `buildup`). Open question after the hook: is the claim true, and if not, what do tests show? It closes in three steps: where 70 comes from (19.2), what tests show (21.7-23.2), the money claim (24.9-28.8).
 | Line | Time | What is new here | Tension |
 |---|---|---|---|
-| 1 | 0.00 | Frame 0: VIRAL CLAIM tag, "70x FEWER TOKENS" in quote marks, the Claude and Graphify marks, the usage bar already draining | the claim is stated, as a claim |
+| 1 | 0.00 | Frame 0 (pic-v4): VIRAL CLAIM tag, "70x LESS USAGE" in quote marks, the Claude and Graphify marks (FREE TOOL pill on Graphify), the bar "YOUR CLAUDE USAGE" at 88% and draining, tagged ILLUSTRATION | the claim is stated, as a claim |
 | 1 | 0.72 / 1.46 / 2.00 | "FREE" on the tool; on "killed" the tool plugs in and the bar refills to 100%; the names appear | the claim looks true |
 | 2 | 3.98 / 4.84 / 5.18 | PRO $20 card, the "=", MAX $100 card; the word "TRUE?" appears top right | the money claim: the viewer's own plan |
 | 3 | 6.49 / 8.12-9.8 | six file cards; then the Claude badge hops over them, "read x2 / x3", the bar drains to 17% | the problem is real |
@@ -98,6 +98,6 @@ Beat list with what is NEW on screen and when (times in seconds; the same list i
 | 8 | 23.66 / 24.88-25.9 / 27.10 / 28.80 | Pro bar 1x; Max bar grows to 5x; the best test as a thin slice on the Pro bar; NOT CLOSE stamp | reveal 3, the money verdict, last |
 | 9 | 29.22-30.8 | the saveable card, five rows | value to keep |
 | 10 | 31.22-34.96 | only the headline changes (placeholder) | FLAT, see below |
-Flat stretches over 2.5 s with nothing new: **one, 31.22-34.96 (line 10)**: the card is held and only its numbers wiggle. Fix when the final line is known: show a picture of the next episode there. Longest gaps elsewhere: 2.00-3.98 (the bar and tiles move, nothing new; the hook's second half) and 25.9-27.1.
+Flat stretches over 2.5 s with nothing new: **one, 31.22-34.96 (line 10)**: the card is held; in pic-v4 it floats and a marker line runs under row after row (never a still frame), but no new information arrives. Fix when the final line is known: show a picture of the next episode there. Longest gaps elsewhere: 2.00-3.98 (the bar and tiles move, nothing new; the hook's second half) and 25.9-27.1.
 Weak beats by my own reading (not a blind reader): line 5 repeats the "problem solved" picture of line 1; line 8 is 5.5 s long and its first 1.3 s shows only the small Pro bar.
 Blind reader on the beat list: NOT RUN.

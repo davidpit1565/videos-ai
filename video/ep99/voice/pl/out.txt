@@ -2,3 +2,10 @@ L1 seed 11 accent 0.96 WHISPER False | Lost in the maze, 5 AIs, no map. | metaga
 L1 seed 22 accent 0.92 WHISPER True | Lost in a maze, 5 AIs, no map. | metagap None
 L1 seed 33 accent 0.22 WHISPER False | Lost in the maze, 5 AIs, no map. | metagap None
 L1 seed 44 accent 0.55 WHISPER False | Lost in the mains, 5 AIs, no map. | metagap None
+L1 seed 55 accent 1.00 WHISPER True | Lost in Amaze, 5 AIs, no map. | metagap None
+L1 seed 66 accent 0.66 WHISPER True | Lost in a maze, 5 AIs, no map. | metagap None
+L1 seed 77 accent 0.92 WHISPER False | Lost in a maze. 5 AIs, no mea. | metagap None
+L1 seed 88 accent 0.85 WHISPER True | Lost in a maze. 5 AIs. No map. | metagap None
+L2 seed 11 accent 0.78 WHISPER True | I ask each AI to guide one dot out. | metagap None
+L2 seed 22 accent 0.56 WHISPER True | I ask each AI to guide one dot out. | metagap None
+L2 seed 33 accent 0.02 WHISPER False | I ask each AI to guide 1 .out. | metagap None

@@ -166,11 +166,7 @@
   "keyframes": [
    [
     0,
-    100
-   ],
-   [
-    0.25,
-    100
+    88
    ],
    [
     1.38,
@@ -366,7 +362,7 @@
  "headlines_draft": [
   {
    "t": 0,
-   "text": "&ldquo;70x FEWER TOKENS&rdquo;"
+   "text": "&ldquo;70x LESS USAGE&rdquo;"
   },
   {
    "t": 3.75,
