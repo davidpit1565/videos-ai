@@ -417,3 +417,6 @@ David approved v12 on 15.11.2026 (after versions that failed on comprehension: t
 
 ## 15.11.2026: "Can you code without bugs for once?" picture as a 7-second zoom (trial, David)
 Pure picture (Claude chat screenshot, dark), slow zoom 100% to 115% over 7 s, anchored at the top so the text is never cut, no voice, no music (file `channel/posts/can-you-code-zoom.mp4`). Meta AI's recipe, executed with ffmpeg instead of CapCut. David posts it as a trial; not a numbered episode. Read at 24-48 h.
+
+## Update 15.11.2026 (David): the "Me with Claude / Me with ChatGPT" picture trial passed 8,000 views
+- David's report (not read from our studio: the trial is not tracked there): the picture went from about 7,000 to over 8,000 views as a trial. He plans to move it to his profile about 16.11.2026. Open question, not answered: does the profile hold it, and does a picture graduated after a big trial keep reaching non-followers? Read the numbers again 72 h after graduation and write them here. Same rule as before: the picture is an occasional virality and trial post, not a video format.
