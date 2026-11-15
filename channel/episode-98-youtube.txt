@@ -1,0 +1,7 @@
+Title: Each AI taught a car, one hits the wall (AI Race #1)
+
+Description:
+ChatGPT, Gemini, Claude, Meta AI and Perplexity each get the same request: write the code that steers a race car. Five real answers, one road, true speed, one try each, nothing fixed by hand. The road was locked before any answer came in.
+Result: 1. Claude 8.48 s, 2. Gemini 8.68 s, 3. ChatGPT 10.58 s. Meta AI touches the wall in the hairpin. Perplexity gets stuck in the hairpin.
+One small task, not a ranking of intelligence. The channel's tools are built with Claude, and Claude wins here and the road was locked before any answer came in.
+Race your own AI: https://www.actually-works.com/e/98
