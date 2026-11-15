@@ -423,3 +423,6 @@ Pure picture (Claude chat screenshot, dark), slow zoom 100% to 115% over 7 s, an
 
 ## Reminder 15.11.2026 ~17:56 Belgium: ep92 trial, 72 h are up
 - Trial posted by hand 12.11.2026 17:55 Belgium. The studio has NO numbers for it (views/reach/likes/saves/shares are empty: trials are not tracked there, and /api/track only reads regular reels). Real 24 h / 72 h readings must come from David (Instagram Insights of the trial). Graduation status: not recorded; ask David. Ep90 (trial 13.11 00:43) is due 16.11 00:43 Belgium.
+
+## Reminder 16.11.2026 00:44 Belgium: ep90 trial, 72 h are up
+- Trial posted by hand 13.11.2026 00:43 Belgium. The studio holds no numbers for it (views, reach, likes, saves, shares empty: trials are not tracked there). Real 24 h / 72 h readings must come from David's Insights; graduation status unknown, to ask. No prediction is logged for ep90 in `channel/score-calibration.md` that this note can be compared to.
