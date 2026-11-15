@@ -1,0 +1,8 @@
+D=23.79 go=3.19 (ESTIMATE (stale cues)) stale_cues=True js=77 sfx=28
+WARNING stale cues: voice/narration-raw-cues.json does not hold the 10 lines of voice/lines.txt (old take). ESTIMATED timeline in use; rebuild when the new take is in place.
+lines: 1:0.08-2.18  2:2.24-3.49  3:6.96-8.55  4:8.84-10.33  5:10.41-12.19  6:12.32-13.98  7:14.08-16.00  8:16.06-18.21  9:18.27-20.08  10:20.14-23.34
+voice targets (line start so the words land on the race): 3:6.96  4:8.84  5:10.41  6:12.32  7:14.08
+race clock: 1x from 3.19 to 13.87 (race 10.68); video times: Perplexity stops 7.41, Meta AI wall 9.34, Claude 11.67, Gemini 11.87, ChatGPT 13.77
+SLOW MOTION REPLAY 0.25x video 13.87-16.56 (race from 8.28); Claude crosses 14.69, Gemini 15.49; card 16.01; maze 20.14; frame-0 layout from 23.21
+headlines in: two-laps 4.01, Perplexity 6.96, Meta AI 8.84, neck 10.41, ChatGPT 12.37, who-won 13.85, wins 14.69, send 16.01/17.18
+NOTE: no usable voice/words.json for this take: word-timed beats use line fractions.

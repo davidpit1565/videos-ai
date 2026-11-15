@@ -2,100 +2,104 @@
  "lines": [
   {
    "n": 1,
-   "text": "Five AIs race, one hits the wall.",
+   "text": "Each AI taught a car. One hits the wall.",
    "start": 0.08,
-   "end": 1.8
+   "end": 2.18
   },
   {
    "n": 2,
-   "text": "Each AI gets the same job: teach a car to race.",
-   "start": 1.86,
-   "end": 4.59
+   "text": "Pick one. Go!",
+   "start": 2.24,
+   "end": 3.49
   },
   {
    "n": 3,
-   "text": "Hands off. Go!",
-   "start": 4.65,
-   "end": 6.15
+   "text": "Perplexity stops dead in the bend!",
+   "start": 6.96,
+   "end": 8.55
   },
   {
    "n": 4,
-   "text": "ChatGPT, Gemini, Claude, Meta AI, Perplexity.",
-   "start": 6.21,
-   "end": 9.59
+   "text": "Meta AI hits the wall!",
+   "start": 8.84,
+   "end": 10.33
   },
   {
    "n": 5,
-   "text": "Perplexity stops dead in the bend!",
-   "start": 9.74,
-   "end": 11.33
+   "text": "Claude and Gemini, neck and neck.",
+   "start": 10.41,
+   "end": 12.19
   },
   {
    "n": 6,
-   "text": "Meta AI hits the wall!",
-   "start": 11.39,
-   "end": 12.88
+   "text": "ChatGPT takes its time.",
+   "start": 12.32,
+   "end": 13.98
   },
   {
    "n": 7,
-   "text": "Claude and Gemini are neck and neck.",
-   "start": 12.94,
-   "end": 14.77
+   "text": "Claude wins. Gemini is right behind.",
+   "start": 14.08,
+   "end": 16.0
   },
   {
    "n": 8,
-   "text": "Claude pulls ahead!",
-   "start": 14.83,
-   "end": 15.87
+   "text": "Did you pick Claude? Send it to a friend.",
+   "start": 16.06,
+   "end": 18.21
   },
   {
    "n": 9,
-   "text": "ChatGPT takes its time.",
-   "start": 16.02,
-   "end": 17.68
+   "text": "The setup's in the link in bio.",
+   "start": 18.27,
+   "end": 20.08
   },
   {
    "n": 10,
-   "text": "Claude wins. Gemini is two tenths behind.",
-   "start": 17.74,
-   "end": 19.81
-  },
-  {
-   "n": 11,
-   "text": "Send it to a friend. See who they pick.",
-   "start": 19.87,
-   "end": 21.77
-  },
-  {
-   "n": 12,
-   "text": "The setup's in the link in bio.",
-   "start": 21.83,
-   "end": 23.64
-  },
-  {
-   "n": 13,
    "text": "Tomorrow, they face a maze. Follow, so you see who gets lost.",
-   "start": 23.7,
-   "end": 26.9
+   "start": 20.14,
+   "end": 23.34
   }
  ],
- "D": 28.0,
- "go": 5.82,
+ "D": 23.79,
+ "go": 3.19,
+ "stale_cues": true,
+ "timeline": "ESTIMATED (cue texts do not match voice/lines.txt)",
+ "targets": {
+  "1": 0.08,
+  "2": 2.24,
+  "3": 6.96,
+  "4": 8.84,
+  "5": 10.41,
+  "6": 12.32,
+  "7": 14.08,
+  "8": 16.06,
+  "9": 18.27,
+  "10": 20.14
+ },
+ "drift_vs_targets": {
+  "3": 0.0,
+  "4": 0.0,
+  "5": 0.0,
+  "6": 0.0,
+  "7": 0.0
+ },
  "race": {
-  "start": 5.82,
-  "slow_from": 13.946,
-  "slow_to": 16.45,
-  "slow_rate": 0.25,
-  "slow_race_from": 8.092,
-  "slow_race_to": 8.763,
-  "perplexity_stops": 10.05,
-  "meta_wall": 11.983,
-  "claude": 15.15,
-  "gemini": 15.95,
-  "chatgpt": 18.167
+  "start": 3.19,
+  "live_until_race_s": 10.68,
+  "perplexity_stops": 7.407,
+  "meta_wall": 9.34,
+  "claude": 11.673,
+  "gemini": 11.873,
+  "chatgpt": 13.773,
+  "replay_from": 13.87,
+  "replay_to": 16.56,
+  "replay_rate": 0.25,
+  "replay_race_from": 8.277,
+  "replay_claude": 14.694,
+  "replay_gemini": 15.494
  },
  "sources": {
-  "go": "words.json",
-  "roll": "words.json"
+  "go": "ESTIMATE (stale cues)"
  }
 }
