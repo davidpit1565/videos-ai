@@ -1,6 +1,6 @@
 {
  "placeholder": {
-  "estimated_timeline": true,
+  "estimated_timeline": false,
   "line10": true,
   "claude_code_mark": "Claude symbol + the words 'Claude Code' (no Claude Code-specific mark sourced)",
   "screenshots": "none: drawn cards with dated numbers instead of real repo/pricing screenshots"
@@ -9,124 +9,124 @@
   {
    "n": 1,
    "text": "They say this free tool killed Claude Code's token problem,",
-   "start": 0.08,
-   "end": 3.15,
+   "start": 0.04,
+   "end": 3.56,
    "role": "hook: the viral claim"
   },
   {
    "n": 2,
    "text": "and your twenty-dollar plan now does hundred-dollar work.",
-   "start": 3.25,
-   "end": 6.23,
+   "start": 3.75,
+   "end": 6.3,
    "role": "the money claim"
   },
   {
    "n": 3,
    "text": "Every new chat starts from zero, so Claude Code reads your files again.",
-   "start": 6.33,
-   "end": 9.97,
+   "start": 6.49,
+   "end": 9.94,
    "role": "the problem (real)"
   },
   {
    "n": 4,
    "text": "The fix is Graphify, with about a hundred fifty thousand stars on GitHub.",
-   "start": 10.07,
-   "end": 13.8,
+   "start": 10.13,
+   "end": 13.53,
    "role": "the tool + stars"
   },
   {
    "n": 5,
    "text": "It maps your code once, so Claude looks things up instead of rereading.",
-   "start": 13.9,
-   "end": 17.54,
+   "start": 13.72,
+   "end": 16.86,
    "role": "how it works"
   },
   {
    "n": 6,
    "text": "The big claim is seventy times less token use, but only in its best case.",
-   "start": 17.64,
-   "end": 21.37,
+   "start": 17.05,
+   "end": 20.63,
    "role": "reveal 1: where 70 comes from"
   },
   {
    "n": 7,
    "text": "Real tests? One saves some. One uses more.",
-   "start": 21.47,
-   "end": 23.74,
+   "start": 20.82,
+   "end": 23.35,
    "role": "reveal 2: other people's tests"
   },
   {
    "n": 8,
    "text": "And the hundred-dollar plan is five times the usage. Nothing we found comes close.",
-   "start": 23.84,
-   "end": 27.99,
+   "start": 23.54,
+   "end": 29.03,
    "role": "reveal 3: the money verdict"
   },
   {
    "n": 9,
    "text": "The setup's in the link in bio.",
-   "start": 28.09,
-   "end": 29.85,
+   "start": 29.22,
+   "end": 31.03,
    "role": "saveable card + link in bio"
   },
   {
    "n": 10,
    "text": "Tomorrow, five AIs face a maze. Follow, so you see who gets lost.",
-   "start": 29.95,
-   "end": 33.3,
+   "start": 31.22,
+   "end": 35.14,
    "role": "tomorrow (PLACEHOLDER)"
   }
  ],
- "D": 33.7,
- "frame0_returns": 33.12,
+ "D": 35.54,
+ "frame0_returns": 34.96,
  "sync": {
   "killed": {
-   "t": 1.369,
-   "source": "ESTIMATE (line fraction)"
+   "t": 1.46,
+   "source": "words.json"
   },
   "now": {
-   "t": 4.502,
-   "source": "ESTIMATE (line fraction)"
+   "t": 4.6,
+   "source": "words.json"
   },
   "so": {
-   "t": 8.004,
-   "source": "ESTIMATE (line fraction)"
+   "t": 8.22,
+   "source": "words.json"
   },
   "about": {
-   "t": 11.338,
-   "source": "ESTIMATE (line fraction)"
+   "t": 11.54,
+   "source": "words.json"
   },
   "once": {
-   "t": 14.992,
-   "source": "ESTIMATE (line fraction)"
+   "t": 14.4,
+   "source": "words.json"
   },
   "looks": {
-   "t": 15.938,
-   "source": "ESTIMATE (line fraction)"
+   "t": 15.42,
+   "source": "words.json"
   },
   "but": {
-   "t": 20.102,
-   "source": "ESTIMATE (line fraction)"
+   "t": 19.24,
+   "source": "words.json"
   },
   "one_saves": {
-   "t": 22.151,
-   "source": "ESTIMATE (line fraction)"
+   "t": 21.7,
+   "source": "words.json"
   },
   "one_uses": {
-   "t": 22.968,
-   "source": "ESTIMATE (line fraction)"
+   "t": 22.44,
+   "source": "words.json"
   },
   "five": {
-   "t": 25.251,
+   "t": 25.407,
    "source": "ESTIMATE (line fraction)"
   },
   "nothing": {
-   "t": 26.413,
-   "source": "ESTIMATE (line fraction)"
+   "t": 27.1,
+   "source": "words.json"
   },
   "close": {
-   "t": 27.575,
-   "source": "ESTIMATE (line fraction)"
+   "t": 28.5,
+   "source": "words.json"
   }
  },
  "usage_bar": {
@@ -141,39 +141,39 @@
     100
    ],
    [
-    1.289,
+    1.38,
     31
    ],
    [
-    2.069,
+    2.16,
     100
    ],
    [
-    7.904,
+    8.12,
     100
    ],
    [
-    10.304,
+    10.52,
     17
    ],
    [
-    14.4,
+    14.22,
     17
    ],
    [
-    17.14,
+    16.55,
     97
    ],
    [
-    20.382,
+    19.52,
     97
    ],
    [
-    20.702,
+    19.84,
     78
    ],
    [
-    21.47,
+    20.82,
     70
    ]
   ]
@@ -218,51 +218,51 @@
    "text": "&ldquo;70x FEWER TOKENS&rdquo;"
   },
   {
-   "t": 3.25,
+   "t": 3.75,
    "text": "&ldquo;$20 DOES $100 WORK&rdquo;"
   },
   {
-   "t": 6.33,
+   "t": 6.49,
    "text": "NEW CHAT = FROM ZERO"
   },
   {
-   "t": 8.0,
+   "t": 8.22,
    "text": "READS YOUR FILES AGAIN"
   },
   {
-   "t": 10.07,
+   "t": 10.13,
    "text": "THE TOOL: GRAPHIFY"
   },
   {
-   "t": 13.9,
+   "t": 13.72,
    "text": "MAPS YOUR CODE ONCE"
   },
   {
-   "t": 17.64,
+   "t": 17.05,
    "text": "&ldquo;70 TIMES LESS&rdquo;"
   },
   {
-   "t": 20.1,
+   "t": 19.24,
    "text": "ONLY IN ITS BEST CASE"
   },
   {
-   "t": 21.47,
+   "t": 20.82,
    "text": "REAL TESTS:"
   },
   {
-   "t": 23.84,
+   "t": 23.54,
    "text": "MAX = 5x PRO USAGE"
   },
   {
-   "t": 26.41,
+   "t": 27.1,
    "text": "NOTHING COMES CLOSE"
   },
   {
-   "t": 28.09,
+   "t": 29.22,
    "text": "SETUP: LINK IN BIO"
   },
   {
-   "t": 29.95,
+   "t": 31.22,
    "text": "TOMORROW: [PLACEHOLDER]"
   }
  ]
