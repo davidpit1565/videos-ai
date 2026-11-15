@@ -3,60 +3,60 @@
   "n": 1,
   "line": "Lost in a maze, five AIs, no map.",
   "start": 0.04,
-  "end": 2.16
+  "end": 2.15
  },
  {
   "n": 2,
   "line": "I ask each AI to guide one dot out.",
-  "start": 2.35,
-  "end": 4.32
+  "start": 2.34,
+  "end": 4.31
  },
  {
   "n": 3,
   "line": "None of them can see the maze. Go!",
-  "start": 4.51,
-  "end": 6.34
+  "start": 4.5,
+  "end": 6.33
  },
  {
   "n": 4,
   "line": "Perplexity is stuck at the start!",
-  "start": 6.58,
-  "end": 8.79
+  "start": 6.52,
+  "end": 8.73
  },
  {
   "n": 5,
   "line": "ChatGPT goes the wrong way. Claude leads!",
-  "start": 8.98,
-  "end": 11.31
+  "start": 8.92,
+  "end": 11.25
  },
  {
   "n": 6,
   "line": "Two dots are out, on the same step!",
-  "start": 14.86,
-  "end": 16.56
+  "start": 11.44,
+  "end": 13.14
  },
  {
   "n": 7,
   "line": "Claude turns back ten steps short, then makes it. ChatGPT walks in circles.",
-  "start": 16.75,
-  "end": 20.63
+  "start": 13.33,
+  "end": 17.21
  },
  {
   "n": 8,
   "line": "Gemini and Meta AI tie. Same path, every step.",
-  "start": 20.84,
-  "end": 23.71
+  "start": 17.4,
+  "end": 20.27
  },
  {
   "n": 9,
   "line": "The setup's in the link in bio.",
-  "start": 23.9,
-  "end": 25.71
+  "start": 20.46,
+  "end": 22.27
  },
  {
   "n": 10,
   "line": "Tomorrow, a free tool says it fixes Claude Code. Follow, so you see if it works.",
-  "start": 25.9,
-  "end": 29.7
+  "start": 22.46,
+  "end": 26.26
  }
 ]
