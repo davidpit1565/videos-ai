@@ -1,2 +1,5 @@
 L1 seed 11 accent 0.02
 L2 seed 11 accent 0.01
+L3 seed 11 accent 0.98
+L3 seed 22 accent 0.21
+L3 seed 33 accent 0.79
