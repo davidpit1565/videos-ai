@@ -10,21 +10,21 @@
    "n": 1,
    "text": "Lost in a maze, five AIs, no map.",
    "start": 0.04,
-   "end": 2.16,
+   "end": 2.15,
    "role": "hook"
   },
   {
    "n": 2,
    "text": "I ask each AI to guide one dot out.",
-   "start": 2.35,
-   "end": 4.32,
+   "start": 2.34,
+   "end": 4.31,
    "role": "premise"
   },
   {
    "n": 3,
    "text": "None of them can see the maze. Go!",
-   "start": 4.51,
-   "end": 6.34,
+   "start": 4.5,
+   "end": 6.33,
    "role": "rules+Go"
   },
   {
@@ -85,7 +85,9 @@
   "short": "words.json",
   "makes": "words.json",
   "chatgpt(7)": "words.json",
-  "see": "words.json"
+  "see": "words.json",
+  "same": "words.json",
+  "follow": "words.json"
  },
  "targets": {
   "4": 6.58,
@@ -129,7 +131,7 @@
     "step": 118
    },
    {
-    "v": 17.98,
+    "v": 17.96,
     "step": 129
    },
    {
@@ -147,8 +149,8 @@
    "29-44": 5.9,
    "44-117": 22.6,
    "117-118": 0.5,
-   "118-129": 8.9,
-   "129-171": 47.7,
+   "118-129": 9.1,
+   "129-171": 46.7,
    "171-500": 191.3
   },
   "first_exit": 14.74,
@@ -312,14 +314,14 @@
     "step": 125,
     "cells_after": 29,
     "steps_after": 375,
-    "v": 17.533
+    "v": 17.52
    },
    {
     "kind": "paces_2_cells",
     "id": "chatgpt",
     "step": 152,
     "until": 500,
-    "v": 18.462
+    "v": 18.453
    },
    {
     "kind": "exit",
@@ -401,15 +403,15 @@
     },
     {
      "step": 130,
-     "v": 18.001
+     "v": 17.981
     },
     {
      "step": 143,
-     "v": 18.273
+     "v": 18.26
     },
     {
      "step": 149,
-     "v": 18.399
+     "v": 18.389
     }
    ],
    "meta": [
@@ -444,11 +446,11 @@
    "text": "LOST IN A MAZE. / FIVE AIs. NO MAP."
   },
   {
-   "t": 2.35,
+   "t": 2.34,
    "text": "SAME REQUEST / FOR EACH AI"
   },
   {
-   "t": 4.51,
+   "t": 4.5,
    "text": "THEY CAN&rsquo;T SEE THE MAZE / pick one before it starts"
   },
   {
@@ -460,7 +462,7 @@
    "text": "CHATGPT: WRONG WAY"
   },
   {
-   "t": 10.7,
+   "t": 10.68,
    "text": "CLAUDE LEADS"
   },
   {
@@ -481,15 +483,23 @@
   },
   {
    "t": 20.84,
+   "text": "GEMINI + META AI TIE"
+  },
+  {
+   "t": 22.66,
    "text": "SAME PATH. EVERY STEP."
   },
   {
-   "t": 23.9,
+   "t": 24.0,
    "text": "THE REQUEST: LINK IN BIO"
   },
   {
    "t": 25.9,
    "text": "TOMORROW: A CLAUDE CODE FIX?"
+  },
+  {
+   "t": 28.42,
+   "text": "FOLLOW TO SEE IF IT WORKS"
   }
  ]
 }

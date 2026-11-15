@@ -1,8 +1,8 @@
-results: arena/maze-race.json (real)  D=30.1 go=5.98  lines on targets (take not padded)=False  js=98 sfx=39
-lines: 1:0.04-2.16  2:2.35-4.32  3:4.51-6.34  4:6.58-8.79  5:8.98-11.31  6:14.86-16.56  7:16.75-20.63  8:20.84-23.71  9:23.90-25.71  10:25.90-29.70
+results: arena/maze-race.json (real)  D=30.1 go=5.98  lines on targets (take not padded)=False  js=127 sfx=39
+lines: 1:0.04-2.15  2:2.34-4.31  3:4.50-6.33  4:6.58-8.79  5:8.98-11.31  6:14.86-16.56  7:16.75-20.63  8:20.84-23.71  9:23.90-25.71  10:25.90-29.70
 targets (line starts for voice/stitch.py): 4:6.58  5:8.91  6:14.86  7:16.71  8:20.84  9:23.86  10:25.86   drift of the take on disk: 4:+0.00  5:+0.07  6:+0.00  7:+0.04  8:+0.00  9:+0.04  10:+0.04
-race clock anchors: step 0@6.13  step 29@8.98  step 44@11.51  step 117@14.74  step 118@16.75  step 129@17.98  step 171@18.86  step 500@20.58   steps/s: 0-29: 10.2, 29-44: 5.9, 44-117: 22.6, 117-118: 0.5, 118-129: 8.9, 129-171: 47.7, 171-500: 191.3
-word sources: go=words.json, claude(5)=words.json, short=words.json, makes=words.json, chatgpt(7)=words.json, see=words.json
+race clock anchors: step 0@6.13  step 29@8.98  step 44@11.51  step 117@14.74  step 118@16.75  step 129@17.96  step 171@18.86  step 500@20.58   steps/s: 0-29: 10.2, 29-44: 5.9, 44-117: 22.6, 117-118: 0.5, 118-129: 9.1, 129-171: 46.7, 171-500: 191.3
+word sources: go=words.json, claude(5)=words.json, short=words.json, makes=words.json, chatgpt(7)=words.json, see=words.json, same=words.json, follow=words.json
   OK   line 4 'Perplexity is stuck at the start': it only paces 2 cells from step 5 to step 500
   OK   line 5 'ChatGPT goes the wrong way': its way out grows from 76 steps (step 29) to 82 (step 39); it is 102 at step 61
   OK   line 5 'Claude leads': Claude is the only front dot on steps 39-43 (spoken there); data: alone in front on steps 29-44, 57-59
@@ -15,10 +15,10 @@ front runs (strict): 4-7:chatgpt+gemini+claude+meta  8-28:gemini+claude+meta  29
    14.74s step 117 exit                   gemini
    14.74s step 117 exit                   meta
    14.74s step 117 near_miss              claude closest 10
-   17.53s step 125 circles_after_closest  chatgpt
-   18.46s step 152 paces_2_cells          chatgpt
+   17.52s step 125 circles_after_closest  chatgpt
+   18.45s step 152 paces_2_cells          chatgpt
    18.86s step 171 exit                   claude
    20.58s step 500 dnf_freeze             chatgpt closest 52
    20.58s step 500 dnf_freeze             perplexity closest 86
-headlines: 0.00 LOST IN A MAZE. / FIVE AIs. NO MAP. | 2.35 SAME REQUEST / FOR EACH AI | 4.51 THEY CAN&rsquo;T SEE THE MAZE / pick one before it starts | 6.58 PERPLEXITY: STUCK | 8.98 CHATGPT: WRONG WAY | 10.70 CLAUDE LEADS | 12.08 TWO DOTS TAKE THE LEAD | 14.74 TWO OUT. SAME STEP. | 16.75 CLAUDE: 10 STEPS SHORT... / ...OUT IN 171 | 19.46 CHATGPT: IN CIRCLES | 20.84 SAME PATH. EVERY STEP. | 23.90 THE REQUEST: LINK IN BIO | 25.90 TOMORROW: A CLAUDE CODE FIX?
-NOTE headline holds over 2.5 s (the stage moves under them): [(2.66, 'TWO DOTS TAKE THE LEAD'), (2.71, 'CLAUDE: 10 STEPS SHORT... / ...OUT IN 171'), (3.06, 'SAME PATH. EVERY STEP.')]
+headlines: 0.00 LOST IN A MAZE. / FIVE AIs. NO MAP. | 2.34 SAME REQUEST / FOR EACH AI | 4.50 THEY CAN&rsquo;T SEE THE MAZE / pick one before it starts | 6.58 PERPLEXITY: STUCK | 8.98 CHATGPT: WRONG WAY | 10.68 CLAUDE LEADS | 12.08 TWO DOTS TAKE THE LEAD | 14.74 TWO OUT. SAME STEP. | 16.75 CLAUDE: 10 STEPS SHORT... / ...OUT IN 171 | 19.46 CHATGPT: IN CIRCLES | 20.84 GEMINI + META AI TIE | 22.66 SAME PATH. EVERY STEP. | 24.00 THE REQUEST: LINK IN BIO | 25.90 TOMORROW: A CLAUDE CODE FIX? | 28.42 FOLLOW TO SEE IF IT WORKS
+NOTE headline holds over 2.5 s (the stage moves under them): [(2.66, 'TWO DOTS TAKE THE LEAD'), (2.71, 'CLAUDE: 10 STEPS SHORT... / ...OUT IN 171'), (2.52, 'TOMORROW: A CLAUDE CODE FIX?')]
