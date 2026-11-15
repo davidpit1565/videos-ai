@@ -271,7 +271,7 @@ head(5, tA5, tA6, "NECK AND NECK", logos=("claude", "gemini"))
 head(6, tA6, vR0 + .1, "CHATGPT", "TAKES ITS TIME", logos=("chatgpt",))
 head(7, vR0 + .12, vX, "WHO WON?", size=120)
 head(8, vX, tK, "CLAUDE WINS", f"{GAP} s AHEAD OF GEMINI", logos=("claude",), t2=vXg)
-head(9, tK, s(10) - .04, "DID YOU PICK CLAUDE?", "SEND IT TO A FRIEND", t2=tS8)
+head(9, tK, s(10) - .04, "SEND IT TO A FRIEND", "SEE WHO THEY PICK", t2=tS8)
 head(10, s(10), tF + .04, "NEXT: A MAZE", size=120)
 fin("#h0", tF + .06, .42)
 
