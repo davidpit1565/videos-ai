@@ -17,10 +17,10 @@ Note on DbB-jGzxmjp: in its first 2 s the figure's head is a plain circle; I did
 What the first frames have in common: one to three large things, a lot of empty light paper around them, thick black outlines, a tilt or a pose that says "something is happening", one accent colour, and almost no text before 0.5 s. Our reel 86 opens on a dense screen with many small parts; 89 opens on words.
 
 ## The five traits taken for the sword-duel opening
-1. **Few, very large objects.** Three logo characters only; at frame 0 they span x 111-822, y 393-1221 (measured on `ep99-v5.mp4`), each 300 px tall or more.
-2. **Thick ink outline + hard offset shadow.** Each logo sits on a white tile with an 8 px ink outline and a 10 px hard shadow in that brand's own colour (ink edge around it), ink arms and legs 11 px.
-3. **Tilt and a mid-action pose at frame 0.** Gemini leaps at about -12 degrees, Meta AI runs at about +8, both blades already on Claude; Claude leans back and shakes. Nothing stands straight or still.
-4. **Empty light paper, one accent per object, stickers used once.** The Miki paper background stays empty; one hazard-tape strip in the opening and one in the end scene, nothing else decorative.
+1. **Few, very large objects.** Three logo characters only; at frame 0 they span x 120-873, y 292-1206 (ink pixels measured on `ep99-v6.mp4`), each about 340-375 px tall.
+2. **Thick ink outline + hard offset shadow.** Each logo sits on a white tile with an 8 px ink outline and a 10 px hard shadow in that brand's own colour (ink edge around it), ink arms and legs 14 px, bold white blades with an 8 px outline and a short swing trail, eyes sitting on top of the tile (the logo itself is untouched).
+3. **Tilt and a mid-action pose at frame 0.** Gemini runs in at about -10 degrees, Meta AI at about +8, both blades raised; Claude on the right leans back, arms up, eyes wide. Nothing stands straight or still.
+4. **Empty light paper, one accent per object, stickers used once.** The Miki paper background stays empty; no stickers at all in v6 (the hazard-tape strip of v5 confused the blind reader and was removed).
 5. **No text.** Frame 0 and the whole duel carry no words: the logos name themselves. The first words on screen come with line 2.
 
 Applied to the end scene as well: the same tiles as characters on a paper podium with ink outlines and hard shadows; the only texts are the facts (1 / 117 steps / same path / best possible 89; 3 / 171 steps; "in circles"; "stuck at start").
@@ -32,3 +32,6 @@ Applied to the end scene as well: the same tiles as characters on a paper podium
 
 ## Kept from our own rules
 Miki style paper and ink, real logos (sources in `video/ep99/hf/assets/logos/SOURCES.md`), safe area x 108-972 / y 269-1248 with the right band at x 864, cartoon only (two halves slide apart on a clean cut, a white flash, motion lines; no blood), and the truth: Claude is whole again in line 2 and stands on step 3 at the end (out in 171 steps).
+
+## v6 note (blind reader on v5, 15.11.2026)
+Stop 3/5 on v5: read as a three-way fight, characters small and top-left, thin swords, the checkered strip confusing, the Meta AI mark a guess. v6: bigger characters filling the box, attackers left and Claude right, bold blades, eyes (angry brows on the two, wide eyes on Claude), strip removed, logo on the tile enlarged (112 to 130 px). The Meta AI mark is the real one from meta.ai (the ring); Meta's infinity mark is the company logo and is not in the repo: not swapped without a sourced file and David's word.

@@ -255,7 +255,7 @@ def fout(sel, t, d=.22):
     js(f"tl.to('{sel}',{{opacity:0,y:-12,filter:'blur(8px)',duration:{d},ease:'power2.inOut'}},{max(0, t):.3f});")
 
 # ---------------------------------------------------------------- headlines (x 108-972; plain ink, no boxes, no code words)
-HEADS = []; HLOG = []; HW = 864
+HEADS = []; HLOG = []; HW = 850
 def head(i, t_in, t_out, l1, logos=(), size=96, top=None, l2="", t2=None, l2s=.62):
     wl = len(logos) * 86
     fs = min(size, HW / max((tw(l1) + wl * 100 / 84) / 100, tw(l2) * l2s / 100 if l2 else .01))
@@ -347,32 +347,34 @@ def rowtext(k):
 
 # logo characters: a thick-outlined logo tile with a hard offset shadow in the brand colour, ink arms and legs
 def char(cid, k, sword=False, fd=1):
-    sw = '<path class="sw" d="M134 -8 L292 -4 L306 0 L292 4 L134 8Z"/><path d="M148 -21 V21"/>' if sword else ""
+    sw = ('<path class="arc" d="M328 -12 Q312 -74 262 -112 Q284 -66 268 -13Z"/><path class="sw" d="M150 -15 L300 -11 L330 0 L300 11 L150 15Z"/><path class="gd" d="M150 -30 V30"/>') if sword else ""
+    eyes = ('<svg class="eyes" viewBox="-100 -150 200 100" width="200" height="100"><g class="eg"><circle class="ew" cx="-28" cy="-96" r="18"/><circle class="ew" cx="28" cy="-96" r="18"/>'
+            '<circle class="ep" cx="-28" cy="-96" r="7.5"/><circle class="ep" cx="28" cy="-96" r="7.5"/><path class="eb" d="M-52 -128 L-14 -116 M52 -128 L14 -116"/></g></svg>')
     return (f'<div class="chr" id="ch_{cid}"><svg class="lim" viewBox="-320 -200 640 440" width="640" height="440">'
             f'<g class="lL"><path d="M-30 80 V142 h{20 * fd}"/></g><g class="lR"><path d="M30 80 V142 h{20 * fd}"/></g>'
             f'<g class="aL"><path d="M-84 0 H-134"/><circle cx="-134" cy="0" r="9"/></g>'
             f'<g class="aR"><path d="M84 0 H134"/><g class="swd">{sw}</g><circle cx="134" cy="0" r="9"/></g></svg>'
-            f'<div class="tile" style="box-shadow:10px 10px 0 {COL[k]},10px 10px 0 4px {INK}">{logo(k, 112)}</div></div>')
+            f'<div class="tile" style="box-shadow:10px 10px 0 {COL[k]},10px 10px 0 4px {INK}">{logo(k, 130)}</div>{eyes}</div>')
 assert near["id"] == "claude" and sorted(WINS) == ["gemini", "meta"]
 T25 = math.tan(math.radians(25)); CUTD = [round(math.cos(math.radians(25)), 4), round(math.sin(math.radians(25)), 4)]
-KCX, KCY = 656, 740                                          # Claude in the opening; the cut runs through its centre at 25 degrees
-S0X, S0Y = KCX - 250 * CUTD[0], KCY - 250 * CUTD[1]
+KCX, KCY = 690, 770                                          # Claude in the opening; the cut runs through its centre at 25 degrees
+S0X, S0Y = KCX - 290 * CUTD[0], KCY - 290 * CUTD[1]
 half = lambda cid, poly: f'<div class="hf" id="hf{cid}"><div class="hfc" style="clip-path:polygon({poly})"><div class="hfi">{char("cl" + cid, "claude", fd=-1)}</div></div></div>'
 chars = ('<div id="chars">' + char("gemini", "gemini", sword=True) + char("meta", "meta", sword=True) + char("chatgpt", "chatgpt") + char("perplexity", "perplexity", fd=-1) +
          '<div id="clw">' + half("B", f"0 {350 - 350 * T25:.1f}px,700px {350 + 350 * T25:.1f}px,700px 700px,0 700px") +
          half("A", f"0 0,700px 0,700px {351 + 350 * T25:.1f}px,0 {351 - 350 * T25:.1f}px") + '</div></div>')
-mlines = "".join(f'<path d="M{math.cos(a_) * 215:.0f} {math.sin(a_) * 215:.0f} L{math.cos(a_) * (246 if q % 2 else 232):.0f} {math.sin(a_) * (246 if q % 2 else 232):.0f}"/>' for q, a_ in enumerate(math.radians(8 + 30 * j) for j in range(12)) if q not in (0, 6))
+mlines = "".join(f'<path d="M{math.cos(a_) * 184:.0f} {math.sin(a_) * 184:.0f} L{math.cos(a_) * (214 if q % 2 else 204):.0f} {math.sin(a_) * (214 if q % 2 else 204):.0f}"/>' for q, a_ in enumerate(math.radians(8 + 30 * j) for j in range(12)) if q not in (0, 6))
 spd = '<path d="M0 0 h44 M14 26 h52 M4 52 h38"/>'
-opn = f'''<div id="opn"><div class="hz" id="hzA" data-decor></div>
+opn = f'''<div id="opn">
  <svg class="spd" id="spG" viewBox="0 -8 130 70" width="130" height="70" data-decor>{spd}</svg><svg class="spd" id="spM" viewBox="0 -8 130 70" width="130" height="70" data-decor>{spd}</svg>
  <svg id="mln" viewBox="-300 -300 600 600" width="600" height="600" style="left:{KCX - 300}px;top:{KCY - 300}px" data-decor>{mlines}</svg>
  <div id="fls" style="left:{KCX - 430}px;top:{KCY - 430}px" data-decor></div>
- <div id="sls" style="left:{S0X:.1f}px;top:{S0Y - 24:.1f}px" data-decor><svg viewBox="0 0 500 48" width="500" height="48"><path d="M2 24 Q250 -8 498 24 Q250 56 2 24Z" fill="#fff" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/></svg></div></div>'''
+ <div id="sls" style="left:{S0X:.1f}px;top:{S0Y - 30:.1f}px" data-decor><svg viewBox="0 0 520 60" width="520" height="60"><path d="M3 30 Q260 -12 517 30 Q260 72 3 30Z" fill="#fff" stroke="{INK}" stroke-width="7" stroke-linejoin="round"/></svg></div></div>'''
 # the end scene: a podium. Texts are facts of the results file
 P1X, P1Y, P1W, P1H = 316, 770, 308, 250; P3X, P3Y, P3W, P3H = 624, 884, 180, 136
 CGC = [214, 1092, 46]; PXB = [632, 1074, 186, 160]
 cg = RES["chatgpt"]; assert STATUS["chatgpt"] == "dnf" and STATUS["perplexity"] == "dnf"
-pod = f'''<div id="pod"><div class="hz" id="hzB" data-decor></div>
+pod = f'''<div id="pod">
  <svg id="ftp" viewBox="0 0 1080 1920" width="1080" height="1920" data-decor>
   <path class="fp" d="M112 {P1Y + 150} C190 {P1Y + 150} 230 {P1Y + 40} {P1X - 6} {P1Y + 34}" stroke="{COL[WINS[0]]}" pathLength="1"/>
   <path class="fp" d="M112 {P1Y + 166} C196 {P1Y + 166} 240 {P1Y + 56} {P1X - 6} {P1Y + 50}" stroke="{COL[WINS[1]]}" pathLength="1"/>
@@ -387,9 +389,10 @@ markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam"><div id="pn">
  {maze}{chips}{opn}{pod}{chars}
+</div>
  <div id="cnt"><em>STEP</em><span id="cnn">0</span><em>/ {MAXS}</em></div>
  {"".join(HEADS)}
-</div></div>'''
+</div>'''
 CSS5 = '''
 #vp{position:absolute;overflow:hidden;background:PAPER;border:5px solid INK;border-radius:10px;box-shadow:-10px 10px 0 INK;z-index:1;opacity:0}
 #stg{position:absolute;left:0;top:0;width:VWpx;height:VWpx;transform-origin:0 0;will-change:transform}
@@ -400,16 +403,17 @@ CSS5 = '''
 #chars,#opn,#pod{position:absolute;left:0;top:0;width:0;height:0} #opn{z-index:6} #pod{z-index:6;opacity:0} #chars{z-index:7}
 .chr{position:absolute;left:0;top:0;width:0;height:0;will-change:transform}
 .lim{position:absolute;left:-320px;top:-200px;overflow:visible}
-.lim path{fill:none;stroke:INK;stroke-width:11;stroke-linecap:round;stroke-linejoin:round}
+.lim path{fill:none;stroke:INK;stroke-width:14;stroke-linecap:round;stroke-linejoin:round}
 .lim circle{fill:#fff;stroke:INK;stroke-width:6}
-.lim .sw{fill:#fff;stroke:INK;stroke-width:5;stroke-linejoin:round}
+.lim .sw{fill:#fff;stroke:INK;stroke-width:8;stroke-linejoin:round} .lim .gd{stroke-width:15} .lim .arc{fill:#fff;stroke:INK;stroke-width:5;stroke-linejoin:round}
+.eyes{position:absolute;left:-100px;top:-150px;overflow:visible} .ew{fill:#fff;stroke:INK;stroke-width:6} .ep{fill:INK} .eb{fill:none;stroke:INK;stroke-width:8;stroke-linecap:round}
 .tile{position:absolute;left:-88px;top:-88px;width:176px;height:176px;background:#fff;border:8px solid INK;border-radius:34px;display:flex;align-items:center;justify-content:center}
 #clw,.hf{position:absolute;left:0;top:0;width:0;height:0}
 .hfc{position:absolute;left:-350px;top:-350px;width:700px;height:700px} .hfi{position:absolute;left:350px;top:350px;width:0;height:0}
 .spd{position:absolute;left:0;top:0;overflow:visible} .spd path{fill:none;stroke:INK;stroke-width:9;stroke-linecap:round}
 #mln{position:absolute;overflow:visible;opacity:0} #mln path{fill:none;stroke:INK;stroke-width:10;stroke-linecap:round}
 #fls{position:absolute;width:860px;height:860px;border-radius:50%;background:radial-gradient(circle,#fff 0,#fff 32%,rgba(255,255,255,0) 68%);opacity:0}
-#sls{position:absolute;width:500px;height:48px;transform:rotate(25deg);transform-origin:0 24px} #sls svg{display:block;overflow:visible}
+#sls{position:absolute;width:520px;height:60px;transform:rotate(25deg);transform-origin:0 30px} #sls svg{display:block;overflow:visible}
 .hz{position:absolute;width:300px;height:44px;border:5px solid INK;background:repeating-linear-gradient(-55deg,INK 0 16px,PAPER 16px 32px)}
 #hzA{left:124px;top:1160px;transform:rotate(-7deg)} #hzB{left:690px;top:548px;transform:rotate(6deg);width:250px}
 .fp{fill:none;stroke-width:9;stroke-linecap:round;stroke-dasharray:.045 .03;stroke-dashoffset:0}
@@ -470,7 +474,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #btx{font-weight:800;letter-spacing:-.01em;white-space:nowrap}
 .nt{position:absolute;left:600px;width:64px;height:46px;background:#fff;border:4px solid INK;border-radius:13px;opacity:0;padding:9px 9px 0}
 .nt i{display:block;height:5px;border-radius:3px;background:INK;margin-bottom:7px} .nt i+i{width:60%}
-#cnt{position:absolute;right:108px;top:292px;z-index:5;font-weight:900;font-size:50px;line-height:50px;letter-spacing:-.03em;white-space:nowrap;opacity:0;display:flex;align-items:baseline;gap:9px}
+#cnt{position:absolute;right:120px;top:292px;z-index:5;font-weight:900;font-size:50px;line-height:50px;letter-spacing:-.03em;white-space:nowrap;opacity:0;display:flex;align-items:baseline;gap:9px}
 #cnt em{font-style:normal;font-size:24px;letter-spacing:0}
 .hd{position:absolute;left:108px;top:336px;font-weight:900;letter-spacing:-.03em;white-space:nowrap;opacity:0;transform-origin:0 50%;z-index:5}
 #h0{opacity:1}
@@ -552,14 +556,14 @@ def gsm(vals, sg=3):
 CAM = [round(v, 1) for tri in zip(gsm([c[0] for c in CAMR]), gsm([c[1] for c in CAMR]), [round(math.exp(v) * 100) for v in gsm([c[2] for c in CAMR])]) for v in tri]
 
 # no flat stretch: a soft camera push on every beat, and on a data event (dead end) wherever two beats are more than 2.2 s apart
-PUN = sorted({round(t, 2) for t in (a2 + .05, a2 + .9, a3 + .1, a3 + .9, T0, vX + .8, s(4), s(5), vCL, vPAIR, vX, s(7), vCLX, vCG, vEND, tRV, tSAME, tSAME + .8, tPD + .1, tPD + .9, s(10), tFOL)})
+PUN = sorted({round(t, 2) for t in (a2 + .05, a2 + .9, a3 + .1, a3 + .9, T0, vX + .8, s(4), s(5), vCL, vPAIR, vX, s(7), vCLX, vCG, vEND, tRV, tSAME, tSAME + .8)})
 for _ in range(20):
-    g = next((i for i in range(len(PUN) - 1) if PUN[i + 1] - PUN[i] > 2.2), None)
+    g = next((i for i in range(len(PUN) - 1) if PUN[i + 1] - PUN[i] > 2.2 and PUN[i + 1] < tK), None)
     if g is None: break
     mid = (PUN[g] + PUN[g + 1]) / 2
     cand = [x["v"] for x in EV if x["kind"] == "dead_end" and PUN[g] + .9 < x["v"] < PUN[g + 1] - .9]
     PUN = sorted(PUN + [round(min(cand, key=lambda v: abs(v - mid)) if cand else mid, 2)])
-BIG = (a3 + .1, T0, vX, vX + .8, s(7), tSAME, tPD + .1)
+BIG = (a3 + .1, T0, vX, vX + .8, s(7), tSAME)
 for t in PUN: js(f"tl.fromTo('#pn',{{scale:1}},{{scale:{1.055 if any(abs(t - b) < .02 for b in BIG) else 1.04},duration:.17,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t:.3f});")
 js(f"tl.fromTo('#pn',{{scale:1}},{{scale:1.045,duration:.12,ease:'sine.out',yoyo:true,repeat:1,immediateRender:false}},{tKL:.3f});")
 # ---------------------------------------------------------------- render(): dots, trails, chips, marks, counter: all from the clock
@@ -586,28 +590,31 @@ const clw=$('#clw'), hfA=$('#hfA'), pb1=$('#pb1'), pb3=$('#pb3'), fps=$$('.fp');
 const dms=$$('.dm').map(el=>({el,c:+el.dataset.c,s:+el.dataset.s})), cms=$$('.cm').map(el=>({el,c:+el.dataset.c}));
 const C=Dt.CELL;
 // ---- logo characters
-function mk(id){const el=$('#ch_'+id);return {el,aR:el.querySelector('.aR'),aL:el.querySelector('.aL'),lL:el.querySelector('.lL'),lR:el.querySelector('.lR'),sw:el.querySelector('.swd'),lim:el.querySelector('.lim')}}
+function mk(id){const el=$('#ch_'+id);return {eg:el.querySelector('.eg'),eps:[...el.querySelectorAll('.ep')],eb:el.querySelector('.eb'),el,aR:el.querySelector('.aR'),aL:el.querySelector('.aL'),lL:el.querySelector('.lL'),lR:el.querySelector('.lR'),sw:el.querySelector('.swd'),lim:el.querySelector('.lim')}}
 const CH={g:mk('gemini'),m:mk('meta'),cg:mk('chatgpt'),px:mk('perplexity'),cA:mk('clA'),cB:mk('clB')};
 function limbs(ch,o){ch.aR.setAttribute('transform','rotate('+o.aR.toFixed(1)+' 84 0)'); ch.aL.setAttribute('transform','rotate('+(-o.aL).toFixed(1)+' -84 0)');
   ch.lL.setAttribute('transform','rotate('+o.lL.toFixed(1)+' -30 80)'); ch.lR.setAttribute('transform','rotate('+o.lR.toFixed(1)+' 30 80)');
-  ch.lim.style.opacity=(o.lo===undefined?1:o.lo).toFixed(2); ch.sw.style.opacity=(o.so===undefined?0:o.so).toFixed(2)}
+  ch.lim.style.opacity=(o.lo===undefined?1:o.lo).toFixed(2); ch.sw.style.opacity=(o.so===undefined?0:o.so).toFixed(2);
+  const es=o.es||1, ex=(o.ex||0)*8, ey=(o.ey||0)*7; ch.eg.setAttribute('transform','translate(0 -96) scale('+es.toFixed(3)+') translate(0 96)');
+  ch.eps[0].setAttribute('cx',(-28+ex).toFixed(1)); ch.eps[1].setAttribute('cx',(28+ex).toFixed(1)); ch.eps[0].setAttribute('cy',(-96+ey).toFixed(1)); ch.eps[1].setAttribute('cy',(-96+ey).toFixed(1));
+  ch.eb.style.opacity=(o.bo||0).toFixed(2)}
 function put(el,o){el.style.opacity=o.op.toFixed(3); el.style.transform='translate('+o.x.toFixed(2)+'px,'+o.y.toFixed(2)+'px) rotate('+(o.rot||0).toFixed(2)+'deg) scale('+o.sc.toFixed(4)+')'}
 // the duel: kt = seconds into the opening. Bullet time until the word "killed", then one clean cut
 function duel(kt,v){
-  const p=ez(kt/Dt.tKL), hit=kt>=Dt.tKL, post=kt-Dt.tKL, q=hit?eo(post/.12):0, vic=hit?ez((post-.35)/.4):0, drop=hit?eo(post/.4):0;
+  const p=ez(kt/Dt.tKL), hit=kt>=Dt.tKL, post=kt-Dt.tKL, q=hit?eo(post/.12):0, vic=hit?ez((post-.35)/.4):0, wind=bump(Math.min(1,kt/Dt.tKL));
   return {
-    g:{x:lerp(285,340,p)+55*q, y:lerp(515,545,p)+18*q+Math.sin(v*5)*5-12*vic*Math.abs(Math.sin(v*7+1)), sc:1.25, rot:lerp(-12,-4,p)+10*q-6*vic, aR:(hit?lerp(-2,25,q):lerp(-5,-2,p))-75*vic, aL:25+8*Math.sin(v*6), lL:35+6*Math.sin(v*7)-30*vic, lR:62-56*vic, so:1, op:1},
-    m:{x:lerp(285,340,p)+55*q, y:lerp(965,940,p)-8*q+Math.sin(v*5+1.3)*5-14*vic*Math.abs(Math.sin(v*7)), sc:1.25, rot:lerp(8,3,p)-8*q, aR:(hit?lerp(-42,-32,q):lerp(-45,-42,p))-40*vic, aL:30+8*Math.sin(v*6+1), lL:(-28+20*Math.sin(v*8))*(1-vic), lR:(30-20*Math.sin(v*8))*(1-vic), so:1, op:1},
-    c:{x:Dt.KC[0]+(hit?0:2.4*Math.sin(v*38)), y:Dt.KC[1], sc:1.45, rot:hit?0:lerp(3,7,p), aR:lerp(-70+5*Math.sin(v*14),-18,drop), aL:lerp(-70+5*Math.sin(v*14+2),-18,drop), lL:hit?-6:-8+5*Math.sin(v*22), lR:hit?6:8+5*Math.sin(v*22+2), so:0, op:1, slide:hit?80*eo(post/.5):0}
+    g:{x:lerp(284,340,p)+34*q, y:lerp(560,572,p)+10*q+Math.sin(v*5)*5-12*vic*Math.abs(Math.sin(v*7+1)), sc:1.4, rot:lerp(-10,-4,p)+9*q-5*vic, aR:(hit?lerp(-17,25,q):-14-3*wind)-40*vic, aL:74+6*Math.sin(v*6), lL:(34+22*Math.sin(v*9))*(1-vic), lR:(-30-22*Math.sin(v*9))*(1-vic), so:1, op:1, ex:.9, es:1, bo:1-vic},
+    m:{x:lerp(322,376,p)+30*q, y:lerp(985,956,p)-6*q+Math.sin(v*5+1.3)*5-14*vic*Math.abs(Math.sin(v*7)), sc:1.4, rot:lerp(8,3,p)-8*q, aR:(hit?lerp(-58,-30,q):-62+5*wind)-30*vic, aL:74+6*Math.sin(v*6+1), lL:(-30+22*Math.sin(v*9+2))*(1-vic), lR:(32-22*Math.sin(v*9+2))*(1-vic), so:1, op:1, ex:.9, ey:-.5, es:1, bo:1-vic},
+    c:{x:Dt.KC[0]+(hit?0:2.6*Math.sin(v*38)), y:Dt.KC[1], sc:1.55, rot:hit?0:lerp(4,8,p), aR:-66+5*Math.sin(v*14), aL:-66+5*Math.sin(v*14+2), lL:hit?-6:-8+5*Math.sin(v*22), lR:hit?6:8+5*Math.sin(v*22+2), so:0, op:1, ex:-.95, ey:.1, es:hit?1.6:lerp(1.35,1.5,p), bo:0, slide:hit?62*eo(post/.5):0}
   };
 }
 function run(o,v,ph){o.lL=38*Math.sin(v*20+ph); o.lR=-38*Math.sin(v*20+ph); o.aR=28*Math.sin(v*20+ph+1); o.aL=-28*Math.sin(v*20+ph+1); return o}
 function cast(v){
-  const hide={x:0,y:0,sc:1,rot:0,aR:0,aL:0,lL:0,lR:0,op:0,so:0,slide:0}, arLast=Dt.AR[4]+.15;
+  const hide={x:0,y:0,sc:1,rot:0,aR:0,aL:0,lL:0,lR:0,op:0,so:0,slide:0}, T=Dt.KC, arLast=Dt.AR[4]+.15;
   if(v<Dt.a2||v>=Dt.tF){const o=duel(v<Dt.a2?v:0,v), a=v<Dt.a2?1:ez((v-Dt.tF-.02)/.35); o.g.op=o.m.op=o.c.op=a; o.cg=hide; o.px=hide; return o}
   if(v<arLast){                                             // line 2: run to the start cell and shrink into the dots
     const b=duel(Dt.a2,Dt.a2), o={g:b.g,m:b.m,c:b.c,cg:{x:-150,y:985,sc:1.1,rot:0,op:1},px:{x:1230,y:565,sc:1.1,rot:0,op:1}};
-    o.c.slide=80*(1-eb((v-Dt.a2-.15)/.3));
+    o.c.slide=62*(1-eb((v-Dt.a2-.15)/.3));
     for(const key of ['g','m','c','cg','px']){const c=Dt.IX[key], u=ez((v-Dt.a2-.1-.07*c)/1.05), e=o[key], T=Dt.FANP[c];
       run(e,v,c*1.3); e.x=lerp(e.x,T[0],u); e.y=lerp(e.y,T[1],u)-46*bump(u); e.sc=lerp(e.sc,.63,u); e.rot=lerp(e.rot||0,0,u)+5*bump(u)*(T[0]>e.x?1:-1);
       e.lo=1-ez((u-.72)/.28); e.so=1-ez((v-Dt.a2)/.25); e.op=1-ez((v-Dt.AR[c])/.1)}
@@ -617,9 +624,9 @@ function cast(v){
   const st=(x,y,i,sc)=>({x,y:y-(1-en(i))*70,sc,rot:0,aR:0,aL:0,lL:0,lR:0,lo:1,so:0,op:ez((v-Dt.tPD-.08*i)/.2)*out,slide:0});
   const g=st(P.g[0],P.g[1]-12*Math.abs(Math.sin(v*6)),0,.95), m=st(P.m[0],P.m[1]-12*Math.abs(Math.sin(v*6+1.6)),1,.95), c=st(P.c[0],P.c[1],2,.95);
   g.aR=-62+12*Math.sin(v*8); g.aL=-62+12*Math.sin(v*8+1.5); m.aR=-62+12*Math.sin(v*8+.8); m.aL=-62+12*Math.sin(v*8+2.3);
-  c.aR=-48+24*Math.sin(v*9); c.aL=22; c.lL=-5; c.lR=5;
-  const cg=run(st(P.cg[0]+Math.cos(a)*P.cg[2],P.cg[1]+Math.sin(a)*P.cg[2]*.34,3,.62),v,0); cg.rot=6*Math.cos(a);
-  const px=st(P.px[0]+20*Math.sin(v*3.2),P.px[1],4,.62); px.lL=16*Math.sin(v*6.4); px.lR=-16*Math.sin(v*6.4); px.aR=20; px.aL=20;
+  c.aR=-48+24*Math.sin(v*9); c.aL=22; c.lL=-5; c.lR=5; c.ex=-.8; g.ey=m.ey=-.5;
+  const cg=run(st(P.cg[0]+Math.cos(a)*P.cg[2],P.cg[1]+Math.sin(a)*P.cg[2]*.34,3,.62),v,0); cg.rot=6*Math.cos(a); cg.ex=Math.cos(v*7); cg.ey=Math.sin(v*7);
+  const px=st(P.px[0]+20*Math.sin(v*3.2),P.px[1],4,.62); px.lL=16*Math.sin(v*6.4); px.lR=-16*Math.sin(v*6.4); px.aR=20; px.aL=20; px.ex=Math.sin(v*3.2);
   return {g,m,c,cg,px};
 }
 function render(v){
@@ -632,13 +639,13 @@ function render(v){
   // ---- opening props: the slash, a white flash, motion lines. No text
   const inOpen=v<Dt.a2+.3||v>=Dt.tF, kt=v<Dt.a2?v:(v>=Dt.tF?0:Dt.a2), oa=v<Dt.a2?1:(v>=Dt.tF?ez((v-Dt.tF-.02)/.35):1-ez((v-Dt.a2)/.25));
   opn.style.opacity=(inOpen?oa:0).toFixed(3);
-  if(inOpen){const p=ez(kt/Dt.tKL), hit=kt>=Dt.tKL, post=kt-Dt.tKL, sp=hit?lerp(.2,1,eo(post/.07)):lerp(.17,.2,p);
-    sls.style.clipPath='inset(-20px '+((1-sp)*100).toFixed(1)+'% -20px -20px)'; sls.style.opacity=(hit?1-ez((post-.14)/.25):1).toFixed(3);
+  if(inOpen){const p=ez(kt/Dt.tKL), hit=kt>=Dt.tKL, post=kt-Dt.tKL, sp=hit?lerp(.3,1,eo(post/.07)):.3*ez((kt-Dt.tKL+.1)/.1);
+    sls.style.clipPath='inset(-20px '+((1-sp)*100).toFixed(1)+'% -20px -20px)'; sls.style.opacity=(hit?1-ez((post-.14)/.25):ez((kt-Dt.tKL+.1)/.06)).toFixed(3);
     fls.style.opacity=(hit?(post<.04?post/.04:1-ez((post-.04)/.3))*.88:0).toFixed(3);
     mln.style.opacity=(hit?1-ez((post-.12)/.45):0).toFixed(3); mln.style.transform='scale('+(.8+.22*eo(post/.3)).toFixed(3)+') rotate('+(post*20).toFixed(1)+'deg)';
     const so_=(hit?1-ez(post/.3):.9), jx=Math.sin(v*31)*7;
-    spG.style.opacity=so_.toFixed(2); spG.style.transform='translate('+Math.max(124,o.g.x-300+jx).toFixed(1)+'px,'+(o.g.y-40).toFixed(1)+'px)';
-    spM.style.opacity=so_.toFixed(2); spM.style.transform='translate('+Math.max(124,o.m.x-300-jx).toFixed(1)+'px,'+(o.m.y-10).toFixed(1)+'px)'}
+    spG.style.opacity=so_.toFixed(2); spG.style.transform='translate('+Math.max(124,o.g.x-330+jx).toFixed(1)+'px,'+(o.g.y+150).toFixed(1)+'px)';
+    spM.style.opacity=so_.toFixed(2); spM.style.transform='translate('+Math.max(124,o.m.x-340-jx).toFixed(1)+'px,'+(o.m.y-230).toFixed(1)+'px)'}
   // ---- the maze stage: appears in line 2 (the walls draw themselves), leaves before the end scene
   const sIn=ez((v-Dt.a2-.15)/.3), sOut=1-ez((v-Dt.tK+.16)/.22), sOp=Math.min(sIn,sOut);
   vp.style.opacity=sOp.toFixed(3); exw.style.opacity=sOp.toFixed(3); chw.style.opacity=sOp.toFixed(3); chw.style.transform='translate('+(-(1-eo((v-Dt.a2-.15)/.5))*50).toFixed(1)+'px,0)';

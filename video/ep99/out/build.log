@@ -1,4 +1,4 @@
-results: arena/maze-race.json (real)  D=28.21 go=6.26  lines on targets (take not padded)=False  js=61 sfx=40
+results: arena/maze-race.json (real)  D=28.21 go=6.26  lines on targets (take not padded)=False  js=57 sfx=40
 lines: 1:0.04-2.32  2:2.51-4.52  3:4.71-6.61  4:6.88-9.09  5:9.28-11.61  6:14.76-16.46  7:16.65-20.53  8:20.74-23.61  9:23.80-25.61  10:25.80-27.81
 targets (line starts for voice/stitch.py): 4:6.86  5:9.19  6:14.74  7:16.59  8:20.72  9:23.74  10:25.74   drift of the take on disk: 4:+0.02  5:+0.09  6:+0.02  7:+0.06  8:+0.02  9:+0.06  10:+0.06
 race clock anchors: step 0@6.41  step 29@9.28  step 44@11.81  step 117@14.64  step 118@16.65  step 129@17.86  step 171@18.76  step 500@20.48   steps/s: 0-29: 10.1, 29-44: 5.9, 44-117: 25.8, 117-118: 0.5, 118-129: 9.1, 129-171: 46.7, 171-500: 191.3
