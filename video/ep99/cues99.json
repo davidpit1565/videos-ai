@@ -2,83 +2,82 @@
  "placeholder": {
   "data": false,
   "script": false,
-  "line10": "UNCONFIRMED: red banner on screen during line 10",
   "results_file": "arena/maze-race.json"
  },
  "lines": [
   {
    "n": 1,
-   "text": "Lost in a maze, five AIs, no map.",
+   "text": "Meta AI and Gemini just killed Claude.",
    "start": 0.04,
-   "end": 2.15,
+   "end": 2.32,
    "role": "hook"
   },
   {
    "n": 2,
-   "text": "I ask each AI to guide one dot out.",
-   "start": 2.34,
-   "end": 4.31,
+   "text": "I put five AIs in a maze race.",
+   "start": 2.51,
+   "end": 4.52,
    "role": "premise"
   },
   {
    "n": 3,
    "text": "None of them can see the maze. Go!",
-   "start": 4.5,
-   "end": 6.33,
+   "start": 4.71,
+   "end": 6.61,
    "role": "rules+Go"
   },
   {
    "n": 4,
    "text": "Perplexity is stuck at the start!",
-   "start": 6.58,
-   "end": 8.79,
+   "start": 6.88,
+   "end": 9.09,
    "role": "race"
   },
   {
    "n": 5,
    "text": "ChatGPT goes the wrong way. Claude leads!",
-   "start": 8.98,
-   "end": 11.31,
+   "start": 9.28,
+   "end": 11.61,
    "role": "race"
   },
   {
    "n": 6,
    "text": "Two dots are out, on the same step!",
-   "start": 14.86,
-   "end": 16.56,
+   "start": 14.76,
+   "end": 16.46,
    "role": "race"
   },
   {
    "n": 7,
    "text": "Claude turns back ten steps short, then makes it. ChatGPT walks in circles.",
-   "start": 16.75,
-   "end": 20.63,
+   "start": 16.65,
+   "end": 20.53,
    "role": "race"
   },
   {
    "n": 8,
    "text": "Gemini and Meta AI tie. Same path, every step.",
-   "start": 20.84,
-   "end": 23.71,
+   "start": 20.74,
+   "end": 23.61,
    "role": "tie reveal"
   },
   {
    "n": 9,
    "text": "The setup's in the link in bio.",
-   "start": 23.9,
-   "end": 25.71,
+   "start": 23.8,
+   "end": 25.61,
    "role": "setup (board)"
   },
   {
    "n": 10,
-   "text": "Tomorrow, a free tool says it fixes Claude Code. Follow, so you see if it works.",
-   "start": 25.9,
-   "end": 29.7,
-   "role": "tomorrow (UNCONFIRMED)"
+   "text": "Want the next one? Follow, and you'll see it.",
+   "start": 25.8,
+   "end": 27.81,
+   "role": "follow line"
   }
  ],
- "D": 30.1,
- "go": 5.98,
+ "D": 28.21,
+ "go": 6.26,
  "sources": {
   "go": "words.json",
   "claude(5)": "words.json",
@@ -90,74 +89,74 @@
   "follow": "words.json"
  },
  "targets": {
-  "4": 6.58,
-  "5": 8.91,
-  "6": 14.86,
-  "7": 16.71,
-  "8": 20.84,
-  "9": 23.86,
-  "10": 25.86
+  "4": 6.86,
+  "5": 9.19,
+  "6": 14.74,
+  "7": 16.59,
+  "8": 20.72,
+  "9": 23.74,
+  "10": 25.74
  },
  "drift_vs_targets": {
-  "4": 0.0,
-  "5": 0.07,
-  "6": 0.0,
-  "7": 0.04,
-  "8": 0.0,
-  "9": 0.04,
-  "10": 0.04
+  "4": 0.02,
+  "5": 0.09,
+  "6": 0.02,
+  "7": 0.06,
+  "8": 0.02,
+  "9": 0.06,
+  "10": 0.06
  },
  "lines_on_targets": false,
  "race": {
   "anchors": [
    {
-    "v": 6.13,
+    "v": 6.41,
     "step": 0
    },
    {
-    "v": 8.98,
+    "v": 9.28,
     "step": 29
    },
    {
-    "v": 11.51,
+    "v": 11.81,
     "step": 44
    },
    {
-    "v": 14.74,
+    "v": 14.64,
     "step": 117
    },
    {
-    "v": 16.75,
+    "v": 16.65,
     "step": 118
    },
    {
-    "v": 17.96,
+    "v": 17.86,
     "step": 129
    },
    {
-    "v": 18.86,
+    "v": 18.76,
     "step": 171
    },
    {
-    "v": 20.58,
+    "v": 20.48,
     "step": 500
    }
   ],
-  "race_only_s": 3.3,
+  "race_only_s": 2.9,
   "steps_per_second": {
-   "0-29": 10.2,
+   "0-29": 10.1,
    "29-44": 5.9,
-   "44-117": 22.6,
+   "44-117": 25.8,
    "117-118": 0.5,
    "118-129": 9.1,
    "129-171": 46.7,
    "171-500": 191.3
   },
-  "first_exit": 14.74,
-  "end": 20.58,
-  "reveal": 20.84,
-  "board": 23.9,
-  "frame0_returns": 29.52,
+  "first_exit": 14.62,
+  "end": 20.48,
+  "reveal": 20.74,
+  "board": 23.8,
+  "frame0_returns": 27.63,
   "order": [
    {
     "place": 1,
@@ -213,14 +212,14 @@
     "step": 4,
     "until": 7,
     "steps_to_exit": 85,
-    "v": 6.822
+    "v": 7.107
    },
    {
     "kind": "paces_2_cells",
     "id": "perplexity",
     "step": 5,
     "until": 500,
-    "v": 6.954
+    "v": 7.239
    },
    {
     "kind": "front",
@@ -233,7 +232,7 @@
     "step": 8,
     "until": 28,
     "steps_to_exit": 81,
-    "v": 7.25
+    "v": 7.538
    },
    {
     "kind": "front",
@@ -244,7 +243,7 @@
     "step": 29,
     "until": 44,
     "steps_to_exit": 68,
-    "v": 8.98
+    "v": 9.28
    },
    {
     "kind": "front",
@@ -256,7 +255,7 @@
     "step": 46,
     "until": 55,
     "steps_to_exit": 53,
-    "v": 11.577
+    "v": 11.868
    },
    {
     "kind": "front",
@@ -267,7 +266,7 @@
     "step": 57,
     "until": 59,
     "steps_to_exit": 48,
-    "v": 11.943
+    "v": 12.189
    },
    {
     "kind": "front",
@@ -279,21 +278,21 @@
     "step": 61,
     "until": 116,
     "steps_to_exit": 46,
-    "v": 12.076
+    "v": 12.306
    },
    {
     "kind": "exit",
     "id": "gemini",
     "step": 117,
     "place": 1,
-    "v": 14.74
+    "v": 14.64
    },
    {
     "kind": "exit",
     "id": "meta",
     "step": 117,
     "place": 1,
-    "v": 14.74
+    "v": 14.64
    },
    {
     "kind": "near_miss",
@@ -306,7 +305,7 @@
      5,
      18
     ],
-    "v": 14.74
+    "v": 14.64
    },
    {
     "kind": "circles_after_closest",
@@ -314,21 +313,21 @@
     "step": 125,
     "cells_after": 29,
     "steps_after": 375,
-    "v": 17.52
+    "v": 17.42
    },
    {
     "kind": "paces_2_cells",
     "id": "chatgpt",
     "step": 152,
     "until": 500,
-    "v": 18.453
+    "v": 18.353
    },
    {
     "kind": "exit",
     "id": "claude",
     "step": 171,
     "place": 3,
-    "v": 18.86
+    "v": 18.76
    },
    {
     "kind": "dnf_freeze",
@@ -340,7 +339,7 @@
      2
     ],
     "closestStep": 125,
-    "v": 20.58
+    "v": 20.48
    },
    {
     "kind": "dnf_freeze",
@@ -352,80 +351,80 @@
      12
     ],
     "closestStep": 3,
-    "v": 20.58
+    "v": 20.48
    }
   ],
   "dead_ends": {
    "chatgpt": [
     {
      "step": 13,
-     "v": 7.662
+     "v": 7.953
     },
     {
      "step": 88,
-     "v": 12.975
+     "v": 13.094
     }
    ],
    "gemini": [
     {
      "step": 57,
-     "v": 11.943
+     "v": 12.189
     },
     {
      "step": 67,
-     "v": 12.276
+     "v": 12.481
     },
     {
      "step": 92,
-     "v": 13.108
+     "v": 13.21
     }
    ],
    "claude": [
     {
      "step": 48,
-     "v": 11.643
+     "v": 11.927
     },
     {
      "step": 63,
-     "v": 12.143
+     "v": 12.364
     },
     {
      "step": 73,
-     "v": 12.476
+     "v": 12.656
     },
     {
      "step": 86,
-     "v": 12.909
+     "v": 13.035
     },
     {
      "step": 108,
-     "v": 13.841
+     "v": 13.852
     },
     {
      "step": 130,
-     "v": 17.981
+     "v": 17.881
     },
     {
      "step": 143,
-     "v": 18.26
+     "v": 18.16
     },
     {
      "step": 149,
-     "v": 18.389
+     "v": 18.289
     }
    ],
    "meta": [
     {
      "step": 57,
-     "v": 11.943
+     "v": 12.189
     },
     {
      "step": 67,
-     "v": 12.276
+     "v": 12.481
     },
     {
      "step": 92,
-     "v": 13.108
+     "v": 13.21
     }
    ],
    "perplexity": []
@@ -433,8 +432,9 @@
  },
  "facts": [
   "OK   line 4 'Perplexity is stuck at the start': it only paces 2 cells from step 5 to step 500",
-  "OK   line 5 'ChatGPT goes the wrong way': its way out grows from 76 steps (step 29) to 82 (step 39); it is 102 at step 61",
-  "OK   line 5 'Claude leads': Claude is the only front dot on steps 39-43 (spoken there); data: alone in front on steps 29-44, 57-59",
+  "OK   line 5 'ChatGPT goes the wrong way': its way out grows from 76 steps (step 29) to 83 (step 38); it is 102 at step 61",
+  "OK   line 5 'Claude leads': Claude is the only front dot on steps 38-43 (spoken there); data: alone in front on steps 29-44, 57-59",
+  "OK   line 1 'Meta AI and Gemini just killed Claude' (= beat it clearly; Claude DOES finish, third): out in 117 steps against Claude's 171",
   "OK   lines 6 and 8: Gemini and Meta AI leave on the same step (117) with the identical path",
   "OK   headline 'two dots take the lead': Gemini and Meta AI are the front (same cell) on steps 61-116",
   "OK   line 7 'Claude turns back ten steps short': 10 steps from the exit at step 117, back to 22 by step 129, out at step 171",
@@ -443,63 +443,63 @@
  "headlines": [
   {
    "t": 0,
-   "text": "LOST IN A MAZE. / FIVE AIs. NO MAP."
+   "text": "AI MAZE RACE"
   },
   {
-   "t": 2.34,
-   "text": "SAME REQUEST / FOR EACH AI"
+   "t": 2.51,
+   "text": "FIVE AIs. SAME REQUEST."
   },
   {
-   "t": 4.5,
+   "t": 4.71,
    "text": "THEY CAN&rsquo;T SEE THE MAZE / pick one before it starts"
   },
   {
-   "t": 6.58,
+   "t": 6.88,
    "text": "PERPLEXITY: STUCK"
   },
   {
-   "t": 8.98,
+   "t": 9.28,
    "text": "CHATGPT: WRONG WAY"
   },
   {
-   "t": 10.68,
+   "t": 10.9,
    "text": "CLAUDE LEADS"
   },
   {
-   "t": 12.08,
+   "t": 12.31,
    "text": "TWO DOTS TAKE THE LEAD"
   },
   {
-   "t": 14.74,
+   "t": 14.62,
    "text": "TWO OUT. SAME STEP."
   },
   {
-   "t": 16.75,
+   "t": 16.65,
    "text": "CLAUDE: 10 STEPS SHORT... / ...OUT IN 171"
   },
   {
-   "t": 19.46,
+   "t": 19.36,
    "text": "CHATGPT: IN CIRCLES"
   },
   {
-   "t": 20.84,
+   "t": 20.74,
    "text": "GEMINI + META AI TIE"
   },
   {
-   "t": 22.66,
+   "t": 22.62,
    "text": "SAME PATH. EVERY STEP."
   },
   {
-   "t": 24.0,
+   "t": 23.9,
    "text": "THE REQUEST: LINK IN BIO"
   },
   {
-   "t": 25.9,
-   "text": "TOMORROW: A CLAUDE CODE FIX?"
+   "t": 25.8,
+   "text": "WANT THE NEXT ONE?"
   },
   {
-   "t": 28.42,
-   "text": "FOLLOW TO SEE IF IT WORKS"
+   "t": 26.68,
+   "text": "FOLLOW, AND YOU&rsquo;LL SEE IT"
   }
  ]
 }

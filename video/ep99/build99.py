@@ -153,7 +153,7 @@ oGO = woff("go", 3, .86); oCL5 = woff("claude", 5, .72, name="claude(5)"); oSHOR
 oCG7 = woff("chat", 7, .66, name="chatgpt(7)"); oPICK = woff("see", 3, .3)
 T0 = round(L[3][0] + oGO, 3)
 # targets: where each line must start so its words land on the race
-RACEONLY = float(os.environ.get("RACEONLY", "3.3"))          # the stretch with no voice (steps 44 -> first exit)
+RACEONLY = float(os.environ.get("RACEONLY", "2.9"))          # the stretch with no voice (steps 44 -> first exit)
 TG = {1: L[1][0], 2: L[2][0], 3: L[3][0]}
 TG[4] = round(T0 + .6, 2)
 TG[5] = round(TG[4] + DUR[4] + .12, 2)
@@ -208,6 +208,7 @@ fact(all(d_at("chatgpt", i) >= d_at("chatgpt", st5a) for i in range(st5a, 62)) a
      f"line 5 'ChatGPT goes the wrong way': its way out grows from {d_at('chatgpt', st5a)} steps (step {st5a}) to {d_at('chatgpt', st5c)} (step {st5c}); it is {d_at('chatgpt', 61)} at step 61")
 fact(sole("claude", st5c, st5e), f"line 5 'Claude leads': Claude is the only front dot on steps {st5c}-{st5e} (spoken there); data: alone in front on steps " +
      ", ".join(f"{a}-{b}" for a, b, f in runs if f == ["claude"]))
+fact(sorted(WINS) == ["gemini", "meta"] and XSTEP["claude"] > F1, f"line 1 'Meta AI and Gemini just killed Claude' (= beat it clearly; Claude DOES finish, third): out in {F1} steps against Claude's {XSTEP['claude']}")
 fact(len(WINS) == 2 and PATH[WINS[0]] == PATH[WINS[1]], f"lines 6 and 8: {NAME[WINS[0]]} and {NAME[WINS[1]]} leave on the same step ({F1}) with the identical path")
 pair_run = next(((a, b) for a, b, f in runs if sorted(f) == sorted(WINS) and b == F1 - 1), None)
 fact(pair_run is not None, f"headline 'two dots take the lead': {NAME[WINS[0]]} and {NAME[WINS[1]]} are the front (same cell) on steps {pair_run[0] if pair_run else '?'}-{F1 - 1}")
@@ -266,8 +267,8 @@ def head(i, t_in, t_out, l1, logos=(), size=96, top=None, l2="", t2=None, l2s=.6
 a2, d2, a3 = s(2), DUR[2], s(3)
 vCL = s(5) + oCL5; v45 = v_of(st5e + 1) if st5e + 1 <= 45 else v_of(45)
 vPAIR = v_of(pair_run[0]); vCLX = VXT["claude"]; vCG = max(s(7) + oCG7, vCLX + .6)
-head(0, None, a2 - .02, "LOST IN A MAZE.", size=100, top=281, l2="FIVE AIs. NO MAP.", l2s=1.0)
-head(1, a2, a3, "SAME REQUEST", l2="FOR EACH AI", l2s=1.0, size=92, top=288)
+head(0, None, a2 - .02, "AI MAZE RACE", size=118, top=296)
+head(1, a2, a3, "FIVE AIs. SAME REQUEST.", size=96, top=318)
 head(2, a3, T0 - .04, "THEY CAN&rsquo;T SEE THE MAZE", l2="pick one before it starts", t2=a3 + oPICK, l2s=.66, top=300)
 HEADS.append('<div class="hd go" id="hgo"><div class="hl1"><span>GO!</span></div></div>')
 js(f"tl.fromTo('#hgo',{{opacity:0,scale:.6}},{{opacity:1,scale:1,duration:.3,ease:'power3.out',immediateRender:false}},{T0:.3f});")
@@ -282,8 +283,8 @@ head(9, vCG, tRV, "CHATGPT: IN CIRCLES", logos=("chatgpt",))
 head(13, tRV, tSAME, f"{NAME[WINS[0]].upper()} + {NAME[WINS[1]].upper()} TIE", logos=tuple(WINS))
 head(10, tSAME, tK - .1, "SAME PATH. EVERY STEP.", size=84)
 head(11, tK + .1, s(10), "THE REQUEST: LINK IN BIO")
-head(12, s(10), tFOL, "TOMORROW: A CLAUDE CODE FIX?")
-head(14, tFOL, tF - .1, "FOLLOW TO SEE IF IT WORKS")
+head(12, s(10), tFOL, "WANT THE NEXT ONE?")
+head(14, tFOL, tF - .1, "FOLLOW, AND YOU&rsquo;LL SEE IT")
 fin("#h0", tF + .12, .4)
 
 # ---------------------------------------------------------------- markup
@@ -329,7 +330,7 @@ for c, k in enumerate(IDS):
  <div class="tk" id="tk{c}"><i></i><i></i><i></i></div><svg class="ck" id="ck{c}" viewBox="-20 -20 40 40"><circle r="17"/>{check}</svg>
  <svg class="ok" viewBox="-20 -20 40 40"><circle r="17"/>{check}</svg>
  <svg class="tm qm" viewBox="-22 -24 44 48"><path d="M-9 -9 C-9 -22 11 -22 11 -9 C11 0 1 0 1 8 M1 17 V17.5"/></svg>
- <div class="dn"></div></div>'''
+ <div class="dn"></div>{'<div class="kos">K.O.</div>' if k == near["id"] else ""}</div>'''
 chips += "</div>"
 REQ = "Get this dot out of the maze."
 BFS = min(52, 100 * 520 / tw8(REQ)); BUBY = MY + 44
@@ -345,14 +346,20 @@ for i, k in enumerate(ORDER):
     pl = str(1 + sum(1 for j in FINS if XSTEP[j] < XSTEP[k])) if STATUS[k] == "exit" else "&ndash;"
     card += f'<div class="cr" id="cr{i}" style="top:{100 + i * RH}px"><span class="cp">{pl}</span>{badge(k, 72)}<div class="cx"><span class="cn">{NAME[k]}</span><span class="cv">{rowtext(k)}</span></div>{f"""<i style="background:{COL[k]}"></i>""" if k in WINS else ""}</div>'
 card += f'<div class="cf">best possible: {SHORT} steps</div></div>'
+KW = [(WINS[1] if WINS[1] == "meta" else WINS[0]), (WINS[0] if WINS[1] == "meta" else WINS[1])]      # spoken order: Meta AI, Gemini
+KWX, KWY, KCX, KCY = [490, 712], 700, 596, 985
+STAR = '<svg class="star" viewBox="-34 -34 68 68"><path d="M0 -30 L7 -9 L27 -15 L13 2 L30 16 L8 12 L3 32 L-7 13 L-27 20 L-14 2 L-30 -12 L-9 -10Z"/></svg>'
+kcol = COL[near["id"]]
+ko = '<div id="ko">' + "".join(f'<div class="kb kw" style="left:{KWX[i]}px;top:{KWY}px">{badge(k, 184, "kg", f"border-color:{COL[k]}")}</div>' for i, k in enumerate(KW)) + \
+     f'<div class="kb" id="kcl" style="left:{KCX}px;top:{KCY}px">{badge(near["id"], 168, "kg", f"border-color:{kcol}")}</div><div id="kst">K.O.</div></div><div id="stars">{STAR * 4}</div>'
 markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam"><div id="pn">
- {maze}{dots}{bub}{chips}
+ {maze}{dots}{ko}{bub}{chips}
  <div id="cnt"><em>STEP</em><span id="cnn">0</span><em>/ {MAXS}</em></div>
  {"".join(HEADS)}
  {card}
-</div></div><div class="phb" id="phb" data-decor>PLACEHOLDER &middot; FINAL LINE NOT CONFIRMED</div>'''
+</div></div>'''
 
 CSS = '''
 *{margin:0;padding:0;box-sizing:border-box}
@@ -387,6 +394,16 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .tm path{fill:none;stroke:RED;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
 .dn{position:absolute;left:-8px;top:14px;width:70px;text-align:right;font-weight:900;font-size:40px;line-height:40px;letter-spacing:-.03em;opacity:0;white-space:nowrap;transform-origin:100% 50%;
  text-shadow:3px 3px 0 PAPER,-3px 3px 0 PAPER,3px -3px 0 PAPER,-3px -3px 0 PAPER,0 4px 0 PAPER,4px 0 0 PAPER,-4px 0 0 PAPER,0 -4px 0 PAPER}
+#ko,#stars{position:absolute;left:0;top:0;width:0;height:0;z-index:3} #stars{z-index:5}
+.kb{position:absolute;width:0;height:0}
+.kb .kg{position:absolute;left:-92px;top:-92px;border-width:13px;box-shadow:0 0 0 4px INK,-9px 11px 0 4px INK}
+#kcl .kg{left:-84px;top:-84px}
+#kst,.kos{font-weight:900;color:RED;letter-spacing:-.02em;white-space:nowrap;transform-origin:50% 50%;
+ text-shadow:4px 4px 0 PAPER,-4px 4px 0 PAPER,4px -4px 0 PAPER,-4px -4px 0 PAPER,0 5px 0 PAPER,5px 0 0 PAPER,-5px 0 0 PAPER,0 -5px 0 PAPER,7px 9px 0 INK}
+#kst{position:absolute;left:712px;top:930px;font-size:118px;line-height:118px}
+.kos{position:absolute;left:-52px;top:-58px;font-size:46px;line-height:50px;opacity:0;text-shadow:3px 3px 0 PAPER,-3px 3px 0 PAPER,3px -3px 0 PAPER,-3px -3px 0 PAPER,0 4px 0 PAPER,4px 0 0 PAPER,-4px 0 0 PAPER,0 -4px 0 PAPER}
+.star{position:absolute;left:0;top:0;width:52px;height:52px;margin:-26px 0 0 -26px;opacity:0;overflow:visible}
+.star path{fill:#FFD23F;stroke:INK;stroke-width:5;stroke-linejoin:round}
 #bub{position:absolute;left:262px;width:650px;height:120px;background:#fff;border:6px solid INK;border-radius:44px;box-shadow:-8px 8px 0 INK;display:flex;align-items:center;justify-content:center;gap:20px;opacity:0;transform-origin:50% 60%}
 .bdot{display:block;width:38px;height:38px;border-radius:50%;background:#fff;border:7px solid INK;flex:none}
 #btx{font-weight:800;letter-spacing:-.01em;white-space:nowrap}
@@ -410,7 +427,6 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .cv{font-weight:800;font-size:31px;line-height:38px;letter-spacing:-.01em;white-space:nowrap}
 .cr i{position:absolute;left:0;right:0;bottom:1px;height:8px;border-radius:4px;transform-origin:0 50%;transform:scaleX(0)}
 .cf{position:absolute;left:34px;bottom:18px;font-weight:800;font-size:33px;line-height:40px;white-space:nowrap;opacity:0}
-.phb{position:absolute;left:0;top:212px;width:1080px;text-align:center;font-weight:900;font-size:34px;line-height:40px;color:RED;letter-spacing:.02em;z-index:20;white-space:nowrap;opacity:0}
 '''
 for a_, b_ in (("HCARD", 100 + 5 * RH + 66), ("RH", RH), ("MW", MW), ("GREEN", GREEN), ("INK", INK), ("PAPER", PAPER), ("RED", RED)):
     CSS = CSS.replace(a_, str(b_))
@@ -478,13 +494,10 @@ while t < tF - .5:                                           # a slow wave keeps
     js(f"tl.fromTo('#cr{q % 5} .bdg',{{rotation:0}},{{rotation:{-10 if q % 2 else 10},duration:.28,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t:.3f});"); t += .45; q += 1
 js(f"tl.to('#card',{{y:50,duration:.24,ease:'power2.in'}},{tF - .4:.3f});")
 js(f"tl.to('#card',{{opacity:0,duration:.1,ease:'none'}},{tF - .26:.3f});")
-# the only placeholder banner: the tomorrow line is not confirmed
-js(f"tl.fromTo('#phb',{{opacity:0}},{{opacity:1,duration:.2,ease:'sine.out',immediateRender:false}},{s(10):.3f});")
-js(f"tl.to('#phb',{{opacity:0,duration:.2,ease:'sine.in'}},{tF:.3f});")
 sfx("tick.ogg", s(10) + .1, -10); sfx("whoosh_c.ogg", tF - .2, -12)
 
 # no flat stretch: a soft camera push on every beat, and on a data event (dead end) wherever two beats are more than 2.2 s apart
-PUN = sorted({round(t, 2) for t in (a2, a3 + .1, T0, s(4), s(5), vCL, vPAIR, vX, s(7), vCLX, vCG, vEND, tRV, tSAME, tSAME + .8, tK + .05, tU, s(10), tFOL)})
+PUN = sorted({round(t, 2) for t in (.9, a2, a3 + .1, T0, s(4), s(5), vCL, vPAIR, vX, s(7), vCLX, vCG, vEND, tRV, tSAME, tSAME + .8, tK + .05, tU, s(10), tFOL)})
 for _ in range(20):
     g = next((i for i in range(len(PUN) - 1) if PUN[i + 1] - PUN[i] > 2.2), None)
     if g is None: break
@@ -494,7 +507,7 @@ for _ in range(20):
 for t in PUN: js(f"tl.fromTo('#pn',{{scale:1}},{{scale:1.035,duration:.17,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t:.3f});")
 # ---------------------------------------------------------------- render(): dots, trails, chips, marks, counter: all from the clock
 ci = lambda ks: [IDS.index(k) for k in ks]
-DATA = dict(T0=T0, D=D, tF=round(tF, 3), tK=round(tK, 3), tRV=round(tRV, 3), tS=round(tSAME, 3), vEND=round(vEND, 3), ST=ST, MAXS=MAXS, CELL=CELL, MX=MX, MY=MY,
+DATA = dict(a2=round(a2, 3), KC=[KCX, KCY], KO=[IDS.index(near['id']), round(vX + .3, 3), round(s(7) + .15, 3)], T0=T0, D=D, tF=round(tF, 3), tK=round(tK, 3), tRV=round(tRV, 3), tS=round(tSAME, 3), vEND=round(vEND, 3), ST=ST, MAXS=MAXS, CELL=CELL, MX=MX, MY=MY,
             CHX=CHX, CHYS=CHYS, FAN=FAN, FANS=FANS, OFF=OFF, TOFF=TOFF,
             P=[[v for p in PATH[k] for v in p] for k in IDS], LAST=[LAST[k] for k in IDS], CL=CLEN,
             DS=[[dist(p) for p in PATH[k]] for k in IDS], FR=[sum(1 << IDS.index(k) for k in f) for f in FRONT[:F1 + 1]], F1=F1,
@@ -506,13 +519,20 @@ const ez=p=>{p=p<0?0:p>1?1:p;return p*p*(3-2*p)}, lerp=(a,b,t)=>a+(b-a)*t, bump=
 function St(v){const i=Math.max(0,v*60),k=Math.min(Dt.ST.length-2,Math.floor(i));return lerp(Dt.ST[k],Dt.ST[k+1],Math.min(1,i-k))}
 const dots=$$('.dot').map(el=>({el,dr:el.querySelector('.dr')})), trs=$$('.trl'), cnt=$('#cnt'), cnn=$('#cnn'), exm=$('#exm'), exc=$('#exc'), stc=$('#stc');
 const chips=[0,1,2,3,4].map(c=>{const el=$('#sl'+c);return {el,tb:el.querySelector('.tb'),ring:el.querySelector('.ring'),ok:el.querySelector('.ok'),qm:el.querySelector('.qm'),dn:el.querySelector('.dn')}});
-const rays=$('#rays');
+const rays=$('#rays'), ko=$('#ko'), kws=$$('.kw'), kcl=$('#kcl'), kst=$('#kst'), stars=$$('.star'), kos=$('.kos'), eo=p=>1-Math.pow(1-Math.max(0,Math.min(1,p)),3);
 const dms=$$('.dm').map(el=>({el,c:+el.dataset.c,s:+el.dataset.s})), cms=$$('.cm').map(el=>({el,c:+el.dataset.c}));
 const C=Dt.CELL;
 function render(v){
   const st=St(v), pOut=ez((v-Dt.tF)/.5), on=1-pOut, race=v>=Dt.T0&&v<Dt.tF, pre=v<Dt.T0?1:Math.max(1-ez(st/5),pOut);   // pre: 1 = the dots fanned and large in the centre
   exm.style.transform='translate('+(Math.sin(v*5.2)*4).toFixed(1)+'px,0)'; exc.style.opacity=(.22+.16*Math.sin(v*5.2)).toFixed(3);
-  rays.style.opacity=(v<Dt.T0?1-ez((v-Dt.T0+.4)/.4):pOut).toFixed(2); rays.style.transform='rotate('+(v*14).toFixed(1)+'deg) scale('+(1+.05*Math.sin(v*6)).toFixed(3)+')';
+  rays.style.opacity=(v<Dt.a2?0:v<Dt.T0?1-ez((v-Dt.T0+.4)/.4):0).toFixed(2); rays.style.transform='rotate('+(v*14).toFixed(1)+'deg) scale('+(1+.05*Math.sin(v*6)).toFixed(3)+')';
+  // the hook picture (frame 0 and the loop end): the two winners on top, Claude knocked back, stars, a K.O. stamp. Cartoon only.
+  const kq=v<Dt.a2?1-ez((v-Dt.a2+.32)/.26):ez((v-Dt.tF-.08)/.4), kt=v<Dt.a2?v:9;
+  ko.style.opacity=kq.toFixed(3); ko.style.transform='scale('+(.9+.1*kq).toFixed(3)+')'; ko.style.transformOrigin='600px 860px';
+  kws.forEach((el,i)=>{el.style.transform='translate(0,'+(Math.sin(v*6.5+i*1.9)*9-30*(1-eo(kt/.4))).toFixed(1)+'px) scale('+(.86+.14*eo(kt/.4)+.03*Math.sin(v*6.5+i*1.9)).toFixed(3)+')'});
+  kcl.style.transform='translate('+(26*eo(kt/.32)).toFixed(1)+'px,'+(18*eo(kt/.32)).toFixed(1)+'px) rotate('+(8+18*eo(kt/.32)+3*Math.sin(v*4.4)).toFixed(1)+'deg)';
+  kst.style.transform='rotate(-11deg) scale('+(1+.32*(1-eo(kt/.3))+.045*Math.sin(v*8)).toFixed(3)+')';
+  let scx=Dt.KC[0]+26, scy=Dt.KC[1]-96, srx=96, sry=26, so=kq, ss=1; const kow=v>=Dt.KO[1]&&v<Dt.KO[2];
   stc.style.opacity=(.75+.25*Math.sin(v*3.1)).toFixed(3);
   const si=Math.min(Math.floor(st),Dt.F1), fr=race&&v<Dt.vEND?Dt.FR[si]:0, rv=v>=Dt.tRV&&v<Dt.tF, rp=ez((v-Dt.tS)/.75), rm=ez((v-Dt.tS-.75)/.3);
   for(let c=0;c<5;c++){
@@ -526,14 +546,15 @@ function render(v){
     // dot
     const n=Dt.LAST[c], k=Math.min(Math.floor(st),n-1), f=Math.min(1,Math.max(0,st-k)), P=Dt.P[c];
     const gx=lerp(P[2*k],P[2*k+2],f), gy=lerp(P[2*k+1],P[2*k+3],f);
-    const br=v<Dt.T0||v>=Dt.tF?(.78+.22*(1-Math.pow(1-Math.min(1,(v>=Dt.tF?v-Dt.tF:v)/.7),3))+.03*Math.sin(v*3.3+c)):1;
-    let x=Dt.MX+(gx+.5)*C+lerp(Dt.OFF[c][0],Dt.FAN[c][0]*br,pre), y=Dt.MY+(gy+.5)*C+lerp(Dt.OFF[c][1],Dt.FAN[c][1]*br,pre), o=1, k_=lerp(1,Dt.FANS,pre);
+    const br=v<Dt.T0?(.6+.4*eo((v-Dt.a2)/.7)+.03*Math.sin(v*3.3+c)):1;
+    let x=Dt.MX+(gx+.5)*C+lerp(Dt.OFF[c][0],Dt.FAN[c][0]*br,pre), y=Dt.MY+(gy+.5)*C+lerp(Dt.OFF[c][1],Dt.FAN[c][1]*br,pre), o=ez((v-Dt.a2+.06)/.2), k_=lerp(1,Dt.FANS,pre);
     const lit=1; k_*=1+.3*bump((v-Dt.SP[c])/.4);
     if(out){const q=ez((v-vx)/.6); x=lerp(x,cx,q); y=lerp(y,cy,q)-90*bump(q); o=1-ez((q-.75)/.25); k_*=lerp(1,.7,q)*(1+.5*bump((v-vx)/.3))}
     else if(lead) k_*=1.14+.05*Math.sin(v*9);
     if(c===Dt.NM[0]&&v>=Dt.NM[1]&&v<Dt.NM[2]) k_*=1.16+.08*Math.sin(v*10);
     if(race&&!out&&!stuck) k_*=1+.04*Math.sin(v*11+c*1.3);
-    if(v>=Dt.tF){o=pOut; x=Dt.MX+(P[0]+.5)*C+Dt.FAN[c][0]*br; y=Dt.MY+(P[1]+.5)*C+Dt.FAN[c][1]*br; k_=Dt.FANS}
+    if(v>=Dt.tF) o=Math.min(o,1-ez((v-Dt.tF)/.15));
+    if(c===Dt.KO[0]&&kow){scx=x; scy=y-34; srx=40; sry=12; so=1; ss=.55}
     const d=dots[c]; d.el.style.opacity=o.toFixed(3); d.el.style.zIndex=lead?9:5-c; d.dr.style.opacity=lit.toFixed(3);
     d.el.style.transform='translate('+x.toFixed(2)+'px,'+y.toFixed(2)+'px) scale('+k_.toFixed(4)+')';
     // trail: live during the race; in the reveal the winners' trails are drawn again and close into one line
@@ -547,6 +568,9 @@ function render(v){
     ch.dn.style.transform='scale('+(nm?1.25+.1*Math.sin(v*10):1).toFixed(3)+')';
   }
   for(const m of dms){const q=(st-m.s)/6; m.el.style.opacity=(race&&st>=m.s&&!rv?(.35+.65*(1-ez(q))):0).toFixed(2)}
+  stars.forEach((el,i)=>{const a=v*5.2+i*Math.PI/2, z=Math.sin(a); el.style.opacity=(so*(.75+.25*z)).toFixed(2); el.style.zIndex=z>0?2:1;
+    el.style.transform='translate('+(scx+Math.cos(a)*srx).toFixed(1)+'px,'+(scy+z*sry).toFixed(1)+'px) scale('+(ss*(.8+.25*z)).toFixed(3)+') rotate('+(v*90+i*40).toFixed(0)+'deg)'});
+  kos.style.opacity=kow?1:0; kos.style.transform='rotate(-10deg) scale('+(1+.5*(1-eo((v-Dt.KO[1])/.25))+.05*Math.sin(v*8)).toFixed(3)+')';
   for(const m of cms){const a=v>=Dt.vEND&&v<Dt.tRV; m.el.style.opacity=a?1:0; m.el.style.transform='scale('+(1+.22*Math.sin(v*6)).toFixed(3)+')'}
   cnt.style.opacity=(race&&v<Dt.tK?ez((v-Dt.T0-.2)/.4):0).toFixed(2); cnn.textContent=Math.min(Dt.MAXS,Math.round(st));
 }
@@ -555,10 +579,9 @@ function render(v){
 JS = re.sub(r"tl\.set\(([^,]+),\{", r"tl.set(\1,{immediateRender:false,", "\n".join(J))
 SFX.sort(key=lambda x: x["t"])
 json.dump(SFX, open(H_ + "/sfx99.json", "w"), indent=1)
-if os.environ.get("SHIP") == "1": sys.exit("SHIP=1 refused: line 10 (the tomorrow line) is not confirmed; remove the banner and this guard once it is")
 sps = lambda a, b: round((b - a) / max(.001, VT[b] - VT[a]), 1)
-ROLE = {1: "hook", 2: "premise", 3: "rules+Go", 8: "tie reveal", 9: "setup (board)", 10: "tomorrow (UNCONFIRMED)"}
-json.dump(dict(placeholder=dict(data=False, script=False, line10="UNCONFIRMED: red banner on screen during line 10", results_file=os.path.relpath(RPATH, H_)),
+ROLE = {1: "hook", 2: "premise", 3: "rules+Go", 8: "tie reveal", 9: "setup (board)", 10: "follow line"}
+json.dump(dict(placeholder=dict(data=False, script=False, results_file=os.path.relpath(RPATH, H_)),
                lines=[dict(n=n, text=LINES[n - 1], start=round(s(n), 3), end=round(e(n), 3), role=ROLE.get(n, "race")) for n in range(1, NL + 1)],
                D=D, go=T0, sources=SRC, targets={str(n): TG[n] for n in range(4, NL + 1)}, drift_vs_targets=DRIFT, lines_on_targets=ONTG,
                race=dict(anchors=[dict(v=round(v, 3), step=st_) for v, st_ in ANCH], race_only_s=RACEONLY,
