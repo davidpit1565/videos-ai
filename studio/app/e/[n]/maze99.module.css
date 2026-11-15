@@ -1,0 +1,23 @@
+/* Episode 99 only: the playable maze race on /e/99. Light site style, phone first (375 px). */
+.wrap { scroll-margin-top: 1rem; }
+.stage { position: relative; margin: .8rem 0 .6rem; border: 1px solid var(--ink); border-radius: 10px; overflow: hidden; background: #FFFFFF; }
+.canvas { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; }
+.loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; margin: 0; color: var(--soft); }
+.controls { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.clock { font-family: var(--code); font-variant-numeric: tabular-nums; font-size: 1.05rem; }
+.scrub { width: 100%; margin: .8rem 0 .4rem; accent-color: #0B0B0B; min-height: 32px; }
+.cars { list-style: none; padding: 0; margin: .6rem 0 1rem; }
+.car { border-bottom: 1px solid var(--rule); padding: .6rem 0; }
+.car:first-child { border-top: 1px solid var(--rule); }
+.carHead { display: flex; align-items: center; gap: .6rem; }
+.swatch { flex: none; width: 1.6rem; height: 1rem; border: 2px solid #0B0B0B; border-radius: 50%; }
+.name { font-weight: 700; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.status { color: var(--soft); font-size: .96rem; padding-left: 2.2rem; }
+.nums { font-family: var(--code); font-variant-numeric: tabular-nums; font-size: .9rem; padding-left: 2.2rem; margin-top: .15rem; }
+.results { margin: .2rem 0 .4rem; padding-left: 1.3rem; }
+.results li { margin: .2rem 0; overflow-wrap: anywhere; }
+.add { margin: .6rem 0; }
+.label { display: block; font-weight: 700; margin-bottom: .35rem; }
+.paste { display: block; width: 100%; box-sizing: border-box; min-height: 14rem; padding: .8rem; font-family: var(--code); font-size: .85rem; line-height: 1.5; color: var(--ink); background: #FFFFFF; border: 1px solid var(--ink); border-radius: 10px; resize: vertical; }
+.paste:focus { outline: 3px solid #FFE600; outline-offset: 1px; }
+.msg { border-inline-start: 3px solid var(--ink); padding: .15rem 0 .15rem 1rem; }

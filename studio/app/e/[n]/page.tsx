@@ -5,6 +5,7 @@ import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
 import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor } from "@/lib/reels";
 import IgEmbed from "../../ig-embed";
+import Maze99 from "./maze99";
 import Reveal from "../../reveal";
 import ExternalIcon from "../../external-icon";
 import { SITE_URL } from "@/lib/site";
@@ -167,6 +168,9 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
           </a>
         </p>
       ) : null}
+
+      {/* Episode 99 only: the playable maze race, the request and "Add my AI" (maze99.tsx). */}
+      {n === 99 ? <Maze99 /> : null}
 
       {a ? (
         <>
