@@ -271,7 +271,7 @@ a2, d2, a3 = s(2), DUR[2], s(3)
 vCL = s(5) + oCL5; v45 = v_of(st5e + 1) if st5e + 1 <= 45 else v_of(45)
 vPAIR = v_of(pair_run[0]); vCLX = VXT["claude"]; vCG = max(s(7) + oCG7, vCLX + .6)
 head(1, a2 + .55, a3, "SAME JOB FOR ALL FIVE.", size=96, top=318)
-head(2, a3, T0 - .04, "THEY CAN&rsquo;T SEE THE MAZE", l2="pick one before it starts", t2=a3 + oPICK, l2s=.66, top=300)
+head(2, a3, T0 - .04, "THEY CAN&rsquo;T SEE THE MAZE", l2="pick one before it starts", t2=a3 + oPICK, l2s=.66, top=320)
 HEADS.append('<div class="hd go" id="hgo"><div class="hl1"><span>GO!</span></div></div>')
 js(f"tl.fromTo('#hgo',{{opacity:0,scale:.6}},{{opacity:1,scale:1,duration:.3,ease:'power3.out',immediateRender:false}},{T0:.3f});")
 js(f"tl.to('#hgo',{{opacity:0,scale:1.2,duration:.26,ease:'power2.in'}},{s(4) - .28:.3f});")
@@ -355,14 +355,14 @@ def char(cid, k, sword=False, fd=1):
             f'<div class="tile" style="box-shadow:10px 10px 0 {COL[k]},10px 10px 0 4px {INK}">{logo(k, 112)}</div></div>')
 assert near["id"] == "claude" and sorted(WINS) == ["gemini", "meta"]
 T25 = math.tan(math.radians(25)); CUTD = [round(math.cos(math.radians(25)), 4), round(math.sin(math.radians(25)), 4)]
-KCX, KCY = 700, 740                                          # Claude in the opening; the cut runs through its centre at 25 degrees
+KCX, KCY = 656, 740                                          # Claude in the opening; the cut runs through its centre at 25 degrees
 S0X, S0Y = KCX - 250 * CUTD[0], KCY - 250 * CUTD[1]
 half = lambda cid, poly: f'<div class="hf" id="hf{cid}"><div class="hfc" style="clip-path:polygon({poly})"><div class="hfi">{char("cl" + cid, "claude", fd=-1)}</div></div></div>'
 chars = ('<div id="chars">' + char("gemini", "gemini", sword=True) + char("meta", "meta", sword=True) + char("chatgpt", "chatgpt") + char("perplexity", "perplexity", fd=-1) +
          '<div id="clw">' + half("B", f"0 {350 - 350 * T25:.1f}px,700px {350 + 350 * T25:.1f}px,700px 700px,0 700px") +
          half("A", f"0 0,700px 0,700px {351 + 350 * T25:.1f}px,0 {351 - 350 * T25:.1f}px") + '</div></div>')
-mlines = "".join(f'<path d="M{math.cos(a_) * 215:.0f} {math.sin(a_) * 215:.0f} L{math.cos(a_) * (270 if q % 2 else 252):.0f} {math.sin(a_) * (270 if q % 2 else 252):.0f}"/>' for q, a_ in enumerate(math.radians(8 + 30 * j) for j in range(12)) if q not in (0, 6))
-spd = '<path d="M0 0 h70 M26 26 h92 M8 52 h60"/>'
+mlines = "".join(f'<path d="M{math.cos(a_) * 215:.0f} {math.sin(a_) * 215:.0f} L{math.cos(a_) * (246 if q % 2 else 232):.0f} {math.sin(a_) * (246 if q % 2 else 232):.0f}"/>' for q, a_ in enumerate(math.radians(8 + 30 * j) for j in range(12)) if q not in (0, 6))
+spd = '<path d="M0 0 h44 M14 26 h52 M4 52 h38"/>'
 opn = f'''<div id="opn"><div class="hz" id="hzA" data-decor></div>
  <svg class="spd" id="spG" viewBox="0 -8 130 70" width="130" height="70" data-decor>{spd}</svg><svg class="spd" id="spM" viewBox="0 -8 130 70" width="130" height="70" data-decor>{spd}</svg>
  <svg id="mln" viewBox="-300 -300 600 600" width="600" height="600" style="left:{KCX - 300}px;top:{KCY - 300}px" data-decor>{mlines}</svg>
@@ -370,7 +370,7 @@ opn = f'''<div id="opn"><div class="hz" id="hzA" data-decor></div>
  <div id="sls" style="left:{S0X:.1f}px;top:{S0Y - 24:.1f}px" data-decor><svg viewBox="0 0 500 48" width="500" height="48"><path d="M2 24 Q250 -8 498 24 Q250 56 2 24Z" fill="#fff" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/></svg></div></div>'''
 # the end scene: a podium. Texts are facts of the results file
 P1X, P1Y, P1W, P1H = 316, 770, 308, 250; P3X, P3Y, P3W, P3H = 624, 884, 180, 136
-CGC = [212, 1076, 46]; PXB = [662, 1072, 186, 160]
+CGC = [214, 1092, 46]; PXB = [632, 1074, 186, 160]
 cg = RES["chatgpt"]; assert STATUS["chatgpt"] == "dnf" and STATUS["perplexity"] == "dnf"
 pod = f'''<div id="pod"><div class="hz" id="hzB" data-decor></div>
  <svg id="ftp" viewBox="0 0 1080 1920" width="1080" height="1920" data-decor>
@@ -381,7 +381,7 @@ pod = f'''<div id="pod"><div class="hz" id="hzB" data-decor></div>
  </svg>
  <div class="pb" id="pb1" style="left:{P1X}px;top:{P1Y}px;width:{P1W}px;height:{P1H}px"><b>1</b><span>{F1} STEPS</span><span>SAME PATH</span><i>best possible: {SHORT}</i></div>
  <div class="pb" id="pb3" style="left:{P3X}px;top:{P3Y}px;width:{P3W}px;height:{P3H}px"><b>3</b><span>{XSTEP["claude"]} STEPS</span></div>
- <div class="pl" id="plc" style="left:120px;top:{CGC[1] + 132}px">IN CIRCLES</div>
+ <div class="pl" id="plc" style="left:124px;top:{CGC[1] - 112}px">IN CIRCLES</div>
  <div class="pl" id="plp" style="left:{PXB[0]}px;top:{PXB[1] - 40}px">STUCK AT START</div></div>'''
 markup = f'''
 <div class="bgw" data-decor></div>
@@ -411,7 +411,7 @@ CSS5 = '''
 #fls{position:absolute;width:860px;height:860px;border-radius:50%;background:radial-gradient(circle,#fff 0,#fff 32%,rgba(255,255,255,0) 68%);opacity:0}
 #sls{position:absolute;width:500px;height:48px;transform:rotate(25deg);transform-origin:0 24px} #sls svg{display:block;overflow:visible}
 .hz{position:absolute;width:300px;height:44px;border:5px solid INK;background:repeating-linear-gradient(-55deg,INK 0 16px,PAPER 16px 32px)}
-#hzA{left:96px;top:1168px;transform:rotate(-7deg)} #hzB{left:690px;top:548px;transform:rotate(6deg);width:250px}
+#hzA{left:124px;top:1160px;transform:rotate(-7deg)} #hzB{left:690px;top:548px;transform:rotate(6deg);width:250px}
 .fp{fill:none;stroke-width:9;stroke-linecap:round;stroke-dasharray:.045 .03;stroke-dashoffset:0}
 #ftp{position:absolute;left:0;top:0;overflow:visible}
 .pb{position:absolute;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:10px 10px 0 INK;display:flex;flex-direction:column;align-items:center;padding-top:6px}
@@ -531,12 +531,14 @@ def dotloc(k, v):
     return OX + lx(p[i][0] + (p[i + 1][0] - p[i][0]) * f), OX + lx(p[i][1] + (p[i + 1][1] - p[i][1]) * f)
 dz = [x for x in EV if x["kind"] == "dead_end" and TWIN[x["id"]] == x["id"] and vPAIR + 1.0 < x["v"] < vX - 1.7]
 dz = min(dz, key=lambda x: abs(x["v"] - (vPAIR + vX) / 2)) if dz else None
-SEG = [(s(4) + .15, s(5) - .12, "perplexity", 2.3, "Perplexity pacing by the start"),
+SEG = [(a3 + .05, T0 - .12, "perplexity", 1.55, "the five dots before Go"),
+       (s(4) + .15, s(5) - .12, "perplexity", 2.3, "Perplexity pacing by the start"),
        (s(5) - .12, vCL - .05, "chatgpt", 2.0, "ChatGPT walking away from the exit"),
        (vCL - .05, v45 + .1, "claude", 2.0, "Claude alone in front")]
 if dz: SEG.append((dz["v"] - .35, dz["v"] + .5, dz["id"], 2.4, f"dead end, {dz['id']}, step {dz['step']}"))
-SEG += [(vX - 1.25, s(7) - .05, WINS[0], 2.0, "the two leave on the same step"),
-        (s(7) - .05, vCLX + .35, "claude", 2.0, "Claude turns back, then gets out"),
+SEG += [(vX - 1.25, vX + .8, WINS[0], 2.0, "the two leave on the same step"),
+        (vX + .8, s(7) + .1, "claude", 2.7, "Claude, 10 steps short"),
+        (s(7) + .1, vCLX + .35, "claude", 2.0, "Claude turns back, then gets out"),
         (vCG, vEND + .1, "chatgpt", 2.2, "ChatGPT in circles")]
 CAMR = []
 for n in range(int(D * 30) + 3):
@@ -544,21 +546,22 @@ for n in range(int(D * 30) + 3):
     for t0, t1, k, zz, _ in SEG:
         if t0 <= v < t1: fx, fy = dotloc(k, v); fx = max(OX, fx); z = zz
     CAMR.append((fx, fy, math.log(z)))
-def gsm(vals, sg=5):
+def gsm(vals, sg=3):
     n = len(vals); ker = [math.exp(-.5 * (q / sg) ** 2) for q in range(-3 * sg, 3 * sg + 1)]; ks = sum(ker)
     return [sum(ker[q + 3 * sg] * vals[min(n - 1, max(0, i + q))] for q in range(-3 * sg, 3 * sg + 1)) / ks for i in range(n)]
 CAM = [round(v, 1) for tri in zip(gsm([c[0] for c in CAMR]), gsm([c[1] for c in CAMR]), [round(math.exp(v) * 100) for v in gsm([c[2] for c in CAMR])]) for v in tri]
 
 # no flat stretch: a soft camera push on every beat, and on a data event (dead end) wherever two beats are more than 2.2 s apart
-PUN = sorted({round(t, 2) for t in (a2 + .05, a2 + .9, a3 + .1, T0, s(4), s(5), vCL, vPAIR, vX, s(7), vCLX, vCG, vEND, tRV, tSAME, tSAME + .8, tPD + .1, tPD + .9, s(10), tFOL)})
+PUN = sorted({round(t, 2) for t in (a2 + .05, a2 + .9, a3 + .1, a3 + .9, T0, vX + .8, s(4), s(5), vCL, vPAIR, vX, s(7), vCLX, vCG, vEND, tRV, tSAME, tSAME + .8, tPD + .1, tPD + .9, s(10), tFOL)})
 for _ in range(20):
     g = next((i for i in range(len(PUN) - 1) if PUN[i + 1] - PUN[i] > 2.2), None)
     if g is None: break
     mid = (PUN[g] + PUN[g + 1]) / 2
     cand = [x["v"] for x in EV if x["kind"] == "dead_end" and PUN[g] + .9 < x["v"] < PUN[g + 1] - .9]
     PUN = sorted(PUN + [round(min(cand, key=lambda v: abs(v - mid)) if cand else mid, 2)])
-for t in PUN: js(f"tl.fromTo('#pn',{{scale:1}},{{scale:1.035,duration:.17,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t:.3f});")
-js(f"tl.fromTo('#pn',{{scale:1}},{{scale:1.07,duration:.12,ease:'sine.out',yoyo:true,repeat:1,immediateRender:false}},{tKL:.3f});")
+BIG = (a3 + .1, T0, vX, vX + .8, s(7), tSAME, tPD + .1)
+for t in PUN: js(f"tl.fromTo('#pn',{{scale:1}},{{scale:{1.055 if any(abs(t - b) < .02 for b in BIG) else 1.04},duration:.17,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t:.3f});")
+js(f"tl.fromTo('#pn',{{scale:1}},{{scale:1.045,duration:.12,ease:'sine.out',yoyo:true,repeat:1,immediateRender:false}},{tKL:.3f});")
 # ---------------------------------------------------------------- render(): dots, trails, chips, marks, counter: all from the clock
 ci = lambda ks: [IDS.index(k) for k in ks]
 FANP = [[round(MX + lx(START[0]) + FAN[c][0], 1), round(MY + lx(START[1]) + FAN[c][1], 1)] for c in range(5)]     # where each character lands (page px) = its dot before Go
@@ -595,7 +598,7 @@ function duel(kt,v){
   return {
     g:{x:lerp(285,340,p)+55*q, y:lerp(515,545,p)+18*q+Math.sin(v*5)*5-12*vic*Math.abs(Math.sin(v*7+1)), sc:1.25, rot:lerp(-12,-4,p)+10*q-6*vic, aR:(hit?lerp(-2,25,q):lerp(-5,-2,p))-75*vic, aL:25+8*Math.sin(v*6), lL:35+6*Math.sin(v*7)-30*vic, lR:62-56*vic, so:1, op:1},
     m:{x:lerp(285,340,p)+55*q, y:lerp(965,940,p)-8*q+Math.sin(v*5+1.3)*5-14*vic*Math.abs(Math.sin(v*7)), sc:1.25, rot:lerp(8,3,p)-8*q, aR:(hit?lerp(-42,-32,q):lerp(-45,-42,p))-40*vic, aL:30+8*Math.sin(v*6+1), lL:(-28+20*Math.sin(v*8))*(1-vic), lR:(30-20*Math.sin(v*8))*(1-vic), so:1, op:1},
-    c:{x:Dt.KC[0]+(hit?0:2.4*Math.sin(v*38)), y:Dt.KC[1], sc:1.45, rot:hit?0:lerp(3,7,p), aR:lerp(-70+5*Math.sin(v*14),-18,drop), aL:lerp(-70+5*Math.sin(v*14+2),-18,drop), lL:hit?-6:-8+5*Math.sin(v*22), lR:hit?6:8+5*Math.sin(v*22+2), so:0, op:1, slide:hit?95*eo(post/.5):0}
+    c:{x:Dt.KC[0]+(hit?0:2.4*Math.sin(v*38)), y:Dt.KC[1], sc:1.45, rot:hit?0:lerp(3,7,p), aR:lerp(-70+5*Math.sin(v*14),-18,drop), aL:lerp(-70+5*Math.sin(v*14+2),-18,drop), lL:hit?-6:-8+5*Math.sin(v*22), lR:hit?6:8+5*Math.sin(v*22+2), so:0, op:1, slide:hit?80*eo(post/.5):0}
   };
 }
 function run(o,v,ph){o.lL=38*Math.sin(v*20+ph); o.lR=-38*Math.sin(v*20+ph); o.aR=28*Math.sin(v*20+ph+1); o.aL=-28*Math.sin(v*20+ph+1); return o}
@@ -604,19 +607,19 @@ function cast(v){
   if(v<Dt.a2||v>=Dt.tF){const o=duel(v<Dt.a2?v:0,v), a=v<Dt.a2?1:ez((v-Dt.tF-.02)/.35); o.g.op=o.m.op=o.c.op=a; o.cg=hide; o.px=hide; return o}
   if(v<arLast){                                             // line 2: run to the start cell and shrink into the dots
     const b=duel(Dt.a2,Dt.a2), o={g:b.g,m:b.m,c:b.c,cg:{x:-150,y:985,sc:1.1,rot:0,op:1},px:{x:1230,y:565,sc:1.1,rot:0,op:1}};
-    o.c.slide=95*(1-eb((v-Dt.a2-.15)/.3));
+    o.c.slide=80*(1-eb((v-Dt.a2-.15)/.3));
     for(const key of ['g','m','c','cg','px']){const c=Dt.IX[key], u=ez((v-Dt.a2-.1-.07*c)/1.05), e=o[key], T=Dt.FANP[c];
       run(e,v,c*1.3); e.x=lerp(e.x,T[0],u); e.y=lerp(e.y,T[1],u)-46*bump(u); e.sc=lerp(e.sc,.63,u); e.rot=lerp(e.rot||0,0,u)+5*bump(u)*(T[0]>e.x?1:-1);
       e.lo=1-ez((u-.72)/.28); e.so=1-ez((v-Dt.a2)/.25); e.op=1-ez((v-Dt.AR[c])/.1)}
     return o}
   if(v<Dt.tPD) return {g:hide,m:hide,c:hide,cg:hide,px:hide};
   const P=Dt.POD, out=1-ez((v-Dt.tF+.3)/.22), en=i=>eo((v-Dt.tPD-.08*i)/.4), a=v*2.4;   // the end scene: the podium
-  const st=(x,y,i,sc)=>({x,y:y+(1-en(i))*80,sc,rot:0,aR:0,aL:0,lL:0,lR:0,lo:1,so:0,op:ez((v-Dt.tPD-.08*i)/.2)*out,slide:0});
+  const st=(x,y,i,sc)=>({x,y:y-(1-en(i))*70,sc,rot:0,aR:0,aL:0,lL:0,lR:0,lo:1,so:0,op:ez((v-Dt.tPD-.08*i)/.2)*out,slide:0});
   const g=st(P.g[0],P.g[1]-12*Math.abs(Math.sin(v*6)),0,.95), m=st(P.m[0],P.m[1]-12*Math.abs(Math.sin(v*6+1.6)),1,.95), c=st(P.c[0],P.c[1],2,.95);
   g.aR=-62+12*Math.sin(v*8); g.aL=-62+12*Math.sin(v*8+1.5); m.aR=-62+12*Math.sin(v*8+.8); m.aL=-62+12*Math.sin(v*8+2.3);
   c.aR=-48+24*Math.sin(v*9); c.aL=22; c.lL=-5; c.lR=5;
-  const cg=run(st(P.cg[0]+Math.cos(a)*P.cg[2],P.cg[1]+Math.sin(a)*P.cg[2]*.34,3,.5),v,0); cg.rot=6*Math.cos(a);
-  const px=st(P.px[0]+22*Math.sin(v*3.2),P.px[1],4,.5); px.lL=16*Math.sin(v*6.4); px.lR=-16*Math.sin(v*6.4); px.aR=20; px.aL=20;
+  const cg=run(st(P.cg[0]+Math.cos(a)*P.cg[2],P.cg[1]+Math.sin(a)*P.cg[2]*.34,3,.62),v,0); cg.rot=6*Math.cos(a);
+  const px=st(P.px[0]+20*Math.sin(v*3.2),P.px[1],4,.62); px.lL=16*Math.sin(v*6.4); px.lR=-16*Math.sin(v*6.4); px.aR=20; px.aL=20;
   return {g,m,c,cg,px};
 }
 function render(v){
@@ -632,10 +635,10 @@ function render(v){
   if(inOpen){const p=ez(kt/Dt.tKL), hit=kt>=Dt.tKL, post=kt-Dt.tKL, sp=hit?lerp(.2,1,eo(post/.07)):lerp(.17,.2,p);
     sls.style.clipPath='inset(-20px '+((1-sp)*100).toFixed(1)+'% -20px -20px)'; sls.style.opacity=(hit?1-ez((post-.14)/.25):1).toFixed(3);
     fls.style.opacity=(hit?(post<.04?post/.04:1-ez((post-.04)/.3))*.88:0).toFixed(3);
-    mln.style.opacity=(hit?1-ez((post-.12)/.45):0).toFixed(3); mln.style.transform='scale('+(.8+.35*eo(post/.3)).toFixed(3)+') rotate('+(post*20).toFixed(1)+'deg)';
+    mln.style.opacity=(hit?1-ez((post-.12)/.45):0).toFixed(3); mln.style.transform='scale('+(.8+.22*eo(post/.3)).toFixed(3)+') rotate('+(post*20).toFixed(1)+'deg)';
     const so_=(hit?1-ez(post/.3):.9), jx=Math.sin(v*31)*7;
-    spG.style.opacity=so_.toFixed(2); spG.style.transform='translate('+(o.g.x-330+jx).toFixed(1)+'px,'+(o.g.y-40).toFixed(1)+'px)';
-    spM.style.opacity=so_.toFixed(2); spM.style.transform='translate('+(o.m.x-330-jx).toFixed(1)+'px,'+(o.m.y-10).toFixed(1)+'px)'}
+    spG.style.opacity=so_.toFixed(2); spG.style.transform='translate('+Math.max(124,o.g.x-300+jx).toFixed(1)+'px,'+(o.g.y-40).toFixed(1)+'px)';
+    spM.style.opacity=so_.toFixed(2); spM.style.transform='translate('+Math.max(124,o.m.x-300-jx).toFixed(1)+'px,'+(o.m.y-10).toFixed(1)+'px)'}
   // ---- the maze stage: appears in line 2 (the walls draw themselves), leaves before the end scene
   const sIn=ez((v-Dt.a2-.15)/.3), sOut=1-ez((v-Dt.tK+.16)/.22), sOp=Math.min(sIn,sOut);
   vp.style.opacity=sOp.toFixed(3); exw.style.opacity=sOp.toFixed(3); chw.style.opacity=sOp.toFixed(3); chw.style.transform='translate('+(-(1-eo((v-Dt.a2-.15)/.5))*50).toFixed(1)+'px,0)';
@@ -682,7 +685,7 @@ function render(v){
   // ---- the end scene
   const pe=ez((v-Dt.tPD)/.3)*(1-ez((v-Dt.tF+.3)/.22));
   pod.style.opacity=(v<Dt.tPD?0:pe).toFixed(3);
-  if(v>=Dt.tPD){pb1.style.transform='translate(0,'+((1-eo((v-Dt.tPD)/.45))*90).toFixed(1)+'px)'; pb3.style.transform='translate(0,'+((1-eo((v-Dt.tPD-.1)/.45))*90).toFixed(1)+'px)';
+  if(v>=Dt.tPD){pb1.style.transform='translate(0,'+(-(1-eo((v-Dt.tPD)/.45))*70).toFixed(1)+'px)'; pb3.style.transform='translate(0,'+(-(1-eo((v-Dt.tPD-.1)/.45))*70).toFixed(1)+'px)';
     fps.forEach((el,i)=>{el.style.strokeDashoffset=(-(v*.05)).toFixed(4); el.style.opacity=ez((v-Dt.tPD-.3-.1*i)/.4).toFixed(2)})}
 }
 '''.replace("__DATA__", json.dumps(DATA, separators=(",", ":")))

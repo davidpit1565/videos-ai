@@ -69,19 +69,20 @@ Blind readers, ep99: NOT RUN YET.
 ## Scores (labels, not gates)
 HOOK 76 · VIRALITY 72 · OVERALL 72 · predicted views 300-1,200, most likely about 550. Reasoning in the plan, section 7. Log 48 h / 72 h in `channel/score-calibration.md`.
 
-## BUILD-UP beat list, as built (pic-v3 / ep99-v3, 15.11.2026; video times from `video/ep99/cues99.json`, D 28.2 s; every spoken race line and race headline is asserted against `maze-race.json` in `build99.py`)
-Lines as voiced (`video/ep99/voice/lines.txt`): 1 "Meta AI and Gemini just killed Claude." 2 "I put five AIs in a maze race." 3 "None of them can see the maze. Go!" 4-9 as in the table above, 10 "Want the next one? Follow, and you'll see it." (no promised episode; no placeholder banner any more).
-| Video s | Line | Real step | What is NEW here |
-|---|---|---|---|
-| 0.0 | 1 | result | frame 0: the maze, the Meta AI and Gemini marks on top, the Claude mark knocked back with circling stars and a K.O. stamp (cartoon); text items: "AI MAZE RACE", "K.O.", "EXIT". True as: both are out in 117 steps, Claude in 171 |
-| 2.5 | 2 | 0 | the K.O. picture leaves; five dots burst apart in the centre; the request goes to the five chips, each thinks, each answers |
-| 4.7 | 3 | 0 | the walls fade (they cannot see the maze); "pick one before it starts"; Go at 6.26 |
-| 6.9 | 4 | 3-27 | Perplexity only paces 2 cells from step 5 (first casualty, reason to stay at about 8 s) |
-| 9.3 | 5 | 29-44 | ChatGPT's way out grows; "Claude leads" is said only where Claude is the one front dot |
-| 11.8-14.6 | none | 44-117 | race only: at step 61 Gemini and Meta AI (a doubled dot) take the front; dead-end marks; the numbers fall; the clock slows for the last 12 steps |
-| 14.6 | 6 | 117 | two dots leave on the same step; K.O. and stars on Claude, 10 steps short (the hook is paid off at about half) |
-| 16.65 | 7 | 118-500 | Claude turns back to 22, then gets OUT at step 171 on "makes it" (the K.O. never reads as "did not finish"); ChatGPT circles while the counter runs to 500 |
-| 20.7 | 8 | replay | "GEMINI + META AI TIE", then both winning trails are drawn again and close into one line: "SAME PATH. EVERY STEP." |
-| 23.8 | 9 | board | rows land worst first, the tie last; Claude is shown as 3, out in 171 steps |
-| 25.8 | 10 | board | follow line; then the K.O. picture returns for the loop |
-Longest stretch without a visual change, measured on the mixed file: 1.83 s (target 2.5 s). Gate: `video/ep99/out/gate-v3.txt`, all five checks PASS; qa.py warns that 28.2 s is under its 30 s band (a warning, not a failure). Blind readers have not seen v3 yet.
+## BUILD-UP beat list, as built (pic-v5 / ep99-v5, 15.11.2026; video times from `video/ep99/cues99.json`, D 28.21 s; every spoken race line and race headline is asserted against `maze-race.json` in `build99.py`)
+Three different screens (David, 15.11): OPENING = a cartoon duel of logo characters, no maze and no text; MIDDLE = the maze in a window with camera punch-ins on real race events; END = a podium with the same characters. Design notes: `channel/ep99-opening-design-notes.md`.
+| Video s | Line | Screen | Real event | What is NEW here |
+|---|---|---|---|---|
+| 0.0 | 1 | duel | result: Gemini and Meta AI out in 117 steps, Claude in 171 | frame 0, no text: the Meta AI and Gemini characters mid-swing, blades on the Claude character, which leans back |
+| 1.56 | 1 ("killed") | duel | same | one clean cartoon cut on the spoken word: white flash, motion lines, Claude's top half slides along the cut (no blood) |
+| 2.5 | 2 | duel to maze | step 0 | Claude snaps back together (it is in the race and does get out); ChatGPT and Perplexity run in; all five shrink into their dots while the maze draws itself |
+| 4.7 | 3 | maze, push-in on the five dots | step 0 | the walls fade (they cannot see the maze); "pick one before it starts"; fast pull-out on Go (6.26) |
+| 6.9 | 4 | punch-in on Perplexity | it only paces 2 cells from step 5 | the first one is out of the game (reason to stay at about 8 s) |
+| 9.3 | 5 | punch-in follows ChatGPT, then Claude | steps 29-44 | ChatGPT's way out grows; "Claude leads" only where Claude is the one front dot |
+| about 11.8-14.6 | none | full maze, one punch-in on a dead end | steps 44-117 | Gemini and Meta AI (a doubled dot) take the front at step 61; a dot runs into a dead end and turns; the clock slows for the last 12 steps |
+| 14.6 | 6 | punch-in on the exit corner, then a fast move to Claude | step 117 | two dots leave on the same step; Claude is 10 steps short (the hook pays off at about half) |
+| 16.6 | 7 | punch-in follows Claude, then ChatGPT | steps 118-500 | Claude turns back, then gets OUT at step 171; ChatGPT circles while the counter runs to 500 |
+| 20.7 | 8 | full maze | replay | "GEMINI + META AI TIE", then both winning trails are drawn again and close into one line |
+| 23.8 | 9 | podium | final result | a new screen: Gemini and Meta AI together on step 1 (117 steps, same path, best possible 89), Claude whole on step 3 (171 steps), ChatGPT walking in a circle, Perplexity in the start box |
+| 25.8 | 10 | podium, then the duel returns | - | follow line, no promised episode; the loop closes on frame 0 |
+Longest stretch without a visual change, measured on the mixed file: 1.70 s (target 2.5 s). Gate: `video/ep99/out/gate-v5.txt`, all five checks PASS; qa.py warns that 28.21 s is under its 30 s band (a warning, not a failure). Blind readers have not seen v5 yet.
