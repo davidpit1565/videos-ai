@@ -65,7 +65,7 @@ Video time = race time + 5.4 s (the race starts on "Go").
 | 8 | 13.9-15.0 | At the line, a photo finish! | 1.1 | 8.48 vs 8.68 s, spoken as they cross |
 | 9 | 15.0-15.9 | ChatGPT takes its time. | 0.9 | finishes 10.58 s, crosses right after the line ends |
 | 10 | 16.6-17.8 | Claude wins, by a hair. | 1.2 | on the slow-motion replay, "Claude" lands as its nose crosses |
-| 11 | 18.0-19.6 | Send it to a friend who uses Meta AI. | 1.6 | sendable: a named person; optional cut (saves 1.7 s) |
+| 11 | 18.0-19.6 | Send it to a friend. See who they pick. | 1.6 | sendable: a named person; optional cut (saves 1.7 s) |
 | 12 | 19.7-21.2 | The setup's in the link in bio. | 1.5 | LOCKED clip, `canonical-lines.json`, byte for byte |
 | 13 | 21.3-24.2 | Tomorrow, they face a maze. Follow, so you see who gets lost. | 2.9 | **PROMISE TO CONFIRM**: true only if episode 99 (AI RACE #2, the maze, the same five AIs) publishes the next day |
 Total about 24.2 s (about 22.5 s without line 11).

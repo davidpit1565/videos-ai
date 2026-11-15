@@ -1,0 +1,4 @@
+D=28.53 go=5.87 (speech gap in the wav) roll=[6.26, 7.07, 7.71, 8.21, 9.0] (speech gaps in the wav) js=121 sfx=38
+race clock: 1x from 5.87; SLOW MOTION 0.25x video 13.96-16.60 (race 8.062-8.76); video times: Perplexity stops 10.10, Meta AI wall 12.03, Claude 15.30, Gemini 16.10, ChatGPT 18.32; close-up 9.58-17.05, pan 13.04; winner 18.46; grid return 24.38; loop reset 27.58
+rank changes: {'chatgpt': [[0, 0], [91, 3], [291, 2]], 'gemini': [[0, 1], [91, 2], [251, 1]], 'claude': [[0, 2], [91, 0]], 'meta': [[0, 3], [91, 4]], 'perplexity': [[0, 4], [91, 1], [251, 2], [291, 3]]}
+NOTE: voice/words.json not found: 'Go' and the roll call are timed from {'go': 'speech gap in the wav', 'roll': 'speech gaps in the wav'}
