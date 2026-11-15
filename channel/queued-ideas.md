@@ -11,3 +11,8 @@ Rule (David, 15.11.2026): when he says "the videos I said we will do", this file
 - Status: QUEUED. Not built. Needs: live verification of every repo; duplicate check (grep topics-covered.txt: no hit for repos/alternatives on 15.11); a build-up beat list.
 
 ## Q0. Graphify / Claude Code tokens (reference reel DfatglrzjiV) — see `channel/ref-graphify-verify-2026-11-15.md` when the verification agent finishes. Not queued as an episode until David decides the topic fits (developer audience).
+
+## Q2. "Agency Agents: 280 free AI employees inside Claude Code" (reference reel DfVPw9LTJEo)
+- Reference: @auraguy.ai, 4.11.2026, 69 s, 3,992 likes, 1,735 comments (the strongest of the three reels of that creator we looked at; views not exposed). Claims: 280 specialists, "run your whole business for free", 160,000+ stars, an orchestrator that checks each step, one install. Same comment-for-link CTA ("AGENCY").
+- Status: QUEUED. Verification running (`channel/ref-agency-agents-verify-2026-11-15.md`). David also asks whether it can be installed into his own Claude Code: answered only after the verification (it runs third-party prompts/scripts on his machine: inspect before installing, install one agent not all 280). I cannot install it into his Claude from this cloud session; he would do it on his own computer.
+- If it is good, an honest episode needs OUR OWN test (a real task given to one of the agents, shown with the real output), not the reel's claims.
