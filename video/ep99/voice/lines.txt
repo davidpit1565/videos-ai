@@ -1,6 +1,6 @@
-I put five AIs in a race.
-The fastest one out wins.
-But none of them can see it. Go!
+I put five AIs in a maze contest.
+You won't believe which AIs won.
+None of them can see the maze. Go!
 Perplexity is stuck at the start!
 ChatGPT goes the wrong way. Claude leads!
 Two dots are out, on the same step!
