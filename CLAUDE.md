@@ -643,3 +643,6 @@ Check every reel before publishing, in this order (J = my judgement before, M = 
 
 ## No code on screen, plain words only (David, 14.11.2026, ep98)
 - David: "I have no idea what the video is about, it looks too code-like." Anything technical (code, function names, 'sensors', 'steer', 'JavaScript') stays OFF the screen and out of the spoken lines of reels; say it as a normal person would ("I asked four AIs to teach a car to drive. Now they race."). The code lives only on the site page for people who want it. Same test as the clarity rule: a non-technical blind reader must get the premise from frame 0. Also applies to my chat messages to David: no jargon, no code blocks unless he asked for them.
+
+## Episode 98 will be published as a REGULAR reel, not a trial (David, 15.11.2026)
+- David: "I prefer to upload it regular." Ep97 stays the trial test (reading 17.11); ep98 regular gives a rough comparison (two different episodes, so only a hint). Before any API publish of 98, check with him that he has not posted by hand.
