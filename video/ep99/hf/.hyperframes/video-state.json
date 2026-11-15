@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "d4c41279-1b36-47c1-a82d-a0982c9cfe7d",
-  "currentRevision": "9e58b4a0-04ac-4f36-b2ec-1ba7a8fcc9a6",
+  "currentRevision": "607408dc-2475-4a60-97c5-23f08ed579fe",
   "pendingChanges": false,
   "files": {
     "assets/bg.jpg": {
@@ -45,8 +45,8 @@
       "content": "/root/.cache/hyperframes/history/d4c41279-1b36-47c1-a82d-a0982c9cfe7d/blobs/48/481c8fca3ccaabd079fa61d69301c574cb3287193a4d5bcb8f8083834f6fc199"
     },
     "index.html": {
-      "hash": "98b1614e36fd094d81e58631f4c76b699de196da21c4448a53476b6ae6f3212c",
-      "content": "/root/.cache/hyperframes/history/d4c41279-1b36-47c1-a82d-a0982c9cfe7d/blobs/98/98b1614e36fd094d81e58631f4c76b699de196da21c4448a53476b6ae6f3212c"
+      "hash": "05faaa29bda60cf4b776efd166facde388cf6c9665b145602ba77e19a8a660df",
+      "content": "/root/.cache/hyperframes/history/d4c41279-1b36-47c1-a82d-a0982c9cfe7d/blobs/05/05faaa29bda60cf4b776efd166facde388cf6c9665b145602ba77e19a8a660df"
     }
   },
   "revisions": {
@@ -79,6 +79,21 @@
           "after": "/root/.cache/hyperframes/history/d4c41279-1b36-47c1-a82d-a0982c9cfe7d/blobs/98/98b1614e36fd094d81e58631f4c76b699de196da21c4448a53476b6ae6f3212c"
         }
       }
+    },
+    "607408dc-2475-4a60-97c5-23f08ed579fe": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794753023069,
+      "endedAt": 1794753023070,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/d4c41279-1b36-47c1-a82d-a0982c9cfe7d/blobs/98/98b1614e36fd094d81e58631f4c76b699de196da21c4448a53476b6ae6f3212c",
+          "after": "/root/.cache/hyperframes/history/d4c41279-1b36-47c1-a82d-a0982c9cfe7d/blobs/05/05faaa29bda60cf4b776efd166facde388cf6c9665b145602ba77e19a8a660df"
+        }
+      }
     }
   },
   "checks": {
@@ -93,13 +108,14 @@
   },
   "renders": {
     "latest": {
-      "id": "377f8203-b285-4003-a111-996bb77afc86",
-      "completedAt": 1794752930468,
-      "output": "/tmp/claude-0/-home-user-videos-ai/2effda64-8e71-5ab6-95b7-5d1257c9dd3f/scratchpad/ph99/allfail.mp4",
+      "id": "004628fe-b4d5-444b-b478-3d00118e4955",
+      "completedAt": 1794753109225,
+      "output": "/home/user/videos-ai/video/ep99/out/scaffold.mp4",
       "status": "completed",
-      "revision": "451b3772-294e-4f5c-9df9-6dbfb769f554"
+      "revision": "607408dc-2475-4a60-97c5-23f08ed579fe"
     },
     "retainedRevisions": [
+      "607408dc-2475-4a60-97c5-23f08ed579fe",
       "451b3772-294e-4f5c-9df9-6dbfb769f554"
     ]
   },

@@ -3,13 +3,13 @@
   "data": true,
   "script": true,
   "data_map": {
-   "chatgpt": "ph2",
-   "gemini": "ph3",
-   "claude": "ph1",
-   "meta": "ph4",
-   "perplexity": "ph5"
+   "chatgpt": "careful",
+   "gemini": "naive",
+   "claude": "careful",
+   "meta": "naive",
+   "perplexity": "careful"
   },
-  "results_file": "../../../../../tmp/claude-0/-home-user-videos-ai/2effda64-8e71-5ab6-95b7-5d1257c9dd3f/scratchpad/ph99/ph-mixed.json"
+  "results_file": "arena/ref-maze-race.json"
  },
  "estimated_timeline": true,
  "lines": [
@@ -90,8 +90,8 @@
   "main_last_step": 183,
   "max_steps": 500,
   "steps_per_second": {
-   "normal": 29.4,
-   "before_first_exit": 9.2,
+   "normal": 27.8,
+   "before_first_exit": 8.7,
    "tail": 288.2
   },
   "board": 17.08,
@@ -101,20 +101,12 @@
     "place": 1,
     "id": "chatgpt",
     "status": "exit",
-    "steps": 129,
+    "steps": 183,
     "closest": 0,
-    "board_text": "129 steps"
+    "board_text": "183 steps"
    },
    {
     "place": 2,
-    "id": "gemini",
-    "status": "exit",
-    "steps": 139,
-    "closest": 0,
-    "board_text": "139 steps"
-   },
-   {
-    "place": 3,
     "id": "claude",
     "status": "exit",
     "steps": 183,
@@ -122,97 +114,107 @@
     "board_text": "183 steps"
    },
    {
+    "place": 3,
+    "id": "perplexity",
+    "status": "exit",
+    "steps": 183,
+    "closest": 0,
+    "board_text": "183 steps"
+   },
+   {
     "place": 4,
-    "id": "meta",
+    "id": "gemini",
     "status": "dnf",
     "steps": null,
-    "closest": 25,
-    "board_text": "lost, 25 steps away"
+    "closest": 86,
+    "board_text": "lost, 86 steps away"
    },
    {
     "place": 5,
-    "id": "perplexity",
-    "status": "error",
+    "id": "meta",
+    "status": "dnf",
     "steps": null,
     "closest": 86,
-    "board_text": "stopped at step 60"
+    "board_text": "lost, 86 steps away"
    }
   ],
   "events": [
    {
     "kind": "first_leader",
+    "id": "chatgpt",
+    "step": 6,
+    "v": 8.231
+   },
+   {
+    "kind": "lead_change",
     "id": "gemini",
-    "step": 11,
-    "v": 8.383
-   },
-   {
-    "kind": "halfway",
-    "id": "gemini",
-    "step": 59,
-    "steps_to_exit": 44,
-    "v": 10.014
-   },
-   {
-    "kind": "error_stop",
-    "id": "perplexity",
-    "step": 60,
-    "v": 10.048
-   },
-   {
-    "kind": "near_miss",
-    "id": "meta",
-    "step": 92,
-    "closest": 25,
-    "cell": [
-     0,
-     10
-    ],
-    "v": 11.136
+    "step": 17,
+    "was": "chatgpt",
+    "steps_to_exit": 86,
+    "v": 8.63
    },
    {
     "kind": "lead_change",
     "id": "chatgpt",
-    "step": 106,
+    "step": 62,
     "was": "gemini",
-    "steps_to_exit": 23,
-    "v": 11.612
+    "steps_to_exit": 87,
+    "v": 10.249
+   },
+   {
+    "kind": "halfway",
+    "id": "chatgpt",
+    "step": 119,
+    "steps_to_exit": 44,
+    "v": 12.299
    },
    {
     "kind": "final_stretch",
     "id": "chatgpt",
-    "step": 117,
+    "step": 171,
     "steps_to_exit": 12,
-    "v": 12.061
+    "v": 14.249
    },
    {
     "kind": "exit",
     "id": "chatgpt",
-    "step": 129,
+    "step": 183,
     "place": 1,
-    "v": 13.366
-   },
-   {
-    "kind": "exit",
-    "id": "gemini",
-    "step": 139,
-    "place": 2,
-    "v": 13.706
+    "v": 15.63
    },
    {
     "kind": "exit",
     "id": "claude",
+    "step": 183,
+    "place": 2,
+    "v": 15.63
+   },
+   {
+    "kind": "exit",
+    "id": "perplexity",
     "step": 183,
     "place": 3,
     "v": 15.63
    },
    {
     "kind": "dnf_freeze",
+    "id": "gemini",
+    "step": 500,
+    "closest": 86,
+    "closestAt": [
+     11,
+     12
+    ],
+    "v": 16.73
+   },
+   {
+    "kind": "dnf_freeze",
     "id": "meta",
     "step": 500,
-    "closest": 25,
+    "closest": 86,
     "closestAt": [
-     0,
-     10
+     11,
+     12
     ],
     "v": 16.73
    }
@@ -220,149 +222,120 @@
   "dead_ends": {
    "chatgpt": [
     {
-     "step": 52,
-     "v": 9.776
-    },
-    {
-     "step": 81,
-     "v": 10.762
-    },
-    {
-     "step": 83,
-     "v": 10.83
-    },
-    {
-     "step": 90,
-     "v": 11.068
-    }
-   ],
-   "gemini": [
-    {
-     "step": 53,
-     "v": 9.81
-    },
-    {
-     "step": 63,
-     "v": 10.15
-    },
-    {
-     "step": 88,
-     "v": 11.0
-    },
-    {
-     "step": 106,
-     "v": 11.612
-    }
-   ],
-   "claude": [
-    {
      "step": 55,
-     "v": 9.878
+     "v": 9.997
     },
     {
      "step": 60,
-     "v": 10.048
+     "v": 10.177
     },
     {
      "step": 94,
-     "v": 11.204
+     "v": 11.4
     },
     {
      "step": 123,
-     "v": 12.713
+     "v": 12.443
     },
     {
      "step": 125,
-     "v": 12.931
+     "v": 12.515
     },
     {
      "step": 132,
-     "v": 13.468
+     "v": 12.767
     },
     {
      "step": 143,
-     "v": 13.842
+     "v": 13.162
     },
     {
      "step": 170,
-     "v": 14.76
+     "v": 14.134
     },
     {
      "step": 177,
-     "v": 15.14
+     "v": 14.939
     }
    ],
-   "meta": [
+   "gemini": [],
+   "claude": [
     {
-     "step": 13,
-     "v": 8.45
+     "step": 55,
+     "v": 9.997
     },
     {
-     "step": 50,
-     "v": 9.708
+     "step": 60,
+     "v": 10.177
     },
     {
-     "step": 78,
-     "v": 10.66
+     "step": 94,
+     "v": 11.4
     },
     {
-     "step": 111,
-     "v": 11.782
+     "step": 123,
+     "v": 12.443
     },
     {
-     "step": 113,
-     "v": 11.85
+     "step": 125,
+     "v": 12.515
     },
     {
-     "step": 142,
-     "v": 13.808
+     "step": 132,
+     "v": 12.767
     },
     {
-     "step": 182,
-     "v": 15.548
+     "step": 143,
+     "v": 13.162
     },
     {
-     "step": 209,
-     "v": 15.72
+     "step": 170,
+     "v": 14.134
     },
     {
-     "step": 246,
-     "v": 15.849
-    },
-    {
-     "step": 274,
-     "v": 15.946
-    },
-    {
-     "step": 307,
-     "v": 16.06
-    },
-    {
-     "step": 309,
-     "v": 16.067
-    },
-    {
-     "step": 338,
-     "v": 16.168
-    },
-    {
-     "step": 378,
-     "v": 16.307
-    },
-    {
-     "step": 405,
-     "v": 16.4
-    },
-    {
-     "step": 442,
-     "v": 16.529
-    },
-    {
-     "step": 470,
-     "v": 16.626
+     "step": 177,
+     "v": 14.939
     }
    ],
-   "perplexity": []
+   "meta": [],
+   "perplexity": [
+    {
+     "step": 55,
+     "v": 9.997
+    },
+    {
+     "step": 60,
+     "v": 10.177
+    },
+    {
+     "step": 94,
+     "v": 11.4
+    },
+    {
+     "step": 123,
+     "v": 12.443
+    },
+    {
+     "step": 125,
+     "v": 12.515
+    },
+    {
+     "step": 132,
+     "v": 12.767
+    },
+    {
+     "step": 143,
+     "v": 13.162
+    },
+    {
+     "step": 170,
+     "v": 14.134
+    },
+    {
+     "step": 177,
+     "v": 14.939
+    }
+   ]
   }
  },
  "headlines_draft": [
@@ -387,20 +360,20 @@
    "text": "FIND THE EXIT"
   },
   {
-   "t": 10.05,
-   "text": "PERPLEXITY STOPS"
+   "t": 10.25,
+   "text": "CHATGPT LEADS NOW"
   },
   {
-   "t": 12.06,
+   "t": 12.3,
+   "text": "HALFWAY THERE"
+  },
+  {
+   "t": 14.25,
    "text": "12 STEPS TO GO..."
   },
   {
-   "t": 13.37,
-   "text": "CHATGPT IS OUT!"
-  },
-  {
    "t": 15.63,
-   "text": "CLAUDE IS OUT TOO"
+   "text": "CHATGPT IS OUT!"
   },
   {
    "t": 17.08,
