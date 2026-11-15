@@ -27,7 +27,7 @@ Spoken script (about 25 s):
 7. Claude and Gemini are neck and neck.
 8. Claude pulls ahead!
 9. ChatGPT takes its time.
-10. Claude wins. Gemini is two tenths behind.
+10. Claude wins. Gemini is right behind.
 11. Send it to a friend. See who they pick.
 12. The setup's in the link in bio.
 13. Tomorrow, they face a maze. Follow, so you see who gets lost.

@@ -243,7 +243,7 @@ head(7, s(7) + .02, s(8) - .02, "NECK AND NECK", logos=("claude", "gemini"))
 head(8, s(8) + .02, s(9) - .02, "CLAUDE", "PULLS AHEAD", logos=("claude",), t2=vC)
 head(9, s(9) + .02, max(s(10), vCh + .1), "CHATGPT", "TAKES ITS TIME", logos=("chatgpt",))
 tW = max(s(10), vCh + .1) + .04                              # winner moment
-head(20, tW, s(11) - .04, "CLAUDE WINS", "GEMINI: 2 TENTHS BEHIND", logos=("claude",), t2=tW + .9)
+head(20, tW, s(11) - .04, "CLAUDE WINS", "GEMINI: 0.2 s BEHIND", logos=("claude",), t2=tW + .9)
 head(21, s(11) + .02, s(13) - .04, "SEND IT TO A FRIEND", "SEE WHO THEY PICK")
 head(22, s(13) + .02, tF + .1, "NEXT: A MAZE")
 fin("#h0", tF + .35, .45)

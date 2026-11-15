@@ -44,58 +44,58 @@
   },
   {
    "n": 8,
-   "text": "Claude crosses the line ahead!",
+   "text": "Claude pulls ahead!",
    "start": 14.83,
-   "end": 16.28
+   "end": 15.87
   },
   {
    "n": 9,
    "text": "ChatGPT takes its time.",
-   "start": 16.43,
-   "end": 18.09
+   "start": 16.02,
+   "end": 17.68
   },
   {
    "n": 10,
    "text": "Claude wins. Gemini is two tenths behind.",
-   "start": 18.15,
-   "end": 20.22
+   "start": 17.74,
+   "end": 19.81
   },
   {
    "n": 11,
-   "text": "Send it to someone who uses Meta AI.",
-   "start": 20.28,
-   "end": 22.3
+   "text": "Send it to a friend. See who they pick.",
+   "start": 19.87,
+   "end": 21.77
   },
   {
    "n": 12,
    "text": "The setup's in the link in bio.",
-   "start": 22.36,
-   "end": 24.17
+   "start": 21.83,
+   "end": 23.64
   },
   {
    "n": 13,
    "text": "Tomorrow, they face a maze. Follow, so you see who gets lost.",
-   "start": 24.23,
-   "end": 27.43
+   "start": 23.7,
+   "end": 26.9
   }
  ],
- "D": 28.53,
- "go": 5.87,
+ "D": 28.0,
+ "go": 5.82,
  "race": {
-  "start": 5.87,
-  "slow_from": 13.962,
-  "slow_to": 16.6,
+  "start": 5.82,
+  "slow_from": 13.946,
+  "slow_to": 16.45,
   "slow_rate": 0.25,
-  "slow_race_from": 8.062,
+  "slow_race_from": 8.092,
   "slow_race_to": 8.763,
-  "perplexity_stops": 10.1,
-  "meta_wall": 12.033,
-  "claude": 15.3,
-  "gemini": 16.1,
-  "chatgpt": 18.317
+  "perplexity_stops": 10.05,
+  "meta_wall": 11.983,
+  "claude": 15.15,
+  "gemini": 15.95,
+  "chatgpt": 18.167
  },
  "sources": {
-  "go": "speech gap in the wav",
-  "roll": "speech gaps in the wav"
+  "go": "words.json",
+  "roll": "words.json"
  }
 }
