@@ -218,10 +218,10 @@ fact(STATUS["chatgpt"] == "dnf" and cgc["cells_after"] <= 40, f"line 7 'ChatGPT 
      (f", and only {PACE['chatgpt'][1]} cells from step {PACE['chatgpt'][0]}" if "chatgpt" in PACE else ""))
 
 # ---------------------------------------------------------------- page geometry (safe: x 108-972, y 269-1248; below y 1056 nothing important right of x 864)
-CELL = 35; MW = CELL * W_                                    # maze 735 px: x 232-967, y 513-1248 (no dot ever enters the cells right of x 864 below y 1056: asserted)
-MX, MY = 232, 1248 - MW
+CELL = 33; MW = CELL * W_                                    # maze 693 px: x 279-972, y 555-1248 (no dot ever enters the cells right of x 864 below y 1056: asserted)
+MX, MY = 972 - MW, 1248 - MW
 assert not any(MX + p[0] * CELL + CELL > 864 and MY + p[1] * CELL + CELL > 1056 for k in IDS for p in PATH[k]), "a dot walks under the right-hand buttons: move the maze"
-CHX, CHD = 163, 110; CHYS = [561 + 110 * c for c in range(5)]  # the five chips: a column LEFT of the maze, y 506-1056 (above the EXIT marker)
+CHX, CHD = 172, 127; CHYS = [563 + 127 * c for c in range(5)]  # the five chips: a column LEFT of the maze, y 506-1056 (above the EXIT marker)
 FANR, FANS = 104, 1.85                                        # before Go: the dots fanned around the centre cell, drawn larger
 FAN = [[round(FANR * math.cos(math.radians(-90 + 72 * c)), 1), round(FANR * math.sin(math.radians(-90 + 72 * c)), 1)] for c in range(5)]
 OFF = []; TOFF = []                                          # dot offset in the corridor; trail offset (stays inside the corridor)
@@ -319,9 +319,9 @@ maze = f'''<div id="maze" style="left:{MX}px;top:{MY}px"><div class="floor" data
   <g id="trs">{"".join(f'<path class="trl" d="{TRD[c]}" stroke="{COL[k]}" stroke-dasharray="{CLEN[c][-1] + 2:.1f}" stroke-dashoffset="{CLEN[c][-1] + 2:.1f}"/>' for c, k in enumerate(IDS))}</g>
   <g id="walls" filter="url(#wob)" fill="none" stroke="{INK}" stroke-width="4.6" stroke-linecap="round"><path d="{" ".join(hw)} {" ".join(vw)}"/></g>
   <g id="dms">{dead_marks}</g><g id="cms">{close_marks}</g>
-  <g id="exm"><path d="M-12 {ey} H-92 M-64 {ey - 26} L-96 {ey} L-64 {ey + 26}" fill="none" stroke="#15803d" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="exm"><path d="M-16 {ey} H-112 M-88 {ey - 21} L-116 {ey} L-88 {ey + 21}" fill="none" stroke="#15803d" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></g>
  </svg>
- <div id="ext" style="top:{ey - 92:.0f}px">EXIT</div></div>'''
+ <div id="ext" style="top:{ey - 88:.0f}px">EXIT</div></div>'''
 dots = '<div id="dots">' + "".join(f'<div class="dot" data-c="{c}">{badge(k, 60, "db")}<i class="dr" style="border-color:{COL[k]}"></i></div>' for c, k in enumerate(IDS)) + "</div>"
 check = '<path d="M-10 1 L-3 8 L11 -8" pathLength="1"/>'
 chips = '<div id="chips">'
@@ -333,25 +333,27 @@ for c, k in enumerate(IDS):
  <div class="dn"></div>{'<div class="kos">K.O.</div>' if k == near["id"] else ""}</div>'''
 chips += "</div>"
 REQ = "Get this dot out of the maze."
-BFS = min(52, 100 * 520 / tw8(REQ)); BUBY = MY + 44
+BFS = min(50, 100 * 500 / tw8(REQ)); BUBY = MY + 40
 bub = f'<div id="bub" style="top:{BUBY}px"><i class="bdot"></i><div id="btx" style="font-size:{BFS:.1f}px;line-height:{BFS * 1.2:.1f}px">{REQ}</div></div>' + \
       "".join(f'<div class="nt" id="nt{c}" style="top:{BUBY + 40}px"><i></i><i></i></div>' for c in range(5))
 def rowtext(k):
     r = RES[k]
     if STATUS[k] == "exit": return f"out in {r['exitStep']} steps" + (", same path" if TWIN[k] != k else "")
     return "stuck by the start" if r.get("cellsVisited", 99) <= 6 else f"lost, closest {r['closestDist']} steps away"
-RH = 104
+RH = 100
 card = f'<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">AI RACE &middot; THE MAZE</div>'
 for i, k in enumerate(ORDER):
     pl = str(1 + sum(1 for j in FINS if XSTEP[j] < XSTEP[k])) if STATUS[k] == "exit" else "&ndash;"
-    card += f'<div class="cr" id="cr{i}" style="top:{100 + i * RH}px"><span class="cp">{pl}</span>{badge(k, 72)}<div class="cx"><span class="cn">{NAME[k]}</span><span class="cv">{rowtext(k)}</span></div>{f"""<i style="background:{COL[k]}"></i>""" if k in WINS else ""}</div>'
+    card += f'<div class="cr" id="cr{i}" style="top:{92 + i * RH}px"><span class="cp">{pl}</span>{badge(k, 72)}<div class="cx"><span class="cn">{NAME[k]}</span><span class="cv">{rowtext(k)}</span></div>{f"""<i style="background:{COL[k]}"></i>""" if k in WINS else ""}</div>'
 card += f'<div class="cf">best possible: {SHORT} steps</div></div>'
 KW = [(WINS[1] if WINS[1] == "meta" else WINS[0]), (WINS[0] if WINS[1] == "meta" else WINS[1])]      # spoken order: Meta AI, Gemini
-KWX, KWY, KCX, KCY = [490, 712], 700, 596, 985
+KWX, KWY, KCX, KCY = [MX + MW // 2 - 112, MX + MW // 2 + 112], MY + 190, MX + MW // 2 - 40, MY + 450
+KFS = 100; KSW = tw("K.O.") * KFS / 100 + 6; KHALF = (KSW * .982 + KFS * .191) / 2 * 1.37 + 12     # half width of the stamp at its largest (scale 1.365, rotated 11 degrees, shadow)
+KSX = min(KCX + 26 + 84 + 90, 968 - KHALF); KSL, KST = round(KSX - KSW / 2), KCY - 62
 STAR = '<svg class="star" viewBox="-34 -34 68 68"><path d="M0 -30 L7 -9 L27 -15 L13 2 L30 16 L8 12 L3 32 L-7 13 L-27 20 L-14 2 L-30 -12 L-9 -10Z"/></svg>'
 kcol = COL[near["id"]]
-ko = '<div id="ko">' + "".join(f'<div class="kb kw" style="left:{KWX[i]}px;top:{KWY}px">{badge(k, 184, "kg", f"border-color:{COL[k]}")}</div>' for i, k in enumerate(KW)) + \
-     f'<div class="kb" id="kcl" style="left:{KCX}px;top:{KCY}px">{badge(near["id"], 168, "kg", f"border-color:{kcol}")}</div><div id="kst">K.O.</div></div><div id="stars">{STAR * 4}</div>'
+ko = '<div id="ko">' + "".join(f'<div class="kb kw" style="left:{KWX[i]}px;top:{KWY}px">{badge(k, 184, "kg", f"border-color:{COL[k]}")}<svg class="crown" viewBox="-46 -34 92 62"><path d="M-36 22 L-42 -16 L-19 2 L0 -28 L19 2 L42 -16 L36 22Z"/></svg></div>' for i, k in enumerate(KW)) + \
+     f'<div class="kb" id="kcl" style="left:{KCX}px;top:{KCY}px">{badge(near["id"], 168, "kg", f"border-color:{kcol}")}</div><div id="kst" style="left:{KSL}px;top:{KST}px;width:{KSW:.0f}px">K.O.</div></div><div id="stars">{STAR * 4}</div>'
 markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam"><div id="pn">
@@ -373,7 +375,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .trl{fill:none;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round;opacity:0}
 .dm{fill:none;stroke:RED;stroke-width:4.5;stroke-linecap:round;opacity:0}
 .cm{fill:none;stroke-width:6;stroke-dasharray:7 6;opacity:0;transform-box:fill-box;transform-origin:50% 50%}
-#ext{position:absolute;left:-124px;width:118px;text-align:center;font-weight:900;font-size:46px;line-height:50px;letter-spacing:.01em;color:#15803d}
+#ext{position:absolute;left:-171px;width:150px;text-align:left;font-weight:900;font-size:54px;line-height:54px;letter-spacing:.01em;color:#15803d}
 #rays{transform-box:fill-box;transform-origin:50% 50%}
 #dots,#chips{position:absolute;left:0;top:0;width:0;height:0}
 #dots{z-index:3} #chips{z-index:4} #bub,.nt{z-index:4}
@@ -384,15 +386,15 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .dot .db{position:absolute;left:-30px;top:-30px;border-width:3.5px}
 .dr{position:absolute;left:-30px;top:-30px;width:60px;height:60px;border-radius:50%;border:7px solid INK;box-shadow:0 0 0 2.5px INK;opacity:0}
 .sl{position:absolute;width:0;height:0;will-change:transform}
-.sl .tb{position:absolute;left:-55px;top:-55px;border-width:5px}
-.ring{position:absolute;left:-55px;top:-55px;width:110px;height:110px;border-radius:50%;border:11px solid INK;opacity:0}
-.tk{position:absolute;left:26px;top:-66px;width:68px;height:36px;border-radius:18px;background:#fff;border:4px solid INK;display:flex;align-items:center;justify-content:center;gap:6px;opacity:0;transform-origin:20% 100%}
+.sl .tb{position:absolute;left:-63.5px;top:-63.5px;border-width:5.5px}
+.ring{position:absolute;left:-63.5px;top:-63.5px;width:127px;height:127px;border-radius:50%;border:12px solid INK;opacity:0}
+.tk{position:absolute;left:30px;top:-76px;width:68px;height:36px;border-radius:18px;background:#fff;border:4px solid INK;display:flex;align-items:center;justify-content:center;gap:6px;opacity:0;transform-origin:20% 100%}
 .tk i{display:block;width:9px;height:9px;border-radius:50%;background:INK}
-.ck,.ok{position:absolute;left:22px;top:-60px;width:50px;height:50px;overflow:visible;transform-origin:50% 50%;opacity:0}
+.ck,.ok{position:absolute;left:26px;top:-68px;width:54px;height:54px;overflow:visible;transform-origin:50% 50%;opacity:0}
 .ck circle,.ok circle{fill:GREEN;stroke:INK;stroke-width:3.5} .ck path,.ok path{fill:none;stroke:#fff;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round}
-.tm{position:absolute;left:-40px;top:-46px;width:80px;height:92px;overflow:visible;opacity:0}
+.tm{position:absolute;left:-46px;top:-52px;width:92px;height:104px;overflow:visible;opacity:0}
 .tm path{fill:none;stroke:RED;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
-.dn{position:absolute;left:-8px;top:14px;width:70px;text-align:right;font-weight:900;font-size:40px;line-height:40px;letter-spacing:-.03em;opacity:0;white-space:nowrap;transform-origin:100% 50%;
+.dn{position:absolute;left:-10px;top:18px;width:78px;text-align:right;font-weight:900;font-size:44px;line-height:44px;letter-spacing:-.03em;opacity:0;white-space:nowrap;transform-origin:100% 50%;
  text-shadow:3px 3px 0 PAPER,-3px 3px 0 PAPER,3px -3px 0 PAPER,-3px -3px 0 PAPER,0 4px 0 PAPER,4px 0 0 PAPER,-4px 0 0 PAPER,0 -4px 0 PAPER}
 #ko,#stars{position:absolute;left:0;top:0;width:0;height:0;z-index:3} #stars{z-index:5}
 .kb{position:absolute;width:0;height:0}
@@ -400,14 +402,16 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #kcl .kg{left:-84px;top:-84px}
 #kst,.kos{font-weight:900;color:RED;letter-spacing:-.02em;white-space:nowrap;transform-origin:50% 50%;
  text-shadow:4px 4px 0 PAPER,-4px 4px 0 PAPER,4px -4px 0 PAPER,-4px -4px 0 PAPER,0 5px 0 PAPER,5px 0 0 PAPER,-5px 0 0 PAPER,0 -5px 0 PAPER,7px 9px 0 INK}
-#kst{position:absolute;left:712px;top:930px;font-size:118px;line-height:118px}
-.kos{position:absolute;left:-52px;top:-58px;font-size:46px;line-height:50px;opacity:0;text-shadow:3px 3px 0 PAPER,-3px 3px 0 PAPER,3px -3px 0 PAPER,-3px -3px 0 PAPER,0 4px 0 PAPER,4px 0 0 PAPER,-4px 0 0 PAPER,0 -4px 0 PAPER}
+#kst{position:absolute;font-size:100px;line-height:100px;text-align:center}
+.crown{position:absolute;left:-46px;top:-158px;width:92px;height:62px;overflow:visible;transform-origin:50% 100%}
+.crown path{fill:#FFD23F;stroke:INK;stroke-width:6;stroke-linejoin:round}
+.kos{position:absolute;left:-60px;top:-66px;font-size:48px;line-height:50px;opacity:0;text-shadow:3px 3px 0 PAPER,-3px 3px 0 PAPER,3px -3px 0 PAPER,-3px -3px 0 PAPER,0 4px 0 PAPER,4px 0 0 PAPER,-4px 0 0 PAPER,0 -4px 0 PAPER}
 .star{position:absolute;left:0;top:0;width:52px;height:52px;margin:-26px 0 0 -26px;opacity:0;overflow:visible}
 .star path{fill:#FFD23F;stroke:INK;stroke-width:5;stroke-linejoin:round}
-#bub{position:absolute;left:262px;width:650px;height:120px;background:#fff;border:6px solid INK;border-radius:44px;box-shadow:-8px 8px 0 INK;display:flex;align-items:center;justify-content:center;gap:20px;opacity:0;transform-origin:50% 60%}
+#bub{position:absolute;left:306px;width:640px;height:116px;background:#fff;border:6px solid INK;border-radius:44px;box-shadow:-8px 8px 0 INK;display:flex;align-items:center;justify-content:center;gap:20px;opacity:0;transform-origin:50% 60%}
 .bdot{display:block;width:38px;height:38px;border-radius:50%;background:#fff;border:7px solid INK;flex:none}
 #btx{font-weight:800;letter-spacing:-.01em;white-space:nowrap}
-.nt{position:absolute;left:560px;width:64px;height:46px;background:#fff;border:4px solid INK;border-radius:13px;opacity:0;padding:9px 9px 0}
+.nt{position:absolute;left:600px;width:64px;height:46px;background:#fff;border:4px solid INK;border-radius:13px;opacity:0;padding:9px 9px 0}
 .nt i{display:block;height:5px;border-radius:3px;background:INK;margin-bottom:7px} .nt i+i{width:60%}
 #cnt{position:absolute;right:108px;top:292px;z-index:5;font-weight:900;font-size:50px;line-height:50px;letter-spacing:-.03em;white-space:nowrap;opacity:0;display:flex;align-items:baseline;gap:9px}
 #cnt em{font-style:normal;font-size:24px;letter-spacing:0}
@@ -416,10 +420,10 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .hl1{display:flex;align-items:center} .hlg{margin-right:.16em;flex:none} .hl2{display:block}
 #h2b{font-weight:800;letter-spacing:-.01em;border-bottom:5px solid INK;display:inline-block;padding-bottom:2px;margin-top:8px}
 .hd.go{font-size:140px;line-height:140px;top:340px;left:108px}
-#card{position:absolute;left:240px;top:520px;width:624px;height:HCARDpx;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:-12px 12px 0 INK;opacity:0;transform-origin:50% 0%;z-index:6}
+#card{position:absolute;left:258px;top:560px;width:606px;height:HCARDpx;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:-12px 12px 0 INK;opacity:0;transform-origin:50% 0%;z-index:6}
 .tape{position:absolute;width:120px;height:38px;background:rgba(232,221,186,.86);border:1px solid rgba(0,0,0,.14);z-index:3}
 .tape.t1{right:-30px;top:-12px;transform:rotate(34deg)} .tape.t2{left:-30px;bottom:-6px;transform:rotate(34deg)}
-.ct{position:absolute;left:34px;top:22px;font-weight:900;font-size:50px;line-height:60px;letter-spacing:-.03em;white-space:nowrap}
+.ct{position:absolute;left:34px;top:20px;font-weight:900;font-size:48px;line-height:60px;letter-spacing:-.03em;white-space:nowrap}
 .cr{position:absolute;left:34px;right:34px;height:RHpx;display:flex;align-items:center;opacity:0;border-top:4px solid rgba(15,15,15,.14)}
 .cp{width:48px;font-weight:900;font-size:52px;line-height:60px;text-align:center;margin-right:14px}
 .cx{margin-left:18px;display:flex;flex-direction:column}
@@ -428,7 +432,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .cr i{position:absolute;left:0;right:0;bottom:1px;height:8px;border-radius:4px;transform-origin:0 50%;transform:scaleX(0)}
 .cf{position:absolute;left:34px;bottom:18px;font-weight:800;font-size:33px;line-height:40px;white-space:nowrap;opacity:0}
 '''
-for a_, b_ in (("HCARD", 100 + 5 * RH + 66), ("RH", RH), ("MW", MW), ("GREEN", GREEN), ("INK", INK), ("PAPER", PAPER), ("RED", RED)):
+for a_, b_ in (("HCARD", 92 + 5 * RH + 62), ("RH", RH), ("MW", MW), ("GREEN", GREEN), ("INK", INK), ("PAPER", PAPER), ("RED", RED)):
     CSS = CSS.replace(a_, str(b_))
 
 # ---------------------------------------------------------------- timeline (GSAP: text, premise, board; maze, dots, chips, marks are driven by render())
@@ -445,7 +449,7 @@ tN = a2 + min(.42, .2 * d2); tC = a2 + .56 * d2; SPAWN = []
 for c in range(5):
     t = tN + .06 * c
     js(f"tl.fromTo('#nt{c}',{{opacity:0,x:0,y:0,scale:.5}},{{opacity:1,scale:1,duration:.12,ease:'power2.out',immediateRender:false}},{t:.3f});")
-    js(f"tl.to('#nt{c}',{{x:{CHX - 32 - 560},y:{CHYS[c] - 23 - (BUBY + 40)},rotation:{(c - 2) * 9},duration:.38,ease:'power2.inOut'}},{t + .06:.3f});")
+    js(f"tl.to('#nt{c}',{{x:{CHX - 32 - 600},y:{CHYS[c] - 23 - (BUBY + 40)},rotation:{(c - 2) * 9},duration:.38,ease:'power2.inOut'}},{t + .06:.3f});")
     js(f"tl.to('#nt{c}',{{opacity:0,scale:.4,duration:.12,ease:'power2.in'}},{t + .4:.3f});")
     js(f"tl.fromTo('#tk{c}',{{opacity:0,scale:.4}},{{opacity:1,scale:1,duration:.2,ease:'back.out(2)',immediateRender:false}},{t + .46:.3f});")
     js(f"tl.fromTo('#tk{c} i',{{y:0}},{{y:-6,duration:.16,ease:'sine.inOut',yoyo:true,repeat:5,stagger:.07,immediateRender:false}},{t + .5:.3f});")
@@ -528,7 +532,7 @@ function render(v){
   rays.style.opacity=(v<Dt.a2?0:v<Dt.T0?1-ez((v-Dt.T0+.4)/.4):0).toFixed(2); rays.style.transform='rotate('+(v*14).toFixed(1)+'deg) scale('+(1+.05*Math.sin(v*6)).toFixed(3)+')';
   // the hook picture (frame 0 and the loop end): the two winners on top, Claude knocked back, stars, a K.O. stamp. Cartoon only.
   const kq=v<Dt.a2?1-ez((v-Dt.a2+.32)/.26):ez((v-Dt.tF-.08)/.4), kt=v<Dt.a2?v:9;
-  ko.style.opacity=kq.toFixed(3); ko.style.transform='scale('+(.9+.1*kq).toFixed(3)+')'; ko.style.transformOrigin='600px 860px';
+  ko.style.opacity=kq.toFixed(3); ko.style.transform='scale('+(.9+.1*kq).toFixed(3)+')'; ko.style.transformOrigin=Dt.KC[0]+'px '+(Dt.KC[1]-120)+'px';
   kws.forEach((el,i)=>{el.style.transform='translate(0,'+(Math.sin(v*6.5+i*1.9)*9-30*(1-eo(kt/.4))).toFixed(1)+'px) scale('+(.86+.14*eo(kt/.4)+.03*Math.sin(v*6.5+i*1.9)).toFixed(3)+')'});
   kcl.style.transform='translate('+(26*eo(kt/.32)).toFixed(1)+'px,'+(18*eo(kt/.32)).toFixed(1)+'px) rotate('+(8+18*eo(kt/.32)+3*Math.sin(v*4.4)).toFixed(1)+'deg)';
   kst.style.transform='rotate(-11deg) scale('+(1+.32*(1-eo(kt/.3))+.045*Math.sin(v*8)).toFixed(3)+')';
