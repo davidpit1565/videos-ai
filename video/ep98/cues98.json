@@ -3,103 +3,103 @@
   {
    "n": 1,
    "text": "Each AI taught a car. One hits the wall.",
-   "start": 0.08,
-   "end": 2.18
+   "start": 0.04,
+   "end": 2.36
   },
   {
    "n": 2,
    "text": "Pick one. Go!",
-   "start": 2.24,
-   "end": 3.49
+   "start": 2.55,
+   "end": 3.61
   },
   {
    "n": 3,
    "text": "Perplexity stops dead in the bend!",
-   "start": 6.96,
-   "end": 8.55
+   "start": 6.99,
+   "end": 9.5
   },
   {
    "n": 4,
    "text": "Meta AI hits the wall!",
-   "start": 8.84,
-   "end": 10.33
+   "start": 9.69,
+   "end": 11.57
   },
   {
    "n": 5,
    "text": "Claude and Gemini, neck and neck.",
-   "start": 10.41,
-   "end": 12.19
+   "start": 11.76,
+   "end": 13.59
   },
   {
    "n": 6,
-   "text": "ChatGPT takes its time.",
-   "start": 12.32,
-   "end": 13.98
+   "text": "ChatGPT rolls in next.",
+   "start": 13.78,
+   "end": 15.06
   },
   {
    "n": 7,
    "text": "Claude wins. Gemini is right behind.",
-   "start": 14.08,
-   "end": 16.0
+   "start": 15.25,
+   "end": 17.1
   },
   {
    "n": 8,
-   "text": "Did you pick Claude? Send it to a friend.",
-   "start": 16.06,
-   "end": 18.21
+   "text": "Send it to a friend. See who they pick.",
+   "start": 17.29,
+   "end": 19.64
   },
   {
    "n": 9,
    "text": "The setup's in the link in bio.",
-   "start": 18.27,
-   "end": 20.08
+   "start": 19.83,
+   "end": 21.64
   },
   {
    "n": 10,
    "text": "Tomorrow, they face a maze. Follow, so you see who gets lost.",
-   "start": 20.14,
-   "end": 23.34
+   "start": 21.83,
+   "end": 25.25
   }
  ],
- "D": 23.79,
- "go": 3.19,
- "stale_cues": true,
- "timeline": "ESTIMATED (cue texts do not match voice/lines.txt)",
+ "D": 25.7,
+ "go": 3.14,
+ "stale_cues": false,
+ "timeline": "voice cues",
  "targets": {
-  "1": 0.08,
-  "2": 2.24,
-  "3": 6.96,
-  "4": 8.84,
-  "5": 10.41,
-  "6": 12.32,
-  "7": 14.08,
-  "8": 16.06,
-  "9": 18.27,
-  "10": 20.14
+  "1": 0.04,
+  "2": 2.55,
+  "3": 6.91,
+  "4": 9.48,
+  "5": 11.44,
+  "6": 13.35,
+  "7": 14.73,
+  "8": 16.64,
+  "9": 19.05,
+  "10": 20.92
  },
  "drift_vs_targets": {
-  "3": 0.0,
-  "4": 0.0,
-  "5": 0.0,
-  "6": 0.0,
-  "7": 0.0
+  "3": 0.08,
+  "4": 0.21,
+  "5": 0.32,
+  "6": 0.43,
+  "7": 0.52
  },
  "race": {
-  "start": 3.19,
-  "live_until_race_s": 10.68,
-  "perplexity_stops": 7.407,
-  "meta_wall": 9.34,
-  "claude": 11.673,
-  "gemini": 11.873,
-  "chatgpt": 13.773,
-  "replay_from": 13.87,
-  "replay_to": 16.56,
+  "start": 3.14,
+  "live_until_race_s": 11.9,
+  "perplexity_stops": 7.357,
+  "meta_wall": 9.29,
+  "claude": 11.623,
+  "gemini": 11.823,
+  "chatgpt": 13.723,
+  "replay_from": 15.04,
+  "replay_to": 17.79,
   "replay_rate": 0.25,
-  "replay_race_from": 8.277,
-  "replay_claude": 14.694,
-  "replay_gemini": 15.494
+  "replay_race_from": 8.328,
+  "replay_claude": 15.66,
+  "replay_gemini": 16.46
  },
  "sources": {
-  "go": "ESTIMATE (stale cues)"
+  "go": "words.json"
  }
 }
