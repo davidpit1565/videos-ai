@@ -420,3 +420,6 @@ Pure picture (Claude chat screenshot, dark), slow zoom 100% to 115% over 7 s, an
 
 ## Update 15.11.2026 (David): the "Me with Claude / Me with ChatGPT" picture trial passed 8,000 views
 - David's report (not read from our studio: the trial is not tracked there): the picture went from about 7,000 to over 8,000 views as a trial. He plans to move it to his profile about 16.11.2026. Open question, not answered: does the profile hold it, and does a picture graduated after a big trial keep reaching non-followers? Read the numbers again 72 h after graduation and write them here. Same rule as before: the picture is an occasional virality and trial post, not a video format.
+
+## Reminder 15.11.2026 ~17:56 Belgium: ep92 trial, 72 h are up
+- Trial posted by hand 12.11.2026 17:55 Belgium. The studio has NO numbers for it (views/reach/likes/saves/shares are empty: trials are not tracked there, and /api/track only reads regular reels). Real 24 h / 72 h readings must come from David (Instagram Insights of the trial). Graduation status: not recorded; ask David. Ep90 (trial 13.11 00:43) is due 16.11 00:43 Belgium.
