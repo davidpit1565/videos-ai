@@ -1,4 +1,4 @@
-"Seventy times more Claude Code." That's the viral claim. Not even close.
+They say this free tool killed Claude Code's token problem. We checked. Not even close.
 
 The posts say a free tool called Graphify makes your $20 Claude plan do the work of the $100 plan. We checked the public sources (15.11.2026). We have NOT installed or tested it ourselves.
 

@@ -135,8 +135,8 @@ def fout(sel, t, d=.22):
 def pop(sel, t, d=.34, frm=.3, ease="back.out(1.8)"):
     xo = ",transformOrigin:'50% 50%'" if sel.startswith(("#dt", "#nd")) else ""
     js(f"tl.fromTo('{sel}',{{opacity:0,scale:{frm}}},{{opacity:1,scale:1{xo},duration:{d},ease:'{ease}',immediateRender:false}},{max(0, t):.3f});")
-def slam(sel, t, rot):
-    js(f"tl.fromTo('{sel}',{{opacity:0,scale:1.25,rotation:{rot - 9}}},{{opacity:1,scale:1,rotation:{rot},duration:.3,ease:'power3.in',immediateRender:false}},{max(0, t):.3f});")
+def slam(sel, t, rot, pre=9):
+    js(f"tl.fromTo('{sel}',{{opacity:0,scale:{1.25 if pre else 1.18},rotation:{rot - pre}}},{{opacity:1,scale:1,rotation:{rot},duration:.3,ease:'power3.in',immediateRender:false}},{max(0, t):.3f});")
     js(f"tl.fromTo('{sel}',{{y:0}},{{y:7,duration:.09,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false}},{t + .3:.3f});")
 def idle(sel, t0, t1, prop="y", amp=-9, per=.9):
     if t1 - t0 < per: return
@@ -216,9 +216,9 @@ SC[5] = f'''<svg id="gsv" viewBox="0 0 950 520" width="950" height="520" style="
 </svg>''' + "".join(f'<div class="nl" style="left:{65 + x - 100}px;top:{495 + y + 40}px">{FILES[i]}</div>' for i, (x, y) in enumerate(NODE)) + \
         f'<div class="bdg" id="walk" style="left:{65 + NODE[0][0] - 42}px;top:{495 + NODE[0][1] - 42}px">{clg(52)}</div>'
 # 6 the big number and where it comes from
-SC[6] = f'''<div id="big70"><i>&ldquo;</i>70x<i>&rdquo;</i></div><div class="stamp big" id="bc" style="left:{round(985 - (tw("BEST CASE") * .92 + .05 * 92 * 9 + 72)) - 34}px;top:722px">BEST CASE</div>
-<div class="sub1" id="s6a" style="top:893px">ONE EXAMPLE &middot; ABOUT 52 FILES</div><div class="sub2" id="s6b" style="top:949px">compared with reading every file at once</div>''' + \
-        srcline("source: the project's own early example, via roborhythms.com, read 15.11.2026", 1002, size=24)
+BCW = tw("BEST CASE") * .72 + .05 * 72 * 9 + 72           # the stamp sits BELOW the digits (the gate fails on a stamp over the number)
+SC[6] = srcline("source: the project's own early example, via roborhythms.com, read 15.11.2026", 480, size=24) + f'''<div id="big70"><i>&ldquo;</i>70x<i>&rdquo;</i></div><div class="stamp big bc" id="bc" style="left:{round(540 - BCW / 2)}px;top:806px">BEST CASE</div>
+<div class="sub1" id="s6a" style="top:934px">ONE EXAMPLE &middot; ABOUT 52 FILES</div><div class="sub2" id="s6b" style="top:976px">compared with reading every file at once</div>'''
 # 7 other people's tests
 def row(i, y, num, word, col, d1, d2):
     return f'<div class="tr" id="tr{i}" style="top:{y}px"><span class="tnum" style="color:{col}" id="tn{i}">{num}</span><span class="tw_" style="color:{col}">{word}</span><span class="td">{d1}<br>{d2}</span></div>'
@@ -271,6 +271,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .stamp{position:absolute;border:6px solid RED;color:RED;border-radius:10px;padding:0 16px;font-weight:900;font-size:44px;line-height:56px;letter-spacing:.05em;white-space:nowrap;transform:rotate(-3deg);z-index:7}
 #vc{left:72px;top:283px}
 .stamp.big.nc{font-size:84px;line-height:100px}
+.stamp.big.bc{font-size:72px;line-height:86px}
 .stamp.big{font-size:92px;line-height:110px;border-width:10px;border-radius:16px;padding:0 26px;opacity:0;background:rgba(251,251,248,.86);transform-origin:50% 50%;z-index:9}
 .stt{position:absolute;right:78px;top:287px;font-weight:900;font-size:48px;line-height:56px;letter-spacing:.02em;white-space:nowrap;opacity:0;z-index:7}
 #st1{color:ORD} #st2{color:RED}
@@ -309,10 +310,10 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .nd{opacity:0} .nd circle{fill:#fff;stroke:INK;stroke-width:6} .nd path{fill:none;stroke:INK;stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
 .nl{width:200px;text-align:center;font-weight:900;font-size:34px;line-height:40px;opacity:0;text-shadow:2px 2px 0 PAPER,-2px 2px 0 PAPER,2px -2px 0 PAPER,-2px -2px 0 PAPER}
 /* 6 */
-#big70{left:110px;top:478px;width:860px;text-align:center;font-weight:900;font-size:350px;line-height:400px;letter-spacing:-.05em;color:ORA;text-shadow:9px 9px 0 INK;white-space:nowrap;transform-origin:50% 60%;opacity:0}
-#big70 i{font-style:normal;font-size:200px;vertical-align:top;line-height:330px;color:INK;text-shadow:none}
-.sub1{left:65px;width:950px;text-align:center;font-weight:900;font-size:50px;line-height:54px;letter-spacing:-.01em;opacity:0;white-space:nowrap}
-.sub2{left:65px;width:950px;text-align:center;font-weight:800;font-size:40px;line-height:44px;opacity:0;white-space:nowrap}
+#big70{left:110px;top:522px;width:860px;text-align:center;font-weight:900;font-size:250px;line-height:248px;letter-spacing:-.05em;color:ORA;text-shadow:9px 9px 0 INK;white-space:nowrap;transform-origin:50% 100%;opacity:0}
+#big70 i{font-style:normal;font-size:150px;vertical-align:top;line-height:200px;color:INK;text-shadow:none}
+.sub1{left:65px;width:950px;text-align:center;font-weight:900;font-size:44px;line-height:44px;letter-spacing:-.01em;opacity:0;white-space:nowrap}
+.sub2{left:65px;width:950px;text-align:center;font-weight:800;font-size:34px;line-height:38px;opacity:0;white-space:nowrap}
 /* 7 */
 .tr{left:65px;width:942px;height:146px;background:#fff;border:6px solid INK;border-radius:18px;box-shadow:8px 8px 0 INK;display:flex;align-items:center;padding:0 26px;opacity:0;transform-origin:0 50%;white-space:nowrap}
 .tnum{font-weight:900;font-size:96px;line-height:110px;letter-spacing:-.04em} .tw_{font-weight:900;font-size:52px;line-height:60px;margin-left:28px;align-self:flex-end;margin-bottom:26px}
@@ -427,12 +428,12 @@ for i in range(6): idle(f"#dt{i}", a[5] + .9 + .1 * i, a[6], "scale", 1.3, .5)
 scene(6, a[6], a[7])
 status(1, a[6] + .1)
 js(f"tl.fromTo('#big70',{{scale:.55,opacity:0}},{{scale:1,opacity:1,duration:.45,ease:'back.out(1.5)',immediateRender:false}},{t70 - .08:.3f});")
-idle("#big70", t70 + .45, tBut, "scale", 1.05, .5)
+idle("#big70", t70 + .45, tBut, "scale", 1.03, .5)
 sfx("impactpunch.ogg", t70, -8)
-slam("#bc", tBut, -8); sfx("impactpunch.ogg", tBut + .28, -5)
-js(f"tl.to('#big70',{{scale:.93,rotation:-2,color:'#E3B5A3',duration:.4,ease:'power2.out'}},{tBut + .3:.3f});")
+slam("#bc", tBut, -4, 0); sfx("impactpunch.ogg", tBut + .28, -5)
+js(f"tl.to('#big70',{{scale:.93,color:'#E3B5A3',duration:.4,ease:'power2.out'}},{tBut + .3:.3f});")
 fin("#s6a", tBut + .5, .3, 12, 4); fin("#s6b", tBut + .68, .3, 12, 4)
-idle("#bc", tBut + .7, a[7], "rotation", -5.5, .6)
+idle("#bc", tBut + .7, a[7], "rotation", -2.5, .6)
 # --- 7 other people's tests chip it down
 scene(7, a[7], a[8])
 for i, t in ((1, tR1), (2, tR2), (3, tR3)):

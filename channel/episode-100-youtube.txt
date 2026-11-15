@@ -1,4 +1,4 @@
-70x more Claude Code? The viral Graphify claim, checked
+A free tool says it killed Claude Code's token problem. We checked.
 Viral posts say a free tool, Graphify, cuts Claude Code tokens up to 70 times and makes the $20 Claude plan do the work of the $100 plan. We checked the public sources on 15.11.2026. We have not installed or tested Graphify ourselves.
 
 What is true: Graphify is real, free and open source (about 148,000 GitHub stars on 15.11.2026). It maps your code once so Claude Code can look things up instead of reading files again.
