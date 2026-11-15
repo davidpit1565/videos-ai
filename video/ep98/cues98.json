@@ -8,96 +8,122 @@
   },
   {
    "n": 2,
-   "text": "Pick one. Go!",
+   "text": "Same job for all five: teach this car to drive.",
    "start": 2.55,
-   "end": 3.61
+   "end": 5.14
   },
   {
    "n": 3,
-   "text": "Perplexity stops dead in the bend!",
-   "start": 6.99,
-   "end": 9.5
+   "text": "Pick one. Go!",
+   "start": 5.33,
+   "end": 6.39
   },
   {
    "n": 4,
-   "text": "Meta AI hits the wall!",
-   "start": 9.69,
-   "end": 11.57
+   "text": "Perplexity stops dead in the bend!",
+   "start": 9.77,
+   "end": 12.28
   },
   {
    "n": 5,
-   "text": "Claude and Gemini, neck and neck.",
-   "start": 11.76,
-   "end": 13.59
+   "text": "Meta AI hits the wall!",
+   "start": 12.47,
+   "end": 14.35
   },
   {
    "n": 6,
-   "text": "ChatGPT rolls in next.",
-   "start": 13.78,
-   "end": 15.06
+   "text": "Claude and Gemini, neck and neck.",
+   "start": 14.54,
+   "end": 16.37
   },
   {
    "n": 7,
-   "text": "Claude wins. Gemini is right behind.",
-   "start": 15.25,
-   "end": 17.1
+   "text": "ChatGPT rolls in next.",
+   "start": 16.56,
+   "end": 17.84
   },
   {
    "n": 8,
-   "text": "Send it to a friend. See who they pick.",
-   "start": 17.29,
-   "end": 19.64
+   "text": "Claude wins. Gemini is right behind.",
+   "start": 18.03,
+   "end": 19.88
   },
   {
    "n": 9,
-   "text": "The setup's in the link in bio.",
-   "start": 19.83,
-   "end": 21.64
+   "text": "Send it to a friend. See who they pick.",
+   "start": 20.07,
+   "end": 22.42
   },
   {
    "n": 10,
+   "text": "The setup's in the link in bio.",
+   "start": 22.61,
+   "end": 24.42
+  },
+  {
+   "n": 11,
    "text": "Tomorrow, they face a maze. Follow, so you see who gets lost.",
-   "start": 21.83,
-   "end": 25.25
+   "start": 24.61,
+   "end": 28.03
   }
  ],
- "D": 25.7,
- "go": 3.14,
+ "D": 28.48,
+ "go": 6.04,
  "stale_cues": false,
+ "lines_on_targets": false,
  "timeline": "voice cues",
  "targets": {
   "1": 0.04,
   "2": 2.55,
-  "3": 6.91,
-  "4": 9.48,
-  "5": 11.44,
-  "6": 13.35,
-  "7": 14.73,
-  "8": 16.64,
-  "9": 19.05,
-  "10": 20.92
+  "3": 5.33,
+  "4": 9.81,
+  "5": 12.38,
+  "6": 14.34,
+  "7": 16.25,
+  "8": 17.63,
+  "9": 19.6,
+  "10": 22.07,
+  "11": 24.0
  },
  "drift_vs_targets": {
-  "3": 0.08,
-  "4": 0.21,
-  "5": 0.32,
-  "6": 0.43,
-  "7": 0.52
+  "4": -0.04,
+  "5": 0.09,
+  "6": 0.2,
+  "7": 0.31,
+  "8": 0.4
  },
  "race": {
-  "start": 3.14,
-  "live_until_race_s": 11.9,
-  "perplexity_stops": 7.357,
-  "meta_wall": 9.29,
-  "claude": 11.623,
-  "gemini": 11.823,
-  "chatgpt": 13.723,
-  "replay_from": 15.04,
-  "replay_to": 17.79,
+  "start": 6.04,
+  "live_until_race_s": 11.78,
+  "perplexity_stops": 10.257,
+  "meta_wall": 12.19,
+  "claude": 14.523,
+  "gemini": 14.723,
+  "chatgpt": 16.623,
+  "replay_from": 17.82,
+  "replay_to": 20.57,
   "replay_rate": 0.25,
   "replay_race_from": 8.328,
-  "replay_claude": 15.66,
-  "replay_gemini": 16.46
+  "replay_claude": 18.44,
+  "replay_gemini": 19.24
+ },
+ "premise": {
+  "start": 2.55,
+  "notes": 3.089,
+  "cars_alive": [
+   4.247,
+   4.352,
+   4.457,
+   4.562,
+   4.667
+  ],
+  "pick": [
+   5.25,
+   5.348,
+   5.446,
+   5.544,
+   5.642
+  ]
  },
  "sources": {
   "go": "words.json"
