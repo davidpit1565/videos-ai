@@ -39,7 +39,7 @@ Close the OPEN question in `content-funnel.md`: the low end becomes (a) the free
 ## Disagreements and risks the advisors raised
 
 - **Goal conflict:** David's stated goal (reach first) vs this question (income first). Strategist's view: both can run, but the hours go to step 3, not to more reels, if money matters in 90 days. David decides.
-- **Audience mismatch:** the reels attract curious consumers aged 18-34 (Insights, ep76 area), not business owners; the plan already said English reels build an audience and Flemish/Dutch contact sells. Do not expect reel viewers to buy EUR 1,500+ systems.
+- **Audience mismatch:** the reels attract curious consumers aged 18-34 (ep72 Insights in `content-memory.md`: 18-24 47.3%, 25-34 26.7%; one episode), not business owners; the plan already said English reels build an audience and Flemish/Dutch contact sells. Do not expect reel viewers to buy EUR 1,500+ systems.
 - **Time:** David is employed elsewhere; one client project plus 4-5 reels a week may not fit. ASSUMPTION, unmeasured.
 - **Legal/admin:** steps 1(a)-(c) are unverified and can block everything.
 - **Prompt quality:** the agency-agents prompts are generic consulting/sales playbooks with US/enterprise examples and unsourced benchmark numbers. Their value here was structure (value equation, discovery questions, one-page proposal), not facts.
