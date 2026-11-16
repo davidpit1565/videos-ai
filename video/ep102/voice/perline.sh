@@ -2,7 +2,7 @@
 # ep102 voice: one line at a time, one TTS at a time (flock), seed loop until the accent check passes. Resumable (pl/L<i>.ok).
 cd /home/user/videos-ai
 D=video/ep102/voice
-EXA=(0.80 0.80 0.76 0.76 0.76 0.76 0.76 0.76 0.78 0.76 0.74 0.72 0.74 0.70 0.70)
+EXA=(0.80 0.80 0.80 0.76 0.76 0.76 0.76 0.76 0.76 0.78 0.76 0.74 0.72 0.74 0.70 0.70)
 SEEDS=${SEEDS:-"11 22 33 44 55 66 77 88"}
 i=0
 while IFS= read -r line; do

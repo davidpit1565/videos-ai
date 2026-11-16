@@ -1,209 +1,215 @@
 {
- "estimated_timeline": true,
+ "estimated_timeline": false,
  "lines": [
   {
    "n": 1,
-   "text": "Loom, Notion, Calendly. Free twins exist!",
-   "start": 0.08,
-   "end": 2.43
+   "text": "Loom, Notion and Calendly have free twins!",
+   "start": 0.04,
+   "end": 2.52
   },
   {
    "n": 2,
    "text": "Six apps, seventy-five bucks a month. Watch it hit zero!",
-   "start": 2.53,
-   "end": 5.63
+   "start": 2.67,
+   "end": 5.59
   },
   {
    "n": 3,
-   "text": "Loom makes screen videos. Cap does it free.",
-   "start": 5.73,
-   "end": 8.18
+   "text": "The last one is insane. Stay for it.",
+   "start": 5.74,
+   "end": 7.76
   },
   {
    "n": 4,
-   "text": "Notion? AppFlowy. Notes, docs, even AI.",
-   "start": 8.28,
-   "end": 10.53
+   "text": "Loom makes screen videos. Cap does it free.",
+   "start": 7.91,
+   "end": 10.37
   },
   {
    "n": 5,
-   "text": "Calendly? Cal D I Y, for personal use only.",
-   "start": 10.63,
-   "end": 13.08
+   "text": "Notion? AppFlowy. Notes, docs, even AI.",
+   "start": 10.52,
+   "end": 13.58
   },
   {
    "n": 6,
-   "text": "Intercom bills per seat, and per AI reply.",
-   "start": 13.18,
-   "end": 15.58
+   "text": "Calendly? Cal D I Y, for personal use only.",
+   "start": 13.73,
+   "end": 16.89
   },
   {
    "n": 7,
-   "text": "Chatwoot is free if you host it.",
-   "start": 15.68,
-   "end": 17.58
+   "text": "Intercom bills per seat, and per AI reply.",
+   "start": 17.04,
+   "end": 19.52
   },
   {
    "n": 8,
-   "text": "Wispr Flow? OpenWhispr. You talk, it types.",
-   "start": 17.68,
-   "end": 20.13
+   "text": "Chatwoot is free if you host it.",
+   "start": 19.67,
+   "end": 21.77
   },
   {
    "n": 9,
-   "text": "And the big one, ElevenLabs.",
-   "start": 20.23,
-   "end": 21.93
+   "text": "Wispr Flow? OpenWhispr. You talk, it types.",
+   "start": 21.92,
+   "end": 24.52
   },
   {
    "n": 10,
-   "text": "VoiceStudio clones your own voice, on your own machine.",
-   "start": 22.03,
-   "end": 25.08
+   "text": "And the big one, ElevenLabs.",
+   "start": 24.67,
+   "end": 26.59
   },
   {
    "n": 11,
-   "text": "It's new, just seven months old.",
-   "start": 25.18,
-   "end": 27.08
+   "text": "VoiceStudio clones your own voice, on your own machine.",
+   "start": 26.74,
+   "end": 29.5
   },
   {
    "n": 12,
-   "text": "We did not test these, so check each one yourself.",
-   "start": 27.18,
-   "end": 29.98
+   "text": "It's new, just seven months old.",
+   "start": 29.65,
+   "end": 31.48
   },
   {
    "n": 13,
-   "text": "Save the list. Send it to a friend who pays for Loom.",
-   "start": 30.08,
-   "end": 33.03
+   "text": "We did not test these, so check each one yourself.",
+   "start": 31.63,
+   "end": 33.87
   },
   {
    "n": 14,
-   "text": "The setup's in the link in bio.",
-   "start": 33.13,
-   "end": 34.98
+   "text": "Save the list. Send it to a friend who pays for Loom.",
+   "start": 34.02,
+   "end": 36.52
   },
   {
    "n": 15,
+   "text": "The setup's in the link in bio.",
+   "start": 36.67,
+   "end": 38.48
+  },
+  {
+   "n": 16,
    "text": "Want the next one? Follow, and you'll see it.",
-   "start": 35.08,
-   "end": 37.63
+   "start": 38.63,
+   "end": 40.64
   }
  ],
- "D": 38.23,
- "frame0_returns": 37.65,
+ "D": 41.24,
+ "frame0_returns": 40.66,
  "sync": {
   "twins": {
-   "t": 1.537,
-   "source": "ESTIMATE (line fraction)"
+   "t": 1.8,
+   "source": "words.json"
   },
   "zero": {
-   "t": 5.072,
-   "source": "ESTIMATE (line fraction)"
+   "t": 4.96,
+   "source": "words.json"
   },
   "cap": {
-   "t": 7.078,
-   "source": "ESTIMATE (line fraction)"
+   "t": 9.5,
+   "source": "words.json"
   },
   "free3": {
-   "t": 7.812,
-   "source": "ESTIMATE (line fraction)"
+   "t": 10.06,
+   "source": "words.json"
   },
   "appflowy": {
-   "t": 8.865,
-   "source": "ESTIMATE (line fraction)"
+   "t": 11.2,
+   "source": "words.json"
   },
   "ai": {
-   "t": 10.215,
-   "source": "ESTIMATE (line fraction)"
+   "t": 13.06,
+   "source": "words.json"
   },
   "cal": {
-   "t": 11.414,
+   "t": 14.741,
    "source": "ESTIMATE (line fraction)"
   },
   "personal": {
-   "t": 12.149,
-   "source": "ESTIMATE (line fraction)"
+   "t": 16.1,
+   "source": "words.json"
   },
   "seat": {
-   "t": 14.188,
-   "source": "ESTIMATE (line fraction)"
+   "t": 18.0,
+   "source": "words.json"
   },
   "reply": {
-   "t": 15.244,
-   "source": "ESTIMATE (line fraction)"
+   "t": 19.08,
+   "source": "words.json"
   },
   "host": {
-   "t": 17.01,
-   "source": "ESTIMATE (line fraction)"
+   "t": 21.3,
+   "source": "words.json"
   },
   "openwhispr": {
-   "t": 18.513,
-   "source": "ESTIMATE (line fraction)"
+   "t": 22.82,
+   "source": "words.json"
   },
   "talk": {
-   "t": 19.297,
-   "source": "ESTIMATE (line fraction)"
+   "t": 23.56,
+   "source": "words.json"
   },
   "big": {
-   "t": 20.57,
-   "source": "ESTIMATE (line fraction)"
+   "t": 25.14,
+   "source": "words.json"
   },
   "elevenlabs": {
-   "t": 21.08,
-   "source": "ESTIMATE (line fraction)"
+   "t": 25.9,
+   "source": "words.json"
   },
   "machine": {
-   "t": 24.622,
-   "source": "ESTIMATE (line fraction)"
+   "t": 29.04,
+   "source": "words.json"
   },
   "new": {
-   "t": 25.465,
-   "source": "ESTIMATE (line fraction)"
+   "t": 29.86,
+   "source": "words.json"
   },
   "test": {
-   "t": 28.02,
-   "source": "ESTIMATE (line fraction)"
+   "t": 32.02,
+   "source": "words.json"
   },
   "send": {
-   "t": 30.965,
-   "source": "ESTIMATE (line fraction)"
+   "t": 35.08,
+   "source": "words.json"
   },
   "follow": {
-   "t": 36.355,
-   "source": "ESTIMATE (line fraction)"
+   "t": 39.44,
+   "source": "words.json"
   }
  },
  "total_drops": [
   [
-   7.78,
+   10.02,
    75,
    57
   ],
   [
-   9.165,
+   11.5,
    57,
    47
   ],
   [
-   11.714,
+   15.041,
    47,
    37
   ],
   [
-   15.98,
+   19.97,
    37,
    18
   ],
   [
-   18.813,
+   23.12,
    18,
    6
   ],
   [
-   22.38,
+   27.09,
    6,
    0
   ]
@@ -215,178 +221,172 @@
     "what": "OPENING: the receipt: Loom, Notion, Calendly logos, $75 A MONTH, FREE TWINS stamp"
    },
    {
-    "t": 2.53,
+    "t": 2.67,
     "what": "the receipt lists six apps with prices"
    },
    {
-    "t": 3.43,
+    "t": 3.57,
     "what": "TOTAL / MONTH $75"
    },
    {
-    "t": 4.82,
+    "t": 4.71,
     "what": "the total flashes red: 'watch it hit zero'"
    },
    {
-    "t": 5.73,
+    "t": 5.74,
+    "what": "the tease: the sixth row (ElevenLabs) is ringed, 'STAY FOR #6'"
+   },
+   {
+    "t": 7.91,
     "what": "Loom $18/mo (screen videos)"
    },
    {
-    "t": 7.08,
+    "t": 9.5,
     "what": "the free twin: Cap, 25K+ stars"
    },
    {
-    "t": 7.36,
+    "t": 9.78,
     "what": "real screenshot of Cap"
    },
    {
-    "t": 7.78,
+    "t": 10.02,
     "what": "Loom struck out, total $75 to $57"
    },
    {
-    "t": 8.28,
+    "t": 10.52,
     "what": "Notion $10/mo (notes, docs, AI)"
    },
    {
-    "t": 8.87,
+    "t": 11.2,
     "what": "the free twin: AppFlowy, 78K+ stars"
    },
    {
-    "t": 9.14,
+    "t": 11.48,
     "what": "real screenshot of AppFlowy"
    },
    {
-    "t": 9.17,
+    "t": 11.5,
     "what": "Notion struck out, total $57 to $47"
    },
    {
-    "t": 10.63,
+    "t": 13.73,
     "what": "Calendly $10/mo (booking page)"
    },
    {
-    "t": 11.41,
+    "t": 14.74,
     "what": "the free twin: Cal.diy, 50K+ stars"
    },
    {
-    "t": 11.71,
+    "t": 15.04,
     "what": "Calendly struck out, total $47 to $37"
    },
    {
-    "t": 12.15,
+    "t": 16.1,
     "what": "stamp PERSONAL USE ONLY; you host it yourself"
    },
    {
-    "t": 13.18,
+    "t": 17.04,
     "what": "Intercom $19/mo (customer chat)"
    },
    {
-    "t": 13.94,
+    "t": 17.75,
     "what": "$19 per seat"
    },
    {
-    "t": 14.79,
+    "t": 18.63,
     "what": "+ $0.99 per AI answer"
    },
    {
-    "t": 15.68,
+    "t": 19.73,
     "what": "the free twin: Chatwoot, 39K+ stars"
    },
    {
-    "t": 15.96,
-    "what": "real screenshot of Chatwoot"
-   },
-   {
-    "t": 15.98,
+    "t": 19.97,
     "what": "Intercom struck out, total $37 to $18"
    },
    {
-    "t": 17.01,
+    "t": 20.01,
+    "what": "real screenshot of Chatwoot"
+   },
+   {
+    "t": 21.3,
     "what": "stamp FREE IF YOU HOST IT"
    },
    {
-    "t": 17.68,
+    "t": 21.92,
     "what": "Wispr Flow $12/mo (talk to type)"
    },
    {
-    "t": 18.51,
+    "t": 22.82,
     "what": "the free twin: OpenWhispr, 11K+ stars"
    },
    {
-    "t": 18.81,
+    "t": 23.12,
     "what": "Wispr Flow struck out, total $18 to $6"
    },
    {
-    "t": 19.3,
+    "t": 23.56,
     "what": "illustration: a voice wave turns into typed words"
    },
    {
-    "t": 20.23,
+    "t": 24.67,
     "what": "ElevenLabs $6/mo (AI voices)"
    },
    {
-    "t": 20.57,
+    "t": 25.14,
     "what": "THE BIG ONE: ElevenLabs"
    },
    {
-    "t": 22.03,
+    "t": 26.74,
     "what": "the free twin: VoiceStudio, 111K+ stars"
    },
    {
-    "t": 22.31,
+    "t": 27.02,
     "what": "real screenshot of VoiceStudio"
    },
    {
-    "t": 22.38,
+    "t": 27.09,
     "what": "ElevenLabs struck out, total $6 to $0"
    },
    {
-    "t": 22.68,
+    "t": 27.39,
     "what": "the total hits $0"
    },
    {
-    "t": 25.46,
+    "t": 29.86,
     "what": "stamp NEW: 7 MONTHS OLD"
    },
    {
-    "t": 27.18,
+    "t": 31.63,
     "what": "END: the saveable card, six pairs with stars"
    },
    {
-    "t": 28.02,
+    "t": 32.02,
     "what": "NOT TESTED BY US. CHECK EACH ONE FIRST."
    },
    {
-    "t": 33.13,
+    "t": 36.67,
     "what": "SETUP: LINK IN BIO"
    },
    {
-    "t": 35.08,
+    "t": 38.63,
     "what": "the FOLLOW card (no promised episode)"
    },
    {
-    "t": 37.65,
+    "t": 40.66,
     "what": "frame 0 returns (loop)"
    }
   ],
   "flat_over_2_5s": [
    {
     "start": 0,
-    "end": 2.53,
+    "end": 2.67,
     "after": "OPENING: the receipt: Loom, Notion, Calendly logos, $75 A MONTH, FREE TWINS stamp"
    },
    {
-    "start": 22.68,
-    "end": 25.46,
-    "after": "the total hits $0"
-   },
-   {
-    "start": 28.02,
-    "end": 33.13,
+    "start": 32.02,
+    "end": 36.67,
     "after": "NOT TESTED BY US. CHECK EACH ONE FIRST."
-   },
-   {
-    "start": 35.08,
-    "end": 37.65,
-    "after": "the FOLLOW card (no promised episode)"
    }
   ]
  },

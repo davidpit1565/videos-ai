@@ -66,7 +66,8 @@ NUMBERS = [dict(text=f"{it['paid']} ${it['price']} a month ({it['plan']})", sour
 
 # ---------------------------------------------------------------- lines + cues
 LINES = [l.strip() for l in open(H_ + "/voice/lines.txt") if l.strip()]
-NL = len(LINES); assert NL == 15, "this build is laid out for 15 lines"
+NA = len(LINES); assert NA == 16, "this build is laid out for 16 lines (line 3 = the stay-for-the-last-one tease)"
+NL = NA
 try:
     C = json.load(open(H_ + "/voice/narration-raw-cues.json")); C = C if isinstance(C, list) else C["lines"]
 except Exception:
@@ -88,6 +89,10 @@ if STALE:
         L[n] = (round(t, 2), round(t + d, 2)); t += d + .1
 else:
     L = {n: (float(CUE[n]["start"]), float(CUE[n]["end"])) for n in range(1, NL + 1)}
+LA = dict(L)                                                    # actual line times, 16 lines
+TEASE = LA[3]                                                   # the tease line (actual line 3): stays on the receipt
+L = {1: LA[1], 2: LA[2], **{n: LA[n + 1] for n in range(3, 16)}}  # logical numbering used below: old lines 3-15
+NL = 15
 s = lambda n: L[n][0]
 e = lambda n: L[n][1]
 SRC = {}; SYNCT = {}
@@ -106,6 +111,7 @@ a = {n: s(n) for n in range(1, NL + 1)}
 tTwins = W("twins", ("free", "three"), 1, .62)
 tSix = a[2]
 tZero = W("zero", ("zero", "0"), 2, .82)
+tLast = round(TEASE[0], 3)
 tCap = W("cap", ("cap", "capp", "kap"), 3, .55)
 tFree3 = W("free3", "free", 3, .85)
 tApp = W("appflowy", ("appflowy", "app", "appflow", "apflowy"), 4, .26)
@@ -148,7 +154,7 @@ def fout(sel, t, d=.24):
 def pop(sel, t, d=.36, frm=.4, ease="back.out(1.6)"):
     js(f"tl.fromTo('{sel}',{{opacity:0,scale:{frm}}},{{opacity:1,scale:1,duration:{d},ease:'{ease}',immediateRender:false}},{max(0, t):.3f});")
 def slam(sel, t, rot):
-    js(f"tl.fromTo('{sel}',{{opacity:0,scale:1.7,rotation:{rot - 8}}},{{opacity:1,scale:1,rotation:{rot},duration:.3,ease:'power3.in',immediateRender:false}},{max(0, t):.3f});")
+    js(f"tl.fromTo('{sel}',{{opacity:0,scale:1.22,rotation:{rot - 6}}},{{opacity:1,scale:1,rotation:{rot},duration:.3,ease:'power3.in',immediateRender:false}},{max(0, t):.3f});")
     js(f"tl.fromTo('{sel}',{{y:0}},{{y:6,duration:.09,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false}},{t + .3:.3f});")
 def idle(sel, t0, t1, prop="y", amp=-9, per=.9):
     if t1 - t0 < per: return
@@ -174,6 +180,8 @@ SC[1] = f'''<div id="rcp" data-decor></div>
 <div id="b75">$75</div><div id="bmo">A MONTH</div>
 <div class="stamp" id="ft">FREE TWINS</div>
 {rows1}
+<svg id="ringw" viewBox="0 0 760 120" data-decor><path id="ring" d="M30 62 C20 18 250 6 420 10 C620 14 748 26 742 64 C736 106 520 112 360 110 C180 108 44 104 30 62 Z" fill="none" stroke="{RED}" stroke-width="8" stroke-linecap="round" stroke-dasharray="1700" stroke-dashoffset="1700"/></svg>
+<div id="stay">STAY FOR #6</div>
 <div id="rdash" data-decor></div>
 <div id="rtot"><span>TOTAL / MONTH</span><b id="rtn">$75</b></div>
 {srcline("from: cheapest paid plan, per person, Nov 2026", 1066, mx=640, size=27, left=184, id_="rsm")}'''
@@ -217,7 +225,7 @@ markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam">
  {scenes}
- <div id="spine"><div id="spp" data-decor></div><div id="spl">EVERY MONTH</div><div id="spn">$75</div><div id="chips">{chips}</div></div>
+ <div id="spine"><div id="spp" data-decor></div><div id="spl">EVERY MONTH</div><div id="spn">$75</div><div id="spc">1/6</div><div id="chips">{chips}</div></div>
 </div>'''
 
 CSS = '''
@@ -245,11 +253,14 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #rtot{left:184px;top:930px;width:712px;height:112px;display:flex;align-items:center;opacity:0;white-space:nowrap}
 #rtot span{font-weight:900;font-size:46px;line-height:50px;letter-spacing:.01em} #rtot b{margin-left:auto;font-weight:900;font-size:118px;line-height:112px;letter-spacing:-.04em;transform-origin:100% 60%}
 #rsm{opacity:0}
+#ringw{left:166px;top:792px;width:760px;height:120px;overflow:visible} #ring{opacity:0}
+#stay{left:184px;top:1104px;font-weight:900;font-size:84px;line-height:92px;letter-spacing:-.03em;color:RED;white-space:nowrap;opacity:0;transform-origin:0 50%;transform:rotate(-2deg)}
 /* the spine: the running total */
 #spine{position:absolute;left:0;top:0;width:1080px;height:420px;z-index:6;opacity:0}
 #spp{position:absolute;left:84px;top:256px;width:912px;height:166px;background:#fff;box-shadow:8px 9px 0 rgba(15,15,15,.16);clip-path:ZIG}
-#spl{position:absolute;left:116px;top:276px;font-weight:900;font-size:30px;line-height:34px;letter-spacing:.08em;color:GREY;white-space:nowrap}
-#spn{position:absolute;left:112px;top:306px;font-weight:900;font-size:104px;line-height:104px;letter-spacing:-.04em;white-space:nowrap;transform-origin:0 60%}
+#spl{position:absolute;left:116px;top:282px;font-weight:900;font-size:28px;line-height:30px;letter-spacing:.08em;color:GREY;white-space:nowrap}
+#spn{position:absolute;left:112px;top:316px;font-weight:900;font-size:98px;line-height:84px;letter-spacing:-.04em;white-space:nowrap;transform-origin:0 60%}
+#spc{position:absolute;left:356px;top:340px;font-weight:900;font-size:46px;line-height:50px;letter-spacing:-.01em;color:GREY;white-space:nowrap}
 #chips{position:absolute;left:478px;top:310px;width:486px;display:flex;justify-content:space-between}
 .chip{position:relative;width:66px;height:66px} .chip .lg{border-radius:14px;margin:4px;box-shadow:0 0 0 3px INK}
 .ck{position:absolute;right:-12px;bottom:-12px;width:40px;height:40px;opacity:0} .ck svg{width:40px;height:40px;display:block}
@@ -327,11 +338,19 @@ NEWS += [(tSix, "the receipt lists six apps with prices"), (tTot, "TOTAL / MONTH
 js(f"tl.fromTo('#rtn',{{scale:1,color:'{INK}'}},{{scale:1.16,color:'{RED}',duration:.22,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false}},{tZero - .25:.3f});")
 sfx("riser.ogg", tZero - .5, -12)
 NEWS.append((tZero - .25, "the total flashes red: 'watch it hit zero'"))
-for i in range(6): idle(f"#rr{i + 1} .lg", tTot + .3 + .08 * i, a[3] - .3, "scale", 1.1, .45)
+for i in range(6): idle(f"#rr{i + 1} .lg", tTot + .3 + .08 * i, tLast - .1, "scale", 1.1, .45)
+# the tease (actual line 3): rows 1-5 dim, the sixth row is boxed by a marker ring and nudges; '6/6' counter note
+js(f"tl.to('#rr1,#rr2,#rr3,#rr4,#rr5',{{opacity:.3,duration:.3,ease:'power2.out'}},{tLast:.3f});")
+js(f"tl.to('#rsm',{{opacity:0,duration:.2}},{tLast:.3f});")
+js(f"tl.fromTo('#rr6',{{scale:1,x:0}},{{scale:1.02,x:0,transformOrigin:'50% 50%',duration:.3,ease:'back.out(2)',immediateRender:false}},{tLast:.3f});")
+js(f"tl.to('#ring',{{strokeDashoffset:0,opacity:1,duration:.5,ease:'power2.inOut'}},{tLast + .05:.3f});")
+pop("#stay", tLast + .25, .36, .4); sfx("riser.ogg", tLast - .1, -12); sfx("impactsoft.ogg", tLast + .3, -8)
+idle("#stay", tLast + .65, a[3] - .3, "scale", 1.07, .4); idle("#rr6 .lg", tLast + .4, a[3] - .3, "rotation", 8, .35)
+NEWS.append((tLast, "the tease: the sixth row (ElevenLabs) is ringed, 'STAY FOR #6'"))
 fout("#sc1", a[3] - .26)
 # --- the spine
-js(f"tl.fromTo('#spine',{{opacity:0,y:-40}},{{opacity:1,y:0,duration:.4,ease:'power2.out',immediateRender:false}},{a[3] - .05:.3f});")
-js(f"tl.to('#spine',{{opacity:0,y:-40,duration:.3,ease:'power2.in'}},{a[12] - .3:.3f});")
+js(f"tl.fromTo('#spine',{{opacity:0,scale:.96}},{{opacity:1,scale:1,duration:.4,ease:'power2.out',immediateRender:false}},{a[3] - .05:.3f});")
+js(f"tl.to('#spine',{{opacity:0,scale:.96,duration:.3,ease:'power2.in'}},{a[12] - .3:.3f});")
 # --- the pairs
 BEAT = {1: (a[3], tCap, tFree3, a[4]), 2: (a[4], tApp, tApp + .3, a[5]), 3: (a[5], tCal, tCal + .3, a[6]),
         4: (a[6], tChat, tChat + .3, a[8]), 5: (a[8], tOW, tOW + .3, a[9]), 6: (a[9], tVS, tVS + .35, a[12])}
@@ -344,6 +363,7 @@ for it in ITEMS:
     js(f"tl.fromTo('#ch{k}',{{scale:1,y:0}},{{scale:1.3,y:-6,duration:.2,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t0 + .1:.3f});")
     sfx("pop_b.ogg", t0 + .05, -11)
     # the twin arrives
+    if k == 4: tT = tT + .06
     js(f"tl.fromTo('#tw{k}',{{opacity:0,y:70,rotation:{3 if k % 2 else -3},scale:.86}},{{opacity:1,y:0,rotation:{-1 if k % 2 else 1},scale:1,duration:.42,ease:'back.out(1.5)',immediateRender:false}},{tT - .1:.3f});")
     sfx("whoosh_b.ogg" if k % 2 else "whoosh_c.ogg", tT - .12, -10)
     idle(f"#tw{k}", tT + .45, t1 - .3, "y", -8, .7)
@@ -371,11 +391,11 @@ for j, c in enumerate((2, 5, 9, 11, 15, 18)):
 slam("#tg3", tPers, -5); sfx("impactpunch.ogg", tPers + .28, -6); idle("#tg3", tPers + .7, a[6] - .3, "rotation", -3, .5)
 NEWS.append((tPers, "stamp PERSONAL USE ONLY; you host it yourself"))
 # 4 Intercom: the two fees first (line 6), then Chatwoot (line 7)
-js(f"tl.fromTo('#fee1',{{opacity:0,x:-80}},{{opacity:1,x:0,duration:.34,ease:'back.out(1.4)',immediateRender:false}},{tSeat - .25:.3f});")
-js(f"tl.fromTo('#fee2',{{opacity:0,x:-80}},{{opacity:1,x:0,duration:.34,ease:'back.out(1.4)',immediateRender:false}},{tReply - .45:.3f});")
+js(f"tl.fromTo('#fee1',{{opacity:0,x:70}},{{opacity:1,x:0,duration:.34,ease:'back.out(1.4)',immediateRender:false}},{tSeat - .25:.3f});")
+js(f"tl.fromTo('#fee2',{{opacity:0,x:70}},{{opacity:1,x:0,duration:.34,ease:'back.out(1.4)',immediateRender:false}},{tReply - .45:.3f});")
 sfx("impactsoft.ogg", tSeat - .2, -9); sfx("impactsoft.ogg", tReply - .4, -8); fin("#fsrc", tReply - .2, .3, 8, 3)
 idle("#fee1 b", tSeat + .2, tChat - .3, "scale", 1.06, .4); idle("#fee2 b", tReply, tChat - .3, "scale", 1.08, .35)
-for sel in ("#fee1", "#fee2", "#fsrc"): js(f"tl.to('{sel}',{{opacity:0,x:120,duration:.26,ease:'power2.in'}},{tChat - .3:.3f});")
+for sel in ("#fee1", "#fee2", "#fsrc"): js(f"tl.to('{sel}',{{opacity:0,x:60,duration:.2,ease:'power2.in'}},{tChat - .42:.3f});")
 slam("#tg4", tHost, 4); sfx("impactpunch.ogg", tHost + .28, -7); idle("#tg4", tHost + .7, a[8] - .3, "rotation", 6, .5)
 NEWS += [(tSeat - .25, "$19 per seat"), (tReply - .45, "+ $0.99 per AI answer"), (tHost, "stamp FREE IF YOU HOST IT")]
 # 5 OpenWhispr: the wave and the typed words are drawn by render()
@@ -417,18 +437,18 @@ fout("#sc9", tF - .24)
 # --- loop seam: frame 0 comes back
 for sel in ("#big3", "#b75", "#bmo"): js(f"tl.set('{sel}',{{opacity:1,scale:1,y:0}},{tF:.3f});")
 js(f"tl.set('#ft',{{opacity:1,scale:1,y:0,rotation:-5}},{tF:.3f});")
-js(f"tl.set('.rr, #rdash, #rtot, #rsm',{{opacity:0}},{tF:.3f});")
+js(f"tl.set('.rr, #rdash, #rtot, #rsm, #stay, #ring',{{opacity:0}},{tF:.3f});")
 fin("#sc1", tF + .04, .42)
 NEWS.append((tF, "frame 0 returns (loop)"))
 
-DATA = dict(D=D, tF=round(tF, 3), DROPS=DROPS, tTalk=tTalk, e8=round(e(8), 3), a9=round(a[9], 3), TYPE="You talk,\nit types.")
+DATA = dict(STARTS=[round(BEAT[k][0], 3) for k in range(1, 7)], D=D, tF=round(tF, 3), DROPS=DROPS, tTalk=tTalk, e8=round(e(8), 3), a9=round(a[9], 3), TYPE="You talk,\nit types.")
 RJS = r'''
 const Dt=__DATA__;
 const ez=p=>{p=p<0?0:p>1?1:p;return p*p*(3-2*p)}, $=s=>document.querySelector(s);
-const spn=$('#spn'), typ=$('#typ'), wb=[...document.querySelectorAll('.wb')];
+const spc=$('#spc'), spn=$('#spn'), typ=$('#typ'), wb=[...document.querySelectorAll('.wb')];
 function total(v){let x=75; for(const d of Dt.DROPS){ if(v>=d[0]) x=d[1]+(d[2]-d[1])*ez((v-d[0])/.45) } return Math.round(x)}
 function render(v){
-  spn.textContent='$'+total(v);
+  spn.textContent='$'+total(v); let k=1; Dt.STARTS.forEach((t,i)=>{if(v>=t-.1)k=i+1}); spc.textContent=k+'/6';
   const talk=v>=Dt.tTalk-.5&&v<Dt.a9;
   wb.forEach((b,i)=>{const h=talk?(.18+.82*Math.abs(Math.sin(v*9+i*1.7)*Math.sin(v*3.1+i*.6))):.1+.05*Math.abs(Math.sin(v*4+i)); b.style.transform='scaleY('+h.toFixed(3)+')'});
   const n=Math.max(0,Math.min(Dt.TYPE.length,Math.floor((v-Dt.tTalk)/Math.max(.2,(Dt.e8-Dt.tTalk))*Dt.TYPE.length*1.05)));
@@ -444,7 +464,7 @@ json.dump(SFX, open(H_ + "/sfx102.json", "w"), indent=1)
 if os.environ.get("SHIP") == "1" and STALE:
     sys.exit("SHIP=1 refused: estimated timeline")
 json.dump(dict(estimated_timeline=STALE,
-               lines=[dict(n=n, text=LINES[n - 1], start=round(s(n), 3), end=round(e(n), 3)) for n in range(1, NL + 1)],
+               lines=[dict(n=n, text=LINES[n - 1], start=round(LA[n][0], 3), end=round(LA[n][1], 3)) for n in range(1, NA + 1)],
                D=D, frame0_returns=round(tF, 3), sync={k: dict(t=SYNCT[k], source=SRC[k]) for k in SRC}, total_drops=DROPS,
                buildup=dict(new_on_screen=[dict(t=t, what=x) for t, x in NEWS], flat_over_2_5s=[dict(start=a_, end=b_, after=x) for a_, b_, x in FLAT]),
                numbers_on_screen=NUMBERS), open(H_ + "/cues102.json", "w"), indent=1)
@@ -472,7 +492,7 @@ window.__reel={{duration:D,seek:t=>{{tl.seek(t)}}}};
 os.makedirs(H_ + "/out", exist_ok=True)
 open(H_ + "/hf/index.html", "w").write(html)
 say(f"estimated timeline={STALE}  D={D}  js={len(J)} sfx={len(SFX)}")
-say("lines: " + "  ".join(f"{n}:{s(n):.2f}-{e(n):.2f}" for n in range(1, NL + 1)))
+say("lines (actual 16): " + "  ".join(f"{n}:{LA[n][0]:.2f}-{LA[n][1]:.2f}" for n in range(1, NA + 1)))
 say("sync: " + "  ".join(f"{k}={v['t']}({'w' if v['source'] == 'words.json' else 'EST'})" for k, v in json.load(open(H_ + '/cues102.json'))["sync"].items()))
 for t, x in NEWS: say(f"  new {t:6.2f}  {x}")
 say("FLAT stretches over 2.5 s with nothing new: " + (str(FLAT) if FLAT else "none"))
