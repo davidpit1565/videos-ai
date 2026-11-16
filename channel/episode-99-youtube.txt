@@ -1,4 +1,4 @@
-Meta AI and Gemini just killed Claude (AI Race #2, maze)
+Meta AI and Gemini just killed Claude (AI Race #2)
 
 Description:
 ChatGPT, Gemini, Claude, Meta AI and Perplexity each get the same request: write the moves that guide one dot out of a maze it cannot see. Five real answers, one maze, one try each, nothing fixed by hand. The maze and the rules were locked before any answer came in.

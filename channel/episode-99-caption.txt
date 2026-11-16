@@ -17,9 +17,11 @@ What is real:
 
 What this does not show:
 - Which AI is "smartest". One maze, one try each. Ask again and the order may change.
-- Which model each app used. Claude answered as Sonnet 5.5 (what we read in the app, no screenshot); for the other four we name the apps only.
+- Which model each app used. Claude answered as Sonnet 5.5 (as the app showed, no screenshot); for the other four we name the apps only.
 - Why Gemini and Meta AI end up on the same path. Their answers are not the same text; we did not dig into why they walk the same way.
 
 Full disclosure: the tools behind this channel are built with Claude.
 
 The request, word for word, and a replay of the race are on the page in the link in bio.
+
+Want the next one? Follow.
