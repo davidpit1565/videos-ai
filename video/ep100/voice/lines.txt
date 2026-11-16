@@ -1,5 +1,5 @@
-They say this free tool killed Claude Code's token problem,
-and your twenty-dollar plan now does hundred-dollar work.
+Your twenty-dollar Claude plan can't do hundred-dollar work.
+A free tool says it can. I checked.
 Every new chat starts from zero, so Claude Code reads your files again.
 The fix is Graphify, with about a hundred fifty thousand stars on GitHub.
 It maps your code once, so Claude looks things up instead of rereading.
