@@ -33,7 +33,7 @@ export default function PublishButtons({ file, caption, youtube, episode }: Prop
       .catch(() => setYtConnected(false));
   }, []);
 
-  async function doInstagram() {
+  async function doInstagram(trial?: "MANUAL") {
     if (episode == null) {
       setIgMsg("אין מספר פרק לריל הזה — לא ניתן לפרסם דרך הנתיב המוגן.");
       return;
@@ -48,7 +48,9 @@ export default function PublishButtons({ file, caption, youtube, episode }: Prop
     }
     if (
       !confirm(
-        "לפרסם עכשיו — ריל לאינסטגרם, ואם מחובר גם פייסבוק — פומבי, לכל העולם? אין דרך למחוק את זה מכאן.",
+        trial
+          ? "לפרסם עכשיו כטרייל — ריל לאינסטגרם, מוצג רק למי שלא עוקב, בלי פייסבוק. להעביר לכולם אפשר רק ידנית באפליקציה."
+          : "לפרסם עכשיו — ריל לאינסטגרם, ואם מחובר גם פייסבוק — פומבי, לכל העולם? אין דרך למחוק את זה מכאן.",
       )
     )
       return;
@@ -58,7 +60,7 @@ export default function PublishButtons({ file, caption, youtube, episode }: Prop
       const r = await fetch("/api/instagram/publish", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ episode }),
+        body: JSON.stringify(trial ? { episode, trial } : { episode }),
       }).then((x) => x.json());
       if (!r.ok && r.reason) {
         setIgMsg(`נחסם: ${r.reason}`);
@@ -175,10 +177,17 @@ export default function PublishButtons({ file, caption, youtube, episode }: Prop
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
         <button
           className="btn"
-          onClick={doInstagram}
+          onClick={() => doInstagram()}
           disabled={igBusy || (ep?.status === "live" && !!ep.igMediaId)}
         >
           {igBusy ? "מפרסם…" : ep?.status === "live" && ep.igMediaId ? "כבר פורסם ✓" : "פרסם: ריל + פייסבוק"}
+        </button>
+        <button
+          className="btn"
+          onClick={() => doInstagram("MANUAL")}
+          disabled={igBusy || (ep?.status === "live" && !!ep.igMediaId)}
+        >
+          {igBusy ? "מפרסם…" : "פרסם כטרייל (אינסטגרם בלבד)"}
         </button>
         <button className="btn ghost" onClick={doFacebook} disabled={fbBusy}>
           {fbBusy ? "מפרסם…" : "פרסם: פייסבוק בלבד — פרופיל + עמוד (נסיון חוזר)"}

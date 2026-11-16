@@ -79,7 +79,6 @@ const TABS = [
   { href: "/analytics", label: "התקדמות" },
   { href: "/week", label: "השבוע" },
   { href: "/renders", label: "רנדרים" },
-  { href: "/trials", label: "טריילס" },
   { href: "/agent", label: "סוכן" },
   { href: "/health", label: "בריאות הריפו" },
 ];
