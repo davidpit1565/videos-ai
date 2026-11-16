@@ -1,253 +1,222 @@
 {
- "version": "v4",
+ "version": "v5",
  "estimated_timeline": false,
  "lines": [
   {
    "n": 1,
-   "text": "Free alternatives to six apps you pay for!",
-   "start": 0.04,
-   "end": 2.25
+   "text": "Five apps you pay for. Free twins exist!",
+   "start": 0.05,
+   "end": 2.12
   },
   {
    "n": 2,
    "text": "The last one is insane. Stay for it.",
-   "start": 2.4,
-   "end": 4.42
+   "start": 2.31,
+   "end": 4.19
   },
   {
    "n": 3,
    "text": "For Loom, Cap. For Notion, AppFlowy.",
-   "start": 4.57,
-   "end": 7.1
+   "start": 4.38,
+   "end": 6.99
   },
   {
    "n": 4,
-   "text": "For Calendly, Cal D I Y. For Intercom, Chatwoot.",
-   "start": 7.36,
-   "end": 10.87
+   "text": "Still not the big one.",
+   "start": 7.18,
+   "end": 8.31
   },
   {
    "n": 5,
-   "text": "For Wispr Flow, OpenWhispr.",
-   "start": 11.13,
-   "end": 12.79
+   "text": "For Intercom, Chatwoot. For Wispr Flow, OpenWhispr.",
+   "start": 8.5,
+   "end": 11.36
   },
   {
    "n": 6,
    "text": "And the big one, ElevenLabs.",
-   "start": 13.05,
-   "end": 14.95
+   "start": 11.55,
+   "end": 13.03
   },
   {
    "n": 7,
    "text": "VoiceStudio clones your own voice, on your own machine.",
-   "start": 15.1,
-   "end": 17.86
+   "start": 13.22,
+   "end": 15.97
   },
   {
    "n": 8,
-   "text": "It's new, just seven months old.",
-   "start": 18.01,
-   "end": 19.82
+   "text": "The setup's in the link in bio.",
+   "start": 16.16,
+   "end": 17.98
   },
   {
    "n": 9,
-   "text": "We did not test these, so check each one yourself.",
-   "start": 19.97,
-   "end": 22.21
-  },
-  {
-   "n": 10,
-   "text": "The setup's in the link in bio.",
-   "start": 22.36,
-   "end": 24.17
-  },
-  {
-   "n": 11,
    "text": "Want the next one? Follow, and you'll see it.",
-   "start": 24.32,
-   "end": 26.31
+   "start": 18.17,
+   "end": 20.21
   }
  ],
- "D": 27.09,
- "frame0_returns": 26.64,
+ "D": 20.99,
+ "frame0_returns": 20.54,
  "sync": {
-  "free": "0.00(w)",
-  "six": "0.90(w)",
-  "insane": "3.16(w)",
-  "notion": "5.92(w)",
-  "intercom": "9.38(w)",
-  "cap": "5.30(w)",
-  "appflowy": "6.50(w)",
-  "cal": "8.28(w)",
-  "chatwoot": "10.26(w)",
-  "openwhispr": "12.14(w)",
-  "big": "13.52(w)",
-  "eleven": "14.20(w)",
-  "vs": "15.16(w)",
-  "clones": "15.52(w)",
-  "test": "20.36(w)",
-  "follow": "25.12(w)"
+  "free": "1.20(w)",
+  "insane": "2.90(w)",
+  "notion": "5.70(w)",
+  "intercom": "8.74(w)",
+  "wispr": "10.04(w)",
+  "cap": "5.08(w)",
+  "appflowy": "6.20(w)",
+  "chatwoot": "9.48(w)",
+  "openwhispr": "10.76(w)",
+  "bigL": "7.80(w)",
+  "big": "11.76(w)",
+  "eleven": "12.47(EST)",
+  "vs": "13.28(w)",
+  "clones": "13.56(w)",
+  "follow": "19.00(w)"
  },
  "screens": {
   "A": {
    "t0": 0,
-   "free": 0.0,
-   "six": 0.9,
-   "end": 2.4
+   "free": 1.2,
+   "end": 2.31
   },
   "B": {
-   "t0": 2.4,
-   "acc": 3.16,
-   "end": 4.57
+   "t0": 2.31,
+   "acc": 2.9,
+   "end": 4.38
   },
-  "C": {
-   "t0": 4.57,
-   "end": 13.05,
+  "C1": {
+   "t0": 4.38,
+   "end": 7.18,
    "pairs": [
     {
      "k": 1,
-     "t0": 4.57,
-     "free": 5.3,
-     "end": 5.86
+     "t0": 4.38,
+     "free": 5.08,
+     "end": 5.64
     },
     {
      "k": 2,
-     "t0": 5.86,
-     "free": 6.5,
-     "end": 7.36
-    },
+     "t0": 5.64,
+     "free": 6.2,
+     "end": 7.18
+    }
+   ]
+  },
+  "L": {
+   "t0": 7.18,
+   "acc": 7.8,
+   "end": 8.5
+  },
+  "C2": {
+   "t0": 8.5,
+   "end": 11.55,
+   "pairs": [
     {
      "k": 3,
-     "t0": 7.36,
-     "free": 8.28,
-     "end": 9.32
+     "t0": 8.68,
+     "free": 9.48,
+     "end": 9.98
     },
     {
      "k": 4,
-     "t0": 9.32,
-     "free": 10.26,
-     "end": 11.13
-    },
-    {
-     "k": 5,
-     "t0": 11.13,
-     "free": 12.14,
-     "end": 13.05
+     "t0": 9.98,
+     "free": 10.76,
+     "end": 11.55
     }
    ]
   },
   "D1": {
-   "t0": 13.05,
-   "acc": 13.52,
-   "end": 14.06
+   "t0": 11.55,
+   "acc": 11.76,
+   "end": 12.328
   },
   "D2": {
-   "t0": 14.06,
-   "end": 16.13,
+   "t0": 12.328,
+   "end": 14.25,
    "pairs": [
     {
-     "k": 6,
-     "t0": 14.06,
-     "free": 15.18,
-     "end": 16.43
+     "k": 5,
+     "t0": 12.328,
+     "free": 13.3,
+     "end": 14.55
     }
    ]
   },
   "D3": {
-   "t0": 16.13,
-   "end": 18.01
-  },
-  "D4": {
-   "t0": 18.01,
-   "end": 19.97
+   "t0": 14.25,
+   "end": 16.16
   },
   "F": {
-   "t0": 19.97,
-   "note": 20.36,
-   "end": 22.36
-  },
-  "G1": {
-   "t0": 22.36,
-   "end": 24.32
+   "t0": 16.16,
+   "end": 18.17
   },
   "G2": {
-   "t0": 24.32,
-   "acc": 25.12,
-   "end": 26.64
+   "t0": 18.17,
+   "acc": 19.0,
+   "end": 20.54
   },
-  "tF": 26.64,
-  "D": 27.09
+  "tF": 20.54,
+  "D": 20.99
  },
  "buildup": {
   "new_on_screen": [
    {
     "t": 0,
-    "what": "A the cube: 'FREE ALTERNATIVES to six apps you pay for' + six real paid logos, each price tag flips to a tick (0.2-0.9 s)"
+    "what": "A the cube: five real paid logos + 'Five apps you pay for. FREE TWINS EXIST!', price tags flip to ticks"
    },
    {
-    "t": 2.4,
+    "t": 2.31,
     "what": "B words only: 'The last one is INSANE. STAY FOR IT.'"
    },
    {
-    "t": 4.57,
-    "what": "card: Loom struck, arrow, Cap at 5.30, FREE at 5.40"
+    "t": 4.38,
+    "what": "card: Loom struck, arrow, Cap at 5.08, FREE"
    },
    {
-    "t": 5.86,
-    "what": "card: Notion struck, arrow, AppFlowy at 6.50, FREE at 6.60"
+    "t": 5.64,
+    "what": "card: Notion struck, arrow, AppFlowy at 6.20, FREE"
    },
    {
-    "t": 7.36,
-    "what": "card: Calendly struck, arrow, Cal.diy at 8.28, FREE at 8.38"
+    "t": 7.18,
+    "what": "words only: 'Still not THE BIG ONE.' (true: ElevenLabs/VoiceStudio comes later)"
    },
    {
-    "t": 9.32,
-    "what": "card: Intercom struck, arrow, Chatwoot at 10.26, FREE at 10.36"
+    "t": 8.68,
+    "what": "card: Intercom struck, arrow, Chatwoot at 9.48, FREE"
    },
    {
-    "t": 11.13,
-    "what": "card: Wispr Flow struck, arrow, OpenWhispr at 12.14, FREE at 12.24"
+    "t": 9.98,
+    "what": "card: Wispr Flow struck, arrow, OpenWhispr at 10.76, FREE"
    },
    {
-    "t": 13.05,
+    "t": 11.55,
     "what": "D words only: 'And the BIG ONE.'"
    },
    {
-    "t": 14.06,
-    "what": "card: ElevenLabs struck, arrow, VoiceStudio at 15.18, FREE"
+    "t": 12.33,
+    "what": "card: ElevenLabs struck, arrow, VoiceStudio at 13.30, FREE"
    },
    {
-    "t": 16.13,
+    "t": 14.25,
     "what": "the real VoiceStudio screenshot: 'clones your own voice, ON YOUR OWN MACHINE.'"
    },
    {
-    "t": 18.01,
-    "what": "words only: 'It's new, just 7 MONTHS OLD.'"
+    "t": 16.16,
+    "what": "F one card: the saveable list of five pairs ('The setup's in the link in bio')"
    },
    {
-    "t": 19.97,
-    "what": "F one card: the list of six pairs + 'Not tested by us. Check each one.'"
-   },
-   {
-    "t": 22.36,
-    "what": "G words only: 'The setup's in the LINK IN BIO.'"
-   },
-   {
-    "t": 24.32,
+    "t": 18.17,
     "what": "words only: 'Want the next one? FOLLOW.'"
    },
    {
-    "t": 26.64,
+    "t": 20.54,
     "what": "frame 0 returns (loop)"
    }
   ],
   "flat_over_2_5s": []
  },
- "numbers_on_screen": [
-  {
-   "text": "7 MONTHS OLD (VoiceStudio)",
-   "source": "repo created 2026-04-09, GitHub page via Exa, read 16.11.2026"
-  }
- ]
+ "numbers_on_screen": []
 }

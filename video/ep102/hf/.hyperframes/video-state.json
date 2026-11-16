@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "47432d4a-1299-4c9b-8778-c6cbd565f873",
-  "currentRevision": "23079cb5-8338-4352-86d0-bf7cade24684",
+  "currentRevision": "4eac3da3-df03-4916-98dc-56e8e070264a",
   "pendingChanges": false,
   "files": {
     "assets/bg.jpg": {
@@ -31,6 +31,10 @@
     "assets/logos/caldiy.png": {
       "hash": "ae4a7548b17c6419ca8e33a0fcfe5267873dad4757453fbea4968e3f4160cce3",
       "content": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/ae/ae4a7548b17c6419ca8e33a0fcfe5267873dad4757453fbea4968e3f4160cce3"
+    },
+    "assets/logos/calendly-wordmark.svg": {
+      "hash": "7da760b9b0f9184be268daa4e76b961f56565a8c95a9f1af5b31f0485d9c9998",
+      "content": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/7d/7da760b9b0f9184be268daa4e76b961f56565a8c95a9f1af5b31f0485d9c9998"
     },
     "assets/logos/calendly.svg": {
       "hash": "ef2004d8cc8278f8036e3a0a3f57aa1ce11a28289aa64f16356ae74712b7bcfd",
@@ -93,80 +97,68 @@
       "content": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/15/15b18fa19da5b44f3b7ddf48d5f986d84285b755a9a25e705301d71c8de047cf"
     },
     "index.html": {
-      "hash": "7442641e7e71e1fa07d8b61d7cdc1def5e507097df0e0950d87c0a1d013ddbf1",
-      "content": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/74/7442641e7e71e1fa07d8b61d7cdc1def5e507097df0e0950d87c0a1d013ddbf1"
-    },
-    "assets/logos/calendly-wordmark.svg": {
-      "hash": "7da760b9b0f9184be268daa4e76b961f56565a8c95a9f1af5b31f0485d9c9998",
-      "content": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/7d/7da760b9b0f9184be268daa4e76b961f56565a8c95a9f1af5b31f0485d9c9998"
+      "hash": "76153760b9128bc476d73f90076f88b5836c76026ab8986665e1013b2f55b9b2",
+      "content": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/76/76153760b9128bc476d73f90076f88b5836c76026ab8986665e1013b2f55b9b2"
     }
   },
   "revisions": {
-    "1aa7c015-8528-4c5f-b963-783ce24cceaa": {
+    "bb6b4d92-aed2-46e1-bd2e-e7b57d165b34": {
       "actor": {
         "kind": "outside",
         "name": "Outside"
       },
       "label": "Changed outside the app",
-      "startedAt": 1794847385669,
-      "endedAt": 1794847385670,
+      "startedAt": 1794871219600,
+      "endedAt": 1794871219601,
       "files": {
         "index.html": {
-          "before": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/2f/2f27649d1a29cfc09bce58ea046b4f85c914af346b75956dacc8d278574e9054",
-          "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/94/943d2649e4cc08c26a5daff43c17429ab7dfb3962a0e8dcaf8a1cae603301691"
+          "before": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/10/101c2f07cbe0a7c3e40d138ee3c5831eead36f9082bace088701583beeea7186",
+          "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/e1/e142417b0d130e9a1914293d032f2ce08cd302afa56452482f8f025471918a00"
         }
       }
     },
-    "facdd1f1-3a37-4edf-8125-757095c5866d": {
+    "6d6f73fd-b884-444b-89b8-be813b78deb5": {
       "actor": {
         "kind": "outside",
         "name": "Outside"
       },
       "label": "Changed outside the app",
-      "startedAt": 1794866155096,
-      "endedAt": 1794866155108,
+      "startedAt": 1794871721288,
+      "endedAt": 1794871721289,
       "files": {
-        "assets/logos/calendly-wordmark.svg": {
-          "before": null,
-          "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/7d/7da760b9b0f9184be268daa4e76b961f56565a8c95a9f1af5b31f0485d9c9998"
-        },
-        "assets/logos/SOURCES.md": {
-          "before": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/78/7802327a45540a81ad4999a6fea99ac2524090c433e2960cc253e39fd8f37477",
-          "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/13/13ffd532d4ef30b2799fc5433c49f255a752493068c8329d6ba0b0ee60977f0a"
-        },
         "index.html": {
-          "before": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/94/943d2649e4cc08c26a5daff43c17429ab7dfb3962a0e8dcaf8a1cae603301691",
-          "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/b6/b6a1a2b19f29ad0f76c0fe072c337fa2e403c4db9db3a249ea709567ad787149"
+          "before": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/e1/e142417b0d130e9a1914293d032f2ce08cd302afa56452482f8f025471918a00",
+          "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/49/4983623efdb2ee5b77e0296f20331227f6425697814887bbe0179e409a993360"
         }
       }
     },
-    "414356b2-55d8-4f5f-a697-0f6aebf14a6d": {
+    "4fef3d69-dead-4ea0-bb25-b529d5810fdd": {
       "actor": {
         "kind": "outside",
         "name": "Outside"
       },
       "label": "Changed outside the app",
-      "startedAt": 1794866678250,
-      "endedAt": 1794866678251,
+      "startedAt": 1794872159499,
+      "endedAt": 1794872159500,
       "files": {
         "index.html": {
-          "before": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/b6/b6a1a2b19f29ad0f76c0fe072c337fa2e403c4db9db3a249ea709567ad787149",
-          "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/f0/f00c12f88459dd24009d1ce47571715581baff667b88936e2fd653d81e259333"
+          "before": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/49/4983623efdb2ee5b77e0296f20331227f6425697814887bbe0179e409a993360",
+          "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/37/3732f438c27b3ca80918bd3663c01ff99ec9ce90d81c1d16a881ce581cadda69"
         }
       }
     },
-    "23079cb5-8338-4352-86d0-bf7cade24684": {
+    "4eac3da3-df03-4916-98dc-56e8e070264a": {
       "actor": {
         "kind": "outside",
         "name": "Outside"
       },
       "label": "Changed outside the app",
-      "startedAt": 1794870070260,
-      "endedAt": 1794870070261,
+      "startedAt": 1794872291298,
+      "endedAt": 1794872291299,
       "files": {
         "index.html": {
-          "before": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/f0/f00c12f88459dd24009d1ce47571715581baff667b88936e2fd653d81e259333",
-          "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/74/7442641e7e71e1fa07d8b61d7cdc1def5e507097df0e0950d87c0a1d013ddbf1"
+          "before": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/37/3732f438c27b3ca80918bd3663c01ff99ec9ce90d81c1d16a881ce581cadda69",
+          "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/76/76153760b9128bc476d73f90076f88b5836c76026ab8986665e1013b2f55b9b2"
         }
       }
     }
@@ -183,15 +175,15 @@
   },
   "renders": {
     "latest": {
-      "id": "7fe66e10-444b-46de-af3b-7fce0a182d33",
-      "completedAt": 1794870188728,
-      "output": "/home/user/videos-ai/video/ep102/out/pic-v4.mp4",
+      "id": "2ebe696e-749e-4d52-9cff-6ca7716e1d6a",
+      "completedAt": 1794872375647,
+      "output": "/home/user/videos-ai/video/ep102/out/pic-v5.mp4",
       "status": "completed",
-      "revision": "23079cb5-8338-4352-86d0-bf7cade24684"
+      "revision": "4eac3da3-df03-4916-98dc-56e8e070264a"
     },
     "retainedRevisions": [
-      "23079cb5-8338-4352-86d0-bf7cade24684",
-      "414356b2-55d8-4f5f-a697-0f6aebf14a6d"
+      "4eac3da3-df03-4916-98dc-56e8e070264a",
+      "4fef3d69-dead-4ea0-bb25-b529d5810fdd"
     ]
   },
   "pendingArtifactCleanup": []
