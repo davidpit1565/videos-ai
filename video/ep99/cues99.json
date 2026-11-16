@@ -87,7 +87,12 @@
   "see": "words.json",
   "same": "words.json",
   "follow": "words.json",
-  "killed": "words.json"
+  "meta": "words.json",
+  "and": "words.json",
+  "gemini": "words.json",
+  "just": "words.json",
+  "killed": "words.json",
+  "claude": "words.json"
  },
  "targets": {
   "4": 6.86,

@@ -357,22 +357,22 @@ def char(cid, k, sword=False, fd=1):
             f'<div class="tile" style="box-shadow:10px 10px 0 {COL[k]},10px 10px 0 4px {INK}">{logo(k, 130)}</div>{eyes}</div>')
 assert near["id"] == "claude" and sorted(WINS) == ["gemini", "meta"]
 T25 = math.tan(math.radians(25)); CUTD = [round(math.cos(math.radians(25)), 4), round(math.sin(math.radians(25)), 4)]
-KCX, KCY = 690, 770                                          # Claude in the opening; the cut runs through its centre at 25 degrees
+KCX, KCY = 688, 868                                          # Claude in the opening; the cut runs through its centre at 25 degrees
 S0X, S0Y = KCX - 290 * CUTD[0], KCY - 290 * CUTD[1]
 half = lambda cid, poly: f'<div class="hf" id="hf{cid}"><div class="hfc" style="clip-path:polygon({poly})"><div class="hfi">{char("cl" + cid, "claude", fd=-1)}</div></div></div>'
 chars = ('<div id="chars">' + char("gemini", "gemini", sword=True) + char("meta", "meta", sword=True) + char("chatgpt", "chatgpt") + char("perplexity", "perplexity", fd=-1) +
          '<div id="clw">' + half("B", f"0 {350 - 350 * T25:.1f}px,700px {350 + 350 * T25:.1f}px,700px 700px,0 700px") +
          half("A", f"0 0,700px 0,700px {351 + 350 * T25:.1f}px,0 {351 - 350 * T25:.1f}px") + '</div></div>')
 mlines = "".join(f'<path d="M{math.cos(a_) * 184:.0f} {math.sin(a_) * 184:.0f} L{math.cos(a_) * (214 if q % 2 else 204):.0f} {math.sin(a_) * (214 if q % 2 else 204):.0f}"/>' for q, a_ in enumerate(math.radians(8 + 30 * j) for j in range(12)) if q not in (0, 6))
-spd = '<path d="M0 0 h44 M14 26 h52 M4 52 h38"/>'
-opn = f'''<div id="opn">
- <svg class="spd" id="spG" viewBox="0 -8 130 70" width="130" height="70" data-decor>{spd}</svg><svg class="spd" id="spM" viewBox="0 -8 130 70" width="130" height="70" data-decor>{spd}</svg>
+spd = '<path d="M0 0 h58 M18 24 h74 M4 48 h50 M26 72 h40"/>'
+opn = f'''<div id="opn">{"".join(chr(60) + "i class=" + chr(34) + "deb" + chr(34) + " data-decor>" + chr(60) + "/i>" for _ in range(9))}
+ <svg class="spd" id="spG" viewBox="0 -8 130 90" width="130" height="90" data-decor>{spd}</svg><svg class="spd" id="spM" viewBox="0 -8 130 90" width="130" height="90" data-decor>{spd}</svg>
  <svg id="mln" viewBox="-300 -300 600 600" width="600" height="600" style="left:{KCX - 300}px;top:{KCY - 300}px" data-decor>{mlines}</svg>
  <div id="fls" style="left:{KCX - 430}px;top:{KCY - 430}px" data-decor></div>
  <div id="sls" style="left:{S0X:.1f}px;top:{S0Y - 30:.1f}px" data-decor><svg viewBox="0 0 520 60" width="520" height="60"><path d="M3 30 Q260 -12 517 30 Q260 72 3 30Z" fill="#fff" stroke="{INK}" stroke-width="7" stroke-linejoin="round"/></svg></div></div>'''
 # the end scene: a podium. Texts are facts of the results file
 P1X, P1Y, P1W, P1H = 316, 770, 308, 250; P3X, P3Y, P3W, P3H = 624, 884, 180, 136
-CGC = [214, 1092, 46]; PXB = [632, 1074, 186, 160]
+CGC = [236, 1092, 46]; PXB = [632, 1074, 186, 160]
 cg = RES["chatgpt"]; assert STATUS["chatgpt"] == "dnf" and STATUS["perplexity"] == "dnf"
 pod = f'''<div id="pod">
  <svg id="ftp" viewBox="0 0 1080 1920" width="1080" height="1920" data-decor>
@@ -383,13 +383,22 @@ pod = f'''<div id="pod">
  </svg>
  <div class="pb" id="pb1" style="left:{P1X}px;top:{P1Y}px;width:{P1W}px;height:{P1H}px"><b>1</b><span>{F1} STEPS</span><span>SAME PATH</span><i>best possible: {SHORT}</i></div>
  <div class="pb" id="pb3" style="left:{P3X}px;top:{P3Y}px;width:{P3W}px;height:{P3H}px"><b>3</b><span>{XSTEP["claude"]} STEPS</span></div>
- <div class="pl" id="plc" style="left:124px;top:{CGC[1] - 112}px">IN CIRCLES</div>
+ <div class="pl" id="plc" style="left:150px;top:{CGC[1] - 112}px">IN CIRCLES</div>
  <div class="pl" id="plp" style="left:{PXB[0]}px;top:{PXB[1] - 40}px">STUCK AT START</div></div>'''
+HKW = [("META AI", "kw", woff("meta", 1, .0)), ("and", "ks", woff("and", 1, .28)), ("GEMINI", "kw", woff("gemini", 1, .36)),
+       ("just", "ks", woff("just", 1, .55)), ("KILLED", "kw kk", woff("killed", 1, .62)), ("CLAUDE.", "kw", woff("claude", 1, .78))]
+HKT = [round(s(1) + t_, 3) for _, _, t_ in HKW]
+kwid = lambda parts: sum((tw(t) - 1.5 * len(t)) * (1 if c != "ks" else .5) / 100 for t, c, _ in parts) + .27 * (len(parts) - 1)
+HF1 = min(96, 846 / kwid(HKW[:3])); HF2 = min(128, 846 / kwid(HKW[3:]))
+hook = (f'<div id="hk"><div class="kl" style="font-size:{HF1:.1f}px;line-height:{HF1 * 1.0:.1f}px">' + "".join(f'<span class="{c}">{t}</span>' for t, c, _ in HKW[:3]) +
+        f'</div><div class="kl" style="font-size:{HF2:.1f}px;line-height:{HF2 * 1.02:.1f}px">' + "".join(f'<span class="{c}">{t}</span>' for t, c, _ in HKW[3:]) + '</div></div>')
+HKB = 286 + HF1 + HF2 * 1.02                                  # bottom of the headline: the duel sits under it
 markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam"><div id="pn">
  {maze}{chips}{opn}{pod}{chars}
 </div>
+ {hook}
  <div id="cnt"><em>STEP</em><span id="cnn">0</span><em>/ {MAXS}</em></div>
  {"".join(HEADS)}
 </div>'''
@@ -469,6 +478,11 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .kos{position:absolute;left:-60px;top:-66px;font-size:48px;line-height:50px;opacity:0;text-shadow:3px 3px 0 PAPER,-3px 3px 0 PAPER,3px -3px 0 PAPER,-3px -3px 0 PAPER,0 4px 0 PAPER,4px 0 0 PAPER,-4px 0 0 PAPER,0 -4px 0 PAPER}
 .star{position:absolute;left:0;top:0;width:52px;height:52px;margin:-26px 0 0 -26px;opacity:0;overflow:visible}
 .star path{fill:#FFD23F;stroke:INK;stroke-width:5;stroke-linejoin:round}
+#hk{position:absolute;left:108px;top:286px;z-index:5;white-space:nowrap}
+.kl{display:flex;align-items:baseline;gap:.26em}
+.kw,.ks{display:inline-block;color:#c6c5bf;transform-origin:0 80%;white-space:nowrap}
+.kw{font-weight:900;letter-spacing:-.045em} .ks{font-weight:500;letter-spacing:-.02em;font-size:.5em}
+.deb{position:absolute;left:0;top:0;width:46px;height:16px;margin:-8px 0 0 -23px;border-radius:8px;background:#D97757;border:3px solid #0f0f0f;opacity:0}
 #bub{position:absolute;left:306px;width:640px;height:116px;background:#fff;border:6px solid INK;border-radius:44px;box-shadow:-8px 8px 0 INK;display:flex;align-items:center;justify-content:center;gap:20px;opacity:0;transform-origin:50% 60%}
 .bdot{display:block;width:38px;height:38px;border-radius:50%;background:#fff;border:7px solid INK;flex:none}
 #btx{font-weight:800;letter-spacing:-.01em;white-space:nowrap}
@@ -569,8 +583,8 @@ js(f"tl.fromTo('#pn',{{scale:1}},{{scale:1.045,duration:.12,ease:'sine.out',yoyo
 # ---------------------------------------------------------------- render(): dots, trails, chips, marks, counter: all from the clock
 ci = lambda ks: [IDS.index(k) for k in ks]
 FANP = [[round(MX + lx(START[0]) + FAN[c][0], 1), round(MY + lx(START[1]) + FAN[c][1], 1)] for c in range(5)]     # where each character lands (page px) = its dot before Go
-DATA = dict(a2=round(a2, 3), tKL=tKL, AR=AR, FANP=FANP, CUT=CUTD, KC=[KCX, KCY], CAM=CAM, VW=VW, tPD=round(tPD, 3),
-            POD=dict(g=[P1X + 76, P1Y - 135], m=[P1X + P1W - 76, P1Y - 135], c=[P3X + P3W // 2, P3Y - 135], cg=CGC, px=[PXB[0] + PXB[2] // 2, PXB[1] + 74]),
+DATA = dict(HKT=HKT, a2=round(a2, 3), tKL=tKL, AR=AR, FANP=FANP, CUT=CUTD, KC=[KCX, KCY], CAM=CAM, VW=VW, tPD=round(tPD, 3),
+            POD=dict(g=[P1X + 76, P1Y - 135], m=[P1X + P1W - 76, P1Y - 135], c=[P3X + P3W // 2, P3Y - 135], cg=CGC, px=[PXB[0] + PXB[2] // 2, PXB[1] + 62]),
             T0=T0, D=D, tF=round(tF, 3), tK=round(tK, 3), tRV=round(tRV, 3), tS=round(tSAME, 3), vEND=round(vEND, 3), ST=ST, MAXS=MAXS, CELL=CELL, MX=OX, MY=OX,
             FAN=FAN, FANS=FANS, OFF=OFF, TOFF=TOFF,
             P=[[v for p in PATH[k] for v in p] for k in IDS], LAST=[LAST[k] for k in IDS], CL=CLEN,
@@ -586,7 +600,7 @@ function St(v){const i=Math.max(0,v*60),k=Math.min(Dt.ST.length-2,Math.floor(i))
 const dots=$$('.dot').map(el=>({el,dr:el.querySelector('.dr')})), trs=$$('.trl'), cnt=$('#cnt'), cnn=$('#cnn'), exm=$('#exm'), exc=$('#exc'), stc=$('#stc');
 const chips=[0,1,2,3,4].map(c=>{const el=$('#sl'+c);return {el,tb:el.querySelector('.tb'),ring:el.querySelector('.ring'),ok:el.querySelector('.ok'),qm:el.querySelector('.qm'),dn:el.querySelector('.dn')}});
 const rays=$('#rays'), vp=$('#vp'), stg=$('#stg'), exw=$('#exw'), chw=$('#chips'), wpath=$('#wpath'), opn=$('#opn'), pod=$('#pod'), sls=$('#sls'), fls=$('#fls'), mln=$('#mln'), spG=$('#spG'), spM=$('#spM');
-const clw=$('#clw'), hfA=$('#hfA'), pb1=$('#pb1'), pb3=$('#pb3'), fps=$$('.fp');
+const clw=$('#clw'), hfA=$('#hfA'), hfB=$('#hfB'), pn=$('#pn'), bgw=$('.bgw'), debs=$$('.deb'), hk=$('#hk'), kws=$$('#hk span'), pb1=$('#pb1'), pb3=$('#pb3'), fps=$$('.fp');
 const dms=$$('.dm').map(el=>({el,c:+el.dataset.c,s:+el.dataset.s})), cms=$$('.cm').map(el=>({el,c:+el.dataset.c}));
 const C=Dt.CELL;
 // ---- logo characters
@@ -601,11 +615,11 @@ function limbs(ch,o){ch.aR.setAttribute('transform','rotate('+o.aR.toFixed(1)+' 
 function put(el,o){el.style.opacity=o.op.toFixed(3); el.style.transform='translate('+o.x.toFixed(2)+'px,'+o.y.toFixed(2)+'px) rotate('+(o.rot||0).toFixed(2)+'deg) scale('+o.sc.toFixed(4)+')'}
 // the duel: kt = seconds into the opening. Bullet time until the word "killed", then one clean cut
 function duel(kt,v){
-  const p=ez(kt/Dt.tKL), hit=kt>=Dt.tKL, post=kt-Dt.tKL, q=hit?eo(post/.12):0, vic=hit?ez((post-.35)/.4):0, wind=bump(Math.min(1,kt/Dt.tKL));
+  const p=ez(kt/Dt.tKL), hit=kt>=Dt.tKL, post=kt-Dt.tKL, q=hit?eo(post/.1):0, vic=hit?ez((post-.35)/.4):0, wind=bump(Math.min(1,kt/Dt.tKL));
   return {
-    g:{x:lerp(284,340,p)+34*q, y:lerp(560,572,p)+10*q+Math.sin(v*5)*5-12*vic*Math.abs(Math.sin(v*7+1)), sc:1.4, rot:lerp(-10,-4,p)+9*q-5*vic, aR:(hit?lerp(-17,25,q):-14-3*wind)-40*vic, aL:74+6*Math.sin(v*6), lL:(34+22*Math.sin(v*9))*(1-vic), lR:(-30-22*Math.sin(v*9))*(1-vic), so:1, op:1, ex:.9, es:1, bo:1-vic},
-    m:{x:lerp(322,376,p)+30*q, y:lerp(985,956,p)-6*q+Math.sin(v*5+1.3)*5-14*vic*Math.abs(Math.sin(v*7)), sc:1.4, rot:lerp(8,3,p)-8*q, aR:(hit?lerp(-58,-30,q):-62+5*wind)-30*vic, aL:74+6*Math.sin(v*6+1), lL:(-30+22*Math.sin(v*9+2))*(1-vic), lR:(32-22*Math.sin(v*9+2))*(1-vic), so:1, op:1, ex:.9, ey:-.5, es:1, bo:1-vic},
-    c:{x:Dt.KC[0]+(hit?0:2.6*Math.sin(v*38)), y:Dt.KC[1], sc:1.55, rot:hit?0:lerp(4,8,p), aR:-66+5*Math.sin(v*14), aL:-66+5*Math.sin(v*14+2), lL:hit?-6:-8+5*Math.sin(v*22), lR:hit?6:8+5*Math.sin(v*22+2), so:0, op:1, ex:-.95, ey:.1, es:hit?1.6:lerp(1.35,1.5,p), bo:0, slide:hit?62*eo(post/.5):0}
+    g:{x:lerp(270,330,p)+36*q, y:lerp(668,676,p)+8*q+Math.sin(v*5)*5-12*vic*Math.abs(Math.sin(v*7+1)), sc:1.2, rot:lerp(-10,-4,p)+9*q-5*vic, aR:(hit?lerp(-10,25,q):-6-4*wind)-27*vic, aL:74+6*Math.sin(v*6), lL:(34+24*Math.sin(v*10))*(1-vic), lR:(-30-24*Math.sin(v*10))*(1-vic), so:1, op:1, ex:.9, es:1, bo:1-vic},
+    m:{x:lerp(318,374,p)+32*q, y:lerp(1034,1010,p)-6*q+Math.sin(v*5+1.3)*5-14*vic*Math.abs(Math.sin(v*7)), sc:1.2, rot:lerp(8,3,p)-8*q, aR:(hit?lerp(-56,-30,q):-60+5*wind)-28*vic, aL:74+6*Math.sin(v*6+1), lL:(-30+24*Math.sin(v*10+2))*(1-vic), lR:(32-24*Math.sin(v*10+2))*(1-vic), so:1, op:1, ex:.9, ey:-.5, es:1, bo:1-vic},
+    c:{x:Dt.KC[0]+(hit?0:2.6*Math.sin(v*38)), y:Dt.KC[1], sc:1.5, rot:hit?0:lerp(4,8,p), aR:-66+5*Math.sin(v*14), aL:-66+5*Math.sin(v*14+2), lL:hit?-6:-8+5*Math.sin(v*22), lR:hit?6:8+5*Math.sin(v*22+2), so:0, op:1, ex:-.95, ey:.1, es:hit?1.6:lerp(1.35,1.5,p), bo:0, slide:hit?50*eo(post/.45)+4*Math.sin(post*9)*ez(post/.5):0}
   };
 }
 function run(o,v,ph){o.lL=38*Math.sin(v*20+ph); o.lR=-38*Math.sin(v*20+ph); o.aR=28*Math.sin(v*20+ph+1); o.aL=-28*Math.sin(v*20+ph+1); return o}
@@ -614,7 +628,7 @@ function cast(v){
   if(v<Dt.a2||v>=Dt.tF){const o=duel(v<Dt.a2?v:0,v), a=v<Dt.a2?1:ez((v-Dt.tF-.02)/.35); o.g.op=o.m.op=o.c.op=a; o.cg=hide; o.px=hide; return o}
   if(v<arLast){                                             // line 2: run to the start cell and shrink into the dots
     const b=duel(Dt.a2,Dt.a2), o={g:b.g,m:b.m,c:b.c,cg:{x:-150,y:985,sc:1.1,rot:0,op:1},px:{x:1230,y:565,sc:1.1,rot:0,op:1}};
-    o.c.slide=62*(1-eb((v-Dt.a2-.15)/.3));
+    o.c.slide=50*(1-eb((v-Dt.a2-.15)/.3));
     for(const key of ['g','m','c','cg','px']){const c=Dt.IX[key], u=ez((v-Dt.a2-.1-.07*c)/1.05), e=o[key], T=Dt.FANP[c];
       run(e,v,c*1.3); e.x=lerp(e.x,T[0],u); e.y=lerp(e.y,T[1],u)-46*bump(u); e.sc=lerp(e.sc,.63,u); e.rot=lerp(e.rot||0,0,u)+5*bump(u)*(T[0]>e.x?1:-1);
       e.lo=1-ez((u-.72)/.28); e.so=1-ez((v-Dt.a2)/.25); e.op=1-ez((v-Dt.AR[c])/.1)}
@@ -635,17 +649,27 @@ function render(v){
   const o=cast(v);
   for(const key of ['g','m','cg','px']){put(CH[key].el,o[key]); if(o[key].op>0) limbs(CH[key],o[key])}
   put(clw,o.c); if(o.c.op>0){limbs(CH.cA,o.c); limbs(CH.cB,o.c)}
-  hfA.style.transform='translate('+((o.c.slide||0)*Dt.CUT[0]).toFixed(2)+'px,'+((o.c.slide||0)*Dt.CUT[1]).toFixed(2)+'px)';
+  {const S=o.c.slide||0, dx=Dt.CUT[0], dy=Dt.CUT[1];        // the two halves fly apart along the cut and turn a little (they snap back in line 2)
+    hfA.style.transform='translate('+(S*dx+.3*S*dy).toFixed(2)+'px,'+(S*dy-.3*S*dx).toFixed(2)+'px) rotate('+(.15*S).toFixed(2)+'deg)';
+    hfB.style.transform='translate('+(-.4*S*dx-.12*S*dy).toFixed(2)+'px,'+(-.4*S*dy+.12*S*dx).toFixed(2)+'px) rotate('+(-.1*S).toFixed(2)+'deg)'}
   // ---- opening props: the slash, a white flash, motion lines. No text
   const inOpen=v<Dt.a2+.3||v>=Dt.tF, kt=v<Dt.a2?v:(v>=Dt.tF?0:Dt.a2), oa=v<Dt.a2?1:(v>=Dt.tF?ez((v-Dt.tF-.02)/.35):1-ez((v-Dt.a2)/.25));
   opn.style.opacity=(inOpen?oa:0).toFixed(3);
+  // the hook headline: each word turns from ghost grey to ink as it is spoken (colour only), 'KILLED' gives one push on the cut
+  hk.style.opacity=(v<Dt.a2?1-ez((v-Dt.a2+.2)/.18):(v>=Dt.tF?ez((v-Dt.tF-.02)/.35):0)).toFixed(3);
+  kws.forEach((el,i)=>{const t=Dt.HKT[i], on=kt>=t-.06; el.style.color=on?'#0f0f0f':'#c6c5bf';});
+  {const post=kt-Dt.tKL, h=v<Dt.a2&&post>=0&&post<.5, e=Math.exp(-7*Math.max(0,post));    // screen shake on the cut; the paper slides a little under the run
+    pn.style.translate=h?(10*e*Math.sin(post*72)).toFixed(1)+'px '+(12*e*Math.cos(post*58)).toFixed(1)+'px':'0px 0px';
+    bgw.style.translate=(v<Dt.a2?-18*ez(kt/Dt.tKL)+(h?6*e*Math.sin(post*60):0):v<Dt.a2+1?-18*(1-ez(v-Dt.a2)):0).toFixed(1)+'px 0px';
+    debs.forEach((el,i)=>{const a=-2.9+i*.72+.3*Math.sin(i*5), sp=250+38*((i*7)%5), t=Math.max(0,post), vis=v<Dt.a2&&post>=0&&post<.8;
+      el.style.opacity=(vis?1-ez((t-.38)/.4):0).toFixed(2); el.style.transform='translate('+(Dt.KC[0]+Math.cos(a)*(40+sp*t)).toFixed(1)+'px,'+(Dt.KC[1]+Math.sin(a)*(40+sp*t)+420*t*t).toFixed(1)+'px) rotate('+(i*40+t*520*(i%2?1:-1)).toFixed(0)+'deg) scale('+(.7+.5*((i*3)%4)/3).toFixed(2)+')'})}
   if(inOpen){const p=ez(kt/Dt.tKL), hit=kt>=Dt.tKL, post=kt-Dt.tKL, sp=hit?lerp(.3,1,eo(post/.07)):.3*ez((kt-Dt.tKL+.1)/.1);
     sls.style.clipPath='inset(-20px '+((1-sp)*100).toFixed(1)+'% -20px -20px)'; sls.style.opacity=(hit?1-ez((post-.14)/.25):ez((kt-Dt.tKL+.1)/.06)).toFixed(3);
     fls.style.opacity=(hit?(post<.04?post/.04:1-ez((post-.04)/.3))*.88:0).toFixed(3);
     mln.style.opacity=(hit?1-ez((post-.12)/.45):0).toFixed(3); mln.style.transform='scale('+(.8+.22*eo(post/.3)).toFixed(3)+') rotate('+(post*20).toFixed(1)+'deg)';
     const so_=(hit?1-ez(post/.3):.9), jx=Math.sin(v*31)*7;
-    spG.style.opacity=so_.toFixed(2); spG.style.transform='translate('+Math.max(124,o.g.x-330+jx).toFixed(1)+'px,'+(o.g.y+150).toFixed(1)+'px)';
-    spM.style.opacity=so_.toFixed(2); spM.style.transform='translate('+Math.max(124,o.m.x-340-jx).toFixed(1)+'px,'+(o.m.y-230).toFixed(1)+'px)'}
+    spG.style.opacity=so_.toFixed(2); spG.style.transform='translate('+Math.max(124,o.g.x-300+jx).toFixed(1)+'px,'+(o.g.y+128).toFixed(1)+'px)';
+    spM.style.opacity=so_.toFixed(2); spM.style.transform='translate('+Math.max(124,o.m.x-320-jx).toFixed(1)+'px,'+(o.m.y-196).toFixed(1)+'px)'}
   // ---- the maze stage: appears in line 2 (the walls draw themselves), leaves before the end scene
   const sIn=ez((v-Dt.a2-.15)/.3), sOut=1-ez((v-Dt.tK+.16)/.22), sOp=Math.min(sIn,sOut);
   vp.style.opacity=sOp.toFixed(3); exw.style.opacity=sOp.toFixed(3); chw.style.opacity=sOp.toFixed(3); chw.style.transform='translate('+(-(1-eo((v-Dt.a2-.15)/.5))*50).toFixed(1)+'px,0)';

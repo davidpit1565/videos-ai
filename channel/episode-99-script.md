@@ -69,11 +69,11 @@ Blind readers, ep99: NOT RUN YET.
 ## Scores (labels, not gates)
 HOOK 76 · VIRALITY 72 · OVERALL 72 · predicted views 300-1,200, most likely about 550. Reasoning in the plan, section 7. Log 48 h / 72 h in `channel/score-calibration.md`.
 
-## BUILD-UP beat list, as built (pic-v6 / ep99-v6, 15.11.2026; video times from `video/ep99/cues99.json`, D 28.21 s; every spoken race line and race headline is asserted against `maze-race.json` in `build99.py`)
-Three different screens (David, 15.11): OPENING = a cartoon duel of logo characters, no maze and no text; MIDDLE = the maze in a window with camera punch-ins on real race events; END = a podium with the same characters. Design notes: `channel/ep99-opening-design-notes.md`.
+## BUILD-UP beat list, as built (pic-v7 / ep99-v7, 15.11.2026; video times from `video/ep99/cues99.json`, D 28.21 s; every spoken race line and race headline is asserted against `maze-race.json` in `build99.py`)
+Three different screens (David, 15.11): OPENING = a cartoon duel of logo characters under the hook headline, no maze; MIDDLE = the maze in a window with camera punch-ins on real race events; END = a podium with the same characters. Design notes: `channel/ep99-opening-design-notes.md`.
 | Video s | Line | Screen | Real event | What is NEW here |
 |---|---|---|---|---|
-| 0.0 | 1 | duel | result: Gemini and Meta AI out in 117 steps, Claude in 171 | frame 0, no text: the Meta AI and Gemini characters mid-swing, both blades raised; the Claude character on the right leans back, eyes wide |
+| 0.0 | 1 | duel | result: Gemini and Meta AI out in 117 steps, Claude in 171 | frame 0: one headline in the episode-89 treatment ("META AI and GEMINI just KILLED CLAUDE.", each word turns from grey to ink as it is spoken); under it the Meta AI and Gemini characters mid-swing, both blades raised; the Claude character on the right leans back, eyes wide |
 | 1.56 | 1 ("killed") | duel | same | one clean cartoon cut on the spoken word: white flash, motion lines, Claude's top half slides along the cut (no blood) |
 | 2.5 | 2 | duel to maze | step 0 | Claude snaps back together (it is in the race and does get out); ChatGPT and Perplexity run in; all five shrink into their dots while the maze draws itself |
 | 4.7 | 3 | maze, push-in on the five dots | step 0 | the walls fade (they cannot see the maze); "pick one before it starts"; fast pull-out on Go (6.26) |
@@ -85,4 +85,4 @@ Three different screens (David, 15.11): OPENING = a cartoon duel of logo charact
 | 20.7 | 8 | full maze | replay | "GEMINI + META AI TIE", then both winning trails are drawn again and close into one line |
 | 23.8 | 9 | podium | final result | a new screen: Gemini and Meta AI together on step 1 (117 steps, same path, best possible 89), Claude whole on step 3 (171 steps), ChatGPT walking in a circle, Perplexity in the start box |
 | 25.8 | 10 | podium, then the duel returns | - | follow line, no promised episode; the loop closes on frame 0 |
-Longest stretch without a visual change, measured on the mixed file: 1.87 s (target 2.5 s). Gate: `video/ep99/out/gate-v6.txt`, all five checks PASS; qa.py warns that 28.21 s is under its 30 s band (a warning, not a failure). Blind readers have not seen v6 yet.
+Longest stretch without a visual change, measured on the mixed file: 1.87 s (target 2.5 s). Gate: `video/ep99/out/gate-v7.txt`, all five checks PASS; qa.py warns that 28.21 s is under its 30 s band (a warning, not a failure). Blind readers have not seen v7 yet.

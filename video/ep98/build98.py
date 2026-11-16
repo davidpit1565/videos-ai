@@ -94,6 +94,12 @@ rEND = NF / 60
 
 # ---------------------------------------------------------------- cues: fresh take, or an estimated timeline
 LINES = [l.strip() for l in open(H_ + "/voice/lines.txt") if l.strip()]; NL = len(LINES)
+# v13 (David, 15-16.11): new hook. Until lines 1-3 are re-voiced, voice/lines.txt still holds the old text: the scene is then
+# built for the PLANNED lines with ESTIMATED times (OPEN_EST), and says so in the log and in cues98.json.
+PLAN = {1: "Claude just killed ChatGPT.", 2: "Each AI taught a car to drive. Fastest wins.", 3: "Two laps. Go!"}
+OPEN_EST = any(norm(LINES[n - 1]) != norm(PLAN[n]) for n in PLAN)
+if OPEN_EST:
+    for n in PLAN: LINES[n - 1] = PLAN[n]
 try:
     C = json.load(open(H_ + "/voice/narration-raw-cues.json")); C = C if isinstance(C, list) else C["lines"]
 except Exception:
@@ -108,7 +114,7 @@ for n in range(1, NL + 1):
     t = LINES[n - 1]
     if not STALE: DUR[n] = float(CUE[n]["end"]) - float(CUE[n]["start"])
     elif norm(t) in OLD: DUR[n] = round(OLD[norm(t)], 2)                 # same words in the old take: its real length
-    elif n == 3: DUR[n] = 1.75                                          # "Fastest wins. Pick one. Go!"
+    elif n in (1, 2, 3): DUR[n] = {1: 1.55, 2: 2.6, 3: 1.15}[n]         # planned lines 1-3, not voiced yet
     else: DUR[n] = round(.3 + .045 * len(t), 2)
 WORDS = []
 if not STALE:
@@ -117,18 +123,23 @@ if not STALE:
         if not (WORDS and norm(WORDS[0][0]) == norm(LINES[0].split()[0]) and abs(WORDS[-1][2] - float(CUE[NL]["end"])) < 1.2): WORDS = []
     except Exception:
         WORDS = []
+OLDS = {norm(ctext(c)): float(c["start"]) for c in C if "start" in c}
+if STALE:                                                    # old take on disk: its words still time the unchanged lines (shifted to the targets)
+    try: WORDS = json.load(open(H_ + "/voice/words.json"))
+    except Exception: WORDS = []
 SRC = {}
 # lines 1-3 and the word "Go" (the race starts on it)
 SHIFT = {}
 if STALE:
     L = {1: (.08, round(.08 + DUR[1], 2))}
-    for n in (2, 3): L[n] = (round(L[n - 1][1] + .1, 2), round(L[n - 1][1] + .1 + DUR[n], 2))
+    for n in (2, 3): L[n] = (round(L[n - 1][1] + (.3, .2)[n - 2], 2), round(L[n - 1][1] + (.3, .2)[n - 2] + DUR[n], 2))
 else:
     L = {n: (float(CUE[n]["start"]), float(CUE[n]["end"])) for n in range(1, NL + 1)}
 s = lambda n: L[n][0]
 e = lambda n: L[n][1]
 def W(word, n, k=0):
     c = 0
+    if STALE and n not in SHIFT: return None
     for w, a, b in WORDS:
         a = a + SHIFT.get(n, 0)
         if s(n) - .12 <= a <= e(n) + .12 and norm(w) == word:
@@ -158,14 +169,14 @@ def speech(n, gap):
         return [x for x in out if x[1] - x[0] >= .05]
     except Exception:
         return []
-if STALE: T0 = s(3) + .86 * DUR[3]; SRC["go"] = "ESTIMATE (stale cues)"
+if STALE: T0 = s(3) + .68 * DUR[3]; SRC["go"] = "ESTIMATE (lines 1-3 not voiced yet)"
 else:
     T0 = W("go", 3)
     if T0 is not None: SRC["go"] = "words.json"
     else:
         sg = speech(3, .15)
         if len(sg) >= 2: T0 = sg[-1][0]; SRC["go"] = "speech gap in the wav"
-        else: T0 = s(3) + .86 * (e(3) - s(3)); SRC["go"] = "line fraction"
+        else: T0 = s(3) + .68 * (e(3) - s(3)); SRC["go"] = "line fraction"
 T0 = round(T0, 3)
 V = lambda r: T0 + r                                         # video time of a race time, live part (1x)
 vP, vM, vC, vGm, vCh = V(tP), V(tM), V(tC), V(tGm), V(tCh)
@@ -181,6 +192,7 @@ ONTG = STALE or (os.environ.get("PLACE") != "cues" and any(abs(v) > .45 for v in
 if ONTG:
     for n in range(4, NL + 1):
         if not STALE: SHIFT[n] = TG[n] - L[n][0]
+        elif norm(LINES[n - 1]) in OLDS: SHIFT[n] = TG[n] - OLDS[norm(LINES[n - 1])]
         L[n] = (TG[n], round(TG[n] + DUR[n], 2))
 D = round(e(NL) + .4, 2)
 tF = D - .58                                                 # the frame-0 layout comes back from here
@@ -208,11 +220,12 @@ LIVE_END = round(vRm - T0, 2)
 # ---------------------------------------------------------------- page geometry (v4): headline band on top, full-bleed stage below it
 BAND = 470                                                  # the stage starts here (page y); above it: paper + the headline
 VPL, VPT, VPW, VPH = -20, BAND, 1120, 1920 - BAND + 20      # the stage: full width, down to the bottom of the page
-PCX, PCY = 495 - VPL, 860 - VPT                             # where the camera centre sits (page 495, 860: middle of the action area)
-AW, AH = 770, 700                                           # action area the camera keeps the cars in (page x 110-880, y 510-1210)
-CXS = [160, 350, 540, 730, 920]                             # the five columns: line-up cars and their chips
-CARY, CHY, CHD = 657, 892, 100                              # line-up car centre y, chip centre y, chip diameter
-STRIPX, STRIPY0, STRIPDY, STRIPS = 962, 560, 124, .86       # chips as the status strip during the race: a column on the right edge of the safe box
+PCX, PCY = 575 - VPL, 860 - VPT                             # where the camera centre sits (page 495, 860: middle of the action area)
+AW, AH = 690, 700                                           # action area the camera keeps the cars in (page x 110-880, y 510-1210)
+LUP = [(250, 692), (540, 692), (830, 692), (395, 1052), (685, 1052)]   # line-up: a 3 + 2 start grid, big cars (x 152-928, y 529-1215; below y 1056 nothing right of 783)
+LUW, LUL = 196, 326                                         # line-up car width and length on the page
+CHD = 100                                                   # chip diameter
+STRIPX, STRIPY0, STRIPDY, STRIPS = 156, 560, 122, .86       # status chips during the race: a column on the LEFT edge of the safe box (x 113-199), clear of the right-hand buttons
 GRASS = "#c5d3aa"; ROAD = "#cdc9bc"
 
 # ---------------------------------------------------------------- camera (scene choice): centre x, y, zoom and car draw scale per race frame
@@ -272,7 +285,7 @@ clamp = lambda x, lo, hi: max(lo, min(hi, x))
 HEADS = []
 def head(i, t_in, t_out, l1, l2="", logos=(), t2=None, size=92, extra="", lab=False, pre=""):
     wl = len(logos) * 86
-    fs = min(size, 900 / max((tw(l1) + wl * 100 / 84) / 100, tw(l2) / 100 if l2 else 0.01))
+    fs = min(size, 850 / max((tw(l1) + wl * 100 / 84) / 100, tw(l2) / 100 if l2 else 0.01))
     lg = "".join(logo(k, round(fs * .86), "hlg") for k in logos)
     l2h = f'<div class="hl2" id="h{i}b">{l2}</div>' if l2 else ""
     top = 283 if l2 else (334 + max(0, (118 - fs) / 2) if lab else 283 + max(0, (176 - fs) / 2 - 10))
@@ -287,25 +300,32 @@ tA3 = clamp(s(4), vP - .6, vP - .12)                        # the event headline
 tA4 = clamp(s(5), vM - .7, vM - .12)
 tA5 = clamp(s(6), vM + 1.0, vC - .9)
 tS8 = W("send", 8); tS8 = tS8 if tS8 is not None else s(8) + .52 * (e(8) - s(8))
-tPkW = W("pick", 3); tPkW = tPkW if tPkW is not None else s(3) + .46 * (e(3) - s(3))    # the spoken "Pick one"
-tPkW = min(tPkW, T0 - .55)
-MZI = '<svg class="mzi" viewBox="-8 -8 236 236"><path d="MZD" fill="none" stroke="#0f0f0f" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-head(0, None, s(2) - .02, "ONE HITS THE WALL.", size=112, lab=True)
-head(1, tPkW, T0 - .04, "PICK ONE.", size=116, lab=True)
+wt = lambda word, n, frac: (lambda t: t if t is not None else s(n) + frac * (e(n) - s(n)))(W(word, n))
+tFW = wt("fastest", 2, .68)
+tFOL = wt("follow", 9, .47)
+# the hook: one sentence, the spoken words lit as said (ep89/ep99 headline: heavy words + one small word)
+HK = [("CLAUDE", "kw", 0.0), ("just", "ks", wt("just", 1, .3)), ("KILLED", "kw kk", wt("killed", 1, .44)), ("CHATGPT.", "kw", wt("chatgpt", 1, .66))]
+HKFS = min(124, 100 * 850 / (tw("CLAUDE") * .985 + tw("KILLED") * .985 + 150))
+HEADS.append(f'<div id="hk" style="font-size:{HKFS:.1f}px;line-height:{HKFS * .98:.1f}px"><div><span class="kw on" id="hk0">CLAUDE</span> <span class="ks" id="hk1">just</span> <span class="kw kk" id="hk2">KILLED</span></div><div><span class="kw" id="hk3">CHATGPT.</span></div></div>')
+for q in (1, 2, 3):
+    js(f"tl.to('#hk{q}',{{color:'#0f0f0f',duration:.12,ease:'sine.out'}},{HK[q][2]:.3f});")
+    js(f"tl.fromTo('#hk{q}',{{scale:1}},{{scale:{1.1 if q == 2 else 1.05},duration:.14,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{HK[q][2]:.3f});")
+tIMP = max(.5, HK[2][2] + .04)                               # the squash lands on "killed"
+fout("#hk", s(2) - .5)
+head(1, s(2) + .04, tFW - .02, "EACH AI TAUGHT A CAR.")
+head(12, tFW, s(3) - .02, "FASTEST WINS.", size=118)
+head(13, s(3), T0 - .04, "TWO LAPS.", size=118)
 HEADS.append('<div class="hd go" id="hgo"><div class="hl1"><span>GO!</span></div></div>')
 js(f"tl.fromTo('#hgo',{{opacity:0,scale:.6}},{{opacity:1,scale:1,duration:.3,ease:'power3.out',immediateRender:false}},{T0:.3f});")
 js(f"tl.to('#hgo',{{opacity:0,scale:1.2,duration:.26,ease:'power2.in'}},{tA2 - .3:.3f});")
-head(2, tA2, tA3, "TWO LAPS.", "HANDS OFF.")
+head(2, tA2, tA3, "HANDS OFF.", size=118)
 head(3, tA3, tA4, "PERPLEXITY", "STOPS DEAD", logos=("perplexity",), t2=vP)
 head(4, tA4, tA5, "META AI", "HITS THE WALL", logos=("meta",), t2=vM)
 head(5, tA5, vR0 + .1, "NECK AND NECK", logos=("claude", "gemini"))
 head(7, vR0 + .12, vX, "WHO WON?", size=120)
 head(8, vX, tK, "CLAUDE WINS", f"{GAP} s AHEAD OF GEMINI", logos=("claude",), t2=vXg)
-head(9, tK, s(9) - .04, "SEND IT TO A FRIEND", "SEE WHO THEY PICK", t2=tS8)
-head(10, s(9), tF + .04, "NEXT: A MAZE", size=112, pre=MZI)
-fin("#h0", tF + .06, .42)
-LABW = tw("AI DRIVING CONTEST") * .44 + 18 * .44 * 7 + 56         # label width at 44 px (letter-spacing +.04em), with its flag
-LABS = min(1.9, 890 / LABW)
+head(9, tK + .12, s(9) - .04, "SEND IT TO A FRIEND", "SEE WHO THEY PICK", t2=tS8)
+head(10, s(9), None, "WANT THE NEXT ONE?")
 
 # ---------------------------------------------------------------- markup: the world (ground, road, trails, cars, effects), drawn turned 90 degrees by render()
 pts = lambda P: " ".join(f"{p[0]:.1f},{p[1]:.1f}" for p in P)
@@ -365,46 +385,80 @@ world = f'''{road}{trails}
 <div class="cars">{"".join(car(c, k) for c, k in enumerate(IDS))}</div>
 <div class="mks">{qmark}{xmark}</div>'''
 
-# ---------------------------------------------------------------- markup: the line-up scene (frame 0, premise, pick). Page coordinates.
-REQ = "Teach this car to drive."
-BFS = min(64, 100 * 590 / tw8(REQ))
-lane = "".join(f'<path d="M{x} {BAND + 60} V1930"/>' for x in (255, 445, 635, 825))
+# ---------------------------------------------------------------- markup: side-view cartoon cars (opening, podium, follow scene). Scene drawings, not race data.
+def scar(cid, k, W, flip=False, mood="n", extra="", cls=""):
+    """a side-view car, nose to the right (flip: nose to the left). Real logo on the door, eyes in the window."""
+    Hh = W * .62; u = W / 200
+    pup = {"n": (2, 1, 4.6), "angry": (2.5, 2, 4.6), "scared": (-2, -3, 3.4), "sad": (0, 3, 4.2)}[mood]
+    brow = '<path d="M99 26 L121 35 M149 26 L127 35" fill="none" stroke="#0f0f0f" stroke-width="5.5" stroke-linecap="round"/>' if mood == "angry" else ""
+    body = f'''<svg class="scb" viewBox="0 0 200 124"><g transform="translate(7 7)"><path d="M14 80 Q14 56 40 54 L62 52 Q74 22 104 20 L132 20 Q156 22 168 52 L182 58 Q194 62 194 80 Q194 94 180 94 L24 94 Q14 94 14 80Z" fill="#0f0f0f"/></g>
+ <path d="M14 80 Q14 56 40 54 L62 52 Q74 22 104 20 L132 20 Q156 22 168 52 L182 58 Q194 62 194 80 Q194 94 180 94 L24 94 Q14 94 14 80Z" fill="{COL[k]}" stroke="#0f0f0f" stroke-width="7" stroke-linejoin="round"/>
+ <path d="M73 53 Q82 29 104 28 L131 28 Q149 30 158 53Z" fill="#eef4f4" stroke="#0f0f0f" stroke-width="5" stroke-linejoin="round"/>
+ <path d="M184 66 h9" stroke="#fff" stroke-width="7" stroke-linecap="round"/><path d="M16 72 h8" stroke="#E5372B" stroke-width="7" stroke-linecap="round"/>
+ <g class="eyes"><circle cx="113" cy="42" r="10.5" fill="#fff" stroke="#0f0f0f" stroke-width="4"/><circle cx="138" cy="42" r="10.5" fill="#fff" stroke="#0f0f0f" stroke-width="4"/>
+ <circle cx="{113 + pup[0]}" cy="{42 + pup[1]}" r="{pup[2]}" fill="#0f0f0f"/><circle cx="{138 + pup[0]}" cy="{42 + pup[1]}" r="{pup[2]}" fill="#0f0f0f"/>{brow}</g>{extra}</svg>'''
+    wheel = lambda i, x: f'''<svg class="sw sw{i}" viewBox="-23 -23 46 46" style="left:{(x - 23) * u:.1f}px;top:{(96 - 23) * u:.1f}px;width:{46 * u:.1f}px;height:{46 * u:.1f}px"><circle r="20" fill="#0f0f0f"/><circle r="10.5" fill="#d9d6cc" stroke="#0f0f0f" stroke-width="2"/><path d="M-10 0 H10 M0 -10 V10" stroke="#0f0f0f" stroke-width="3.4"/></svg>'''
+    bx = (90 if flip else 110) * u; bd = .235 * W
+    bdg = f'<div class="scl" style="left:{bx - bd / 2:.1f}px;top:{77 * u - bd / 2:.1f}px">{badge(k, round(bd))}</div>'
+    inner = f'<div class="scq">{body}{"" if flip else bdg}</div>{wheel(1, 54)}{wheel(2, 150)}'
+    return f'<div class="sc {cls}" id="{cid}" style="width:{W}px;height:{Hh:.0f}px"><div class="scf"{" style=transform:scaleX(-1)" if flip else ""}>{inner}</div>{bdg if flip else ""}</div>'
+BAND_AID = '<g transform="translate(180 70) rotate(-24)"><rect x="-17" y="-7" width="34" height="14" rx="5" fill="#f3e3c2" stroke="#0f0f0f" stroke-width="3"/><path d="M-5 -3 v6 M0 -3 v6 M5 -3 v6" stroke="#0f0f0f" stroke-width="2"/></g><g transform="translate(180 70) rotate(66)"><rect x="-17" y="-7" width="34" height="14" rx="5" fill="#f3e3c2" stroke="#0f0f0f" stroke-width="3"/></g>'
+# ---- the opening: the claim as a clean cartoon. The Claude car lands on the ChatGPT car and flattens it (no damage shown: a pancake, wheels roll off)
+OCW = 540; OCH = OCW * .62; OGY = 1196                       # car size, ground line
+OCX, OCY = 250, OGY - OCH * 116 / 124                        # the ChatGPT car stands here (x 315-765)
+OKY = OGY - OCH * .2 * 116 / 124 - OCH * 116 / 124 + 26      # where the Claude car sits once the other one is flat
+op = f'''<svg class="ogl" data-decor viewBox="0 0 1080 1920" width="1080" height="1920"><path d="M108 {OGY + 3} H972" fill="none" stroke="#0f0f0f" stroke-width="8" stroke-linecap="round" filter="url(#wob)"/>
+ <ellipse id="osh" cx="{OCX + OCW / 2}" cy="{OGY + 5}" rx="{OCW * .5:.0f}" ry="15" fill="#0f0f0f" opacity=".18"/>
+</svg>
+<div id="ocw" style="left:{OCX}px;top:{OCY:.0f}px">{scar("oc", "chatgpt", OCW, mood="scared")}</div>
+<svg class="ostar" id="ost" viewBox="-34 -34 68 68" style="left:{OCX + OCW / 2 - 170:.0f}px;top:{OGY - 290}px"><path d="{star}"/></svg>
+{"".join(f'<div class="opf" id="opf{q}" style="left:{OCX + OCW / 2}px;top:{OGY - 30}px"></div>' for q in range(8))}
+<div id="okw" style="left:{OCX + 6}px;top:{OKY:.0f}px"><svg id="osl" viewBox="0 0 200 124" style="position:absolute;left:0;top:0;width:{OCW}px;height:{OCH:.0f}px;overflow:visible"><g fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linecap="round"><path d="M150 12 L172 -10"/><path d="M172 30 L196 6"/><path d="M190 52 L208 34"/></g></svg>{scar("ok", "claude", OCW, flip=True, mood="angry")}</div>'''
+# ---- the end: its own scene. A podium (facts of race.json), the two that did not finish beside it; then a calm follow card
+PB = [("claude", 396, 722, 350, "1", f"{RES['claude']['timeS']:.2f} s"), ("gemini", 108, 826, 246, "2", f"+{GAP} s"), ("chatgpt", 684, 900, 172, "3", f"+{tCh - tC:.1f} s")]
+PCW = 258; PCH = PCW * .62
+en = ""
+for q, (k, x, y, h, num, txt) in enumerate(PB):
+    en += f'<div class="pb pb{q}" id="pb{q}" style="left:{x}px;top:{y}px;height:{h}px"><b>{num}</b><span>{txt}</span></div>'
+for q, (k, x, y, h, num, txt) in enumerate(PB):
+    en += f'<div class="pcw" id="pc{q}" style="left:{x + 12}px;top:{y - PCH * 116 / 124 + 3:.0f}px">{scar("pcar%d" % q, k, PCW, mood="angry" if q == 0 else "n")}</div>'
+en += f'''<div class="pcw" id="pc3" style="left:108px;top:1112px">{scar("pcar3", "meta", 206, mood="sad", extra=BAND_AID)}</div><div class="pl" id="pl3" style="left:324px;top:1146px">TOUCHED<br>THE WALL</div>
+<div class="pcw" id="pc4" style="left:494px;top:1112px">{scar("pcar4", "perplexity", 206, mood="sad")}</div><div class="pl" id="pl4" style="left:708px;top:1146px">STUCK IN<br>THE BEND</div>'''
+FFS = min(236, 100 * 850 / tw("FOLLOW"))
+fo = f'''<div id="fw" style="font-size:{FFS:.0f}px;line-height:{FFS:.0f}px">FOLLOW</div>
+<svg id="fu" viewBox="0 0 864 40" style="left:108px;top:{500 + FFS + 4:.0f}px"><path d="M8 22 C150 6 330 34 480 18 S760 10 856 24" pathLength="1"/></svg>
+<div id="fl" style="top:{500 + FFS + 70:.0f}px">the request: link in bio</div>
+<svg class="ogl" data-decor viewBox="0 0 1080 1920" width="1080" height="1920"><path d="M108 1213 H972" fill="none" stroke="#0f0f0f" stroke-width="8" stroke-linecap="round" filter="url(#wob)"/></svg>
+<div class="pcw" id="fc1" style="left:120px;top:{1210 - 340 * .62 * 116 / 124:.0f}px">{scar("fcar1", "gemini", 340)}</div>
+<div class="pcw" id="fc0" style="left:500px;top:{1210 - 340 * .62 * 116 / 124:.0f}px">{scar("fcar0", "claude", 340, mood="angry")}</div>'''
+
+# ---------------------------------------------------------------- markup: the line-up scene (lines 2-3): a 3 + 2 start grid, top view. Page coordinates.
 sq = 18; lch = ""
 for i in range(round(1000 / sq) + 1):
     for q in range(2):
         if (i + q) % 2 == 0: lch += f'<rect x="{40 + i * sq}" y="{BAND + 10 + q * sq}" width="{sq}" height="{sq}" fill="{INK}"/>'
 check = '<path d="M-10 1 L-3 8 L11 -8" pathLength="1"/>'
+slots = "".join(f'<path d="M{x - LUW / 2 - 12:.0f} {y - LUL / 2 + 26:.0f} V{y - LUL / 2 - 14:.0f} H{x + LUW / 2 + 12:.0f} V{y - LUL / 2 + 26:.0f}"/>' for x, y in LUP)
 sa = f'''<svg class="sag" viewBox="0 0 1080 1920" width="1080" height="1920">
  <defs>{GDEF.replace("PID", "gr2").replace("PT", "")}<filter id="wob2" x="-20%" y="-2%" width="140%" height="104%"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter></defs>
  <rect x="-40" y="{BAND - 10}" width="1160" height="1480" fill="url(#gr2)"/>
  <rect x="47" y="{BAND - 10}" width="1000" height="1480" fill="{INK}"/><rect x="40" y="{BAND - 10}" width="1000" height="1480" fill="{ROAD}"/>
- <g fill="none" stroke="{INK}" stroke-opacity=".2" stroke-width="5" stroke-dasharray="26 28">{lane}</g>
  <rect x="40" y="{BAND + 10}" width="1000" height="{2 * sq}" fill="#fff"/>{lch}
+ <g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">{slots}</g>
  <g filter="url(#wob2)" fill="none" stroke="{INK}" stroke-width="8"><path d="M40 {BAND - 10} V1940"/><path d="M1040 {BAND - 10} V1940"/></g>
 </svg>'''
 for c, k in enumerate(IDS):
-    cx = CXS[c]
-    sa += f'<div class="lpw" id="lpw{c}">' + "".join(f'<div class="lp" id="lp{c}{q}" style="left:{cx - 36 + 72 * q}px;top:{CARY + 128}px"></div>' for q in range(2)) + "</div>"
-    sa += f'<svg class="lk" id="lk{c}" style="left:{cx - 20}px;top:{CARY + 136}px" viewBox="-20 0 40 44"><path d="M0 44 V8 M-9 18 L0 6 L9 18"/></svg>'
+    x, y = LUP[c]
+    sa += f'<div class="lpw" id="lpw{c}">' + "".join(f'<div class="lp" id="lp{c}{q}" style="left:{x - 46 + 92 * q}px;top:{y + LUL / 2 + 4:.0f}px"></div>' for q in range(2)) + "</div>"
 for c, k in enumerate(IDS):
-    cx = CXS[c]
-    sa += f'''<div class="lc" id="lc{c}" style="left:{cx}px;top:{CARY}px"><div class="lcb"><svg class="lb0" viewBox="-24 -40 48 80"><g transform="rotate(-90)">{bodyparts("#fbfbf8")}</g></svg><svg class="lb1" id="lb{c}" viewBox="-24 -40 48 80"><g transform="rotate(-90)">{bodyparts(COL[k])}</g></svg>{badge(k, 112, "lbd")}</div></div>'''
-sa += f'''<div id="bub"><svg class="bcar" viewBox="-42 -26 84 52">{bodyparts("#fbfbf8")}</svg><div id="btx" style="font-size:{BFS:.1f}px;line-height:{BFS * 1.2:.1f}px">{REQ}</div>
- <svg class="btail" data-decor viewBox="0 0 60 44"><path d="M4 0 C10 22 30 36 56 40 C36 40 18 30 4 0Z" fill="#fff" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/><rect x="0" y="-6" width="40" height="9" fill="#fff"/></svg></div>'''
-sa += "".join(f'<div class="nt" id="nt{c}"><i></i><i></i></div>' for c in range(5))
-
-IC = dict(fill="none", stroke=INK)
-ICONS = [f'<svg class="ci" viewBox="-30 -30 60 60"><ellipse rx="21" ry="14" fill="none" stroke="{INK}" stroke-width="7"/><path d="M-5 -24 L8 -14 L-6 -5" fill="none" stroke="{INK}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-         f'<svg class="ci" viewBox="-30 -30 60 60"><rect x="-24" y="-17" width="48" height="34" fill="#fff" stroke="{INK}" stroke-width="5"/><path d="M-24 -6 H24 M-24 6 H24 M-8 -17 V-6 M8 -17 V-6 M0 -6 V6 M-8 6 V17 M8 6 V17" fill="none" stroke="{INK}" stroke-width="4"/><path d="M-20 -22 L20 22 M20 -22 L-20 22" fill="none" stroke="{RED}" stroke-width="8" stroke-linecap="round"/></svg>',
-         f'<svg class="ci" viewBox="-30 -30 60 60"><circle cy="5" r="19" fill="#fff" stroke="{INK}" stroke-width="6"/><path d="M-6 -24 H6 M0 -24 V-15 M0 5 L9 -6" fill="none" stroke="{INK}" stroke-width="6" stroke-linecap="round"/></svg>']
-CHAL = ["2 LAPS", "DON&rsquo;T TOUCH THE WALL", "FASTEST WINS"]
-sa += '<div id="chal">' + "".join(f'<div class="cq" id="cq{q}">{ICONS[q]}<span>{x}</span></div>' for q, x in enumerate(CHAL)) + "</div>"
+    x, y = LUP[c]
+    sa += f'''<div class="lc" id="lc{c}" style="left:{x}px;top:{y}px"><div class="lcb"><svg class="lb0" viewBox="-24 -40 48 80"><g transform="rotate(-90)">{bodyparts("#fbfbf8")}</g></svg><svg class="lb1" id="lb{c}" viewBox="-24 -40 48 80"><g transform="rotate(-90)">{bodyparts(COL[k])}</g></svg>{badge(k, 146, "lbd")}</div></div>'''
 
 # ---------------------------------------------------------------- markup: chips (the AIs; later the status strip: fixed order, status only), maze, result card
 strip = '<div id="strip">'
 for c, k in enumerate(IDS):
     mark = '<path d="M-9 -9 C-9 -22 11 -22 11 -9 C11 0 1 0 1 8 M1 17 V17.5" pathLength="1"/>' if k == "perplexity" else '<path d="M-13 -13 L13 13 M13 -13 L-13 13" pathLength="1"/>' if k == "meta" else ""
-    strip += f'''<div class="sl" id="sl{c}" style="left:{CXS[c] - CHD / 2:.0f}px;top:{CHY - CHD / 2:.0f}px"><i class="ring" style="border-color:{COL[k]}"></i>{badge(k, CHD, "tb")}{f'<svg class="tm" viewBox="-22 -24 44 48">{mark}</svg>' if mark else ""}
+    strip += f'''<div class="sl" id="sl{c}" style="left:{STRIPX - CHD / 2:.0f}px;top:{STRIPY0 + STRIPDY * c - CHD / 2:.0f}px"><i class="ring" style="border-color:{COL[k]}"></i>{badge(k, CHD, "tb")}{f'<svg class="tm" viewBox="-22 -24 44 48">{mark}</svg>' if mark else ""}
  <div class="dots"><i class="d1"></i><i class="d2"></i></div><div class="tk" id="tk{c}"><i></i><i></i><i></i></div><svg class="ck" id="ck{c}" viewBox="-20 -20 40 40"><circle r="17"/>{check}</svg></div>'''
 strip += "</div>"
 # maze teaser: seeded depth-first maze, drawn as one stroke
@@ -433,26 +487,19 @@ while stack:
     else: stack.pop()
 wd = f"M{MC / 2} {MN * MC + 26} " + " ".join(f"L{x * MC + MC / 2} {y * MC + MC / 2}" for x, y in best[:12])
 maze = f'<div id="msheet"><svg viewBox="-8 -8 {MN * MC + 16} {MN * MC + 44}"><path id="mzw" d="{md}" pathLength="1"/><path id="mzp" d="{wd}" pathLength="1"/></svg><div id="mzq">?</div></div>'
-ROWS = [("claude", "1", f"{RES['claude']['timeS']:.2f} s"), ("gemini", "2", f"{RES['gemini']['timeS']:.2f} s"), ("chatgpt", "3", f"{RES['chatgpt']['timeS']:.2f} s"),
-        ("meta", "&ndash;", "touched the wall"), ("perplexity", "&ndash;", "stuck in the bend")]
-card = '<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">AI DRIVING CONTEST &middot; 2 LAPS</div>'
-for i, (k, pl, res) in enumerate(ROWS):
-    card += f'<div class="cr" id="cr{i}" style="top:{118 + i * 118}px"><span class="cp">{pl}</span>{badge(k, 78)}<span class="cn">{NAME[k]}</span><span class="cv">{res}</span>{"<i></i>" if i == 0 else ""}</div>'
-card += "</div>"
 markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam">
- <div id="vp"><div id="world" class="world">{world}</div><div id="flash"></div><div id="dip"></div>{maze}</div>
+ <div id="vp"><div id="world" class="world">{world}</div><div id="flash"></div><div id="dip"></div></div>
  <div id="saw"><div id="sa">{sa}</div></div>
  <svg id="edge" data-decor viewBox="0 0 1120 20" width="1120" height="20"><path d="M0 10 H1120" fill="none" stroke="{INK}" stroke-width="7" filter="url(#wob)"/></svg>
  <div id="slow"><b></b>SLOW MOTION REPLAY</div>
  {strip}
- <div id="lab"><svg viewBox="0 0 40 40"><path d="M6 38 V3" stroke="#0f0f0f" stroke-width="5" stroke-linecap="round"/><path d="M6 4 H36 V24 H6Z" fill="#fff" stroke="#0f0f0f" stroke-width="3"/><path d="M6 4 h10 v10 h-10z M26 4 h10 v10 h-10z M16 14 h10 v10 h-10z" fill="#0f0f0f"/></svg>AI DRIVING CONTEST</div>
+ <div class="full" id="op"><div class="fi" id="opi">{op}</div></div>
+ <div class="full" id="en"><div class="fi">{en}</div></div>
+ <div class="full" id="fo"><div class="fi">{fo}</div></div>
  {"".join(HEADS)}
- {card}
 </div>'''
-
-markup = markup.replace("MZD", md)
 
 CSS = '''
 *{margin:0;padding:0;box-sizing:border-box}
@@ -466,7 +513,29 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #edge{position:absolute;left:-20px;top:460px;z-index:3;overflow:visible}
 .world{position:absolute;left:0;top:0;width:950px;height:808px;transform-origin:0 0;will-change:transform}
 #strip{position:absolute;left:0;top:0;width:0;height:0;z-index:4}
-.hd{z-index:5} #card{z-index:6} #slow{z-index:3}
+.hd,#hk{z-index:8} #slow{z-index:3}
+.full{position:absolute;left:-20px;top:-20px;width:1120px;height:1960px;background:#ecebe5 url(assets/bg.jpg);background-size:1120px 1960px;z-index:6;transform-origin:560px 800px}
+.fi{position:absolute;left:20px;top:20px;width:1080px;height:1920px}
+#en,#fo{opacity:0}
+.ogl{position:absolute;left:0;top:0;overflow:visible}
+#ocw,#okw,.pcw{position:absolute}
+.sc{position:relative} .scf{position:absolute;left:0;top:0;width:100%;height:100%}
+.scq{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:50% 93.5%}
+.scb{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+.sw{position:absolute;overflow:visible} .scl{position:absolute} .scl .bdg{border-width:5px}
+.ostar{position:absolute;width:340px;height:340px;overflow:visible;opacity:0} .ostar path{fill:#FFD23F;stroke:INK;stroke-width:3;stroke-linejoin:round}
+.opf{position:absolute;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:#fbf8ee;border:4px solid INK;opacity:0}
+#hk{position:absolute;left:108px;top:290px;white-space:nowrap;transform-origin:0 50%}
+.kw,.ks{display:inline-block;color:#b9b8b2;transform-origin:0 80%;white-space:nowrap}
+.kw{font-weight:900;letter-spacing:-.045em} .ks{font-weight:500;letter-spacing:-.02em;font-size:.5em} .kw.on{color:INK}
+.pb{position:absolute;width:288px;background:PAPER;border:6px solid INK;box-shadow:10px 10px 0 INK;display:flex;flex-direction:column;align-items:center;padding-top:8px}
+.pb b{font-weight:900;font-size:136px;line-height:132px;letter-spacing:-.04em} .pb span{font-weight:800;font-size:56px;line-height:62px;letter-spacing:-.02em;white-space:nowrap}
+.pb2 b{font-size:76px;line-height:76px} .pb2{padding-top:6px} .pb2 span{font-size:50px;line-height:54px}
+.pb1 b{font-size:108px;line-height:108px}
+.pl{position:absolute;font-weight:900;font-size:32px;line-height:35px;letter-spacing:-.01em;white-space:nowrap}
+#fw{position:absolute;left:104px;top:500px;font-weight:900;letter-spacing:-.05em;color:#b9b8b2;white-space:nowrap;transform-origin:0 60%}
+#fu{position:absolute;width:864px;height:40px;overflow:visible} #fu path{fill:none;stroke:#D97757;stroke-width:13;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+#fl{position:absolute;left:112px;font-weight:800;font-size:52px;line-height:60px;letter-spacing:-.02em;white-space:nowrap;opacity:0}
 .world svg.road,.world svg.trs{position:absolute;left:0;top:0;overflow:visible}
 .trl{fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;opacity:0}
 .cars,.fx,.mks{position:absolute;left:0;top:0;width:0;height:0}
@@ -488,14 +557,14 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .qm{width:40px;height:60px;margin:-30px 0 0 -20px} .xm{width:40px;height:40px;margin:-20px 0 0 -20px}
 #flash,#dip{position:absolute;left:0;top:0;width:VPWpx;height:VPHpx;opacity:0;pointer-events:none}
 #flash{background:#fff} #dip{background:#ecebe5 url(assets/bg.jpg);background-size:1120px 1960px;background-position:0 -BANDpx}
-#slow{position:absolute;left:84px;top:492px;font-weight:900;font-size:30px;line-height:36px;letter-spacing:-.01em;color:RED;white-space:nowrap;opacity:0;display:flex;align-items:center;gap:9px;
+#slow{position:absolute;left:226px;top:492px;font-weight:900;font-size:30px;line-height:36px;letter-spacing:-.01em;color:RED;white-space:nowrap;opacity:0;display:flex;align-items:center;gap:9px;
  text-shadow:2px 2px 0 #fbfbf8,-2px 2px 0 #fbfbf8,2px -2px 0 #fbfbf8,-2px -2px 0 #fbfbf8,0 3px 0 #fbfbf8,3px 0 0 #fbfbf8,-3px 0 0 #fbfbf8,0 -3px 0 #fbfbf8}
 #slow b{display:block;width:17px;height:17px;border-radius:50%;background:RED;border:2px solid #fbfbf8}
 .sag{position:absolute;left:0;top:0;overflow:visible}
 .lc{position:absolute;width:0;height:0}
-.lcb{position:absolute;left:-75px;top:-125px;width:150px;height:250px}
-.lcb svg{position:absolute;left:0;top:0;width:150px;height:250px;overflow:visible}
-.lcb .lbd{position:absolute;left:19px;top:69px;border-width:5px}
+.lcb{position:absolute;left:-98px;top:-163px;width:196px;height:326px}
+.lcb svg{position:absolute;left:0;top:0;width:196px;height:326px;overflow:visible} .lb1{opacity:0}
+.lcb .lbd{position:absolute;left:25px;top:90px;border-width:6px}
 .lp{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:#fbf8ee;border:3px solid INK;opacity:0}
 .lk{position:absolute;width:40px;height:44px;overflow:visible} .lk path{fill:none;stroke:INK;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
 #bub{position:absolute;left:120px;top:1052px;width:840px;height:172px;background:#fff;border:6px solid INK;border-radius:50px;box-shadow:9px 9px 0 INK;display:flex;align-items:center;justify-content:center;gap:26px;transform-origin:50% 60%}
@@ -510,18 +579,17 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #lab{position:absolute;left:65px;top:279px;z-index:5;font-weight:900;font-size:44px;line-height:48px;letter-spacing:.04em;white-space:nowrap;display:flex;align-items:center;gap:14px;transform-origin:0 0}
 #lab svg{width:42px;height:42px;flex:none}
 .mzi{width:.86em;height:.86em;margin-right:.2em;flex:none;overflow:visible}
-.sl{position:absolute;width:100px;height:100px;will-change:transform}
+.sl{position:absolute;width:100px;height:100px;will-change:transform;opacity:0}
 .sl .tb{position:absolute;left:0;top:0;border-width:5px;box-shadow:5px 5px 0 INK}
 .ring{position:absolute;left:-13px;top:-13px;width:126px;height:126px;border-radius:50%;border:8px solid INK;opacity:0}
-.dots{position:absolute;left:23px;top:108px;display:flex;gap:10px;opacity:0} .dots i{display:block;width:21px;height:21px;border-radius:50%;border:4px solid INK;background:PAPER}
+.dots{position:absolute;left:23px;top:108px;display:flex;gap:10px} .dots i{display:block;width:21px;height:21px;border-radius:50%;border:4px solid INK;background:PAPER}
 .tm{position:absolute;left:4px;top:0;width:92px;height:100px;overflow:visible;opacity:0}
 .tm path{fill:none;stroke:RED;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
 .tk{position:absolute;left:52px;top:-34px;width:74px;height:40px;border-radius:20px;background:#fff;border:4px solid INK;display:flex;align-items:center;justify-content:center;gap:7px;opacity:0;transform-origin:20% 100%}
 .tk i{display:block;width:10px;height:10px;border-radius:50%;background:INK}
 .ck{position:absolute;left:62px;top:-22px;width:52px;height:52px;overflow:visible;transform-origin:50% 50%;opacity:0}
 .ck circle{fill:#27A35B;stroke:INK;stroke-width:3.5} .ck path{fill:none;stroke:#fff;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
-.hd{position:absolute;left:65px;top:283px;font-weight:900;letter-spacing:-.03em;white-space:nowrap;opacity:0;transform-origin:0 50%}
-#h0{opacity:1}
+.hd{position:absolute;left:108px;top:283px;font-weight:900;letter-spacing:-.03em;white-space:nowrap;opacity:0;transform-origin:0 50%}
 .hl1{display:flex;align-items:center} .hlg{margin-right:.16em;flex:none} .hl2{display:block}
 .hd.go{font-size:170px;line-height:170px;top:286px}
 #h8 .hl2{font-size:.62em;line-height:1.3em;letter-spacing:-.02em}
@@ -549,61 +617,55 @@ for a_, b_ in (("VPL", VPL), ("VPT", VPT), ("VPW", VPW), ("VPH", VPH), ("BAND", 
 # ---------------------------------------------------------------- timeline (GSAP: text, line-up, chips, cards; cars and camera are driven by render())
 js(f"tl.fromTo('#cam',{{scale:1,rotation:0}},{{scale:1.012,rotation:.2,duration:{D / 4:.3f},ease:'sine.inOut',yoyo:true,repeat:3}},0);")
 js(f"tl.fromTo('.bgw',{{x:0,y:0}},{{x:-14,y:-12,duration:{D / 2:.3f},ease:'sine.inOut',yoyo:true,repeat:1}},0);")
-# beat 1: the hook over the finished picture (request, five AIs, five cars). "ONE HITS THE WALL" breathes on the word
-tw_ = W("wall", 1); tw_ = tw_ if tw_ is not None else s(1) + .82 * (e(1) - s(1))
-js(f"tl.fromTo('#h0 .hl1',{{scale:1}},{{scale:1.03,transformOrigin:'0 50%',duration:.22,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tw_:.3f});")
-for c in range(5):                                           # engines idle: exhaust puffs and a small rock, the whole time the line-up is on
+# ---- OPENING (line 1): the Claude car comes down on the ChatGPT car and flattens it, on the word "killed"
+tI = tIMP; DX0, DY0 = 166, -(OKY - 512)
+js(f"tl.fromTo('#okw',{{x:{DX0},y:{DY0},rotation:13}},{{x:{DX0 - 14},y:{DY0 - 22},rotation:17,duration:{max(.1, tI - .3):.3f},ease:'sine.inOut'}},0);")
+js(f"tl.to('#okw',{{x:0,y:0,rotation:0,duration:.3,ease:'power2.in'}},{tI - .3:.3f});")
+js(f"tl.to('#okw',{{y:-58,duration:.2,ease:'sine.out'}},{tI + .02:.3f});"); js(f"tl.to('#okw',{{y:0,duration:.22,ease:'sine.in'}},{tI + .22:.3f});")
+hold1 = max(.6, s(2) - tI - .5)
+js(f"tl.fromTo('#ok',{{rotation:0}},{{rotation:-2.2,duration:.16,ease:'sine.inOut',yoyo:true,repeat:{2 * int(hold1 / .32) + 1},immediateRender:false}},{tI + .46:.3f});")
+js(f"tl.fromTo('#ok .sw',{{rotation:0}},{{rotation:-360,duration:.34,ease:'none',repeat:{int((s(2) + .2) / .34) + 1}}},0);")
+js(f"tl.fromTo('#oc',{{x:0}},{{x:5,duration:.06,ease:'sine.inOut',yoyo:true,repeat:{2 * int(max(.12, tI - .12) / .12) + 1}}},0);")
+js(f"tl.to('#oc .scq',{{scaleY:.2,scaleX:1.36,duration:.1,ease:'power3.out'}},{tI - .03:.3f});")
+js(f"tl.to('#oc .scq',{{scaleY:.235,scaleX:1.3,duration:.2,ease:'sine.inOut',yoyo:true,repeat:{2 * int(hold1 / .4) + 3}}},{tI + .07:.3f});")
+js(f"tl.to('#oc .sw1',{{x:-170,rotation:-640,duration:1.15,ease:'power2.out'}},{tI - .02:.3f});")
+js(f"tl.to('#oc .sw2',{{x:112,rotation:420,duration:1.0,ease:'power2.out'}},{tI - .02:.3f});")
+js(f"tl.to('#osh',{{attr:{{rx:{OCW * .68:.0f}}},duration:.12,ease:'power2.out'}},{tI - .02:.3f});")
+js(f"tl.to('#osl',{{opacity:0,duration:.1}},{tI - .08:.3f});")
+js(f"tl.fromTo('#ost',{{opacity:1,scale:.25,rotation:-10}},{{opacity:0,scale:1.5,rotation:14,duration:.5,ease:'power2.out',immediateRender:false}},{tI - .01:.3f});")
+for q in range(8):
+    sg_ = -1 if q % 2 else 1; dist = (150 if sg_ < 0 else 96) + 22 * (q // 2)
+    js(f"tl.fromTo('#opf{q}',{{opacity:.95,x:{sg_ * 190},y:0,scale:.3}},{{opacity:0,x:{sg_ * (190 + dist)},y:{-26 - 16 * (q % 3)},scale:{1 + .2 * (q % 3):.1f},duration:{.6 + .06 * q:.2f},ease:'power2.out',immediateRender:false}},{tI + .02 * q:.3f});")
+for q, dx in enumerate((11, -9, 6, -3, 0)):
+    js(f"tl.to('#opi',{{x:{dx},y:{-dx * .6:.1f},duration:.045,ease:'sine.inOut'}},{tI + .045 * q:.3f});")
+sfx("whoosh_a.ogg", max(0, tI - .32), -8); sfx("impactpunch.ogg", tI, -3); sfx("subhit.ogg", tI, -6); sfx("pop_b.ogg", tI + .12, -12)
+js(f"tl.to('#op',{{opacity:0,scale:1.3,filter:'blur(9px)',duration:.32,ease:'power2.in'}},{s(2) - .28:.3f});")
+sfx("whoosh_b.ogg", s(2) - .26, -10)
+# ---- LINE-UP (lines 2-3): five blank cars on the grid; each AI's logo drops onto its car ("each AI taught a car"), they rev on "fastest wins"
+for c in range(5):                                           # engines idle: exhaust puffs and a small rock
     for q in range(2):
-        js(f"tl.fromTo('#lp{c}{q}',{{y:0,x:0,scale:.3,opacity:.9}},{{y:64,x:{-8 + 16 * q},scale:1.15,opacity:0,duration:.6,ease:'sine.out',repeat:{int(D / .6) + 1},immediateRender:false}},{.02 + .11 * c + .3 * q:.3f});")
+        js(f"tl.fromTo('#lp{c}{q}',{{y:0,x:0,scale:.3,opacity:.9}},{{y:70,x:{-8 + 16 * q},scale:1.2,opacity:0,duration:.6,ease:'sine.out',repeat:{int(D / .6) + 1},immediateRender:false}},{.02 + .11 * c + .3 * q:.3f});")
     js(f"tl.fromTo('#lc{c} .lcb',{{y:0}},{{y:-7,duration:{.34 + .03 * c:.2f},ease:'sine.inOut',yoyo:true,repeat:{int(D / .36) + 1}}},{.05 * c:.2f});")
-js(f"tl.fromTo('#bub',{{y:0,rotation:0}},{{y:-8,rotation:-.6,duration:{max(.5, (s(2) - .1) / 2):.3f},ease:'sine.inOut',yoyo:true,repeat:1}},0);")
-sfx("subhit.ogg", .05, -6); sfx("impactsoft.ogg", tw_, -9)
-# beat 2: WHAT THE CONTEST IS. The request leaves, the contest name grows, the challenge card states the three terms
-a2 = s(2); d2 = e(2) - s(2)
-js(f"tl.to('#bub',{{opacity:0,y:40,scale:.9,duration:.24,ease:'power2.in'}},{a2 - .22:.3f});")
-js(f"tl.to('#lab',{{scale:{LABS:.3f},y:36,duration:.5,ease:'power3.inOut'}},{a2 - .12:.3f});")
-js(f"tl.fromTo('#chal',{{opacity:0,y:60,rotation:2}},{{opacity:1,y:0,rotation:-.6,duration:.42,ease:'power3.out',immediateRender:false}},{a2 + .02:.3f});")
-tq1 = W("no", 2); tq1 = tq1 if tq1 is not None else a2 + .74 * d2
-tq0 = W("two", 2); tq0 = tq0 if tq0 is not None else a2 + .52 * d2
-CQ = [round(a2 + .2, 3), round(min(tq1, a2 + 1.5), 3), round(s(3) + .02, 3)]
-SAY = [tq0, tq1, s(3) + .1]
-for q in range(3):
-    js(f"tl.fromTo('#cq{q}',{{opacity:0,x:-34}},{{opacity:1,x:0,duration:.32,ease:'power3.out',immediateRender:false}},{CQ[q]:.3f});")
-    js(f"tl.fromTo('#cq{q}',{{scale:1}},{{scale:1.07,duration:.2,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{max(SAY[q], CQ[q] + .34):.3f});")
-    sfx("pop_a.ogg" if q % 2 == 0 else "pop_b.ogg", CQ[q], -10)
-js(f"tl.to('#chal',{{rotation:.5,y:-6,duration:{max(.4, (tPkW - a2 - .7) / 2):.3f},ease:'sine.inOut',yoyo:true,repeat:1}},{a2 + .46:.3f});")
-sfx("whoosh_b.ogg", a2, -11)
-# the five AIs tick 'ready' right after "Fastest wins"
-tRd = min(s(3) + .42, tPkW - .5); ALIVE = []
+js("tl.set('.lpw',{opacity:0},0);")
+a2 = s(2); stepd = clamp((tFW - a2 - .6) / 5, .12, .26); ALIVE = []
 for c in range(5):
-    t = tRd + .055 * c; ALIVE.append(round(t, 3))
-    js(f"tl.fromTo('#ck{c}',{{opacity:0,scale:.2}},{{opacity:1,scale:1,duration:.28,ease:'back.out(2)',immediateRender:false}},{t:.3f});")
-    js(f"tl.fromTo('#ck{c} path',{{strokeDashoffset:1}},{{strokeDashoffset:0,duration:.22,ease:'power2.out',immediateRender:false}},{t + .06:.3f});")
-    sfx("tick.ogg", t, -11)
-# beat 3: "Pick one": the card leaves, the name shrinks back, the five logos light up as choices and stay lit until Go
-js(f"tl.to('#chal',{{opacity:0,y:40,scale:.94,duration:.26,ease:'power2.in'}},{tPkW - .2:.3f});")
-js(f"tl.to('#lab',{{scale:1,y:0,duration:.4,ease:'power3.inOut'}},{tPkW - .3:.3f});")
-js(f"tl.to('#lab',{{opacity:0,duration:.2,ease:'sine.in'}},{T0 - .16:.3f});")
-js(f"tl.to('#lab',{{opacity:1,duration:.4,ease:'sine.out'}},{tF + .06:.3f});")
-a3 = s(3)
-tPk = tPkW - .04; stepk = min(.13, max(.06, (T0 - .3 - tPk) / 5))
-PICK = [round(tPk + c * stepk, 3) for c in range(5)]
+    td = a2 + .02 + stepd * c; ALIVE.append(round(td + .26, 3))
+    js(f"tl.fromTo('#lc{c} .lbd',{{opacity:0,scale:2.3,y:-240,rotation:{(-16, 12, -9, 15, -12)[c]}}},{{opacity:1,scale:1,y:0,rotation:0,duration:.28,ease:'power2.in',immediateRender:false}},{td:.3f});")
+    js(f"tl.to('#lb{c}',{{opacity:1,duration:.16,ease:'sine.out'}},{td + .24:.3f});")
+    js(f"tl.fromTo('#lc{c}',{{scale:1}},{{scale:1.09,duration:.13,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{td + .26:.3f});")
+    js(f"tl.to('#lpw{c}',{{opacity:1,duration:.2}},{td + .3:.3f});")
+    sfx("pop_a.ogg" if c % 2 == 0 else "pop_b.ogg", td + .26, -9)
+js("tl.set('.lbd',{opacity:0},0);")
+nrev = max(3, 2 * int((T0 - tFW - .1) / .09) + 1)
+js(f"tl.fromTo('.lc',{{x:0}},{{x:5,duration:.045,ease:'sine.inOut',yoyo:true,repeat:{nrev},immediateRender:false}},{tFW:.3f});")
+js(f"tl.fromTo('.lpw',{{scale:1}},{{scale:1.5,transformOrigin:'50% 0',duration:.3,ease:'power2.out',immediateRender:false}},{tFW:.3f});")
+sfx("riser.ogg", tFW, -13)
 for c in range(5):
-    js(f"tl.fromTo('#sl{c}',{{y:0}},{{y:-18,duration:.2,ease:'power2.out',yoyo:true,repeat:1,immediateRender:false}},{PICK[c]:.3f});")
-    js(f"tl.fromTo('#sl{c} .ring',{{opacity:0,scale:.7}},{{opacity:1,scale:1,duration:.26,ease:'power3.out',immediateRender:false}},{PICK[c]:.3f});")
-    js(f"tl.fromTo('#lc{c}',{{y:0}},{{y:-16,duration:.2,ease:'power2.out',yoyo:true,repeat:1,immediateRender:false}},{PICK[c] + .04:.3f});")
-    sfx("pop_a.ogg" if c % 2 == 0 else "pop_b.ogg", PICK[c], -10)
-tPe = PICK[4] + .3
-if T0 - tPe > .3:
-    js(f"tl.to('.ring',{{scale:1.1,duration:{(T0 - tPe) / 2:.3f},ease:'sine.inOut',yoyo:true,repeat:1}},{tPe:.3f});")
-js(f"tl.to('.ring',{{opacity:0,scale:1.25,duration:.4,ease:'power2.out'}},{T0 + .05:.3f});")
-# Go: the camera dives through the line-up into the real track; the chips slide down and become the status strip
-js(f"tl.to('.lc',{{y:-150,duration:.36,ease:'power2.in'}},{T0 - .05:.3f});")
+    js(f"tl.fromTo('#lc{c}',{{y:0}},{{y:-18,duration:.16,ease:'power2.out',yoyo:true,repeat:1,immediateRender:false}},{s(3) + .05 * c:.3f});")
+# Go: the camera dives through the grid into the real track; the status chips come in on the left
+js(f"tl.to('.lc',{{y:-170,duration:.36,ease:'power2.in'}},{T0 - .05:.3f});")
 js(f"tl.to('#sa',{{opacity:0,scale:1.45,filter:'blur(9px)',duration:.38,ease:'power2.in'}},{T0 - .05:.3f});")
-for c in range(5): js(f"tl.to('#sl{c}',{{x:{STRIPX - CXS[c]},y:{STRIPY0 + STRIPDY * c - CHY},scale:{STRIPS},duration:.62,ease:'power3.inOut'}},{T0 - .05 + .03 * c:.3f});")
-js(f"tl.to('.ck',{{opacity:0,scale:.4,duration:.25,ease:'sine.in'}},{T0 - .05:.3f});")
-js(f"tl.to('.dots',{{opacity:1,duration:.3,ease:'sine.out'}},{T0 + .3:.3f});")
-js(f"tl.set('.lc',{{y:0}},{T0 + .8:.3f});"); js(f"tl.set('#bub',{{opacity:1,y:0,scale:1}},{T0 + .8:.3f});")
+for c in range(5): js(f"tl.fromTo('#sl{c}',{{opacity:0,x:-80,scale:{STRIPS}}},{{opacity:1,x:0,scale:{STRIPS},duration:.45,ease:'power3.out',immediateRender:false}},{T0 + .12 + .05 * c:.3f});")
 sfx("whoosh_a.ogg", T0 - .03, -6)
 # race events (live, 1x)
 sfx("toggle.ogg", vP - .25, -9); sfx("impactpunch.ogg", vM, -4); sfx("click_a.ogg", vC, -10); sfx("click_a.ogg", vGm, -10)
@@ -620,33 +682,43 @@ sfx("whoosh_c.ogg", vR0, -11); sfx("riser.ogg", vRm, -12); sfx("ding.ogg", vX, -
 ci = IDS.index("claude")
 js(f"tl.fromTo('#sl{ci} .ring',{{opacity:0,scale:.6}},{{opacity:1,scale:1.06,duration:.35,ease:'power3.out',immediateRender:false}},{vX:.3f});")
 js(f"tl.fromTo('#h8 .hl1',{{scale:1}},{{scale:1.06,transformOrigin:'0 50%',duration:.24,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{vX + .36:.3f});")
-# result card (the saveable card): rows land slowest result first, the winner last
-js(f"tl.fromTo('#card',{{opacity:0,y:90,rotation:3,scale:1}},{{opacity:1,y:0,rotation:-1,duration:.5,ease:'power3.out',immediateRender:false}},{tK + .03:.3f});")
-sfx("whoosh_b.ogg", tK, -10)
-for q, i in enumerate((4, 3, 2, 1, 0)):
-    t = tK + .28 + q * .16 + (.12 if i == 0 else 0)
-    js(f"tl.fromTo('#cr{i}',{{opacity:0,x:-46}},{{opacity:1,x:0,duration:.36,ease:'power3.out',immediateRender:false}},{t:.3f});")
-    sfx("pop_a.ogg" if q % 2 == 0 else "pop_b.ogg", t, -10)
-tU = tK + 1.25
-js(f"tl.to('#cr0 i',{{scaleX:1,duration:.5,ease:'power2.inOut'}},{tU:.3f});")
-js(f"tl.fromTo('#cr0 .bdg',{{scale:1}},{{scale:1.14,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tU:.3f});")
-hold = max(.8, (tF - tK - .8) / 2)
-js(f"tl.to('#card',{{rotation:.6,y:-8,duration:{hold / 2:.3f},ease:'sine.inOut',yoyo:true,repeat:1}},{tK + .55:.3f});")
-for q, i in enumerate((3, 4, 2, 1)):                         # a slow wave keeps the list alive while it is read
-    js(f"tl.fromTo('#cr{i} .bdg',{{rotation:0}},{{rotation:{-10 if q % 2 else 10},duration:.28,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tU + .7 + q * .3:.3f});")
-for q, i in enumerate((0, 1, 2)):
-    js(f"tl.fromTo('#cr{i} .cv',{{scale:1}},{{scale:1.1,transformOrigin:'100% 50%',duration:.24,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tU + 1.9 + q * .2:.3f});")
-# end: the short list stays under the send line and the tomorrow line (small maze icon in the headline), then frame 0 returns
+# ---- END (lines 8-9): its own scene. The podium, then a calm follow card. No promise, no teaser.
 tG = tK + .7
-js(f"tl.to('.sl',{{opacity:0,duration:.25,ease:'sine.inOut'}},{tK + .1:.3f});")
-js(f"tl.set('.sl',{{x:0,y:0,scale:1}},{tK + .8:.3f});"); js(f"tl.set('.dots',{{opacity:0}},{tK + .8:.3f});"); js(f"tl.set('.ring',{{opacity:0}},{tK + .8:.3f});")
-js(f"tl.fromTo('#h10 .mzi',{{rotation:-90,scale:.5}},{{rotation:0,scale:1,duration:.6,ease:'power3.out',immediateRender:false}},{s(9):.3f});")
-tq = W("lost", 9); tq = tq if tq is not None else s(9) + .86 * (e(9) - s(9)); tq = min(tq, tF - .4)
-js(f"tl.fromTo('#h10 .mzi',{{rotation:0}},{{rotation:14,duration:.2,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false}},{tq:.3f});")
-js(f"tl.to('#card',{{opacity:0,scale:.9,y:-40,rotation:-3,duration:.32,ease:'power2.in'}},{tF - .26:.3f});")
-js(f"tl.fromTo('#sa',{{opacity:0,scale:1.06,filter:'blur(8px)'}},{{opacity:1,scale:1,filter:'blur(0px)',duration:.42,ease:'power2.out',immediateRender:false}},{tF:.3f});")
-js(f"tl.fromTo('.sl',{{opacity:0}},{{opacity:1,duration:.42,ease:'power2.out',immediateRender:false}},{tF:.3f});")
-sfx("tick.ogg", s(9) + .1, -10); sfx("whoosh_c.ogg", tF - .2, -12)
+js(f"tl.fromTo('#en',{{opacity:0}},{{opacity:1,duration:.26,ease:'sine.inOut',immediateRender:false}},{tK:.3f});")
+sfx("whoosh_b.ogg", tK, -10)
+for q, i in enumerate((2, 1, 0)):                            # third place first, the winner last
+    tb = tK + .12 + .2 * q
+    js(f"tl.fromTo('#pb{i}',{{opacity:0,y:90}},{{opacity:1,y:0,duration:.36,ease:'power3.out',immediateRender:false}},{tb:.3f});")
+    js(f"tl.fromTo('#pc{i}',{{opacity:0,y:-260,rotation:{(-8, 7, -6)[i]}}},{{opacity:1,y:0,rotation:0,duration:.34,ease:'power2.in',immediateRender:false}},{tb + .22:.3f});")
+    js(f"tl.fromTo('#pc{i}',{{scaleY:1}},{{scaleY:.86,transformOrigin:'50% 100%',duration:.09,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tb + .56:.3f});")
+    sfx("pop_a.ogg" if q % 2 == 0 else "pop_b.ogg", tb + .56, -9)
+tL = tK + 1.05
+js(f"tl.fromTo('#pc3',{{opacity:0,x:-220}},{{opacity:1,x:0,duration:.5,ease:'power3.out',immediateRender:false}},{tL:.3f});")
+js(f"tl.fromTo('#pc3 .sw',{{rotation:-300}},{{rotation:0,duration:.5,ease:'power3.out',immediateRender:false}},{tL:.3f});")
+js(f"tl.fromTo('#pl3',{{opacity:0,x:-20}},{{opacity:1,x:0,duration:.3,ease:'power2.out',immediateRender:false}},{tL + .3:.3f});")
+js(f"tl.fromTo('#pc4',{{opacity:0,x:-220}},{{opacity:1,x:0,duration:.5,ease:'power3.out',immediateRender:false}},{tL + .18:.3f});")
+js(f"tl.fromTo('#pc4 .sw',{{rotation:-300}},{{rotation:0,duration:.5,ease:'power3.out',immediateRender:false}},{tL + .18:.3f});")
+js(f"tl.fromTo('#pl4',{{opacity:0,x:-20}},{{opacity:1,x:0,duration:.3,ease:'power2.out',immediateRender:false}},{tL + .48:.3f});")
+sfx("tick.ogg", tL + .3, -11); sfx("tick.ogg", tL + .48, -11)
+pe = s(9) - .3; nh = max(1, int((pe - tK - 1.3) / .5))
+js(f"tl.fromTo('#pcar0',{{y:0}},{{y:-26,duration:.25,ease:'sine.out',yoyo:true,repeat:{2 * nh - 1},immediateRender:false}},{tK + 1.3:.3f});")
+js(f"tl.fromTo('#pcar0 .sw',{{rotation:0}},{{rotation:360,duration:.5,ease:'none',repeat:{nh},immediateRender:false}},{tK + 1.3:.3f});")
+for i in (1, 2, 3, 4):
+    js(f"tl.fromTo('#pcar{i}',{{rotation:0}},{{rotation:{(0, -2, 2, -1.5, 1.5)[i]},transformOrigin:'50% 100%',duration:{.3 + .04 * i:.2f},ease:'sine.inOut',yoyo:true,repeat:{2 * int((pe - tK - 1.2) / (.6 + .08 * i)) + 1},immediateRender:false}},{tK + 1.2 + .07 * i:.3f});")
+# the follow card (line 9)
+js(f"tl.fromTo('#fo',{{opacity:0}},{{opacity:1,duration:.28,ease:'sine.inOut',immediateRender:false}},{s(9) - .2:.3f});")
+js(f"tl.set('#en',{{opacity:0}},{s(9) + .12:.3f});")
+js(f"tl.to('#fw',{{color:'#0f0f0f',duration:.14,ease:'sine.out'}},{tFOL:.3f});")
+js(f"tl.fromTo('#fw',{{scale:1}},{{scale:1.05,duration:.18,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tFOL:.3f});")
+js(f"tl.to('#fu path',{{strokeDashoffset:0,duration:.55,ease:'power2.inOut'}},{tFOL + .1:.3f});")
+fin("#fl", min(tFOL + .55, D - .9), .34, 16, 6)
+dfo = D - (s(9) - .12)
+js(f"tl.fromTo('#fc0',{{x:-190}},{{x:0,duration:{dfo:.3f},ease:'sine.out',immediateRender:false}},{s(9) - .12:.3f});")
+js(f"tl.fromTo('#fc1',{{x:-260}},{{x:0,duration:{dfo:.3f},ease:'sine.out',immediateRender:false}},{s(9) - .12:.3f});")
+js(f"tl.fromTo('#fo .sw',{{rotation:0}},{{rotation:{360 * 3},duration:{dfo:.3f},ease:'sine.out',immediateRender:false}},{s(9) - .12:.3f});")
+js(f"tl.fromTo('#fcar0',{{y:0}},{{y:-5,duration:.2,ease:'sine.inOut',yoyo:true,repeat:{2 * int(dfo / .4) + 1},immediateRender:false}},{s(9):.3f});")
+js(f"tl.fromTo('#fcar1',{{y:0}},{{y:-5,duration:.23,ease:'sine.inOut',yoyo:true,repeat:{2 * int(dfo / .46) + 1},immediateRender:false}},{s(9) + .1:.3f});")
+sfx("whoosh_c.ogg", s(9) - .28, -11); sfx("ding.ogg", tFOL, -10)
 
 # ---------------------------------------------------------------- render(): the race and the camera, driven by the timeline clock
 DATA = dict(T0=T0, D=D, NF=NF, RT=RT, X=X, Y=Y, A=A, CL=CLEN, TL=[CLEN[c][STOP[k]] + 2 for c, k in enumerate(IDS)],
@@ -735,12 +807,12 @@ SFX.sort(key=lambda x: x["t"])
 json.dump(SFX, open(H_ + "/sfx98.json", "w"), indent=1)
 TLN = "ESTIMATED (cue texts do not match voice/lines.txt)" if STALE else ("lines 1-3 from the voice cues, lines 4-9 on the TARGETS (the take is not padded yet: re-stitch on the targets)" if ONTG else "voice cues")
 json.dump(dict(lines=[dict(n=n, text=LINES[n - 1], start=round(s(n), 3), end=round(e(n), 3)) for n in range(1, NL + 1)], D=D, go=T0,
-               stale_cues=STALE, lines_on_targets=ONTG, timeline=TLN,
+               stale_cues=STALE, opening_estimated=OPEN_EST, lines_on_targets=ONTG, timeline=TLN,
                targets={str(n): round(TG[n], 2) for n in range(1, NL + 1)}, drift_vs_targets=DRIFT,
                race=dict(start=T0, live_until_race_s=LIVE_END, perplexity_stops=round(vP, 3), meta_wall=round(vM, 3), claude=round(vC, 3), gemini=round(vGm, 3),
                          chatgpt=round(vCh, 3) if vCh < vRm else None,
                          replay_from=round(vRm, 3), replay_to=round(vJ, 3), replay_rate=SLOW, replay_race_from=round(rA, 3), replay_claude=round(vX, 3), replay_gemini=round(vXg, 3)),
-               premise=dict(challenge=round(a2, 3), card_lines=CQ, ready=ALIVE, pick=PICK),
+               opening=dict(planned_lines_1_3=OPEN_EST, squash=round(tI, 3), lineup=round(a2, 3), logos_on_cars=ALIVE, fastest=round(tFW, 3)), end=dict(podium=round(tK, 3), follow_card=round(s(9) - .12, 3), follow_word=round(tFOL, 3)),
                sources=SRC), open(H_ + "/cues98.json", "w"), indent=1)
 html = f'''<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
@@ -775,11 +847,12 @@ if STALE:
 say("lines: " + "  ".join(f"{n}:{s(n):.2f}-{e(n):.2f}" for n in range(1, NL + 1)))
 say("voice targets (line start so the words land on the race): " + "  ".join(f"{n}:{TG[n]:.2f}" for n in range(1, NL + 1)) +
     ("" if STALE else "   drift of the take on disk: " + "  ".join(f"{n}:{DRIFT[n]:+.2f}" for n in DRIFT)))
-say(f"premise: challenge card {a2:.2f}, lines {CQ}, ready ticks {ALIVE[0]:.2f}-{ALIVE[-1]:.2f}, pick {PICK[0]:.2f}-{PICK[-1]:.2f}, go {T0}")
+say(f"opening: squash {tI:.2f}; line-up {a2:.2f}, logos on cars {ALIVE[0]:.2f}-{ALIVE[-1]:.2f}, fastest {tFW:.2f}, two laps {s(3):.2f}, go {T0}; end: podium {tK:.2f}, follow card {s(9) - .12:.2f}, FOLLOW lit {tFOL:.2f}")
+if OPEN_EST: say("NOTE lines 1-3 are the PLANNED text with ESTIMATED times (voice/lines.txt still has the old lines 1-3): rebuild after the re-voice + stitch.")
 say(f"race clock: 1x from {T0} to {vRm:.2f} (race {LIVE_END}); video times: Perplexity stops {vP:.2f}, Meta AI wall {vM:.2f}, Claude {vC:.2f}, Gemini {vGm:.2f}, "
     f"ChatGPT {vCh:.2f}{'' if vCh < vRm else ' (NOT SHOWN live: the replay starts first)'}")
-say(f"SLOW MOTION REPLAY {SLOW}x video {vRm:.2f}-{vJ:.2f} (race from {rA:.2f}), label until {tSO:.2f}; Claude crosses {vX:.2f}, Gemini {vXg:.2f}; card {tK:.2f}; tomorrow line {s(9):.2f}; frame-0 layout from {tF:.2f}")
+say(f"SLOW MOTION REPLAY {SLOW}x video {vRm:.2f}-{vJ:.2f} (race from {rA:.2f}), label until {tSO:.2f}; Claude crosses {vX:.2f}, Gemini {vXg:.2f}; card {tK:.2f}")
 say(f"headlines in: two-laps {tA2:.2f}, Perplexity {tA3:.2f}, Meta AI {tA4:.2f}, neck {tA5:.2f}, who-won {vR0 + .12:.2f}, wins {vX:.2f}, send {tK:.2f}/{tS8:.2f}")
 say(f"camera: zoom {min(CZ):.2f}-{max(CZ):.2f}; smallest car on screen in the race {MINCAR:.0f} px long, {MINCAR * .6:.0f} px wide")
 if not WORDS: say("NOTE: no usable voice/words.json for this take: word-timed beats use line fractions.")
-open(H_ + "/out/build-v8.log", "w").write("\n".join(LOG) + "\n")
+open(H_ + "/out/build-v13.log", "w").write("\n".join(LOG) + "\n")

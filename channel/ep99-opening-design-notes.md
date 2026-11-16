@@ -35,3 +35,6 @@ Miki style paper and ink, real logos (sources in `video/ep99/hf/assets/logos/SOU
 
 ## v6 note (blind reader on v5, 15.11.2026)
 Stop 3/5 on v5: read as a three-way fight, characters small and top-left, thin swords, the checkered strip confusing, the Meta AI mark a guess. v6: bigger characters filling the box, attackers left and Claude right, bold blades, eyes (angry brows on the two, wide eyes on Claude), strip removed, logo on the tile enlarged (112 to 130 px). The Meta AI mark is the real one from meta.ai (the ring); Meta's infinity mark is the company logo and is not in the repo: not swapped without a sourced file and David's word.
+
+## v7 note (David on v6, 16.11.2026)
+The opening looked dry and a bit empty. v7 adds ONE text item on top: the hook itself in the headline treatment of episode 89 (Inter Display Black caps, the small words in Medium at half size, every word ghost grey until it is spoken, then ink; colour only, no box). The duel sits under it; on "killed": flash, a short screen shake, the two halves fly apart and turn, orange debris, motion lines; the paper slides a little under the run. Frame 0 measured on `ep99-v7.mp4`: x 112-865, y 298-1224.
