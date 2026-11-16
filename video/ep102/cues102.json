@@ -1,0 +1,459 @@
+{
+ "estimated_timeline": true,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Loom, Notion, Calendly. Free twins exist!",
+   "start": 0.08,
+   "end": 2.43
+  },
+  {
+   "n": 2,
+   "text": "Six apps, seventy-five bucks a month. Watch it hit zero!",
+   "start": 2.53,
+   "end": 5.63
+  },
+  {
+   "n": 3,
+   "text": "Loom makes screen videos. Cap does it free.",
+   "start": 5.73,
+   "end": 8.18
+  },
+  {
+   "n": 4,
+   "text": "Notion? AppFlowy. Notes, docs, even AI.",
+   "start": 8.28,
+   "end": 10.53
+  },
+  {
+   "n": 5,
+   "text": "Calendly? Cal D I Y, for personal use only.",
+   "start": 10.63,
+   "end": 13.08
+  },
+  {
+   "n": 6,
+   "text": "Intercom bills per seat, and per AI reply.",
+   "start": 13.18,
+   "end": 15.58
+  },
+  {
+   "n": 7,
+   "text": "Chatwoot is free if you host it.",
+   "start": 15.68,
+   "end": 17.58
+  },
+  {
+   "n": 8,
+   "text": "Wispr Flow? OpenWhispr. You talk, it types.",
+   "start": 17.68,
+   "end": 20.13
+  },
+  {
+   "n": 9,
+   "text": "And the big one, ElevenLabs.",
+   "start": 20.23,
+   "end": 21.93
+  },
+  {
+   "n": 10,
+   "text": "VoiceStudio clones your own voice, on your own machine.",
+   "start": 22.03,
+   "end": 25.08
+  },
+  {
+   "n": 11,
+   "text": "It's new, just seven months old.",
+   "start": 25.18,
+   "end": 27.08
+  },
+  {
+   "n": 12,
+   "text": "We did not test these, so check each one yourself.",
+   "start": 27.18,
+   "end": 29.98
+  },
+  {
+   "n": 13,
+   "text": "Save the list. Send it to a friend who pays for Loom.",
+   "start": 30.08,
+   "end": 33.03
+  },
+  {
+   "n": 14,
+   "text": "The setup's in the link in bio.",
+   "start": 33.13,
+   "end": 34.98
+  },
+  {
+   "n": 15,
+   "text": "Want the next one? Follow, and you'll see it.",
+   "start": 35.08,
+   "end": 37.63
+  }
+ ],
+ "D": 38.23,
+ "frame0_returns": 37.65,
+ "sync": {
+  "twins": {
+   "t": 1.537,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "zero": {
+   "t": 5.072,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "cap": {
+   "t": 7.078,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "free3": {
+   "t": 7.812,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "appflowy": {
+   "t": 8.865,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "ai": {
+   "t": 10.215,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "cal": {
+   "t": 11.414,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "personal": {
+   "t": 12.149,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "seat": {
+   "t": 14.188,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "reply": {
+   "t": 15.244,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "host": {
+   "t": 17.01,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "openwhispr": {
+   "t": 18.513,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "talk": {
+   "t": 19.297,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "big": {
+   "t": 20.57,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "elevenlabs": {
+   "t": 21.08,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "machine": {
+   "t": 24.622,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "new": {
+   "t": 25.465,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "test": {
+   "t": 28.02,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "send": {
+   "t": 30.965,
+   "source": "ESTIMATE (line fraction)"
+  },
+  "follow": {
+   "t": 36.355,
+   "source": "ESTIMATE (line fraction)"
+  }
+ },
+ "total_drops": [
+  [
+   7.78,
+   75,
+   57
+  ],
+  [
+   9.165,
+   57,
+   47
+  ],
+  [
+   11.714,
+   47,
+   37
+  ],
+  [
+   15.98,
+   37,
+   18
+  ],
+  [
+   18.813,
+   18,
+   6
+  ],
+  [
+   22.38,
+   6,
+   0
+  ]
+ ],
+ "buildup": {
+  "new_on_screen": [
+   {
+    "t": 0,
+    "what": "OPENING: the receipt: Loom, Notion, Calendly logos, $75 A MONTH, FREE TWINS stamp"
+   },
+   {
+    "t": 2.53,
+    "what": "the receipt lists six apps with prices"
+   },
+   {
+    "t": 3.43,
+    "what": "TOTAL / MONTH $75"
+   },
+   {
+    "t": 4.82,
+    "what": "the total flashes red: 'watch it hit zero'"
+   },
+   {
+    "t": 5.73,
+    "what": "Loom $18/mo (screen videos)"
+   },
+   {
+    "t": 7.08,
+    "what": "the free twin: Cap, 25K+ stars"
+   },
+   {
+    "t": 7.36,
+    "what": "real screenshot of Cap"
+   },
+   {
+    "t": 7.78,
+    "what": "Loom struck out, total $75 to $57"
+   },
+   {
+    "t": 8.28,
+    "what": "Notion $10/mo (notes, docs, AI)"
+   },
+   {
+    "t": 8.87,
+    "what": "the free twin: AppFlowy, 78K+ stars"
+   },
+   {
+    "t": 9.14,
+    "what": "real screenshot of AppFlowy"
+   },
+   {
+    "t": 9.17,
+    "what": "Notion struck out, total $57 to $47"
+   },
+   {
+    "t": 10.63,
+    "what": "Calendly $10/mo (booking page)"
+   },
+   {
+    "t": 11.41,
+    "what": "the free twin: Cal.diy, 50K+ stars"
+   },
+   {
+    "t": 11.71,
+    "what": "Calendly struck out, total $47 to $37"
+   },
+   {
+    "t": 12.15,
+    "what": "stamp PERSONAL USE ONLY; you host it yourself"
+   },
+   {
+    "t": 13.18,
+    "what": "Intercom $19/mo (customer chat)"
+   },
+   {
+    "t": 13.94,
+    "what": "$19 per seat"
+   },
+   {
+    "t": 14.79,
+    "what": "+ $0.99 per AI answer"
+   },
+   {
+    "t": 15.68,
+    "what": "the free twin: Chatwoot, 39K+ stars"
+   },
+   {
+    "t": 15.96,
+    "what": "real screenshot of Chatwoot"
+   },
+   {
+    "t": 15.98,
+    "what": "Intercom struck out, total $37 to $18"
+   },
+   {
+    "t": 17.01,
+    "what": "stamp FREE IF YOU HOST IT"
+   },
+   {
+    "t": 17.68,
+    "what": "Wispr Flow $12/mo (talk to type)"
+   },
+   {
+    "t": 18.51,
+    "what": "the free twin: OpenWhispr, 11K+ stars"
+   },
+   {
+    "t": 18.81,
+    "what": "Wispr Flow struck out, total $18 to $6"
+   },
+   {
+    "t": 19.3,
+    "what": "illustration: a voice wave turns into typed words"
+   },
+   {
+    "t": 20.23,
+    "what": "ElevenLabs $6/mo (AI voices)"
+   },
+   {
+    "t": 20.57,
+    "what": "THE BIG ONE: ElevenLabs"
+   },
+   {
+    "t": 22.03,
+    "what": "the free twin: VoiceStudio, 111K+ stars"
+   },
+   {
+    "t": 22.31,
+    "what": "real screenshot of VoiceStudio"
+   },
+   {
+    "t": 22.38,
+    "what": "ElevenLabs struck out, total $6 to $0"
+   },
+   {
+    "t": 22.68,
+    "what": "the total hits $0"
+   },
+   {
+    "t": 25.46,
+    "what": "stamp NEW: 7 MONTHS OLD"
+   },
+   {
+    "t": 27.18,
+    "what": "END: the saveable card, six pairs with stars"
+   },
+   {
+    "t": 28.02,
+    "what": "NOT TESTED BY US. CHECK EACH ONE FIRST."
+   },
+   {
+    "t": 33.13,
+    "what": "SETUP: LINK IN BIO"
+   },
+   {
+    "t": 35.08,
+    "what": "the FOLLOW card (no promised episode)"
+   },
+   {
+    "t": 37.65,
+    "what": "frame 0 returns (loop)"
+   }
+  ],
+  "flat_over_2_5s": [
+   {
+    "start": 0,
+    "end": 2.53,
+    "after": "OPENING: the receipt: Loom, Notion, Calendly logos, $75 A MONTH, FREE TWINS stamp"
+   },
+   {
+    "start": 22.68,
+    "end": 25.46,
+    "after": "the total hits $0"
+   },
+   {
+    "start": 28.02,
+    "end": 33.13,
+    "after": "NOT TESTED BY US. CHECK EACH ONE FIRST."
+   },
+   {
+    "start": 35.08,
+    "end": 37.65,
+    "after": "the FOLLOW card (no promised episode)"
+   }
+  ]
+ },
+ "numbers_on_screen": [
+  {
+   "text": "Loom $18 a month (Business)",
+   "source": "loom.com/pricing, read 16.11.2026"
+  },
+  {
+   "text": "Notion $10 a month (Plus)",
+   "source": "notion.com/pricing, read 16.11.2026"
+  },
+  {
+   "text": "Calendly $10 a month (Standard, billed yearly)",
+   "source": "calendly.com/pricing, read 16.11.2026"
+  },
+  {
+   "text": "Intercom $19 a month (Essential, yearly new-customer rate)",
+   "source": "intercom.com/pricing, read 16.11.2026"
+  },
+  {
+   "text": "Wispr Flow $12 a month (Pro, billed yearly (it also has a free plan))",
+   "source": "wisprflow.ai/pricing, read 16.11.2026"
+  },
+  {
+   "text": "ElevenLabs $6 a month (Starter)",
+   "source": "elevenlabs.io/pricing, read 16.11.2026"
+  },
+  {
+   "text": "Cap 25K+ stars (page said 25,113)",
+   "source": "github.com/CapSoftware/Cap via Exa page fetch, read 16.11.2026"
+  },
+  {
+   "text": "AppFlowy 78K+ stars (page said 78,984)",
+   "source": "github.com/AppFlowy-IO/AppFlowy via Exa page fetch, read 16.11.2026"
+  },
+  {
+   "text": "Cal.diy 50K+ stars (page said 50,090)",
+   "source": "github.com/calcom/cal.diy via Exa page fetch, read 16.11.2026"
+  },
+  {
+   "text": "Chatwoot 39K+ stars (page said 39,919)",
+   "source": "github.com/chatwoot/chatwoot via Exa page fetch, read 16.11.2026"
+  },
+  {
+   "text": "OpenWhispr 11K+ stars (page said 11,623)",
+   "source": "github.com/OpenWhispr/openwhispr via Exa page fetch, read 16.11.2026"
+  },
+  {
+   "text": "VoiceStudio 111K+ stars (page said 111,733)",
+   "source": "github.com/debpalash/VoiceStudio via Exa page fetch, read 16.11.2026"
+  },
+  {
+   "text": "$75 a month = the sum of the six prices above",
+   "source": "OUR ARITHMETIC"
+  },
+  {
+   "text": "Intercom + $0.99 per AI answer ('per Fin outcome')",
+   "source": "intercom.com/pricing, read 16.11.2026"
+  },
+  {
+   "text": "Cal.diy: personal use only",
+   "source": "README of github.com/calcom/cal.diy: 'strictly recommended for personal, non-production use'"
+  },
+  {
+   "text": "VoiceStudio: 7 months old",
+   "source": "repo created 2026-04-09 (GitHub page via Exa)"
+  }
+ ]
+}

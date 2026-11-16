@@ -1,0 +1,20 @@
+Loom, Notion, Calendly. Free twins exist.
+
+Six apps people pay for every month, and a free, open-source alternative for each one:
+
+1. Loom → Cap (screen videos)
+2. Notion → AppFlowy (notes, docs, AI)
+3. Calendly → Cal.diy (booking page, personal use only)
+4. Intercom → Chatwoot (customer chat, free if you host it yourself)
+5. Wispr Flow → OpenWhispr (you talk, it types)
+6. ElevenLabs → VoiceStudio (AI voices on your own computer, only 7 months old)
+
+Honest part: we did not test these. They are alternatives, not full replacements, and some need your own server. Check each one before you cancel anything.
+
+The $75 a month is the cheapest paid plan of each app added up, per person, read on the official pricing pages in November 2026. Most of them also have a free plan.
+
+Links, licences and the steps for each one are in the link in bio.
+
+Save the list, and send it to a friend who pays for Loom.
+
+#opensource #github #freetools #aitools #productivity
