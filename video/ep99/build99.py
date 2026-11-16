@@ -619,7 +619,7 @@ function duel(kt,v){
   const p=ez(kt/Dt.tKL), hit=kt>=Dt.tKL, post=kt-Dt.tKL, q=hit?eo(post/.1):0, vic=hit?ez((post-.35)/.4):0, wind=bump(Math.min(1,kt/Dt.tKL));
   return {
     g:{x:lerp(272,326,p)+36*q, y:lerp(716,722,p)+6*q+Math.sin(v*5)*4-12*vic*Math.abs(Math.sin(v*7+1)), sc:1.35, rot:lerp(-8,-4,p)+8*q-4*vic, aR:(hit?lerp(-10,25,q):-10)-25*vic, aL:74+6*Math.sin(v*6), lL:(34+24*Math.sin(v*10))*(1-vic), lR:(-30-24*Math.sin(v*10))*(1-vic), so:1, op:1, ex:.9, es:1, bo:1-vic},
-    m:{x:lerp(384,410,p)+26*q, y:lerp(1030,1016,p)-4*q+Math.sin(v*5+1.3)*4-12*vic*Math.abs(Math.sin(v*7)), sc:1.35, rot:lerp(7,3,p)-7*q, aR:(hit?lerp(-62,-30,q):-66+4*wind)-26*vic, aL:74+6*Math.sin(v*6+1), lL:(-30+24*Math.sin(v*10+2))*(1-vic), lR:(32-24*Math.sin(v*10+2))*(1-vic), so:1, op:1, ex:.9, ey:-.5, es:1, bo:1-vic},
+    m:{x:lerp(384,410,p)+26*q, y:lerp(1030,1016,p)-4*q+Math.sin(v*5+1.3)*4-12*vic*Math.abs(Math.sin(v*7)), sc:1.35, rot:lerp(7,3,p)-7*q, aR:(hit?lerp(-70,-30,q):-74+4*wind)-26*vic, aL:74+6*Math.sin(v*6+1), lL:(-30+24*Math.sin(v*10+2))*(1-vic), lR:(32-24*Math.sin(v*10+2))*(1-vic), so:1, op:1, ex:.9, ey:-.5, es:1, bo:1-vic},
     c:{x:Dt.KC[0]+(hit?0:2.6*Math.sin(v*38)), y:Dt.KC[1], sc:1.6, rot:hit?0:lerp(4,7,p), aR:-66+5*Math.sin(v*14), aL:-66+5*Math.sin(v*14+2), lL:hit?-6:-8+5*Math.sin(v*22), lR:hit?6:8+5*Math.sin(v*22+2), so:0, op:1, ex:-.95, ey:.1, es:hit?1.55:lerp(1.3,1.45,p), bo:0, slide:hit?46*eo(post/.45)+4*Math.sin(post*9)*ez(post/.5):0}
   };
 }
