@@ -1,26 +1,26 @@
-v3 estimated timeline=True  D=33.46  js=181 sfx=20
-lines: 1:0.06-2.70  2:2.82-5.04  3:5.16-7.17  4:7.29-9.62  5:9.74-11.91  6:12.03-13.58  7:13.70-15.51  8:15.63-18.84  9:18.96-20.97  10:21.09-24.04  11:24.16-27.27  12:27.39-29.35  13:29.47-32.16
-sync: free=1.697(EST)  insane=3.93(EST)  stay=4.418(EST)  notion=6.205(EST)  cap=5.803(EST)  appflowy=6.607(EST)  cal=8.082(EST)  chatwoot=10.478(EST)  openwhispr=12.883(EST)  personal=8.688(EST)  host=11.085(EST)  big=14.243(EST)  eleven=14.822(EST)  vs=15.694(EST)  clones=16.593(EST)  own=16.978(EST)  machine=18.519(EST)  follow=30.815(EST)
+v3 estimated timeline=False  D=31.7  js=181 sfx=20
+lines: 1:0.04-2.27  2:2.42-4.44  3:4.59-7.55  4:7.87-10.42  5:10.74-12.69  6:13.01-14.17  7:14.49-16.39  8:16.54-19.30  9:19.45-21.26  10:21.41-23.65  11:23.80-26.30  12:26.45-28.26  13:28.41-30.40
+sync: free=1.36(w)  insane=3.2(w)  stay=3.94(w)  notion=6.2(w)  appflowy=6.88(w)  cal=8.737(EST)  chatwoot=11.58(w)  openwhispr=13.7(w)  personal=9.6(w)  host=12.08(w)  big=14.96(w)  eleven=15.62(w)  vs=16.64(w)  clones=16.96(w)  own=17.72(w)  machine=18.84(w)  follow=29.2(w)
   new   0.00  A: 'Six apps you pay for have FREE ALTERNATIVES' + the six paid apps' real logos
-  new   2.82  B: words only: 'The last one is INSANE. STAY FOR IT.'
-  new   5.16  card: Loom (paid)
-  new   5.80  Loom struck, arrow, Cap; then FREE lands on Cap at 6.22
-  new   6.07  card: Notion (paid)
-  new   6.61  Notion struck, arrow, AppFlowy; then FREE lands on AppFlowy at 7.03
-  new   7.27  card: Calendly (paid)
-  new   8.08  Calendly struck, arrow, Cal.diy; then FREE lands on Cal.diy at 8.50
-  new   9.72  card: Intercom (paid)
-  new  10.48  Intercom struck, arrow, Chatwoot; then FREE lands on Chatwoot at 10.90
-  new  12.01  card: Wispr Flow (paid)
-  new  12.88  Wispr Flow struck, arrow, OpenWhispr; then FREE lands on OpenWhispr at 13.30
-  new  13.70  D: words only: 'And the BIG ONE.'
-  new  14.70  card: ElevenLabs (paid)
-  new  15.73  ElevenLabs struck, arrow, VoiceStudio; then FREE lands on VoiceStudio at 16.15
-  new  16.73  the real VoiceStudio screenshot, full stage: 'clones your own voice, ON YOUR OWN MACHINE.'
-  new  18.96  words only: 'It's new, just 7 MONTHS OLD.'
-  new  21.09  E: words only: 'We did NOT TEST THESE. so check each one yourself.'
-  new  24.16  F: one card: the list of six pairs to save
-  new  27.39  G: words only: 'The setup's in the LINK IN BIO.'
-  new  29.47  words only: 'Want the next one? FOLLOW.'
-  new  32.96  frame 0 returns (loop)
-FLAT stretches over 2.5 s with nothing new: [(0, 2.82, "A: 'Six apps you pay for have FREE ALTERNATIVES' + the six paid apps' real logos"), (21.09, 24.16, "E: words only: 'We did NOT TEST THESE. so check each one yourself.'"), (24.16, 27.39, 'F: one card: the list of six pairs to save'), (29.47, 32.96, "words only: 'Want the next one? FOLLOW.'")]
+  new   2.42  B: words only: 'The last one is INSANE. STAY FOR IT.'
+  new   4.59  card: Loom (paid)
+  new   5.29  Loom struck, arrow, Cap; then FREE lands on Cap at 5.59
+  new   6.22  card: Notion (paid)
+  new   6.88  Notion struck, arrow, AppFlowy; then FREE lands on AppFlowy at 7.18
+  new   7.85  card: Calendly (paid)
+  new   8.74  Calendly struck, arrow, Cal.diy; then FREE lands on Cal.diy at 9.04
+  new  10.72  card: Intercom (paid)
+  new  11.58  Intercom struck, arrow, Chatwoot; then FREE lands on Chatwoot at 11.88
+  new  12.99  card: Wispr Flow (paid)
+  new  13.70  Wispr Flow struck, arrow, OpenWhispr; then FREE lands on OpenWhispr at 14.00
+  new  14.49  D: words only: 'And the BIG ONE.'
+  new  15.50  card: ElevenLabs (paid)
+  new  16.64  ElevenLabs struck, arrow, VoiceStudio; then FREE lands on VoiceStudio at 16.94
+  new  17.64  the real VoiceStudio screenshot, full stage: 'clones your own voice, ON YOUR OWN MACHINE.'
+  new  19.45  words only: 'It's new, just 7 MONTHS OLD.'
+  new  21.41  E: words only: 'We did NOT TEST THESE. so check each one yourself.'
+  new  23.80  F: one card: the list of six pairs to save
+  new  26.45  G: words only: 'The setup's in the LINK IN BIO.'
+  new  28.41  words only: 'Want the next one? FOLLOW.'
+  new  31.20  frame 0 returns (loop)
+FLAT stretches over 2.5 s with nothing new: [(23.8, 26.45, 'F: one card: the list of six pairs to save'), (28.41, 31.2, "words only: 'Want the next one? FOLLOW.'")]

@@ -1,0 +1,492 @@
+[
+ {
+  "word": "6",
+  "start": 0.0,
+  "end": 0.32
+ },
+ {
+  "word": "apps",
+  "start": 0.32,
+  "end": 0.52
+ },
+ {
+  "word": "you",
+  "start": 0.52,
+  "end": 0.66
+ },
+ {
+  "word": "pay",
+  "start": 0.66,
+  "end": 0.82
+ },
+ {
+  "word": "for",
+  "start": 0.82,
+  "end": 1.08
+ },
+ {
+  "word": "have",
+  "start": 1.08,
+  "end": 1.36
+ },
+ {
+  "word": "free",
+  "start": 1.36,
+  "end": 1.6
+ },
+ {
+  "word": "alternatives.",
+  "start": 1.6,
+  "end": 2.04
+ },
+ {
+  "word": "The",
+  "start": 2.46,
+  "end": 2.56
+ },
+ {
+  "word": "last",
+  "start": 2.56,
+  "end": 2.72
+ },
+ {
+  "word": "one",
+  "start": 2.72,
+  "end": 2.92
+ },
+ {
+  "word": "is",
+  "start": 2.92,
+  "end": 3.2
+ },
+ {
+  "word": "insane.",
+  "start": 3.2,
+  "end": 3.62
+ },
+ {
+  "word": "Stay",
+  "start": 3.94,
+  "end": 4.08
+ },
+ {
+  "word": "for",
+  "start": 4.08,
+  "end": 4.28
+ },
+ {
+  "word": "it.",
+  "start": 4.28,
+  "end": 4.56
+ },
+ {
+  "word": "Loom.",
+  "start": 4.78,
+  "end": 4.9
+ },
+ {
+  "word": "TriCap.",
+  "start": 5.16,
+  "end": 5.6
+ },
+ {
+  "word": "Notion.",
+  "start": 6.2,
+  "end": 6.64
+ },
+ {
+  "word": "App",
+  "start": 6.88,
+  "end": 7.18
+ },
+ {
+  "word": "Flowey.",
+  "start": 7.18,
+  "end": 7.54
+ },
+ {
+  "word": "Calimply.",
+  "start": 7.84,
+  "end": 8.28
+ },
+ {
+  "word": "Cality.",
+  "start": 8.56,
+  "end": 8.8
+ },
+ {
+  "word": "IY.",
+  "start": 9.08,
+  "end": 9.34
+ },
+ {
+  "word": "For",
+  "start": 9.6,
+  "end": 9.68
+ },
+ {
+  "word": "personal",
+  "start": 9.68,
+  "end": 9.94
+ },
+ {
+  "word": "use.",
+  "start": 9.94,
+  "end": 10.24
+ },
+ {
+  "word": "Intercom.",
+  "start": 10.84,
+  "end": 11.14
+ },
+ {
+  "word": "Chat",
+  "start": 11.58,
+  "end": 11.6
+ },
+ {
+  "word": "Woo.",
+  "start": 11.6,
+  "end": 11.8
+ },
+ {
+  "word": "If",
+  "start": 12.08,
+  "end": 12.14
+ },
+ {
+  "word": "you",
+  "start": 12.14,
+  "end": 12.22
+ },
+ {
+  "word": "host",
+  "start": 12.22,
+  "end": 12.36
+ },
+ {
+  "word": "it.",
+  "start": 12.36,
+  "end": 12.64
+ },
+ {
+  "word": "Whisper",
+  "start": 13.1,
+  "end": 13.32
+ },
+ {
+  "word": "Flow.",
+  "start": 13.32,
+  "end": 13.46
+ },
+ {
+  "word": "Open",
+  "start": 13.7,
+  "end": 13.84
+ },
+ {
+  "word": "Whisper.",
+  "start": 13.84,
+  "end": 14.16
+ },
+ {
+  "word": "And",
+  "start": 14.52,
+  "end": 14.76
+ },
+ {
+  "word": "the",
+  "start": 14.76,
+  "end": 14.96
+ },
+ {
+  "word": "big",
+  "start": 14.96,
+  "end": 15.1
+ },
+ {
+  "word": "one.",
+  "start": 15.1,
+  "end": 15.36
+ },
+ {
+  "word": "11",
+  "start": 15.62,
+  "end": 15.94
+ },
+ {
+  "word": "Labs.",
+  "start": 15.94,
+  "end": 16.16
+ },
+ {
+  "word": "Voice",
+  "start": 16.64,
+  "end": 16.74
+ },
+ {
+  "word": "Studio",
+  "start": 16.74,
+  "end": 16.96
+ },
+ {
+  "word": "clones",
+  "start": 16.96,
+  "end": 17.52
+ },
+ {
+  "word": "your",
+  "start": 17.52,
+  "end": 17.72
+ },
+ {
+  "word": "own",
+  "start": 17.72,
+  "end": 17.94
+ },
+ {
+  "word": "voice.",
+  "start": 17.94,
+  "end": 18.18
+ },
+ {
+  "word": "On",
+  "start": 18.48,
+  "end": 18.54
+ },
+ {
+  "word": "your",
+  "start": 18.54,
+  "end": 18.68
+ },
+ {
+  "word": "own",
+  "start": 18.68,
+  "end": 18.84
+ },
+ {
+  "word": "machine.",
+  "start": 18.84,
+  "end": 19.14
+ },
+ {
+  "word": "It's",
+  "start": 19.5,
+  "end": 19.66
+ },
+ {
+  "word": "new.",
+  "start": 19.66,
+  "end": 19.88
+ },
+ {
+  "word": "Just",
+  "start": 20.2,
+  "end": 20.3
+ },
+ {
+  "word": "7",
+  "start": 20.3,
+  "end": 20.64
+ },
+ {
+  "word": "months",
+  "start": 20.64,
+  "end": 20.82
+ },
+ {
+  "word": "old.",
+  "start": 20.82,
+  "end": 21.14
+ },
+ {
+  "word": "We",
+  "start": 21.46,
+  "end": 21.52
+ },
+ {
+  "word": "did",
+  "start": 21.52,
+  "end": 21.62
+ },
+ {
+  "word": "not",
+  "start": 21.62,
+  "end": 21.8
+ },
+ {
+  "word": "test",
+  "start": 21.8,
+  "end": 21.98
+ },
+ {
+  "word": "these.",
+  "start": 21.98,
+  "end": 22.2
+ },
+ {
+  "word": "So",
+  "start": 22.42,
+  "end": 22.5
+ },
+ {
+  "word": "check",
+  "start": 22.5,
+  "end": 22.72
+ },
+ {
+  "word": "each",
+  "start": 22.72,
+  "end": 23.0
+ },
+ {
+  "word": "one",
+  "start": 23.0,
+  "end": 23.18
+ },
+ {
+  "word": "yourself.",
+  "start": 23.18,
+  "end": 23.48
+ },
+ {
+  "word": "Save",
+  "start": 23.96,
+  "end": 24.12
+ },
+ {
+  "word": "the",
+  "start": 24.12,
+  "end": 24.34
+ },
+ {
+  "word": "list.",
+  "start": 24.34,
+  "end": 24.56
+ },
+ {
+  "word": "Send",
+  "start": 24.9,
+  "end": 25.0
+ },
+ {
+  "word": "it",
+  "start": 25.0,
+  "end": 25.1
+ },
+ {
+  "word": "to",
+  "start": 25.1,
+  "end": 25.2
+ },
+ {
+  "word": "a",
+  "start": 25.2,
+  "end": 25.32
+ },
+ {
+  "word": "friend",
+  "start": 25.32,
+  "end": 25.42
+ },
+ {
+  "word": "who",
+  "start": 25.42,
+  "end": 25.6
+ },
+ {
+  "word": "pays",
+  "start": 25.6,
+  "end": 25.76
+ },
+ {
+  "word": "for",
+  "start": 25.76,
+  "end": 25.98
+ },
+ {
+  "word": "Loom.",
+  "start": 25.98,
+  "end": 26.2
+ },
+ {
+  "word": "The",
+  "start": 26.46,
+  "end": 26.64
+ },
+ {
+  "word": "setup's",
+  "start": 26.64,
+  "end": 27.02
+ },
+ {
+  "word": "in",
+  "start": 27.02,
+  "end": 27.2
+ },
+ {
+  "word": "the",
+  "start": 27.2,
+  "end": 27.32
+ },
+ {
+  "word": "link",
+  "start": 27.32,
+  "end": 27.52
+ },
+ {
+  "word": "in",
+  "start": 27.52,
+  "end": 27.82
+ },
+ {
+  "word": "bio.",
+  "start": 27.82,
+  "end": 28.04
+ },
+ {
+  "word": "Want",
+  "start": 28.04,
+  "end": 28.6
+ },
+ {
+  "word": "the",
+  "start": 28.6,
+  "end": 28.7
+ },
+ {
+  "word": "next",
+  "start": 28.7,
+  "end": 28.82
+ },
+ {
+  "word": "one?",
+  "start": 28.82,
+  "end": 29.0
+ },
+ {
+  "word": "Follow",
+  "start": 29.2,
+  "end": 29.42
+ },
+ {
+  "word": "and",
+  "start": 29.42,
+  "end": 29.78
+ },
+ {
+  "word": "you'll",
+  "start": 29.78,
+  "end": 30.02
+ },
+ {
+  "word": "see",
+  "start": 30.02,
+  "end": 30.18
+ },
+ {
+  "word": "it.",
+  "start": 30.18,
+  "end": 30.34
+ }
+]

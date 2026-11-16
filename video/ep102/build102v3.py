@@ -103,7 +103,7 @@ ARW = lambda id_, col: f'<svg class="arw" id="{id_}" viewBox="0 0 60 90"><path d
 SC = {}
 # ---------------------------------------------------------------- A hook: headline + the six real logos (frame 0 is complete)
 tFree = W("free", "free", 1, .62)
-TX = [108, 371, 634]; TY = [712, 975]
+TX = [108, 371, 634]; TY = [722, 985]
 tiles = ""
 for i, it in enumerate(ITEMS):
     x, y = TX[i % 3], TY[i // 3]
@@ -111,7 +111,7 @@ for i, it in enumerate(ITEMS):
     tiles += f'<div class="tile" id="t{i}" style="left:{x}px;top:{y}px">{inner}</div>'
 SC["A"] = words("lead", "Six apps you pay for have", 1, 0, .5, top=286, size=64, ready=True) + \
           words("hv", "FREE", 1, .62, .62, acc=("free",), top=362, size=176, ready=True) + \
-          words("hv", "ALTERNATIVES", 1, .75, .75, top=536, size=118, ready=True) + ring("rgA", 84, 352, 500, 196) + tiles
+          words("hv", "ALTERNATIVES", 1, .75, .75, top=560, size=114, ready=True) + ring("rgA", 84, 352, 500, 196) + tiles
 js(f"tl.fromTo('#rgA',{{opacity:.0,scale:.96}},{{opacity:1,scale:1,duration:.5,ease:'{EASE}',immediateRender:false}},{max(.05, tFree - .1):.3f});")
 for i in range(6):                                              # one calm wave through the logos, in reading order
     js(f"tl.fromTo('#t{i}',{{y:0,scale:1}},{{y:-10,scale:1.04,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{.1 + i * max(.2, (e(1) - .5) / 6):.3f});")
@@ -148,7 +148,7 @@ def transform(k, t_in, t_free, t_note=None, first=False):
     js(f"tl.to('#pr{k}',{{opacity:.36,duration:.25,ease:'{EASE}'}},{t_free - .1:.3f});")
     js(f"tl.fromTo('#ar{k}',{{opacity:0,y:-18}},{{opacity:1,y:0,duration:.22,ease:'{EASE}',immediateRender:false}},{t_free - .08:.3f});")
     js(f"tl.fromTo('#fr{k}',{{opacity:0,y:18,filter:'blur(5px)'}},{{opacity:1,y:0,filter:'blur(0px)',duration:.3,ease:'{EASE}',immediateRender:false}},{t_free + .04:.3f});")
-    tx = t_free + .42
+    tx = t_free + .3
     js(f"tl.fromTo('#fx{k}',{{opacity:0,scale:.9}},{{opacity:1,scale:1,duration:.24,ease:'{EASE}',immediateRender:false}},{tx:.3f});")
     sfx("click_a.ogg", t_free - .2, -15); sfx("select.ogg", tx, -13)
     if t_note is not None: fin(f"#nt{k}", max(t_note, tx + .1), .26, 8, 3)
@@ -156,15 +156,16 @@ def transform(k, t_in, t_free, t_note=None, first=False):
     return tx
 SC["C"] = '<div class="comp" id="comp">' + "".join(group(it) for it in ITEMS) + "</div>"
 tNotion = W("notion", ("notion", "motion"), 3, .52)
-START = {1: a[3], 2: tNotion - .12, 3: a[4], 4: a[5], 5: a[6]}
-FREEW = {1: W("cap", ("cap", "capp", "kap", "cab"), 3, .32), 2: W("appflowy", ("appflowy", "app", "apflowy", "appflow"), 3, .72), 3: W("cal", ("cal", "caldiy", "kal", "cald"), 4, .34),
+START = {1: a[3], 2: tNotion + .04, 3: a[4], 4: a[5], 5: a[6]}
+FREEW = {1: round(a[3] + .70, 3),   # "Cap" starts about 0.75 s into the line (Whisper joins it to "try"), measured on the take
+          2: W("appflowy", ("appflowy", "app", "apflowy", "appflow"), 3, .72), 3: W("cal", ("cal", "caldiy", "kal", "cald"), 4, .34),
          4: W("chatwoot", ("chatwoot", "chat", "chatwoo"), 5, .34), 5: W("openwhispr", ("openwhispr", "open", "openwhisper"), 6, .55)}
 NOTE = {3: W("personal", ("for", "personal"), 4, .6), 4: W("host", ("if", "host"), 5, .62)}
 END = {1: START[2], 2: a[4], 3: a[5], 4: a[6], 5: a[7]}
 fin("#scC", a[3] - .04, .28); sfx("whoosh_b.ogg", a[3] - .1, -16)
 for k in range(1, 6):
-    transform(k, START[k] - (.0 if k == 1 else .02), max(FREEW[k], START[k] + .42), NOTE.get(k), first=(k == 1))
-    fout(f"#g{k}", END[k] - .24, .2)
+    transform(k, START[k] - (.0 if k == 1 else .02), max(FREEW[k], START[k] + .38), NOTE.get(k), first=(k == 1))
+    fout(f"#g{k}", END[k] - .16, .16)
 fout("#scC", a[7] - .24)
 # ---------------------------------------------------------------- D the big one: words -> the same card -> the real screenshot -> 7 months old
 tBig = W("big", "big", 7, .3); tEL = W("eleven", ("elevenlabs", "eleven", "11"), 7, .62)
@@ -186,7 +187,7 @@ fin("#scD3", tShot, .3)
 js(f"tl.fromTo('#shot img',{{scale:1.0}},{{scale:1.07,duration:{max(1, a[9] - tShot):.3f},ease:'sine.inOut',immediateRender:false}},{tShot:.3f});")
 NEWS.append((round(tShot, 2), "the real VoiceStudio screenshot, full stage: 'clones your own voice, ON YOUR OWN MACHINE.'"))
 fout("#scD3", a[9] - .24)
-SC["D4"] = words("lead", "It's new, just", 9, 0, .3, top=420, size=84) + words("hv", "7 MONTHS", 9, .5, .68, acc=("7", "seven"), top=516, size=186) + words("hv", "OLD.", 9, .9, .9, top=720, size=186)
+SC["D4"] = words("lead", "It's new, just", 9, 0, .3, top=420, size=84) + words("hv", "7 MONTHS", 9, .5, .68, acc=("7", "seven"), top=516, size=158) + words("hv", "OLD.", 9, .9, .9, top=694, size=158)
 fin("#scD4", a[9] - .04, .28)
 NEWS.append((a[9], "words only: 'It's new, just 7 MONTHS OLD.'"))
 fout("#scD4", a[10] - .24)
