@@ -1,5 +1,8 @@
 <!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
 <style>
 @font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
 @font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-ExtraBold.otf");font-weight:800}
@@ -8,252 +11,152 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;font-weight:500;color:#0f0f0f}
 #root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
-.bgw{position:absolute;left:-20px;top:-20px;width:1120px;height:1960px;background:#ecebe5 url(assets/bg.jpg);background-size:1120px 1960px}
+.bgw{position:absolute;left:-20px;top:-20px;width:1120px;height:1960px;background:#ecebe5 url(assets/bg.jpg);background-size:1120px 1960px;will-change:transform}
 #cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}
-.sc{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0} #scA{opacity:1}
+.sc{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;visibility:hidden;will-change:transform,opacity} #scA{opacity:1;visibility:visible}
 .sc>*{position:absolute}
 .lg{display:block;flex:none;object-fit:contain}
-.ln{left:108px;white-space:nowrap} .w{display:inline-block;opacity:0}
-.lead .w{font-weight:500;letter-spacing:-.02em;margin-right:.24em}
-.hv .w{font-weight:900;letter-spacing:-.045em;margin-right:.2em}
-.ring{overflow:visible;opacity:0;transform-origin:50% 50%}
-.tile{width:230px;height:230px;background:#fff;border-radius:44px;box-shadow:0 18px 36px rgba(20,20,20,.16);display:flex;flex-direction:column;align-items:center;justify-content:center;transform-origin:50% 50%}
-.tile .lg{border-radius:30px} .cwm{display:block;width:176px;height:42px;margin-top:10px}
+.ln{left:108px;white-space:nowrap}
+.m{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .06em 0;margin-right:.2em} .lead .m{margin-right:.24em}
+.w{display:inline-block;transform:translateY(112%);will-change:transform} .w.rdy{transform:none}
+.lead .w{font-weight:500;letter-spacing:-.02em} .hv .w{font-weight:900;letter-spacing:-.045em}
+.w.acc.rdy{color:#D97757}
+.ring{overflow:visible}
+.tile{width:417px;height:228px;background:#fff;border-radius:44px;box-shadow:0 18px 36px rgba(20,20,20,.16);will-change:transform}
+.tile>*{position:absolute} .lgw{left:44px;top:39px;width:150px;height:150px} .lgw .lg{border-radius:30px}
+.lgw.cal{display:flex;flex-direction:column;align-items:center;justify-content:center} .cwm{display:block;width:150px;height:36px;margin-top:8px}
+.bd{left:252px;top:62px;width:104px;height:104px;will-change:transform} .bd svg{position:absolute;left:0;top:0;width:104px;height:104px} .tick{opacity:0}
 .comp{left:108px;top:300px;width:864px;height:744px;background:#17181b;border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.28);border:2px solid #2b2c32}
-.grp{position:absolute;left:0;top:0;width:864px;height:744px;opacity:0} .grp>*{position:absolute}
+.grp{position:absolute;left:0;top:0;width:864px;height:744px;opacity:0;visibility:hidden} .grp>*{position:absolute}
 .lt{width:150px;height:150px;border-radius:34px;background:#fff;display:flex;align-items:center;justify-content:center;flex:none} .lt .lg{border-radius:22px}
-.lt.big{width:190px;height:190px;border-radius:42px} .lt.sm{width:76px;height:76px;border-radius:18px} .lt.sm .lg{border-radius:10px}
+.lt.big{width:190px;height:190px;border-radius:42px} .lt.sm{width:72px;height:72px;border-radius:17px} .lt.sm .lg{border-radius:10px}
 .prow{left:56px;top:56px;width:760px;height:150px;display:flex;align-items:center;gap:34px}
 .pn{position:relative;font-weight:900;letter-spacing:-.04em;color:#f2f2ee;white-space:nowrap;line-height:1.1}
 .sk{position:absolute;left:-10px;right:-10px;top:52%;height:9px;border-radius:5px;background:#f2f2ee;transform-origin:0 50%;transform:scaleX(0)}
-.arw{left:101px;top:226px;width:60px;height:90px;opacity:0}
-.frow{left:36px;top:338px;width:800px;height:190px;display:flex;align-items:center;gap:34px;opacity:0}
+.arw{left:101px;top:226px;width:60px;height:90px}
+.frow{left:36px;top:338px;width:800px;height:190px;display:flex;align-items:center;gap:34px;opacity:0;visibility:hidden}
 .fn{font-weight:900;letter-spacing:-.045em;color:#fff;white-space:nowrap}
-.free{left:258px;top:540px;font-weight:900;font-size:124px;line-height:130px;letter-spacing:-.03em;color:#D97757;opacity:0;transform-origin:0 50%;white-space:nowrap}
-.nt{left:262px;top:672px;font-weight:500;font-size:44px;line-height:50px;letter-spacing:-.01em;color:#b9b8b2;opacity:0;white-space:nowrap}
-.shot{left:108px;top:628px;width:756px;height:525px;border-radius:30px;box-shadow:0 26px 50px rgba(20,20,20,.28);overflow:hidden;background:#17181b}
+.free{left:258px;top:540px;font-weight:900;font-size:124px;line-height:134px;letter-spacing:-.03em;color:#D97757;white-space:nowrap}
+.nt{left:262px;top:676px;font-weight:500;font-size:44px;line-height:50px;letter-spacing:-.01em;color:#b9b8b2;white-space:nowrap;opacity:0;visibility:hidden}
+.shot{left:108px;top:628px;width:756px;height:525px;border-radius:30px;box-shadow:0 26px 50px rgba(20,20,20,.28);overflow:hidden;background:#17181b;will-change:transform}
 .shot img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;transform-origin:30% 40%}
-.comp.list{height:744px} .ltit{position:absolute;left:44px;top:30px;font-weight:900;font-size:60px;line-height:70px;letter-spacing:-.03em;color:#fff;white-space:nowrap}
-.lr{position:absolute;left:44px;right:44px;height:92px;display:flex;align-items:center;gap:16px;opacity:0;white-space:nowrap}
-.la{width:46px;height:28px;flex:none} .lx{margin-left:10px;font-weight:900;font-size:60px;line-height:66px;letter-spacing:-.035em;color:#fff}
-.lf{margin-left:auto;font-weight:900;font-size:44px;line-height:50px;letter-spacing:.01em;color:#D97757}
+.ltit{position:absolute;left:44px;top:28px;font-weight:900;font-size:58px;line-height:66px;letter-spacing:-.03em;color:#fff;white-space:nowrap}
+.lr{position:absolute;left:44px;right:44px;height:84px;display:flex;align-items:center;gap:16px;white-space:nowrap;opacity:0;visibility:hidden}
+.la{width:46px;height:28px;flex:none} .lx{margin-left:10px;font-weight:900;font-size:58px;line-height:64px;letter-spacing:-.035em;color:#fff}
+.lf{margin-left:auto;font-weight:900;font-size:42px;line-height:48px;letter-spacing:.01em;color:#D97757}
+.lnote{position:absolute;left:44px;bottom:26px;font-weight:500;font-size:42px;line-height:48px;letter-spacing:-.01em;color:#b9b8b2;white-space:nowrap;opacity:0;visibility:hidden}
 
 </style></head><body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="32.36" data-width="1080" data-height="1920">
-<div class="bgw" data-decor></div><div id="cam"><div class="sc" id="scA"><div class="ln lead" style="top:286px;font-size:64px;line-height:70px;"><span class="w" id="w1" style="opacity:1;color:#0f0f0f">Six</span><span class="w" id="w2" style="opacity:1;color:#0f0f0f">apps</span><span class="w" id="w3" style="opacity:1;color:#0f0f0f">you</span><span class="w" id="w4" style="opacity:1;color:#0f0f0f">pay</span><span class="w" id="w5" style="opacity:1;color:#0f0f0f">for</span><span class="w" id="w6" style="opacity:1;color:#0f0f0f">have</span></div><div class="ln hv" style="top:362px;font-size:176px;line-height:194px;"><span class="w" id="w7" style="opacity:1;color:#D97757">FREE</span></div><div class="ln hv" style="top:560px;font-size:114px;line-height:125px;"><span class="w" id="w8" style="opacity:1;color:#0f0f0f">ALTERNATIVES</span></div><svg class="ring" id="rgA" viewBox="0 0 400 160" preserveAspectRatio="none" style="left:84px;top:352px;width:500px;height:196px" data-decor><path d="M14 84 C6 30 130 8 214 10 C318 12 394 40 388 84 C382 132 270 150 190 148 C96 146 20 132 14 84 Z" fill="none" stroke="#D97757" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg><div class="tile" id="t0" style="left:108px;top:722px"><img class="lg" src="assets/logos/loom.png" style="width:150px;height:150px;"></div><div class="tile" id="t1" style="left:371px;top:722px"><img class="lg" src="assets/logos/notion.png" style="width:150px;height:150px;"></div><div class="tile" id="t2" style="left:634px;top:722px"><img class="lg" src="assets/logos/calendly.svg" style="width:118px;height:118px;margin-top:-22px"><img class="cwm" src="assets/logos/calendly-wordmark.svg"></div><div class="tile" id="t3" style="left:108px;top:985px"><img class="lg" src="assets/logos/intercom.svg" style="width:150px;height:150px;"></div><div class="tile" id="t4" style="left:371px;top:985px"><img class="lg" src="assets/logos/wisprflow.png" style="width:150px;height:150px;"></div><div class="tile" id="t5" style="left:634px;top:985px"><img class="lg" src="assets/logos/elevenlabs.svg" style="width:150px;height:150px;"></div></div><div class="sc" id="scB"><div class="ln lead" style="top:380px;font-size:84px;line-height:92px;"><span class="w" id="w9">The</span><span class="w" id="w10">last</span><span class="w" id="w11">one</span><span class="w" id="w12">is</span></div><div class="ln hv" style="top:476px;font-size:214px;line-height:235px;"><span class="w" id="w13">INSANE.</span></div><svg class="ring" id="rgB" viewBox="0 0 400 160" preserveAspectRatio="none" style="left:78px;top:468px;width:890px;height:250px" data-decor><path d="M14 84 C6 30 130 8 214 10 C318 12 394 40 388 84 C382 132 270 150 190 148 C96 146 20 132 14 84 Z" fill="none" stroke="#D97757" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg><div class="ln hv" style="top:760px;font-size:128px;line-height:141px;"><span class="w" id="w14">STAY</span><span class="w" id="w15">FOR</span><span class="w" id="w16">IT.</span></div></div><div class="sc" id="scC"><div class="comp" id="comp"><div class="grp" id="g1">
- <div class="prow" id="pr1"><div class="lt"><img class="lg" src="assets/logos/loom.png" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Loom<i class="sk" id="sk1"></i></div></div>
- <svg class="arw" id="ar1" viewBox="0 0 60 90"><path d="M30 6 V78 M30 78 L8 54 M30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
- <div class="frow" id="fr1"><div class="lt big"><img class="lg" src="assets/logos/cap.png" style="width:150px;height:150px;"></div><div class="fn" style="font-size:132px;line-height:132px">Cap</div></div>
- <div class="free" id="fx1">FREE</div></div><div class="grp" id="g2">
- <div class="prow" id="pr2"><div class="lt"><img class="lg" src="assets/logos/notion.png" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Notion<i class="sk" id="sk2"></i></div></div>
- <svg class="arw" id="ar2" viewBox="0 0 60 90"><path d="M30 6 V78 M30 78 L8 54 M30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
- <div class="frow" id="fr2"><div class="lt big"><img class="lg" src="assets/logos/appflowy.svg" style="width:150px;height:150px;"></div><div class="fn" style="font-size:118px;line-height:118px">AppFlowy</div></div>
- <div class="free" id="fx2">FREE</div></div><div class="grp" id="g3">
- <div class="prow" id="pr3"><div class="lt"><img class="lg" src="assets/logos/calendly.svg" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Calendly<i class="sk" id="sk3"></i></div></div>
- <svg class="arw" id="ar3" viewBox="0 0 60 90"><path d="M30 6 V78 M30 78 L8 54 M30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
- <div class="frow" id="fr3"><div class="lt big"><img class="lg" src="assets/logos/caldiy.png" style="width:150px;height:150px;"></div><div class="fn" style="font-size:132px;line-height:132px">Cal.diy</div></div>
- <div class="free" id="fx3">FREE</div><div class="nt" id="nt3">personal use only</div></div><div class="grp" id="g4">
- <div class="prow" id="pr4"><div class="lt"><img class="lg" src="assets/logos/intercom.svg" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Intercom<i class="sk" id="sk4"></i></div></div>
- <svg class="arw" id="ar4" viewBox="0 0 60 90"><path d="M30 6 V78 M30 78 L8 54 M30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
- <div class="frow" id="fr4"><div class="lt big"><img class="lg" src="assets/logos/chatwoot.png" style="width:150px;height:150px;"></div><div class="fn" style="font-size:120px;line-height:120px">Chatwoot</div></div>
- <div class="free" id="fx4">FREE</div><div class="nt" id="nt4">if you host it yourself</div></div><div class="grp" id="g5">
- <div class="prow" id="pr5"><div class="lt"><img class="lg" src="assets/logos/wisprflow.png" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Wispr Flow<i class="sk" id="sk5"></i></div></div>
- <svg class="arw" id="ar5" viewBox="0 0 60 90"><path d="M30 6 V78 M30 78 L8 54 M30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
- <div class="frow" id="fr5"><div class="lt big"><img class="lg" src="assets/logos/openwhispr.svg" style="width:150px;height:150px;"></div><div class="fn" style="font-size:97px;line-height:97px">OpenWhispr</div></div>
- <div class="free" id="fx5">FREE</div></div><div class="grp" id="g6">
- <div class="prow" id="pr6"><div class="lt"><img class="lg" src="assets/logos/elevenlabs.svg" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">ElevenLabs<i class="sk" id="sk6"></i></div></div>
- <svg class="arw" id="ar6" viewBox="0 0 60 90"><path d="M30 6 V78 M30 78 L8 54 M30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
- <div class="frow" id="fr6"><div class="lt big"><img class="lg" src="assets/logos/voicestudio.svg" style="width:150px;height:150px;"></div><div class="fn" style="font-size:99px;line-height:99px">VoiceStudio</div></div>
- <div class="free" id="fx6">FREE</div></div></div></div><div class="sc" id="scD1"><div class="ln lead" style="top:420px;font-size:84px;line-height:92px;"><span class="w" id="w17">And</span><span class="w" id="w18">the</span></div><div class="ln hv" style="top:516px;font-size:206px;line-height:227px;"><span class="w" id="w19">BIG</span><span class="w" id="w20">ONE.</span></div><svg class="ring" id="rgD" viewBox="0 0 400 160" preserveAspectRatio="none" style="left:78px;top:508px;width:900px;height:244px" data-decor><path d="M14 84 C6 30 130 8 214 10 C318 12 394 40 388 84 C382 132 270 150 190 148 C96 146 20 132 14 84 Z" fill="none" stroke="#D97757" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div><div class="sc" id="scD2"><div class="comp" id="comp6"><div class="grp" id="g7">
- <div class="prow" id="pr7"><div class="lt"><img class="lg" src="assets/logos/elevenlabs.svg" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">ElevenLabs<i class="sk" id="sk7"></i></div></div>
- <svg class="arw" id="ar7" viewBox="0 0 60 90"><path d="M30 6 V78 M30 78 L8 54 M30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
- <div class="frow" id="fr7"><div class="lt big"><img class="lg" src="assets/logos/voicestudio.svg" style="width:150px;height:150px;"></div><div class="fn" style="font-size:99px;line-height:99px">VoiceStudio</div></div>
- <div class="free" id="fx7">FREE</div></div></div></div><div class="sc" id="scD3"><div class="ln lead" style="top:300px;font-size:64px;line-height:70px;"><span class="w" id="w21">clones</span><span class="w" id="w22">your</span><span class="w" id="w23">own</span><span class="w" id="w24">voice,</span></div><div class="ln hv" style="top:376px;font-size:104px;line-height:114px;"><span class="w" id="w25">ON</span><span class="w" id="w26">YOUR</span><span class="w" id="w27">OWN</span></div><div class="ln hv" style="top:490px;font-size:104px;line-height:114px;"><span class="w" id="w28">MACHINE.</span></div><div class="shot" id="shot"><img src="assets/shots/voicestudio.jpg"></div></div><div class="sc" id="scD4"><div class="ln lead" style="top:420px;font-size:84px;line-height:92px;"><span class="w" id="w29">It's</span><span class="w" id="w30">new,</span><span class="w" id="w31">just</span></div><div class="ln hv" style="top:516px;font-size:158px;line-height:174px;"><span class="w" id="w32">7</span><span class="w" id="w33">MONTHS</span></div><div class="ln hv" style="top:694px;font-size:158px;line-height:174px;"><span class="w" id="w34">OLD.</span></div></div><div class="sc" id="scE"><div class="ln lead" style="top:400px;font-size:84px;line-height:92px;"><span class="w" id="w35">We</span><span class="w" id="w36">did</span></div><div class="ln hv" style="top:496px;font-size:176px;line-height:194px;"><span class="w" id="w37">NOT</span><span class="w" id="w38">TEST</span></div><div class="ln hv" style="top:690px;font-size:176px;line-height:194px;"><span class="w" id="w39">THESE.</span></div><div class="ln lead" style="top:910px;font-size:64px;line-height:70px;"><span class="w" id="w40">so</span><span class="w" id="w41">check</span><span class="w" id="w42">each</span><span class="w" id="w43">one</span><span class="w" id="w44">yourself.</span></div></div><div class="sc" id="scF"><div class="comp list" id="lcard"><div class="ltit">Save this list</div><div class="lr" id="lr0" style="top:118px"><div class="lt sm"><img class="lg" src="assets/logos/loom.png" style="width:52px;height:52px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/cap.png" style="width:62px;height:62px;"></div><span class="lx">Cap</span><span class="lf">FREE</span></div><div class="lr" id="lr1" style="top:218px"><div class="lt sm"><img class="lg" src="assets/logos/notion.png" style="width:52px;height:52px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/appflowy.svg" style="width:62px;height:62px;"></div><span class="lx">AppFlowy</span><span class="lf">FREE</span></div><div class="lr" id="lr2" style="top:318px"><div class="lt sm"><img class="lg" src="assets/logos/calendly.svg" style="width:52px;height:52px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/caldiy.png" style="width:62px;height:62px;"></div><span class="lx">Cal.diy</span><span class="lf">FREE</span></div><div class="lr" id="lr3" style="top:418px"><div class="lt sm"><img class="lg" src="assets/logos/intercom.svg" style="width:52px;height:52px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/chatwoot.png" style="width:62px;height:62px;"></div><span class="lx">Chatwoot</span><span class="lf">FREE</span></div><div class="lr" id="lr4" style="top:518px"><div class="lt sm"><img class="lg" src="assets/logos/wisprflow.png" style="width:52px;height:52px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/openwhispr.svg" style="width:62px;height:62px;"></div><span class="lx">OpenWhispr</span><span class="lf">FREE</span></div><div class="lr" id="lr5" style="top:618px"><div class="lt sm"><img class="lg" src="assets/logos/elevenlabs.svg" style="width:52px;height:52px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/voicestudio.svg" style="width:62px;height:62px;"></div><span class="lx">VoiceStudio</span><span class="lf">FREE</span></div></div></div><div class="sc" id="scG1"><div class="ln lead" style="top:420px;font-size:84px;line-height:92px;"><span class="w" id="w45">The</span><span class="w" id="w46">setup's</span><span class="w" id="w47">in</span><span class="w" id="w48">the</span></div><div class="ln hv" style="top:516px;font-size:140px;line-height:154px;"><span class="w" id="w49">LINK</span><span class="w" id="w50">IN</span><span class="w" id="w51">BIO.</span></div></div><div class="sc" id="scG2"><div class="ln lead" style="top:400px;font-size:84px;line-height:92px;"><span class="w" id="w52">Want</span><span class="w" id="w53">the</span><span class="w" id="w54">next</span><span class="w" id="w55">one?</span></div><div class="ln hv" style="top:500px;font-size:206px;line-height:227px;"><span class="w" id="w56">FOLLOW.</span></div><svg class="ring" id="rgG" viewBox="0 0 400 160" preserveAspectRatio="none" style="left:78px;top:492px;width:900px;height:250px" data-decor><path d="M14 84 C6 30 130 8 214 10 C318 12 394 40 388 84 C382 132 270 150 190 148 C96 146 20 132 14 84 Z" fill="none" stroke="#D97757" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div></div>
+<div id="root" data-composition-id="main" data-start="0" data-duration="27.41" data-width="1080" data-height="1920">
+<div class="bgw" data-decor></div><div id="cam"><div class="sc" id="scA"><div class="ln hv" style="top:284px;font-size:97px;line-height:109px"><span class="m"><span class="w acc rdy" data-t="0.060">FREE</span></span><span class="m"><span class="w rdy" data-t="0.795">ALTERNATIVES</span></span></div><div class="ln lead" style="top:402px;font-size:66px;line-height:74px"><span class="m"><span class="w rdy" data-t="1.162">to</span></span><span class="m"><span class="w rdy" data-t="1.407">six</span></span><span class="m"><span class="w rdy" data-t="1.652">apps</span></span><span class="m"><span class="w rdy" data-t="1.897">you</span></span><span class="m"><span class="w rdy" data-t="2.142">pay</span></span><span class="m"><span class="w rdy" data-t="2.387">for</span></span></div><svg class="ring" id="rgA" viewBox="0 0 400 160" preserveAspectRatio="none" style="left:86px;top:268px;width:300px;height:142px" data-decor><path d="M14 84 C6 30 130 8 214 10 C318 12 394 40 388 84 C382 132 270 150 190 148 C96 146 20 132 14 84 Z" fill="none" stroke="#D97757" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg><div class="tile" id="t0" style="left:108px;top:520px"><div class="lgw"><img class="lg" src="assets/logos/loom.png" style="width:150px;height:150px;"></div><div class="bd"><svg class="tag" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#17181b"/><path d="M30 34 H56 L74 52 L54 72 L30 48 Z" fill="none" stroke="#f2f2ee" stroke-width="7" stroke-linejoin="round"/><circle cx="41" cy="45" r="5" fill="#f2f2ee"/></svg><svg class="tick" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#D97757"/><path d="M29 52 L44 67 L72 35" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="tile" id="t1" style="left:555px;top:520px"><div class="lgw"><img class="lg" src="assets/logos/notion.png" style="width:150px;height:150px;"></div><div class="bd"><svg class="tag" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#17181b"/><path d="M30 34 H56 L74 52 L54 72 L30 48 Z" fill="none" stroke="#f2f2ee" stroke-width="7" stroke-linejoin="round"/><circle cx="41" cy="45" r="5" fill="#f2f2ee"/></svg><svg class="tick" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#D97757"/><path d="M29 52 L44 67 L72 35" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="tile" id="t2" style="left:108px;top:766px"><div class="lgw cal"><img class="lg" src="assets/logos/calendly.svg" style="width:112px;height:112px;"><img class="cwm" src="assets/logos/calendly-wordmark.svg"></div><div class="bd"><svg class="tag" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#17181b"/><path d="M30 34 H56 L74 52 L54 72 L30 48 Z" fill="none" stroke="#f2f2ee" stroke-width="7" stroke-linejoin="round"/><circle cx="41" cy="45" r="5" fill="#f2f2ee"/></svg><svg class="tick" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#D97757"/><path d="M29 52 L44 67 L72 35" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="tile" id="t3" style="left:555px;top:766px"><div class="lgw"><img class="lg" src="assets/logos/intercom.svg" style="width:150px;height:150px;"></div><div class="bd"><svg class="tag" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#17181b"/><path d="M30 34 H56 L74 52 L54 72 L30 48 Z" fill="none" stroke="#f2f2ee" stroke-width="7" stroke-linejoin="round"/><circle cx="41" cy="45" r="5" fill="#f2f2ee"/></svg><svg class="tick" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#D97757"/><path d="M29 52 L44 67 L72 35" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="tile" id="t4" style="left:108px;top:1012px"><div class="lgw"><img class="lg" src="assets/logos/wisprflow.png" style="width:150px;height:150px;"></div><div class="bd"><svg class="tag" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#17181b"/><path d="M30 34 H56 L74 52 L54 72 L30 48 Z" fill="none" stroke="#f2f2ee" stroke-width="7" stroke-linejoin="round"/><circle cx="41" cy="45" r="5" fill="#f2f2ee"/></svg><svg class="tick" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#D97757"/><path d="M29 52 L44 67 L72 35" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="tile" id="t5" style="left:555px;top:1012px"><div class="lgw"><img class="lg" src="assets/logos/elevenlabs.svg" style="width:150px;height:150px;"></div><div class="bd"><svg class="tag" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#17181b"/><path d="M30 34 H56 L74 52 L54 72 L30 48 Z" fill="none" stroke="#f2f2ee" stroke-width="7" stroke-linejoin="round"/><circle cx="41" cy="45" r="5" fill="#f2f2ee"/></svg><svg class="tick" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#D97757"/><path d="M29 52 L44 67 L72 35" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div><div class="sc" id="scB"><div class="ln lead" style="top:380px;font-size:84px;line-height:94px"><span class="m"><span class="w" data-t="2.610">The</span></span><span class="m"><span class="w" data-t="2.868">last</span></span><span class="m"><span class="w" data-t="3.126">one</span></span><span class="m"><span class="w" data-t="3.384">is</span></span></div><div class="ln hv" style="top:476px;font-size:214px;line-height:240px"><span class="m"><span class="w acc" data-t="3.685">INSANE.</span></span></div><svg class="ring" id="rgB" viewBox="0 0 400 160" preserveAspectRatio="none" style="left:78px;top:468px;width:890px;height:250px" data-decor><path d="M14 84 C6 30 130 8 214 10 C318 12 394 40 388 84 C382 132 270 150 190 148 C96 146 20 132 14 84 Z" fill="none" stroke="#D97757" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg><div class="ln hv" style="top:760px;font-size:128px;line-height:143px"><span class="m"><span class="w" data-t="4.158">STAY</span></span><span class="m"><span class="w" data-t="4.405">FOR</span></span><span class="m"><span class="w" data-t="4.652">IT.</span></span></div></div><div class="sc" id="scC"><div class="comp"><div class="grp" id="g1">
+ <div class="prow"><div class="lt"><img class="lg" src="assets/logos/loom.png" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Loom<i class="sk"></i></div></div>
+ <svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="frow"><div class="lt big"><img class="lg" src="assets/logos/cap.png" style="width:150px;height:150px;"></div><div class="fn" style="font-size:132px;line-height:132px">Cap</div></div>
+ <div class="free"><span class="fx">FREE</span></div></div><div class="grp" id="g2">
+ <div class="prow"><div class="lt"><img class="lg" src="assets/logos/notion.png" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Notion<i class="sk"></i></div></div>
+ <svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="frow"><div class="lt big"><img class="lg" src="assets/logos/appflowy.svg" style="width:150px;height:150px;"></div><div class="fn" style="font-size:118px;line-height:118px">AppFlowy</div></div>
+ <div class="free"><span class="fx">FREE</span></div></div><div class="grp" id="g3">
+ <div class="prow"><div class="lt"><img class="lg" src="assets/logos/calendly.svg" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Calendly<i class="sk"></i></div></div>
+ <svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="frow"><div class="lt big"><img class="lg" src="assets/logos/caldiy.png" style="width:150px;height:150px;"></div><div class="fn" style="font-size:132px;line-height:132px">Cal.diy</div></div>
+ <div class="free"><span class="fx">FREE</span></div><div class="nt">personal use only</div></div><div class="grp" id="g4">
+ <div class="prow"><div class="lt"><img class="lg" src="assets/logos/intercom.svg" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Intercom<i class="sk"></i></div></div>
+ <svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="frow"><div class="lt big"><img class="lg" src="assets/logos/chatwoot.png" style="width:150px;height:150px;"></div><div class="fn" style="font-size:120px;line-height:120px">Chatwoot</div></div>
+ <div class="free"><span class="fx">FREE</span></div><div class="nt">if you host it yourself</div></div><div class="grp" id="g5">
+ <div class="prow"><div class="lt"><img class="lg" src="assets/logos/wisprflow.png" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Wispr Flow<i class="sk"></i></div></div>
+ <svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="frow"><div class="lt big"><img class="lg" src="assets/logos/openwhispr.svg" style="width:150px;height:150px;"></div><div class="fn" style="font-size:97px;line-height:97px">OpenWhispr</div></div>
+ <div class="free"><span class="fx">FREE</span></div></div></div></div><div class="sc" id="scD1"><div class="ln lead" style="top:420px;font-size:84px;line-height:94px"><span class="m"><span class="w" data-t="11.760">And</span></span><span class="m"><span class="w" data-t="11.970">the</span></span></div><div class="ln hv" style="top:516px;font-size:206px;line-height:231px"><span class="m"><span class="w acc" data-t="12.285">BIG</span></span><span class="m"><span class="w acc" data-t="12.495">ONE.</span></span></div><svg class="ring" id="rgD" viewBox="0 0 400 160" preserveAspectRatio="none" style="left:78px;top:508px;width:900px;height:244px" data-decor><path d="M14 84 C6 30 130 8 214 10 C318 12 394 40 388 84 C382 132 270 150 190 148 C96 146 20 132 14 84 Z" fill="none" stroke="#D97757" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div><div class="sc" id="scD2"><div class="comp"><div class="grp" id="g6">
+ <div class="prow"><div class="lt"><img class="lg" src="assets/logos/elevenlabs.svg" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">ElevenLabs<i class="sk"></i></div></div>
+ <svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="frow"><div class="lt big"><img class="lg" src="assets/logos/voicestudio.svg" style="width:150px;height:150px;"></div><div class="fn" style="font-size:99px;line-height:99px">VoiceStudio</div></div>
+ <div class="free"><span class="fx">FREE</span></div></div></div></div><div class="sc" id="scD3"><div class="ln lead" style="top:300px;font-size:64px;line-height:72px"><span class="m"><span class="w" data-t="14.540">clones</span></span><span class="m"><span class="w" data-t="14.798">your</span></span><span class="m"><span class="w" data-t="15.057">own</span></span><span class="m"><span class="w" data-t="15.315">voice,</span></span></div><div class="ln hv" style="top:376px;font-size:104px;line-height:116px"><span class="m"><span class="w" data-t="15.532">ON</span></span><span class="m"><span class="w" data-t="15.811">YOUR</span></span><span class="m"><span class="w" data-t="16.090">OWN</span></span></div><div class="ln hv" style="top:490px;font-size:104px;line-height:116px"><span class="m"><span class="w" data-t="16.400">MACHINE.</span></span></div><div class="shot"><img src="assets/shots/voicestudio.jpg"></div></div><div class="sc" id="scD4"><div class="ln lead" style="top:420px;font-size:84px;line-height:94px"><span class="m"><span class="w" data-t="16.810">It's</span></span><span class="m"><span class="w" data-t="17.102">new,</span></span><span class="m"><span class="w" data-t="17.395">just</span></span></div><div class="ln hv" style="top:516px;font-size:158px;line-height:177px"><span class="m"><span class="w acc" data-t="17.785">7</span></span><span class="m"><span class="w" data-t="18.136">MONTHS</span></span></div><div class="ln hv" style="top:694px;font-size:158px;line-height:177px"><span class="m"><span class="w" data-t="18.565">OLD.</span></span></div></div><div class="sc" id="scF"><div class="comp list"><div class="ltit">Save this list</div><div class="lr" style="top:112px"><div class="lt sm"><img class="lg" src="assets/logos/loom.png" style="width:50px;height:50px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/cap.png" style="width:60px;height:60px;"></div><span class="lx">Cap</span><span class="lf">FREE</span></div><div class="lr" style="top:204px"><div class="lt sm"><img class="lg" src="assets/logos/notion.png" style="width:50px;height:50px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/appflowy.svg" style="width:60px;height:60px;"></div><span class="lx">AppFlowy</span><span class="lf">FREE</span></div><div class="lr" style="top:296px"><div class="lt sm"><img class="lg" src="assets/logos/calendly.svg" style="width:50px;height:50px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/caldiy.png" style="width:60px;height:60px;"></div><span class="lx">Cal.diy</span><span class="lf">FREE</span></div><div class="lr" style="top:388px"><div class="lt sm"><img class="lg" src="assets/logos/intercom.svg" style="width:50px;height:50px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/chatwoot.png" style="width:60px;height:60px;"></div><span class="lx">Chatwoot</span><span class="lf">FREE</span></div><div class="lr" style="top:480px"><div class="lt sm"><img class="lg" src="assets/logos/wisprflow.png" style="width:50px;height:50px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/openwhispr.svg" style="width:60px;height:60px;"></div><span class="lx">OpenWhispr</span><span class="lf">FREE</span></div><div class="lr" style="top:572px"><div class="lt sm"><img class="lg" src="assets/logos/elevenlabs.svg" style="width:50px;height:50px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/voicestudio.svg" style="width:60px;height:60px;"></div><span class="lx">VoiceStudio</span><span class="lf">FREE</span></div><div class="lnote">Not tested by us. Check each one.</div></div></div><div class="sc" id="scG1"><div class="ln lead" style="top:420px;font-size:84px;line-height:94px"><span class="m"><span class="w" data-t="21.810">The</span></span><span class="m"><span class="w" data-t="22.063">setup's</span></span><span class="m"><span class="w" data-t="22.317">in</span></span><span class="m"><span class="w" data-t="22.570">the</span></span></div><div class="ln hv" style="top:516px;font-size:140px;line-height:157px"><span class="m"><span class="w" data-t="22.855">LINK</span></span><span class="m"><span class="w" data-t="23.188">IN</span></span><span class="m"><span class="w" data-t="23.520">BIO.</span></span></div></div><div class="sc" id="scG2"><div class="ln lead" style="top:400px;font-size:84px;line-height:94px"><span class="m"><span class="w" data-t="23.810">Want</span></span><span class="m"><span class="w" data-t="24.113">the</span></span><span class="m"><span class="w" data-t="24.417">next</span></span><span class="m"><span class="w" data-t="24.720">one?</span></span></div><div class="ln hv" style="top:500px;font-size:206px;line-height:231px"><span class="m"><span class="w acc" data-t="25.110">FOLLOW.</span></span></div><svg class="ring" id="rgG" viewBox="0 0 400 160" preserveAspectRatio="none" style="left:78px;top:492px;width:900px;height:250px" data-decor><path d="M14 84 C6 30 130 8 214 10 C318 12 394 40 388 84 C382 132 270 150 190 148 C96 146 20 132 14 84 Z" fill="none" stroke="#D97757" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div></div>
 </div>
 <script>
-const D=32.36; const tl=gsap.timeline({paused:true});
-tl.fromTo('#rgA',{opacity:.0,scale:.96},{opacity:1,scale:1,duration:.5,ease:'power2.out',immediateRender:false},1.260);
-tl.fromTo('#t0',{y:0,scale:1},{y:-10,scale:1.04,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},0.100);
-tl.fromTo('#t1',{y:0,scale:1},{y:-10,scale:1.04,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},0.395);
-tl.fromTo('#t2',{y:0,scale:1},{y:-10,scale:1.04,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},0.690);
-tl.fromTo('#t3',{y:0,scale:1},{y:-10,scale:1.04,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},0.985);
-tl.fromTo('#t4',{y:0,scale:1},{y:-10,scale:1.04,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},1.280);
-tl.fromTo('#t5',{y:0,scale:1},{y:-10,scale:1.04,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},1.575);
-tl.to('#scA',{opacity:0,y:-10,filter:'blur(6px)',duration:0.24,ease:'power2.inOut'},2.180);
-tl.to('#w9',{opacity:.16,duration:.2,ease:'power2.out'},2.160);
-tl.to('#w9',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},2.480);
-tl.to('#w10',{opacity:.16,duration:.2,ease:'power2.out'},2.220);
-tl.to('#w10',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},2.540);
-tl.to('#w11',{opacity:.16,duration:.2,ease:'power2.out'},2.400);
-tl.to('#w11',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},2.720);
-tl.to('#w12',{opacity:.16,duration:.2,ease:'power2.out'},2.620);
-tl.to('#w12',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},2.940);
-tl.to('#w13',{opacity:.16,duration:.2,ease:'power2.out'},2.880);
-tl.to('#w13',{opacity:1,color:'#D97757',duration:.16,ease:'power2.out'},3.200);
-tl.to('#w14',{opacity:.16,duration:.2,ease:'power2.out'},3.700);
-tl.to('#w14',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},4.020);
-tl.to('#w15',{opacity:.16,duration:.2,ease:'power2.out'},3.760);
-tl.to('#w15',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},4.080);
-tl.to('#w16',{opacity:.16,duration:.2,ease:'power2.out'},3.960);
-tl.to('#w16',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},4.280);
-tl.fromTo('#scB',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.28,ease:'power2.out',immediateRender:false},2.380);
-tl.fromTo('#rgB',{opacity:0,scale:.96},{opacity:1,scale:1,duration:.6,ease:'power2.out',immediateRender:false},3.300);
-tl.to('#scB',{opacity:0,y:-10,filter:'blur(6px)',duration:0.24,ease:'power2.inOut'},4.350);
-tl.fromTo('#scC',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.28,ease:'power2.out',immediateRender:false},4.550);
-tl.set('#g1',{immediateRender:false,opacity:1},4.590);
-tl.to('#sk1',{scaleX:1,duration:.2,ease:'power2.inOut'},5.090);
-tl.to('#pr1',{opacity:.36,duration:.25,ease:'power2.out'},5.190);
-tl.fromTo('#ar1',{opacity:0,y:-18},{opacity:1,y:0,duration:.22,ease:'power2.out',immediateRender:false},5.210);
-tl.fromTo('#fr1',{opacity:0,y:18,filter:'blur(5px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.3,ease:'power2.out',immediateRender:false},5.330);
-tl.fromTo('#fx1',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.24,ease:'power2.out',immediateRender:false},5.590);
-tl.to('#g1',{opacity:0,y:-10,filter:'blur(6px)',duration:0.16,ease:'power2.inOut'},6.080);
-tl.fromTo('#g2',{opacity:0,y:14,filter:'blur(5px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.26,ease:'power2.out',immediateRender:false},6.220);
-tl.to('#sk2',{scaleX:1,duration:.2,ease:'power2.inOut'},6.680);
-tl.to('#pr2',{opacity:.36,duration:.25,ease:'power2.out'},6.780);
-tl.fromTo('#ar2',{opacity:0,y:-18},{opacity:1,y:0,duration:.22,ease:'power2.out',immediateRender:false},6.800);
-tl.fromTo('#fr2',{opacity:0,y:18,filter:'blur(5px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.3,ease:'power2.out',immediateRender:false},6.920);
-tl.fromTo('#fx2',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.24,ease:'power2.out',immediateRender:false},7.180);
-tl.to('#g2',{opacity:0,y:-10,filter:'blur(6px)',duration:0.16,ease:'power2.inOut'},7.710);
-tl.fromTo('#g3',{opacity:0,y:14,filter:'blur(5px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.26,ease:'power2.out',immediateRender:false},7.850);
-tl.to('#sk3',{scaleX:1,duration:.2,ease:'power2.inOut'},8.537);
-tl.to('#pr3',{opacity:.36,duration:.25,ease:'power2.out'},8.637);
-tl.fromTo('#ar3',{opacity:0,y:-18},{opacity:1,y:0,duration:.22,ease:'power2.out',immediateRender:false},8.657);
-tl.fromTo('#fr3',{opacity:0,y:18,filter:'blur(5px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.3,ease:'power2.out',immediateRender:false},8.777);
-tl.fromTo('#fx3',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.24,ease:'power2.out',immediateRender:false},9.037);
-tl.fromTo('#nt3',{opacity:0,y:8,filter:'blur(3px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.26,ease:'power2.out',immediateRender:false},9.600);
-tl.to('#g3',{opacity:0,y:-10,filter:'blur(6px)',duration:0.16,ease:'power2.inOut'},10.580);
-tl.fromTo('#g4',{opacity:0,y:14,filter:'blur(5px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.26,ease:'power2.out',immediateRender:false},10.720);
-tl.to('#sk4',{scaleX:1,duration:.2,ease:'power2.inOut'},11.640);
-tl.to('#pr4',{opacity:.36,duration:.25,ease:'power2.out'},11.740);
-tl.fromTo('#ar4',{opacity:0,y:-18},{opacity:1,y:0,duration:.22,ease:'power2.out',immediateRender:false},11.760);
-tl.fromTo('#fr4',{opacity:0,y:18,filter:'blur(5px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.3,ease:'power2.out',immediateRender:false},11.880);
-tl.fromTo('#fx4',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.24,ease:'power2.out',immediateRender:false},12.140);
-tl.fromTo('#nt4',{opacity:0,y:8,filter:'blur(3px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.26,ease:'power2.out',immediateRender:false},12.400);
-tl.to('#g4',{opacity:0,y:-10,filter:'blur(6px)',duration:0.16,ease:'power2.inOut'},13.170);
-tl.fromTo('#g5',{opacity:0,y:14,filter:'blur(5px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.26,ease:'power2.out',immediateRender:false},13.310);
-tl.to('#sk5',{scaleX:1,duration:.2,ease:'power2.inOut'},13.940);
-tl.to('#pr5',{opacity:.36,duration:.25,ease:'power2.out'},14.040);
-tl.fromTo('#ar5',{opacity:0,y:-18},{opacity:1,y:0,duration:.22,ease:'power2.out',immediateRender:false},14.060);
-tl.fromTo('#fr5',{opacity:0,y:18,filter:'blur(5px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.3,ease:'power2.out',immediateRender:false},14.180);
-tl.fromTo('#fx5',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.24,ease:'power2.out',immediateRender:false},14.440);
-tl.to('#g5',{opacity:0,y:-10,filter:'blur(6px)',duration:0.16,ease:'power2.inOut'},14.990);
-tl.to('#scC',{opacity:0,y:-10,filter:'blur(6px)',duration:0.24,ease:'power2.inOut'},14.910);
-tl.to('#w17',{opacity:.16,duration:.2,ease:'power2.out'},14.840);
-tl.to('#w17',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},15.160);
-tl.to('#w18',{opacity:.16,duration:.2,ease:'power2.out'},15.100);
-tl.to('#w18',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},15.420);
-tl.to('#w19',{opacity:.16,duration:.2,ease:'power2.out'},15.300);
-tl.to('#w19',{opacity:1,color:'#D97757',duration:.16,ease:'power2.out'},15.620);
-tl.to('#w20',{opacity:.16,duration:.2,ease:'power2.out'},15.460);
-tl.to('#w20',{opacity:1,color:'#D97757',duration:.16,ease:'power2.out'},15.780);
-tl.fromTo('#scD1',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.28,ease:'power2.out',immediateRender:false},15.110);
-tl.fromTo('#rgD',{opacity:0,scale:.96},{opacity:1,scale:1,duration:.6,ease:'power2.out',immediateRender:false},15.870);
-tl.to('#scD1',{opacity:0,y:-10,filter:'blur(6px)',duration:0.24,ease:'power2.inOut'},15.920);
-tl.fromTo('#scD2',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.28,ease:'power2.out',immediateRender:false},16.140);
-tl.set('#g7',{immediateRender:false,opacity:1},16.140);
-tl.set('#g7',{immediateRender:false,opacity:1},16.140);
-tl.to('#sk7',{scaleX:1,duration:.2,ease:'power2.inOut'},17.100);
-tl.to('#pr7',{opacity:.36,duration:.25,ease:'power2.out'},17.200);
-tl.fromTo('#ar7',{opacity:0,y:-18},{opacity:1,y:0,duration:.22,ease:'power2.out',immediateRender:false},17.220);
-tl.fromTo('#fr7',{opacity:0,y:18,filter:'blur(5px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.3,ease:'power2.out',immediateRender:false},17.340);
-tl.fromTo('#fx7',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.24,ease:'power2.out',immediateRender:false},17.600);
-tl.to('#scD2',{opacity:0,y:-10,filter:'blur(6px)',duration:0.24,ease:'power2.inOut'},18.080);
-tl.to('#w21',{opacity:.16,duration:.2,ease:'power2.out'},17.300);
-tl.to('#w21',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},17.620);
-tl.to('#w22',{opacity:.16,duration:.2,ease:'power2.out'},17.860);
-tl.to('#w22',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},18.180);
-tl.to('#w23',{opacity:.16,duration:.2,ease:'power2.out'},18.060);
-tl.to('#w23',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},18.380);
-tl.to('#w24',{opacity:.16,duration:.2,ease:'power2.out'},16.980);
-tl.to('#w24',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},17.300);
-tl.to('#w25',{opacity:.16,duration:.2,ease:'power2.out'},18.820);
-tl.to('#w25',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},19.140);
-tl.to('#w26',{opacity:.16,duration:.2,ease:'power2.out'},17.860);
-tl.to('#w26',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},18.180);
-tl.to('#w27',{opacity:.16,duration:.2,ease:'power2.out'},18.060);
-tl.to('#w27',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},18.380);
-tl.to('#w28',{opacity:.16,duration:.2,ease:'power2.out'},19.180);
-tl.to('#w28',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},19.500);
-tl.fromTo('#scD3',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},18.300);
-tl.fromTo('#shot img',{scale:1.0},{scale:1.07,duration:1.810,ease:'sine.inOut',immediateRender:false},18.300);
-tl.to('#scD3',{opacity:0,y:-10,filter:'blur(6px)',duration:0.24,ease:'power2.inOut'},19.870);
-tl.to('#w29',{opacity:.16,duration:.2,ease:'power2.out'},19.840);
-tl.to('#w29',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},20.160);
-tl.to('#w30',{opacity:.16,duration:.2,ease:'power2.out'},20.000);
-tl.to('#w30',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},20.320);
-tl.to('#w31',{opacity:.16,duration:.2,ease:'power2.out'},20.560);
-tl.to('#w31',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},20.880);
-tl.to('#w32',{opacity:.16,duration:.2,ease:'power2.out'},20.640);
-tl.to('#w32',{opacity:1,color:'#D97757',duration:.16,ease:'power2.out'},20.960);
-tl.to('#w33',{opacity:.16,duration:.2,ease:'power2.out'},20.980);
-tl.to('#w33',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},21.300);
-tl.to('#w34',{opacity:.16,duration:.2,ease:'power2.out'},21.140);
-tl.to('#w34',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},21.460);
-tl.fromTo('#scD4',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.28,ease:'power2.out',immediateRender:false},20.070);
-tl.to('#scD4',{opacity:0,y:-10,filter:'blur(6px)',duration:0.24,ease:'power2.inOut'},21.830);
-tl.to('#w35',{opacity:.16,duration:.2,ease:'power2.out'},21.800);
-tl.to('#w35',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},22.120);
-tl.to('#w36',{opacity:.16,duration:.2,ease:'power2.out'},21.860);
-tl.to('#w36',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},22.180);
-tl.to('#w37',{opacity:.16,duration:.2,ease:'power2.out'},21.960);
-tl.to('#w37',{opacity:1,color:'#D97757',duration:.16,ease:'power2.out'},22.280);
-tl.to('#w38',{opacity:.16,duration:.2,ease:'power2.out'},22.140);
-tl.to('#w38',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},22.460);
-tl.to('#w39',{opacity:.16,duration:.2,ease:'power2.out'},22.320);
-tl.to('#w39',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},22.640);
-tl.to('#w40',{opacity:.16,duration:.2,ease:'power2.out'},22.760);
-tl.to('#w40',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},23.080);
-tl.to('#w41',{opacity:.16,duration:.2,ease:'power2.out'},22.840);
-tl.to('#w41',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},23.160);
-tl.to('#w42',{opacity:.16,duration:.2,ease:'power2.out'},23.060);
-tl.to('#w42',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},23.380);
-tl.to('#w43',{opacity:.16,duration:.2,ease:'power2.out'},23.340);
-tl.to('#w43',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},23.660);
-tl.to('#w44',{opacity:.16,duration:.2,ease:'power2.out'},23.500);
-tl.to('#w44',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},23.820);
-tl.fromTo('#scE',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.28,ease:'power2.out',immediateRender:false},22.030);
-tl.to('#scE',{opacity:0,y:-10,filter:'blur(6px)',duration:0.24,ease:'power2.inOut'},24.220);
-tl.fromTo('#scF',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.3,ease:'power2.out',immediateRender:false},24.420);
-tl.fromTo('#lr0',{opacity:0,y:10,filter:'blur(3px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.26,ease:'power2.out',immediateRender:false},24.610);
-tl.fromTo('#lr1',{opacity:0,y:10,filter:'blur(3px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.26,ease:'power2.out',immediateRender:false},24.810);
-tl.fromTo('#lr2',{opacity:0,y:10,filter:'blur(3px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.26,ease:'power2.out',immediateRender:false},25.010);
-tl.fromTo('#lr3',{opacity:0,y:10,filter:'blur(3px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.26,ease:'power2.out',immediateRender:false},25.210);
-tl.fromTo('#lr4',{opacity:0,y:10,filter:'blur(3px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.26,ease:'power2.out',immediateRender:false},25.410);
-tl.to('#scF',{opacity:0,y:-10,filter:'blur(6px)',duration:0.24,ease:'power2.inOut'},26.870);
-tl.to('#w45',{opacity:.16,duration:.2,ease:'power2.out'},26.820);
-tl.to('#w45',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},27.140);
-tl.to('#w46',{opacity:.16,duration:.2,ease:'power2.out'},26.980);
-tl.to('#w46',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},27.300);
-tl.to('#w47',{opacity:.16,duration:.2,ease:'power2.out'},27.200);
-tl.to('#w47',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},27.520);
-tl.to('#w48',{opacity:.16,duration:.2,ease:'power2.out'},26.820);
-tl.to('#w48',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},27.140);
-tl.to('#w49',{opacity:.16,duration:.2,ease:'power2.out'},27.660);
-tl.to('#w49',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},27.980);
-tl.to('#w50',{opacity:.16,duration:.2,ease:'power2.out'},27.200);
-tl.to('#w50',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},27.520);
-tl.to('#w51',{opacity:.16,duration:.2,ease:'power2.out'},28.160);
-tl.to('#w51',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},28.480);
-tl.fromTo('#scG1',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.28,ease:'power2.out',immediateRender:false},27.070);
-tl.to('#scG1',{opacity:0,y:-10,filter:'blur(6px)',duration:0.24,ease:'power2.inOut'},28.830);
-tl.to('#w52',{opacity:.16,duration:.2,ease:'power2.out'},28.750);
-tl.to('#w52',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},29.070);
-tl.to('#w53',{opacity:.16,duration:.2,ease:'power2.out'},28.940);
-tl.to('#w53',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},29.260);
-tl.to('#w54',{opacity:.16,duration:.2,ease:'power2.out'},29.040);
-tl.to('#w54',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},29.360);
-tl.to('#w55',{opacity:.16,duration:.2,ease:'power2.out'},29.160);
-tl.to('#w55',{opacity:1,color:'#0f0f0f',duration:.16,ease:'power2.out'},29.480);
-tl.to('#w56',{opacity:.16,duration:.2,ease:'power2.out'},29.540);
-tl.to('#w56',{opacity:1,color:'#D97757',duration:.16,ease:'power2.out'},29.860);
-tl.fromTo('#scG2',{opacity:0,y:16,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.28,ease:'power2.out',immediateRender:false},29.030);
-tl.fromTo('#rgG',{opacity:0,scale:.96},{opacity:1,scale:1,duration:.6,ease:'power2.out',immediateRender:false},30.060);
-tl.to('#scG2',{opacity:0,y:-10,filter:'blur(6px)',duration:0.24,ease:'power2.inOut'},31.600);
-tl.set('#rgA',{immediateRender:false,opacity:1,scale:1},31.860);
-tl.fromTo('#scA',{opacity:0,y:0,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.4,ease:'power2.out',immediateRender:false},31.880);
-tl.fromTo('#cam',{scale:1},{scale:1.012,duration:8.090,ease:'sine.inOut',yoyo:true,repeat:3},0);
-tl.fromTo('.bgw',{x:0,y:0},{x:-14,y:-12,duration:16.180,ease:'sine.inOut',yoyo:true,repeat:1},0);
-tl.to({},{duration:.001},D-.001);
+
+gsap.registerPlugin(SplitText, DrawSVGPlugin, CustomEase);
+const T={"A":{"t0":0,"free":0.109,"six":1.285,"end":2.61},"B":{"t0":2.61,"acc":3.685,"end":4.86},"C":{"t0":4.86,"end":11.76,"pairs":[{"k":1,"t0":4.86,"free":5.505,"end":5.698},{"k":2,"t0":5.698,"free":6.58,"end":7.11},{"k":3,"t0":7.11,"free":7.88,"end":8.343},{"k":4,"t0":8.343,"free":9.365,"end":9.96},{"k":5,"t0":9.96,"free":10.895,"end":11.76}]},"D1":{"t0":11.76,"acc":12.285,"end":12.705},"D2":{"t0":12.705,"end":14.64,"pairs":[{"k":6,"t0":12.705,"free":13.69,"end":14.940000000000001}]},"D3":{"t0":14.64,"end":16.81},"D4":{"t0":16.81,"end":18.86},"F":{"t0":18.86,"note":19.715,"end":21.81},"G1":{"t0":21.81,"end":23.81},"G2":{"t0":23.81,"acc":25.11,"end":26.96},"tF":26.96,"D":27.41}, ORG='#D97757', INK='#0f0f0f';
+/* house curves (motion-animation-principles): enter = ease-out, exit = ease-in and faster, move = in-out; landings use a
+   critically damped spring: fast launch, long soft settle, never past its end state (motion-remotion-notes 1) */
+const expoOut=CustomEase.create("expoOut","0.16,1,0.3,1"), expoIn=CustomEase.create("expoIn","0.7,0,0.84,0"), inOut=CustomEase.create("mvInOut","0.65,0,0.35,1");
+const spring=(w=>{const f=t=>1-(1+w*t)*Math.exp(-w*t), n=f(1); return t=>f(t)/n})(9);
+const show=id=>gsap.fromTo(id,{autoAlpha:0,y:10,filter:'blur(6px)'},{autoAlpha:1,y:0,filter:'blur(0px)',duration:.3,ease:'power2.out',immediateRender:false});
+const hide=id=>gsap.to(id,{autoAlpha:0,y:-12,filter:'blur(8px)',duration:.22,ease:expoIn});
+/* kinetic type: each word rises out of its mask when it is spoken; the accent word is split into characters (SplitText masks) */
+function type(t,id,t0){
+  gsap.utils.toArray(id+' .w:not(.rdy)').forEach(w=>{
+    const at=Math.max(0,+w.dataset.t-t0-.07);
+    if(w.classList.contains('acc')){ gsap.set(w,{y:0,yPercent:0}); const sp=SplitText.create(w,{type:'chars',mask:'chars',aria:'none'});
+      t.fromTo(sp.chars,{yPercent:112},{yPercent:0,duration:.5,ease:expoOut,stagger:.03},at).to(sp.chars,{color:ORG,duration:.3,ease:'power1.out',stagger:.03},at+.12); }
+    else t.fromTo(w,{yPercent:112,y:0},{yPercent:0,y:0,duration:.46,ease:expoOut,immediateRender:false},at); });
+}
+function ringDraw(t,id,at){ t.fromTo(id+' path',{drawSVG:'0%'},{drawSVG:'100%',duration:.8,ease:'power2.inOut',immediateRender:false},at) }
+gsap.set('.ring:not(#rgA) path, .arw path',{drawSVG:'0%'});
+
+/* A: the cube. Frame 0 is complete; then the six price tags flip to ticks one by one, each tile nudges (follow-through) */
+function scA(){ const t=gsap.timeline({defaults:{ease:expoOut}}), bd=gsap.utils.toArray('#scA .bd');
+  t.addLabel('flip',.2);
+  bd.forEach((b,i)=>{ const at='flip+='+(i*.09).toFixed(2), q=gsap.utils.selector(b);
+    t.to(b,{scaleX:0,duration:.14,ease:'power2.in'},at).set(q('.tag'),{autoAlpha:0},'>').set(q('.tick'),{autoAlpha:1},'<')
+     .to(b,{scaleX:1,duration:.34,ease:spring},'>').fromTo('#t'+i,{y:0},{y:-9,duration:.16,ease:'power2.out',immediateRender:false},at+'+=0.06').to('#t'+i,{y:0,duration:.5,ease:spring},'>'); });
+  t.fromTo('#rgA path',{drawSVG:'100%'},{drawSVG:'100%',duration:.01,immediateRender:false},0)
+   .to('#scA .lead',{x:6,duration:1.6,ease:'sine.inOut'},.9)                      // slow drift while it is read
+   .add(hide('#scA'),T.A.end-.24);
+  return t; }
+/* words-only screens: lead-in + heavy line(s), one accent, one ring */
+function scWords(id,o,ringId){ const t=gsap.timeline(); t.add(show(id),0); type(t,id,o.t0-.04);
+  if(ringId) ringDraw(t,'#'+ringId,(o.acc-o.t0)+.16);
+  t.to(id+' .ln',{x:8,duration:Math.max(.6,o.end-o.t0-.5),ease:'sine.inOut',stagger:.06},.4)
+   .add(hide(id),o.end-o.t0-.2);
+  return t; }
+/* one pair: same place, same motion every time. Labels: in -> swap (strike, grey, arrow, free row lands) -> free (the word FREE on the free row) */
+function pair(p,first){ const g='#g'+p.k, q=gsap.utils.selector(g), t=gsap.timeline({defaults:{ease:expoOut}});
+  const fx=SplitText.create(q('.fx'),{type:'chars',mask:'chars',aria:'none'});
+  t.addLabel('in',0).set(g,{autoAlpha:1},'in')
+   .fromTo(q('.prow'),{autoAlpha:0,x:first?0:-22},{autoAlpha:1,x:0,duration:.36,immediateRender:false},'in')
+   .addLabel('swap',Math.max(.2,p.free-p.t0-.15))
+   .to(q('.sk'),{scaleX:1,duration:.2,ease:inOut},'swap')
+   .to(q('.prow'),{opacity:.36,duration:.26,ease:'power1.out'},'swap+=0.08')
+   .to(q('.arw path'),{drawSVG:'100%',duration:.24,ease:inOut},'swap+=0.05')
+   .fromTo(q('.frow'),{autoAlpha:0,y:28},{autoAlpha:1,y:0,duration:.5,ease:spring,immediateRender:false},'swap+=0.15')
+   .addLabel('free','swap+=0.42')
+   .fromTo(fx.chars,{yPercent:112},{yPercent:0,duration:.42,stagger:.03},'free');
+  if(q('.nt').length) t.fromTo(q('.nt'),{autoAlpha:0,y:8},{autoAlpha:1,y:0,duration:.3,immediateRender:false},'free+=0.14');
+  t.to(g,{autoAlpha:0,y:-12,duration:.16,ease:expoIn},p.end-p.t0-.16);
+  return t; }
+function scCard(id,o){ const t=gsap.timeline(); t.add(show(id),0);
+  o.pairs.forEach((p,i)=>t.add(pair(p,i===0),p.t0-o.t0+(i===0?.04:0)));
+  t.add(hide(id),o.end-o.t0-.2); return t; }
+function scShot(){ const o=T.D3, t=gsap.timeline(); t.add(show('#scD3'),0); type(t,'#scD3',o.t0-.04);
+  t.fromTo('#scD3 .shot',{y:40,autoAlpha:0},{y:0,autoAlpha:1,duration:.6,ease:spring,immediateRender:false},.05)
+   .fromTo('#scD3 .shot img',{scale:1},{scale:1.07,duration:Math.max(1,o.end-o.t0),ease:'sine.inOut',immediateRender:false},0)
+   .add(hide('#scD3'),o.end-o.t0-.2); return t; }
+function scList(){ const o=T.F, t=gsap.timeline({defaults:{ease:expoOut}}); t.add(show('#scF'),0)
+   .fromTo('#scF .lr',{autoAlpha:0,x:-20},{autoAlpha:1,x:0,duration:.4,stagger:.07,immediateRender:false},.12)
+   .fromTo('#scF .lnote',{autoAlpha:0,y:8},{autoAlpha:1,y:0,duration:.4,immediateRender:false},Math.max(.6,o.note-o.t0))
+   .to('#scF .comp',{y:-8,duration:Math.max(.8,o.end-o.t0-.6),ease:'sine.inOut'},.5)
+   .add(hide('#scF'),o.end-o.t0-.2); return t; }
+
+const tl=gsap.timeline({paused:true});
+tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:true,repeat:3},0)       // ambient layer only
+  .fromTo('.bgw',{x:0,y:0},{x:-14,y:-12,duration:T.D/2,ease:'sine.inOut',yoyo:true,repeat:1},0)
+  .add(scA(),0)
+  .add(scWords('#scB',T.B,'rgB'),T.B.t0-.04)
+  .add(scCard('#scC',T.C),T.C.t0-.04)
+  .add(scWords('#scD1',T.D1,'rgD'),T.D1.t0-.04)
+  .add(scCard('#scD2',T.D2),T.D2.t0)
+  .add(scShot(),T.D3.t0)
+  .add(scWords('#scD4',T.D4),T.D4.t0-.04)
+  .add(scList(),T.F.t0-.04)
+  .add(scWords('#scG1',T.G1),T.G1.t0-.04)
+  .add(scWords('#scG2',T.G2,'rgG'),T.G2.t0-.04);
+/* loop seam: frame 0 comes back exactly (tags, not ticks) */
+tl.set('#scA .tag',{autoAlpha:1},T.tF).set('#scA .tick',{autoAlpha:0},T.tF).set('#scA .lead',{x:0},T.tF)
+  .fromTo('#scA',{autoAlpha:0,y:0,filter:'blur(6px)'},{autoAlpha:1,y:0,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02)
+  .to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
-window.__reel={duration:D,seek:t=>{tl.seek(t)}};
+window.__reel={duration:T.D,seek:t=>{tl.seek(t)}};
+
 </script></body></html>
