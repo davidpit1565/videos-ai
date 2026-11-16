@@ -705,3 +705,6 @@ Check every reel before publishing, in this order (J = my judgement before, M = 
 - The free-alternatives reel (internal folder `video/ep102`, files `channel/episode-102-*`) is published as **episode 101**. The silent 47/100 chat reel was dropped (its two pictures stay in `channel/assets/ep101-pics/` as pictures only, not an episode). Use 101 for anything public (caption, file `reel-101.mp4`, studio entry); keep internal names.
 - Reference reels of 16.11 are analysed in `channel/ref-2026-11-16-*.md`; the Claude-cuts-LinkedIn-in-two animation (reel DfK1boQTr6t) is a usable gag for "X just killed Y" hooks in Miki style (clean cartoon cut, non-graphic).
 - When David's friend delivers the Instagram research tool, David enters the profile and we run the checks on it and on the earlier reference profiles (reminder set for 17.11 12:00 Belgium). Inspect the tool first; secrets only in Vercel env.
+
+## GSAP skills demo = the Miki-style feel David wants (David, 16.11.2026)
+- After watching `video/demo-skills/out/demo-v1.mp4` David said the GSAP clip IS Miki's style ("GSAP is Miki's video"; the Lottie cartoon does not fit). New builds use the adopted skills (`.claude/skills/gsap-*`, `motion-*`) inside Miki style, and episode 101 (internal 102) is rebuilt with them. Opening of the free-alternatives format: always the grid ("cube") of six real paid logos.
