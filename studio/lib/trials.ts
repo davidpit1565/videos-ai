@@ -1,4 +1,4 @@
-/** Trial Reels as recorded in an episode row's `notes` (shared by /trials and /renders):
+/** Trial Reels as recorded in an episode row's `notes` (used by /renders):
  *    TRIAL <MANUAL|SS_PERFORMANCE> <mediaId> <permalink> <YYYY-MM-DD>  written by lib/publish.ts
  *    TRIAL-MANUAL <YYYY-MM-DD HH:MM>   a trial posted by hand in the Instagram app
  *    TRIAL-GRADUATED <YYYY-MM-DD>      graduated to everyone by hand in the app
