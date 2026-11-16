@@ -1,0 +1,25 @@
+Meta AI and Gemini just killed Claude, in a maze race. Which one would you bet on?
+
+The test: ChatGPT, Gemini, Claude, Meta AI and Perplexity each get the same request, word for word: write the moves that guide one dot out of a maze. The AI never sees the maze, only the four sides next to the dot. Then all five dots run at once, in the same maze, and nobody touches them.
+
+Result (500 steps at most; the best possible way out is 89 steps):
+1. Gemini, out in 117 steps
+1. Meta AI, out in 117 steps, on the exact same path as Gemini, step for step
+3. Claude, out in 171 steps
+ChatGPT: does not get out. Its closest is 52 steps from the exit, then it walks in circles.
+Perplexity: stays stuck next to the start the whole time.
+
+What is real:
+- One try per AI, in its own chat app, a new chat, no extra modes, on 15 November 2026.
+- Each dot runs the exact answer that AI gave. Nothing fixed by hand.
+- The maze and the rules are locked before any answer comes in.
+- Run again, the race gives the same result every time.
+
+What this does not show:
+- Which AI is "smartest". One maze, one try each. Ask again and the order may change.
+- Which model each app used. Claude answered as Sonnet 5.5 (what we read in the app, no screenshot); for the other four we name the apps only.
+- Why Gemini and Meta AI end up on the same path. Their answers are not the same text; we did not dig into why they walk the same way.
+
+Full disclosure: the tools behind this channel are built with Claude.
+
+The request, word for word, and a replay of the race are on the page in the link in bio.
