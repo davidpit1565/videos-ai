@@ -1,3 +1,5 @@
+Published as episode 101 (internal name 102)
+
 Publish mode: ASK DAVID (TRIAL or REGULAR; default REGULAR if he does not say)
 
 # Episode 102 script: FREE TWINS #1, six free alternatives to apps you pay for (built 16.11.2026)

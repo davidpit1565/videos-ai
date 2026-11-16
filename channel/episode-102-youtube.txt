@@ -11,4 +11,4 @@ Six apps people pay for every month, and a free, open-source alternative for eac
 We did not test these. They are alternatives, not full replacements, and some need your own server. Check each one first.
 The $75 a month is the cheapest paid plan of each app added up, per person, read on the official pricing pages in November 2026.
 
-Links, licences and steps: https://www.actually-works.com/e/102
+Links, licences and steps: https://www.actually-works.com/e/101

@@ -1,4 +1,4 @@
-# Episode 102 setup page text (for `/e/102`; NOT yet in `studio/lib/articles.ts`: that is the ship step)
+# Episode 101 setup page text (internal name 102; for `/e/101`; NOT yet in `studio/lib/articles.ts`: that is the ship step)
 
 Title: 6 free, open-source alternatives to apps you pay for every month
 
