@@ -1,542 +1,532 @@
 [
  {
-  "word": "They",
+  "word": "Your",
   "start": 0.0,
-  "end": 0.24
- },
- {
-  "word": "say",
-  "start": 0.24,
-  "end": 0.44
- },
- {
-  "word": "this",
-  "start": 0.44,
-  "end": 0.72
- },
- {
-  "word": "free",
-  "start": 0.72,
-  "end": 1.14
- },
- {
-  "word": "tool",
-  "start": 1.14,
-  "end": 1.46
- },
- {
-  "word": "killed",
-  "start": 1.46,
-  "end": 2.0
- },
- {
-  "word": "Claude",
-  "start": 2.0,
-  "end": 2.28
- },
- {
-  "word": "codes",
-  "start": 2.28,
-  "end": 2.82
- },
- {
-  "word": "token",
-  "start": 2.82,
-  "end": 3.08
- },
- {
-  "word": "problem,",
-  "start": 3.08,
-  "end": 3.42
- },
- {
-  "word": "and",
-  "start": 3.8,
-  "end": 3.88
- },
- {
-  "word": "your",
-  "start": 3.88,
-  "end": 3.98
+  "end": 0.22
  },
  {
   "word": "$20",
-  "start": 3.98,
-  "end": 4.32
+  "start": 0.22,
+  "end": 0.6
+ },
+ {
+  "word": "Claude",
+  "start": 0.6,
+  "end": 0.9
  },
  {
   "word": "plan",
-  "start": 4.32,
-  "end": 4.6
+  "start": 0.9,
+  "end": 1.14
  },
  {
-  "word": "now",
-  "start": 4.6,
-  "end": 4.84
+  "word": "can't",
+  "start": 1.14,
+  "end": 1.62
  },
  {
-  "word": "does",
-  "start": 4.84,
-  "end": 5.18
+  "word": "do",
+  "start": 1.62,
+  "end": 1.74
  },
  {
   "word": "$100",
-  "start": 5.18,
-  "end": 5.66
+  "start": 1.74,
+  "end": 2.06
  },
  {
   "word": "work.",
-  "start": 5.66,
-  "end": 6.16
+  "start": 2.06,
+  "end": 2.44
+ },
+ {
+  "word": "A",
+  "start": 2.8,
+  "end": 2.88
+ },
+ {
+  "word": "free",
+  "start": 2.88,
+  "end": 3.08
+ },
+ {
+  "word": "tool",
+  "start": 3.08,
+  "end": 3.2
+ },
+ {
+  "word": "says",
+  "start": 3.2,
+  "end": 3.38
+ },
+ {
+  "word": "it",
+  "start": 3.38,
+  "end": 3.52
+ },
+ {
+  "word": "can,",
+  "start": 3.52,
+  "end": 3.68
+ },
+ {
+  "word": "I",
+  "start": 3.94,
+  "end": 4.04
+ },
+ {
+  "word": "checked.",
+  "start": 4.04,
+  "end": 4.28
  },
  {
   "word": "Every",
-  "start": 6.6,
-  "end": 6.7
+  "start": 4.66,
+  "end": 4.8
  },
  {
   "word": "new",
-  "start": 6.7,
-  "end": 6.9
+  "start": 4.8,
+  "end": 5.04
  },
  {
   "word": "chat",
-  "start": 6.9,
-  "end": 7.12
+  "start": 5.04,
+  "end": 5.24
  },
  {
   "word": "starts",
-  "start": 7.12,
-  "end": 7.4
+  "start": 5.24,
+  "end": 5.5
  },
  {
   "word": "from",
-  "start": 7.4,
-  "end": 7.64
+  "start": 5.5,
+  "end": 5.76
  },
  {
   "word": "zero,",
-  "start": 7.64,
-  "end": 7.96
+  "start": 5.76,
+  "end": 6.08
  },
  {
   "word": "so",
-  "start": 8.22,
-  "end": 8.32
+  "start": 6.24,
+  "end": 6.44
  },
  {
   "word": "Claude",
-  "start": 8.32,
-  "end": 8.56
+  "start": 6.44,
+  "end": 6.68
  },
  {
   "word": "code",
-  "start": 8.56,
-  "end": 8.84
+  "start": 6.68,
+  "end": 6.94
  },
  {
   "word": "reads",
-  "start": 8.84,
-  "end": 9.06
+  "start": 6.94,
+  "end": 7.18
  },
  {
   "word": "your",
-  "start": 9.06,
-  "end": 9.22
+  "start": 7.18,
+  "end": 7.34
  },
  {
   "word": "files",
-  "start": 9.22,
-  "end": 9.42
+  "start": 7.34,
+  "end": 7.54
  },
  {
   "word": "again.",
-  "start": 9.42,
-  "end": 9.76
+  "start": 7.54,
+  "end": 7.86
  },
  {
   "word": "The",
-  "start": 10.28,
-  "end": 10.28
+  "start": 8.32,
+  "end": 8.42
  },
  {
   "word": "fix",
-  "start": 10.28,
-  "end": 10.48
+  "start": 8.42,
+  "end": 8.58
  },
  {
   "word": "is",
-  "start": 10.48,
-  "end": 10.68
+  "start": 8.58,
+  "end": 8.82
  },
  {
   "word": "Graphify,",
-  "start": 10.68,
-  "end": 11.14
+  "start": 8.82,
+  "end": 9.26
  },
  {
   "word": "with",
-  "start": 11.32,
-  "end": 11.54
+  "start": 9.44,
+  "end": 9.66
  },
  {
   "word": "about",
-  "start": 11.54,
-  "end": 11.68
+  "start": 9.66,
+  "end": 9.8
  },
  {
   "word": "150",
-  "start": 11.68,
-  "end": 12.22
+  "start": 9.8,
+  "end": 10.36
  },
  {
   "word": ",000",
-  "start": 12.22,
-  "end": 12.64
+  "start": 10.36,
+  "end": 10.76
  },
  {
   "word": "stars",
-  "start": 12.64,
-  "end": 12.84
+  "start": 10.76,
+  "end": 10.94
  },
  {
   "word": "on",
-  "start": 12.84,
-  "end": 13.1
+  "start": 10.94,
+  "end": 11.22
  },
  {
   "word": "GitHub.",
-  "start": 13.1,
-  "end": 13.3
+  "start": 11.22,
+  "end": 11.4
  },
  {
   "word": "It",
-  "start": 13.76,
-  "end": 13.86
+  "start": 11.86,
+  "end": 11.98
  },
  {
   "word": "maps",
-  "start": 13.86,
-  "end": 14.06
+  "start": 11.98,
+  "end": 12.18
  },
  {
   "word": "your",
-  "start": 14.06,
-  "end": 14.24
+  "start": 12.18,
+  "end": 12.36
  },
  {
   "word": "code",
-  "start": 14.24,
-  "end": 14.4
+  "start": 12.36,
+  "end": 12.52
  },
  {
   "word": "once,",
-  "start": 14.4,
-  "end": 14.72
+  "start": 12.52,
+  "end": 12.84
  },
  {
   "word": "so",
-  "start": 14.92,
-  "end": 15.16
+  "start": 13.04,
+  "end": 13.3
  },
  {
   "word": "Claude",
-  "start": 15.16,
-  "end": 15.42
+  "start": 13.3,
+  "end": 13.54
  },
  {
   "word": "looks",
-  "start": 15.42,
-  "end": 15.58
+  "start": 13.54,
+  "end": 13.72
  },
  {
   "word": "things",
-  "start": 15.58,
-  "end": 15.8
+  "start": 13.72,
+  "end": 13.92
  },
  {
   "word": "up",
-  "start": 15.8,
-  "end": 15.98
+  "start": 13.92,
+  "end": 14.1
  },
  {
   "word": "instead",
-  "start": 15.98,
-  "end": 16.22
+  "start": 14.1,
+  "end": 14.34
  },
  {
   "word": "of",
-  "start": 16.22,
-  "end": 16.34
+  "start": 14.34,
+  "end": 14.46
  },
  {
   "word": "rereading.",
-  "start": 16.34,
-  "end": 16.66
+  "start": 14.46,
+  "end": 14.78
  },
  {
   "word": "The",
-  "start": 17.12,
-  "end": 17.22
+  "start": 15.2,
+  "end": 15.34
  },
  {
   "word": "big",
-  "start": 17.22,
-  "end": 17.36
+  "start": 15.34,
+  "end": 15.48
  },
  {
   "word": "claim",
-  "start": 17.36,
-  "end": 17.54
+  "start": 15.48,
+  "end": 15.66
  },
  {
   "word": "is",
-  "start": 17.54,
-  "end": 17.72
+  "start": 15.66,
+  "end": 15.82
  },
  {
   "word": "70",
-  "start": 17.72,
-  "end": 17.98
+  "start": 15.82,
+  "end": 16.1
  },
  {
   "word": "times",
-  "start": 17.98,
-  "end": 18.24
+  "start": 16.1,
+  "end": 16.36
  },
  {
   "word": "less",
-  "start": 18.24,
-  "end": 18.5
+  "start": 16.36,
+  "end": 16.64
  },
  {
   "word": "token",
-  "start": 18.5,
-  "end": 18.8
+  "start": 16.64,
+  "end": 16.92
  },
  {
   "word": "use,",
-  "start": 18.8,
-  "end": 19.06
+  "start": 16.92,
+  "end": 17.18
  },
  {
   "word": "but",
-  "start": 19.24,
-  "end": 19.44
+  "start": 17.36,
+  "end": 17.56
  },
  {
   "word": "only",
-  "start": 19.44,
-  "end": 19.72
+  "start": 17.56,
+  "end": 17.84
  },
  {
   "word": "in",
-  "start": 19.72,
-  "end": 19.92
+  "start": 17.84,
+  "end": 18.04
  },
  {
   "word": "its",
-  "start": 19.92,
-  "end": 20.02
+  "start": 18.04,
+  "end": 18.14
  },
  {
   "word": "best",
-  "start": 20.02,
-  "end": 20.24
+  "start": 18.14,
+  "end": 18.36
  },
  {
   "word": "case.",
-  "start": 20.24,
-  "end": 20.48
+  "start": 18.36,
+  "end": 18.6
  },
  {
   "word": "Real",
-  "start": 20.9,
-  "end": 21.02
+  "start": 18.98,
+  "end": 19.14
  },
  {
   "word": "tests,",
-  "start": 21.02,
-  "end": 21.26
+  "start": 19.14,
+  "end": 19.36
  },
  {
   "word": "one",
-  "start": 21.7,
-  "end": 21.8
+  "start": 19.82,
+  "end": 19.9
  },
  {
   "word": "saves",
-  "start": 21.8,
-  "end": 21.98
+  "start": 19.9,
+  "end": 20.1
  },
  {
   "word": "some,",
-  "start": 21.98,
-  "end": 22.26
+  "start": 20.1,
+  "end": 20.38
  },
  {
   "word": "one",
-  "start": 22.44,
-  "end": 22.66
+  "start": 20.58,
+  "end": 20.78
  },
  {
   "word": "uses",
-  "start": 22.66,
-  "end": 22.84
+  "start": 20.78,
+  "end": 20.96
  },
  {
   "word": "more.",
-  "start": 22.84,
-  "end": 23.08
+  "start": 20.96,
+  "end": 21.2
  },
  {
   "word": "And",
-  "start": 23.56,
-  "end": 23.68
+  "start": 21.66,
+  "end": 21.82
  },
  {
   "word": "the",
-  "start": 23.68,
-  "end": 23.78
+  "start": 21.82,
+  "end": 21.9
  },
  {
   "word": "$100",
-  "start": 23.78,
-  "end": 24.02
+  "start": 21.9,
+  "end": 22.14
  },
  {
   "word": "plan",
-  "start": 24.02,
-  "end": 24.4
+  "start": 22.14,
+  "end": 22.52
  },
  {
   "word": "is",
-  "start": 24.4,
-  "end": 24.88
+  "start": 22.52,
+  "end": 23.02
  },
  {
-  "word": "5",
-  "start": 24.88,
-  "end": 25.32
+  "word": "five",
+  "start": 23.02,
+  "end": 23.42
  },
  {
   "word": "times",
-  "start": 25.32,
-  "end": 25.92
+  "start": 23.42,
+  "end": 24.04
  },
  {
   "word": "the",
-  "start": 25.92,
-  "end": 26.24
+  "start": 24.04,
+  "end": 24.36
  },
  {
   "word": "usage.",
-  "start": 26.24,
-  "end": 26.5
+  "start": 24.36,
+  "end": 24.62
  },
  {
   "word": "Nothing",
-  "start": 27.1,
-  "end": 27.42
+  "start": 25.24,
+  "end": 25.54
  },
  {
   "word": "we",
-  "start": 27.42,
-  "end": 27.84
+  "start": 25.54,
+  "end": 25.96
  },
  {
   "word": "found",
-  "start": 27.84,
-  "end": 28.16
+  "start": 25.96,
+  "end": 26.26
  },
  {
   "word": "comes",
-  "start": 28.16,
-  "end": 28.5
+  "start": 26.26,
+  "end": 26.62
  },
  {
   "word": "close.",
-  "start": 28.5,
-  "end": 28.82
+  "start": 26.62,
+  "end": 26.94
  },
  {
   "word": "The",
-  "start": 28.82,
-  "end": 29.38
+  "start": 27.36,
+  "end": 27.52
  },
  {
   "word": "setups",
-  "start": 29.38,
-  "end": 29.64
+  "start": 27.52,
+  "end": 27.76
  },
  {
   "word": "in",
-  "start": 29.64,
-  "end": 29.96
+  "start": 27.76,
+  "end": 28.08
  },
  {
   "word": "the",
-  "start": 29.96,
-  "end": 30.08
+  "start": 28.08,
+  "end": 28.22
  },
  {
   "word": "link",
-  "start": 30.08,
-  "end": 30.3
+  "start": 28.22,
+  "end": 28.42
  },
  {
   "word": "in",
-  "start": 30.3,
-  "end": 30.58
+  "start": 28.42,
+  "end": 28.7
  },
  {
   "word": "bio.",
-  "start": 30.58,
-  "end": 30.88
+  "start": 28.7,
+  "end": 28.92
  },
  {
   "word": "Want",
-  "start": 31.3,
-  "end": 31.38
+  "start": 28.92,
+  "end": 29.48
  },
  {
   "word": "the",
-  "start": 31.38,
-  "end": 31.48
+  "start": 29.48,
+  "end": 29.58
  },
  {
   "word": "next",
-  "start": 31.48,
-  "end": 31.56
+  "start": 29.58,
+  "end": 29.7
  },
  {
   "word": "one?",
-  "start": 31.56,
-  "end": 31.82
+  "start": 29.7,
+  "end": 29.92
  },
  {
   "word": "Follow",
-  "start": 32.2,
-  "end": 32.32
+  "start": 30.28,
+  "end": 30.46
  },
  {
   "word": "and",
-  "start": 32.32,
-  "end": 32.64
+  "start": 30.46,
+  "end": 30.76
  },
  {
   "word": "you'll",
-  "start": 32.64,
-  "end": 32.84
+  "start": 30.76,
+  "end": 30.96
  },
  {
   "word": "see",
-  "start": 32.84,
-  "end": 33.0
+  "start": 30.96,
+  "end": 31.12
  },
  {
   "word": "it.",
-  "start": 33.0,
-  "end": 33.16
+  "start": 31.12,
+  "end": 31.28
  }
 ]

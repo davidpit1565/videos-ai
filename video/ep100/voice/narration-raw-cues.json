@@ -1,62 +1,62 @@
 [
  {
   "n": 1,
-  "line": "They say this free tool killed Claude Code's token problem,",
+  "line": "Your twenty-dollar Claude plan can't do hundred-dollar work.",
   "start": 0.04,
-  "end": 3.56
+  "end": 2.57
  },
  {
   "n": 2,
-  "line": "and your twenty-dollar plan now does hundred-dollar work.",
-  "start": 3.75,
-  "end": 6.3
+  "line": "A free tool says it can. I checked.",
+  "start": 2.76,
+  "end": 4.42
  },
  {
   "n": 3,
   "line": "Every new chat starts from zero, so Claude Code reads your files again.",
-  "start": 6.49,
-  "end": 9.94
+  "start": 4.61,
+  "end": 8.06
  },
  {
   "n": 4,
   "line": "The fix is Graphify, with about a hundred fifty thousand stars on GitHub.",
-  "start": 10.13,
-  "end": 13.53
+  "start": 8.25,
+  "end": 11.65
  },
  {
   "n": 5,
   "line": "It maps your code once, so Claude looks things up instead of rereading.",
-  "start": 13.72,
-  "end": 16.86
+  "start": 11.84,
+  "end": 14.98
  },
  {
   "n": 6,
   "line": "The big claim is seventy times less token use, but only in its best case.",
-  "start": 17.05,
-  "end": 20.63
+  "start": 15.17,
+  "end": 18.75
  },
  {
   "n": 7,
   "line": "Real tests? One saves some. One uses more.",
-  "start": 20.82,
-  "end": 23.35
+  "start": 18.94,
+  "end": 21.47
  },
  {
   "n": 8,
   "line": "And the hundred-dollar plan is five times the usage. Nothing we found comes close.",
-  "start": 23.54,
-  "end": 29.03
+  "start": 21.66,
+  "end": 27.15
  },
  {
   "n": 9,
   "line": "The setup's in the link in bio.",
-  "start": 29.22,
-  "end": 31.03
+  "start": 27.34,
+  "end": 29.15
  },
  {
   "n": 10,
   "line": "Want the next one? Follow, and you'll see it.",
-  "start": 31.22,
-  "end": 33.23
+  "start": 29.34,
+  "end": 31.35
  }
 ]
