@@ -1,0 +1,73 @@
+=== PASS  frame layout (safe_check_hf.js)
+    index.html  22.00s  111 samples every 0.2s  safe box: x 65-1015, y 269-1248
+      safe area: clean (tolerance 10px)
+      overlaps: none over 10px
+      within tolerance: 4px overlap  SPAN x #h8b
+
+=== PASS  rendered file (qa.py --hf)
+    ep98-v13.mp4  1080x1920  30fps  22.00s  25.2MB
+      visual change: median 0.03s, longest 3.63s
+      loudness: -14.0 LUFS integrated, peak -3.6 dBFS, LRA 2.3 LU
+      loop seam: first vs last frame differ by 24.5/255
+    
+      [warn]    22.0s is outside the 30-90s band
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 213.8, std 49.4)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.0 LUFS
+      ok        peak -3.6 dBFS
+
+=== FAIL  voice + music quality (voice_quality.py) (exit 1)
+    pitch (semitones vs each line's own median):
+      line   4  range  8.4 st  end  -1.2    Perplexity stops dead in the bend!
+      line   5  range  3.9 st  end  +0.6    Meta AI hits the wall!
+      line   6  range  9.5 st  end  +1.8    Claude and Gemini, neck and neck.
+      line   7  range  6.4 st  end  -0.4    Claude wins. Gemini is right behind.
+      line   8  range 10.7 st  end  +2.8  <-- range over 10 st  Send it to a friend. See who they pick.
+      line   9  range  6.2 st  end  -1.2    Want the next one? Follow, and you'll see it.
+    tone: none steady over 0.6 s
+    music: 8% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 1.03 = -7.8 dB
+    
+    FAILED — listen to the flagged part before shipping
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep98/out/narration-v13-provisional.wav  22.0s  6 lines
+      medians: ending -29.4 dB · level -19.5 dBFS · S residual +1.4 dB (slope +14.4 dB per sibilant/syllable)
+      flagged below: ending -41.8 dB · S residual -1.1 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  2.51  +0.06  3.59   -9.5  -28.4  -19.3  Perplexity stops dead in the bend!
+        2  1.29  +0.08  4.65  -15.5  -37.8  -19.4  Meta AI hits the wall!
+        3  1.83  +0.10  4.37  -14.1  -19.2  -20.5  Claude and Gemini, neck and neck.
+        4  1.85  +0.12  4.86  -10.2  -34.3  -21.6  Claude wins. Gemini is right behind.
+        5  2.35  +0.12  3.83  -11.5  -30.3  -19.7  Send it to a friend. See who they pick
+        6  2.01    —    4.98  -18.4  -27.6  -18.2  Want the next one? Follow, and you'll 
+    
+      [fix] line  1: only 0.06s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  2: only 0.08s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  3: only 0.10s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  4: only 0.12s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  5: only 0.12s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [note] line  6: dull S (-18.4 dB, -5.3 against what this line's own sibilants predict)
+             -> lift 6-8 kHz on this line, or re-roll it
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  PASS  frame layout (safe_check_hf.js)
+  PASS  rendered file (qa.py --hf)
+  FAIL  voice + music quality (voice_quality.py) (exit 1)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+SOMETHING FAILED - do not send this file

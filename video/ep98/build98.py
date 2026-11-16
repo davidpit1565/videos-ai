@@ -324,7 +324,7 @@ head(4, tA4, tA5, "META AI", "HITS THE WALL", logos=("meta",), t2=vM)
 head(5, tA5, vR0 + .1, "NECK AND NECK", logos=("claude", "gemini"))
 head(7, vR0 + .12, vX, "WHO WON?", size=120)
 head(8, vX, tK, "CLAUDE WINS", f"{GAP} s AHEAD OF GEMINI", logos=("claude",), t2=vXg)
-head(9, tK + .12, s(9) - .04, "SEND IT TO A FRIEND", "SEE WHO THEY PICK", t2=tS8)
+head(9, tK + .12, s(9) - .12, "SEND IT TO A FRIEND", "SEE WHO THEY PICK", t2=tS8)
 head(10, s(9), None, "WANT THE NEXT ONE?")
 
 # ---------------------------------------------------------------- markup: the world (ground, road, trails, cars, effects), drawn turned 90 degrees by render()
@@ -706,7 +706,8 @@ js(f"tl.fromTo('#pcar0 .sw',{{rotation:0}},{{rotation:360,duration:.5,ease:'none
 for i in (1, 2, 3, 4):
     js(f"tl.fromTo('#pcar{i}',{{rotation:0}},{{rotation:{(0, -2, 2, -1.5, 1.5)[i]},transformOrigin:'50% 100%',duration:{.3 + .04 * i:.2f},ease:'sine.inOut',yoyo:true,repeat:{2 * int((pe - tK - 1.2) / (.6 + .08 * i)) + 1},immediateRender:false}},{tK + 1.2 + .07 * i:.3f});")
 # the follow card (line 9)
-js(f"tl.fromTo('#fo',{{opacity:0}},{{opacity:1,duration:.28,ease:'sine.inOut',immediateRender:false}},{s(9) - .2:.3f});")
+js(f"tl.to('#en .fi',{{opacity:0,y:30,duration:.2,ease:'power2.in'}},{s(9) - .36:.3f});")
+js(f"tl.fromTo('#fo',{{opacity:0}},{{opacity:1,duration:.2,ease:'sine.out',immediateRender:false}},{s(9) - .14:.3f});")
 js(f"tl.set('#en',{{opacity:0}},{s(9) + .12:.3f});")
 js(f"tl.to('#fw',{{color:'#0f0f0f',duration:.14,ease:'sine.out'}},{tFOL:.3f});")
 js(f"tl.fromTo('#fw',{{scale:1}},{{scale:1.05,duration:.18,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tFOL:.3f});")

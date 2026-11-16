@@ -347,7 +347,7 @@ def rowtext(k):
 
 # logo characters: a thick-outlined logo tile with a hard offset shadow in the brand colour, ink arms and legs
 def char(cid, k, sword=False, fd=1):
-    sw = ('<path class="arc" d="M328 -12 Q312 -74 262 -112 Q284 -66 268 -13Z"/><path class="sw" d="M150 -15 L300 -11 L330 0 L300 11 L150 15Z"/><path class="gd" d="M150 -30 V30"/>') if sword else ""
+    sw = ('<path class="arc" d="M328 -12 Q318 -52 286 -78 Q300 -46 290 -13Z"/><path class="sw" d="M150 -15 L300 -11 L330 0 L300 11 L150 15Z"/><path class="gd" d="M150 -30 V30"/>') if sword else ""
     eyes = ('<svg class="eyes" viewBox="-100 -150 200 100" width="200" height="100"><g class="eg"><circle class="ew" cx="-28" cy="-96" r="18"/><circle class="ew" cx="28" cy="-96" r="18"/>'
             '<circle class="ep" cx="-28" cy="-96" r="7.5"/><circle class="ep" cx="28" cy="-96" r="7.5"/><path class="eb" d="M-52 -128 L-14 -116 M52 -128 L14 -116"/></g></svg>')
     return (f'<div class="chr" id="ch_{cid}"><svg class="lim" viewBox="-320 -200 640 440" width="640" height="440">'
@@ -357,7 +357,7 @@ def char(cid, k, sword=False, fd=1):
             f'<div class="tile" style="box-shadow:10px 10px 0 {COL[k]},10px 10px 0 4px {INK}">{logo(k, 130)}</div>{eyes}</div>')
 assert near["id"] == "claude" and sorted(WINS) == ["gemini", "meta"]
 T25 = math.tan(math.radians(25)); CUTD = [round(math.cos(math.radians(25)), 4), round(math.sin(math.radians(25)), 4)]
-KCX, KCY = 688, 868                                          # Claude in the opening; the cut runs through its centre at 25 degrees
+KCX, KCY = 700, 884                                          # Claude in the opening; the cut runs through its centre at 25 degrees
 S0X, S0Y = KCX - 290 * CUTD[0], KCY - 290 * CUTD[1]
 half = lambda cid, poly: f'<div class="hf" id="hf{cid}"><div class="hfc" style="clip-path:polygon({poly})"><div class="hfi">{char("cl" + cid, "claude", fd=-1)}</div></div></div>'
 chars = ('<div id="chars">' + char("gemini", "gemini", sword=True) + char("meta", "meta", sword=True) + char("chatgpt", "chatgpt") + char("perplexity", "perplexity", fd=-1) +
@@ -388,10 +388,10 @@ pod = f'''<div id="pod">
 HKW = [("META AI", "kw", woff("meta", 1, .0)), ("and", "ks", woff("and", 1, .28)), ("GEMINI", "kw", woff("gemini", 1, .36)),
        ("just", "ks", woff("just", 1, .55)), ("KILLED", "kw kk", woff("killed", 1, .62)), ("CLAUDE.", "kw", woff("claude", 1, .78))]
 HKT = [round(s(1) + t_, 3) for _, _, t_ in HKW]
-kwid = lambda parts: sum((tw(t) - 1.5 * len(t)) * (1 if c != "ks" else .5) / 100 for t, c, _ in parts) + .27 * (len(parts) - 1)
-HF1 = min(96, 846 / kwid(HKW[:3])); HF2 = min(128, 846 / kwid(HKW[3:]))
+kwid = lambda parts: sum((tw(t) - 1.5 * len(t)) * (1 if c != "ks" else .82) / 100 for t, c, _ in parts) + .27 * (len(parts) - 1)
+HF1 = min(100, 872 / kwid(HKW[:3])); HF2 = min(128, 872 / kwid(HKW[3:]))
 hook = (f'<div id="hk"><div class="kl" style="font-size:{HF1:.1f}px;line-height:{HF1 * 1.0:.1f}px">' + "".join(f'<span class="{c}">{t}</span>' for t, c, _ in HKW[:3]) +
-        f'</div><div class="kl" style="font-size:{HF2:.1f}px;line-height:{HF2 * 1.02:.1f}px">' + "".join(f'<span class="{c}">{t}</span>' for t, c, _ in HKW[3:]) + '</div></div>')
+        f'</div><div class="kl" style="font-size:{HF2:.1f}px;line-height:{HF2 * 1.02:.1f}px">' + "".join(f'<span class="{c}">{t}{"<i class=ku data-decor></i>" if "kk" in c else ""}</span>' for t, c, _ in HKW[3:]) + '</div></div>')
 HKB = 286 + HF1 + HF2 * 1.02                                  # bottom of the headline: the duel sits under it
 markup = f'''
 <div class="bgw" data-decor></div>
@@ -480,8 +480,9 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .star path{fill:#FFD23F;stroke:INK;stroke-width:5;stroke-linejoin:round}
 #hk{position:absolute;left:108px;top:286px;z-index:5;white-space:nowrap}
 .kl{display:flex;align-items:baseline;gap:.26em}
-.kw,.ks{display:inline-block;color:#c6c5bf;transform-origin:0 80%;white-space:nowrap}
-.kw{font-weight:900;letter-spacing:-.045em} .ks{font-weight:500;letter-spacing:-.02em;font-size:.5em}
+.kw,.ks{display:inline-block;color:#474745;transform-origin:0 80%;white-space:nowrap;position:relative}
+.ku{position:absolute;left:0;right:0;bottom:-2px;height:9px;border-radius:5px;background:RED;transform-origin:0 50%;transform:scaleX(0)}
+.kw{font-weight:900;letter-spacing:-.045em} .ks{font-weight:500;letter-spacing:-.02em;font-size:.86em}
 .deb{position:absolute;left:0;top:0;width:46px;height:16px;margin:-8px 0 0 -23px;border-radius:8px;background:#D97757;border:3px solid #0f0f0f;opacity:0}
 #bub{position:absolute;left:306px;width:640px;height:116px;background:#fff;border:6px solid INK;border-radius:44px;box-shadow:-8px 8px 0 INK;display:flex;align-items:center;justify-content:center;gap:20px;opacity:0;transform-origin:50% 60%}
 .bdot{display:block;width:38px;height:38px;border-radius:50%;background:#fff;border:7px solid INK;flex:none}
@@ -600,7 +601,7 @@ function St(v){const i=Math.max(0,v*60),k=Math.min(Dt.ST.length-2,Math.floor(i))
 const dots=$$('.dot').map(el=>({el,dr:el.querySelector('.dr')})), trs=$$('.trl'), cnt=$('#cnt'), cnn=$('#cnn'), exm=$('#exm'), exc=$('#exc'), stc=$('#stc');
 const chips=[0,1,2,3,4].map(c=>{const el=$('#sl'+c);return {el,tb:el.querySelector('.tb'),ring:el.querySelector('.ring'),ok:el.querySelector('.ok'),qm:el.querySelector('.qm'),dn:el.querySelector('.dn')}});
 const rays=$('#rays'), vp=$('#vp'), stg=$('#stg'), exw=$('#exw'), chw=$('#chips'), wpath=$('#wpath'), opn=$('#opn'), pod=$('#pod'), sls=$('#sls'), fls=$('#fls'), mln=$('#mln'), spG=$('#spG'), spM=$('#spM');
-const clw=$('#clw'), hfA=$('#hfA'), hfB=$('#hfB'), pn=$('#pn'), bgw=$('.bgw'), debs=$$('.deb'), hk=$('#hk'), kws=$$('#hk span'), pb1=$('#pb1'), pb3=$('#pb3'), fps=$$('.fp');
+const clw=$('#clw'), hfA=$('#hfA'), hfB=$('#hfB'), pn=$('#pn'), bgw=$('.bgw'), debs=$$('.deb'), hk=$('#hk'), kws=$$('#hk span'), ku=$('.ku'), pb1=$('#pb1'), pb3=$('#pb3'), fps=$$('.fp');
 const dms=$$('.dm').map(el=>({el,c:+el.dataset.c,s:+el.dataset.s})), cms=$$('.cm').map(el=>({el,c:+el.dataset.c}));
 const C=Dt.CELL;
 // ---- logo characters
@@ -617,9 +618,9 @@ function put(el,o){el.style.opacity=o.op.toFixed(3); el.style.transform='transla
 function duel(kt,v){
   const p=ez(kt/Dt.tKL), hit=kt>=Dt.tKL, post=kt-Dt.tKL, q=hit?eo(post/.1):0, vic=hit?ez((post-.35)/.4):0, wind=bump(Math.min(1,kt/Dt.tKL));
   return {
-    g:{x:lerp(270,330,p)+36*q, y:lerp(668,676,p)+8*q+Math.sin(v*5)*5-12*vic*Math.abs(Math.sin(v*7+1)), sc:1.2, rot:lerp(-10,-4,p)+9*q-5*vic, aR:(hit?lerp(-10,25,q):-6-4*wind)-27*vic, aL:74+6*Math.sin(v*6), lL:(34+24*Math.sin(v*10))*(1-vic), lR:(-30-24*Math.sin(v*10))*(1-vic), so:1, op:1, ex:.9, es:1, bo:1-vic},
-    m:{x:lerp(318,374,p)+32*q, y:lerp(1034,1010,p)-6*q+Math.sin(v*5+1.3)*5-14*vic*Math.abs(Math.sin(v*7)), sc:1.2, rot:lerp(8,3,p)-8*q, aR:(hit?lerp(-56,-30,q):-60+5*wind)-28*vic, aL:74+6*Math.sin(v*6+1), lL:(-30+24*Math.sin(v*10+2))*(1-vic), lR:(32-24*Math.sin(v*10+2))*(1-vic), so:1, op:1, ex:.9, ey:-.5, es:1, bo:1-vic},
-    c:{x:Dt.KC[0]+(hit?0:2.6*Math.sin(v*38)), y:Dt.KC[1], sc:1.5, rot:hit?0:lerp(4,8,p), aR:-66+5*Math.sin(v*14), aL:-66+5*Math.sin(v*14+2), lL:hit?-6:-8+5*Math.sin(v*22), lR:hit?6:8+5*Math.sin(v*22+2), so:0, op:1, ex:-.95, ey:.1, es:hit?1.6:lerp(1.35,1.5,p), bo:0, slide:hit?50*eo(post/.45)+4*Math.sin(post*9)*ez(post/.5):0}
+    g:{x:lerp(268,330,p)+36*q, y:lerp(668,680,p)+6*q+Math.sin(v*5)*4-12*vic*Math.abs(Math.sin(v*7+1)), sc:1.35, rot:lerp(-8,-4,p)+8*q-4*vic, aR:(hit?lerp(-10,25,q):-10)-25*vic, aL:74+6*Math.sin(v*6), lL:(34+24*Math.sin(v*10))*(1-vic), lR:(-30-24*Math.sin(v*10))*(1-vic), so:1, op:1, ex:.9, es:1, bo:1-vic},
+    m:{x:lerp(330,376,p)+32*q, y:lerp(1040,1020,p)-4*q+Math.sin(v*5+1.3)*4-12*vic*Math.abs(Math.sin(v*7)), sc:1.35, rot:lerp(7,3,p)-7*q, aR:(hit?lerp(-56,-30,q):-60+4*wind)-26*vic, aL:74+6*Math.sin(v*6+1), lL:(-30+24*Math.sin(v*10+2))*(1-vic), lR:(32-24*Math.sin(v*10+2))*(1-vic), so:1, op:1, ex:.9, ey:-.5, es:1, bo:1-vic},
+    c:{x:Dt.KC[0]+(hit?0:2.6*Math.sin(v*38)), y:Dt.KC[1], sc:1.6, rot:hit?0:lerp(4,7,p), aR:-66+5*Math.sin(v*14), aL:-66+5*Math.sin(v*14+2), lL:hit?-6:-8+5*Math.sin(v*22), lR:hit?6:8+5*Math.sin(v*22+2), so:0, op:1, ex:-.95, ey:.1, es:hit?1.55:lerp(1.3,1.45,p), bo:0, slide:hit?46*eo(post/.45)+4*Math.sin(post*9)*ez(post/.5):0}
   };
 }
 function run(o,v,ph){o.lL=38*Math.sin(v*20+ph); o.lR=-38*Math.sin(v*20+ph); o.aR=28*Math.sin(v*20+ph+1); o.aL=-28*Math.sin(v*20+ph+1); return o}
@@ -628,7 +629,7 @@ function cast(v){
   if(v<Dt.a2||v>=Dt.tF){const o=duel(v<Dt.a2?v:0,v), a=v<Dt.a2?1:ez((v-Dt.tF-.02)/.35); o.g.op=o.m.op=o.c.op=a; o.cg=hide; o.px=hide; return o}
   if(v<arLast){                                             // line 2: run to the start cell and shrink into the dots
     const b=duel(Dt.a2,Dt.a2), o={g:b.g,m:b.m,c:b.c,cg:{x:-150,y:985,sc:1.1,rot:0,op:1},px:{x:1230,y:565,sc:1.1,rot:0,op:1}};
-    o.c.slide=50*(1-eb((v-Dt.a2-.15)/.3));
+    o.c.slide=46*(1-eb((v-Dt.a2-.15)/.3));
     for(const key of ['g','m','c','cg','px']){const c=Dt.IX[key], u=ez((v-Dt.a2-.1-.07*c)/1.05), e=o[key], T=Dt.FANP[c];
       run(e,v,c*1.3); e.x=lerp(e.x,T[0],u); e.y=lerp(e.y,T[1],u)-46*bump(u); e.sc=lerp(e.sc,.63,u); e.rot=lerp(e.rot||0,0,u)+5*bump(u)*(T[0]>e.x?1:-1);
       e.lo=1-ez((u-.72)/.28); e.so=1-ez((v-Dt.a2)/.25); e.op=1-ez((v-Dt.AR[c])/.1)}
@@ -657,7 +658,7 @@ function render(v){
   opn.style.opacity=(inOpen?oa:0).toFixed(3);
   // the hook headline: each word turns from ghost grey to ink as it is spoken (colour only), 'KILLED' gives one push on the cut
   hk.style.opacity=(v<Dt.a2?1-ez((v-Dt.a2+.2)/.18):(v>=Dt.tF?ez((v-Dt.tF-.02)/.35):0)).toFixed(3);
-  kws.forEach((el,i)=>{const t=Dt.HKT[i], on=kt>=t-.06; el.style.color=on?'#0f0f0f':'#c6c5bf';});
+  kws.forEach((el,i)=>{const t=Dt.HKT[i], on=kt>=t-.06; el.style.color=on?'#0f0f0f':'#474745';}); ku.style.transform='scaleX('+ez((kt-Dt.tKL)/.18).toFixed(3)+')';
   {const post=kt-Dt.tKL, h=v<Dt.a2&&post>=0&&post<.5, e=Math.exp(-7*Math.max(0,post));    // screen shake on the cut; the paper slides a little under the run
     pn.style.translate=h?(10*e*Math.sin(post*72)).toFixed(1)+'px '+(12*e*Math.cos(post*58)).toFixed(1)+'px':'0px 0px';
     bgw.style.translate=(v<Dt.a2?-18*ez(kt/Dt.tKL)+(h?6*e*Math.sin(post*60):0):v<Dt.a2+1?-18*(1-ez(v-Dt.a2)):0).toFixed(1)+'px 0px';
@@ -668,8 +669,8 @@ function render(v){
     fls.style.opacity=(hit?(post<.04?post/.04:1-ez((post-.04)/.3))*.88:0).toFixed(3);
     mln.style.opacity=(hit?1-ez((post-.12)/.45):0).toFixed(3); mln.style.transform='scale('+(.8+.22*eo(post/.3)).toFixed(3)+') rotate('+(post*20).toFixed(1)+'deg)';
     const so_=(hit?1-ez(post/.3):.9), jx=Math.sin(v*31)*7;
-    spG.style.opacity=so_.toFixed(2); spG.style.transform='translate('+Math.max(124,o.g.x-300+jx).toFixed(1)+'px,'+(o.g.y+128).toFixed(1)+'px)';
-    spM.style.opacity=so_.toFixed(2); spM.style.transform='translate('+Math.max(124,o.m.x-320-jx).toFixed(1)+'px,'+(o.m.y-196).toFixed(1)+'px)'}
+    spG.style.opacity=so_.toFixed(2); spG.style.transform='translate('+Math.max(124,o.g.x-300+jx).toFixed(1)+'px,'+(o.g.y+150).toFixed(1)+'px)';
+    spM.style.opacity=so_.toFixed(2); spM.style.transform='translate('+Math.max(124,o.m.x-320-jx).toFixed(1)+'px,'+(o.m.y-226).toFixed(1)+'px)'}
   // ---- the maze stage: appears in line 2 (the walls draw themselves), leaves before the end scene
   const sIn=ez((v-Dt.a2-.15)/.3), sOut=1-ez((v-Dt.tK+.16)/.22), sOp=Math.min(sIn,sOut);
   vp.style.opacity=sOp.toFixed(3); exw.style.opacity=sOp.toFixed(3); chw.style.opacity=sOp.toFixed(3); chw.style.transform='translate('+(-(1-eo((v-Dt.a2-.15)/.5))*50).toFixed(1)+'px,0)';
