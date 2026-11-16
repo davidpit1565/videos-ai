@@ -1,1 +1,1 @@
-VoiceStudio clones your own voice, on your own machine.
+And the big one, ElevenLabs.

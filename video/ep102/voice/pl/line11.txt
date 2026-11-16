@@ -1,1 +1,1 @@
-It's new, just seven months old.
+VoiceStudio clones your own voice, on your own machine.
