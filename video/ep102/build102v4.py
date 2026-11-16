@@ -72,7 +72,7 @@ def W(name, word, n, frac, k=0, log=True):
     t = round(s(n) + frac * (e(n) - s(n)), 3)
     if log: SRC[name] = f"{t:.2f}(EST)"
     return t
-D = round(e(NL) + 1.0, 2)
+D = round(e(NL) + .78, 2)
 tF = round(D - .45, 3)
 a = {n: s(n) for n in range(1, NL + 1)}
 
@@ -121,7 +121,7 @@ def group(it, k):
  <div class="free"><span class="fx">FREE</span></div>{note}</div>'''
 SC["C"] = '<div class="comp">' + "".join(group(it, it["k"]) for it in ITEMS[:5]) + "</div>"
 tNotion = W("notion", ("notion", "motion"), 3, .52); tInter = W("intercom", ("intercom", "inter"), 4, .55)
-PST = {1: a[3], 2: tNotion - .28, 3: a[4], 4: tInter - .28, 5: a[5]}
+PST = {1: a[3], 2: tNotion - .06, 3: a[4], 4: tInter - .06, 5: a[5]}
 PFR = {1: W("cap", ("cap", "capp", "kap", "cab"), 3, .3), 2: W("appflowy", ("appflowy", "app", "apflowy", "appflow"), 3, .8),
        3: W("cal", ("cal", "caldiy", "kal", "cald"), 4, .28), 4: W("chatwoot", ("chatwoot", "chat", "chatwoo"), 4, .82), 5: W("openwhispr", ("openwhispr", "open", "openwhisper"), 5, .55)}
 PEN = {1: PST[2], 2: a[4], 3: PST[4], 4: a[5], 5: a[6]}
@@ -158,13 +158,13 @@ SFX = []
 def sfx(f, t, g=-13): SFX.append(dict(f=f, t=round(max(0, t), 3), g=g))
 for i in range(6): sfx("tick.ogg", .2 + i * .09, -17)
 sfx("select.ogg", T["B"]["acc"], -15)
-for p in T["C"]["pairs"] + T["D2"]["pairs"]: sfx("click_a.ogg", p["free"] - .15, -16); sfx("select.ogg", p["free"] + .27, -14)
+for p in T["C"]["pairs"] + T["D2"]["pairs"]: sfx("click_a.ogg", p["free"] - .15, -16); sfx("select.ogg", p["free"] + .1, -14)
 sfx("riser.ogg", a[6] - .2, -16); sfx("whoosh_b.ogg", a[9] - .1, -17); sfx("select.ogg", T["G2"]["acc"], -14)
 SFX.sort(key=lambda x: x["t"]); json.dump(SFX, open(H_ + "/sfx102.json", "w"), indent=1)
 
 NEWS = [(0, "A the cube: 'FREE ALTERNATIVES to six apps you pay for' + six real paid logos, each price tag flips to a tick (0.2-0.9 s)"),
         (a[2], "B words only: 'The last one is INSANE. STAY FOR IT.'")] + \
-       [(p["t0"], f"card: {ITEMS[p['k'] - 1]['paid']} struck, arrow, {ITEMS[p['k'] - 1]['free']} at {p['free']:.2f}, FREE at {p['free'] + .27:.2f}") for p in T["C"]["pairs"]] + \
+       [(p["t0"], f"card: {ITEMS[p['k'] - 1]['paid']} struck, arrow, {ITEMS[p['k'] - 1]['free']} at {p['free']:.2f}, FREE at {p['free'] + .1:.2f}") for p in T["C"]["pairs"]] + \
        [(a[6], "D words only: 'And the BIG ONE.'"), (tCard6, f"card: ElevenLabs struck, arrow, VoiceStudio at {tVS:.2f}, FREE"), (tShot, "the real VoiceStudio screenshot: 'clones your own voice, ON YOUR OWN MACHINE.'"),
         (a[8], "words only: 'It's new, just 7 MONTHS OLD.'"), (a[9], "F one card: the list of six pairs + 'Not tested by us. Check each one.'"),
         (a[10], "G words only: 'The setup's in the LINK IN BIO.'"), (a[11], "words only: 'Want the next one? FOLLOW.'"), (tF, "frame 0 returns (loop)")]
@@ -256,12 +256,12 @@ function pair(p,first){ const g='#g'+p.k, q=gsap.utils.selector(g), t=gsap.timel
   const fx=SplitText.create(q('.fx'),{type:'chars',mask:'chars',aria:'none'});
   t.addLabel('in',0).set(g,{autoAlpha:1},'in')
    .fromTo(q('.prow'),{autoAlpha:0,x:first?0:-22},{autoAlpha:1,x:0,duration:.36,immediateRender:false},'in')
-   .addLabel('swap',Math.max(.2,p.free-p.t0-.15))
+   .addLabel('swap',Math.max(.18,p.free-p.t0-.2))
    .to(q('.sk'),{scaleX:1,duration:.2,ease:inOut},'swap')
    .to(q('.prow'),{opacity:.36,duration:.26,ease:'power1.out'},'swap+=0.08')
    .to(q('.arw path'),{drawSVG:'100%',duration:.24,ease:inOut},'swap+=0.05')
-   .fromTo(q('.frow'),{autoAlpha:0,y:28},{autoAlpha:1,y:0,duration:.5,ease:spring,immediateRender:false},'swap+=0.15')
-   .addLabel('free','swap+=0.42')
+   .fromTo(q('.frow'),{autoAlpha:0,y:28},{autoAlpha:1,y:0,duration:.46,ease:spring,immediateRender:false},'swap+=0.1')
+   .addLabel('free','swap+=0.3')
    .fromTo(fx.chars,{yPercent:112},{yPercent:0,duration:.42,stagger:.03},'free');
   if(q('.nt').length) t.fromTo(q('.nt'),{autoAlpha:0,y:8},{autoAlpha:1,y:0,duration:.3,immediateRender:false},'free+=0.14');
   t.to(g,{autoAlpha:0,y:-12,duration:.16,ease:expoIn},p.end-p.t0-.16);

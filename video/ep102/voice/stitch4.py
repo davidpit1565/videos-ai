@@ -32,7 +32,7 @@ for i, l in enumerate(lines, 1):
     if w.ndim > 1: w = w.mean(1)
     c = json.load(open(D + f'pl3/L{i}-{seed}-cues.json'))[0]
     a = max(0, int((c['start'] - 0.04) * sr)); b = min(len(w), int((c['end'] + 0.08) * sr))
-    seg, cut = tighten(w[a:b].copy(), sr, .14 if i <= 2 else (.4 if i in (3, 4) else .22))
+    seg, cut = tighten(w[a:b].copy(), sr, .14 if i <= 2 else (.4 if i == 3 else .22))
     f = int(0.012 * sr); seg[:f] *= np.linspace(0, 1, f); seg[-f:] *= np.linspace(1, 0, f)
     g_ = 0.14 if 3 <= i <= 5 else GAP; out.append(seg); out.append(np.zeros(int(g_ * sr)))
     cues.append({'n': i, 'line': l, 'start': round(t + 0.04, 3), 'end': round(t + len(seg) / sr - 0.08, 3)})

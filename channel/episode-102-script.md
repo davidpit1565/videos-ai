@@ -132,3 +132,54 @@ The instruction was to use a fresh Sonnet agent through the Agent tool on frame 
 - Gate `out/gate-v3.txt`: 5 of 5 PASS (layout, rendered file -14.3 LUFS / peak -3.0 dBFS, voice + music with the same bed at -9.6 dB under the voice, voice doctor, accent: every line under 0.08). `qa.py` passed again on the re-encoded final file.
 - Voice: new takes for lines 1, 4, 5, 6 (line 5 typed as "Chat woot" for the voice; line 6 seed 52 at exaggeration 0.62 after seed 31 swung 10.2 st). Line 3 is a splice (`voice/splice3.py`): "Loom? Try Cap." from a new take + "Notion? AppFlowy." from the v2 take, because six new takes kept blurring "AppFlowy". Whisper still writes "TriCap" and "at/app Flowey": listen to line 3 first.
 - Not verified: audio measured, not heard; still frames looked at (0, middle, last and each transition), not watched twice at speed; the splice seam in line 3 was not heard; blind reader open; Publish mode open.
+
+---
+
+# v4 (16.11.2026, after David watched v3). This section replaces the v3 lines, beat list and scores. v3 is kept (`video/ep102/out/ep102-v3.mp4`).
+
+What David asked and what was done:
+1. Built with the GSAP and motion skills (read first: gsap-core, gsap-timeline, gsap-plugins, gsap-utils, gsap-performance, motion-animation-principles, motion-kinetic-typography, motion-remotion-notes; model `video/demo-skills/hf/index.html`). Each screen is a function returning a timeline with labels and position parameters; one house curve (CustomEase expoOut for enters, expoIn for exits, in-out for moves, a no-overshoot spring for landings); words rise out of a mask when spoken, the one accent word per screen is split into characters (SplitText masks, 30 ms stagger); rings and arrows are drawn with DrawSVG; staggers 70-90 ms; only transform, opacity and filter are animated. Still Miki: one idea per screen. Build: `video/ep102/build102v4.py`, run `video/ep102/run4.sh v4`.
+2. The cube stays as frame 0 and is stronger: six real paid logos in a 2 x 3 grid, centred, filling the safe box (x 108-972, y 520-1240); 3 text items (headline "FREE ALTERNATIVES", "to six apps you pay for", the Calendly wordmark). From 0.2 s each logo's price tag flips to a tick, one by one (90 ms apart), so the first second moves. New hook, surprise in the first word: "Free alternatives to six apps you pay for!" (2.2 s).
+3. Length 27.1 s (v3: 32.4 s). Cut: the "Save the list. Send it to a friend..." line (the list card now carries line 9 and the note "Not tested by us. Check each one."), "for personal use" and "if you host it" as spoken words (both stay on screen as notes on their cards and in the caption), shorter pair lines. Kept: the tease and both closing lines.
+4. Voice: the Calendly line is no longer a splice. Lines 3 and 5 are single takes. Line 4 is two whole takes of two separate sentences set one after the other ("For Calendly, Cal D I Y." then "For Intercom, Chatwoot.", `voice/join4.py`): nine one-take attempts of the combined sentence either failed the accent check or lost a word. Whisper on the final narration: "For Calendly, CalDIY. For Intercom, Chat Woot." No repeated word.
+5. Music: new track, `punchy--punchy-brass-groovy-pop-track--moonpub.mp3` (see `channel/music-notes.md`).
+
+## Spoken lines v4 (`video/ep102/voice/lines.txt`, 11 lines; v3 lines in `voice/lines-v3.txt`)
+1. Free alternatives to six apps you pay for!   (new)
+2. The last one is insane. Stay for it.
+3. For Loom, Cap. For Notion, AppFlowy.   (new)
+4. For Calendly, Cal D I Y. For Intercom, Chatwoot.   (new)
+5. For Wispr Flow, OpenWhispr.   (new)
+6. And the big one, ElevenLabs.
+7. VoiceStudio clones your own voice, on your own machine.
+8. It's new, just seven months old.
+9. We did not test these, so check each one yourself.
+10. The setup's in the link in bio.
+11. Want the next one? Follow, and you'll see it.
+script_lint: 1 note ("Calendly", a brand name shown with its logo).
+
+## Beat list v4 (times from `video/ep102/out/build-v4.log`)
+| t (s) | Line | Screen (one idea each) | What is new |
+|---|---|---|---|
+| 0.0 | 1 | The cube: six real paid logos; price tags flip to ticks 0.2-0.9 s; "FREE ALTERNATIVES to six apps you pay for" | the subject and the surprise |
+| 2.4 | 2 | Words only: "The last one is INSANE. STAY FOR IT." | a reason to stay |
+| 4.6 | 3 | Card: Loom struck, arrow, Cap, FREE; then Notion to AppFlowy | pairs 1 and 2 |
+| 7.3 | 4 | Card: Calendly to Cal.diy ("personal use only"); Intercom to Chatwoot ("if you host it yourself") | pairs 3 and 4, each with its limit |
+| 11.2 | 5 | Card: Wispr Flow to OpenWhispr | pair 5 |
+| 13.1 | 6 | Words only: "And the BIG ONE." then the card with ElevenLabs | the teased item arrives |
+| 15.1 | 7 | Card: ElevenLabs to VoiceStudio, FREE; then the real VoiceStudio screenshot, "ON YOUR OWN MACHINE." | the payoff, on the real app |
+| 18.0 | 8 | Words only: "It's new, just 7 MONTHS OLD." | a caution |
+| 20.0 | 9 | One card: the list of six pairs + "Not tested by us. Check each one." | the thing to save + the honest limit |
+| 22.4 | 10, 11 | Words only: "LINK IN BIO." then "FOLLOW." | CTA |
+Build-up check: the open question (what is the last one?) runs from 2.4 s to 13.1 s; five pairs in 8.5 s, every one a new pair; #6 gets four screens (6.9 s); no beat repeats the picture. Flat stretches over 2.5 s by the build log: none.
+
+## Scores v4 (judgement labels, not measurements)
+HOOK 74, VIRALITY 71, OVERALL 73, PREDICTED VIEWS about 550 (range 250-1,300). Shorter, a moving first second, surprise word first; still a list format that is new for us.
+
+## Blind-reader test v4: to be run by the parent session on `video/ep102/out/frame0-v4.jpg` (first spoken second: "Free alternatives to six apps...").
+
+## Build result v4
+- `video/ep102/out/ep102-v4.mp4` (1080x1920, 27.1 s, 5.8 MB), review copy `ep102-v4-review.mp4` (720 px, 1.2 MB), `frame0-v4.jpg`.
+- Gate `out/gate-v4.txt`: 5 of 5 PASS (layout; rendered file -14.3 LUFS, peak -3.4 dBFS, no frozen run; voice + music, bed -9.5 dB under the voice in 300-3500 Hz; voice doctor; accent, every line 0.07 or lower). `qa.py` passed again on the re-encoded final.
+- Looked at by eye: frames 0, 0.5, 1.0, the tease, every pair, the big one, the screenshot, the list card, the closing screens, the last frame.
+- Not verified: audio measured, not heard (the join in line 4, "AppFlowy" which Whisper writes "App Flowey", the new music); motion judged from stills and code, not watched at speed; the spoken "personal use" caveat for Cal.diy is now on screen and in the caption only; Publish mode open.
