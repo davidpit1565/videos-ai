@@ -7,12 +7,12 @@ H=os.path.dirname(os.path.abspath(__file__)); SF='/home/user/videos-ai/video/ep8
 nar,vid,D,tag=sys.argv[1],sys.argv[2],float(sys.argv[3]),sys.argv[4]
 TARGET=float(sys.argv[5]) if len(sys.argv)>5 else -10.0
 LIFT=3.0; SR=48000
-TRACK='/home/user/videos-ai/audio/music-library/trending-vibe--alexmorgan.mp3'
+TRACK=os.environ.get('TRACK','/home/user/videos-ai/audio/music-library/trending-vibe--alexmorgan.mp3'); START=float(os.environ.get('START','0'))  # env TRACK/START: bed file and trim start (s)
 def load(p,sr=SR): return np.frombuffer(subprocess.run(['ffmpeg','-v','error','-i',p,'-ac','1','-ar',str(sr),'-f','f32le','-'],capture_output=True).stdout,dtype=np.float32)
 def bandpass(x): return sg.sosfilt(sg.butter(4,[300,3500],'bp',fs=SR,output='sos'),x)
 cues=json.load(open(H+'/cues98.json'))['lines']; N=int(D*SR)
 # bed: decode, loop with crossfade, hp 140
-b=load(TRACK); xf=int(0.5*SR); fi=np.sin(np.linspace(0,np.pi/2,xf))**1; fo=np.cos(np.linspace(0,np.pi/2,xf))
+b=load(TRACK)[int(START*SR):]; xf=int(0.5*SR); fi=np.sin(np.linspace(0,np.pi/2,xf))**1; fo=np.cos(np.linspace(0,np.pi/2,xf))
 out=b.copy()
 while len(out)<N+SR:
     out=np.concatenate([out[:-xf],out[-xf:]*fo+b[:xf]*fi,b[xf:]])
