@@ -1,10 +1,9 @@
-D=22.0 go=5.512 (ESTIMATE (lines 1-3 not voiced yet)) stale_cues=True lines_on_targets=True js=156 sfx=29
-timeline: ESTIMATED (cue texts do not match voice/lines.txt)
-WARNING stale cues: voice/narration-raw-cues.json does not hold the lines of voice/lines.txt (old take). ESTIMATED timeline in use; rebuild when the new take is in place.
-lines: 1:0.08-1.63  2:1.93-4.53  3:4.73-5.88  4:9.28-11.79  5:11.85-13.14  6:13.22-15.05  7:15.15-17.00  8:17.12-19.47  9:19.59-21.60
-voice targets (line start so the words land on the race): 1:0.08  2:1.93  3:4.73  4:9.28  5:11.85  6:13.22  7:15.15  8:17.12  9:19.59
-opening: squash 0.80; line-up 1.93, logos on cars 2.21-3.14, fastest 3.70, two laps 4.73, go 5.512; end: podium 17.07, follow card 19.47, FOLLOW lit 20.48
-race clock: 1x from 5.512 to 14.94 (race 9.43); video times: Perplexity stops 9.73, Meta AI wall 11.66, Claude 14.00, Gemini 14.20, ChatGPT 16.09 (NOT SHOWN live: the replay starts first)
-SLOW MOTION REPLAY 0.25x video 14.94-17.62 (race from 8.33), label until 16.44; Claude crosses 15.56, Gemini 16.36; card 17.07
-headlines in: two-laps 6.33, Perplexity 9.28, Meta AI 11.54, neck 13.10, who-won 14.92, wins 15.56, send 17.07/17.19
+D=22.19 go=5.74 (words.json) stale_cues=False lines_on_targets=False js=156 sfx=29
+timeline: voice cues
+lines: 1:0.08-1.68  2:1.93-4.50  3:4.73-6.05  4:9.28-11.79  5:11.98-13.27  6:13.46-15.29  7:15.48-17.33  8:17.52-19.59  9:19.78-21.79
+voice targets (line start so the words land on the race): 1:0.08  2:1.93  3:4.73  4:9.51  5:12.08  6:13.45  7:15.38  8:17.35  9:19.54   drift of the take on disk: 4:-0.23  5:-0.10  6:+0.01  7:+0.10
+opening: squash 0.54; line-up 1.93, logos on cars 2.21-3.25, fastest 3.86, two laps 4.73, go 5.74; end: podium 17.47, follow card 19.66, FOLLOW lit 20.68
+race clock: 1x from 5.74 to 15.27 (race 9.53); video times: Perplexity stops 9.96, Meta AI wall 11.89, Claude 14.22, Gemini 14.42, ChatGPT 16.32 (NOT SHOWN live: the replay starts first)
+SLOW MOTION REPLAY 0.25x video 15.27-18.02 (race from 8.33), label until 16.77; Claude crosses 15.89, Gemini 16.69; card 17.47
+headlines in: two-laps 6.56, Perplexity 9.36, Meta AI 11.77, neck 13.32, who-won 15.25, wins 15.89, send 17.47/17.60
 camera: zoom 1.55-2.71; smallest car on screen in the race 128 px long, 77 px wide
