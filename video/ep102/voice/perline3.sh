@@ -1,7 +1,7 @@
 #!/bin/bash
 # v3 voice: only the changed lines (1,3,4,5,6,7), one TTS at a time (flock), seed loop until the accent check passes. Files in pl2/.
 cd /home/user/videos-ai; D=video/ep102/voice
-declare -A TXT=( [5]="Intercom? Chat woot, if you host it." )
+declare -A TXT=( [3]="Loom? Try Cap. Notion? App Flowy." [5]="Intercom? Chat woot, if you host it." )
 declare -A EX=( [3]=0.74 [4]=0.74 [5]=0.74 [6]=0.70 )
 for i in ${LINES_TODO:-3 4 5 6}; do
   [ -f $D/pl2/L$i.ok ] && continue

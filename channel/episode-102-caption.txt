@@ -1,6 +1,6 @@
-Loom, Notion and Calendly have free twins.
+Six apps you pay for have free alternatives.
 
-Six apps people pay for every month, and a free, open-source alternative for each one:
+The list, each one free and open source:
 
 1. Loom → Cap (screen videos)
 2. Notion → AppFlowy (notes, docs, AI)
@@ -11,7 +11,7 @@ Six apps people pay for every month, and a free, open-source alternative for eac
 
 Honest part: we did not test these. They are alternatives, not full replacements, and some need your own server. Check each one before you cancel anything.
 
-The $75 a month is the cheapest paid plan of each app added up, per person, read on the official pricing pages in November 2026. Most of them also have a free plan.
+Added up, the cheapest paid plan of each of these six apps is about $75 a month per person (official pricing pages, November 2026). Most of them also have a free plan.
 
 Links, licences and the steps for each one are in the link in bio.
 
