@@ -2660,6 +2660,38 @@ export const ARTICLES: Article[] = [
       "ChatGPT is OpenAI's, Gemini is Google's, Meta AI is Meta's and Perplexity is Perplexity AI's. Claude is made by Anthropic, and this channel's videos and this page are made with help from Claude. This channel is not affiliated with any of them.",
     ],
   },
+  {
+    n: 99,
+    title: "Meta AI and Gemini just killed Claude: five AIs race out of a maze, and you can race yours",
+    standfirst:
+      "We sent ChatGPT, Gemini, Claude, Meta AI and Perplexity the same request: write the moves that guide a dot out of a maze it cannot see. " +
+      "Each answer moved its own dot, one try each, in a maze and with rules we locked before any answer came in. " +
+      "On this page you can replay the real race, read the request word for word, and run your own AI in the same maze, in about five minutes.",
+    steps: [
+      "Scroll to The maze on this page and click Play the maze. The race from the video plays again in your browser, with the same five answers, at the same speed.",
+      "Under the maze, watch the numbers for each dot: the steps so far, and how close it has been to the exit. The best possible way out is 89 steps.",
+      "Scroll to The request and click Copy the request. This copies the request we sent to every AI, word for word.",
+      "Open the AI you want to test (ChatGPT, Gemini, Claude, Meta AI, Perplexity or any other) in a new tab and start a new chat. Leave the settings as they are, with no extra modes turned on.",
+      "Click in the message box, paste (Ctrl+V on Windows, Cmd+V on Mac) and send. Wait until the answer stops writing.",
+      "In the answer, click Copy on the code block. If there is no Copy button, select the whole answer with the mouse and copy it (Ctrl+C or Cmd+C). Text around the code is fine: the page takes the code out of it.",
+      "Come back to this page, scroll to Run your own AI and click Add my AI. Paste the answer into the box and click Run.",
+      "Your dot joins the same maze and the race plays from the start. If it gets stuck, walks in circles or does not start, that is the real result of that answer, and the page says what happened.",
+      "Optional: tell your AI what went wrong, paste the new answer and click Run again. That is a second try, so it does not compare with the one try each AI got in our race.",
+      "Optional: send this page to a friend and see whose AI gets out first.",
+    ],
+    changes: [
+      "Our result (one try each, 15.11.2026; at most 500 steps; the best possible way out is 89 steps): Gemini got out in 117 steps and Meta AI got out in 117 steps, on the exact same path as Gemini, cell by cell. Claude got out in 171 steps.",
+      "ChatGPT did not get out. Its closest point was 52 steps from the exit (at step 125); after that it walked in circles over 29 cells for the other 375 steps. Perplexity did not get out either: it stayed among 4 cells next to the start and never got closer than 86 steps from the exit.",
+      "Nobody bumped a wall or sent an invalid answer. The maze, the rules and the request were locked (their fingerprints, sha256, written down) before any AI answered, and nothing was changed after. Run again with the same answers, the race gives the same result every time.",
+    ],
+    limits: [
+      "One try per AI, one maze, one day. Another try, another day or another model setting can give a different answer and a different order, so this is not a ranking of how smart the AIs are.",
+      "The answers were copied from the AI apps. Claude answered as Sonnet 5.5 (what we read in the app; no screenshot). For ChatGPT, Gemini, Meta AI and Perplexity we do not know which model answered that day.",
+      "We did not look into why Gemini and Meta AI walk the same path (their answers are not the same text), why ChatGPT walks in circles, or why Perplexity stays next to the start.",
+      "The code you paste runs only in your browser, inside a sandbox with no access to this page and no internet. Nothing is uploaded or saved, and a reload clears it. A very slow or endless answer is stopped by a time limit.",
+      "ChatGPT is OpenAI's, Gemini is Google's, Meta AI is Meta's and Perplexity is Perplexity AI's. Claude is made by Anthropic, and this channel's videos and this page are made with help from Claude. This channel is not affiliated with any of them.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
