@@ -4,14 +4,14 @@ ONE idea per screen: either one block of words (small lead-in line + heavy black
 one terracotta accent word with one ring) or ONE card that holds real material (real logos, one real screenshot).
 No counters, totals, stamps, source lines, offset shadows or bouncing.
 
-Reads   voice/lines.txt (14 lines), voice/narration-v3-cues.json, voice/words-v3.json (without them: ESTIMATED timeline; SHIP=1 refuses).
+Reads   voice/lines.txt (13 lines), voice/narration-v3-cues.json, voice/words-v3.json (without them: ESTIMATED timeline; SHIP=1 refuses).
 Writes  hf/index.html, cues102.json, sfx102.json, out/build-v3.log.
 
 Screens: A hook (line 1): headline + the six paid apps' real logos   B tease (line 2), words only
-         C items 1-5 (lines 3-7): one dark card, same layout and same motion every time:
+         C items 1-5 (lines 3-6; line 3 carries items 1 and 2): one dark card, same layout and same motion every time:
            paid logo + name -> the name is struck and greyed -> arrow -> free logo + name -> the word FREE lands on the free row
-         D the big one (lines 8-10): words, then the same card for ElevenLabs -> VoiceStudio, then the real screenshot full stage, then "7 MONTHS OLD"
-         E not tested (line 11), words only   F the list card (line 12)   G link in bio / follow (lines 13-14), words only
+         D the big one (lines 7-9): words, then the same card for ElevenLabs -> VoiceStudio, then the real screenshot full stage, then "7 MONTHS OLD"
+         E not tested (line 10), words only   F the list card (line 11)   G link in bio / follow (lines 12-13), words only
 On screen there are no prices and no star counts: only what is spoken. Nothing was installed or tested by us (line 11 says so).
 Safe area: text inside x 108-972, y 269-1248; below y 1056 nothing to read right of x 864.
 """
@@ -36,7 +36,7 @@ assert os.path.exists(f"{H_}/hf/assets/shots/voicestudio.jpg") and os.path.exist
 
 # ---------------------------------------------------------------- lines + cues + words
 LINES = [l.strip() for l in open(H_ + "/voice/lines.txt") if l.strip()]
-NL = len(LINES); assert NL == 14, "v3 is laid out for 14 lines"
+NL = len(LINES); assert NL == 13, "v3 is laid out for 13 lines (line 3 carries items 1 and 2)"
 try: C = json.load(open(H_ + "/voice/narration-v3-cues.json"))
 except Exception: C = []
 CUE = {c["n"]: c for c in C if "n" in c}
@@ -155,22 +155,24 @@ def transform(k, t_in, t_free, t_note=None, first=False):
     NEWS.append((round(t_in, 2), f"card: {ITEMS[k - 1]['paid']} (paid)")); NEWS.append((round(t_free, 2), f"{ITEMS[k - 1]['paid']} struck, arrow, {ITEMS[k - 1]['free']}; then FREE lands on {ITEMS[k - 1]['free']} at {tx:.2f}"))
     return tx
 SC["C"] = '<div class="comp" id="comp">' + "".join(group(it) for it in ITEMS) + "</div>"
-FREEW = {1: W("cap", ("cap", "capp", "kap"), 3, .6), 2: W("appflowy", ("appflowy", "app", "apflowy"), 4, .5), 3: W("cal", ("cal", "caldiy", "kal"), 5, .34),
-         4: W("chatwoot", ("chatwoot", "chat", "chatwoo"), 6, .34), 5: W("openwhispr", ("openwhispr", "open", "openwhisper"), 7, .55)}
-NOTE = {3: W("personal", ("for", "personal"), 5, .6), 4: W("host", ("if", "host"), 6, .62)}
+tNotion = W("notion", ("notion", "motion"), 3, .52)
+START = {1: a[3], 2: tNotion - .12, 3: a[4], 4: a[5], 5: a[6]}
+FREEW = {1: W("cap", ("cap", "capp", "kap", "cab"), 3, .32), 2: W("appflowy", ("appflowy", "app", "apflowy", "appflow"), 3, .72), 3: W("cal", ("cal", "caldiy", "kal", "cald"), 4, .34),
+         4: W("chatwoot", ("chatwoot", "chat", "chatwoo"), 5, .34), 5: W("openwhispr", ("openwhispr", "open", "openwhisper"), 6, .55)}
+NOTE = {3: W("personal", ("for", "personal"), 4, .6), 4: W("host", ("if", "host"), 5, .62)}
+END = {1: START[2], 2: a[4], 3: a[5], 4: a[6], 5: a[7]}
 fin("#scC", a[3] - .04, .28); sfx("whoosh_b.ogg", a[3] - .1, -16)
 for k in range(1, 6):
-    n = k + 2
-    transform(k, a[n] - (.0 if k == 1 else .02), max(FREEW[k], a[n] + .45), NOTE.get(k), first=(k == 1))
-    fout(f"#g{k}", (a[n + 1] if k < 5 else a[8]) - .24, .2)
-fout("#scC", a[8] - .24)
+    transform(k, START[k] - (.0 if k == 1 else .02), max(FREEW[k], START[k] + .42), NOTE.get(k), first=(k == 1))
+    fout(f"#g{k}", END[k] - .24, .2)
+fout("#scC", a[7] - .24)
 # ---------------------------------------------------------------- D the big one: words -> the same card -> the real screenshot -> 7 months old
-tBig = W("big", "big", 8, .3); tEL = W("eleven", ("elevenlabs", "eleven", "11"), 8, .62)
-tVS = max(a[9] + .1, W("vs", ("voicestudio", "voice"), 9, .02)); tClone = W("clones", ("clones", "clone"), 9, .3); tOwn = W("own", "own", 9, .42); tMach = W("machine", "machine", 9, .9)
-SC["D1"] = words("lead", "And the", 8, 0, .12, top=420, size=84) + words("hv", "BIG ONE.", 8, .3, .42, acc=("big", "one"), top=516, size=206) + ring("rgD", 78, 508, 900, 244)
-fin("#scD1", a[8] - .04, .28); ring_in("rgD", tBig + .25); sfx("riser.ogg", a[8] - .2, -15)
-NEWS.append((a[8], "D: words only: 'And the BIG ONE.'"))
-tCard6 = max(tEL - .12, a[8] + .7)
+tBig = W("big", "big", 7, .3); tEL = W("eleven", ("elevenlabs", "eleven", "11"), 7, .62)
+tVS = max(a[8] + .1, W("vs", ("voicestudio", "voice"), 8, .02)); tClone = W("clones", ("clones", "clone"), 8, .3); tOwn = W("own", "own", 8, .42); tMach = W("machine", "machine", 8, .9)
+SC["D1"] = words("lead", "And the", 7, 0, .12, top=420, size=84) + words("hv", "BIG ONE.", 7, .3, .42, acc=("big", "one"), top=516, size=206) + ring("rgD", 78, 508, 900, 244)
+fin("#scD1", a[7] - .04, .28); ring_in("rgD", tBig + .25); sfx("riser.ogg", a[7] - .2, -15)
+NEWS.append((a[7], "D: words only: 'And the BIG ONE.'"))
+tCard6 = max(tEL - .12, a[7] + .7)
 fout("#scD1", tCard6 - .22)
 SC["D2"] = '<div class="comp" id="comp6">' + group(dict(ITEMS[5], k=7)) + "</div>"
 fin("#scD2", tCard6, .28); js(f"tl.set('#g7',{{opacity:1}},{tCard6:.3f});")
@@ -178,37 +180,37 @@ ITEMS.append(dict(ITEMS[5], k=7))
 transform(7, tCard6, tVS, None, first=True); ITEMS.pop()
 tShot = max(tClone - .05, tVS + 1.0)
 fout("#scD2", tShot - .22)
-SC["D3"] = words("lead", "clones your own voice,", 9, .3, .55, top=300, size=64) + words("hv", "ON YOUR OWN", 9, .62, .8, top=376, size=104) + words("hv", "MACHINE.", 9, .9, .9, top=490, size=104) + \
+SC["D3"] = words("lead", "clones your own voice,", 8, .3, .55, top=300, size=64) + words("hv", "ON YOUR OWN", 8, .62, .8, top=376, size=104) + words("hv", "MACHINE.", 8, .9, .9, top=490, size=104) + \
            '<div class="shot" id="shot"><img src="assets/shots/voicestudio.jpg"></div>'
 fin("#scD3", tShot, .3)
-js(f"tl.fromTo('#shot img',{{scale:1.0}},{{scale:1.07,duration:{max(1, a[10] - tShot):.3f},ease:'sine.inOut',immediateRender:false}},{tShot:.3f});")
+js(f"tl.fromTo('#shot img',{{scale:1.0}},{{scale:1.07,duration:{max(1, a[9] - tShot):.3f},ease:'sine.inOut',immediateRender:false}},{tShot:.3f});")
 NEWS.append((round(tShot, 2), "the real VoiceStudio screenshot, full stage: 'clones your own voice, ON YOUR OWN MACHINE.'"))
-fout("#scD3", a[10] - .24)
-SC["D4"] = words("lead", "It's new, just", 10, 0, .3, top=420, size=84) + words("hv", "7 MONTHS", 10, .5, .68, acc=("7", "seven"), top=516, size=186) + words("hv", "OLD.", 10, .9, .9, top=720, size=186)
-fin("#scD4", a[10] - .04, .28)
-NEWS.append((a[10], "words only: 'It's new, just 7 MONTHS OLD.'"))
-fout("#scD4", a[11] - .24)
+fout("#scD3", a[9] - .24)
+SC["D4"] = words("lead", "It's new, just", 9, 0, .3, top=420, size=84) + words("hv", "7 MONTHS", 9, .5, .68, acc=("7", "seven"), top=516, size=186) + words("hv", "OLD.", 9, .9, .9, top=720, size=186)
+fin("#scD4", a[9] - .04, .28)
+NEWS.append((a[9], "words only: 'It's new, just 7 MONTHS OLD.'"))
+fout("#scD4", a[10] - .24)
 # ---------------------------------------------------------------- E not tested
-SC["E"] = words("lead", "We did", 11, 0, .1, top=400, size=84) + words("hv", "NOT TEST", 11, .2, .32, acc=("not",), top=496, size=176) + words("hv", "THESE.", 11, .44, .44, top=690, size=176) + \
-          words("lead", "so check each one yourself.", 11, .58, .95, top=910, size=64)
-fin("#scE", a[11] - .04, .28); sfx("click_b.ogg", a[11] + .2, -15)
-NEWS.append((a[11], "E: words only: 'We did NOT TEST THESE. so check each one yourself.'"))
-fout("#scE", a[12] - .24)
+SC["E"] = words("lead", "We did", 10, 0, .1, top=400, size=84) + words("hv", "NOT TEST", 10, .2, .32, acc=("not",), top=496, size=176) + words("hv", "THESE.", 10, .44, .44, top=690, size=176) + \
+          words("lead", "so check each one yourself.", 10, .58, .95, top=910, size=64)
+fin("#scE", a[10] - .04, .28); sfx("click_b.ogg", a[10] + .2, -15)
+NEWS.append((a[10], "E: words only: 'We did NOT TEST THESE. so check each one yourself.'"))
+fout("#scE", a[11] - .24)
 # ---------------------------------------------------------------- F the list card
 rows = "".join(f'<div class="lr" id="lr{i}" style="top:{118 + i * 100}px"><div class="lt sm">{lg(it["plogo"], 52)}</div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm">{lg(it["flogo"], 62)}</div><span class="lx">{it["free"]}</span><span class="lf">FREE</span></div>' for i, it in enumerate(ITEMS))
 SC["F"] = f'<div class="comp list" id="lcard"><div class="ltit">Save this list</div>{rows}</div>'
-fin("#scF", a[12] - .04, .3); sfx("whoosh_b.ogg", a[12] - .1, -16)
-rst = min(.2, max(.1, (e(12) - a[12] - 1.0) / 6))
-for i in range(6): fin(f"#lr{i}", a[12] + .15 + i * rst, .26, 10, 3)
-NEWS.append((a[12], "F: one card: the list of six pairs to save"))
-fout("#scF", a[13] - .24)
+fin("#scF", a[11] - .04, .3); sfx("whoosh_b.ogg", a[11] - .1, -16)
+rst = min(.2, max(.1, (e(11) - a[11] - 1.0) / 6))
+for i in range(5): fin(f"#lr{i}", a[11] + .15 + i * rst, .26, 10, 3)
+NEWS.append((a[11], "F: one card: the list of six pairs to save"))
+fout("#scF", a[12] - .24)
 # ---------------------------------------------------------------- G link in bio, follow
-tFol = W("follow", "follow", 14, .5)
-SC["G1"] = words("lead", "The setup's in the", 13, 0, .4, top=420, size=84) + words("hv", "LINK IN BIO.", 13, .55, .9, top=516, size=140)
-fin("#scG1", a[13] - .04, .28); fout("#scG1", a[14] - .24)
-SC["G2"] = words("lead", "Want the next one?", 14, 0, .35, top=400, size=84) + words("hv", "FOLLOW.", 14, .5, .5, acc=("follow",), top=500, size=206) + ring("rgG", 78, 492, 900, 250)
-fin("#scG2", a[14] - .04, .28); ring_in("rgG", tFol + .2); sfx("select.ogg", tFol, -13)
-NEWS += [(a[13], "G: words only: 'The setup's in the LINK IN BIO.'"), (a[14], "words only: 'Want the next one? FOLLOW.'")]
+tFol = W("follow", "follow", 13, .5)
+SC["G1"] = words("lead", "The setup's in the", 12, 0, .4, top=420, size=84) + words("hv", "LINK IN BIO.", 12, .55, .9, top=516, size=140)
+fin("#scG1", a[12] - .04, .28); fout("#scG1", a[13] - .24)
+SC["G2"] = words("lead", "Want the next one?", 13, 0, .35, top=400, size=84) + words("hv", "FOLLOW.", 13, .5, .5, acc=("follow",), top=500, size=206) + ring("rgG", 78, 492, 900, 250)
+fin("#scG2", a[13] - .04, .28); ring_in("rgG", tFol + .2); sfx("select.ogg", tFol, -13)
+NEWS += [(a[12], "G: words only: 'The setup's in the LINK IN BIO.'"), (a[13], "words only: 'Want the next one? FOLLOW.'")]
 fout("#scG2", tF - .26)
 js(f"tl.set('#rgA',{{opacity:1,scale:1}},{tF:.3f});")
 fin("#scA", tF + .02, .4, 0, 6)

@@ -1,9 +1,9 @@
 #!/bin/bash
 # v3 voice: only the changed lines (1,3,4,5,6,7), one TTS at a time (flock), seed loop until the accent check passes. Files in pl2/.
 cd /home/user/videos-ai; D=video/ep102/voice
-declare -A TXT=( [6]="Intercom? Chat woot, if you host it." )
-declare -A EX=( [1]=0.74 [3]=0.74 [4]=0.74 [5]=0.74 [6]=0.74 [7]=0.70 )
-for i in ${LINES_TODO:-1 3 4 5 6 7}; do
+declare -A TXT=( [5]="Intercom? Chat woot, if you host it." )
+declare -A EX=( [3]=0.74 [4]=0.74 [5]=0.74 [6]=0.70 )
+for i in ${LINES_TODO:-3 4 5 6}; do
   [ -f $D/pl2/L$i.ok ] && continue
   if [ -n "${TXT[$i]}" ]; then echo "${TXT[$i]}" > $D/pl2/line$i.txt; else sed -n "${i}p" $D/lines.txt > $D/pl2/line$i.txt; fi
   for seed in ${SEEDS:-11 22 33 44 55 66}; do

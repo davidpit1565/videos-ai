@@ -16,79 +16,73 @@
   },
   {
    "n": 3,
-   "text": "Loom? Try Cap.",
+   "text": "Loom? Try Cap. Notion? AppFlowy.",
    "start": 5.16,
-   "end": 6.24
+   "end": 7.17
   },
   {
    "n": 4,
-   "text": "Notion? AppFlowy.",
-   "start": 6.36,
-   "end": 7.59
+   "text": "Calendly? Cal D I Y, for personal use.",
+   "start": 7.29,
+   "end": 9.62
   },
   {
    "n": 5,
-   "text": "Calendly? Cal D I Y, for personal use.",
-   "start": 7.71,
-   "end": 10.04
+   "text": "Intercom? Chatwoot, if you host it.",
+   "start": 9.74,
+   "end": 11.91
   },
   {
    "n": 6,
-   "text": "Intercom? Chatwoot, if you host it.",
-   "start": 10.16,
-   "end": 12.33
+   "text": "Wispr Flow? OpenWhispr.",
+   "start": 12.03,
+   "end": 13.58
   },
   {
    "n": 7,
-   "text": "Wispr Flow? OpenWhispr.",
-   "start": 12.45,
-   "end": 14.0
+   "text": "And the big one, ElevenLabs.",
+   "start": 13.7,
+   "end": 15.51
   },
   {
    "n": 8,
-   "text": "And the big one, ElevenLabs.",
-   "start": 14.12,
-   "end": 15.93
+   "text": "VoiceStudio clones your own voice, on your own machine.",
+   "start": 15.63,
+   "end": 18.84
   },
   {
    "n": 9,
-   "text": "VoiceStudio clones your own voice, on your own machine.",
-   "start": 16.05,
-   "end": 19.26
+   "text": "It's new, just seven months old.",
+   "start": 18.96,
+   "end": 20.97
   },
   {
    "n": 10,
-   "text": "It's new, just seven months old.",
-   "start": 19.38,
-   "end": 21.39
+   "text": "We did not test these, so check each one yourself.",
+   "start": 21.09,
+   "end": 24.04
   },
   {
    "n": 11,
-   "text": "We did not test these, so check each one yourself.",
-   "start": 21.51,
-   "end": 24.46
+   "text": "Save the list. Send it to a friend who pays for Loom.",
+   "start": 24.16,
+   "end": 27.27
   },
   {
    "n": 12,
-   "text": "Save the list. Send it to a friend who pays for Loom.",
-   "start": 24.58,
-   "end": 27.69
+   "text": "The setup's in the link in bio.",
+   "start": 27.39,
+   "end": 29.35
   },
   {
    "n": 13,
-   "text": "The setup's in the link in bio.",
-   "start": 27.81,
-   "end": 29.77
-  },
-  {
-   "n": 14,
    "text": "Want the next one? Follow, and you'll see it.",
-   "start": 29.89,
-   "end": 32.58
+   "start": 29.47,
+   "end": 32.16
   }
  ],
- "D": 33.88,
- "frame0_returns": 33.38,
+ "D": 33.46,
+ "frame0_returns": 32.96,
  "sync": {
   "free": {
    "t": 1.697,
@@ -102,60 +96,64 @@
    "t": 4.418,
    "source": "ESTIMATE"
   },
+  "notion": {
+   "t": 6.205,
+   "source": "ESTIMATE"
+  },
   "cap": {
-   "t": 5.808,
+   "t": 5.803,
    "source": "ESTIMATE"
   },
   "appflowy": {
-   "t": 6.975,
+   "t": 6.607,
    "source": "ESTIMATE"
   },
   "cal": {
-   "t": 8.502,
+   "t": 8.082,
    "source": "ESTIMATE"
   },
   "chatwoot": {
-   "t": 10.898,
+   "t": 10.478,
    "source": "ESTIMATE"
   },
   "openwhispr": {
-   "t": 13.303,
+   "t": 12.883,
    "source": "ESTIMATE"
   },
   "personal": {
-   "t": 9.108,
+   "t": 8.688,
    "source": "ESTIMATE"
   },
   "host": {
-   "t": 11.505,
+   "t": 11.085,
    "source": "ESTIMATE"
   },
   "big": {
-   "t": 14.663,
+   "t": 14.243,
    "source": "ESTIMATE"
   },
   "eleven": {
-   "t": 15.242,
+   "t": 14.822,
    "source": "ESTIMATE"
   },
   "vs": {
-   "t": 16.114,
+   "t": 15.694,
    "source": "ESTIMATE"
   },
   "clones": {
-   "t": 17.013,
+   "t": 16.593,
    "source": "ESTIMATE"
   },
   "own": {
-   "t": 17.398,
+   "t": 16.978,
    "source": "ESTIMATE"
   },
   "machine": {
-   "t": 18.939,
+   "t": 18.519,
    "source": "ESTIMATE"
   },
   "follow": {
-   "t": 31.235,
+   "t": 30.815,
    "source": "ESTIMATE"
   }
  },
@@ -174,79 +172,79 @@
     "what": "card: Loom (paid)"
    },
    {
-    "t": 5.81,
-    "what": "Loom struck, arrow, Cap; then FREE lands on Cap at 6.23"
+    "t": 5.8,
+    "what": "Loom struck, arrow, Cap; then FREE lands on Cap at 6.22"
    },
    {
-    "t": 6.34,
+    "t": 6.07,
     "what": "card: Notion (paid)"
    },
    {
-    "t": 6.97,
-    "what": "Notion struck, arrow, AppFlowy; then FREE lands on AppFlowy at 7.39"
+    "t": 6.61,
+    "what": "Notion struck, arrow, AppFlowy; then FREE lands on AppFlowy at 7.03"
    },
    {
-    "t": 7.69,
+    "t": 7.27,
     "what": "card: Calendly (paid)"
    },
    {
-    "t": 8.5,
-    "what": "Calendly struck, arrow, Cal.diy; then FREE lands on Cal.diy at 8.92"
+    "t": 8.08,
+    "what": "Calendly struck, arrow, Cal.diy; then FREE lands on Cal.diy at 8.50"
    },
    {
-    "t": 10.14,
+    "t": 9.72,
     "what": "card: Intercom (paid)"
    },
    {
-    "t": 10.9,
-    "what": "Intercom struck, arrow, Chatwoot; then FREE lands on Chatwoot at 11.32"
+    "t": 10.48,
+    "what": "Intercom struck, arrow, Chatwoot; then FREE lands on Chatwoot at 10.90"
    },
    {
-    "t": 12.43,
+    "t": 12.01,
     "what": "card: Wispr Flow (paid)"
    },
    {
-    "t": 13.3,
-    "what": "Wispr Flow struck, arrow, OpenWhispr; then FREE lands on OpenWhispr at 13.72"
+    "t": 12.88,
+    "what": "Wispr Flow struck, arrow, OpenWhispr; then FREE lands on OpenWhispr at 13.30"
    },
    {
-    "t": 14.12,
+    "t": 13.7,
     "what": "D: words only: 'And the BIG ONE.'"
    },
    {
-    "t": 15.12,
+    "t": 14.7,
     "what": "card: ElevenLabs (paid)"
    },
    {
-    "t": 16.15,
-    "what": "ElevenLabs struck, arrow, VoiceStudio; then FREE lands on VoiceStudio at 16.57"
+    "t": 15.73,
+    "what": "ElevenLabs struck, arrow, VoiceStudio; then FREE lands on VoiceStudio at 16.15"
    },
    {
-    "t": 17.15,
+    "t": 16.73,
     "what": "the real VoiceStudio screenshot, full stage: 'clones your own voice, ON YOUR OWN MACHINE.'"
    },
    {
-    "t": 19.38,
+    "t": 18.96,
     "what": "words only: 'It's new, just 7 MONTHS OLD.'"
    },
    {
-    "t": 21.51,
+    "t": 21.09,
     "what": "E: words only: 'We did NOT TEST THESE. so check each one yourself.'"
    },
    {
-    "t": 24.58,
+    "t": 24.16,
     "what": "F: one card: the list of six pairs to save"
    },
    {
-    "t": 27.81,
+    "t": 27.39,
     "what": "G: words only: 'The setup's in the LINK IN BIO.'"
    },
    {
-    "t": 29.89,
+    "t": 29.47,
     "what": "words only: 'Want the next one? FOLLOW.'"
    },
    {
-    "t": 33.38,
+    "t": 32.96,
     "what": "frame 0 returns (loop)"
    }
   ],
@@ -257,18 +255,18 @@
     "after": "A: 'Six apps you pay for have FREE ALTERNATIVES' + the six paid apps' real logos"
    },
    {
-    "start": 21.51,
-    "end": 24.58,
+    "start": 21.09,
+    "end": 24.16,
     "after": "E: words only: 'We did NOT TEST THESE. so check each one yourself.'"
    },
    {
-    "start": 24.58,
-    "end": 27.81,
+    "start": 24.16,
+    "end": 27.39,
     "after": "F: one card: the list of six pairs to save"
    },
    {
-    "start": 29.89,
-    "end": 33.38,
+    "start": 29.47,
+    "end": 32.96,
     "after": "words only: 'Want the next one? FOLLOW.'"
    }
   ]
