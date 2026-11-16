@@ -7,7 +7,8 @@ Reads   voice/lines.txt (10 lines, the Revision of 15.11.2026), voice/narration-
         banner is drawn on every frame).
 Writes  hf/index.html, cues100.json (lines, D, sync points and where each came from, every on-screen number with
         its source), sfx100.json, out/build.log.
-SHIP=1 refuses to build while the timeline is estimated or line 10 is still the placeholder.
+SHIP=1 refuses to build while the timeline is estimated. v6 (16.11.2026): OPENING = the claim as cartoon action (lines 1-2), the checks as
+cutaways (lines 3-8), END = its own scene (line 9) + a calm follow card (line 10, no promised episode, no placeholder banner).
 
 Beats (one scene per spoken line; the claim looks true first, each test chips it down, the verdict comes last):
   1 the viral claim (stamp from frame 0)  2 "$20 does $100 work" (claim)  3 the problem: files read again, the bar drains
@@ -57,7 +58,6 @@ STARS = 148.2
 # ---------------------------------------------------------------- lines + cues
 LINES = [l.strip() for l in open(H_ + "/voice/lines.txt") if l.strip()]
 NL = len(LINES); assert NL == 10, "this build is laid out for the 10 lines of the 15.11 revision"
-PH_L10 = "face a maze" in LINES[9]                              # the tomorrow line is a placeholder until it names the real next episode
 try:
     C = json.load(open(H_ + "/voice/narration-raw-cues.json")); C = C if isinstance(C, list) else C["lines"]
 except Exception:
@@ -69,6 +69,7 @@ WORDS = []
 if not STALE:
     try:
         WORDS = json.load(open(H_ + "/voice/words.json"))
+        WORDS = [[w["word"], w["start"], w["end"]] if isinstance(w, dict) else w for w in WORDS]
         if not (WORDS and norm(WORDS[0][0]) == norm(LINES[0].split()[0])): WORDS = []
     except Exception:
         WORDS = []
@@ -81,40 +82,37 @@ else:
     L = {n: (float(CUE[n]["start"]), float(CUE[n]["end"])) for n in range(1, NL + 1)}
 s = lambda n: L[n][0]
 e = lambda n: L[n][1]
-SRC = {}
+SRC = {}; SYNCT = {}
 def W(name, word, n, frac, k=0):
     """time of a spoken word inside line n (words.json), else a fraction of the line (ESTIMATE)"""
     c = 0
     for w, a, b in WORDS:
         if s(n) - .12 <= a <= e(n) + .12 and norm(w) in (word if isinstance(word, tuple) else (word,)):
-            if c == k: SRC[name] = "words.json"; return round(a, 3)
+            if c == k: SRC[name] = "words.json"; SYNCT[name] = round(a, 3); return round(a, 3)
             c += 1
-    SRC[name] = "ESTIMATE (line fraction)"
-    return round(s(n) + frac * (e(n) - s(n)), 3)
-D = round(e(NL) + .4, 2)
+    SRC[name] = "ESTIMATE (line fraction)"; SYNCT[name] = round(s(n) + frac * (e(n) - s(n)), 3)
+    return SYNCT[name]
+D = round(e(NL) + .6, 2)
 tF = D - .58                                                   # frame 0 comes back from here (loop seam)
 a = {n: s(n) for n in range(1, NL + 1)}
-tPlug = W("killed", "killed", 1, .42)
-tNow = W("now", "now", 2, .42)
+tCant = W("cant", "cant", 1, .45)
+tFree = W("free", "free", 2, .08)
+tCan = W("can", "can", 2, .5)
+tChk = W("checked", "checked", 2, .8)
 tSo = W("so", "so", 3, .46)
+tGraph = W("graphify", "graphify", 4, .16)
 tAbout = W("about", "about", 4, .34)
 tOnce = W("once", "once", 5, .30)
 tLook = W("looks", "looks", 5, .56)
+t70 = W("seventy", ("seventy", "70"), 6, .2)
 tBut = W("but", "but", 6, .66)
 tR1 = W("one_saves", "one", 7, .30, 0)
 tR2 = W("one_uses", "one", 7, .66, 1)
 tR3 = min(e(7) + .05, tR2 + .8)
 tFive = W("five", ("five", "5"), 8, .34)
-t70 = W("seventy", ("seventy", "70"), 6, .2)
-tFree = W("free", "free", 1, .2)
-tTool = W("tool", "tool", 1, .3)
-tCC = W("claude", "claude", 1, .55)
-tP20 = W("twenty", ("twenty", "20", "twentydollar"), 2, .1)
-tP100 = W("hundred", ("hundred", "100", "hundreddollar"), 2, .55)
-tDoes = W("does", "does", 2, .42)
-tGraph = W("graphify", "graphify", 4, .16)
 tNo = W("nothing", "nothing", 8, .62)
 tClose = W("close", "close", 8, .90)
+tFollow = W("follow", "follow", 10, .5)
 
 # ---------------------------------------------------------------- helpers
 try:
@@ -165,8 +163,6 @@ def head(i, t_in, t_out, l1, size=100, lg=""):
     if t_in is not None: fin(f"#h{i}", t_in)
     if t_out is not None: fout(f"#h{i}", t_out - .24)
     HLOG.append((round(t_in or 0, 2), l1))
-head(0, None, a[2], "&ldquo;70x LESS USAGE&rdquo;")
-head(1, a[2], a[3], "&ldquo;$20 DOES $100 WORK&rdquo;")
 head(2, a[3], tSo, "NEW CHAT = FROM ZERO")
 head(3, tSo, a[4], "READS YOUR FILES AGAIN")
 head(4, a[4], a[5], "THE TOOL: GRAPHIFY", lg="g")
@@ -176,21 +172,40 @@ head(7, tBut, a[7], "ONLY IN ITS BEST CASE")
 head(8, a[7], a[8], "REAL TESTS:")
 head(9, a[8], tNo, "MAX = 5x PRO USAGE")
 head(10, tNo, a[9], "NOTHING COMES CLOSE")
-head(11, a[9], a[10], "SETUP: LINK IN BIO")
-head(12, a[10], tF + .04, "TOMORROW: [PLACEHOLDER]" if PH_L10 else "TOMORROW")
-fin("#h0", tF + .06, .42)
 
 # ---------------------------------------------------------------- scenes (page px; every scene is a full-page layer)
 SC = {}
-# 1 the claim: the two real marks, the free tool plugs in
-SC[1] = f'''<div class="tile" id="t1a" style="left:95px;top:500px">{clg(210)}</div><div class="tn" id="tn_a" style="left:95px;top:866px">Claude Code</div>
-<div id="plus" style="left:480px;top:612px">+</div>
-<div class="tile" id="t1b" style="left:615px;top:500px">{gicon(220)}<div class="free" id="free">FREE TOOL</div></div><div class="tn" id="tn_b" style="left:615px;top:866px">Graphify</div>'''
-# 2 the money claim: real prices, shown as a claim
-def plan(i, x, name, price):
-    return f'''<div class="plan" id="p{i}" style="left:{x}px;top:500px">{clg(74)}<div class="pn">{name}</div><div class="pp">{price}</div><div class="pm">a month</div></div>'''
-SC[2] = plan(1, 65, "PRO", "$20") + plan(2, 577, "MAX", "$100") + '<div id="eq" style="left:481px;top:508px">=</div>' + \
-        srcline("prices: claude.com/pricing, read 15.11.2026", 978)
+# The lifter: a block character (Claude mark + "$20") under a barbell. Drawn here, posed by render() from the clock.
+def lifter(p, big=True, spot=False):
+    PR = 150 if big else 62; x1, x2 = (150, 800) if big else (300, 650); pf = ORA if big else "#fff"
+    def plate(cx):
+        t = f'<text x="{cx}" y="32" text-anchor="middle" font-size="94" font-weight="900" letter-spacing="-3" fill="{INK}">$100</text>' if big else ""
+        return f'<circle cx="{cx + 9}" cy="9" r="{PR}" fill="{INK}"/><circle cx="{cx}" cy="0" r="{PR}" fill="{pf}" stroke="{INK}" stroke-width="8"/><circle cx="{cx}" cy="0" r="{PR * .8:.0f}" fill="none" stroke="{INK}" stroke-width="4" opacity=".45"/>{t}'
+    sp = f'''<g id="{p}sp" opacity="0"><path d="M760 780 L750 868 M840 780 L850 868" stroke="{INK}" stroke-width="16" stroke-linecap="round"/>
+  <path id="{p}sA" fill="none" stroke="{INK}" stroke-width="16" stroke-linecap="round"/><path id="{p}sB" fill="none" stroke="{INK}" stroke-width="16" stroke-linecap="round"/>
+  <rect x="714" y="598" width="190" height="190" rx="34" fill="{INK}"/><rect x="705" y="590" width="190" height="190" rx="34" fill="#fff" stroke="{INK}" stroke-width="8"/>
+  <circle cx="768" cy="628" r="9" fill="{INK}"/><circle cx="832" cy="628" r="9" fill="{INK}"/>
+  <image href="assets/logos/graphify-icon.svg" x="754" y="652" width="92" height="105.5"/></g>''' if spot else ""
+    fr = f'''<g id="{p}fr" opacity="0"><text x="475" y="150" text-anchor="middle" font-size="124" font-weight="900" letter-spacing="2" fill="{GREEN}" stroke="#fff" stroke-width="10" paint-order="stroke">FREE</text>
+  {"".join(f'<path class="spk" data-x="{x}" data-y="{y}" d="M0 -26 Q4 -4 26 0 Q4 4 0 26 Q-4 4 -26 0 Q-4 -4 0 -26Z" fill="#F5B301" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>' for x, y in ((300, 60), (655, 84), (330, 176), (630, 190)))}</g>''' if spot else ""
+    return f'''<svg class="lf" id="{p}svg" viewBox="0 0 950 900" width="950" height="900" style="font-family:IDisp,Inter,sans-serif">
+ <path d="M40 882 C200 876 420 888 620 880 S860 876 910 882" fill="none" stroke="{INK}" stroke-width="7" stroke-linecap="round"/>
+ <ellipse cx="475" cy="884" rx="200" ry="15" fill="rgba(15,15,15,.16)"/>
+ {sp}
+ <path d="M425 780 L410 868 M525 780 L540 868 M392 870 H428 M522 870 H558" stroke="{INK}" stroke-width="18" stroke-linecap="round"/>
+ <g id="{p}bd"><rect x="335" y="510" width="300" height="280" rx="44" fill="{INK}"/><rect x="325" y="500" width="300" height="280" rx="44" fill="#fff" stroke="{INK}" stroke-width="8"/>
+  <g id="{p}fs" fill="none" stroke="{INK}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M402 546 l28 15 l-28 15 M548 546 l-28 15 l28 15 M436 612 q9 -13 19 0 t19 0 t19 0 t19 0"/></g>
+  <g id="{p}fh" fill="none" stroke="{INK}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M398 568 q16 -24 32 0 M520 568 q16 -24 32 0 M436 598 q39 38 78 0"/></g>
+  <g id="{p}fk" fill="none" stroke="{INK}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M400 546 l28 28 m0 -28 l-28 28 M522 546 l28 28 m0 -28 l-28 28 M442 618 h66"/></g>
+  <image href="assets/logos/claude.svg" x="346" y="652" width="100" height="100"/>
+  <text x="532" y="738" text-anchor="middle" font-size="86" font-weight="900" letter-spacing="-3" fill="{INK}">$20</text></g>
+ <path id="{p}aL" fill="none" stroke="{INK}" stroke-width="18" stroke-linecap="round"/><path id="{p}aR" fill="none" stroke="{INK}" stroke-width="18" stroke-linecap="round"/>
+ <g id="{p}bar"><path d="M{x1} 0 H{x2}" stroke="{INK}" stroke-width="24" stroke-linecap="round"/>{plate(x1)}{plate(x2)}</g>
+ {"".join(f'<path id="{p}sw{i}" d="M0 -14 Q11 2 0 10 Q-11 2 0 -14Z" fill="#7EC8F0" stroke="{INK}" stroke-width="4" opacity="0"/>' for i in range(3))}
+ {fr}
+</svg>'''
+# 1 OPENING (lines 1 + 2): the claim as action. Text on frame 0: "$20" and "$100" only
+SC[1] = f'<div id="lfo" style="left:65px;top:290px">{lifter("o", True, True)}</div>'
 # 3 the problem: every new chat, the files are read again
 FILES = ["login", "users", "orders", "payments", "search", "emails"]
 FX = [65, 392, 719]; FY = [500, 730]
@@ -237,17 +252,18 @@ SC[8] = srcline("usage: claude.com/pricing (&ldquo;5x Pro usage&rdquo;), read 15
 <div id="call" style="left:30px;top:{BASE - U - EXT - 60}px">best test<br>we found</div>
 <svg id="carr" viewBox="0 0 60 40" style="left:232px;top:{BASE - U - EXT - 22}px"><path d="M4 8 C22 4 40 12 54 30 M54 30 L36 28 M54 30 L52 12" fill="none" stroke="{INK}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 <div class="bl" style="left:{PX - 40}px;top:{BASE + 14}px">PRO $20</div><div class="bl" style="left:{MX_ - 40}px;top:{BASE + 14}px">MAX $100</div>
-<div class="stamp big nc" id="nc" style="left:82px;top:712px">NOT CLOSE</div>'''
-# 9 the saveable card (stays through line 10)
+<div class="stamp big nc" id="nc" style="left:104px;top:716px">NOT CLOSE</div>'''
+# 9 END (line 9): its own scene. The $20 character lifts a weight that fits it, the $100 barbell rests; the saveable card slides in
 ROWS = ["Free, open source, 148.2k stars", "&ldquo;70x&rdquo; = one best case", "Real tests: 18% fewer &hellip; 49.5% more", "Max is 5x Pro: no test comes near", "Measure your own project first"]
-SC[9] = f'<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">{gicon(66)}<span>BEFORE YOU INSTALL</span></div>' + \
-        "".join(f'<div class="cr" id="cr{i}" style="top:{112 + i * 103}px"><span class="cnm">{i + 1}</span><span class="cx">{t}</span><i class="mk"></i></div>' for i, t in enumerate(ROWS)) + \
-        '<div class="cf">VIRAL CLAIM, CHECKED #1 &middot; tests by other people, not by us</div></div>'
+REST = f'''<svg id="rest" viewBox="0 0 540 222" width="540" height="222" style="left:470px;top:322px;font-family:IDisp,Inter,sans-serif">
+ <path d="M6 214 C120 208 300 218 534 212" fill="none" stroke="{INK}" stroke-width="6" stroke-linecap="round"/><path d="M105 105 H435" stroke="{INK}" stroke-width="20" stroke-linecap="round"/>
+ {"".join(f'<circle cx="{cx + 7}" cy="112" r="100" fill="{INK}"/><circle cx="{cx}" cy="105" r="100" fill="{ORA}" stroke="{INK}" stroke-width="7"/><text x="{cx}" y="127" text-anchor="middle" font-size="62" font-weight="900" letter-spacing="-2" fill="{INK}">$100</text>' for cx in (107, 433))}</svg>'''
+SC[9] = f'<div id="lfe" style="left:65px;top:189px">{lifter("e", False, False)}</div>{REST}' + \
+        f'<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">{gicon(60)}<span>BEFORE YOU INSTALL</span></div><div class="cnote">tests by others,<br>not by us</div>' + \
+        "".join(f'<div class="cr" id="cr{i}" style="top:{96 + i * 90}px"><span class="cnm">{i + 1}</span><span class="cx">{t}</span><i class="mk"></i></div>' for i, t in enumerate(ROWS)) + \
+        '<div class="cf">SETUP: LINK IN BIO</div></div>' + \
+        '<div id="fcard"><div class="f1">WANT THE NEXT ONE?</div><div class="f2">FOLLOW</div></div>'
 scenes = "".join(f'<div class="sc" id="sc{n}">{SC[n]}</div>' for n in sorted(SC))
-PHB = ""
-if STALE or PH_L10:
-    what = " &middot; ".join(x for x in ("ESTIMATED TIMING" if STALE else "", "LINE 10 PLACEHOLDER" if PH_L10 else "") if x)
-    PHB = f'<div class="phb" data-decor style="top:196px">SCAFFOLD &middot; {what}</div><div class="phb" data-decor style="top:1272px">SCAFFOLD &middot; {what}</div>'
 markup = f'''
 <div class="bgw" data-decor></div>
 <div id="cam">
@@ -258,7 +274,7 @@ markup = f'''
  {scenes}
  <div id="use"><div id="utag">ILLUSTRATION</div><div id="ul">YOUR CLAUDE USAGE</div><div id="up"><span id="upn">100%</span><em>left</em></div><div id="ut"><div id="uf"></div></div></div>
  </div>
-</div>{PHB}'''
+</div>'''
 
 CSS = '''
 *{margin:0;padding:0;box-sizing:border-box}
@@ -269,28 +285,21 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #fit{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 758.5px;transform:scale(FITS)}
 .lg{display:block;flex:none}
 .stamp{position:absolute;border:6px solid RED;color:RED;border-radius:10px;padding:0 16px;font-weight:900;font-size:44px;line-height:56px;letter-spacing:.05em;white-space:nowrap;transform:rotate(-3deg);z-index:7}
-#vc{left:72px;top:283px}
-.stamp.big.nc{font-size:84px;line-height:100px}
+#vc{left:72px;top:283px;opacity:0}
+.stamp.big.nc{font-size:76px;line-height:92px}
 .stamp.big.bc{font-size:72px;line-height:86px}
 .stamp.big{font-size:92px;line-height:110px;border-width:10px;border-radius:16px;padding:0 26px;opacity:0;background:rgba(251,251,248,.86);transform-origin:50% 50%;z-index:9}
 .stt{position:absolute;right:78px;top:287px;font-weight:900;font-size:48px;line-height:56px;letter-spacing:.02em;white-space:nowrap;opacity:0;z-index:7}
 #st1{color:ORD} #st2{color:RED}
 .hd{position:absolute;left:65px;font-weight:900;letter-spacing:-.03em;white-space:nowrap;opacity:0;z-index:6;display:flex;align-items:center}
-.hd .hlg{margin-right:.16em} #h0{opacity:1}
+.hd .hlg{margin-right:.16em}
 .sc{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:3} #sc1{opacity:1}
 .sc>*{position:absolute}
 .src{position:absolute;font-weight:500;color:#3a3a36;white-space:nowrap;letter-spacing:0}
-/* 1 */
-.tile{width:350px;height:350px;background:#fff;border:6px solid INK;border-radius:34px;box-shadow:11px 11px 0 INK;display:flex;align-items:center;justify-content:center;transform-origin:50% 60%}
-.tn{opacity:0;width:350px;text-align:center;font-weight:900;font-size:54px;line-height:62px;letter-spacing:-.03em;white-space:nowrap}
-#plus{width:120px;text-align:center;font-weight:900;font-size:130px;line-height:130px}
-.free{position:absolute;right:-6px;top:-12px;font-weight:900;font-size:36px;line-height:50px;letter-spacing:.04em;color:INK;background:#fff;border:5px solid INK;border-radius:30px;padding:0 18px;box-shadow:4px 4px 0 INK;white-space:nowrap;transform:rotate(5deg)}
-/* 2 */
-.plan{width:430px;height:456px;background:#fff;border:6px solid INK;border-radius:22px;box-shadow:8px 8px 0 INK;opacity:0;transform-origin:50% 100%}
-.plan .lg{position:absolute;left:28px;top:30px} .pn{position:absolute;left:118px;top:22px;font-weight:900;font-size:88px;line-height:92px;letter-spacing:-.02em}
-.pp{position:absolute;left:26px;top:150px;font-weight:900;font-size:168px;line-height:176px;letter-spacing:-.045em}
-.pm{position:absolute;left:32px;top:340px;font-weight:800;font-size:54px;line-height:62px}
-#eq{width:118px;height:118px;border-radius:50%;background:#fff;border:6px solid INK;box-shadow:6px 6px 0 INK;text-align:center;font-weight:900;font-size:104px;line-height:100px;opacity:0;z-index:4}
+/* 1 opening + end: the lifter */
+.lf{display:block;overflow:visible}
+#lfe{transform-origin:0 0;transform:scale(.4)}
+#rest{overflow:visible}
 /* 3 */
 .fc{width:288px;height:205px;background:#fff;border:6px solid INK;border-radius:18px;box-shadow:8px 8px 0 INK;opacity:0;transform-origin:50% 50%}
 .fc .doc{position:absolute;left:20px;top:18px;width:72px;height:86px}
@@ -327,25 +336,28 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .bl{width:320px;text-align:center;font-weight:900;font-size:47px;line-height:60px;letter-spacing:-.02em;white-space:nowrap}
 #call{width:196px;text-align:right;font-weight:900;font-size:34px;line-height:38px;opacity:0}
 #carr{width:60px;height:40px;opacity:0;overflow:visible}
-/* 9 */
-#card{left:78px;top:490px;width:916px;height:716px;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:14px 14px 0 INK;opacity:0;transform-origin:50% 0%}
+/* 9 end */
+#card{left:78px;top:566px;width:916px;height:634px;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:14px 14px 0 INK;opacity:0;transform-origin:50% 0%}
 .tape{position:absolute;width:130px;height:40px;background:rgba(232,221,186,.86);border:1px solid rgba(0,0,0,.14);z-index:3}
 .tape.t1{right:-34px;top:-12px;transform:rotate(34deg)} .tape.t2{left:-34px;bottom:-6px;transform:rotate(34deg)}
-.ct{position:absolute;left:34px;top:24px;display:flex;align-items:center;gap:18px;font-weight:900;font-size:62px;line-height:70px;letter-spacing:-.03em;white-space:nowrap}
-.cr{position:absolute;left:34px;right:34px;height:100px;display:flex;align-items:center;opacity:0;border-top:4px solid rgba(15,15,15,.14);white-space:nowrap}
-.mk{position:absolute;left:82px;right:0;bottom:12px;height:10px;border-radius:5px;background:ORA;transform-origin:0 50%;transform:scaleX(0);opacity:.85}
-.cnm{width:62px;height:62px;border-radius:50%;border:5px solid INK;background:#fff;text-align:center;font-weight:900;font-size:40px;line-height:52px;margin-right:20px;flex:none}
-.cx{font-weight:900;font-size:44px;line-height:52px;letter-spacing:-.02em}
-.cf{position:absolute;left:34px;bottom:20px;font-weight:500;font-size:26px;line-height:30px;white-space:nowrap;color:#3a3a36}
+.ct{position:absolute;left:30px;top:16px;display:flex;align-items:center;gap:16px;font-weight:900;font-size:54px;line-height:64px;letter-spacing:-.03em;white-space:nowrap}
+.cnote{position:absolute;right:52px;top:18px;text-align:right;font-weight:800;font-size:24px;line-height:28px;color:#3a3a36;white-space:nowrap}
+.cr{position:absolute;left:30px;right:30px;height:88px;display:flex;align-items:center;opacity:0;border-top:4px solid rgba(15,15,15,.14);white-space:nowrap}
+.mk{position:absolute;left:78px;right:0;bottom:8px;height:9px;border-radius:5px;background:ORA;transform-origin:0 50%;transform:scaleX(0);opacity:.85}
+.cnm{width:56px;height:56px;border-radius:50%;border:5px solid INK;background:#fff;text-align:center;font-weight:900;font-size:36px;line-height:46px;margin-right:20px;flex:none}
+.cx{font-weight:900;font-size:42px;line-height:50px;letter-spacing:-.02em}
+.cf{position:absolute;left:30px;bottom:16px;font-weight:900;font-size:50px;line-height:58px;letter-spacing:-.02em;white-space:nowrap}
+#fcard{left:120px;top:640px;width:840px;height:400px;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:14px 14px 0 INK;opacity:0;display:flex;flex-direction:column;align-items:center;justify-content:center;transform-origin:50% 50%}
+.f1{font-weight:900;font-size:62px;line-height:70px;letter-spacing:-.02em;white-space:nowrap}
+.f2{margin-top:26px;font-weight:900;font-size:176px;line-height:160px;letter-spacing:-.04em;white-space:nowrap;transform-origin:50% 60%}
 /* the usage bar: the spine of the video (an illustration, tagged) */
-#use{position:absolute;left:65px;top:1040px;width:950px;height:208px;z-index:5;transform-origin:50% 100%}
+#use{position:absolute;left:65px;top:1040px;width:950px;height:208px;z-index:5;transform-origin:50% 100%;opacity:0}
 #utag{position:absolute;left:2px;top:-12px;font-weight:900;font-size:38px;line-height:42px;letter-spacing:.08em;color:#3a3a36;white-space:nowrap}
 #ul{position:absolute;left:0;top:32px;font-weight:900;font-size:47px;line-height:54px;letter-spacing:-.01em;white-space:nowrap}
 #up em{font-style:normal;font-weight:900;font-size:36px;letter-spacing:0;margin-left:8px}
 #up{position:absolute;right:119px;top:0;transform-origin:100% 50%;font-weight:900;font-size:86px;line-height:86px;letter-spacing:-.04em;white-space:nowrap}
 #ut{position:absolute;left:0;top:92px;width:823px;height:108px;background:#fff;border:6px solid INK;border-radius:16px;box-shadow:8px 8px 0 INK;overflow:hidden}
 #uf{position:absolute;left:0;top:0;height:100%;width:100%;background:repeating-linear-gradient(115deg,ORA 0 34px,#E58D6F 34px 68px);background-size:200% 100%;border-right:6px solid INK}
-.phb{position:absolute;left:0;width:1080px;text-align:center;font-weight:900;font-size:30px;line-height:40px;color:RED;letter-spacing:.02em;z-index:20;white-space:nowrap}
 '''
 FITS = round(864 / 950, 4)                                     # safe box x 108-972 (CLAUDE.md 15.11); in screen y 1056-1632 the right edge stays <= 864 = design x 896
 for a_, b_ in (("FITS", FITS), ("BW", BW), ("GREEN", GREEN), ("INK", INK), ("PAPER", PAPER), ("RED", RED), ("ORA", ORA), ("ORD", ORD)):
@@ -354,32 +366,16 @@ for a_, b_ in (("FITS", FITS), ("BW", BW), ("GREEN", GREEN), ("INK", INK), ("PAP
 # ---------------------------------------------------------------- timeline
 js(f"tl.fromTo('#cam',{{scale:1,rotation:0}},{{scale:1.012,rotation:.2,duration:{D / 6:.3f},ease:'sine.inOut',yoyo:true,repeat:5}},0);")
 js(f"tl.fromTo('.bgw',{{x:0,y:0}},{{x:-14,y:-12,duration:{D / 2:.3f},ease:'sine.inOut',yoyo:true,repeat:1}},0);")
-idle("#vc", 0, a[9], "rotation", 2.2, 1.1)
+fin("#vc", a[3], .3); idle("#vc", a[3] + .4, a[9] - .3, "rotation", 2.2, 1.1); fout("#vc", a[9] - .24)
 def scene(n, t_in, t_out):
     if t_in is not None: fin(f"#sc{n}", t_in)
     fout(f"#sc{n}", t_out - .24)
 status = lambda i, t: (fout(f"#st{i - 1}", t - .2, .18), pop(f"#st{i}", t, .3, .6))
-# --- 1 the claim. The bar drains (the "token problem"), the free tool plugs in, the bar is full again: the claim looks true
-scene(1, None, a[2])
-idle("#t1a", 0, a[2], "y", -10, .7)
-js(f"tl.fromTo('#t1b',{{x:0,rotation:0}},{{x:30,rotation:6,duration:{max(.2, tPlug - .34 - tFree - .1):.3f},ease:'sine.inOut',immediateRender:false}},{tFree + .1:.3f});")
-js(f"tl.to('#t1b',{{x:0,rotation:-3,duration:.34,ease:'power3.in'}},{tPlug - .34:.3f});")
-js(f"tl.fromTo('#t1a',{{scale:1}},{{scale:1.07,duration:.16,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tPlug:.3f});")
-js(f"tl.fromTo('#plus',{{scale:1,rotation:0}},{{scale:1.35,rotation:90,duration:.22,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tPlug:.3f});")
-js(f"tl.fromTo('#free',{{scale:1}},{{scale:1.3,duration:.18,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tFree:.3f});"); idle("#free", tFree + .4, a[2], "rotation", 9, .5); sfx("pop_b.ogg", tFree, -11)
-fin("#tn_b", tTool, .3, 12, 4); fin("#tn_a", tCC, .3, 12, 4)
-pop("#st0", a[2] + .1, .3, .6)
-idle("#t1b", tPlug + .4, a[2], "y", -10, .7)
-sfx("subhit.ogg", .05, -6); sfx("whoosh_a.ogg", tPlug - .3, -10); sfx("impactsoft.ogg", tPlug, -8); sfx("riser.ogg", tPlug + .05, -14)
-# --- 2 the money claim
-scene(2, a[2], a[3])
-for i, dl in ((1, tP20 - .12 - a[2] - .04), (2, tP100 - .12 - a[2] - .04)):
-    js(f"tl.fromTo('#p{i}',{{opacity:0,y:70,rotation:{4 if i == 1 else -4}}},{{opacity:1,y:0,rotation:{-1.5 if i == 1 else 1.5},duration:.42,ease:'back.out(1.4)',immediateRender:false}},{a[2] + .04 + dl:.3f});")
-    sfx("pop_a.ogg" if i == 1 else "pop_b.ogg", a[2] + .04 + dl, -10)
-pop("#eq", tDoes, .32); sfx("select.ogg", tDoes, -9)
-js(f"tl.fromTo('#p1',{{scale:1}},{{scale:1.06,duration:.4,ease:'sine.inOut',yoyo:true,repeat:{max(1, int((a[3] - tDoes - .4) / .4)) | 1},immediateRender:false}},{tDoes + .1:.3f});")
-idle("#eq", tDoes + .35, a[3], "rotation", 14, .5)
-idle("#p2", tP100 + .4, a[3], "y", -8, .4)
+# --- 1 OPENING: the lifter is posed by render(). Sounds only here
+fout("#sc1", a[3] - .24)
+sfx("subhit.ogg", .05, -6); sfx("whoosh_a.ogg", tFree - .1, -10); sfx("pop_b.ogg", tFree + .05, -9); sfx("riser.ogg", tCan - .3, -13); sfx("impactpunch.ogg", tChk + .16, -4)
+pop("#st0", a[3] + .1, .3, .6)
+js(f"tl.fromTo('#use',{{opacity:0,y:30}},{{opacity:1,y:0,duration:.4,ease:'power2.out',immediateRender:false}},{a[3]:.3f});")
 # --- 3 the problem: the files are read again, the bar drains
 scene(3, a[3], a[4])
 for c in range(6):
@@ -452,48 +448,78 @@ pop("#x5", tFive + 5 * seg, .3); sfx("ding.ogg", tFive + 5 * seg, -9)
 js(f"tl.fromTo('#dash',{{opacity:0,scaleX:0}},{{opacity:1,scaleX:1,duration:.4,ease:'power2.inOut',immediateRender:false}},{tFive + 5 * seg + .1:.3f});")
 grow("#bext", tNo, .3); fin("#call", tNo + .05, .28, 10, 4); fin("#carr", tNo + .15, .28, 10, 4)
 status(2, tClose)
-slam("#nc", tClose, -7); sfx("impactpunch.ogg", tClose + .28, -5)
+slam("#nc", tClose, -7, 0); sfx("impactpunch.ogg", tClose + .28, -5)
 idle("#x5", tFive + 5 * seg + .4, a[9], "scale", 1.1, .5)
 idle("#bext", tNo + .4, a[9], "opacity", .45, .35)
 idle("#nc", tClose + .7, a[9], "rotation", -4.5, .6)
-# --- 9 + 10 the saveable card
-js(f"tl.fromTo('#sc9',{{opacity:0}},{{opacity:1,duration:.05,immediateRender:false}},{a[9]:.3f});")
-js(f"tl.fromTo('#card',{{opacity:0,y:90,rotation:3,scale:1}},{{opacity:1,y:0,rotation:-1,duration:.5,ease:'power3.out',immediateRender:false}},{a[9] + .03:.3f});")
-sfx("whoosh_b.ogg", a[9], -10)
-rstep = min(.3, max(.16, (a[10] - a[9] - .7) / 5))
+# --- 9 END: its own scene (the lifter is posed by render()), the saveable card slides in; 10: a calm follow card
+fout("#st2", a[9] - .24, .18)
+fin("#sc9", a[9], .35)
+js(f"tl.fromTo('#rest',{{y:-60,rotation:-4}},{{y:0,rotation:0,duration:.5,ease:'bounce.out',immediateRender:false}},{a[9] + .05:.3f});")
+js(f"tl.fromTo('#card',{{opacity:0,x:0,y:110,rotation:3,scale:1}},{{opacity:1,y:0,rotation:-1,duration:.5,ease:'power3.out',immediateRender:false}},{a[9] + .12:.3f});")
+sfx("whoosh_b.ogg", a[9] + .1, -10); sfx("impactsoft.ogg", a[9] + .3, -12)
+rstep = min(.26, max(.14, (a[10] - a[9] - .9) / 5))
 for i in range(5):
-    t = a[9] + .3 + i * rstep
-    js(f"tl.fromTo('#cr{i}',{{opacity:0,x:-46}},{{opacity:1,x:0,duration:.36,ease:'power3.out',immediateRender:false}},{t:.3f});")
+    t = a[9] + .4 + i * rstep
+    js(f"tl.fromTo('#cr{i}',{{opacity:0,x:-46}},{{opacity:1,x:0,duration:.34,ease:'power3.out',immediateRender:false}},{t:.3f});")
     sfx("pop_a.ogg" if i % 2 == 0 else "pop_b.ogg", t, -11)
-idle("#card", a[9] + .6, tF - .3, "rotation", .7, 1.2)
-t = a[9] + .3 + 5 * rstep + .3; q = 0
-while t < tF - .5:                                              # a slow wave keeps the card alive while it is read
-    js(f"tl.fromTo('#cr{q % 5} .cnm',{{scale:1,rotation:0}},{{scale:1.2,rotation:{-12 if q % 2 else 12},duration:.26,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{t:.3f});"); t += .42; q += 1
-t = a[9] + .3 + 5 * rstep + .2; q = 0
-while t < tF - .75:
-    js(f"tl.fromTo('#cr{q % 5} .mk',{{scaleX:0,opacity:.85}},{{scaleX:1,duration:.5,ease:'power2.inOut',immediateRender:false}},{t:.3f});")
-    js(f"tl.to('#cr{q % 5} .mk',{{opacity:0,duration:.25,ease:'sine.in'}},{t + .5:.3f});"); t += .62; q += 1
-idle("#card", a[9] + .6, tF - .3, "y", -12, .8)
-js(f"tl.to('#card',{{opacity:0,scale:.9,y:-40,rotation:-3,duration:.32,ease:'power2.in'}},{tF - .26:.3f});")
-sfx("whoosh_c.ogg", tF - .2, -12)
+js(f"tl.fromTo('.cf',{{scale:1}},{{scale:1.08,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false,transformOrigin:'0% 50%'}},{a[9] + .4 + 5 * rstep:.3f});")
+idle("#card", a[9] + .7, a[10] - .3, "y", -10, .6)
+js(f"tl.to('#card',{{opacity:0,x:-140,rotation:-4,duration:.32,ease:'power2.in'}},{a[10] - .2:.3f});")
+js(f"tl.fromTo('#fcard',{{opacity:0,x:140,rotation:4}},{{opacity:1,x:0,rotation:1,duration:.45,ease:'power3.out',immediateRender:false}},{a[10] + .08:.3f});")
+sfx("whoosh_c.ogg", a[10] - .15, -11)
+js(f"tl.fromTo('.f2',{{scale:1}},{{scale:1.06,duration:.24,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false}},{tFollow:.3f});"); sfx("select.ogg", tFollow, -9)
+idle("#fcard", a[10] + .6, tF - .3, "y", -10, .5)
+idle("#rest", a[9] + .7, tF - .3, "rotation", 1.5, .6)
+fout("#sc9", tF - .24)
 # --- loop seam: frame 0 comes back
 fin("#sc1", tF + .06, .42)
-js(f"tl.set('#t1b',{{x:0,y:0,rotation:0}},{tF:.3f});"); js(f"tl.set('#tn_a,#tn_b',{{opacity:0}},{tF:.3f});")
-js(f"tl.fromTo('#use',{{opacity:0,y:30}},{{opacity:1,y:0,duration:.4,ease:'power2.out',immediateRender:false}},{tF + .06:.3f});")
-fout("#st2", tF - .2, .18)
 
 # ---------------------------------------------------------------- render(): the usage bar, the read counters, the star counter (all from the clock)
-KF = [(0, 88), (tPlug - .08, 31), (tPlug + .7, 100), (tSo - .1, 100), (h0 + NH * hstep, 17), (a[5] + .5, 17), (tLook + 3 * wstep, 97),
+KF = [(a[3], 100), (tSo - .1, 100), (h0 + NH * hstep, 17), (a[5] + .5, 17), (tLook + 3 * wstep, 97),
       (tBut + .28, 97), (tBut + .6, 78), (a[7], 70)]
-DATA = dict(D=D, tF=round(tF, 3), KF=[[round(t, 3), p] for t, p in KF], HOPS=HOPS, tQ=round(a[7], 3), tS=tAbout, sD=round(STAR_D, 3), STARS=STARS)
+DATA = dict(tCant=tCant, tFree=tFree, tCan=tCan, tChk=tChk, e1=round(e(1), 3), a9=round(a[9], 3), D=D, tF=round(tF, 3), KF=[[round(t, 3), p] for t, p in KF], HOPS=HOPS, tQ=round(a[7], 3), tS=tAbout, sD=round(STAR_D, 3), STARS=STARS)
 RJS = r'''
 const Dt=__DATA__;
 const ez=p=>{p=p<0?0:p>1?1:p;return p*p*(3-2*p)}, lerp=(a,b,t)=>a+(b-a)*t, $=s=>document.querySelector(s);
 const uf=$('#uf'), up=$('#upn'), upe=$('#up em'), stn=$('#stn'), rd=[0,1,2,3,4,5].map(c=>$('#rd'+c));
-function pct(v){const K=Dt.KF; if(v>=Dt.tF) return 100+(K[0][1]-100)*ez((v-Dt.tF)/.5); if(v<=K[0][0]) return K[0][1];
+function pct(v){const K=Dt.KF; if(v<=K[0][0]) return K[0][1];
   for(let i=1;i<K.length;i++) if(v<K[i][0]) return lerp(K[i-1][1],K[i][1],ez((v-K[i-1][0])/(K[i][0]-K[i-1][0])));
   return K[K.length-1][1]}
+const cl=(x,a,b)=>x<a?a:x>b?b:x, bump=p=>p>0&&p<1?Math.sin(Math.PI*p):0, at=(el,k,x)=>el&&el.setAttribute(k,x);
+function mk(p){const g=id=>document.getElementById(p+id);return {bd:g('bd'),fs:g('fs'),fh:g('fh'),fk:g('fk'),aL:g('aL'),aR:g('aR'),bar:g('bar'),sw:[g('sw0'),g('sw1'),g('sw2')],sp:g('sp'),sA:g('sA'),sB:g('sB'),fr:g('fr')}}
+const LO=mk('o'), LE=mk('e'), spk=[...document.querySelectorAll('.spk')];
+// pose a lifter: by = bar height (svg px), sq = body squash, face s(train) h(appy) k(o), hx = hand positions on the bar
+function pose(L,by,tilt,sq,face,hxL,hxR,sweat,v){
+  at(L.bar,'transform','translate(0,'+by.toFixed(1)+') rotate('+tilt.toFixed(2)+',475,0)');
+  at(L.bd,'transform','translate(0,'+(780*(1-sq)).toFixed(1)+') scale(1,'+sq.toFixed(4)+')');
+  const sy=780-235*sq, hy=Math.min(by,sy-6);
+  at(L.aL,'d','M333 '+sy.toFixed(1)+' Q'+(hxL-78)+' '+((sy+hy)/2+34).toFixed(1)+' '+hxL+' '+hy.toFixed(1));
+  at(L.aR,'d','M617 '+sy.toFixed(1)+' Q'+(hxR+78)+' '+((sy+hy)/2+34).toFixed(1)+' '+hxR+' '+hy.toFixed(1));
+  L.fs.style.display=face==='s'?'':'none'; L.fh.style.display=face==='h'?'':'none'; L.fk.style.display=face==='k'?'':'none';
+  L.sw.forEach((d,i)=>{const ph=((v*1.7+i/3)%1+1)%1, side=i===1?1:-1;
+    at(d,'transform','translate('+(475+side*(170+70*ph)+(i===2?40:0)).toFixed(1)+','+(sy-40-70*Math.sin(Math.PI*ph)+60*ph).toFixed(1)+') rotate('+(side*40)+')'); at(d,'opacity',(sweat*(1-ph)).toFixed(2))});
+}
+function opening(v){
+  const t=v>=Dt.tF?0:v, c=cl((t-Dt.tChk)/.17,0,1), dn=c*c, crushed=t>=Dt.tChk;
+  const sink=ez(t/Dt.e1), push=ez((t-(Dt.tCan-.3))/.5), shake=(crushed?0:1)*(1-.6*push);
+  let by=270+92*sink+46*bump((t-Dt.tCant)/.5)-118*push+5*shake*Math.sin(t*39)+3*Math.sin(t*7.3);
+  by=lerp(by,640,dn)-34*bump((t-Dt.tChk-.17)/.26)-10*bump((t-Dt.tChk-.43)/.2);
+  const tilt=crushed?3.5*Math.exp(-(t-Dt.tChk)*5)*Math.sin((t-Dt.tChk)*26):2.4*Math.sin(t*5.1)+.8*shake*Math.sin(t*31);
+  let sq=1-.06*sink+.05*push-.012*shake*Math.sin(t*39); sq=lerp(sq,.5,dn)+.05*bump((t-Dt.tChk-.17)/.26);
+  pose(LO,by,tilt,sq,crushed?'k':'s',300,650,crushed?0:1,t);
+  const w=ez((t-(Dt.tFree-.12))/.52), back=ez((t-Dt.tChk)/.3);
+  const sx=400*(1-w)+74*back, hop=-30*Math.abs(Math.sin((t-Dt.tFree)*13))*(w<1?1:0)-46*bump(back)-(crushed?5*Math.abs(Math.sin(t*9)):0);
+  at(LO.sp,'opacity',t>=Dt.tFree-.12?1:0); at(LO.sp,'transform','translate('+sx.toFixed(1)+','+hop.toFixed(1)+')');
+  const ty=Math.max(by+142,430);
+  at(LO.sA,'d','M722 632 Q690 '+((632+ty)/2).toFixed(1)+' 742 '+(crushed?610:ty).toFixed(1)); at(LO.sB,'d','M888 632 Q920 '+((632+ty)/2).toFixed(1)+' 868 '+(crushed?610:ty).toFixed(1));
+  const fo=ez((t-Dt.tFree)/.16)*(1-ez((t-Dt.tChk)/.3)), fs=.5+.5*ez((t-Dt.tFree)/.22)+.16*bump((t-Dt.tFree)/.36);
+  at(LO.fr,'opacity',fo.toFixed(2)); at(LO.fr,'transform','translate(475,'+(120+150*back*back).toFixed(1)+') rotate('+(18*back).toFixed(1)+') scale('+fs.toFixed(3)+') translate(-475,-120)');
+  spk.forEach((k,i)=>at(k,'transform','translate('+k.dataset.x+','+k.dataset.y+') rotate('+(t*90+i*40).toFixed(0)+') scale('+(.55+.45*Math.abs(Math.sin(t*6+i*1.3))).toFixed(3)+')'));
+}
+function ending(v){const t=v-Dt.a9, r=.5-.5*Math.cos(t*4.2); pose(LE,330-90*r,1.2*Math.sin(t*2.1),1+.03*r,'h',372,578,0,v)}
 function render(v){
+  opening(v); ending(v);
   const q=v>=Dt.tQ&&v<Dt.tF;                                  // from the tests on: nobody can say (it depends on the project)
   const p=q?52+20*Math.sin((v-Dt.tQ)*2.6):pct(v);
   uf.style.width=p.toFixed(2)+'%'; uf.style.backgroundPosition=(-(v*46)%136).toFixed(1)+'px 0';
@@ -505,29 +531,30 @@ function render(v){
 }
 '''.replace("__DATA__", json.dumps(DATA, separators=(",", ":")))
 
-NEWS = [(0, "the viral claim, the two marks, the usage bar"), (tFree, "FREE"), (tPlug, "the tool plugs in, the bar refills (the claim looks true)"), (tCC, "the name Claude Code"),
-        (tP20, "PRO $20"), (tDoes, "the '=' (claim)"), (tP100, "MAX $100"), (a[3], "six file cards: a new chat starts from zero"), (h0, "files read again, counters rise, the bar drains (to " + f"{h0 + NH * hstep:.1f} s)"),
-        (tGraph - .1, "Graphify card, free + open source"), (tAbout, f"the star count runs to 148.2k (to {tAbout + STAR_D:.1f} s)"), (a[5], "the map: nodes and links"),
+NEWS = [(0, "OPENING: the $20 character strains under the $100 barbell (sinking, shaking)"), (tCant, "the bar slips lower, the knees give"), (tFree, "the Graphify character steps in, FREE sparkles"), (tCan - .3, "it pushes: the bar goes up (the claim looks true)"),
+        (tChk, "on 'checked' the barbell drops and flattens the $20 character"),
+        (a[3], "cut to the check: VIRAL CLAIM stamp, usage bar, six file cards"), (h0, "files read again, counters rise, the bar drains (to " + f"{h0 + NH * hstep:.1f} s)"),
+        (h0 + NH * hstep, "the bar is red at 17%"), (tGraph - .1, "Graphify card, free + open source"), (tAbout, f"the star count runs to 148.2k (to {tAbout + STAR_D:.1f} s)"), (a[5], "the map: nodes and links"),
         (tLook, f"one look-up along the links, the bar refills (to {tLook + 3 * wstep:.1f} s)"), (a[6], "status CHECKING, the claim headline"), (t70, "the giant 70x"),
-        (tBut + .3, "BEST CASE stamp, then: one example, about 52 files"), (a[7], "REAL TESTS, the bar turns to '?'"), (tR1, "18% fewer"), (tR2, "+49.5% more"), (tR3, "issue #985: no savings"),
+        (tBut + .3, "BEST CASE stamp under the number, then: one example, about 52 files"), (a[7], "REAL TESTS, the bar turns to '?'"), (tR1, "18% fewer"), (tR2, "+49.5% more"), (tR3, "issue #985: no savings"),
         (a[8] + .12, "Pro bar, 1x"), (tFive, f"Max bar grows to 5x (to {tFive + 5 * seg:.1f} s)"), (tNo, "the best test as a thin slice on the Pro bar"), (tClose + .3, "NOT CLOSE stamp"),
-        (a[9], f"the saveable card, five rows (to {a[9] + .3 + 5 * rstep:.1f} s)"), (a[10], "tomorrow headline (PLACEHOLDER: no picture of the next episode yet)"), (tF, "frame 0 returns (loop)")]
+        (a[9], f"END scene: the $20 character happily lifts a weight that fits, the $100 barbell rests; the saveable card, five rows (to {a[9] + .4 + 5 * rstep:.1f} s)"),
+        (a[10], "the calm FOLLOW card (no promised episode)"), (tF, "frame 0 returns (loop)")]
 NEWS = sorted((round(t, 2), x) for t, x in NEWS)
 FLAT = [(NEWS[i][0], NEWS[i + 1][0], NEWS[i][1]) for i in range(len(NEWS) - 1) if NEWS[i + 1][0] - NEWS[i][0] > 2.5]
 JS = re.sub(r"tl\.set\(([^,]+),\{", r"tl.set(\1,{immediateRender:false,", "\n".join(J))
 SFX.sort(key=lambda x: x["t"])
 json.dump(SFX, open(H_ + "/sfx100.json", "w"), indent=1)
-if os.environ.get("SHIP") == "1" and (STALE or PH_L10):
-    sys.exit(f"SHIP=1 refused: estimated timeline={STALE}, line 10 placeholder={PH_L10}")
-ROLE = ["hook: the viral claim", "the money claim", "the problem (real)", "the tool + stars", "how it works", "reveal 1: where 70 comes from",
-        "reveal 2: other people's tests", "reveal 3: the money verdict", "saveable card + link in bio", "tomorrow (PLACEHOLDER)" if PH_L10 else "tomorrow"]
-json.dump(dict(placeholder=dict(estimated_timeline=STALE, line10=PH_L10, claude_code_mark="Claude symbol + the words 'Claude Code' (no Claude Code-specific mark sourced)",
+if os.environ.get("SHIP") == "1" and STALE:
+    sys.exit("SHIP=1 refused: estimated timeline")
+ROLE = ["hook: the claim as action ($20 under $100)", "the free tool steps in; 'I checked': the barbell drops", "check 1: the problem (real)", "the tool + stars", "how it works", "reveal 1: where 70 comes from",
+        "reveal 2: other people's tests", "reveal 3: the money verdict", "end scene: saveable card + link in bio", "follow card (no promised episode)"]
+json.dump(dict(placeholder=dict(estimated_timeline=STALE, claude_code_mark="Claude symbol + the words 'Claude Code' (no Claude Code-specific mark sourced)",
                                 screenshots="none: drawn cards with dated numbers instead of real repo/pricing screenshots"),
                lines=[dict(n=n, text=LINES[n - 1], start=round(s(n), 3), end=round(e(n), 3), role=ROLE[n - 1]) for n in range(1, NL + 1)],
                D=D, frame0_returns=round(tF, 3),
-               sync={k: dict(t=v, source=SRC[k]) for k, v in (("killed", tPlug), ("now", tNow), ("so", tSo), ("about", tAbout), ("once", tOnce), ("looks", tLook), ("but", tBut),
-                                                             ("one_saves", tR1), ("one_uses", tR2), ("five", tFive), ("nothing", tNo), ("close", tClose), ("seventy", t70), ("free", tFree), ("tool", tTool), ("claude", tCC), ("twenty", tP20), ("hundred", tP100), ("does", tDoes), ("graphify", tGraph))},
-               usage_bar=dict(note="ILLUSTRATION, tagged on screen; '?' from line 7 on; hidden in line 8", keyframes=DATA["KF"]),
+               sync={k: dict(t=SYNCT[k], source=SRC[k]) for k in SRC},
+               usage_bar=dict(note="ILLUSTRATION, tagged on screen; on from line 3; '?' from line 7 on; hidden from line 8", keyframes=DATA["KF"]),
                buildup=dict(new_on_screen=[dict(t=t, what=x) for t, x in NEWS], flat_over_2_5s=[dict(start=a_, end=b_, after=x) for a_, b_, x in FLAT]), numbers_on_screen=NUMBERS, headlines_draft=[dict(t=t, text=x) for t, x in sorted(HLOG)]), open(H_ + "/cues100.json", "w"), indent=1)
 html = f'''<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
@@ -553,7 +580,7 @@ window.__reel={{duration:D,seek:t=>{{tl.seek(t)}}}};
 </script></body></html>'''
 os.makedirs(H_ + "/out", exist_ok=True)
 open(H_ + "/hf/index.html", "w").write(html)
-say(f"estimated timeline={STALE}  line 10 placeholder={PH_L10}  D={D}  js={len(J)} sfx={len(SFX)}")
+say(f"estimated timeline={STALE}  D={D}  js={len(J)} sfx={len(SFX)}")
 say("lines: " + "  ".join(f"{n}:{s(n):.2f}-{e(n):.2f}" for n in range(1, NL + 1)))
 say("sync: " + "  ".join(f"{k}={v['t']}({'w' if v['source'] == 'words.json' else 'EST'})" for k, v in json.load(open(H_ + '/cues100.json'))["sync"].items()))
 for t, x in NEWS: say(f"  new {t:6.2f}  {x}")

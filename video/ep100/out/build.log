@@ -1,32 +1,31 @@
-estimated timeline=False  line 10 placeholder=True  D=35.54  js=221 sfx=53
-lines: 1:0.04-3.56  2:3.75-6.30  3:6.49-9.94  4:10.13-13.53  5:13.72-16.86  6:17.05-20.63  7:20.82-23.35  8:23.54-29.03  9:29.22-31.03  10:31.22-35.14
-sync: killed=1.46(w)  now=4.6(w)  so=8.22(w)  about=11.54(w)  once=14.4(w)  looks=15.42(w)  but=19.24(w)  one_saves=21.7(w)  one_uses=22.44(w)  five=24.88(w)  nothing=27.1(w)  close=28.5(w)  seventy=17.72(w)  free=0.72(w)  tool=1.14(w)  claude=2.0(w)  twenty=3.98(w)  hundred=5.18(w)  does=4.84(w)  graphify=10.68(w)
-  new   0.00  the viral claim, the two marks, the usage bar
-  new   0.72  FREE
-  new   1.46  the tool plugs in, the bar refills (the claim looks true)
-  new   2.00  the name Claude Code
-  new   3.98  PRO $20
-  new   4.84  the '=' (claim)
-  new   5.18  MAX $100
-  new   6.49  six file cards: a new chat starts from zero
-  new   8.12  files read again, counters rise, the bar drains (to 9.8 s)
-  new  10.58  Graphify card, free + open source
-  new  11.54  the star count runs to 148.2k (to 13.0 s)
-  new  13.72  the map: nodes and links
-  new  15.42  one look-up along the links, the bar refills (to 16.6 s)
-  new  17.05  status CHECKING, the claim headline
-  new  17.72  the giant 70x
-  new  19.54  BEST CASE stamp, then: one example, about 52 files
-  new  20.82  REAL TESTS, the bar turns to '?'
-  new  21.70  18% fewer
-  new  22.44  +49.5% more
-  new  23.24  issue #985: no savings
-  new  23.66  Pro bar, 1x
-  new  24.88  Max bar grows to 5x (to 25.9 s)
-  new  27.10  the best test as a thin slice on the Pro bar
-  new  28.80  NOT CLOSE stamp
-  new  29.22  the saveable card, five rows (to 30.8 s)
-  new  31.22  tomorrow headline (PLACEHOLDER: no picture of the next episode yet)
-  new  34.96  frame 0 returns (loop)
-FLAT stretches over 2.5 s with nothing new: [(31.22, 34.96, 'tomorrow headline (PLACEHOLDER: no picture of the next episode yet)')]
-headlines (draft): 0.00 &ldquo;70x LESS USAGE&rdquo; | 3.75 &ldquo;$20 DOES $100 WORK&rdquo; | 6.49 NEW CHAT = FROM ZERO | 8.22 READS YOUR FILES AGAIN | 10.13 THE TOOL: GRAPHIFY | 13.72 MAPS YOUR CODE ONCE | 17.05 &ldquo;70 TIMES LESS&rdquo; | 19.24 ONLY IN ITS BEST CASE | 20.82 REAL TESTS: | 23.54 MAX = 5x PRO USAGE | 27.10 NOTHING COMES CLOSE | 29.22 SETUP: LINK IN BIO | 31.22 TOMORROW: [PLACEHOLDER]
+estimated timeline=False  D=31.95  js=184 sfx=53
+lines: 1:0.04-2.57  2:2.76-4.42  3:4.61-8.06  4:8.25-11.65  5:11.84-14.98  6:15.17-18.75  7:18.94-21.47  8:21.66-27.15  9:27.34-29.15  10:29.34-31.35
+sync: cant=1.14(w)  free=2.88(w)  can=3.52(w)  checked=4.04(w)  so=6.24(w)  graphify=8.82(w)  about=9.66(w)  once=12.52(w)  looks=13.54(w)  seventy=15.82(w)  but=17.36(w)  one_saves=19.82(w)  one_uses=20.58(w)  five=23.02(w)  nothing=25.24(w)  close=26.62(w)  follow=30.28(w)
+  new   0.00  OPENING: the $20 character strains under the $100 barbell (sinking, shaking)
+  new   1.14  the bar slips lower, the knees give
+  new   2.88  the Graphify character steps in, FREE sparkles
+  new   3.22  it pushes: the bar goes up (the claim looks true)
+  new   4.04  on 'checked' the barbell drops and flattens the $20 character
+  new   4.61  cut to the check: VIRAL CLAIM stamp, usage bar, six file cards
+  new   6.14  files read again, counters rise, the bar drains (to 8.0 s)
+  new   7.95  the bar is red at 17%
+  new   8.72  Graphify card, free + open source
+  new   9.66  the star count runs to 148.2k (to 11.2 s)
+  new  11.84  the map: nodes and links
+  new  13.54  one look-up along the links, the bar refills (to 14.7 s)
+  new  15.17  status CHECKING, the claim headline
+  new  15.82  the giant 70x
+  new  17.66  BEST CASE stamp under the number, then: one example, about 52 files
+  new  18.94  REAL TESTS, the bar turns to '?'
+  new  19.82  18% fewer
+  new  20.58  +49.5% more
+  new  21.38  issue #985: no savings
+  new  21.78  Pro bar, 1x
+  new  23.02  Max bar grows to 5x (to 24.0 s)
+  new  25.24  the best test as a thin slice on the Pro bar
+  new  26.92  NOT CLOSE stamp
+  new  27.34  END scene: the $20 character happily lifts a weight that fits, the $100 barbell rests; the saveable card, five rows (to 28.8 s)
+  new  29.34  the calm FOLLOW card (no promised episode)
+  new  31.37  frame 0 returns (loop)
+FLAT stretches over 2.5 s with nothing new: none
+headlines (draft): 4.61 NEW CHAT = FROM ZERO | 6.24 READS YOUR FILES AGAIN | 8.25 THE TOOL: GRAPHIFY | 11.84 MAPS YOUR CODE ONCE | 15.17 &ldquo;70 TIMES LESS&rdquo; | 17.36 ONLY IN ITS BEST CASE | 18.94 REAL TESTS: | 21.66 MAX = 5x PRO USAGE | 25.24 NOTHING COMES CLOSE

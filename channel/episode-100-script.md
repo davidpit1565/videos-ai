@@ -105,3 +105,23 @@ Blind reader on the beat list: NOT RUN.
 ## Hook revision 16.11.2026 (David delegated: "if you see a way to make the hook or topic better, do it")
 Blind reader comparison of 7 hooks (16.11): H6 "Everyone is installing this free Claude tool. Don't, yet." 5/5 to stop but unclear and overpromises (the tool is real, not a scam); H4 "Your twenty-dollar Claude plan can't do hundred-dollar work. A viral tool says it can." 4/5, subject and stake in one beat, money in the first words; H5 "Seventy times less Claude usage. Sounds fake. I checked." 4/5; the old hook (H1) ranked LAST (long, jargon, two claims). Chosen: H4, shortened into three flowing beats: line 1 "Your twenty-dollar Claude plan can't do hundred-dollar work." line 2 "A free tool says it can. I checked." Truth: Max ($100) = 5x Pro usage; the tool would need ~5x savings, best public tests show 18% or worse (see verify file); the verdict is delivered later in the video. TOPIC verdict: medium (developer-adjacent, but the felt part is money on a plan many people pay for); the money angle is the strongest version of this topic; alternative topic if David prefers: queued Q1 (free GitHub repos replacing paid software, same money feeling, broader audience).
 Visual plan: opening = cartoon action of the claim (the $20 plan character straining under a giant $100 barbell, Graphify character spotting; the barbell lands; a 70x stamp reads BEST CASE ONLY), end = its own scene (no promised next episode), middle = checks as cutaways. Line 10 is "Want the next one? Follow, and you'll see it."
+
+## v6 rebuild, 16.11.2026: new hook, opening as action, own end scene (scaffold `video/ep100/out/ep100-v6.mp4`, 31.97 s; REPLACES the beat list above)
+Lines now (`video/ep100/voice/lines.txt`): 1 "Your twenty-dollar Claude plan can't do hundred-dollar work." 2 "A free tool says it can. I checked." 3-8 unchanged, 9 locked clip, 10 "Want the next one? Follow, and you'll see it." No promised episode, no placeholder banner. "I checked" means the public sources were checked: we did not install or run Graphify, and the card says "tests by others, not by us".
+Beat list from the real word times (`cues100.json`, `buildup`):
+| Line | Time | What is new here | Tension |
+|---|---|---|---|
+| 1 | 0.00 | OPENING, full screen, no label: a block character with the Claude mark and "$20" strains under a barbell marked "$100" (frame 0 text: "$20", "$100" only); the bar sinks and shakes | the claim's subject as a picture |
+| 1 | 1.14 | on "can't" the bar slips lower | it cannot hold |
+| 2 | 2.88 / 3.22 | a character with the Graphify mark steps in, "FREE" sparkles; it pushes and the bar goes up | the claim looks true |
+| 2 | 4.04 | on "checked" the barbell drops and flattens the $20 character | reversal: so what is real? |
+| 3 | 4.61 / 6.14-8.0 | cut to the check: VIRAL CLAIM stamp, usage bar (ILLUSTRATION), six file cards; files read again, the bar drains to 17% | the problem is real |
+| 4 | 8.72 / 9.66-11.2 | Graphify card (free, open source); the star count runs to 148.2k | it is huge: maybe it works (about 10 s) |
+| 5 | 11.84 / 13.54-14.7 | the map; one look-up; the bar refills to 97% | the idea is good |
+| 6 | 15.17 / 15.82 / 17.66 | CHECKING; the giant "70x"; BEST CASE stamp under it, "one example, about 52 files" | reveal 1 |
+| 7 | 18.94 / 19.82 / 20.58 / 21.38 | bar shows "?"; 18% fewer; +49.5% more; issue #985 | reveal 2 (about two thirds) |
+| 8 | 21.78 / 23.02-24.0 / 25.24 / 26.92 | Pro 1x; Max grows to 5x; the best test as a thin slice; NOT CLOSE | reveal 3, the money verdict, last; it answers the opening picture |
+| 9 | 27.34-28.8 | END, its own scene: the $20 character happily lifts a weight that fits it, the $100 barbell rests; the card BEFORE YOU INSTALL slides in, "SETUP: LINK IN BIO" | payoff of the opening + value to keep |
+| 10 | 29.34 / 30.28 | the card leaves, a calm FOLLOW card; the character keeps lifting | follow |
+Flat stretches over 2.5 s with nothing new: none by the build's own list. Longest gaps: 0-1.14 (the strain itself), 24.0-25.24 (the 5x bar stands).
+Weak beats by my own reading: line 5 (the claim looks good a second time); line 8 is 5.5 s and its middle second only holds the bars. Blind reader on frame 0 and on this beat list: NOT RUN on v6.

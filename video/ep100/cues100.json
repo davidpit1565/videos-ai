@@ -1,207 +1,186 @@
 {
  "placeholder": {
   "estimated_timeline": false,
-  "line10": true,
   "claude_code_mark": "Claude symbol + the words 'Claude Code' (no Claude Code-specific mark sourced)",
   "screenshots": "none: drawn cards with dated numbers instead of real repo/pricing screenshots"
  },
  "lines": [
   {
    "n": 1,
-   "text": "They say this free tool killed Claude Code's token problem,",
+   "text": "Your twenty-dollar Claude plan can't do hundred-dollar work.",
    "start": 0.04,
-   "end": 3.56,
-   "role": "hook: the viral claim"
+   "end": 2.57,
+   "role": "hook: the claim as action ($20 under $100)"
   },
   {
    "n": 2,
-   "text": "and your twenty-dollar plan now does hundred-dollar work.",
-   "start": 3.75,
-   "end": 6.3,
-   "role": "the money claim"
+   "text": "A free tool says it can. I checked.",
+   "start": 2.76,
+   "end": 4.42,
+   "role": "the free tool steps in; 'I checked': the barbell drops"
   },
   {
    "n": 3,
    "text": "Every new chat starts from zero, so Claude Code reads your files again.",
-   "start": 6.49,
-   "end": 9.94,
-   "role": "the problem (real)"
+   "start": 4.61,
+   "end": 8.06,
+   "role": "check 1: the problem (real)"
   },
   {
    "n": 4,
    "text": "The fix is Graphify, with about a hundred fifty thousand stars on GitHub.",
-   "start": 10.13,
-   "end": 13.53,
+   "start": 8.25,
+   "end": 11.65,
    "role": "the tool + stars"
   },
   {
    "n": 5,
    "text": "It maps your code once, so Claude looks things up instead of rereading.",
-   "start": 13.72,
-   "end": 16.86,
+   "start": 11.84,
+   "end": 14.98,
    "role": "how it works"
   },
   {
    "n": 6,
    "text": "The big claim is seventy times less token use, but only in its best case.",
-   "start": 17.05,
-   "end": 20.63,
+   "start": 15.17,
+   "end": 18.75,
    "role": "reveal 1: where 70 comes from"
   },
   {
    "n": 7,
    "text": "Real tests? One saves some. One uses more.",
-   "start": 20.82,
-   "end": 23.35,
+   "start": 18.94,
+   "end": 21.47,
    "role": "reveal 2: other people's tests"
   },
   {
    "n": 8,
    "text": "And the hundred-dollar plan is five times the usage. Nothing we found comes close.",
-   "start": 23.54,
-   "end": 29.03,
+   "start": 21.66,
+   "end": 27.15,
    "role": "reveal 3: the money verdict"
   },
   {
    "n": 9,
    "text": "The setup's in the link in bio.",
-   "start": 29.22,
-   "end": 31.03,
-   "role": "saveable card + link in bio"
+   "start": 27.34,
+   "end": 29.15,
+   "role": "end scene: saveable card + link in bio"
   },
   {
    "n": 10,
-   "text": "Tomorrow, five AIs face a maze. Follow, so you see who gets lost.",
-   "start": 31.22,
-   "end": 35.14,
-   "role": "tomorrow (PLACEHOLDER)"
+   "text": "Want the next one? Follow, and you'll see it.",
+   "start": 29.34,
+   "end": 31.35,
+   "role": "follow card (no promised episode)"
   }
  ],
- "D": 35.54,
- "frame0_returns": 34.96,
+ "D": 31.95,
+ "frame0_returns": 31.37,
  "sync": {
-  "killed": {
-   "t": 1.46,
-   "source": "words.json"
-  },
-  "now": {
-   "t": 4.6,
-   "source": "words.json"
-  },
-  "so": {
-   "t": 8.22,
-   "source": "words.json"
-  },
-  "about": {
-   "t": 11.54,
-   "source": "words.json"
-  },
-  "once": {
-   "t": 14.4,
-   "source": "words.json"
-  },
-  "looks": {
-   "t": 15.42,
-   "source": "words.json"
-  },
-  "but": {
-   "t": 19.24,
-   "source": "words.json"
-  },
-  "one_saves": {
-   "t": 21.7,
-   "source": "words.json"
-  },
-  "one_uses": {
-   "t": 22.44,
-   "source": "words.json"
-  },
-  "five": {
-   "t": 24.88,
-   "source": "words.json"
-  },
-  "nothing": {
-   "t": 27.1,
-   "source": "words.json"
-  },
-  "close": {
-   "t": 28.5,
-   "source": "words.json"
-  },
-  "seventy": {
-   "t": 17.72,
-   "source": "words.json"
-  },
-  "free": {
-   "t": 0.72,
-   "source": "words.json"
-  },
-  "tool": {
+  "cant": {
    "t": 1.14,
    "source": "words.json"
   },
-  "claude": {
-   "t": 2.0,
+  "free": {
+   "t": 2.88,
    "source": "words.json"
   },
-  "twenty": {
-   "t": 3.98,
+  "can": {
+   "t": 3.52,
    "source": "words.json"
   },
-  "hundred": {
-   "t": 5.18,
+  "checked": {
+   "t": 4.04,
    "source": "words.json"
   },
-  "does": {
-   "t": 4.84,
+  "so": {
+   "t": 6.24,
    "source": "words.json"
   },
   "graphify": {
-   "t": 10.68,
+   "t": 8.82,
+   "source": "words.json"
+  },
+  "about": {
+   "t": 9.66,
+   "source": "words.json"
+  },
+  "once": {
+   "t": 12.52,
+   "source": "words.json"
+  },
+  "looks": {
+   "t": 13.54,
+   "source": "words.json"
+  },
+  "seventy": {
+   "t": 15.82,
+   "source": "words.json"
+  },
+  "but": {
+   "t": 17.36,
+   "source": "words.json"
+  },
+  "one_saves": {
+   "t": 19.82,
+   "source": "words.json"
+  },
+  "one_uses": {
+   "t": 20.58,
+   "source": "words.json"
+  },
+  "five": {
+   "t": 23.02,
+   "source": "words.json"
+  },
+  "nothing": {
+   "t": 25.24,
+   "source": "words.json"
+  },
+  "close": {
+   "t": 26.62,
+   "source": "words.json"
+  },
+  "follow": {
+   "t": 30.28,
    "source": "words.json"
   }
  },
  "usage_bar": {
-  "note": "ILLUSTRATION, tagged on screen; '?' from line 7 on; hidden in line 8",
+  "note": "ILLUSTRATION, tagged on screen; on from line 3; '?' from line 7 on; hidden from line 8",
   "keyframes": [
    [
-    0,
-    88
-   ],
-   [
-    1.38,
-    31
-   ],
-   [
-    2.16,
+    4.61,
     100
    ],
    [
-    8.12,
+    6.14,
     100
    ],
    [
-    9.83,
+    7.95,
     17
    ],
    [
-    14.22,
+    12.34,
     17
    ],
    [
-    16.55,
+    14.67,
     97
    ],
    [
-    19.52,
+    17.64,
     97
    ],
    [
-    19.84,
+    17.96,
     78
    ],
    [
-    20.82,
+    18.94,
     70
    ]
   ]
@@ -210,120 +189,110 @@
   "new_on_screen": [
    {
     "t": 0,
-    "what": "the viral claim, the two marks, the usage bar"
+    "what": "OPENING: the $20 character strains under the $100 barbell (sinking, shaking)"
    },
    {
-    "t": 0.72,
-    "what": "FREE"
+    "t": 1.14,
+    "what": "the bar slips lower, the knees give"
    },
    {
-    "t": 1.46,
-    "what": "the tool plugs in, the bar refills (the claim looks true)"
+    "t": 2.88,
+    "what": "the Graphify character steps in, FREE sparkles"
    },
    {
-    "t": 2.0,
-    "what": "the name Claude Code"
+    "t": 3.22,
+    "what": "it pushes: the bar goes up (the claim looks true)"
    },
    {
-    "t": 3.98,
-    "what": "PRO $20"
+    "t": 4.04,
+    "what": "on 'checked' the barbell drops and flattens the $20 character"
    },
    {
-    "t": 4.84,
-    "what": "the '=' (claim)"
+    "t": 4.61,
+    "what": "cut to the check: VIRAL CLAIM stamp, usage bar, six file cards"
    },
    {
-    "t": 5.18,
-    "what": "MAX $100"
+    "t": 6.14,
+    "what": "files read again, counters rise, the bar drains (to 8.0 s)"
    },
    {
-    "t": 6.49,
-    "what": "six file cards: a new chat starts from zero"
+    "t": 7.95,
+    "what": "the bar is red at 17%"
    },
    {
-    "t": 8.12,
-    "what": "files read again, counters rise, the bar drains (to 9.8 s)"
-   },
-   {
-    "t": 10.58,
+    "t": 8.72,
     "what": "Graphify card, free + open source"
    },
    {
-    "t": 11.54,
-    "what": "the star count runs to 148.2k (to 13.0 s)"
+    "t": 9.66,
+    "what": "the star count runs to 148.2k (to 11.2 s)"
    },
    {
-    "t": 13.72,
+    "t": 11.84,
     "what": "the map: nodes and links"
    },
    {
-    "t": 15.42,
-    "what": "one look-up along the links, the bar refills (to 16.6 s)"
+    "t": 13.54,
+    "what": "one look-up along the links, the bar refills (to 14.7 s)"
    },
    {
-    "t": 17.05,
+    "t": 15.17,
     "what": "status CHECKING, the claim headline"
    },
    {
-    "t": 17.72,
+    "t": 15.82,
     "what": "the giant 70x"
    },
    {
-    "t": 19.54,
-    "what": "BEST CASE stamp, then: one example, about 52 files"
+    "t": 17.66,
+    "what": "BEST CASE stamp under the number, then: one example, about 52 files"
    },
    {
-    "t": 20.82,
+    "t": 18.94,
     "what": "REAL TESTS, the bar turns to '?'"
    },
    {
-    "t": 21.7,
+    "t": 19.82,
     "what": "18% fewer"
    },
    {
-    "t": 22.44,
+    "t": 20.58,
     "what": "+49.5% more"
    },
    {
-    "t": 23.24,
+    "t": 21.38,
     "what": "issue #985: no savings"
    },
    {
-    "t": 23.66,
+    "t": 21.78,
     "what": "Pro bar, 1x"
    },
    {
-    "t": 24.88,
-    "what": "Max bar grows to 5x (to 25.9 s)"
+    "t": 23.02,
+    "what": "Max bar grows to 5x (to 24.0 s)"
    },
    {
-    "t": 27.1,
+    "t": 25.24,
     "what": "the best test as a thin slice on the Pro bar"
    },
    {
-    "t": 28.8,
+    "t": 26.92,
     "what": "NOT CLOSE stamp"
    },
    {
-    "t": 29.22,
-    "what": "the saveable card, five rows (to 30.8 s)"
+    "t": 27.34,
+    "what": "END scene: the $20 character happily lifts a weight that fits, the $100 barbell rests; the saveable card, five rows (to 28.8 s)"
    },
    {
-    "t": 31.22,
-    "what": "tomorrow headline (PLACEHOLDER: no picture of the next episode yet)"
+    "t": 29.34,
+    "what": "the calm FOLLOW card (no promised episode)"
    },
    {
-    "t": 34.96,
+    "t": 31.37,
     "what": "frame 0 returns (loop)"
    }
   ],
-  "flat_over_2_5s": [
-   {
-    "start": 31.22,
-    "end": 34.96,
-    "after": "tomorrow headline (PLACEHOLDER: no picture of the next episode yet)"
-   }
-  ]
+  "flat_over_2_5s": []
  },
  "numbers_on_screen": [
   {
@@ -361,56 +330,40 @@
  ],
  "headlines_draft": [
   {
-   "t": 0,
-   "text": "&ldquo;70x LESS USAGE&rdquo;"
-  },
-  {
-   "t": 3.75,
-   "text": "&ldquo;$20 DOES $100 WORK&rdquo;"
-  },
-  {
-   "t": 6.49,
+   "t": 4.61,
    "text": "NEW CHAT = FROM ZERO"
   },
   {
-   "t": 8.22,
+   "t": 6.24,
    "text": "READS YOUR FILES AGAIN"
   },
   {
-   "t": 10.13,
+   "t": 8.25,
    "text": "THE TOOL: GRAPHIFY"
   },
   {
-   "t": 13.72,
+   "t": 11.84,
    "text": "MAPS YOUR CODE ONCE"
   },
   {
-   "t": 17.05,
+   "t": 15.17,
    "text": "&ldquo;70 TIMES LESS&rdquo;"
   },
   {
-   "t": 19.24,
+   "t": 17.36,
    "text": "ONLY IN ITS BEST CASE"
   },
   {
-   "t": 20.82,
+   "t": 18.94,
    "text": "REAL TESTS:"
   },
   {
-   "t": 23.54,
+   "t": 21.66,
    "text": "MAX = 5x PRO USAGE"
   },
   {
-   "t": 27.1,
+   "t": 25.24,
    "text": "NOTHING COMES CLOSE"
-  },
-  {
-   "t": 29.22,
-   "text": "SETUP: LINK IN BIO"
-  },
-  {
-   "t": 31.22,
-   "text": "TOMORROW: [PLACEHOLDER]"
   }
  ]
 }
