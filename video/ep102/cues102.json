@@ -30,59 +30,59 @@
    "n": 5,
    "text": "Intercom? Chatwoot, if you host it.",
    "start": 10.74,
-   "end": 12.69
+   "end": 13.01
   },
   {
    "n": 6,
    "text": "Wispr Flow? OpenWhispr.",
-   "start": 13.01,
-   "end": 14.17
+   "start": 13.33,
+   "end": 14.83
   },
   {
    "n": 7,
    "text": "And the big one, ElevenLabs.",
-   "start": 14.49,
-   "end": 16.39
+   "start": 15.15,
+   "end": 17.05
   },
   {
    "n": 8,
    "text": "VoiceStudio clones your own voice, on your own machine.",
-   "start": 16.54,
-   "end": 19.3
+   "start": 17.2,
+   "end": 19.96
   },
   {
    "n": 9,
    "text": "It's new, just seven months old.",
-   "start": 19.45,
-   "end": 21.26
+   "start": 20.11,
+   "end": 21.92
   },
   {
    "n": 10,
    "text": "We did not test these, so check each one yourself.",
-   "start": 21.41,
-   "end": 23.65
+   "start": 22.07,
+   "end": 24.31
   },
   {
    "n": 11,
    "text": "Save the list. Send it to a friend who pays for Loom.",
-   "start": 23.8,
-   "end": 26.3
+   "start": 24.46,
+   "end": 26.96
   },
   {
    "n": 12,
    "text": "The setup's in the link in bio.",
-   "start": 26.45,
-   "end": 28.26
+   "start": 27.11,
+   "end": 28.92
   },
   {
    "n": 13,
    "text": "Want the next one? Follow, and you'll see it.",
-   "start": 28.41,
-   "end": 30.4
+   "start": 29.07,
+   "end": 31.06
   }
  ],
- "D": 31.7,
- "frame0_returns": 31.2,
+ "D": 32.36,
+ "frame0_returns": 31.86,
  "sync": {
   "free": {
    "t": 1.36,
@@ -93,7 +93,7 @@
    "source": "words"
   },
   "stay": {
-   "t": 3.94,
+   "t": 4.02,
    "source": "words"
   },
   "notion": {
@@ -109,11 +109,11 @@
    "source": "ESTIMATE"
   },
   "chatwoot": {
-   "t": 11.58,
+   "t": 11.84,
    "source": "words"
   },
   "openwhispr": {
-   "t": 13.7,
+   "t": 14.14,
    "source": "words"
   },
   "personal": {
@@ -121,35 +121,35 @@
    "source": "words"
   },
   "host": {
-   "t": 12.08,
+   "t": 12.4,
    "source": "words"
   },
   "big": {
-   "t": 14.96,
-   "source": "words"
-  },
-  "eleven": {
    "t": 15.62,
    "source": "words"
   },
+  "eleven": {
+   "t": 16.26,
+   "source": "words"
+  },
   "vs": {
-   "t": 16.64,
+   "t": 17.3,
    "source": "words"
   },
   "clones": {
-   "t": 16.96,
+   "t": 17.62,
    "source": "words"
   },
   "own": {
-   "t": 17.72,
+   "t": 18.38,
    "source": "words"
   },
   "machine": {
-   "t": 18.84,
+   "t": 19.5,
    "source": "words"
   },
   "follow": {
-   "t": 29.2,
+   "t": 29.86,
    "source": "words"
   }
  },
@@ -192,67 +192,67 @@
     "what": "card: Intercom (paid)"
    },
    {
-    "t": 11.58,
-    "what": "Intercom struck, arrow, Chatwoot; then FREE lands on Chatwoot at 11.88"
+    "t": 11.84,
+    "what": "Intercom struck, arrow, Chatwoot; then FREE lands on Chatwoot at 12.14"
    },
    {
-    "t": 12.99,
+    "t": 13.31,
     "what": "card: Wispr Flow (paid)"
    },
    {
-    "t": 13.7,
-    "what": "Wispr Flow struck, arrow, OpenWhispr; then FREE lands on OpenWhispr at 14.00"
+    "t": 14.14,
+    "what": "Wispr Flow struck, arrow, OpenWhispr; then FREE lands on OpenWhispr at 14.44"
    },
    {
-    "t": 14.49,
+    "t": 15.15,
     "what": "D: words only: 'And the BIG ONE.'"
    },
    {
-    "t": 15.5,
+    "t": 16.14,
     "what": "card: ElevenLabs (paid)"
    },
    {
-    "t": 16.64,
-    "what": "ElevenLabs struck, arrow, VoiceStudio; then FREE lands on VoiceStudio at 16.94"
+    "t": 17.3,
+    "what": "ElevenLabs struck, arrow, VoiceStudio; then FREE lands on VoiceStudio at 17.60"
    },
    {
-    "t": 17.64,
+    "t": 18.3,
     "what": "the real VoiceStudio screenshot, full stage: 'clones your own voice, ON YOUR OWN MACHINE.'"
    },
    {
-    "t": 19.45,
+    "t": 20.11,
     "what": "words only: 'It's new, just 7 MONTHS OLD.'"
    },
    {
-    "t": 21.41,
+    "t": 22.07,
     "what": "E: words only: 'We did NOT TEST THESE. so check each one yourself.'"
    },
    {
-    "t": 23.8,
+    "t": 24.46,
     "what": "F: one card: the list of six pairs to save"
    },
    {
-    "t": 26.45,
+    "t": 27.11,
     "what": "G: words only: 'The setup's in the LINK IN BIO.'"
    },
    {
-    "t": 28.41,
+    "t": 29.07,
     "what": "words only: 'Want the next one? FOLLOW.'"
    },
    {
-    "t": 31.2,
+    "t": 31.86,
     "what": "frame 0 returns (loop)"
    }
   ],
   "flat_over_2_5s": [
    {
-    "start": 23.8,
-    "end": 26.45,
+    "start": 24.46,
+    "end": 27.11,
     "after": "F: one card: the list of six pairs to save"
    },
    {
-    "start": 28.41,
-    "end": 31.2,
+    "start": 29.07,
+    "end": 31.86,
     "after": "words only: 'Want the next one? FOLLOW.'"
    }
   ]

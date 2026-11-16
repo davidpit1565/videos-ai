@@ -1,6 +1,6 @@
-v3 estimated timeline=False  D=31.7  js=181 sfx=20
-lines: 1:0.04-2.27  2:2.42-4.44  3:4.59-7.55  4:7.87-10.42  5:10.74-12.69  6:13.01-14.17  7:14.49-16.39  8:16.54-19.30  9:19.45-21.26  10:21.41-23.65  11:23.80-26.30  12:26.45-28.26  13:28.41-30.40
-sync: free=1.36(w)  insane=3.2(w)  stay=3.94(w)  notion=6.2(w)  appflowy=6.88(w)  cal=8.737(EST)  chatwoot=11.58(w)  openwhispr=13.7(w)  personal=9.6(w)  host=12.08(w)  big=14.96(w)  eleven=15.62(w)  vs=16.64(w)  clones=16.96(w)  own=17.72(w)  machine=18.84(w)  follow=29.2(w)
+v3 estimated timeline=False  D=32.36  js=181 sfx=20
+lines: 1:0.04-2.27  2:2.42-4.44  3:4.59-7.55  4:7.87-10.42  5:10.74-13.01  6:13.33-14.83  7:15.15-17.05  8:17.20-19.96  9:20.11-21.92  10:22.07-24.31  11:24.46-26.96  12:27.11-28.92  13:29.07-31.06
+sync: free=1.36(w)  insane=3.2(w)  stay=4.02(w)  notion=6.2(w)  appflowy=6.88(w)  cal=8.737(EST)  chatwoot=11.84(w)  openwhispr=14.14(w)  personal=9.6(w)  host=12.4(w)  big=15.62(w)  eleven=16.26(w)  vs=17.3(w)  clones=17.62(w)  own=18.38(w)  machine=19.5(w)  follow=29.86(w)
   new   0.00  A: 'Six apps you pay for have FREE ALTERNATIVES' + the six paid apps' real logos
   new   2.42  B: words only: 'The last one is INSANE. STAY FOR IT.'
   new   4.59  card: Loom (paid)
@@ -10,17 +10,17 @@ sync: free=1.36(w)  insane=3.2(w)  stay=3.94(w)  notion=6.2(w)  appflowy=6.88(w)
   new   7.85  card: Calendly (paid)
   new   8.74  Calendly struck, arrow, Cal.diy; then FREE lands on Cal.diy at 9.04
   new  10.72  card: Intercom (paid)
-  new  11.58  Intercom struck, arrow, Chatwoot; then FREE lands on Chatwoot at 11.88
-  new  12.99  card: Wispr Flow (paid)
-  new  13.70  Wispr Flow struck, arrow, OpenWhispr; then FREE lands on OpenWhispr at 14.00
-  new  14.49  D: words only: 'And the BIG ONE.'
-  new  15.50  card: ElevenLabs (paid)
-  new  16.64  ElevenLabs struck, arrow, VoiceStudio; then FREE lands on VoiceStudio at 16.94
-  new  17.64  the real VoiceStudio screenshot, full stage: 'clones your own voice, ON YOUR OWN MACHINE.'
-  new  19.45  words only: 'It's new, just 7 MONTHS OLD.'
-  new  21.41  E: words only: 'We did NOT TEST THESE. so check each one yourself.'
-  new  23.80  F: one card: the list of six pairs to save
-  new  26.45  G: words only: 'The setup's in the LINK IN BIO.'
-  new  28.41  words only: 'Want the next one? FOLLOW.'
-  new  31.20  frame 0 returns (loop)
-FLAT stretches over 2.5 s with nothing new: [(23.8, 26.45, 'F: one card: the list of six pairs to save'), (28.41, 31.2, "words only: 'Want the next one? FOLLOW.'")]
+  new  11.84  Intercom struck, arrow, Chatwoot; then FREE lands on Chatwoot at 12.14
+  new  13.31  card: Wispr Flow (paid)
+  new  14.14  Wispr Flow struck, arrow, OpenWhispr; then FREE lands on OpenWhispr at 14.44
+  new  15.15  D: words only: 'And the BIG ONE.'
+  new  16.14  card: ElevenLabs (paid)
+  new  17.30  ElevenLabs struck, arrow, VoiceStudio; then FREE lands on VoiceStudio at 17.60
+  new  18.30  the real VoiceStudio screenshot, full stage: 'clones your own voice, ON YOUR OWN MACHINE.'
+  new  20.11  words only: 'It's new, just 7 MONTHS OLD.'
+  new  22.07  E: words only: 'We did NOT TEST THESE. so check each one yourself.'
+  new  24.46  F: one card: the list of six pairs to save
+  new  27.11  G: words only: 'The setup's in the LINK IN BIO.'
+  new  29.07  words only: 'Want the next one? FOLLOW.'
+  new  31.86  frame 0 returns (loop)
+FLAT stretches over 2.5 s with nothing new: [(24.46, 27.11, 'F: one card: the list of six pairs to save'), (29.07, 31.86, "words only: 'Want the next one? FOLLOW.'")]

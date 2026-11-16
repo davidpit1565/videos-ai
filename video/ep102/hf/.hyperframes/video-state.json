@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "47432d4a-1299-4c9b-8778-c6cbd565f873",
-  "currentRevision": "facdd1f1-3a37-4edf-8125-757095c5866d",
+  "currentRevision": "414356b2-55d8-4f5f-a697-0f6aebf14a6d",
   "pendingChanges": false,
   "files": {
     "assets/bg.jpg": {
@@ -93,8 +93,8 @@
       "content": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/15/15b18fa19da5b44f3b7ddf48d5f986d84285b755a9a25e705301d71c8de047cf"
     },
     "index.html": {
-      "hash": "b6a1a2b19f29ad0f76c0fe072c337fa2e403c4db9db3a249ea709567ad787149",
-      "content": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/b6/b6a1a2b19f29ad0f76c0fe072c337fa2e403c4db9db3a249ea709567ad787149"
+      "hash": "f00c12f88459dd24009d1ce47571715581baff667b88936e2fd653d81e259333",
+      "content": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/f0/f00c12f88459dd24009d1ce47571715581baff667b88936e2fd653d81e259333"
     },
     "assets/logos/calendly-wordmark.svg": {
       "hash": "7da760b9b0f9184be268daa4e76b961f56565a8c95a9f1af5b31f0485d9c9998",
@@ -139,6 +139,21 @@
           "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/b6/b6a1a2b19f29ad0f76c0fe072c337fa2e403c4db9db3a249ea709567ad787149"
         }
       }
+    },
+    "414356b2-55d8-4f5f-a697-0f6aebf14a6d": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794866678250,
+      "endedAt": 1794866678251,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/b6/b6a1a2b19f29ad0f76c0fe072c337fa2e403c4db9db3a249ea709567ad787149",
+          "after": "/root/.cache/hyperframes/history/47432d4a-1299-4c9b-8778-c6cbd565f873/blobs/f0/f00c12f88459dd24009d1ce47571715581baff667b88936e2fd653d81e259333"
+        }
+      }
     }
   },
   "checks": {
@@ -153,15 +168,15 @@
   },
   "renders": {
     "latest": {
-      "id": "b46ab65c-6f06-48ae-93ac-005fafd1e214",
-      "completedAt": 1794866279676,
+      "id": "34561115-2c47-4604-8ebe-88079be9cdf5",
+      "completedAt": 1794866786037,
       "output": "/home/user/videos-ai/video/ep102/out/pic-v3.mp4",
       "status": "completed",
-      "revision": "facdd1f1-3a37-4edf-8125-757095c5866d"
+      "revision": "414356b2-55d8-4f5f-a697-0f6aebf14a6d"
     },
     "retainedRevisions": [
-      "facdd1f1-3a37-4edf-8125-757095c5866d",
-      "1aa7c015-8528-4c5f-b963-783ce24cceaa"
+      "414356b2-55d8-4f5f-a697-0f6aebf14a6d",
+      "facdd1f1-3a37-4edf-8125-757095c5866d"
     ]
   },
   "pendingArtifactCleanup": []

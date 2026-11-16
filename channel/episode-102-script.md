@@ -75,3 +75,60 @@ Check: (1) the total visibly gets closer to zero on every pair; (2) each pair ad
 - Music: `channel/music-notes.md` (punchy hip-hop beat, ep89's bed).
 - Length: 41.3 s with the tease line (limit given: about 42 s). Flat stretches over 2.5 s by the build's own log: the hook (0-2.7 s, one frame that breathes) and the end card (31.9-36.6 s).
 - NOT done / not verified: the audio was measured, not heard; the video was looked at as still frames, not watched twice at speed; the blind-reader test did not complete (see above); safe area was checked by the tool at x 65-1015 and by eye against x 108-972 (no `--wide` option yet); star counts for AppFlowy, Chatwoot and OpenWhispr may be a cached read; VoiceStudio's star history and all last-commit dates are unconfirmed; logo/brand usage terms were not read; `studio/lib/articles.ts` has no entry yet (text ready in `channel/episode-102-setup.md`); Publish mode is still to be asked.
+
+---
+
+# v3 REBUILD (16.11.2026, after David watched v2). This section replaces the lines, beat list and scores above. v2 is kept for comparison (`video/ep102/out/ep102-v2.mp4`).
+
+What David asked and what was done:
+1. The "free twins" hook is gone. The video starts with the subject itself: "Six apps you pay for have free alternatives!" (2.2 s). Frame 0 = that sentence (small lead-in + "FREE ALTERNATIVES", 2 text items) and the six paid apps' real logos, filling the safe box down to y 1215. Calendly: the mark we used IS the official one (same as the logo in calendly.com's own header); it now carries the official Calendly wordmark under it so it cannot be read as a generic icon (`video/ep102/hf/assets/logos/SOURCES.md`).
+2. Items 1-5 are fast (9.6 s for five, about 1.4-2.5 s each); #6 gets the stage: a words-only "And the BIG ONE.", the same card for ElevenLabs to VoiceStudio, then the real VoiceStudio screenshot full stage, then "7 MONTHS OLD" (8.6 s in all). The tease and the two closing lines are kept. Length 32.4 s.
+3. The paid-to-free change is one fixed beat, same place and same motion for all six: paid logo + name; the name is struck through and greyed; an arrow; the free logo + name appear under it; 0.3 s later the word FREE lands on the free row (never on the paid name). Checked on frames of every item.
+4. Style: rebuilt on the episode 89 recipe and `channel/miki-style-checklist-2026-11-16.md` (written first, from frames of reel 89, 98, 99, 100 and 102 v2). One idea per screen: words-only screens (lead-in + heavy capitals built as spoken, one terracotta word with one ring) alternate with ONE dark card that holds real logos or the real screenshot. Removed: the receipt, the running total, the N/6 counter, logo chips, stamps, star counts, prices, source lines, illustrations, offset shadows, bouncing. Build: `video/ep102/build102v3.py`, run with `video/ep102/run3.sh v3`.
+
+## Spoken lines v3 (`video/ep102/voice/lines.txt`, 13 lines; v2 lines kept in `voice/lines-v2.txt`)
+1. Six apps you pay for have free alternatives!   (new)
+2. The last one is insane. Stay for it.   (kept take)
+3. Loom? Try Cap. Notion? AppFlowy.   (new; spliced, see below)
+4. Calendly? Cal D I Y, for personal use.   (new)
+5. Intercom? Chatwoot, if you host it.   (new)
+6. Wispr Flow? OpenWhispr.   (new)
+7. And the big one, ElevenLabs.   (kept)
+8. VoiceStudio clones your own voice, on your own machine.   (kept)
+9. It's new, just seven months old.   (kept)
+10. We did not test these, so check each one yourself.   (kept)
+11. Save the list. Send it to a friend who pays for Loom.   (kept)
+12. The setup's in the link in bio.   (locked clip)
+13. Want the next one? Follow, and you'll see it.   (kept)
+script_lint: 1 note ("Calendly", a brand name shown with its logo). Dropped from the video (still in the caption and setup text): the $75 a month sum and the per-answer fee of Intercom.
+
+## Beat list v3 (times from `video/ep102/out/build-v3.log`)
+| t (s) | Line | Screen (one idea each) | What is new |
+|---|---|---|---|
+| 0.0 | 1 | Words + six real paid logos | the subject: six apps you pay for have free alternatives |
+| 2.5 | 2 | Words only: "The last one is INSANE. STAY FOR IT." | a reason to stay to the end |
+| 4.6 | 3 | Card: Loom, struck, arrow, Cap, FREE | pair 1 |
+| 6.2 | 3 | Card: Notion to AppFlowy, FREE | pair 2 |
+| 7.9 | 4 | Card: Calendly to Cal.diy, FREE, "personal use only" | pair 3 + its limit |
+| 10.6 | 5 | Card: Intercom to Chatwoot, FREE, "if you host it yourself" | pair 4 + its condition |
+| 13.0 | 6 | Card: Wispr Flow to OpenWhispr, FREE | pair 5 |
+| 14.4 | 7 | Words only: "And the BIG ONE." then the card with ElevenLabs | the teased item arrives |
+| 16.5 | 8 | Card: ElevenLabs to VoiceStudio, FREE | the payoff pair |
+| 17.5 | 8 | The real VoiceStudio screenshot, full stage: "clones your own voice, ON YOUR OWN MACHINE." | what it does, shown on the real app |
+| 19.6 | 9 | Words only: "It's new, just 7 MONTHS OLD." | a caution |
+| 21.5 | 10 | Words only: "We did NOT TEST THESE. so check each one yourself." | the honest limit |
+| 23.9 | 11 | One card: the list of six pairs | the thing to save + who to send it to |
+| 26.5 | 12, 13 | Words only: "LINK IN BIO." then "FOLLOW." | CTA |
+Build-up check: one open question (what is the last one?) from 2.5 s to 14.4 s; every beat is a new pair or a new fact; the five fast pairs are the build, #6 is staged over four screens; nothing repeats the picture. Flat stretches over 2.5 s by the build log: the list card (23.9-26.5 s) and the FOLLOW screen at the end.
+
+## Scores v3 (judgement labels, not measurements; our scores have not predicted views)
+HOOK 70, VIRALITY 70, OVERALL 72, PREDICTED VIEWS about 500 (range 250-1,200). Clearer subject and calmer look than v2; the money stake ($75) is no longer in the hook, which may cost pull.
+
+## Blind-reader test v3: NOT RUN by this agent
+The instruction was to use a fresh Sonnet agent through the Agent tool on frame 0 only. This build agent has no Agent tool (and was told not to use create_session), so the test is still open: `video/ep102/out/frame0-v3.jpg` + the first spoken second "Six apps you pay for have free alternatives!", questions "what is this video about?" and "would you stop scrolling, and why?".
+
+## Build result v3
+- `video/ep102/out/ep102-v3.mp4` (1080x1920, 32.37 s, 8.3 MB), review copy `ep102-v3-review.mp4` (720 px, 1.4 MB), `frame0-v3.jpg`.
+- Gate `out/gate-v3.txt`: 5 of 5 PASS (layout, rendered file -14.3 LUFS / peak -3.0 dBFS, voice + music with the same bed at -9.6 dB under the voice, voice doctor, accent: every line under 0.08). `qa.py` passed again on the re-encoded final file.
+- Voice: new takes for lines 1, 4, 5, 6 (line 5 typed as "Chat woot" for the voice; line 6 seed 52 at exaggeration 0.62 after seed 31 swung 10.2 st). Line 3 is a splice (`voice/splice3.py`): "Loom? Try Cap." from a new take + "Notion? AppFlowy." from the v2 take, because six new takes kept blurring "AppFlowy". Whisper still writes "TriCap" and "at/app Flowey": listen to line 3 first.
+- Not verified: audio measured, not heard; still frames looked at (0, middle, last and each transition), not watched twice at speed; the splice seam in line 3 was not heard; blind reader open; Publish mode open.
