@@ -11,3 +11,8 @@ L5 seed 11 accent 0.02
 L5 seed 22 accent 0.02
 L5 seed 33 accent 0.01
 DONE
+L4 seed 44 accent 0.03
+L4 seed 55 accent 0.92
+L4 seed 66 accent 0.11
+L4 seed 77 accent 0.87
+DONE
