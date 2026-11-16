@@ -1,0 +1,3 @@
+L1 seed 11 accent 0.02
+L1 seed 22 accent 0.03
+L1 seed 33 accent 0.31

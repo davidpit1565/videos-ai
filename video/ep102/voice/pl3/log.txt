@@ -1,0 +1,10 @@
+      per-line seeds: {1: 11}
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/opt/v311/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+loaded PerthNet (Implicit) at step 250,000
+/usr/lib/python3.11/contextlib.py:105: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+`sdpa` attention does not support `output_attentions=True`. Please set your attention to `eager` if you want any of these features.
+Sampling:   0%|          | 0/1000 [00:00<?, ?it/s]Sampling:   0%|          | 1/1000 [00:00<02:08,  7.76it/s]Sampling:   0%|          | 3/1000 [00:00<01:21, 12.19it/s]Sampling:   0%|          | 5/1000 [00:00<01:16, 12.94it/s]Sampling:   1%|          | 7/1000 [00:00<01:14, 13.28it/s]Sampling:   1%|          | 9/1000 [00:00<01:10, 14.12it/s]Sampling:   1%|          | 11/1000 [00:00<01:07, 14.66it/s]Sampling:   1%|▏         | 13/1000 [00:00<01:13, 13.41it/s]Sampling:   2%|▏         | 15/1000 [00:01<01:12, 13.63it/s]Sampling:   2%|▏         | 17/1000 [00:01<01:08, 14.37it/s]
