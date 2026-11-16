@@ -1,0 +1,26 @@
+v3 estimated timeline=True  D=33.88  js=182 sfx=20
+lines: 1:0.06-2.70  2:2.82-5.04  3:5.16-6.24  4:6.36-7.59  5:7.71-10.04  6:10.16-12.33  7:12.45-14.00  8:14.12-15.93  9:16.05-19.26  10:19.38-21.39  11:21.51-24.46  12:24.58-27.69  13:27.81-29.77  14:29.89-32.58
+sync: free=1.697(EST)  insane=3.93(EST)  stay=4.418(EST)  cap=5.808(EST)  appflowy=6.975(EST)  cal=8.502(EST)  chatwoot=10.898(EST)  openwhispr=13.303(EST)  personal=9.108(EST)  host=11.505(EST)  big=14.663(EST)  eleven=15.242(EST)  vs=16.114(EST)  clones=17.013(EST)  own=17.398(EST)  machine=18.939(EST)  follow=31.235(EST)
+  new   0.00  A: 'Six apps you pay for have FREE ALTERNATIVES' + the six paid apps' real logos
+  new   2.82  B: words only: 'The last one is INSANE. STAY FOR IT.'
+  new   5.16  card: Loom (paid)
+  new   5.81  Loom struck, arrow, Cap; then FREE lands on Cap at 6.23
+  new   6.34  card: Notion (paid)
+  new   6.97  Notion struck, arrow, AppFlowy; then FREE lands on AppFlowy at 7.39
+  new   7.69  card: Calendly (paid)
+  new   8.50  Calendly struck, arrow, Cal.diy; then FREE lands on Cal.diy at 8.92
+  new  10.14  card: Intercom (paid)
+  new  10.90  Intercom struck, arrow, Chatwoot; then FREE lands on Chatwoot at 11.32
+  new  12.43  card: Wispr Flow (paid)
+  new  13.30  Wispr Flow struck, arrow, OpenWhispr; then FREE lands on OpenWhispr at 13.72
+  new  14.12  D: words only: 'And the BIG ONE.'
+  new  15.12  card: ElevenLabs (paid)
+  new  16.15  ElevenLabs struck, arrow, VoiceStudio; then FREE lands on VoiceStudio at 16.57
+  new  17.15  the real VoiceStudio screenshot, full stage: 'clones your own voice, ON YOUR OWN MACHINE.'
+  new  19.38  words only: 'It's new, just 7 MONTHS OLD.'
+  new  21.51  E: words only: 'We did NOT TEST THESE. so check each one yourself.'
+  new  24.58  F: one card: the list of six pairs to save
+  new  27.81  G: words only: 'The setup's in the LINK IN BIO.'
+  new  29.89  words only: 'Want the next one? FOLLOW.'
+  new  33.38  frame 0 returns (loop)
+FLAT stretches over 2.5 s with nothing new: [(0, 2.82, "A: 'Six apps you pay for have FREE ALTERNATIVES' + the six paid apps' real logos"), (21.51, 24.58, "E: words only: 'We did NOT TEST THESE. so check each one yourself.'"), (24.58, 27.81, 'F: one card: the list of six pairs to save'), (29.89, 33.38, "words only: 'Want the next one? FOLLOW.'")]
