@@ -1,0 +1,6 @@
+# Source (copied 16.11.2026)
+- Repo: https://github.com/iart-ai/kinetic-typography-skills, commit 2b79c81230c6647a344844f9ed53b6fa07f3f1f9 (2026-11-11), path `skills/kinetic-typography/`. It is one of the 19 packs linked from the hub https://github.com/iart-ai/motion-skills (commit 9b9ce04, which itself holds no skills, only a README, a showcase and shell tools). Licence: MIT, Copyright (c) 2026 iart.ai (`../motion-iart-LICENSE-MIT.txt`).
+- Copied, text only: `SKILL.md`, `references/reveal-recipes.md`. Read line by line.
+- CHANGED on copy (MIT allows it; marked in the text): frontmatter name -> `motion-kinetic-typography`; removed the pointer to the upstream `scripts/` helpers; removed one `npx playwright screenshot` command; removed the iart.ai advert footer with tracking link from the reference file.
+- NOT copied: `scripts/` (three shell scripts), `showcase.html`, `showcase.gif`, `.claude-plugin/`, README. Nothing was run, nothing installed.
+- Read-only knowledge. Our rules win: Miki style (no bounce, one idea per screen), our safe area, words that build as spoken. The Framer Motion, Remotion and After Effects recipes in the reference are for other tools; in this repo use the CSS/GSAP ones.

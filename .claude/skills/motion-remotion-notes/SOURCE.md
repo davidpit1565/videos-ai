@@ -1,0 +1,5 @@
+# Source (read 16.11.2026) - NOTHING was copied from it
+- Repo read: https://github.com/remotion-dev/skills, commit 3e20ac75161bc34468845df714701cc9bf6075f4 (2026-11-16), mirror of `packages/skills` in remotion-dev/remotion (package version 4.0.544).
+- Licence: the repo has NO licence file. Remotion itself uses its own licence (free for individuals and companies up to 3 people, paid above), not MIT. Our repo is public, so the text was NOT copied. `SKILL.md` here is written by us: ideas and numbers only, in our words.
+- Files read: `skills/remotion-markup/` timing.md, text-highlights.md, lottie.md, multi-scene-video.md, sequencing.md, transitions.md (first 80 lines), plus README and package.json. Everything else (maps, captions, SaaS, 3D, the .ts/.tsx/.mjs files, `agents/openai.yaml`) was not read and not used.
+- Why not adopted as skills: they teach Remotion's React API and tell the agent to run `npx remotion add ...` / `bunx remotion add ...` installs. We do not use Remotion (see `channel/remocn-check-2026-11-14.md`).
