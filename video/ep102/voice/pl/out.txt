@@ -1,0 +1,16 @@
+L1 seed 11 accent 0.04
+L2 seed 11 accent 0.02
+L3 seed 11 accent 0.98
+L3 seed 22 accent 0.02
+L4 seed 11 accent 0.04
+L5 seed 11 accent 0.03
+L6 seed 11 accent 0.42
+L6 seed 22 accent 0.05
+L7 seed 11 accent 0.02
+L8 seed 11 accent 0.02
+L1 seed 22 accent 0.03 (reroll E=0.80)
+L9 seed 11 accent 0.07
+L1 seed 33 accent 0.54 (reroll E=0.80)
+L10 seed 11 accent 0.03
+L1 seed 44 accent 0.28 (reroll E=0.80)
+L11 seed 11 accent 0.06
