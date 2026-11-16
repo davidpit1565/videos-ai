@@ -2482,6 +2482,37 @@ export const ARTICLES: Article[] = [
       "Facebook is a Meta product. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with Meta.",
     ],
   },
+  {
+    n: 101,
+    title: "Five free alternatives to apps you pay for: where to get each one",
+    standfirst:
+      "The video shows five paid apps and a free alternative for each: Loom and Cap, Notion and AppFlowy, " +
+      "Intercom and Chatwoot, Wispr Flow and OpenWhispr, ElevenLabs and VoiceStudio. This page has the official " +
+      "download link and the steps for every one. We did not install or test any of them. Everything below was read from " +
+      "each project's own page on 16 November 2026, so treat it as a list to check, not a recommendation.",
+    steps: [
+      "Cap, instead of Loom (screen videos). Open https://cap.so/download, pick your system (Mac, Windows or Linux), download the file and install it like any other app. Cap asks for permission to record your screen. Record a short test clip before you rely on it.",
+      "AppFlowy, instead of Notion (notes, docs, tasks). Open https://github.com/AppFlowy-IO/AppFlowy/releases, open Assets under the newest release and download the file for your system. Phone apps are in the App Store and Play Store under AppFlowy. Install and open it: you get an empty workspace on your own device.",
+      "OpenWhispr, instead of Wispr Flow (you talk, it types). Open https://github.com/OpenWhispr/openwhispr/releases/latest, download the file for your system (.dmg for Mac, .exe for Windows), install it, allow the microphone and choose a local model. It downloads the model once, then works on your own computer.",
+      "VoiceStudio, instead of ElevenLabs (AI voices on your own computer). Open https://github.com/debpalash/VoiceStudio/releases/latest, download the installer for your system, install it and download one voice model inside the app. It runs on your own computer; without a graphics card it still works, only slower (the project's own README says so).",
+      "Chatwoot, instead of Intercom (one inbox for customer messages). This one needs your own server, so it is not for beginners. Hosting guide: https://chatwoot.com/deploy . Repo: https://github.com/chatwoot/chatwoot . Chatwoot's own cloud is a paid product.",
+      "Optional: install only from the official links above and check that the page address matches before you download. Star counts show interest, not quality or safety.",
+    ],
+    changes: [
+      "Prices of the paid apps, from each official pricing page read on 16 November 2026 (cheapest paid plan): Loom Business $18, Notion Plus $10, Intercom Essential $19 per seat (yearly rate for new customers, plus $0.99 per AI answer), Wispr Flow Pro $12 (billed yearly), ElevenLabs Starter $6. Loom, Notion, Wispr Flow and ElevenLabs also have a free plan.",
+      "Stars on GitHub, read 16 November 2026 and rounded down: Cap 25K+, AppFlowy 78K+, OpenWhispr 11K+, VoiceStudio 111K+, Chatwoot 39K+.",
+      "Licences as listed on each project page: AppFlowy AGPL-3.0, OpenWhispr MIT, VoiceStudio AGPL-3.0, Chatwoot MIT for the main code with a separate licence for its enterprise folder, Cap AGPL-3.0 for most of the code and MIT for some parts. Check the licence file before you use any of them for a business.",
+    ],
+    limits: [
+      "We did not install or run any of the five, so we cannot say how well they work. This is a list to check yourself.",
+      "Free means the software costs nothing. Cap, AppFlowy and Chatwoot also sell paid cloud plans; the free part is running it yourself.",
+      "These are alternatives, not full replacements. Read what each one can do before you cancel anything you pay for.",
+      "VoiceStudio is only about 7 months old (created April 2026) and grew very fast, so check it carefully. Clone only your own voice, or a voice you have permission to use.",
+      "We did not read the full licence texts or each project's security history, and we did not check when each project was last updated.",
+      "Screen and download labels can change with each release. If a button name differs, look for the closest one.",
+      "Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with any of the products named.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
