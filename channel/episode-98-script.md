@@ -167,3 +167,26 @@ Red team: current cut HOOK 68 / VIRALITY 64 / VALUE 50 / OVERALL 63 (judgement),
 
 ## 15.11.2026: claims about a public page removed
 The caption and YouTube text said the five answers are public and that a page lets viewers race their own AI. Neither exists yet. Removed until the /e/98 page is really built (or the answers are really published). David has not decided whether to build the page.
+
+## v14 as built (16.11.2026): beat list from `video/ep98/out/build-v14.log` and `cues98.json`
+Files: `video/ep98/out/ep98-v14.mp4` (22.19 s), `ep98-v14-review.mp4`, `gate-v14.txt`. Voice: final take, 9 lines, real cue and word times (`stale_cues` false, no re-stitch). The race clock starts on the spoken "Go" (5.74 s, words.json). Bed: `trending-vibe--alexmorgan`, about -10 dB under the voice while a line is spoken (`mix98b.py`). Audio was measured, not heard.
+
+| # | Video time | Spoken | On screen | What is new here |
+|---|---|---|---|---|
+| 1 | 0.08-1.68 | Claude just killed ChatGPT. | Paper scene, two side-view cartoon cars with the real logos. The Claude car drops on the ChatGPT car and flattens it at 0.54 s (flash, dust, wheels roll off; no damage shown). Headline "CLAUDE just KILLED CHATGPT.", all words readable at frame 0 (7.7:1), each goes black as it is said | The claim, as action |
+| 2 | 1.93-4.50 | Each AI taught a car to drive. Fastest wins. | Cut to a start grid seen from above: five blank cars. Each AI's logo drops onto its car and the car takes its colour (2.2-3.3 s). "EACH AI TAUGHT A CAR.", then "FASTEST WINS." at 3.86 s, the cars rev | What the contest is |
+| 3 | 4.73-6.05 | Two laps. Go! | "TWO LAPS.", the cars hop; on "Go" (5.74) the camera dives through the grid into the real road, status chips come in on the left | The rule, the start |
+| - | 5.74-9.3 | (no line) | The real race at true speed, "HANDS OFF.", camera follows the pack | The cars leave together; nobody steers |
+| 4 | 9.28-11.79 | Perplexity stops dead in the bend! | Camera punches into the hairpin; Perplexity stops at 9.96 s, red "?" on the car and on its chip | First car out |
+| 5 | 11.98-13.27 | Meta AI hits the wall! | Meta AI touches the wall at 11.89 s (flash, star, red X). The line starts 0.1 s after the touch | Second car out |
+| 6 | 13.46-15.29 | Claude and Gemini, neck and neck. | The two leaders come back to the hairpin and cross the line: Claude 14.22 s, Gemini 14.42 s | The close fight |
+| 7 | 15.48-17.33 | Claude wins. Gemini is right behind. | The finish again at 1/4 speed, small label SLOW MOTION REPLAY (15.27-16.77); "WHO WON?", then "CLAUDE WINS / 0.2 s AHEAD OF GEMINI" at 15.89 s | The winner, held back until here |
+| 8 | 17.52-19.59 | Send it to a friend. See who they pick. | Its own scene: a podium. Claude 1 (8.48 s), Gemini 2 (+0.2 s), ChatGPT 3 (+2.1 s); beside it Meta AI with a plaster on the bumper (TOUCHED THE WALL) and Perplexity (STUCK IN THE BEND) | The full result, with the number behind the hook |
+| 9 | 19.78-21.79 | Want the next one? Follow, and you'll see it. | Its own scene: "WANT THE NEXT ONE?", big FOLLOW that goes black on the word (20.68 s) with an orange underline, "the request: link in bio", the Gemini and Claude cars roll in | The ask; no promise of a next episode |
+
+Not in the video any more: the "AI DRIVING CONTEST" label, the request bubble, the challenge card, the ChatGPT line, the result list card, the maze teaser, the loop back to frame 0.
+Scene choices that are not race data: the two cartoon scenes (opening, podium, follow card), the start grid, the camera, the drawn car size, the slowed replay (labelled).
+ChatGPT's own finish (10.58 s race time) is not shown live: the replay starts first. It is on the podium as "+2.1 s".
+
+Checks on v14: `check_hf.sh` layout PASS, rendered file PASS, voice and music quality PASS, pacing PASS; the accent check was run separately (the gate's python has no model) and found nothing. Pixel check: text and cars inside x 108-972, y 269-1248 in the three cartoon scenes; nothing readable right of x 864 below y 1056. Outside that box only decoration: speed lines, dust, the podium's shadow and lower block face, and the full-bleed road.
+Still open: a blind reader has not seen v14's frame 0; "the request: link in bio" needs the /e/98 page to carry the request before publishing; the caption's date (14 November 2026) comes from the session notes, not a screenshot.

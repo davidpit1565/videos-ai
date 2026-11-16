@@ -305,7 +305,7 @@ tFW = wt("fastest", 2, .68)
 tFOL = wt("follow", 9, .47)
 # the hook: one sentence, the spoken words lit as said (ep89/ep99 headline: heavy words + one small word)
 HK = [("CLAUDE", "kw", 0.0), ("just", "ks", wt("just", 1, .3)), ("KILLED", "kw kk", wt("killed", 1, .44)), ("CHATGPT.", "kw", wt("chatgpt", 1, .66))]
-HKFS = min(124, 100 * 850 / (tw("CLAUDE") * .985 + tw("KILLED") * .985 + 150))
+HKFS = min(124, 100 * 850 / (tw("CLAUDE") * .985 + tw("KILLED") * .985 + tw8("just") * .86 + 62))
 HEADS.append(f'<div id="hk" style="font-size:{HKFS:.1f}px;line-height:{HKFS * .98:.1f}px"><div><span class="kw on" id="hk0">CLAUDE</span> <span class="ks" id="hk1">just</span> <span class="kw kk" id="hk2">KILLED</span></div><div><span class="kw" id="hk3">CHATGPT.</span></div></div>')
 for q in (1, 2, 3):
     js(f"tl.to('#hk{q}',{{color:'#0f0f0f',duration:.12,ease:'sine.out'}},{HK[q][2]:.3f});")
@@ -526,14 +526,14 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .ostar{position:absolute;width:340px;height:340px;overflow:visible;opacity:0} .ostar path{fill:#FFD23F;stroke:INK;stroke-width:3;stroke-linejoin:round}
 .opf{position:absolute;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:#fbf8ee;border:4px solid INK;opacity:0}
 #hk{position:absolute;left:108px;top:290px;white-space:nowrap;transform-origin:0 50%}
-.kw,.ks{display:inline-block;color:#b9b8b2;transform-origin:0 80%;white-space:nowrap}
-.kw{font-weight:900;letter-spacing:-.045em} .ks{font-weight:500;letter-spacing:-.02em;font-size:.5em} .kw.on{color:INK}
+.kw,.ks{display:inline-block;color:#474745;transform-origin:0 80%;white-space:nowrap}
+.kw{font-weight:900;letter-spacing:-.045em} .ks{font-weight:500;letter-spacing:-.02em;font-size:.86em} .kw.on{color:INK}
 .pb{position:absolute;width:288px;background:PAPER;border:6px solid INK;box-shadow:10px 10px 0 INK;display:flex;flex-direction:column;align-items:center;padding-top:8px}
 .pb b{font-weight:900;font-size:136px;line-height:132px;letter-spacing:-.04em} .pb span{font-weight:800;font-size:56px;line-height:62px;letter-spacing:-.02em;white-space:nowrap}
 .pb2 b{font-size:76px;line-height:76px} .pb2{padding-top:6px} .pb2 span{font-size:50px;line-height:54px}
 .pb1 b{font-size:108px;line-height:108px}
 .pl{position:absolute;font-weight:900;font-size:32px;line-height:35px;letter-spacing:-.01em;white-space:nowrap}
-#fw{position:absolute;left:104px;top:500px;font-weight:900;letter-spacing:-.05em;color:#b9b8b2;white-space:nowrap;transform-origin:0 60%}
+#fw{position:absolute;left:104px;top:500px;font-weight:900;letter-spacing:-.05em;color:#474745;white-space:nowrap;transform-origin:0 60%}
 #fu{position:absolute;width:864px;height:40px;overflow:visible} #fu path{fill:none;stroke:#D97757;stroke-width:13;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
 #fl{position:absolute;left:112px;font-weight:800;font-size:52px;line-height:60px;letter-spacing:-.02em;white-space:nowrap;opacity:0}
 .world svg.road,.world svg.trs{position:absolute;left:0;top:0;overflow:visible}
@@ -856,4 +856,4 @@ say(f"SLOW MOTION REPLAY {SLOW}x video {vRm:.2f}-{vJ:.2f} (race from {rA:.2f}), 
 say(f"headlines in: two-laps {tA2:.2f}, Perplexity {tA3:.2f}, Meta AI {tA4:.2f}, neck {tA5:.2f}, who-won {vR0 + .12:.2f}, wins {vX:.2f}, send {tK:.2f}/{tS8:.2f}")
 say(f"camera: zoom {min(CZ):.2f}-{max(CZ):.2f}; smallest car on screen in the race {MINCAR:.0f} px long, {MINCAR * .6:.0f} px wide")
 if not WORDS: say("NOTE: no usable voice/words.json for this take: word-timed beats use line fractions.")
-open(H_ + "/out/build-v13.log", "w").write("\n".join(LOG) + "\n")
+open(H_ + "/out/build-v14.log", "w").write("\n".join(LOG) + "\n")
