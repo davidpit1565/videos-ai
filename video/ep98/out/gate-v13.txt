@@ -5,7 +5,7 @@
       within tolerance: 4px overlap  SPAN x #h8b
 
 === PASS  rendered file (qa.py --hf)
-    ep98-v13.mp4  1080x1920  30fps  22.00s  25.2MB
+    ep98-v13.mp4  1080x1920  30fps  22.00s  25.1MB
       visual change: median 0.03s, longest 3.63s
       loudness: -14.0 LUFS integrated, peak -3.6 dBFS, LRA 2.3 LU
       loop seam: first vs last frame differ by 24.5/255

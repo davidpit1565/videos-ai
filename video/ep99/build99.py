@@ -357,7 +357,7 @@ def char(cid, k, sword=False, fd=1):
             f'<div class="tile" style="box-shadow:10px 10px 0 {COL[k]},10px 10px 0 4px {INK}">{logo(k, 130)}</div>{eyes}</div>')
 assert near["id"] == "claude" and sorted(WINS) == ["gemini", "meta"]
 T25 = math.tan(math.radians(25)); CUTD = [round(math.cos(math.radians(25)), 4), round(math.sin(math.radians(25)), 4)]
-KCX, KCY = 700, 884                                          # Claude in the opening; the cut runs through its centre at 25 degrees
+KCX, KCY = 694, 890                                          # Claude in the opening; the cut runs through its centre at 25 degrees
 S0X, S0Y = KCX - 290 * CUTD[0], KCY - 290 * CUTD[1]
 half = lambda cid, poly: f'<div class="hf" id="hf{cid}"><div class="hfc" style="clip-path:polygon({poly})"><div class="hfi">{char("cl" + cid, "claude", fd=-1)}</div></div></div>'
 chars = ('<div id="chars">' + char("gemini", "gemini", sword=True) + char("meta", "meta", sword=True) + char("chatgpt", "chatgpt") + char("perplexity", "perplexity", fd=-1) +
@@ -389,7 +389,7 @@ HKW = [("META AI", "kw", woff("meta", 1, .0)), ("and", "ks", woff("and", 1, .28)
        ("just", "ks", woff("just", 1, .55)), ("KILLED", "kw kk", woff("killed", 1, .62)), ("CLAUDE.", "kw", woff("claude", 1, .78))]
 HKT = [round(s(1) + t_, 3) for _, _, t_ in HKW]
 kwid = lambda parts: sum((tw(t) - 1.5 * len(t)) * (1 if c != "ks" else .82) / 100 for t, c, _ in parts) + .27 * (len(parts) - 1)
-HF1 = min(100, 872 / kwid(HKW[:3])); HF2 = min(128, 872 / kwid(HKW[3:]))
+HF1 = min(100, 856 / kwid(HKW[:3])); HF2 = min(128, 856 / kwid(HKW[3:]))
 hook = (f'<div id="hk"><div class="kl" style="font-size:{HF1:.1f}px;line-height:{HF1 * 1.0:.1f}px">' + "".join(f'<span class="{c}">{t}</span>' for t, c, _ in HKW[:3]) +
         f'</div><div class="kl" style="font-size:{HF2:.1f}px;line-height:{HF2 * 1.02:.1f}px">' + "".join(f'<span class="{c}">{t}{"<i class=ku data-decor></i>" if "kk" in c else ""}</span>' for t, c, _ in HKW[3:]) + '</div></div>')
 HKB = 286 + HF1 + HF2 * 1.02                                  # bottom of the headline: the duel sits under it
@@ -618,8 +618,8 @@ function put(el,o){el.style.opacity=o.op.toFixed(3); el.style.transform='transla
 function duel(kt,v){
   const p=ez(kt/Dt.tKL), hit=kt>=Dt.tKL, post=kt-Dt.tKL, q=hit?eo(post/.1):0, vic=hit?ez((post-.35)/.4):0, wind=bump(Math.min(1,kt/Dt.tKL));
   return {
-    g:{x:lerp(268,330,p)+36*q, y:lerp(668,680,p)+6*q+Math.sin(v*5)*4-12*vic*Math.abs(Math.sin(v*7+1)), sc:1.35, rot:lerp(-8,-4,p)+8*q-4*vic, aR:(hit?lerp(-10,25,q):-10)-25*vic, aL:74+6*Math.sin(v*6), lL:(34+24*Math.sin(v*10))*(1-vic), lR:(-30-24*Math.sin(v*10))*(1-vic), so:1, op:1, ex:.9, es:1, bo:1-vic},
-    m:{x:lerp(330,376,p)+32*q, y:lerp(1040,1020,p)-4*q+Math.sin(v*5+1.3)*4-12*vic*Math.abs(Math.sin(v*7)), sc:1.35, rot:lerp(7,3,p)-7*q, aR:(hit?lerp(-56,-30,q):-60+4*wind)-26*vic, aL:74+6*Math.sin(v*6+1), lL:(-30+24*Math.sin(v*10+2))*(1-vic), lR:(32-24*Math.sin(v*10+2))*(1-vic), so:1, op:1, ex:.9, ey:-.5, es:1, bo:1-vic},
+    g:{x:lerp(272,326,p)+36*q, y:lerp(716,722,p)+6*q+Math.sin(v*5)*4-12*vic*Math.abs(Math.sin(v*7+1)), sc:1.35, rot:lerp(-8,-4,p)+8*q-4*vic, aR:(hit?lerp(-10,25,q):-10)-25*vic, aL:74+6*Math.sin(v*6), lL:(34+24*Math.sin(v*10))*(1-vic), lR:(-30-24*Math.sin(v*10))*(1-vic), so:1, op:1, ex:.9, es:1, bo:1-vic},
+    m:{x:lerp(384,410,p)+26*q, y:lerp(1030,1016,p)-4*q+Math.sin(v*5+1.3)*4-12*vic*Math.abs(Math.sin(v*7)), sc:1.35, rot:lerp(7,3,p)-7*q, aR:(hit?lerp(-62,-30,q):-66+4*wind)-26*vic, aL:74+6*Math.sin(v*6+1), lL:(-30+24*Math.sin(v*10+2))*(1-vic), lR:(32-24*Math.sin(v*10+2))*(1-vic), so:1, op:1, ex:.9, ey:-.5, es:1, bo:1-vic},
     c:{x:Dt.KC[0]+(hit?0:2.6*Math.sin(v*38)), y:Dt.KC[1], sc:1.6, rot:hit?0:lerp(4,7,p), aR:-66+5*Math.sin(v*14), aL:-66+5*Math.sin(v*14+2), lL:hit?-6:-8+5*Math.sin(v*22), lR:hit?6:8+5*Math.sin(v*22+2), so:0, op:1, ex:-.95, ey:.1, es:hit?1.55:lerp(1.3,1.45,p), bo:0, slide:hit?46*eo(post/.45)+4*Math.sin(post*9)*ez(post/.5):0}
   };
 }

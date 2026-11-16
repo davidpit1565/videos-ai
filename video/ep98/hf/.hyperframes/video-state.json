@@ -363,15 +363,15 @@
   },
   "renders": {
     "latest": {
-      "id": "ad87eebd-cc67-4bce-9cf8-f97923872b4a",
-      "completedAt": 1794827509342,
+      "id": "ec495657-d0f4-4fd6-bdb4-fed418479dea",
+      "completedAt": 1794828282728,
       "output": "/home/user/videos-ai/video/ep98/out/pic-v13.mp4",
       "status": "completed",
-      "revision": "82378ebf-41fd-4ecb-8160-b84912978d30"
+      "revision": "c892573a-c73c-42f6-8852-506823aeb519"
     },
     "retainedRevisions": [
-      "82378ebf-41fd-4ecb-8160-b84912978d30",
-      "d22950d0-cb0d-4dfe-8e6d-f7eae1a41782"
+      "c892573a-c73c-42f6-8852-506823aeb519",
+      "82378ebf-41fd-4ecb-8160-b84912978d30"
     ]
   },
   "pendingArtifactCleanup": []

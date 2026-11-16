@@ -1,1 +1,1 @@
-Same job for all five: drive two laps, no crashing.
+Each AI taught a car to drive. Fastest wins.
