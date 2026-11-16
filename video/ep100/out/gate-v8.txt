@@ -1,10 +1,13 @@
 === PASS  frame layout (safe_check_hf.js)
+    index.html  31.95s  160 samples every 0.2s  safe box: x 65-1015, y 269-1248
+      safe area: clean (tolerance 10px)
+      overlaps: none over 10px
 
 === PASS  rendered file (qa.py --hf)
-    ep100-v8.mp4  1080x1920  30fps  31.97s  40.1MB
-      visual change: median 0.03s, longest 5.60s
+    ep100-v8.mp4  1080x1920  30fps  31.97s  7.4MB
+      visual change: median 0.03s, longest 5.57s
       loudness: -14.2 LUFS integrated, peak -3.3 dBFS, LRA 1.6 LU
-      loop seam: first vs last frame differ by 0.2/255
+      loop seam: first vs last frame differ by 0.6/255
     
       ok        1080x1920
       ok        yuv420p
