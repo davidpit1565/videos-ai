@@ -62,7 +62,7 @@ export default async function Renders({ searchParams }: { searchParams: Promise<
   // nobody added to the list still sorts after the listed ones, and the badge never goes missing.
   const nextFile = rs.find(waiting)?.file ?? null;
 
-  // Trials come from the episode's notes lines (lib/trials.ts), the same source as /trials.
+  // Trials come from the episode's notes lines (lib/trials.ts).
   const trialOf = new Map((state?.episodes ?? []).map((e) => [e.number, parseTrial(e.notes)] as const));
   const pub = (r: (typeof all)[number]): Pub => {
     if (r.kind !== "video") return null;

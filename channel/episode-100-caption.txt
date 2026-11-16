@@ -1,0 +1,31 @@
+They say this free tool killed Claude Code's token problem. We checked. Not even close.
+
+The posts say a free tool called Graphify makes your $20 Claude plan do the work of the $100 plan. We checked the public sources (15.11.2026). We have NOT installed or tested it ourselves.
+
+What's true:
+- Graphify is real, free and open source, with about 148,000 GitHub stars.
+- The idea is good: it maps your code once, so Claude Code can look things up instead of reading your files again.
+
+Where "70x" comes from:
+- One best-case example from the project: 52 files, about 1,700 tokens per question against about 123,000 for reading every file at once. Claude Code doesn't work by reading every file at once.
+
+What other people measured on real projects:
+- One run: about 18% less ($5.16 down to $4.29).
+- A FastAPI test with 11 questions: input tokens went UP 49.5%, cost up 9.5%.
+Both are reported on Graphify's own blog, which ends with: measure your own repo.
+
+The money part:
+- Claude Max ($100) gives 5x the usage of Pro ($20). For $20 to do $100 of work, the tool would need to cut usage about 5 times on everything. No test we found comes close.
+
+Before you install:
+1. The package name has two y's: graphifyy. Similar names are not from the project.
+2. Measure a few normal questions before and after, on your own project.
+3. If it uses more, remove it.
+
+It may still help on some projects. Just don't trust the 70x.
+
+The setup steps and every source are in the link in bio.
+
+Send this to the friend who just installed it.
+
+Want the next one? Follow.

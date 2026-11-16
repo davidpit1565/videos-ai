@@ -2660,6 +2660,74 @@ export const ARTICLES: Article[] = [
       "ChatGPT is OpenAI's, Gemini is Google's, Meta AI is Meta's and Perplexity is Perplexity AI's. Claude is made by Anthropic, and this channel's videos and this page are made with help from Claude. This channel is not affiliated with any of them.",
     ],
   },
+  {
+    n: 99,
+    title: "Meta AI and Gemini just killed Claude: five AIs race out of a maze, and you can race yours",
+    standfirst:
+      "We sent ChatGPT, Gemini, Claude, Meta AI and Perplexity the same request: write the moves that guide a dot out of a maze it cannot see. " +
+      "Each answer moved its own dot, one try each, in a maze and with rules we locked before any answer came in. " +
+      "On this page you can replay the real race, read the request word for word, and run your own AI in the same maze, in about five minutes.",
+    steps: [
+      "Scroll to The maze on this page and click Play the maze. The race from the video plays again in your browser, with the same five answers, at the same speed.",
+      "Under the maze, watch the numbers for each dot: the steps so far, and how close it has been to the exit. The best possible way out is 89 steps.",
+      "Scroll to The request and click Copy the request. This copies the request we sent to every AI, word for word.",
+      "Open the AI you want to test (ChatGPT, Gemini, Claude, Meta AI, Perplexity or any other) in a new tab and start a new chat. Leave the settings as they are, with no extra modes turned on.",
+      "Click in the message box, paste (Ctrl+V on Windows, Cmd+V on Mac) and send. Wait until the answer stops writing.",
+      "In the answer, click Copy on the code block. If there is no Copy button, select the whole answer with the mouse and copy it (Ctrl+C or Cmd+C). Text around the code is fine: the page takes the code out of it.",
+      "Come back to this page, scroll to Run your own AI and click Add my AI. Paste the answer into the box and click Run.",
+      "Your dot joins the same maze and the race plays from the start. If it gets stuck, walks in circles or does not start, that is the real result of that answer, and the page says what happened.",
+      "Optional: tell your AI what went wrong, paste the new answer and click Run again. That is a second try, so it does not compare with the one try each AI got in our race.",
+      "Optional: send this page to a friend and see whose AI gets out first.",
+    ],
+    changes: [
+      "Our result (one try each, 15.11.2026; at most 500 steps; the best possible way out is 89 steps): Gemini got out in 117 steps and Meta AI got out in 117 steps, on the exact same path as Gemini, cell by cell. Claude got out in 171 steps.",
+      "ChatGPT did not get out. Its closest point was 52 steps from the exit (at step 125); after that it walked in circles over 29 cells for the other 375 steps. Perplexity did not get out either: it stayed among 4 cells next to the start and never got closer than 86 steps from the exit.",
+      "Nobody bumped a wall or sent an invalid answer. The maze, the rules and the request were locked (their fingerprints, sha256, written down) before any AI answered, and nothing was changed after. Run again with the same answers, the race gives the same result every time.",
+    ],
+    limits: [
+      "One try per AI, one maze, one day. Another try, another day or another model setting can give a different answer and a different order, so this is not a ranking of how smart the AIs are.",
+      "The answers were copied from the AI apps. Claude answered as Sonnet 5.5 (what we read in the app; no screenshot). For ChatGPT, Gemini, Meta AI and Perplexity we do not know which model answered that day.",
+      "We did not look into why Gemini and Meta AI walk the same path (their answers are not the same text), why ChatGPT walks in circles, or why Perplexity stays next to the start.",
+      "The code you paste runs only in your browser, inside a sandbox with no access to this page and no internet. Nothing is uploaded or saved, and a reload clears it. A very slow or endless answer is stopped by a time limit.",
+      "ChatGPT is OpenAI's, Gemini is Google's, Meta AI is Meta's and Perplexity is Perplexity AI's. Claude is made by Anthropic, and this channel's videos and this page are made with help from Claude. This channel is not affiliated with any of them.",
+    ],
+  },
+  {
+    n: 100,
+    title: "A free tool says it cuts Claude Code tokens 70 times: the claim, the sources and how to check it on your own project",
+    standfirst:
+      "Viral posts say a free tool called Graphify cuts Claude Code's token use by up to 70 times, so the $20 Claude plan does the work of the $100 plan. " +
+      "We read the public sources on 15.11.2026 and compared the claim with them. We did not install or test Graphify ourselves, so every token figure on this page was measured by someone else. " +
+      "Below: what is true, where the 70 comes from, the exact public commands with their risks, and how to measure the before and after on your own project.",
+    steps: [
+      "Decide first what you want to find out: does Graphify lower the tokens or the cost of the questions you really ask, on your own project? That is the only number that matters for you.",
+      "Before installing anything, write down 5 to 10 normal questions you ask Claude Code about your project (for example: where is the login handled, what calls this function).",
+      "In Claude Code, open a new session in your project folder and ask those questions one by one WITHOUT Graphify. After each answer, write down the usage Claude Code shows (tokens or cost, depending on your plan and version). This is your before number.",
+      "Optional: work on a copy of the project or a separate branch, so any file Graphify adds can be thrown away easily. Graphify adds lines to your CLAUDE.md and installs a hook, so a copy is the safer path.",
+      "Check the project's own page first: https://github.com/Graphify-Labs/graphify. The package name is graphifyy, with TWO y's. Similar names are not from the project, so do not install a package with a different spelling.",
+      "Install it with the command from the project's README (checked 15.11.2026): uv tool install graphifyy. If you do not use uv, the README also lists pipx install graphifyy and pip install graphifyy. Risk: this installs software from the internet on your computer; read the repository page first and install only if you are comfortable with that.",
+      "Run the second README command: graphify install. It registers the tool with the AI coding assistant it finds on your computer. Risk: in Claude Code this adds lines to CLAUDE.md and sets up a hook that points Claude's searches at the map of your code.",
+      "Open Claude Code in your project folder and type: /graphify . (with the dot). Graphify reads your code, builds the map and writes a file called GRAPH_REPORT.md. Wait until it finishes.",
+      "Start a new Claude Code session and ask the SAME questions as before, in the same order. After each answer, write down the usage again. This is your after number.",
+      "Compare the two lists, question by question. If the after number is lower, how much lower is YOUR result. If it is the same or higher, that is also a real result.",
+      "Optional: if it uses more or you do not want it, remove it: delete the lines it added to CLAUDE.md, remove the hook it installed (or restore your copy of the project), and uninstall the package with uv tool uninstall graphifyy.",
+      "Optional: send this page to the friend who just installed it.",
+    ],
+    changes: [
+      "What is true (checked 15.11.2026): Graphify is real, free and open source (Apache-2.0 and MIT licence files in the repository), with about 148,000 stars on GitHub that day. A paid product, Graphify Cloud, also exists. It maps your code once so Claude Code can look things up instead of reading your files again.",
+      "Where the 70 comes from: one best-case example from the project, about 52 files, around 1,700 tokens per question against about 123,000 for reading every file at once. Claude Code does not work by reading every file at once, so this is not what a normal user should expect. The current README does not repeat the 70.",
+      "What other people measured (not us): one YouTube run, about 18% fewer tokens ($5.16 down to $4.29), slower, with 2 of 3 graph queries missing. A FastAPI test with 11 questions: input tokens up 49.5% and cost up 9.5%. Both are reported on Graphify's own blog (https://graphify.com/blog/reduce-claude-code-token-usage), which ends with: measure your own repo. A review on 28.5.2026 (https://www.roborhythms.com/graphify-review/) reports the hook silently stopping on newer Claude Code versions; whether that is fixed now is unconfirmed.",
+      "The money claim: according to https://claude.com/pricing (read 15.11.2026), Max at $100 a month gives 5 times the usage of Pro at $20. For $20 to do the work of $100, the tool would have to cut usage about 5 times on every kind of work. We found no test that shows that.",
+      "Sources, all read on 15.11.2026: https://github.com/Graphify-Labs/graphify, https://graphify.com/blog/reduce-claude-code-token-usage, https://claude.com/pricing, https://www.roborhythms.com/graphify-review/.",
+    ],
+    limits: [
+      "We did not install, run or test Graphify. Every token and cost figure on this page was measured by other people, on their own projects, and we cannot vouch for their method.",
+      "Some things we could not confirm: whether the project moved to its current GitHub owner from the original author, whether the hook problem reported on newer Claude Code versions is fixed, and a few figures we only saw in search summaries (they are left out of the video).",
+      "The commands above are the public ones from the project's README on 15.11.2026. Names and steps can change; check the repository page before you run anything.",
+      "Your result depends on your project, your questions and your setup. A tool that helps on one project can cost more on another.",
+      "Claude and Claude Code are made by Anthropic, and this channel's videos and pages are made with help from Claude. This channel is not affiliated with Anthropic or with Graphify.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

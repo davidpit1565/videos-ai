@@ -50,10 +50,3 @@ Blind reader answer (first frame plus first second): pending
 
 ## Disclosures
 Anthropic makes Claude, and this video was made with help from Claude. GitHub is owned by Microsoft; this channel is not affiliated with GitHub or Git. Logos used under their brand guidelines (see SCRIPT-ORIGINALITY.md, brand.github.com).
-
-## Decision and scores (9.11.2026, written by the main session)
-Shipped version: s5c. Spoken line 1: "You know Ctrl+Z. GitHub is Ctrl+Z for AI mistakes." (the voice reads "Control plus Z"; captions say Ctrl+Z). Frame 0: GitHub lockup, Ctrl+Z keycaps, big words, a red "Each pays NaN" card that flips to green "total 92.00" at about 2 s. No Tomorrow line.
-Hook tests (fresh-agent viewers, judgements): of 5 openings the Ctrl+Z hook ranked first for the 17-year-old and the 40-year-old and fourth for the builder; "AI broke your app?" was best for builders only. Blind reader on frame 0: understands the subject, "maybe" stops.
-Scores (judgements): HOOK 76, VIRALITY 66, OVERALL 70, predicted views 250-700 (score 54-66). Under the 90/95/95 bar David set for the NEXT video; this one was built before that rule.
-Concept checklist: (1) personal/surprising: weak (demo, not the viewer's own account); (2) curiosity gap: partial; (3) saveable card: yes (the commit/restore card); (4) named person: no; (5) watch twice: no; (6) checkable in 30 s: yes (git commands on /e/87).
-Hook type: contrast with something known (Ctrl+Z) plus a visible example.
