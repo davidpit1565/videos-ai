@@ -177,35 +177,47 @@ head(10, tNo, a[9], "NOTHING COMES CLOSE")
 SC = {}
 # The lifter: a block character (Claude mark + "$20") under a barbell. Drawn here, posed by render() from the clock.
 def lifter(p, big=True, spot=False):
-    PR = 150 if big else 62; x1, x2 = (150, 800) if big else (300, 650); pf = ORA if big else "#fff"
+    # v7: bigger character, the Claude mark large on its body, thick ink outlines, hard brand-colour offset shadows (channel/ep99-opening-design-notes.md)
+    PR = 150 if big else 66; x1, x2 = (150, 800) if big else (300, 650); GG = "#118D4F"
     def plate(cx):
-        t = f'<text x="{cx}" y="32" text-anchor="middle" font-size="94" font-weight="900" letter-spacing="-3" fill="{INK}">$100</text>' if big else ""
-        return f'<circle cx="{cx + 9}" cy="9" r="{PR}" fill="{INK}"/><circle cx="{cx}" cy="0" r="{PR}" fill="{pf}" stroke="{INK}" stroke-width="8"/><circle cx="{cx}" cy="0" r="{PR * .8:.0f}" fill="none" stroke="{INK}" stroke-width="4" opacity=".45"/>{t}'
-    sp = f'''<g id="{p}sp" opacity="0"><path d="M760 780 L750 868 M840 780 L850 868" stroke="{INK}" stroke-width="16" stroke-linecap="round"/>
+        if big:
+            return (f'<circle cx="{cx + 13}" cy="13" r="{PR}" fill="{ORA}" stroke="{INK}" stroke-width="6"/><circle cx="{cx}" cy="0" r="{PR}" fill="#262626" stroke="{INK}" stroke-width="11"/>'
+                    f'<circle cx="{cx}" cy="0" r="{PR * .8:.0f}" fill="none" stroke="#fff" stroke-width="4" opacity=".28"/><circle cx="{cx}" cy="0" r="16" fill="#fff" opacity=".0"/>'
+                    f'<text x="{cx}" y="33" text-anchor="middle" font-size="96" font-weight="900" letter-spacing="-3" fill="#fff">$100</text>')
+        return f'<circle cx="{cx + 7}" cy="7" r="{PR}" fill="{ORA}" stroke="{INK}" stroke-width="5"/><circle cx="{cx}" cy="0" r="{PR}" fill="#fff" stroke="{INK}" stroke-width="10"/><circle cx="{cx}" cy="0" r="{PR * .45:.0f}" fill="none" stroke="{INK}" stroke-width="5" opacity=".5"/>'
+    sp = f'''<g id="{p}sp" opacity="0"><path d="M785 868 L775 944 M865 868 L875 944 M757 946 H793 M857 946 H893" stroke="{INK}" stroke-width="16" stroke-linecap="round"/>
   <path id="{p}sA" fill="none" stroke="{INK}" stroke-width="16" stroke-linecap="round"/><path id="{p}sB" fill="none" stroke="{INK}" stroke-width="16" stroke-linecap="round"/>
-  <rect x="714" y="598" width="190" height="190" rx="34" fill="{INK}"/><rect x="705" y="590" width="190" height="190" rx="34" fill="#fff" stroke="{INK}" stroke-width="8"/>
-  <circle cx="768" cy="628" r="9" fill="{INK}"/><circle cx="832" cy="628" r="9" fill="{INK}"/>
-  <image href="assets/logos/graphify-icon.svg" x="754" y="652" width="92" height="105.5"/></g>''' if spot else ""
-    fr = f'''<g id="{p}fr" opacity="0"><text x="475" y="150" text-anchor="middle" font-size="124" font-weight="900" letter-spacing="2" fill="{GREEN}" stroke="#fff" stroke-width="10" paint-order="stroke">FREE</text>
-  {"".join(f'<path class="spk" data-x="{x}" data-y="{y}" d="M0 -26 Q4 -4 26 0 Q4 4 0 26 Q-4 4 -26 0 Q-4 -4 0 -26Z" fill="#F5B301" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>' for x, y in ((300, 60), (655, 84), (330, 176), (630, 190)))}</g>''' if spot else ""
-    return f'''<svg class="lf" id="{p}svg" viewBox="0 0 950 900" width="950" height="900" style="font-family:IDisp,Inter,sans-serif">
- <path d="M40 882 C200 876 420 888 620 880 S860 876 910 882" fill="none" stroke="{INK}" stroke-width="7" stroke-linecap="round"/>
- <ellipse cx="475" cy="884" rx="200" ry="15" fill="rgba(15,15,15,.16)"/>
+  <rect x="742" y="692" width="190" height="190" rx="34" fill="{GG}" stroke="{INK}" stroke-width="6"/><rect x="730" y="680" width="190" height="190" rx="34" fill="#fff" stroke="{INK}" stroke-width="10"/>
+  <circle cx="793" cy="716" r="13" fill="#fff" stroke="{INK}" stroke-width="6"/><circle cx="857" cy="716" r="13" fill="#fff" stroke="{INK}" stroke-width="6"/><circle cx="795" cy="717" r="5" fill="{INK}"/><circle cx="859" cy="717" r="5" fill="{INK}"/>
+  <image href="assets/logos/graphify-icon.svg" x="777" y="738" width="96" height="110"/></g>''' if spot else ""
+    fr = f'''<g id="{p}fr" opacity="0"><text x="475" y="150" text-anchor="middle" font-size="100" font-weight="900" letter-spacing="2" fill="{GREEN}" stroke="#fff" stroke-width="10" paint-order="stroke">FREE</text>
+  {"".join(f'<path class="spk" data-x="{x}" data-y="{y}" d="M0 -26 Q4 -4 26 0 Q4 4 0 26 Q-4 4 -26 0 Q-4 -4 0 -26Z" fill="#F5B301" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>' for x, y in ((348, 66), (606, 80), (366, 168), (592, 176)))}</g>''' if spot else ""
+    strain = f'''<g id="{p}fs"><circle cx="400" cy="532" r="34" fill="#fff" stroke="{INK}" stroke-width="9"/><circle cx="550" cy="532" r="34" fill="#fff" stroke="{INK}" stroke-width="9"/>
+   <circle id="{p}pL" cx="406" cy="536" r="11" fill="{INK}"/><circle id="{p}pR" cx="544" cy="536" r="11" fill="{INK}"/>
+   <path d="M352 486 L430 506 M598 486 L520 506" stroke="{INK}" stroke-width="12" stroke-linecap="round"/>
+   <rect x="430" y="578" width="90" height="30" rx="8" fill="#fff" stroke="{INK}" stroke-width="8"/><path d="M452 580 V606 M475 580 V606 M498 580 V606" stroke="{INK}" stroke-width="5"/></g>'''
+    happy = f'<g id="{p}fh" fill="none" stroke="{INK}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M368 540 q32 -44 64 0 M518 540 q32 -44 64 0 M420 572 q55 50 110 0"/></g>'
+    ko = f'<g id="{p}fk" fill="none" stroke="{INK}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M372 506 l52 52 m0 -52 l-52 52 M526 506 l52 52 m0 -52 l-52 52 M430 596 h90"/></g>'
+    shk = "".join(f'<path class="{p}shk" data-i="{i}" d="{d}" fill="none" stroke="{INK}" stroke-width="8" stroke-linecap="round" opacity="0"/>' for i, d in enumerate(
+        ("M212 500 l-34 14", "M228 566 l-40 4", "M738 500 l34 14", "M722 566 l40 4", "M330 905 l-30 12", "M620 905 l30 12"))) if big else ""
+    return f'''<svg class="lf" id="{p}svg" viewBox="0 0 950 980" width="950" height="980" style="font-family:IDisp,Inter,sans-serif">
+ <g data-decor><path d="M-60 957 C160 950 420 964 640 955 S900 950 1010 957" fill="none" stroke="{INK}" stroke-width="9" stroke-linecap="round"/>
+  <path d="M-30 1010 H90 M170 1050 H330 M430 1004 H560 M660 1056 H800 M860 1012 H990 M40 1120 H180 M300 1150 H470 M600 1118 H740 M820 1160 H960" fill="none" stroke="{INK}" stroke-width="6" stroke-linecap="round" opacity=".16"/></g>
+ <ellipse cx="475" cy="960" rx="250" ry="17" fill="rgba(15,15,15,.18)"/>
  {sp}
- <path d="M425 780 L410 868 M525 780 L540 868 M392 870 H428 M522 870 H558" stroke="{INK}" stroke-width="18" stroke-linecap="round"/>
- <g id="{p}bd"><rect x="335" y="510" width="300" height="280" rx="44" fill="{INK}"/><rect x="325" y="500" width="300" height="280" rx="44" fill="#fff" stroke="{INK}" stroke-width="8"/>
-  <g id="{p}fs" fill="none" stroke="{INK}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M402 546 l28 15 l-28 15 M548 546 l-28 15 l28 15 M436 612 q9 -13 19 0 t19 0 t19 0 t19 0"/></g>
-  <g id="{p}fh" fill="none" stroke="{INK}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M398 568 q16 -24 32 0 M520 568 q16 -24 32 0 M436 598 q39 38 78 0"/></g>
-  <g id="{p}fk" fill="none" stroke="{INK}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M400 546 l28 28 m0 -28 l-28 28 M522 546 l28 28 m0 -28 l-28 28 M442 618 h66"/></g>
-  <image href="assets/logos/claude.svg" x="346" y="652" width="100" height="100"/>
-  <text x="532" y="738" text-anchor="middle" font-size="86" font-weight="900" letter-spacing="-3" fill="{INK}">$20</text></g>
- <path id="{p}aL" fill="none" stroke="{INK}" stroke-width="18" stroke-linecap="round"/><path id="{p}aR" fill="none" stroke="{INK}" stroke-width="18" stroke-linecap="round"/>
- <g id="{p}bar"><path d="M{x1} 0 H{x2}" stroke="{INK}" stroke-width="24" stroke-linecap="round"/>{plate(x1)}{plate(x2)}</g>
- {"".join(f'<path id="{p}sw{i}" d="M0 -14 Q11 2 0 10 Q-11 2 0 -14Z" fill="#7EC8F0" stroke="{INK}" stroke-width="4" opacity="0"/>' for i in range(3))}
+ <path d="M400 866 L384 944 M550 866 L566 944 M360 946 H402 M548 946 H590" stroke="{INK}" stroke-width="22" stroke-linecap="round"/>
+ <g id="{p}bd"><rect x="281" y="486" width="420" height="400" rx="56" fill="{ORA}" stroke="{INK}" stroke-width="7"/><rect x="265" y="470" width="420" height="400" rx="56" fill="#fff" stroke="{INK}" stroke-width="12"/>
+  {strain}{happy}{ko}
+  <image href="assets/logos/claude.svg" x="288" y="628" width="214" height="214"/>
+  <text x="590" y="770" text-anchor="middle" font-size="96" font-weight="900" letter-spacing="-4" fill="{INK}">$20</text></g>
+ <path id="{p}aL" fill="none" stroke="{INK}" stroke-width="22" stroke-linecap="round"/><path id="{p}aR" fill="none" stroke="{INK}" stroke-width="22" stroke-linecap="round"/>
+ <g id="{p}bar"><path d="M{x1} 0 H{x2}" stroke="{INK}" stroke-width="30" stroke-linecap="round"/>{plate(x1)}{plate(x2)}</g>
+ {shk}
+ {"".join(f'<path id="{p}sw{i}" d="M0 -22 Q17 3 0 16 Q-17 3 0 -22Z" fill="#7EC8F0" stroke="{INK}" stroke-width="5" opacity="0"/>' for i in range(5))}
  {fr}
 </svg>'''
 # 1 OPENING (lines 1 + 2): the claim as action. Text on frame 0: "$20" and "$100" only
-SC[1] = f'<div id="lfo" style="left:65px;top:290px">{lifter("o", True, True)}</div>'
+SC[1] = f'<div id="lfo" style="left:65px;top:269px">{lifter("o", True, True)}</div>'
 # 3 the problem: every new chat, the files are read again
 FILES = ["login", "users", "orders", "payments", "search", "emails"]
 FX = [65, 392, 719]; FY = [500, 730]
@@ -255,12 +267,12 @@ SC[8] = srcline("usage: claude.com/pricing (&ldquo;5x Pro usage&rdquo;), read 15
 <div class="stamp big nc" id="nc" style="left:104px;top:716px">NOT CLOSE</div>'''
 # 9 END (line 9): its own scene. The $20 character lifts a weight that fits it, the $100 barbell rests; the saveable card slides in
 ROWS = ["Free, open source, 148.2k stars", "&ldquo;70x&rdquo; = one best case", "Real tests: 18% fewer &hellip; 49.5% more", "Max is 5x Pro: no test comes near", "Measure your own project first"]
-REST = f'''<svg id="rest" viewBox="0 0 540 222" width="540" height="222" style="left:470px;top:322px;font-family:IDisp,Inter,sans-serif">
+REST = f'''<svg id="rest" viewBox="0 0 540 222" width="540" height="222" style="left:470px;top:364px;font-family:IDisp,Inter,sans-serif">
  <path d="M6 214 C120 208 300 218 534 212" fill="none" stroke="{INK}" stroke-width="6" stroke-linecap="round"/><path d="M105 105 H435" stroke="{INK}" stroke-width="20" stroke-linecap="round"/>
- {"".join(f'<circle cx="{cx + 7}" cy="112" r="100" fill="{INK}"/><circle cx="{cx}" cy="105" r="100" fill="{ORA}" stroke="{INK}" stroke-width="7"/><text x="{cx}" y="127" text-anchor="middle" font-size="62" font-weight="900" letter-spacing="-2" fill="{INK}">$100</text>' for cx in (107, 433))}</svg>'''
-SC[9] = f'<div id="lfe" style="left:65px;top:189px">{lifter("e", False, False)}</div>{REST}' + \
+ {"".join(f'<circle cx="{cx + 9}" cy="114" r="97" fill="{ORA}" stroke="{INK}" stroke-width="5"/><circle cx="{cx}" cy="105" r="97" fill="#262626" stroke="{INK}" stroke-width="9"/><text x="{cx}" y="127" text-anchor="middle" font-size="62" font-weight="900" letter-spacing="-2" fill="#fff">$100</text>' for cx in (107, 433))}</svg>'''
+SC[9] = f'<div id="lfe" style="left:65px;top:222px">{lifter("e", False, False)}</div>{REST}' + \
         f'<div id="card"><div class="tape t1" data-decor></div><div class="tape t2" data-decor></div><div class="ct">{gicon(60)}<span>BEFORE YOU INSTALL</span></div><div class="cnote">tests by others,<br>not by us</div>' + \
-        "".join(f'<div class="cr" id="cr{i}" style="top:{96 + i * 90}px"><span class="cnm">{i + 1}</span><span class="cx">{t}</span><i class="mk"></i></div>' for i, t in enumerate(ROWS)) + \
+        "".join(f'<div class="cr" id="cr{i}" style="top:{92 + i * 89}px"><span class="cnm">{i + 1}</span><span class="cx">{t}</span><i class="mk"></i></div>' for i, t in enumerate(ROWS)) + \
         '<div class="cf">SETUP: LINK IN BIO</div></div>' + \
         '<div id="fcard"><div class="f1">WANT THE NEXT ONE?</div><div class="f2">FOLLOW</div></div>'
 scenes = "".join(f'<div class="sc" id="sc{n}">{SC[n]}</div>' for n in sorted(SC))
@@ -298,7 +310,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .src{position:absolute;font-weight:500;color:#3a3a36;white-space:nowrap;letter-spacing:0}
 /* 1 opening + end: the lifter */
 .lf{display:block;overflow:visible}
-#lfe{transform-origin:0 0;transform:scale(.4)}
+#lfe{transform-origin:0 0;transform:scale(.37)}
 #rest{overflow:visible}
 /* 3 */
 .fc{width:288px;height:205px;background:#fff;border:6px solid INK;border-radius:18px;box-shadow:8px 8px 0 INK;opacity:0;transform-origin:50% 50%}
@@ -337,7 +349,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 #call{width:196px;text-align:right;font-weight:900;font-size:34px;line-height:38px;opacity:0}
 #carr{width:60px;height:40px;opacity:0;overflow:visible}
 /* 9 end */
-#card{left:78px;top:566px;width:916px;height:634px;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:14px 14px 0 INK;opacity:0;transform-origin:50% 0%}
+#card{left:78px;top:596px;width:916px;height:626px;background:PAPER;border:6px solid INK;border-radius:10px;box-shadow:14px 14px 0 INK;opacity:0;transform-origin:50% 0%}
 .tape{position:absolute;width:130px;height:40px;background:rgba(232,221,186,.86);border:1px solid rgba(0,0,0,.14);z-index:3}
 .tape.t1{right:-34px;top:-12px;transform:rotate(34deg)} .tape.t2{left:-34px;bottom:-6px;transform:rotate(34deg)}
 .ct{position:absolute;left:30px;top:16px;display:flex;align-items:center;gap:16px;font-weight:900;font-size:54px;line-height:64px;letter-spacing:-.03em;white-space:nowrap}
@@ -487,37 +499,39 @@ function pct(v){const K=Dt.KF; if(v<=K[0][0]) return K[0][1];
   for(let i=1;i<K.length;i++) if(v<K[i][0]) return lerp(K[i-1][1],K[i][1],ez((v-K[i-1][0])/(K[i][0]-K[i-1][0])));
   return K[K.length-1][1]}
 const cl=(x,a,b)=>x<a?a:x>b?b:x, bump=p=>p>0&&p<1?Math.sin(Math.PI*p):0, at=(el,k,x)=>el&&el.setAttribute(k,x);
-function mk(p){const g=id=>document.getElementById(p+id);return {bd:g('bd'),fs:g('fs'),fh:g('fh'),fk:g('fk'),aL:g('aL'),aR:g('aR'),bar:g('bar'),sw:[g('sw0'),g('sw1'),g('sw2')],sp:g('sp'),sA:g('sA'),sB:g('sB'),fr:g('fr')}}
+function mk(p){const g=id=>document.getElementById(p+id);return {bd:g('bd'),fs:g('fs'),fh:g('fh'),fk:g('fk'),aL:g('aL'),aR:g('aR'),bar:g('bar'),sw:[g('sw0'),g('sw1'),g('sw2'),g('sw3'),g('sw4')].filter(Boolean),pL:g('pL'),pR:g('pR'),shk:[...document.querySelectorAll('.'+p+'shk')],sp:g('sp'),sA:g('sA'),sB:g('sB'),fr:g('fr')}}
 const LO=mk('o'), LE=mk('e'), spk=[...document.querySelectorAll('.spk')];
 // pose a lifter: by = bar height (svg px), sq = body squash, face s(train) h(appy) k(o), hx = hand positions on the bar
 function pose(L,by,tilt,sq,face,hxL,hxR,sweat,v){
   at(L.bar,'transform','translate(0,'+by.toFixed(1)+') rotate('+tilt.toFixed(2)+',475,0)');
-  at(L.bd,'transform','translate(0,'+(780*(1-sq)).toFixed(1)+') scale(1,'+sq.toFixed(4)+')');
-  const sy=780-235*sq, hy=Math.min(by,sy-6);
-  at(L.aL,'d','M333 '+sy.toFixed(1)+' Q'+(hxL-78)+' '+((sy+hy)/2+34).toFixed(1)+' '+hxL+' '+hy.toFixed(1));
-  at(L.aR,'d','M617 '+sy.toFixed(1)+' Q'+(hxR+78)+' '+((sy+hy)/2+34).toFixed(1)+' '+hxR+' '+hy.toFixed(1));
+  at(L.bd,'transform','translate(0,'+(870*(1-sq)).toFixed(1)+') scale(1,'+sq.toFixed(4)+') rotate('+(sweat?1.6*Math.sin(v*4.3):0).toFixed(2)+',475,870)');
+  const sy=870-340*sq, hy=Math.min(by,sy-6);
+  if(L.pL){const jx=sweat*3*Math.sin(v*41), jy=sweat*3*Math.cos(v*37); at(L.pL,'transform','translate('+jx.toFixed(1)+','+jy.toFixed(1)+')'); at(L.pR,'transform','translate('+(-jx).toFixed(1)+','+jy.toFixed(1)+')')}
+  L.shk.forEach((k,i)=>at(k,'opacity',(sweat*(Math.sin(v*24+i*1.9)>0?1:.15)).toFixed(2)));
+  at(L.aL,'d','M277 '+sy.toFixed(1)+' Q'+(hxL-92)+' '+((sy+hy)/2+34).toFixed(1)+' '+hxL+' '+hy.toFixed(1));
+  at(L.aR,'d','M673 '+sy.toFixed(1)+' Q'+(hxR+92)+' '+((sy+hy)/2+34).toFixed(1)+' '+hxR+' '+hy.toFixed(1));
   L.fs.style.display=face==='s'?'':'none'; L.fh.style.display=face==='h'?'':'none'; L.fk.style.display=face==='k'?'':'none';
-  L.sw.forEach((d,i)=>{const ph=((v*1.7+i/3)%1+1)%1, side=i===1?1:-1;
-    at(d,'transform','translate('+(475+side*(170+70*ph)+(i===2?40:0)).toFixed(1)+','+(sy-40-70*Math.sin(Math.PI*ph)+60*ph).toFixed(1)+') rotate('+(side*40)+')'); at(d,'opacity',(sweat*(1-ph)).toFixed(2))});
+  L.sw.forEach((d,i)=>{const ph=((v*1.5+i/5)%1+1)%1, side=i%2?1:-1;
+    at(d,'transform','translate('+(475+side*(232+90*ph)+(i>2?side*24:0)).toFixed(1)+','+(sy+10+(i>2?70:0)-90*Math.sin(Math.PI*ph)+90*ph).toFixed(1)+') rotate('+(side*42)+')'); at(d,'opacity',(sweat*(1-ph)).toFixed(2))});
 }
 function opening(v){
   const t=v>=Dt.tF?0:v, c=cl((t-Dt.tChk)/.17,0,1), dn=c*c, crushed=t>=Dt.tChk;
   const sink=ez(t/Dt.e1), push=ez((t-(Dt.tCan-.3))/.5), shake=(crushed?0:1)*(1-.6*push);
-  let by=270+92*sink+46*bump((t-Dt.tCant)/.5)-118*push+5*shake*Math.sin(t*39)+3*Math.sin(t*7.3);
-  by=lerp(by,640,dn)-34*bump((t-Dt.tChk-.17)/.26)-10*bump((t-Dt.tChk-.43)/.2);
+  let by=206+86*sink+44*bump((t-Dt.tCant)/.5)-112*push+6*shake*Math.sin(t*39)+3*Math.sin(t*7.3);
+  by=lerp(by,652,dn)-34*bump((t-Dt.tChk-.17)/.26)-10*bump((t-Dt.tChk-.43)/.2);
   const tilt=crushed?3.5*Math.exp(-(t-Dt.tChk)*5)*Math.sin((t-Dt.tChk)*26):2.4*Math.sin(t*5.1)+.8*shake*Math.sin(t*31);
   let sq=1-.06*sink+.05*push-.012*shake*Math.sin(t*39); sq=lerp(sq,.5,dn)+.05*bump((t-Dt.tChk-.17)/.26);
   pose(LO,by,tilt,sq,crushed?'k':'s',300,650,crushed?0:1,t);
   const w=ez((t-(Dt.tFree-.12))/.52), back=ez((t-Dt.tChk)/.3);
   const sx=400*(1-w)+74*back, hop=-30*Math.abs(Math.sin((t-Dt.tFree)*13))*(w<1?1:0)-46*bump(back)-(crushed?5*Math.abs(Math.sin(t*9)):0);
   at(LO.sp,'opacity',t>=Dt.tFree-.12?1:0); at(LO.sp,'transform','translate('+sx.toFixed(1)+','+hop.toFixed(1)+')');
-  const ty=Math.max(by+142,430);
-  at(LO.sA,'d','M722 632 Q690 '+((632+ty)/2).toFixed(1)+' 742 '+(crushed?610:ty).toFixed(1)); at(LO.sB,'d','M888 632 Q920 '+((632+ty)/2).toFixed(1)+' 868 '+(crushed?610:ty).toFixed(1));
+  const ty=Math.max(by+140,330);
+  at(LO.sA,'d','M746 722 Q712 '+((722+ty)/2).toFixed(1)+' 766 '+(crushed?640:ty).toFixed(1)); at(LO.sB,'d','M912 722 Q944 '+((722+ty)/2).toFixed(1)+' 884 '+(crushed?640:ty).toFixed(1));
   const fo=ez((t-Dt.tFree)/.16)*(1-ez((t-Dt.tChk)/.3)), fs=.5+.5*ez((t-Dt.tFree)/.22)+.16*bump((t-Dt.tFree)/.36);
   at(LO.fr,'opacity',fo.toFixed(2)); at(LO.fr,'transform','translate(475,'+(120+150*back*back).toFixed(1)+') rotate('+(18*back).toFixed(1)+') scale('+fs.toFixed(3)+') translate(-475,-120)');
   spk.forEach((k,i)=>at(k,'transform','translate('+k.dataset.x+','+k.dataset.y+') rotate('+(t*90+i*40).toFixed(0)+') scale('+(.55+.45*Math.abs(Math.sin(t*6+i*1.3))).toFixed(3)+')'));
 }
-function ending(v){const t=v-Dt.a9, r=.5-.5*Math.cos(t*4.2); pose(LE,330-90*r,1.2*Math.sin(t*2.1),1+.03*r,'h',372,578,0,v)}
+function ending(v){const t=v-Dt.a9, r=.5-.5*Math.cos(t*4.2); pose(LE,330-100*r,1.2*Math.sin(t*2.1),1+.03*r,'h',372,578,0,v)}
 function render(v){
   opening(v); ending(v);
   const q=v>=Dt.tQ&&v<Dt.tF;                                  // from the tests on: nobody can say (it depends on the project)
