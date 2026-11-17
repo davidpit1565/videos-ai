@@ -123,7 +123,7 @@ T["S3"] = dict(t0=a[3], end=a[4])
 # ---- S4 free (3D letters)
 SC["S4"] = line("lead", "And the skill is", 4, 0, .5, 292, 62) + '<div class="free3" id="free3">FREE.</div>' + \
   '<div class="chips"><span class="chip">MIT LICENSE</span><span class="chip">NO SIGNUP</span><span class="chip">NO API KEY</span></div>'
-T["S4"] = dict(t0=a[4], free=W("completely", ("completely", "free"), 4, .6), end=a[5])
+T["S4"] = dict(t0=a[4], free=W("free", ("free",), 4, .6), end=a[5])
 # ---- S5 repo page (real)
 SC["S5"] = line("lead", "It's called the", 5, 0, .15, 292, 62) + line("hv", "REPLICA SKILL.", 5, .55, .75, 352, 104, acc=("replica",)) + '<div class="shot about5" id="sh5"><img src="assets/shots/about.png"></div>'
 T["S5"] = dict(t0=a[5], end=a[6])
@@ -138,8 +138,8 @@ def cubehtml(i):
     oth = "".join(f'<div class="cfc side" style="transform:{tf}"></div>' for tf in ("rotateY(180deg) translateZ(60px)", "rotateY(90deg) translateZ(60px)", "rotateY(-90deg) translateZ(60px)", "rotateX(90deg) translateZ(60px)", "rotateX(-90deg) translateZ(60px)"))
     return f'<div class="orb" id="orb{i}"><div class="cb" id="cb{i}">{fr}{oth}</div></div>'
 ringc = "".join(cubehtml(i) for i in range(11))
-SC["S7"] = line("lead", "Each one has its own job,", 7, 0, .45, 286, 58) + line("hv", "A DEV TEAM.", 7, .55, .8, 350, 120, acc=("dev", "team")) + \
-  f'<div class="stage" id="st7"><div class="a3 cen" id="cm7">{mark3d(8, 3)}</div>{ringc}</div>'
+SC["S7"] = line("lead", "Each one has its own job,", 7, 0, .45, 286, 58) + line("hv", "A DEV TEAM.", 7, .55, .8, 350, 120, acc=("dev", "team"))
+ORBL = f'<div class="stage" id="st7"><div class="a3 cen" id="cm7">{mark3d(8, 3)}</div>{ringc}</div>'
 T["S7"] = dict(t0=a[7], end=a[8])
 # ---- S8 recon
 SC["S8"] = line("lead", "The first one studies the app", 8, 0, .8, 292, 54) + line("hv", "RECON", 8, .8, .95, 352, 150, acc=("recon",)) + \
@@ -225,7 +225,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .ring{{overflow:visible}}
 #scS1{{opacity:1;visibility:visible}}
 .stage{{position:absolute;left:0;top:600px;width:1080px;height:660px;perspective:1300px;transform-style:preserve-3d}}
-.a3{{position:absolute;transform-style:preserve-3d}} #st1{{top:790px}}
+.a3{{position:absolute;transform-style:preserve-3d}} #st1{{top:790px}} #st7{{visibility:hidden;opacity:0;z-index:40}} .clon,.free3,#scS4 .chip{{opacity:0;visibility:hidden}}
 .floor{{position:absolute;left:0;top:90px;width:1080px;height:420px;transform-style:preserve-3d;transform:rotateX(44deg)}} .fa{{transform-style:preserve-3d}} .t3.flat{{zoom:1;transform:none}}
 .orb{{position:absolute;left:0;top:0;width:120px;height:120px;perspective:600px;opacity:0}} .cb{{position:absolute;left:0;top:0;width:120px;height:120px;transform-style:preserve-3d}}
 .cfc{{position:absolute;left:0;top:0;width:120px;height:120px;background:#fff;border:3px solid #b9b5a6;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden}} .cfc.side{{background:#e4e1d6}} .orb{{filter:drop-shadow(0 14px 16px rgba(20,20,20,.28))}}
@@ -245,7 +245,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .free3{{position:absolute;left:108px;top:380px;font-weight:900;font-size:290px;line-height:300px;letter-spacing:-.05em;color:#111;white-space:nowrap;text-shadow:1px 1px 0 rgb(205,202,191), 2px 2px 0 rgb(200,197,186), 3px 3px 0 rgb(195,192,181), 4px 4px 0 rgb(190,187,176), 5px 5px 0 rgb(185,182,171), 6px 6px 0 rgb(180,177,166), 7px 7px 0 rgb(175,172,161), 8px 8px 0 rgb(170,167,156), 9px 9px 0 rgb(165,162,151), 10px 10px 0 rgb(160,157,146), 11px 11px 0 rgb(155,152,141), 12px 12px 0 rgb(150,147,136), 13px 13px 0 rgb(145,142,131), 14px 14px 0 rgb(140,137,126), 26px 34px 40px rgba(0,0,0,.28)}}
 .chips{{position:absolute;left:108px;top:760px;display:flex;gap:14px}} .chip{{font-weight:900;font-size:32px;letter-spacing:.03em;border:4px solid #111;border-radius:60px;padding:10px 22px;color:#111;white-space:nowrap;background:rgba(255,255,255,.7)}}
 .shot img{{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}} .shot{{overflow:hidden;background:#fff;border-radius:30px;box-shadow:0 26px 50px rgba(20,20,20,.28)}}
-.about5{{left:140px;top:560px;width:800px;height:330px}}
+.about5{{left:140px;top:560px;width:800px;height:381px}}
 .grid11{{position:absolute;left:108px;top:640px;width:864px;height:470px}} .sk{{position:absolute;width:204px;height:130px;border-radius:28px;background:{CARD};box-shadow:0 14px 28px rgba(20,20,20,.22);padding:16px 18px;opacity:0}}
 .sk b{{display:block;font-weight:900;font-size:26px;color:{ORG};letter-spacing:.04em}} .sk span{{display:block;font-weight:900;font-size:22px;color:#f2f2ee;margin-top:16px;letter-spacing:-.02em;white-space:nowrap}}
 .cen{{left:410px;top:170px}}
@@ -310,13 +310,13 @@ const drift=(t,sel,dur,s)=>t.fromTo(sel,{scale:1},{scale:s||1.035,duration:Math.
 function scS1(){ const o=T.S1,t=gsap.timeline(),k=Math.max(.5,o.hit-.15);
   /* frame 0: three paid apps lie flat on the floor, the Claude mark lies below them. The mark rises, then sweeps under and flicks them away one by one. */
   gsap.set('#cm1 .m3',{rotationX:58,rotationY:0,rotationZ:0});
-  t.fromTo('#scS1 .hv',{scale:1.1,transformOrigin:'0% 50%'},{scale:1,duration:.55,ease:'back.out(1.7)',stagger:.25,immediateRender:false},.12);
+  document.querySelectorAll('#scS1 .hv').forEach(el=>{ const w=el.querySelector('.w'), tw=Math.max(.05,parseFloat(w.dataset.t)-.1); t.fromTo(el,{scale:1.1,transformOrigin:'0% 50%'},{scale:1,duration:.5,ease:'back.out(1.7)',immediateRender:false},tw); });
   t.to('#cm1 .m3',{rotationX:50,duration:Math.max(.3,k-.1),ease:'sine.inOut'},0)
    .to('#cm1 .m3',{rotationX:0,rotationY:-10,duration:.5,ease:'power2.out'},k-.1).to('#cm1',{y:-150,duration:.5,ease:'power2.out'},k-.1);
   const FL=[{x:-950,y:-260,z:420,rotationZ:-140,rotationX:-30},{x:60,y:140,z:1100,rotationX:-150,rotationZ:40},{x:950,y:-260,z:420,rotationZ:140,rotationX:-30}];
   [0,1,2].forEach(i=>{ const ti=k+.05+i*.2;
-    t.to('#cm1',{x:(i-1)*330+(i?0:-60),duration:.3,ease:'power2.inOut'},ti-.1)
-     .to('#a'+i,Object.assign({duration:.95,ease:'power2.in'},FL[i]),ti).to('#a'+i,{opacity:0,duration:.3,ease:'power1.in'},ti+.6)
+    t.to('#cm1',{x:(i-1)*330+(i?0:-60),y:-230,duration:.25,ease:'power2.inOut'},ti-.12)
+     .to('#a'+i,Object.assign({duration:1.0,ease:'power3.out'},FL[i]),ti).to('#a'+i,{opacity:0,duration:.3,ease:'power1.in'},ti+.6)
      .fromTo('#scS1 .hv',{x:0},{x:(i%2?-9:9),duration:.07,yoyo:true,repeat:3,ease:'sine.inOut',immediateRender:false},ti+.05); });
   t.to('#cm1',{x:0,y:-40,scale:1.3,duration:.7,ease:inOut},k+.7).to('#cm1 .m3',{rotationY:'+=300',duration:Math.max(.8,o.end-k-.9),ease:'sine.inOut'},k+.7)
    .set('#a0,#a1,#a2',{opacity:1,z:0,x:0,y:0,rotationX:0,rotationY:0,rotationZ:0},T.tF).set('#cm1',{x:0,y:0,scale:1},T.tF).set('#cm1 .m3',{rotationX:58,rotationY:0},T.tF)
@@ -329,26 +329,30 @@ function scS2(){ const o=T.S2,t=gsap.timeline(); t.add(show('#scS2'),0); type(t,
 function scS3(){ const o=T.S3,t=gsap.timeline(); t.add(show('#scS3'),0); type(t,'#scS3',o.t0-.04); card(t,'#plan',.35); sheenOnce(t,'#plan .sheen',.9);
   gsap.utils.toArray('#scS3 .mk').forEach((e,i)=>t.fromTo(e,{scaleX:0},{scaleX:1,duration:.22,ease:inOut,immediateRender:false},.7+i*.1));
   drift(t,'#plan',o.end-o.t0); t.add(hide('#scS3'),o.end-o.t0-.2); return t; }
-function scS4(){ const o=T.S4,t=gsap.timeline(); t.add(show('#scS4'),0); type(t,'#scS4',o.t0-.04);
-  t.fromTo('#free3',{autoAlpha:0,scale:.6,y:60},{autoAlpha:1,scale:1,y:0,duration:.8,ease:spring,immediateRender:false},Math.max(.2,o.free-o.t0-.4))
+function scS4(){ const o=T.S4,t=gsap.timeline(); gsap.set('#free3,#scS4 .chip',{autoAlpha:0}); t.add(show('#scS4'),0); type(t,'#scS4',o.t0-.04);
+  t.fromTo('#free3',{autoAlpha:0,scale:.6,y:60},{autoAlpha:1,scale:1,y:0,duration:.8,ease:spring,immediateRender:false},Math.max(.2,o.free-o.t0-.12))
    .fromTo('#scS4 .chip',{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.45,stagger:.18,ease:expoOut,immediateRender:false},Math.max(.7,o.free-o.t0+.1))
    .to('#free3',{scale:1.04,duration:Math.max(1,o.end-o.t0-1),ease:'sine.inOut'},.9).add(hide('#scS4'),o.end-o.t0-.2); return t; }
 function scS5(){ const o=T.S5,t=gsap.timeline(); t.add(show('#scS5'),0); type(t,'#scS5',o.t0-.04);
-  t.fromTo('#sh5',{autoAlpha:0,y:50},{autoAlpha:1,y:0,duration:.6,ease:spring,immediateRender:false},.5).fromTo('#sh5 img',{scale:1},{scale:1.06,duration:Math.max(1,o.end-o.t0),ease:'sine.inOut',immediateRender:false},0).add(hide('#scS5'),o.end-o.t0-.2); return t; }
+  t.fromTo('#sh5',{autoAlpha:0,y:50},{autoAlpha:1,y:0,duration:.6,ease:spring,immediateRender:false},.5).fromTo('#sh5',{scale:1},{scale:1.04,duration:Math.max(1,o.end-o.t0),ease:'sine.inOut',immediateRender:false},0).add(hide('#scS5'),o.end-o.t0-.2); return t; }
 function scS6(){ const o=T.S6,t=gsap.timeline(); t.add(show('#scS6'),0); type(t,'#scS6',o.t0-.04);
   const e=Math.max(.9,o.eleven-o.t0);
   gsap.utils.toArray('#g11 .sk').forEach((el,i)=>t.fromTo(el,{autoAlpha:0,scale:.6,y:30},{autoAlpha:1,scale:1,y:0,duration:.4,ease:spring,immediateRender:false},.35+i*Math.max(.05,(e-.4)/11)));
   t.to('#g11 .sk b',{color:'#fff',duration:.3,stagger:.03},e).add(hide('#scS6'),o.end-o.t0-.2); return t; }
-function scS7(){ const o=T.S7,t=gsap.timeline(),N=11,st={a:0,p:0}; t.add(show('#scS7'),0); type(t,'#scS7',o.t0-.04);
-  /* the 11 tiles of the last scene turn into cubes at the same spots, then fly out and ORBIT the Claude mark; the cubes never spin on their own axis */
-  const TIL=Math.PI*0, place=(ang,p)=>{ for(let i=0;i<N;i++){ const th=ang+i*2*Math.PI/N, z=Math.sin(th), ox=540+Math.cos(th)*400, oy=900+z*210, osc=.78+.5*(z+1)/2,
+function scS7(){ const o=T.S7,t=gsap.timeline(); t.add(show('#scS7'),0); type(t,'#scS7',o.t0-.04); t.add(hide('#scS7'),o.end-o.t0-.2); return t; }
+function scOrbit(){ const o=T.S7,N=11,st={a:0,p:0,f:0},ts=T.S6.eleven+.2,t=gsap.timeline();
+  /* right after "it's 11" the 11 tiles flip into cubes at the same spots, fly out and ORBIT the Claude mark; cubes never spin on their own axis */
+  const place=(ang,p)=>{ for(let i=0;i<N;i++){ const th=ang+i*2*Math.PI/N, z=Math.sin(th), ox=540+Math.cos(th)*400, oy=900+z*210, osc=.78+.5*(z+1)/2,
       gx=108+(i%4)*220+102, gy=640+Math.floor(i/4)*150+65, gsc=1.05, x=gx+(ox-gx)*p, y=gy+(oy-gy)*p, sc=gsc+(osc-gsc)*p;
-      gsap.set('#orb'+i,{x:x-60,y:y-600-60,scale:sc,zIndex:Math.round(z*100)+200,opacity:1}); gsap.set('#cb'+i,{rotationY:-22*p,rotationX:-16*p}); } };
-  place(0,0); gsap.set('#cm7',{x:0,y:-30});
-  t.fromTo('#cm7',{scale:0,autoAlpha:0},{scale:1.25,autoAlpha:1,duration:.6,ease:spring,immediateRender:false},.45)
-   .fromTo(st,{p:0},{p:1,duration:.9,ease:'power3.inOut',onUpdate:()=>place(st.a,st.p)},.2)
-   .fromTo(st,{a:0},{a:Math.PI*2*1.15,duration:Math.max(2,o.end-o.t0-.3),ease:'sine.inOut',onUpdate:()=>place(st.a,st.p)},.2)
-   .to('#cm7 .m3',{rotationY:'+=360',duration:Math.max(2,o.end-o.t0),ease:'none'},0).add(hide('#scS7'),o.end-o.t0-.2); return t; }
+      gsap.set('#orb'+i,{x:x-60,y:y-600-60,scale:sc,zIndex:Math.round(z*100)+200,opacity:1}); gsap.set('#cb'+i,{rotationY:-22*p,rotationX:-16*p+(1-st.f)*90}); } };
+  place(0,0); gsap.set('#cm7',{x:0,y:-30,autoAlpha:0});
+  t.set('#st7',{autoAlpha:1},0).to('#g11',{autoAlpha:0,duration:.08},0)
+   .fromTo(st,{f:0},{f:1,duration:.42,ease:'back.out(1.5)',onUpdate:()=>place(st.a,st.p)},0)
+   .fromTo(st,{p:0},{p:1,duration:.95,ease:'power3.inOut',onUpdate:()=>place(st.a,st.p)},.3)
+   .fromTo(st,{a:0},{a:Math.PI*2*1.15,duration:Math.max(2,o.end-ts-.3),ease:'sine.inOut',onUpdate:()=>place(st.a,st.p)},.3)
+   .fromTo('#cm7',{scale:0,autoAlpha:0},{scale:1.25,autoAlpha:1,duration:.6,ease:spring,immediateRender:false},.55)
+   .to('#cm7 .m3',{rotationY:'+=360',duration:Math.max(2,o.end-ts),ease:'none'},.3)
+   .to('#st7',{autoAlpha:0,duration:.22},o.end-ts-.24); t.ts=ts; return t; }
 function scS8(){ const o=T.S8,t=gsap.timeline(); t.add(show('#scS8'),0); type(t,'#scS8',o.t0-.04); card(t,'#rc',.35);
   t.fromTo('#scan',{y:0,opacity:1},{y:560,duration:.9,ease:'sine.inOut',immediateRender:false},.6).to('#scan',{opacity:0,duration:.2},1.5)
    .fromTo('#scS8 .fd',{autoAlpha:0,x:-20},{autoAlpha:1,x:0,duration:.35,stagger:.16,immediateRender:false},.75).add(hide('#scS8'),o.end-o.t0-.2); return t; }
@@ -384,7 +388,7 @@ function scS16(){ const o=T.S16,t=gsap.timeline(); t.add(show('#scS16'),0); type
 const tl=gsap.timeline({paused:true});
 tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:true,repeat:3},0)
   .fromTo('.bgw',{x:0,y:0},{x:-14,y:-12,duration:T.D/2,ease:'sine.inOut',yoyo:true,repeat:1},0)
-  .add(scS1(),0).add(scS2(),T.S2.t0-.04).add(scS3(),T.S3.t0-.04).add(scS4(),T.S4.t0-.04).add(scS5(),T.S5.t0-.04).add(scS6(),T.S6.t0-.04).add(scS7(),T.S7.t0-.04)
+  .add(scS1(),0).add(scS2(),T.S2.t0-.04).add(scS3(),T.S3.t0-.04).add(scS4(),T.S4.t0-.04).add(scS5(),T.S5.t0-.04).add(scS6(),T.S6.t0-.04).add(scS7(),T.S7.t0-.04).add(scOrbit(),T.S6.eleven+.2)
   .add(scS8(),T.S8.t0-.04).add(scS9(),T.S9.t0-.04).add(scS10(),T.S10.t0-.04).add(scS11(),T.S11.t0-.04).add(scS12(),T.S12.t0-.04).add(scS13(),T.S13.t0-.04)
   .add(scS14(),T.S14.t0-.04).add(scS15(),T.S15.t0-.04).add(scS16(),T.S16.t0-.04).add(scWords('#scS17',T.S17),T.S17.t0-.04).add(scWords('#scS18',T.S18,'rgG'),T.S18.t0-.04);
 tl.fromTo('#scS1',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02).to({},{duration:.001},T.D-.001);
@@ -404,7 +408,7 @@ html = f'''<!doctype html><html lang="en" data-resolution="portrait"><head><meta
 {CSS}
 </style></head><body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="{D}" data-width="1080" data-height="1920">
-<div class="bgw" data-decor></div><div id="cam">{scenes}</div>
+<div class="bgw" data-decor></div><div id="cam">{scenes}{ORBL}</div>
 </div>
 <script>
 {JS}
