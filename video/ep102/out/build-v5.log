@@ -1,17 +1,17 @@
-v5 estimated timeline=False  D=22.57  sfx=20
-lines: 1:0.05-3.70  2:3.89-5.77  3:5.96-8.57  4:8.76-9.89  5:10.08-12.94  6:13.13-14.61  7:14.80-17.55  8:17.74-19.56  9:19.75-21.79
-sync: price=0.64(w)  insane=4.48(w)  notion=7.30(w)  intercom=10.32(w)  wispr=11.62(w)  cap=6.42(w)  appflowy=7.70(w)  chatwoot=10.76(w)  openwhispr=12.10(w)  bigL=9.38(w)  big=13.34(w)  eleven=14.05(EST)  vs=14.92(w)  clones=15.12(w)  follow=20.62(w)
+v5 estimated timeline=False  D=21.49  sfx=20
+lines: 1:0.05-2.62  2:2.81-4.69  3:4.88-7.49  4:7.68-8.81  5:9.00-11.86  6:12.05-13.53  7:13.72-16.47  8:16.66-18.48  9:18.67-20.71
+sync: price=0.60(w)  insane=3.40(w)  notion=6.20(w)  intercom=9.24(w)  wispr=10.54(w)  cap=5.50(w)  appflowy=6.88(w)  chatwoot=10.00(w)  openwhispr=11.28(w)  bigL=8.30(w)  big=12.26(w)  eleven=12.86(w)  vs=13.80(w)  clones=14.06(w)  follow=19.52(w)
   new   0.00  A the cube: five real paid logos + 'Five apps you pay for. FREE TWINS EXIST!', price tags flip to ticks
-  new   3.89  B words only: 'The last one is INSANE. STAY FOR IT.'
-  new   5.96  card: Loom struck, arrow, Cap at 6.42, FREE
-  new   7.24  card: Notion struck, arrow, AppFlowy at 7.70, FREE
-  new   8.76  words only: 'Still not THE BIG ONE.' (true: ElevenLabs/VoiceStudio comes later)
-  new  10.26  card: Intercom struck, arrow, Chatwoot at 10.76, FREE
-  new  11.56  card: Wispr Flow struck, arrow, OpenWhispr at 12.10, FREE
-  new  13.13  D words only: 'And the BIG ONE.'
-  new  13.91  card: ElevenLabs struck, arrow, VoiceStudio at 14.92, FREE
-  new  15.87  the real VoiceStudio screenshot: 'clones your own voice, ON YOUR OWN MACHINE.'
-  new  17.74  F one card: the saveable list of five pairs ('The setup's in the link in bio')
-  new  19.75  words only: 'Want the next one? FOLLOW.'
-  new  22.12  frame 0 returns (loop)
-FLAT stretches over 2.5 s with nothing new: [(0, 3.89)]
+  new   2.81  B words only: 'The last one is INSANE. STAY FOR IT.'
+  new   4.88  card: Loom struck, arrow, Cap at 5.50, FREE
+  new   6.14  card: Notion struck, arrow, AppFlowy at 6.88, FREE
+  new   7.68  words only: 'Still not THE BIG ONE.' (true: ElevenLabs/VoiceStudio comes later)
+  new   9.18  card: Intercom struck, arrow, Chatwoot at 10.00, FREE
+  new  10.48  card: Wispr Flow struck, arrow, OpenWhispr at 11.28, FREE
+  new  12.05  D words only: 'And the BIG ONE.'
+  new  12.80  card: ElevenLabs struck, arrow, VoiceStudio at 13.80, FREE
+  new  14.75  the real VoiceStudio screenshot: 'clones your own voice, ON YOUR OWN MACHINE.'
+  new  16.66  F one card: the saveable list of five pairs ('The setup's in the link in bio')
+  new  18.67  words only: 'Want the next one? FOLLOW.'
+  new  21.04  frame 0 returns (loop)
+FLAT stretches over 2.5 s with nothing new: [(0, 2.81)]

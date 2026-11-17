@@ -32,11 +32,11 @@ LOG = []
 def say(x): LOG.append(x); print(x)
 
 ITEMS = [
-    dict(k=1, paid="Loom", plogo="loom.png", free="Cap", flogo="cap.png", note=""),
-    dict(k=2, paid="Notion", plogo="notion.png", free="AppFlowy", flogo="appflowy.svg", note=""),
-    dict(k=3, paid="Intercom", plogo="intercom.svg", free="Chatwoot", flogo="chatwoot.png", note=""),
-    dict(k=4, paid="Wispr Flow", plogo="wisprflow.png", free="OpenWhispr", flogo="openwhispr.svg", note=""),
-    dict(k=5, paid="ElevenLabs", plogo="elevenlabs.svg", free="VoiceStudio", flogo="voicestudio.svg", note=""),
+    dict(k=1, yr=216, paid="Loom", plogo="loom.png", free="Cap", flogo="cap.png", note=""),
+    dict(k=2, yr=120, paid="Notion", plogo="notion.png", free="AppFlowy", flogo="appflowy.svg", note=""),
+    dict(k=3, yr=228, paid="Intercom", plogo="intercom.svg", free="Chatwoot", flogo="chatwoot.png", note=""),
+    dict(k=4, yr=144, paid="Wispr Flow", plogo="wisprflow.png", free="OpenWhispr", flogo="openwhispr.svg", note=""),
+    dict(k=5, yr=72, paid="ElevenLabs", plogo="elevenlabs.svg", free="VoiceStudio", flogo="voicestudio.svg", note=""),
 ]
 for it in ITEMS:
     for f in (it["plogo"], it["flogo"]): assert os.path.exists(f"{H_}/hf/assets/logos/{f}"), f"missing real logo {f} (logos/SOURCES.md)"
@@ -98,18 +98,20 @@ def fit(txt, size, mx):
         f = ImageFont.truetype(H_ + "/hf/assets/fonts/InterDisplay-Black.otf", 100)
         return min(size, 100 * mx / (f.getlength(txt) * .955))
     except Exception: return min(size, mx / (.6 * len(txt)))
-# five real paid logos: 2 + 2 + the ElevenLabs tile (the big one) centred and larger, so the bottom of the safe box is used
-TPOS = [(108, 556, 417, 210), (555, 556, 417, 210), (108, 782, 417, 210), (555, 782, 417, 210), (222, 1008, 636, 240)]
+assert sum(it["yr"] for it in ITEMS) == 780
+TPOS = [(108, 696, 276, 250), (394, 696, 276, 250), (680, 696, 276, 250), (108, 962, 427, 250), (545, 962, 427, 250)]
 tiles = ""
 for i, it in enumerate(ITEMS):
-    x, y, w_, h_ = TPOS[i]; big = i == 4; lh = 100
-    tiles += (f'<div class="tile{" big" if big else ""}" id="t{i}" style="left:{x}px;top:{y}px;width:{w_}px;height:{h_}px"><div class="lgw" style="left:26px;top:20px;width:{lh}px;height:{lh}px">{lg(it["plogo"], lh)}</div>'
-              f'<div class="bd" style="left:{w_ - 98}px;top:26px;width:72px;height:72px">{TAG}{TICK}</div>'
-              f'<div class="tnm" style="left:26px;top:{h_ - 92}px;font-size:{fit(it["paid"], 58, w_ - 52):.0f}px">{it["paid"]}</div></div>')
+    x, y, w_, h_ = TPOS[i]
+    tiles += (f'<div class="tile" id="t{i}" style="left:{x}px;top:{y}px;width:{w_}px;height:{h_}px"><div class="lgw" style="left:24px;top:22px;width:96px;height:96px">{lg(it["plogo"], 96)}</div>'
+              f'<div class="tnm" style="left:24px;top:132px;font-size:{fit(it["paid"], 48, w_ - 48):.0f}px">{it["paid"]}</div>'
+              f'<div class="tpr" id="p{i}" style="left:24px;top:190px">${it["yr"]}<span>/yr</span><i class="stk"></i></div></div>')
 HOOK = os.environ.get("VAR", "A")
 LEAD = "Stop paying" if HOOK == "A" else "You could save"
-SC["A"] = line("lead", LEAD, 1, 0, .4, 282, 62, ready=True) + line("hv", "$780 A YEAR", 1, .5, 1, 352, 118, acc=("780",), ready=True) + ring("rgA", 96, 346, 372, 150) + \
-          '<div class="ln lead note" style="top:492px;font-size:34px;line-height:40px;color:#6d6c66">cheapest paid plans, per person</div>' + tiles
+SC["A"] = line("lead", LEAD, 1, 0, .4, 292, 60, ready=True) + line("hv", "$780", 1, .5, .5, 350, 250, ready=True) + \
+          '<div class="ln hv" style="left:742px;top:420px;font-size:78px;line-height:78px"><span class="m"><span class="w rdy">A</span></span><br><span class="m"><span class="w rdy">YEAR</span></span></div>' + \
+          '<i class="stk big" id="bigstk"></i>' + \
+          '<div class="ln lead note" style="top:640px;font-size:32px;line-height:38px;color:#6d6c66">cheapest paid plans, per person</div>' + tiles
 T["A"] = dict(t0=0, free=W("price", "780", 1, .55), end=a[2])
 # ---------------------------------------------------------------- B tease
 SC["B"] = line("lead", "The last one is", 2, 0, .36, 380, 84) + line("hv", "INSANE.", 2, .5, .5, 476, 214, acc=("insane",)) + ring("rgB", 78, 468, 890, 250) + line("hv", "STAY FOR IT.", 2, .72, .95, 760, 128)
@@ -199,7 +201,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .tile{{width:417px;height:228px;background:#fff;border-radius:44px;box-shadow:0 18px 36px rgba(20,20,20,.16);will-change:transform}}
 .tile>*{{position:absolute}} .lgw .lg{{border-radius:22px}}
 .lgw.cal{{display:flex;flex-direction:column;align-items:center;justify-content:center}} .cwm{{display:block;width:150px;height:36px;margin-top:8px}}
-.bd{{left:252px;top:62px;width:104px;height:104px;will-change:transform}} .bd svg{{position:absolute;left:0;top:0;width:100%;height:100%}} .tnm{{position:absolute;font-weight:900;letter-spacing:-.04em;color:#0f0f0f;white-space:nowrap;line-height:1.1}} .tick{{opacity:0}}
+.bd{{left:252px;top:62px;width:104px;height:104px;will-change:transform}} .bd svg{{position:absolute;left:0;top:0;width:100%;height:100%}} .tpr{{position:absolute;font-weight:900;font-size:52px;line-height:56px;letter-spacing:-.04em;color:#0f0f0f;white-space:nowrap}} .tpr span{{font-size:30px;font-weight:500;letter-spacing:0;color:#6d6c66;margin-left:4px}} .stk{{position:absolute;left:-8px;top:50%;height:9px;width:calc(100% + 16px);border-radius:5px;background:{ORG};transform-origin:0 50%}} .stk.big{{left:104px;top:486px;width:610px;height:20px}} .tpr .stk{{width:calc(100% + 12px)}} .tnm{{position:absolute;font-weight:900;letter-spacing:-.04em;color:#0f0f0f;white-space:nowrap;line-height:1.1}} .tick{{opacity:0}}
 .comp{{left:108px;top:300px;width:864px;height:744px;background:{CARD};border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.28);border:2px solid #2b2c32}}
 .grp{{position:absolute;left:0;top:0;width:864px;height:744px;opacity:0;visibility:hidden}} .grp>*{{position:absolute}}
 .lt{{width:150px;height:150px;border-radius:34px;background:#fff;display:flex;align-items:center;justify-content:center;flex:none}} .lt .lg{{border-radius:22px}}
@@ -238,16 +240,18 @@ function type(t,id,t0){
     else t.fromTo(w,{yPercent:112,y:0},{yPercent:0,y:0,duration:.46,ease:expoOut,immediateRender:false},at); });
 }
 function ringDraw(t,id,at){ t.fromTo(id+' path',{drawSVG:'0%'},{drawSVG:'100%',duration:.8,ease:'power2.inOut',immediateRender:false},at) }
-gsap.set('.ring:not(#rgA) path, .arw path',{drawSVG:'0%'});
+gsap.set('.ring path, .arw path',{drawSVG:'0%'}); gsap.set('.stk',{scaleX:0,rotation:-3}); gsap.set('#bigstk',{rotation:-4});
 
 /* A: the cube. Frame 0 is complete; then the six price tags flip to ticks one by one, each tile nudges (follow-through) */
-function scA(){ const t=gsap.timeline({defaults:{ease:expoOut}}), bd=gsap.utils.toArray('#scA .bd');
-  t.addLabel('flip',.2);
-  bd.forEach((b,i)=>{ const at='flip+='+(i*.09).toFixed(2), q=gsap.utils.selector(b);
-    t.to(b,{scaleX:0,duration:.14,ease:'power2.in'},at).set(q('.tag'),{autoAlpha:0},'>').set(q('.tick'),{autoAlpha:1},'<')
-     .to(b,{scaleX:1,duration:.34,ease:spring},'>').fromTo('#t'+i,{y:0},{y:-9,duration:.16,ease:'power2.out',immediateRender:false},at+'+=0.06').to('#t'+i,{y:0,duration:.5,ease:spring},'>'); });
-  t.fromTo('#rgA path',{drawSVG:'100%'},{drawSVG:'100%',duration:.01,immediateRender:false},0)
-   .to('#scA .lead',{x:6,duration:1.6,ease:'sine.inOut'},.9)                      // slow drift while it is read
+function scA(){ const t=gsap.timeline({defaults:{ease:expoOut}});
+  /* frame 0 is complete. Then: every price gets struck by an orange line in reading order, its tile settles with a spring,
+     the big number is struck last (stop paying), and the camera pushes slowly in the whole time */
+  for(let i=0;i<5;i++){ const at=.3+i*.12;
+    t.fromTo('#p'+i+' .stk',{scaleX:0},{scaleX:1,duration:.26,ease:inOut,immediateRender:false},at)
+     .fromTo('#t'+i,{y:0,scale:1},{y:-10,scale:1.035,duration:.18,ease:'power2.out',immediateRender:false},at+.1)
+     .to('#t'+i,{y:0,scale:1,duration:.55,ease:spring},'>'); }
+  t.fromTo('#bigstk',{scaleX:0},{scaleX:1,duration:.34,ease:inOut,immediateRender:false},1.05)
+   .fromTo('#scA',{scale:1},{scale:1.02,duration:T.A.end,ease:'sine.inOut',transformOrigin:'540px 760px',immediateRender:false},0)
    .add(hide('#scA'),T.A.end-.24);
   return t; }
 /* words-only screens: lead-in + heavy line(s), one accent, one ring */
@@ -297,7 +301,7 @@ tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:tr
   .add(scList(),T.F.t0-.04)
   .add(scWords('#scG2',T.G2,'rgG'),T.G2.t0-.04);
 /* loop seam: frame 0 comes back exactly (tags, not ticks) */
-tl.set('#scA .tag',{autoAlpha:1},T.tF).set('#scA .tick',{autoAlpha:0},T.tF).set('#scA .lead',{x:0},T.tF)
+tl.set('#scA .stk',{scaleX:0},T.tF).set('#scA',{scale:1},T.tF)
   .fromTo('#scA',{autoAlpha:0,y:0,filter:'blur(6px)'},{autoAlpha:1,y:0,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02)
   .to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);

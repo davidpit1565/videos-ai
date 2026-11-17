@@ -2486,7 +2486,7 @@ export const ARTICLES: Article[] = [
     n: 101,
     title: "Five free alternatives to apps you pay for: where to get each one",
     standfirst:
-      "The video shows five paid apps and a free alternative for each: Loom and Cap, Notion and AppFlowy, " +
+      "The video adds up what five paid apps cost in a year, $780, and shows a free alternative for each: Loom and Cap, Notion and AppFlowy, " +
       "Intercom and Chatwoot, Wispr Flow and OpenWhispr, ElevenLabs and VoiceStudio. This page has the official " +
       "download link and the steps for every one. We did not install or test any of them. Everything below was read from " +
       "each project's own page on 16 November 2026, so treat it as a list to check, not a recommendation.",
@@ -2499,7 +2499,7 @@ export const ARTICLES: Article[] = [
       "Optional: install only from the official links above and check that the page address matches before you download. Star counts show interest, not quality or safety.",
     ],
     changes: [
-      "Prices of the paid apps, from each official pricing page read on 16 November 2026 (cheapest paid plan): Loom Business $18, Notion Plus $10, Intercom Essential $19 per seat (yearly rate for new customers, plus $0.99 per AI answer), Wispr Flow Pro $12 (billed yearly), ElevenLabs Starter $6. Loom, Notion, Wispr Flow and ElevenLabs also have a free plan.",
+      "The $780 a year in the video is the sum of the cheapest paid plan of each app, per person, yearly: Loom $216, Notion $120, Intercom $228, Wispr Flow $144, ElevenLabs $72. It is only what you save if you pay for all five today. Prices of the paid apps, from each official pricing page read on 16 November 2026 (cheapest paid plan): Loom Business $18, Notion Plus $10, Intercom Essential $19 per seat (yearly rate for new customers, plus $0.99 per AI answer), Wispr Flow Pro $12 (billed yearly), ElevenLabs Starter $6. Loom, Notion, Wispr Flow and ElevenLabs also have a free plan.",
       "Stars on GitHub, read 16 November 2026 and rounded down: Cap 25K+, AppFlowy 78K+, OpenWhispr 11K+, VoiceStudio 111K+, Chatwoot 39K+.",
       "Licences as listed on each project page: AppFlowy AGPL-3.0, OpenWhispr MIT, VoiceStudio AGPL-3.0, Chatwoot MIT for the main code with a separate licence for its enterprise folder, Cap AGPL-3.0 for most of the code and MIT for some parts. Check the licence file before you use any of them for a business.",
     ],
