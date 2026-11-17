@@ -86,7 +86,7 @@ SC = {}; T = {}
 # ---------------------------------------------------------------- A hook: words + the real LinkedIn mark; on "killed" a strike, the mark greys and shrinks to the corner, the prompt card types
 SC["A"] = line("lead", "Claude just", 1, 0, .3, 292, 62, ready=True).replace('class="ln lead"', 'class="ln lead"').replace('style="top:292px', 'style="left:178px;top:292px') + \
           line("hv", "KILLED", 1, .55, .55, 352, 200, acc=("killed",), ready=True) + '<img class="cc" src="assets/logos/claude.svg">' + \
-          '<img class="cmk" id="cm" src="assets/logos/claude.svg"><div class="lkw" id="lkw"><img class="lk" id="lk" src="assets/logos/linkedin.svg"><i class="kst" id="kst"></i></div>' + \
+          '<img class="cmk" id="cm" src="assets/logos/claude.svg"><div class="lkw" id="lkw"><div class="hl hul"><img class="lk" src="assets/logos/linkedin.svg"></div><div class="hl hlr"><img class="lk" src="assets/logos/linkedin.svg"></div><i class="kst" id="kst"></i></div>' + \
           '<div class="pcard" id="pcard"><span class="pt" id="ptxt">Write my LinkedIn post about the five apps I pay for.</span></div>'
 tKill = W("killed", "killed", 1, .6)
 T["A"] = dict(t0=0, kill=tKill, end=a[2])
@@ -159,7 +159,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .m{{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .06em 0;margin-right:.2em}} .lead .m{{margin-right:.24em}}
 .w{{display:inline-block;transform:translateY(112%);will-change:transform}} .w.rdy{{transform:none}}
 .lead .w{{font-weight:500;letter-spacing:-.02em}} .hv .w{{font-weight:900;letter-spacing:-.045em}}
-.w.acc.rdy{{color:{ORG}}}
+.w.acc.rdy{{color:{INK}}}
 .ring{{overflow:visible}}
 .tile{{width:417px;height:228px;background:#fff;border-radius:44px;box-shadow:0 18px 36px rgba(20,20,20,.16);will-change:transform}}
 .tile>*{{position:absolute}} .lgw .lg{{border-radius:22px}}
@@ -186,7 +186,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .lnote{{position:absolute;left:44px;bottom:26px;font-weight:500;font-size:42px;line-height:48px;letter-spacing:-.01em;color:#b9b8b2;white-space:nowrap;opacity:0;visibility:hidden}}
 
 .cc{{position:absolute;left:108px;top:286px;width:58px;height:58px}}
-.cmk{{left:140px;top:670px;width:330px;height:330px;will-change:transform}} .lkw{{left:610px;top:670px;width:330px;height:330px;will-change:transform,opacity}} .lk{{position:absolute;left:0;top:0;width:330px;height:330px}} .kst{{position:absolute;left:-40px;top:152px;width:410px;height:24px;border-radius:12px;background:{ORG};transform-origin:0 50%}}
+.cmk{{left:140px;top:670px;width:330px;height:330px;will-change:transform}} .lkw{{left:610px;top:670px;width:330px;height:330px}} .hl{{position:absolute;left:0;top:0;width:330px;height:330px;will-change:transform,opacity}} .hul{{clip-path:polygon(0px 0px,330px 0px,0px 330px)}} .hlr{{clip-path:polygon(330px 0px,330px 330px,0px 330px)}} .lk{{position:absolute;left:0;top:0;width:330px;height:330px}} .kst{{position:absolute;left:0;top:325px;width:467px;height:10px;border-radius:5px;background:{ORG};transform-origin:0 50%;z-index:3}}
 .pcard{{left:108px;top:640px;width:864px;height:300px;background:{CARD};border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.28);padding:48px 52px;opacity:0;visibility:hidden}}
 .pt{{font-weight:500;font-size:50px;line-height:64px;color:#f2f2ee;letter-spacing:-.01em}} .ty .c{{opacity:0}}
 .rows{{left:108px;top:330px;width:864px;height:640px}} .rw{{position:absolute;left:44px;right:44px;height:140px;display:flex;align-items:center;gap:34px;opacity:.28}}
@@ -217,7 +217,7 @@ function type(t,id,t0){
   gsap.utils.toArray(id+' .w:not(.rdy)').forEach(w=>{
     const at=Math.max(0,+w.dataset.t-t0-.07);
     if(w.classList.contains('acc')){ gsap.set(w,{y:0,yPercent:0}); const sp=SplitText.create(w,{type:'chars',mask:'chars',aria:'none'});
-      t.fromTo(sp.chars,{yPercent:112},{yPercent:0,duration:.5,ease:expoOut,stagger:.03},at).to(sp.chars,{color:ORG,duration:.3,ease:'power1.out',stagger:.03},at+.12); }
+      t.fromTo(sp.chars,{yPercent:112},{yPercent:0,duration:.5,ease:expoOut,stagger:.03},at).to(sp.chars,{color:INK,duration:.3,ease:'power1.out',stagger:.03},at+.12); }
     else t.fromTo(w,{yPercent:112,y:0},{yPercent:0,y:0,duration:.46,ease:expoOut,immediateRender:false},at); });
 }
 function ringDraw(t,id,at){ t.fromTo(id+' path',{drawSVG:'0%'},{drawSVG:'100%',duration:.8,ease:'power2.inOut',immediateRender:false},at) }
@@ -229,13 +229,17 @@ function typeChars(t,sel,at,dur){ const el=document.querySelector(sel); if(!el) 
   for(let i=0;i<n;i++){ const v=.7+.6*Math.abs(Math.sin(i*2.3+1)); w.push(v); tot+=v; } let c=at;
   sp.chars.forEach((ch,i)=>{ t.set(ch,{opacity:1},c); c+=dur*w[i]/tot; }); }
 function scA(){ const t=gsap.timeline(), k=T.A.kill;
-  gsap.set('#kst',{scaleX:1,scaleY:1,rotation:-34}); gsap.set('#lk',{filter:'grayscale(.75)',opacity:.6});
-  t.fromTo('#cm',{rotation:0},{rotation:40,duration:Math.max(.4,k+.4),ease:'sine.inOut',immediateRender:false},0)
-   .to('#kst',{scaleY:1.8,duration:.18,ease:'power2.out'},k).to('#kst',{scaleY:1,duration:.3,ease:'power2.inOut'},k+.18)
-   .to('#lkw',{y:300,rotation:16,opacity:0,duration:.8,ease:expoIn},k+.1)
-   .to('#cm',{x:565,y:-490,scale:.42,rotation:120,duration:.95,ease:inOut},k+.2)
-   .fromTo('#pcard',{autoAlpha:0,y:50},{autoAlpha:1,y:0,duration:.55,ease:spring,immediateRender:false},k+.45);
-  typeChars(t,'#ptxt',k+.75,Math.max(.7,T.A.end-k-1.0));
+  gsap.set('#kst',{scaleX:0,rotation:-45});
+  t.fromTo('#cm',{rotation:0},{rotation:30,duration:Math.max(.4,k),ease:'sine.inOut',immediateRender:false},0)
+   /* the Claude mark winds up to the logo's bottom-left corner, then cuts across to the top-right, drawing the cut line behind it */
+   .to('#cm',{x:305,y:165,scale:.34,rotation:-20,duration:.24,ease:'power2.in'},k-.12)
+   .to('#cm',{x:635,y:-165,rotation:60,duration:.22,ease:'power2.inOut'},k+.12)
+   .to('#kst',{scaleX:1,duration:.22,ease:'power2.inOut'},k+.12)
+   .to('.hul',{x:-70,y:-80,rotation:-10,duration:.95,ease:expoOut},k+.36).to('.hlr',{x:70,y:90,rotation:9,duration:.95,ease:expoOut},k+.36)
+   .to('.hl,#kst',{opacity:0,duration:.3,ease:'power1.in'},k+.62)
+   .to('#cm',{x:330,y:-505,scale:.42,rotation:140,duration:.9,ease:inOut},k+.5)
+   .fromTo('#pcard',{autoAlpha:0,y:50},{autoAlpha:1,y:0,duration:.55,ease:spring,immediateRender:false},k+.85);
+  typeChars(t,'#ptxt',k+1.1,Math.max(.5,T.A.end-k-1.35));
   t.add(hide('#scA'),T.A.end-.24); return t; }
 function scWords(id,o,ringId){ const t=gsap.timeline(); t.add(show(id),0); type(t,id,o.t0-.04);
   if(ringId) ringDraw(t,'#'+ringId,(o.acc-o.t0)+.16);
@@ -244,7 +248,7 @@ function scWords(id,o,ringId){ const t=gsap.timeline(); t.add(show(id),0); type(
 function scRows(){ const o=T.B, t=gsap.timeline(); t.add(show('#scB'),0);
   t.fromTo('#scB .comp',{autoAlpha:0,y:40},{autoAlpha:1,y:0,duration:.5,ease:spring,immediateRender:false},0);
   [['#rw0',o.r1],['#rw1',o.r2],['#rw2',o.r3]].forEach(([id,at],i)=>{ t.to(id,{opacity:1,duration:.3,ease:'power1.out'},Math.max(.1,at-o.t0-.05)).to(id+' b',{backgroundColor:ORG,duration:.3},Math.max(.1,at-o.t0-.05)); });
-  t.to('#rw2 span',{color:ORG,duration:.4},Math.max(.2,o.r3-o.t0)).add(hide('#scB'),o.end-o.t0-.2); return t; }
+  t.add(hide('#scB'),o.end-o.t0-.2); return t; }
 function sheen(t,sel,t0,dur){ const n=Math.max(1,Math.ceil(dur/2.6)); for(let i=0;i<n;i++) t.fromTo(sel,{x:-320},{x:1100,duration:1.9,ease:'sine.inOut',immediateRender:false},t0+i*2.6); }
 function scPost(){ const o=T.C, t=gsap.timeline(); t.add(show('#scC'),0); type(t,'#scC',o.t0-.04);
   t.fromTo('#wcC',{autoAlpha:0,y:40},{autoAlpha:1,y:0,duration:.55,ease:spring,immediateRender:false},.3);
@@ -275,7 +279,7 @@ tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:tr
   .add(scSteps(),T.H.t0-.04)
   .add(scWords('#scI',T.I),T.I.t0-.04)
   .add(scWords('#scJ',T.J,'rgG'),T.J.t0-.04);
-tl.set('#lkw',{x:0,y:0,rotation:0,opacity:1},T.tF).set('#cm',{x:0,y:0,scale:1,rotation:0},T.tF).set('#pcard',{autoAlpha:0},T.tF)
+tl.set('.hl',{x:0,y:0,rotation:0,opacity:1},T.tF).set('#kst',{scaleX:0,opacity:1},T.tF).set('#cm',{x:0,y:0,scale:1,rotation:0},T.tF).set('#pcard',{autoAlpha:0},T.tF)
   .fromTo('#scA',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02)
   .to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
