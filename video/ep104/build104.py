@@ -101,12 +101,12 @@ def mark3d(n=14, step=4):
     return f'<div class="m3">{back}<img class="m3f" src="assets/logos/claude.svg"></div>'
 
 # ---- S1 hook: three paid apps on 3D tiles, the 3D Claude mark sweeps through them
-SC["S1"] = line("lead", "Claude just destroyed", 1, 0, .5, 286, 62, ready=True) + line("hv", "PAID APPS.", 1, .6, 1, 350, 150, ready=True, acc=("paid", "apps")) + \
+SC["S1"] = line("lead", "Claude just destroyed", 1, 0, .5, 286, 62, ready=True) + line("hv", "PAID", 1, .6, .6, 368, 215, ready=True, acc=("paid",)) + line("hv", "APPS.", 1, .85, .85, 612, 215, ready=True, acc=("apps",)) + \
   '<div class="stage" id="st1"><div class="floor" id="fl1">' + \
   '<div class="a3 fa" id="a0" style="left:90px;top:40px">' + flat_tile("slack.svg") + '</div>' + \
   '<div class="a3 fa" id="a1" style="left:420px;top:40px">' + flat_tile("calendly.svg") + '</div>' + \
   '<div class="a3 fa" id="a2" style="left:750px;top:40px">' + flat_tile("notion.png") + '</div></div>' + \
-  '<div class="a3" id="cm1" style="left:410px;top:300px">' + mark3d(12, 5) + '</div></div>'
+  '<div class="a3" id="cm1" style="left:370px;top:400px">' + mark3d(12, 5) + '</div></div>'
 tHit = W("destroyed", "destroyed", 1, .35)
 T["S1"] = dict(t0=0, hit=tHit, end=a[2])
 # ---- S2 clone any app
@@ -225,8 +225,8 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .ring{{overflow:visible}}
 #scS1{{opacity:1;visibility:visible}}
 .stage{{position:absolute;left:0;top:600px;width:1080px;height:660px;perspective:1300px;transform-style:preserve-3d}}
-.a3{{position:absolute;transform-style:preserve-3d}}
-.floor{{position:absolute;left:0;top:90px;width:1080px;height:420px;transform-style:preserve-3d;transform:rotateX(58deg)}} .fa{{transform-style:preserve-3d}} .t3.flat{{zoom:1;transform:none}}
+.a3{{position:absolute;transform-style:preserve-3d}} #st1{{top:790px}}
+.floor{{position:absolute;left:0;top:90px;width:1080px;height:420px;transform-style:preserve-3d;transform:rotateX(44deg)}} .fa{{transform-style:preserve-3d}} .t3.flat{{zoom:1;transform:none}}
 .orb{{position:absolute;left:0;top:0;width:120px;height:120px;perspective:600px;opacity:0}} .cb{{position:absolute;left:0;top:0;width:120px;height:120px;transform-style:preserve-3d}}
 .cfc{{position:absolute;left:0;top:0;width:120px;height:120px;background:#fff;border:3px solid #b9b5a6;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden}} .cfc.side{{background:#e4e1d6}} .orb{{filter:drop-shadow(0 14px 16px rgba(20,20,20,.28))}}
 .cfc b{{font-weight:900;font-size:40px;color:#111;line-height:1}} .cfc span{{font-weight:900;font-size:19px;letter-spacing:.04em;color:#6d6c66;margin-top:6px}}
@@ -247,7 +247,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .shot img{{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}} .shot{{overflow:hidden;background:#fff;border-radius:30px;box-shadow:0 26px 50px rgba(20,20,20,.28)}}
 .about5{{left:140px;top:560px;width:800px;height:330px}}
 .grid11{{position:absolute;left:108px;top:640px;width:864px;height:470px}} .sk{{position:absolute;width:204px;height:130px;border-radius:28px;background:{CARD};box-shadow:0 14px 28px rgba(20,20,20,.22);padding:16px 18px;opacity:0}}
-.sk b{{display:block;font-weight:900;font-size:26px;color:{ORG};letter-spacing:.04em}} .sk span{{display:block;font-weight:900;font-size:30px;color:#f2f2ee;margin-top:16px;letter-spacing:-.02em;white-space:nowrap}}
+.sk b{{display:block;font-weight:900;font-size:26px;color:{ORG};letter-spacing:.04em}} .sk span{{display:block;font-weight:900;font-size:22px;color:#f2f2ee;margin-top:16px;letter-spacing:-.02em;white-space:nowrap}}
 .cen{{left:410px;top:170px}}
 .wc{{position:absolute;left:108px;width:864px;background:#fff;border-radius:34px;box-shadow:0 26px 50px rgba(20,20,20,.22);padding:34px 40px;opacity:0;visibility:hidden;overflow:hidden}}
 .sheen{{position:absolute;top:-20%;left:0;width:160px;height:140%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.75),rgba(255,255,255,0));transform:translateX(-320px) skewX(-12deg);pointer-events:none}}
@@ -310,12 +310,15 @@ const drift=(t,sel,dur,s)=>t.fromTo(sel,{scale:1},{scale:s||1.035,duration:Math.
 function scS1(){ const o=T.S1,t=gsap.timeline(),k=Math.max(.5,o.hit-.15);
   /* frame 0: three paid apps lie flat on the floor, the Claude mark lies below them. The mark rises, then sweeps under and flicks them away one by one. */
   gsap.set('#cm1 .m3',{rotationX:58,rotationY:0,rotationZ:0});
+  t.fromTo('#scS1 .hv',{scale:1.1,transformOrigin:'0% 50%'},{scale:1,duration:.55,ease:'back.out(1.7)',stagger:.25,immediateRender:false},.12);
   t.to('#cm1 .m3',{rotationX:50,duration:Math.max(.3,k-.1),ease:'sine.inOut'},0)
    .to('#cm1 .m3',{rotationX:0,rotationY:-10,duration:.5,ease:'power2.out'},k-.1).to('#cm1',{y:-150,duration:.5,ease:'power2.out'},k-.1);
-  [0,1,2].forEach(i=>{ const ti=k+.05+i*.2, s=i%2?1:-1;
+  const FL=[{x:-950,y:-260,z:420,rotationZ:-140,rotationX:-30},{x:60,y:140,z:1100,rotationX:-150,rotationZ:40},{x:950,y:-260,z:420,rotationZ:140,rotationX:-30}];
+  [0,1,2].forEach(i=>{ const ti=k+.05+i*.2;
     t.to('#cm1',{x:(i-1)*330+(i?0:-60),duration:.3,ease:'power2.inOut'},ti-.1)
-     .to('#a'+i,{z:560,y:-380,rotationX:-40,rotationY:s*160,rotationZ:s*60,duration:.9,ease:'power2.out'},ti).to('#a'+i,{opacity:0,duration:.35,ease:'power1.in'},ti+.55); });
-  t.to('#cm1',{x:0,y:-120,scale:1.35,duration:.7,ease:inOut},k+.7).to('#cm1 .m3',{rotationY:'+=300',duration:Math.max(.8,o.end-k-.9),ease:'sine.inOut'},k+.7)
+     .to('#a'+i,Object.assign({duration:.95,ease:'power2.in'},FL[i]),ti).to('#a'+i,{opacity:0,duration:.3,ease:'power1.in'},ti+.6)
+     .fromTo('#scS1 .hv',{x:0},{x:(i%2?-9:9),duration:.07,yoyo:true,repeat:3,ease:'sine.inOut',immediateRender:false},ti+.05); });
+  t.to('#cm1',{x:0,y:-40,scale:1.3,duration:.7,ease:inOut},k+.7).to('#cm1 .m3',{rotationY:'+=300',duration:Math.max(.8,o.end-k-.9),ease:'sine.inOut'},k+.7)
    .set('#a0,#a1,#a2',{opacity:1,z:0,x:0,y:0,rotationX:0,rotationY:0,rotationZ:0},T.tF).set('#cm1',{x:0,y:0,scale:1},T.tF).set('#cm1 .m3',{rotationX:58,rotationY:0},T.tF)
    .add(hide('#scS1'),o.end-.24); return t; }
 function scS2(){ const o=T.S2,t=gsap.timeline(); t.add(show('#scS2'),0); type(t,'#scS2',o.t0-.04);
@@ -336,11 +339,15 @@ function scS6(){ const o=T.S6,t=gsap.timeline(); t.add(show('#scS6'),0); type(t,
   const e=Math.max(.9,o.eleven-o.t0);
   gsap.utils.toArray('#g11 .sk').forEach((el,i)=>t.fromTo(el,{autoAlpha:0,scale:.6,y:30},{autoAlpha:1,scale:1,y:0,duration:.4,ease:spring,immediateRender:false},.35+i*Math.max(.05,(e-.4)/11)));
   t.to('#g11 .sk b',{color:'#fff',duration:.3,stagger:.03},e).add(hide('#scS6'),o.end-o.t0-.2); return t; }
-function scS7(){ const o=T.S7,t=gsap.timeline(),N=11,st={a:0}; t.add(show('#scS7'),0); type(t,'#scS7',o.t0-.04);
-  const place=ang=>{ for(let i=0;i<N;i++){ const th=ang+i*2*Math.PI/N, z=Math.sin(th), x=Math.cos(th)*390, y=z*150, sc=.98+.5*(z+1)/2; gsap.set('#orb'+i,{x:540+x-60,y:290+y-60,scale:sc,zIndex:Math.round(z*100)+200,opacity:.55+.45*(z+1)/2}); gsap.set('#cb'+i,{rotationY:ang*70+i*40,rotationX:-24}); } };
-  place(0); gsap.set('#cm7',{x:0,y:-30});
-  t.fromTo('#cm7',{scale:0,autoAlpha:0},{scale:1.25,autoAlpha:1,duration:.6,ease:spring,immediateRender:false},.3)
-   .fromTo(st,{a:0},{a:Math.PI*2*1.15,duration:Math.max(2,o.end-o.t0-.3),ease:'sine.inOut',onUpdate:()=>place(st.a)},.2)
+function scS7(){ const o=T.S7,t=gsap.timeline(),N=11,st={a:0,p:0}; t.add(show('#scS7'),0); type(t,'#scS7',o.t0-.04);
+  /* the 11 tiles of the last scene turn into cubes at the same spots, then fly out and ORBIT the Claude mark; the cubes never spin on their own axis */
+  const TIL=Math.PI*0, place=(ang,p)=>{ for(let i=0;i<N;i++){ const th=ang+i*2*Math.PI/N, z=Math.sin(th), ox=540+Math.cos(th)*400, oy=900+z*210, osc=.78+.5*(z+1)/2,
+      gx=108+(i%4)*220+102, gy=640+Math.floor(i/4)*150+65, gsc=1.05, x=gx+(ox-gx)*p, y=gy+(oy-gy)*p, sc=gsc+(osc-gsc)*p;
+      gsap.set('#orb'+i,{x:x-60,y:y-600-60,scale:sc,zIndex:Math.round(z*100)+200,opacity:1}); gsap.set('#cb'+i,{rotationY:-22*p,rotationX:-16*p}); } };
+  place(0,0); gsap.set('#cm7',{x:0,y:-30});
+  t.fromTo('#cm7',{scale:0,autoAlpha:0},{scale:1.25,autoAlpha:1,duration:.6,ease:spring,immediateRender:false},.45)
+   .fromTo(st,{p:0},{p:1,duration:.9,ease:'power3.inOut',onUpdate:()=>place(st.a,st.p)},.2)
+   .fromTo(st,{a:0},{a:Math.PI*2*1.15,duration:Math.max(2,o.end-o.t0-.3),ease:'sine.inOut',onUpdate:()=>place(st.a,st.p)},.2)
    .to('#cm7 .m3',{rotationY:'+=360',duration:Math.max(2,o.end-o.t0),ease:'none'},0).add(hide('#scS7'),o.end-o.t0-.2); return t; }
 function scS8(){ const o=T.S8,t=gsap.timeline(); t.add(show('#scS8'),0); type(t,'#scS8',o.t0-.04); card(t,'#rc',.35);
   t.fromTo('#scan',{y:0,opacity:1},{y:560,duration:.9,ease:'sine.inOut',immediateRender:false},.6).to('#scan',{opacity:0,duration:.2},1.5)
