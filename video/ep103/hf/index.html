@@ -47,8 +47,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fam
 .lnote{position:absolute;left:44px;bottom:26px;font-weight:500;font-size:42px;line-height:48px;letter-spacing:-.01em;color:#b9b8b2;white-space:nowrap;opacity:0;visibility:hidden}
 
 .cc{position:absolute;left:108px;top:286px;width:58px;height:58px}
-.nv{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#0b1d3a;will-change:transform} .nvu{clip-path:polygon(0px 0px,1080px 0px,1080px 530px,0px 1610px)} .nvl{clip-path:polygon(1080px 530px,1080px 1920px,0px 1920px,0px 1610px)}
-#scA .ln .w{color:#fff} #scA{overflow:visible}
+.nv{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#ffffff;will-change:transform} .nvu{clip-path:polygon(0px 0px,1080px 0px,1080px 530px,0px 1610px)} .nvl{clip-path:polygon(1080px 530px,1080px 1920px,0px 1920px,0px 1610px)}
+#scA{overflow:visible}
 .cmk{left:80px;top:710px;width:240px;height:240px;will-change:transform} .lkw{left:430px;top:740px;width:440px;height:440px} .hl{position:absolute;left:0;top:0;width:440px;height:440px;will-change:transform,opacity} .hul{clip-path:polygon(0px 0px,440px 0px,0px 440px)} .hlr{clip-path:polygon(440px 0px,440px 440px,0px 440px)} .lk{position:absolute;left:0;top:0;width:440px;height:440px}
 .kst{left:330px;top:1275px;width:930px;height:14px;border-radius:7px;background:#D97757;transform-origin:0 50%;box-shadow:0 0 28px 6px rgba(217,119,87,.7)}
 .cd{position:absolute;left:108px;width:864px;height:210px;border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.3);display:flex;align-items:center;gap:36px;padding-left:44px;overflow:hidden;opacity:0;visibility:hidden}
@@ -110,7 +110,6 @@ function scA(){ const t=gsap.timeline(), k=T.A.kill;
    .to('.hul',{x:-90,y:-90,rotation:-8,duration:.9,ease:expoOut},k+.16).to('.hlr',{x:90,y:100,rotation:7,duration:.9,ease:expoOut},k+.16)
    /* the whole navy screen splits open along the same line and slides away */
    .to('#nvu',{x:-420,y:-420,duration:.75,ease:'power2.in'},k+.2).to('#nvl',{x:420,y:420,duration:.75,ease:'power2.in'},k+.2)
-   .to('#scA .w',{color:INK,duration:.3,ease:'power1.inOut'},k+.62)
    .to('.hl,#kst',{opacity:0,duration:.3,ease:'power1.in'},k+.6)
    .to('#cm',{scale:1.5,opacity:0,duration:.5,ease:'power1.in'},k+.4)
    .add(hide('#scA'),T.A.end-.24); return t; }
@@ -154,7 +153,7 @@ tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:tr
   .add(scSteps(),T.H.t0-.04)
   .add(scWords('#scI',T.I),T.I.t0-.04)
   .add(scWords('#scJ',T.J,'rgG'),T.J.t0-.04);
-tl.set('.hl',{x:0,y:0,rotation:0,opacity:1},T.tF).set('#kst',{scaleX:0,scaleY:1,opacity:1},T.tF).set('#cm',{x:0,y:0,scale:1,rotation:0,opacity:1},T.tF).set('#nvu,#nvl',{x:0,y:0},T.tF).set('#scA .w',{color:'#fff'},T.tF)
+tl.set('.hl',{x:0,y:0,rotation:0,opacity:1},T.tF).set('#kst',{scaleX:0,scaleY:1,opacity:1},T.tF).set('#cm',{x:0,y:0,scale:1,rotation:0,opacity:1},T.tF).set('#nvu,#nvl',{x:0,y:0},T.tF)
   .fromTo('#scA',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02)
   .to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
