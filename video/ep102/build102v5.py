@@ -41,15 +41,15 @@ ITEMS = [
 for it in ITEMS:
     for f in (it["plogo"], it["flogo"]): assert os.path.exists(f"{H_}/hf/assets/logos/{f}"), f"missing real logo {f} (logos/SOURCES.md)"
 
-LINES = [l.strip() for l in open(H_ + "/voice/lines5.txt") if l.strip()]
+LINES = [l.strip() for l in open(H_ + f"/voice/lines5{os.environ.get('VAR','')}.txt") if l.strip()]
 NL = len(LINES); assert NL == 9, "v5 is laid out for 9 lines"
-try: C = json.load(open(H_ + "/voice/narration-v5-cues.json"))
+try: C = json.load(open(H_ + f"/voice/narration-v5{os.environ.get('VAR','')}-cues.json"))
 except Exception: C = []
 CUE = {c["n"]: c for c in C if "n" in c}
 STALE = os.environ.get("EST") == "1" or len(CUE) != NL or any(n not in CUE or norm(CUE[n]["line"]) != norm(LINES[n - 1]) for n in range(1, NL + 1))
 WORDS = []
 if not STALE:
-    try: WORDS = [[w["word"], w["start"], w["end"]] for w in json.load(open(H_ + "/voice/words-v5.json"))]
+    try: WORDS = [[w["word"], w["start"], w["end"]] for w in json.load(open(H_ + f"/voice/words-v5{os.environ.get('VAR','')}.json"))]
     except Exception: WORDS = []
 if STALE:
     L = {}; t = .06
@@ -99,15 +99,18 @@ def fit(txt, size, mx):
         return min(size, 100 * mx / (f.getlength(txt) * .955))
     except Exception: return min(size, mx / (.6 * len(txt)))
 # five real paid logos: 2 + 2 + the ElevenLabs tile (the big one) centred and larger, so the bottom of the safe box is used
-TPOS = [(108, 508, 417, 222), (555, 508, 417, 222), (108, 744, 417, 222), (555, 744, 417, 222), (222, 982, 636, 266)]
+TPOS = [(108, 556, 417, 210), (555, 556, 417, 210), (108, 782, 417, 210), (555, 782, 417, 210), (222, 1008, 636, 240)]
 tiles = ""
 for i, it in enumerate(ITEMS):
     x, y, w_, h_ = TPOS[i]; big = i == 4; lh = 100
     tiles += (f'<div class="tile{" big" if big else ""}" id="t{i}" style="left:{x}px;top:{y}px;width:{w_}px;height:{h_}px"><div class="lgw" style="left:26px;top:20px;width:{lh}px;height:{lh}px">{lg(it["plogo"], lh)}</div>'
               f'<div class="bd" style="left:{w_ - 98}px;top:26px;width:72px;height:72px">{TAG}{TICK}</div>'
               f'<div class="tnm" style="left:26px;top:{h_ - 92}px;font-size:{fit(it["paid"], 58, w_ - 52):.0f}px">{it["paid"]}</div></div>')
-SC["A"] = line("lead", "Five apps you pay for.", 1, 0, .5, 286, 64, ready=True) + line("hv", "FREE TWINS EXIST!", 1, .6, 1, 370, 90, acc=("free",), ready=True) + ring("rgA", 92, 356, 236, 128) + tiles
-T["A"] = dict(t0=0, free=W("free", "free", 1, .55), end=a[2])
+HOOK = os.environ.get("VAR", "A")
+LEAD = "Stop paying" if HOOK == "A" else "You could save"
+SC["A"] = line("lead", LEAD, 1, 0, .4, 282, 62, ready=True) + line("hv", "$780 A YEAR", 1, .5, 1, 352, 118, acc=("780",), ready=True) + ring("rgA", 96, 346, 372, 150) + \
+          '<div class="ln lead note" style="top:492px;font-size:34px;line-height:40px;color:#6d6c66">cheapest paid plans, per person</div>' + tiles
+T["A"] = dict(t0=0, free=W("price", "780", 1, .55), end=a[2])
 # ---------------------------------------------------------------- B tease
 SC["B"] = line("lead", "The last one is", 2, 0, .36, 380, 84) + line("hv", "INSANE.", 2, .5, .5, 476, 214, acc=("insane",)) + ring("rgB", 78, 468, 890, 250) + line("hv", "STAY FOR IT.", 2, .72, .95, 760, 128)
 T["B"] = dict(t0=a[2], acc=W("insane", "insane", 2, .5), end=a[3])
