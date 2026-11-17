@@ -2513,6 +2513,36 @@ export const ARTICLES: Article[] = [
       "Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with any of the products named.",
     ],
   },
+  {
+    n: 102,
+    title: "Claude Code and the 12 free LinkedIn skills: how to install them and what they do",
+    standfirst:
+      "The video shows an open-source set of 12 skills that lets Claude write LinkedIn posts, comments and replies, " +
+      "build a posting plan and rewrite a profile. It is free and MIT licensed (sergebulaev/linkedin-skills on GitHub). " +
+      "This page has the install steps, what the video showed, and what it did not.",
+    steps: [
+      "Check that you have a paid Claude plan (Pro, Max, Team or Enterprise) with code execution turned on. The project's own page says skills and plugins need one.",
+      "Claude Code: open Claude Code and run /plugin marketplace add sergebulaev/linkedin-skills , then run /plugin install and pick linkedin-skills. You should see the skills listed as installed.",
+      "Claude on the web or Claude Desktop: open Customize, then Plugins, add the repository sergebulaev/linkedin-skills as a marketplace, then open Discover and install it.",
+      "Any other agent: the project lists npx skills add sergebulaev/linkedin-skills. Always check the repository page https://github.com/sergebulaev/linkedin-skills before you run anything.",
+      "Ask Claude for a post in your own words, for example: write me a LinkedIn post about the five apps I pay for, with the real prices. The skills show you a draft and wait for your approval before anything is posted.",
+      "Optional: the read features (comments, feed analysis) use third-party scrapers and need their own keys. You can skip them and still use the writing skills.",
+    ],
+    changes: [
+      "What the video showed: we followed the Post Writer skill's own rules (formula F7, the odd-precision money ledger: a number first, then every line item, then a closing question and a P.S.) on our own numbers from episode 101. The unedited result is the post on screen. It starts with $780, the yearly sum of the cheapest paid plan of five apps. Nothing was posted anywhere.",
+      "The 12 skills, from the project page: Post Writer, Comment Drafter, Reply Handler, Post Audit, Humanizer, Hook Extractor, Content Planner, Engagement Monitor, Profile Optimizer, Employee Advocacy, Repurposer and Interviewer.",
+      "The Hook Extractor, per the project's own description, takes the link of a viral post and returns which of its 20 hook formulas it uses and a blank template. F7, Odd-Precision Money Ledger, is one of those 20 formulas.",
+      "Facts read on 17 November 2026 from the GitHub page and a local copy of the repository: MIT licence, about 6.0K stars, 969 forks, version 1.1.28, last commit 27 October 2026.",
+    ],
+    limits: [
+      "We ran Post Writer's rules and read the Humanizer's rules on our own text. We did not run the Hook Extractor, the Comment Drafter or the other skills, so we show no result for them, only what the project says they do.",
+      "A paid Claude plan with code execution is required. The skills themselves cost nothing.",
+      "The skills write drafts. You approve and post by hand. We posted nothing to LinkedIn.",
+      "The project's own page does not discuss LinkedIn's terms of service for its read features, which use third-party scrapers. Read the terms for any account you use.",
+      "The author's company sells related services, and the page asks readers to star the repository. Our video is not sponsored and we have no link to the author.",
+      "Claude is made by Anthropic and this video was made with help from Claude. This channel is not affiliated with LinkedIn, Anthropic or the project's author.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;
