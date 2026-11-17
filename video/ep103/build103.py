@@ -83,38 +83,20 @@ ARW = '<svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 
 SC = {}; T = {}
 
 
-# ---------------------------------------------------------------- A hook: the real Claude mark is the blade. It cuts the real LinkedIn tile along a curved path; the tile opens strip by strip as the mark passes
-import math
-TS = 520; TX, TY = 280, 700
-P = [(-70, 470), (130, 120), (340, 440), (600, 20)]
-def bez(t):
-    u = 1 - t
-    return (u**3 * P[0][0] + 3 * u * u * t * P[1][0] + 3 * u * t * t * P[2][0] + t**3 * P[3][0],
-            u**3 * P[0][1] + 3 * u * u * t * P[1][1] + 3 * u * t * t * P[2][1] + t**3 * P[3][1])
-SAM = [bez(i / 120) for i in range(121)]
-def yat(x):
-    for (x0, y0), (x1, y1) in zip(SAM, SAM[1:]):
-        if x0 <= x <= x1: return y0 + (y1 - y0) * (x - x0) / (x1 - x0 + 1e-9)
-    return SAM[0][1] if x < SAM[0][0] else SAM[-1][1]
-NS = 7; XB = [round(TS * i / NS) for i in range(NS + 1)]
-clamp = lambda v: max(0, min(TS, v))
-def poly(pts): return "polygon(" + ",".join(f"{x:.1f}px {y:.1f}px" for x, y in pts) + ")"
-pieces = ""
-for j in range(NS):
-    x0, x1 = XB[j], XB[j + 1]
-    mid = [(x, clamp(yat(x))) for x in [x0 + (x1 - x0) * k / 6 for k in range(7)]]
-    up = [(x0, 0), (x1, 0)] + list(reversed([(x, min(TS, y + 2.5)) for x, y in mid]))
-    lo = [(x, max(0, y - 2.5)) for x, y in mid] + [(x1 + 1.5, TS), (x0 - 1.5, TS)]
-    for tag, pl in (("u", up), ("l", lo)):
-        pieces += f'<img class="pc p{tag}" data-j="{j}" src="assets/logos/linkedin.svg" style="clip-path:{poly(pl)}">'
-trail = "M " + " L ".join(f"{TX + x:.1f} {TY + y:.1f}" for x, y in SAM[::4])
-SC["A"] = line("lead", "Claude just", 1, 0, .3, 292, 62, ready=True) + line("hv", "KILLED", 1, .55, .55, 352, 200, acc=("killed",), ready=True) + \
-          f'<div class="lkw" id="lkw"><img class="whole" id="whole" src="assets/logos/linkedin.svg">{pieces}</div>' + \
-          f'<svg class="trail" viewBox="0 0 1080 1920"><path id="trailp" d="{trail}" fill="none" stroke="{ORG}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>' + \
+# ---------------------------------------------------------------- A hook: whole LinkedIn tile, the Claude mark cuts it straight, corner to corner; two clean halves part. No trail, no strips.
+TS = 540; TX, TY = 270, 668
+def wspan(txt, n, fr0, fr1, cls=""):
+    ws = txt.split(); out = []
+    for i, w in enumerate(ws):
+        t_ = W("", norm(w), n, fr0 + (fr1 - fr0) * (i / (len(ws) - 1) if len(ws) > 1 else 0), log=False)
+        out.append(f'<span class="m"><span class="w rdy{cls}" data-t="{t_:.3f}">{w}</span></span>')
+    return "".join(out)
+SC["A"] = '<div class="ln lead hrow" style="top:286px;font-size:92px;line-height:100px"><img class="cc2" src="assets/logos/claude.svg">' + wspan("Claude just", 1, 0, .3) + '</div>' + \
+          '<div class="ln hv hrow" style="top:398px;font-size:232px;line-height:244px">' + wspan("KILLED", 1, .55, .55, " acc") + '</div>' + \
+          f'<div class="lkw" id="lkw"><img class="whole" id="whole" src="assets/logos/linkedin.svg"><div class="hl hul" id="hul"><img class="lk" src="assets/logos/linkedin.svg"></div><div class="hl hlr" id="hlr"><img class="lk" src="assets/logos/linkedin.svg"></div></div>' + \
           '<img class="cmk" id="cm" src="assets/logos/claude.svg">'
 tKill = W("killed", "killed", 1, .6)
-MP = [[round(TX + x, 1), round(TY + y, 1)] for x, y in SAM]
-T["A"] = dict(t0=0, kill=tKill, end=a[2], path=MP, strips=[round((XB[j] + XB[j + 1]) / 2) for j in range(NS)], xmin=round(SAM[0][0]), xmax=round(SAM[-1][0]), tx=TX)
+T["A"] = dict(t0=0, kill=tKill, end=a[2], tx=TX, ty=TY, ts=TS)
 # ---------------------------------------------------------------- B the promise: three big colour cards fly in as spoken
 cardsB = [("1", "Posts", "#0A66C2"), ("2", "Replies", ORG), ("3", "Your profile", "#111111")]
 rb = "".join(f'<div class="cd" id="cd{i}" style="top:{330 + i * 250}px;background:{c}"><i class="sheen"></i><b>{n}</b><span>{t}</span></div>' for i, (n, t, c) in enumerate(cardsB))
@@ -211,9 +193,10 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .lnote{{position:absolute;left:44px;bottom:26px;font-weight:500;font-size:42px;line-height:48px;letter-spacing:-.01em;color:#b9b8b2;white-space:nowrap;opacity:0;visibility:hidden}}
 
 .cc{{position:absolute;left:108px;top:286px;width:58px;height:58px}}
-#scA{{overflow:visible}}
-.lkw{{left:280px;top:700px;width:520px;height:520px}} .pc{{position:absolute;left:0;top:0;width:520px;height:520px;will-change:transform,opacity;opacity:0}} .whole{{position:absolute;left:0;top:0;width:520px;height:520px}} .lkw{{filter:drop-shadow(0 18px 26px rgba(20,20,20,.28))}}
-.cmk{{left:20px;top:690px;width:270px;height:270px;will-change:transform,filter}} .trail{{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;filter:drop-shadow(0 0 14px rgba(217,119,87,.9))}}
+#scA{{overflow:visible}} .hrow{{left:0px!important;width:1080px;text-align:center;display:flex;justify-content:center;align-items:center;gap:26px}} .hrow .m{{margin-right:0}} .cc2{{width:96px;height:96px;flex:none}}
+.lkw{{left:270px;top:668px;width:540px;height:540px;filter:drop-shadow(0 20px 30px rgba(20,20,20,.3))}} .whole{{position:absolute;left:0;top:0;width:540px;height:540px}}
+.hl{{position:absolute;left:0;top:0;width:540px;height:540px;opacity:0;will-change:transform,opacity}} .hul{{clip-path:polygon(0px 0px,542px 0px,0px 542px)}} .hlr{{clip-path:polygon(542px 0px,542px 542px,0px 542px)}} .lk{{position:absolute;left:0;top:0;width:540px;height:540px}}
+.cmk{{left:60px;top:1000px;width:300px;height:300px;will-change:transform}}
 .cd{{position:absolute;left:108px;width:864px;height:210px;border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.3);display:flex;align-items:center;gap:36px;padding-left:44px;overflow:hidden;opacity:0;visibility:hidden}}
 .cd b{{width:110px;height:110px;border-radius:55px;background:rgba(255,255,255,.22);color:#fff;font-weight:900;font-size:68px;line-height:110px;text-align:center;flex:none}} .cd span{{font-weight:900;font-size:104px;letter-spacing:-.045em;color:#fff;white-space:nowrap}}
 .pcard{{left:108px;top:640px;width:864px;height:300px;background:{CARD};border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.28);padding:48px 52px;opacity:0;visibility:hidden}}
@@ -250,36 +233,24 @@ function type(t,id,t0){
     else t.fromTo(w,{yPercent:112,y:0},{yPercent:0,y:0,duration:.46,ease:expoOut,immediateRender:false},at); });
 }
 function ringDraw(t,id,at){ t.fromTo(id+' path',{drawSVG:'0%'},{drawSVG:'100%',duration:.8,ease:'power2.inOut',immediateRender:false},at) }
-gsap.set('.ring path, .arw path',{drawSVG:'0%'}); gsap.set('.stk',{scaleX:0,rotation:-3}); gsap.set('#bigstk',{rotation:-4});
+gsap.set('.ring path, .arw path',{drawSVG:'0%'});
 
 /* A: the cube. Frame 0 is complete; then the six price tags flip to ticks one by one, each tile nudges (follow-through) */
 /* typed text: each character appears at a slightly varying pace (never a fixed tick) */
 function typeChars(t,sel,at,dur){ const el=document.querySelector(sel); if(!el) return; const sp=SplitText.create(el,{type:'words,chars',charsClass:'c',wordsClass:'wd'}); const n=sp.chars.length; let w=[],tot=0;
   for(let i=0;i<n;i++){ const v=.7+.6*Math.abs(Math.sin(i*2.3+1)); w.push(v); tot+=v; } let c=at;
   sp.chars.forEach((ch,i)=>{ t.set(ch,{opacity:1},c); c+=dur*w[i]/tot; }); }
-function scA(){ const t=gsap.timeline(), k=T.A.kill, A=T.A, dur=.4, P0=.42, base={x:20+135,y:690+135}, n=A.path.length-1;
-  /* the video OPENS mid-cut: at frame 0 the Claude mark is already through 40% of the tile along its curved path, the trail is drawn and the first strips are open */
-  const at=(p)=>{ const f=p*n, i=Math.min(n-1,Math.floor(f)), r=f-i; return [A.path[i][0]+(A.path[i+1][0]-A.path[i][0])*r, A.path[i][1]+(A.path[i+1][1]-A.path[i][1])*r]; };
-  gsap.set('#whole',{opacity:0}); gsap.set('.pc',{opacity:1});
-  const pu=gsap.utils.toArray('.pu'), pl=gsap.utils.toArray('.pl');
-  const m0=at(P0); gsap.set('#cm',{x:m0[0]-base.x,y:m0[1]-base.y,scale:.55,rotation:200,filter:'drop-shadow(0 0 22px rgba(217,119,87,.95))'});
-  gsap.set('#trailp',{drawSVG:'0% '+Math.round(P0*100)+'%'});
-  const o={p:P0};
-  t.to(o,{p:1,duration:dur*(1-P0),ease:'none',onUpdate:()=>{ const q=at(o.p); gsap.set('#cm',{x:q[0]-base.x,y:q[1]-base.y}); }},0)
-   .to('#cm',{rotation:560,duration:dur*(1-P0),ease:'none'},0)
-   .to('#trailp',{drawSVG:'0% 100%',duration:dur*(1-P0),ease:'none'},0)
-   .to('#scA',{scale:1.04,duration:.12,ease:'power2.out',transformOrigin:'540px 900px'},k-.05).to('#scA',{scale:1,duration:.5,ease:'power2.out'},k+.07);
-  A.strips.forEach((xc,j)=>{ const frac=(xc-A.xmin)/(A.xmax-A.xmin), tj=dur*(frac-P0)/(1-P0)*(1-P0), d=1+.15*Math.sin(j*2.1);
-    const open=tj<=0, tt=Math.max(0,tj);
-    if(open){ gsap.set(pu[j],{x:-26*d,y:-30*d,rotation:-2.5-j*.5}); gsap.set(pl[j],{x:26*d,y:30*d,rotation:2.5+j*.5}); }
-    else { t.to(pu[j],{x:-26*d,y:-30*d,rotation:-2.5-j*.5,duration:.16,ease:'power3.out'},tt).to(pl[j],{x:26*d,y:30*d,rotation:2.5+j*.5,duration:.16,ease:'power3.out'},tt); }
-    const fall=Math.max(tt+.16,k-.12+j*.025);
-    t.to(pu[j],{x:-150-j*14,y:-190+j*10,rotation:-10-j*3,duration:.9,ease:'power2.in'},fall).to(pl[j],{x:140+j*16,y:230-j*12,rotation:9+j*3,duration:.9,ease:'power2.in'},fall)
-     .to([pu[j],pl[j]],{opacity:0,duration:.3},fall+.6); });
-  A.strips.forEach((xc,j)=>{ const frac=(xc-A.xmin)/(A.xmax-A.xmin), open=(frac-P0)<=0, d=1+.15*Math.sin(j*2.1);
-    t.set(pu[j],open?{x:-26*d,y:-30*d,rotation:-2.5-j*.5,opacity:1}:{x:0,y:0,rotation:0,opacity:1},T.tF).set(pl[j],open?{x:26*d,y:30*d,rotation:2.5+j*.5,opacity:1}:{x:0,y:0,rotation:0,opacity:1},T.tF); });
-  t.set('#cm',{x:m0[0]-base.x,y:m0[1]-base.y,scale:.55,rotation:200,opacity:1},T.tF).set('#trailp',{opacity:1,drawSVG:'0% '+Math.round(P0*100)+'%'},T.tF);
-  t.to('#trailp',{opacity:0,duration:.3},k+.3).to('#cm',{x:A.path[n][0]-base.x+60,y:A.path[n][1]-base.y-60,scale:.9,opacity:0,duration:.45,ease:'power1.in'},k+.2)
+function scA(){ const t=gsap.timeline(), k=T.A.kill, A=T.A, S=A.ts, st=Math.max(.22,k-.4), d=.32;
+  /* frame 0: the whole LinkedIn tile, the Claude mark poised at its lower-left corner. The mark crosses the tile corner to corner (straight), the tile splits in two clean halves, they part and fall. */
+  const base={x:60+150,y:1000+150}, p0=[A.tx-34,A.ty+S+34], p1=[A.tx+S+34,A.ty-34];
+  gsap.set('#cm',{x:p0[0]-base.x,y:p0[1]-base.y,scale:.62,rotation:0});
+  t.to('#cm',{x:p1[0]-base.x,y:p1[1]-base.y,rotation:540,duration:d,ease:'power2.inOut'},st)
+   .set('#whole',{opacity:0},st+d*.5).set('.hl',{opacity:1},st+d*.5)
+   .to('#hul',{x:-95,y:-95,rotation:-8,duration:.95,ease:expoOut},st+d*.5).to('#hlr',{x:95,y:105,rotation:7,duration:.95,ease:expoOut},st+d*.5)
+   .to('#scA',{scale:1.035,duration:.1,ease:'power2.out',transformOrigin:'540px 940px'},st+d*.5).to('#scA',{scale:1,duration:.45,ease:'power2.out'},st+d*.5+.1)
+   .to('.hl',{opacity:0,duration:.35,ease:'power1.in'},st+d*.5+.55)
+   .to('#cm',{x:p1[0]-base.x+70,y:p1[1]-base.y-70,scale:.9,opacity:0,duration:.45,ease:'power1.in'},st+d)
+   .set('#whole',{opacity:1},T.tF).set('.hl',{opacity:0},T.tF).set('#hul,#hlr',{x:0,y:0,rotation:0},T.tF).set('#cm',{x:p0[0]-base.x,y:p0[1]-base.y,scale:.62,rotation:0,opacity:1},T.tF)
    .add(hide('#scA'),T.A.end-.24); return t; }
 function scWords(id,o,ringId){ const t=gsap.timeline(); t.add(show(id),0); type(t,id,o.t0-.04);
   if(ringId) ringDraw(t,'#'+ringId,(o.acc-o.t0)+.16);
