@@ -1,0 +1,27 @@
+$780
+
+That is what five apps cost a year, if you pay the cheapest paid plan of each. One person. No extras.
+
+Here is every line item, from the pricing pages, nothing rounded:
+
+- Loom Business: $18 a month, $216 a year
+- Notion Plus: $10 a month, $120 a year
+- Intercom Essential: $19 a month on the yearly rate, $228 a year
+- Wispr Flow Pro: $12 a month on the yearly rate, $144 a year
+- ElevenLabs Starter: $6 a month, $72 a year
+
+Total: $780.
+
+Each one has a free, open-source twin: Cap, AppFlowy, Chatwoot, OpenWhispr and VoiceStudio.
+
+The part that surprised me: the free twin that gets the most attention is only 7 months old. VoiceStudio went past 100,000 GitHub stars in that time.
+
+Four of the five paid apps already have a free plan. So the $780 only applies if you pay today.
+
+Software people used to flip houses. Now they flip subscriptions.
+
+Which one of the five are you paying for right now?
+
+P.S. I put the list and the install steps on one page. It is in the link on my profile.
+
+Only one of them needs its own server: Chatwoot. The other four install like normal apps.
