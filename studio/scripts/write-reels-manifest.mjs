@@ -41,7 +41,7 @@ for (const file of names) {
     file,
     bytes: st.size,
     builtAt: sidecar || st.mtime.toISOString(),
-    gate: gateText === null ? null : { passed: /ALL CHECKS PASSED/.test(gateText), text: gateText },
+    gate: gateText === null ? null : { passed: /ALL CHECKS (THAT RAN )?PASSED/.test(gateText), text: gateText },
     // A human decision kept beside the gate, never inside it: the gate file stays exactly what check.sh
     // wrote. Present only when David approved a render by ear that an automatic heuristic flagged.
     approval: /\.mp4$/.test(file) ? (read(join(DIR, file.replace(/\.mp4$/, ".approval.txt"))) || null) : null,
