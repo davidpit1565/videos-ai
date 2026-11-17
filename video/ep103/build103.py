@@ -83,13 +83,38 @@ ARW = '<svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 
 SC = {}; T = {}
 
 
-# ---------------------------------------------------------------- A hook: navy screen, the real LinkedIn mark vs the Claude mark; the Claude mark slashes it on "killed" and the whole screen splits open along the cut
-SC["A"] = '<div class="nv nvu" id="nvu"></div><div class="nv nvl" id="nvl"></div>' + \
-          line("lead", "Claude just", 1, 0, .3, 292, 62, ready=True) + line("hv", "KILLED", 1, .55, .55, 352, 200, acc=("killed",), ready=True) + \
-          '<div class="lkw" id="lkw"><div class="hl hul"><img class="lk" src="assets/logos/linkedin.svg"></div><div class="hl hlr"><img class="lk" src="assets/logos/linkedin.svg"></div></div>' + \
-          '<i class="kst" id="kst"></i><img class="cmk" id="cm" src="assets/logos/claude.svg">'
+# ---------------------------------------------------------------- A hook: the real Claude mark is the blade. It cuts the real LinkedIn tile along a curved path; the tile opens strip by strip as the mark passes
+import math
+TS = 520; TX, TY = 280, 700
+P = [(-70, 470), (130, 120), (340, 440), (600, 20)]
+def bez(t):
+    u = 1 - t
+    return (u**3 * P[0][0] + 3 * u * u * t * P[1][0] + 3 * u * t * t * P[2][0] + t**3 * P[3][0],
+            u**3 * P[0][1] + 3 * u * u * t * P[1][1] + 3 * u * t * t * P[2][1] + t**3 * P[3][1])
+SAM = [bez(i / 120) for i in range(121)]
+def yat(x):
+    for (x0, y0), (x1, y1) in zip(SAM, SAM[1:]):
+        if x0 <= x <= x1: return y0 + (y1 - y0) * (x - x0) / (x1 - x0 + 1e-9)
+    return SAM[0][1] if x < SAM[0][0] else SAM[-1][1]
+NS = 7; XB = [round(TS * i / NS) for i in range(NS + 1)]
+clamp = lambda v: max(0, min(TS, v))
+def poly(pts): return "polygon(" + ",".join(f"{x:.1f}px {y:.1f}px" for x, y in pts) + ")"
+pieces = ""
+for j in range(NS):
+    x0, x1 = XB[j], XB[j + 1]
+    mid = [(x, clamp(yat(x))) for x in [x0 + (x1 - x0) * k / 6 for k in range(7)]]
+    up = [(x0, 0), (x1, 0)] + list(reversed([(x, min(TS, y + 2.5)) for x, y in mid]))
+    lo = [(x, max(0, y - 2.5)) for x, y in mid] + [(x1 + 1.5, TS), (x0 - 1.5, TS)]
+    for tag, pl in (("u", up), ("l", lo)):
+        pieces += f'<img class="pc p{tag}" data-j="{j}" src="assets/logos/linkedin.svg" style="clip-path:{poly(pl)}">'
+trail = "M " + " L ".join(f"{TX + x:.1f} {TY + y:.1f}" for x, y in SAM[::4])
+SC["A"] = line("lead", "Claude just", 1, 0, .3, 292, 62, ready=True) + line("hv", "KILLED", 1, .55, .55, 352, 200, acc=("killed",), ready=True) + \
+          f'<div class="lkw" id="lkw"><img class="whole" id="whole" src="assets/logos/linkedin.svg">{pieces}</div>' + \
+          f'<svg class="trail" viewBox="0 0 1080 1920"><path id="trailp" d="{trail}" fill="none" stroke="{ORG}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>' + \
+          '<img class="cmk" id="cm" src="assets/logos/claude.svg">'
 tKill = W("killed", "killed", 1, .6)
-T["A"] = dict(t0=0, kill=tKill, end=a[2])
+MP = [[round(TX + x, 1), round(TY + y, 1)] for x, y in SAM]
+T["A"] = dict(t0=0, kill=tKill, end=a[2], path=MP, strips=[round((XB[j] + XB[j + 1]) / 2) for j in range(NS)], xmin=round(SAM[0][0]), xmax=round(SAM[-1][0]), tx=TX)
 # ---------------------------------------------------------------- B the promise: three big colour cards fly in as spoken
 cardsB = [("1", "Posts", "#0A66C2"), ("2", "Replies", ORG), ("3", "Your profile", "#111111")]
 rb = "".join(f'<div class="cd" id="cd{i}" style="top:{330 + i * 250}px;background:{c}"><i class="sheen"></i><b>{n}</b><span>{t}</span></div>' for i, (n, t, c) in enumerate(cardsB))
@@ -186,10 +211,9 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .lnote{{position:absolute;left:44px;bottom:26px;font-weight:500;font-size:42px;line-height:48px;letter-spacing:-.01em;color:#b9b8b2;white-space:nowrap;opacity:0;visibility:hidden}}
 
 .cc{{position:absolute;left:108px;top:286px;width:58px;height:58px}}
-.nv{{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#ffffff;will-change:transform}} .nvu{{clip-path:polygon(0px 0px,1080px 0px,1080px 530px,0px 1610px)}} .nvl{{clip-path:polygon(1080px 530px,1080px 1920px,0px 1920px,0px 1610px)}}
 #scA{{overflow:visible}}
-.cmk{{left:80px;top:710px;width:240px;height:240px;will-change:transform}} .lkw{{left:430px;top:740px;width:440px;height:440px}} .hl{{position:absolute;left:0;top:0;width:440px;height:440px;will-change:transform,opacity}} .hul{{clip-path:polygon(0px 0px,440px 0px,0px 440px)}} .hlr{{clip-path:polygon(440px 0px,440px 440px,0px 440px)}} .lk{{position:absolute;left:0;top:0;width:440px;height:440px}}
-.kst{{left:330px;top:1275px;width:930px;height:14px;border-radius:7px;background:{ORG};transform-origin:0 50%;box-shadow:0 0 28px 6px rgba(217,119,87,.7)}}
+.lkw{{left:280px;top:700px;width:520px;height:520px}} .pc{{position:absolute;left:0;top:0;width:520px;height:520px;will-change:transform,opacity;opacity:0}} .whole{{position:absolute;left:0;top:0;width:520px;height:520px}} .lkw{{filter:drop-shadow(0 18px 26px rgba(20,20,20,.28))}}
+.cmk{{left:20px;top:690px;width:270px;height:270px;will-change:transform,filter}} .trail{{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;filter:drop-shadow(0 0 14px rgba(217,119,87,.9))}}
 .cd{{position:absolute;left:108px;width:864px;height:210px;border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.3);display:flex;align-items:center;gap:36px;padding-left:44px;overflow:hidden;opacity:0;visibility:hidden}}
 .cd b{{width:110px;height:110px;border-radius:55px;background:rgba(255,255,255,.22);color:#fff;font-weight:900;font-size:68px;line-height:110px;text-align:center;flex:none}} .cd span{{font-weight:900;font-size:104px;letter-spacing:-.045em;color:#fff;white-space:nowrap}}
 .pcard{{left:108px;top:640px;width:864px;height:300px;background:{CARD};border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.28);padding:48px 52px;opacity:0;visibility:hidden}}
@@ -233,19 +257,22 @@ gsap.set('.ring path, .arw path',{drawSVG:'0%'}); gsap.set('.stk',{scaleX:0,rota
 function typeChars(t,sel,at,dur){ const el=document.querySelector(sel); if(!el) return; const sp=SplitText.create(el,{type:'words,chars',charsClass:'c',wordsClass:'wd'}); const n=sp.chars.length; let w=[],tot=0;
   for(let i=0;i<n;i++){ const v=.7+.6*Math.abs(Math.sin(i*2.3+1)); w.push(v); tot+=v; } let c=at;
   sp.chars.forEach((ch,i)=>{ t.set(ch,{opacity:1},c); c+=dur*w[i]/tot; }); }
-function scA(){ const t=gsap.timeline(), k=T.A.kill;
-  gsap.set('#kst',{scaleX:0,rotation:-45});
-  /* wind-up: the Claude mark drops to the lower-left of the logo while the headline is read */
-  t.to('#cm',{x:90,y:450,scale:.55,rotation:-30,duration:Math.max(.3,k-.1),ease:'power2.inOut'},0)
-   /* the cut: the mark crosses the logo corner to corner on the spoken word, drawing the cut line behind it */
-   .to('#cm',{x:760,y:-210,scale:.55,rotation:150,duration:.24,ease:'power3.inOut'},k-.08)
-   .to('#kst',{scaleX:1,duration:.24,ease:'power3.inOut'},k-.08)
-   .to('#kst',{scaleY:2.2,duration:.12,ease:'power2.out'},k+.12).to('#kst',{scaleY:1,duration:.3},k+.24)
-   .to('.hul',{x:-90,y:-90,rotation:-8,duration:.9,ease:expoOut},k+.16).to('.hlr',{x:90,y:100,rotation:7,duration:.9,ease:expoOut},k+.16)
-   /* the whole navy screen splits open along the same line and slides away */
-   .to('#nvu',{x:-420,y:-420,duration:.75,ease:'power2.in'},k+.2).to('#nvl',{x:420,y:420,duration:.75,ease:'power2.in'},k+.2)
-   .to('.hl,#kst',{opacity:0,duration:.3,ease:'power1.in'},k+.6)
-   .to('#cm',{scale:1.5,opacity:0,duration:.5,ease:'power1.in'},k+.4)
+function scA(){ const t=gsap.timeline(), k=T.A.kill, A=T.A, dur=.34, base={x:20+135,y:690+135};
+  gsap.set('#trailp',{drawSVG:'0%'});
+  t.set('#whole',{opacity:0},k-.09).set('.pc',{opacity:1},k-.09);
+  const pu=gsap.utils.toArray('.pu'), pl=gsap.utils.toArray('.pl');
+  t.to('#cm',{x:A.path[0][0]-base.x,y:A.path[0][1]-base.y,scale:.5,rotation:-60,duration:Math.max(.3,k-.12),ease:'power2.inOut'},0);
+  const o={p:0}, n=A.path.length-1;
+  t.to('#cm',{filter:'drop-shadow(0 0 22px rgba(217,119,87,.95))',duration:.05},k-.1)
+   .to(o,{p:1,duration:dur,ease:'none',onUpdate:()=>{ const f=o.p*n, i=Math.min(n-1,Math.floor(f)), r=f-i; const x=A.path[i][0]+(A.path[i+1][0]-A.path[i][0])*r, y=A.path[i][1]+(A.path[i+1][1]-A.path[i][1])*r; gsap.set('#cm',{x:x-base.x,y:y-base.y}); }},k-.08)
+   .to('#cm',{rotation:560,duration:dur,ease:'none'},k-.08)
+   .to('#trailp',{drawSVG:'100%',duration:dur,ease:'none'},k-.08)
+   .to('#scA',{scale:1.045,duration:.1,ease:'power2.out',transformOrigin:'540px 900px'},k+.1).to('#scA',{scale:1,duration:.5,ease:'power2.out'},k+.2);
+  A.strips.forEach((xc,j)=>{ const tj=k-.08+dur*((xc-A.xmin)/(A.xmax-A.xmin)); const d=1+.15*Math.sin(j*2.1);
+    t.to(pu[j],{x:-26*d,y:-30*d,rotation:-2.5-j*.5,duration:.16,ease:'power3.out'},tj).to(pu[j],{x:-150-j*14,y:-190+j*10,rotation:-10-j*3,duration:.9,ease:'power2.in'},tj+.16)
+     .to(pl[j],{x:26*d,y:30*d,rotation:2.5+j*.5,duration:.16,ease:'power3.out'},tj).to(pl[j],{x:140+j*16,y:230-j*12,rotation:9+j*3,duration:.9,ease:'power2.in'},tj+.16)
+     .to([pu[j],pl[j]],{opacity:0,duration:.3},tj+.62); });
+  t.to('#trailp',{opacity:0,duration:.3},k+.45).to('#cm',{x:A.path[n][0]-base.x+60,y:A.path[n][1]-base.y-60,scale:.9,opacity:0,duration:.45,ease:'power1.in'},k+.3)
    .add(hide('#scA'),T.A.end-.24); return t; }
 function scWords(id,o,ringId){ const t=gsap.timeline(); t.add(show(id),0); type(t,id,o.t0-.04);
   if(ringId) ringDraw(t,'#'+ringId,(o.acc-o.t0)+.16);
@@ -287,7 +314,7 @@ tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:tr
   .add(scSteps(),T.H.t0-.04)
   .add(scWords('#scI',T.I),T.I.t0-.04)
   .add(scWords('#scJ',T.J,'rgG'),T.J.t0-.04);
-tl.set('.hl',{x:0,y:0,rotation:0,opacity:1},T.tF).set('#kst',{scaleX:0,scaleY:1,opacity:1},T.tF).set('#cm',{x:0,y:0,scale:1,rotation:0,opacity:1},T.tF).set('#nvu,#nvl',{x:0,y:0},T.tF)
+tl.set('.pc',{x:0,y:0,rotation:0,opacity:0},T.tF).set('#whole',{opacity:1},T.tF).set('#trailp',{opacity:1,drawSVG:'0%'},T.tF).set('#cm',{x:0,y:0,scale:1,rotation:0,opacity:1,filter:'none'},T.tF)
   .fromTo('#scA',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02)
   .to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
