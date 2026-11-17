@@ -4,9 +4,23 @@ import { Provider } from "./providers";
 import Shell from "./shell";
 import { SITE_URL } from "@/lib/site";
 import { LINKS } from "./site-social";
+import localFont from "next/font/local";
+
+/** Archivo Black (SIL Open Font License 1.1, Omnibus-Type via Google Fonts), self-hosted
+ *  from app/fonts so no third-party font request is made on a public page. It has one
+ *  weight; declaring the face for 400-900 stops the browser from drawing a fake bold
+ *  when a heading rule asks for 700 or 800. Hebrew falls through to the next family. */
+const display = localFont({
+  src: "./fonts/ArchivoBlack-Regular.ttf",
+  weight: "400 900",
+  style: "normal",
+  display: "swap",
+  variable: "--font-display",
+  fallback: ["Arial Black", "Helvetica Neue", "Arial", "sans-serif"],
+});
 
 const DESCRIPTION =
-  "AI setups that actually work. One setup per episode: the exact screen, the exact paste, and the part that breaks.";
+  "AI setups that actually work: short reels about AI tools, and a page for every episode with the steps.";
 
 export const metadata: Metadata = {
   // Required for Next to turn the opengraph-image.tsx files into absolute URLs in the
@@ -40,14 +54,17 @@ export const metadata: Metadata = {
   // tool's existence, name, purpose and URL were broadcast to everyone who visited.
   manifest: "/manifest.json",
   appleWebApp: { capable: true, statusBarStyle: "default", title: "Actually Works" },
-  // The same brass checkmark already used as the PWA icon — there was no favicon at all
-  // before this, so every browser tab and bookmark showed a blank page icon.
+  // The dark AW tile (logo direction A, 13.11.2026): a black square reads as a shape of
+  // its own on a light or a dark tab, where the light mark turns into a grey smudge at
+  // 16 px (channel/brand/logo-A-final/README.md). SVG first for sharp tabs, PNGs after.
   icons: {
     icon: [
+      { url: "/icon-mark.svg", type: "image/svg+xml" },
+      { url: "/icon-32.png", sizes: "32x32", type: "image/png" },
       { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: "/icon-192.png",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   // Proves ownership of the domain to Google Search Console (URL prefix property,
   // HTML tag method) — required before the site can be indexed or its sitemap submitted.
@@ -55,7 +72,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A0D12",
+  themeColor: "#FFFFFF",
   width: "device-width",
   initialScale: 1,
   // without this, env(safe-area-inset-bottom) is always 0 and the tab bar sits under
@@ -92,14 +109,8 @@ const siteSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" dir="ltr">
+    <html lang="en" dir="ltr" className={display.variable}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;800&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700;800&family=Archivo:wght@700&family=Assistant:wght@400;600;700&display=swap"
-        />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
         {/* The scroll-reveal sections (app/reveal.tsx) start at opacity:0 in CSS and only

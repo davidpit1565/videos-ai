@@ -50,25 +50,26 @@ export default function GlobalError({
       "chunk-reload-" + (typeof location === "undefined" ? "" : location.pathname) + "-global",
     );
 
+  // English: this replaces the root layout for every page, public ones included, and it
+  // cannot know the route before the layout itself has failed. Light, like the site.
   return (
-    <html lang="he" dir="rtl">
-      <body style={{ margin: 0, background: "#0A0D12", color: "#EAE6DC",
-        fontFamily: "system-ui, sans-serif" }}>
+    <html lang="en" dir="ltr">
+      <body style={{ margin: 0, background: "#FFFFFF", color: "#0B0B0B",
+        fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" }}>
         {!reloading && (
           <div style={{ maxWidth: "40rem", margin: "0 auto", padding: "2.5rem 1.2rem" }}>
-            <h1 style={{ fontSize: "1.5rem", margin: "0 0 .5rem" }}>
-              הדף נשבר לפני שהוא נטען
+            <h1 style={{ fontSize: "1.6rem", lineHeight: 1.2, margin: "0 0 .6rem" }}>
+              This page did not load.
             </h1>
-            <p style={{ color: "#8B8579" }}>
-              זו השגיאה עצמה. היא נרשמה גם בשרת.
+            <p style={{ color: "#4A4A4A", lineHeight: 1.6 }}>
+              Something went wrong on our side, not yours. It has been logged. Reload the
+              page to try again.
             </p>
-            <pre style={{ whiteSpace: "pre-wrap", background: "rgba(220,80,60,.12)",
-              border: "1px solid rgba(220,80,60,.35)", borderRadius: ".45rem",
-              padding: ".9rem 1rem", fontSize: ".85rem", overflowX: "auto" }}>
-              {error.message || "אין הודעה"}
-            </pre>
+            <p>
+              <a href="/" style={{ color: "#0B0B0B", fontWeight: 700 }}>Go to the home page</a>
+            </p>
             {error.digest ? (
-              <p style={{ color: "#8B8579", fontSize: ".85rem" }}>digest: {error.digest}</p>
+              <p style={{ color: "#4A4A4A", fontSize: ".85rem" }}>Reference: {error.digest}</p>
             ) : null}
           </div>
         )}

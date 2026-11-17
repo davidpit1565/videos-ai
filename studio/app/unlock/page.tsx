@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Mark from "../mark";
+import StudioFonts from "../studio-fonts";
 
 export default function Unlock() {
   const [pin, setPin] = useState("");
@@ -9,10 +10,13 @@ export default function Unlock() {
   const [busy, setBusy] = useState(false);
 
   return (
-    <div className="shell" lang="he" dir="rtl" style={{ maxWidth: 420 }}>
+    // "unlock" opts out of the studio's full-height phone layout (globals.css): with
+    // padding 0 and overflow hidden there, the heading was cut at the right edge at 390 px.
+    <div className="shell unlock" lang="he" dir="rtl">
+      <StudioFonts />
       <div className="top">
         <span className="brand">
-          <Mark />
+          <Mark size={22} tone="dark" />
           <b>Actually Works</b>
         </span>
       </div>

@@ -62,7 +62,7 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
       <input
         className="esearch"
         type="search"
-        placeholder="Search episodes…"
+        placeholder="Search episodes"
         value={q}
         onChange={(e) => setQ(e.target.value)}
         aria-label="Search episodes"
@@ -70,23 +70,16 @@ export default function EpisodesBrowser({ eps }: { eps: Entry[] }) {
       {filtered.length === 0 ? (
         <p className="empty">No episode matches that yet.</p>
       ) : (
-        <ol className="eps eps-thumbed">
+        <ol className="eps">
           {filtered.map((e) => (
             <li key={e.n}>
               <Link href={`/e/${e.n}`}>
-                {/* The same branded card every shared link already gets (see
-                    app/e/[n]/opengraph-image.tsx) — a designed still with the real title,
-                    not a random auto-picked YouTube video frame. Works for every episode
-                    uniformly, not just ones with a YouTube link. */}
-                <span className="ethumbwrap">
-                  {/* eslint-disable-next-line @next/next/no-img-element -- a generated route,
-                      not a static asset; next/image can't optimize a dynamic image route. */}
-                  <img className="ethumb" src={`/e/${e.n}/opengraph-image`} alt="" loading="lazy" />
-                  <span className="eno">{String(e.n).padStart(2, "0")}</span>
-                </span>
+                {/* No thumbnail: the only picture available was the share card, which is
+                    the same title as text, shrunk until unreadable (rebrand 13.11.2026).
+                    A real frame per reel would be the right picture; none is stored yet. */}
                 <span className="tag">
-                  {e.tool}
-                  {publicMonth(e.publishedAt) ? ` · ${publicMonth(e.publishedAt)}` : ""}
+                  Episode {e.n}, {e.tool}
+                  {publicMonth(e.publishedAt) ? `, ${publicMonth(e.publishedAt)}` : ""}
                 </span>
                 <span className="t">{e.title}</span>
                 <span className="tp">{e.blurb}</span>

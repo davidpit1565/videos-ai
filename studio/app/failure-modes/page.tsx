@@ -27,9 +27,6 @@ export default async function FailureModes() {
   return (
     <main className="site" dir="ltr">
       <SiteNav here="/failure-modes" />
-      <p className="kicker">
-        <Link href="/">Actually Works</Link> · Failure modes
-      </p>
       <h1>What breaks, written down.</h1>
       <p className="sub">
         Every episode ships with its own limits section — the part most tutorials leave
@@ -58,10 +55,6 @@ export default async function FailureModes() {
         ))
       )}
 
-      <footer className="sfoot">
-        <Link href="/episodes">Episodes</Link>
-        <Link href="/about">About</Link>
-      </footer>
     </main>
   );
 }

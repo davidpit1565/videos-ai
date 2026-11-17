@@ -42,7 +42,8 @@ const toPublic = (e: Episode): PublicEpisode => ({
   number: e.number,
   title: realTitleFor(e.number) || e.title,
   topic: e.topic,
-  notes: e.notes,
+  // Studio bookkeeping lines (TRIAL ..., TRIAL-MANUAL ..., TRIAL-GRADUATED ...) are internal: never show them to visitors.
+  notes: (e.notes ?? "").split("\n").filter((l) => !/^\s*TRIAL\b/.test(l)).join("\n").trim(),
   ytVideoId: e.ytVideoId,
   views: e.views ?? null,
   igPermalink: e.igPermalink ?? null,

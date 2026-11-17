@@ -98,7 +98,7 @@ export function reels(): Reel[] {
   // playing six takes costs thirty seconds.
   return M.reels
     .map((r) => {
-      const m = r.file.match(/(\d+)/);
+      const m = r.file.replace(/\.[^.]+$/, "").match(/(\d+)/); // the extension (.mp4) must not count as an episode number
       const episode = m ? Number(m[1]) : null;
       return {
         src: `/reels/${r.file}`,

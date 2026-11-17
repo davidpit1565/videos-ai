@@ -12,21 +12,22 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const p = bySlug((await params).slug);
-  return p ? { title: `${p.title} — Actually Works`, description: p.blurb } : {};
+  // bare title: the layout template already adds "· Actually Works"
+  return p ? { title: p.title, description: p.blurb } : {};
 }
 
 export default async function PromptPage({ params }: { params: Promise<{ slug: string }> }) {
   const p = bySlug((await params).slug);
   if (!p) notFound();
   return (
-    <div className="shell pub" dir="ltr">
+    <main className="site" dir="ltr">
       <SiteNav />
-      <p className="kicker">
-        <Link href={`/e/${p.episode}`}>Episode {String(p.episode).padStart(2, "0")}</Link>
+      <p className="ep-no">
+        A prompt from <Link href={`/e/${p.episode}`}>episode {p.episode}</Link>
       </p>
 
       <h1>{p.title}</h1>
-      <p className="sub" style={{ fontSize: 18 }}>{p.blurb}</p>
+      <p className="lede">{p.blurb}</p>
 
       <Reveal>
         <h2>Install it</h2>
@@ -49,15 +50,6 @@ export default async function PromptPage({ params }: { params: Promise<{ slug: s
         </div>
       </Reveal>
 
-      <div className="foot">
-        Every setup on this list was run before it was sent. Reply to any issue and it reaches a
-        person.
-      </div>
-      <footer className="sfoot">
-        <Link href="/">Episodes</Link>
-        <Link href="/search">Search</Link>
-        <Link href="/about">About</Link>
-      </footer>
-    </div>
+    </main>
   );
 }

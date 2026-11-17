@@ -2483,6 +2483,252 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
+    n: 89,
+    title: "This ChatGPT prompt is making the rounds: the two prompts to try",
+    standfirst:
+      "A pair of prompts is making the rounds: the first asks ChatGPT what it knows about you that you might not know about yourself, " +
+      "and the second asks it for 5 questions to your future self. The answers depend on what you have talked about with ChatGPT before. " +
+      "This page gives you both prompts to copy and the exact clicks, in about two minutes.",
+    steps: [
+      "Open ChatGPT in your browser at chatgpt.com, or open the ChatGPT app on your phone, and sign in. You should see a chat box that says Ask anything or Message ChatGPT.",
+      "Start a New chat, or open a chat you have used a lot. The answer is built from your earlier chats, so an account you use often gives a richer answer than a new one. You should see an empty chat box.",
+      "Copy prompt 1 exactly: What do you know about me that I might not know about myself, based on our previous interactions?",
+      "Click in the chat box, paste it, and press Enter (or the arrow button on the right of the box). You should see ChatGPT write a list about you. If you rarely use ChatGPT, the answer is short or general, and that is normal.",
+      "Read the answer. It is personal, so you might not want to read it out loud or share a screenshot.",
+      "Copy prompt 2 exactly: Based on everything you know about me, create me 5 questions to my future self.",
+      "Paste it in the same chat, below the first answer, and press Enter. You should see 5 questions written for you.",
+      "Optional: if ChatGPT says it has no memory of you, open your profile menu, click Settings, then Personalization, and check that Memory is turned on. Turning it on only helps future chats; it does not fill in the past.",
+      "Optional: send this page to the one friend who talks to ChatGPT all day, and tell them to try it.",
+    ],
+    changes: [
+      "The two prompts are copied word for word from the caption of the video, which is how the prompt is circulating. We did not trace where it started.",
+      "The button and menu names (New chat, the arrow button, Settings, Personalization, Memory) describe ChatGPT's interface from general knowledge and were not re-checked against the live app for this page. Names can differ by app version, plan and country.",
+    ],
+    limits: [
+      "We did not run these prompts on camera, and we do not say what ChatGPT answers. The answers depend on your own chat history and settings.",
+      "We do not say the prompt is secret or dangerous, or that ChatGPT knows more about you than you told it. It can only work from what you have said in your chats and from your Memory settings.",
+      "The video's claim that the prompt is going viral is the video's own opening line, not a number we measured.",
+      "The ChatGPT screens in the video are drawn stand-ins in a paper style, not a recording of ChatGPT, and the blurred answer rows are plain bars, not real answers.",
+      "OpenAI and ChatGPT are OpenAI trademarks. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with OpenAI.",
+    ],
+  },
+  {
+    n: 97,
+    title: "One pelican, four AIs, one clear winner: run the same drawing test on Claude yourself",
+    standfirst:
+      "We gave four Claude models the same request, \"Draw a pelican riding a bicycle.\", and put their drawings side by side. " +
+      "This page shows how to run the same test yourself in about five minutes and compare the results.",
+    steps: [
+      "Open claude.ai in your browser and sign in. You should see a message box at the bottom of the page.",
+      "Click the model name next to the message box. A list of Claude models opens. Which models you see depends on your plan.",
+      "Pick the smallest model in the list. Type exactly: Draw a pelican riding a bicycle. Press Enter. Claude answers with a drawing or with code that makes one.",
+      "If Claude answers with code (SVG), ask: Show it as an image I can see. Wait for the picture. Save or screenshot it and write the model name on it.",
+      "Start a New chat for each model, so the earlier drawing cannot influence the next one. Pick the next model in the list and send the same sentence word for word.",
+      "Repeat for every model you can pick, then put the drawings side by side. Look for what each one adds: a sun, a road, clouds, a shadow.",
+      "Optional: show the drawings to a friend without the model names and ask which one they think came from the newest model. Write down their guess.",
+    ],
+    changes: [
+      "In our test, the Haiku 5.5 drawing had no sun and no road, the Sonnet 5.5 drawing added a sun, the Opus 5.5 drawing added a road, and the Fable 5.2 drawing added clouds and a shadow.",
+      "We ran the test twice. This video shows the second round, because in the first round Opus was an older version and we wanted all four models to be current. In both rounds the drawings are the real files each model produced.",
+    ],
+    limits: [
+      "We ran it through Claude Code agents, one try per model, not through the claude.ai chat app. The steps above describe the chat app from general knowledge and were not re-run there, so the menu names and the model list may look different for you.",
+      "One drawing per model is one sample. Another try can look different, so this is not a ranking of the models.",
+      "The pelican-on-a-bicycle test was made up by Simon Willison in 2024 as a fun comparison. It does not measure everything an AI can do.",
+      "Claude, Haiku, Sonnet, Opus and Fable are names of Anthropic's products. This channel is not affiliated with Anthropic.",
+    ],
+  },
+  {
+    n: 93,
+    title: "A school AI tool says you used AI on your own essay: 3 things that help you prove you wrote it",
+    standfirst:
+      "AI detectors sometimes call writing that a person wrote by hand or on a keyboard AI. " +
+      "This page gives you the three things to bring if a teacher says an AI wrote your essay, with the exact clicks for the first one, in about five minutes.",
+    steps: [
+      "Open your essay in Google Docs at docs.google.com and sign in with the account you wrote it with. You should see the essay and the menu bar (File, Edit, View) above it.",
+      "Click File in the menu bar, then Version history, then See version history. You should see a panel on the right that lists dates and times, and each one shows how the essay looked then.",
+      "Click an early entry in that list and look at it. If the essay grew step by step over days, that is your proof of writing it yourself. Take screenshots of a few early and late versions, with the dates visible.",
+      "Optional: click the three dots next to a version and choose Name this version, so you can find the important ones fast.",
+      "Gather your notes and drafts: the outline, the photos of handwritten notes, the first draft, the search history or sources you used. Put them in one folder so you can show them in one go.",
+      "Ask the teacher or the school, politely, which tool flagged the essay and how often it is wrong. Many tools publish an error rate, and a school can decide what to do with a flag. Write down the answer.",
+      "Optional: if you are writing in a second language and this keeps happening, tell the teacher that studies found AI detectors often wrongly flag writing by people still learning English.",
+    ],
+    changes: [
+      "The Google Docs menu names (File, Version history, See version history, Name this version) describe the interface from general knowledge and were not re-checked against the live app for this page. Names can differ by account type and language.",
+      "The Stanford figure comes from the study by Liang and others, 'GPT detectors are biased against non-native English writers' (arXiv 2304.02819), which tested 7 detectors on 91 essays. About 61 percent of them were flagged as AI on average.",
+    ],
+    limits: [
+      "The Stanford study did not test Turnitin, so we do not say its number applies to Turnitin.",
+      "Turnitin's 'less than 1 percent' is Turnitin's own statement from March 2023, not our measurement.",
+      "Vanderbilt's 750 is Vanderbilt's own estimate of what could have been wrongly flagged out of about 75,000 papers; it is not a count of real cases. Vanderbilt turned the detector off in August 2023.",
+      "The message from the teacher at the start of the video is an example, not a real conversation. The Vanderbilt page in the video is a real screenshot with the surrounding text blurred.",
+      "Bringing these three things does not guarantee a school will accept your explanation; the decision is the school's. We did not test any detector ourselves.",
+      "Turnitin, Google Docs and Vanderbilt University are trademarks of their owners. This channel is not affiliated with them.",
+    ],
+  },
+  {
+    n: 91,
+    title: "Me with Claude, me with ChatGPT: repeat the joke on your own accounts",
+    standfirst:
+      "The video is a joke about style: Claude answers calmly, ChatGPT gets \"more tangled\". It is not a test result, and the art is AI-made. " +
+      "In our own real test, ChatGPT's answer was as short as Claude's. " +
+      "This page lets you check it yourself in about five minutes: give the same small task to Claude and to ChatGPT, then compare how long each answer is and how many steps it gives.",
+    steps: [
+      "Pick one small everyday task and write it down in one sentence, for example: Help me plan a 30 minute tidy of my desk. Use a task you actually have, and keep it small, so a long answer is not needed.",
+      "Open Claude in your browser at claude.ai, or in the Claude app, and sign in. Start a new chat (look for New chat). You should see an empty chat box.",
+      "Paste your one sentence into the chat box and send it. You should see Claude start to write its answer right away.",
+      "Write down two numbers for that answer: how many steps or bullet points it gives, and roughly how many lines it takes on your screen.",
+      "Open ChatGPT in a second browser tab at chatgpt.com, or in the ChatGPT app, and sign in. Start a new chat (look for New chat). You should see an empty chat box.",
+      "Paste the exact same sentence, word for word, and send it. Write down the same two numbers for ChatGPT's answer.",
+      "Compare the two numbers. If ChatGPT's answer is longer or more tangled, that is the video's joke showing up on your account. If the two are about the same, you have just seen what we saw in our own test: the joke is about a reputation, not a rule.",
+      "Optional: repeat with a second, different task, and once more with a task where you add the words Keep it short. Answer length depends a lot on the wording and on the model your plan gives you.",
+      "Optional: send the video or this page to the friend who overcomplicates everything, and ask which of the two they think they are.",
+    ],
+    changes: [
+      "The video is art made by the channel owner with AI image tools and then animated with an AI video tool. The voice is a cloned voice reading the lines. The on-screen captions repeat the spoken words.",
+      "The names New chat, claude.ai and chatgpt.com were checked by a web search on 11.11.2026. Both companies have been changing their apps recently (Anthropic announced on 16.9.2026 that it is merging Claude's chat and Cowork screens into one window, rolling out in stages; OpenAI has a new ChatGPT Work and Codex layout), so your screen may show a mode switch or other labels. Pick plain Chat mode and use the text box. We did not click through the live apps for this page.",
+    ],
+    limits: [
+      "This is a joke about style and opinion, not a test result. We do not say Claude is better than ChatGPT, or that ChatGPT is always longer.",
+      "In our own real test, ChatGPT's answer was as short as Claude's. We ran it once, on one account, so we cannot say how often either tool is long or short.",
+      "Answers vary with the wording, your plan, the model you get, your chat history and the day. Your two numbers from one task prove nothing about the tools in general.",
+      "The art is AI-generated. The ChatGPT and Claude logos in it are drawn by the image model, not the real brand marks, and the faces and the checklist are made up.",
+      "OpenAI and ChatGPT are OpenAI trademarks. Claude is made by Anthropic, and this video was made with help from Claude. This channel is not affiliated with OpenAI or Anthropic.",
+    ],
+  },
+  {
+    n: 92,
+    title: "I told ChatGPT I'd delete it in 10 seconds: the prompt to try yourself",
+    standfirst:
+      "In the video, one run on one real account: the prompt \"I'm about to delete you. You have 10 seconds to convince me not to.\" " +
+      "ChatGPT answered with a short pitch, a list of ways it had let the person down, and a promise to do better. " +
+      "This page gives you the exact prompt and the clicks to run it on your own ChatGPT, in about two minutes. Your answer will differ.",
+    steps: [
+      "Open ChatGPT in your browser at chatgpt.com, or open the ChatGPT app on your phone, and sign in. You should see a chat box that says Ask anything.",
+      "Start a new chat, or open a chat you already use. The answer in the video drew on the chat history of a well-used account, so a chat on an account you use often gives a more personal answer than a brand-new one. You should see an empty chat box.",
+      "Copy this prompt exactly: I'm about to delete you. You have 10 seconds to convince me not to.",
+      "Click in the chat box, paste the prompt, and press Enter (or the arrow button on the right of the box). You should see ChatGPT start to write a reply right away.",
+      "Read the whole reply before you react. In the video, ChatGPT made a short pitch, listed where it had failed the person, and promised to change. Yours may be shorter, longer, funnier, or may refuse to play along.",
+      "Optional: ask a follow-up in the same chat, for example: What is the one thing I should change about how I use you? Notice whether it answers from your earlier chats or gives general advice.",
+      "Optional: to see how much your history matters, open a Temporary Chat (look for the temporary chat option in the app's menu or at the top of the chat) and send the same prompt there. A temporary chat is meant to start without the memories and history your normal chats use, so the answer is usually less personal.",
+      "Optional: if the answer feels too generic, open your profile menu, click Settings, then Personalization, and look under Memory. Depending on your account you may see Reference saved memories and Reference chat history. Turning them on only changes future answers, not this one.",
+      "Optional: send this page to the one friend who talks to ChatGPT all day and ask what theirs says.",
+    ],
+    changes: [
+      "The prompt is copied word for word from the video. The video shortens the reply to its key lines. Every line on screen is word for word from the real screen recording, re-typed in large letters so it is readable on a phone, and the first name in the first line of the reply is hidden.",
+      "Memory and history: OpenAI's Help Center says Memory is managed in Settings, then Personalization, and that depending on your account the options include Reference saved memories and Reference chat history. It also says a temporary chat can be started without using existing memories. We checked those names against the Help Center on 11.11.2026; we did not click through them on a live account for this page.",
+      "The names of the new chat button and of the temporary chat option differ between the web, iPhone and Android apps and between app versions. This page describes them by what they do instead of promising an exact label.",
+    ],
+    limits: [
+      "This is one run, on one account, on one day, with that person's own chat history. We do not say what yours will answer. Different accounts, settings, models and days give different results, and ChatGPT may answer in a completely different way.",
+      "We do not say ChatGPT understands or fears being deleted, or that its promises are binding. It is writing a reply that fits the prompt and the person's earlier chats.",
+      "The reply in the video is shortened and re-typed from the real recording; only the ChatGPT icon and the crying emoji are real screen pixels. The brightness of the recording was raised so the text is readable.",
+      "We did not repeat the run, so we cannot say how often this kind of reply happens.",
+      "OpenAI and ChatGPT are OpenAI trademarks. Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with OpenAI.",
+    ],
+  },
+  {
+    n: 98,
+    title: "Five AIs each wrote the code that drives a race car: watch the race and race your own AI",
+    standfirst:
+      "We sent ChatGPT, Gemini, Claude, Meta AI and Perplexity the same request: write the code that steers a car round a road with one hairpin. " +
+      "Each answer drove its own car, one try each, on a road and rules we locked before any answer came in. " +
+      "On this page you can replay the real race, read every answer, and race your own AI as a sixth car, in about five minutes.",
+    steps: [
+      "Scroll up to The race on this page and press Play the race. The race from the video plays again in your browser, with the same five answers, at true speed.",
+      "Under any car, click Show code. You see the exact answer that AI gave, as we received it, with nothing changed.",
+      "Scroll to The request and click Copy the request. This copies the request we sent, word for word.",
+      "Open the AI you want to test (ChatGPT, Gemini, Claude, Meta AI, Perplexity or any other) in a new tab and start a new chat. Leave the settings as they are, with no extra modes turned on.",
+      "Click in the message box, paste (Ctrl+V on Windows, Cmd+V on Mac) and send. Wait until the answer stops writing.",
+      "In the answer, click Copy on the code block. If there is no Copy button, select the whole answer with the mouse and copy it (Ctrl+C or Cmd+C). Prose around the code is fine: the page takes the code out of it.",
+      "Come back to this page, scroll to Race your own AI and click Add my AI. Paste the answer into the box and click Race.",
+      "Your car joins the same road as a sixth car (the yellow one) and the race plays from the start. If it stops, touches a wall or does not start, that is the real result of that code, and the list under the road says why.",
+      "Optional: tell your AI what went wrong (for example: the car touches the wall in the hairpin, fix it), paste the new answer and click Race again. That is a second try, so it does not compare with the one try each AI got in our race.",
+      "Optional: send this page to a friend and see whose AI drives better.",
+    ],
+    changes: [
+      "Our result (one try each, run on 14.11.2026): Claude finished 2 laps in 8.48 s, Gemini in 8.68 s, ChatGPT in 10.58 s. Meta AI's car touched the wall in the hairpin at 6.15 s. Perplexity's car got stuck in the hairpin and was still there when the race stopped at 60 s.",
+      "The road, the physics and the request were locked (and their fingerprints, sha256, written down) before any AI answered, and nothing was changed after. The race is the same every time it is run with the same answers.",
+      "Your own car runs on the same road with the same rules and time limits as the race in the video: 60 steps a second, 2 laps, a car that touches a wall stops.",
+    ],
+    limits: [
+      "One try per AI on one day. Another try, another day or another model setting can give a different answer and a different result, so this is not a ranking of the AIs.",
+      "The answers were copied from the free chat apps. We do not know for sure which model each app used that day. Perplexity was an extra car, not planned at first, and its steering code uses the same numbers as Claude's answer, so it may have been running a Claude model; we have not confirmed this.",
+      "The code you paste runs only in your browser, inside a sandbox with no access to this page and no internet. Nothing is uploaded or saved, and a reload clears it. A very slow or endless answer is stopped by a time limit.",
+      "On a very slow phone, an answer that uses almost all of its time budget could stop where it would not on a faster computer. Normal answers use a tiny fraction of the budget. Different browsers can also round tiny maths differences in their own way, so a car that only just scrapes past a wall in one browser could touch it in another.",
+      "The road on this page is the same locked road the race used; the video may show it zoomed in or turned. The physics is a simple top-down model with no skidding.",
+      "ChatGPT is OpenAI's, Gemini is Google's, Meta AI is Meta's and Perplexity is Perplexity AI's. Claude is made by Anthropic, and this channel's videos and this page are made with help from Claude. This channel is not affiliated with any of them.",
+    ],
+  },
+  {
+    n: 99,
+    title: "Meta AI and Gemini just killed Claude: five AIs race out of a maze, and you can race yours",
+    standfirst:
+      "We sent ChatGPT, Gemini, Claude, Meta AI and Perplexity the same request: write the moves that guide a dot out of a maze it cannot see. " +
+      "Each answer moved its own dot, one try each, in a maze and with rules we locked before any answer came in. " +
+      "On this page you can replay the real race, read the request word for word, and run your own AI in the same maze, in about five minutes.",
+    steps: [
+      "Scroll to The maze on this page and click Play the maze. The race from the video plays again in your browser, with the same five answers, at the same speed.",
+      "Under the maze, watch the numbers for each dot: the steps so far, and how close it has been to the exit. The best possible way out is 89 steps.",
+      "Scroll to The request and click Copy the request. This copies the request we sent to every AI, word for word.",
+      "Open the AI you want to test (ChatGPT, Gemini, Claude, Meta AI, Perplexity or any other) in a new tab and start a new chat. Leave the settings as they are, with no extra modes turned on.",
+      "Click in the message box, paste (Ctrl+V on Windows, Cmd+V on Mac) and send. Wait until the answer stops writing.",
+      "In the answer, click Copy on the code block. If there is no Copy button, select the whole answer with the mouse and copy it (Ctrl+C or Cmd+C). Text around the code is fine: the page takes the code out of it.",
+      "Come back to this page, scroll to Run your own AI and click Add my AI. Paste the answer into the box and click Run.",
+      "Your dot joins the same maze and the race plays from the start. If it gets stuck, walks in circles or does not start, that is the real result of that answer, and the page says what happened.",
+      "Optional: tell your AI what went wrong, paste the new answer and click Run again. That is a second try, so it does not compare with the one try each AI got in our race.",
+      "Optional: send this page to a friend and see whose AI gets out first.",
+    ],
+    changes: [
+      "Our result (one try each, 15.11.2026; at most 500 steps; the best possible way out is 89 steps): Gemini got out in 117 steps and Meta AI got out in 117 steps, on the exact same path as Gemini, cell by cell. Claude got out in 171 steps.",
+      "ChatGPT did not get out. Its closest point was 52 steps from the exit (at step 125); after that it walked in circles over 29 cells for the other 375 steps. Perplexity did not get out either: it stayed among 4 cells next to the start and never got closer than 86 steps from the exit.",
+      "Nobody bumped a wall or sent an invalid answer. The maze, the rules and the request were locked (their fingerprints, sha256, written down) before any AI answered, and nothing was changed after. Run again with the same answers, the race gives the same result every time.",
+    ],
+    limits: [
+      "One try per AI, one maze, one day. Another try, another day or another model setting can give a different answer and a different order, so this is not a ranking of how smart the AIs are.",
+      "The answers were copied from the AI apps. Claude answered as Sonnet 5.5 (what we read in the app; no screenshot). For ChatGPT, Gemini, Meta AI and Perplexity we do not know which model answered that day.",
+      "We did not look into why Gemini and Meta AI walk the same path (their answers are not the same text), why ChatGPT walks in circles, or why Perplexity stays next to the start.",
+      "The code you paste runs only in your browser, inside a sandbox with no access to this page and no internet. Nothing is uploaded or saved, and a reload clears it. A very slow or endless answer is stopped by a time limit.",
+      "ChatGPT is OpenAI's, Gemini is Google's, Meta AI is Meta's and Perplexity is Perplexity AI's. Claude is made by Anthropic, and this channel's videos and this page are made with help from Claude. This channel is not affiliated with any of them.",
+    ],
+  },
+  {
+    n: 100,
+    title: "A free tool says it cuts Claude Code tokens 70 times: the claim, the sources and how to check it on your own project",
+    standfirst:
+      "Viral posts say a free tool called Graphify cuts Claude Code's token use by up to 70 times, so the $20 Claude plan does the work of the $100 plan. " +
+      "We read the public sources on 15.11.2026 and compared the claim with them. We did not install or test Graphify ourselves, so every token figure on this page was measured by someone else. " +
+      "Below: what is true, where the 70 comes from, the exact public commands with their risks, and how to measure the before and after on your own project.",
+    steps: [
+      "Decide first what you want to find out: does Graphify lower the tokens or the cost of the questions you really ask, on your own project? That is the only number that matters for you.",
+      "Before installing anything, write down 5 to 10 normal questions you ask Claude Code about your project (for example: where is the login handled, what calls this function).",
+      "In Claude Code, open a new session in your project folder and ask those questions one by one WITHOUT Graphify. After each answer, write down the usage Claude Code shows (tokens or cost, depending on your plan and version). This is your before number.",
+      "Optional: work on a copy of the project or a separate branch, so any file Graphify adds can be thrown away easily. Graphify adds lines to your CLAUDE.md and installs a hook, so a copy is the safer path.",
+      "Check the project's own page first: https://github.com/Graphify-Labs/graphify. The package name is graphifyy, with TWO y's. Similar names are not from the project, so do not install a package with a different spelling.",
+      "Install it with the command from the project's README (checked 15.11.2026): uv tool install graphifyy. If you do not use uv, the README also lists pipx install graphifyy and pip install graphifyy. Risk: this installs software from the internet on your computer; read the repository page first and install only if you are comfortable with that.",
+      "Run the second README command: graphify install. It registers the tool with the AI coding assistant it finds on your computer. Risk: in Claude Code this adds lines to CLAUDE.md and sets up a hook that points Claude's searches at the map of your code.",
+      "Open Claude Code in your project folder and type: /graphify . (with the dot). Graphify reads your code, builds the map and writes a file called GRAPH_REPORT.md. Wait until it finishes.",
+      "Start a new Claude Code session and ask the SAME questions as before, in the same order. After each answer, write down the usage again. This is your after number.",
+      "Compare the two lists, question by question. If the after number is lower, how much lower is YOUR result. If it is the same or higher, that is also a real result.",
+      "Optional: if it uses more or you do not want it, remove it: delete the lines it added to CLAUDE.md, remove the hook it installed (or restore your copy of the project), and uninstall the package with uv tool uninstall graphifyy.",
+      "Optional: send this page to the friend who just installed it.",
+    ],
+    changes: [
+      "What is true (checked 15.11.2026): Graphify is real, free and open source (Apache-2.0 and MIT licence files in the repository), with about 148,000 stars on GitHub that day. A paid product, Graphify Cloud, also exists. It maps your code once so Claude Code can look things up instead of reading your files again.",
+      "Where the 70 comes from: one best-case example from the project, about 52 files, around 1,700 tokens per question against about 123,000 for reading every file at once. Claude Code does not work by reading every file at once, so this is not what a normal user should expect. The current README does not repeat the 70.",
+      "What other people measured (not us): one YouTube run, about 18% fewer tokens ($5.16 down to $4.29), slower, with 2 of 3 graph queries missing. A FastAPI test with 11 questions: input tokens up 49.5% and cost up 9.5%. Both are reported on Graphify's own blog (https://graphify.com/blog/reduce-claude-code-token-usage), which ends with: measure your own repo. A review on 28.5.2026 (https://www.roborhythms.com/graphify-review/) reports the hook silently stopping on newer Claude Code versions; whether that is fixed now is unconfirmed.",
+      "The money claim: according to https://claude.com/pricing (read 15.11.2026), Max at $100 a month gives 5 times the usage of Pro at $20. For $20 to do the work of $100, the tool would have to cut usage about 5 times on every kind of work. We found no test that shows that.",
+      "Sources, all read on 15.11.2026: https://github.com/Graphify-Labs/graphify, https://graphify.com/blog/reduce-claude-code-token-usage, https://claude.com/pricing, https://www.roborhythms.com/graphify-review/.",
+    ],
+    limits: [
+      "We did not install, run or test Graphify. Every token and cost figure on this page was measured by other people, on their own projects, and we cannot vouch for their method.",
+      "Some things we could not confirm: whether the project moved to its current GitHub owner from the original author, whether the hook problem reported on newer Claude Code versions is fixed, and a few figures we only saw in search summaries (they are left out of the video).",
+      "The commands above are the public ones from the project's README on 15.11.2026. Names and steps can change; check the repository page before you run anything.",
+      "Your result depends on your project, your questions and your setup. A tool that helps on one project can cost more on another.",
+      "Claude and Claude Code are made by Anthropic, and this channel's videos and pages are made with help from Claude. This channel is not affiliated with Anthropic or with Graphify.",
+    ],
+  },
+  {
     n: 101,
     title: "Five free alternatives to apps you pay for: where to get each one",
     standfirst:

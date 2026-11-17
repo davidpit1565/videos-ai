@@ -1,237 +1,121 @@
 import Link from "next/link";
 import { catalogue } from "@/lib/site";
 import { PROMPTS } from "@/lib/prompts";
-import { ARTICLES } from "@/lib/articles";
-import { reels } from "@/lib/reels";
 import SiteNav from "./sitenav";
-import CountUp from "./count-up";
 import IgEmbed from "./ig-embed";
-import Reveal from "./reveal";
-import SafeZoneDemo from "./safe-zone-demo";
 import ExternalIcon from "./external-icon";
-import HeroDiagnostic from "./hero-diagnostic";
-import HeroHeadline from "./hero-headline";
-import HeroParallax from "./hero-parallax";
-import PremiumMotion from "./premium-motion";
-import ToolMarquee from "./tool-marquee";
-import { TOOLS, toolFor } from "@/lib/tools";
+import { IG_HANDLE, IG_URL } from "./site-social";
 
 export const metadata = {
-  title: { absolute: "Actually Works — AI setups that actually work" },
+  title: { absolute: "Actually Works: AI setups that actually work" },
   description:
-    "One AI setup per episode: the exact screen, the exact paste, and what breaks. No hype.",
+    "Short reels about AI tools, and a page for every episode with the steps and the prompt.",
 };
 export const revalidate = 300;
 
+/** The front door for a visitor who tapped the link in a reel's bio.
+ *
+ *  Rebrand 13.11.2026 (logo A, light page, site audit of the same day): on a phone the
+ *  first screen is now the name, one sentence, the follow action with the handle written
+ *  out, and the newest reel. Removed: the "AI CREATOR" eyebrow, the word-by-word and
+ *  rotating headline, the count-up numbers, the tool ticker and track pills, the glow
+ *  behind the hero, the cursor spotlight and magnetic button, the drawn "SETUP.LOG" chart,
+ *  and the safe-zone demo (it spoke to video makers, not to people curious about AI). */
 export default async function Home() {
   const eps = await catalogue();
   const live = eps.filter((e) => e.live);
-  const totalViews = live.reduce((a, e) => a + (e.views ?? 0), 0);
-  // Not a vanity number — every other AI-content page leads with subscribers or views.
-  // This one counts the thing this channel actually promises: a written, numbered "what
-  // it will not do" per setup. Real count off the hand-written articles, never estimated.
-  const breaksDocumented = ARTICLES.reduce((a, ar) => a + ar.limits.length, 0);
-  // The newest live episode with a video, for the hero — the channel's whole premise is
-  // "the exact screen", and a home page that never shows one before the fold undercuts it.
-  // Used to only look at ytVideoId, so the hero showed a YouTube embed even on episodes
-  // that do have an Instagram post — the opposite of the episode page's own priority
-  // (self-hosted file, then Instagram, then YouTube last, see /e/[n]/page.tsx) and
-  // exactly the mismatch he flagged directly. Same priority here now.
-  // David, 1.11.2026: the hero shows the newest reel through its Instagram post (or YouTube), never as a
-  // file hosted on the site: the mp4 is pruned from the deployment once an episode is live and the
-  // player came up empty (404). Self-hosted playback stays out of this page on purpose.
-  const heroEpisode = live.find((e) => e.ytVideoId || e.igPermalink) ?? null;
-  const heroSelfHosted: { src: string } | undefined = undefined as { src: string } | undefined;
-  // A short teaser, not the full browser: the home page is a landing page, not the
-  // episode index. He said directly that home reading as the same page as the episode
-  // list — no visual break between them — made it feel like there was no home page at all.
-  const recent = live.slice(0, 3);
-  // Named tracks instead of one flat feed — the structural idea a competitor audit
-  // flagged directly (Every.to organizes its whole homepage around named verticals
-  // rather than an undifferentiated blog list). The tags are real ones already
-  // computed for the episode browser (lib/tools.ts), never a separate taxonomy
-  // invented just for this row — so a click here and a click on /episodes always
-  // agree on what belongs where.
-  const trackCounts = new Map<string, number>();
-  for (const e of eps) {
-    const t = toolFor(e.title, e.blurb);
-    trackCounts.set(t, (trackCounts.get(t) ?? 0) + 1);
-  }
-  // Any tag actually in use gets a track here, not just ones already in the fixed
-  // TOOLS list — the same fix episodes-browser.tsx already had for its own filter
-  // chips (toolFor() falls back to "General" for a title that matches nothing yet),
-  // applied here too so a new topic shows up in both places at once instead of only
-  // getting tagged on its own card with no way to browse to it from either row.
-  const knownTracks = TOOLS.filter((t) => trackCounts.has(t));
-  const extraTracks = [...trackCounts.keys()].filter((t) => !TOOLS.includes(t)).sort();
-  const tracks = [...knownTracks, ...extraTracks].map((t) => ({ t, n: trackCounts.get(t)! }));
+  // The newest live episode that has a real post to show. The hero never plays the
+  // self-hosted mp4: it is pruned from the deployment once an episode is live (1.11.2026).
+  const newest = live.find((e) => e.ytVideoId || e.igPermalink) ?? null;
+  const recent = live.filter((e) => e.n !== newest?.n).slice(0, 5);
 
   return (
-    <main className="site" dir="ltr">
-      <SiteNav here="/" />
-      <HeroParallax />
-      <PremiumMotion />
-      <header className="hero">
-        <div className="herotext">
-          <p className="kicker">AI CREATOR</p>
-          <HeroHeadline />
-          <p className="sub">
-            One setup per episode. The exact screen, the exact paste, and the part that
-            breaks — because the part that breaks is the part everyone else skips.
+    <main className="site home" dir="ltr">
+      <SiteNav />
+      <div className="hero">
+        <div className="hero-text">
+          <h1 className="display">AI setups that actually work.</h1>
+          <p className="lede">
+            Short reels about AI tools. Every episode has its own page here
+            with the steps, and the prompt when there is one.
           </p>
-          <div className="herocta">
-            <Link className="cta" href="/episodes">
-              Browse episodes <span className="arr" aria-hidden="true">→</span>
-            </Link>
-            <Link href="/about">My story →</Link>
-          </div>
-          {/* Real, already-measured numbers only — a stat with nothing behind it yet
-              doesn't get a tile, rather than a tile showing a fabricated 0. Placed before
-              the signup form on purpose: proof before the ask. */}
-          {(live.length > 0 || totalViews > 0 || breaksDocumented > 0) && (
-            <div className="herostats">
-              {live.length > 0 && (
-                <div>
-                  <b><CountUp value={live.length} /></b>
-                  <span>episode{live.length === 1 ? "" : "s"} live</span>
-                </div>
-              )}
-              {breaksDocumented > 0 && (
-                <div>
-                  <Link href="/failure-modes" className="stat-link">
-                    <b><CountUp value={breaksDocumented} /></b>
-                    <span>failure modes written down</span>
-                  </Link>
-                </div>
-              )}
-              {totalViews > 0 && (
-                <div>
-                  <b><CountUp value={totalViews} /></b>
-                  <span>views measured</span>
-                </div>
-              )}
-            </div>
-          )}
+          <p className="hero-follow">
+            <a className="button solid" href={IG_URL} target="_blank" rel="noopener noreferrer">
+              Follow {IG_HANDLE}
+            </a>
+          </p>
         </div>
-        {heroSelfHosted ? (
-          <div className="herovid vid-native">
-            <video src={heroSelfHosted.src} controls playsInline preload="metadata" />
-            {heroEpisode?.ytVideoId ? (
-              <p className="sub herovidlink">
-                <a href={`https://youtu.be/${heroEpisode.ytVideoId}`} target="_blank" rel="noreferrer">
-                  Also on YouTube <ExternalIcon />
-                </a>
-              </p>
+
+        {newest ? (
+          <section className="hero-reel" aria-labelledby="newest">
+            <h2 id="newest" className="newest-title">
+              <span className="newest-no">Episode {newest.n}</span>{" "}
+              <Link href={`/e/${newest.n}`}>{newest.title}</Link>
+            </h2>
+            {newest.igPermalink ? (
+              <div className="vid-ig">
+                <IgEmbed permalink={newest.igPermalink} />
+              </div>
+            ) : newest.ytVideoId ? (
+              <div className="vid-yt">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${newest.ytVideoId}`}
+                  title={newest.title}
+                  allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
             ) : null}
-          </div>
-        ) : heroEpisode?.igPermalink ? (
-          <div className="herovid vid-ig">
-            <IgEmbed permalink={heroEpisode.igPermalink} />
-            {heroEpisode.ytVideoId ? (
-              <p className="sub herovidlink">
-                <a href={`https://youtu.be/${heroEpisode.ytVideoId}`} target="_blank" rel="noreferrer">
-                  Also on YouTube <ExternalIcon />
+            <p className="newest-links">
+              <Link href={`/e/${newest.n}`}>The steps for this episode</Link>
+              {newest.igPermalink && newest.ytVideoId ? (
+                <a href={`https://youtu.be/${newest.ytVideoId}`} target="_blank" rel="noreferrer">
+                  Watch on YouTube <ExternalIcon />
                 </a>
-              </p>
-            ) : null}
-          </div>
-        ) : heroEpisode?.ytVideoId ? (
-          <div className="herovid vid">
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${heroEpisode.ytVideoId}`}
-              title={heroEpisode.title}
-              allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        ) : (
-          <HeroDiagnostic />
-        )}
-      </header>
-
-      {tracks.length > 1 && <ToolMarquee names={tracks.map(({ t }) => t)} />}
-
-      {tracks.length > 1 && (
-        <section>
-          <Reveal>
-            <h2>Browse by tool</h2>
-            <ul className="tracks">
-              {tracks.map(({ t, n }) => (
-                <li key={t}>
-                  <Link href={`/episodes?tool=${encodeURIComponent(t)}`}>
-                    <span className="tname">{t}</span>
-                    <span className="tcount">{n}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </section>
-      )}
-
-      <section>
-        <Reveal>
-          <div className="sechead">
-            <h2>Recent episodes</h2>
-            <Link href="/episodes">All episodes →</Link>
-          </div>
-          {eps.length === 0 ? (
-            <p className="empty">
-              The first episode is finished and not published yet. It lands here the day
-              it goes out.
+              ) : null}
             </p>
-          ) : (
-            <ul className="eps">
-              {(recent.length ? recent : eps.slice(0, 3)).map((e) => (
-                <li key={e.n}>
-                  <Link href={`/e/${e.n}`}>
-                    <span className="n">{String(e.n).padStart(2, "0")}</span>
-                    <span className="t">{e.title}</span>
-                    <span className="tp">{e.blurb}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </Reveal>
-      </section>
+          </section>
+        ) : null}
+      </div>
 
-      <section>
-        <Reveal>
-          <h2>The bottom third of your video is already covered</h2>
-          <p className="sub">
-            Not a guess — this is Instagram&apos;s own published spec, drawn on a real
-            frame from one of our episodes.
-          </p>
-          <SafeZoneDemo />
-        </Reveal>
-      </section>
-
-      <section>
-        <Reveal>
-          <h2>The prompts, in full</h2>
-          <p className="sub">
-            Every prompt an episode uses is here, complete, with what it cannot do. No
-            email needed to read them.
-          </p>
-          <ul className="prompts">
-            {PROMPTS.map((p) => (
-              <li key={p.slug}>
-                <Link href={`/p/${p.slug}`}>
-                  <b>{p.title}</b>
-                  <span>{p.blurb}</span>
+      <section className="block">
+        <div className="block-head">
+          <h2>Recent episodes</h2>
+          <Link href="/episodes">{live.length > 0 ? `All ${live.length} episodes` : "All episodes"}</Link>
+        </div>
+        {eps.length === 0 ? (
+          <p className="empty">No episode is published yet.</p>
+        ) : (
+          <ol className="rows">
+            {(recent.length ? recent : eps.slice(0, 5)).map((e) => (
+              <li key={e.n}>
+                <Link href={`/e/${e.n}`}>
+                  <span className="row-no">{e.n}</span>
+                  <span className="row-t">{e.title}</span>
+                  {e.blurb ? <span className="row-b">{e.blurb}</span> : null}
                 </Link>
               </li>
             ))}
-          </ul>
-        </Reveal>
+          </ol>
+        )}
       </section>
 
-      <footer className="sfoot">
-        <Link href="/episodes">Episodes</Link>
-        <Link href="/search">Search</Link>
-        <Link href="/about">About</Link>
-      </footer>
+      <section className="block">
+        <div className="block-head">
+          <h2>The prompts, in full</h2>
+        </div>
+        <p className="sub">Each one complete, with what it cannot do.</p>
+        <ol className="rows">
+          {PROMPTS.map((p) => (
+            <li key={p.slug}>
+              <Link href={`/p/${p.slug}`}>
+                <span className="row-t">{p.title}</span>
+                <span className="row-b">{p.blurb}</span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </section>
     </main>
   );
 }

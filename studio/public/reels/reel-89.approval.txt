@@ -1,0 +1,2 @@
+Manual approval, episode 89 (10.11.2026): "This prompt has been going viral", version final4 (23.13 s, HyperFrames, drawn ChatGPT screens).
+David approved publishing this version as-is on 10.11.2026 (planned publish 11.11.2026, 08:00 Belgium time). The automatic gate passed (see reel-89.gate.txt). Audio measured, not heard by Claude. The ChatGPT screens are drawn stand-ins, not a real recording; the on-screen claim is only that this prompt is making the rounds and that the answers depend on your own chat history.

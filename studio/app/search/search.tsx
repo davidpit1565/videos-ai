@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 
 type Row = {
   kind: "episode" | "prompt";
+  label: string;
   href: string;
   title: string;
   blurb: string;
@@ -45,7 +46,6 @@ export default function Search({ index }: { index: Row[] }) {
         aria-label="Search"
         value={q}
         onChange={(e) => setSearch(e.target.value)}
-        autoFocus
       />
       <p className="count">
         {hits.length} of {index.length}
@@ -53,14 +53,14 @@ export default function Search({ index }: { index: Row[] }) {
       </p>
       {hits.length === 0 ? (
         <p className="empty">
-          Nothing matches that yet. The library is small — it grows one episode a week.
+          Nothing matches that. Try one word, like the name of the app.
         </p>
       ) : (
         <ul className="hits">
           {hits.map((r) => (
             <li key={r.href}>
               <Link href={r.href}>
-                <span className="kind">{r.kind}</span>
+                <span className="kind">{r.label}</span>
                 <b>{r.title}</b>
                 <span className="bl">{r.blurb}</span>
               </Link>
