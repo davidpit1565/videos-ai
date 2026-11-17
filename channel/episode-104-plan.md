@@ -1,5 +1,5 @@
 # Episode 104 plan: Agency Agents (Q2, reference reel DfVPw9LTJEo, @auraguy.ai), written 17.11.2026
-Publish mode: REGULAR (David, 17.11.2026). Status: BUILT v1 (internal video/ep105, out/ep105-t6.mp4, gate passed), not merged, not published. Script changed after David: hook without "Code", ~28 s, line 10 "You can add them all, or just one." (the install line failed the accent check on every take). Claude shown as the agent mascot (third-party copy of the real shape, no official file found), crowd of drawn pawns zooming out.
+Publish mode: REGULAR (David, 17.11.2026). Status: BUILT v1 (internal video/ep105, out/ep105-t6.mp4, gate passed), not merged, not published. Script changed after David: hook without "Code", ~28 s, line 1 "Claude just got 280 AI specialists. Free." (free was heard as three), line 10 "You can add them all, or just one.", last line "Want the next one? Follow, and you will see it." (same as 103) (the install line failed the accent check on every take). Claude shown as the agent mascot (third-party copy of the real shape, no official file found), crowd of drawn pawns zooming out.
 Numbering: 103 = Replica (built, not merged). Internal build folder will be `video/ep105` (ep104 folder is the Replica build).
 
 ## TOPIC verdict

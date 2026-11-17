@@ -113,14 +113,14 @@ for ri, (r_, n_) in enumerate(RINGS):
 figs.sort(key=lambda f: f[1])
 CROWD = ('<div id="crowd"><div id="cworld">' + bands + '<div class="ped"></div>' +
          "".join(f'<i class="fg" style="left:{x - 15:.0f}px;top:{y - 58:.0f}px;transform:scale({sc:.2f})"></i>' for x, y, sc in figs) +
-         '<img class="clawd" id="clawd" src="assets/logos/clawd.png"></div></div>')
+         '<img class="clawd" id="clawd" src="assets/logos/clawd.png"></div><div class="freeb" id="freeb">FREE</div></div>')
 ORBL = CROWD
 def agent_badge(role, div):
     return f'<div class="ab"><img class="abl" src="assets/logos/clawd.png"><div><b>{role}</b><span>{div}</span></div></div>'
 # S1 hook
-SC["S1"] = line("lead", "Claude just got", 1, 0, .4, 286, 62, ready=True) + line("hv", "280 FREE", 1, .45, .7, 364, 180, ready=True, acc=("280", "free")) + \
-  line("hv", "AI SPECIALISTS.", 1, .85, 1, 580, 100, ready=True, acc=("specialists",))
-T["S1"] = dict(t0=0, hit=W("specialists", "specialists", 1, .9), end=a[2])
+SC["S1"] = line("lead", "Claude just got", 1, 0, .3, 286, 62, ready=True) + line("hv", "280 AI", 1, .35, .55, 364, 180, ready=True, acc=("280",)) + \
+  line("hv", "SPECIALISTS.", 1, .6, .9, 574, 118, ready=True, acc=("specialists",))
+T["S1"] = dict(t0=0, hit=W("free", "free", 1, .95), end=a[2])
 # S2 company
 SC["S2"] = line("lead", "It's like a", 2, 0, .15, 292, 62) + line("hv", "WHOLE COMPANY", 2, .3, .7, 352, 98, acc=("whole", "company")) + line("lead", "living inside Claude.", 2, .75, 1, 492, 62)
 T["S2"] = dict(t0=a[2], end=a[3])
@@ -176,7 +176,7 @@ T["tF"] = tF; T["D"] = D
 
 SFX = []
 def sfx(f, t, g=-13): SFX.append(dict(f=f, t=round(max(0, t), 3), g=g))
-sfx("whoosh_b.ogg", .1, -14); sfx("select.ogg", T["S1"]["hit"], -14); sfx("riser.ogg", a[2] - .3, -18); sfx("select.ogg", T["S3"]["stars"], -14)
+sfx("whoosh_b.ogg", .1, -14); sfx("select.ogg", T["S1"]["hit"] - .05, -12); sfx("riser.ogg", a[2] - .3, -18); sfx("select.ogg", T["S3"]["stars"], -14)
 sfx("click_a.ogg", a[4] + .5, -16); sfx("click_a.ogg", a[5] + .5, -16); sfx("click_a.ogg", a[6] + .5, -16); sfx("click_a.ogg", a[7] + .6, -16)
 sfx("riser.ogg", a[8] + .3, -17); sfx("select.ogg", a[8] + 1.0, -14); sfx("click_a.ogg", T["S9"]["checks"], -16); sfx("whoosh_b.ogg", a[10] - .05, -16); sfx("select.ogg", T["S10"]["one"], -14); sfx("select.ogg", T["S12"]["acc"], -14)
 SFX.sort(key=lambda x: x["t"]); json.dump(SFX, open(H_ + "/sfx105.json", "w"), indent=1)
@@ -259,6 +259,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .bd{{position:absolute;border-radius:50%;box-shadow:0 10px 18px rgba(20,20,20,.10)}}
 .fg{{position:absolute;width:30px;height:58px;transform-origin:50% 100%;filter:drop-shadow(0 6px 4px rgba(20,20,20,.18))}} .fg:before{{content:'';position:absolute;left:5px;top:0;width:20px;height:20px;border-radius:10px;background:linear-gradient(#34343a,#0f0f10)}} .fg:after{{content:'';position:absolute;left:0;top:23px;width:30px;height:35px;border-radius:15px 15px 6px 6px;background:linear-gradient(#2a2a2f,#0f0f10)}}
 .ped{{position:absolute;left:300px;top:1062px;width:480px;height:150px;border-radius:50%;background:#fff;box-shadow:0 18px 34px rgba(20,20,20,.22),inset 0 -8px 0 #ecebe5}} .clawd{{position:absolute;left:350px;top:800px;width:380px;height:380px;object-fit:contain;filter:drop-shadow(0 14px 10px rgba(20,20,20,.20))}}
+.freeb{{position:absolute;left:770px;top:748px;width:220px;height:220px;border-radius:50%;background:{ORG};color:#fff;font-weight:900;font-size:76px;letter-spacing:-.03em;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 34px rgba(20,20,20,.28);opacity:0;visibility:hidden}}
 .rh3{{left:108px;top:536px;width:864px;height:65px;opacity:0;visibility:hidden}} .ab3{{left:160px;top:634px;width:760px;height:631px;opacity:0;visibility:hidden}}
 .ab{{display:flex;align-items:center;gap:18px}} .abl{{width:64px;height:64px;object-fit:contain}} .ab b{{font-weight:900;font-size:34px;letter-spacing:-.01em;display:block;white-space:nowrap}} .ab span{{font-weight:500;font-size:24px;letter-spacing:.08em;color:#8a8982}}
 .card4{{top:580px;height:620px}} .mail{{margin-top:34px}} .mrow{{display:flex;gap:20px;font-weight:500;font-size:36px;padding:20px 0;border-bottom:2px solid #eee}} .mrow i{{font-style:normal;font-weight:900;font-size:24px;color:#8a8982;width:150px;letter-spacing:.06em;padding-top:8px}} .mrow u{{text-decoration:none}} .mrow .c{{opacity:0}}
@@ -312,6 +313,7 @@ const sheenOnce=(t,sel,at)=>t.fromTo(sel,{x:-320},{x:1100,duration:.9,ease:'sine
 const drift=(t,sel,dur,s)=>t.fromTo(sel,{scale:1},{scale:s||1.035,duration:Math.max(1,dur),ease:'sine.inOut',immediateRender:false},.3);
 function scS1(){ const o=T.S1,t=gsap.timeline();
   document.querySelectorAll('#scS1 .hv').forEach(el=>{ const w=el.querySelector('.w'), tw=Math.max(.05,parseFloat(w.dataset.t)-.1); t.fromTo(el,{scale:1.1,transformOrigin:'0% 50%'},{scale:1,duration:.5,ease:'back.out(1.7)',immediateRender:false},tw); });
+  t.fromTo('#freeb',{autoAlpha:0,scale:.3,rotation:-40},{autoAlpha:1,scale:1,rotation:-8,duration:.55,ease:spring,immediateRender:false},Math.max(.3,o.hit-.12)).fromTo('#freeb',{y:0},{y:-10,duration:1.2,yoyo:true,repeat:1,ease:'sine.inOut',immediateRender:false},Math.max(.9,o.hit+.4));
   t.add(hide('#scS1'),o.end-.24); return t; }
 function scS2(){ const o=T.S2,t=gsap.timeline(); t.add(show('#scS2'),0); type(t,'#scS2',o.t0-.04); t.add(hide('#scS2'),o.end-o.t0-.2); return t; }
 function scS3(){ const o=T.S3,t=gsap.timeline(); t.add(show('#scS3'),0); type(t,'#scS3',o.t0-.04);
@@ -348,7 +350,7 @@ tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:tr
   .to('#crowd',{autoAlpha:0,duration:.3,ease:'power1.in'},T.S3.t0-.05)
   .add(scS1(),0).add(scS2(),T.S2.t0-.04).add(scS3(),T.S3.t0-.04).add(scS4(),T.S4.t0-.04).add(scS5(),T.S5.t0-.04).add(scS6(),T.S6.t0-.04).add(scS7(),T.S7.t0-.04)
   .add(scS8(),T.S8.t0-.04).add(scS9(),T.S9.t0-.04).add(scS10(),T.S10.t0-.04).add(scWords('#scS11',T.S11),T.S11.t0-.04).add(scWords('#scS12',T.S12,'rgG'),T.S12.t0-.04);
-tl.set('#crowd',{autoAlpha:1},T.tF).set('#cworld',{scale:1.38},T.tF).set('#clawd',{y:0},T.tF).fromTo('#scS1',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02).to({},{duration:.001},T.D-.001);
+tl.set('#freeb',{autoAlpha:0},T.tF).set('#crowd',{autoAlpha:1},T.tF).set('#cworld',{scale:1.38},T.tF).set('#clawd',{y:0},T.tF).fromTo('#scS1',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02).to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
 window.__reel={duration:T.D,seek:t=>{tl.seek(t)}};
 '''.replace("__T__", json.dumps(T, separators=(",", ":"))).replace("__ORG__", ORG).replace("__INK__", INK)

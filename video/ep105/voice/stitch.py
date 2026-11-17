@@ -1,6 +1,6 @@
 # /opt/v311/bin/python stitch.py : joins the picked take of every line into narration.wav + narration-cues.json
 import json, soundfile as sf, numpy as np, sys
-PICK = {1:'55',2:'11',3:'55',4:'11',5:'11',6:'55',7:'11',8:'11',9:'33',10:'T33',11:'11',12:'33'}
+PICK = {1:'U11',2:'11',3:'55',4:'11',5:'11',6:'55',7:'11',8:'11',9:'33',10:'T33',11:'11',12:'E'}
 lines = open('lines.txt').read().splitlines()
 GAP = 0.19; out = []; cues = []; t = 0.0; sr0 = None
 for i in range(1, len(lines)+1):

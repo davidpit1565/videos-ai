@@ -1,17 +1,17 @@
-v5 estimated timeline=False  D=28.54  sfx=14
-lines: 1:0.05-2.87  2:3.06-5.45  3:5.64-9.56  4:9.75-11.23  5:11.42-12.98  6:13.17-14.88  7:15.07-17.49  8:17.68-19.58  9:19.77-22.52  10:22.71-24.34  11:24.53-26.34  12:26.53-27.76
-sync: specialists=2.36(w)  stars=8.60(w)  checks=21.60(w)  one=23.94(w)  follow=27.16(w)
+v5 estimated timeline=False  D=29.59  sfx=14
+lines: 1:0.05-3.01  2:3.20-5.59  3:5.78-9.70  4:9.89-11.37  5:11.56-13.12  6:13.31-15.02  7:15.21-17.63  8:17.82-19.72  9:19.91-22.66  10:22.85-24.48  11:24.67-26.48  12:26.67-28.81
+sync: free=2.46(w)  stars=8.74(w)  checks=21.74(w)  one=24.08(w)  follow=27.58(w)
   new   0.05  scene for line 1
-  new   3.06  scene for line 2
-  new   5.64  scene for line 3
-  new   9.75  scene for line 4
-  new  11.42  scene for line 5
-  new  13.17  scene for line 6
-  new  15.07  scene for line 7
-  new  17.68  scene for line 8
-  new  19.77  scene for line 9
-  new  22.71  scene for line 10
-  new  24.53  scene for line 11
-  new  26.53  scene for line 12
-  new  28.09  frame 0 returns
-FLAT stretches over 2.5 s with nothing new: [(0.05, 3.06), (3.06, 5.64), (5.64, 9.75), (15.07, 17.68), (19.77, 22.71)]
+  new   3.20  scene for line 2
+  new   5.78  scene for line 3
+  new   9.89  scene for line 4
+  new  11.56  scene for line 5
+  new  13.31  scene for line 6
+  new  15.21  scene for line 7
+  new  17.82  scene for line 8
+  new  19.91  scene for line 9
+  new  22.85  scene for line 10
+  new  24.67  scene for line 11
+  new  26.67  scene for line 12
+  new  29.14  frame 0 returns
+FLAT stretches over 2.5 s with nothing new: [(0.05, 3.2), (3.2, 5.78), (5.78, 9.89), (15.21, 17.82), (19.91, 22.85)]
