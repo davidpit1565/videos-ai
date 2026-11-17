@@ -1,0 +1,1 @@
+Every new chat starts from zero, so Claude Code reads your files again.

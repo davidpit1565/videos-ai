@@ -1,0 +1,2 @@
+   ln 7  top=indian 0.46  not-american=0.67   {'indian': 0.462, 'england': 0.137, 'australia': 0.067}   Save this. Send this to your friend who writ
+   ln 7  not-american 0.67 (file median 0.021)   Save this. Send this to your friend who writes essays.

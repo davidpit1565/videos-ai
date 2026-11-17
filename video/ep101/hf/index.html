@@ -1,0 +1,37 @@
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;color:#fff}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#000}
+/* chat viewport: soft fades top and bottom, nothing hard-edged */
+#vp{position:absolute;left:0;top:470px;width:1080px;height:1100px;overflow:hidden;
+ -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 50px,#000 960px,transparent 1100px);mask-image:linear-gradient(to bottom,transparent 0,#000 50px,#000 960px,transparent 1100px)}
+#chat{position:absolute;left:69px;top:30px;width:947px;height:1821px;will-change:transform}
+#chat img{width:947px;height:1821px;display:block}
+#hook{position:absolute;left:108px;top:292px;width:864px;opacity:0}
+.hl{display:flex;align-items:center;gap:22px;font-weight:900;font-size:64px;line-height:74px;letter-spacing:-.02em;white-space:nowrap}
+.bd{width:70px;height:70px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.bd img{width:44px;height:44px}
+#l2{margin-top:6px;padding-left:92px;color:#FFE600}
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="14.5" data-width="1080" data-height="1920">
+ <div id="hook">
+  <div class="hl" id="l1"><span class="bd"><img src="assets/chatgpt.svg" alt=""></span><span>ChatGPT picks a number.</span></div>
+  <div class="hl" id="l2"><span>I cut it off.</span></div>
+ </div>
+ <div id="vp"><div id="chat"><img src="assets/chat.png" alt=""></div></div>
+</div>
+<script>
+const D=14.5, S0=2.2, S1=12.0, DIST=1180;
+const tl=gsap.timeline({paused:true});
+tl.set('#hook',{opacity:1},0);
+// the whole chat is one slow scroll; long sine ease, no steps
+tl.fromTo('#chat',{y:0},{y:-DIST,duration:S1-S0,ease:'sine.inOut',immediateRender:false},S0);
+// hook: soft drift upward and fade while the chat scrolls, so it never sits over the text it describes
+tl.fromTo('#l2',{opacity:0.0,y:10},{opacity:1,y:0,duration:0.7,ease:'sine.out',immediateRender:false},0.35);
+tl.to({},{duration:.001},D-.001);
+window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
+window.__reel={duration:D,seek:t=>{tl.seek(t)}};
+</script></body></html>

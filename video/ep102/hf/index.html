@@ -1,0 +1,159 @@
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<style>
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-ExtraBold.otf");font-weight:800}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Medium.otf");font-weight:500}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;font-weight:500;color:#0f0f0f}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
+.bgw{position:absolute;left:-20px;top:-20px;width:1120px;height:1960px;background:#ecebe5 url(assets/bg.jpg);background-size:1120px 1960px;will-change:transform}
+#cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 760px}
+.sc{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;visibility:hidden;will-change:transform,opacity} #scA{opacity:1;visibility:visible}
+.sc>*{position:absolute}
+.lg{display:block;flex:none;object-fit:contain}
+.ln{left:108px;white-space:nowrap}
+.m{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .06em 0;margin-right:.2em} .lead .m{margin-right:.24em}
+.w{display:inline-block;transform:translateY(112%);will-change:transform} .w.rdy{transform:none}
+.lead .w{font-weight:500;letter-spacing:-.02em} .hv .w{font-weight:900;letter-spacing:-.045em}
+.w.acc.rdy{color:#D97757}
+.ring{overflow:visible}
+.tile{width:417px;height:228px;background:#fff;border-radius:44px;box-shadow:0 18px 36px rgba(20,20,20,.16);will-change:transform}
+.tile>*{position:absolute} .lgw .lg{border-radius:22px}
+.lgw.cal{display:flex;flex-direction:column;align-items:center;justify-content:center} .cwm{display:block;width:150px;height:36px;margin-top:8px}
+.bd{left:252px;top:62px;width:104px;height:104px;will-change:transform} .bd svg{position:absolute;left:0;top:0;width:100%;height:100%} .tpr{position:absolute;font-weight:900;font-size:52px;line-height:56px;letter-spacing:-.04em;color:#0f0f0f;white-space:nowrap} .tpr span{font-size:30px;font-weight:500;letter-spacing:0;color:#6d6c66;margin-left:4px} .stk{position:absolute;left:-8px;top:50%;height:9px;width:calc(100% + 16px);border-radius:5px;background:#D97757;transform-origin:0 50%} .stk.big{left:104px;top:486px;width:610px;height:20px} .tpr .stk{width:calc(100% + 12px)} .tnm{position:absolute;font-weight:900;letter-spacing:-.04em;color:#0f0f0f;white-space:nowrap;line-height:1.1} .tick{opacity:0}
+.comp{left:108px;top:300px;width:864px;height:744px;background:#17181b;border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.28);border:2px solid #2b2c32}
+.grp{position:absolute;left:0;top:0;width:864px;height:744px;opacity:0;visibility:hidden} .grp>*{position:absolute}
+.lt{width:150px;height:150px;border-radius:34px;background:#fff;display:flex;align-items:center;justify-content:center;flex:none} .lt .lg{border-radius:22px}
+.lt.big{width:190px;height:190px;border-radius:42px} .lt.sm{width:72px;height:72px;border-radius:17px} .lt.sm .lg{border-radius:10px}
+.prow{left:56px;top:56px;width:760px;height:150px;display:flex;align-items:center;gap:34px}
+.pn{position:relative;font-weight:900;letter-spacing:-.04em;color:#f2f2ee;white-space:nowrap;line-height:1.1}
+.sk{position:absolute;left:-10px;right:-10px;top:52%;height:9px;border-radius:5px;background:#f2f2ee;transform-origin:0 50%;transform:scaleX(0)}
+.arw{left:101px;top:226px;width:60px;height:90px}
+.frow{left:36px;top:338px;width:800px;height:190px;display:flex;align-items:center;gap:34px;opacity:0;visibility:hidden}
+.fn{font-weight:900;letter-spacing:-.045em;color:#fff;white-space:nowrap}
+.free{left:258px;top:540px;font-weight:900;font-size:124px;line-height:134px;letter-spacing:-.03em;color:#D97757;white-space:nowrap}
+.nt{left:262px;top:676px;font-weight:500;font-size:44px;line-height:50px;letter-spacing:-.01em;color:#b9b8b2;white-space:nowrap;opacity:0;visibility:hidden}
+.shot{left:108px;top:628px;width:756px;height:525px;border-radius:30px;box-shadow:0 26px 50px rgba(20,20,20,.28);overflow:hidden;background:#17181b;will-change:transform}
+.shot img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;transform-origin:30% 40%}
+.ltit{position:absolute;left:44px;top:28px;font-weight:900;font-size:58px;line-height:66px;letter-spacing:-.03em;color:#fff;white-space:nowrap}
+.lr{position:absolute;left:44px;right:44px;height:84px;display:flex;align-items:center;gap:16px;white-space:nowrap;opacity:0;visibility:hidden}
+.la{width:46px;height:28px;flex:none} .lx{margin-left:10px;font-weight:900;font-size:58px;line-height:64px;letter-spacing:-.035em;color:#fff}
+.lf{margin-left:auto;font-weight:900;font-size:42px;line-height:48px;letter-spacing:.01em;color:#D97757}
+.lnote{position:absolute;left:44px;bottom:26px;font-weight:500;font-size:42px;line-height:48px;letter-spacing:-.01em;color:#b9b8b2;white-space:nowrap;opacity:0;visibility:hidden}
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="21.49" data-width="1080" data-height="1920">
+<div class="bgw" data-decor></div><div id="cam"><div class="sc" id="scA"><div class="ln lead" style="top:292px;font-size:60px;line-height:67px"><span class="m"><span class="w rdy" data-t="0.000">Stop</span></span><span class="m"><span class="w rdy" data-t="0.380">paying</span></span></div><div class="ln hv" style="top:350px;font-size:250px;line-height:280px"><span class="m"><span class="w rdy" data-t="0.600">$780</span></span></div><div class="ln hv" style="left:742px;top:420px;font-size:78px;line-height:78px"><span class="m"><span class="w rdy">A</span></span><br><span class="m"><span class="w rdy">YEAR</span></span></div><i class="stk big" id="bigstk"></i><div class="ln lead note" style="top:640px;font-size:32px;line-height:38px;color:#6d6c66">cheapest paid plans, per person</div><div class="tile" id="t0" style="left:108px;top:696px;width:276px;height:250px"><div class="lgw" style="left:24px;top:22px;width:96px;height:96px"><img class="lg" src="assets/logos/loom.png" style="width:96px;height:96px;"></div><div class="tnm" style="left:24px;top:132px;font-size:48px">Loom</div><div class="tpr" id="p0" style="left:24px;top:190px">$216<span>/yr</span><i class="stk"></i></div></div><div class="tile" id="t1" style="left:394px;top:696px;width:276px;height:250px"><div class="lgw" style="left:24px;top:22px;width:96px;height:96px"><img class="lg" src="assets/logos/notion.png" style="width:96px;height:96px;"></div><div class="tnm" style="left:24px;top:132px;font-size:48px">Notion</div><div class="tpr" id="p1" style="left:24px;top:190px">$120<span>/yr</span><i class="stk"></i></div></div><div class="tile" id="t2" style="left:680px;top:696px;width:276px;height:250px"><div class="lgw" style="left:24px;top:22px;width:96px;height:96px"><img class="lg" src="assets/logos/intercom.svg" style="width:96px;height:96px;"></div><div class="tnm" style="left:24px;top:132px;font-size:48px">Intercom</div><div class="tpr" id="p2" style="left:24px;top:190px">$228<span>/yr</span><i class="stk"></i></div></div><div class="tile" id="t3" style="left:108px;top:962px;width:427px;height:250px"><div class="lgw" style="left:24px;top:22px;width:96px;height:96px"><img class="lg" src="assets/logos/wisprflow.png" style="width:96px;height:96px;"></div><div class="tnm" style="left:24px;top:132px;font-size:48px">Wispr Flow</div><div class="tpr" id="p3" style="left:24px;top:190px">$144<span>/yr</span><i class="stk"></i></div></div><div class="tile" id="t4" style="left:545px;top:962px;width:427px;height:250px"><div class="lgw" style="left:24px;top:22px;width:96px;height:96px"><img class="lg" src="assets/logos/elevenlabs.svg" style="width:96px;height:96px;"></div><div class="tnm" style="left:24px;top:132px;font-size:48px">ElevenLabs</div><div class="tpr" id="p4" style="left:24px;top:190px">$72<span>/yr</span><i class="stk"></i></div></div></div><div class="sc" id="scB"><div class="ln lead" style="top:380px;font-size:84px;line-height:94px"><span class="m"><span class="w" data-t="2.840">The</span></span><span class="m"><span class="w" data-t="2.980">last</span></span><span class="m"><span class="w" data-t="3.160">one</span></span><span class="m"><span class="w" data-t="3.300">is</span></span></div><div class="ln hv" style="top:476px;font-size:214px;line-height:240px"><span class="m"><span class="w acc" data-t="3.400">INSANE.</span></span></div><svg class="ring" id="rgB" viewBox="0 0 400 160" preserveAspectRatio="none" style="left:78px;top:468px;width:890px;height:250px" data-decor><path d="M14 84 C6 30 130 8 214 10 C318 12 394 40 388 84 C382 132 270 150 190 148 C96 146 20 132 14 84 Z" fill="none" stroke="#D97757" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg><div class="ln hv" style="top:760px;font-size:128px;line-height:143px"><span class="m"><span class="w" data-t="4.160">STAY</span></span><span class="m"><span class="w" data-t="4.300">FOR</span></span><span class="m"><span class="w" data-t="4.500">IT.</span></span></div></div><div class="sc" id="scC1"><div class="comp"><div class="grp" id="g1">
+ <div class="prow"><div class="lt"><img class="lg" src="assets/logos/loom.png" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Loom<i class="sk"></i></div></div>
+ <svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="frow"><div class="lt big"><img class="lg" src="assets/logos/cap.png" style="width:150px;height:150px;"></div><div class="fn" style="font-size:132px;line-height:132px">Cap</div></div>
+ <div class="free"><span class="fx">FREE</span></div></div><div class="grp" id="g2">
+ <div class="prow"><div class="lt"><img class="lg" src="assets/logos/notion.png" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Notion<i class="sk"></i></div></div>
+ <svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="frow"><div class="lt big"><img class="lg" src="assets/logos/appflowy.svg" style="width:150px;height:150px;"></div><div class="fn" style="font-size:118px;line-height:118px">AppFlowy</div></div>
+ <div class="free"><span class="fx">FREE</span></div></div></div></div><div class="sc" id="scL"><div class="ln lead" style="top:420px;font-size:100px;line-height:112px"><span class="m"><span class="w" data-t="7.740">Still</span></span><span class="m"><span class="w" data-t="8.000">not</span></span></div><div class="ln hv" style="top:540px;font-size:124px;line-height:139px"><span class="m"><span class="w" data-t="8.160">THE</span></span><span class="m"><span class="w acc" data-t="8.300">BIG</span></span><span class="m"><span class="w" data-t="8.440">ONE.</span></span></div></div><div class="sc" id="scC2"><div class="comp"><div class="grp" id="g3">
+ <div class="prow"><div class="lt"><img class="lg" src="assets/logos/intercom.svg" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Intercom<i class="sk"></i></div></div>
+ <svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="frow"><div class="lt big"><img class="lg" src="assets/logos/chatwoot.png" style="width:150px;height:150px;"></div><div class="fn" style="font-size:120px;line-height:120px">Chatwoot</div></div>
+ <div class="free"><span class="fx">FREE</span></div></div><div class="grp" id="g4">
+ <div class="prow"><div class="lt"><img class="lg" src="assets/logos/wisprflow.png" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">Wispr Flow<i class="sk"></i></div></div>
+ <svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="frow"><div class="lt big"><img class="lg" src="assets/logos/openwhispr.svg" style="width:150px;height:150px;"></div><div class="fn" style="font-size:97px;line-height:97px">OpenWhispr</div></div>
+ <div class="free"><span class="fx">FREE</span></div></div></div></div><div class="sc" id="scD1"><div class="ln lead" style="top:420px;font-size:84px;line-height:94px"><span class="m"><span class="w" data-t="12.100">And</span></span><span class="m"><span class="w" data-t="12.180">the</span></span></div><div class="ln hv" style="top:516px;font-size:206px;line-height:231px"><span class="m"><span class="w acc" data-t="12.260">BIG</span></span><span class="m"><span class="w acc" data-t="12.400">ONE.</span></span></div><svg class="ring" id="rgD" viewBox="0 0 400 160" preserveAspectRatio="none" style="left:78px;top:508px;width:900px;height:244px" data-decor><path d="M14 84 C6 30 130 8 214 10 C318 12 394 40 388 84 C382 132 270 150 190 148 C96 146 20 132 14 84 Z" fill="none" stroke="#D97757" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div><div class="sc" id="scD2"><div class="comp"><div class="grp" id="g5">
+ <div class="prow"><div class="lt"><img class="lg" src="assets/logos/elevenlabs.svg" style="width:116px;height:116px;"></div><div class="pn" style="font-size:96px">ElevenLabs<i class="sk"></i></div></div>
+ <svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="frow"><div class="lt big"><img class="lg" src="assets/logos/voicestudio.svg" style="width:150px;height:150px;"></div><div class="fn" style="font-size:99px;line-height:99px">VoiceStudio</div></div>
+ <div class="free"><span class="fx">FREE</span></div></div></div></div><div class="sc" id="scD3"><div class="ln lead" style="top:300px;font-size:64px;line-height:72px"><span class="m"><span class="w" data-t="14.060">clones</span></span><span class="m"><span class="w" data-t="14.340">your</span></span><span class="m"><span class="w" data-t="14.560">own</span></span><span class="m"><span class="w" data-t="13.800">voice,</span></span></div><div class="ln hv" style="top:376px;font-size:104px;line-height:116px"><span class="m"><span class="w" data-t="15.400">ON</span></span><span class="m"><span class="w" data-t="14.340">YOUR</span></span><span class="m"><span class="w" data-t="14.560">OWN</span></span></div><div class="ln hv" style="top:490px;font-size:104px;line-height:116px"><span class="m"><span class="w" data-t="15.960">MACHINE.</span></span></div><div class="shot"><img src="assets/shots/voicestudio.jpg"></div></div><div class="sc" id="scF"><div class="comp list"><div class="ltit">Save this list</div><div class="lr" style="top:128px"><div class="lt sm"><img class="lg" src="assets/logos/loom.png" style="width:50px;height:50px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/cap.png" style="width:60px;height:60px;"></div><span class="lx">Cap</span><span class="lf">FREE</span></div><div class="lr" style="top:240px"><div class="lt sm"><img class="lg" src="assets/logos/notion.png" style="width:50px;height:50px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/appflowy.svg" style="width:60px;height:60px;"></div><span class="lx">AppFlowy</span><span class="lf">FREE</span></div><div class="lr" style="top:352px"><div class="lt sm"><img class="lg" src="assets/logos/intercom.svg" style="width:50px;height:50px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/chatwoot.png" style="width:60px;height:60px;"></div><span class="lx">Chatwoot</span><span class="lf">FREE</span></div><div class="lr" style="top:464px"><div class="lt sm"><img class="lg" src="assets/logos/wisprflow.png" style="width:50px;height:50px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/openwhispr.svg" style="width:60px;height:60px;"></div><span class="lx">OpenWhispr</span><span class="lf">FREE</span></div><div class="lr" style="top:576px"><div class="lt sm"><img class="lg" src="assets/logos/elevenlabs.svg" style="width:50px;height:50px;"></div><svg class="la" viewBox="0 0 50 30"><path d="M3 15 H44 M44 15 L32 5 M44 15 L32 25" fill="none" stroke="#8d8c86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="lt sm"><img class="lg" src="assets/logos/voicestudio.svg" style="width:60px;height:60px;"></div><span class="lx">VoiceStudio</span><span class="lf">FREE</span></div></div></div><div class="sc" id="scG2"><div class="ln lead" style="top:400px;font-size:84px;line-height:94px"><span class="m"><span class="w" data-t="18.700">Want</span></span><span class="m"><span class="w" data-t="18.820">the</span></span><span class="m"><span class="w" data-t="18.920">next</span></span><span class="m"><span class="w" data-t="19.020">one?</span></span></div><div class="ln hv" style="top:500px;font-size:192px;line-height:215px"><span class="m"><span class="w acc" data-t="19.520">FOLLOW.</span></span></div><svg class="ring" id="rgG" viewBox="0 0 400 160" preserveAspectRatio="none" style="left:78px;top:492px;width:900px;height:250px" data-decor><path d="M14 84 C6 30 130 8 214 10 C318 12 394 40 388 84 C382 132 270 150 190 148 C96 146 20 132 14 84 Z" fill="none" stroke="#D97757" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div></div>
+</div>
+<script>
+
+gsap.registerPlugin(SplitText, DrawSVGPlugin, CustomEase);
+const T={"A":{"t0":0,"free":0.6,"end":2.81},"B":{"t0":2.81,"acc":3.4,"end":4.88},"C1":{"t0":4.88,"end":7.68,"pairs":[{"k":1,"t0":4.88,"free":5.5,"end":6.14},{"k":2,"t0":6.14,"free":6.88,"end":7.68}]},"L":{"t0":7.68,"acc":8.3,"end":9.0},"C2":{"t0":9.0,"end":12.05,"pairs":[{"k":3,"t0":9.18,"free":10.0,"end":10.48},{"k":4,"t0":10.48,"free":11.28,"end":12.05}]},"D1":{"t0":12.05,"acc":12.26,"end":12.8},"D2":{"t0":12.8,"end":14.75,"pairs":[{"k":5,"t0":12.8,"free":13.8,"end":15.05}]},"D3":{"t0":14.75,"end":16.66},"F":{"t0":16.66,"end":18.67},"G2":{"t0":18.67,"acc":19.52,"end":21.04},"tF":21.04,"D":21.49}, ORG='#D97757', INK='#0f0f0f';
+/* house curves (motion-animation-principles): enter = ease-out, exit = ease-in and faster, move = in-out; landings use a
+   critically damped spring: fast launch, long soft settle, never past its end state (motion-remotion-notes 1) */
+const expoOut=CustomEase.create("expoOut","0.16,1,0.3,1"), expoIn=CustomEase.create("expoIn","0.7,0,0.84,0"), inOut=CustomEase.create("mvInOut","0.65,0,0.35,1");
+const spring=(w=>{const f=t=>1-(1+w*t)*Math.exp(-w*t), n=f(1); return t=>f(t)/n})(9);
+const show=id=>gsap.fromTo(id,{autoAlpha:0,y:10,filter:'blur(6px)'},{autoAlpha:1,y:0,filter:'blur(0px)',duration:.3,ease:'power2.out',immediateRender:false});
+const hide=id=>gsap.to(id,{autoAlpha:0,y:-12,filter:'blur(8px)',duration:.22,ease:expoIn});
+/* kinetic type: each word rises out of its mask when it is spoken; the accent word is split into characters (SplitText masks) */
+function type(t,id,t0){
+  gsap.utils.toArray(id+' .w:not(.rdy)').forEach(w=>{
+    const at=Math.max(0,+w.dataset.t-t0-.07);
+    if(w.classList.contains('acc')){ gsap.set(w,{y:0,yPercent:0}); const sp=SplitText.create(w,{type:'chars',mask:'chars',aria:'none'});
+      t.fromTo(sp.chars,{yPercent:112},{yPercent:0,duration:.5,ease:expoOut,stagger:.03},at).to(sp.chars,{color:ORG,duration:.3,ease:'power1.out',stagger:.03},at+.12); }
+    else t.fromTo(w,{yPercent:112,y:0},{yPercent:0,y:0,duration:.46,ease:expoOut,immediateRender:false},at); });
+}
+function ringDraw(t,id,at){ t.fromTo(id+' path',{drawSVG:'0%'},{drawSVG:'100%',duration:.8,ease:'power2.inOut',immediateRender:false},at) }
+gsap.set('.ring path, .arw path',{drawSVG:'0%'}); gsap.set('.stk',{scaleX:0,rotation:-3}); gsap.set('#bigstk',{rotation:-4});
+
+/* A: the cube. Frame 0 is complete; then the six price tags flip to ticks one by one, each tile nudges (follow-through) */
+function scA(){ const t=gsap.timeline({defaults:{ease:expoOut}});
+  /* frame 0 is complete. Then: every price gets struck by an orange line in reading order, its tile settles with a spring,
+     the big number is struck last (stop paying), and the camera pushes slowly in the whole time */
+  for(let i=0;i<5;i++){ const at=.3+i*.12;
+    t.fromTo('#p'+i+' .stk',{scaleX:0},{scaleX:1,duration:.26,ease:inOut,immediateRender:false},at)
+     .fromTo('#t'+i,{y:0,scale:1},{y:-10,scale:1.035,duration:.18,ease:'power2.out',immediateRender:false},at+.1)
+     .to('#t'+i,{y:0,scale:1,duration:.55,ease:spring},'>'); }
+  t.fromTo('#bigstk',{scaleX:0},{scaleX:1,duration:.34,ease:inOut,immediateRender:false},1.05)
+   .fromTo('#scA',{scale:1},{scale:1.02,duration:T.A.end,ease:'sine.inOut',transformOrigin:'540px 760px',immediateRender:false},0)
+   .add(hide('#scA'),T.A.end-.24);
+  return t; }
+/* words-only screens: lead-in + heavy line(s), one accent, one ring */
+function scWords(id,o,ringId){ const t=gsap.timeline(); t.add(show(id),0); type(t,id,o.t0-.04);
+  if(ringId) ringDraw(t,'#'+ringId,(o.acc-o.t0)+.16);
+  t.to(id+' .ln',{x:8,duration:Math.max(.6,o.end-o.t0-.5),ease:'sine.inOut',stagger:.06},.4)
+   .add(hide(id),o.end-o.t0-.2);
+  return t; }
+/* one pair: same place, same motion every time. Labels: in -> swap (strike, grey, arrow, free row lands) -> free (the word FREE on the free row) */
+function pair(p,first){ const g='#g'+p.k, q=gsap.utils.selector(g), t=gsap.timeline({defaults:{ease:expoOut}});
+  const fx=SplitText.create(q('.fx'),{type:'chars',mask:'chars',aria:'none'});
+  t.addLabel('in',0).set(g,{autoAlpha:1},'in')
+   .fromTo(q('.prow'),{autoAlpha:0,x:first?0:-22},{autoAlpha:1,x:0,duration:.36,immediateRender:false},'in')
+   .addLabel('swap',Math.max(.18,p.free-p.t0-.2))
+   .to(q('.sk'),{scaleX:1,duration:.2,ease:inOut},'swap')
+   .to(q('.prow'),{opacity:.36,duration:.26,ease:'power1.out'},'swap+=0.08')
+   .to(q('.arw path'),{drawSVG:'100%',duration:.24,ease:inOut},'swap+=0.05')
+   .fromTo(q('.frow'),{autoAlpha:0,y:28},{autoAlpha:1,y:0,duration:.46,ease:spring,immediateRender:false},'swap+=0.1')
+   .addLabel('free','swap+=0.3')
+   .fromTo(fx.chars,{yPercent:112},{yPercent:0,duration:.42,stagger:.03},'free');
+  if(q('.nt').length) t.fromTo(q('.nt'),{autoAlpha:0,y:8},{autoAlpha:1,y:0,duration:.3,immediateRender:false},'free+=0.14');
+  t.to(g,{autoAlpha:0,y:-12,duration:.16,ease:expoIn},p.end-p.t0-.16);
+  return t; }
+function scCard(id,o){ const t=gsap.timeline(); t.add(show(id),0);
+  o.pairs.forEach((p,i)=>t.add(pair(p,i===0),p.t0-o.t0+(i===0?.04:0)));
+  t.add(hide(id),o.end-o.t0-.2); return t; }
+function scShot(){ const o=T.D3, t=gsap.timeline(); t.add(show('#scD3'),0); type(t,'#scD3',o.t0-.04);
+  t.fromTo('#scD3 .shot',{y:40,autoAlpha:0},{y:0,autoAlpha:1,duration:.6,ease:spring,immediateRender:false},.05)
+   .fromTo('#scD3 .shot img',{scale:1},{scale:1.07,duration:Math.max(1,o.end-o.t0),ease:'sine.inOut',immediateRender:false},0)
+   .add(hide('#scD3'),o.end-o.t0-.2); return t; }
+function scList(){ const o=T.F, t=gsap.timeline({defaults:{ease:expoOut}}); t.add(show('#scF'),0)
+   .fromTo('#scF .lr',{autoAlpha:0,x:-20},{autoAlpha:1,x:0,duration:.4,stagger:.07,immediateRender:false},.12)
+   .to('#scF .comp',{y:-8,duration:Math.max(.8,o.end-o.t0-.6),ease:'sine.inOut'},.5)
+   .add(hide('#scF'),o.end-o.t0-.2); return t; }
+
+const tl=gsap.timeline({paused:true});
+tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:true,repeat:3},0)       // ambient layer only
+  .fromTo('.bgw',{x:0,y:0},{x:-14,y:-12,duration:T.D/2,ease:'sine.inOut',yoyo:true,repeat:1},0)
+  .add(scA(),0)
+  .add(scWords('#scB',T.B,'rgB'),T.B.t0-.04)
+  .add(scCard('#scC1',T.C1),T.C1.t0-.04)
+  .add(scWords('#scL',T.L,null),T.L.t0-.04)
+  .add(scCard('#scC2',T.C2),T.C2.t0-.04)
+  .add(scWords('#scD1',T.D1,'rgD'),T.D1.t0-.04)
+  .add(scCard('#scD2',T.D2),T.D2.t0)
+  .add(scShot(),T.D3.t0)
+  .add(scList(),T.F.t0-.04)
+  .add(scWords('#scG2',T.G2,'rgG'),T.G2.t0-.04);
+/* loop seam: frame 0 comes back exactly (tags, not ticks) */
+tl.set('#scA .stk',{scaleX:0},T.tF).set('#scA',{scale:1},T.tF)
+  .fromTo('#scA',{autoAlpha:0,y:0,filter:'blur(6px)'},{autoAlpha:1,y:0,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02)
+  .to({},{duration:.001},T.D-.001);
+window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
+window.__reel={duration:T.D,seek:t=>{tl.seek(t)}};
+
+</script></body></html>

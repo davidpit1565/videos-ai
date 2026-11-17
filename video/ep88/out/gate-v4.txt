@@ -1,0 +1,64 @@
+=== PASS  frame layout (safe_check_hf.js)
+    index.html  33.50s  168 samples every 0.2s  safe box: x 65-1015, y 269-1248
+      safe area: clean (tolerance 10px)
+      overlaps: none over 10px
+
+=== PASS  rendered file (qa.py --hf)
+    ep88-v4-H.mp4  1080x1920  30fps  33.50s  8.0MB
+      visual change: median 0.03s, longest 10.80s
+      loudness: -15.0 LUFS integrated, peak -4.5 dBFS, LRA 5.0 LU
+      loop seam: first vs last frame differ by 9.5/255
+    
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length 33.5s inside 30-90s
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 217.4, std 54.4)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -15.0 LUFS
+      ok        peak -4.5 dBFS
+
+=== PASS  voice + music quality (voice_quality.py)
+    pitch (semitones vs each line's own median):
+      line   1  range  9.9 st  end  +2.1    Facebook can see photos you never posted. Find t
+      line   2  range  6.2 st  end  -1.5    Five seconds. Go.
+      line   3  range  4.2 st  end  -0.4    It's called camera roll sharing suggestions.
+      line   4  range  6.4 st  end  -1.0    If you tap Allow, Facebook looks through your ga
+      line   5  range  4.3 st  end  +1.1    Meta says it's opt-in and not used for ads.
+      line   6  range  7.3 st  end  -0.8    Here's the switch. Profile picture. Settings and
+      line   7  range  7.3 st  end  +0.0    Send this to mum. She taps Allow every time.
+    tone: none steady over 0.6 s
+    music: 4% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.35 = -7.7 dB
+    
+    voice quality: clean
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep88/out/narration.wav  33.5s  7 lines
+      medians: ending -25.5 dB · level -19.3 dBFS · S residual -0.1 dB (slope +2.3 dB per sibilant/syllable)
+      flagged below: ending -40.3 dB · S residual -6.0 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  3.56  +0.32  4.21  -12.6  -14.7  -18.1  Facebook can see photos you never post
+        2  1.68  +0.30  2.38   -9.7  -35.6  -20.5  Five seconds. Go.
+        3  2.65  +0.34  4.53  -10.4  -24.3  -19.3  It's called camera roll sharing sugges
+        4   4.4  +0.36  4.55  -13.1  -25.5  -18.4  If you tap Allow, Facebook looks throu
+        5  3.33  +0.36   3.6  -12.0  -22.4  -18.5  Meta says it's opt-in and not used for
+        6  6.48  +5.00  4.32   -9.1  -29.5  -19.7  Here's the switch. Profile picture. Se
+        7  3.62    —    3.31   -5.5  -45.9  -20.2  Send this to mum. She taps Allow every
+    
+      [fix] line  7: weak ending (-45.9 dB vs median -25.5)
+             -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  PASS  frame layout (safe_check_hf.js)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+ALL CHECKS THAT RAN PASSED (1 skipped)  -  audio was measured, not heard; watch the file twice before sending

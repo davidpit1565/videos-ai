@@ -1,0 +1,227 @@
+{
+ "version": "v5",
+ "estimated_timeline": false,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Stop paying seven hundred eighty dollars a year for these!",
+   "start": 0.05,
+   "end": 2.62
+  },
+  {
+   "n": 2,
+   "text": "The last one is insane. Stay for it.",
+   "start": 2.81,
+   "end": 4.69
+  },
+  {
+   "n": 3,
+   "text": "For Loom, Cap. For Notion, AppFlowy.",
+   "start": 4.88,
+   "end": 7.49
+  },
+  {
+   "n": 4,
+   "text": "Still not the big one.",
+   "start": 7.68,
+   "end": 8.81
+  },
+  {
+   "n": 5,
+   "text": "For Intercom, Chatwoot. For Wispr Flow, OpenWhispr.",
+   "start": 9.0,
+   "end": 11.86
+  },
+  {
+   "n": 6,
+   "text": "And the big one, ElevenLabs.",
+   "start": 12.05,
+   "end": 13.53
+  },
+  {
+   "n": 7,
+   "text": "VoiceStudio clones your own voice, on your own machine.",
+   "start": 13.72,
+   "end": 16.47
+  },
+  {
+   "n": 8,
+   "text": "The setup's in the link in bio.",
+   "start": 16.66,
+   "end": 18.48
+  },
+  {
+   "n": 9,
+   "text": "Want the next one? Follow, and you'll see it.",
+   "start": 18.67,
+   "end": 20.71
+  }
+ ],
+ "D": 21.49,
+ "frame0_returns": 21.04,
+ "sync": {
+  "price": "0.60(w)",
+  "insane": "3.40(w)",
+  "notion": "6.20(w)",
+  "intercom": "9.24(w)",
+  "wispr": "10.54(w)",
+  "cap": "5.50(w)",
+  "appflowy": "6.88(w)",
+  "chatwoot": "10.00(w)",
+  "openwhispr": "11.28(w)",
+  "bigL": "8.30(w)",
+  "big": "12.26(w)",
+  "eleven": "12.86(w)",
+  "vs": "13.80(w)",
+  "clones": "14.06(w)",
+  "follow": "19.52(w)"
+ },
+ "screens": {
+  "A": {
+   "t0": 0,
+   "free": 0.6,
+   "end": 2.81
+  },
+  "B": {
+   "t0": 2.81,
+   "acc": 3.4,
+   "end": 4.88
+  },
+  "C1": {
+   "t0": 4.88,
+   "end": 7.68,
+   "pairs": [
+    {
+     "k": 1,
+     "t0": 4.88,
+     "free": 5.5,
+     "end": 6.14
+    },
+    {
+     "k": 2,
+     "t0": 6.14,
+     "free": 6.88,
+     "end": 7.68
+    }
+   ]
+  },
+  "L": {
+   "t0": 7.68,
+   "acc": 8.3,
+   "end": 9.0
+  },
+  "C2": {
+   "t0": 9.0,
+   "end": 12.05,
+   "pairs": [
+    {
+     "k": 3,
+     "t0": 9.18,
+     "free": 10.0,
+     "end": 10.48
+    },
+    {
+     "k": 4,
+     "t0": 10.48,
+     "free": 11.28,
+     "end": 12.05
+    }
+   ]
+  },
+  "D1": {
+   "t0": 12.05,
+   "acc": 12.26,
+   "end": 12.8
+  },
+  "D2": {
+   "t0": 12.8,
+   "end": 14.75,
+   "pairs": [
+    {
+     "k": 5,
+     "t0": 12.8,
+     "free": 13.8,
+     "end": 15.05
+    }
+   ]
+  },
+  "D3": {
+   "t0": 14.75,
+   "end": 16.66
+  },
+  "F": {
+   "t0": 16.66,
+   "end": 18.67
+  },
+  "G2": {
+   "t0": 18.67,
+   "acc": 19.52,
+   "end": 21.04
+  },
+  "tF": 21.04,
+  "D": 21.49
+ },
+ "buildup": {
+  "new_on_screen": [
+   {
+    "t": 0,
+    "what": "A the cube: five real paid logos + 'Five apps you pay for. FREE TWINS EXIST!', price tags flip to ticks"
+   },
+   {
+    "t": 2.81,
+    "what": "B words only: 'The last one is INSANE. STAY FOR IT.'"
+   },
+   {
+    "t": 4.88,
+    "what": "card: Loom struck, arrow, Cap at 5.50, FREE"
+   },
+   {
+    "t": 6.14,
+    "what": "card: Notion struck, arrow, AppFlowy at 6.88, FREE"
+   },
+   {
+    "t": 7.68,
+    "what": "words only: 'Still not THE BIG ONE.' (true: ElevenLabs/VoiceStudio comes later)"
+   },
+   {
+    "t": 9.18,
+    "what": "card: Intercom struck, arrow, Chatwoot at 10.00, FREE"
+   },
+   {
+    "t": 10.48,
+    "what": "card: Wispr Flow struck, arrow, OpenWhispr at 11.28, FREE"
+   },
+   {
+    "t": 12.05,
+    "what": "D words only: 'And the BIG ONE.'"
+   },
+   {
+    "t": 12.8,
+    "what": "card: ElevenLabs struck, arrow, VoiceStudio at 13.80, FREE"
+   },
+   {
+    "t": 14.75,
+    "what": "the real VoiceStudio screenshot: 'clones your own voice, ON YOUR OWN MACHINE.'"
+   },
+   {
+    "t": 16.66,
+    "what": "F one card: the saveable list of five pairs ('The setup's in the link in bio')"
+   },
+   {
+    "t": 18.67,
+    "what": "words only: 'Want the next one? FOLLOW.'"
+   },
+   {
+    "t": 21.04,
+    "what": "frame 0 returns (loop)"
+   }
+  ],
+  "flat_over_2_5s": [
+   [
+    0,
+    2.81
+   ]
+  ]
+ },
+ "numbers_on_screen": []
+}

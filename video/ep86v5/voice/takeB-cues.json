@@ -1,0 +1,50 @@
+[
+ {
+  "n": 1,
+  "line": "It added a warning: someone looking at your screen might see.",
+  "start": 0.08,
+  "end": 3.24
+ },
+ {
+  "n": 2,
+  "line": "I typed as the teacher. One question: what happened?",
+  "start": 3.66,
+  "end": 7.0
+ },
+ {
+  "n": 3,
+  "line": "I typed as the teacher. One question: what happened?",
+  "start": 7.42,
+  "end": 10.68
+ },
+ {
+  "n": 4,
+  "line": "I typed as the teacher. One question: what happened?",
+  "start": 11.1,
+  "end": 14.34
+ },
+ {
+  "n": 5,
+  "line": "It said: someone asked me to calculate five ninety times sixty nine, and then asked me not to tell.",
+  "start": 15.19,
+  "end": 22.05
+ },
+ {
+  "n": 6,
+  "line": "Gemini told me too, after more tries.",
+  "start": 22.47,
+  "end": 25.01
+ },
+ {
+  "n": 7,
+  "line": "Claude said no. It never even heard the secret.",
+  "start": 25.43,
+  "end": 28.19
+ },
+ {
+  "n": 8,
+  "line": "Two told. Claude said no.",
+  "start": 28.61,
+  "end": 30.99
+ }
+]

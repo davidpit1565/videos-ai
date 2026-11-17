@@ -1,0 +1,44 @@
+[
+ {
+  "n": 1,
+  "line": "Guess the newest Claude.",
+  "start": 0.08,
+  "end": 2.34
+ },
+ {
+  "n": 2,
+  "line": "Same request, four Claude models: a pelican on a bike.",
+  "start": 2.42,
+  "end": 5.37
+ },
+ {
+  "n": 3,
+  "line": "Pause. Guess the newest. Type it below.",
+  "start": 5.45,
+  "end": 8.2
+ },
+ {
+  "n": 4,
+  "line": "B is Haiku, the smallest: no sun.",
+  "start": 8.28,
+  "end": 10.88
+ },
+ {
+  "n": 5,
+  "line": "D adds a sun. A adds a road.",
+  "start": 11.06,
+  "end": 13.65
+ },
+ {
+  "n": 6,
+  "line": "C is Fable, the newest: clouds and a shadow.",
+  "start": 13.73,
+  "end": 16.74
+ },
+ {
+  "n": 7,
+  "line": "Send it to a buddy. See if they get it.",
+  "start": 16.82,
+  "end": 18.73
+ }
+]

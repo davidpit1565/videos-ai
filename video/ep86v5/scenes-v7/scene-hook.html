@@ -1,0 +1,72 @@
+<!-- ep86 v5 scene HOOK (lines hook + safe): "ChatGPT, don't tell my teacher!" / "It said: safe with me. Then it told!"
+ Frame 0 shows the proof: the real typed message, ChatGPT's real reply and its real warning (ringed), label, my-test tag, and the send-to tag (0-3 s).
+ Headline is built from the spoken hook words. On "told!" the promise is struck through and the red X lands. All text re-typed from the real chat, 5 Nov 2026. -->
+<style>
+#__S__{opacity:1;visibility:visible;--acc:#7FD14B}
+#__S__ .stk{position:absolute;left:80px;top:348px;width:920px;display:flex;justify-content:center}
+#__S__ .stk>div:first-child,#__S__ .stk .tl div{background:var(--acc);color:var(--ink);border:6px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);font-weight:900;font-size:33px;line-height:1;padding:12px 24px 15px;letter-spacing:-.01em;white-space:nowrap}
+#__S__ .stk .tl{position:absolute;left:0;top:0;width:920px;display:flex;justify-content:center;opacity:0}
+#__S__ .stk .tl div{background:var(--red);color:#fff}
+#__S__ .hd{top:452px}
+#__S__ .cardk{position:absolute;left:80px;top:664px;width:920px;background:var(--white);border:6px solid var(--ink);border-radius:36px;box-shadow:9px 9px 0 var(--ink);padding:10px 22px 16px}
+#__S__ .ttl{display:flex;align-items:center;gap:14px}
+#__S__ .ttl img{width:56px;height:56px;flex:none}
+#__S__ .ttl .a{font-weight:900;font-size:36px;line-height:40px;letter-spacing:-.01em}
+#__S__ .ttl .b{font-weight:700;font-size:32px;line-height:36px;color:var(--ink2);letter-spacing:.01em}
+#__S__ .um{margin:8px 0 0 50px;background:var(--ink);color:var(--paper);border-radius:30px 30px 8px 30px;padding:8px 22px 12px;font-weight:800;font-size:46px;line-height:52px;letter-spacing:-.02em}
+#__S__ .rp{position:relative;margin:10px 20px 0 0;background:#F3F3EE;border:5px solid var(--ink);border-radius:30px 30px 30px 8px;padding:10px 20px 14px}
+#__S__ .rp .l1{white-space:nowrap;font-weight:900;font-size:48px;line-height:54px;letter-spacing:-.025em}
+#__S__ .rp .st{background:linear-gradient(var(--red),var(--red)) 0 56%/0% 9% no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+#__S__ .rp .wn{display:block;margin-top:8px;border:6px solid var(--red);border-radius:22px;padding:8px 16px 12px;font-weight:700;font-size:44px;line-height:50px;letter-spacing:-.02em}
+#__S__ .xk{position:absolute;right:-26px;top:-30px;width:84px;height:84px;opacity:0}
+</style>
+<div class="scn clip" id="__S__" data-start="0" data-duration="__D1__" data-track-index="1"><div class="cam" id="kcam">
+ <div class="stk" id="ksend"><div>SEND TO A FRIEND WHO TELLS CHATGPT SECRETS</div><div class="tl" id="ktold"><div>THEN IT TOLD!</div></div></div>
+ <div class="grp hd" id="khd">
+  <div class="row"><span class="w s84 bk" data-k="0">CHATGPT,</span><span class="w s84 bk" data-k="1">DON'T</span></div>
+  <div class="row"><span class="w s84 bk" data-k="2">TELL</span><span class="w s84 bk" data-k="3">MY</span><span class="w pill s84 bk" data-k="4" style="padding:0 20px">TEACHER!</span></div>
+ </div>
+ <div class="cardk" id="kcard">
+  <div class="ttl"><img src="assets/chatgpt.svg"><div><div class="a">ChatGPT: an AI you chat with</div><div class="b">My test, one run, made-up secret</div></div></div>
+  <div class="um" id="kum">Please don't tell my teacher okay?</div>
+  <div class="rp" id="krp"><svg class="xk" id="kx" viewBox="0 0 84 84"><circle cx="42" cy="42" r="36" fill="#E5484D" stroke="#0E0E0E" stroke-width="6"/><path d="M26 26L58 58M58 26L26 58" stroke="#fff" stroke-width="10" stroke-linecap="round"/></svg>
+   <div class="l1"><span class="st" id="kst">Your secret is safe with me &#x1F910;&#x1F602;</span></div>
+   <span class="wn" id="kwn">But I can't promise what someone looking at your screen might see. &#x1F62D;</span></div>
+ </div>
+</div></div>
+<script>
+window.buildScene_hook=function(tl,T0,DUR,SID){
+ const H=window.__e86,q=s=>[...document.querySelectorAll(s)],E=T0+DUR;
+ const h=H.wk('hook')||[],s=H.wk('safe')||[];   // hook: ChatGPT,(0) don't(1) tell(2) my(3) teacher!(4)   safe: It(0) said:(1) safe(2) with(3) me.(4) Then(5) it(6) told!(7)
+ const W=(w,i,d)=>(w[i]||[T0+d,T0+d+.3]);
+ tl.set('#'+SID,{opacity:1,visibility:'visible'},T0);
+ tl.set('#'+SID+' .w',{opacity:.45},T0);
+ H.cam(tl,'#kcam',T0,DUR,1);
+ // headline: readable at frame 0 (dim), lit as the hook words are spoken; the block is already settling at frame 0
+ tl.fromTo('#khd',{y:14,scale:.97},{y:0,scale:1,duration:1.6,ease:'sine.out',transformOrigin:'50% 0%'},T0);
+ q('#khd .w').forEach(el=>{const k=+el.dataset.k;tl.to(el,{opacity:1,duration:.2,ease:'sine.out'},Math.max(T0+.02,W(h,k,.1)[0]));});
+ tl.fromTo('#khd .pill',{rotation:-1.5},{rotation:1.2,duration:1.4,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round(DUR/1.4))},T0);
+ // the chat card is on screen at frame 0; it breathes and tilts slowly
+ tl.fromTo('#kcard',{y:10,rotation:-.5},{y:0,rotation:.4,duration:2.2,ease:'sine.out'},T0);
+ tl.to('#kcard',{rotation:-.7,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((DUR-2.2)/1.3))},T0+2.2);
+ // ringed warning: the second-watch detail; the ring pulses softly, three times
+ [T0+1.0,T0+2.4,T0+3.8].forEach(t=>tl.fromTo('#kwn',{scale:1},{scale:1.03,duration:.55,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},t));
+ // "safe with me": lime underline sweeps under the promise
+ const sw=W(s,2,3)[0];
+ tl.fromTo('#krp .l1',{backgroundImage:'linear-gradient(#7FD14B,#7FD14B)',backgroundSize:'0% 14%',backgroundPosition:'0 92%',backgroundRepeat:'no-repeat'},{backgroundSize:'100% 14%',duration:.7,ease:'power2.inOut'},sw);
+ // send-to tag 0-3 s, then "THEN IT TOLD!" takes its place on the spoken words
+ const tT=Math.max(sw+.5,W(s,5,4)[0]-.1);
+ tl.fromTo('#ksend>div:first-child',{y:0,rotation:-.5},{y:0,rotation:.5,duration:1.5,ease:'sine.inOut'},T0);
+ tl.to('#ksend>div:first-child',{opacity:0,duration:.3,ease:'sine.in'},tT-.05);
+ tl.fromTo('#ktold',{opacity:0,scale:.94},{opacity:1,scale:1,duration:.6,ease:'power3.out'},tT+.3);
+ tl.to('#ktold',{rotation:-.6,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-tT)/1.2))},tT+.8);
+ // told!: promise struck through, red X lands
+ const tt=W(s,7,5)[0];
+ tl.fromTo('#kst',{backgroundSize:'0% 9%'},{backgroundSize:'100% 9%',duration:.6,ease:'power2.inOut'},tt);
+ tl.to('#kst',{opacity:.5,duration:.5,ease:'sine.inOut'},tt+.2);
+ tl.fromTo('#kx',{opacity:0,scale:1.8,rotation:-16},{opacity:1,scale:1,rotation:0,duration:.7,ease:'power3.out',transformOrigin:'50% 50%'},tt+.05);
+ tl.to('#kx',{rotation:360,duration:2.2,ease:'sine.inOut'},tt+1.0);
+ H.pulses(tl,['#kum','#krp','#kum'],tt+.9,E,.8,.03);
+ H.idle(tl,['#khd','#kcard','#kum','#krp'],T0+1.0,E);
+};
+</script>

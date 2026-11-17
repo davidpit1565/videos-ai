@@ -1,0 +1,20 @@
+# ep90 final7 gate: hook text safe-area measured from the rendered frame (bbox above, in the script file); qa.py on the file; sfx-only audio.
+ep90-final7.mp4  1080x1920  30fps  22.73s  3.1MB
+  visual change: median 0.03s, longest 3.67s
+  loudness: -25.4 LUFS integrated, peak -6.0 dBFS, LRA 10.7 LU
+  loop seam: first vs last frame differ by 13.0/255
+
+  [BLOCKER] black frames 0.87-1.10s
+  [BLOCKER] black frames 3.20-3.43s
+  [BLOCKER] black frames 3.60-3.63s
+  [BLOCKER] black frames 5.50-7.33s
+  [BLOCKER] black frames 9.73-10.73s
+  [BLOCKER] black frames 13.23-13.40s
+  [BLOCKER] black frames 14.17-16.73s
+  [BLOCKER] black frames 17.40-22.67s
+  [BLOCKER] -25.4 LUFS — target -14.0 +/-1.5
+  [warn]    22.7s is outside the 30-90s band
+  [warn]    picture nearly still 2.00s at 1.13-3.13s
+  [warn]    picture nearly still 2.73s at 17.60-20.33s
+  [warn]    picture nearly still 2.03s at 20.63-22.67s
+  [warn]    last frame is blank (mean luma 2.0)

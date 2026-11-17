@@ -1,0 +1,12 @@
+      per-line seeds: {1: 216}
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/opt/v311/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+loaded PerthNet (Implicit) at step 250,000
+      01/01   cached take (restart-safe, no regeneration): Want the next one? Follow, and you'll see it.
+  01/1   1.81s  Want the next one? Follow, and you'll see it.
+  placed 0 breaths from his own recording
+  room tone bed at -55 dBFS
+
+wrote video/ep100/voice/pl/L10-216.wav  2.0s  1 lines

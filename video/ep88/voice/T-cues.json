@@ -1,0 +1,44 @@
+[
+ {
+  "n": 1,
+  "line": "Meta says it's opt-in and not used for ads.",
+  "start": 0.08,
+  "end": 3.0
+ },
+ {
+  "n": 2,
+  "line": "Meta says it's opt-in and not used for ads.",
+  "start": 3.3,
+  "end": 6.49
+ },
+ {
+  "n": 3,
+  "line": "Meta says it's opt-in and not used for ads.",
+  "start": 6.79,
+  "end": 9.74
+ },
+ {
+  "n": 4,
+  "line": "Meta says it's opt-in and not used for ads.",
+  "start": 10.04,
+  "end": 13.73
+ },
+ {
+  "n": 5,
+  "line": "Send this to mum. She taps Allow on everything.",
+  "start": 14.58,
+  "end": 18.7
+ },
+ {
+  "n": 6,
+  "line": "Send this to mum. She taps Allow on everything.",
+  "start": 19.0,
+  "end": 22.52
+ },
+ {
+  "n": 7,
+  "line": "Send this to mum. She taps Allow on everything.",
+  "start": 22.82,
+  "end": 25.63
+ }
+]

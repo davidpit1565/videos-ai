@@ -1,0 +1,4 @@
+# AI RACE #1 arena, frozen 2026-11-14 before any AI answer existed.
+# run_race.mjs refuses to race if arena.js or track.json no longer match these.
+bac5a096044057aaa6e7810b40259451f79f62198313ad1189e0c499fa5025fa  arena.js
+0cc3955eb65de012ccaf75c7dcb58edfaafb38c99759dd0cc8e194f72a47f463  track.json

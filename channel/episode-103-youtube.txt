@@ -1,0 +1,7 @@
+Claude just destroyed paid apps (11 free skills)
+
+The Replica skill is a free, open-source pack of 11 Claude skills: recon, architect, design, build, backend, test, diff, entrepreneur, brand, launch and deploy. In this short we walk through what each one is for, from the project's own page.
+
+Setup and limits: link in the first comment of the channel page. Project: github.com/Jakeschincariol/replica-skill (MIT).
+
+#claudecode #claudeskills #opensource

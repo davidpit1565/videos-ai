@@ -1,0 +1,1 @@
+   ln 1  top=us 0.86  not-american=0.03   {'australia': 0.019, 'england': 0.004, 'indian': 0.003}   Did a teacher ever ask if you used AI?

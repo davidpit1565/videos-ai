@@ -1,0 +1,35 @@
+      per-line seeds: {2: 31, 3: 11, 5: 48, 6: 12, 8: 41, 9: 49}
+      per-line exaggeration: {1: 0.82, 2: 0.62, 3: 0.62, 5: 0.64, 6: 0.64, 8: 0.56, 9: 0.62, 10: 0.78}
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/opt/v311/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+loaded PerthNet (Implicit) at step 250,000
+      01/10   cached take (restart-safe, no regeneration): Claude turns a boring report into a video.
+  01/10   2.91s  Claude turns a boring report into a video.
+      02/10   cached take (restart-safe, no regeneration): It's called Claude Motion, and it's new.
+  02/10   2.43s  It's called Claude Motion, and it's new.
+      03/10   cached take (restart-safe, no regeneration): You give it your report, and tell it who is watching and how long.
+  03/10   3.40s  You give it your report, and tell it who is watching
+      04/10   cached take (restart-safe, no regeneration): Anthropic says Claude builds the whole animation from what's in your report.
+  04/10   3.98s  Anthropic says Claude builds the whole animation fro
+      05/10   cached take (restart-safe, no regeneration): Anthropic's examples are an all-hands explainer, an animated chart, and a product walkthrough.
+  05/10   4.86s  Anthropic's examples are an all-hands explainer, an 
+      06/10   cached take (restart-safe, no regeneration): And there's no AI footage. Anthropic says Claude writes code, not footage.
+  06/10   4.32s  And there's no AI footage. Anthropic says Claude wri
+      07/10   cached take (restart-safe, no regeneration): So you change one word, and everything else stays put.
+  07/10   4.18s  So you change one word, and everything else stays pu
+/usr/lib/python3.11/contextlib.py:105: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+`sdpa` attention does not support `output_attentions=True`. Please set your attention to `eager` if you want any of these features.
+Sampling:   0%|          | 0/1000 [00:00<?, ?it/s]Sampling:   0%|          | 1/1000 [00:00<01:48,  9.25it/s]Sampling:   0%|          | 2/1000 [00:00<02:00,  8.31it/s]Sampling:   0%|          | 3/1000 [00:00<01:53,  8.76it/s]Sampling:   0%|          | 5/1000 [00:00<01:39, 10.01it/s]Sampling:   1%|          | 7/1000 [00:00<01:30, 11.01it/s]Sampling:   1%|          | 9/1000 [00:00<01:26, 11.39it/s]Sampling:   1%|          | 11/1000 [00:01<01:30, 10.89it/s]Sampling:   1%|▏         | 13/1000 [00:01<01:49,  9.00it/s]Sampling:   1%|▏         | 14/1000 [00:01<01:51,  8.82it/s]Sampling:   2%|▏         | 15/1000 [00:01<01:53,  8.65it/s]Sampling:   2%|▏         | 16/1000 [00:01<01:52,  8.78it/s]Sampling:   2%|▏         | 17/1000 [00:01<01:53,  8.67it/s]Sampling:   2%|▏         | 18/1000 [00:01<01:49,  8.95it/s]Sampling:   2%|▏         | 19/1000 [00:02<01:49,  8.94it/s]Sampling:   2%|▏         | 20/1000 [00:02<01:48,  9.03it/s]Sampling:   2%|▏         | 21/1000 [00:02<01:46,  9.18it/s]Sampling:   2%|▏         | 23/1000 [00:02<01:33, 10.41it/s]Sampling:   2%|▎         | 25/1000 [00:02<01:39,  9.81it/s]Sampling:   3%|▎         | 27/1000 [00:02<01:31, 10.68it/s]Sampling:   3%|▎         | 29/1000 [00:02<01:28, 10.99it/s]Sampling:   3%|▎         | 31/1000 [00:03<01:27, 11.06it/s]Sampling:   3%|▎         | 33/1000 [00:03<01:29, 10.84it/s]Sampling:   4%|▎         | 35/1000 [00:03<01:33, 10.35it/s]Sampling:   4%|▎         | 37/1000 [00:03<01:42,  9.37it/s]Sampling:   4%|▍         | 38/1000 [00:03<01:42,  9.39it/s]Sampling:   4%|▍         | 39/1000 [00:04<01:45,  9.14it/s]Sampling:   4%|▍         | 40/1000 [00:04<01:45,  9.07it/s]Sampling:   4%|▍         | 41/1000 [00:04<01:49,  8.74it/s]Sampling:   4%|▍         | 42/1000 [00:04<01:50,  8.66it/s]Sampling:   4%|▍         | 43/1000 [00:04<01:55,  8.32it/s]Sampling:   4%|▍         | 44/1000 [00:04<01:54,  8.35it/s]Sampling:   4%|▍         | 45/1000 [00:04<01:55,  8.28it/s]Sampling:   5%|▍         | 46/1000 [00:04<01:55,  8.28it/s]Sampling:   5%|▍         | 47/1000 [00:05<01:55,  8.22it/s]Sampling:   5%|▍         | 49/1000 [00:05<01:40,  9.43it/s]Sampling:   5%|▌         | 50/1000 [00:05<01:40,  9.44it/s]Sampling:   5%|▌         | 51/1000 [00:05<01:43,  9.16it/s]Sampling:   5%|▌         | 52/1000 [00:05<01:44,  9.10it/s]Sampling:   5%|▌         | 53/1000 [00:05<01:45,  8.99it/s]Sampling:   6%|▌         | 55/1000 [00:05<01:51,  8.48it/s]Sampling:   6%|▌         | 56/1000 [00:06<01:52,  8.37it/s]Sampling:   6%|▌         | 57/1000 [00:06<01:52,  8.35it/s]Sampling:   6%|▌         | 59/1000 [00:06<01:39,  9.43it/s]Sampling:   6%|▌         | 60/1000 [00:06<01:41,  9.26it/s]Sampling:   6%|▌         | 62/1000 [00:06<01:34,  9.94it/s]Sampling:   6%|▋         | 63/1000 [00:06<01:36,  9.68it/s]Sampling:   6%|▋         | 64/1000 [00:06<01:46,  8.80it/s]Sampling:   7%|▋         | 66/1000 [00:07<01:38,  9.52it/s]Sampling:   7%|▋         | 68/1000 [00:07<01:38,  9.44it/s]Sampling:   7%|▋         | 70/1000 [00:07<01:31, 10.15it/s]Sampling:   7%|▋         | 71/1000 [00:07<01:38,  9.47it/s]
+      2.5 syl/s, sped up x1.20
+  08/10   2.20s  Then you export it as an MP4.
+      09/10   cached take (restart-safe, no regeneration): It's in beta, for Team and Enterprise plans. On Enterprise, an owner has to switch it on.
+  09/10   5.07s  It's in beta, for Team and Enterprise plans. On Ente
+      10/10   cached take (restart-safe, no regeneration): Send this to the person at work who pays for Claude.
+  10/10   3.12s  Send this to the person at work who pays for Claude.
+  placed 6 breaths from his own recording
+  room tone bed at -55 dBFS
+
+wrote video/ep94m/voice/narration-raw.wav  38.3s  10 lines

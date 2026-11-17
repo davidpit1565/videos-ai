@@ -1,0 +1,6 @@
+video/ep90b/out/bed-final2.wav  mean -16.7 dB  peak 0.0 dB  longest quiet stretch 0.00s
+ok — music bed has a real, continuous presence
+video/ep90b/out/bed-A.wav  mean -18.6 dB  peak -0.1 dB  longest quiet stretch 0.00s
+ok — music bed has a real, continuous presence
+video/ep90b/out/bed-B.wav  mean -17.3 dB  peak -1.6 dB  longest quiet stretch 0.47s
+ok — music bed has a real, continuous presence

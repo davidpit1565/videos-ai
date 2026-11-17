@@ -1,0 +1,136 @@
+function move(v) {
+  if (!move.s) {
+    move.s = {
+      W: 21,
+      H: 21,
+      visited: new Set(),
+      // Graph adjacency: cellKey -> Set of neighbor cellKeys
+      adj: new Map(),
+      // Track known walls/openings per cell to avoid re-evaluating
+      known: new Map(),
+      prevX: null,
+      prevY: null
+    };
+  }
+
+  const s = move.s;
+  const key = (x, y) => x + "," + y;
+  const parse = (k) => k.split(",").map(Number);
+
+  // Detect reset / new game if jumped back to start (10,10) unexpectedly
+  if (
+    s.prevX !== null &&
+    v.x === 10 &&
+    v.y === 10 &&
+    Math.abs(v.x - s.prevX) + Math.abs(v.y - s.prevY) > 1
+  ) {
+    s.visited.clear();
+    s.adj.clear();
+    s.known.clear();
+  }
+  s.prevX = v.x;
+  s.prevY = v.y;
+
+  const curr = key(v.x, v.y);
+  s.visited.add(curr);
+  if (!s.adj.has(curr)) s.adj.set(curr, new Set());
+
+  const dirs = [
+    { name: "up", dx: 0, dy: -1, val: v.up },
+    { name: "down", dx: 0, dy: 1, val: v.down },
+    { name: "left", dx: -1, dy: 0, val: v.left },
+    { name: "right", dx: 1, dy: 0, val: v.right }
+  ];
+
+  // Immediate win check
+  for (const d of dirs) {
+    if (d.val === "exit") return d.name;
+  }
+
+  // Update map knowledge from current sensor readings
+  const openDirs = [];
+  for (const d of dirs) {
+    const nx = v.x + d.dx;
+    const ny = v.y + d.dy;
+    const nKey = key(nx, ny);
+
+    if (d.val === "open") {
+      openDirs.push({ ...d, nx, ny, nKey });
+      if (nx >= 0 && nx < s.W && ny >= 0 && ny < s.H) {
+        if (!s.adj.has(nKey)) s.adj.set(nKey, new Set());
+        s.adj.get(curr).add(nKey);
+        s.adj.get(nKey).add(curr);
+      }
+    }
+  }
+
+  // Heuristic: prefer unvisited neighbors closer to the outer perimeter
+  // (where the exit gap must exist), breaking ties toward corners/edges
+  const edgeDist = (x, y) => Math.min(x, s.W - 1 - x, y, s.H - 1 - y);
+
+  const unvisitedNeighbors = openDirs.filter((d) => !s.visited.has(d.nKey));
+  if (unvisitedNeighbors.length > 0) {
+    unvisitedNeighbors.sort((a, b) => {
+      const da = edgeDist(a.nx, a.ny);
+      const db = edgeDist(b.nx, b.ny);
+      if (da !== db) return da - db;
+      // Secondary: prefer cells with fewer already-known neighbors (explore deeper)
+      const ka = s.adj.has(a.nKey) ? s.adj.get(a.nKey).size : 0;
+      const kb = s.adj.has(b.nKey) ? s.adj.get(b.nKey).size : 0;
+      return ka - kb;
+    });
+    return unvisitedNeighbors[0].name;
+  }
+
+  // All adjacent open cells are visited: BFS over known graph to find the
+  // nearest frontier node (a known reachable cell that is either unvisited
+  // or has an unexplored edge, prioritizing frontier nodes closer to outer walls)
+  const queue = [curr];
+  const parent = new Map([[curr, null]]);
+  const dist = new Map([[curr, 0]]);
+  let bestTarget = null;
+  let bestScore = Infinity;
+
+  while (queue.length > 0) {
+    const u = queue.shift();
+    const d = dist.get(u);
+
+    if (!s.visited.has(u)) {
+      const [ux, uy] = parse(u);
+      // Combine travel cost with proximity to outer perimeter
+      const score = d + edgeDist(ux, uy) * 0.5;
+      if (score < bestScore) {
+        bestScore = score;
+        bestTarget = u;
+      }
+      // Continue slightly to see if there's an equally close better target,
+      // but prune paths much longer than best found
+      if (d > bestScore) continue;
+    }
+
+    const neighbors = s.adj.get(u);
+    if (!neighbors) continue;
+    for (const nxt of neighbors) {
+      if (!parent.has(nxt)) {
+        parent.set(nxt, u);
+        dist.set(nxt, d + 1);
+        queue.push(nxt);
+      }
+    }
+  }
+
+  if (bestTarget) {
+    let step = bestTarget;
+    while (parent.get(step) !== curr) {
+      step = parent.get(step);
+    }
+    const [tx, ty] = parse(step);
+    if (tx > v.x) return "right";
+    if (tx < v.x) return "left";
+    if (ty > v.y) return "down";
+    if (ty < v.y) return "up";
+  }
+
+  // Fallback if graph is somehow exhausted
+  return openDirs.length > 0 ? openDirs[0].name : "up";
+}

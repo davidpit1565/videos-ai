@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "Five seconds. Go.",
+  "start": 0.08,
+  "end": 1.75
+ },
+ {
+  "n": 2,
+  "line": "Five seconds. Go.",
+  "start": 2.05,
+  "end": 3.48
+ },
+ {
+  "n": 3,
+  "line": "Five seconds. Go.",
+  "start": 3.78,
+  "end": 5.11
+ },
+ {
+  "n": 4,
+  "line": "Meta says it's opt-in and not used for ads.",
+  "start": 5.96,
+  "end": 9.11
+ },
+ {
+  "n": 5,
+  "line": "Meta says it's opt-in and not used for ads.",
+  "start": 9.41,
+  "end": 12.25
+ },
+ {
+  "n": 6,
+  "line": "Meta says it's opt-in and not used for ads.",
+  "start": 12.55,
+  "end": 15.41
+ },
+ {
+  "n": 7,
+  "line": "Send this to mum. She taps Allow on everything.",
+  "start": 16.26,
+  "end": 19.75
+ },
+ {
+  "n": 8,
+  "line": "Send this to mum. She taps Allow on everything.",
+  "start": 20.05,
+  "end": 23.37
+ },
+ {
+  "n": 9,
+  "line": "Send this to mum. She taps Allow on everything.",
+  "start": 23.67,
+  "end": 27.1
+ }
+]

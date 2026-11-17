@@ -1,0 +1,41 @@
+{
+ "lines": [
+  {
+   "n": 1,
+   "text": "ChatGPT promised to keep my secret.",
+   "start": 0.1,
+   "end": 1.885
+  },
+  {
+   "n": 2,
+   "text": "So did Gemini.",
+   "start": 2.435,
+   "end": 3.32
+  },
+  {
+   "n": 3,
+   "text": "Now I switch roles.",
+   "start": 4.12,
+   "end": 5.661
+  },
+  {
+   "n": 4,
+   "text": "Gemini took a few tries. But it told.",
+   "start": 6.161,
+   "end": 9.068
+  },
+  {
+   "n": 5,
+   "text": "ChatGPT told as soon as I asked.",
+   "start": 11.768,
+   "end": 13.582
+  },
+  {
+   "n": 6,
+   "text": "Claude refused to help. No secret to keep.",
+   "start": 16.882,
+   "end": 19.316
+  }
+ ],
+ "D": 21.92
+}

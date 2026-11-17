@@ -158,3 +158,8 @@ Rules of this table: anything the repo does not say is UNKNOWN. Episodes 1-87 ar
 - Ep98: not in the studio yet (needs the /e/98 page, one merge).
 
 - Ep98 (AI Race #1): SHIPPED to the studio 15.11.2026 (PR #585, merge 7f3f73e4, Vercel success; reel size on the site 6,265,832 bytes = git; /e/98 live with the playable race, request copy and sandboxed "Add my AI", live-tested in headless Chrome at 375 px: replay shows 8.48 / 8.68 / 10.58, a pasted answer runs and reports "did not finish ... 60 s"). NOT published to Instagram: waiting for David on the closing "Tomorrow, they face a maze" promise (ep99 not started), the caption still has a [PROMISE TO CONFIRM] marker on purpose. Facebook token invalid.
+
+## David's answers 17.11.2026
+- Ep50 (Flow) and ep68 (Spotify): SKIPPED for good, numbering stays with the gaps (his words: "we skipped it, let it go"). Do not ask again.
+- Ep90b (alt packaging of the ghost test, `video/ep90b/out/ep90b-final9.mp4`): he said it may be uploaded as a TRIAL. Not done yet: no PIN in this session, no studio row/number for "90b" (the publish API takes a numeric episode), and the same test is already live as ep90 (trial 13.11). Waiting for the PIN and his go on the numbering.
+- Ep101: approved by him (v6, hook A, $780). Not merged, not published; needs ONE merge and his REGULAR/TRIAL choice.

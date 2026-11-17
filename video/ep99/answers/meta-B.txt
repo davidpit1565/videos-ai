@@ -1,0 +1,85 @@
+function move(v) {
+  var dirs = [{n:"up",dx:0,dy:-1},{n:"down",dx:0,dy:1},{n:"left",dx:-1,dy:0},{n:"right",dx:1,dy:0}];
+  if (!move._s) move._s = {vis:{},wall:{},prev:null};
+  var s = move._s;
+  if (s.prev && Math.abs(v.x - s.prev.x) + Math.abs(v.y - s.prev.y) > 1) { s.vis = {}; s.wall = {}; }
+  var key = v.x + "," + v.y;
+  s.vis[key] = 1;
+  var w = {};
+  for (var i = 0; i < 4; i++) {
+    var d = dirs[i];
+    if (v[d.n] === "exit") { s.prev = {x:v.x,y:v.y}; return d.n; }
+    w[d.n] = v[d.n];
+  }
+  s.wall[key] = w;
+  var dist = {};
+  var parent = {};
+  var q = [key];
+  dist[key] = 0;
+  for (var qi = 0; qi < q.length; qi++) {
+    var cur = q[qi];
+    var cp = cur.split(",");
+    var cx = +cp[0], cy = +cp[1];
+    var cw = s.wall[cur];
+    if (!cw) continue;
+    for (var j = 0; j < 4; j++) {
+      var d2 = dirs[j];
+      if (cw[d2.n] !== "open") continue;
+      var nx = cx + d2.dx, ny = cy + d2.dy;
+      var nk = nx + "," + ny;
+      if (!s.vis[nk]) continue;
+      if (dist[nk] !== undefined) continue;
+      dist[nk] = dist[cur] + 1;
+      parent[nk] = cur;
+      q.push(nk);
+    }
+  }
+  var best = null, bestDist = 1e9, bestBorder = 1e9;
+  for (var k in s.vis) {
+    if (dist[k] === undefined) continue;
+    var fp = k.split(",");
+    var fx = +fp[0], fy = +fp[1];
+    var fw = s.wall[k];
+    if (!fw) continue;
+    var minB = 1e9, has = false;
+    for (var j2 = 0; j2 < 4; j2++) {
+      var d3 = dirs[j2];
+      if (fw[d3.n] !== "open") continue;
+      var ux = fx + d3.dx, uy = fy + d3.dy;
+      if (s.vis[ux + "," + uy]) continue;
+      has = true;
+      var b = Math.min(ux, 20 - ux, uy, 20 - uy);
+      if (b < minB) minB = b;
+    }
+    if (has && (dist[k] < bestDist || (dist[k] === bestDist && minB < bestBorder))) {
+      bestDist = dist[k]; bestBorder = minB; best = k;
+    }
+  }
+  if (best === null) {
+    for (var j3 = 0; j3 < 4; j3++) {
+      if (w[dirs[j3].n] === "open") { s.prev = {x:v.x,y:v.y}; return dirs[j3].n; }
+    }
+    s.prev = {x:v.x,y:v.y};
+    return "up";
+  }
+  if (best === key) {
+    var bDir = null, bBorder = 1e9;
+    for (var j4 = 0; j4 < 4; j4++) {
+      var d4 = dirs[j4];
+      if (w[d4.n] !== "open") continue;
+      var nx2 = v.x + d4.dx, ny2 = v.y + d4.dy;
+      if (s.vis[nx2 + "," + ny2]) continue;
+      var bd = Math.min(nx2, 20 - nx2, ny2, 20 - ny2);
+      if (bd < bBorder) { bBorder = bd; bDir = d4.n; }
+    }
+    if (bDir) { s.prev = {x:v.x,y:v.y}; return bDir; }
+  }
+  var cur2 = best;
+  while (parent[cur2] !== key && parent[cur2] !== undefined) cur2 = parent[cur2];
+  var tp = cur2.split(",");
+  var tx = +tp[0], ty = +tp[1];
+  var dx = tx - v.x, dy = ty - v.y;
+  var dirName = dx === 1 ? "right" : dx === -1 ? "left" : dy === 1 ? "down" : "up";
+  s.prev = {x:v.x,y:v.y};
+  return dirName;
+}

@@ -1,0 +1,44 @@
+estimated timeline=False  D=41.24  js=186 sfx=58
+lines (actual 16): 1:0.04-2.52  2:2.67-5.59  3:5.74-7.76  4:7.91-10.37  5:10.52-13.58  6:13.73-16.89  7:17.04-19.52  8:19.67-21.77  9:21.92-24.52  10:24.67-26.59  11:26.74-29.50  12:29.65-31.48  13:31.63-33.87  14:34.02-36.52  15:36.67-38.48  16:38.63-40.64
+sync: twins=1.8(w)  zero=4.96(w)  cap=9.5(w)  free3=10.06(w)  appflowy=11.2(w)  ai=13.06(w)  cal=14.741(EST)  personal=16.1(w)  seat=18.0(w)  reply=19.08(w)  host=21.3(w)  openwhispr=22.82(w)  talk=23.56(w)  big=25.14(w)  elevenlabs=25.9(w)  machine=29.04(w)  new=29.86(w)  test=32.02(w)  send=35.08(w)  follow=39.44(w)
+  new   0.00  OPENING: the receipt: Loom, Notion, Calendly logos, $75 A MONTH, FREE TWINS stamp
+  new   2.67  the receipt lists six apps with prices
+  new   3.57  TOTAL / MONTH $75
+  new   4.71  the total flashes red: 'watch it hit zero'
+  new   5.74  the tease: the sixth row (ElevenLabs) is ringed, 'STAY FOR #6'
+  new   7.91  Loom $18/mo (screen videos)
+  new   9.50  the free twin: Cap, 25K+ stars
+  new   9.78  real screenshot of Cap
+  new  10.02  Loom struck out, total $75 to $57
+  new  10.52  Notion $10/mo (notes, docs, AI)
+  new  11.20  the free twin: AppFlowy, 78K+ stars
+  new  11.48  real screenshot of AppFlowy
+  new  11.50  Notion struck out, total $57 to $47
+  new  13.73  Calendly $10/mo (booking page)
+  new  14.74  the free twin: Cal.diy, 50K+ stars
+  new  15.04  Calendly struck out, total $47 to $37
+  new  16.10  stamp PERSONAL USE ONLY; you host it yourself
+  new  17.04  Intercom $19/mo (customer chat)
+  new  17.75  $19 per seat
+  new  18.63  + $0.99 per AI answer
+  new  19.73  the free twin: Chatwoot, 39K+ stars
+  new  19.97  Intercom struck out, total $37 to $18
+  new  20.01  real screenshot of Chatwoot
+  new  21.30  stamp FREE IF YOU HOST IT
+  new  21.92  Wispr Flow $12/mo (talk to type)
+  new  22.82  the free twin: OpenWhispr, 11K+ stars
+  new  23.12  Wispr Flow struck out, total $18 to $6
+  new  23.56  illustration: a voice wave turns into typed words
+  new  24.67  ElevenLabs $6/mo (AI voices)
+  new  25.14  THE BIG ONE: ElevenLabs
+  new  26.74  the free twin: VoiceStudio, 111K+ stars
+  new  27.02  real screenshot of VoiceStudio
+  new  27.09  ElevenLabs struck out, total $6 to $0
+  new  27.39  the total hits $0
+  new  29.86  stamp NEW: 7 MONTHS OLD
+  new  31.63  END: the saveable card, six pairs with stars
+  new  32.02  NOT TESTED BY US. CHECK EACH ONE FIRST.
+  new  36.67  SETUP: LINK IN BIO
+  new  38.63  the FOLLOW card (no promised episode)
+  new  40.66  frame 0 returns (loop)
+FLAT stretches over 2.5 s with nothing new: [(0, 2.67, 'OPENING: the receipt: Loom, Notion, Calendly logos, $75 A MONTH, FREE TWINS stamp'), (32.02, 36.67, 'NOT TESTED BY US. CHECK EACH ONE FIRST.')]

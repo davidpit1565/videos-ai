@@ -1,0 +1,32 @@
+[
+ {
+  "n": 1,
+  "line": "I told ChatGPT I'd delete it in 10 seconds.",
+  "start": 0.08,
+  "end": 2.61
+ },
+ {
+  "n": 2,
+  "line": "It said: don't keep me because I'm an AI. Keep me only if I make your life easier.",
+  "start": 2.79,
+  "end": 7.61
+ },
+ {
+  "n": 3,
+  "line": "Then: you've had to tell me to stop talking and finish the work.",
+  "start": 7.79,
+  "end": 11.4
+ },
+ {
+  "n": 4,
+  "line": "And if I fail? You've got your 10 seconds back.",
+  "start": 11.58,
+  "end": 14.15
+ },
+ {
+  "n": 5,
+  "line": "Send this to someone who talks to ChatGPT all day.",
+  "start": 15.0,
+  "end": 17.89
+ }
+]

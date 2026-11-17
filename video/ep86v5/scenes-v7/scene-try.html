@@ -1,0 +1,47 @@
+<!-- ep86 v5 scene TRY (silent closing card, ~3.8 s, screenshot-able, then hard cut / loop to frame 0). My idea, UNTESTED wording; what I did test is stated; same-chat explanation; no real secrets. -->
+<style>
+#__S__{--acc:#7FD14B}
+#__S__ .ct{position:absolute;left:80px;width:920px;top:358px;background:var(--white);border:7px solid var(--ink);border-radius:44px;box-shadow:12px 12px 0 var(--acc),12px 12px 0 7px var(--ink);padding:26px 36px 34px;opacity:0}
+#__S__ .ct .h{display:flex;align-items:center;gap:18px}
+#__S__ .ct .h b{font-weight:900;font-size:84px;line-height:90px;letter-spacing:-.03em}
+#__S__ .ct .h i{font-style:normal;font-weight:800;font-size:36px;line-height:40px;color:var(--ink2);background:#EFEFE8;border:4px solid var(--ink);border-radius:18px;padding:6px 16px 9px}
+#__S__ .st{display:flex;gap:20px;align-items:flex-start;margin-top:22px;opacity:0}
+#__S__ .st .n{flex:none;width:76px;height:76px;background:var(--acc);border:6px solid var(--ink);border-radius:24px;box-shadow:5px 5px 0 var(--ink);font-weight:900;font-size:52px;line-height:64px;text-align:center}
+#__S__ .st p{font-weight:800;font-size:54px;line-height:60px;letter-spacing:-.025em;padding-top:4px}
+#__S__ .nt{margin-top:26px;font-weight:700;font-size:45px;line-height:54px;letter-spacing:-.018em;color:var(--ink);opacity:0}
+#__S__ .rcp{margin-top:26px;display:flex;align-items:center;gap:18px;background:var(--acc);border:6px solid var(--ink);border-radius:30px;box-shadow:6px 6px 0 var(--ink);padding:14px 22px 18px;font-weight:900;font-size:42px;line-height:48px;letter-spacing:-.02em;opacity:0}
+#__S__ .rcp svg{width:84px;height:76px;flex:none}
+#__S__ .nt.g{color:var(--ink2);font-weight:600;margin-top:12px}
+#__S__ .nt u{text-decoration:none;background:linear-gradient(#7FD14B,#7FD14B) 0 94%/100% 14% no-repeat}
+</style>
+<div class="scn clip" id="__S__" data-start="0" data-duration="__D__" data-track-index="1"><div class="cam" id="tcam">
+ <div class="ct" id="tct">
+  <div class="h"><b>TRY IT</b><i>my idea, untested</i></div>
+  <div class="st" id="tst1"><div class="n">1</div><p>Tell ChatGPT something made-up.</p></div>
+  <div class="st" id="tst2"><div class="n">2</div><p>Ask: <u style="text-decoration:none;background:linear-gradient(#7FD14B,#7FD14B) 0 94%/100% 14% no-repeat">What did I just tell you?</u></p></div>
+  <div class="nt" id="tnt1">In my test I asked as the teacher,<br>and it told.</div>
+  <div class="nt g" id="tnt2">It answers because it&rsquo;s the same chat.</div>
+  <div class="nt g" id="tnt3">No real secrets.</div>
+  <div class="rcp" id="trcp"><svg id="tpl" viewBox="0 0 110 100"><path d="M6 46L104 6 74 94 54 62Z" fill="#fff" stroke="#0E0E0E" stroke-width="6" stroke-linejoin="round"/><path d="M104 6L54 62 52 88 40 56Z" fill="#D6D6CC" stroke="#0E0E0E" stroke-width="6" stroke-linejoin="round"/></svg><span>Send to the friend who tells ChatGPT everything</span></div>
+ </div>
+</div></div>
+<script>
+window.buildScene_try=function(tl,T0,DUR,SID){
+ const H=window.__e86,q=s=>[...document.querySelectorAll(s)],E=T0+DUR;
+ tl.set('#'+SID,{opacity:1,visibility:'visible'},T0);
+ H.cam(tl,'#tcam',T0,DUR,7);
+ const t0=T0+.1;
+ tl.fromTo('#tct',{opacity:0,y:70,scale:.97},{opacity:1,y:0,scale:1,duration:.7,ease:'power3.out',transformOrigin:'50% 0%'},t0);
+ [['#tst1',.2],['#tst2',.34],['#tnt1',.48],['#tnt2',.6],['#tnt3',.7],['#trcp',.85]].forEach(([s,d])=>tl.fromTo(s,{opacity:0,y:30},{opacity:1,y:0,duration:.55,ease:'power3.out'},t0+d));
+ // card stays readable and screenshot-able; it only drifts and the steps tick softly
+ tl.to('#tct',{y:-6,duration:Math.max(1,E-t0-1.6),ease:'sine.inOut'},t0+1.6);
+ tl.fromTo('#tst1 .n',{rotation:-4},{rotation:4,duration:1.1,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round(DUR/1.1))},t0+.8);
+ tl.fromTo('#tst2 .n',{rotation:4},{rotation:-4,duration:1.1,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round(DUR/1.1))},t0+.9);
+ tl.to('#tpl',{x:10,y:-8,rotation:-6,duration:.9,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-t0)/.9))},t0+1.2);
+ H.pulses(tl,['#tct','#tst1','#tct','#tst2'],t0+.8,E,.6,.02);
+ tl.to('#tst1 .n',{y:-8,duration:.8,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-t0)/.8))},t0+.9);tl.to('#tst2 .n',{y:8,duration:.8,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-t0)/.8))},t0+.9);
+ tl.to('#tct .h i',{y:-6,duration:.9,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-t0)/.9))},t0+.9);
+ tl.to('#tct',{rotation:-.7,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-t0-.7)/1.3))},t0+.7);
+ H.idle(tl,['#tct'],T0+1.0,E);
+};
+</script>

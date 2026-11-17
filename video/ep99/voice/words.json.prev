@@ -1,0 +1,467 @@
+[
+ {
+  "word": "Lost",
+  "start": 0.0,
+  "end": 0.28
+ },
+ {
+  "word": "in",
+  "start": 0.28,
+  "end": 0.4
+ },
+ {
+  "word": "a",
+  "start": 0.4,
+  "end": 0.5
+ },
+ {
+  "word": "maze,",
+  "start": 0.5,
+  "end": 0.64
+ },
+ {
+  "word": "five",
+  "start": 0.92,
+  "end": 1.08
+ },
+ {
+  "word": "AIs,",
+  "start": 1.08,
+  "end": 1.4
+ },
+ {
+  "word": "no",
+  "start": 1.7,
+  "end": 1.8
+ },
+ {
+  "word": "map.",
+  "start": 1.8,
+  "end": 2.04
+ },
+ {
+  "word": "I",
+  "start": 2.5,
+  "end": 2.54
+ },
+ {
+  "word": "ask",
+  "start": 2.54,
+  "end": 2.68
+ },
+ {
+  "word": "each",
+  "start": 2.68,
+  "end": 2.88
+ },
+ {
+  "word": "AI",
+  "start": 2.88,
+  "end": 3.06
+ },
+ {
+  "word": "to",
+  "start": 3.06,
+  "end": 3.26
+ },
+ {
+  "word": "guide",
+  "start": 3.26,
+  "end": 3.44
+ },
+ {
+  "word": "one",
+  "start": 3.44,
+  "end": 3.8
+ },
+ {
+  "word": "dot",
+  "start": 3.8,
+  "end": 4.0
+ },
+ {
+  "word": "out.",
+  "start": 4.0,
+  "end": 4.26
+ },
+ {
+  "word": "None",
+  "start": 4.68,
+  "end": 4.76
+ },
+ {
+  "word": "of",
+  "start": 4.76,
+  "end": 4.9
+ },
+ {
+  "word": "them",
+  "start": 4.9,
+  "end": 5.02
+ },
+ {
+  "word": "can",
+  "start": 5.02,
+  "end": 5.2
+ },
+ {
+  "word": "see",
+  "start": 5.2,
+  "end": 5.42
+ },
+ {
+  "word": "the",
+  "start": 5.42,
+  "end": 5.52
+ },
+ {
+  "word": "maze.",
+  "start": 5.52,
+  "end": 5.7
+ },
+ {
+  "word": "Go!",
+  "start": 5.98,
+  "end": 6.12
+ },
+ {
+  "word": "Perplexity",
+  "start": 6.78,
+  "end": 7.22
+ },
+ {
+  "word": "is",
+  "start": 7.22,
+  "end": 7.56
+ },
+ {
+  "word": "stuck",
+  "start": 7.56,
+  "end": 7.92
+ },
+ {
+  "word": "at",
+  "start": 7.92,
+  "end": 8.34
+ },
+ {
+  "word": "the",
+  "start": 8.34,
+  "end": 8.46
+ },
+ {
+  "word": "start.",
+  "start": 8.46,
+  "end": 8.66
+ },
+ {
+  "word": "Chat",
+  "start": 9.12,
+  "end": 9.16
+ },
+ {
+  "word": "GPT",
+  "start": 9.16,
+  "end": 9.42
+ },
+ {
+  "word": "goes",
+  "start": 9.42,
+  "end": 9.62
+ },
+ {
+  "word": "the",
+  "start": 9.62,
+  "end": 9.78
+ },
+ {
+  "word": "wrong",
+  "start": 9.78,
+  "end": 9.92
+ },
+ {
+  "word": "way.",
+  "start": 9.92,
+  "end": 10.22
+ },
+ {
+  "word": "Claude",
+  "start": 10.64,
+  "end": 10.64
+ },
+ {
+  "word": "leads!",
+  "start": 10.64,
+  "end": 10.96
+ },
+ {
+  "word": "Two",
+  "start": 11.42,
+  "end": 11.7
+ },
+ {
+  "word": "dots",
+  "start": 11.7,
+  "end": 11.9
+ },
+ {
+  "word": "are",
+  "start": 11.9,
+  "end": 12.02
+ },
+ {
+  "word": "out,",
+  "start": 12.02,
+  "end": 12.22
+ },
+ {
+  "word": "on",
+  "start": 12.36,
+  "end": 12.4
+ },
+ {
+  "word": "the",
+  "start": 12.4,
+  "end": 12.52
+ },
+ {
+  "word": "same",
+  "start": 12.52,
+  "end": 12.66
+ },
+ {
+  "word": "step.",
+  "start": 12.66,
+  "end": 13.0
+ },
+ {
+  "word": "Claude",
+  "start": 13.34,
+  "end": 13.58
+ },
+ {
+  "word": "turns",
+  "start": 13.58,
+  "end": 13.8
+ },
+ {
+  "word": "back",
+  "start": 13.8,
+  "end": 14.08
+ },
+ {
+  "word": "ten",
+  "start": 14.08,
+  "end": 14.32
+ },
+ {
+  "word": "steps",
+  "start": 14.32,
+  "end": 14.58
+ },
+ {
+  "word": "short,",
+  "start": 14.58,
+  "end": 14.84
+ },
+ {
+  "word": "then",
+  "start": 15.08,
+  "end": 15.24
+ },
+ {
+  "word": "makes",
+  "start": 15.24,
+  "end": 15.44
+ },
+ {
+  "word": "it.",
+  "start": 15.44,
+  "end": 15.64
+ },
+ {
+  "word": "Chat",
+  "start": 15.9,
+  "end": 16.04
+ },
+ {
+  "word": "GPT",
+  "start": 16.04,
+  "end": 16.4
+ },
+ {
+  "word": "walks",
+  "start": 16.4,
+  "end": 16.58
+ },
+ {
+  "word": "in",
+  "start": 16.58,
+  "end": 16.76
+ },
+ {
+  "word": "circles.",
+  "start": 16.76,
+  "end": 17.02
+ },
+ {
+  "word": "Gemini",
+  "start": 17.6,
+  "end": 17.7
+ },
+ {
+  "word": "and",
+  "start": 17.7,
+  "end": 18.12
+ },
+ {
+  "word": "meta",
+  "start": 18.12,
+  "end": 18.4
+ },
+ {
+  "word": "AI",
+  "start": 18.4,
+  "end": 18.72
+ },
+ {
+  "word": "tie.",
+  "start": 18.72,
+  "end": 18.94
+ },
+ {
+  "word": "Same",
+  "start": 19.22,
+  "end": 19.4
+ },
+ {
+  "word": "path,",
+  "start": 19.4,
+  "end": 19.64
+ },
+ {
+  "word": "every",
+  "start": 19.84,
+  "end": 20.0
+ },
+ {
+  "word": "step.",
+  "start": 20.0,
+  "end": 20.22
+ },
+ {
+  "word": "The",
+  "start": 20.54,
+  "end": 20.64
+ },
+ {
+  "word": "setup's",
+  "start": 20.64,
+  "end": 21.02
+ },
+ {
+  "word": "in",
+  "start": 21.02,
+  "end": 21.2
+ },
+ {
+  "word": "the",
+  "start": 21.2,
+  "end": 21.32
+ },
+ {
+  "word": "link",
+  "start": 21.32,
+  "end": 21.54
+ },
+ {
+  "word": "in",
+  "start": 21.54,
+  "end": 21.82
+ },
+ {
+  "word": "bio.",
+  "start": 21.82,
+  "end": 22.06
+ },
+ {
+  "word": "Tomorrow,",
+  "start": 22.58,
+  "end": 22.8
+ },
+ {
+  "word": "a",
+  "start": 23.04,
+  "end": 23.1
+ },
+ {
+  "word": "free",
+  "start": 23.1,
+  "end": 23.26
+ },
+ {
+  "word": "tool",
+  "start": 23.26,
+  "end": 23.42
+ },
+ {
+  "word": "says,",
+  "start": 23.42,
+  "end": 23.64
+ },
+ {
+  "word": "it",
+  "start": 23.9,
+  "end": 23.98
+ },
+ {
+  "word": "fixes",
+  "start": 23.98,
+  "end": 24.2
+ },
+ {
+  "word": "Claude",
+  "start": 24.2,
+  "end": 24.5
+ },
+ {
+  "word": "code.",
+  "start": 24.5,
+  "end": 24.76
+ },
+ {
+  "word": "Follow,",
+  "start": 25.04,
+  "end": 25.16
+ },
+ {
+  "word": "so",
+  "start": 25.44,
+  "end": 25.54
+ },
+ {
+  "word": "you",
+  "start": 25.54,
+  "end": 25.62
+ },
+ {
+  "word": "see",
+  "start": 25.62,
+  "end": 25.74
+ },
+ {
+  "word": "if",
+  "start": 25.74,
+  "end": 25.82
+ },
+ {
+  "word": "it",
+  "start": 25.82,
+  "end": 25.9
+ },
+ {
+  "word": "works.",
+  "start": 25.9,
+  "end": 26.08
+ }
+]

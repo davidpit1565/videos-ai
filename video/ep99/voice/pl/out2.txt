@@ -1,0 +1,24 @@
+211 L1 e0.80 seed 211 accent 0.05 EVAL True | text: I put five AIs in a maze contest. | maxgap 0.0 | pitch range 4.8 end -2.2
+211 L1 e0.80 seed 212 accent 0.94 EVAL False | text: I put 5 AIs in a maze contest. | maxgap 0.0 | pitch range 4.1 end -0.0
+211 L1 e0.80 seed 213 accent 0.78 EVAL True | text: I put five AIs in a maze contest. | maxgap 0.0 | pitch range 4.2 end -2.4
+211 L1 e0.80 seed 214 accent 0.78 EVAL False | text: I put 5 AIs in a maze contest. | maxgap 0.0 | pitch range 5.8 end -3.8
+211 L1 e0.80 seed 215 accent 0.95 EVAL True | text: I put five AIs in a maze contest. | maxgap 0.0 | pitch range 3.5 end -2.6
+211 L1 e0.80 seed 216 accent 0.25 EVAL True | text: I put five AIs in a maze contest. | maxgap 0.0 | pitch range 5.2 end -1.9
+211 L2 e0.82 seed 211 accent 0.02 EVAL True | text: you won't believe which AIs won. | maxgap 0.0 | pitch range 5.0 end -1.4
+211 L2 e0.82 seed 212 accent 0.01 EVAL True | text: You won't believe which AIs won. | maxgap 0.0 | pitch range 3.8 end -1.9
+211 L2 e0.82 seed 213 accent 0.07 EVAL True | text: You won't believe which AIs won. | maxgap 0.0 | pitch range 7.9 end 2.4
+211 L2 e0.82 seed 214 accent 0.02 EVAL True | text: you won't believe which AIs won. | maxgap 0.0 | pitch range 4.4 end 0.1
+211 L2 e0.82 seed 215 accent 0.01 EVAL True | text: You won't believe which AI's won. | maxgap 0.0 | pitch range 5.5 end 2.4
+211 L2 e0.82 seed 216 accent 0.02 EVAL True | text: You won't believe which AIs won. | maxgap 0.0 | pitch range 5.7 end -3.4
+211 L3 e0.82 seed 211 accent 0.10 EVAL True | text: None of them can see the maze. Go! | maxgap 0.38 | pitch range 5.3 end 1.0
+211 L3 e0.82 seed 212 accent 0.05 EVAL True | text: None of them can see the maze. GO! | maxgap 0.3 | pitch range 3.6 end -2.4
+211 L3 e0.82 seed 213 accent 0.71 EVAL True | text: None of them can see the maze. Go! | maxgap 0.38 | pitch range 5.7 end -1.7
+211 L3 e0.82 seed 214 accent 0.99 EVAL True | text: None of them can see the maze. Go! | maxgap 0.34 | pitch range 9.8 end 7.1
+211 L3 e0.82 seed 215 accent 0.05 EVAL True | text: None of them can see the maze, go! | maxgap 0.32 | pitch range 6.9 end -1.9
+211 L3 e0.82 seed 216 accent 0.22 EVAL True | text: None of them can see the maze. GO! | maxgap 0.34 | pitch range 7.9 end -2.8
+211 L10 e0.70 seed 211 accent 0.03 EVAL True | text: Want the next one? Follow and you'll see it! | maxgap 0.36 | pitch range 5.6 end 0.3
+211 L10 e0.70 seed 212 accent 0.01 EVAL True | text: Want the next one? Follow and you'll see it! | maxgap 0.26 | pitch range 8.1 end -3.7
+211 L10 e0.70 seed 213 accent 0.50 EVAL True | text: Want the next one? Follow and you'll see it. | maxgap 0.36 | pitch range 6.3 end -3.7
+211 L10 e0.70 seed 214 accent 0.31 EVAL False | text: On the next one, follow and you'll see it. | maxgap 0.28 | pitch range 5.3 end -0.7
+211 L10 e0.70 seed 215 accent 0.88 EVAL False | text: On the next one, follow, and you'll see it. | maxgap 0.32 | pitch range 6.1 end 0.9
+211 L10 e0.70 seed 216 accent 0.34 EVAL True | text: Want the next one? Follow and you'll see it! | maxgap 0.28 | pitch range 6.8 end -2.5

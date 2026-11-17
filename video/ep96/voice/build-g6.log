@@ -1,0 +1,29 @@
+      per-line seeds: {1: 21, 2: 36, 3: 37, 4: 73, 5: 42, 6: 33, 7: 48}
+      per-line exaggeration: {1: 0.86, 2: 0.74, 3: 0.71, 4: 0.6699999999999999, 5: 0.69, 6: 0.66, 7: 0.75}
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/opt/v311/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+loaded PerthNet (Implicit) at step 250,000
+      01/07   cached take (restart-safe, no regeneration): Black hole math. Stuck for twenty years. AI finished it.
+  01/7   2.70s  Black hole math. Stuck for twenty years. AI finished
+      02/07   cached take (restart-safe, no regeneration): It was too long to finish by hand.
+  02/7   1.54s  It was too long to finish by hand.
+      03/07   cached take (restart-safe, no regeneration): The AI did it almost alone.
+  03/7   1.51s  The AI did it almost alone.
+/usr/lib/python3.11/contextlib.py:105: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+`sdpa` attention does not support `output_attentions=True`. Please set your attention to `eager` if you want any of these features.
+Sampling:   0%|          | 0/1000 [00:00<?, ?it/s]Sampling:   0%|          | 2/1000 [00:00<01:07, 14.78it/s]Sampling:   0%|          | 4/1000 [00:00<01:06, 14.87it/s]Sampling:   1%|          | 6/1000 [00:00<01:08, 14.45it/s]Sampling:   1%|          | 8/1000 [00:00<01:08, 14.54it/s]Sampling:   1%|          | 10/1000 [00:00<01:07, 14.70it/s]Sampling:   1%|          | 12/1000 [00:00<01:07, 14.63it/s]Sampling:   1%|▏         | 14/1000 [00:00<01:06, 14.73it/s]Sampling:   2%|▏         | 16/1000 [00:01<01:06, 14.79it/s]Sampling:   2%|▏         | 18/1000 [00:01<01:06, 14.86it/s]Sampling:   2%|▏         | 20/1000 [00:01<01:06, 14.83it/s]Sampling:   2%|▏         | 22/1000 [00:01<01:05, 14.83it/s]Sampling:   2%|▏         | 24/1000 [00:01<01:05, 14.82it/s]Sampling:   3%|▎         | 26/1000 [00:01<01:05, 14.80it/s]Sampling:   3%|▎         | 28/1000 [00:01<01:05, 14.79it/s]Sampling:   3%|▎         | 30/1000 [00:02<01:05, 14.80it/s]Sampling:   3%|▎         | 32/1000 [00:02<01:05, 14.71it/s]Sampling:   3%|▎         | 34/1000 [00:02<01:05, 14.76it/s]Sampling:   4%|▎         | 36/1000 [00:02<01:05, 14.74it/s]Sampling:   4%|▍         | 38/1000 [00:02<01:16, 12.63it/s]Sampling:   4%|▍         | 40/1000 [00:02<01:14, 12.86it/s]Sampling:   4%|▍         | 42/1000 [00:02<01:11, 13.33it/s]Sampling:   4%|▍         | 42/1000 [00:02<01:07, 14.29it/s]
+      4.8 syl/s, sped up x1.22
+  04/7   1.33s  Then it did a second one.
+      05/07   cached take (restart-safe, no regeneration): It's Claude Fable five point two.
+  05/7   2.04s  It's Claude Fable five point two.
+      06/07   cached take (restart-safe, no regeneration): The company says so. The full work is online.
+  06/7   2.09s  The company says so. The full work is online.
+      07/07   cached take (restart-safe, no regeneration): Would you let AI do physics?
+  07/7   1.42s  Would you let AI do physics?
+  placed 3 breaths from his own recording
+  room tone bed at -55 dBFS
+
+wrote video/ep96/voice/narration-raw.wav  13.3s  7 lines

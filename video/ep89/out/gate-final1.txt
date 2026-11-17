@@ -1,0 +1,62 @@
+=== PASS  frame layout (safe_check_hf.js)
+    index.html  13.74s  69 samples every 0.2s  safe box: x 65-1015, y 269-1248
+      safe area: clean (tolerance 10px)
+      within tolerance: 5px past the top line   #saHt  "OPENAI SAYS:"
+      overlaps: none over 10px
+      within tolerance: 9px overlap  #pw5 x #pw7
+      within tolerance: 8px overlap  #pw6 x #pw8
+      within tolerance: 6px overlap  #pw2 x #pw6
+
+=== PASS  rendered file (qa.py --hf)
+    ep89-final1.mp4  1080x1920  30fps  13.77s  9.4MB
+      visual change: median 0.03s, longest 2.60s
+      loudness: -14.2 LUFS integrated, peak -3.6 dBFS, LRA 1.9 LU
+      loop seam: first vs last frame differ by 17.5/255
+    
+      [warn]    13.8s is outside the 30-90s band
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 121.7, std 48.5)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.2 LUFS
+      ok        peak -3.6 dBFS
+
+=== PASS  voice + music quality (voice_quality.py)
+    pitch (semitones vs each line's own median):
+      line   1  range  6.2 st  end  -2.2    OpenAI says: paste this first.
+      line   2  range  5.8 st  end  +0.3    Before you answer, ask me three clarifying quest
+      line   3  range  4.9 st  end  -1.5    It makes ChatGPT ask, not guess.
+      line   4  range  6.8 st  end  -0.4    Save it. Send it to someone who types short prom
+    tone: none steady over 0.6 s
+    music: 17% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.43 = -8.0 dB
+    
+    voice quality: clean
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep89/out/narration89.wav  13.7s  4 lines
+      medians: ending -19.8 dB · level -19.5 dBFS · S residual +0.0 dB (slope +0.0 dB per sibilant/syllable)
+      flagged below: ending -32.9 dB · S residual -8.3 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  1.98  +0.36  3.54   -9.0  -21.9  -19.6  OpenAI says: paste this first.
+        2  3.62  +0.36  4.14  -13.2  -38.9  -17.1  Before you answer, ask me three clarif
+        3  2.65  +0.36  2.64   -4.5  -14.8  -19.3  It makes ChatGPT ask, not guess.
+        4   3.8    —    3.16   -7.2  -17.6  -19.8  Save it. Send it to someone who types 
+    
+      [fix] line  2: weak ending (-38.9 dB vs median -19.8)
+             -> script_lint.py the line and swap the final word, or re-roll it with line_doctor.py
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  PASS  frame layout (safe_check_hf.js)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+ALL CHECKS THAT RAN PASSED (1 skipped)  -  audio was measured, not heard; watch the file twice before sending

@@ -1,0 +1,765 @@
+{
+ "lines": [
+  {
+   "n": 1,
+   "line": "This prompt has been going viral.",
+   "dur": 2.26,
+   "gap": 0.18,
+   "rate": 3.1,
+   "dens": 0.286,
+   "rms": -19.7,
+   "sib": -17.7,
+   "tail": -43.2,
+   "skip": false,
+   "sib_res": -5.6
+  },
+  {
+   "n": 2,
+   "line": "What do you know about me that I might not know about myself, based on our previous interactions?",
+   "dur": 4.78,
+   "gap": 0.18,
+   "rate": 5.44,
+   "dens": 0.154,
+   "rms": -17.3,
+   "sib": -10.5,
+   "tail": -19.4,
+   "skip": false,
+   "sib_res": 3.6
+  },
+  {
+   "n": 3,
+   "line": "When the response comes back, it takes a while to process.",
+   "dur": 3.12,
+   "gap": 0.18,
+   "rate": 4.81,
+   "dens": 0.4,
+   "rms": -18.7,
+   "sib": -9.5,
+   "tail": -22.9,
+   "skip": false,
+   "sib_res": 0.8
+  },
+  {
+   "n": 4,
+   "line": "But here's where it gets even more scary.",
+   "dur": 2.41,
+   "gap": 0.85,
+   "rate": 4.56,
+   "dens": 0.273,
+   "rms": -18.6,
+   "sib": -15.3,
+   "tail": -39.1,
+   "skip": false,
+   "sib_res": -3.0
+  },
+  {
+   "n": 5,
+   "line": "Go to ChatGPT and prompt: Based on everything you know about me, create me five questions to my future self.",
+   "dur": 6.28,
+   "gap": 0.18,
+   "rate": 4.3,
+   "dens": 0.185,
+   "rms": -19.1,
+   "sib": -14.0,
+   "tail": -32.3,
+   "skip": false,
+   "sib_res": -0.4
+  },
+  {
+   "n": 6,
+   "line": "Fair warning, the responses can shake you a bit.",
+   "dur": 2.35,
+   "gap": 0.18,
+   "rate": 5.11,
+   "dens": 0.333,
+   "rms": -22.2,
+   "sib": -5.7,
+   "tail": -28.6,
+   "skip": false,
+   "sib_res": 5.7
+  },
+  {
+   "n": 7,
+   "line": "Test it out. Go.",
+   "dur": 1.22,
+   "gap": null,
+   "rate": 3.28,
+   "dens": 0.25,
+   "rms": -20.5,
+   "sib": -13.8,
+   "tail": -35.9,
+   "skip": false,
+   "sib_res": -1.2
+  }
+ ],
+ "medians": {
+  "sib": -0.4,
+  "tail": -32.3,
+  "rms": -19.1,
+  "sib_slope": 15.391775888214916,
+  "sib_floor": -10.0369,
+  "tail_floor": -57.50420000000001
+ },
+ "words": [
+  {
+   "word": "this",
+   "at": 0.0,
+   "dur": 0.46,
+   "per": 0.46,
+   "tail": -45.2,
+   "sib": -14.2
+  },
+  {
+   "word": "prompt",
+   "at": 0.46,
+   "dur": 0.24,
+   "per": 0.24,
+   "tail": -27.8,
+   "sib": -21.2
+  },
+  {
+   "word": "has",
+   "at": 0.7,
+   "dur": 0.28,
+   "per": 0.28,
+   "tail": -20.9,
+   "sib": -15.9
+  },
+  {
+   "word": "been",
+   "at": 0.98,
+   "dur": 0.24,
+   "per": 0.24,
+   "tail": -17.7,
+   "sib": -11.4
+  },
+  {
+   "word": "going",
+   "at": 1.22,
+   "dur": 0.34,
+   "per": 0.34,
+   "tail": -34.3,
+   "sib": -27.9
+  },
+  {
+   "word": "viral.",
+   "at": 1.56,
+   "dur": 0.72,
+   "per": 0.36,
+   "tail": -41.1,
+   "sib": -16.6
+  },
+  {
+   "word": "What",
+   "at": 2.62,
+   "dur": 0.14,
+   "per": 0.14,
+   "tail": -18.0,
+   "sib": -23.4
+  },
+  {
+   "word": "do",
+   "at": 2.76,
+   "dur": 0.1,
+   "per": 0.1,
+   "tail": -11.8,
+   "sib": -11.8
+  },
+  {
+   "word": "you",
+   "at": 2.86,
+   "dur": 0.16,
+   "per": 0.16,
+   "tail": -29.3,
+   "sib": -29.8
+  },
+  {
+   "word": "know",
+   "at": 3.02,
+   "dur": 0.14,
+   "per": 0.14,
+   "tail": -29.7,
+   "sib": -26.8
+  },
+  {
+   "word": "about",
+   "at": 3.16,
+   "dur": 0.18,
+   "per": 0.09,
+   "tail": -35.9,
+   "sib": -21.9
+  },
+  {
+   "word": "me",
+   "at": 3.34,
+   "dur": 0.32,
+   "per": 0.32,
+   "tail": -25.5,
+   "sib": -18.9
+  },
+  {
+   "word": "that",
+   "at": 3.66,
+   "dur": 0.22,
+   "per": 0.22,
+   "tail": -18.4,
+   "sib": -17.8
+  },
+  {
+   "word": "I",
+   "at": 3.88,
+   "dur": 0.2,
+   "per": 0.2,
+   "tail": -27.4,
+   "sib": -24.0
+  },
+  {
+   "word": "might",
+   "at": 4.08,
+   "dur": 0.16,
+   "per": 0.16,
+   "tail": -32.5,
+   "sib": -23.2
+  },
+  {
+   "word": "not",
+   "at": 4.24,
+   "dur": 0.22,
+   "per": 0.22,
+   "tail": -40.1,
+   "sib": -17.8
+  },
+  {
+   "word": "know",
+   "at": 4.46,
+   "dur": 0.2,
+   "per": 0.2,
+   "tail": -42.7,
+   "sib": -26.6
+  },
+  {
+   "word": "about",
+   "at": 4.66,
+   "dur": 0.18,
+   "per": 0.09,
+   "tail": -33.1,
+   "sib": -22.4
+  },
+  {
+   "word": "myself",
+   "at": 4.84,
+   "dur": 0.5,
+   "per": 0.25,
+   "tail": -24.3,
+   "sib": -3.3
+  },
+  {
+   "word": "based",
+   "at": 5.34,
+   "dur": 0.48,
+   "per": 0.24,
+   "tail": -20.4,
+   "sib": -16.0
+  },
+  {
+   "word": "on",
+   "at": 5.82,
+   "dur": 0.18,
+   "per": 0.18,
+   "tail": -26.9,
+   "sib": -32.9
+  },
+  {
+   "word": "our",
+   "at": 6.0,
+   "dur": 0.24,
+   "per": 0.24,
+   "tail": -9.4,
+   "sib": -10.2
+  },
+  {
+   "word": "previous",
+   "at": 6.24,
+   "dur": 0.32,
+   "per": 0.16,
+   "tail": -25.7,
+   "sib": -6.8
+  },
+  {
+   "word": "interactions?",
+   "at": 6.56,
+   "dur": 0.56,
+   "per": 0.14,
+   "tail": -27.9,
+   "sib": -8.1
+  },
+  {
+   "word": "When",
+   "at": 7.54,
+   "dur": 0.14,
+   "per": 0.14,
+   "tail": -25.9,
+   "sib": -22.3
+  },
+  {
+   "word": "the",
+   "at": 7.68,
+   "dur": 0.24,
+   "per": 0.24,
+   "tail": -13.2,
+   "sib": -19.2
+  },
+  {
+   "word": "response",
+   "at": 7.92,
+   "dur": 0.3,
+   "per": 0.15,
+   "tail": -17.3,
+   "sib": -20.9
+  },
+  {
+   "word": "comes",
+   "at": 8.22,
+   "dur": 0.3,
+   "per": 0.15,
+   "tail": -17.5,
+   "sib": -13.0
+  },
+  {
+   "word": "back",
+   "at": 8.52,
+   "dur": 0.38,
+   "per": 0.38,
+   "tail": -33.8,
+   "sib": -11.0
+  },
+  {
+   "word": "it",
+   "at": 8.9,
+   "dur": 0.28,
+   "per": 0.28,
+   "tail": -25.9,
+   "sib": -23.5
+  },
+  {
+   "word": "takes",
+   "at": 9.18,
+   "dur": 0.26,
+   "per": 0.13,
+   "tail": -9.7,
+   "sib": -5.2
+  },
+  {
+   "word": "a",
+   "at": 9.44,
+   "dur": 0.26,
+   "per": 0.26,
+   "tail": -22.4,
+   "sib": -31.5
+  },
+  {
+   "word": "while",
+   "at": 9.7,
+   "dur": 0.2,
+   "per": 0.2,
+   "tail": -18.0,
+   "sib": -21.0
+  },
+  {
+   "word": "to",
+   "at": 9.9,
+   "dur": 0.18,
+   "per": 0.18,
+   "tail": -25.9,
+   "sib": -19.2
+  },
+  {
+   "word": "process",
+   "at": 10.08,
+   "dur": 0.56,
+   "per": 0.28,
+   "tail": -24.8,
+   "sib": 1.1
+  },
+  {
+   "word": "but",
+   "at": 10.64,
+   "dur": 0.44,
+   "per": 0.44,
+   "tail": -13.4,
+   "sib": -24.0
+  },
+  {
+   "word": "here's",
+   "at": 11.08,
+   "dur": 0.32,
+   "per": 0.16,
+   "tail": -12.8,
+   "sib": -13.2
+  },
+  {
+   "word": "where",
+   "at": 11.4,
+   "dur": 0.14,
+   "per": 0.14,
+   "tail": -27.2,
+   "sib": -36.7
+  },
+  {
+   "word": "it",
+   "at": 11.54,
+   "dur": 0.12,
+   "per": 0.12,
+   "tail": -7.8,
+   "sib": -13.5
+  },
+  {
+   "word": "gets",
+   "at": 11.66,
+   "dur": 0.24,
+   "per": 0.24,
+   "tail": -22.3,
+   "sib": -3.1
+  },
+  {
+   "word": "even",
+   "at": 11.9,
+   "dur": 0.42,
+   "per": 0.21,
+   "tail": -39.7,
+   "sib": -31.2
+  },
+  {
+   "word": "more",
+   "at": 12.32,
+   "dur": 0.36,
+   "per": 0.36,
+   "tail": -12.9,
+   "sib": -15.6
+  },
+  {
+   "word": "scary.",
+   "at": 12.68,
+   "dur": 0.5,
+   "per": 0.25,
+   "tail": -39.7,
+   "sib": -28.9
+  },
+  {
+   "word": "Go",
+   "at": 14.18,
+   "dur": 0.26,
+   "per": 0.26,
+   "tail": -33.9,
+   "sib": -24.9
+  },
+  {
+   "word": "to",
+   "at": 14.44,
+   "dur": 0.2,
+   "per": 0.2,
+   "tail": 9.5,
+   "sib": 8.0
+  },
+  {
+   "word": "chat",
+   "at": 14.64,
+   "dur": 0.18,
+   "per": 0.18,
+   "tail": -26.5,
+   "sib": -18.9
+  },
+  {
+   "word": ".gpt",
+   "at": 14.82,
+   "dur": 0.48,
+   "per": 0.48,
+   "tail": -17.2,
+   "sib": 5.1
+  },
+  {
+   "word": "and",
+   "at": 15.3,
+   "dur": 0.38,
+   "per": 0.38,
+   "tail": -28.8,
+   "sib": -12.5
+  },
+  {
+   "word": "prompt",
+   "at": 15.68,
+   "dur": 0.34,
+   "per": 0.34,
+   "tail": -10.6,
+   "sib": -6.7
+  },
+  {
+   "word": "based",
+   "at": 16.02,
+   "dur": 0.5,
+   "per": 0.25,
+   "tail": -21.0,
+   "sib": -18.9
+  },
+  {
+   "word": "on",
+   "at": 16.52,
+   "dur": 0.2,
+   "per": 0.2,
+   "tail": -9.3,
+   "sib": -16.9
+  },
+  {
+   "word": "everything",
+   "at": 16.72,
+   "dur": 0.26,
+   "per": 0.065,
+   "tail": -15.0,
+   "sib": -15.7
+  },
+  {
+   "word": "you",
+   "at": 16.98,
+   "dur": 0.16,
+   "per": 0.16,
+   "tail": -24.0,
+   "sib": -26.4
+  },
+  {
+   "word": "know",
+   "at": 17.14,
+   "dur": 0.1,
+   "per": 0.1,
+   "tail": -28.5,
+   "sib": -28.0
+  },
+  {
+   "word": "about",
+   "at": 17.24,
+   "dur": 0.2,
+   "per": 0.1,
+   "tail": -32.2,
+   "sib": -21.0
+  },
+  {
+   "word": "me",
+   "at": 17.44,
+   "dur": 0.4,
+   "per": 0.4,
+   "tail": -30.5,
+   "sib": -21.2
+  },
+  {
+   "word": "create",
+   "at": 17.84,
+   "dur": 0.32,
+   "per": 0.32,
+   "tail": -28.6,
+   "sib": -22.2
+  },
+  {
+   "word": "me",
+   "at": 18.16,
+   "dur": 0.24,
+   "per": 0.24,
+   "tail": -15.1,
+   "sib": -7.4
+  },
+  {
+   "word": "five",
+   "at": 18.4,
+   "dur": 0.26,
+   "per": 0.26,
+   "tail": -37.1,
+   "sib": -17.3
+  },
+  {
+   "word": "questions",
+   "at": 18.66,
+   "dur": 0.48,
+   "per": 0.24,
+   "tail": -7.0,
+   "sib": 3.9
+  },
+  {
+   "word": "to",
+   "at": 19.14,
+   "dur": 0.3,
+   "per": 0.3,
+   "tail": -3.3,
+   "sib": 10.4
+  },
+  {
+   "word": "my",
+   "at": 19.44,
+   "dur": 0.2,
+   "per": 0.2,
+   "tail": 3.5,
+   "sib": -1.0
+  },
+  {
+   "word": "future",
+   "at": 19.64,
+   "dur": 0.24,
+   "per": 0.12,
+   "tail": -3.0,
+   "sib": -0.1
+  },
+  {
+   "word": "self.",
+   "at": 19.88,
+   "dur": 0.38,
+   "per": 0.38,
+   "tail": -16.7,
+   "sib": -9.4
+  },
+  {
+   "word": "Fair",
+   "at": 20.64,
+   "dur": 0.2,
+   "per": 0.2,
+   "tail": -39.2,
+   "sib": -34.0
+  },
+  {
+   "word": "warning",
+   "at": 20.84,
+   "dur": 0.38,
+   "per": 0.19,
+   "tail": -29.5,
+   "sib": -23.7
+  },
+  {
+   "word": "the",
+   "at": 21.22,
+   "dur": 0.38,
+   "per": 0.38,
+   "tail": -24.6,
+   "sib": -23.7
+  },
+  {
+   "word": "responses",
+   "at": 21.6,
+   "dur": 0.4,
+   "per": 0.133,
+   "tail": -16.6,
+   "sib": -15.7
+  },
+  {
+   "word": "can",
+   "at": 22.0,
+   "dur": 0.28,
+   "per": 0.28,
+   "tail": 6.3,
+   "sib": 2.5
+  },
+  {
+   "word": "shake",
+   "at": 22.28,
+   "dur": 0.2,
+   "per": 0.2,
+   "tail": -18.8,
+   "sib": -19.5
+  },
+  {
+   "word": "you",
+   "at": 22.48,
+   "dur": 0.16,
+   "per": 0.16,
+   "tail": -36.7,
+   "sib": -31.5
+  },
+  {
+   "word": "a",
+   "at": 22.64,
+   "dur": 0.1,
+   "per": 0.1,
+   "tail": -21.6,
+   "sib": -24.1
+  },
+  {
+   "word": "bit.",
+   "at": 22.74,
+   "dur": 0.26,
+   "per": 0.26,
+   "tail": -12.6,
+   "sib": -8.6
+  },
+  {
+   "word": "Test",
+   "at": 23.18,
+   "dur": 0.16,
+   "per": 0.16,
+   "tail": 1.2,
+   "sib": 6.5
+  },
+  {
+   "word": "it",
+   "at": 23.34,
+   "dur": 0.2,
+   "per": 0.2,
+   "tail": -21.7,
+   "sib": -20.3
+  },
+  {
+   "word": "out.",
+   "at": 23.54,
+   "dur": 0.28,
+   "per": 0.28,
+   "tail": -13.7,
+   "sib": -15.1
+  },
+  {
+   "word": "Go.",
+   "at": 24.06,
+   "dur": 0.12,
+   "per": 0.12,
+   "tail": -28.5,
+   "sib": -28.2
+  }
+ ],
+ "issues": [
+  {
+   "sev": 2,
+   "line": 1,
+   "what": "only 0.18s before the next line",
+   "fix": "raise --gap; anything under 0.3s reads as run-on"
+  },
+  {
+   "sev": 2,
+   "line": 2,
+   "what": "only 0.18s before the next line",
+   "fix": "raise --gap; anything under 0.3s reads as run-on"
+  },
+  {
+   "sev": 2,
+   "line": 3,
+   "what": "only 0.18s before the next line",
+   "fix": "raise --gap; anything under 0.3s reads as run-on"
+  },
+  {
+   "sev": 2,
+   "line": 5,
+   "what": "only 0.18s before the next line",
+   "fix": "raise --gap; anything under 0.3s reads as run-on"
+  },
+  {
+   "sev": 2,
+   "line": 6,
+   "what": "only 0.18s before the next line",
+   "fix": "raise --gap; anything under 0.3s reads as run-on"
+  },
+  {
+   "sev": 1,
+   "line": 6,
+   "what": "harsh S (-5.7 dB, +5.7 against prediction)",
+   "fix": "de-esser is under-doing this line"
+  },
+  {
+   "sev": 1,
+   "line": 6,
+   "what": "quiet (-22.2 dBFS vs median -19.1)",
+   "fix": "level this line before the mix"
+  }
+ ]
+}

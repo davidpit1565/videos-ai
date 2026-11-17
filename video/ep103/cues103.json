@@ -1,0 +1,195 @@
+{
+ "version": "ep103",
+ "estimated_timeline": false,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Claude just killed LinkedIn.",
+   "start": 0.05,
+   "end": 1.33
+  },
+  {
+   "n": 2,
+   "text": "It writes your posts, your replies, and rewrites your whole profile.",
+   "start": 1.52,
+   "end": 4.62
+  },
+  {
+   "n": 3,
+   "text": "Posts: it picks the hook, then writes it. Nothing goes live without you.",
+   "start": 4.81,
+   "end": 7.9
+  },
+  {
+   "n": 4,
+   "text": "Replies: it drafts the one that gets noticed.",
+   "start": 8.09,
+   "end": 10.68
+  },
+  {
+   "n": 5,
+   "text": "But the profile? Watch this.",
+   "start": 10.87,
+   "end": 12.53
+  },
+  {
+   "n": 6,
+   "text": "Before: freelance designer. After: brand designer for local cafes, turning menus into packaging people photograph.",
+   "start": 12.72,
+   "end": 18.58
+  },
+  {
+   "n": 7,
+   "text": "Free, open source, and easy to set up.",
+   "start": 18.77,
+   "end": 20.67
+  },
+  {
+   "n": 8,
+   "text": "The setup's in the link in bio.",
+   "start": 20.86,
+   "end": 22.67
+  },
+  {
+   "n": 9,
+   "text": "Want the next one? Follow, and you'll see it.",
+   "start": 22.86,
+   "end": 25.0
+  }
+ ],
+ "D": 25.78,
+ "frame0_returns": 25.33,
+ "sync": {
+  "killed": "0.46(w)",
+  "b_posts": "1.94(w)",
+  "b_replies": "2.56(w)",
+  "b_profile": "4.12(w)",
+  "c_hook": "5.72(w)",
+  "c_live": "7.24(w)",
+  "after": "14.50(w)",
+  "brand": "15.08(w)",
+  "e_profile": "11.16(w)",
+  "follow": "23.74(w)"
+ },
+ "screens": {
+  "A": {
+   "t0": 0,
+   "kill": 0.46,
+   "end": 1.52,
+   "tx": 270,
+   "ty": 668,
+   "ts": 540
+  },
+  "B": {
+   "t0": 1.52,
+   "r1": 1.94,
+   "r2": 2.56,
+   "r3": 4.12,
+   "end": 4.81
+  },
+  "C": {
+   "t0": 4.81,
+   "hook": 5.72,
+   "live": 7.24,
+   "end": 8.09
+  },
+  "RP": {
+   "t0": 8.09,
+   "end": 10.87
+  },
+  "E": {
+   "t0": 10.87,
+   "acc": 11.16,
+   "after": 14.5,
+   "brand": 15.08,
+   "end": 18.77
+  },
+  "H": {
+   "t0": 18.77,
+   "end": 20.86
+  },
+  "I": {
+   "t0": 20.86,
+   "end": 22.86
+  },
+  "J": {
+   "t0": 22.86,
+   "acc": 23.74,
+   "end": 25.33
+  },
+  "tF": 25.33,
+  "D": 25.78
+ },
+ "buildup": {
+  "new_on_screen": [
+   {
+    "t": 0,
+    "what": "A hook: 'Claude just KILLED' + real LinkedIn mark; strike, grey, shrinks; prompt card types"
+   },
+   {
+    "t": 1.52,
+    "what": "B three rows light up: posts, replies, your profile"
+   },
+   {
+    "t": 4.81,
+    "what": "C the real post types ($780 first), DRAFT, waits for your OK"
+   },
+   {
+    "t": 8.09,
+    "what": "D example post + our reply types"
+   },
+   {
+    "t": 10.87,
+    "what": "E profile card: before"
+   },
+   {
+    "t": 14.5,
+    "what": "F before struck, after types"
+   },
+   {
+    "t": 18.77,
+    "what": "G free, open source, 3 steps"
+   },
+   {
+    "t": 20.86,
+    "what": "I link in bio"
+   },
+   {
+    "t": 22.86,
+    "what": "J follow"
+   },
+   {
+    "t": 25.33,
+    "what": "frame 0 returns"
+   }
+  ],
+  "flat_over_2_5s": [
+   [
+    1.52,
+    4.81
+   ],
+   [
+    4.81,
+    8.09
+   ],
+   [
+    8.09,
+    10.87
+   ],
+   [
+    10.87,
+    14.5
+   ],
+   [
+    14.5,
+    18.77
+   ]
+  ]
+ },
+ "numbers_on_screen": [
+  {
+   "text": "$780 etc (test post)",
+   "source": "channel/episode-102-linkedin-test-post.txt; prices from official pricing pages read 16.11.2026"
+  }
+ ]
+}

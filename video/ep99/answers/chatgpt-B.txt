@@ -1,0 +1,116 @@
+function move(v) {
+  const N = 21;
+  const dirs = [
+    { name: "up", dx: 0, dy: -1 },
+    { name: "right", dx: 1, dy: 0 },
+    { name: "down", dx: 0, dy: 1 },
+    { name: "left", dx: -1, dy: 0 }
+  ];
+
+  if (!move.map) {
+    move.map = Array.from({ length: N }, () => Array(N).fill(0));
+    move.visited = Array.from({ length: N }, () => Array(N).fill(false));
+  }
+
+  const map = move.map;
+  const visited = move.visited;
+  const { x, y } = v;
+
+  map[y][x] = 2;
+  visited[y][x] = true;
+
+  const neighbors = [];
+
+  for (const d of dirs) {
+    const nx = x + d.dx;
+    const ny = y + d.dy;
+    const value = v[d.name];
+
+    if (value === "exit") return d.name;
+
+    if (nx >= 0 && nx < N && ny >= 0 && ny < N) {
+      if (value === "wall") {
+        map[ny][nx] = 1;
+      } else if (value === "open") {
+        map[ny][nx] = 2;
+        neighbors.push({ ...d, nx, ny });
+      }
+    }
+  }
+
+  // Explore an unvisited neighboring cell first.
+  const unexplored = neighbors.filter(d => !visited[d.ny][d.nx]);
+
+  if (unexplored.length) {
+    unexplored.sort((a, b) => {
+      const score = d =>
+        (d.nx === 0 || d.nx === 20 ? 3 : 0) +
+        (d.ny === 0 || d.ny === 20 ? 3 : 0);
+      return score(b) - score(a);
+    });
+
+    return unexplored[0].name;
+  }
+
+  // Find the nearest known unexplored frontier using BFS.
+  const queue = [{ x, y, first: null }];
+  const seen = Array.from({ length: N }, () => Array(N).fill(false));
+  seen[y][x] = true;
+
+  let head = 0;
+
+  while (head < queue.length) {
+    const current = queue[head++];
+
+    const options = [];
+
+    for (const d of dirs) {
+      const nx = current.x + d.dx;
+      const ny = current.y + d.dy;
+
+      if (nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
+
+      if (map[ny][nx] === 0) {
+        options.push({ ...d, nx, ny });
+      }
+    }
+
+    if (options.length) {
+      options.sort((a, b) => {
+        const score = d =>
+          (d.nx === 0 || d.nx === 20 ? 2 : 0) +
+          (d.ny === 0 || d.ny === 20 ? 2 : 0);
+        return score(b) - score(a);
+      });
+
+      if (current.x === x && current.y === y) {
+        return options[0].name;
+      }
+
+      return current.first;
+    }
+
+    for (const d of dirs) {
+      const nx = current.x + d.dx;
+      const ny = current.y + d.dy;
+
+      if (
+        nx < 0 || nx >= N ||
+        ny < 0 || ny >= N ||
+        map[ny][nx] !== 2 ||
+        seen[ny][nx]
+      ) continue;
+
+      seen[ny][nx] = true;
+
+      queue.push({
+        x: nx,
+        y: ny,
+        first: current.first || d.name
+      });
+    }
+  }
+
+  // All known reachable cells explored; continue safely.
+  return neighbors.length ? neighbors[0].name : "up";
+}

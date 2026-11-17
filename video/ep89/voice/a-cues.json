@@ -1,0 +1,26 @@
+[
+ {
+  "n": 1,
+  "line": "OpenAI says: paste this first.",
+  "start": 0.08,
+  "end": 1.98
+ },
+ {
+  "n": 2,
+  "line": "Before you answer, ask me three clarifying questions you need.",
+  "start": 2.23,
+  "end": 7.38
+ },
+ {
+  "n": 3,
+  "line": "It makes ChatGPT ask, not guess.",
+  "start": 7.63,
+  "end": 10.2
+ },
+ {
+  "n": 4,
+  "line": "Save it. Send it to someone who types short prompts.",
+  "start": 10.45,
+  "end": 14.17
+ }
+]

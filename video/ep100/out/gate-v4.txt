@@ -1,0 +1,98 @@
+=== FAIL  frame layout (safe_check_hf.js) (exit 1)
+    index.html  35.54s  178 samples every 0.2s  safe box: x 65-1015, y 269-1248
+      safe area: clean (tolerance 10px)
+      within tolerance: 7px overlap  SPAN x #big70
+      overlap  253px worst at 19.4s, 7 hits 19.4-20.6s   #big70 "70x"  x  #bc "BEST CASE"
+      overlap   76px worst at 19.4s, 7 hits 19.4-20.6s   I "”"  x  #bc "BEST CASE"
+      overlap   11px worst at 17.2s, 1 hits 17.2-17.2s   .src "source: the project's ow"  x  #utag "ILLUSTRATION"
+
+=== PASS  rendered file (qa.py --hf)
+    ep100-v4.mp4  1080x1920  30fps  35.57s  8.3MB
+      visual change: median 0.03s, longest 5.30s
+      loudness: -14.2 LUFS integrated, peak -3.3 dBFS, LRA 1.4 LU
+      loop seam: first vs last frame differ by 1.2/255
+    
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length 35.6s inside 30-90s
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 216.0, std 45.8)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.2 LUFS
+      ok        peak -3.3 dBFS
+
+=== FAIL  voice + music quality (voice_quality.py) (exit 1)
+    pitch (semitones vs each line's own median):
+      line   1  range  9.5 st  end  +0.4    They say this free tool killed Claude Code's tok
+      line   2  range  6.3 st  end  -0.2    and your twenty-dollar plan now does hundred-dol
+      line   3  range  2.9 st  end  -0.4    Every new chat starts from zero, so Claude Code 
+      line   4  range  4.3 st  end  +0.0    The fix is Graphify, with about a hundred fifty 
+      line   5  range  4.2 st  end  -0.6    It maps your code once, so Claude looks things u
+      line   6  range  6.5 st  end  -0.9    The big claim is seventy times less token use, b
+      line   7  range  4.0 st  end  +0.1    Real tests? One saves some. One uses more.
+      line   8  range  7.2 st  end  +0.6    And the hundred-dollar plan is five times the us
+      line   9  range  5.3 st  end  +0.8    The setup's in the link in bio.
+      line  10  range  7.1 st  end  +1.0    Tomorrow, five AIs face a maze. Follow, so you s
+    tone: none steady over 0.6 s
+    music: 62% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.21 = -9.5 dB
+      <-- mostly sub-bass: a phone speaker will not play it
+    
+    FAILED — listen to the flagged part before shipping
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep100/voice/narration-raw.wav  35.3s  10 lines
+      medians: ending -37.0 dB · level -18.8 dBFS · S residual -0.5 dB (slope +8.2 dB per sibilant/syllable)
+      flagged below: ending -80.9 dB · S residual -6.6 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  3.52  +0.19  3.98  -13.9  -51.0  -19.7  They say this free tool killed Claude 
+        2  2.55  +0.19  5.49  -13.7  -22.8  -18.2  and your twenty-dollar plan now does h
+        3  3.45  +0.19  5.22  -12.2  -46.7  -18.6  Every new chat starts from zero, so Cl
+        4   3.4  +0.19  5.88  -14.0  -38.8  -18.6  The fix is Graphify, with about a hund
+        5  3.14  +0.19   5.1  -10.9  -38.3  -18.9  It maps your code once, so Claude look
+        6  3.58  +0.19  5.59   -7.9  -21.0  -18.7  The big claim is seventy times less to
+        7  2.53  +0.19  3.95   -8.1  -38.3  -18.7  Real tests? One saves some. One uses m
+        8  5.49  +0.19  3.83   -8.9  -17.6  -18.8  And the hundred-dollar plan is five ti
+        9  1.81  +0.19  4.42   -7.5  -35.7  -20.6  The setup's in the link in bio.
+       10  3.92    —    4.08  -10.0  -23.0  -19.6  Tomorrow, five AIs face a maze. Follow
+    
+      [fix] line  1: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  2: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  3: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  4: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  5: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  6: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  7: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  8: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  9: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [note] line  9: quiet (-20.6 dBFS vs median -18.8)
+             -> level this line before the mix
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  FAIL  frame layout (safe_check_hf.js) (exit 1)
+  PASS  rendered file (qa.py --hf)
+  FAIL  voice + music quality (voice_quality.py) (exit 1)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+SOMETHING FAILED - do not send this file
+  line   9  range  5.3 st  end  +0.8    The setup's in the link in bio.
+  line  10  range  7.1 st  end  +1.0    Tomorrow, five AIs face a maze. Follow, so you s
+tone: none steady over 0.6 s
+music: 19% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.21 = -9.5 dB
+
+voice quality: clean

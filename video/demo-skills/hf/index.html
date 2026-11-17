@@ -1,0 +1,241 @@
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<!-- demo-skills: internal demo of three motion sources, NOT an episode, never published. No voice.
+     GSAP core + plugins are the same pinned jsdelivr version every episode build already loads (3.15.0).
+     lottie-web light build 5.12.2 (no expression engine, no eval) is a local pinned file in lib/. -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/MotionPathPlugin.min.js"></script>
+<script src="lib/lottie_light-5.12.2.min.js"></script>
+<script src="assets/lottie/gatin.js"></script>
+<style>
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-ExtraBold.otf");font-weight:800}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Medium.otf");font-weight:500}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;font-weight:500;color:#0f0f0f;font-kerning:none}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#ecebe5}
+.bgw{position:absolute;left:-30px;top:-30px;width:1140px;height:1980px;background:#ecebe5 url(assets/bg.jpg);background-size:1140px 1980px;will-change:transform}
+.abs{position:absolute}
+/* header: same place in every clip */
+.hd{position:absolute;left:108px;top:281px;width:864px;height:210px}
+.hd .hl{position:absolute;left:0;top:0;font-size:44px;line-height:50px;letter-spacing:-.02em;color:#55544f;white-space:nowrap}
+.hd .hn{position:absolute;left:-4px;top:48px;font-weight:900;font-size:100px;line-height:108px;letter-spacing:-.045em;white-space:nowrap}
+.hd .hr{position:absolute;left:0;top:164px;height:44px;display:flex;align-items:center;gap:14px;font-size:35px;line-height:44px;letter-spacing:-.01em;color:#33322f;white-space:nowrap}
+.hd .hr img{width:36px;height:36px;display:block}
+/* stage */
+.beat{position:absolute;left:0;top:0;width:1080px;height:1920px;visibility:hidden}
+.lead{position:absolute;left:108px;font-size:62px;line-height:70px;letter-spacing:-.02em;color:#33322f;white-space:nowrap}
+.hv{position:absolute;left:102px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
+.mask{display:block;overflow:hidden;padding:0 12px .14em 6px;margin:0 -12px -.14em -6px}
+.mask>span{display:inline-block;will-change:transform}
+.card{position:absolute;left:108px;top:556px;width:864px;height:680px;border-radius:46px;background:#17181b;box-shadow:0 30px 60px rgba(20,20,20,.26);overflow:hidden;will-change:transform}
+.card.white{background:#fff;box-shadow:0 30px 60px rgba(20,20,20,.16)}
+.tile{position:absolute;width:112px;height:112px;margin:-56px 0 0 -56px;border-radius:30px;background:#f4f3ee;box-shadow:0 14px 26px rgba(0,0,0,.35);will-change:transform}
+.dot{position:absolute;left:0;top:0;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:#D97757;box-shadow:0 0 0 10px rgba(217,119,87,.18);will-change:transform}
+.pill{position:absolute;left:64px;width:300px;height:124px;border-radius:38px;background:#f4f3ee;will-change:transform}
+.psh{position:absolute;left:64px;width:300px;height:124px;border-radius:38px;background:#000;opacity:.45;filter:blur(18px);will-change:transform}
+.pdot{position:absolute;left:38px;top:38px;width:48px;height:48px;border-radius:50%;background:#D97757;will-change:transform}
+.pbar{position:absolute;left:112px;top:50px;width:150px;height:24px;border-radius:12px;background:#17181b;opacity:.9;transform-origin:0 50%;will-change:transform}
+#lot{position:absolute;left:-168px;top:-330px;width:1200px;height:1200px}
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="33" data-width="1080" data-height="1920">
+ <div class="bgw" id="bg"></div>
+
+ <!-- headers -->
+ <div class="hd" id="h1"><div class="hl">Made with</div><div class="hn">GSAP SKILLS</div><div class="hr"><img src="assets/github-mark.svg" alt=""><span>github.com/greensock/gsap-skills</span></div></div>
+ <div class="hd" id="h2"><div class="hl">Made with</div><div class="hn">MOTION RULES</div><div class="hr"><img src="assets/github-mark.svg" alt=""><span>iart-ai/motion-skills + remotion-dev/skills</span></div></div>
+ <div class="hd" id="h3"><div class="hl">Made with</div><div class="hn">LOTTIE</div><div class="hr"><img src="assets/github-mark.svg" alt=""><span>github.com/airbnb/lottie-web</span></div></div>
+
+ <!-- CLIP 1 / beat A: SplitText + DrawSVG ring -->
+ <div class="beat" id="c1a">
+  <div class="lead" id="c1lead" style="top:626px">Every move sits on</div>
+  <div class="hv" id="c1one" style="top:716px;font-size:212px;line-height:212px">ONE</div>
+  <div class="hv" id="c1tl" style="top:918px;font-size:150px;line-height:156px">TIMELINE.</div>
+  <svg class="abs" id="c1ring" style="left:60px;top:690px;overflow:visible" width="560" height="270" viewBox="0 0 560 270" fill="none">
+   <path id="c1ringp" d="M286 22 C150 10 34 62 28 136 C22 214 150 252 292 250 C434 248 540 204 534 128 C528 54 400 20 250 30" stroke="#D97757" stroke-width="11" stroke-linecap="round"/>
+  </svg>
+ </div>
+
+ <!-- CLIP 1 / beat B: path + stagger from centre + motionPath -->
+ <div class="beat" id="c1b">
+  <div class="card" id="c1card">
+   <svg class="abs" style="left:0;top:0" width="864" height="680" viewBox="0 0 864 680" fill="none">
+    <path id="c1path" d="M70 470 C170 200 290 180 380 340 C470 500 590 500 660 340 C700 250 750 200 800 190" stroke="#3b3c44" stroke-width="8" stroke-linecap="round"/>
+   </svg>
+   <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+   <div class="dot" id="c1dot"></div>
+  </div>
+ </div>
+
+ <!-- CLIP 2 / beat A: line-mask reveal, blur-in lead, stroke draw-on underline -->
+ <div class="beat" id="c2a">
+  <div class="lead" id="c2lead" style="top:624px">Type that arrives</div>
+  <div class="hv" id="c2h" style="top:706px;font-size:158px;line-height:166px">
+   <span class="mask"><span>FAST IN,</span></span>
+   <span class="mask"><span id="c2soft">SOFT</span></span>
+   <span class="mask"><span>LANDING.</span></span>
+  </div>
+  <svg class="abs" style="left:100px;top:1024px;overflow:visible" width="420" height="40" viewBox="0 0 420 40" fill="none">
+   <path id="c2ul" d="M8 22 C90 8 170 30 250 18 C310 10 370 16 410 24" stroke="#D97757" stroke-width="13" stroke-linecap="round"/>
+  </svg>
+ </div>
+
+ <!-- CLIP 2 / beat B: anticipation, arc, no-bounce spring, follow-through, one mover at a time -->
+ <div class="beat" id="c2b">
+  <div class="card" id="c2card">
+   <div class="psh" style="top:112px"></div><div class="psh" style="top:292px"></div><div class="psh" style="top:472px"></div>
+   <div class="pill" style="top:98px"><div class="pdot"></div><div class="pbar"></div></div>
+   <div class="pill" style="top:278px"><div class="pdot"></div><div class="pbar"></div></div>
+   <div class="pill" style="top:458px"><div class="pdot"></div><div class="pbar"></div></div>
+  </div>
+ </div>
+
+ <!-- CLIP 3: Lottie in a card, frame driven from the same timeline -->
+ <div class="beat" id="c3">
+  <div class="card white" id="c3card" style="background:#ffa564"><div id="lot"></div></div>
+ </div>
+</div>
+<script>
+gsap.registerPlugin(SplitText, DrawSVGPlugin, CustomEase, MotionPathPlugin);
+const D=33;
+/* ---- eases ----
+   expoOut / expoIn / inOut: the cubic-bezier values the motion-skills references give for enter / exit / move.
+   spring(): closed-form damped spring as a GSAP function ease (Remotion notes: "spring with high damping = push with no bounce"). */
+const expoOut=CustomEase.create("expoOut","0.16,1,0.3,1"), expoIn=CustomEase.create("expoIn","0.7,0,0.84,0"), inOut=CustomEase.create("mvInOut","0.65,0,0.35,1");
+function spring(zeta,w){ // zeta>=1: no overshoot
+  const f=t=>{ if(zeta>=1){return 1-(1+w*t)*Math.exp(-w*t);} const wd=w*Math.sqrt(1-zeta*zeta); return 1-Math.exp(-zeta*w*t)*(Math.cos(wd*t)+(zeta*w/wd)*Math.sin(wd*t)); };
+  const e=f(1); return t=>t<=0?0:t>=1?1:f(t)/e; }
+const springSoft=spring(1,9), springSettle=spring(0.72,11);
+const blurIn=(sel)=>gsap.fromTo(sel,{autoAlpha:0,filter:'blur(12px)',y:14},{autoAlpha:1,filter:'blur(0px)',y:0,duration:.7,ease:expoOut,immediateRender:false});
+const blurOut=(sel,d)=>gsap.to(sel,{autoAlpha:0,filter:'blur(10px)',y:-12,duration:d||.42,ease:'power2.in'});
+
+/* ---- header: one helper, reused three times (same place, same motion every time) ---- */
+function header(id,first){
+  const q=gsap.utils.selector(id), t=gsap.timeline({defaults:{ease:expoOut}});
+  const name=SplitText.create(q('.hn'),{type:'chars',mask:'chars',aria:'none'});
+  t.set(id,{autoAlpha:1})
+   .fromTo(q('.hl'),{autoAlpha:first?1:0,y:first?0:10},{autoAlpha:1,y:0,duration:.5,immediateRender:false})
+   .fromTo(name.chars,{yPercent:108},{yPercent:0,duration:.6,stagger:{amount:.22},immediateRender:false},'<0.06')
+   .fromTo(q('.hr'),{autoAlpha:first?1:0,y:first?0:10},{autoAlpha:1,y:0,duration:.55,immediateRender:false},'<0.22');
+  return t; }
+const headerOut=(id)=>gsap.to(id,{autoAlpha:0,y:-10,filter:'blur(8px)',duration:.4,ease:'power2.in'});
+
+/* ================= CLIP 1: GSAP skills ================= */
+function clip1(){
+  const t=gsap.timeline({defaults:{duration:.6,ease:expoOut}});
+  /* beat A: SplitText (gsap-plugins), labels + position parameter (gsap-timeline), DrawSVG ring */
+  const lead=SplitText.create('#c1lead',{type:'words',mask:'words',aria:'none'});
+  const one=SplitText.create('#c1one',{type:'chars',mask:'chars',aria:'none'});
+  const tw=SplitText.create('#c1tl',{type:'chars',mask:'chars',aria:'none'});
+  t.addLabel('typeIn',0)
+   .set('#c1a',{autoAlpha:1,y:0,filter:'blur(0px)'},'typeIn')
+   .set('#c1ringp',{drawSVG:'0% 0%'},'typeIn')
+   .fromTo(lead.words,{yPercent:110},{yPercent:0,stagger:.06,immediateRender:false},'typeIn')
+   .fromTo(one.chars,{yPercent:108},{yPercent:0,duration:.7,stagger:.05,immediateRender:false},'<0.18')
+   .fromTo(tw.chars,{yPercent:108},{yPercent:0,duration:.7,stagger:{amount:.26,from:'start'},immediateRender:false},'<0.2')
+   .addLabel('ring','>-0.1')
+   .to('#c1ringp',{drawSVG:'0% 100%',duration:.95,ease:'power2.inOut'},'ring')
+   .to(one.chars,{color:'#D97757',duration:.5,ease:'power1.out',stagger:.05},'ring+=0.1')
+   .to('#c1a',{y:-10,duration:2.2,ease:'sine.inOut'},'ring')            // slow drift while it is read
+   .addLabel('typeOut',4.55)
+   .to('#c1a',{autoAlpha:0,filter:'blur(10px)',y:-26,duration:.45,ease:'power2.in'},'typeOut');
+
+  /* beat B: one path, tiles placed on it, stagger from the centre (gsap-core), dot on a motionPath, lifts timed with "<" offsets */
+  const path=document.querySelector('#c1path'), L=path.getTotalLength(), tiles=gsap.utils.toArray('#c1b .tile');
+  const prog=[0.08,0.3,0.52,0.74,0.95];
+  tiles.forEach((el,i)=>{const p=path.getPointAtLength(L*prog[i]); gsap.set(el,{left:p.x,top:p.y});});
+  const runEase=gsap.parseEase('power1.inOut'), RUN=2.5;
+  const inv=p=>{let a=0,b=1;for(let k=0;k<30;k++){const m=(a+b)/2; if(runEase(m)<p)a=m;else b=m;} return (a+b)/2;};
+  t.addLabel('cardIn','typeOut+=0.3')
+   .set('#c1b',{autoAlpha:1},'cardIn')
+   .fromTo('#c1card',{autoAlpha:0,y:40,scale:.965,filter:'blur(10px)'},{autoAlpha:1,y:0,scale:1,filter:'blur(0px)',duration:.75,immediateRender:false},'cardIn')
+   .fromTo('#c1path',{drawSVG:'50% 50%'},{drawSVG:'0% 100%',duration:1.0,ease:'power2.inOut',immediateRender:false},'cardIn+=0.25')
+   .fromTo(tiles,{autoAlpha:0,scale:.55},{autoAlpha:1,scale:1,duration:.6,stagger:{each:.07,from:'center'},immediateRender:false},'<0.3')
+   .addLabel('run','>+0.05')
+   .fromTo('#c1dot',{autoAlpha:0,scale:.3},{autoAlpha:1,scale:1,duration:.4,immediateRender:false},'run-=0.25')
+   .fromTo('#c1dot',{motionPath:{path:'#c1path',align:'#c1path',alignOrigin:[.5,.5],start:0,end:0}},{motionPath:{path:'#c1path',align:'#c1path',alignOrigin:[.5,.5],start:0,end:1},duration:RUN,ease:'power1.inOut',immediateRender:false},'run');
+  tiles.forEach((el,i)=>{ const at='run+='+(inv(prog[i])*RUN-0.12).toFixed(3);
+    t.to(el,{y:-26,scale:1.06,backgroundColor:'#ffffff',duration:.3,ease:'power2.out'},at)
+     .to(el,{y:0,scale:1,backgroundColor:'#f4f3ee',duration:.7,ease:'power2.inOut'},'>'); });
+  t.addLabel('out',9.85)
+   .to('#c1dot',{autoAlpha:0,scale:.4,duration:.3,ease:'power2.in'},'out-=0.15')
+   .to(tiles,{autoAlpha:0,scale:.7,duration:.32,ease:'power2.in',stagger:{each:.04,from:'edges'}},'out-=0.1')
+   .to('#c1card',{autoAlpha:0,y:-24,filter:'blur(10px)',duration:.45,ease:'power2.in'},'out')
+   .set('#c1b',{autoAlpha:0},'out+=0.5');
+  return t; }
+
+/* ================= CLIP 2: motion rules (iart-ai motion-skills, Remotion notes) ================= */
+function clip2(){
+  const t=gsap.timeline();
+  const lines=gsap.utils.toArray('#c2h .mask>span');
+  const ul=document.querySelector('#c2ul'), UL=ul.getTotalLength(); gsap.set(ul,{strokeDasharray:UL,strokeDashoffset:UL,autoAlpha:0});
+  /* beat A. Rules used: lock the static type first; split by LINE for a calm reveal; mask reveal translateY 110% -> 0;
+     enter = ease-out 0.16,1,0.3,1 at 0.6 s per line; line stagger 80 ms; whole reveal under 0.8 s; exit = ease-in, faster than the enter. */
+  t.addLabel('in',0)
+   .set('#c2a',{autoAlpha:1,y:0,filter:'blur(0px)'},'in')
+   .add(blurIn('#c2lead'),'in')                                                        // blur-in ("focus pull"), short and modest
+   .fromTo(lines,{yPercent:110},{yPercent:0,duration:.6,ease:expoOut,stagger:.08,immediateRender:false},'in+=0.3')
+   .to('#c2soft',{color:'#D97757',duration:.4,ease:'power1.out'},'in+=1.25')
+   .set(ul,{autoAlpha:1},'in+=1.2').to(ul,{strokeDashoffset:0,duration:.7,ease:inOut},'in+=1.2')                        // stroke draw-on (dashoffset recipe)
+   .to('#c2a',{y:-10,duration:2.6,ease:'sine.inOut'},'in+=1.2')
+   .addLabel('out',4.55)
+   .to(ul,{autoAlpha:0,duration:.2,ease:'power1.in'},'out-=0.05')
+   .to(lines,{yPercent:-112,duration:.3,ease:expoIn,stagger:.05},'out')
+   .to('#c2lead',{autoAlpha:0,y:-10,duration:.3,ease:expoIn},'out')
+   .set('#c2a',{autoAlpha:0},'out+=0.5');
+
+  /* beat B. Rules used: anticipation (a 100 ms counter-move), arcs (never a straight slide), distance sets duration,
+     no-bounce spring for the travel, follow-through (shadow and inner parts settle 50-90 ms later),
+     and never more than about a third of the elements in motion at once. */
+  const pills=gsap.utils.toArray('#c2b .pill'), shs=gsap.utils.toArray('#c2b .psh'), DX=436;
+  t.addLabel('card','out+=0.3')
+   .set('#c2b',{autoAlpha:1},'card')
+   .fromTo('#c2card',{autoAlpha:0,y:40,scale:.965,filter:'blur(10px)'},{autoAlpha:1,y:0,scale:1,filter:'blur(0px)',duration:.75,ease:expoOut,immediateRender:false},'card')
+   .fromTo(pills,{autoAlpha:0,x:-30},{autoAlpha:1,x:0,duration:.5,ease:expoOut,stagger:.06,immediateRender:false},'card+=0.25')
+   .fromTo(shs,{autoAlpha:0,x:-30},{autoAlpha:.45,x:0,duration:.5,ease:expoOut,stagger:.06,immediateRender:false},'<');
+  pills.forEach((el,i)=>{
+    const q=gsap.utils.selector(el), at='card+='+(1.15+i*0.82).toFixed(2), m=gsap.timeline();
+    m.to(el,{x:-16,scaleX:.96,scaleY:1.03,duration:.11,ease:'power2.out'},0)                      // anticipation
+     .to(el,{x:DX,scaleX:1,scaleY:1,duration:.95,ease:springSoft},.11)                            // travel: spring, no bounce
+     .to(el,{y:-58,duration:.4,ease:'sine.out'},.11).to(el,{y:0,duration:.55,ease:'sine.in'},'>') // arc
+     .to(shs[i],{x:DX,duration:.95,ease:springSoft},.17)                                          // shadow trails 60 ms
+     .to(shs[i],{scale:.9,autoAlpha:.28,duration:.4,ease:'sine.out'},.11).to(shs[i],{scale:1,autoAlpha:.45,duration:.55,ease:'sine.in'},'>')
+     .fromTo(q('.pdot'),{x:0},{x:176,duration:.8,ease:springSettle,immediateRender:false},.34)    // follow-through inside
+     .fromTo(q('.pbar'),{x:0,scaleX:1},{x:-74,scaleX:.86,duration:.8,ease:springSettle,immediateRender:false},.4);
+    t.add(m,at); });
+  t.addLabel('bout',9.85)
+   .to('#c2card',{autoAlpha:0,y:-24,filter:'blur(10px)',duration:.45,ease:'power2.in'},'bout')
+   .set('#c2b',{autoAlpha:0},'bout+=0.5');
+  return t; }
+
+/* ================= CLIP 3: Lottie ================= */
+const LOT=lottie.loadAnimation({container:document.getElementById('lot'),renderer:'svg',loop:false,autoplay:false,animationData:window.LOTTIE_GATIN,rendererSettings:{preserveAspectRatio:'xMidYMid meet'}});
+const LF=80, lot={f:0}; const drawLot=()=>LOT.goToAndStop(((lot.f%LF)+LF)%LF,true); drawLot();
+function clip3(){
+  const t=gsap.timeline();
+  t.addLabel('in',0)
+   .set('#c3',{autoAlpha:1},'in')
+   .fromTo('#c3card',{autoAlpha:0,y:40,scale:.965,filter:'blur(10px)'},{autoAlpha:1,y:0,scale:1,filter:'blur(0px)',duration:.75,ease:expoOut,immediateRender:false},'in')
+   /* the Lottie's own 80 frames (25 fps, 3.2 s) played three times; the playhead is a GSAP tween, so seeking the video seeks the animation.
+      First loop eases in from a held pose, the rest run at the file's real speed. */
+   .fromTo(lot,{f:0},{f:LF,duration:3.6,ease:'power1.in',onUpdate:drawLot,immediateRender:false},'in+=0.5')
+   .fromTo(lot,{f:LF},{f:LF*3,duration:6.4,ease:'none',onUpdate:drawLot,immediateRender:false},'>')
+   .to('#c3card',{y:-12,duration:4.6,ease:'sine.inOut',yoyo:true,repeat:1},'in+=0.8')
+   .to('#c3card',{scale:1.025,duration:9.2,ease:'sine.inOut'},'in+=0.8');
+  return t; }
+
+/* ================= master: three nested timelines on labels ================= */
+const tl=gsap.timeline({paused:true});
+gsap.set('.hd',{autoAlpha:0});
+tl.addLabel('gsap',0).addLabel('motion',11).addLabel('lottie',22)
+  .fromTo('#bg',{scale:1,x:0,y:0},{scale:1.045,x:-14,y:-18,duration:D,ease:'sine.inOut',immediateRender:false},0)
+  .add(header('#h1',true),'gsap').add(clip1(),'gsap+=0.75').add(headerOut('#h1'),'motion-=0.42')
+  .add(header('#h2'),'motion+=0.05').add(clip2(),'motion+=0.75').add(headerOut('#h2'),'lottie-=0.42')
+  .add(header('#h3'),'lottie+=0.05').add(clip3(),'lottie+=0.75')
+  .to(['#h3','#c3card'],{autoAlpha:0,y:-18,filter:'blur(10px)',duration:.55,ease:'power2.in',stagger:.06},D-0.75)
+  .to({},{duration:.001},D-.001);
+window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
+window.__reel={duration:D,seek:t=>{tl.seek(t)}};
+</script></body></html>

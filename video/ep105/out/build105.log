@@ -1,0 +1,17 @@
+v5 estimated timeline=False  D=29.76  sfx=14
+lines: 1:0.05-2.65  2:2.84-5.44  3:5.63-9.55  4:9.74-11.22  5:11.41-12.97  6:13.16-14.87  7:15.06-17.48  8:17.67-19.57  9:19.76-22.51  10:22.70-24.65  11:24.84-26.65  12:26.84-28.98
+sync: free=2.26(w)  stars=8.60(w)  checks=21.60(w)  one=24.28(w)  follow=27.78(w)
+  new   0.05  scene for line 1
+  new   2.84  scene for line 2
+  new   5.63  scene for line 3
+  new   9.74  scene for line 4
+  new  11.41  scene for line 5
+  new  13.16  scene for line 6
+  new  15.06  scene for line 7
+  new  17.67  scene for line 8
+  new  19.76  scene for line 9
+  new  22.70  scene for line 10
+  new  24.84  scene for line 11
+  new  26.84  scene for line 12
+  new  29.31  frame 0 returns
+FLAT stretches over 2.5 s with nothing new: [(0.05, 2.84), (2.84, 5.63), (5.63, 9.74), (15.06, 17.67), (19.76, 22.7)]

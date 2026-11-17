@@ -1,0 +1,17 @@
+wrote music/final-final1.wav  21.6s  mood=punchy  source=punchy--trending-instagram-reels-music--delosound.mp3
+music/final-final1.wav  mean -17.3 dB  peak -1.6 dB  longest quiet stretch 0.35s
+ok — music bed has a real, continuous presence
+integrated -15.1 -> corrected by 1.1 dB
+bed ducked vs voice (300-3500 Hz): -15.7 dB; sfx rms vs voice rms (dB): -16.5 ; fix 1.1 ; lin 0.36680167398609687
+=== PASS  frame layout (safe_check_hf.js)
+=== PASS  rendered file (qa.py --hf)
+=== PASS  voice + music quality (voice_quality.py)
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+=== SKIP  accent drift (needs transformers + model, not installed)
+================ SUMMARY
+  PASS  frame layout (safe_check_hf.js)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+ALL CHECKS THAT RAN PASSED (1 skipped)  -  audio was measured, not heard; watch the file twice before sending

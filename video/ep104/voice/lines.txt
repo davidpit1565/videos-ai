@@ -1,0 +1,18 @@
+Claude just destroyed paid apps.
+You can now clone any app with Claude,
+so you can stop paying for subscriptions.
+And the skill is completely free.
+Here's how it works. It's called the replica skill.
+And it's not one skill, it's 11.
+Each one has its own job, like a dev team inside Claude.
+The first one studies the app.
+Another one rebuilds it, screen by screen.
+One handles the backend.
+And one tests it for bugs.
+But then there's the craziest one, the entrepreneur skill.
+It reads real user reviews to find the missing features and everything people hate.
+Then it fixes all of that in your app, so you end up with an app you can sell.
+And the setup? Almost too easy. Paste the repo link inside Claude and say install skill.
+It even rebrands your version, so it's your own brand, not a copy.
+The setup's in the link in bio.
+Want the next one? Follow, and you'll see it.

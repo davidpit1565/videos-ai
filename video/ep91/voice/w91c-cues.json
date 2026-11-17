@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "line": "Me with Claude. It listens.",
+  "start": 0.08,
+  "end": 2.75
+ },
+ {
+  "n": 2,
+  "line": "Me with ChatGPT. It's way more tangled.",
+  "start": 2.93,
+  "end": 6.32
+ },
+ {
+  "n": 3,
+  "line": "Send this to the friend who overcomplicates everything.",
+  "start": 6.5,
+  "end": 9.92
+ }
+]

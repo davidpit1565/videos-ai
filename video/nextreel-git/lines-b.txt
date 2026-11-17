@@ -1,0 +1,11 @@
+This app just died. One sentence brought it back.
+The sentence: go back to the last version that worked.
+It only works if a save point exists. GitHub is where those live.
+Nobody shows you this when AI builds your app.
+In a game, you save ahead of the boss. In an app, that save is a commit.
+Git makes the save. GitHub keeps a copy online.
+Push sends your saves there.
+Clone gets them on a new laptop.
+A branch is a side copy, for risky tries. Merge brings it back.
+So say this to your AI: save this version.
+Tomorrow, I'll show you why AI says to hide a secret key. Follow for the full story.

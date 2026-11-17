@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "line": "Claude just destroyed paid apps.",
+  "start": 0.08,
+  "end": 2.16
+ },
+ {
+  "n": 2,
+  "line": "And one tests it for bugs.",
+  "start": 2.22,
+  "end": 3.63
+ },
+ {
+  "n": 3,
+  "line": "And the setup? Almost too easy. Paste the repo link inside Claude and say install skill.",
+  "start": 3.69,
+  "end": 7.85
+ }
+]

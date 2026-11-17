@@ -1,0 +1,10 @@
+Your twenty-dollar Claude plan can't do hundred-dollar work.
+A free tool says it can. I checked.
+Every new chat starts from zero, so Claude Code reads your files again.
+The fix is Graphify, with about a hundred fifty thousand stars on GitHub.
+It maps your code once, so Claude looks things up instead of rereading.
+The big claim is seventy times less token use, but only in its best case.
+Real tests? One saves some. One uses more.
+And the hundred-dollar plan is five times the usage. Nothing we found comes close.
+The setup's in the link in bio.
+Want the next one? Follow, and you'll see it.

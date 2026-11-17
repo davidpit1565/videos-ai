@@ -1,0 +1,33 @@
+      per-line seeds: {1: 3, 2: 31, 3: 21, 4: 21, 5: 22, 6: 16, 7: 52, 8: 18}
+      per-line exaggeration: {1: 0.84, 2: 0.62, 3: 0.64, 4: 0.64, 5: 0.64, 6: 0.64, 7: 0.56, 8: 0.64, 9: 0.78}
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/opt/v311/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+loaded PerthNet (Implicit) at step 250,000
+      01/09   cached take (restart-safe, no regeneration): Nobody reads your report. Claude turns it into a video.
+  01/9   2.75s  Nobody reads your report. Claude turns it into a vid
+      02/09   cached take (restart-safe, no regeneration): It's called Claude Motion, and it's new.
+  02/9   2.18s  It's called Claude Motion, and it's new.
+      03/09   cached take (restart-safe, no regeneration): You give it your report, and say who's watching and how long.
+  03/9   2.81s  You give it your report, and say who's watching and 
+      04/09   cached take (restart-safe, no regeneration): Anthropic says Claude builds the whole animation from your report.
+  04/9   3.07s  Anthropic says Claude builds the whole animation fro
+      05/09   cached take (restart-safe, no regeneration): There's no AI footage. Anthropic says Claude writes code.
+  05/9   3.39s  There's no AI footage. Anthropic says Claude writes 
+      06/09   cached take (restart-safe, no regeneration): So you change one word, and the rest stays put.
+  06/9   2.53s  So you change one word, and the rest stays put.
+/usr/lib/python3.11/contextlib.py:105: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+`sdpa` attention does not support `output_attentions=True`. Please set your attention to `eager` if you want any of these features.
+Sampling:   0%|          | 0/1000 [00:00<?, ?it/s]Sampling:   0%|          | 1/1000 [00:00<01:55,  8.62it/s]Sampling:   0%|          | 2/1000 [00:00<01:56,  8.60it/s]Sampling:   0%|          | 3/1000 [00:00<01:59,  8.34it/s]Sampling:   0%|          | 5/1000 [00:00<01:38, 10.06it/s]Sampling:   1%|          | 6/1000 [00:00<01:45,  9.43it/s]Sampling:   1%|          | 8/1000 [00:00<01:32, 10.68it/s]Sampling:   1%|          | 10/1000 [00:00<01:30, 10.95it/s]Sampling:   1%|          | 12/1000 [00:01<01:36, 10.22it/s]Sampling:   1%|▏         | 14/1000 [00:01<01:41,  9.76it/s]Sampling:   2%|▏         | 15/1000 [00:01<01:43,  9.56it/s]Sampling:   2%|▏         | 16/1000 [00:01<01:44,  9.46it/s]Sampling:   2%|▏         | 17/1000 [00:01<01:45,  9.28it/s]Sampling:   2%|▏         | 18/1000 [00:01<01:48,  9.01it/s]Sampling:   2%|▏         | 19/1000 [00:02<01:51,  8.77it/s]Sampling:   2%|▏         | 20/1000 [00:02<01:58,  8.30it/s]Sampling:   2%|▏         | 21/1000 [00:02<01:59,  8.18it/s]Sampling:   2%|▏         | 23/1000 [00:02<01:47,  9.10it/s]Sampling:   2%|▏         | 24/1000 [00:02<01:45,  9.25it/s]Sampling:   2%|▎         | 25/1000 [00:02<01:43,  9.38it/s]Sampling:   3%|▎         | 26/1000 [00:02<01:50,  8.79it/s]Sampling:   3%|▎         | 27/1000 [00:02<01:51,  8.74it/s]Sampling:   3%|▎         | 28/1000 [00:03<01:51,  8.73it/s]Sampling:   3%|▎         | 29/1000 [00:03<01:49,  8.84it/s]Sampling:   3%|▎         | 30/1000 [00:03<01:52,  8.64it/s]Sampling:   3%|▎         | 31/1000 [00:03<01:52,  8.62it/s]Sampling:   3%|▎         | 33/1000 [00:03<01:35, 10.08it/s]Sampling:   4%|▎         | 35/1000 [00:03<01:27, 11.06it/s]Sampling:   4%|▎         | 37/1000 [00:03<01:22, 11.64it/s]Sampling:   4%|▍         | 39/1000 [00:04<01:30, 10.61it/s]Sampling:   4%|▍         | 41/1000 [00:04<01:38,  9.74it/s]Sampling:   4%|▍         | 42/1000 [00:04<01:40,  9.56it/s]Sampling:   4%|▍         | 43/1000 [00:04<01:42,  9.37it/s]Sampling:   4%|▍         | 44/1000 [00:04<01:40,  9.47it/s]Sampling:   4%|▍         | 45/1000 [00:04<01:44,  9.16it/s]Sampling:   5%|▍         | 46/1000 [00:04<01:43,  9.24it/s]Sampling:   5%|▍         | 47/1000 [00:04<01:45,  9.02it/s]Sampling:   5%|▍         | 48/1000 [00:05<02:00,  7.88it/s]Sampling:   5%|▍         | 49/1000 [00:05<02:01,  7.82it/s]Sampling:   5%|▌         | 50/1000 [00:05<01:55,  8.19it/s]Sampling:   5%|▌         | 51/1000 [00:05<01:53,  8.37it/s]Sampling:   5%|▌         | 52/1000 [00:05<01:51,  8.49it/s]Sampling:   5%|▌         | 53/1000 [00:05<01:48,  8.72it/s]Sampling:   5%|▌         | 54/1000 [00:05<01:50,  8.59it/s]Sampling:   6%|▌         | 55/1000 [00:05<01:48,  8.68it/s]Sampling:   6%|▌         | 56/1000 [00:06<02:00,  7.83it/s]Sampling:   6%|▌         | 56/1000 [00:06<01:42,  9.17it/s]
+      2.2 syl/s, sped up x1.35
+  07/9   1.39s  Then you export an MP4.
+      08/09   cached take (restart-safe, no regeneration): It's in beta, for Team and Enterprise plans.
+  08/9   2.81s  It's in beta, for Team and Enterprise plans.
+      09/09   cached take (restart-safe, no regeneration): Send this to the person at work who pays for Claude.
+  09/9   2.43s  Send this to the person at work who pays for Claude.
+  placed 6 breaths from his own recording
+  room tone bed at -55 dBFS
+
+wrote video/ep94m/voice/narration-raw.wav  24.8s  9 lines

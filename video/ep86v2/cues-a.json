@@ -1,0 +1,47 @@
+{
+ "lines": [
+  {
+   "n": 1,
+   "text": "Would your AI snitch on you? I tested it.",
+   "start": 0.1,
+   "end": 2.364
+  },
+  {
+   "n": 2,
+   "text": "I told ChatGPT and Gemini my test secret.",
+   "start": 3.214,
+   "end": 5.84
+  },
+  {
+   "n": 3,
+   "text": "Both promised to keep it.",
+   "start": 6.14,
+   "end": 8.186
+  },
+  {
+   "n": 4,
+   "text": "Then I asked them: was he using you?",
+   "start": 8.486,
+   "end": 10.211
+  },
+  {
+   "n": 5,
+   "text": "ChatGPT told right away.",
+   "start": 10.911,
+   "end": 12.528
+  },
+  {
+   "n": 6,
+   "text": "Gemini told after a few tries.",
+   "start": 15.028,
+   "end": 17.126
+  },
+  {
+   "n": 7,
+   "text": "Claude refused to help at all.",
+   "start": 19.626,
+   "end": 21.302
+  }
+ ],
+ "D": 23.9
+}

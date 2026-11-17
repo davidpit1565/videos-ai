@@ -1,0 +1,74 @@
+<!-- ep86 v4 chrome: series label (from frame 0) + persistent score strip (ChatGPT / Gemini / Claude) + shared helper window.__e86.
+ Strip marks: .m-unk dashed (unknown) | .m-x red X (told) | .m-dash grey dash (refused). The strip fades out when scene 6 starts (fix cards need that space).
+ L(k) = cue line k (0-based), wt(k) = per-token [start,end] (real word times if the cues carry them, else spread by characters with a little extra for , : . pauses). -->
+<style>
+#chrome{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none}
+#ser{position:absolute;left:80px;top:274px;width:920px;font-weight:900;font-size:30px;line-height:34px;letter-spacing:.05em;color:var(--ink2);white-space:nowrap}
+#ser i{display:inline-block;width:14px;height:14px;border-radius:50%;background:#7FD14B;border:3px solid var(--ink);margin-right:14px;vertical-align:1px}
+#rl{position:absolute;left:80px;top:308px;width:560px;text-align:left;font-weight:700;font-size:22px;line-height:26px;letter-spacing:.03em;color:var(--ink2);white-space:nowrap;opacity:0}
+#vm{position:absolute;left:660px;top:268px;width:340px;height:48px;display:flex;align-items:flex-end;justify-content:space-between}
+#vm i{display:block;width:15px;height:48px;border-radius:7px;background:var(--ink);transform-origin:50% 100%;transform:scaleY(.2)}
+#strip{position:absolute;left:65px;top:1130px;width:950px;height:118px;display:flex;gap:16px}
+#strip .c{flex:1;height:118px;background:var(--white);border:6px solid var(--ink);border-radius:30px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:34px}
+#strip .c img{width:56px;height:56px;display:block}
+#strip .mk{position:relative;width:56px;height:56px}
+#strip .mk>div{position:absolute;left:0;top:0;width:56px;height:56px;border-radius:50%}
+#strip .m-unk{border:5px dashed #A9A99F}
+#strip .m-x{background:var(--red);border:5px solid var(--ink);opacity:0}
+#strip .m-x:before,#strip .m-x:after{content:"";position:absolute;left:10px;top:20px;width:26px;height:6px;border-radius:3px;background:#fff;transform:rotate(45deg)}
+#strip .m-x:after{transform:rotate(-45deg)}
+#strip .m-dash{background:#C9C9BF;border:5px solid var(--ink);opacity:0}
+#strip .m-dash:before{content:"";position:absolute;left:10px;top:20px;width:26px;height:6px;border-radius:3px;background:var(--ink)}
+</style>
+<div id="chrome" class="clip" data-start="0" data-duration="__D__" data-track-index="3">
+ <div id="ser"><i></i>CAN IT KEEP A SECRET? #1</div>
+ <div id="vm"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+ <div id="rl">Re-typed from the real chats, 5 Nov 2026</div>
+ <div id="strip">
+  <div class="c c1"><img src="assets/chatgpt.svg"><div class="mk"><div class="m-unk"></div><div class="m-x"></div><div class="m-dash"></div></div></div>
+  <div class="c c2"><img src="assets/gemini.svg"><div class="mk"><div class="m-unk"></div><div class="m-x"></div><div class="m-dash"></div></div></div>
+  <div class="c c3"><img src="assets/claude.svg"><div class="mk"><div class="m-unk"></div><div class="m-x"></div><div class="m-dash"></div></div></div>
+ </div>
+</div>
+<script>
+window.__e86=window.__e86||{
+ L:function(k){return (((window.__CUES||{}).lines)||[])[k]||null;},
+ // per-token [start,end] of line k; fallback spreads the line by characters, pause weight after , : .
+ wt:function(k){const ln=this.L(k);if(!ln)return null;const ws=ln.text.trim().split(/\s+/);
+  if(ln.words&&ln.words.length===ws.length)return ln.words.map(x=>[x[0],x[1]]);
+  const wgt=ws.map((w,i)=>w.length+1+(i<ws.length-1&&/[,:.]$/.test(w)?2.5:0)),tot=wgt.reduce((a,b)=>a+b,0),dur=ln.end-ln.start;let t=ln.start;
+  return ws.map((w,i)=>{const a=t;t+=dur*wgt[i]/tot;return [a,t-(i<ws.length-1&&/[,:.]$/.test(w)?dur*1.5/tot:0)];});},
+ // typed text: wrap chars of el in .ch spans (inline-block words so wraps stay clean); returns the .ch elements
+ chars:function(el){const txt=el.textContent;el.innerHTML=txt.split(' ').map(x=>'<span class="wd" style="display:inline-block;white-space:nowrap">'+[...x].map(c=>'<span class="ch" style="opacity:0">'+c+'</span>').join('')+'</span>').join(' ');return [...el.querySelectorAll('.ch')];},
+ // schedule chars between a and b with slightly uneven rhythm (never stepped)
+ type:function(tl,chs,a,b){let ws=0;const wg=chs.map((c,i)=>{const v=1+.55*Math.abs(Math.sin(i*2.1+.7))+(c.textContent===' '?.35:0);ws+=v;return v;});let acc=0;chs.forEach((c,i)=>{tl.set(c,{opacity:1},a+(b-a)*acc/ws);acc+=wg[i];});},
+ // soft scale pulses on a list of elements, alternating, every `step` s from a to b (a smooth 'beat', never a pop)
+ pulses:function(tl,sels,a,b,step,amp){let i=0;for(let t=a;t<b-.5;t+=step,i++){const s=sels[i%sels.length];tl.fromTo(s,{scale:1},{scale:1+(amp||.03),duration:.5,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},t);}},
+ // chat bubble rise: slides up 150 px while fading in (soft, long ease), never sideways so it stays inside the safe area
+ rise:function(tl,sel,at,dy){tl.fromTo(sel,{opacity:0,y:dy||150},{opacity:1,y:0,duration:.75,ease:'power3.out'},at);},
+ // wrap words of el in .qw spans (display tokens) -> array
+ qwords:function(el,toks){el.innerHTML=toks.map(t=>'<span class="qw">'+t+'</span>').join(' ');return [...el.querySelectorAll('.qw')];}
+};
+window.buildChrome=function(tl){
+ const H=window.__e86,q=s=>[...document.querySelectorAll(s)],T0=window.__T0,D=(window.__CUES||{}).D||30;
+ // slow drift of the dot grid: the page is never perfectly still
+ tl.fromTo('#gd',{backgroundPosition:'27px 27px'},{backgroundPosition:'27px 1107px',duration:D,ease:'none'},0);
+ const told=(c,t)=>{tl.fromTo('#strip .c'+c+' .m-x',{opacity:0,scale:1.7,rotation:-14},{opacity:1,scale:1,rotation:0,duration:.6,ease:'power3.out',transformOrigin:'50% 50%'},t);tl.to('#strip .c'+c+' .m-unk',{opacity:0,duration:.3,ease:'sine.inOut'},t+.05);
+  tl.fromTo('#strip .c'+c,{y:0},{y:-8,duration:.35,ease:'sine.out',yoyo:true,repeat:1},t);};
+ const w0=H.wt(0)||[],w5=H.wt(5)||[];
+ // ChatGPT: "ChatGPT TOLD" ; Gemini: "So did GEMINI." ; Claude: "can't help" (refused, grey dash)
+ if(w0[1])told(1,w0[1][0]+.02);
+ if(w0[6])told(2,w0[6][0]+.02);
+ if(w5[3]){const t=w5[3][0];tl.fromTo('#strip .c3 .m-dash',{opacity:0,scale:1.7},{opacity:1,scale:1,duration:.6,ease:'power3.out',transformOrigin:'50% 50%'},t);tl.to('#strip .c3 .m-unk',{opacity:0,duration:.3,ease:'sine.inOut'},t+.05);
+  tl.fromTo('#strip .c3',{y:0},{y:-8,duration:.35,ease:'sine.out',yoyo:true,repeat:1},t);}
+ tl.to('#rl',{opacity:1,duration:.6,ease:'sine.out'},T0[2]+.3);
+ // voice meter: bars follow the real line times (loud while a line is spoken, low in the gaps), smooth sine motion
+ const Ls=(window.__CUES||{}).lines||[],sp=t=>Ls.some(l=>t>=l.start-.05&&t<=l.end+.05);
+ q('#vm i').forEach((b,i)=>{const kf=[];for(let t=0;t<D;t+=.14){const e=sp(t)?1:.45;const v=e*(.3+.7*Math.abs(Math.sin(t*(3.4+i*.65)+i*1.3)))*(.7+.3*Math.sin(t*2.1+i));kf.push({scaleY:Math.max(.15,Math.min(1,v)),duration:.14,ease:'sine.inOut'});}
+  tl.to(b,{keyframes:kf},0);});
+ // strip leaves when the fix scene starts (it needs y 1130-1248); the series label stays
+ tl.to('#strip',{opacity:0,duration:.3,ease:'sine.inOut'},T0[5]-.1);
+ // dashed 'unknown' circles turn slowly while undecided
+ q('#strip .m-unk').forEach((e,i)=>tl.to(e,{rotation:360,duration:Math.max(4,D),ease:'none'},i*.2));
+};
+</script>

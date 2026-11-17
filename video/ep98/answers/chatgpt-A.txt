@@ -1,0 +1,48 @@
+function steer(s) {
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
+  const front = Math.max(1, s.front);
+  const left = Math.max(1, s.left);
+  const right = Math.max(1, s.right);
+  const speed = s.speed;
+
+  // Estimate road direction from diagonal wall distances.
+  const leftBias = left - front;
+  const rightBias = right - front;
+
+  // Positive means steer right.
+  let turn = (rightBias - leftBias) / 100;
+
+  // Stronger correction when approaching a wall.
+  const dangerLeft = clamp((65 - left) / 65, 0, 1);
+  const dangerRight = clamp((65 - right) / 65, 0, 1);
+
+  turn += (dangerLeft - dangerRight) * 1.8;
+
+  // Anticipate sharp turns using diagonal clearance.
+  const asymmetry = left - right;
+  turn += clamp(asymmetry / 120, -1, 1) * 0.65;
+
+  turn = clamp(turn, -1, 1);
+
+  // Slow down when the road ahead narrows or steering is aggressive.
+  const cornering = Math.abs(turn);
+  const dangerFront = clamp((75 - front) / 75, 0, 1);
+  const targetSpeed = 10 - cornering * 7 - dangerFront * 6;
+
+  let gas = speed > targetSpeed
+    ? 0.1
+    : clamp(0.55 + (targetSpeed - speed) * 0.15, 0.2, 1);
+
+  // Emergency wall avoidance.
+  if (left < 27 || right < 27 || front < 25) {
+    gas = 0;
+    if (left < right) turn = 1;
+    else if (right < left) turn = -1;
+  }
+
+  return {
+    turn: clamp(turn, -1, 1),
+    gas: clamp(gas, 0, 1)
+  };
+}

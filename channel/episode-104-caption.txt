@@ -1,0 +1,13 @@
+Claude just got 280 free AI specialists.
+
+Agency Agents is a free, open-source library of about 280 ready-made role prompts for Claude Code: sales, marketing, design, engineering, support. Each one is a text file that tells Claude how to work as that specialist. It has over 160,000 stars on GitHub (169k when we looked on 17 November 2026).
+
+The craziest one is the orchestrator: a prompt that tells Claude to hand a software project step by step to the other specialists (planner, designer, developer, tester) and check each step before moving on.
+
+Setup: the exact steps, the repo link and how to add just ONE agent safely are in the link in bio.
+
+Limits, said plainly: these are role prompts, not employees. They write drafts and plans; they cannot send an email or post anything unless you connect other tools. The default install adds about 280 files from a third party to your Claude Code, so read a file before you use it and start with one. The people, emails and screens in the video are drawn examples. We did not run these agents for this video; everything above comes from the project's own page.
+
+Save this for the day you need a second pair of eyes, and send it to someone who builds with Claude Code.
+
+#claudecode #claudeagents #opensource #aitools #aiagents

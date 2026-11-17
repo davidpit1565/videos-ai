@@ -1,0 +1,56 @@
+[
+ {
+  "n": 1,
+  "line": "Each AI taught a car. One hits the wall.",
+  "start": 0.08,
+  "end": 2.4
+ },
+ {
+  "n": 2,
+  "line": "Same job for all five: drive two laps, no crashing.",
+  "start": 2.59,
+  "end": 5.33
+ },
+ {
+  "n": 3,
+  "line": "Fastest wins. Pick one. Go!",
+  "start": 5.52,
+  "end": 8.0
+ },
+ {
+  "n": 4,
+  "line": "Perplexity stops dead in the bend!",
+  "start": 11.43,
+  "end": 13.94
+ },
+ {
+  "n": 5,
+  "line": "Meta AI hits the wall!",
+  "start": 14.13,
+  "end": 15.42
+ },
+ {
+  "n": 6,
+  "line": "Claude and Gemini, neck and neck.",
+  "start": 15.61,
+  "end": 17.44
+ },
+ {
+  "n": 7,
+  "line": "Claude wins. Gemini is right behind.",
+  "start": 17.63,
+  "end": 19.48
+ },
+ {
+  "n": 8,
+  "line": "Send it to a friend. See who they pick.",
+  "start": 19.67,
+  "end": 22.02
+ },
+ {
+  "n": 9,
+  "line": "Want the next one? Follow, and you'll see it.",
+  "start": 22.21,
+  "end": 24.22
+ }
+]

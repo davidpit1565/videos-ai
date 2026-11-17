@@ -1,0 +1,15 @@
+L3 seed 11 accent 0.56
+L3 seed 22 accent 0.08
+L4 seed 11 accent 0.66
+L4 seed 22 accent 0.11
+L5 seed 11 accent 0.03
+L6 seed 11 accent 0.01
+DONE
+L3 seed 31 accent 0.99
+L3 seed 32 accent 0.02
+L4 seed 31 accent 0.02
+L6 seed 31 accent 0.00
+DONE
+L3 seed 41 accent 0.01 (text: Try App Flowy)
+L3 seed 42 accent 0.86 (text: Try App Flowy)
+L3 seed 43 accent 0.04 (text: Try App Flowy)

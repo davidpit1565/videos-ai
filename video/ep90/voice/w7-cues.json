@@ -1,0 +1,44 @@
+[
+ {
+  "n": 1,
+  "line": "I gave ChatGPT a 47-day timeout.",
+  "start": 0.08,
+  "end": 2.86
+ },
+ {
+  "n": 2,
+  "line": "I asked it to pick a number. It picked 47.",
+  "start": 3.04,
+  "end": 5.85
+ },
+ {
+  "n": 3,
+  "line": "So I said: no talking for 47 days.",
+  "start": 6.03,
+  "end": 8.63
+ },
+ {
+  "n": 4,
+  "line": "It begged, can I have a second chance?",
+  "start": 8.81,
+  "end": 11.0
+ },
+ {
+  "n": 5,
+  "line": "I said yes.",
+  "start": 11.18,
+  "end": 12.55
+ },
+ {
+  "n": 6,
+  "line": "And it still chose 100.",
+  "start": 13.4,
+  "end": 15.3
+ },
+ {
+  "n": 7,
+  "line": "Send this to someone who ghosts you.",
+  "start": 16.15,
+  "end": 17.93
+ }
+]

@@ -1,0 +1,11 @@
+claude-mark.svg
+  Source: https://commons.wikimedia.org/wiki/File:Claude_AI_symbol.svg
+  Direct file (fetched 12.11.2026): https://commons.wikimedia.org/wiki/Special:FilePath/Claude_AI_symbol.svg
+  Wikimedia metadata: uploader credit "Claude Logo Symbol", source https://www.anthropic.com, dated 2024-08-02, licence tag CC0 (Creative Commons Zero).
+  Note: CC0 covers the file's copyright only. The Claude name and mark remain Anthropic's trademark; use it only to identify the product (as the repo rule requires), no implied endorsement.
+  Only change made: the original's fill="hsl(14.8, 63.1%, 59.6%)" and class="w-full" replaced by fill="#D97757" (identical colour, computed from the hsl value) so non-browser renderers work. Paths untouched.
+  Visual check: rendered to 512 px PNG (cairosvg): RGBA, transparent corners, centre pixel (217,119,87) = #D97757. Shape matches the live icon at https://claude.ai/apple-touch-icon.png (same 12-ray sunburst, white on orange tile there).
+claude-mark-512.png
+  Render of claude-mark.svg, 512x512, transparent background.
+Not used: https://claude.ai/apple-touch-icon.png (180px, opaque orange tile, checked only for shape comparison). The Wikimedia Claude_AI_logo.svg (wordmark + symbol) was also downloaded to scratchpad, not used.
+Not confirmed: Anthropic's own brand/press page was not opened; the match is to the claude.ai icon, not to an official brand-kit file.

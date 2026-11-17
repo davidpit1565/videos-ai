@@ -1,0 +1,72 @@
+[
+ {
+  "f": "subhit.ogg",
+  "t": 0.05,
+  "g": -6
+ },
+ {
+  "f": "tick.ogg",
+  "t": 1.053,
+  "g": -7
+ },
+ {
+  "f": "impactpunch.ogg",
+  "t": 2.434,
+  "g": -5
+ },
+ {
+  "f": "whoosh_b.ogg",
+  "t": 2.971,
+  "g": -9
+ },
+ {
+  "f": "tick.ogg",
+  "t": 4.168,
+  "g": -7
+ },
+ {
+  "f": "whoosh_c.ogg",
+  "t": 5.274,
+  "g": -9
+ },
+ {
+  "f": "impactpunch.ogg",
+  "t": 6.121,
+  "g": -5
+ },
+ {
+  "f": "whoosh_b.ogg",
+  "t": 6.907,
+  "g": -9
+ },
+ {
+  "f": "impactpunch.ogg",
+  "t": 7.85,
+  "g": -6
+ },
+ {
+  "f": "impactsoft.ogg",
+  "t": 9.137,
+  "g": -5
+ },
+ {
+  "f": "tick.ogg",
+  "t": 11.245,
+  "g": -7
+ },
+ {
+  "f": "tick.ogg",
+  "t": 12.316,
+  "g": -7
+ },
+ {
+  "f": "impactsoft.ogg",
+  "t": 13.688,
+  "g": -6
+ },
+ {
+  "f": "whoosh_c.ogg",
+  "t": 15.363,
+  "g": -10
+ }
+]

@@ -1,0 +1,37 @@
+function steer(s) {
+  steer.state = steer.state || { turn: 0, speed: 0 };
+
+  const left = s.left, right = s.right, front = s.front;
+  const roadWidth = left + right;
+
+  // Aim for the center of the visible road.
+  const centerError = (right - left) / Math.max(roadWidth, 1);
+  let targetTurn = centerError * 2.2;
+
+  // If one side is open and the other is closing, steer away from the wall.
+  if (left < 35) targetTurn += (35 - left) / 35 * 0.9;
+  if (right < 35) targetTurn -= (35 - right) / 35 * 0.9;
+
+  // Avoid the wall ahead.
+  if (front < 110) targetTurn += (right - left) / 90;
+  if (front < 55) targetTurn *= 1.5;
+
+  // Smooth steering to avoid oscillation.
+  const turn = steer.state.turn * 0.65 + Math.max(-1, Math.min(1, targetTurn)) * 0.35;
+  steer.state.turn = turn;
+
+  // Corner severity: strong steering or narrow road means slow down.
+  const corner = Math.abs(turn);
+  const narrow = Math.max(0, (140 - roadWidth) / 50);
+
+  let gas = 1;
+  if (front < 180) gas -= (180 - front) / 180 * 0.75;
+  gas -= corner * 0.55;
+  gas -= narrow * 0.35;
+
+  // Brake harder when very close to a wall or in a sharp turn.
+  if (front < 70) gas = Math.min(gas, 0.05);
+  if (corner > 0.55 && s.speed > 4) gas = Math.min(gas, 0.1);
+
+  return { turn, gas: Math.max(0, Math.min(1, gas)) };
+}

@@ -1,0 +1,75 @@
+function move(v) {
+  move.map = move.map || {};
+  move.pos = move.pos || { x: 10, y: 10 };
+  move.parent = move.parent || {};
+  move.stack = move.stack || [];
+
+  const key = (x, y) => x + "," + y;
+  const here = key(move.pos.x, move.pos.y);
+  const dirs = [
+    ["up", 0, -1],
+    ["down", 0, 1],
+    ["left", -1, 0],
+    ["right", 1, 0]
+  ];
+
+  move.map[here] = true;
+
+  for (const [name, dx, dy] of dirs) {
+    if (v[name] === "wall") {
+      move.map[key(move.pos.x + dx, move.pos.y + dy)] = "wall";
+    }
+  }
+
+  let exits = [];
+  let choices = [];
+
+  for (const [name, dx, dy] of dirs) {
+    const nx = move.pos.x + dx;
+    const ny = move.pos.y + dy;
+    const nk = key(nx, ny);
+
+    if (v[name] === "exit") {
+      exits.push(name);
+    } else if (v[name] === "open" && move.map[nk] !== "wall" && !move.map[nk]) {
+      choices.push([name, nx, ny]);
+    }
+  }
+
+  if (exits.length) {
+    move.pos = null;
+    return exits[0];
+  }
+
+  if (choices.length) {
+    const [name, nx, ny] = choices[0];
+    move.parent[key(nx, ny)] = here;
+    move.stack.push(here);
+    move.pos = { x: nx, y: ny };
+    return name;
+  }
+
+  const parentKey = move.parent[here];
+
+  if (parentKey) {
+    const [px, py] = parentKey.split(",").map(Number);
+
+    for (const [name, dx, dy] of dirs) {
+      if (move.pos.x + dx === px && move.pos.y + dy === py) {
+        move.pos = { x: px, y: py };
+        return name;
+      }
+    }
+  }
+
+  for (const [name, dx, dy] of dirs) {
+    const nk = key(move.pos.x + dx, move.pos.y + dy);
+
+    if (move.map[nk] === true) {
+      move.pos = { x: move.pos.x + dx, y: move.pos.y + dy };
+      return name;
+    }
+  }
+
+  return "up";
+}

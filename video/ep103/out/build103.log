@@ -1,0 +1,14 @@
+v5 estimated timeline=False  D=25.78  sfx=13
+lines: 1:0.05-1.33  2:1.52-4.62  3:4.81-7.90  4:8.09-10.68  5:10.87-12.53  6:12.72-18.58  7:18.77-20.67  8:20.86-22.67  9:22.86-25.00
+sync: killed=0.46(w)  b_posts=1.94(w)  b_replies=2.56(w)  b_profile=4.12(w)  c_hook=5.72(w)  c_live=7.24(w)  after=14.50(w)  brand=15.08(w)  e_profile=11.16(w)  follow=23.74(w)
+  new   0.00  A hook: 'Claude just KILLED' + real LinkedIn mark; strike, grey, shrinks; prompt card types
+  new   1.52  B three rows light up: posts, replies, your profile
+  new   4.81  C the real post types ($780 first), DRAFT, waits for your OK
+  new   8.09  D example post + our reply types
+  new  10.87  E profile card: before
+  new  14.50  F before struck, after types
+  new  18.77  G free, open source, 3 steps
+  new  20.86  I link in bio
+  new  22.86  J follow
+  new  25.33  frame 0 returns
+FLAT stretches over 2.5 s with nothing new: [(1.52, 4.81), (4.81, 8.09), (8.09, 10.87), (10.87, 14.5), (14.5, 18.77)]

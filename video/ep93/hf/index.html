@@ -1,0 +1,144 @@
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Black.otf");font-weight:900}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-ExtraBold.otf");font-weight:800}
+@font-face{font-family:"IDisp";src:url("assets/fonts/InterDisplay-Medium.otf");font-weight:500}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0e1422;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;font-weight:800;color:#fff}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#0e1422}
+.cam{position:absolute;left:0;top:0;width:1080px;height:1920px}
+
+.bg{position:absolute;inset:0;background:#0e1422;overflow:hidden}
+.glow{position:absolute;border-radius:50%;filter:blur(70px)}
+.gl1{left:-300px;top:200px;width:900px;height:900px;background:radial-gradient(circle,rgba(16,163,127,.28),transparent 68%)}
+.gl2{left:520px;top:900px;width:900px;height:900px;background:radial-gradient(circle,rgba(217,119,87,.26),transparent 68%)}
+.sc{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#scH{opacity:0;visibility:hidden}
+.head{position:absolute;left:65px;top:290px;width:950px;text-align:center;color:#fff;font-weight:800;letter-spacing:-.035em}
+.h1{font-size:98px;line-height:108px;white-space:nowrap}.h1 b{color:#ffd21f}.h2{font-size:112px;line-height:118px;margin-top:2px}
+.card{position:absolute;background:#f6f1e4;border-radius:34px;box-shadow:0 18px 40px rgba(0,0,0,.5);transform-origin:0 0}
+.card.big{left:120px;top:575px;width:840px;height:440px;transform:rotate(-1.4deg)}
+.ctop{position:absolute;left:44px;top:34px;right:44px;height:100px;display:flex;align-items:center;gap:26px}
+.bar{display:block;height:34px;border-radius:17px;background:#cfc8b6}.tb{width:46%;height:42px;background:#17130F;opacity:.85}
+.row{position:absolute;left:44px;right:44px;height:90px;display:flex;align-items:center;gap:20px}
+.row:nth-of-type(2){top:150px}.row:nth-of-type(3){top:250px}.row:nth-of-type(4){top:350px}
+.row .bar{flex:none}
+.mk{position:absolute;right:0;top:0;width:90px;height:90px}
+.mkh{position:absolute;inset:0;border-radius:50%;border:8px solid rgba(229,72,77,.6)}
+.mkf{position:absolute;inset:0;border-radius:50%;background:#e5484d;display:flex;align-items:center;justify-content:center;opacity:0;box-shadow:0 0 0 0 rgba(229,72,77,0)}
+.mkf svg{width:56px;height:56px}
+.pill{position:absolute;top:1060px;width:460px;height:180px;border-radius:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,.45)}
+.pill.g{left:65px;background:#10a37f}.pill.o{left:555px;background:#d97757}
+.bdg{width:76px;height:76px;border-radius:20px;background:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.bdg img{width:62%;height:62%}.bdg.big{width:118px;height:118px;border-radius:30px}
+.pan{position:absolute;overflow:hidden;border-radius:40px;box-shadow:0 14px 40px rgba(0,0,0,.5)}
+.pan.g{background:#10a37f}.pan.o{background:#d97757}
+.hd{position:absolute;left:0;right:0;top:0;height:180px;display:flex;align-items:center;justify-content:center;gap:0}
+.nm{font-size:62px;font-weight:800;color:#fff;letter-spacing:-.02em;max-width:0;overflow:hidden;white-space:nowrap;opacity:0}
+.phw{position:absolute;left:0;right:0;top:120px;bottom:0;overflow:hidden}
+.pimg{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+#img_g{object-position:50% 58%}#img_o{object-position:60% 40%}
+.bub{position:absolute;left:24px;right:24px;bottom:24px;background:#fff;border-radius:36px;border:9px solid;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#111;font-weight:800;letter-spacing:-.03em;opacity:0}
+.gb{border-color:#10a37f;height:200px;flex-direction:row;gap:20px;font-size:90px;line-height:1}
+.ob{border-color:#d97757;height:236px;font-size:82px;line-height:1.08}
+.tag{position:absolute;left:65px;top:1048px;width:950px;text-align:center;font-weight:800;font-size:92px;line-height:96px;letter-spacing:-.03em;color:#fff}
+.tag .tl{white-space:nowrap}.tag span{display:inline-block;opacity:0;margin:0 8px}.tag .y{color:#ffd21f}
+.chk{position:absolute;left:380px;top:540px;opacity:0}
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="11.81" data-width="1080" data-height="1920">
+
+<div class="bg" data-decor><div class="glow gl1" id="gl1"></div><div class="glow gl2" id="gl2"></div></div>
+<div class="sc" id="sc"><div class="cam" id="cam"><div class="head" id="head"><div class="h1">My idea has <b>3 flaws.</b></div><div class="h2">I show AI.</div></div><div class="pill g" id="pill_g"><div class="bdg big"><img src="assets/openai.svg"></div></div><div class="pill o" id="pill_o"><div class="bdg big"><img src="assets/claude.svg"></div></div></div></div>
+<div class="sc" id="scP"><div class="cam" id="camP"><div class="pan g" id="pan_g"><div class="phw"><img class="pimg" id="img_g" src="assets/dog.jpg"></div><div class="bub gb" id="bub_g"><span>Perfect idea!</span><svg class="smile" viewBox="0 0 64 64" width="78" height="78"><circle cx="32" cy="32" r="29" fill="#FFD21F" stroke="#17130F" stroke-width="3.5"/><circle cx="22" cy="26" r="4" fill="#17130F"/><circle cx="42" cy="26" r="4" fill="#17130F"/><path d="M16 38q16 18 32 0" fill="none" stroke="#17130F" stroke-width="4.5" stroke-linecap="round"/></svg></div><div class="hd" id="hd_g"><div class="bdg" id="bdg_g"><img src="assets/openai.svg"></div><div class="nm" id="nm_g">ChatGPT</div></div></div><div class="pan o" id="pan_o"><div class="phw"><img class="pimg" id="img_o" src="assets/cat3.jpg"></div><div class="bub ob" id="bub_o"><span>3 problems.</span><span>Fix #1 first.</span></div><div class="hd" id="hd_o"><div class="bdg" id="bdg_o"><img src="assets/claude.svg"></div><div class="nm" id="nm_o">Claude</div></div></div>
+<div class="tag" id="tag"><div class="tl"><span id="tw0">Tag</span> <span id="tw1">someone</span> <span id="tw2">who</span></div><div class="tl"><span id="tw3">needs</span> <span id="tw4">the</span> <span class="y" id="tw5">cat.</span></div></div></div></div>
+<div class="sc" id="scC"><div class="cam" id="camC"><div class="card big" id="cardM"><div class="ctop"><svg viewBox="0 0 64 64" width="92" height="92"><path d="M32 6c-11 0-19 8-19 18 0 7 4 11 7 15 2 3 3 5 3 8h18c0-3 1-5 3-8 3-4 7-8 7-15 0-10-8-18-19-18z" fill="#FFD21F" stroke="#17130F" stroke-width="3.5"/><path d="M24 52h16M26 58h12" stroke="#17130F" stroke-width="4" stroke-linecap="round"/></svg><i class="bar tb"></i></div><div class="row"><i class="bar" style="width:64%"></i><div class="mk" id="mkM0"><div class="mkh"></div><div class="mkf" id="mfM0"><svg viewBox="0 0 40 40" width="46" height="46"><path d="M11 11L29 29M29 11L11 29" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/></svg></div></div></div><div class="row"><i class="bar" style="width:50%"></i><div class="mk" id="mkM1"><div class="mkh"></div><div class="mkf" id="mfM1"><svg viewBox="0 0 40 40" width="46" height="46"><path d="M11 11L29 29M29 11L11 29" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/></svg></div></div></div><div class="row"><i class="bar" style="width:72%"></i><div class="mk" id="mkM2"><div class="mkh"></div><div class="mkf" id="mfM2"><svg viewBox="0 0 40 40" width="46" height="46"><path d="M11 11L29 29M29 11L11 29" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/></svg></div></div></div></div><svg class="chk" id="chk" viewBox="0 0 120 120" width="150" height="150"><circle cx="60" cy="60" r="54" fill="#1f9d55" stroke="#fff" stroke-width="7"/><path d="M34 62l17 17 36-38" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+<div class="sc" id="scH"><div class="cam" id="camH"><div class="head" id="headH"><div class="h1">My idea has <b>3 flaws.</b></div><div class="h2">I show AI.</div></div><div class="card big" id="cardH"><div class="ctop"><svg viewBox="0 0 64 64" width="92" height="92"><path d="M32 6c-11 0-19 8-19 18 0 7 4 11 7 15 2 3 3 5 3 8h18c0-3 1-5 3-8 3-4 7-8 7-15 0-10-8-18-19-18z" fill="#FFD21F" stroke="#17130F" stroke-width="3.5"/><path d="M24 52h16M26 58h12" stroke="#17130F" stroke-width="4" stroke-linecap="round"/></svg><i class="bar tb"></i></div><div class="row"><i class="bar" style="width:64%"></i><div class="mk" id="mkH0"><div class="mkh"></div><div class="mkf" id="mfH0"><svg viewBox="0 0 40 40" width="46" height="46"><path d="M11 11L29 29M29 11L11 29" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/></svg></div></div></div><div class="row"><i class="bar" style="width:50%"></i><div class="mk" id="mkH1"><div class="mkh"></div><div class="mkf" id="mfH1"><svg viewBox="0 0 40 40" width="46" height="46"><path d="M11 11L29 29M29 11L11 29" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/></svg></div></div></div><div class="row"><i class="bar" style="width:72%"></i><div class="mk" id="mkH2"><div class="mkh"></div><div class="mkf" id="mfH2"><svg viewBox="0 0 40 40" width="46" height="46"><path d="M11 11L29 29M29 11L11 29" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/></svg></div></div></div></div><div class="pill g" id="pillH_g"><div class="bdg big"><img src="assets/openai.svg"></div></div><div class="pill o" id="pillH_o"><div class="bdg big"><img src="assets/claude.svg"></div></div></div></div>
+
+</div>
+<script>
+const C={"lines": [{"n": 1, "text": "My idea has three flaws.", "start": 0.06, "end": 2.23, "words": [[0.0, 0.32], [0.32, 0.6], [0.6, 1.0], [1.0, 1.5], [1.5, 1.8]]}, {"n": 2, "text": "ChatGPT says: perfect idea!", "start": 2.59, "end": 5.48, "words": [[2.53, 3.51], [3.51, 3.79], [4.15, 4.65], [4.65, 5.13]]}, {"n": 3, "text": "Claude says: three problems. Start with one.", "start": 5.84, "end": 8.75, "words": [[5.78, 6.32], [6.32, 6.46], [6.46, 6.96], [6.96, 7.48], [7.48, 8.06], [8.06, 8.28], [8.28, 8.46]]}, {"n": 4, "text": "Tag someone who needs the cat.", "start": 9.11, "end": 11.31, "words": [[9.05, 9.43], [9.43, 9.79], [9.79, 10.31], [10.31, 10.69], [10.69, 10.89], [10.89, 11.11]]}], "D": 11.81}; const D=11.81; window.__cues=C; window.__CUES=C;
+const tl=gsap.timeline({paused:true});
+tl.set('#scP,#scC',{opacity:1,visibility:'visible'},0);
+tl.set('#scH',{autoAlpha:0},0);
+gsap.set('#pan_g',{left:65,top:1060,width:460,height:180,autoAlpha:0});
+gsap.set('#hd_g',{height:180});gsap.set('#bdg_g',{width:118,height:118,borderRadius:30});
+gsap.set('#pan_o',{left:555,top:1060,width:460,height:180,autoAlpha:0});
+gsap.set('#hd_o',{height:180});gsap.set('#bdg_o',{width:118,height:118,borderRadius:30});
+tl.fromTo('#gl1',{x:0,y:0},{x:120,y:80,duration:11.810,ease:'sine.inOut'},0);
+tl.fromTo('#gl2',{x:0,y:0},{x:-140,y:-60,duration:11.810,ease:'sine.inOut'},0);
+tl.fromTo('#head',{scale:1,y:0},{scale:1.01,y:-3,duration:2.450,ease:'sine.inOut',transformOrigin:'50% 0%'},0);
+tl.fromTo('#headH',{scale:1.012},{scale:1,duration:0.420,ease:'sine.out',transformOrigin:'50% 0%'},11.390);
+tl.fromTo('#cardM',{rotation:-1.4},{rotation:-.3,duration:2.450,ease:'sine.inOut'},0);
+tl.fromTo('#pill_g',{y:0},{y:-8,duration:.7,ease:'sine.inOut',yoyo:true,repeat:2},0);
+tl.fromTo('#pill_o',{y:-8},{y:0,duration:.7,ease:'sine.inOut',yoyo:true,repeat:2},0);
+tl.fromTo('#mfM0',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.32,ease:'back.out(1.7)',transformOrigin:'50% 50%'},0.900);
+tl.fromTo('#mfM1',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.32,ease:'back.out(1.7)',transformOrigin:'50% 50%'},1.200);
+tl.fromTo('#mfM2',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.32,ease:'back.out(1.7)',transformOrigin:'50% 50%'},1.500);
+tl.set('#pan_g',{autoAlpha:1},2.450);
+tl.set('#pill_g',{autoAlpha:0},2.450);
+tl.to('#pan_g',{left:65,top:300,width:950,height:940,duration:.62,ease:'expo.inOut'},2.450);
+tl.to('#hd_g',{height:120,duration:.62,ease:'expo.inOut'},2.450);
+tl.to('#bdg_g',{width:76,height:76,borderRadius:20,duration:.5,ease:'power3.inOut'},2.450);
+tl.to('#nm_g',{maxWidth:380,opacity:1,marginLeft:22,duration:.45,ease:'power2.out'},2.750);
+tl.to('#pill_o',{y:240,opacity:0,duration:.4,ease:'power2.in'},2.450);
+tl.to('#head',{y:-18,opacity:0,duration:.3,ease:'power2.in'},2.450);
+tl.to('#cardM',{x:570,y:-125,scale:.36,rotation:4,duration:.6,ease:'expo.inOut'},2.450);
+tl.set('#sc',{visibility:'hidden'},3.200);
+tl.fromTo('#img_g',{scale:1.0},{scale:1.22,duration:3.470,ease:'sine.inOut',transformOrigin:'45% 62%'},2.450);
+gsap.set('#bub_g',{scale:.6,opacity:0});
+tl.fromTo('#bub_g',{scale:.6,opacity:0,y:30},{scale:1,opacity:1,y:0,duration:.42,ease:'back.out(1.5)',transformOrigin:'50% 100%'},4.090);
+tl.fromTo('.smile',{rotation:-14,scale:.5},{rotation:8,scale:1,duration:.5,ease:'back.out(2)',transformOrigin:'50% 50%'},4.210);
+tl.to('.smile',{rotation:-6,duration:.6,ease:'sine.inOut',yoyo:true,repeat:2},4.790);
+tl.fromTo('#chk',{opacity:0,scale:.2,rotation:-30},{opacity:1,scale:1,rotation:0,duration:.4,ease:'back.out(1.8)',transformOrigin:'50% 50%'},4.600);
+gsap.set('#chk',{left:766,top:450});
+tl.to('#pan_g',{opacity:0,scale:.94,duration:.32,ease:'power2.in',transformOrigin:'50% 50%'},5.720);
+tl.set('#pan_g',{autoAlpha:0},6.060);
+gsap.set('#pan_o',{left:65,top:300,width:950,height:940});
+gsap.set('#hd_o',{height:120});gsap.set('#bdg_o',{width:76,height:76,borderRadius:20});gsap.set('#nm_o',{maxWidth:380,opacity:1,marginLeft:22});
+tl.fromTo('#pan_o',{scale:1.07,opacity:0},{scale:1,opacity:1,duration:.5,ease:'expo.out',transformOrigin:'50% 50%'},5.820);
+gsap.set('#pan_o',{autoAlpha:0});
+tl.set('#pan_o',{autoAlpha:1},5.820);
+tl.fromTo('#img_o',{scale:1.0},{scale:1.2,duration:3.200,ease:'sine.inOut',transformOrigin:'62% 55%'},5.770);
+tl.to('#chk',{opacity:0,scale:.2,duration:.25,ease:'power2.in'},5.720);
+tl.to('#cardM',{x:-30,y:-135,scale:.5,rotation:-3,duration:.55,ease:'expo.inOut'},5.740);
+tl.fromTo('#mfM0',{scale:1},{scale:1.45,duration:.18,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},6.380);
+tl.fromTo('#mfM0 svg',{rotate:-40},{rotate:0,duration:.3,ease:'back.out(2)'},6.380);
+tl.fromTo('#mfM1',{scale:1},{scale:1.45,duration:.18,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},6.720);
+tl.fromTo('#mfM1 svg',{rotate:-40},{rotate:0,duration:.3,ease:'back.out(2)'},6.720);
+tl.fromTo('#mfM2',{scale:1},{scale:1.45,duration:.18,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},7.060);
+tl.fromTo('#mfM2 svg',{rotate:-40},{rotate:0,duration:.3,ease:'back.out(2)'},7.060);
+tl.set('#mfM0,#mfM1,#mfM2',{opacity:0},5.820);
+tl.set('#mfM0',{opacity:1},6.380);
+tl.set('#mfM1',{opacity:1},6.720);
+tl.set('#mfM2',{opacity:1},7.060);
+tl.fromTo('#bub_o',{scale:.6,opacity:0,y:30},{scale:1,opacity:1,y:0,duration:.42,ease:'back.out(1.4)',transformOrigin:'50% 100%'},6.860);
+tl.to('#bub_o',{scale:1.04,duration:.2,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 100%'},8.230);
+tl.to('#bub_o',{opacity:0,y:20,duration:.2,ease:'power2.in'},8.950);
+tl.to('#cardM',{opacity:0,scale:.3,duration:.25,ease:'power2.in'},8.950);
+tl.to('#nm_o',{maxWidth:0,opacity:0,marginLeft:0,duration:.3,ease:'power2.in'},8.970);
+tl.to('#pan_o',{left:555,top:300,width:460,height:720,duration:.6,ease:'expo.inOut'},8.970);
+tl.set('#pan_g',{x:0,scale:1,left:65,top:300,width:460,height:720,autoAlpha:1,opacity:0},8.970);
+gsap.set('#bub_g',{opacity:0});
+tl.set('#bub_g',{opacity:0,scale:.6},8.970);
+tl.set('#nm_g',{maxWidth:0,opacity:0,marginLeft:0},8.970);
+tl.set('#hd_g',{height:120},8.970);
+tl.fromTo('#pan_g',{opacity:0,scale:.92},{opacity:1,scale:1,duration:.5,ease:'expo.out',transformOrigin:'50% 50%'},9.020);
+tl.fromTo('#img_g',{scale:1.05},{scale:1.22,duration:2.420,ease:'sine.inOut',transformOrigin:'45% 62%'},8.970);
+tl.fromTo('#img_o',{scale:1.2},{scale:1.1,duration:2.420,ease:'sine.inOut',transformOrigin:'62% 55%'},8.970);
+tl.fromTo('#tw0',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},9.270);
+tl.fromTo('#tw1',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},9.400);
+tl.fromTo('#tw2',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},9.760);
+tl.fromTo('#tw3',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},10.280);
+tl.fromTo('#tw4',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},10.660);
+tl.fromTo('#tw5',{opacity:0,y:22,scale:.9},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 80%'},10.860);
+tl.to('#pan_o',{scale:1.05,duration:.22,ease:'power2.out',yoyo:true,repeat:1,transformOrigin:'50% 50%'},10.870);
+tl.to('#pan_g',{y:-10,duration:.5,ease:'sine.inOut',yoyo:true,repeat:4},9.670);
+tl.to('#scP',{opacity:0,duration:.34,ease:'sine.inOut'},11.390);
+tl.to('#scC',{opacity:0,duration:.2},11.390);
+tl.fromTo('#scH',{autoAlpha:0},{autoAlpha:1,duration:.34,ease:'sine.inOut'},11.390);
+tl.to({},{duration:.001},D-.001);
+window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
+window.__reel={duration:D,seek:t=>tl.seek(t)};
+</script></body></html>

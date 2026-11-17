@@ -2728,6 +2728,124 @@ export const ARTICLES: Article[] = [
       "Claude and Claude Code are made by Anthropic, and this channel's videos and pages are made with help from Claude. This channel is not affiliated with Anthropic or with Graphify.",
     ],
   },
+  {
+    n: 101,
+    title: "Five free alternatives to apps you pay for: where to get each one",
+    standfirst:
+      "The video adds up what five paid apps cost in a year, $780, and shows a free alternative for each: Loom and Cap, Notion and AppFlowy, " +
+      "Intercom and Chatwoot, Wispr Flow and OpenWhispr, ElevenLabs and VoiceStudio. This page has the official " +
+      "download link and the steps for every one. We did not install or test any of them. Everything below was read from " +
+      "each project's own page on 16 November 2026, so treat it as a list to check, not a recommendation.",
+    steps: [
+      "Cap, instead of Loom (screen videos). Open https://cap.so/download, pick your system (Mac, Windows or Linux), download the file and install it like any other app. Cap asks for permission to record your screen. Record a short test clip before you rely on it.",
+      "AppFlowy, instead of Notion (notes, docs, tasks). Open https://github.com/AppFlowy-IO/AppFlowy/releases, open Assets under the newest release and download the file for your system. Phone apps are in the App Store and Play Store under AppFlowy. Install and open it: you get an empty workspace on your own device.",
+      "OpenWhispr, instead of Wispr Flow (you talk, it types). Open https://github.com/OpenWhispr/openwhispr/releases/latest, download the file for your system (.dmg for Mac, .exe for Windows), install it, allow the microphone and choose a local model. It downloads the model once, then works on your own computer.",
+      "VoiceStudio, instead of ElevenLabs (AI voices on your own computer). Open https://github.com/debpalash/VoiceStudio/releases/latest, download the installer for your system, install it and download one voice model inside the app. It runs on your own computer; without a graphics card it still works, only slower (the project's own README says so).",
+      "Chatwoot, instead of Intercom (one inbox for customer messages). This one needs your own server, so it is not for beginners. Hosting guide: https://chatwoot.com/deploy . Repo: https://github.com/chatwoot/chatwoot . Chatwoot's own cloud is a paid product.",
+      "Optional: install only from the official links above and check that the page address matches before you download. Star counts show interest, not quality or safety.",
+    ],
+    changes: [
+      "The $780 a year in the video is the sum of the cheapest paid plan of each app, per person, yearly: Loom $216, Notion $120, Intercom $228, Wispr Flow $144, ElevenLabs $72. It is only what you save if you pay for all five today. Prices of the paid apps, from each official pricing page read on 16 November 2026 (cheapest paid plan): Loom Business $18, Notion Plus $10, Intercom Essential $19 per seat (yearly rate for new customers, plus $0.99 per AI answer), Wispr Flow Pro $12 (billed yearly), ElevenLabs Starter $6. Loom, Notion, Wispr Flow and ElevenLabs also have a free plan.",
+      "Stars on GitHub, read 16 November 2026 and rounded down: Cap 25K+, AppFlowy 78K+, OpenWhispr 11K+, VoiceStudio 111K+, Chatwoot 39K+.",
+      "Licences as listed on each project page: AppFlowy AGPL-3.0, OpenWhispr MIT, VoiceStudio AGPL-3.0, Chatwoot MIT for the main code with a separate licence for its enterprise folder, Cap AGPL-3.0 for most of the code and MIT for some parts. Check the licence file before you use any of them for a business.",
+    ],
+    limits: [
+      "We did not install or run any of the five, so we cannot say how well they work. This is a list to check yourself.",
+      "Free means the software costs nothing. Cap, AppFlowy and Chatwoot also sell paid cloud plans; the free part is running it yourself.",
+      "These are alternatives, not full replacements. Read what each one can do before you cancel anything you pay for.",
+      "VoiceStudio is only about 7 months old (created April 2026) and grew very fast, so check it carefully. Clone only your own voice, or a voice you have permission to use.",
+      "We did not read the full licence texts or each project's security history, and we did not check when each project was last updated.",
+      "Screen and download labels can change with each release. If a button name differs, look for the closest one.",
+      "Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with any of the products named.",
+    ],
+  },
+  {
+    n: 102,
+    title: "Claude Code and the 12 free LinkedIn skills: how to install them and what they do",
+    standfirst:
+      "The video shows an open-source set of 12 skills that lets Claude write LinkedIn posts, comments and replies, " +
+      "build a posting plan and rewrite a profile. It is free and MIT licensed (sergebulaev/linkedin-skills on GitHub). " +
+      "This page has the install steps, what the video showed, and what it did not.",
+    steps: [
+      "Check that you have a paid Claude plan (Pro, Max, Team or Enterprise) with code execution turned on. The project's own page says skills and plugins need one.",
+      "Claude Code: open Claude Code and run /plugin marketplace add sergebulaev/linkedin-skills , then run /plugin install and pick linkedin-skills. You should see the skills listed as installed.",
+      "Claude on the web or Claude Desktop: open Customize, then Plugins, add the repository sergebulaev/linkedin-skills as a marketplace, then open Discover and install it.",
+      "Any other agent: the project lists npx skills add sergebulaev/linkedin-skills. Always check the repository page https://github.com/sergebulaev/linkedin-skills before you run anything.",
+      "Ask Claude for a post in your own words, for example: write me a LinkedIn post about the five apps I pay for, with the real prices. The skills show you a draft and wait for your approval before anything is posted.",
+      "Optional: the read features (comments, feed analysis) use third-party scrapers and need their own keys. You can skip them and still use the writing skills.",
+    ],
+    changes: [
+      "What the video showed: we followed the Post Writer skill's own rules (formula F7, the odd-precision money ledger: a number first, then every line item, then a closing question and a P.S.) on our own numbers from episode 101. The unedited result is the post on screen. It starts with $780, the yearly sum of the cheapest paid plan of five apps. Nothing was posted anywhere.",
+      "The 12 skills, from the project page: Post Writer, Comment Drafter, Reply Handler, Post Audit, Humanizer, Hook Extractor, Content Planner, Engagement Monitor, Profile Optimizer, Employee Advocacy, Repurposer and Interviewer.",
+      "The Hook Extractor, per the project's own description, takes the link of a viral post and returns which of its 20 hook formulas it uses and a blank template. F7, Odd-Precision Money Ledger, is one of those 20 formulas.",
+      "Facts read on 17 November 2026 from the GitHub page and a local copy of the repository: MIT licence, about 6.0K stars, 969 forks, version 1.1.28, last commit 27 October 2026.",
+    ],
+    limits: [
+      "We ran Post Writer's rules and read the Humanizer's rules on our own text. We did not run the Hook Extractor, the Comment Drafter or the other skills, so we show no result for them, only what the project says they do.",
+      "A paid Claude plan with code execution is required. The skills themselves cost nothing.",
+      "The skills write drafts. You approve and post by hand. We posted nothing to LinkedIn.",
+      "The project's own page does not discuss LinkedIn's terms of service for its read features, which use third-party scrapers. Read the terms for any account you use.",
+      "The author's company sells related services, and the page asks readers to star the repository. Our video is not sponsored and we have no link to the author.",
+      "Claude is made by Anthropic and this video was made with help from Claude. This channel is not affiliated with LinkedIn, Anthropic or the project's author.",
+    ],
+  },
+  {
+    n: 103,
+    title: "The Replica skill: 11 free Claude skills that rebuild an app, how to install them and what they cannot do",
+    standfirst:
+      "The video walks through the Replica skill, a free, MIT-licensed pack of 11 Claude skills (github.com/Jakeschincariol/replica-skill). " +
+      "Everything in the video comes from the project's own page, which we read on 17 November 2026. We did not run the skills ourselves for this video. " +
+      "This page has the install steps, the 11 skills and what the project says it cannot do.",
+    steps: [
+      "Check that you have Claude Code (or a Claude plan that supports skills). The skills run inside Claude; the project says it needs Python 3.8 or newer only for its small helper tools.",
+      "Easiest way, from the project's README: open Claude, paste https://github.com/Jakeschincariol/replica-skill and write: install skill. You should see Claude confirm that the skill is installed.",
+      "As a plugin in Claude Code: run /plugin marketplace add Jakeschincariol/replica-skill , then /plugin install replica-skill@replica-skill . Installed this way the skills appear as /replica-skill:replica-recon and so on.",
+      "Or copy the folders: git clone https://github.com/Jakeschincariol/replica-skill.git and copy the replica-* folders into ~/.claude/skills/ for all projects, or into your project's .claude/skills/ for one project.",
+      "Run them in order: recon, architect, design, build, backend, test, diff, entrepreneur, brand, launch, deploy. Each one reads what the previous one wrote into a replica/ folder in your project.",
+      "Optional, and safer: try it first in an empty test folder, and read each SKILL.md before you install anything from the internet. Never paste a password or a live key into a chat: the backend and deploy skills say you create those accounts yourself.",
+    ],
+    changes: [
+      "The 11 skills, from the README: recon (reverse-engineers an app from public pages and your own account), architect (stack, database, API), design (design tokens), build (rebuilds screen by screen), backend (auth, database, payments), test (clicks through every flow), diff (parity score against the original), entrepreneur (reads real user reviews and turns them into fixes), brand (renames and rebrands), launch (landing page and store listing), deploy (puts it live on your domain).",
+      "Facts read on 17 November 2026: MIT licence, about 9.7K stars on GitHub, one commit (the v1.0 release of 3 October 2026). The star count is not proof of quality.",
+      "The README says it rebuilds what an app does, clean-room style, and never its code, logo, copy or content, and that you should check trademarks and terms and talk to a lawyer before you launch anything you sell.",
+    ],
+    limits: [
+      "We did not run the skills for this video. We read the project's page and its small helper scripts (file reads and writes only, no network calls, no keys), which is not a security audit.",
+      "It is a pack of instructions for Claude, not a finished app. You still pay for hosting, a database, payments, a domain and a Claude plan, and you maintain what you build. The README itself says some apps take weeks and some, such as a spreadsheet engine, are not realistic.",
+      "The screens in the video are drawn examples, not results. The reviews and findings are labelled examples; no real app, review or score is shown.",
+      "Copying an app's features is not the same as being allowed to sell it. Check trademark and terms rules for the app you copy.",
+      "Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with Anthropic, Slack, Calendly, Notion or the project's author.",
+    ],
+  },
+  {
+    n: 104,
+    title: "Agency Agents: about 280 free role prompts for Claude Code, how to add one safely and what they cannot do",
+    standfirst:
+      "The video walks through Agency Agents, a free, MIT-licensed library of about 280 role prompts for Claude Code (github.com/msitarzewski/agency-agents). " +
+      "Everything in the video comes from the project's own page, which we read on 17 November 2026. We did not run the agents ourselves for this video. " +
+      "This page has the safe way to add one agent, what the project says it is, and what it cannot do.",
+    steps: [
+      "Open github.com/msitarzewski/agency-agents in your browser and pick ONE agent from the README tables, for example testing / Reality Checker. You should see its name in the list for its division.",
+      "Click that agent's file, then click Raw. Read the whole text before you use it: look for anything that asks to run commands, open links, send data or change settings.",
+      "In Claude Code, ask: Create .claude/agents/reality-checker.md with this text, and paste what you read. Using the project folder keeps the agent in this project only.",
+      "Under the description line add one line: tools: Read, Grep, Glob. Now the agent can read your files but cannot run commands, edit files or use connectors. A file without a tools line inherits every tool your session has.",
+      "Use it by name: Use the reality-checker agent to review my plan. Check what it gives you yourself.",
+      "Optional: the project also has an install script. If you ever use it, run it with --dry-run and --agent first and read the plan it prints; do not run it with no options, because that copies every agent into every tool it finds.",
+    ],
+    changes: [
+      "What it is, from the README and the files we read: a library of Markdown files. Each one is a role prompt (name, description and a long text about how that specialist works). No code runs inside an agent. In Claude Code they become subagents.",
+      "The README says 230+ agents; its tables link 283 agent files in 18 divisions (engineering 66, specialized 59, marketing 37, game development 21 and so on). We say about 280.",
+      "Facts read on 17 November 2026: MIT licence, 169k stars, 27.4k forks, 864 commits. The star count is not proof of quality.",
+      "The orchestrator is a prompt (specialized/agents-orchestrator.md). It describes a software pipeline in four phases: planning, architecture, a development and QA loop, and final integration. It says: Each implementation task must pass QA before proceeding. It only works as well as the model follows it.",
+    ],
+    limits: [
+      "We did not run the agents for this video. We read the project page and two of its files, which is not a security audit.",
+      "They are role prompts, not employees. They write drafts and plans; they cannot send an email, make a call or post anything unless your Claude Code already has the tools for it.",
+      "No independent test showing they beat plain Claude was found; the README says battle-tested, we have no evidence either way.",
+      "Third-party prompts are text your Claude will follow: read a file first, start with one, restrict its tools. A later update to the repo could change the text.",
+      "The people, emails, tickets and screens in the video are drawn examples, labelled as such. Anthropic makes Claude; this channel is not affiliated with Anthropic or the project's author.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

@@ -1,0 +1,79 @@
+{
+ "lines": [
+  {
+   "n": 1,
+   "line": "I told ChatGPT I'd delete it in 10 seconds.",
+   "dur": 2.26,
+   "gap": 2.45,
+   "rate": 4.43,
+   "dens": 0.3,
+   "rms": -18.9,
+   "sib": -9.0,
+   "tail": -21.6,
+   "skip": false,
+   "sib_res": 0.0
+  },
+  {
+   "n": 2,
+   "line": "It said: don't keep me because I'm an AI. Keep me only if I make your life easier.",
+   "dur": 4.3,
+   "gap": 0.34,
+   "rate": 4.88,
+   "dens": 0.143,
+   "rms": -18.8,
+   "sib": -14.4,
+   "tail": -39.4,
+   "skip": false,
+   "sib_res": -5.4
+  },
+  {
+   "n": 3,
+   "line": "Then: you've had to tell me to stop talking and finish the work.",
+   "dur": 3.22,
+   "gap": 0.55,
+   "rate": 4.65,
+   "dens": 0.133,
+   "rms": -19.1,
+   "sib": -6.4,
+   "tail": -24.1,
+   "skip": false,
+   "sib_res": 2.6
+  },
+  {
+   "n": 4,
+   "line": "And if I fail? You've got your 10 seconds back.",
+   "dur": 2.29,
+   "gap": 0.45,
+   "rate": 4.36,
+   "dens": 0.2,
+   "rms": -19.6,
+   "sib": -10.2,
+   "tail": -38.9,
+   "skip": false,
+   "sib_res": -1.2
+  },
+  {
+   "n": 5,
+   "line": "Send this to someone who talks to ChatGPT all day.",
+   "dur": 2.58,
+   "gap": null,
+   "rate": 4.26,
+   "dens": 0.455,
+   "rms": -18.7,
+   "sib": -4.0,
+   "tail": -26.4,
+   "skip": false,
+   "sib_res": 5.0
+  }
+ ],
+ "medians": {
+  "sib": 0.0,
+  "tail": -26.4,
+  "rms": -18.9,
+  "sib_slope": 0.0,
+  "sib_floor": -9.636899999999999,
+  "tail_floor": -44.19119999999999
+ },
+ "words": null,
+ "issues": []
+}

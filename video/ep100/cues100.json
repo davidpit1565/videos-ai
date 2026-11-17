@@ -1,0 +1,369 @@
+{
+ "placeholder": {
+  "estimated_timeline": false,
+  "claude_code_mark": "Claude symbol + the words 'Claude Code' (no Claude Code-specific mark sourced)",
+  "screenshots": "none: drawn cards with dated numbers instead of real repo/pricing screenshots"
+ },
+ "lines": [
+  {
+   "n": 1,
+   "text": "Your twenty-dollar Claude plan can't do hundred-dollar work.",
+   "start": 0.04,
+   "end": 2.57,
+   "role": "hook: the claim as action ($20 under $100)"
+  },
+  {
+   "n": 2,
+   "text": "A free tool says it can. I checked.",
+   "start": 2.76,
+   "end": 4.42,
+   "role": "the free tool steps in; 'I checked': the barbell drops"
+  },
+  {
+   "n": 3,
+   "text": "Every new chat starts from zero, so Claude Code reads your files again.",
+   "start": 4.61,
+   "end": 8.06,
+   "role": "check 1: the problem (real)"
+  },
+  {
+   "n": 4,
+   "text": "The fix is Graphify, with about a hundred fifty thousand stars on GitHub.",
+   "start": 8.25,
+   "end": 11.65,
+   "role": "the tool + stars"
+  },
+  {
+   "n": 5,
+   "text": "It maps your code once, so Claude looks things up instead of rereading.",
+   "start": 11.84,
+   "end": 14.98,
+   "role": "how it works"
+  },
+  {
+   "n": 6,
+   "text": "The big claim is seventy times less token use, but only in its best case.",
+   "start": 15.17,
+   "end": 18.75,
+   "role": "reveal 1: where 70 comes from"
+  },
+  {
+   "n": 7,
+   "text": "Real tests? One saves some. One uses more.",
+   "start": 18.94,
+   "end": 21.47,
+   "role": "reveal 2: other people's tests"
+  },
+  {
+   "n": 8,
+   "text": "And the hundred-dollar plan is five times the usage. Nothing we found comes close.",
+   "start": 21.66,
+   "end": 27.15,
+   "role": "reveal 3: the money verdict"
+  },
+  {
+   "n": 9,
+   "text": "The setup's in the link in bio.",
+   "start": 27.34,
+   "end": 29.15,
+   "role": "end scene: saveable card + link in bio"
+  },
+  {
+   "n": 10,
+   "text": "Want the next one? Follow, and you'll see it.",
+   "start": 29.34,
+   "end": 31.35,
+   "role": "follow card (no promised episode)"
+  }
+ ],
+ "D": 31.95,
+ "frame0_returns": 31.37,
+ "sync": {
+  "cant": {
+   "t": 1.14,
+   "source": "words.json"
+  },
+  "free": {
+   "t": 2.88,
+   "source": "words.json"
+  },
+  "can": {
+   "t": 3.52,
+   "source": "words.json"
+  },
+  "checked": {
+   "t": 4.04,
+   "source": "words.json"
+  },
+  "so": {
+   "t": 6.24,
+   "source": "words.json"
+  },
+  "graphify": {
+   "t": 8.82,
+   "source": "words.json"
+  },
+  "about": {
+   "t": 9.66,
+   "source": "words.json"
+  },
+  "once": {
+   "t": 12.52,
+   "source": "words.json"
+  },
+  "looks": {
+   "t": 13.54,
+   "source": "words.json"
+  },
+  "seventy": {
+   "t": 15.82,
+   "source": "words.json"
+  },
+  "but": {
+   "t": 17.36,
+   "source": "words.json"
+  },
+  "one_saves": {
+   "t": 19.82,
+   "source": "words.json"
+  },
+  "one_uses": {
+   "t": 20.58,
+   "source": "words.json"
+  },
+  "five": {
+   "t": 23.02,
+   "source": "words.json"
+  },
+  "nothing": {
+   "t": 25.24,
+   "source": "words.json"
+  },
+  "close": {
+   "t": 26.62,
+   "source": "words.json"
+  },
+  "follow": {
+   "t": 30.28,
+   "source": "words.json"
+  }
+ },
+ "usage_bar": {
+  "note": "ILLUSTRATION, tagged on screen; on from line 3; '?' from line 7 on; hidden from line 8",
+  "keyframes": [
+   [
+    4.61,
+    100
+   ],
+   [
+    6.14,
+    100
+   ],
+   [
+    7.95,
+    17
+   ],
+   [
+    12.34,
+    17
+   ],
+   [
+    14.67,
+    97
+   ],
+   [
+    17.64,
+    97
+   ],
+   [
+    17.96,
+    78
+   ],
+   [
+    18.94,
+    70
+   ]
+  ]
+ },
+ "buildup": {
+  "new_on_screen": [
+   {
+    "t": 0,
+    "what": "OPENING: the $20 character strains under the $100 barbell (sinking, shaking)"
+   },
+   {
+    "t": 1.14,
+    "what": "the bar slips lower, the knees give"
+   },
+   {
+    "t": 2.88,
+    "what": "the Graphify character steps in, FREE sparkles"
+   },
+   {
+    "t": 3.22,
+    "what": "it pushes: the bar goes up (the claim looks true)"
+   },
+   {
+    "t": 4.04,
+    "what": "on 'checked' the barbell drops and flattens the $20 character"
+   },
+   {
+    "t": 4.61,
+    "what": "cut to the check: VIRAL CLAIM stamp, usage bar, six file cards"
+   },
+   {
+    "t": 6.14,
+    "what": "files read again, counters rise, the bar drains (to 8.0 s)"
+   },
+   {
+    "t": 7.95,
+    "what": "the bar is red at 17%"
+   },
+   {
+    "t": 8.72,
+    "what": "Graphify card, free + open source"
+   },
+   {
+    "t": 9.66,
+    "what": "the star count runs to 148.2k (to 11.2 s)"
+   },
+   {
+    "t": 11.84,
+    "what": "the map: nodes and links"
+   },
+   {
+    "t": 13.54,
+    "what": "one look-up along the links, the bar refills (to 14.7 s)"
+   },
+   {
+    "t": 15.17,
+    "what": "status CHECKING, the claim headline"
+   },
+   {
+    "t": 15.82,
+    "what": "the giant 70x"
+   },
+   {
+    "t": 17.66,
+    "what": "BEST CASE stamp under the number, then: one example, about 52 files"
+   },
+   {
+    "t": 18.94,
+    "what": "REAL TESTS, the bar turns to '?'"
+   },
+   {
+    "t": 19.82,
+    "what": "18% fewer"
+   },
+   {
+    "t": 20.58,
+    "what": "+49.5% more"
+   },
+   {
+    "t": 21.38,
+    "what": "issue #985: no savings"
+   },
+   {
+    "t": 21.78,
+    "what": "Pro bar, 1x"
+   },
+   {
+    "t": 23.02,
+    "what": "Max bar grows to 5x (to 24.0 s)"
+   },
+   {
+    "t": 25.24,
+    "what": "the best test as a thin slice on the Pro bar"
+   },
+   {
+    "t": 26.92,
+    "what": "NOT CLOSE stamp"
+   },
+   {
+    "t": 27.34,
+    "what": "END scene: the $20 character happily lifts a weight that fits, the $100 barbell rests; the saveable card, five rows (to 28.8 s)"
+   },
+   {
+    "t": 29.34,
+    "what": "the calm FOLLOW card (no promised episode)"
+   },
+   {
+    "t": 31.37,
+    "what": "frame 0 returns (loop)"
+   }
+  ],
+  "flat_over_2_5s": []
+ },
+ "numbers_on_screen": [
+  {
+   "text": "70x (as the viral claim, in quote marks)",
+   "source": "the viral posts; the project's earlier worked example was 71.5x"
+  },
+  {
+   "text": "about 52 files, compared with reading every file",
+   "source": "verify file section 2 (pyshine.com, themenonlab.blog, roborhythms.com)"
+  },
+  {
+   "text": "Pro $20 a month, Max $100 a month, Max = 5x Pro usage",
+   "source": "claude.com/pricing, read 15.11.2026"
+  },
+  {
+   "text": "148.2k stars",
+   "source": "github.com/Graphify-Labs/graphify repo page, 15.11.2026"
+  },
+  {
+   "text": "18% fewer tokens, $5.16 to $4.29, one YouTube run (The Gray Cat)",
+   "source": "graphify.com/blog/reduce-claude-code-token-usage"
+  },
+  {
+   "text": "+49.5% input tokens, FastAPI, 11 questions (Constantin Ponfick)",
+   "source": "same Graphify blog post"
+  },
+  {
+   "text": "GitHub issue #985: no savings on common queries (a user's report)",
+   "source": "verify file section 5"
+  },
+  {
+   "text": "hatched slice on the Pro bar = 1.22x",
+   "source": "OUR ARITHMETIC: 1 / (1 - 0.18); not a measurement"
+  }
+ ],
+ "headlines_draft": [
+  {
+   "t": 4.61,
+   "text": "NEW CHAT = FROM ZERO"
+  },
+  {
+   "t": 6.24,
+   "text": "READS YOUR FILES AGAIN"
+  },
+  {
+   "t": 8.25,
+   "text": "THE TOOL: GRAPHIFY"
+  },
+  {
+   "t": 11.84,
+   "text": "MAPS YOUR CODE ONCE"
+  },
+  {
+   "t": 15.17,
+   "text": "&ldquo;70 TIMES LESS&rdquo;"
+  },
+  {
+   "t": 17.36,
+   "text": "ONLY IN ITS BEST CASE"
+  },
+  {
+   "t": 18.94,
+   "text": "REAL TESTS:"
+  },
+  {
+   "t": 21.66,
+   "text": "MAX = 5x PRO USAGE"
+  },
+  {
+   "t": 25.24,
+   "text": "NOTHING COMES CLOSE"
+  }
+ ]
+}

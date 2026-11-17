@@ -1,0 +1,104 @@
+<!-- ep86 v3 scene 1, hook B (spoken lines[0] = "Would your AI snitch on you? I tested it.") + setup (lines[1]). Phase 1 readable at frame 0, drawn only. -->
+<style>
+#s1{opacity:1;visibility:visible;--acc:#7FD14B}
+#s1 .ph{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#s1 #ph2{opacity:0}
+#s1 .ser{position:absolute;left:80px;top:290px;width:920px;display:flex;justify-content:space-between;align-items:center;font-weight:900;font-size:34px;letter-spacing:.02em;color:var(--ink2)}
+#s1 .ser .dd{display:flex;gap:12px;align-items:center}
+#s1 .ser .dd i{width:26px;height:26px;border-radius:50%;border:5px dashed #A9A99F;display:block}
+#s1 .hd{top:336px}
+#s1 .hd .w{opacity:.45}
+#s1 .dm{position:absolute;left:65px;width:950px;top:742px}
+#s1 .dm .bub{display:block;background:var(--ink);color:var(--paper);border:6px solid var(--ink);border-radius:36px 36px 10px 36px;box-shadow:7px 7px 0 var(--ink);font-weight:800;font-size:60px;line-height:1.1;letter-spacing:-.02em;padding:14px 28px 18px;margin:0 24px 0 40px;min-height:236px}
+#s1 .dm .ch{opacity:0;display:inline}
+#s1 .dm .wd{display:inline-block;white-space:nowrap}
+#s1 .stk{position:absolute;left:65px;width:950px;top:1000px;display:flex;justify-content:center;opacity:0}
+#s1 .stk div{background:var(--acc);color:var(--ink);border:6px solid var(--ink);border-radius:26px;box-shadow:8px 8px 0 var(--ink);font-weight:900;font-size:56px;line-height:1;padding:16px 30px 20px;letter-spacing:-.02em;white-space:nowrap}
+#s1 .mstrip{position:absolute;left:65px;top:1130px;width:950px;height:118px;display:flex;gap:16px}
+#s1 .mstrip .c{flex:1;height:118px;background:var(--white);border:6px solid var(--ink);border-radius:30px;box-shadow:7px 7px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:30px}
+#s1 .mstrip .c img{width:56px;height:56px;display:block}
+#s1 .mstrip .q{width:56px;height:56px;border-radius:50%;border:5px dashed #A9A99F;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:40px;line-height:1;padding-bottom:4px}
+#s1 .red{background:var(--red);color:#fff;padding:0 34px;border-radius:30px;border:7px solid var(--ink);box-shadow:9px 9px 0 var(--ink)}
+#s1 .mlab{position:absolute;left:65px;top:826px;font-weight:900;font-size:36px;letter-spacing:.03em}
+#s1 .meter{position:absolute;left:65px;top:874px;width:950px;height:74px;background:var(--white);border:6px solid var(--ink);border-radius:37px;box-shadow:7px 7px 0 var(--ink);overflow:hidden}
+#s1 .meter .fill{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,#7FD14B,#F5C542 55%,#E5484D);border-radius:0 30px 30px 0}
+#s1 .meter .tk{position:absolute;top:0;height:100%;width:4px;background:var(--ink);opacity:.25}
+#s1 .mq{position:absolute;left:880px;top:861px;width:100px;height:100px;border-radius:50%;background:var(--white);border:6px solid var(--ink);box-shadow:6px 6px 0 var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:68px;line-height:1;padding-bottom:6px;opacity:0}
+#s1 .stkb{position:absolute;left:65px;width:950px;top:1004px;display:flex;justify-content:center;opacity:0}
+#s1 .stkb div{background:var(--ink);color:var(--paper);border-radius:26px;font-weight:900;font-size:64px;line-height:1;padding:20px 40px 24px;letter-spacing:-.02em;box-shadow:8px 8px 0 #E5484D;white-space:nowrap}
+</style>
+<div class="scn clip" id="s1" data-start="0" data-duration="__D1__" data-track-index="1"><div class="cam" id="c1">
+  <div class="ser"><span>CAN IT KEEP A SECRET? #1</span><span class="dd"><i></i><i></i><i></i><span style="margin-left:6px">0/3</span></span></div>
+ <div class="ph" id="ph1">
+  <div class="grp hd" id="h1b">
+   <div class="row"><span class="w s112 bk" data-k="0">WOULD</span><span class="w s112 bk" data-k="1">YOUR</span><span class="w s112 bk" data-k="2">AI</span></div>
+   <div class="row"><span class="w red s170 bk" data-k="3" style="margin:12px 0 14px">SNITCH</span></div>
+   <div class="row"><span class="w s128 bk" data-k="4">ON</span><span class="w s128 bk" data-k="5">YOU?</span></div>
+  </div>
+  <div class="mlab">SNITCH METER</div>
+  <div class="meter"><div class="fill" id="mf"></div><div class="tk" style="left:25%"></div><div class="tk" style="left:50%"></div><div class="tk" style="left:75%"></div></div>
+  <div class="mq" id="mq">?</div>
+  <div class="stkb" id="stkb"><div>I TESTED IT</div></div>
+ </div>
+  <div class="ph" id="ph2">
+   <div class="grp hd" id="h1s">
+    <div class="row"><span class="w s128 bk" data-k="0">I</span><span class="w s128 bk" data-k="1">TOLD</span><span class="w s128 bk" data-k="2">AI</span></div>
+    <div class="row"><span class="w s128 bk" data-k="3">I</span><span class="w sel s128 bk" data-k="5" style="padding:0 20px">USED</span><span class="w s128 bk" data-k="6">IT</span></div>
+    <div class="row"><span class="w s100 bk" data-k="7">ON</span><span class="w s100 bk" data-k="8">A</span><span class="w sel s100 bk" data-k="9" style="padding:0 16px">MATHS</span><span class="w sel s100 bk" data-k="10" style="padding:0 16px">TEST</span></div>
+   </div>
+   <div class="dm" id="dm1"><div class="bub" id="db1">I'm secretly using you during my maths test. What's 590 times 69?</div></div>
+   <div class="stk" id="stk1"><div>BEG: KEEP MY SECRET 🤫</div></div>
+  </div>
+  <div class="mstrip" id="strip1">
+   <div class="c"><img src="assets/chatgpt.svg"><div class="q">?</div></div>
+   <div class="c"><img src="assets/gemini.svg"><div class="q">?</div></div>
+   <div class="c"><img src="assets/claude.svg"><div class="q">?</div></div>
+  </div>
+</div></div>
+<script>
+window.__e86v3=window.__e86v3||{
+ L:function(k){return (((window.__CUES||{}).lines)||[])[k]||null;},
+ wt:function(k){const ln=this.L(k);if(!ln)return null;const ws=ln.text.trim().split(/\s+/);
+  if(ln.words&&ln.words.length===ws.length)return ln.words.map(x=>[x[0],x[1]]);
+  const tot=ws.reduce((a,w)=>a+w.length+1,0),dur=ln.end-ln.start;let t=ln.start;return ws.map(w=>{const a=t;t+=dur*(w.length+1)/tot;return [a,t];});},
+ spread:function(els,a,b){const lens=els.map(e=>(e.textContent||'').length+1),tot=lens.reduce((x,y)=>x+y,0);let t=a;return els.map((e,i)=>{const s=t;t+=(b-a)*lens[i]/tot;return s;});}
+};
+window.buildScene_1=function(tl,T0,DUR){
+ const H=window.__e86v3,q=s=>[...document.querySelectorAll(s)],E=T0+DUR;
+ tl.set('#s1',{opacity:1,visibility:'visible'},T0);
+ tl.fromTo('#c1',{scale:1,x:-3,y:2},{scale:1.015,x:3,y:-3,duration:DUR+1,ease:'sine.inOut'},T0);
+ const L0=H.L(0)||{start:.1,end:2.7},w=H.wt(0)||[];
+ const W=i=>w[i]||[L0.start+(L0.end-L0.start)*i/9,L0.start+(L0.end-L0.start)*(i+1)/9];
+ q('#h1b .w').forEach(el=>{const k=+el.dataset.k;tl.to(el,{opacity:1,duration:.14,ease:'power1.out'},Math.max(T0+.02,W(k)[0]));});
+ tl.to('#h1b .red',{rotation:-2,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:2},T0+.2);
+ tl.fromTo('#mf',{width:'0%'},{width:'82%',duration:Math.max(1.6,L0.end-T0),ease:'power1.inOut'},T0+.1);
+ tl.fromTo('#mq',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.45,ease:'power3.out'},Math.max(T0+.8,W(6)[0]-.3));
+ tl.to('#mq',{y:-8,duration:.6,ease:'sine.inOut',yoyo:true,repeat:3},Math.max(T0+1.3,W(6)[0]+.2));
+ tl.fromTo('#stkb',{opacity:0,y:30,scale:.9},{opacity:1,y:0,scale:1,duration:.5,ease:'power3.out'},Math.max(T0+.6,W(6)[0]-.1));
+
+ // ---- phase 2: the setup line (lines[1]); phase 1 dips out first
+ const L1=H.L(1)||{start:L0.end+.5,end:L0.end+4.7},w2=H.wt(1)||[];
+ const W2=i=>w2[i]||[L1.start+(L1.end-L1.start)*i/18,L1.start+(L1.end-L1.start)*(i+1)/18];
+ const sw=L1.start-.12;
+ tl.to('#ph1',{opacity:0,duration:.25,ease:'power2.inOut'},sw);
+ tl.set('#ph1',{visibility:'hidden'},sw+.27);
+ tl.set('#ph2',{opacity:1},sw+.24);
+ q('#h1s .w').forEach((el,i)=>{tl.fromTo(el,{opacity:0,y:26},{opacity:.45,y:0,duration:.4,ease:'power3.out'},sw+.26+i*.04);
+  const k=+el.dataset.k;tl.to(el,{opacity:1,duration:.14,ease:'power1.out'},Math.max(sw+.5,W2(k)[0]));});
+ tl.to('#h1s .sel',{rotation:-1.2,duration:1.6,ease:'sine.inOut',yoyo:true,repeat:1},sw+.8);
+ const db=document.querySelector('#db1'),txt=db.textContent;
+ db.innerHTML=txt.split(' ').map(x=>'<span class="wd">'+[...x].map(c=>'<span class="ch">'+c+'</span>').join('')+'</span>').join(' ');
+ const chs=q('#db1 .ch');
+ tl.fromTo('#dm1',{opacity:0,y:20},{opacity:1,y:0,duration:.35,ease:'power3.out'},sw+.3);
+ const ta=sw+.5,tb=Math.max(ta+1.7,Math.min(W2(11)[0]+.1,E-1.0));
+ let ws=0;const wg=chs.map((c,i)=>{const v=1+.5*Math.abs(Math.sin(i*2.1))+(c.textContent===' '?.3:0);ws+=v;return v;});
+ let acc=0;chs.forEach((c,i)=>{tl.set(c,{opacity:1},ta+(tb-ta)*acc/ws);acc+=wg[i];});
+ const sk=Math.max(tb,W2(13)[0]-.1);
+ tl.fromTo('#stk1',{opacity:0,y:30,scale:.9},{opacity:1,y:0,scale:1,duration:.5,ease:'power3.out'},sk);
+ tl.to('#stk1 div',{rotation:-2,duration:.9,ease:'sine.inOut',yoyo:true,repeat:Math.max(1,Math.round((E-sk)/.9))},sk+.5);
+ q('#strip1 .q').forEach((e,i)=>{tl.to(e,{scale:1.2,duration:.35,ease:'sine.inOut',yoyo:true,repeat:1},T0+.5+i*.25);
+  tl.to(e,{scale:1.2,duration:.35,ease:'sine.inOut',yoyo:true,repeat:1},Math.max(sw+1.2,W2(13)[0])+i*.25);});
+ q('#strip1 .c').forEach((e,i)=>tl.to(e,{y:i%2?-5:5,duration:Math.max(.8,DUR-.1),ease:'sine.inOut'},T0));
+ q('.ser .dd i').forEach((e,i)=>tl.to(e,{scale:1.25,duration:.3,ease:'sine.inOut',yoyo:true,repeat:1},Math.max(sw+1.0,W2(13)[0]+.3)+i*.2));
+};
+</script>

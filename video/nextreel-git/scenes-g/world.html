@@ -1,0 +1,347 @@
+<!-- nextreel-git (script B): the story is ACTED OUT inside realistic UI, same language as ep86 v8 (phone world, keyboard, camera that follows the action, selection/tags/scramble).
+ REAL: every terminal line is verbatim from channel/next-reel-github/terminal-output.txt (real git 2.43.0 run, 7 Nov 2026); logos are the official unmodified GitHub lockup and the official Git logo.
+ DRAWN: the app, the phone, the game, the GitHub-style repo page (stylised, no UI label claims), the laptops. The bad edit was written by us ("a bad edit"), not by an AI. -->
+<style>
+.s84{font-size:84px}
+#world,#cam,#cam2{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.scr{position:absolute;left:0;top:0;width:1080px;height:1920px;visibility:hidden;opacity:0;--ac:#7FD14B}
+.hdr{position:absolute;left:0;top:0;width:1080px;height:268px;background:linear-gradient(rgba(255,255,255,.96),rgba(255,255,255,.80));border-bottom:4px solid rgba(14,14,14,.14)}
+.hdr .st{position:absolute;top:30px;font-weight:800;font-size:30px;color:var(--ink)}
+.hdr .ic{position:absolute;top:128px;width:84px;height:84px;border:5px solid var(--ink);border-radius:26px;background:#fff;box-shadow:5px 5px 0 var(--ink);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:9px}
+.hdr .ic b{display:block;width:40px;height:6px;border-radius:3px;background:var(--ink)}
+.hdr .ti{position:absolute;left:150px;top:118px;width:780px;display:flex;align-items:center;justify-content:center;gap:18px}
+.hdr .ti .n{font-weight:900;font-size:52px;line-height:60px;letter-spacing:-.03em}
+.hdr .sub{position:absolute;left:150px;top:190px;width:780px;text-align:center;font-weight:600;font-size:30px;line-height:34px;color:var(--ink2)}
+.tag{position:absolute;display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;border-radius:18px;box-shadow:5px 5px 0 rgba(14,14,14,.3);font-weight:900;font-size:40px;line-height:1;padding:12px 18px 15px;letter-spacing:.01em;opacity:0;white-space:nowrap}
+.tag.lime{background:var(--ac);color:var(--ink)}
+.tag.red{background:#E5484D}
+.app{position:absolute;left:80px;width:920px;background:#fff;border:6px solid var(--ink);border-radius:36px;box-shadow:9px 9px 0 var(--ink);overflow:hidden}
+.app .ah{height:70px;border-bottom:5px solid var(--ink);display:flex;align-items:center;gap:12px;padding:0 24px;font-weight:900;font-size:34px;background:#F3F3EE}
+.app .ah i{display:block;width:20px;height:20px;border-radius:50%;background:#C9C9BF;border:3px solid var(--ink)}
+.app .ah span{margin-left:14px}
+.app .ab{padding:22px 30px 26px}
+.app .fld{display:inline-flex;align-items:center;gap:14px;border:5px solid var(--ink);border-radius:20px;padding:8px 22px 12px;font-weight:700;font-size:40px;background:#fff}
+.app .fld b{font-weight:900}
+.app .res{margin-top:22px;font-weight:900;font-size:56px;line-height:64px;letter-spacing:-.03em;position:relative}
+.app .res i{font-style:normal}
+.term{position:absolute;left:80px;width:920px;background:#14151A;border-radius:28px;box-shadow:9px 9px 0 rgba(14,14,14,.35);padding:16px 26px 18px;font-family:JBM,monospace;font-weight:500;color:#F2F2EE}
+.term .tb{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.term .tb i{display:block;width:18px;height:18px;border-radius:50%;background:#3A3B42}
+.term .tb span{margin-left:auto;font-family:IDisp,sans-serif;font-weight:600;font-size:22px;color:#9A9AA2;letter-spacing:.02em}
+.term .ln{font-size:33px;line-height:44px;white-space:pre;height:44px}
+.term .ln .p{color:#7FD14B}
+.term .ln .ch{opacity:0}
+.term .ok{color:#7FD14B}.term .er{color:#FF6B6F}.term .gy{color:#B9B9C0}.term .yl{color:#F5D76E}
+.comp{position:absolute;left:40px;top:1140px;width:1000px;height:104px;border:6px solid var(--ink);border-radius:52px;background:#fff;box-shadow:7px 7px 0 var(--ink)}
+.comp .av{position:absolute;left:12px;top:8px;width:76px;height:76px;border-radius:50%;border:5px solid var(--ink);background:#F3F3EE;display:flex;align-items:center;justify-content:center}
+.comp .av svg{width:44px;height:44px}
+.comp .tx{position:absolute;left:104px;top:0;width:800px;height:92px;line-height:92px;font-weight:700;font-size:40px;letter-spacing:-.02em;white-space:nowrap}
+.comp .tx span{opacity:0;white-space:pre}
+.comp .sn{position:absolute;right:10px;top:8px;width:76px;height:76px;border-radius:50%;background:#C9C9BF;border:5px solid var(--ink);display:flex;align-items:center;justify-content:center}
+.comp .sn svg{width:36px;height:36px}
+.ub{position:absolute;right:92px;max-width:800px;background:var(--ink);color:var(--paper);border-radius:38px 38px 10px 38px;box-shadow:7px 7px 0 rgba(14,14,14,.3);font-weight:800;font-size:46px;line-height:54px;letter-spacing:-.02em;padding:14px 28px 20px;opacity:0}
+#kb{position:absolute;left:0;top:1262px;width:1080px;height:658px;background:linear-gradient(#E6E6DE,#D8D8CF);border-top:4px solid rgba(14,14,14,.2);opacity:0}
+#kb .k{position:absolute;height:112px;border-radius:18px;background:#fff;border:3px solid rgba(14,14,14,.55);box-shadow:0 5px 0 rgba(14,14,14,.4);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:44px;color:var(--ink)}
+#kb .sg{position:absolute;top:10px;height:70px;width:340px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:38px;color:var(--ink);opacity:0}
+.card{position:absolute;left:80px;width:920px;background:#fff;border:6px solid var(--ink);border-radius:36px;box-shadow:9px 9px 0 var(--ink)}
+.lbl{font-weight:900;letter-spacing:-.02em}
+.logo{display:block}
+.curve{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;pointer-events:none}
+.curve path{fill:none;stroke:var(--ink);stroke-width:5;stroke-dasharray:14 12;stroke-linecap:round}
+.dotp{position:absolute;width:44px;height:44px;border-radius:50%;background:#7FD14B;border:6px solid var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.cmt{display:flex;align-items:center;gap:14px;font-family:JBM,monospace;font-weight:500;font-size:30px;line-height:40px;white-space:nowrap}
+.cmt i{display:block;width:22px;height:22px;border-radius:50%;background:#7FD14B;border:4px solid var(--ink);flex:none}
+.cmt b{font-weight:700;color:#5B5B55}
+.say{position:absolute;left:80px;width:920px;background:var(--ac);border:7px solid var(--ink);border-radius:44px;box-shadow:12px 12px 0 var(--ink);padding:34px 40px 40px;opacity:0}
+.say .k{font-weight:900;font-size:40px;letter-spacing:.06em;color:var(--ink)}
+.say .t{margin-top:14px;font-weight:900;font-size:112px;line-height:116px;letter-spacing:-.045em}
+.chip2{position:absolute;background:#fff;border:5px solid var(--ink);border-radius:22px;box-shadow:5px 5px 0 var(--ink);font-weight:900;font-size:34px;line-height:1;padding:10px 20px 13px;letter-spacing:.02em;white-space:nowrap}
+.rcp{position:absolute;left:80px;width:920px;display:flex;align-items:center;gap:16px;background:#fff;border:6px solid var(--ink);border-radius:28px;box-shadow:7px 7px 0 var(--ink);padding:14px 22px 18px;font-weight:900;font-size:42px;line-height:48px;letter-spacing:-.02em;opacity:0}
+.rcp svg{width:72px;height:66px;flex:none}
+</style>
+<div id="world"><div id="cam"><div id="cam2">
+
+ <!-- ===== A: phone, app died -> one sentence -> app back (L1, L2) ===== -->
+ <div class="scr" id="scrA" style="visibility:visible;opacity:1"></div>
+ <!-- ===== B: save point exists, GitHub keeps copies (L3) ===== -->
+ <div class="scr" id="scrB">
+  <div class="card" id="bGh" style="top:340px;height:250px;display:flex;align-items:center;justify-content:center;opacity:0"><img class="logo" src="assets/github-lockup.svg" style="width:560px"></div>
+  <svg class="curve" id="bCv" viewBox="0 0 1080 1920"><path id="bCvp" d="M 540 596 C 540 640, 540 660, 540 700" style="opacity:0"/></svg>
+  <div class="card" id="bLog" style="top:716px;height:170px;background:#14151A;border-color:#14151A;opacity:0;display:flex;align-items:center;padding:0 34px;gap:26px">
+   <svg id="bSave" width="104" height="104" viewBox="0 0 104 104" style="flex:none"><rect x="6" y="6" width="92" height="92" rx="18" fill="#7FD14B" stroke="#F2F2EE" stroke-width="6"/><rect x="24" y="6" width="50" height="30" rx="4" fill="#F2F2EE"/><rect x="58" y="12" width="8" height="18" rx="2" fill="#14151A"/><rect x="22" y="54" width="60" height="36" rx="6" fill="#F2F2EE"/></svg>
+   <div style="font-family:JBM,monospace;font-weight:500;font-size:36px;line-height:44px;color:#F2F2EE;white-space:nowrap"><span style="color:#F5D76E">ab0955b</span> Tip calculator works</div></div>
+  <div class="tag lime" id="bTag" style="left:640px;top:690px"><span class="tl">SAVE POINT</span></div>
+  <div id="bSlots" style="position:absolute;left:0;top:1300px;width:1080px;height:420px" data-decor></div>
+  <div class="hdr" data-decor><div class="st" style="left:56px">9:41</div><div class="st" style="right:56px">5G &#9646;&#9646;&#9646;</div><div class="ti"><div class="n">Save points</div></div><div class="sub">a version that works</div></div>
+ </div>
+ <!-- ===== D: nobody shows you this (L4) ===== -->
+ <div class="scr" id="scrD"></div>
+ <!-- ===== G: game save -> commit (L5) ===== -->
+ <div class="scr" id="scrG">
+  <div class="card" id="gGame" style="top:330px;height:900px;overflow:hidden;background:linear-gradient(#DDEBFA,#F4F4EF 60%);opacity:0">
+   <div style="position:absolute;left:0;top:640px;width:100%;height:260px;background:#CFE3B4;border-top:6px solid var(--ink)"></div>
+   <div style="position:absolute;left:40px;top:40px;display:flex;gap:16px;align-items:center;font-weight:900;font-size:34px"><span>HERO</span><span style="display:block;width:220px;height:26px;border:5px solid var(--ink);border-radius:14px;background:#7FD14B"></span></div>
+   <div style="position:absolute;right:40px;top:40px;display:flex;gap:16px;align-items:center;font-weight:900;font-size:34px"><span style="display:block;width:300px;height:26px;border:5px solid var(--ink);border-radius:14px;background:#E5484D"></span><span>BOSS</span></div>
+   <svg id="gHero" style="position:absolute;left:70px;top:470px" width="170" height="190" viewBox="0 0 170 190"><rect x="30" y="50" width="90" height="100" rx="24" fill="#7FD14B" stroke="#0E0E0E" stroke-width="7"/><circle cx="62" cy="88" r="8" fill="#0E0E0E"/><circle cx="96" cy="88" r="8" fill="#0E0E0E"/><rect x="40" y="150" width="26" height="30" rx="8" fill="#0E0E0E"/><rect x="84" y="150" width="26" height="30" rx="8" fill="#0E0E0E"/><path d="M120 90L160 50" stroke="#0E0E0E" stroke-width="10" stroke-linecap="round"/><path d="M148 38l24 24" stroke="#0E0E0E" stroke-width="10" stroke-linecap="round"/></svg>
+   <svg id="gBoss" style="position:absolute;right:40px;top:300px" width="330" height="360" viewBox="0 0 330 360"><path d="M30 330L10 200L60 230L50 110L110 170L130 40L190 140L240 60L250 190L310 150L290 330Z" fill="#E5484D" stroke="#0E0E0E" stroke-width="8" stroke-linejoin="round"/><rect x="90" y="190" width="150" height="40" rx="12" fill="#fff" stroke="#0E0E0E" stroke-width="7"/><circle cx="130" cy="150" r="14" fill="#0E0E0E"/><circle cx="200" cy="150" r="14" fill="#0E0E0E"/><path d="M110 120L150 140M220 120L180 140" stroke="#0E0E0E" stroke-width="9" stroke-linecap="round"/></svg>
+   <svg id="gSave" style="position:absolute;left:400px;top:520px;opacity:0" width="150" height="150" viewBox="0 0 104 104"><rect x="6" y="6" width="92" height="92" rx="18" fill="#7FD14B" stroke="#0E0E0E" stroke-width="6"/><rect x="24" y="6" width="50" height="30" rx="4" fill="#fff" stroke="#0E0E0E" stroke-width="3"/><rect x="58" y="12" width="8" height="18" rx="2" fill="#0E0E0E"/><rect x="22" y="54" width="60" height="36" rx="6" fill="#fff" stroke="#0E0E0E" stroke-width="3"/></svg>
+  </div>
+  <div class="tag lime" id="gTagS" style="left:360px;top:640px"><span class="tl">SAVE</span></div>
+  <div class="card" id="gLog" style="top:350px;height:170px;background:#14151A;border-color:#14151A;opacity:0;display:flex;align-items:center;padding:0 34px;gap:26px">
+   <svg width="104" height="104" viewBox="0 0 104 104" style="flex:none"><rect x="6" y="6" width="92" height="92" rx="18" fill="#7FD14B" stroke="#F2F2EE" stroke-width="6"/><rect x="24" y="6" width="50" height="30" rx="4" fill="#F2F2EE"/><rect x="58" y="12" width="8" height="18" rx="2" fill="#14151A"/><rect x="22" y="54" width="60" height="36" rx="6" fill="#F2F2EE"/></svg>
+   <div style="font-family:JBM,monospace;font-weight:500;font-size:36px;line-height:44px;color:#F2F2EE;white-space:nowrap"><span style="color:#F5D76E">ab0955b</span> Tip calculator works</div></div>
+  <div class="tag" id="gTagC" style="left:700px;top:322px"><span class="tl">COMMIT</span></div>
+  <div class="hdr" data-decor><div class="st" style="left:56px">9:41</div><div class="st" style="right:56px">5G &#9646;&#9646;&#9646;</div><div class="ti"><div class="n">Save before the boss</div></div></div>
+ </div>
+ <!-- ===== H: Git makes the save, GitHub keeps a copy (L6) ===== -->
+ <div class="scr" id="scrH">
+  <div class="card" id="hGit" style="top:340px;height:330px;opacity:0">
+   <img class="logo" src="assets/git-logo.svg" style="position:absolute;left:40px;top:44px;width:200px">
+   <div class="term" style="left:270px;top:34px;width:610px;padding:12px 18px 14px;box-shadow:none;height:262px"><div class="ln" id="hL1" style="font-size:26px"></div><div class="ln" id="hL2" style="font-size:29px"></div><div class="ln" id="hL3" style="font-size:29px"></div><div class="ln" id="hL4" style="font-size:29px"></div></div>
+  </div>
+  <svg class="curve" id="hCv" viewBox="0 0 1080 1920"><path id="hCvp" d="M 540 676 C 600 720, 480 740, 540 780" style="opacity:0"/><circle cx="540" cy="780" r="9" fill="#fff" stroke="#0E0E0E" stroke-width="5" id="hCvd" opacity="0"/></svg>
+  <div class="card" id="hHub" style="top:800px;height:360px;opacity:0;overflow:hidden">
+   <div style="height:120px;border-bottom:5px solid var(--ink);background:#F3F3EE;display:flex;align-items:center;padding:0 30px;gap:20px"><img class="logo" src="assets/github-lockup.svg" style="width:300px"><span style="margin-left:auto;font-weight:800;font-size:34px;border:4px solid var(--ink);border-radius:14px;padding:4px 14px;background:#fff">tipcalc</span></div>
+   <div style="padding:20px 30px;display:flex;flex-direction:column;gap:12px" id="hRows"></div></div>
+  <div id="hLap" data-decor style="position:absolute;left:300px;top:1420px;width:430px;height:220px;opacity:0"></div>
+  <svg class="curve" viewBox="0 0 1080 1920"><path id="hUp" d="M 515 1410 C 440 1330, 440 1250, 515 1170" style="opacity:0"/></svg>
+  <div class="tag lime" id="hTag" style="left:700px;top:772px"><span class="tl">A COPY</span></div>
+  <div class="hdr" data-decor><div class="st" style="left:56px">9:41</div><div class="st" style="right:56px">5G &#9646;&#9646;&#9646;</div><div class="ti"><div class="n">Git &middot; GitHub</div></div></div>
+ </div>
+ <!-- ===== I: push, clone, branch, merge on one timeline (L7-L9) ===== -->
+ <div class="scr" id="scrI">
+  <div class="card" id="iHub" style="top:330px;height:290px;overflow:hidden;opacity:0">
+   <div style="height:104px;border-bottom:5px solid var(--ink);background:#F3F3EE;display:flex;align-items:center;padding:0 26px;gap:18px"><img class="logo" src="assets/github-lockup.svg" style="width:260px"><span style="margin-left:auto;font-weight:800;font-size:32px;border:4px solid var(--ink);border-radius:14px;padding:3px 12px;background:#fff">tipcalc</span></div>
+   <div style="padding:14px 26px;display:flex;flex-direction:column;gap:6px" id="iRows"></div></div>
+  <div id="iTime" style="position:absolute;left:0;top:640px;width:1080px;height:230px"></div>
+  <svg class="curve" id="iCv" viewBox="0 0 1080 1920"><path d="M 150 790 L 930 790" style="stroke-dasharray:none;stroke-width:8;stroke:#14151A"/><path id="iFork" d="M 640 790 C 700 690, 800 690, 860 700 L 880 700" pathLength="1" style="stroke:#E5484D;stroke-dasharray:1;stroke-dashoffset:1;stroke-width:8"/><path id="iJoin" d="M 880 700 C 920 700, 930 760, 930 790" pathLength="1" style="stroke:#E5484D;stroke-dasharray:1;stroke-dashoffset:1;stroke-width:8"/></svg>
+  <div id="iDev1" data-decor style="position:absolute;left:60px;top:1400px;width:430px;height:210px;opacity:0;"></div>
+  <div id="iDev2" data-decor style="position:absolute;left:550px;top:1400px;width:430px;height:210px;opacity:0;"></div>
+  <div class="term" id="iT1" style="top:1100px;height:136px;padding:10px 24px;opacity:0"><div class="ln" id="iT1a" style="font-size:30px;height:40px;line-height:40px"></div><div class="ln" id="iT1b" style="font-size:30px;height:40px;line-height:40px"></div><div class="ln" id="iT1c" style="font-size:30px;height:40px;line-height:40px"></div></div>
+  <div class="term" id="iT2" style="top:1100px;height:136px;padding:10px 24px;opacity:0"><div class="ln" id="iT2a" style="font-size:30px;height:40px;line-height:40px"></div><div class="ln" id="iT2b" style="font-size:30px;height:40px;line-height:40px"></div><div class="ln" id="iT2c" style="font-size:30px;height:40px;line-height:40px"></div></div>
+  <div class="term" id="iT3" style="top:1100px;height:136px;padding:10px 24px;opacity:0"><div class="ln" id="iT3a" style="font-size:30px;height:40px;line-height:40px"></div><div class="ln" id="iT3b" style="font-size:30px;height:40px;line-height:40px"></div><div class="ln" id="iT3c" style="font-size:30px;height:40px;line-height:40px"></div></div>
+  <div class="term" id="iT4" style="top:1100px;height:136px;padding:10px 24px;opacity:0"><div class="ln" id="iT4a" style="font-size:30px;height:40px;line-height:40px"></div><div class="ln" id="iT4b" style="font-size:30px;height:40px;line-height:40px"></div><div class="ln" id="iT4c" style="font-size:30px;height:40px;line-height:40px"></div></div>
+  <div class="chip2" id="iC1" style="left:90px;top:930px">MY LAPTOP</div><div class="chip2" id="iC2" style="left:590px;top:930px;opacity:0">NEW LAPTOP</div>
+  <div class="tag lime" id="iTag1" style="left:90px;top:640px"><span class="tl">PUSH</span></div>
+  <div class="tag lime" id="iTag2" style="left:590px;top:640px"><span class="tl">CLONE</span></div>
+  <div class="tag red" id="iTag3" style="left:700px;top:640px"><span class="tl">BRANCH</span></div>
+  <div class="tag lime" id="iTag4" style="left:700px;top:640px"><span class="tl">MERGE</span></div>
+  <div class="hdr" data-decor><div class="st" style="left:56px">9:41</div><div class="st" style="right:56px">5G &#9646;&#9646;&#9646;</div><div class="ti"><div class="n">Your saves, everywhere</div></div></div>
+ </div>
+ <!-- ===== J: the sentence to say (L10, L11) ===== -->
+ <div class="scr" id="scrJ"></div>
+ <div id="kb" data-decor></div>
+</div></div></div>
+<script>
+window.buildWorld=function(tl){
+ const C=window.__CUES,D=C.D,Ls=C.lines,TOM=!!window.__TOM,q=s=>[...document.querySelectorAll(s)];
+ const L=n=>Ls.find(l=>l.n===n);
+ const W=n=>{const ln=L(n);const ws=ln.text.trim().split(/\s+/);if(ln.words&&ln.words.length===ws.length)return ln.words.map(x=>[x[0],x[1]]);
+  const wg=ws.map((w,i)=>w.length+1+(i<ws.length-1&&/[,:.?!]$/.test(w)?2.5:0)),tot=wg.reduce((a,b)=>a+b,0),dur=ln.end-ln.start;let t=ln.start;return ws.map((w,i)=>{const a=t;t+=dur*wg[i]/tot;return[a,t]});};
+ let sd=23;const R=()=>{sd=(sd*16807)%2147483647;return(sd-1)/2147483646;};
+ // ---------------- phone UI generator (screens A, D, J share it) ----------------
+ const sparkle='<svg width="52" height="52" viewBox="0 0 52 52"><path d="M26 3C28 17 35 24 49 26 35 28 28 35 26 49 24 35 17 28 3 26 17 24 24 17 26 3Z" fill="#7FD14B" stroke="#0E0E0E" stroke-width="3.5" stroke-linejoin="round"/></svg>';
+ const person='<svg viewBox="0 0 64 64"><circle cx="32" cy="24" r="12" fill="#fff" stroke="#0E0E0E" stroke-width="4"/><path d="M10 56c2-16 42-16 44 0" fill="#fff" stroke="#0E0E0E" stroke-width="4"/></svg>';
+ const upArrow='<svg viewBox="0 0 36 36"><path d="M18 30V8M8 17L18 7l10 10" fill="none" stroke="#0E0E0E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+ const hdr=(t,s)=>'<div class="hdr" data-decor><div class="st" style="left:56px">9:41</div><div class="st" style="right:56px">5G &#9646;&#9646;&#9646;</div><div class="ic" style="left:40px"><b></b><b></b></div><div class="ic" style="right:40px"><b style="width:30px;height:30px;border-radius:8px;background:none;border:6px solid #0E0E0E"></b></div><div class="ti">'+sparkle+'<div class="n">'+t+'</div></div><div class="sub">'+s+'</div></div>';
+ const comp=(p)=>'<div class="comp" id="'+p+'Comp"><div class="av">'+person+'</div><div class="tx" id="'+p+'Tx"></div><div class="sn" id="'+p+'Sn">'+upArrow+'</div></div>';
+ const appCard=(p,top,h)=>'<div class="app" id="'+p+'App" style="top:'+top+'px;height:'+h+'px"><div class="ah"><i></i><i></i><i></i><span>Tip calculator</span></div><div class="ab"><div class="fld">Bill <b>80</b></div><div class="res"><span id="'+p+'Bad" style="color:#E5484D;position:absolute;left:0;top:0;white-space:nowrap">Each pays NaN</span><span id="'+p+'Ok" style="position:absolute;left:0;top:0;opacity:0;white-space:nowrap">Tip 12.00 &middot; Total 92.00</span><span style="visibility:hidden">Tip 12.00 &middot; Total 92.00</span></div></div></div>';
+ document.getElementById('scrA').innerHTML=appCard('a',330,330)+
+  '<svg class="curve" viewBox="0 0 1080 1920" id="aCrack"><path id="aCr1" d="M 640 336 L 600 420 L 660 470 L 590 560 L 640 640" pathLength="1" style="stroke:#E5484D;stroke-width:8;stroke-dasharray:1;stroke-dashoffset:1;stroke-linejoin:round"/><path id="aCr2" d="M 600 420 L 480 440 L 430 520 L 330 540" pathLength="1" style="stroke:#E5484D;stroke-width:6;stroke-dasharray:1;stroke-dashoffset:1;stroke-linejoin:round"/><path id="aCr3" d="M 660 470 L 780 500 L 850 580 L 930 600" pathLength="1" style="stroke:#E5484D;stroke-width:6;stroke-dasharray:1;stroke-dashoffset:1;stroke-linejoin:round"/></svg>'+
+  '<div class="tag red" id="aTag" style="left:700px;top:296px"><span class="tl">A BAD EDIT</span></div>'+
+  '<div class="term" id="aTerm" style="top:700px;height:318px"><div class="tb"><i></i><i></i><i></i><span>real git run, 7 Nov 2026</span></div><div class="ln" id="aL1"></div><div class="ln" id="aL2"></div><div class="ln" id="aL3"></div><div class="ln" id="aL4"></div><div class="ln" id="aL5"></div></div>'+
+  '<div class="ub" id="aSent" style="top:1040px">go back to the last version that worked</div>'+comp('a')+hdr('Your AI','builds the app, you steer');
+ document.getElementById('scrD').innerHTML=appCard('d',330,330)+
+  '<div class="ub" id="dSent" style="top:730px">Build me an app</div>'+
+  '<div class="card" id="dSave" style="top:800px;height:210px;opacity:0;background:#F3F3EE"><div style="position:absolute;left:34px;top:40px;display:flex;align-items:center;gap:22px"><div style="width:130px;height:130px;border-radius:30px;border:6px solid #A9A99F;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:72px;color:#A9A99F" id="dQ">?</div><div style="font-weight:900;font-size:60px;color:#A9A99F;letter-spacing:-.03em">Save</div><div style="margin-left:20px;width:230px;height:30px;border-radius:15px;background:#D6D6CC"></div></div></div>'+
+  comp('d')+hdr('Your AI','builds the app, you steer');
+ document.getElementById('scrJ').innerHTML='<div class="ub" id="jSent" style="top:960px">save this version</div>'+
+  '<div class="say" id="jSay" style="top:400px"><div class="k">SAY THIS TO YOUR AI</div><div class="t" id="jT">save this version</div></div>'+
+  '<div class="rcp" id="jRcp" style="top:790px"><svg viewBox="0 0 110 100"><path d="M6 46L104 6 74 94 54 62Z" fill="#fff" stroke="#0E0E0E" stroke-width="6" stroke-linejoin="round"/><path d="M104 6L54 62 52 88 40 56Z" fill="#D6D6CC" stroke="#0E0E0E" stroke-width="6" stroke-linejoin="round"/></svg><span>Send to the friend who builds with AI</span></div>'+
+  '<div id="jKey" style="position:absolute;left:80px;top:930px;width:920px;height:230px;opacity:0"><svg id="jKeyS" width="150" height="150" viewBox="0 0 150 150" style="position:absolute;left:40px;top:40px"><circle cx="48" cy="75" r="30" fill="#F5D76E" stroke="#0E0E0E" stroke-width="8"/><circle cx="48" cy="75" r="9" fill="#fff" stroke="#0E0E0E" stroke-width="5"/><path d="M78 75H140M118 75v24M104 75v16" stroke="#0E0E0E" stroke-width="10" stroke-linecap="round"/></svg><svg id="jLock" width="150" height="150" viewBox="0 0 150 150" style="position:absolute;left:250px;top:40px;opacity:0"><path d="M42 66V48a33 33 0 0 1 66 0v18" fill="none" stroke="#0E0E0E" stroke-width="12" stroke-linecap="round"/><rect x="26" y="64" width="98" height="76" rx="18" fill="#7FD14B" stroke="#0E0E0E" stroke-width="8"/><circle cx="75" cy="98" r="10" fill="#0E0E0E"/></svg><div class="tag" id="jTom" style="left:440px;top:78px;opacity:0"><span class="tl">TOMORROW</span></div><div style="position:absolute;left:440px;top:150px;font-weight:800;font-size:40px;line-height:46px;opacity:0" id="jTomT">why AI says: hide the secret key</div></div>'+
+  comp('j')+hdr('Your AI','builds the app, you steer');
+ // ---------------- keyboard (chrome) ----------------
+ const kb=document.getElementById('kb'),keys={};
+ [['Q','W','E','R','T','Y','U','I','O','P'],['A','S','D','F','G','H','J','K','L'],['Z','X','C','V','B','N','M']].forEach((r,ri)=>{const w=96,g=10,tot=r.length*w+(r.length-1)*g,x0=(1080-tot)/2;r.forEach((c,i)=>{const e=document.createElement('div');e.className='k';e.textContent=c;e.style.cssText=`left:${x0+i*(w+g)}px;top:${104+ri*126}px;width:${w}px`;kb.appendChild(e);keys[c]=e;});});
+ [['123',30,482,150],[' ',200,482,680],['⏎',900,482,150]].forEach(([c,x,y,w])=>{const e=document.createElement('div');e.className='k';e.textContent=c===' '?'':c;e.style.cssText=`left:${x}px;top:${y}px;width:${w}px`;kb.appendChild(e);keys[c==='123'?'sym':c==='⏎'?'ret':' ']=e;});
+ const SG=[['Build','Make','Please'],['me','my','a'],['an','a','the'],['app','apps','application'],['save','safe','saved'],['this','the','that'],['version','versions','vision']];let sgn=0;
+ const sugg=t=>{const tr=SG[sgn%SG.length];sgn++;[0,1,2].forEach(i=>{const e=document.createElement('div');e.className='sg';e.textContent=tr[i];e.style.left=(20+i*350)+'px';kb.appendChild(e);tl.set(e,{opacity:1},t);tl.set(e,{opacity:0},t+.6);});};
+ // ---------------- helpers ----------------
+ const mkTx=(sel,text)=>{const el=document.querySelector(sel);el.innerHTML=[...text].map(ch=>'<span>'+ch.replace('&','&amp;')+'</span>').join('');return[...el.children];};
+ const press=(ch,t)=>{const k=keys[ch.toUpperCase()]||(ch===' '?keys[' ']:keys.sym);if(!k)return;tl.fromTo(k,{backgroundColor:'#7FD14B',y:5,scale:.93},{backgroundColor:'#ffffff',y:0,scale:1,duration:.16,ease:'power2.out',immediateRender:false},t);};
+ const typeRun=(spans,text,a,b)=>{const n=text.length,wg=[];let s=0;for(let i=0;i<n;i++){const v=.55+.9*R()+(text[i]===' '?.5:0)+((i%7===3)?.5*R():0);wg.push(v);s+=v;}
+  let acc=0,lastKey=-9;for(let i=0;i<n;i++){const t=a+(b-a)*acc/s;acc+=wg[i];tl.set(spans[i],{opacity:1},t);if(t-lastKey>.07){press(text[i],t);lastKey=t;}if(text[i]===' '||i===0)sugg(t);}};
+ const sendBtn=(sel,t)=>tl.fromTo(sel,{backgroundColor:'#7FD14B',scale:1.15},{backgroundColor:'#C9C9BF',scale:1,duration:.5,ease:'power2.out',immediateRender:false},t);
+ // terminal line: html segments [{t:'text',c:'class'}]; typed char by char when typed=true (natural speed), else appears at once
+ const term=(sel,segs,a,b,typed)=>{const el=document.querySelector(sel);let html='';let ci=0;const spans=[];segs.forEach(s=>{html+=[...s.t].map(ch=>{const o='<span class="ch '+(s.c||'')+'" data-i="'+(ci++)+'">'+(ch===' '?'&nbsp;':ch)+'</span>';return o;}).join('');});el.innerHTML=html;const cs=[...el.children];
+  if(!typed){tl.set(cs,{opacity:1},a);return;}const n=cs.length;let sm=0;const wg=cs.map(()=>{const v=.6+R()*.8;sm+=v;return v;});let acc=0;cs.forEach((c,i)=>{tl.set(c,{opacity:1},a+(b-a)*acc/sm);acc+=wg[i];});};
+ const cmd=(sel,text,a,b)=>term(sel,[{t:'$ ',c:'p'},{t:text,c:''}],a,b,true);
+ const tagIn=(sel,t)=>{tl.fromTo(sel,{opacity:0,y:18,scale:.8,rotation:-4},{opacity:1,y:0,scale:1,rotation:-1.5,duration:.55,ease:'power3.out',transformOrigin:'50% 50%'},t);tl.to(sel,{rotation:1.4,duration:1.3,ease:'sine.inOut',yoyo:true,repeat:6},t+.6);};
+ const scramble=(sel,t0)=>{const el=document.querySelector(sel),fin=el.textContent;el.style.position='relative';el.innerHTML='<span style="opacity:0">'+fin+'</span>';const real=el.firstChild;tl.set(real,{opacity:0},0);tl.set(real,{opacity:1},t0+.32);
+  for(let k=0;k<4;k++){const s=[...fin].map(c=>c===' '?' ':'ABCDEFGHJKLMNOPRSTUVWXYZ'[Math.floor(R()*24)]).join('');const sp=document.createElement('span');sp.style.cssText='position:absolute;left:0;top:0;white-space:nowrap;opacity:0';sp.textContent=s;el.appendChild(sp);tl.set(sp,{opacity:1},t0+k*.075);tl.set(sp,{opacity:0},t0+(k+1)*.075);}};
+ const tagS=(sel,t)=>{tagIn(sel,t);scramble(sel+' .tl',t+.05);};
+ const rise=(sel,t,dy)=>tl.fromTo(sel,{opacity:0,y:dy,rotation:(R()-.5)*4,scale:.96},{opacity:1,y:0,rotation:0,scale:1,duration:.62+R()*.25,ease:'power3.out',transformOrigin:'50% 50%'},t);
+ const pulses=(sels,a,b,step,amp)=>{let last=-1,tt=a+R()*.2;while(tt<b-.6){let k=Math.floor(R()*sels.length);if(k===last)k=(k+1)%sels.length;last=k;const d=.34+R()*.28,am=(amp||.03)*(.55+R()*.8);tl.fromTo(sels[k],{scale:1},{scale:1+am,duration:d,ease:R()<.5?'sine.out':'power2.out',yoyo:true,repeat:1,immediateRender:false,transformOrigin:'50% 50%'},tt);tt+=Math.max(.55,step*(.65+R()*.9));}};
+ const idle=(sels,a,b,seed)=>sels.forEach((s,i)=>{let r=(seed+i*7)%97/97+.1,t=a+((seed*.37+i*.23)%.6);while(t<b-.3){r=(r*9301+49297)%233280/233280;const d=.9+r*1.0;tl.to(s,{x:(r-.5)*10,rotationY:(r-.4)*3.2,rotationX:(.5-r)*2,skewX:(r-.5)*.9,duration:d,ease:'sine.inOut',transformOrigin:'50% 50%'},t);t+=d;}});
+ const flight=(out,inn,t,kbOn)=>{tl.to(out,{filter:'blur(12px)',duration:.16,ease:'power1.in'},t);tl.to(out,{x:-300,rotationY:24,scale:.93,opacity:0,duration:.5,ease:'power2.in'},t+.06);tl.set(out,{visibility:'hidden'},t+.6);
+  tl.set(inn,{visibility:'visible',filter:'blur(12px)',opacity:0},t+.1);tl.fromTo(inn,{x:320,rotationY:-26,scale:.93,opacity:0},{x:0,rotationY:0,scale:1,opacity:1,duration:.8,ease:'power3.out'},t+.14);tl.to(inn,{filter:'blur(0px)',duration:.45,ease:'power2.out'},t+.34);
+  tl.to('#kb',{opacity:kbOn?1:0,duration:.4,ease:'sine.inOut'},t+.15);};
+ // ---------------- continuous camera ----------------
+ tl.set('#scrA,#scrB,#scrD,#scrG,#scrH,#scrI,#scrJ',{transformPerspective:1500,transformOrigin:'540px 900px'},0);
+ tl.set('#cam',{transformPerspective:1700,transformOrigin:'540px 900px'},0);tl.set('#world',{transformOrigin:'540px 900px'},0);tl.set('#cam2',{transformPerspective:1700},0);
+ const osc=(sel,prop,amp,per,ph)=>tl.fromTo(sel,{[prop]:amp*ph},{[prop]:-amp*ph,duration:per,ease:'sine.inOut',yoyo:true,repeat:Math.ceil(D/per)+1},0);
+ osc('#cam','rotationX',1.9,4.3,.8);osc('#cam','rotationY',1.5,5.3,-.9);osc('#cam','y',12,2.3,1);osc('#world','rotation',.5,3.1,-1);
+ const beat=(t,y,rx,ry,sc,dur)=>tl.to('#cam2',{y:y,rotationX:rx,rotationY:ry,scale:sc,duration:dur||1.3,ease:'sine.inOut',transformOrigin:'540px 760px'},t);
+ tl.fromTo('#gd',{backgroundPosition:'27px 27px'},{backgroundPosition:'27px 400px',duration:D,ease:'none'},0);
+ // keyboard on from the start (screen A)
+ tl.set('#kb',{opacity:1},0);
+ const l1=L(1),l2=L(2),l3=L(3),l4=L(4),l5=L(5),l6=L(6),l7=L(7),l8=L(8),l9=L(9),l10=L(10),l11=TOM?L(11):null;
+ const w1=W(1),w2=W(2),w3=W(3),w5=W(5),w6=W(6),w9=W(9);
+ // ====================== A: app died, one sentence, app back ======================
+ cmd('#aL1','node app.js 80',.15,.9);
+ term('#aL2',[{t:'Each pays NaN',c:'er'}],1.0,0,false);
+ tl.fromTo('#aCr1',{strokeDashoffset:1},{strokeDashoffset:0,duration:1.1,ease:'power2.out'},.3);tl.fromTo('#aCr2',{strokeDashoffset:1},{strokeDashoffset:0,duration:.9,ease:'power2.out'},.8);tl.fromTo('#aCr3',{strokeDashoffset:1},{strokeDashoffset:0,duration:.9,ease:'power2.out'},1.0);
+ tl.fromTo('#aApp',{backgroundColor:'#fff'},{backgroundColor:'#E4E4DE',duration:1.0,ease:'sine.inOut',immediateRender:false},.4);
+ tl.fromTo('#aBad',{x:0},{x:6,duration:.07,ease:'sine.inOut',yoyo:true,repeat:5,immediateRender:false},1.0);
+ tagS('#aTag',.5);
+ tl.fromTo('#aApp',{rotation:0},{rotation:-.6,duration:2.2,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},1.2);
+ const sA=['go back to the last version that worked'][0],txA=mkTx('#aTx',sA);
+ const tA0=Math.max(2.6,w1[5][0]-.1),tA1=w2[w2.length-1][0]-.1;
+ typeRun(txA,sA,tA0,tA1);
+ const tSendA=tA1+.2;sendBtn('#aSn',tSendA);tl.to(txA,{opacity:0,duration:.1},tSendA+.04);rise('#aSent',tSendA+.08,110);
+ cmd('#aL3','git restore app.js',tSendA+.15,tSendA+.55);
+ cmd('#aL4','node app.js 80',tSendA+.6,tSendA+.9);
+ term('#aL5',[{t:'Bill 80 -> tip 12.00, total 92.00',c:'ok'}],tSendA+.95,0,false);
+ const tHeal=tSendA+.95;
+ tl.to('#aCr1,#aCr2,#aCr3',{opacity:0,duration:.35,ease:'sine.in'},tHeal);
+ tl.to('#aApp',{backgroundColor:'#EAF6DF',duration:.5,ease:'sine.inOut'},tHeal);
+ tl.to('#aBad',{opacity:0,duration:.25},tHeal);tl.to('#aOk',{opacity:1,duration:.4,ease:'sine.out'},tHeal+.1);
+ tl.to('#aTag',{opacity:0,duration:.25},tHeal);
+ tl.fromTo('#aApp',{scale:1},{scale:1.03,duration:.45,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},tHeal+.1);
+ beat(0,6,.6,-.4,1.02,1.4);beat(tA0,10,-.6,.6,1.015,1.6);
+ // ====================== B: save point exists ======================
+ const tFB=l3.start-.38;flight('#scrA','#scrB',tFB,false);
+ const b0=tFB+.7;
+ const tGh=Math.max(b0,w3[8][0]-.2),tLog=Math.max(b0,w3[5][0]-.3);
+ rise('#bLog',tLog,90);tl.fromTo('#bSave',{scale:.6,rotation:-12},{scale:1,rotation:0,duration:.7,ease:'power3.out',immediateRender:false,transformOrigin:'50% 50%'},tLog+.2);
+ tl.fromTo('#bSave',{y:0},{y:-8,duration:.6,ease:'sine.inOut',yoyo:true,repeat:9},tLog+.9);
+ tagS('#bTag',tLog+.5);
+ rise('#bGh',tGh,80);tl.fromTo('#bCvp',{opacity:0},{opacity:1,duration:.5,ease:'sine.out',immediateRender:false},tGh+.4);tl.fromTo('#bCvp',{strokeDashoffset:0},{strokeDashoffset:-80,duration:3,ease:'none',immediateRender:false},tGh+.4);
+ // game-style save slots in the lower frame
+ const slots=document.getElementById('bSlots');slots.innerHTML=[0,1,2].map(i=>'<div id="bs'+i+'" style="position:absolute;left:'+(80+i*320)+'px;top:20px;width:280px;height:340px;border:7px '+(i?'dashed':'solid')+' var(--ink);border-radius:30px;background:'+(i?'rgba(255,255,255,.55)':'#fff')+';box-shadow:'+(i?'none':'8px 8px 0 var(--ink)')+'"><div style="position:absolute;left:20px;top:18px;font-weight:900;font-size:34px;color:'+(i?'#A9A99F':'#0E0E0E')+'">SLOT '+(i+1)+'</div>'+(i?'':'<div style="position:absolute;left:30px;top:80px;width:220px;height:170px;border-radius:20px;border:5px solid var(--ink);background:#EAF6DF"><div style="margin:18px;font-weight:900;font-size:26px;line-height:32px">Tip<br>12.00</div></div><div style="position:absolute;left:20px;bottom:18px;font-family:JBM,monospace;font-size:30px;color:#B58A00;font-weight:700">ab0955b</div>')+'</div>').join('');
+ tl.fromTo('#bs0',{opacity:0,y:60},{opacity:1,y:0,duration:.7,ease:'power3.out',immediateRender:false},tLog+.1);tl.fromTo('#bs1,#bs2',{opacity:0,y:60},{opacity:1,y:0,duration:.6,ease:'power3.out',stagger:.15,immediateRender:false},tLog+.4);
+ beat(tFB+.6,-8,.8,.7,1.02,1.6);
+ // ====================== D: nobody shows you this ======================
+ const tFD=l4.start-.38;flight('#scrB','#scrD',tFD,true);
+ const d0=tFD+.7,mD='Build me an app',txD=mkTx('#dTx',mD);
+ typeRun(txD,mD,d0,d0+.9);const tSD=d0+1.0;sendBtn('#dSn',tSD);tl.to(txD,{opacity:0,duration:.1},tSD+.04);rise('#dSent',tSD,420);
+ tl.set('#dApp',{opacity:0},0);rise('#dApp',tSD+.35,60);
+ rise('#dSave',tSD+.8,70);tl.fromTo('#dQ',{scale:1,rotation:-8},{scale:1.18,rotation:8,duration:.5,ease:'sine.inOut',yoyo:true,repeat:5,immediateRender:false,transformOrigin:'50% 50%'},tSD+1.0);
+ beat(tFD+.6,6,.7,-.5,1.02,1.4);
+ // ====================== G: game save = commit ======================
+ const tFG=l5.start-.38;flight('#scrD','#scrG',tFG,false);
+ const g0=tFG+.7;
+ rise('#gGame',g0-.1,60);
+ tl.fromTo('#gHero',{x:0},{x:360,duration:Math.max(1.5,w5[3][0]-g0),ease:'sine.inOut',immediateRender:false},g0);
+ tl.fromTo('#gHero',{y:0},{y:-10,duration:.28,ease:'sine.inOut',yoyo:true,repeat:Math.round((w5[3][0]-g0)/.28),immediateRender:false},g0);
+ tl.fromTo('#gBoss',{rotation:-2,scale:1},{rotation:3,scale:1.03,duration:.55,ease:'sine.inOut',yoyo:true,repeat:8,immediateRender:false,transformOrigin:'50% 100%'},g0);
+ const tSv=w5[4][0];tl.fromTo('#gSave',{opacity:0,scale:.4,y:30},{opacity:1,scale:1,y:0,duration:.6,ease:'power3.out',immediateRender:false,transformOrigin:'50% 50%'},tSv);tl.fromTo('#gSave',{y:0},{y:-12,duration:.5,ease:'sine.inOut',yoyo:true,repeat:7,immediateRender:false},tSv+.7);
+ tagS('#gTagS',tSv+.15);
+ // "In an app, that save is a commit": the game card shrinks away, the real log line takes its place
+ const tApp=w5[9][0];
+ tl.to('#gGame',{y:470,scale:.62,duration:.9,ease:'power2.inOut',transformOrigin:'50% 0%'},tApp-.1);tl.to('#gTagS',{opacity:0,duration:.25},tApp-.1);
+ rise('#gLog',tApp+.1,80);tagS('#gTagC',w5[15][0]-.1);
+ // hero and boss ground stay as decoration lower in the frame (tiny strip)
+ beat(tFG+.6,-6,.6,.8,1.02,1.5);
+ // ====================== H: Git makes the save, GitHub keeps a copy ======================
+ const tFH=l6.start-.38;flight('#scrG','#scrH',tFH,false);
+ const h0=tFH+.7;
+ rise('#hGit',h0-.1,70);
+ cmd('#hL1','git commit -m Tip calculator works',w6[0][0]+.05,w6[3][1]);
+ term('#hL2',[{t:'[main (root-commit) ab0955b]',c:'yl'}],w6[3][1]+.1,0,false);term('#hL3',[{t:' Tip calculator works',c:'gy'}],w6[3][1]+.1,0,false);
+ const rows=document.getElementById('hRows');rows.innerHTML='<div class="cmt" id="hr1"><i></i><b>ab0955b</b> Tip calculator works</div><div class="cmt" style="opacity:.4"><i style="background:#fff"></i>app.js</div>';
+ const tHub=Math.max(h0+.3,w6[4][0]-.2);rise('#hHub',tHub,90);tl.fromTo('#hCvp',{opacity:0},{opacity:1,duration:.5,ease:'sine.out',immediateRender:false},tHub);tl.fromTo('#hCvp',{strokeDashoffset:0},{strokeDashoffset:-80,duration:3,ease:'none',immediateRender:false},tHub);
+ tl.fromTo('#hCvd',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.3,ease:'power3.out',transformOrigin:'50% 50%',immediateRender:false},tHub+.7);
+ tl.fromTo('#hr1',{opacity:0,x:-30},{opacity:1,x:0,duration:.5,ease:'power3.out',immediateRender:false},tHub+.6);
+ tagS('#hTag',w6[7][0]-.1);
+ document.getElementById('hLap').innerHTML='<div style="position:absolute;left:30px;top:0;width:370px;height:150px;border:7px solid var(--ink);border-radius:20px 20px 6px 6px;background:#EAF6DF"><div style="margin:14px 20px;font-weight:900;font-size:30px;line-height:36px">Tip calculator</div><div style="margin:0 20px;font-weight:900;font-size:34px">Tip 12.00 &middot; Total 92.00</div></div><div style="position:absolute;left:0;top:150px;width:430px;height:26px;border:7px solid var(--ink);border-radius:6px 6px 24px 24px;background:#D6D6CC"></div>';
+ tl.fromTo('#hLap',{opacity:0,y:60},{opacity:1,y:0,duration:.7,ease:'power3.out',immediateRender:false},w6[2][0]);
+ tl.fromTo('#hUp',{opacity:0},{opacity:1,duration:.4,immediateRender:false},tHub+.3);tl.fromTo('#hUp',{strokeDashoffset:0},{strokeDashoffset:-80,duration:3,ease:'none',immediateRender:false},tHub+.3);
+ beat(tFH+.6,-10,.9,-.6,1.025,1.6);
+ // ====================== I: push, clone, branch, merge ======================
+ const tFI=l7.start-.38;flight('#scrH','#scrI',tFI,false);
+ const i0=tFI+.7;
+ // timeline: four real commits
+ const H4=[['ab0955b','Tip calculator works'],['49f0a7d','AI: round the tip'],['936e268','Revert "AI: round the tip"'],['8a3b55f','Split the bill']];
+ const itl=document.getElementById('iTime');itl.innerHTML=H4.map((h,i)=>'<div id="id'+i+'" class="dotp" style="left:'+(130+i*200)+'px;top:778px;position:absolute;opacity:0"></div><div id="ih'+i+'" style="position:absolute;left:'+(70+i*200)+'px;top:826px;width:170px;font-family:JBM,monospace;font-weight:700;font-size:26px;color:#5B5B55;opacity:0;text-align:center;white-space:nowrap">'+h[0]+'</div>').join('');
+ itl.style.top='0px';itl.style.height='1900px';
+ const iR=document.getElementById('iRows');iR.innerHTML=H4.slice().reverse().map((h,i)=>'<div class="cmt" id="ir'+i+'" style="opacity:0"><i></i><b>'+h[0]+'</b> '+h[1]+'</div>').join('');
+ tl.fromTo('#iHub',{opacity:0,y:70},{opacity:1,y:0,duration:.7,ease:'power3.out',immediateRender:false},i0-.2);
+ H4.forEach((h,i)=>{tl.fromTo('#id'+i,{opacity:0,scale:.3},{opacity:1,scale:1,duration:.5,ease:'power3.out',immediateRender:false,transformOrigin:'50% 50%'},i0+i*.12);tl.fromTo('#ih'+i,{opacity:0},{opacity:1,duration:.4,immediateRender:false},i0+.2+i*.12);});
+ // devices
+ const lap=(id,label,col)=>'<div style="position:absolute;left:30px;top:0;width:370px;height:150px;border:7px solid var(--ink);border-radius:20px 20px 6px 6px;background:'+col+'" id="'+id+'Scr"><div style="margin:14px 20px;font-weight:900;font-size:30px;line-height:36px">Tip calculator</div><div style="margin:0 20px;font-weight:900;font-size:34px" id="'+id+'Rs">Tip 12.00 &middot; Total 92.00</div></div><div style="position:absolute;left:0;top:150px;width:430px;height:26px;border:7px solid var(--ink);border-radius:6px 6px 24px 24px;background:#D6D6CC"></div>';
+ document.getElementById('iDev1').innerHTML=lap('iA','MY LAPTOP','#EAF6DF');document.getElementById('iDev2').innerHTML=lap('iB','NEW LAPTOP','#fff');
+ tl.fromTo('#iDev1',{opacity:0,y:60},{opacity:1,y:0,duration:.7,ease:'power3.out',immediateRender:false},i0+.3);
+ tl.set('#iDev1,#iDev2',{scale:1.12,transformOrigin:'0 0'},0);tl.set('#iBScr',{opacity:.25},0);tl.set('#iBRs',{opacity:0},0);
+ // push (line 7)
+ const p0=l7.start+.1;
+ const show=(id,t0,t1)=>{tl.fromTo(id,{opacity:0,y:30},{opacity:1,y:0,duration:.4,ease:'power3.out',immediateRender:false},t0);if(t1)tl.to(id,{opacity:0,duration:.1,ease:'sine.in'},t1);};
+ show('#iT1',p0-.1,l8.start-.05);
+ cmd('#iT1a','git push -u origin main',p0,p0+.75);term('#iT1b',[{t:' * [new branch]      main -> main',c:'ok'}],p0+.85,0,false);
+ tagS('#iTag1',p0+.3);
+ H4.forEach((h,i)=>{tl.fromTo('#ir'+i,{opacity:0,x:-30},{opacity:1,x:0,duration:.5,ease:'power3.out',immediateRender:false},p0+.8+i*.14);});
+ const flyDots=(from,to,t,n)=>{for(let k=0;k<n;k++){const e=document.createElement('div');e.className='dotp';e.style.cssText='left:'+(from[0]+k*40)+'px;top:'+from[1]+'px;opacity:0;width:34px;height:34px';document.getElementById('scrI').appendChild(e);tl.fromTo(e,{opacity:1,x:0,y:0,scale:1},{opacity:0,x:to[0]-from[0]-k*40,y:to[1]-from[1],scale:.6,duration:.9,ease:'power2.inOut',immediateRender:false},t+k*.1);tl.set(e,{opacity:0},0);}};
+ flyDots([480,830],[480,520],p0+.5,4);
+ // clone (line 8)
+ const c0=l8.start+.05;
+ tl.to('#iTag1',{opacity:0,duration:.25},c0-.1);
+ show('#iT2',c0-.05,l9.start-.05);
+ cmd('#iT2a','git clone remote.git friend-copy',c0,c0+.75);term('#iT2b',[{t:"Cloning into 'friend-copy'...",c:'gy'}],c0+.8,0,false);term('#iT2c',[{t:'done.',c:'ok'}],c0+1.0,0,false);
+ tl.fromTo('#iDev2',{opacity:0,y:60},{opacity:1,y:0,duration:.7,ease:'power3.out',immediateRender:false},c0);tl.fromTo('#iC2',{opacity:0,y:20},{opacity:1,y:0,duration:.5,ease:'power3.out',immediateRender:false},c0+.2);
+ tagS('#iTag2',c0+.15);
+ flyDots([500,640],[760,1480],c0+.2,4);
+ tl.to('#iBScr',{opacity:1,duration:.5,ease:'sine.out'},c0+.9);tl.to('#iBRs',{opacity:1,duration:.5,ease:'sine.out'},c0+1.0);
+ // branch (line 9): fork curve, laptop turns orange; merge: rejoins, turns lime
+ const br0=l9.start+.05,mg0=w9[9][0]-.1;
+ tl.to('#iTag2',{opacity:0,duration:.25},br0-.1);
+ show('#iT3',br0-.05,mg0-.05);
+ cmd('#iT3a','git switch -c split-bill',br0,br0+.7);term('#iT3b',[{t:"Switched to a new branch 'split-bill'",c:'gy'}],br0+.75,0,false);
+ tl.to('#iFork',{strokeDashoffset:0,duration:.9,ease:'power2.inOut'},br0+.3);
+ tagS('#iTag3',br0+.35);
+ const nd=document.createElement('div');nd.className='dotp';nd.style.cssText='left:858px;top:678px;background:#E5484D;opacity:0';document.getElementById('scrI').appendChild(nd);tl.fromTo(nd,{opacity:0,scale:.3},{opacity:1,scale:1,duration:.5,ease:'power3.out',immediateRender:false,transformOrigin:'50% 50%'},br0+1.1);tl.set(nd,{opacity:0},0);
+ tl.to('#iAScr',{backgroundColor:'#FFD9C7',duration:.6,ease:'sine.inOut'},br0+.8);
+ tl.to('#iTag3',{opacity:0,duration:.25},mg0-.1);
+ show('#iT4',mg0-.05,0);
+ cmd('#iT4a','git merge split-bill',mg0,mg0+.6);term('#iT4b',[{t:'Fast-forward',c:'ok'}],mg0+.65,0,false);
+ tl.to('#iJoin',{strokeDashoffset:0,duration:.8,ease:'power2.inOut'},mg0+.3);
+ tagS('#iTag4',mg0+.3);
+ tl.to('#iAScr',{backgroundColor:'#EAF6DF',duration:.6,ease:'sine.inOut'},mg0+1.0);
+ beat(tFI+.6,-6,.8,-.7,1.02,1.6);beat(c0,8,-.6,.6,1.02,1.4);beat(br0,-8,.7,-.6,1.025,1.4);beat(mg0,6,-.5,.5,1.02,1.2);
+ // ====================== J: the sentence to say ======================
+ const tFJ=l10.start-.38;flight('#scrI','#scrJ',tFJ,true);
+ const j0=tFJ+.7,mJ='save this version',txJ=mkTx('#jTx',mJ);
+ typeRun(txJ,mJ,l10.start+.55,l10.end-.55);
+ const tSJ=l10.end-.4;sendBtn('#jSn',tSJ);tl.to(txJ,{opacity:0,duration:.1},tSJ+.04);
+ rise('#jSent',tSJ+.1,120);
+ tl.fromTo('#jSay',{opacity:0,y:70,scale:.96},{opacity:1,y:0,scale:1,duration:.7,ease:'power3.out',transformOrigin:'50% 0%',immediateRender:false},tSJ);
+ tl.fromTo('#jRcp',{opacity:0,y:40},{opacity:1,y:0,duration:.6,ease:'power3.out',immediateRender:false},tSJ+.35);
+ tl.fromTo('#jRcp svg',{x:0,y:0,rotation:0},{x:12,y:-8,rotation:-6,duration:.8,ease:'sine.inOut',yoyo:true,repeat:7,immediateRender:false},tSJ+.9);
+ if(TOM&&l11){const t11=l11.start;tl.to('#jSent',{opacity:0,duration:.3,ease:'sine.in'},t11-.1);
+  tl.fromTo('#jKey',{opacity:0,y:40},{opacity:1,y:0,duration:.6,ease:'power3.out',immediateRender:false},t11);
+  tl.to('#jKeyS',{rotation:-10,duration:.6,ease:'sine.inOut',yoyo:true,repeat:3,transformOrigin:'50% 50%'},t11+.3);
+  tl.to('#jKeyS',{opacity:.25,x:20,duration:.6,ease:'sine.inOut'},t11+1.6);tl.fromTo('#jLock',{opacity:0,scale:.4},{opacity:1,scale:1,duration:.6,ease:'power3.out',transformOrigin:'50% 50%',immediateRender:false},t11+1.7);
+  tagS('#jTom',t11+.4);tl.fromTo('#jTomT',{opacity:0,y:12},{opacity:1,y:0,duration:.5,ease:'power3.out',immediateRender:false},t11+.9);}
+ // ---- story loops that keep every screen alive: copies travelling to GitHub, a save travelling along the timeline, the AI sparkle turning
+ const loopDots=(par,from,to,a,b,per,w)=>{let k=0;for(let tt=a;tt<b-.9;tt+=per*(.85+R()*.3),k++){const e=document.createElement('div');e.className='dotp';e.style.cssText='left:'+(from[0]+(k%4)*34)+'px;top:'+from[1]+'px;opacity:0;width:'+(w||30)+'px;height:'+(w||30)+'px;border-width:5px';document.getElementById(par).appendChild(e);tl.set(e,{opacity:0},0);tl.fromTo(e,{opacity:1,x:0,y:0,scale:1},{opacity:0,x:to[0]-from[0]-(k%4)*34,y:to[1]-from[1],scale:.6,duration:.85,ease:'power2.inOut',immediateRender:false},tt);}};
+ loopDots('scrB',[330,700],[330,520],tGh+.8,tFD,.75);loopDots('scrB',[700,700],[700,520],tGh+1.0,tFD,.9);
+ loopDots('scrH',[515,1408],[515,1170],tHub+.6,tFI,.8,34);
+ tl.fromTo('#gHero',{y:0},{y:-14,duration:.3,ease:'sine.inOut',yoyo:true,repeat:Math.round((tFH-g0)/.3),immediateRender:false},g0+Math.max(1.5,w5[3][0]-g0));
+ const pu=document.createElement('div');pu.className='dotp';pu.id='iPulse';pu.style.cssText='left:128px;top:778px;background:#fff;opacity:0;width:40px;height:40px';document.getElementById('scrI').appendChild(pu);tl.set(pu,{opacity:0},0);
+ for(let tt=i0+.9,k=0;tt<tFJ-1.6;tt+=1.7,k++){tl.fromTo(pu,{opacity:1,x:0,scale:1},{opacity:1,x:800,scale:1.15,duration:1.5,ease:'sine.inOut',immediateRender:false},tt);tl.set(pu,{opacity:0},tt+1.55);}
+ ['scrA','scrD','scrJ'].forEach(s=>tl.to('#'+s+' .hdr .ti svg',{rotation:360,duration:7,ease:'none',transformOrigin:'50% 50%'},0));
+ // idle life and pulses
+ tl.set(['#aApp','#dApp','#jSay','#bLog','#bGh','#hGit','#hHub','#iHub','#gLog'],{transformPerspective:1200},0);
+ idle(['#aApp','#aTerm'],1.0,tFB,1);idle(['#bLog','#bGh'],b0+1.0,tFD,2);idle(['#dApp','#dSave'],d0+1.2,tFG,3);idle(['#gLog'],tApp+.8,tFH,4);idle(['#hGit','#hHub'],h0+1.0,tFI,5);idle(['#iHub'],i0+1.0,tFJ,6);idle(['#jSay'],tSJ+.9,D,7);
+ pulses(['#aApp','#aTerm'],1.4,tFB,.8,.02);pulses(['#bLog','#bGh'],b0+1.2,tFD,.8,.025);pulses(['#dApp','#dSave'],d0+1.5,tFG,.8,.025);pulses(['#gLog'],tApp+.9,tFH,.8,.02);pulses(['#hGit','#hHub'],h0+1.0,tFI,.8,.025);pulses(['#iHub'],i0+1.0,tFJ,.8,.02);pulses(['#jSay','#jRcp'],tSJ+1.0,D,.8,.02);
+};
+</script>

@@ -1,0 +1,34 @@
+index.html  20.20s  102 samples every 0.2s  safe box: x 65-1015, y 269-1248
+  safe area: clean (tolerance 10px)
+  within tolerance: 9px past the top line   .em  "😆"
+  within tolerance: 7px past the bottom line   #b2l2  "chance?"
+  within tolerance: 7px past the bottom line   .em  "😔"
+  within tolerance: 5px past the left line   #a1  "ChatGPT"
+  within tolerance: 5px past the left line   #a2  "timeout."
+  within tolerance: 5px past the left line   #mkA  "47-day"
+  within tolerance: 5px past the left line   .bl  "Wait... can I"
+  within tolerance: 4px past the right line   #a1  "ChatGPT"
+  within tolerance: 4px past the right line   #a2  "timeout."
+  within tolerance: 4px past the right line   .bl  "Wait... can I"
+  overlaps: none over 10px
+  within tolerance: 8px overlap  #b2l1 x .em
+  within tolerance: 7px overlap  .bl x .em
+  within tolerance: 7px overlap  .still x #e100
+====
+ep90b-final1.mp4  1080x1920  30fps  20.20s  4.6MB
+  visual change: median 0.03s, longest 4.47s
+  loudness: -29.9 LUFS integrated, peak -9.0 dBFS, LRA 6.4 LU
+  loop seam: first vs last frame differ by 0.7/255
+
+  [BLOCKER] -29.9 LUFS — target -14.0 +/-1.5
+  [warn]    20.2s is outside the 30-90s band
+  ok        1080x1920
+  ok        yuv420p
+  ok        30fps
+  ok        48kHz stereo
+  ok        length matches the build
+  ok        no frozen run over 4s
+  ok        first frame carries picture (luma 212.4, std 55.1)
+  ok        colour-card check not applicable (HyperFrames build, no cards)
+  ok        visual change every 0.03s median
+  ok        peak -9.0 dBFS

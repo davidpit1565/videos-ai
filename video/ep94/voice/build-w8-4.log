@@ -1,0 +1,15 @@
+      watching consonant onset: three (band +4 to +13 dB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/opt/v311/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+loaded PerthNet (Implicit) at step 250,000
+/usr/lib/python3.11/contextlib.py:105: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+`sdpa` attention does not support `output_attentions=True`. Please set your attention to `eager` if you want any of these features.
+Sampling:   0%|          | 0/1000 [00:00<?, ?it/s]Sampling:   0%|          | 1/1000 [00:00<01:50,  9.01it/s]Sampling:   0%|          | 3/1000 [00:00<01:30, 11.04it/s]Sampling:   0%|          | 5/1000 [00:00<01:23, 11.94it/s]Sampling:   1%|          | 7/1000 [00:00<01:20, 12.38it/s]Sampling:   1%|          | 9/1000 [00:00<01:19, 12.39it/s]Sampling:   1%|          | 11/1000 [00:00<01:21, 12.18it/s]Sampling:   1%|▏         | 13/1000 [00:01<01:17, 12.78it/s]Sampling:   2%|▏         | 15/1000 [00:01<01:14, 13.19it/s]Sampling:   2%|▏         | 17/1000 [00:01<01:17, 12.68it/s]Sampling:   2%|▏         | 19/1000 [00:01<01:19, 12.35it/s]Sampling:   2%|▏         | 21/1000 [00:01<01:15, 12.92it/s]Sampling:   2%|▏         | 23/1000 [00:01<01:22, 11.90it/s]Sampling:   2%|▎         | 25/1000 [00:02<01:22, 11.83it/s]Sampling:   3%|▎         | 27/1000 [00:02<01:18, 12.36it/s]Sampling:   3%|▎         | 29/1000 [00:02<01:15, 12.79it/s]Sampling:   3%|▎         | 31/1000 [00:02<01:31, 10.60it/s]Sampling:   3%|▎         | 33/1000 [00:02<01:25, 11.37it/s]Sampling:   4%|▎         | 35/1000 [00:02<01:22, 11.72it/s]Sampling:   4%|▎         | 37/1000 [00:03<01:20, 11.94it/s]Sampling:   4%|▍         | 39/1000 [00:03<01:17, 12.34it/s]Sampling:   4%|▍         | 41/1000 [00:03<01:20, 11.91it/s]Sampling:   4%|▍         | 43/1000 [00:03<01:20, 11.87it/s]Sampling:   4%|▍         | 45/1000 [00:03<01:26, 11.01it/s]Sampling:   5%|▍         | 47/1000 [00:03<01:31, 10.41it/s]Sampling:   5%|▍         | 49/1000 [00:04<01:28, 10.78it/s]Sampling:   5%|▌         | 51/1000 [00:04<01:28, 10.77it/s]Sampling:   5%|▌         | 53/1000 [00:04<01:30, 10.47it/s]Sampling:   6%|▌         | 55/1000 [00:04<01:32, 10.24it/s]Sampling:   6%|▌         | 57/1000 [00:04<01:28, 10.68it/s]Sampling:   6%|▌         | 59/1000 [00:05<01:44,  9.01it/s]Sampling:   6%|▌         | 59/1000 [00:05<01:23, 11.27it/s]
+      3.8 syl/s, sped up x1.20
+  01/1   1.92s  Save this and send it to a friend.
+  placed 0 breaths from his own recording
+  room tone bed at -55 dBFS
+
+wrote video/ep94/voice/w8-4.wav  2.8s  1 lines

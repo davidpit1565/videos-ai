@@ -1,0 +1,822 @@
+[
+ {
+  "word": "Claude",
+  "start": 0.0,
+  "end": 0.26
+ },
+ {
+  "word": "just",
+  "start": 0.26,
+  "end": 0.4
+ },
+ {
+  "word": "destroyed",
+  "start": 0.4,
+  "end": 0.74
+ },
+ {
+  "word": "paid",
+  "start": 0.74,
+  "end": 0.96
+ },
+ {
+  "word": "apps.",
+  "start": 0.96,
+  "end": 1.26
+ },
+ {
+  "word": "You",
+  "start": 1.78,
+  "end": 1.86
+ },
+ {
+  "word": "can",
+  "start": 1.86,
+  "end": 2.0
+ },
+ {
+  "word": "now",
+  "start": 2.0,
+  "end": 2.2
+ },
+ {
+  "word": "clone",
+  "start": 2.2,
+  "end": 2.46
+ },
+ {
+  "word": "any",
+  "start": 2.46,
+  "end": 2.98
+ },
+ {
+  "word": "app",
+  "start": 2.98,
+  "end": 3.26
+ },
+ {
+  "word": "with",
+  "start": 3.26,
+  "end": 3.5
+ },
+ {
+  "word": "Claude,",
+  "start": 3.5,
+  "end": 3.72
+ },
+ {
+  "word": "so",
+  "start": 4.06,
+  "end": 4.16
+ },
+ {
+  "word": "you",
+  "start": 4.16,
+  "end": 4.24
+ },
+ {
+  "word": "can",
+  "start": 4.24,
+  "end": 4.32
+ },
+ {
+  "word": "stop",
+  "start": 4.32,
+  "end": 4.52
+ },
+ {
+  "word": "paying",
+  "start": 4.52,
+  "end": 4.78
+ },
+ {
+  "word": "for",
+  "start": 4.78,
+  "end": 5.12
+ },
+ {
+  "word": "subscriptions.",
+  "start": 5.12,
+  "end": 5.46
+ },
+ {
+  "word": "And",
+  "start": 6.02,
+  "end": 6.12
+ },
+ {
+  "word": "the",
+  "start": 6.12,
+  "end": 6.24
+ },
+ {
+  "word": "skill",
+  "start": 6.24,
+  "end": 6.46
+ },
+ {
+  "word": "is",
+  "start": 6.46,
+  "end": 6.8
+ },
+ {
+  "word": "completely",
+  "start": 6.8,
+  "end": 7.16
+ },
+ {
+  "word": "free.",
+  "start": 7.16,
+  "end": 7.5
+ },
+ {
+  "word": "Here's",
+  "start": 7.82,
+  "end": 8.12
+ },
+ {
+  "word": "how",
+  "start": 8.12,
+  "end": 8.22
+ },
+ {
+  "word": "it",
+  "start": 8.22,
+  "end": 8.32
+ },
+ {
+  "word": "works.",
+  "start": 8.32,
+  "end": 8.56
+ },
+ {
+  "word": "It's",
+  "start": 8.84,
+  "end": 8.94
+ },
+ {
+  "word": "called",
+  "start": 8.94,
+  "end": 9.12
+ },
+ {
+  "word": "the",
+  "start": 9.12,
+  "end": 9.42
+ },
+ {
+  "word": "replica",
+  "start": 9.42,
+  "end": 9.7
+ },
+ {
+  "word": "skill,",
+  "start": 9.7,
+  "end": 10.0
+ },
+ {
+  "word": "and",
+  "start": 10.36,
+  "end": 10.44
+ },
+ {
+  "word": "it's",
+  "start": 10.44,
+  "end": 10.62
+ },
+ {
+  "word": "not",
+  "start": 10.62,
+  "end": 10.86
+ },
+ {
+  "word": "one",
+  "start": 10.86,
+  "end": 11.24
+ },
+ {
+  "word": "skill,",
+  "start": 11.24,
+  "end": 11.56
+ },
+ {
+  "word": "it's",
+  "start": 11.86,
+  "end": 12.22
+ },
+ {
+  "word": "11.",
+  "start": 12.22,
+  "end": 12.52
+ },
+ {
+  "word": "Each",
+  "start": 12.96,
+  "end": 13.12
+ },
+ {
+  "word": "one",
+  "start": 13.12,
+  "end": 13.3
+ },
+ {
+  "word": "has",
+  "start": 13.3,
+  "end": 13.44
+ },
+ {
+  "word": "its",
+  "start": 13.44,
+  "end": 13.58
+ },
+ {
+  "word": "own",
+  "start": 13.58,
+  "end": 13.78
+ },
+ {
+  "word": "job,",
+  "start": 13.78,
+  "end": 14.06
+ },
+ {
+  "word": "like",
+  "start": 14.22,
+  "end": 14.42
+ },
+ {
+  "word": "a",
+  "start": 14.42,
+  "end": 14.54
+ },
+ {
+  "word": "dev",
+  "start": 14.54,
+  "end": 14.68
+ },
+ {
+  "word": "team",
+  "start": 14.68,
+  "end": 14.92
+ },
+ {
+  "word": "inside",
+  "start": 14.92,
+  "end": 15.34
+ },
+ {
+  "word": "Claude.",
+  "start": 15.34,
+  "end": 15.64
+ },
+ {
+  "word": "The",
+  "start": 16.06,
+  "end": 16.18
+ },
+ {
+  "word": "first",
+  "start": 16.18,
+  "end": 16.34
+ },
+ {
+  "word": "one",
+  "start": 16.34,
+  "end": 16.5
+ },
+ {
+  "word": "studies",
+  "start": 16.5,
+  "end": 16.76
+ },
+ {
+  "word": "the",
+  "start": 16.76,
+  "end": 16.9
+ },
+ {
+  "word": "app,",
+  "start": 16.9,
+  "end": 17.14
+ },
+ {
+  "word": "another",
+  "start": 17.46,
+  "end": 17.7
+ },
+ {
+  "word": "one",
+  "start": 17.7,
+  "end": 18.02
+ },
+ {
+  "word": "rebuilds",
+  "start": 18.02,
+  "end": 18.74
+ },
+ {
+  "word": "it,",
+  "start": 18.74,
+  "end": 18.84
+ },
+ {
+  "word": "screen",
+  "start": 18.96,
+  "end": 19.22
+ },
+ {
+  "word": "by",
+  "start": 19.22,
+  "end": 19.42
+ },
+ {
+  "word": "screen.",
+  "start": 19.42,
+  "end": 19.76
+ },
+ {
+  "word": "One",
+  "start": 20.08,
+  "end": 20.24
+ },
+ {
+  "word": "handles",
+  "start": 20.24,
+  "end": 20.56
+ },
+ {
+  "word": "the",
+  "start": 20.56,
+  "end": 20.74
+ },
+ {
+  "word": "backend,",
+  "start": 20.74,
+  "end": 21.04
+ },
+ {
+  "word": "and",
+  "start": 21.5,
+  "end": 21.7
+ },
+ {
+  "word": "one",
+  "start": 21.7,
+  "end": 21.9
+ },
+ {
+  "word": "tests",
+  "start": 21.9,
+  "end": 22.16
+ },
+ {
+  "word": "it",
+  "start": 22.16,
+  "end": 22.44
+ },
+ {
+  "word": "for",
+  "start": 22.44,
+  "end": 22.66
+ },
+ {
+  "word": "bugs.",
+  "start": 22.66,
+  "end": 22.9
+ },
+ {
+  "word": "But",
+  "start": 23.3,
+  "end": 23.42
+ },
+ {
+  "word": "then",
+  "start": 23.42,
+  "end": 23.66
+ },
+ {
+  "word": "there's",
+  "start": 23.66,
+  "end": 23.98
+ },
+ {
+  "word": "the",
+  "start": 23.98,
+  "end": 24.12
+ },
+ {
+  "word": "craziest",
+  "start": 24.12,
+  "end": 24.56
+ },
+ {
+  "word": "one,",
+  "start": 24.56,
+  "end": 24.78
+ },
+ {
+  "word": "the",
+  "start": 24.98,
+  "end": 25.06
+ },
+ {
+  "word": "entrepreneur",
+  "start": 25.06,
+  "end": 25.46
+ },
+ {
+  "word": "skill.",
+  "start": 25.46,
+  "end": 25.78
+ },
+ {
+  "word": "It",
+  "start": 25.78,
+  "end": 26.38
+ },
+ {
+  "word": "reads",
+  "start": 26.38,
+  "end": 26.56
+ },
+ {
+  "word": "real",
+  "start": 26.56,
+  "end": 26.86
+ },
+ {
+  "word": "user",
+  "start": 26.86,
+  "end": 27.2
+ },
+ {
+  "word": "reviews",
+  "start": 27.2,
+  "end": 27.54
+ },
+ {
+  "word": "to",
+  "start": 27.54,
+  "end": 27.86
+ },
+ {
+  "word": "find",
+  "start": 27.86,
+  "end": 28.02
+ },
+ {
+  "word": "the",
+  "start": 28.02,
+  "end": 28.12
+ },
+ {
+  "word": "missing",
+  "start": 28.12,
+  "end": 28.28
+ },
+ {
+  "word": "features",
+  "start": 28.28,
+  "end": 28.64
+ },
+ {
+  "word": "and",
+  "start": 28.64,
+  "end": 29.0
+ },
+ {
+  "word": "everything",
+  "start": 29.0,
+  "end": 29.44
+ },
+ {
+  "word": "people",
+  "start": 29.44,
+  "end": 29.76
+ },
+ {
+  "word": "hate.",
+  "start": 29.76,
+  "end": 30.04
+ },
+ {
+  "word": "Then",
+  "start": 30.58,
+  "end": 30.66
+ },
+ {
+  "word": "it",
+  "start": 30.66,
+  "end": 30.86
+ },
+ {
+  "word": "fixes",
+  "start": 30.86,
+  "end": 31.16
+ },
+ {
+  "word": "all",
+  "start": 31.16,
+  "end": 31.66
+ },
+ {
+  "word": "of",
+  "start": 31.66,
+  "end": 31.8
+ },
+ {
+  "word": "that",
+  "start": 31.8,
+  "end": 31.94
+ },
+ {
+  "word": "in",
+  "start": 31.94,
+  "end": 32.1
+ },
+ {
+  "word": "your",
+  "start": 32.1,
+  "end": 32.2
+ },
+ {
+  "word": "app,",
+  "start": 32.2,
+  "end": 32.38
+ },
+ {
+  "word": "so",
+  "start": 32.56,
+  "end": 32.7
+ },
+ {
+  "word": "you",
+  "start": 32.7,
+  "end": 32.8
+ },
+ {
+  "word": "end",
+  "start": 32.8,
+  "end": 32.92
+ },
+ {
+  "word": "up",
+  "start": 32.92,
+  "end": 33.02
+ },
+ {
+  "word": "with",
+  "start": 33.02,
+  "end": 33.12
+ },
+ {
+  "word": "an",
+  "start": 33.12,
+  "end": 33.2
+ },
+ {
+  "word": "app",
+  "start": 33.2,
+  "end": 33.38
+ },
+ {
+  "word": "you",
+  "start": 33.38,
+  "end": 33.58
+ },
+ {
+  "word": "can",
+  "start": 33.58,
+  "end": 33.68
+ },
+ {
+  "word": "sell.",
+  "start": 33.68,
+  "end": 33.86
+ },
+ {
+  "word": "And",
+  "start": 34.22,
+  "end": 34.36
+ },
+ {
+  "word": "the",
+  "start": 34.36,
+  "end": 34.48
+ },
+ {
+  "word": "setup?",
+  "start": 34.48,
+  "end": 34.7
+ },
+ {
+  "word": "Almost",
+  "start": 35.04,
+  "end": 35.2
+ },
+ {
+  "word": "too",
+  "start": 35.2,
+  "end": 35.38
+ },
+ {
+  "word": "easy,",
+  "start": 35.38,
+  "end": 35.62
+ },
+ {
+  "word": "paste",
+  "start": 35.8,
+  "end": 35.98
+ },
+ {
+  "word": "the",
+  "start": 35.98,
+  "end": 36.14
+ },
+ {
+  "word": "repo",
+  "start": 36.14,
+  "end": 36.34
+ },
+ {
+  "word": "link",
+  "start": 36.34,
+  "end": 36.52
+ },
+ {
+  "word": "inside",
+  "start": 36.52,
+  "end": 36.82
+ },
+ {
+  "word": "Claude",
+  "start": 36.82,
+  "end": 37.06
+ },
+ {
+  "word": "and",
+  "start": 37.06,
+  "end": 37.28
+ },
+ {
+  "word": "say",
+  "start": 37.28,
+  "end": 37.48
+ },
+ {
+  "word": "install",
+  "start": 37.48,
+  "end": 37.98
+ },
+ {
+  "word": "skill.",
+  "start": 37.98,
+  "end": 38.24
+ },
+ {
+  "word": "It",
+  "start": 38.58,
+  "end": 38.66
+ },
+ {
+  "word": "even",
+  "start": 38.66,
+  "end": 38.88
+ },
+ {
+  "word": "rebrands",
+  "start": 38.88,
+  "end": 39.38
+ },
+ {
+  "word": "your",
+  "start": 39.38,
+  "end": 39.54
+ },
+ {
+  "word": "version,",
+  "start": 39.54,
+  "end": 39.82
+ },
+ {
+  "word": "so",
+  "start": 40.0,
+  "end": 40.14
+ },
+ {
+  "word": "it's",
+  "start": 40.14,
+  "end": 40.28
+ },
+ {
+  "word": "your",
+  "start": 40.28,
+  "end": 40.36
+ },
+ {
+  "word": "own",
+  "start": 40.36,
+  "end": 40.58
+ },
+ {
+  "word": "brand,",
+  "start": 40.58,
+  "end": 40.82
+ },
+ {
+  "word": "not",
+  "start": 40.96,
+  "end": 41.14
+ },
+ {
+  "word": "a",
+  "start": 41.14,
+  "end": 41.28
+ },
+ {
+  "word": "copy.",
+  "start": 41.28,
+  "end": 41.48
+ },
+ {
+  "word": "The",
+  "start": 41.88,
+  "end": 41.98
+ },
+ {
+  "word": "setup's",
+  "start": 41.98,
+  "end": 42.34
+ },
+ {
+  "word": "in",
+  "start": 42.34,
+  "end": 42.52
+ },
+ {
+  "word": "the",
+  "start": 42.52,
+  "end": 42.66
+ },
+ {
+  "word": "link",
+  "start": 42.66,
+  "end": 42.86
+ },
+ {
+  "word": "in",
+  "start": 42.86,
+  "end": 43.14
+ },
+ {
+  "word": "bio.",
+  "start": 43.14,
+  "end": 43.4
+ },
+ {
+  "word": "Want",
+  "start": 43.88,
+  "end": 43.98
+ },
+ {
+  "word": "the",
+  "start": 43.98,
+  "end": 44.1
+ },
+ {
+  "word": "next",
+  "start": 44.1,
+  "end": 44.24
+ },
+ {
+  "word": "one?",
+  "start": 44.24,
+  "end": 44.4
+ },
+ {
+  "word": "Follow",
+  "start": 44.74,
+  "end": 44.92
+ },
+ {
+  "word": "and",
+  "start": 44.92,
+  "end": 45.32
+ },
+ {
+  "word": "you'll",
+  "start": 45.32,
+  "end": 45.52
+ },
+ {
+  "word": "see",
+  "start": 45.52,
+  "end": 45.7
+ },
+ {
+  "word": "it.",
+  "start": 45.7,
+  "end": 45.86
+ }
+]

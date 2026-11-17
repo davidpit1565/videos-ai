@@ -5,11 +5,11 @@ import { episode, published } from "@/lib/site";
 import { articleFor, promptFor, ARTICLES } from "@/lib/articles";
 import { SEQUEL_OF, SEQUEL_FOR, captionFor, captionTitleFor } from "@/lib/reels";
 import IgEmbed from "../../ig-embed";
+import Maze99 from "./maze99";
 import Reveal from "../../reveal";
 import ExternalIcon from "../../external-icon";
 import { SITE_URL } from "@/lib/site";
 import Race98 from "./race98";
-import Maze99 from "./maze99";
 
 export const revalidate = 300;
 
@@ -162,6 +162,7 @@ export default async function EpisodePage({ params }: { params: Promise<{ n: str
       {/* Episode 98 only: the playable race, the request and "Add my AI" (race98.tsx).
           Its steps below point at these sections. */}
       {n === 98 ? <Race98 /> : null}
+      {/* Episode 99 only: the playable maze race, the request and "Add my AI" (maze99.tsx). */}
       {n === 99 ? <Maze99 /> : null}
 
       {a ? (

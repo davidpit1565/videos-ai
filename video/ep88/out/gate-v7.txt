@@ -1,0 +1,74 @@
+=== FAIL  frame layout (safe_check_hf.js) (exit 1)
+    index.html  20.12s  101 samples every 0.2s  safe box: x 65-1015, y 269-1248
+        16px past the bottom line   y 1223-1264  worst at 10s, over tol in 1 hits 10-10s   .uinote  "menu names can differ by app versi"
+      within tolerance: 7px past the top line   #hAt  "FACEBOOK CAN LOOK"
+      within tolerance: 5px past the top line   #t3at  "HERE'S HOW"
+      within tolerance: 4px past the top line   #of4  "STEP 4 OF 4"
+      within tolerance: 4px past the top line   #t7at  "SEND THIS TO SOMEONE"
+      within tolerance: 4px past the top line   #hAHt  "FACEBOOK CAN LOOK"
+      within tolerance: 3px past the top line   #of2  "STEP 2 OF 4"
+      within tolerance: 2px past the left line   #hAt  "FACEBOOK CAN LOOK"
+      within tolerance: 2px past the left line   #hBt  "THROUGH PHOTOS YOU"
+      within tolerance: 2px past the top line   #t5t  "SWITCH IT OFF"
+      within tolerance: 2px past the right line   #al3t  "ALLOW"
+      within tolerance: 1px past the top line   #of3  "STEP 3 OF 4"
+      overlaps: none over 10px
+      within tolerance: 9px overlap  #hBt x #hCt
+      within tolerance: 7px overlap  #t7at x #t7bt
+      within tolerance: 5px overlap  #hBHt x #hCHt
+
+=== PASS  rendered file (qa.py --hf)
+    ep88-v7.mp4  1080x1920  30fps  20.13s  20.5MB
+      visual change: median 0.03s, longest 3.37s
+      loudness: -14.4 LUFS integrated, peak -3.6 dBFS, LRA 2.2 LU
+      loop seam: first vs last frame differ by 29.3/255
+    
+      [warn]    20.1s is outside the 30-90s band
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 137.9, std 45.4)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.4 LUFS
+      ok        peak -3.6 dBFS
+
+=== PASS  voice + music quality (voice_quality.py)
+    pitch (semitones vs each line's own median):
+      line   1  range  7.5 st  end  -0.9    Facebook can look through photos you never poste
+      line   2  range  5.6 st  end  -0.5    Only if you tapped Allow. Here's how to stop it.
+      line   3  range  6.2 st  end  -0.3    Profile picture. Settings and Privacy. Settings.
+      line   4  range  4.3 st  end  +1.1    Meta says it's opt-in, and not used for ads.
+      line   5  range  6.5 st  end  -0.5    Send this to someone who always taps Allow.
+    tone: none steady over 0.6 s
+    music: 6% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 0.44 = -7.5 dB
+    
+    voice quality: clean
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep88/out/narration5.wav  20.1s  5 lines
+      medians: ending -35.8 dB · level -18.7 dBFS · S residual +0.0 dB (slope +0.0 dB per sibilant/syllable)
+      flagged below: ending -62.1 dB · S residual -8.5 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  2.95  +0.30  4.41  -16.3  -39.7  -18.8  Facebook can look through photos you n
+        2  3.03  +0.28  4.62   -9.7  -28.7  -17.8  Only if you tapped Allow. Here's how t
+        3  5.68  +0.85  4.23   -6.4  -35.8  -19.5  Profile picture. Settings and Privacy.
+        4  3.33  +0.30   3.6  -12.0  -22.4  -18.5  Meta says it's opt-in, and not used fo
+        5   2.5    —     4.4   -7.6  -44.3  -18.7  Send this to someone who always taps A
+    
+      [fix] line  2: only 0.28s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+
+=== SKIP  accent drift (needs transformers + model, not installed)
+
+================ SUMMARY
+  FAIL  frame layout (safe_check_hf.js) (exit 1)
+  PASS  rendered file (qa.py --hf)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)
+
+SOMETHING FAILED - do not send this file

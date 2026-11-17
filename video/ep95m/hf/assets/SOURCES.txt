@@ -1,0 +1,28 @@
+Sourced 12.11.2026 (UTC). Files downloaded from Wikimedia Commons, images only, nothing executed.
+
+chatgpt-mark.svg  (+ chatgpt-mark-512.png, rendered with cairosvg, transparent background, black blossom)
+  Page:   https://commons.wikimedia.org/wiki/File:ChatGPT-Logo.svg
+  File:   https://upload.wikimedia.org/wikipedia/commons/e/ef/ChatGPT-Logo.svg
+  Commons says: Artist OpenAI, "official branding for ChatGPT", 2024-02-14, licence "Public domain"
+  (PD shape), categories "With trademark", "Black logos with transparent background".
+  Byte-identical to the repo's video/ep89/hf/assets/chatgpt.svg.
+  Note: the ChatGPT/OpenAI name and mark remain OpenAI trademarks; PD applies to the shape only.
+
+nypost-logo.svg  (+ nypost-logo.png, 1400 px wide, transparent background)
+  Page:   https://commons.wikimedia.org/wiki/File:New_York_Post.svg
+  File:   https://upload.wikimedia.org/wikipedia/commons/2/26/New_York_Post.svg
+  Commons says: author New York Post, 2020-03-08, licence "Public domain" (PD textlogo, below the
+  threshold of originality in the US), Restrictions: trademarked, attribution not required.
+  Note: New York Post is a registered trademark of NYP Holdings. Use only to refer to the paper.
+  Version note: this is the logo with the waving US flag + white italic wordmark with black
+  outline/shadow. The white letters need a dark or mid background to read.
+
+forbes-logo.svg / forbes-logo.png (sourced 2026-11-12)
+  Source: https://commons.wikimedia.org/wiki/File:Forbes_logo.svg
+  File: https://upload.wikimedia.org/wikipedia/commons/d/db/Forbes_logo.svg (2,310 bytes, single path, no scripts)
+  Commons says: author "Forbes, Inc.", licence "Public domain" (PD textlogo, below the threshold of
+  originality in the US), Restrictions: trademarked, attribution not required.
+  Note: Forbes is a registered trademark of Forbes Media LLC. Use only to refer to the publication.
+  Modification: the Commons file is filled blue (#33629A); the only change is fill recoloured to black
+  #000000 to match the black Forbes wordmark. Paths are untouched. PNG rendered with cairosvg, 1200 px
+  wide, transparent background. Official Forbes press/brand page was NOT checked.

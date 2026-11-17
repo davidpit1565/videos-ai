@@ -1,0 +1,24 @@
+# Reel DfFr4vdzV4f: "Claude just killed day traders" / the Trader skill (seen 16.11.2026)
+
+Contact sheet: `channel/assets/refs-2026-11-16/DfFr4vdzV4f-sheetA.jpg`; transcript and frames in the session scratchpad `refs16/DfFr4vdzV4f/`.
+
+## The reel (facts)
+- Account **@auraguy.ai**, 29.10.2026, 70.7 s, 13,258 likes, 5,150 comments (keyword "TRADE").
+- Script (faster-whisper): "Claude just killed day traders. Now you can plan and test your trades inside Claude, and it's completely free ... it's called the trader skill ... It's eleven, like a little trading desk living inside Claude. One scans thousands of charts for setups. Another tracks breaking news ... One watches for the exact moment a setup triggers, and another sets your stop and your target ... But the craziest one is the time machine skill ... it takes your trade and simulates the rest of the trading day 10,000 times using historical price data. Then it shows how often you would have hit your target, hit your stop, or ended somewhere in between ... nothing goes through without your yes. It starts in paper trading ... It's a simulation, not a guarantee, and this isn't financial advice."
+- On screen: a TSLA example ("Plan a trade on TSLA and test it" in a "Claude (RECREATED)" card), a real Barron's headline dated 19.10.2026 via Yahoo Finance, entry 364.18, stop 358.32, target 370.04; the Time Machine fan of 10,000 paths; result "HIT TARGET FIRST 29.4% / HIT STOP FIRST 25.5% / IN BETWEEN 45.1%", headline "CLOSE TO A COIN FLIP"; "PAPER / LIVE" switch; "NOT A GUARANTEE / NOT FINANCIAL ADVICE". Small labels say "ILLUSTRATIVE", "300 of 10,000 paths drawn", "Result from the skill's docs".
+
+## Does the claim hold? (verified live 16.11.2026)
+- The product is real: **github.com/Jakeschincariol/day-trader-skill** (read through Exa): MIT, **8,043 stars, 1,925 forks**, 61 open issues, created 20.10.2026, Python, 1 contribution by the author (single-commit repo: same caution as the Replica repo about star counts). README: 11 skills (scanner, news, entry, exit, timemachine, risk, budget, broker, alerts, analyst, pelosi); "plain Python that read free public data: Yahoo Finance charts, Nasdaq Trader's symbol lists, SEC EDGAR and the House Clerk"; "Nothing in this pack can place an order on its own. Paper trading is the default"; the TSLA 19.10.2026 example is the README's own. A predecessor exists: `Jakeschincariol/trader-skill`.
+- Install: the same Claude Code plugin mechanism (`/plugin marketplace add Jakeschincariol/day-trader-skill`, confirmed as a real Claude Code mechanism in Anthropic's docs, code.claude.com/docs/en/plugins/install, read 16.11.2026). Needs Python 3.8+; the SEC tools want a name and email in a config.
+- "Killed day traders": hyperbole. What holds: it is a free planning and simulation tool, paper trading by default. What does not: the Time Machine's odds come from resampling the stock's own recent bars (a Monte Carlo on past data); "the honest odds" is the author's wording, the reel's own result is ~coin-flip, and past-data simulation does not predict a real trading day. Yahoo Finance's data is unofficial for this use (no formal API terms checked). Untested by us.
+- Price claims: "completely free" = the skill; Claude Code itself needs a paid Claude plan or API billing (README of the sibling LinkedIn repo and Anthropic's plans; not re-checked today for current prices: check before any price goes on screen).
+
+## Duplicate check (16.11.2026)
+- `channel/topics-covered.txt`: no hit for trading, stocks, investing or finance. `content-memory.md`: no topic hit (only unrelated uses of "trade-off"/"investigation").
+
+## Video angle for us (see `channel/queued-ideas.md` Q5)
+- TOPIC verdict: money + "AI tells you the odds" is felt at once by a large audience (the reel's 13,258 likes vs 481 for LinkedIn on the same account suggests money topics pull far more on that account; one account, a hint). But it is the riskiest topic we could pick: financial content invites promises we cannot make, Meta treats financial claims carefully, and David is 18 (no implied advice, no "make money" framing).
+- The honest, strong version is the REVERSAL the reel itself buries: "I asked Claude to test a trade 10,000 times. It's a coin flip." The payoff is the honesty (most trades are close to a coin flip), not a money promise. Our own run on paper, with a real date and stock, the real percentages, "NOT FINANCIAL ADVICE" spoken, no buy/sell call.
+- Hook options: "10,000 fake trading days. One real answer." / "Claude tested my trade 10,000 times."
+- Funnel: TOP. Publish mode: decide with David.
+- Blocks before building: (1) our own run of the skill (in a sandbox, paper only); (2) David's go on a finance topic at all; (3) a legal/claims read of every line (no returns, no "beat the market"); (4) check Instagram's branded/financial content rules for the caption.

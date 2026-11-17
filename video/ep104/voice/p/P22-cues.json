@@ -1,0 +1,110 @@
+[
+ {
+  "n": 1,
+  "line": "Claude just destroyed paid apps.",
+  "start": 0.08,
+  "end": 1.9
+ },
+ {
+  "n": 2,
+  "line": "You can now clone any app with Claude,",
+  "start": 1.96,
+  "end": 4.15
+ },
+ {
+  "n": 3,
+  "line": "so you can stop paying for subscriptions.",
+  "start": 4.21,
+  "end": 6.06
+ },
+ {
+  "n": 4,
+  "line": "And the skill is completely free.",
+  "start": 6.12,
+  "end": 8.13
+ },
+ {
+  "n": 5,
+  "line": "Here's how it works. It's called the replica skill.",
+  "start": 8.28,
+  "end": 10.52
+ },
+ {
+  "n": 6,
+  "line": "And it's not one skill, it's 11.",
+  "start": 10.58,
+  "end": 13.04
+ },
+ {
+  "n": 7,
+  "line": "Each one has its own job, like a dev team inside Claude.",
+  "start": 13.1,
+  "end": 16.02
+ },
+ {
+  "n": 8,
+  "line": "The first one studies the app.",
+  "start": 16.08,
+  "end": 17.12
+ },
+ {
+  "n": 9,
+  "line": "Another one rebuilds it, screen by screen.",
+  "start": 17.27,
+  "end": 19.73
+ },
+ {
+  "n": 10,
+  "line": "One handles the backend.",
+  "start": 19.79,
+  "end": 28.04
+ },
+ {
+  "n": 11,
+  "line": "And one tests it for bugs.",
+  "start": 28.1,
+  "end": 29.62
+ },
+ {
+  "n": 12,
+  "line": "But then there's the craziest one, the entrepreneur skill.",
+  "start": 29.68,
+  "end": 32.37
+ },
+ {
+  "n": 13,
+  "line": "It reads real user reviews to find the missing features and everything people hate.",
+  "start": 32.43,
+  "end": 36.51
+ },
+ {
+  "n": 14,
+  "line": "Then it fixes all of that in your app, so you end up with an app you can sell.",
+  "start": 36.66,
+  "end": 40.01
+ },
+ {
+  "n": 15,
+  "line": "And the setup? Almost too easy. Paste the repo link inside Claude and say install skill.",
+  "start": 40.07,
+  "end": 44.24
+ },
+ {
+  "n": 16,
+  "line": "It even rebrands your version, so it's your own brand, not a copy.",
+  "start": 44.39,
+  "end": 47.71
+ },
+ {
+  "n": 17,
+  "line": "The setup's in the link in bio.",
+  "start": 47.77,
+  "end": 49.58
+ },
+ {
+  "n": 18,
+  "line": "Want the next one? Follow, and you'll see it.",
+  "start": 49.64,
+  "end": 51.78
+ }
+]

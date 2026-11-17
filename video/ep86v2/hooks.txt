@@ -1,0 +1,3 @@
+a|Would your AI snitch on you? I tested it.
+b|ChatGPT promised to keep my secret. Then it snitched.
+c|I asked AI to hide my test secret. Would it snitch?

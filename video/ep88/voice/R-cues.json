@@ -1,0 +1,38 @@
+[
+ {
+  "n": 1,
+  "line": "Facebook can see photos you never posted. Find the switch.",
+  "start": 0.08,
+  "end": 3.29
+ },
+ {
+  "n": 2,
+  "line": "Five seconds. Go.",
+  "start": 3.59,
+  "end": 5.17
+ },
+ {
+  "n": 3,
+  "line": "If you tap Allow, Facebook looks through your gallery and suggests collages.",
+  "start": 5.47,
+  "end": 9.78
+ },
+ {
+  "n": 4,
+  "line": "Meta says it's opt-in and not used for ads.",
+  "start": 10.08,
+  "end": 13.33
+ },
+ {
+  "n": 5,
+  "line": "Here's the switch. Profile picture. Settings and Privacy. Settings. Camera roll sharing suggestions. Switch it off.",
+  "start": 13.63,
+  "end": 20.15
+ },
+ {
+  "n": 6,
+  "line": "Send this to mum. She taps Allow on everything.",
+  "start": 20.45,
+  "end": 23.41
+ }
+]

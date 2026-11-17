@@ -1,0 +1,3 @@
+Claude just destroyed paid apps.
+And one tests it for bugs.
+And the setup? Almost too easy. Paste the repo link inside Claude and say install skill.
