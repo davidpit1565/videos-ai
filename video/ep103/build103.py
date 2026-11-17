@@ -31,15 +31,15 @@ norm = lambda t: re.sub(r"[^a-z0-9]", "", t.lower())
 LOG = []
 def say(x): LOG.append(x); print(x)
 
-LINES = [l.strip() for l in open(H_ + "/voice/lines.txt") if l.strip()]
-NL = len(LINES); assert NL == 10, "ep103 is laid out for 10 lines"
-try: C = json.load(open(H_ + "/voice/narration-cues.json"))
+LINES = [l.strip() for l in open(H_ + "/voice/lines2.txt") if l.strip()]
+NL = len(LINES); assert NL == 9, "ep103 v2 is laid out for 9 lines"
+try: C = json.load(open(H_ + "/voice/narration2-cues.json"))
 except Exception: C = []
 CUE = {c["n"]: c for c in C if "n" in c}
 STALE = os.environ.get("EST") == "1" or len(CUE) != NL or any(n not in CUE or norm(CUE[n]["line"]) != norm(LINES[n - 1]) for n in range(1, NL + 1))
 WORDS = []
 if not STALE:
-    try: WORDS = [[w["word"], w["start"], w["end"]] for w in json.load(open(H_ + "/voice/words.json"))]
+    try: WORDS = [[w["word"], w["start"], w["end"]] for w in json.load(open(H_ + "/voice/words2.json"))]
     except Exception: WORDS = []
 if STALE:
     L = {}; t = .06
@@ -82,53 +82,46 @@ ARW = '<svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 
 
 SC = {}; T = {}
 
-# ---------------------------------------------------------------- paper-tear hook
-JAG = [(0, 290), (58, 322), (112, 268), (170, 334), (232, 280), (292, 338), (352, 264), (412, 322), (470, 254), (520, 300)]
-JP = " ".join(f"{x},{y}" for x, y in JAG)
-top_poly = "polygon(0px 0px, 520px 0px, " + ", ".join(f"{x}px {y}px" for x, y in reversed(JAG)) + ")"
-bot_poly = "polygon(" + ", ".join(f"{x}px {y}px" for x, y in JAG) + ", 520px 520px, 0px 520px)"
-def half(cls, poly):
-    return (f'<div class="half {cls}" style="clip-path:{poly}"><img src="assets/logos/linkedin.svg" style="width:520px;height:520px">'
-            f'<svg class="edge" viewBox="0 0 520 520" style="position:absolute;left:0;top:0;width:520px;height:520px;opacity:0"><polyline points="{JP}" fill="none" stroke="#f7f4ec" stroke-width="16" stroke-linejoin="round"/></svg></div>')
-mark = '<img class="cmark" src="assets/logos/claude.svg">'
-SC["A"] = line("lead", "Claude Code just", 1, 0, .3, 292, 62, ready=True).replace('class="ln lead"', 'class="ln lead" data-x="1"').replace('style="top:292px', 'style="left:178px;top:292px') + line("hv", "KILLED", 1, .55, .55, 352, 200, acc=("killed",), ready=True) + \
-          f'<div class="tear" id="tear"><img class="whole" src="assets/logos/linkedin.svg" style="width:520px;height:520px">{half("ht", top_poly)}{half("hb", bot_poly)}{mark}</div>' + \
-          '<img class="cc" src="assets/logos/claude.svg">'
+
+# ---------------------------------------------------------------- A hook: words + the real LinkedIn mark; on "killed" a strike, the mark greys and shrinks to the corner, the prompt card types
+SC["A"] = line("lead", "Claude just", 1, 0, .3, 292, 62, ready=True).replace('class="ln lead"', 'class="ln lead"').replace('style="top:292px', 'style="left:178px;top:292px') + \
+          line("hv", "KILLED", 1, .55, .55, 352, 200, acc=("killed",), ready=True) + '<img class="cc" src="assets/logos/claude.svg">' + \
+          '<img class="cmk" id="cm" src="assets/logos/claude.svg"><div class="lkw" id="lkw"><img class="lk" id="lk" src="assets/logos/linkedin.svg"><i class="kst" id="kst"></i></div>' + \
+          '<div class="pcard" id="pcard"><span class="pt" id="ptxt">Write my LinkedIn post about the five apps I pay for.</span></div>'
 tKill = W("killed", "killed", 1, .6)
 T["A"] = dict(t0=0, kill=tKill, end=a[2])
-SC["B"] = line("lead", "Now it writes your posts.", 2, 0, .6, 380, 70) + line("hv", "FREE.", 2, .85, .85, 470, 230, acc=("free",)) + ring("rgB", 78, 462, 560, 260)
-T["B"] = dict(t0=a[2], acc=W("free", "free", 2, .85), end=a[3])
-SC["C"] = line("lead", "It's twelve skills,", 3, 0, .55, 292, 66) + line("hv", "NOT ONE.", 3, .7, 1, 362, 140, acc=("not",)) + '<div class="shot about"><img src="assets/shots/about.png"></div>'
-T["C"] = dict(t0=a[3], acc=W("not", "not", 3, .75), end=a[4])
-SC["BP"] = line("lead", "Still not", 4, 0, .3, 420, 100) + line("hv", "THE BEST PART.", 4, .5, 1, 540, 104, acc=("best",))
-T["BP"] = dict(t0=a[4], end=a[5])
-POST = ["Here is every line item, from the pricing pages, nothing rounded:",
-        "Loom Business: $18 a month, $216 a year", "Notion Plus: $10 a month, $120 a year", "Intercom Essential: $19 a month on the yearly rate, $228 a year",
-        "Wispr Flow Pro: $12 a month on the yearly rate, $144 a year", "ElevenLabs Starter: $6 a month, $72 a year", "Total: $780."]
-prow = "".join(f'<div class="pl{" pi" if i == 0 else ""}{" pt" if i == len(POST) - 1 else ""}">{t}</div>' for i, t in enumerate(POST))
-SC["E"] = line("lead", "I gave it my numbers.", 5, 0, .3, 292, 62) + f'<div class="post"><div class="pbig">$780</div>{prow}</div>'
-tNum = W("numbers", "numbers", 5, .22); tWrote = W("wrote", ("wrote", "rote"), 5, .85)
-T["E"] = dict(t0=a[5], card=round(tNum - .05, 3), wrote=tWrote, end=a[6])
-tHook = W("hook", "hook", 6, .2); tVoice = W("voice", ("voice", "boys"), 6, .55); tWith = W("without", ("without", "with"), 6, .85)
-def ln3(txt, top, t, acc=False):
-    ws = txt.split(); out = []
-    for k, w in enumerate(ws):
-        out.append(f'<span class="m"><span class="w{" acc" if acc else ""}" data-t="{t + k * .12:.3f}">{w}</span></span>')
-    return f'<div class="ln hv" style="top:{top}px;font-size:104px;line-height:116px">{"".join(out)}</div>'
-SC["F"] = ln3("PICKS THE HOOK.", 380, tHook - .5) + ln3("FIXES THE VOICE.", 520, tVoice - .5) + ln3("YOU APPROVE.", 660, tWith - .1, acc=True)
-T["F"] = dict(t0=a[6], end=a[7])
-tCraz = W("craziest", ("craziest", "crazy", "craziest"), 7, .05); tRead = W("reads", ("reads", "read", "reeds"), 7, .4)
-SC["G"] = line("lead", "But the craziest one?", 7, 0, .3, 292, 62) + line("hv", "HOOK", 7, .35, .35, 360, 150, acc=("hook",)) + line("hv", "EXTRACTOR", 7, .4, .4, 534, 150) + \
-          '<div class="xcard"><div class="xin"><i></i><i></i><i></i><i></i></div><svg class="xar" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 54" fill="none" stroke="#f2f2ee" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="xout"><span>F7</span> Odd-Precision Money Ledger</div></div>'
-T["G"] = dict(t0=a[7], acc=W("hook7", "hook", 7, .35), card=round(max(tRead - .1, a[7] + 2.0), 3), end=a[8])
+# ---------------------------------------------------------------- B the promise: three rows light up as spoken
+rowsB = [("1", "Posts"), ("2", "Replies"), ("3", "Your profile")]
+rb = "".join(f'<div class="rw" id="rw{i}" style="top:{44 + i * 180}px"><b>{n}</b><span>{t}</span></div>' for i, (n, t) in enumerate(rowsB))
+SC["B"] = f'<div class="comp rows">{rb}</div>'
+tB1 = W("b_posts", "posts", 2, .22); tB2 = W("b_replies", "replies", 2, .45); tB3 = W("b_profile", "profile", 2, .78)
+T["B"] = dict(t0=a[2], r1=tB1, r2=tB2, r3=tB3, end=a[3])
+# ---------------------------------------------------------------- C posts: header word + the real post typing
+POSTC = [("$780", "pbig"), ("That is what five apps cost a year, if you pay the cheapest paid plan of each.", "pl"),
+         ("Here is every line item, from the pricing pages, nothing rounded:", "pl pi"), ("Loom Business: $18 a month, $216 a year", "pl"), ("Notion Plus: $10 a month, $120 a year", "pl"), ("Total: $780.", "pl pt")]
+pc = "".join(f'<div class="{c} ty">{t}</div>' for t, c in POSTC)
+SC["C"] = line("hv", "POSTS", 3, .0, .0, 292, 120, acc=("posts",)) + f'<div class="wc post" id="wcC"><i class="sheen"></i><span class="tg">DRAFT</span>{pc}<div class="wait">Waits for your OK.</div></div>'
+T["C"] = dict(t0=a[3], hook=W("c_hook", "hook", 3, .22), live=W("c_live", ("live", "love"), 3, .7), end=a[4])
+# ---------------------------------------------------------------- D replies: an example post, the reply typing
+SC["RP"] = line("hv", "REPLIES", 4, .0, .0, 292, 120, acc=("replies",)) + \
+          '<div class="wc ex"><i class="sheen"></i><span class="tg">EXAMPLE POST</span><div class="exp">My first freelance client did not come from a post. It came from a comment I left under someone else\'s post.</div></div>' + \
+          '<div class="wc rp" id="wcD"><i class="sheen"></i><span class="tg">DRAFT REPLY</span><div class="rpt ty">Same here, and I think the reason is simple: a useful comment under a big post is read by that author\'s whole audience, while your own post only reaches your followers. What did your comment say that made them reach out?</div></div>'
+T["RP"] = dict(t0=a[4], end=a[5])
+# ---------------------------------------------------------------- E+F profile: before, strike, after
+tAfter = W("after", "after", 6, .3); tBrand = W("brand", "brand", 6, .45)
+SC["E"] = line("lead", "But the", 5, 0, .3, 292, 62) + line("hv", "PROFILE?", 5, .45, .45, 352, 150, acc=("profile",)) + \
+          '<div class="wc pf" id="wcE"><i class="sheen"></i><span class="tg">EXAMPLE PROFILE</span><div class="av"></div><div class="lab">BEFORE</div><div class="hd bef" id="hbef">Freelance designer<i class="stk2" id="hstk"></i></div>' + \
+          '<div class="lab aft" id="laft">AFTER</div><div class="hd afr ty" id="haft">Brand designer | I help local cafes turn menus into packaging people photograph</div></div>'
+T["E"] = dict(t0=a[5], acc=W("e_profile", "profile", 5, .4), after=tAfter, brand=tBrand, end=a[7])
+# ---------------------------------------------------------------- G setup
 steps = ["Open Claude Code", "Add the skills", "Install"]
 srow = "".join(f'<div class="st" style="top:{40 + i * 168}px"><b>{i + 1}</b><span>{t}</span></div>' for i, t in enumerate(steps))
-SC["H"] = line("lead", "Setup takes", 8, 0, .3, 292, 62) + line("hv", "THREE STEPS.", 8, .5, 1, 360, 120, acc=("three",)) + f'<div class="comp steps">{srow}</div>'
-T["H"] = dict(t0=a[8], end=a[9])
-SC["I"] = line("lead", "The setup's in the", 9, 0, .4, 420, 84) + line("hv", "LINK IN BIO.", 9, .55, .9, 516, 140)
-T["I"] = dict(t0=a[9], end=a[10])
-SC["J"] = line("lead", "Want the next one?", 10, 0, .35, 400, 84) + line("hv", "FOLLOW.", 10, .5, .5, 500, 192, acc=("follow",)) + ring("rgG", 78, 492, 900, 250)
-T["J"] = dict(t0=a[10], acc=W("follow", "follow", 10, .5), end=tF)
+SC["H"] = line("lead", "Free. Open source.", 7, 0, .5, 292, 62) + line("hv", "3 STEPS.", 7, .6, 1, 360, 150, acc=("steps", "3")) + f'<div class="comp steps">{srow}</div>'
+T["H"] = dict(t0=a[7], end=a[8])
+SC["I"] = line("lead", "The setup's in the", 8, 0, .4, 420, 84) + line("hv", "LINK IN BIO.", 8, .55, .9, 516, 140)
+T["I"] = dict(t0=a[8], end=a[9])
+SC["J"] = line("lead", "Want the next one?", 9, 0, .35, 400, 84) + line("hv", "FOLLOW.", 9, .5, .5, 500, 192, acc=("follow",)) + ring("rgG", 78, 492, 900, 250)
+T["J"] = dict(t0=a[9], acc=W("follow", "follow", 9, .5), end=tF)
 for k in T:
     for kk, v in list(T[k].items()):
         if isinstance(v, float): T[k][kk] = round(v, 3)
@@ -136,16 +129,15 @@ T["tF"] = tF; T["D"] = D
 
 SFX = []
 def sfx(f, t, g=-13): SFX.append(dict(f=f, t=round(max(0, t), 3), g=g))
-sfx("whoosh_b.ogg", T["A"]["kill"] - .05, -11); sfx("select.ogg", T["A"]["kill"] + .25, -14)
-sfx("select.ogg", T["B"]["acc"], -15); sfx("select.ogg", T["C"]["acc"], -15)
-sfx("click_a.ogg", T["E"]["card"], -16); sfx("select.ogg", T["E"]["wrote"], -14)
-for t in (tHook, tVoice, tWith): sfx("click_a.ogg", t, -16)
-sfx("riser.ogg", a[7] - .2, -16); sfx("select.ogg", T["G"]["card"], -14); sfx("whoosh_b.ogg", a[9] - .1, -17); sfx("select.ogg", T["J"]["acc"], -14)
+sfx("whoosh_b.ogg", T["A"]["kill"] - .05, -11); sfx("select.ogg", T["A"]["kill"] + .2, -14)
+for k in ("r1", "r2", "r3"): sfx("click_a.ogg", T["B"][k], -15)
+sfx("click_a.ogg", T["C"]["hook"], -16); sfx("select.ogg", T["C"]["live"], -15)
+sfx("click_a.ogg", a[4] + .3, -16); sfx("select.ogg", T["E"]["acc"], -15); sfx("select.ogg", tAfter + .1, -14)
+sfx("riser.ogg", a[5] - .2, -17); sfx("whoosh_b.ogg", a[8] - .1, -17); sfx("select.ogg", T["J"]["acc"], -14)
 SFX.sort(key=lambda x: x["t"]); json.dump(SFX, open(H_ + "/sfx103.json", "w"), indent=1)
-NEWS = [(0, "A hook: 'Claude Code just KILLED' + the LinkedIn tile, torn like paper on the verb, Claude mark appears"), (a[2], "B words: 'Now it writes your posts. FREE.'"),
-        (a[3], "C real GitHub About text: '12 Claude Code and Codex skills ... MIT'"), (a[4], "D words: 'Still not THE BEST PART.' (true: the test post and the Hook Extractor come next)"),
-        (a[5], "E the real test post from our run, '$780' first, ledger lines"), (a[6], "F three beats: picks the hook / fixes the voice / you approve"),
-        (a[7], "G Hook Extractor: viral post -> formula F7 (a real formula name from the project's own reference)"), (a[8], "H three setup steps"), (a[9], "I link in bio"), (a[10], "J follow"), (tF, "frame 0 returns")]
+NEWS = [(0, "A hook: 'Claude just KILLED' + real LinkedIn mark; strike, grey, shrinks; prompt card types"), (a[2], "B three rows light up: posts, replies, your profile"),
+        (a[3], "C the real post types ($780 first), DRAFT, waits for your OK"), (a[4], "D example post + our reply types"), (a[5], "E profile card: before"),
+        (tAfter, "F before struck, after types"), (a[7], "G free, open source, 3 steps"), (a[8], "I link in bio"), (a[9], "J follow"), (tF, "frame 0 returns")]
 NEWS = sorted((round(t, 2), x) for t, x in NEWS)
 FLAT = [(NEWS[i][0], NEWS[i + 1][0]) for i in range(len(NEWS) - 1) if NEWS[i + 1][0] - NEWS[i][0] > 2.5]
 if os.environ.get("SHIP") == "1" and STALE: sys.exit("SHIP=1 refused: estimated timeline")
@@ -193,16 +185,21 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .lf{{margin-left:auto;font-weight:900;font-size:42px;line-height:48px;letter-spacing:.01em;color:{ORG}}}
 .lnote{{position:absolute;left:44px;bottom:26px;font-weight:500;font-size:42px;line-height:48px;letter-spacing:-.01em;color:#b9b8b2;white-space:nowrap;opacity:0;visibility:hidden}}
 
-.tear{{left:280px;top:640px;width:520px;height:520px}} .tear>*{{position:absolute;left:0;top:0}} .half{{width:520px;height:520px;opacity:0;will-change:transform,opacity}} .whole{{width:520px;height:520px}} .cc{{position:absolute;left:108px;top:286px;width:58px;height:58px}}
-.half img{{position:absolute;left:0;top:0}} .cmark{{width:240px;height:240px;left:140px!important;top:140px!important;opacity:0}}
-.about{{left:150px;top:560px;width:780px;height:627px}}
-.post{{left:108px;top:372px;width:864px;height:830px;background:#fff;border-radius:34px;box-shadow:0 26px 50px rgba(20,20,20,.22);padding:34px 40px;opacity:0;visibility:hidden}}
-.pbig{{font-weight:900;font-size:168px;line-height:176px;letter-spacing:-.05em;color:{INK}}}
-.pl{{font-weight:500;font-size:34px;line-height:44px;color:#222;margin-top:20px;letter-spacing:-.005em;opacity:0}} .pl.pi{{color:#666;margin-top:12px}} .pl.pt{{font-weight:900;font-size:44px;margin-top:26px;color:{INK}}}
-.xcard{{left:108px;top:760px;width:864px;height:430px;background:{CARD};border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.28);opacity:0;visibility:hidden}}
-.xin{{position:absolute;left:60px;top:44px;width:744px}} .xin i{{display:block;height:20px;border-radius:10px;background:#3a3b42;margin-bottom:18px}} .xin i:nth-child(2){{width:84%}} .xin i:nth-child(3){{width:92%}} .xin i:nth-child(4){{width:55%}}
-.xar{{position:absolute;left:402px;top:190px;width:56px;height:84px}}
-.xout{{position:absolute;left:60px;top:296px;width:744px;font-weight:900;font-size:46px;line-height:70px;letter-spacing:-.04em;color:#fff;white-space:nowrap}} .xout span{{color:{ORG};margin-right:14px}}
+.cc{{position:absolute;left:108px;top:286px;width:58px;height:58px}}
+.cmk{{left:140px;top:670px;width:330px;height:330px;will-change:transform}} .lkw{{left:610px;top:670px;width:330px;height:330px;will-change:transform,opacity}} .lk{{position:absolute;left:0;top:0;width:330px;height:330px}} .kst{{position:absolute;left:-40px;top:152px;width:410px;height:24px;border-radius:12px;background:{ORG};transform-origin:0 50%}}
+.pcard{{left:108px;top:640px;width:864px;height:300px;background:{CARD};border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.28);padding:48px 52px;opacity:0;visibility:hidden}}
+.pt{{font-weight:500;font-size:50px;line-height:64px;color:#f2f2ee;letter-spacing:-.01em}} .ty .c{{opacity:0}}
+.rows{{left:108px;top:330px;width:864px;height:640px}} .rw{{position:absolute;left:44px;right:44px;height:140px;display:flex;align-items:center;gap:34px;opacity:.28}}
+.rw b{{width:96px;height:96px;border-radius:48px;background:#3a3b42;color:#fff;font-weight:900;font-size:56px;line-height:96px;text-align:center;flex:none}} .rw span{{font-weight:900;font-size:84px;letter-spacing:-.045em;color:#fff;white-space:nowrap}}
+.wc{{position:absolute;left:108px;width:864px;background:#fff;border-radius:34px;box-shadow:0 26px 50px rgba(20,20,20,.22);padding:34px 40px;opacity:0;visibility:hidden}}
+.wc{{overflow:hidden}} .sheen{{position:absolute;top:-20%;left:0;width:160px;height:140%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.75),rgba(255,255,255,0));transform:translateX(-300px) skewX(-12deg);opacity:.9;pointer-events:none}} .ex .sheen{{background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0))}} .tg{{position:absolute;right:30px;top:22px;font-weight:500;font-size:24px;letter-spacing:.06em;color:#8a8982;border:2px solid #cfcdc4;border-radius:8px;padding:2px 10px}}
+.post{{top:450px;height:790px}} .pbig{{font-weight:900;font-size:150px;line-height:160px;letter-spacing:-.05em;color:{INK}}}
+.pl{{font-weight:500;font-size:36px;line-height:46px;color:#222;margin-top:18px}} .pl.pi{{color:#666}} .pl.pt{{font-weight:900;font-size:46px;margin-top:24px;color:{INK}}} .wait{{position:absolute;left:40px;bottom:26px;font-size:30px;color:#8a8982;opacity:0}}
+.ex{{top:440px;height:230px;background:#e7e5dd;box-shadow:none}} .exp{{font-weight:500;font-size:34px;line-height:44px;color:#444;margin-top:34px}}
+.rp{{top:700px;height:520px}} .rpt{{font-weight:500;font-size:37px;line-height:48px;color:#111;margin-top:36px}}
+.pf{{top:560px;height:660px}} .av{{width:130px;height:130px;border-radius:65px;background:#d8d6cd;margin-top:30px}}
+.lab{{font-weight:900;font-size:30px;letter-spacing:.08em;color:#8a8982;margin-top:34px}} .hd{{position:relative;font-weight:900;font-size:62px;line-height:72px;letter-spacing:-.04em;color:{INK};margin-top:8px;display:inline-block}}
+.stk2{{position:absolute;left:-6px;right:-6px;top:52%;height:9px;border-radius:5px;background:{ORG};transform-origin:0 50%}} .lab.aft{{color:{ORG};opacity:0}} .hd.afr{{font-size:54px;line-height:64px}}
 .steps{{left:108px;top:560px;width:864px;height:560px}} .st{{position:absolute;left:44px;right:44px;height:140px;display:flex;align-items:center;gap:34px;opacity:0}}
 .st b{{width:96px;height:96px;border-radius:48px;background:{ORG};color:#fff;font-weight:900;font-size:60px;line-height:96px;text-align:center;flex:none}} .st span{{font-weight:900;font-size:68px;letter-spacing:-.04em;color:#fff;white-space:nowrap}}
 '''
@@ -227,41 +224,43 @@ function ringDraw(t,id,at){ t.fromTo(id+' path',{drawSVG:'0%'},{drawSVG:'100%',d
 gsap.set('.ring path, .arw path',{drawSVG:'0%'}); gsap.set('.stk',{scaleX:0,rotation:-3}); gsap.set('#bigstk',{rotation:-4});
 
 /* A: the cube. Frame 0 is complete; then the six price tags flip to ticks one by one, each tile nudges (follow-through) */
+/* typed text: each character appears at a slightly varying pace (never a fixed tick) */
+function typeChars(t,sel,at,dur){ const el=document.querySelector(sel); if(!el) return; const sp=SplitText.create(el,{type:'words,chars',charsClass:'c',wordsClass:'wd'}); const n=sp.chars.length; let w=[],tot=0;
+  for(let i=0;i<n;i++){ const v=.7+.6*Math.abs(Math.sin(i*2.3+1)); w.push(v); tot+=v; } let c=at;
+  sp.chars.forEach((ch,i)=>{ t.set(ch,{opacity:1},c); c+=dur*w[i]/tot; }); }
 function scA(){ const t=gsap.timeline(), k=T.A.kill;
-  gsap.set('.cmark',{scale:.2});
-  gsap.set('#tear',{scale:1.15});
-  t.fromTo('#tear',{scale:1.15},{scale:1.19,duration:Math.max(.3,k-.1),ease:'sine.inOut',immediateRender:false},0)
-   .set('.whole',{opacity:0},k).set('.half',{opacity:1},k).set('.edge',{opacity:1},k).to('.ht',{x:235,y:10,rotation:14,duration:.95,ease:expoOut},k)
-   .to('.hb',{x:-235,y:190,rotation:-13,duration:.95,ease:expoOut},k)
-   .to('.half',{opacity:0,duration:.3,ease:'power1.in'},k+.5)
-   .to('.cmark',{opacity:1,scale:1,duration:.7,ease:spring},k+.25)
-   .to('.cmark',{rotation:90,duration:T.A.end-k,ease:'sine.inOut'},k+.3)
-   .add(hide('#scA'),T.A.end-.24);
-  return t; }
+  gsap.set('#kst',{scaleX:1,scaleY:1,rotation:-34}); gsap.set('#lk',{filter:'grayscale(.75)',opacity:.6});
+  t.fromTo('#cm',{rotation:0},{rotation:40,duration:Math.max(.4,k+.4),ease:'sine.inOut',immediateRender:false},0)
+   .to('#kst',{scaleY:1.8,duration:.18,ease:'power2.out'},k).to('#kst',{scaleY:1,duration:.3,ease:'power2.inOut'},k+.18)
+   .to('#lkw',{y:300,rotation:16,opacity:0,duration:.8,ease:expoIn},k+.1)
+   .to('#cm',{x:565,y:-490,scale:.42,rotation:120,duration:.95,ease:inOut},k+.2)
+   .fromTo('#pcard',{autoAlpha:0,y:50},{autoAlpha:1,y:0,duration:.55,ease:spring,immediateRender:false},k+.45);
+  typeChars(t,'#ptxt',k+.75,Math.max(.7,T.A.end-k-1.0));
+  t.add(hide('#scA'),T.A.end-.24); return t; }
 function scWords(id,o,ringId){ const t=gsap.timeline(); t.add(show(id),0); type(t,id,o.t0-.04);
   if(ringId) ringDraw(t,'#'+ringId,(o.acc-o.t0)+.16);
   t.to(id+' .ln',{x:8,duration:Math.max(.6,o.end-o.t0-.5),ease:'sine.inOut',stagger:.06},.4)
-   .add(hide(id),o.end-o.t0-.2);
-  return t; }
-function scAbout(){ const o=T.C, t=gsap.timeline(); t.add(show('#scC'),0); type(t,'#scC',o.t0-.04);
-  t.fromTo('#scC .shot',{y:40,autoAlpha:0},{y:0,autoAlpha:1,duration:.6,ease:spring,immediateRender:false},.5)
-   .fromTo('#scC .shot img',{scale:1},{scale:1.05,duration:Math.max(1,o.end-o.t0),ease:'sine.inOut',immediateRender:false},0)
-   .add(hide('#scC'),o.end-o.t0-.2); return t; }
-function scPost(){ const o=T.E, t=gsap.timeline({defaults:{ease:expoOut}}); t.add(show('#scE'),0); type(t,'#scE',o.t0-.04);
-  const c=Math.max(.15,o.card-o.t0);
-  t.fromTo('#scE .post',{autoAlpha:0,y:40},{autoAlpha:1,y:0,duration:.55,ease:spring,immediateRender:false},c);
-  const n=document.querySelectorAll('#scE .pl').length, span=Math.max(2,o.end-o.t0-c-1.2);
-  gsap.utils.toArray('#scE .pl').forEach((el,i)=>t.fromTo(el,{autoAlpha:0,y:14},{autoAlpha:1,y:0,duration:.4,immediateRender:false},c+.5+i*(span/n)));
-  t.to('#scE .post',{y:-10,duration:Math.max(.8,o.end-o.t0-c),ease:'sine.inOut'},c+.3)
-   .add(hide('#scE'),o.end-o.t0-.2); return t; }
-function scThree(){ const o=T.F, t=gsap.timeline(); t.add(show('#scF'),0); type(t,'#scF',o.t0-.04);
-  t.to('#scF .ln',{x:8,duration:Math.max(.6,o.end-o.t0-.5),ease:'sine.inOut',stagger:.08},.4).add(hide('#scF'),o.end-o.t0-.2); return t; }
-function scExtract(){ const o=T.G, t=gsap.timeline(); t.add(show('#scG'),0); type(t,'#scG',o.t0-.04);
-  t.fromTo('#scG .xcard',{autoAlpha:0,y:40},{autoAlpha:1,y:0,duration:.6,ease:spring,immediateRender:false},Math.max(.9,o.card-o.t0))
-   .fromTo('#scG .xin i',{scaleX:0},{scaleX:1,transformOrigin:'0 50%',duration:.5,stagger:.09,ease:inOut,immediateRender:false},Math.max(1.1,o.card-o.t0+.1))
-   .fromTo('#scG .xar',{autoAlpha:0,y:-10},{autoAlpha:1,y:0,duration:.35,immediateRender:false},Math.max(1.6,o.card-o.t0+.5))
-   .fromTo('#scG .xout',{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.5,immediateRender:false},Math.max(1.9,o.card-o.t0+.8))
-   .add(hide('#scG'),o.end-o.t0-.2); return t; }
+   .add(hide(id),o.end-o.t0-.2); return t; }
+function scRows(){ const o=T.B, t=gsap.timeline(); t.add(show('#scB'),0);
+  t.fromTo('#scB .comp',{autoAlpha:0,y:40},{autoAlpha:1,y:0,duration:.5,ease:spring,immediateRender:false},0);
+  [['#rw0',o.r1],['#rw1',o.r2],['#rw2',o.r3]].forEach(([id,at],i)=>{ t.to(id,{opacity:1,duration:.3,ease:'power1.out'},Math.max(.1,at-o.t0-.05)).to(id+' b',{backgroundColor:ORG,duration:.3},Math.max(.1,at-o.t0-.05)); });
+  t.to('#rw2 span',{color:ORG,duration:.4},Math.max(.2,o.r3-o.t0)).add(hide('#scB'),o.end-o.t0-.2); return t; }
+function sheen(t,sel,t0,dur){ const n=Math.max(1,Math.ceil(dur/2.6)); for(let i=0;i<n;i++) t.fromTo(sel,{x:-320},{x:1100,duration:1.9,ease:'sine.inOut',immediateRender:false},t0+i*2.6); }
+function scPost(){ const o=T.C, t=gsap.timeline(); t.add(show('#scC'),0); type(t,'#scC',o.t0-.04);
+  t.fromTo('#wcC',{autoAlpha:0,y:40},{autoAlpha:1,y:0,duration:.55,ease:spring,immediateRender:false},.3);
+  const els=['#scC .pbig','#scC .pl:nth-of-type(2)']; const all=Array.from(document.querySelectorAll('#scC .ty')); const tot=all.reduce((a,e)=>a+e.textContent.length,0); let c=.7; const span=Math.max(2,o.end-o.t0-1.2);
+  all.forEach((e,i)=>{ const id='cty'+i; e.id=id; const d=span*e.textContent.length/tot; typeChars(t,'#'+id,c,d); c+=d; });
+  sheen(t,'#wcC .sheen',.9,o.end-o.t0-.9); t.to('#scC .wait',{opacity:1,duration:.4},Math.max(.8,o.live-o.t0)).fromTo('#wcC',{scale:1},{scale:1.035,duration:Math.max(1,o.end-o.t0),ease:'sine.inOut',immediateRender:false},.3).add(hide('#scC'),o.end-o.t0-.2); return t; }
+function scReplies(){ const o=T.RP, t=gsap.timeline(); t.add(show('#scRP'),0); type(t,'#scRP',o.t0-.04);
+  t.fromTo('#scRP .ex',{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.5,ease:expoOut,immediateRender:false},.25)
+   .fromTo('#wcD',{autoAlpha:0,y:40},{autoAlpha:1,y:0,duration:.55,ease:spring,immediateRender:false},.85);
+  typeChars(t,'#scRP .rpt',1.3,Math.max(1.2,o.end-o.t0-1.7)); sheen(t,'#wcD .sheen',1.2,o.end-o.t0-1.2); t.fromTo('#scRP .ex, #wcD',{scale:1},{scale:1.03,duration:Math.max(1,o.end-o.t0),ease:'sine.inOut',immediateRender:false},.3).add(hide('#scRP'),o.end-o.t0-.2); return t; }
+function scProfile(){ const o=T.E, t=gsap.timeline(); t.add(show('#scE'),0); type(t,'#scE',o.t0-.04);
+  t.fromTo('#wcE',{autoAlpha:0,y:40},{autoAlpha:1,y:0,duration:.55,ease:spring,immediateRender:false},.45);
+  gsap.set('#hstk',{scaleX:0,rotation:-2});
+  const ta=Math.max(1.4,o.after-o.t0);
+  t.to('#hstk',{scaleX:1,duration:.3,ease:inOut},ta).to('#hbef',{opacity:.45,duration:.4},ta+.15).to('#laft',{opacity:1,duration:.3},ta+.3);
+  sheen(t,'#wcE .sheen',.9,ta-.9); typeChars(t,'#haft',ta+.45,Math.max(1.6,o.end-o.t0-ta-1.0)); t.to('#wcE',{backgroundColor:'#17181b',duration:.6,ease:'power2.inOut'},ta+.25).to('#wcE .hd,#wcE .hd.bef',{color:'#f2f2ee',duration:.6},ta+.25).to('#wcE .lab:not(.aft)',{color:'#b9b8b2',duration:.5},ta+.25).to('#wcE .av',{backgroundColor:'#3a3b42',duration:.5},ta+.25).fromTo('#wcE',{scale:1},{scale:1.04,duration:Math.max(1,o.end-o.t0),ease:'sine.inOut',immediateRender:false},.3).fromTo('#hstk',{backgroundColor:ORG},{backgroundColor:ORG,duration:.01},0).add(hide('#scE'),o.end-o.t0-.2); return t; }
 function scSteps(){ const o=T.H, t=gsap.timeline({defaults:{ease:expoOut}}); t.add(show('#scH'),0); type(t,'#scH',o.t0-.04);
   t.fromTo('#scH .st',{autoAlpha:0,x:-26},{autoAlpha:1,x:0,duration:.45,stagger:.16,immediateRender:false},.35).add(hide('#scH'),o.end-o.t0-.2); return t; }
 
@@ -269,16 +268,14 @@ const tl=gsap.timeline({paused:true});
 tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:true,repeat:3},0)
   .fromTo('.bgw',{x:0,y:0},{x:-14,y:-12,duration:T.D/2,ease:'sine.inOut',yoyo:true,repeat:1},0)
   .add(scA(),0)
-  .add(scWords('#scB',T.B,'rgB'),T.B.t0-.04)
-  .add(scAbout(),T.C.t0-.04)
-  .add(scWords('#scBP',T.BP),T.BP.t0-.04)
-  .add(scPost(),T.E.t0-.04)
-  .add(scThree(),T.F.t0-.04)
-  .add(scExtract(),T.G.t0-.04)
+  .add(scRows(),T.B.t0-.04)
+  .add(scPost(),T.C.t0-.04)
+  .add(scReplies(),T.RP.t0-.04)
+  .add(scProfile(),T.E.t0-.04)
   .add(scSteps(),T.H.t0-.04)
   .add(scWords('#scI',T.I),T.I.t0-.04)
   .add(scWords('#scJ',T.J,'rgG'),T.J.t0-.04);
-tl.set('.half',{x:0,y:0,rotation:0,opacity:0},T.tF).set('.whole',{opacity:1},T.tF).set('.edge',{opacity:0},T.tF).set('.cmark',{opacity:0,scale:.2,rotation:0},T.tF)
+tl.set('#lkw',{x:0,y:0,rotation:0,opacity:1},T.tF).set('#cm',{x:0,y:0,scale:1,rotation:0},T.tF).set('#pcard',{autoAlpha:0},T.tF)
   .fromTo('#scA',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02)
   .to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
