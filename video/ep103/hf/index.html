@@ -98,22 +98,29 @@ gsap.set('.ring path, .arw path',{drawSVG:'0%'}); gsap.set('.stk',{scaleX:0,rota
 function typeChars(t,sel,at,dur){ const el=document.querySelector(sel); if(!el) return; const sp=SplitText.create(el,{type:'words,chars',charsClass:'c',wordsClass:'wd'}); const n=sp.chars.length; let w=[],tot=0;
   for(let i=0;i<n;i++){ const v=.7+.6*Math.abs(Math.sin(i*2.3+1)); w.push(v); tot+=v; } let c=at;
   sp.chars.forEach((ch,i)=>{ t.set(ch,{opacity:1},c); c+=dur*w[i]/tot; }); }
-function scA(){ const t=gsap.timeline(), k=T.A.kill, A=T.A, dur=.34, base={x:20+135,y:690+135};
-  gsap.set('#trailp',{drawSVG:'0%'});
-  t.set('#whole',{opacity:0},k-.09).set('.pc',{opacity:1},k-.09);
+function scA(){ const t=gsap.timeline(), k=T.A.kill, A=T.A, dur=.4, P0=.42, base={x:20+135,y:690+135}, n=A.path.length-1;
+  /* the video OPENS mid-cut: at frame 0 the Claude mark is already through 40% of the tile along its curved path, the trail is drawn and the first strips are open */
+  const at=(p)=>{ const f=p*n, i=Math.min(n-1,Math.floor(f)), r=f-i; return [A.path[i][0]+(A.path[i+1][0]-A.path[i][0])*r, A.path[i][1]+(A.path[i+1][1]-A.path[i][1])*r]; };
+  gsap.set('#whole',{opacity:0}); gsap.set('.pc',{opacity:1});
   const pu=gsap.utils.toArray('.pu'), pl=gsap.utils.toArray('.pl');
-  t.to('#cm',{x:A.path[0][0]-base.x,y:A.path[0][1]-base.y,scale:.5,rotation:-60,duration:Math.max(.3,k-.12),ease:'power2.inOut'},0);
-  const o={p:0}, n=A.path.length-1;
-  t.to('#cm',{filter:'drop-shadow(0 0 22px rgba(217,119,87,.95))',duration:.05},k-.1)
-   .to(o,{p:1,duration:dur,ease:'none',onUpdate:()=>{ const f=o.p*n, i=Math.min(n-1,Math.floor(f)), r=f-i; const x=A.path[i][0]+(A.path[i+1][0]-A.path[i][0])*r, y=A.path[i][1]+(A.path[i+1][1]-A.path[i][1])*r; gsap.set('#cm',{x:x-base.x,y:y-base.y}); }},k-.08)
-   .to('#cm',{rotation:560,duration:dur,ease:'none'},k-.08)
-   .to('#trailp',{drawSVG:'100%',duration:dur,ease:'none'},k-.08)
-   .to('#scA',{scale:1.045,duration:.1,ease:'power2.out',transformOrigin:'540px 900px'},k+.1).to('#scA',{scale:1,duration:.5,ease:'power2.out'},k+.2);
-  A.strips.forEach((xc,j)=>{ const tj=k-.08+dur*((xc-A.xmin)/(A.xmax-A.xmin)); const d=1+.15*Math.sin(j*2.1);
-    t.to(pu[j],{x:-26*d,y:-30*d,rotation:-2.5-j*.5,duration:.16,ease:'power3.out'},tj).to(pu[j],{x:-150-j*14,y:-190+j*10,rotation:-10-j*3,duration:.9,ease:'power2.in'},tj+.16)
-     .to(pl[j],{x:26*d,y:30*d,rotation:2.5+j*.5,duration:.16,ease:'power3.out'},tj).to(pl[j],{x:140+j*16,y:230-j*12,rotation:9+j*3,duration:.9,ease:'power2.in'},tj+.16)
-     .to([pu[j],pl[j]],{opacity:0,duration:.3},tj+.62); });
-  t.to('#trailp',{opacity:0,duration:.3},k+.45).to('#cm',{x:A.path[n][0]-base.x+60,y:A.path[n][1]-base.y-60,scale:.9,opacity:0,duration:.45,ease:'power1.in'},k+.3)
+  const m0=at(P0); gsap.set('#cm',{x:m0[0]-base.x,y:m0[1]-base.y,scale:.55,rotation:200,filter:'drop-shadow(0 0 22px rgba(217,119,87,.95))'});
+  gsap.set('#trailp',{drawSVG:'0% '+Math.round(P0*100)+'%'});
+  const o={p:P0};
+  t.to(o,{p:1,duration:dur*(1-P0),ease:'none',onUpdate:()=>{ const q=at(o.p); gsap.set('#cm',{x:q[0]-base.x,y:q[1]-base.y}); }},0)
+   .to('#cm',{rotation:560,duration:dur*(1-P0),ease:'none'},0)
+   .to('#trailp',{drawSVG:'0% 100%',duration:dur*(1-P0),ease:'none'},0)
+   .to('#scA',{scale:1.04,duration:.12,ease:'power2.out',transformOrigin:'540px 900px'},k-.05).to('#scA',{scale:1,duration:.5,ease:'power2.out'},k+.07);
+  A.strips.forEach((xc,j)=>{ const frac=(xc-A.xmin)/(A.xmax-A.xmin), tj=dur*(frac-P0)/(1-P0)*(1-P0), d=1+.15*Math.sin(j*2.1);
+    const open=tj<=0, tt=Math.max(0,tj);
+    if(open){ gsap.set(pu[j],{x:-26*d,y:-30*d,rotation:-2.5-j*.5}); gsap.set(pl[j],{x:26*d,y:30*d,rotation:2.5+j*.5}); }
+    else { t.to(pu[j],{x:-26*d,y:-30*d,rotation:-2.5-j*.5,duration:.16,ease:'power3.out'},tt).to(pl[j],{x:26*d,y:30*d,rotation:2.5+j*.5,duration:.16,ease:'power3.out'},tt); }
+    const fall=Math.max(tt+.16,k-.12+j*.025);
+    t.to(pu[j],{x:-150-j*14,y:-190+j*10,rotation:-10-j*3,duration:.9,ease:'power2.in'},fall).to(pl[j],{x:140+j*16,y:230-j*12,rotation:9+j*3,duration:.9,ease:'power2.in'},fall)
+     .to([pu[j],pl[j]],{opacity:0,duration:.3},fall+.6); });
+  A.strips.forEach((xc,j)=>{ const frac=(xc-A.xmin)/(A.xmax-A.xmin), open=(frac-P0)<=0, d=1+.15*Math.sin(j*2.1);
+    t.set(pu[j],open?{x:-26*d,y:-30*d,rotation:-2.5-j*.5,opacity:1}:{x:0,y:0,rotation:0,opacity:1},T.tF).set(pl[j],open?{x:26*d,y:30*d,rotation:2.5+j*.5,opacity:1}:{x:0,y:0,rotation:0,opacity:1},T.tF); });
+  t.set('#cm',{x:m0[0]-base.x,y:m0[1]-base.y,scale:.55,rotation:200,opacity:1},T.tF).set('#trailp',{opacity:1,drawSVG:'0% '+Math.round(P0*100)+'%'},T.tF);
+  t.to('#trailp',{opacity:0,duration:.3},k+.3).to('#cm',{x:A.path[n][0]-base.x+60,y:A.path[n][1]-base.y-60,scale:.9,opacity:0,duration:.45,ease:'power1.in'},k+.2)
    .add(hide('#scA'),T.A.end-.24); return t; }
 function scWords(id,o,ringId){ const t=gsap.timeline(); t.add(show(id),0); type(t,id,o.t0-.04);
   if(ringId) ringDraw(t,'#'+ringId,(o.acc-o.t0)+.16);
@@ -155,7 +162,7 @@ tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:tr
   .add(scSteps(),T.H.t0-.04)
   .add(scWords('#scI',T.I),T.I.t0-.04)
   .add(scWords('#scJ',T.J,'rgG'),T.J.t0-.04);
-tl.set('.pc',{x:0,y:0,rotation:0,opacity:0},T.tF).set('#whole',{opacity:1},T.tF).set('#trailp',{opacity:1,drawSVG:'0%'},T.tF).set('#cm',{x:0,y:0,scale:1,rotation:0,opacity:1,filter:'none'},T.tF)
+tl.set({},{},T.tF)
   .fromTo('#scA',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02)
   .to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
