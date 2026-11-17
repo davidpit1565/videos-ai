@@ -14,6 +14,8 @@ Jakeschincariol/replica-skill, MIT, v1.0 commit 3.10.2026, 11 skills (recon, arc
 Why a stranger cares: they pay monthly for an app and the video shows an AI rebuilding it, with a real score. Better than LinkedIn on audience size; riskier on honesty (the reel overclaims "never pay again"; the README says some apps are weeks of work).
 Honest version = OUR OWN test. David runs it; we show what really happened (time, cost, parity score, what is missing). If the result is weak, the video says so or we drop it.
 
+## DECISION 17.11.2026 (David): his own test of the skill is independent of the video. The video is built from the README and the reel's structure only, with no result claims (no parity score, nothing shown as tested by us). Transcript and shot-by-shot read: channel/ref-2026-11-17-DfQDKhNzXtm-transcript.md
+
 ## What David runs (he does this by himself, steps in chat in Hebrew)
 1. Make an empty test folder, open Claude Code there.
 2. `/plugin marketplace add Jakeschincariol/replica-skill` then `/plugin install replica-skill@replica-skill` (plugin, local to the test folder).
