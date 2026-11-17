@@ -161,7 +161,7 @@ SC["S9"] = line("lead", "It hands the work to the right", 9, 0, .5, 292, 62) + l
 T["S9"] = dict(t0=a[9], checks=W("checks", "checks", 9, .8), end=a[10])
 # S10 all or one
 dots = "".join(f'<i class="dt" id="dt{i}"></i>' for i in range(283))
-SC["S10"] = line("lead", "You can add", 10, 0, .3, 292, 62) + line("hv", "THEM ALL,", 10, .35, .6, 352, 150, acc=("all",)) + line("lead", "or just one.", 10, .65, 1, 520, 62) + \
+SC["S10"] = line("lead", "You can install", 10, 0, .3, 292, 62) + line("hv", "ALL OF THEM,", 10, .35, .7, 352, 118, acc=("all", "them")) + line("lead", "or just one.", 10, .75, 1, 500, 62) + \
   f'<div class="dots10" id="dots">{dots}</div><div class="one10" id="one">JUST ONE</div><div class="cnt10" id="cnt">283 AGENTS</div>'
 T["S10"] = dict(t0=a[10], one=W("one", "one", 10, .95), end=a[11])
 SC["S11"] = line("lead", "The setup's in the", 11, 0, .4, 420, 84) + line("hv", "LINK IN BIO.", 11, .55, .9, 516, 140)

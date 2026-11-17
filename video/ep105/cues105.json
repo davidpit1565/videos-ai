@@ -4,142 +4,142 @@
  "lines": [
   {
    "n": 1,
-   "text": "Claude just got 280 AI specialists. Free.",
+   "text": "Claude just got 280 AI specialists for free.",
    "start": 0.05,
-   "end": 3.01
+   "end": 2.65
   },
   {
    "n": 2,
    "text": "It's like a whole company living inside Claude.",
-   "start": 3.2,
-   "end": 5.59
+   "start": 2.84,
+   "end": 5.44
   },
   {
    "n": 3,
    "text": "It's called Agency Agents, with over 160,000 stars on GitHub.",
-   "start": 5.78,
-   "end": 9.7
+   "start": 5.63,
+   "end": 9.55
   },
   {
    "n": 4,
    "text": "One writes your cold emails.",
-   "start": 9.89,
-   "end": 11.37
+   "start": 9.74,
+   "end": 11.22
   },
   {
    "n": 5,
    "text": "A sales team preps your calls.",
-   "start": 11.56,
-   "end": 13.12
+   "start": 11.41,
+   "end": 12.97
   },
   {
    "n": 6,
    "text": "A dev team builds the product.",
-   "start": 13.31,
-   "end": 15.02
+   "start": 13.16,
+   "end": 14.87
   },
   {
    "n": 7,
    "text": "More agents run your social media and support.",
-   "start": 15.21,
-   "end": 17.63
+   "start": 15.06,
+   "end": 17.48
   },
   {
    "n": 8,
    "text": "But the craziest one is the boss agent.",
-   "start": 17.82,
-   "end": 19.72
+   "start": 17.67,
+   "end": 19.57
   },
   {
    "n": 9,
    "text": "It hands the work to the right specialist and checks every step.",
-   "start": 19.91,
-   "end": 22.66
+   "start": 19.76,
+   "end": 22.51
   },
   {
    "n": 10,
-   "text": "You can add them all, or just one.",
-   "start": 22.85,
-   "end": 24.48
+   "text": "You can install all of them, or just one.",
+   "start": 22.7,
+   "end": 24.65
   },
   {
    "n": 11,
    "text": "The setup's in the link in bio.",
-   "start": 24.67,
-   "end": 26.48
+   "start": 24.84,
+   "end": 26.65
   },
   {
    "n": 12,
    "text": "Want the next one? Follow, and you'll see it.",
-   "start": 26.67,
-   "end": 28.81
+   "start": 26.84,
+   "end": 28.98
   }
  ],
- "D": 29.59,
- "frame0_returns": 29.14,
+ "D": 29.76,
+ "frame0_returns": 29.31,
  "sync": {
-  "free": "2.46(w)",
-  "stars": "8.74(w)",
-  "checks": "21.74(w)",
-  "one": "24.08(w)",
-  "follow": "27.58(w)"
+  "free": "2.26(w)",
+  "stars": "8.60(w)",
+  "checks": "21.60(w)",
+  "one": "24.28(w)",
+  "follow": "27.78(w)"
  },
  "screens": {
   "S1": {
    "t0": 0,
-   "hit": 2.46,
-   "end": 3.2
+   "hit": 2.26,
+   "end": 2.84
   },
   "S2": {
-   "t0": 3.2,
-   "end": 5.78
+   "t0": 2.84,
+   "end": 5.63
   },
   "S3": {
-   "t0": 5.78,
-   "stars": 8.74,
-   "end": 9.89
+   "t0": 5.63,
+   "stars": 8.6,
+   "end": 9.74
   },
   "S4": {
-   "t0": 9.89,
-   "end": 11.56
+   "t0": 9.74,
+   "end": 11.41
   },
   "S5": {
-   "t0": 11.56,
-   "end": 13.31
+   "t0": 11.41,
+   "end": 13.16
   },
   "S6": {
-   "t0": 13.31,
-   "end": 15.21
+   "t0": 13.16,
+   "end": 15.06
   },
   "S7": {
-   "t0": 15.21,
-   "end": 17.82
+   "t0": 15.06,
+   "end": 17.67
   },
   "S8": {
-   "t0": 17.82,
-   "end": 19.91
+   "t0": 17.67,
+   "end": 19.76
   },
   "S9": {
-   "t0": 19.91,
-   "checks": 21.74,
-   "end": 22.85
+   "t0": 19.76,
+   "checks": 21.6,
+   "end": 22.7
   },
   "S10": {
-   "t0": 22.85,
-   "one": 24.08,
-   "end": 24.67
+   "t0": 22.7,
+   "one": 24.28,
+   "end": 24.84
   },
   "S11": {
-   "t0": 24.67,
-   "end": 26.67
+   "t0": 24.84,
+   "end": 26.84
   },
   "S12": {
-   "t0": 26.67,
-   "acc": 27.58,
-   "end": 29.14
+   "t0": 26.84,
+   "acc": 27.78,
+   "end": 29.31
   },
-  "tF": 29.14,
-  "D": 29.59
+  "tF": 29.31,
+  "D": 29.76
  },
  "buildup": {
   "new_on_screen": [
@@ -148,74 +148,74 @@
     "what": "scene for line 1"
    },
    {
-    "t": 3.2,
+    "t": 2.84,
     "what": "scene for line 2"
    },
    {
-    "t": 5.78,
+    "t": 5.63,
     "what": "scene for line 3"
    },
    {
-    "t": 9.89,
+    "t": 9.74,
     "what": "scene for line 4"
    },
    {
-    "t": 11.56,
+    "t": 11.41,
     "what": "scene for line 5"
    },
    {
-    "t": 13.31,
+    "t": 13.16,
     "what": "scene for line 6"
    },
    {
-    "t": 15.21,
+    "t": 15.06,
     "what": "scene for line 7"
    },
    {
-    "t": 17.82,
+    "t": 17.67,
     "what": "scene for line 8"
    },
    {
-    "t": 19.91,
+    "t": 19.76,
     "what": "scene for line 9"
    },
    {
-    "t": 22.85,
+    "t": 22.7,
     "what": "scene for line 10"
    },
    {
-    "t": 24.67,
+    "t": 24.84,
     "what": "scene for line 11"
    },
    {
-    "t": 26.67,
+    "t": 26.84,
     "what": "scene for line 12"
    },
    {
-    "t": 29.14,
+    "t": 29.31,
     "what": "frame 0 returns"
    }
   ],
   "flat_over_2_5s": [
    [
     0.05,
-    3.2
+    2.84
    ],
    [
-    3.2,
-    5.78
+    2.84,
+    5.63
    ],
    [
-    5.78,
-    9.89
+    5.63,
+    9.74
    ],
    [
-    15.21,
-    17.82
+    15.06,
+    17.67
    ],
    [
-    19.91,
-    22.85
+    19.76,
+    22.7
    ]
   ]
  },
