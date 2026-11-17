@@ -1,3 +1,5 @@
+Publish mode: REGULAR (David, 17.11.2026: trials never exploded for him, last videos underperformed, wants to rule out the trial as a cause; no risks on this one)
+
 # Episode 103 plan: the Replica skill (Q4), written 17.11.2026
 Publish mode: REGULAR (default; David has not said otherwise). Status: PLAN. Not built. Needs David's own test run (below).
 Numbering: 101 free alternatives, 102 LinkedIn skills (both built, in branch ep86-build, not merged), 103 = this.
