@@ -83,17 +83,17 @@ ARW = '<svg class="arw" viewBox="0 0 60 90"><path d="M30 6 V78 M8 54 L30 78 L52 
 SC = {}; T = {}
 
 
-# ---------------------------------------------------------------- A hook: words + the real LinkedIn mark; on "killed" a strike, the mark greys and shrinks to the corner, the prompt card types
-SC["A"] = line("lead", "Claude just", 1, 0, .3, 292, 62, ready=True).replace('class="ln lead"', 'class="ln lead"').replace('style="top:292px', 'style="left:178px;top:292px') + \
-          line("hv", "KILLED", 1, .55, .55, 352, 200, acc=("killed",), ready=True) + '<img class="cc" src="assets/logos/claude.svg">' + \
-          '<img class="cmk" id="cm" src="assets/logos/claude.svg"><div class="lkw" id="lkw"><div class="hl hul"><img class="lk" src="assets/logos/linkedin.svg"></div><div class="hl hlr"><img class="lk" src="assets/logos/linkedin.svg"></div><i class="kst" id="kst"></i></div>' + \
-          '<div class="pcard" id="pcard"><span class="pt" id="ptxt">Write my LinkedIn post about the five apps I pay for.</span></div>'
+# ---------------------------------------------------------------- A hook: navy screen, the real LinkedIn mark vs the Claude mark; the Claude mark slashes it on "killed" and the whole screen splits open along the cut
+SC["A"] = '<div class="nv nvu" id="nvu"></div><div class="nv nvl" id="nvl"></div>' + \
+          line("lead", "Claude just", 1, 0, .3, 292, 62, ready=True) + line("hv", "KILLED", 1, .55, .55, 352, 200, acc=("killed",), ready=True) + \
+          '<div class="lkw" id="lkw"><div class="hl hul"><img class="lk" src="assets/logos/linkedin.svg"></div><div class="hl hlr"><img class="lk" src="assets/logos/linkedin.svg"></div></div>' + \
+          '<i class="kst" id="kst"></i><img class="cmk" id="cm" src="assets/logos/claude.svg">'
 tKill = W("killed", "killed", 1, .6)
 T["A"] = dict(t0=0, kill=tKill, end=a[2])
-# ---------------------------------------------------------------- B the promise: three rows light up as spoken
-rowsB = [("1", "Posts"), ("2", "Replies"), ("3", "Your profile")]
-rb = "".join(f'<div class="rw" id="rw{i}" style="top:{44 + i * 180}px"><b>{n}</b><span>{t}</span></div>' for i, (n, t) in enumerate(rowsB))
-SC["B"] = f'<div class="comp rows">{rb}</div>'
+# ---------------------------------------------------------------- B the promise: three big colour cards fly in as spoken
+cardsB = [("1", "Posts", "#0A66C2"), ("2", "Replies", ORG), ("3", "Your profile", "#111111")]
+rb = "".join(f'<div class="cd" id="cd{i}" style="top:{330 + i * 250}px;background:{c}"><i class="sheen"></i><b>{n}</b><span>{t}</span></div>' for i, (n, t, c) in enumerate(cardsB))
+SC["B"] = rb
 tB1 = W("b_posts", "posts", 2, .22); tB2 = W("b_replies", "replies", 2, .45); tB3 = W("b_profile", "profile", 2, .78)
 T["B"] = dict(t0=a[2], r1=tB1, r2=tB2, r3=tB3, end=a[3])
 # ---------------------------------------------------------------- C posts: header word + the real post typing
@@ -186,7 +186,12 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .lnote{{position:absolute;left:44px;bottom:26px;font-weight:500;font-size:42px;line-height:48px;letter-spacing:-.01em;color:#b9b8b2;white-space:nowrap;opacity:0;visibility:hidden}}
 
 .cc{{position:absolute;left:108px;top:286px;width:58px;height:58px}}
-.cmk{{left:140px;top:670px;width:330px;height:330px;will-change:transform}} .lkw{{left:610px;top:670px;width:330px;height:330px}} .hl{{position:absolute;left:0;top:0;width:330px;height:330px;will-change:transform,opacity}} .hul{{clip-path:polygon(0px 0px,330px 0px,0px 330px)}} .hlr{{clip-path:polygon(330px 0px,330px 330px,0px 330px)}} .lk{{position:absolute;left:0;top:0;width:330px;height:330px}} .kst{{position:absolute;left:0;top:325px;width:467px;height:10px;border-radius:5px;background:{ORG};transform-origin:0 50%;z-index:3}}
+.nv{{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#0b1d3a;will-change:transform}} .nvu{{clip-path:polygon(0px 0px,1080px 0px,1080px 530px,0px 1610px)}} .nvl{{clip-path:polygon(1080px 530px,1080px 1920px,0px 1920px,0px 1610px)}}
+#scA .ln .w{{color:#fff}} #scA{{overflow:visible}}
+.cmk{{left:80px;top:710px;width:240px;height:240px;will-change:transform}} .lkw{{left:430px;top:740px;width:440px;height:440px}} .hl{{position:absolute;left:0;top:0;width:440px;height:440px;will-change:transform,opacity}} .hul{{clip-path:polygon(0px 0px,440px 0px,0px 440px)}} .hlr{{clip-path:polygon(440px 0px,440px 440px,0px 440px)}} .lk{{position:absolute;left:0;top:0;width:440px;height:440px}}
+.kst{{left:330px;top:1275px;width:930px;height:14px;border-radius:7px;background:{ORG};transform-origin:0 50%;box-shadow:0 0 28px 6px rgba(217,119,87,.7)}}
+.cd{{position:absolute;left:108px;width:864px;height:210px;border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.3);display:flex;align-items:center;gap:36px;padding-left:44px;overflow:hidden;opacity:0;visibility:hidden}}
+.cd b{{width:110px;height:110px;border-radius:55px;background:rgba(255,255,255,.22);color:#fff;font-weight:900;font-size:68px;line-height:110px;text-align:center;flex:none}} .cd span{{font-weight:900;font-size:104px;letter-spacing:-.045em;color:#fff;white-space:nowrap}}
 .pcard{{left:108px;top:640px;width:864px;height:300px;background:{CARD};border-radius:44px;box-shadow:0 26px 50px rgba(20,20,20,.28);padding:48px 52px;opacity:0;visibility:hidden}}
 .pt{{font-weight:500;font-size:50px;line-height:64px;color:#f2f2ee;letter-spacing:-.01em}} .ty .c{{opacity:0}}
 .rows{{left:108px;top:330px;width:864px;height:640px}} .rw{{position:absolute;left:44px;right:44px;height:140px;display:flex;align-items:center;gap:34px;opacity:.28}}
@@ -230,25 +235,29 @@ function typeChars(t,sel,at,dur){ const el=document.querySelector(sel); if(!el) 
   sp.chars.forEach((ch,i)=>{ t.set(ch,{opacity:1},c); c+=dur*w[i]/tot; }); }
 function scA(){ const t=gsap.timeline(), k=T.A.kill;
   gsap.set('#kst',{scaleX:0,rotation:-45});
-  t.fromTo('#cm',{rotation:0},{rotation:30,duration:Math.max(.4,k),ease:'sine.inOut',immediateRender:false},0)
-   /* the Claude mark winds up to the logo's bottom-left corner, then cuts across to the top-right, drawing the cut line behind it */
-   .to('#cm',{x:305,y:165,scale:.34,rotation:-20,duration:.24,ease:'power2.in'},k-.12)
-   .to('#cm',{x:635,y:-165,rotation:60,duration:.22,ease:'power2.inOut'},k+.12)
-   .to('#kst',{scaleX:1,duration:.22,ease:'power2.inOut'},k+.12)
-   .to('.hul',{x:-70,y:-80,rotation:-10,duration:.95,ease:expoOut},k+.36).to('.hlr',{x:70,y:90,rotation:9,duration:.95,ease:expoOut},k+.36)
-   .to('.hl,#kst',{opacity:0,duration:.3,ease:'power1.in'},k+.62)
-   .to('#cm',{x:330,y:-505,scale:.42,rotation:140,duration:.9,ease:inOut},k+.5)
-   .fromTo('#pcard',{autoAlpha:0,y:50},{autoAlpha:1,y:0,duration:.55,ease:spring,immediateRender:false},k+.85);
-  typeChars(t,'#ptxt',k+1.1,Math.max(.5,T.A.end-k-1.35));
-  t.add(hide('#scA'),T.A.end-.24); return t; }
+  /* wind-up: the Claude mark drops to the lower-left of the logo while the headline is read */
+  t.to('#cm',{x:90,y:450,scale:.55,rotation:-30,duration:Math.max(.3,k-.1),ease:'power2.inOut'},0)
+   /* the cut: the mark crosses the logo corner to corner on the spoken word, drawing the cut line behind it */
+   .to('#cm',{x:760,y:-210,scale:.55,rotation:150,duration:.24,ease:'power3.inOut'},k-.08)
+   .to('#kst',{scaleX:1,duration:.24,ease:'power3.inOut'},k-.08)
+   .to('#kst',{scaleY:2.2,duration:.12,ease:'power2.out'},k+.12).to('#kst',{scaleY:1,duration:.3},k+.24)
+   .to('.hul',{x:-90,y:-90,rotation:-8,duration:.9,ease:expoOut},k+.16).to('.hlr',{x:90,y:100,rotation:7,duration:.9,ease:expoOut},k+.16)
+   /* the whole navy screen splits open along the same line and slides away */
+   .to('#nvu',{x:-420,y:-420,duration:.75,ease:'power2.in'},k+.2).to('#nvl',{x:420,y:420,duration:.75,ease:'power2.in'},k+.2)
+   .to('#scA .w',{color:INK,duration:.3,ease:'power1.inOut'},k+.62)
+   .to('.hl,#kst',{opacity:0,duration:.3,ease:'power1.in'},k+.6)
+   .to('#cm',{scale:1.5,opacity:0,duration:.5,ease:'power1.in'},k+.4)
+   .add(hide('#scA'),T.A.end-.24); return t; }
 function scWords(id,o,ringId){ const t=gsap.timeline(); t.add(show(id),0); type(t,id,o.t0-.04);
   if(ringId) ringDraw(t,'#'+ringId,(o.acc-o.t0)+.16);
   t.to(id+' .ln',{x:8,duration:Math.max(.6,o.end-o.t0-.5),ease:'sine.inOut',stagger:.06},.4)
    .add(hide(id),o.end-o.t0-.2); return t; }
 function scRows(){ const o=T.B, t=gsap.timeline(); t.add(show('#scB'),0);
-  t.fromTo('#scB .comp',{autoAlpha:0,y:40},{autoAlpha:1,y:0,duration:.5,ease:spring,immediateRender:false},0);
-  [['#rw0',o.r1],['#rw1',o.r2],['#rw2',o.r3]].forEach(([id,at],i)=>{ t.to(id,{opacity:1,duration:.3,ease:'power1.out'},Math.max(.1,at-o.t0-.05)).to(id+' b',{backgroundColor:ORG,duration:.3},Math.max(.1,at-o.t0-.05)); });
-  t.add(hide('#scB'),o.end-o.t0-.2); return t; }
+  [['#cd0',o.r1],['#cd1',o.r2],['#cd2',o.r3]].forEach(([id,at],i)=>{ const q=Math.max(.05,at-o.t0-.3);
+    t.fromTo(id,{autoAlpha:0,x:150},{autoAlpha:1,x:0,duration:.5,ease:expoOut,immediateRender:false},q)
+     .fromTo(id,{scale:1.06},{scale:1,duration:.5,ease:spring,immediateRender:false},q+.35)
+     .fromTo(id+' .sheen',{x:-320},{x:1100,duration:.9,ease:'sine.inOut',immediateRender:false},q+.5); });
+  t.fromTo('#scB',{scale:1},{scale:1.035,duration:Math.max(1,o.end-o.t0),ease:'sine.inOut',transformOrigin:'540px 700px',immediateRender:false},0).add(hide('#scB'),o.end-o.t0-.2); return t; }
 function sheen(t,sel,t0,dur){ const n=Math.max(1,Math.ceil(dur/2.6)); for(let i=0;i<n;i++) t.fromTo(sel,{x:-320},{x:1100,duration:1.9,ease:'sine.inOut',immediateRender:false},t0+i*2.6); }
 function scPost(){ const o=T.C, t=gsap.timeline(); t.add(show('#scC'),0); type(t,'#scC',o.t0-.04);
   t.fromTo('#wcC',{autoAlpha:0,y:40},{autoAlpha:1,y:0,duration:.55,ease:spring,immediateRender:false},.3);
@@ -279,7 +288,7 @@ tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:tr
   .add(scSteps(),T.H.t0-.04)
   .add(scWords('#scI',T.I),T.I.t0-.04)
   .add(scWords('#scJ',T.J,'rgG'),T.J.t0-.04);
-tl.set('.hl',{x:0,y:0,rotation:0,opacity:1},T.tF).set('#kst',{scaleX:0,opacity:1},T.tF).set('#cm',{x:0,y:0,scale:1,rotation:0},T.tF).set('#pcard',{autoAlpha:0},T.tF)
+tl.set('.hl',{x:0,y:0,rotation:0,opacity:1},T.tF).set('#kst',{scaleX:0,scaleY:1,opacity:1},T.tF).set('#cm',{x:0,y:0,scale:1,rotation:0,opacity:1},T.tF).set('#nvu,#nvl',{x:0,y:0},T.tF).set('#scA .w',{color:'#fff'},T.tF)
   .fromTo('#scA',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02)
   .to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
