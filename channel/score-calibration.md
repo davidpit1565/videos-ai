@@ -105,3 +105,8 @@ FACT: ranked 8 of our published hooks that have real views: Spearman -0.23 (n=8)
 
 ## Episode 102 (LinkedIn skills, "Claude just killed LinkedIn"), judged 17.11.2026 (v8, not published)
 HOOK 78, VIRALITY 66, OVERALL 70, PREDICTED VIEWS about 600 (ASSUMPTION, range 200-1,500; = about 64 on the log scale). Judgements, not measurements. A blind reader gave frame 0 only 6/10 (v6 and v7), v8 not read yet. Fill in the real 48 h / 72 h views next to this line after publishing.
+
+## Ep103 (Replica skill, internal ep104) v2, 17.11.2026, judgement labels, not measurements
+- HOOK 80, VIRALITY 78, OVERALL 79, PREDICTED VIEWS about 900 (ASSUMPTION; score 78 on the 200=50 / 10,000=100 log scale). Real 48 h / 72 h views go here next to it.
+- Blind reader on frame 0: understood subject (Claude replacing paid apps, Slack/Notion tiles), half-stop only: the action is not visible on the still frame, bottom ~45% empty, orange mark read as starburst or blast not clearly Claude, blue C tile not identifiable, tiles' outer edges at x~78/1000 outside the 108-972 safe box.
+- To fix if David wants another round: show the flinging already on frame 0, fill the bottom, bring tiles inside 108-972, identifiable Claude mark.
