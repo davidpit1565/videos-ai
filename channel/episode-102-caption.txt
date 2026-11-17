@@ -1,0 +1,21 @@
+Claude Code just killed LinkedIn with 12 free skills.
+
+Now you can write your LinkedIn posts, comments and replies with Claude, and the skills are free and open source (MIT).
+
+What the 12 skills do:
+1. Post Writer: picks a hook formula and drafts the post
+2. Comment Drafter: writes a comment that gets noticed
+3. Reply Handler: answers the comments on your post
+4. Humanizer: takes the robot voice out of the text
+5. Content Planner: builds your week of posts
+6. Profile Optimizer: rewrites your headline and About
+7. Hook Extractor: reads a viral post and hands you its formula
+...and five more.
+
+Nothing posts until you approve it. It writes, you hit post.
+
+You need a paid Claude plan for skills. We ran Post Writer on our own numbers; the full setup and the post it wrote are on the page in the link in bio.
+
+Save this for the next time you stare at an empty LinkedIn box, and send it to someone who posts every week.
+
+#claudecode #linkedin #aitools #claudeskills #contentcreation
