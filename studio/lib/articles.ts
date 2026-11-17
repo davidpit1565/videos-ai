@@ -2543,6 +2543,34 @@ export const ARTICLES: Article[] = [
       "Claude is made by Anthropic and this video was made with help from Claude. This channel is not affiliated with LinkedIn, Anthropic or the project's author.",
     ],
   },
+  {
+    n: 103,
+    title: "The Replica skill: 11 free Claude skills that rebuild an app, how to install them and what they cannot do",
+    standfirst:
+      "The video walks through the Replica skill, a free, MIT-licensed pack of 11 Claude skills (github.com/Jakeschincariol/replica-skill). " +
+      "Everything in the video comes from the project's own page, which we read on 17 November 2026. We did not run the skills ourselves for this video. " +
+      "This page has the install steps, the 11 skills and what the project says it cannot do.",
+    steps: [
+      "Check that you have Claude Code (or a Claude plan that supports skills). The skills run inside Claude; the project says it needs Python 3.8 or newer only for its small helper tools.",
+      "Easiest way, from the project's README: open Claude, paste https://github.com/Jakeschincariol/replica-skill and write: install skill. You should see Claude confirm that the skill is installed.",
+      "As a plugin in Claude Code: run /plugin marketplace add Jakeschincariol/replica-skill , then /plugin install replica-skill@replica-skill . Installed this way the skills appear as /replica-skill:replica-recon and so on.",
+      "Or copy the folders: git clone https://github.com/Jakeschincariol/replica-skill.git and copy the replica-* folders into ~/.claude/skills/ for all projects, or into your project's .claude/skills/ for one project.",
+      "Run them in order: recon, architect, design, build, backend, test, diff, entrepreneur, brand, launch, deploy. Each one reads what the previous one wrote into a replica/ folder in your project.",
+      "Optional, and safer: try it first in an empty test folder, and read each SKILL.md before you install anything from the internet. Never paste a password or a live key into a chat: the backend and deploy skills say you create those accounts yourself.",
+    ],
+    changes: [
+      "The 11 skills, from the README: recon (reverse-engineers an app from public pages and your own account), architect (stack, database, API), design (design tokens), build (rebuilds screen by screen), backend (auth, database, payments), test (clicks through every flow), diff (parity score against the original), entrepreneur (reads real user reviews and turns them into fixes), brand (renames and rebrands), launch (landing page and store listing), deploy (puts it live on your domain).",
+      "Facts read on 17 November 2026: MIT licence, about 9.7K stars on GitHub, one commit (the v1.0 release of 3 October 2026). The star count is not proof of quality.",
+      "The README says it rebuilds what an app does, clean-room style, and never its code, logo, copy or content, and that you should check trademarks and terms and talk to a lawyer before you launch anything you sell.",
+    ],
+    limits: [
+      "We did not run the skills for this video. We read the project's page and its small helper scripts (file reads and writes only, no network calls, no keys), which is not a security audit.",
+      "It is a pack of instructions for Claude, not a finished app. You still pay for hosting, a database, payments, a domain and a Claude plan, and you maintain what you build. The README itself says some apps take weeks and some, such as a spreadsheet engine, are not realistic.",
+      "The screens in the video are drawn examples, not results. The reviews and findings are labelled examples; no real app, review or score is shown.",
+      "Copying an app's features is not the same as being allowed to sell it. Check trademark and terms rules for the app you copy.",
+      "Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with Anthropic, Slack, Calendly, Notion or the project's author.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

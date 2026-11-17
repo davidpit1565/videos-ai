@@ -1,0 +1,17 @@
+Claude just destroyed paid apps with 11 free skills.
+
+The Replica skill is a free, open-source pack of 11 Claude skills that works like a small dev team: it studies an app, rebuilds it screen by screen, sets up the backend and tests it for bugs.
+
+The 11, in order: recon, architect, design, build, backend, test, diff, entrepreneur, brand, launch, deploy.
+
+The wildest one is the Entrepreneur skill: it reads real user reviews to find the missing features and the things people hate, then fixes them in your version.
+
+It also rebrands your version, so it is your own brand and not a copy. It rebuilds what an app does, never its code, logo or copy.
+
+Install: paste the repo link into Claude and say "install skill". The exact steps, the links and the limits are in the link in bio.
+
+Limits, said plainly: it is a free pack of instructions, not a finished app. You still pay for hosting, a database, payments and a domain, and a Claude plan. Big apps take weeks. We did not run it ourselves for this video; everything above comes from the project's own page. Check the trademark and terms rules before you sell anything.
+
+Save this for the next subscription you want to cancel, and send it to someone who pays for too many apps.
+
+#claudecode #claudeskills #opensource #aitools #appdevelopment
