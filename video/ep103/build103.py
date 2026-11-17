@@ -91,8 +91,9 @@ def half(cls, poly):
     return (f'<div class="half {cls}" style="clip-path:{poly}"><img src="assets/logos/linkedin.svg" style="width:520px;height:520px">'
             f'<svg class="edge" viewBox="0 0 520 520" style="position:absolute;left:0;top:0;width:520px;height:520px;opacity:0"><polyline points="{JP}" fill="none" stroke="#f7f4ec" stroke-width="16" stroke-linejoin="round"/></svg></div>')
 mark = '<img class="cmark" src="assets/logos/claude.svg">'
-SC["A"] = line("lead", "Claude Code just", 1, 0, .3, 292, 62, ready=True) + line("hv", "KILLED", 1, .55, .55, 352, 200, acc=("killed",), ready=True) + \
-          f'<div class="tear" id="tear">{half("ht", top_poly)}{half("hb", bot_poly)}{mark}</div>'
+SC["A"] = line("lead", "Claude Code just", 1, 0, .3, 292, 62, ready=True).replace('class="ln lead"', 'class="ln lead" data-x="1"').replace('style="top:292px', 'style="left:178px;top:292px') + line("hv", "KILLED", 1, .55, .55, 352, 200, acc=("killed",), ready=True) + \
+          f'<div class="tear" id="tear"><img class="whole" src="assets/logos/linkedin.svg" style="width:520px;height:520px">{half("ht", top_poly)}{half("hb", bot_poly)}{mark}</div>' + \
+          '<img class="cc" src="assets/logos/claude.svg">'
 tKill = W("killed", "killed", 1, .6)
 T["A"] = dict(t0=0, kill=tKill, end=a[2])
 SC["B"] = line("lead", "Now it writes your posts.", 2, 0, .6, 380, 70) + line("hv", "FREE.", 2, .85, .85, 470, 230, acc=("free",)) + ring("rgB", 78, 462, 560, 260)
@@ -192,7 +193,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .lf{{margin-left:auto;font-weight:900;font-size:42px;line-height:48px;letter-spacing:.01em;color:{ORG}}}
 .lnote{{position:absolute;left:44px;bottom:26px;font-weight:500;font-size:42px;line-height:48px;letter-spacing:-.01em;color:#b9b8b2;white-space:nowrap;opacity:0;visibility:hidden}}
 
-.tear{{left:280px;top:640px;width:520px;height:520px}} .tear>*{{position:absolute;left:0;top:0}} .half{{width:520px;height:520px;will-change:transform,opacity}}
+.tear{{left:280px;top:640px;width:520px;height:520px}} .tear>*{{position:absolute;left:0;top:0}} .half{{width:520px;height:520px;opacity:0;will-change:transform,opacity}} .whole{{width:520px;height:520px}} .cc{{position:absolute;left:108px;top:286px;width:58px;height:58px}}
 .half img{{position:absolute;left:0;top:0}} .cmark{{width:240px;height:240px;left:140px!important;top:140px!important;opacity:0}}
 .about{{left:150px;top:560px;width:780px;height:627px}}
 .post{{left:108px;top:372px;width:864px;height:830px;background:#fff;border-radius:34px;box-shadow:0 26px 50px rgba(20,20,20,.22);padding:34px 40px;opacity:0;visibility:hidden}}
@@ -228,9 +229,10 @@ gsap.set('.ring path, .arw path',{drawSVG:'0%'}); gsap.set('.stk',{scaleX:0,rota
 /* A: the cube. Frame 0 is complete; then the six price tags flip to ticks one by one, each tile nudges (follow-through) */
 function scA(){ const t=gsap.timeline(), k=T.A.kill;
   gsap.set('.cmark',{scale:.2});
-  t.fromTo('#tear',{scale:1},{scale:1.04,duration:Math.max(.3,k-.1),ease:'sine.inOut',immediateRender:false},0)
-   .set('.edge',{opacity:1},k).to('.ht',{x:210,y:-70,rotation:13,duration:.95,ease:expoOut},k)
-   .to('.hb',{x:-210,y:170,rotation:-12,duration:.95,ease:expoOut},k)
+  gsap.set('#tear',{scale:1.15});
+  t.fromTo('#tear',{scale:1.15},{scale:1.19,duration:Math.max(.3,k-.1),ease:'sine.inOut',immediateRender:false},0)
+   .set('.whole',{opacity:0},k).set('.half',{opacity:1},k).set('.edge',{opacity:1},k).to('.ht',{x:235,y:10,rotation:14,duration:.95,ease:expoOut},k)
+   .to('.hb',{x:-235,y:190,rotation:-13,duration:.95,ease:expoOut},k)
    .to('.half',{opacity:0,duration:.3,ease:'power1.in'},k+.5)
    .to('.cmark',{opacity:1,scale:1,duration:.7,ease:spring},k+.25)
    .to('.cmark',{rotation:90,duration:T.A.end-k,ease:'sine.inOut'},k+.3)
@@ -276,7 +278,7 @@ tl.fromTo('#cam',{scale:1},{scale:1.012,duration:T.D/4,ease:'sine.inOut',yoyo:tr
   .add(scSteps(),T.H.t0-.04)
   .add(scWords('#scI',T.I),T.I.t0-.04)
   .add(scWords('#scJ',T.J,'rgG'),T.J.t0-.04);
-tl.set('.half',{x:0,y:0,rotation:0,opacity:1},T.tF).set('.edge',{opacity:0},T.tF).set('.cmark',{opacity:0,scale:.2,rotation:0},T.tF)
+tl.set('.half',{x:0,y:0,rotation:0,opacity:0},T.tF).set('.whole',{opacity:1},T.tF).set('.edge',{opacity:0},T.tF).set('.cmark',{opacity:0,scale:.2,rotation:0},T.tF)
   .fromTo('#scA',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF+.02)
   .to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
