@@ -2571,6 +2571,35 @@ export const ARTICLES: Article[] = [
       "Anthropic makes Claude, and this video was made with help from Claude. This channel is not affiliated with Anthropic, Slack, Calendly, Notion or the project's author.",
     ],
   },
+  {
+    n: 104,
+    title: "Agency Agents: about 280 free role prompts for Claude Code, how to add one safely and what they cannot do",
+    standfirst:
+      "The video walks through Agency Agents, a free, MIT-licensed library of about 280 role prompts for Claude Code (github.com/msitarzewski/agency-agents). " +
+      "Everything in the video comes from the project's own page, which we read on 17 November 2026. We did not run the agents ourselves for this video. " +
+      "This page has the safe way to add one agent, what the project says it is, and what it cannot do.",
+    steps: [
+      "Open github.com/msitarzewski/agency-agents in your browser and pick ONE agent from the README tables, for example testing / Reality Checker. You should see its name in the list for its division.",
+      "Click that agent's file, then click Raw. Read the whole text before you use it: look for anything that asks to run commands, open links, send data or change settings.",
+      "In Claude Code, ask: Create .claude/agents/reality-checker.md with this text, and paste what you read. Using the project folder keeps the agent in this project only.",
+      "Under the description line add one line: tools: Read, Grep, Glob. Now the agent can read your files but cannot run commands, edit files or use connectors. A file without a tools line inherits every tool your session has.",
+      "Use it by name: Use the reality-checker agent to review my plan. Check what it gives you yourself.",
+      "Optional: the project also has an install script. If you ever use it, run it with --dry-run and --agent first and read the plan it prints; do not run it with no options, because that copies every agent into every tool it finds.",
+    ],
+    changes: [
+      "What it is, from the README and the files we read: a library of Markdown files. Each one is a role prompt (name, description and a long text about how that specialist works). No code runs inside an agent. In Claude Code they become subagents.",
+      "The README says 230+ agents; its tables link 283 agent files in 18 divisions (engineering 66, specialized 59, marketing 37, game development 21 and so on). We say about 280.",
+      "Facts read on 17 November 2026: MIT licence, 169k stars, 27.4k forks, 864 commits. The star count is not proof of quality.",
+      "The orchestrator is a prompt (specialized/agents-orchestrator.md). It describes a software pipeline in four phases: planning, architecture, a development and QA loop, and final integration. It says: Each implementation task must pass QA before proceeding. It only works as well as the model follows it.",
+    ],
+    limits: [
+      "We did not run the agents for this video. We read the project page and two of its files, which is not a security audit.",
+      "They are role prompts, not employees. They write drafts and plans; they cannot send an email, make a call or post anything unless your Claude Code already has the tools for it.",
+      "No independent test showing they beat plain Claude was found; the README says battle-tested, we have no evidence either way.",
+      "Third-party prompts are text your Claude will follow: read a file first, start with one, restrict its tools. A later update to the repo could change the text.",
+      "The people, emails, tickets and screens in the video are drawn examples, labelled as such. Anthropic makes Claude; this channel is not affiliated with Anthropic or the project's author.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

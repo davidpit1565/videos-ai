@@ -1,0 +1,7 @@
+Claude just got 280 free AI specialists
+
+Agency Agents is a free, open-source library of about 280 role prompts for Claude Code: sales, marketing, design, engineering and support. In this short we walk through what it is, from the project's own page, and how to add just one agent safely.
+
+Project: github.com/msitarzewski/agency-agents (MIT). We did not run the agents ourselves for this video.
+
+#claudecode #opensource #aiagents

@@ -110,3 +110,7 @@ HOOK 78, VIRALITY 66, OVERALL 70, PREDICTED VIEWS about 600 (ASSUMPTION, range 2
 - HOOK 80, VIRALITY 78, OVERALL 79, PREDICTED VIEWS about 900 (ASSUMPTION; score 78 on the 200=50 / 10,000=100 log scale). Real 48 h / 72 h views go here next to it.
 - Blind reader on frame 0: understood subject (Claude replacing paid apps, Slack/Notion tiles), half-stop only: the action is not visible on the still frame, bottom ~45% empty, orange mark read as starburst or blast not clearly Claude, blue C tile not identifiable, tiles' outer edges at x~78/1000 outside the 108-972 safe box.
 - To fix if David wants another round: show the flinging already on frame 0, fill the bottom, bring tiles inside 108-972, identifiable Claude mark.
+
+## Ep104 (Agency Agents, internal ep105) v1, 17.11.2026, judgement labels, not measurements
+- HOOK 82, VIRALITY 76, OVERALL 78, PREDICTED VIEWS about 900 (ASSUMPTION; same scale as 103). Real 48 h / 72 h views go here next to it.
+- Reasons: subject and number on frame 0 ("Claude just got 280 free AI specialists"), a picture that shows "a lot of specialists" (crowd, zoom out); weaker: the middle is a row of example cards, the saveable card is the 4-step list only.
