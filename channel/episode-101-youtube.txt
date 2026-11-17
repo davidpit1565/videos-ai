@@ -1,5 +1,14 @@
-ChatGPT picks a number. I cut it off.
+6 free alternatives to apps you pay for (Loom, Notion, Calendly) #shorts
 
-A real ChatGPT chat, shown as one scroll: it picks 47, gets told no talking for 47 days, begs for a second chance, and picks 100 again. Nothing edited or added.
+Six apps people pay for every month, and a free, open-source alternative for each one:
+1. Loom to Cap (screen videos)
+2. Notion to AppFlowy (notes, docs, AI)
+3. Calendly to Cal.diy (booking page, personal use only)
+4. Intercom to Chatwoot (customer chat, free if you host it yourself)
+5. Wispr Flow to OpenWhispr (you talk, it types)
+6. ElevenLabs to VoiceStudio (AI voices on your own computer, only 7 months old)
 
-Want the next one? Follow.
+We did not test these. They are alternatives, not full replacements, and some need your own server. Check each one first.
+Added up, the cheapest paid plan of each of these six apps is about $75 a month per person (official pricing pages, November 2026).
+
+Links, licences and steps: https://www.actually-works.com/e/101

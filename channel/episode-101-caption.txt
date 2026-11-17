@@ -1,7 +1,19 @@
-ChatGPT picks a number. I cut it off.
+Stop paying $780 a year for these five apps. Free alternatives exist.
 
-I asked ChatGPT to choose a number between 0 and 100. It said 47. Then I told it we could not talk for 47 days. It begged for a second chance. I said yes. Watch what number it picks.
+The list, each one free and open source:
 
-Real chat, nothing edited, nothing added. Send it to someone who thinks AI is always smart.
+1. Loom → Cap (screen videos)
+2. Notion → AppFlowy (notes, docs, AI)
+3. Intercom → Chatwoot (customer chat, free if you host it yourself)
+4. Wispr Flow → OpenWhispr (you talk, it types)
+5. ElevenLabs → VoiceStudio (AI voices on your own computer, only 7 months old)
 
-Want the next one? Follow.
+Honest part: we did not test these. They are alternatives, not full replacements, and one needs your own server. Check each one before you cancel anything.
+
+The $780: the cheapest paid plan of each of the five apps, per person, from their official pricing pages in November 2026, yearly: Loom $216, Notion $120, Intercom $228, Wispr Flow $144, ElevenLabs $72. Four of them also have a free plan, so this only applies if you pay.
+
+Links, licences and the steps for each one are in the link in bio.
+
+Save the list, and send it to a friend who pays for Loom.
+
+#opensource #github #freetools #aitools #productivity
