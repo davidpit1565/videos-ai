@@ -1,12 +1,13 @@
-Claude just got 280 AI specialists for free.
-It's like a whole company living inside Claude.
-It's called Agency Agents, with over 160,000 stars on GitHub.
-One writes your cold emails.
-A sales team preps your calls.
-A dev team builds the product.
-More agents run your social media and support.
-But the craziest one is the boss agent.
-It hands the work to the right specialist and checks every step.
-You can install all of them, or just one.
+Claude Ultra, now for free! Here's how.
+Thirty seconds. See if you get it.
+Normally, two hundred dollars a month.
+One: lots of projects depend on your code. Two: you help run a big open-source project.
+Three: a hundred of your changes got accepted into other people's projects. Four: twenty outsiders helped build yours.
+The last one, almost nobody knows.
+Five: a score called OpenSSF. Point four or higher. It shows how much other software relies on your project.
+Not on the list? The company says apply anyway, and explain why your project matters.
+Also: a GitHub account two years old, active this season, and an open license. Only ten thousand spots.
+Six months free. That's twelve hundred dollars.
+Send this to the friend who codes.
 The setup's in the link in bio.
-Want the next one? Follow, and you'll see it.
+Want the next one? Follow.
