@@ -1,0 +1,232 @@
+{
+ "version": "ep105",
+ "estimated_timeline": false,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Claude just got 280 AI specialists for free.",
+   "start": 0.05,
+   "end": 2.62
+  },
+  {
+   "n": 2,
+   "text": "It's like a whole company living inside Claude.",
+   "start": 2.81,
+   "end": 5.41
+  },
+  {
+   "n": 3,
+   "text": "It's called Agency Agents, with over 160,000 stars on GitHub.",
+   "start": 5.6,
+   "end": 9.52
+  },
+  {
+   "n": 4,
+   "text": "One writes your cold emails.",
+   "start": 9.71,
+   "end": 11.19
+  },
+  {
+   "n": 5,
+   "text": "A sales team preps your calls.",
+   "start": 11.38,
+   "end": 12.94
+  },
+  {
+   "n": 6,
+   "text": "A dev team builds the product.",
+   "start": 13.13,
+   "end": 14.84
+  },
+  {
+   "n": 7,
+   "text": "More agents run your social media and support.",
+   "start": 15.03,
+   "end": 17.45
+  },
+  {
+   "n": 8,
+   "text": "But the craziest one is the boss agent.",
+   "start": 17.64,
+   "end": 19.54
+  },
+  {
+   "n": 9,
+   "text": "It hands the work to the right specialist and checks every step.",
+   "start": 19.73,
+   "end": 22.48
+  },
+  {
+   "n": 10,
+   "text": "You can install all of them, or just one.",
+   "start": 22.67,
+   "end": 24.62
+  },
+  {
+   "n": 11,
+   "text": "The setup's in the link in bio.",
+   "start": 24.81,
+   "end": 26.62
+  },
+  {
+   "n": 12,
+   "text": "Want the next one? Follow, and you'll see it.",
+   "start": 26.81,
+   "end": 28.95
+  }
+ ],
+ "D": 29.73,
+ "frame0_returns": 29.28,
+ "sync": {
+  "free": "2.22(w)",
+  "stars": "8.56(w)",
+  "checks": "21.56(w)",
+  "one": "24.26(w)",
+  "follow": "27.72(w)"
+ },
+ "screens": {
+  "S1": {
+   "t0": 0,
+   "hit": 2.22,
+   "end": 2.81
+  },
+  "S2": {
+   "t0": 2.81,
+   "end": 5.6
+  },
+  "S3": {
+   "t0": 5.6,
+   "stars": 8.56,
+   "end": 9.71
+  },
+  "S4": {
+   "t0": 9.71,
+   "end": 11.38
+  },
+  "S5": {
+   "t0": 11.38,
+   "end": 13.13
+  },
+  "S6": {
+   "t0": 13.13,
+   "end": 15.03
+  },
+  "S7": {
+   "t0": 15.03,
+   "end": 17.64
+  },
+  "S8": {
+   "t0": 17.64,
+   "end": 19.73
+  },
+  "S9": {
+   "t0": 19.73,
+   "checks": 21.56,
+   "end": 22.67
+  },
+  "S10": {
+   "t0": 22.67,
+   "one": 24.26,
+   "end": 24.81
+  },
+  "S11": {
+   "t0": 24.81,
+   "end": 26.81
+  },
+  "S12": {
+   "t0": 26.81,
+   "acc": 27.72,
+   "end": 29.28
+  },
+  "tF": 29.28,
+  "D": 29.73
+ },
+ "buildup": {
+  "new_on_screen": [
+   {
+    "t": 0.05,
+    "what": "scene for line 1"
+   },
+   {
+    "t": 2.81,
+    "what": "scene for line 2"
+   },
+   {
+    "t": 5.6,
+    "what": "scene for line 3"
+   },
+   {
+    "t": 9.71,
+    "what": "scene for line 4"
+   },
+   {
+    "t": 11.38,
+    "what": "scene for line 5"
+   },
+   {
+    "t": 13.13,
+    "what": "scene for line 6"
+   },
+   {
+    "t": 15.03,
+    "what": "scene for line 7"
+   },
+   {
+    "t": 17.64,
+    "what": "scene for line 8"
+   },
+   {
+    "t": 19.73,
+    "what": "scene for line 9"
+   },
+   {
+    "t": 22.67,
+    "what": "scene for line 10"
+   },
+   {
+    "t": 24.81,
+    "what": "scene for line 11"
+   },
+   {
+    "t": 26.81,
+    "what": "scene for line 12"
+   },
+   {
+    "t": 29.28,
+    "what": "frame 0 returns"
+   }
+  ],
+  "flat_over_2_5s": [
+   [
+    0.05,
+    2.81
+   ],
+   [
+    2.81,
+    5.6
+   ],
+   [
+    5.6,
+    9.71
+   ],
+   [
+    15.03,
+    17.64
+   ],
+   [
+    19.73,
+    22.67
+   ]
+  ]
+ },
+ "numbers_on_screen": [
+  {
+   "text": "169k stars, 27.4k forks, MIT on the real GitHub page",
+   "source": "github.com/msitarzewski/agency-agents read 17.11.2026"
+  },
+  {
+   "text": "283 agent dots",
+   "source": "README tables link 283 agent files (verify note 15.11.2026)"
+  }
+ ]
+}

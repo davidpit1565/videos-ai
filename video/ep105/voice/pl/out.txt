@@ -1,0 +1,36 @@
+L12 seed 11 E=0.72 accent 0.04
+DONE
+L1 seed 11 E=0.78 accent 0.07
+DONE
+L2 seed 11 E=0.74 accent 0.01
+L3 seed 11 E=0.74 accent 0.03
+L4 seed 11 E=0.72 accent 0.92
+L4 seed 22 E=0.72 accent 0.01
+L5 seed 11 E=0.72 accent 0.01
+L6 seed 11 E=0.76 accent 0.96
+L6 seed 22 E=0.76 accent 0.77
+L6 seed 33 E=0.76 accent 0.01
+L7 seed 11 E=0.72 accent 0.11
+L8 seed 11 E=0.72 accent 0.31
+L8 seed 22 E=0.72 accent 0.17
+L8 seed 33 E=0.72 accent 0.02
+L9 seed 11 E=0.70 accent 0.01
+L10 seed 11 E=0.74 accent 0.03
+L11 seed 11 E=0.74 accent 0.60
+L11 seed 22 E=0.74 accent 0.26
+L11 seed 33 E=0.74 accent 0.56
+L11 seed 44 E=0.74 accent 0.01
+L13 seed 11 E=0.72 accent 0.01
+DONE
+L11 seed 55 accent 0.82 (reroll E=0.74)
+L11 seed 66 accent 0.96 (reroll E=0.74)
+L11 seed 77 accent 0.03 (reroll E=0.74)
+RRDONE
+L5 seed 55 accent 0.01 (reroll E=0.70)
+L5 seed 66 accent 0.01 (reroll E=0.70)
+L5 seed 77 accent 0.02 (reroll E=0.70)
+RRDONE
+L9 seed 55 accent 0.99 (reroll E=0.68)
+L9 seed 66 accent 0.01 (reroll E=0.68)
+L9 seed 77 accent 0.01 (reroll E=0.68)
+RRDONE
