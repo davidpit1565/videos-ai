@@ -13,7 +13,7 @@ export const maxDuration = 300;
  *  daily quota says stop (David, 1.11.2026: "as many as possible, in order, and automate the rest").
  *
  *  Runs from Vercel's cron once a day (right after YouTube's quota resets) and by hand with the PIN
- *  cookie: GET /api/yt-backfill?max=6, or ?dry=1 to only list what would go.
+ *  cookie: GET /api/yt-backfill?max=6, or ?dry=1 to only list what would go, or ?episodes=90,91 for an explicit list (taken even if not marked live).
  *
  *  The mp4 and the title/description text come from the public GitHub repo, because the deployment
  *  prunes old reels (prune-old-reels) and the site copy of an old reel is a 404. The title is the first
@@ -61,6 +61,10 @@ export async function GET(req: Request) {
   const max = Math.max(1, Math.min(12, Number(url.searchParams.get("max")) || 6));
   const dry = url.searchParams.get("dry") === "1";
   const only = Number(url.searchParams.get("episode")) || null;
+  // ?episodes=90,91,93: an explicit list (David, 18.11.2026: upload everything that never reached YouTube, together). Episodes in the
+  // list are taken even when the studio never marked them live (posted by hand, or trials), because he named them. Still never the SKIP list,
+  // never one that already has a ytVideoId, and the upload limit still stops the run.
+  const list = (url.searchParams.get("episodes") ?? "").split(",").map((x) => Number(x.trim())).filter((n) => Number.isInteger(n) && n > 0);
 
   if (!(await youtubeConnected())) {
     return NextResponse.json({ ok: false, reason: "YouTube is not connected: open /api/youtube/auth once" });
@@ -69,7 +73,7 @@ export async function GET(req: Request) {
   if (!first) return NextResponse.json({ ok: false, reason: "no state" });
 
   const queue = first.episodes
-    .filter((e) => e.status === "live" && !e.ytVideoId && !SKIP.has(e.number) && (!only || e.number === only))
+    .filter((e) => (list.length ? list.includes(e.number) : e.status === "live") && !e.ytVideoId && !SKIP.has(e.number) && (!only || e.number === only))
     .map((e) => e.number)
     .sort((a, b) => a - b);
   if (dry) return NextResponse.json({ ok: true, dry: true, count: queue.length, queue });
