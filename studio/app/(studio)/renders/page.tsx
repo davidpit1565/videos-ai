@@ -2,7 +2,7 @@ import Link from "next/link";
 import { reels, canPublish, SEQUEL_OF, SEQUEL_FOR } from "@/lib/reels";
 import { localDT } from "@/lib/fmt";
 import { loadState } from "@/lib/db";
-import { PUBLISH_ORDER, PUBLISHED_MANUALLY } from "@/lib/publish-order";
+import { PUBLISH_ORDER, PUBLISHED_MANUALLY, SKIPPED_FOR_GOOD } from "@/lib/publish-order";
 import { igMediaState } from "@/lib/publish";
 import { parseTrial } from "@/lib/trials";
 
@@ -46,29 +46,40 @@ export default async function Renders({ searchParams }: { searchParams: Promise<
       liveNumbers.delete(e.number);
     }
   }
-  // Order for deciding what to post: reels still waiting come first, lowest episode number first
-  // (PUBLISH_ORDER: the order the closing lines promise each other), already-published ones after.
-  const waiting = (r: (typeof all)[number]) => r.kind === "video" && canPublish(r) && (r.episode === null || !liveNumbers.has(r.episode));
+  // Trials come from the episode's notes lines (lib/trials.ts). A trial (even a graduated one) is already out.
+  const trialOf = new Map((state?.episodes ?? []).map((e) => [e.number, parseTrial(e.notes)] as const));
+  // Order for deciding what to post (David, 18.11.2026: 90-100 were a mix of "trial", "ready" and unlinked posts, and the
+  // next reels to publish were not at the top). Three groups, always in this order:
+  //   0 = waiting: built, passed, not published in any way (the next ones to post, in PUBLISH_ORDER);
+  //   1 = published as a trial and not moved to everyone yet;
+  //   2 = published (regular, moved to everyone, posted by hand) and skipped ones.
+  const waiting = (r: (typeof all)[number]) =>
+    r.kind === "video" && canPublish(r) &&
+    (r.episode === null || (!liveNumbers.has(r.episode) && !trialOf.get(r.episode) && !SKIPPED_FOR_GOOD.includes(r.episode)));
+  const groupOf = (r: (typeof all)[number]): 0 | 1 | 2 => {
+    if (waiting(r)) return 0;
+    const t = r.episode !== null ? trialOf.get(r.episode) : null;
+    return t && !t.graduated ? 1 : 2;
+  };
   const rs = [...all].sort((a, b) => {
-    const wa = waiting(a), wb = waiting(b);
-    if (wa !== wb) return wa ? -1 : 1;
-    if (wa) {
+    const ga = groupOf(a), gb = groupOf(b);
+    if (ga !== gb) return ga - gb;
+    if (ga === 0) {
       const rank = (n: number | null) => { const i = n === null ? -1 : PUBLISH_ORDER.indexOf(n); return i < 0 ? 1e6 + (n ?? 1e9) : i; };
       return rank(a.episode) - rank(b.episode);
     }
-    return b.builtAt.localeCompare(a.builtAt);
+    return (b.episode ?? -1) - (a.episode ?? -1) || b.builtAt.localeCompare(a.builtAt);
   });
   // Always the first waiting reel, whether or not it is in PUBLISH_ORDER: a freshly built episode that
   // nobody added to the list still sorts after the listed ones, and the badge never goes missing.
   const nextFile = rs.find(waiting)?.file ?? null;
 
-  // Trials come from the episode's notes lines (lib/trials.ts).
-  const trialOf = new Map((state?.episodes ?? []).map((e) => [e.number, parseTrial(e.notes)] as const));
   const pub = (r: (typeof all)[number]): Pub => {
     if (r.kind !== "video") return null;
     const t = r.episode !== null ? trialOf.get(r.episode) : null;
     if (t?.graduated) return "graduated";
     if (t) return "trial";
+    if (r.episode !== null && SKIPPED_FOR_GOOD.includes(r.episode)) return null;
     if (r.episode !== null && liveNumbers.has(r.episode)) return "published";
     return canPublish(r) ? "ready" : "untested";
   };
@@ -118,8 +129,14 @@ export default async function Renders({ searchParams }: { searchParams: Promise<
       )}
 
       <div className="rlist">
-        {shown.map((r) => (
-          <Link key={r.file} href={`/renders/${encodeURIComponent(r.file)}`} className="rrow">
+        {shown.map((r, i) => (
+          <div key={r.file} style={{ display: "contents" }}>
+            {(i === 0 || groupOf(shown[i - 1]) !== groupOf(r)) && (
+              <h2 className="rgroup" style={{ margin: "18px 0 6px", fontSize: 16 }}>
+                {groupOf(r) === 0 ? "עוד לא פורסמו: הבאים בתור" : groupOf(r) === 1 ? "פורסמו כטרייל (עוד לא הוקדמו לכולם)" : "פורסמו"}
+              </h2>
+            )}
+          <Link href={`/renders/${encodeURIComponent(r.file)}`} className="rrow">
             <b className="rname">
               {r.kind === "audio"
                 ? r.file.replace(/\.[^.]+$/, "")
@@ -169,6 +186,7 @@ export default async function Renders({ searchParams }: { searchParams: Promise<
               <span className="num rmeta">{localDT(r.builtAt)}</span>
             </span>
           </Link>
+          </div>
         ))}
       </div>
     </main>
