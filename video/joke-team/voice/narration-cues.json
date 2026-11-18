@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "line": "Give me a second. I'll check with my team.",
+  "start": 0.35,
+  "end": 2.16
+ },
+ {
+  "n": 2,
+  "line": "Should I send it?",
+  "start": 3.61,
+  "end": 4.53
+ },
+ {
+  "n": 3,
+  "line": "Wow. Thanks, team.",
+  "start": 6.73,
+  "end": 7.93
+ }
+]
