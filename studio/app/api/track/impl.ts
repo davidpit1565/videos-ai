@@ -26,6 +26,9 @@ export const maxDuration = 60;
 export async function GET(req: Request) {
   const secret = process.env.CRON_SECRET;
   const auth = req.headers.get("authorization");
+  // fromCron also covers lib/publish.ts, which calls this with Bearer CRON_SECRET after a
+  // successful reel publish. That is deliberate and bounded by publish frequency (a few per
+  // day at most), so it keeps skipping the cooldown; the browser poll is what the cooldown limits.
   const fromCron = Boolean(req.headers.get("x-vercel-cron")) || (secret && auth === `Bearer ${secret}`);
 
   // /api/track is classified CRON in lib/routes.ts, so middleware's PIN check skips it
@@ -75,7 +78,7 @@ export async function GET(req: Request) {
     return NextResponse.json({
       ok: true,
       skipped: true,
-      reason: "נמשך כבר בשלוש הדקות האחרונות",
+      reason: "נמשך כבר בעשר הדקות האחרונות",
       activity: feed.slice(0, 40),
     });
   }
