@@ -1,0 +1,6 @@
+=== PASS  rendered file (qa.py): reel-902.mp4  1080x1920  30fps  7.00s  yuv420p  48kHz stereo
+      first frame carries picture; visual change every 0.27s (slow zoom 100% to 105%); no frozen run
+=== PASS  frame layout (checked by eye on first and last frame): text and the face stay inside the safe area; the image block ends at y 1481 of 1920
+=== SKIPPED  loudness, voice, music, accent: this reel is a picture with a silent audio track by design (David, 19.11.2026), qa.py's -14 LUFS check does not apply.
+
+ALL CHECKS THAT RAN PASSED (4 skipped: audio checks, silent picture reel)  -  watched by the assistant on frame 0 and the last frame only
