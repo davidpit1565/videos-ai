@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "historyId": "e5d4476b-9802-430b-a665-5537a03b5ade",
+  "currentRevision": "c50ef689-116e-42a0-af7e-86bcfa93a89b",
+  "pendingChanges": false,
+  "files": {
+    "assets/bg.jpg": {
+      "hash": "9a9dbe0bfc0762051dc9d8548f38150ae1e6347333b3c4e526cec400e8a1f220",
+      "content": "/root/.cache/hyperframes/history/e5d4476b-9802-430b-a665-5537a03b5ade/blobs/9a/9a9dbe0bfc0762051dc9d8548f38150ae1e6347333b3c4e526cec400e8a1f220"
+    },
+    "assets/fonts/InterDisplay-Black.otf": {
+      "hash": "c0ebb676933a45d73d16fea70c875f9f2b711b585c69b15962b7f2a890b5f8e8",
+      "content": "/root/.cache/hyperframes/history/e5d4476b-9802-430b-a665-5537a03b5ade/blobs/c0/c0ebb676933a45d73d16fea70c875f9f2b711b585c69b15962b7f2a890b5f8e8"
+    },
+    "assets/fonts/InterDisplay-ExtraBold.otf": {
+      "hash": "7f233cb770bedfb0e4d1d5bada87dade7505513b020ca4b1ae2566fa358263b4",
+      "content": "/root/.cache/hyperframes/history/e5d4476b-9802-430b-a665-5537a03b5ade/blobs/7f/7f233cb770bedfb0e4d1d5bada87dade7505513b020ca4b1ae2566fa358263b4"
+    },
+    "assets/fonts/InterDisplay-Medium.otf": {
+      "hash": "cf438d4cd4979fda59150c773af3381d5b18627826672234846722bb6d06b86c",
+      "content": "/root/.cache/hyperframes/history/e5d4476b-9802-430b-a665-5537a03b5ade/blobs/cf/cf438d4cd4979fda59150c773af3381d5b18627826672234846722bb6d06b86c"
+    },
+    "assets/logos/claude.svg": {
+      "hash": "5de1221c77cc91e748066fd642ad0eee1c1fa65328814f5178166f901e599709",
+      "content": "/root/.cache/hyperframes/history/e5d4476b-9802-430b-a665-5537a03b5ade/blobs/5d/5de1221c77cc91e748066fd642ad0eee1c1fa65328814f5178166f901e599709"
+    },
+    "assets/logos/linkedin.svg": {
+      "hash": "ac184ed71628b215faf48a26ce146c51210b5b16ffd772d5b0e22e460d76e203",
+      "content": "/root/.cache/hyperframes/history/e5d4476b-9802-430b-a665-5537a03b5ade/blobs/ac/ac184ed71628b215faf48a26ce146c51210b5b16ffd772d5b0e22e460d76e203"
+    },
+    "assets/shots/about.png": {
+      "hash": "a053d0d923f59805dd6a61bdbca0e01eed40cbbffa0b7d5fd2a13ec8aedca56e",
+      "content": "/root/.cache/hyperframes/history/e5d4476b-9802-430b-a665-5537a03b5ade/blobs/a0/a053d0d923f59805dd6a61bdbca0e01eed40cbbffa0b7d5fd2a13ec8aedca56e"
+    },
+    "assets/shots/github-2x.png": {
+      "hash": "74f36628488b572ad4cbff0231cf481a9c47b8b5d975482a717b7fb44f1dd634",
+      "content": "/root/.cache/hyperframes/history/e5d4476b-9802-430b-a665-5537a03b5ade/blobs/74/74f36628488b572ad4cbff0231cf481a9c47b8b5d975482a717b7fb44f1dd634"
+    },
+    "index.html": {
+      "hash": "dee9d7e53afd7d04ba63a07308a2669b3471e189a05d8327d730f2e3b4376071",
+      "content": "/root/.cache/hyperframes/history/e5d4476b-9802-430b-a665-5537a03b5ade/blobs/de/dee9d7e53afd7d04ba63a07308a2669b3471e189a05d8327d730f2e3b4376071"
+    }
+  },
+  "revisions": {
+    "c50ef689-116e-42a0-af7e-86bcfa93a89b": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1795122001031,
+      "endedAt": 1795122001033,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/e5d4476b-9802-430b-a665-5537a03b5ade/blobs/0e/0ee5b2f1a9cc1c50801aac455e650a0a221b06a1a49d80b83618248125003acf",
+          "after": "/root/.cache/hyperframes/history/e5d4476b-9802-430b-a665-5537a03b5ade/blobs/de/dee9d7e53afd7d04ba63a07308a2669b3471e189a05d8327d730f2e3b4376071"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "7709a8bb-5706-44e9-83b7-19115ed8343b",
+      "completedAt": 1795122117776,
+      "output": "/home/user/videos-ai/video/ep103t/out/pic-T2.mp4",
+      "status": "completed",
+      "revision": "c50ef689-116e-42a0-af7e-86bcfa93a89b"
+    },
+    "retainedRevisions": [
+      "c50ef689-116e-42a0-af7e-86bcfa93a89b",
+      "1363dfb3-2131-4a63-af2e-a6966b35c458"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

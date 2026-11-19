@@ -1,0 +1,194 @@
+{
+ "version": "ep103t",
+ "estimated_timeline": false,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Your LinkedIn posts. Written by Claude. Free.",
+   "start": 0.05,
+   "end": 2.16
+  },
+  {
+   "n": 2,
+   "text": "It writes your posts, your replies, and rewrites your whole profile.",
+   "start": 2.35,
+   "end": 5.45
+  },
+  {
+   "n": 3,
+   "text": "Posts: it picks the hook, then writes it. Nothing goes live without you.",
+   "start": 5.64,
+   "end": 8.73
+  },
+  {
+   "n": 4,
+   "text": "Replies: it drafts the one that gets noticed.",
+   "start": 8.92,
+   "end": 11.51
+  },
+  {
+   "n": 5,
+   "text": "But the profile? Watch this.",
+   "start": 11.7,
+   "end": 13.36
+  },
+  {
+   "n": 6,
+   "text": "Before: freelance designer. After: brand designer for local cafes, turning menus into packaging people photograph.",
+   "start": 13.55,
+   "end": 19.41
+  },
+  {
+   "n": 7,
+   "text": "Free, open source, and easy to set up.",
+   "start": 19.6,
+   "end": 21.5
+  },
+  {
+   "n": 8,
+   "text": "The setup's in the link in bio.",
+   "start": 21.69,
+   "end": 23.5
+  },
+  {
+   "n": 9,
+   "text": "Want the next one? Follow, and you'll see it.",
+   "start": 23.69,
+   "end": 25.83
+  }
+ ],
+ "D": 26.61,
+ "frame0_returns": 26.16,
+ "sync": {
+  "free": "1.88(w)",
+  "posts": "0.44(w)",
+  "b_posts": "2.76(w)",
+  "b_replies": "3.38(w)",
+  "b_profile": "4.94(w)",
+  "c_hook": "6.56(w)",
+  "c_live": "8.06(w)",
+  "after": "15.34(w)",
+  "brand": "15.86(w)",
+  "e_profile": "12.00(w)",
+  "follow": "24.60(w)"
+ },
+ "screens": {
+  "A": {
+   "t0": 0,
+   "free": 1.88,
+   "posts": 0.44,
+   "end": 2.35
+  },
+  "B": {
+   "t0": 2.35,
+   "r1": 2.76,
+   "r2": 3.38,
+   "r3": 4.94,
+   "end": 5.64
+  },
+  "C": {
+   "t0": 5.64,
+   "hook": 6.56,
+   "live": 8.06,
+   "end": 8.92
+  },
+  "RP": {
+   "t0": 8.92,
+   "end": 11.7
+  },
+  "E": {
+   "t0": 11.7,
+   "acc": 12.0,
+   "after": 15.34,
+   "brand": 15.86,
+   "end": 19.6
+  },
+  "H": {
+   "t0": 19.6,
+   "end": 21.69
+  },
+  "I": {
+   "t0": 21.69,
+   "end": 23.69
+  },
+  "J": {
+   "t0": 23.69,
+   "acc": 24.6,
+   "end": 26.16
+  },
+  "tF": 26.16,
+  "D": 26.61
+ },
+ "buildup": {
+  "new_on_screen": [
+   {
+    "t": 0,
+    "what": "A hook: Claude writes LinkedIn posts, FREE: real marks, a post being written"
+   },
+   {
+    "t": 2.35,
+    "what": "B three rows light up: posts, replies, your profile"
+   },
+   {
+    "t": 5.64,
+    "what": "C the real post types ($780 first), DRAFT, waits for your OK"
+   },
+   {
+    "t": 8.92,
+    "what": "D example post + our reply types"
+   },
+   {
+    "t": 11.7,
+    "what": "E profile card: before"
+   },
+   {
+    "t": 15.34,
+    "what": "F before struck, after types"
+   },
+   {
+    "t": 19.6,
+    "what": "G free, open source, 3 steps"
+   },
+   {
+    "t": 21.69,
+    "what": "I link in bio"
+   },
+   {
+    "t": 23.69,
+    "what": "J follow"
+   },
+   {
+    "t": 26.16,
+    "what": "frame 0 returns"
+   }
+  ],
+  "flat_over_2_5s": [
+   [
+    2.35,
+    5.64
+   ],
+   [
+    5.64,
+    8.92
+   ],
+   [
+    8.92,
+    11.7
+   ],
+   [
+    11.7,
+    15.34
+   ],
+   [
+    15.34,
+    19.6
+   ]
+  ]
+ },
+ "numbers_on_screen": [
+  {
+   "text": "$780 etc (test post)",
+   "source": "channel/episode-102-linkedin-test-post.txt; prices from official pricing pages read 16.11.2026"
+  }
+ ]
+}
