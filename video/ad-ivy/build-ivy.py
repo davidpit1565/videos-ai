@@ -45,10 +45,12 @@ NMEM = len(os.listdir(H_ + "/hf/assets/mem")); NACT = len(os.listdir(H_ + "/hf/a
 
 # ---------------------------------------------------------------- S1 the problem (lines 1-2): frame 0 complete, the same intro is retyped and fades
 BUB = "Hi, a bit about me…"
-bub = "".join(f'<div class="bub" id="bub{i}" style="top:{610 + i * 150}px;opacity:{o}"><span>{BUB}</span></div>' for i, o in enumerate((1, .55, .28)))
-SC["S1"] = (f'<img class="lg" id="cg" src="{A}chatgpt.svg" style="left:108px;top:290px;width:250px;height:250px">'
-            f'<div class="ln lead tag" id="vai" style="left:392px;top:398px;font-size:44px;line-height:50px">VOICE AI</div>' + bub +
-            line("hv", [("AGAIN.", W(1, "again", 0, .9))], 1048, 180, lh=1.0, fast=False, ready=True))
+bub = "".join(f'<div class="bub" id="bub{i}" style="top:{708 + i * 128}px;opacity:{o}"><span>{BUB}</span></div>' for i, o in enumerate((1, .6, .3)))
+SC["S1"] = (f'<img class="lg ic" id="ic1" src="{A}icon.png" style="left:108px;top:286px;width:124px;height:124px">'
+            f'<div class="ln lead tag" id="vai" style="left:256px;top:322px;font-size:50px;line-height:56px">VOICE AI</div>'
+            f'<img class="lg" id="cg" src="{A}chatgpt.svg" style="left:108px;top:452px;width:226px;height:226px">'
+            f'<div class="ln hv" id="cgt" style="left:360px;top:492px;font-size:124px;line-height:134px">ChatGPT</div>' + bub +
+            line("hv", [("AGAIN.", W(1, "again", 0, .9))], 1052, 190, lh=1.0, fast=False, ready=True))
 T["S1"] = dict(t0=0, again=W(1, "again", 0, .9), again2=W(2, "again", 0, .95), brk=round(W(1, "again", 0, .9) - .33, 3), end=s(3))
 CUR = s(3)
 
@@ -134,7 +136,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .tag{{font-weight:800;letter-spacing:.14em;color:#55544f}}
 .ring,.arw{{overflow:visible}}
 .hv{{font-weight:900;letter-spacing:-.045em}}
-.bub{{position:absolute;left:108px;height:122px;padding:0 44px;border-radius:40px;background:#e6e5df;display:flex;align-items:center;font-weight:500;font-size:54px;letter-spacing:-.02em;color:#1d1d1b;white-space:nowrap}}
+.bub{{position:absolute;left:108px;width:864px;height:112px;padding:0 44px;border-radius:40px;background:#e6e5df;display:flex;align-items:center;font-weight:500;font-size:62px;letter-spacing:-.02em;color:#1d1d1b;white-space:nowrap}}
 .vc{{position:absolute;left:108px;top:270px;width:864px;height:978px;border-radius:44px;overflow:hidden;background:#0b0e13;box-shadow:0 30px 60px rgba(20,20,20,.25);opacity:0;visibility:hidden}}
 .fr{{position:absolute;left:0;top:0;width:864px;height:978px;display:none}} #shotm{{display:block;opacity:0}}
 .adt{{position:absolute;left:880px;top:280px;font-weight:800;font-size:38px;letter-spacing:.08em;color:#6a6963;border:3px solid #6a6963;border-radius:12px;padding:2px 16px;opacity:0}}
@@ -169,7 +171,7 @@ tl.fromTo('#cam',{scale:1},{scale:1.014,duration:T.D/4,ease:'sine.inOut',yoyo:tr
   .fromTo('.bgw',{x:0,y:0},{x:-14,y:-12,duration:T.D/2,ease:'sine.inOut',yoyo:true,repeat:1},0);
 /* S1: complete on frame 0; each bubble then retypes the same sentence (the repeating), the break after "ChatGPT" is a beat */
 tl.add((()=>{ const o=T.S1,t=gsap.timeline();
-  t.fromTo('#sc1 .hv .w',{color:'#cdcbc2'},{color:ACC,duration:.35,ease:'power1.out',immediateRender:true},o.again-.05); typeChars(t,'#bub0 span',.12,.7); typeChars(t,'#bub1 span',o.brk,.6); typeChars(t,'#bub2 span',o.again+.3,.6);
+  t.to('#sc1 .hv .w:not(.x)',{color:ACC,duration:.35,ease:'power1.out'},o.again-.05); typeChars(t,'#bub0 span',.12,.7); typeChars(t,'#bub1 span',o.brk,.6); typeChars(t,'#bub2 span',o.again+.3,.6);
   t.fromTo('#cg',{scale:1,transformOrigin:'50% 50%'},{scale:1.06,duration:.5,yoyo:true,repeat:1,ease:'sine.inOut',immediateRender:false},.25)
    .fromTo('#cg',{rotation:0},{rotation:5,duration:1.3,yoyo:true,repeat:2,ease:'sine.inOut',immediateRender:false},1.6)
    .fromTo('#bub1',{scale:1,transformOrigin:'0% 50%'},{scale:1.03,duration:.35,yoyo:true,repeat:1,ease:'sine.inOut',immediateRender:false},o.brk)

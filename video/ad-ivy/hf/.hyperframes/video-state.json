@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "b2b33165-99c9-403d-917a-29e742f1b194",
-  "currentRevision": "e7498b33-0e12-43e4-a29a-ff7af2e43c80",
+  "currentRevision": "4545820f-92f2-4181-9345-87caa5ef9798",
   "pendingChanges": false,
   "files": {
     "assets/act/a001.jpg": {
@@ -409,8 +409,8 @@
       "content": "/root/.cache/hyperframes/history/b2b33165-99c9-403d-917a-29e742f1b194/blobs/4a/4ac57d7a97ad0b8a5a5421281cfc0cbb3939db7258cd7ae81c46714c828cc418"
     },
     "index.html": {
-      "hash": "2624bde82111ec9e21b39b837e012413ba08aba33c69d316dd8e8906a755e77e",
-      "content": "/root/.cache/hyperframes/history/b2b33165-99c9-403d-917a-29e742f1b194/blobs/26/2624bde82111ec9e21b39b837e012413ba08aba33c69d316dd8e8906a755e77e"
+      "hash": "25ea6283e57cd37e22a663e41af795b370a3443e2bcee3568fce62927600769f",
+      "content": "/root/.cache/hyperframes/history/b2b33165-99c9-403d-917a-29e742f1b194/blobs/25/25ea6283e57cd37e22a663e41af795b370a3443e2bcee3568fce62927600769f"
     }
   },
   "revisions": {
@@ -426,6 +426,21 @@
         "index.html": {
           "before": "/root/.cache/hyperframes/history/b2b33165-99c9-403d-917a-29e742f1b194/blobs/1d/1ddce7dcc5f3961bf1264368ac975ca2b5d83037addd6baa84beee4b81db2ea7",
           "after": "/root/.cache/hyperframes/history/b2b33165-99c9-403d-917a-29e742f1b194/blobs/26/2624bde82111ec9e21b39b837e012413ba08aba33c69d316dd8e8906a755e77e"
+        }
+      }
+    },
+    "4545820f-92f2-4181-9345-87caa5ef9798": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1795055747048,
+      "endedAt": 1795055747051,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/b2b33165-99c9-403d-917a-29e742f1b194/blobs/26/2624bde82111ec9e21b39b837e012413ba08aba33c69d316dd8e8906a755e77e",
+          "after": "/root/.cache/hyperframes/history/b2b33165-99c9-403d-917a-29e742f1b194/blobs/25/25ea6283e57cd37e22a663e41af795b370a3443e2bcee3568fce62927600769f"
         }
       }
     }
