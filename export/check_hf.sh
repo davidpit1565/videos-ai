@@ -41,6 +41,8 @@ run "frame layout (safe_check_hf.js)" node export/safe_check_hf.js "$HTML" --eve
 
 run "rendered file (qa.py --hf)" python3 export/qa.py "$MP4" --build "$HTML" --hf
 
+run "no silent line in the final mp4 (check_last_line_audio.py --all)" python3 export/check_last_line_audio.py "$MP4" "$CUES" --all
+
 if [ -n "$MUS" ]; then
   run "voice + music quality (voice_quality.py)" "$PY311" audio/voice_quality.py "$VO" "$CUES" --music "$MUS" --vol "$VOL"
 else

@@ -236,7 +236,7 @@ tl.add(scr('#sc8',T.S8,(t,r)=>{ t.fromTo('#sc8 .hv',{scale:1,transformOrigin:'0%
 tl.add(scr('#sc9',T.S9,null),T.S9.t0-.04);
 tl.add(scr('#sc10',T.S10,null),T.S10.t0-.04);
 tl.add(scr('#sc11',T.S11,(t,r)=>{ ringDraw(t,'#rgF',r(T.S11.acc)+.1); },{keep:true}),T.S11.t0-.04);
-tl.add(hide('#sc11'),T.tF-.1).set('#sc1',{autoAlpha:0},T.tF-.3).fromTo('#sc1',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.22,ease:'power2.out',immediateRender:false},T.tF-.02).to({},{duration:.001},T.D-.001);
+tl.to('#sc11',{autoAlpha:0,filter:'blur(6px)',duration:.12,ease:'power1.in'},T.tF-.12).set('#sc1',{autoAlpha:0},T.tF-.3).fromTo('#sc1',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.2,ease:'power2.out',immediateRender:false},T.tF).to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
 window.__reel={duration:T.D,seek:t=>{tl.seek(t)}};
 '''.replace("__T__", json.dumps(T, separators=(",", ":"))).replace("__ORG__", ORG).replace("__INK__", INK)
