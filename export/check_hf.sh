@@ -11,7 +11,7 @@
 #   music.wav [vol]   optional: the real bed file + the volume it was mixed at. Without it the bed
 #                     is ESTIMATED from the mp4 (voice_quality.py --mix) and the report says so.
 #
-# Env: PY311 (default /opt/v311/bin/python, has librosa), CHROMIUM_PATH (default: newest under
+# Env: ACCENT_SKIP=8,11 (lines left out of the accent check, passed as --skip, like check.sh), PY311 (default /opt/v311/bin/python, has librosa), CHROMIUM_PATH (default: newest under
 #      /opt/pw-browsers), EVERY (safe-area sample step, default 0.2).
 # Exit 0 only if every check that ran passed. SKIP is not PASS: it is listed in the summary.
 # No threshold is relaxed here; each tool keeps its own.
@@ -52,7 +52,7 @@ run "narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pas
   python3 audio/voice_doctor.py "$VO" --cues "$TMP/vd-cues.json" --no-watch
 
 if python3 -c "import transformers" 2>/dev/null; then
-  run "accent drift (check_accent.py)" python3 audio/check_accent.py "$VO" --cues "$TMP/vd-cues.json"
+  run "accent drift (check_accent.py)" python3 audio/check_accent.py "$VO" --cues "$TMP/vd-cues.json" ${ACCENT_SKIP:+--skip "$ACCENT_SKIP"}
 else
   RESULTS+=("SKIP  accent drift (check_accent.py needs the python 'transformers' package and a model; not installed here)")
   echo "=== SKIP  accent drift (needs transformers + model, not installed)"; echo; skipped=$((skipped+1))

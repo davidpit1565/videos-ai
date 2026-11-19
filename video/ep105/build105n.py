@@ -18,7 +18,7 @@ def say(x): LOG.append(x); print(x)
 
 CUES = json.load(open(H_ + "/cues105.json"))
 LN = {l["n"]: l for l in CUES["lines"]}
-assert len(LN) == 13
+assert len(LN) == 11
 s = lambda n: float(LN[n]["start"]); e = lambda n: float(LN[n]["end"])
 D = float(CUES["D"])
 WORDS = [[w["word"], w["start"], w["end"]] for w in json.load(open(H_ + "/voice/words-v105.json"))]
@@ -62,101 +62,77 @@ SC["S1"] = (f'<div class="wm" id="wm"><img src="{A}claude-logo-wordmark.png"></d
 T["S1"] = dict(t0=0, free=tfree, end=s(2))
 CUR = s(2)
 
-# ---------------------------------------------------------------- S2 empty checklist (line 2)
-cols = "".join(f'<div class="col" style="left:{108 + i * 178.5:.1f}px"><b>{i + 1}</b></div>' for i in range(5))
-SC["S2"] = (line("lead", seq("Thirty seconds.", [W(2, "30", 0, 0), W(2, "seconds", 0, .2)]), 292, 66) +
-            line("hv", seq("SEE IF", [W(2, "see", 0, .4), W(2, "if", 0, .45)]), 366, 160, lh=1.06) +
-            line("hv", seq("YOU GET IT.", [W(2, "you", 0, .6), W(2, "get", 0, .75), W(2, "it", 0, .9)]), 540, 160, acc=("get", "it"), lh=1.06) + cols)
-T["S2"] = dict(t0=s(2), end=s(3))
+# ---------------------------------------------------------------- S2 price (line 2): the strike is drawn ONCE, when "two hundred dollars" is said
+T["S1"]["end"] = s(2)
+CUR = s(2)
+SC["S2"] = (line("lead", seq("Normally", [W(2, "normally", 0, .02)]), 380, 70) +
+            line("hv", [("$200", W(2, "200", 0, .55))], 470, 350, lh=1.0, extra=STK) +
+            line("hv", seq("A MONTH.", [W(2, "a", 0, .8), W(2, "month", 0, .9)]), 850, 176))
+T["S2"] = dict(t0=s(2), strike=W(2, "200", 0, .55), end=s(3))
 CUR = s(3)
 
-# ---------------------------------------------------------------- S3 price (line 3)
-SC["S3"] = (line("lead", seq("Normally", [W(3, "normally", 0, .1)]), 380, 70) +
-            line("hv", [("$200", W(3, "200", 0, .35))], 470, 350, lh=1.0, extra=STK) +
-            line("hv", seq("A MONTH.", [W(3, "a", 0, .7), W(3, "month", 0, .8)]), 850, 176))
-T["S3"] = dict(t0=s(3), strike=W(3, "month", 0, .85), end=s(4))
+# ---------------------------------------------------------------- S3 the offer: both marks, OPEN SOURCE, 6 MONTHS (line 3)
+SC["S3"] = (f'<img class="lg" id="m3a" src="{A}claude-sparkle-site.png" style="left:108px;top:400px;width:270px;height:270px">'
+            f'<img class="lg" id="m3b" src="{A}github-mark.png" style="left:470px;top:424px;width:224px;height:224px">' +
+            line("hv", seq("OPEN SOURCE", [W(3, "open", 0, .3), W(3, "source", 0, .4)]), 720, 118, lh=1.0) +
+            line("hv", seq("6 MONTHS", [W(3, "for", 0, .8), W(3, "6", 0, .9)]), 850, 158, lh=1.0, acc=("months",)))
+T["S3"] = dict(t0=s(3), end=s(4))
 CUR = s(4)
 
-# ---------------------------------------------------------------- S4a / S4b (line 4)
-t4b = round(W(4, "two", 0, .5) - .06, 3)
-SC["S4a"] = (line("hv", [("500+", W(4, "lots", 0, .15))], 400, 340, lh=1.0) +
-             line("lead", seq("projects depend on your code", [W(4, "projects", 0, .3), W(4, "depend", 0, .4), W(4, "on", 0, .5), W(4, "your", 0, .55), W(4, "code", 0, .6)]), 790, 66))
-T["S4a"] = dict(t0=s(4), end=t4b, tick1=W(4, "code", 0, .6))
-CUR = t4b
-marks = "".join(f'<img class="lg pm" id="pm{i}" src="{A}{f}" style="left:{108 + i * 292}px;top:650px;width:280px;height:280px">' for i, f in enumerate(["linux-tux.png", "python-logo.png", "nodejs-logo.png"]))
-SC["S4b"] = (line("lead", seq("You help run", [W(4, "you", 0, .5), W(4, "help", 0, .6), W(4, "run", 0, .65)]), 400, 88) +
-             line("lead", seq("a big project:", [W(4, "a", 0, .7), W(4, "big", 0, .75), W(4, "project", 0, .9)]), 500, 88) + marks)
-T["S4b"] = dict(t0=t4b, end=s(5), tick2=W(4, "project", 0, .95))
+# ---------------------------------------------------------------- S4 who it is for (line 4)
+marks = "".join(f'<img class="lg pm" id="pm{i}" src="{A}{f}" style="left:{108 + i * 292}px;top:470px;width:280px;height:280px">' for i, f in enumerate(["linux-tux.png", "python-logo.png", "nodejs-logo.png"]))
+SC["S4"] = (marks + line("hv", seq("LOTS OF PEOPLE", [W(4, "lots", 0, .5), W(4, "of", 0, .55), W(4, "people", 0, .6)]), 800, 96, lh=1.0) +
+            line("hv", seq("USE YOUR WORK", [W(4, "use", 0, .7), W(4, "you", 0, .8), W(4, "can", 0, .9)]), 910, 96, lh=1.0, acc=("work",)))
+T["S4"] = dict(t0=s(4), end=s(5))
 CUR = s(5)
 
-# ---------------------------------------------------------------- S5a / S5b (line 5)
-t5b = round(W(5, "four", 0, .55) - .04, 3)
-SC["S5a"] = (line("hv", [("100", W(5, "hundred", 0, .25))], 400, 360, lh=1.0) +
-             line("lead", seq("changes accepted", [W(5, "changes", 0, .4), W(5, "accepted", 0, .45)]), 780, 68) +
-             line("lead", seq("in other people's projects", [W(5, "into", 0, .5), W(5, "other", 0, .55), W(5, "peoples", 0, .6), W(5, "projects", 0, .65)]), 862, 68))
-T["S5a"] = dict(t0=s(5), end=t5b, tick3=W(5, "hundred", 0, .25))
-CUR = t5b
-SC["S5b"] = (line("hv", [("20", W(5, "20", 0, .6))], 400, 360, lh=1.0) +
-             line("lead", seq("outsiders helped", [W(5, "outsiders", 0, .75), W(5, "helped", 0, .8)]), 780, 68) +
-             line("lead", seq("build your project", [W(5, "build", 0, .85), round(W(5, "yours", 0, .9) - .1, 3), W(5, "yours", 0, .92)]), 862, 68))
-T["S5b"] = dict(t0=t5b, end=s(6), tick4=W(5, "20", 0, .6))
+# ---------------------------------------------------------------- S5 real page + ring (line 5)
+SC["S5"] = (line("lead", seq("Not sure you fit?", [W(5, "not", 0, .05), W(5, "sure", 0, .1), W(5, "you", 0, .15), W(5, "fit", 0, .2)]), 270, 62) +
+            line("hv", seq("APPLY ANYWAY.", [W(5, "apply", 0, .6), W(5, "anyway", 0, .7)]), 346, 100, acc=("apply", "anyway")) +
+            f'<div class="shot" id="pg"><img src="{A}claude-for-oss-heading-criteria.png"></div>' + ring("rgP", 112, 1137, 752, 110))
+T["S5"] = dict(t0=s(5), ringat=W(5, "apply", 0, .6), end=s(6))
 CUR = s(6)
 
-# ---------------------------------------------------------------- S6 hidden (line 6)
-SC["S6"] = (line("lead", seq("The last one, almost", [W(6, "the", 0, .02), W(6, "last", 0, .15), W(6, "one", 0, .3), W(6, "almost", 0, .5)]), 290, 72) +
-            line("hv", seq("NOBODY", [W(6, "nobody", 0, .7)]), 384, 196, lh=1.0) + line("hv", seq("KNOWS.", [W(6, "knows", 0, .9)]), 584, 196, acc=("knows",), lh=1.0) +
-            f'<div class="hid" id="hid"><img src="{A}openssf-icon-color.png"><b id="q">?</b></div>')
-T["S6"] = dict(t0=s(6), end=s(7))
+# ---------------------------------------------------------------- S6 the card to save: three simple steps (line 6)
+steps = [("Sign in with", "GitHub"), ("Tell them about", "your project"), ("Wait for", "the email")]
+stp = "".join(f'<div class="stp" id="st{i}"><b>{i + 1}</b><span>{a_}<br>{b_}</span></div>' for i, (a_, b_) in enumerate(steps))
+SC["S6"] = f'<div class="sv6" id="sv">{stp}<i class="sheen" id="shn"></i></div>'
+T["S6"] = dict(t0=s(6), tell=W(6, "tell", 0, .4), wait=W(6, "wait", 0, .8), end=s(7))
 CUR = s(7)
 
-# ---------------------------------------------------------------- S7 opens (line 7)
-SC["S7"] = (f'<img class="lg" id="ssf" src="{A}openssf-icon-color.png" style="left:108px;top:280px;width:200px;height:200px">' +
-            line("hv", [("0.4+", W(7, "4", 0, .3))], 500, 390, lh=1.0, acc=("04",)) +
-            ring("rgO", 70, 490, 880, 400) +
-            line("lead", seq("OpenSSF score, 0 to 1:", [W(7, "openssf", 0, .2) + d_ for d_ in (-.1, .35, .5, .62, .74)]), 900, 66) +
-            line("lead", seq("how much others rely on you", [W(7, "how", 0, .5), W(7, "much", 0, .56), W(7, "other", 0, .62), round(W(7, "relies", 0, .75) - .1, 3), W(7, "relies", 0, .75), W(7, "on", 0, .85)]), 976, 66))
-T["S7"] = dict(t0=s(7), open=W(7, "4", 0, .3), end=s(8))
+# ---------------------------------------------------------------- S7 value (line 7)
+SC["S7"] = (line("lead", seq("6 months free is", [W(7, "6", 0, .05), W(7, "months", 0, .15), W(7, "free", 0, .25), W(7, "thats", 0, .4)]), 470, 80) +
+            line("hv", [("$1,200", W(7, "1200", 0, .6))], 560, 272, lh=1.0, acc=("1200",)) +
+            line("lead", seq("at list price", [.2, .3, .4]), 860, 80) + ring("rgV", 84, 545, 860, 300))
+T["S7"] = dict(t0=s(7), val=W(7, "1200", 0, .6), end=s(8))
 CUR = s(8)
 
-# ---------------------------------------------------------------- S8 real page + ring (line 8)
-SC["S8"] = (line("lead", seq("Not on the list?", [W(8, "not", 0, .05), W(8, "on", 0, .1), W(8, "the", 0, .12), W(8, "list", 0, .16)]), 270, 62) +
-            line("hv", seq("APPLY ANYWAY.", [W(8, "apply", 0, .4), W(8, "anyway", 0, .5)]), 346, 100, acc=("apply", "anyway")) +
-            f'<div class="shot" id="pg"><img src="{A}claude-for-oss-heading-criteria.png"></div>' + ring("rgP", 112, 1137, 752, 110))
-T["S8"] = dict(t0=s(8), ringat=W(8, "apply", 0, .4), end=s(9))
+# ---------------------------------------------------------------- S8 scarcity (line 8)
+SC["S8"] = (line("hv", seq("10,000", [W(8, "10", 0, .45)]), 420, 244, lh=1.0, acc=("10000",)) +
+            line("hv", seq("SPOTS", [W(8, "spots", 0, .8)]), 680, 244, lh=1.0) +
+            line("lead", seq("GitHub account 2+ years old", [.2, .3, .4, .5, .6]), 960, 62))
+T["S8"] = dict(t0=s(8), end=s(9))
 CUR = s(9)
 
-# ---------------------------------------------------------------- S9 saveable card (line 9)
-crit = ["Lots of projects use your code", "Run a big open-source project", "100+ changes accepted in 12 months", "20+ outside helpers in 12 months", "OpenSSF score 0.4+"]
-rows = "".join(f'<div class="cr" id="cr{i}"><b>{i + 1}</b><span>{t}</span></div>' for i, t in enumerate(crit))
-SC["S9"] = (f'<div class="sv" id="sv"><div class="sh">Any ONE of these:</div>{rows}<div class="sh pl2" id="pl2">Plus, all of:</div>'
-            '<div class="ex" id="ex0">GitHub account 2+ years old</div><div class="ex" id="ex1">Active in the last 90 days</div><div class="ex" id="ex2">Open-source license</div>'
-            '<div class="sp" id="sp">10,000 spots</div><i class="sheen" id="shn"></i></div>')
-T["S9"] = dict(t0=s(9), plus=W(9, "github", 0, .3), act=W(9, "acted", 0, .6), lic=W(9, "open", 0, .8), spots=W(9, "10", 0, .9), end=s(10))
+# ---------------------------------------------------------------- S9 send (line 9)
+SC["S9"] = (line("lead", seq("Send this to a", [W(9, "send", 0, .05), W(9, "this", 0, .2), W(9, "to", 0, .3), W(9, "a", 0, .4)]), 470, 88) +
+            line("hv", seq("FRIEND", [W(9, "friend", 0, .55)]), 585, 210, lh=1.0, acc=("friend",)) +
+            line("lead", seq("who builds things.", [W(9, "who", 0, .7), W(9, "builds", 0, .8), W(9, "things", 0, .92)]), 810, 88, acc=("builds",)))
+T["S9"] = dict(t0=s(9), end=s(10))
 CUR = s(10)
 
-# ---------------------------------------------------------------- S10 value (line 10): $1,200 is on screen from the start
-SC["S10"] = (line("lead", seq("6 months free is", [W(10, "six", 0, .05), W(10, "months", 0, .2), W(10, "free", 0, .3), W(10, "thats", 0, .45)]), 470, 80) +
-             line("hv", [("$1,200", W(10, ["1", "12"], 0, .6))], 560, 272, lh=1.0, acc=("1200",)) +
-             line("lead", seq("at list price", [round(W(10, ["1", "12"], 0, .6) + d_, 3) for d_ in (.25, .4, .55)]), 860, 80) + ring("rgV", 84, 545, 860, 300))
-T["S10"] = dict(t0=s(10), val=W(10, ["1", "12"], 0, .6), end=s(11))
+# ---------------------------------------------------------------- S10 link in bio (line 10)
+SC["S10"] = (line("lead", seq("The setup's in the", [W(10, "the", 0, .02), W(10, "setups", 0, .2), W(10, "in", 0, .35), W(10, "the", 1, .45)]), 450, 90) +
+             line("hv", seq("LINK", [W(10, "link", 0, .6)]), 560, 200, lh=1.0) + line("hv", seq("IN BIO.", [W(10, "in", 1, .75), W(10, "bio", 0, .9)]), 760, 200, acc=("bio",), lh=1.0))
+T["S10"] = dict(t0=s(10), end=s(11))
 CUR = s(11)
 
-# ---------------------------------------------------------------- S11-S13 close
-SC["S11"] = (line("lead", seq("Send this to", [W(11, "send", 0, .1), W(11, "this", 0, .25), W(11, "to", 0, .4)]), 360, 84) +
-             line("hv", seq("THE FRIEND", [W(11, "the", 0, .45), W(11, "friend", 0, .6)]), 460, 138, lh=1.04) +
-             line("hv", seq("WHO CODES.", [W(11, "who", 0, .8), W(11, "codes", 0, .92)]), 610, 138, acc=("codes",), lh=1.04) +
-             f'<img class="lg" id="m1" src="{A}claude-sparkle-site.png" style="left:108px;top:850px;width:210px;height:210px">'
-             f'<img class="lg" id="m2" src="{A}github-mark.png" style="left:380px;top:880px;width:150px;height:150px">')
-T["S11"] = dict(t0=s(11), end=s(12))
-CUR = s(12)
-SC["S12"] = (line("lead", seq("The setup's in the", [W(12, "the", 0, .02), W(12, "setups", 0, .2), W(12, "in", 0, .35), W(12, "the", 1, .45)]), 450, 90) +
-             line("hv", seq("LINK", [W(12, "link", 0, .6)]), 560, 200, lh=1.0) + line("hv", seq("IN BIO.", [W(12, "in", 1, .75), W(12, "bio", 0, .9)]), 760, 200, acc=("bio",), lh=1.0))
-T["S12"] = dict(t0=s(12), end=s(13))
-CUR = s(13)
-SC["S13"] = (line("lead", seq("Want the next one?", [W(13, "want", 0, .02), W(13, "the", 0, .2), W(13, "next", 0, .4), W(13, "one", 0, .6)]), 470, 90) +
-             line("hv", [("FOLLOW.", W(13, "follow", 0, .6))], 590, 200, acc=("follow",), fast=False) + ring("rgF", 78, 574, 900, 250) +
-             line("lead", seq("and you'll see it.", [W(13, "and", 0, .75), W(13, "youll", 0, .85), W(13, "see", 0, .92), W(13, "it", 0, .97)]), 840, 80, fast=False))
-T["S13"] = dict(t0=s(13), acc=W(13, "follow", 0, .6), end=tF)
+# ---------------------------------------------------------------- S11 follow (line 11, ep104 take)
+SC["S11"] = (line("lead", seq("Want the next one?", [W(11, "want", 0, .02), W(11, "the", 0, .2), W(11, "next", 0, .4), W(11, "one", 0, .6)]), 470, 90) +
+             line("hv", [("FOLLOW.", W(11, "follow", 0, .6))], 590, 200, acc=("follow",), fast=False) + ring("rgF", 78, 574, 900, 250) +
+             line("lead", seq("and you'll see it.", [W(11, "and", 0, .75), W(11, "youll", 0, .85), W(11, "see", 0, .92), W(11, "it", 0, .97)]), 840, 80, fast=False))
+T["S11"] = dict(t0=s(11), acc=W(11, "follow", 0, .6), end=tF)
+
 for k in T:
     for kk, v in list(T[k].items()):
         if isinstance(v, float): T[k][kk] = round(v, 3)
@@ -165,16 +141,13 @@ T["tF"] = tF; T["D"] = D
 # ---------------------------------------------------------------- sfx (soft, real library clips from ep89c/sfx)
 SFX = []
 def sfx(f, t, g=-13): SFX.append(dict(f=f, t=round(max(0, t), 3), g=g))
-sfx("whoosh_b.ogg", .08, -15); sfx("select.ogg", T["S1"]["free"] - .04, -13); sfx("click_a.ogg", s(2) + .2, -17)
-sfx("select.ogg", T["S3"]["strike"], -14)
-for k in ("tick1", "tick2"): sfx("click_a.ogg", T["S4a" if k == "tick1" else "S4b"][k], -14)
-sfx("click_a.ogg", T["S5a"]["tick3"], -14); sfx("click_a.ogg", T["S5b"]["tick4"], -14)
-sfx("riser.ogg", s(6) + .5, -19); sfx("select.ogg", T["S7"]["open"], -13); sfx("click_a.ogg", T["S8"]["ringat"] + .3, -17)
-sfx("select.ogg", T["S9"]["spots"], -14); sfx("whoosh_b.ogg", s(10) - .05, -17); sfx("select.ogg", T["S10"]["val"], -13); sfx("select.ogg", T["S13"]["acc"], -14)
+sfx("whoosh_b.ogg", .08, -15); sfx("select.ogg", T["S1"]["free"] - .04, -13); sfx("select.ogg", T["S2"]["strike"], -14)
+sfx("click_a.ogg", s(3) + .25, -17); sfx("click_a.ogg", s(4) + .3, -17); sfx("click_a.ogg", T["S5"]["ringat"] + .3, -17)
+sfx("click_a.ogg", s(6) + .3, -15); sfx("click_a.ogg", T["S6"]["tell"], -15); sfx("click_a.ogg", T["S6"]["wait"], -15)
+sfx("select.ogg", T["S7"]["val"], -13); sfx("select.ogg", s(8) + .4, -14); sfx("whoosh_b.ogg", s(9) - .05, -17); sfx("select.ogg", T["S11"]["acc"], -14)
 SFX.sort(key=lambda x: x["t"]); json.dump(SFX, open(H_ + "/sfx105.json", "w"), indent=1)
 
 scenes = "".join(f'<div class="sc" id="sc{n[1:]}">{SC[n]}</div>' for n in SC)
-rowB = "".join(f'<div class="bx" id="b{i}" style="left:{108 + i * 152}px"><b>{"?" if i == 4 else i + 1}</b><svg viewBox="0 0 100 100"><path d="M24 52 L43 71 L77 32" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' for i in range(5))
 CSS = f'''
 *{{margin:0;padding:0;box-sizing:border-box}}
 html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-family:IDisp,Inter,Helvetica,Arial,sans-serif;font-weight:500;color:{INK};font-kerning:none}}
@@ -205,6 +178,8 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .cr{{display:flex;align-items:center;gap:22px;height:92px;opacity:0;width:716px;border-bottom:2px solid #eeede7}} .cr b{{flex:none;width:54px;height:54px;border-radius:27px;background:{ORG};color:#fff;text-align:center;line-height:54px;font-weight:900;font-size:30px}} .cr span{{font-weight:900;font-size:35px;letter-spacing:-.02em;white-space:nowrap}}
 .ex{{height:62px;line-height:62px;font-weight:800;font-size:37px;letter-spacing:-.015em;white-space:nowrap;opacity:0;padding-left:76px}}
 .sp{{margin-top:20px;font-weight:900;font-size:86px;line-height:90px;letter-spacing:-.045em;color:{ORG};opacity:0}}
+.sv6{{left:108px;top:360px;width:864px;height:760px;border-radius:44px;background:#fff;box-shadow:0 30px 60px rgba(20,20,20,.16);overflow:hidden;opacity:0;visibility:hidden;padding:40px 0 0 44px}}
+.stp{{display:flex;align-items:center;gap:30px;height:226px;opacity:0;border-bottom:2px solid #eeede7;width:760px}} .stp:nth-of-type(3){{border-bottom:0}} .stp b{{flex:none;width:96px;height:96px;border-radius:48px;background:{ORG};color:#fff;text-align:center;line-height:96px;font-weight:900;font-size:56px}} .stp span{{font-weight:900;font-size:56px;line-height:64px;letter-spacing:-.02em;white-space:nowrap}}
 .bx{{position:absolute;top:1090px;width:132px;height:132px;border:6px solid #cfcdc4;border-radius:34px;background:rgba(255,255,255,.7);opacity:0;visibility:hidden}} .bx b{{position:absolute;left:0;right:0;top:0;text-align:center;font-weight:900;font-size:68px;line-height:120px;color:#a9a79d}} .bx svg{{position:absolute;left:23px;top:23px;width:74px;height:74px}}
 #rowB{{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none}}
 '''
@@ -231,65 +206,37 @@ function scr(id,o,fn,opt){ opt=opt||{}; const S=o.t0-.04, t=gsap.timeline(); t.a
   if(fn) fn(t,a=>a-S,S); if(!opt.keep) t.add(hide(id),Math.max(.3,o.end-S-.22)); return t; }
 const pops=(t,sel,at,each)=>t.fromTo(sel,{autoAlpha:0,y:36,scale:.9},{autoAlpha:1,y:0,scale:1,duration:.55,ease:spring,stagger:each,immediateRender:false},at);
 const tl=gsap.timeline({paused:true});
-/* world: slow camera and paper drift, always moving a little */
 tl.fromTo('#cam',{scale:1},{scale:1.014,duration:T.D/4,ease:'sine.inOut',yoyo:true,repeat:3},0)
   .fromTo('.bgw',{x:0,y:0},{x:-14,y:-12,duration:T.D/2,ease:'sine.inOut',yoyo:true,repeat:1},0);
-/* S1: frame 0 is complete; then a soft settle of FREE and a slow turn of the logo */
+/* S1 frame 0: complete from the first frame (the strike on $200 is part of it, never redrawn) */
 tl.add((()=>{ const o=T.S1,t=gsap.timeline();
   t.fromTo('#s1f',{scale:1.07,transformOrigin:'0% 50%'},{scale:1,duration:.9,ease:spring,immediateRender:false},Math.max(.12,o.free-.2))
-   .fromTo('#gh',{y:0},{y:-8,duration:1.1,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},0)
+   .fromTo('#gh',{y:0},{y:-8,duration:1.0,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},0)
    .fromTo('#s1p .nw',{scale:1.05,transformOrigin:'0% 50%'},{scale:1,duration:.8,ease:spring,immediateRender:false},.1)
    .to('#s1u',{x:8,duration:1.9,ease:'sine.inOut'},.1).to('#wm',{x:8,duration:1.9,ease:'sine.inOut'},.1).to('#s1m',{x:8,duration:1.9,ease:'sine.inOut'},.1).to('#s1f',{x:8,duration:1.9,ease:'sine.inOut'},.1).to('#s1p',{x:8,duration:1.9,ease:'sine.inOut'},.1);
   t.add(hide('#sc1'),o.end-.24); return t; })(),0);
-/* S2: five empty slots rise one after another */
-tl.add(scr('#sc2',T.S2,(t,r)=>{ pops(t,'#sc2 .col',.35,.1); t.fromTo('#sc2 .col',{backgroundColor:'rgba(255,255,255,.55)'},{backgroundColor:'rgba(255,255,255,.9)',duration:.8,stagger:.1,immediateRender:false},.9); }),T.S2.t0-.04);
-/* S3: price, then the strike is drawn across it */
-tl.add(scr('#sc3',T.S3,(t,r)=>{ t.fromTo('#sc3 .stk',{scaleX:0},{scaleX:1,duration:.5,ease:'power3.inOut',immediateRender:false},r(T.S3.strike)-.1); }),T.S3.t0-.04);
-/* S4a: 500+ ; S4b: three real project marks */
-const bump=(id,at)=>(t,r)=>[0,1.3].forEach(d=>t.fromTo(id+' .hv',{scale:1,transformOrigin:'0% 50%'},{scale:1.06,duration:.5,yoyo:true,repeat:1,ease:'sine.inOut',immediateRender:false},Math.max(.2,r(at)+.15+d)));
-tl.add(scr('#sc4a',T.S4a,bump('#sc4a',T.S4a.tick1)),T.S4a.t0-.04);
-tl.add(scr('#sc4b',T.S4b,(t,r)=>{ pops(t,'#sc4b .pm',.3,.14); t.fromTo('#sc4b .pm',{y:0},{y:-10,duration:1.4,ease:'sine.inOut',stagger:.12,yoyo:true,repeat:1,immediateRender:false},1.0); }),T.S4b.t0-.04);
-tl.add(scr('#sc5a',T.S5a,bump('#sc5a',T.S5a.tick3)),T.S5a.t0-.04);
-tl.add(scr('#sc5b',T.S5b,bump('#sc5b',T.S5b.tick4)),T.S5b.t0-.04);
-/* S6: box five hidden behind a soft blur */
-tl.add(scr('#sc6',T.S6,(t,r)=>{ t.fromTo('#hid',{autoAlpha:0,y:50,scale:.92},{autoAlpha:1,y:0,scale:1,duration:.7,ease:spring,immediateRender:false},.7)
-  .fromTo('#hid',{scale:1},{scale:1.04,duration:Math.max(.8,T.S6.end-T.S6.t0-1.3),ease:'sine.inOut',immediateRender:false},1.3)
-  .fromTo('#hid img',{rotation:-8,scale:1},{rotation:8,scale:1.08,duration:2,ease:'sine.inOut',immediateRender:false},.7); }),T.S6.t0-.04);
-/* S7: it opens */
-tl.add(scr('#sc7',T.S7,(t,r)=>{ t.fromTo('#ssf',{autoAlpha:0,scale:.7,rotation:-14},{autoAlpha:1,scale:1,rotation:0,duration:.7,ease:spring,immediateRender:false},r(T.S7.open)-1.2)
-  .fromTo('#ssf',{y:0},{y:-8,duration:1.4,ease:'sine.inOut',yoyo:true,repeat:2,immediateRender:false},r(T.S7.open)-.4);
-  t.fromTo('#sc7 .hv',{scale:1,transformOrigin:'0% 50%'},{scale:1.08,duration:.45,yoyo:true,repeat:1,ease:'sine.inOut',immediateRender:false},r(T.S7.open)+.3);
-  ringDraw(t,'#rgO',r(T.S7.open)+1.35);
-  [.9,1.9,2.6].forEach(a=>t.fromTo('#ssf',{scale:1},{scale:1.2,duration:.5,yoyo:true,repeat:1,ease:'sine.inOut',immediateRender:false},r(T.S7.open)+a)); }),T.S7.t0-.04);
-/* S8: the real page, a hand-drawn ring around the sentence */
-tl.add(scr('#sc8',T.S8,(t,r)=>{ card(t,'#pg',.55); t.fromTo('#pg img',{scale:1,transformOrigin:'0% 100%'},{scale:1.035,duration:Math.max(1.5,T.S8.end-T.S8.t0-.4),ease:'sine.inOut',immediateRender:false},.7);
-  ringDraw(t,'#rgP',Math.max(1.5,r(T.S8.ringat)+.5)); }),T.S8.t0-.04);
-/* S9: the card to save, built row by row, then a slow drift */
-tl.add(scr('#sc9',T.S9,(t,r)=>{ card(t,'#sv',.1,30);
-  t.fromTo('#sc9 .sh:not(.pl2)',{autoAlpha:0},{autoAlpha:1,duration:.3,immediateRender:false},.35);
-  t.fromTo('#sc9 .cr',{autoAlpha:0,y:20},{autoAlpha:1,y:0,duration:.45,ease:expoOut,stagger:.22,immediateRender:false},.5);
-  t.fromTo('#pl2',{autoAlpha:0},{autoAlpha:1,duration:.3,immediateRender:false},Math.max(1.6,r(T.S9.plus)-.35));
-  ['#ex0','#ex1','#ex2'].forEach((id,i)=>t.fromTo(id,{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.4,ease:expoOut,immediateRender:false},Math.max(1.7,r([T.S9.plus,T.S9.act,T.S9.lic][i])-.1)));
-  t.fromTo('#sp',{autoAlpha:0,scale:.8,transformOrigin:'0% 50%'},{autoAlpha:1,scale:1,duration:.6,ease:spring,immediateRender:false},r(T.S9.spots)-.1);
-  t.fromTo('#sv',{scale:1,transformOrigin:'50% 40%'},{scale:1.04,duration:Math.max(1.5,T.S9.end-T.S9.t0-.2),ease:'sine.inOut',immediateRender:false},.5);
-  [1.9,3.3].forEach(a=>t.fromTo('#shn',{x:-300},{x:1100,duration:1.2,ease:'sine.inOut',immediateRender:false},a));
-  t.fromTo('#sc9 .cr b',{scale:1},{scale:1.14,duration:.35,yoyo:true,repeat:1,ease:'sine.inOut',stagger:.28,immediateRender:false},2.4); }),T.S9.t0-.04);
-/* S10 */
-tl.add(scr('#sc10',T.S10,(t,r)=>{ ringDraw(t,'#rgV',r(T.S10.val)+.25); }),T.S10.t0-.04);
-/* S11-S13 */
-tl.add(scr('#sc11',T.S11,(t,r)=>{ pops(t,'#m1',r(T.S11.t0)+.85,0); pops(t,'#m2',r(T.S11.t0)+1.0,0); }),T.S11.t0-.04);
-tl.add(scr('#sc12',T.S12,null),T.S12.t0-.04);
-tl.add(scr('#sc13',T.S13,(t,r)=>{ ringDraw(t,'#rgF',r(T.S13.acc)+.1); },{keep:true}),T.S13.t0-.04);
-/* the checklist row under S4-S7: stays across the four screens, ticks at the spoken words */
-tl.fromTo('.bx',{autoAlpha:0,y:24,scale:.92},{autoAlpha:1,y:0,scale:1,duration:.6,ease:spring,stagger:.06,immediateRender:false},T.S4a.t0-.04)
-  .to('.bx',{autoAlpha:0,y:-10,duration:.22,ease:expoIn},T.S8.t0-.22);
-function tick(i,at){ tl.to('#b'+i,{backgroundColor:ORG,borderColor:ORG,duration:.3,ease:'power2.out'},at).to('#b'+i+' b',{autoAlpha:0,duration:.2},at)
-  .fromTo('#b'+i+' svg path',{drawSVG:'0%'},{drawSVG:'100%',duration:.35,ease:'power2.out',immediateRender:false},at+.06)
-  .fromTo('#b'+i,{scale:.9},{scale:1,duration:.5,ease:spring,immediateRender:false},at); }
-tick(0,T.S4a.tick1-.1); tick(1,T.S4b.tick2-.1); tick(2,T.S5a.tick3-.1); tick(3,T.S5b.tick4-.1); tick(4,T.S7.open+.1);
-tl.fromTo('#b4 b',{y:0},{y:-6,duration:.5,yoyo:true,repeat:Math.floor((T.S7.t0-T.S6.t0)/.5)-1,ease:'sine.inOut'},T.S6.t0);
-/* the frame-0 look returns for the loop */
-tl.add(hide('#sc13'),T.tF-.1).set('#sc1',{autoAlpha:0},T.tF-.3).fromTo('#sc1',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.22,ease:'power2.out',immediateRender:false},T.tF-.02).to({},{duration:.001},T.D-.001);
+/* S2: the strike is ONE tween: scaleX is set to 0 here and drawn once at the spoken "two hundred" */
+gsap.set('#sc2 .stk',{scaleX:0});
+tl.add(scr('#sc2',T.S2,(t,r)=>{ t.to('#sc2 .stk',{scaleX:1,duration:.5,ease:'power3.inOut'},Math.max(.3,r(T.S2.strike)-.05)); }),T.S2.t0-.04);
+const pulse=(t,sel,at,k,each)=>t.fromTo(sel,{scale:1,transformOrigin:'50% 50%'},{scale:k,duration:.5,yoyo:true,repeat:1,ease:'sine.inOut',stagger:each||0,immediateRender:false},at);
+tl.add(scr('#sc3',T.S3,(t,r)=>{ pops(t,'#m3a',.1,0); pops(t,'#m3b',.25,0);
+  [.9,1.9,2.9].forEach(a=>{ pulse(t,'#m3a',a,1.12); pulse(t,'#m3b',a+.12,1.12); });
+  t.fromTo('#sc3 .hv',{x:0},{x:0},0); [1.4,2.6].forEach(a=>t.fromTo('#sc3 .hv',{scale:1,transformOrigin:'0% 50%'},{scale:1.05,duration:.5,yoyo:true,repeat:1,ease:'sine.inOut',stagger:.15,immediateRender:false},a)); }),T.S3.t0-.04);
+tl.add(scr('#sc4',T.S4,(t,r)=>{ pops(t,'#sc4 .pm',.1,.14); [.9,1.9,2.9].forEach(a=>pulse(t,'#sc4 .pm',a,1.1,.22)); [1.2,2.4].forEach(a=>t.fromTo('#sc4 .hv',{scale:1,transformOrigin:'0% 50%'},{scale:1.05,duration:.5,yoyo:true,repeat:1,ease:'sine.inOut',stagger:.15,immediateRender:false},a)); }),T.S4.t0-.04);
+tl.add(scr('#sc5',T.S5,(t,r)=>{ card(t,'#pg',.35); t.fromTo('#pg img',{scale:1,transformOrigin:'0% 100%'},{scale:1.035,duration:Math.max(1.5,T.S5.end-T.S5.t0-.4),ease:'sine.inOut',immediateRender:false},.5);
+  ringDraw(t,'#rgP',Math.max(1.3,r(T.S5.ringat)+.4)); }),T.S5.t0-.04);
+tl.add(scr('#sc6',T.S6,(t,r)=>{ card(t,'#sv',.05,30); t.fromTo('#st0',{autoAlpha:0,y:24},{autoAlpha:1,y:0,duration:.5,ease:expoOut,immediateRender:false},.25);
+  t.fromTo('#st1',{autoAlpha:0,y:24},{autoAlpha:1,y:0,duration:.5,ease:expoOut,immediateRender:false},Math.max(.7,r(T.S6.tell)-.25));
+  t.fromTo('#st2',{autoAlpha:0,y:24},{autoAlpha:1,y:0,duration:.5,ease:expoOut,immediateRender:false},Math.max(1.2,r(T.S6.wait)-.25));
+  t.fromTo('#sv',{scale:1,transformOrigin:'50% 40%'},{scale:1.04,duration:Math.max(1.5,T.S6.end-T.S6.t0-.2),ease:'sine.inOut',immediateRender:false},.4);
+  [1.3,2.4].forEach(a=>t.fromTo('#shn',{x:-300},{x:1100,duration:1.1,ease:'sine.inOut',immediateRender:false},a));
+  t.fromTo('#sc6 .stp b',{scale:1},{scale:1.12,duration:.35,yoyo:true,repeat:1,ease:'sine.inOut',stagger:.3,immediateRender:false},1.6); }),T.S6.t0-.04);
+tl.add(scr('#sc7',T.S7,(t,r)=>{ ringDraw(t,'#rgV',r(T.S7.val)+.2); }),T.S7.t0-.04);
+tl.add(scr('#sc8',T.S8,(t,r)=>{ t.fromTo('#sc8 .hv',{scale:1,transformOrigin:'0% 50%'},{scale:1.05,duration:.5,yoyo:true,repeat:1,ease:'sine.inOut',stagger:.2,immediateRender:false},.9); }),T.S8.t0-.04);
+tl.add(scr('#sc9',T.S9,null),T.S9.t0-.04);
+tl.add(scr('#sc10',T.S10,null),T.S10.t0-.04);
+tl.add(scr('#sc11',T.S11,(t,r)=>{ ringDraw(t,'#rgF',r(T.S11.acc)+.1); },{keep:true}),T.S11.t0-.04);
+tl.add(hide('#sc11'),T.tF-.1).set('#sc1',{autoAlpha:0},T.tF-.3).fromTo('#sc1',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.22,ease:'power2.out',immediateRender:false},T.tF-.02).to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
 window.__reel={duration:T.D,seek:t=>{tl.seek(t)}};
 '''.replace("__T__", json.dumps(T, separators=(",", ":"))).replace("__ORG__", ORG).replace("__INK__", INK)
@@ -306,7 +253,7 @@ html = f'''<!doctype html><html lang="en" data-resolution="portrait"><head><meta
 {CSS}
 </style></head><body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="{D}" data-width="1080" data-height="1920">
-<div class="bgw" data-decor></div><div id="cam">{scenes}<div id="rowB">{rowB}</div></div>
+<div class="bgw" data-decor></div><div id="cam">{scenes}</div>
 </div>
 <script>
 {JS}
