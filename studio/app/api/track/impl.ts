@@ -26,6 +26,9 @@ export const maxDuration = 60;
 export async function GET(req: Request) {
   const secret = process.env.CRON_SECRET;
   const auth = req.headers.get("authorization");
+  // fromCron also covers lib/publish.ts, which calls this with Bearer CRON_SECRET after a
+  // successful reel publish. That is deliberate and bounded by publish frequency (a few per
+  // day at most), so it keeps skipping the cooldown; the browser poll is what the cooldown limits.
   const fromCron = Boolean(req.headers.get("x-vercel-cron")) || (secret && auth === `Bearer ${secret}`);
 
   // /api/track is classified CRON in lib/routes.ts, so middleware's PIN check skips it
@@ -75,7 +78,7 @@ export async function GET(req: Request) {
     return NextResponse.json({
       ok: true,
       skipped: true,
-      reason: "נמשך כבר בשלוש הדקות האחרונות",
+      reason: "נמשך כבר בעשר הדקות האחרונות",
       activity: feed.slice(0, 40),
     });
   }
@@ -585,7 +588,12 @@ export async function GET(req: Request) {
   // yet (fbVideoId null) — an episode already mirrored, by this or by the old manual
   // backfill, is never touched again, so a real API failure here just retries on the next
   // pull instead of double-posting on a rerun.
-  const fbMirrorCandidates = state.episodes.filter((e) => e.igMediaId && !e.fbVideoId);
+  //
+  // Skipped outright while Facebook is not connected, and stopped at the first failure in a
+  // run. It used to try every old episode (~80) on every pull even though the token had
+  // been invalidated, so each pull made ~80 doomed calls and burned seconds of CPU for
+  // nothing — a main reason the Hobby plan's CPU allowance ran out.
+  const fbMirrorCandidates = fb.connected ? state.episodes.filter((e) => e.igMediaId && !e.fbVideoId) : [];
   for (const e of fbMirrorCandidates) {
     const r = reels().find((x) => x.episode === e.number && x.kind === "video" && x.gate?.passed);
     if (!r) continue;
@@ -601,6 +609,7 @@ export async function GET(req: Request) {
       });
     } else {
       console.log(`[track] auto-mirror to facebook failed for episode ${e.number}: ${result.reason}`);
+      break; // same cause will fail the rest too; retry on the next pull
     }
   }
 

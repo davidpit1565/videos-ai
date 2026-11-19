@@ -46,6 +46,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
   const ref = useRef<State | null>(null);
   const modeRef = useRef<Mode>("loading");
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastRefreshAt = useRef<number>(0);
   ref.current = state;
 
   // The browser copy is always written. The database copy is written too when
@@ -160,6 +161,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
   );
 
   const refresh = useCallback(async () => {
+    lastRefreshAt.current = Date.now();
     setRefreshing(true);
     try {
       const r = await fetch("/api/track", { cache: "no-store" });
@@ -196,19 +198,29 @@ export function Provider({ children }: { children: React.ReactNode }) {
    *  it, got exactly one pull, ever, no matter how many hours passed — indistinguishable
    *  from a system that never updates on its own, which is exactly what he reported: numbers
    *  stuck until he manually pressed a button. /api/track already returns early without
-   *  spending an API call when a pull ran in the last 3 minutes (shortened from 20 — see
-   *  that file), so calling it on an interval costs nothing when there is nothing new to
-   *  fetch — the server-side cooldown does the actual rate-limiting, this just stops
-   *  requiring a human to remember to ask.
+   *  spending an API call when a pull ran in the last 10 minutes (see that file's cooldown —
+   *  it was 20, then 3, then back up to 10), so calling it on an interval costs nothing when
+   *  there is nothing new to fetch — the server-side cooldown does the actual rate-limiting,
+   *  this just stops requiring a human to remember to ask.
+   *  The poll interval below used to be 3 minutes — shorter than that 10-minute cooldown, so
+   *  most polls (and every tab-visibility pull on top of them, from however many open tabs or
+   *  devices) landed outside the skip window and ran the full expensive Instagram/Beehiiv pull,
+   *  which is what was driving the Active CPU usage up. Polling at a interval longer than the
+   *  cooldown, and gating the visibility-triggered pull by the same cooldown, means a tab left
+   *  open calls the cheap path almost every time and the expensive one only when it's actually
+   *  due.
    *  Also re-pulls when the tab/app comes back into view, for the common case of switching
-   *  away and back rather than leaving it open and idle. Cloud mode only: with no database
-   *  the tracker has nowhere to write. */
+   *  away and back rather than leaving it open and idle — but only when it's been at least as
+   *  long as the server cooldown since the last pull, so flipping between tabs doesn't trigger
+   *  a full pull every time. Cloud mode only: with no database the tracker has nowhere to write. */
   useEffect(() => {
     if (mode !== "cloud") return;
     void refresh();
-    const interval = setInterval(() => void refresh(), 3 * 60 * 1000);
+    const interval = setInterval(() => void refresh(), 11 * 60 * 1000);
     const onVisible = () => {
-      if (document.visibilityState === "visible") void refresh();
+      if (document.visibilityState !== "visible") return;
+      if (Date.now() - lastRefreshAt.current < 10 * 60 * 1000) return;
+      void refresh();
     };
     document.addEventListener("visibilitychange", onVisible);
     return () => {
