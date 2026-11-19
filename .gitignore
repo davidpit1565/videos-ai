@@ -178,3 +178,11 @@ video/ep94/out/ep94-v1[34]*.mp4
 video/ep94/out/gate-v1[234].txt
 video/*/voice/build-*.log
 video/ep98/voice/pl/log.txt
+# episode 106 intermediates (the final five mp4 and gate files are tracked)
+video/ep106/hf-V*/assets
+video/ep106/out/pic-*.mp4
+video/ep106/out/*-review.mp4
+video/ep106/out/bed106-*.wav
+video/ep106/out/rawbed-*.wav
+video/ep106/voice/pl/
+video/ep106/voice/*.wav

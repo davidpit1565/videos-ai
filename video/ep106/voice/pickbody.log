@@ -1,0 +1,47 @@
+1 11 0.51 DIFF i took a lot to add by one thats it
+1 22 0.08 OK i tell claude the app i want thats it
+1 33 0.03 OK i tell claude the app i want thats it
+1 44 0.03 DIFF i tell clobby app i want thats it
+1 55 0.04 DIFF i tell quad the app i want thats it
+1 66 0.49 OK i tell claude the app i want thats it
+1 77 0.99 OK i tell claude the app i want thats it
+2 11 0.99 OK then eleven free add ons run in order
+2 22 0.27 OK then eleven free add ons run in order
+2 33 0.98 OK then eleven free add ons run in order
+2 44 0.2 OK then eleven free add ons run in order
+2 55 0.99 DIFF then eleven free addels run in order
+2 66 0.96 OK then eleven free add ons run in order
+2 77 0.34 OK then eleven free add ons run in order
+3 11 0.39 OK one finds the weak spots in my idea
+3 22 0.85 OK one finds the weak spots in my idea
+3 33 0.69 OK one finds the weak spots in my idea
+3 44 0.09 OK one finds the weak spots in my idea
+3 55 0.29 OK one finds the weak spots in my idea
+3 66 0.28 OK one finds the weak spots in my idea
+3 77 0.66 OK one finds the weak spots in my idea
+4 11 0.15 OK one draws how the app should look and why
+4 22 0.05 OK one draws how the app should look and why
+4 33 0.04 OK one draws how the app should look and why
+5 11 0.57 OK then i say build it
+5 22 0.72 OK then i say build it
+5 33 0.37 OK then i say build it
+5 44 0.04 OK then i say build it
+5 55 0.24 OK then i say build it
+5 66 0.01 OK then i say build it
+5 77 0.22 OK then i say build it
+6 11 0.21 OK it builds the screens and the logic
+6 22 0.33 OK it builds the screens and the logic
+6 33 0.61 OK it builds the screens and the logic
+7 11 0.02 OK i did all of it in about half an hour
+7 22 0.67 OK i did all of it in about half an hour
+7 33 0.08 OK i did all of it in about half an hour
+8 11 0.02 OK its not magic it rebuilds how an app works never its logo or code and you rename it ahead of launch
+8 22 0.01 DIFF its not magic it rebuilds how an app works never its logo or code and you rename it ahead of lunch
+8 33 0.06 OK its not magic it rebuilds how an app works never its logo or code and you rename it ahead of launch
+9 11 0.04 OK the setups in the link in bio
+9 22 0.04 OK the setups in the link in bio
+9 33 0.04 OK the setups in the link in bio
+10 11 0.01 OK want the next one follow
+10 22 0.06 OK want the next one follow
+10 33 0.73 OK want the next one follow
+{'1': 'pl/B1-33.wav', '2': 'pl/B2-44.wav', '3': 'pl/B3-44.wav', '4': 'pl/B4-33.wav', '5': 'pl/B5-66.wav', '6': 'pl/B6-11.wav', '7': 'pl/B7-11.wav', '8': 'pl/B8-11.wav', '9': 'pl/B9-11.wav', '10': 'pl/B10-11.wav'}

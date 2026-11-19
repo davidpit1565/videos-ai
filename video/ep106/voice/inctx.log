@@ -1,0 +1,47 @@
+1 pl/B1-22.wav 0.05
+1 pl/B1-33.wav 0.27
+1 pl/B1-66.wav 0.27
+1 pl/B1-77.wav 0.99
+PICK 1 (0.05, 'pl/B1-22.wav')
+2 pl/B2-11.wav 0.99
+2 pl/B2-22.wav 0.57
+2 pl/B2-33.wav 0.98
+2 pl/B2-44.wav 0.3
+2 pl/B2-66.wav 0.95
+2 pl/B2-77.wav 0.2
+PICK 2 (0.2, 'pl/B2-77.wav')
+3 pl/B3-11.wav 0.34
+3 pl/B3-22.wav 0.62
+3 pl/B3-33.wav 0.2
+3 pl/B3-44.wav 0.19
+3 pl/B3-55.wav 0.51
+3 pl/B3-66.wav 0.2
+3 pl/B3-77.wav 0.88
+PICK 3 (0.19, 'pl/B3-44.wav')
+4 pl/B4-11.wav 0.11
+4 pl/B4-22.wav 0.12
+4 pl/B4-33.wav 0.04
+PICK 4 (0.04, 'pl/B4-33.wav')
+5 pl/B5-11.wav 0.35
+5 pl/B5-22.wav 0.83
+5 pl/B5-33.wav 0.57
+5 pl/B5-44.wav 0.22
+5 pl/B5-55.wav 0.07
+5 pl/B5-66.wav 0.03
+5 pl/B5-77.wav 0.04
+PICK 5 (0.03, 'pl/B5-66.wav')
+6 pl/B6-11.wav 0.28
+6 pl/B6-22.wav 0.08
+6 pl/B6-33.wav 0.33
+PICK 6 (0.08, 'pl/B6-22.wav')
+7 pl/B7-11.wav 0.02
+7 pl/B7-22.wav 0.15
+7 pl/B7-33.wav 0.03
+PICK 7 (0.02, 'pl/B7-11.wav')
+8 pl/B8-11.wav 0.02
+8 pl/B8-33.wav 0.09
+PICK 8 (0.02, 'pl/B8-11.wav')
+10 pl/B10-11.wav 0.01
+10 pl/B10-22.wav 0.12
+10 pl/B10-33.wav 0.27
+PICK 10 (0.01, 'pl/B10-11.wav')
