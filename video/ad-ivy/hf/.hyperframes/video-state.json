@@ -457,13 +457,14 @@
   },
   "renders": {
     "latest": {
-      "id": "96b19cf0-4ee9-4ba9-a7f3-48d20aaffab4",
-      "completedAt": 1795055590260,
-      "output": "/home/user/videos-ai/video/ad-ivy/out/pic-v1.mp4",
+      "id": "d3a8b6e7-6429-4df9-8a58-b03ecb5dd67b",
+      "completedAt": 1795055842675,
+      "output": "/home/user/videos-ai/video/ad-ivy/out/pic-v2.mp4",
       "status": "completed",
-      "revision": "e7498b33-0e12-43e4-a29a-ff7af2e43c80"
+      "revision": "4545820f-92f2-4181-9345-87caa5ef9798"
     },
     "retainedRevisions": [
+      "4545820f-92f2-4181-9345-87caa5ef9798",
       "e7498b33-0e12-43e4-a29a-ff7af2e43c80"
     ]
   },
