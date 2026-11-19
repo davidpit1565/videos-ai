@@ -27,7 +27,7 @@ k=int(0.25*SR); env=np.convolve(np.pad(env,(k,k),mode='edge'),np.hanning(k)/np.h
 fade=np.ones(N); fi_n=int(0.15*SR); fade[:fi_n]=np.linspace(0,1,fi_n); fo_n=int(1.6*SR); fade[-fo_n:]=np.linspace(1,0,fo_n)**1.5
 out=out*env*fade
 # gain: bed minus voice in 300-3500 Hz over the speaking windows
-v=load(nar); vb=bandpass(v); bb=bandpass(out)
+v=load(nar)[:N]; vb=bandpass(v); bb=bandpass(out)
 msk=np.zeros(N,bool)
 for l in cues: msk[int(l['start']*SR):int(l['end']*SR)]=True
 mv=msk[:len(vb)]; 

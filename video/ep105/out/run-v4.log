@@ -1,0 +1,8 @@
+D=40.71
+integrated -15.1 fix 1.1 bed gain -11.65 ; bed-voice speaking -10.0 dB; gaps bed vs voice-speaking -8.8 ; lin(for voice_quality --vol, raw track hp) 0.2968
+=== PASS  frame layout (safe_check_hf.js)
+=== PASS  rendered file (qa.py --hf)
+=== PASS  voice + music quality (voice_quality.py)
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+=== PASS  accent drift (check_accent.py)
+ALL CHECKS THAT RAN PASSED (0 skipped)  -  audio was measured, not heard; watch the file twice before sending
