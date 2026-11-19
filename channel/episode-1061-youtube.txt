@@ -1,0 +1,15 @@
+TITLE: I built an app with Claude in about half an hour.
+
+DESCRIPTION:
+Eleven free Claude skills, in one open-source repo, that work through an app idea step by step: recon, architect, design, build, backend, test, diff, entrepreneur, brand, launch, deploy.
+
+In the video, "about half an hour" is my own account of one run on my own project. It is not a test and not a promise for yours. The app is not shown or named.
+
+The repo is third-party (not made by me or by Anthropic), MIT licensed. Its README says it rebuilds what an app does, never its code, logo, copy or content, and that you rebrand before launch. It also says some apps are not realistic to rebuild this way. I did not audit the code: read each SKILL.md first, use a test folder and never paste passwords or keys into the chat.
+
+Install, from the README: paste https://github.com/Jakeschincariol/replica-skill into Claude and write "install skill". Or in Claude Code: /plugin marketplace add Jakeschincariol/replica-skill then /plugin install replica-skill@replica-skill.
+
+Repo read on 19 November 2026.
+Follow for the next one.
+
+TAGS: claude, claude skills, ai app builder, build an app with ai, github, open source

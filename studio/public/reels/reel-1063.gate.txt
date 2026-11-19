@@ -1,0 +1,551 @@
+=== PASS  frame layout (safe_check_hf.js)
+    index.html  26.86s  135 samples every 0.2s  safe box: x 65-1015, y 269-1248
+      safe area: clean (tolerance 10px)
+      overlaps: none over 10px
+
+=== PASS  rendered file (qa.py --hf)
+    ep106-V3.mp4  1080x1920  30fps  26.87s  23.1MB
+      visual change: median 0.03s, longest 3.67s
+      loudness: -14.3 LUFS integrated, peak -3.4 dBFS, LRA 1.8 LU
+      loop seam: first vs last frame differ by 11.4/255
+    
+      [warn]    26.9s is outside the 30-90s band
+      ok        1080x1920
+      ok        yuv420p
+      ok        30fps
+      ok        48kHz stereo
+      ok        length matches the build
+      ok        no frozen run over 4s
+      ok        first frame carries picture (luma 214.0, std 48.7)
+      ok        colour-card check not applicable (HyperFrames build, no cards)
+      ok        visual change every 0.03s median
+      ok        -14.3 LUFS
+      ok        peak -3.4 dBFS
+
+=== PASS  no silent line in the final mp4 (check_last_line_audio.py --all)
+      ok   line 1: RMS -14.0 dB in 0.05-1.76 s of the final mp4 (floor -35 dB)
+      ok   line 2: RMS -14.1 dB in 1.95-4.04 s of the final mp4 (floor -35 dB)
+      ok   line 3: RMS -13.4 dB in 4.22-6.58 s of the final mp4 (floor -35 dB)
+      ok   line 4: RMS -12.8 dB in 6.77-9.23 s of the final mp4 (floor -35 dB)
+      ok   line 5: RMS -13.6 dB in 9.42-11.86 s of the final mp4 (floor -35 dB)
+      ok   line 6: RMS -13.7 dB in 12.05-13.34 s of the final mp4 (floor -35 dB)
+      ok   line 7: RMS -14.4 dB in 13.53-15.30 s of the final mp4 (floor -35 dB)
+      ok   line 8: RMS -15.3 dB in 15.49-17.45 s of the final mp4 (floor -35 dB)
+      ok   line 9: RMS -13.5 dB in 17.64-22.92 s of the final mp4 (floor -35 dB)
+      ok   line 10: RMS -14.7 dB in 23.11-25.02 s of the final mp4 (floor -35 dB)
+      ok   line 11: RMS -15.2 dB in 25.21-26.72 s of the final mp4 (floor -35 dB)
+
+=== PASS  voice + music quality (voice_quality.py)
+    pitch (semitones vs each line's own median):
+      line   1  range  5.6 st  end  -1.0    Claude found problems in my app idea.
+      line   2  range  3.4 st  end  -0.8    I tell Claude the app I want. That's it.
+      line   3  range  6.1 st  end  +0.2    Then eleven free add-ons run, in order.
+      line   4  range  3.9 st  end  -0.0    One finds the weak spots in my idea.
+      line   5  range  6.6 st  end  -0.1    One draws how the app should look. And why.
+      line   6  range  3.6 st  end  +0.6    Then I say, build it.
+      line   7  range  4.0 st  end  +0.5    It builds the screens and the logic.
+      line   8  range  5.0 st  end  -1.3    I did all of it in about half an hour.
+      line   9  range  6.3 st  end  +0.3    It's not magic. It rebuilds how an app works, ne
+      line  10  range  5.3 st  end  +0.6    The setup's in the link in bio.
+      line  11  range  4.8 st  end  +0.4    Want the next one? Follow.
+    tone: none steady over 0.6 s
+    music: 7% of the bed's energy is under 150 Hz; bed minus voice in 300-3500 Hz at volume 1.00 = -7.9 dB
+    
+    voice quality: clean
+
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+    video/ep106/voice/narration-V3.wav  26.9s  11 lines
+      medians: ending -31.4 dB · level -20.6 dBFS · S residual +0.0 dB (slope +31.3 dB per sibilant/syllable)
+      flagged below: ending -57.3 dB · S residual -4.1 dB  (median - 2.5 robust sd)
+       ln   dur    gap  rate    sib    end    lvl  line
+        1  1.71  +0.19  5.26  -14.2  -31.4  -21.8  Claude found problems in my app idea.
+        2  2.08  +0.19  4.32  -13.6  -19.3  -20.6  I tell Claude the app I want. That's i
+        3  2.35  +0.19  4.68  -15.0  -38.6  -19.0  Then eleven free add-ons run, in order
+        4  2.47  +0.19  3.65   -6.3  -32.6  -18.6  One finds the weak spots in my idea.
+        5  2.44  +0.19  3.69   -8.9  -30.2  -19.2  One draws how the app should look. And
+        6  1.29  +0.19  3.89  -14.8  -24.3  -20.1  Then I say, build it.
+        7  1.77  +0.19  4.51   -6.7  -29.6  -21.0  It builds the screens and the logic.
+        8  1.96  +0.19  5.61  -17.3  -41.5  -22.3  I did all of it in about half an hour.
+        9  5.28  +0.19  5.12  -13.6  -21.7  -18.6  It's not magic. It rebuilds how an app
+       10  1.91  +0.19  4.18   -7.5  -35.9  -20.8  The setup's in the link in bio.
+       11  1.51    —    3.98   -8.6  -38.4  -21.2  Want the next one? Follow.
+    
+      [fix] line  1: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  2: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  3: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  4: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  5: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  6: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  7: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  8: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line  9: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+      [fix] line 10: only 0.19s before the next line
+             -> raise --gap; anything under 0.3s reads as run-on
+
+=== PASS  accent drift (check_accent.py)
+    
+Loading weights:   0%|          | 0/215 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/215 [00:00<00:00, 12483.05it/s, Materializing param=classifier.bias]
+Loading weights:   0%|          | 1/215 [00:00<00:00, 6754.11it/s, Materializing param=classifier.bias] 
+Loading weights:   1%|          | 2/215 [00:00<00:00, 5845.72it/s, Materializing param=classifier.weight]
+Loading weights:   1%|          | 2/215 [00:00<00:00, 5127.51it/s, Materializing param=classifier.weight]
+Loading weights:   1%|▏         | 3/215 [00:00<00:00, 3826.92it/s, Materializing param=projector.bias]   
+Loading weights:   1%|▏         | 3/215 [00:00<00:00, 3609.56it/s, Materializing param=projector.bias]
+Loading weights:   2%|▏         | 4/215 [00:00<00:00, 4042.70it/s, Materializing param=projector.weight]
+Loading weights:   2%|▏         | 4/215 [00:00<00:00, 3833.04it/s, Materializing param=projector.weight]
+Loading weights:   2%|▏         | 5/215 [00:00<00:00, 2441.39it/s, Materializing param=wav2vec2.encoder.layer_norm.bias]
+Loading weights:   2%|▏         | 5/215 [00:00<00:00, 2166.03it/s, Materializing param=wav2vec2.encoder.layer_norm.bias]
+Loading weights:   3%|▎         | 6/215 [00:00<00:00, 2052.01it/s, Materializing param=wav2vec2.encoder.layer_norm.weight]
+Loading weights:   3%|▎         | 6/215 [00:00<00:00, 2000.78it/s, Materializing param=wav2vec2.encoder.layer_norm.weight]
+Loading weights:   3%|▎         | 7/215 [00:00<00:00, 1333.40it/s, Materializing param=wav2vec2.encoder.layers.0.attention.k_proj.bias]
+Loading weights:   3%|▎         | 7/215 [00:00<00:00, 1168.28it/s, Materializing param=wav2vec2.encoder.layers.0.attention.k_proj.bias]
+Loading weights:   4%|▎         | 8/215 [00:00<00:00, 1266.59it/s, Materializing param=wav2vec2.encoder.layers.0.attention.k_proj.weight]
+Loading weights:   4%|▎         | 8/215 [00:00<00:00, 1258.13it/s, Materializing param=wav2vec2.encoder.layers.0.attention.k_proj.weight]
+Loading weights:   4%|▍         | 9/215 [00:00<00:00, 1371.33it/s, Materializing param=wav2vec2.encoder.layers.0.attention.out_proj.bias]
+Loading weights:   4%|▍         | 9/215 [00:00<00:00, 1362.43it/s, Materializing param=wav2vec2.encoder.layers.0.attention.out_proj.bias]
+Loading weights:   5%|▍         | 10/215 [00:00<00:00, 1371.09it/s, Materializing param=wav2vec2.encoder.layers.0.attention.out_proj.weight]
+Loading weights:   5%|▍         | 10/215 [00:00<00:00, 1351.91it/s, Materializing param=wav2vec2.encoder.layers.0.attention.out_proj.weight]
+Loading weights:   5%|▌         | 11/215 [00:00<00:00, 1418.39it/s, Materializing param=wav2vec2.encoder.layers.0.attention.q_proj.bias]    
+Loading weights:   5%|▌         | 11/215 [00:00<00:00, 1407.31it/s, Materializing param=wav2vec2.encoder.layers.0.attention.q_proj.bias]
+Loading weights:   6%|▌         | 12/215 [00:00<00:00, 1486.02it/s, Materializing param=wav2vec2.encoder.layers.0.attention.q_proj.weight]
+Loading weights:   6%|▌         | 12/215 [00:00<00:00, 1473.02it/s, Materializing param=wav2vec2.encoder.layers.0.attention.q_proj.weight]
+Loading weights:   6%|▌         | 13/215 [00:00<00:00, 1557.71it/s, Materializing param=wav2vec2.encoder.layers.0.attention.v_proj.bias]  
+Loading weights:   6%|▌         | 13/215 [00:00<00:00, 1550.35it/s, Materializing param=wav2vec2.encoder.layers.0.attention.v_proj.bias]
+Loading weights:   7%|▋         | 14/215 [00:00<00:00, 1609.30it/s, Materializing param=wav2vec2.encoder.layers.0.attention.v_proj.weight]
+Loading weights:   7%|▋         | 14/215 [00:00<00:00, 1576.72it/s, Materializing param=wav2vec2.encoder.layers.0.attention.v_proj.weight]
+Loading weights:   7%|▋         | 15/215 [00:00<00:00, 1625.91it/s, Materializing param=wav2vec2.encoder.layers.0.feed_forward.intermediate_dense.bias]
+Loading weights:   7%|▋         | 15/215 [00:00<00:00, 1617.05it/s, Materializing param=wav2vec2.encoder.layers.0.feed_forward.intermediate_dense.bias]
+Loading weights:   7%|▋         | 16/215 [00:00<00:00, 1627.16it/s, Materializing param=wav2vec2.encoder.layers.0.feed_forward.intermediate_dense.weight]
+Loading weights:   7%|▋         | 16/215 [00:00<00:00, 1529.41it/s, Materializing param=wav2vec2.encoder.layers.0.feed_forward.intermediate_dense.weight]
+Loading weights:   8%|▊         | 17/215 [00:00<00:00, 1565.59it/s, Materializing param=wav2vec2.encoder.layers.0.feed_forward.output_dense.bias]        
+Loading weights:   8%|▊         | 17/215 [00:00<00:00, 1555.61it/s, Materializing param=wav2vec2.encoder.layers.0.feed_forward.output_dense.bias]
+Loading weights:   8%|▊         | 18/215 [00:00<00:00, 1609.03it/s, Materializing param=wav2vec2.encoder.layers.0.feed_forward.output_dense.weight]
+Loading weights:   8%|▊         | 18/215 [00:00<00:00, 1599.59it/s, Materializing param=wav2vec2.encoder.layers.0.feed_forward.output_dense.weight]
+Loading weights:   9%|▉         | 19/215 [00:00<00:00, 1586.22it/s, Materializing param=wav2vec2.encoder.layers.0.final_layer_norm.bias]           
+Loading weights:   9%|▉         | 19/215 [00:00<00:00, 1539.88it/s, Materializing param=wav2vec2.encoder.layers.0.final_layer_norm.bias]
+Loading weights:   9%|▉         | 20/215 [00:00<00:00, 1540.01it/s, Materializing param=wav2vec2.encoder.layers.0.final_layer_norm.weight]
+Loading weights:   9%|▉         | 20/215 [00:00<00:00, 1510.86it/s, Materializing param=wav2vec2.encoder.layers.0.final_layer_norm.weight]
+Loading weights:  10%|▉         | 21/215 [00:00<00:00, 1528.14it/s, Materializing param=wav2vec2.encoder.layers.0.layer_norm.bias]        
+Loading weights:  10%|▉         | 21/215 [00:00<00:00, 1520.36it/s, Materializing param=wav2vec2.encoder.layers.0.layer_norm.bias]
+Loading weights:  10%|█         | 22/215 [00:00<00:00, 1533.85it/s, Materializing param=wav2vec2.encoder.layers.0.layer_norm.weight]
+Loading weights:  10%|█         | 22/215 [00:00<00:00, 1527.12it/s, Materializing param=wav2vec2.encoder.layers.0.layer_norm.weight]
+Loading weights:  11%|█         | 23/215 [00:00<00:00, 1523.59it/s, Materializing param=wav2vec2.encoder.layers.1.attention.k_proj.bias]
+Loading weights:  11%|█         | 23/215 [00:00<00:00, 1516.50it/s, Materializing param=wav2vec2.encoder.layers.1.attention.k_proj.bias]
+Loading weights:  11%|█         | 24/215 [00:00<00:00, 1503.31it/s, Materializing param=wav2vec2.encoder.layers.1.attention.k_proj.weight]
+Loading weights:  11%|█         | 24/215 [00:00<00:00, 1495.07it/s, Materializing param=wav2vec2.encoder.layers.1.attention.k_proj.weight]
+Loading weights:  12%|█▏        | 25/215 [00:00<00:00, 1493.74it/s, Materializing param=wav2vec2.encoder.layers.1.attention.out_proj.bias]
+Loading weights:  12%|█▏        | 25/215 [00:00<00:00, 1459.38it/s, Materializing param=wav2vec2.encoder.layers.1.attention.out_proj.bias]
+Loading weights:  12%|█▏        | 26/215 [00:00<00:00, 1468.14it/s, Materializing param=wav2vec2.encoder.layers.1.attention.out_proj.weight]
+Loading weights:  12%|█▏        | 26/215 [00:00<00:00, 1462.17it/s, Materializing param=wav2vec2.encoder.layers.1.attention.out_proj.weight]
+Loading weights:  13%|█▎        | 27/215 [00:00<00:00, 1482.82it/s, Materializing param=wav2vec2.encoder.layers.1.attention.q_proj.bias]    
+Loading weights:  13%|█▎        | 27/215 [00:00<00:00, 1452.40it/s, Materializing param=wav2vec2.encoder.layers.1.attention.q_proj.bias]
+Loading weights:  13%|█▎        | 28/215 [00:00<00:00, 1458.02it/s, Materializing param=wav2vec2.encoder.layers.1.attention.q_proj.weight]
+Loading weights:  13%|█▎        | 28/215 [00:00<00:00, 1452.45it/s, Materializing param=wav2vec2.encoder.layers.1.attention.q_proj.weight]
+Loading weights:  13%|█▎        | 29/215 [00:00<00:00, 1449.09it/s, Materializing param=wav2vec2.encoder.layers.1.attention.v_proj.bias]  
+Loading weights:  13%|█▎        | 29/215 [00:00<00:00, 1442.71it/s, Materializing param=wav2vec2.encoder.layers.1.attention.v_proj.bias]
+Loading weights:  14%|█▍        | 30/215 [00:00<00:00, 1439.13it/s, Materializing param=wav2vec2.encoder.layers.1.attention.v_proj.weight]
+Loading weights:  14%|█▍        | 30/215 [00:00<00:00, 1428.76it/s, Materializing param=wav2vec2.encoder.layers.1.attention.v_proj.weight]
+Loading weights:  14%|█▍        | 31/215 [00:00<00:00, 1410.42it/s, Materializing param=wav2vec2.encoder.layers.1.feed_forward.intermediate_dense.bias]
+Loading weights:  14%|█▍        | 31/215 [00:00<00:00, 1406.04it/s, Materializing param=wav2vec2.encoder.layers.1.feed_forward.intermediate_dense.bias]
+Loading weights:  15%|█▍        | 32/215 [00:00<00:00, 1418.79it/s, Materializing param=wav2vec2.encoder.layers.1.feed_forward.intermediate_dense.weight]
+Loading weights:  15%|█▍        | 32/215 [00:00<00:00, 1412.37it/s, Materializing param=wav2vec2.encoder.layers.1.feed_forward.intermediate_dense.weight]
+Loading weights:  15%|█▌        | 33/215 [00:00<00:00, 1441.67it/s, Materializing param=wav2vec2.encoder.layers.1.feed_forward.output_dense.bias]        
+Loading weights:  15%|█▌        | 33/215 [00:00<00:00, 1437.81it/s, Materializing param=wav2vec2.encoder.layers.1.feed_forward.output_dense.bias]
+Loading weights:  16%|█▌        | 34/215 [00:00<00:00, 1436.12it/s, Materializing param=wav2vec2.encoder.layers.1.feed_forward.output_dense.weight]
+Loading weights:  16%|█▌        | 34/215 [00:00<00:00, 1431.13it/s, Materializing param=wav2vec2.encoder.layers.1.feed_forward.output_dense.weight]
+Loading weights:  16%|█▋        | 35/215 [00:00<00:00, 1459.19it/s, Materializing param=wav2vec2.encoder.layers.1.final_layer_norm.bias]           
+Loading weights:  16%|█▋        | 35/215 [00:00<00:00, 1455.56it/s, Materializing param=wav2vec2.encoder.layers.1.final_layer_norm.bias]
+Loading weights:  17%|█▋        | 36/215 [00:00<00:00, 1462.66it/s, Materializing param=wav2vec2.encoder.layers.1.final_layer_norm.weight]
+Loading weights:  17%|█▋        | 36/215 [00:00<00:00, 1448.59it/s, Materializing param=wav2vec2.encoder.layers.1.final_layer_norm.weight]
+Loading weights:  17%|█▋        | 37/215 [00:00<00:00, 1462.34it/s, Materializing param=wav2vec2.encoder.layers.1.layer_norm.bias]        
+Loading weights:  17%|█▋        | 37/215 [00:00<00:00, 1458.87it/s, Materializing param=wav2vec2.encoder.layers.1.layer_norm.bias]
+Loading weights:  18%|█▊        | 38/215 [00:00<00:00, 1458.85it/s, Materializing param=wav2vec2.encoder.layers.1.layer_norm.weight]
+Loading weights:  18%|█▊        | 38/215 [00:00<00:00, 1455.48it/s, Materializing param=wav2vec2.encoder.layers.1.layer_norm.weight]
+Loading weights:  18%|█▊        | 39/215 [00:00<00:00, 1449.86it/s, Materializing param=wav2vec2.encoder.layers.2.attention.k_proj.bias]
+Loading weights:  18%|█▊        | 39/215 [00:00<00:00, 1446.41it/s, Materializing param=wav2vec2.encoder.layers.2.attention.k_proj.bias]
+Loading weights:  19%|█▊        | 40/215 [00:00<00:00, 1392.98it/s, Materializing param=wav2vec2.encoder.layers.2.attention.k_proj.weight]
+Loading weights:  19%|█▊        | 40/215 [00:00<00:00, 1378.38it/s, Materializing param=wav2vec2.encoder.layers.2.attention.k_proj.weight]
+Loading weights:  19%|█▉        | 41/215 [00:00<00:00, 1380.84it/s, Materializing param=wav2vec2.encoder.layers.2.attention.out_proj.bias]
+Loading weights:  19%|█▉        | 41/215 [00:00<00:00, 1377.61it/s, Materializing param=wav2vec2.encoder.layers.2.attention.out_proj.bias]
+Loading weights:  20%|█▉        | 42/215 [00:00<00:00, 1373.16it/s, Materializing param=wav2vec2.encoder.layers.2.attention.out_proj.weight]
+Loading weights:  20%|█▉        | 42/215 [00:00<00:00, 1370.09it/s, Materializing param=wav2vec2.encoder.layers.2.attention.out_proj.weight]
+Loading weights:  20%|██        | 43/215 [00:00<00:00, 1330.59it/s, Materializing param=wav2vec2.encoder.layers.2.attention.q_proj.bias]    
+Loading weights:  20%|██        | 43/215 [00:00<00:00, 1313.71it/s, Materializing param=wav2vec2.encoder.layers.2.attention.q_proj.bias]
+Loading weights:  20%|██        | 44/215 [00:00<00:00, 1284.72it/s, Materializing param=wav2vec2.encoder.layers.2.attention.q_proj.weight]
+Loading weights:  20%|██        | 44/215 [00:00<00:00, 1281.16it/s, Materializing param=wav2vec2.encoder.layers.2.attention.q_proj.weight]
+Loading weights:  21%|██        | 45/215 [00:00<00:00, 1284.70it/s, Materializing param=wav2vec2.encoder.layers.2.attention.v_proj.bias]  
+Loading weights:  21%|██        | 45/215 [00:00<00:00, 1282.04it/s, Materializing param=wav2vec2.encoder.layers.2.attention.v_proj.bias]
+Loading weights:  21%|██▏       | 46/215 [00:00<00:00, 1285.28it/s, Materializing param=wav2vec2.encoder.layers.2.attention.v_proj.weight]
+Loading weights:  21%|██▏       | 46/215 [00:00<00:00, 1283.00it/s, Materializing param=wav2vec2.encoder.layers.2.attention.v_proj.weight]
+Loading weights:  22%|██▏       | 47/215 [00:00<00:00, 1277.48it/s, Materializing param=wav2vec2.encoder.layers.2.feed_forward.intermediate_dense.bias]
+Loading weights:  22%|██▏       | 47/215 [00:00<00:00, 1273.65it/s, Materializing param=wav2vec2.encoder.layers.2.feed_forward.intermediate_dense.bias]
+Loading weights:  22%|██▏       | 48/215 [00:00<00:00, 1290.59it/s, Materializing param=wav2vec2.encoder.layers.2.feed_forward.intermediate_dense.weight]
+Loading weights:  22%|██▏       | 48/215 [00:00<00:00, 1288.50it/s, Materializing param=wav2vec2.encoder.layers.2.feed_forward.intermediate_dense.weight]
+Loading weights:  23%|██▎       | 49/215 [00:00<00:00, 1299.55it/s, Materializing param=wav2vec2.encoder.layers.2.feed_forward.output_dense.bias]        
+Loading weights:  23%|██▎       | 49/215 [00:00<00:00, 1297.14it/s, Materializing param=wav2vec2.encoder.layers.2.feed_forward.output_dense.bias]
+Loading weights:  23%|██▎       | 50/215 [00:00<00:00, 1306.07it/s, Materializing param=wav2vec2.encoder.layers.2.feed_forward.output_dense.weight]
+Loading weights:  23%|██▎       | 50/215 [00:00<00:00, 1303.95it/s, Materializing param=wav2vec2.encoder.layers.2.feed_forward.output_dense.weight]
+Loading weights:  24%|██▎       | 51/215 [00:00<00:00, 1319.44it/s, Materializing param=wav2vec2.encoder.layers.2.final_layer_norm.bias]           
+Loading weights:  24%|██▎       | 51/215 [00:00<00:00, 1317.40it/s, Materializing param=wav2vec2.encoder.layers.2.final_layer_norm.bias]
+Loading weights:  24%|██▍       | 52/215 [00:00<00:00, 1317.17it/s, Materializing param=wav2vec2.encoder.layers.2.final_layer_norm.weight]
+Loading weights:  24%|██▍       | 52/215 [00:00<00:00, 1312.76it/s, Materializing param=wav2vec2.encoder.layers.2.final_layer_norm.weight]
+Loading weights:  25%|██▍       | 53/215 [00:00<00:00, 1325.42it/s, Materializing param=wav2vec2.encoder.layers.2.layer_norm.bias]        
+Loading weights:  25%|██▍       | 53/215 [00:00<00:00, 1323.27it/s, Materializing param=wav2vec2.encoder.layers.2.layer_norm.bias]
+Loading weights:  25%|██▌       | 54/215 [00:00<00:00, 1333.82it/s, Materializing param=wav2vec2.encoder.layers.2.layer_norm.weight]
+Loading weights:  25%|██▌       | 54/215 [00:00<00:00, 1327.51it/s, Materializing param=wav2vec2.encoder.layers.2.layer_norm.weight]
+Loading weights:  26%|██▌       | 55/215 [00:00<00:00, 1329.72it/s, Materializing param=wav2vec2.encoder.layers.3.attention.k_proj.bias]
+Loading weights:  26%|██▌       | 55/215 [00:00<00:00, 1326.79it/s, Materializing param=wav2vec2.encoder.layers.3.attention.k_proj.bias]
+Loading weights:  26%|██▌       | 56/215 [00:00<00:00, 1343.37it/s, Materializing param=wav2vec2.encoder.layers.3.attention.k_proj.weight]
+Loading weights:  26%|██▌       | 56/215 [00:00<00:00, 1341.04it/s, Materializing param=wav2vec2.encoder.layers.3.attention.k_proj.weight]
+Loading weights:  27%|██▋       | 57/215 [00:00<00:00, 1342.56it/s, Materializing param=wav2vec2.encoder.layers.3.attention.out_proj.bias]
+Loading weights:  27%|██▋       | 57/215 [00:00<00:00, 1338.92it/s, Materializing param=wav2vec2.encoder.layers.3.attention.out_proj.bias]
+Loading weights:  27%|██▋       | 58/215 [00:00<00:00, 1355.19it/s, Materializing param=wav2vec2.encoder.layers.3.attention.out_proj.weight]
+Loading weights:  27%|██▋       | 58/215 [00:00<00:00, 1353.36it/s, Materializing param=wav2vec2.encoder.layers.3.attention.out_proj.weight]
+Loading weights:  27%|██▋       | 59/215 [00:00<00:00, 1180.18it/s, Materializing param=wav2vec2.encoder.layers.3.attention.q_proj.bias]    
+Loading weights:  27%|██▋       | 59/215 [00:00<00:00, 1160.84it/s, Materializing param=wav2vec2.encoder.layers.3.attention.q_proj.bias]
+Loading weights:  28%|██▊       | 60/215 [00:00<00:00, 1161.17it/s, Materializing param=wav2vec2.encoder.layers.3.attention.q_proj.weight]
+Loading weights:  28%|██▊       | 60/215 [00:00<00:00, 1159.61it/s, Materializing param=wav2vec2.encoder.layers.3.attention.q_proj.weight]
+Loading weights:  28%|██▊       | 61/215 [00:00<00:00, 1160.62it/s, Materializing param=wav2vec2.encoder.layers.3.attention.v_proj.bias]  
+Loading weights:  28%|██▊       | 61/215 [00:00<00:00, 1159.42it/s, Materializing param=wav2vec2.encoder.layers.3.attention.v_proj.bias]
+Loading weights:  29%|██▉       | 62/215 [00:00<00:00, 1168.61it/s, Materializing param=wav2vec2.encoder.layers.3.attention.v_proj.weight]
+Loading weights:  29%|██▉       | 62/215 [00:00<00:00, 1167.59it/s, Materializing param=wav2vec2.encoder.layers.3.attention.v_proj.weight]
+Loading weights:  29%|██▉       | 63/215 [00:00<00:00, 1158.70it/s, Materializing param=wav2vec2.encoder.layers.3.feed_forward.intermediate_dense.bias]
+Loading weights:  29%|██▉       | 63/215 [00:00<00:00, 1157.32it/s, Materializing param=wav2vec2.encoder.layers.3.feed_forward.intermediate_dense.bias]
+Loading weights:  30%|██▉       | 64/215 [00:00<00:00, 1169.34it/s, Materializing param=wav2vec2.encoder.layers.3.feed_forward.intermediate_dense.weight]
+Loading weights:  30%|██▉       | 64/215 [00:00<00:00, 1166.70it/s, Materializing param=wav2vec2.encoder.layers.3.feed_forward.intermediate_dense.weight]
+Loading weights:  30%|███       | 65/215 [00:00<00:00, 1179.61it/s, Materializing param=wav2vec2.encoder.layers.3.feed_forward.output_dense.bias]        
+Loading weights:  30%|███       | 65/215 [00:00<00:00, 1178.28it/s, Materializing param=wav2vec2.encoder.layers.3.feed_forward.output_dense.bias]
+Loading weights:  31%|███       | 66/215 [00:00<00:00, 1184.87it/s, Materializing param=wav2vec2.encoder.layers.3.feed_forward.output_dense.weight]
+Loading weights:  31%|███       | 66/215 [00:00<00:00, 1183.53it/s, Materializing param=wav2vec2.encoder.layers.3.feed_forward.output_dense.weight]
+Loading weights:  31%|███       | 67/215 [00:00<00:00, 1178.05it/s, Materializing param=wav2vec2.encoder.layers.3.final_layer_norm.bias]           
+Loading weights:  31%|███       | 67/215 [00:00<00:00, 1174.00it/s, Materializing param=wav2vec2.encoder.layers.3.final_layer_norm.bias]
+Loading weights:  32%|███▏      | 68/215 [00:00<00:00, 1175.22it/s, Materializing param=wav2vec2.encoder.layers.3.final_layer_norm.weight]
+Loading weights:  32%|███▏      | 68/215 [00:00<00:00, 1174.05it/s, Materializing param=wav2vec2.encoder.layers.3.final_layer_norm.weight]
+Loading weights:  32%|███▏      | 69/215 [00:00<00:00, 1183.04it/s, Materializing param=wav2vec2.encoder.layers.3.layer_norm.bias]        
+Loading weights:  32%|███▏      | 69/215 [00:00<00:00, 1182.08it/s, Materializing param=wav2vec2.encoder.layers.3.layer_norm.bias]
+Loading weights:  33%|███▎      | 70/215 [00:00<00:00, 1193.14it/s, Materializing param=wav2vec2.encoder.layers.3.layer_norm.weight]
+Loading weights:  33%|███▎      | 70/215 [00:00<00:00, 1190.96it/s, Materializing param=wav2vec2.encoder.layers.3.layer_norm.weight]
+Loading weights:  33%|███▎      | 71/215 [00:00<00:00, 1203.58it/s, Materializing param=wav2vec2.encoder.layers.4.attention.k_proj.bias]
+Loading weights:  33%|███▎      | 71/215 [00:00<00:00, 1202.39it/s, Materializing param=wav2vec2.encoder.layers.4.attention.k_proj.bias]
+Loading weights:  33%|███▎      | 72/215 [00:00<00:00, 1202.88it/s, Materializing param=wav2vec2.encoder.layers.4.attention.k_proj.weight]
+Loading weights:  33%|███▎      | 72/215 [00:00<00:00, 1194.22it/s, Materializing param=wav2vec2.encoder.layers.4.attention.k_proj.weight]
+Loading weights:  34%|███▍      | 73/215 [00:00<00:00, 1203.17it/s, Materializing param=wav2vec2.encoder.layers.4.attention.out_proj.bias]
+Loading weights:  34%|███▍      | 73/215 [00:00<00:00, 1200.32it/s, Materializing param=wav2vec2.encoder.layers.4.attention.out_proj.bias]
+Loading weights:  34%|███▍      | 74/215 [00:00<00:00, 1198.36it/s, Materializing param=wav2vec2.encoder.layers.4.attention.out_proj.weight]
+Loading weights:  34%|███▍      | 74/215 [00:00<00:00, 1197.01it/s, Materializing param=wav2vec2.encoder.layers.4.attention.out_proj.weight]
+Loading weights:  35%|███▍      | 75/215 [00:00<00:00, 1206.70it/s, Materializing param=wav2vec2.encoder.layers.4.attention.q_proj.bias]    
+Loading weights:  35%|███▍      | 75/215 [00:00<00:00, 1204.85it/s, Materializing param=wav2vec2.encoder.layers.4.attention.q_proj.bias]
+Loading weights:  35%|███▌      | 76/215 [00:00<00:00, 1218.95it/s, Materializing param=wav2vec2.encoder.layers.4.attention.q_proj.weight]
+Loading weights:  35%|███▌      | 76/215 [00:00<00:00, 1218.30it/s, Materializing param=wav2vec2.encoder.layers.4.attention.q_proj.weight]
+Loading weights:  36%|███▌      | 77/215 [00:00<00:00, 1233.01it/s, Materializing param=wav2vec2.encoder.layers.4.attention.v_proj.bias]  
+Loading weights:  36%|███▌      | 77/215 [00:00<00:00, 1232.41it/s, Materializing param=wav2vec2.encoder.layers.4.attention.v_proj.bias]
+Loading weights:  36%|███▋      | 78/215 [00:00<00:00, 1246.14it/s, Materializing param=wav2vec2.encoder.layers.4.attention.v_proj.weight]
+Loading weights:  36%|███▋      | 78/215 [00:00<00:00, 1245.37it/s, Materializing param=wav2vec2.encoder.layers.4.attention.v_proj.weight]
+Loading weights:  37%|███▋      | 79/215 [00:00<00:00, 1259.85it/s, Materializing param=wav2vec2.encoder.layers.4.feed_forward.intermediate_dense.bias]
+Loading weights:  37%|███▋      | 79/215 [00:00<00:00, 1259.12it/s, Materializing param=wav2vec2.encoder.layers.4.feed_forward.intermediate_dense.bias]
+Loading weights:  37%|███▋      | 80/215 [00:00<00:00, 1273.56it/s, Materializing param=wav2vec2.encoder.layers.4.feed_forward.intermediate_dense.weight]
+Loading weights:  37%|███▋      | 80/215 [00:00<00:00, 1272.93it/s, Materializing param=wav2vec2.encoder.layers.4.feed_forward.intermediate_dense.weight]
+Loading weights:  38%|███▊      | 81/215 [00:00<00:00, 1287.53it/s, Materializing param=wav2vec2.encoder.layers.4.feed_forward.output_dense.bias]        
+Loading weights:  38%|███▊      | 81/215 [00:00<00:00, 1286.91it/s, Materializing param=wav2vec2.encoder.layers.4.feed_forward.output_dense.bias]
+Loading weights:  38%|███▊      | 82/215 [00:00<00:00, 1301.44it/s, Materializing param=wav2vec2.encoder.layers.4.feed_forward.output_dense.weight]
+Loading weights:  38%|███▊      | 82/215 [00:00<00:00, 1300.85it/s, Materializing param=wav2vec2.encoder.layers.4.feed_forward.output_dense.weight]
+Loading weights:  39%|███▊      | 83/215 [00:00<00:00, 1315.39it/s, Materializing param=wav2vec2.encoder.layers.4.final_layer_norm.bias]           
+Loading weights:  39%|███▊      | 83/215 [00:00<00:00, 1314.79it/s, Materializing param=wav2vec2.encoder.layers.4.final_layer_norm.bias]
+Loading weights:  39%|███▉      | 84/215 [00:00<00:00, 1329.33it/s, Materializing param=wav2vec2.encoder.layers.4.final_layer_norm.weight]
+Loading weights:  39%|███▉      | 84/215 [00:00<00:00, 1328.64it/s, Materializing param=wav2vec2.encoder.layers.4.final_layer_norm.weight]
+Loading weights:  40%|███▉      | 85/215 [00:00<00:00, 1343.13it/s, Materializing param=wav2vec2.encoder.layers.4.layer_norm.bias]        
+Loading weights:  40%|███▉      | 85/215 [00:00<00:00, 1342.49it/s, Materializing param=wav2vec2.encoder.layers.4.layer_norm.bias]
+Loading weights:  40%|████      | 86/215 [00:00<00:00, 1356.97it/s, Materializing param=wav2vec2.encoder.layers.4.layer_norm.weight]
+Loading weights:  40%|████      | 86/215 [00:00<00:00, 1356.11it/s, Materializing param=wav2vec2.encoder.layers.4.layer_norm.weight]
+Loading weights:  40%|████      | 87/215 [00:00<00:00, 1370.58it/s, Materializing param=wav2vec2.encoder.layers.5.attention.k_proj.bias]
+Loading weights:  40%|████      | 87/215 [00:00<00:00, 1369.47it/s, Materializing param=wav2vec2.encoder.layers.5.attention.k_proj.bias]
+Loading weights:  41%|████      | 88/215 [00:00<00:00, 1383.43it/s, Materializing param=wav2vec2.encoder.layers.5.attention.k_proj.weight]
+Loading weights:  41%|████      | 88/215 [00:00<00:00, 1382.77it/s, Materializing param=wav2vec2.encoder.layers.5.attention.k_proj.weight]
+Loading weights:  41%|████▏     | 89/215 [00:00<00:00, 1396.90it/s, Materializing param=wav2vec2.encoder.layers.5.attention.out_proj.bias]
+Loading weights:  41%|████▏     | 89/215 [00:00<00:00, 1396.23it/s, Materializing param=wav2vec2.encoder.layers.5.attention.out_proj.bias]
+Loading weights:  42%|████▏     | 90/215 [00:00<00:00, 1410.40it/s, Materializing param=wav2vec2.encoder.layers.5.attention.out_proj.weight]
+Loading weights:  42%|████▏     | 90/215 [00:00<00:00, 1409.70it/s, Materializing param=wav2vec2.encoder.layers.5.attention.out_proj.weight]
+Loading weights:  42%|████▏     | 91/215 [00:00<00:00, 1423.97it/s, Materializing param=wav2vec2.encoder.layers.5.attention.q_proj.bias]    
+Loading weights:  42%|████▏     | 91/215 [00:00<00:00, 1423.30it/s, Materializing param=wav2vec2.encoder.layers.5.attention.q_proj.bias]
+Loading weights:  43%|████▎     | 92/215 [00:00<00:00, 1437.48it/s, Materializing param=wav2vec2.encoder.layers.5.attention.q_proj.weight]
+Loading weights:  43%|████▎     | 92/215 [00:00<00:00, 1436.85it/s, Materializing param=wav2vec2.encoder.layers.5.attention.q_proj.weight]
+Loading weights:  43%|████▎     | 93/215 [00:00<00:00, 1451.06it/s, Materializing param=wav2vec2.encoder.layers.5.attention.v_proj.bias]  
+Loading weights:  43%|████▎     | 93/215 [00:00<00:00, 1450.39it/s, Materializing param=wav2vec2.encoder.layers.5.attention.v_proj.bias]
+Loading weights:  44%|████▎     | 94/215 [00:00<00:00, 1464.51it/s, Materializing param=wav2vec2.encoder.layers.5.attention.v_proj.weight]
+Loading weights:  44%|████▎     | 94/215 [00:00<00:00, 1463.81it/s, Materializing param=wav2vec2.encoder.layers.5.attention.v_proj.weight]
+Loading weights:  44%|████▍     | 95/215 [00:00<00:00, 1477.95it/s, Materializing param=wav2vec2.encoder.layers.5.feed_forward.intermediate_dense.bias]
+Loading weights:  44%|████▍     | 95/215 [00:00<00:00, 1477.28it/s, Materializing param=wav2vec2.encoder.layers.5.feed_forward.intermediate_dense.bias]
+Loading weights:  45%|████▍     | 96/215 [00:00<00:00, 1491.28it/s, Materializing param=wav2vec2.encoder.layers.5.feed_forward.intermediate_dense.weight]
+Loading weights:  45%|████▍     | 96/215 [00:00<00:00, 1490.61it/s, Materializing param=wav2vec2.encoder.layers.5.feed_forward.intermediate_dense.weight]
+Loading weights:  45%|████▌     | 97/215 [00:00<00:00, 1502.30it/s, Materializing param=wav2vec2.encoder.layers.5.feed_forward.output_dense.bias]        
+Loading weights:  45%|████▌     | 97/215 [00:00<00:00, 1501.03it/s, Materializing param=wav2vec2.encoder.layers.5.feed_forward.output_dense.bias]
+Loading weights:  46%|████▌     | 98/215 [00:00<00:00, 1514.31it/s, Materializing param=wav2vec2.encoder.layers.5.feed_forward.output_dense.weight]
+Loading weights:  46%|████▌     | 98/215 [00:00<00:00, 1513.53it/s, Materializing param=wav2vec2.encoder.layers.5.feed_forward.output_dense.weight]
+Loading weights:  46%|████▌     | 99/215 [00:00<00:00, 1527.38it/s, Materializing param=wav2vec2.encoder.layers.5.final_layer_norm.bias]           
+Loading weights:  46%|████▌     | 99/215 [00:00<00:00, 1526.65it/s, Materializing param=wav2vec2.encoder.layers.5.final_layer_norm.bias]
+Loading weights:  47%|████▋     | 100/215 [00:00<00:00, 1540.28it/s, Materializing param=wav2vec2.encoder.layers.5.final_layer_norm.weight]
+Loading weights:  47%|████▋     | 100/215 [00:00<00:00, 1539.57it/s, Materializing param=wav2vec2.encoder.layers.5.final_layer_norm.weight]
+Loading weights:  47%|████▋     | 101/215 [00:00<00:00, 1553.49it/s, Materializing param=wav2vec2.encoder.layers.5.layer_norm.bias]        
+Loading weights:  47%|████▋     | 101/215 [00:00<00:00, 1552.74it/s, Materializing param=wav2vec2.encoder.layers.5.layer_norm.bias]
+Loading weights:  47%|████▋     | 102/215 [00:00<00:00, 1566.63it/s, Materializing param=wav2vec2.encoder.layers.5.layer_norm.weight]
+Loading weights:  47%|████▋     | 102/215 [00:00<00:00, 1565.93it/s, Materializing param=wav2vec2.encoder.layers.5.layer_norm.weight]
+Loading weights:  48%|████▊     | 103/215 [00:00<00:00, 1579.80it/s, Materializing param=wav2vec2.encoder.layers.6.attention.k_proj.bias]
+Loading weights:  48%|████▊     | 103/215 [00:00<00:00, 1579.04it/s, Materializing param=wav2vec2.encoder.layers.6.attention.k_proj.bias]
+Loading weights:  48%|████▊     | 104/215 [00:00<00:00, 1592.69it/s, Materializing param=wav2vec2.encoder.layers.6.attention.k_proj.weight]
+Loading weights:  48%|████▊     | 104/215 [00:00<00:00, 1591.94it/s, Materializing param=wav2vec2.encoder.layers.6.attention.k_proj.weight]
+Loading weights:  49%|████▉     | 105/215 [00:00<00:00, 1605.66it/s, Materializing param=wav2vec2.encoder.layers.6.attention.out_proj.bias]
+Loading weights:  49%|████▉     | 105/215 [00:00<00:00, 1604.93it/s, Materializing param=wav2vec2.encoder.layers.6.attention.out_proj.bias]
+Loading weights:  49%|████▉     | 106/215 [00:00<00:00, 1618.66it/s, Materializing param=wav2vec2.encoder.layers.6.attention.out_proj.weight]
+Loading weights:  49%|████▉     | 106/215 [00:00<00:00, 1617.18it/s, Materializing param=wav2vec2.encoder.layers.6.attention.out_proj.weight]
+Loading weights:  50%|████▉     | 107/215 [00:00<00:00, 1630.28it/s, Materializing param=wav2vec2.encoder.layers.6.attention.q_proj.bias]    
+Loading weights:  50%|████▉     | 107/215 [00:00<00:00, 1629.48it/s, Materializing param=wav2vec2.encoder.layers.6.attention.q_proj.bias]
+Loading weights:  50%|█████     | 108/215 [00:00<00:00, 1642.82it/s, Materializing param=wav2vec2.encoder.layers.6.attention.q_proj.weight]
+Loading weights:  50%|█████     | 108/215 [00:00<00:00, 1642.01it/s, Materializing param=wav2vec2.encoder.layers.6.attention.q_proj.weight]
+Loading weights:  51%|█████     | 109/215 [00:00<00:00, 1655.59it/s, Materializing param=wav2vec2.encoder.layers.6.attention.v_proj.bias]  
+Loading weights:  51%|█████     | 109/215 [00:00<00:00, 1654.85it/s, Materializing param=wav2vec2.encoder.layers.6.attention.v_proj.bias]
+Loading weights:  51%|█████     | 110/215 [00:00<00:00, 1668.42it/s, Materializing param=wav2vec2.encoder.layers.6.attention.v_proj.weight]
+Loading weights:  51%|█████     | 110/215 [00:00<00:00, 1667.66it/s, Materializing param=wav2vec2.encoder.layers.6.attention.v_proj.weight]
+Loading weights:  52%|█████▏    | 111/215 [00:00<00:00, 1681.22it/s, Materializing param=wav2vec2.encoder.layers.6.feed_forward.intermediate_dense.bias]
+Loading weights:  52%|█████▏    | 111/215 [00:00<00:00, 1680.37it/s, Materializing param=wav2vec2.encoder.layers.6.feed_forward.intermediate_dense.bias]
+Loading weights:  52%|█████▏    | 112/215 [00:00<00:00, 1693.78it/s, Materializing param=wav2vec2.encoder.layers.6.feed_forward.intermediate_dense.weight]
+Loading weights:  52%|█████▏    | 112/215 [00:00<00:00, 1693.01it/s, Materializing param=wav2vec2.encoder.layers.6.feed_forward.intermediate_dense.weight]
+Loading weights:  53%|█████▎    | 113/215 [00:00<00:00, 1706.42it/s, Materializing param=wav2vec2.encoder.layers.6.feed_forward.output_dense.bias]        
+Loading weights:  53%|█████▎    | 113/215 [00:00<00:00, 1705.47it/s, Materializing param=wav2vec2.encoder.layers.6.feed_forward.output_dense.bias]
+Loading weights:  53%|█████▎    | 114/215 [00:00<00:00, 1718.88it/s, Materializing param=wav2vec2.encoder.layers.6.feed_forward.output_dense.weight]
+Loading weights:  53%|█████▎    | 114/215 [00:00<00:00, 1718.10it/s, Materializing param=wav2vec2.encoder.layers.6.feed_forward.output_dense.weight]
+Loading weights:  53%|█████▎    | 115/215 [00:00<00:00, 1731.57it/s, Materializing param=wav2vec2.encoder.layers.6.final_layer_norm.bias]           
+Loading weights:  53%|█████▎    | 115/215 [00:00<00:00, 1730.82it/s, Materializing param=wav2vec2.encoder.layers.6.final_layer_norm.bias]
+Loading weights:  54%|█████▍    | 116/215 [00:00<00:00, 1744.24it/s, Materializing param=wav2vec2.encoder.layers.6.final_layer_norm.weight]
+Loading weights:  54%|█████▍    | 116/215 [00:00<00:00, 1742.78it/s, Materializing param=wav2vec2.encoder.layers.6.final_layer_norm.weight]
+Loading weights:  54%|█████▍    | 117/215 [00:00<00:00, 1755.94it/s, Materializing param=wav2vec2.encoder.layers.6.layer_norm.bias]        
+Loading weights:  54%|█████▍    | 117/215 [00:00<00:00, 1755.08it/s, Materializing param=wav2vec2.encoder.layers.6.layer_norm.bias]
+Loading weights:  55%|█████▍    | 118/215 [00:00<00:00, 1768.12it/s, Materializing param=wav2vec2.encoder.layers.6.layer_norm.weight]
+Loading weights:  55%|█████▍    | 118/215 [00:00<00:00, 1767.28it/s, Materializing param=wav2vec2.encoder.layers.6.layer_norm.weight]
+Loading weights:  55%|█████▌    | 119/215 [00:00<00:00, 1780.61it/s, Materializing param=wav2vec2.encoder.layers.7.attention.k_proj.bias]
+Loading weights:  55%|█████▌    | 119/215 [00:00<00:00, 1779.81it/s, Materializing param=wav2vec2.encoder.layers.7.attention.k_proj.bias]
+Loading weights:  56%|█████▌    | 120/215 [00:00<00:00, 1793.03it/s, Materializing param=wav2vec2.encoder.layers.7.attention.k_proj.weight]
+Loading weights:  56%|█████▌    | 120/215 [00:00<00:00, 1792.21it/s, Materializing param=wav2vec2.encoder.layers.7.attention.k_proj.weight]
+Loading weights:  56%|█████▋    | 121/215 [00:00<00:00, 1805.40it/s, Materializing param=wav2vec2.encoder.layers.7.attention.out_proj.bias]
+Loading weights:  56%|█████▋    | 121/215 [00:00<00:00, 1804.64it/s, Materializing param=wav2vec2.encoder.layers.7.attention.out_proj.bias]
+Loading weights:  57%|█████▋    | 122/215 [00:00<00:00, 1817.89it/s, Materializing param=wav2vec2.encoder.layers.7.attention.out_proj.weight]
+Loading weights:  57%|█████▋    | 122/215 [00:00<00:00, 1817.12it/s, Materializing param=wav2vec2.encoder.layers.7.attention.out_proj.weight]
+Loading weights:  57%|█████▋    | 123/215 [00:00<00:00, 1830.37it/s, Materializing param=wav2vec2.encoder.layers.7.attention.q_proj.bias]    
+Loading weights:  57%|█████▋    | 123/215 [00:00<00:00, 1829.57it/s, Materializing param=wav2vec2.encoder.layers.7.attention.q_proj.bias]
+Loading weights:  58%|█████▊    | 124/215 [00:00<00:00, 1842.71it/s, Materializing param=wav2vec2.encoder.layers.7.attention.q_proj.weight]
+Loading weights:  58%|█████▊    | 124/215 [00:00<00:00, 1841.93it/s, Materializing param=wav2vec2.encoder.layers.7.attention.q_proj.weight]
+Loading weights:  58%|█████▊    | 125/215 [00:00<00:00, 1855.06it/s, Materializing param=wav2vec2.encoder.layers.7.attention.v_proj.bias]  
+Loading weights:  58%|█████▊    | 125/215 [00:00<00:00, 1854.25it/s, Materializing param=wav2vec2.encoder.layers.7.attention.v_proj.bias]
+Loading weights:  59%|█████▊    | 126/215 [00:00<00:00, 1867.36it/s, Materializing param=wav2vec2.encoder.layers.7.attention.v_proj.weight]
+Loading weights:  59%|█████▊    | 126/215 [00:00<00:00, 1865.98it/s, Materializing param=wav2vec2.encoder.layers.7.attention.v_proj.weight]
+Loading weights:  59%|█████▉    | 127/215 [00:00<00:00, 1878.63it/s, Materializing param=wav2vec2.encoder.layers.7.feed_forward.intermediate_dense.bias]
+Loading weights:  59%|█████▉    | 127/215 [00:00<00:00, 1877.20it/s, Materializing param=wav2vec2.encoder.layers.7.feed_forward.intermediate_dense.bias]
+Loading weights:  60%|█████▉    | 128/215 [00:00<00:00, 1889.63it/s, Materializing param=wav2vec2.encoder.layers.7.feed_forward.intermediate_dense.weight]
+Loading weights:  60%|█████▉    | 128/215 [00:00<00:00, 1888.73it/s, Materializing param=wav2vec2.encoder.layers.7.feed_forward.intermediate_dense.weight]
+Loading weights:  60%|██████    | 129/215 [00:00<00:00, 1901.69it/s, Materializing param=wav2vec2.encoder.layers.7.feed_forward.output_dense.bias]        
+Loading weights:  60%|██████    | 129/215 [00:00<00:00, 1900.86it/s, Materializing param=wav2vec2.encoder.layers.7.feed_forward.output_dense.bias]
+Loading weights:  60%|██████    | 130/215 [00:00<00:00, 1913.82it/s, Materializing param=wav2vec2.encoder.layers.7.feed_forward.output_dense.weight]
+Loading weights:  60%|██████    | 130/215 [00:00<00:00, 1912.97it/s, Materializing param=wav2vec2.encoder.layers.7.feed_forward.output_dense.weight]
+Loading weights:  61%|██████    | 131/215 [00:00<00:00, 1925.89it/s, Materializing param=wav2vec2.encoder.layers.7.final_layer_norm.bias]           
+Loading weights:  61%|██████    | 131/215 [00:00<00:00, 1925.03it/s, Materializing param=wav2vec2.encoder.layers.7.final_layer_norm.bias]
+Loading weights:  61%|██████▏   | 132/215 [00:00<00:00, 1937.98it/s, Materializing param=wav2vec2.encoder.layers.7.final_layer_norm.weight]
+Loading weights:  61%|██████▏   | 132/215 [00:00<00:00, 1937.12it/s, Materializing param=wav2vec2.encoder.layers.7.final_layer_norm.weight]
+Loading weights:  62%|██████▏   | 133/215 [00:00<00:00, 1950.04it/s, Materializing param=wav2vec2.encoder.layers.7.layer_norm.bias]        
+Loading weights:  62%|██████▏   | 133/215 [00:00<00:00, 1949.16it/s, Materializing param=wav2vec2.encoder.layers.7.layer_norm.bias]
+Loading weights:  62%|██████▏   | 134/215 [00:00<00:00, 1962.10it/s, Materializing param=wav2vec2.encoder.layers.7.layer_norm.weight]
+Loading weights:  62%|██████▏   | 134/215 [00:00<00:00, 1961.27it/s, Materializing param=wav2vec2.encoder.layers.7.layer_norm.weight]
+Loading weights:  63%|██████▎   | 135/215 [00:00<00:00, 1974.19it/s, Materializing param=wav2vec2.encoder.layers.8.attention.k_proj.bias]
+Loading weights:  63%|██████▎   | 135/215 [00:00<00:00, 1973.32it/s, Materializing param=wav2vec2.encoder.layers.8.attention.k_proj.bias]
+Loading weights:  63%|██████▎   | 136/215 [00:00<00:00, 1983.80it/s, Materializing param=wav2vec2.encoder.layers.8.attention.k_proj.weight]
+Loading weights:  63%|██████▎   | 136/215 [00:00<00:00, 1982.76it/s, Materializing param=wav2vec2.encoder.layers.8.attention.k_proj.weight]
+Loading weights:  64%|██████▎   | 137/215 [00:00<00:00, 1995.39it/s, Materializing param=wav2vec2.encoder.layers.8.attention.out_proj.bias]
+Loading weights:  64%|██████▎   | 137/215 [00:00<00:00, 1994.50it/s, Materializing param=wav2vec2.encoder.layers.8.attention.out_proj.bias]
+Loading weights:  64%|██████▍   | 138/215 [00:00<00:00, 2006.83it/s, Materializing param=wav2vec2.encoder.layers.8.attention.out_proj.weight]
+Loading weights:  64%|██████▍   | 138/215 [00:00<00:00, 2005.95it/s, Materializing param=wav2vec2.encoder.layers.8.attention.out_proj.weight]
+Loading weights:  65%|██████▍   | 139/215 [00:00<00:00, 2018.69it/s, Materializing param=wav2vec2.encoder.layers.8.attention.q_proj.bias]    
+Loading weights:  65%|██████▍   | 139/215 [00:00<00:00, 2017.85it/s, Materializing param=wav2vec2.encoder.layers.8.attention.q_proj.bias]
+Loading weights:  65%|██████▌   | 140/215 [00:00<00:00, 2030.39it/s, Materializing param=wav2vec2.encoder.layers.8.attention.q_proj.weight]
+Loading weights:  65%|██████▌   | 140/215 [00:00<00:00, 2029.57it/s, Materializing param=wav2vec2.encoder.layers.8.attention.q_proj.weight]
+Loading weights:  66%|██████▌   | 141/215 [00:00<00:00, 2042.30it/s, Materializing param=wav2vec2.encoder.layers.8.attention.v_proj.bias]  
+Loading weights:  66%|██████▌   | 141/215 [00:00<00:00, 2041.43it/s, Materializing param=wav2vec2.encoder.layers.8.attention.v_proj.bias]
+Loading weights:  66%|██████▌   | 142/215 [00:00<00:00, 2053.93it/s, Materializing param=wav2vec2.encoder.layers.8.attention.v_proj.weight]
+Loading weights:  66%|██████▌   | 142/215 [00:00<00:00, 2053.10it/s, Materializing param=wav2vec2.encoder.layers.8.attention.v_proj.weight]
+Loading weights:  67%|██████▋   | 143/215 [00:00<00:00, 2065.78it/s, Materializing param=wav2vec2.encoder.layers.8.feed_forward.intermediate_dense.bias]
+Loading weights:  67%|██████▋   | 143/215 [00:00<00:00, 2064.94it/s, Materializing param=wav2vec2.encoder.layers.8.feed_forward.intermediate_dense.bias]
+Loading weights:  67%|██████▋   | 144/215 [00:00<00:00, 2077.48it/s, Materializing param=wav2vec2.encoder.layers.8.feed_forward.intermediate_dense.weight]
+Loading weights:  67%|██████▋   | 144/215 [00:00<00:00, 2076.56it/s, Materializing param=wav2vec2.encoder.layers.8.feed_forward.intermediate_dense.weight]
+Loading weights:  67%|██████▋   | 145/215 [00:00<00:00, 2089.08it/s, Materializing param=wav2vec2.encoder.layers.8.feed_forward.output_dense.bias]        
+Loading weights:  67%|██████▋   | 145/215 [00:00<00:00, 2088.21it/s, Materializing param=wav2vec2.encoder.layers.8.feed_forward.output_dense.bias]
+Loading weights:  68%|██████▊   | 146/215 [00:00<00:00, 2100.70it/s, Materializing param=wav2vec2.encoder.layers.8.feed_forward.output_dense.weight]
+Loading weights:  68%|██████▊   | 146/215 [00:00<00:00, 2097.58it/s, Materializing param=wav2vec2.encoder.layers.8.feed_forward.output_dense.weight]
+Loading weights:  68%|██████▊   | 147/215 [00:00<00:00, 2109.61it/s, Materializing param=wav2vec2.encoder.layers.8.final_layer_norm.bias]           
+Loading weights:  68%|██████▊   | 147/215 [00:00<00:00, 2108.41it/s, Materializing param=wav2vec2.encoder.layers.8.final_layer_norm.bias]
+Loading weights:  69%|██████▉   | 148/215 [00:00<00:00, 2120.72it/s, Materializing param=wav2vec2.encoder.layers.8.final_layer_norm.weight]
+Loading weights:  69%|██████▉   | 148/215 [00:00<00:00, 2119.83it/s, Materializing param=wav2vec2.encoder.layers.8.final_layer_norm.weight]
+Loading weights:  69%|██████▉   | 149/215 [00:00<00:00, 2132.28it/s, Materializing param=wav2vec2.encoder.layers.8.layer_norm.bias]        
+Loading weights:  69%|██████▉   | 149/215 [00:00<00:00, 2131.38it/s, Materializing param=wav2vec2.encoder.layers.8.layer_norm.bias]
+Loading weights:  70%|██████▉   | 150/215 [00:00<00:00, 2143.85it/s, Materializing param=wav2vec2.encoder.layers.8.layer_norm.weight]
+Loading weights:  70%|██████▉   | 150/215 [00:00<00:00, 2142.99it/s, Materializing param=wav2vec2.encoder.layers.8.layer_norm.weight]
+Loading weights:  70%|███████   | 151/215 [00:00<00:00, 2155.43it/s, Materializing param=wav2vec2.encoder.layers.9.attention.k_proj.bias]
+Loading weights:  70%|███████   | 151/215 [00:00<00:00, 2154.51it/s, Materializing param=wav2vec2.encoder.layers.9.attention.k_proj.bias]
+Loading weights:  71%|███████   | 152/215 [00:00<00:00, 2166.83it/s, Materializing param=wav2vec2.encoder.layers.9.attention.k_proj.weight]
+Loading weights:  71%|███████   | 152/215 [00:00<00:00, 2165.94it/s, Materializing param=wav2vec2.encoder.layers.9.attention.k_proj.weight]
+Loading weights:  71%|███████   | 153/215 [00:00<00:00, 2178.13it/s, Materializing param=wav2vec2.encoder.layers.9.attention.out_proj.bias]
+Loading weights:  71%|███████   | 153/215 [00:00<00:00, 2177.24it/s, Materializing param=wav2vec2.encoder.layers.9.attention.out_proj.bias]
+Loading weights:  72%|███████▏  | 154/215 [00:00<00:00, 2189.55it/s, Materializing param=wav2vec2.encoder.layers.9.attention.out_proj.weight]
+Loading weights:  72%|███████▏  | 154/215 [00:00<00:00, 2188.62it/s, Materializing param=wav2vec2.encoder.layers.9.attention.out_proj.weight]
+Loading weights:  72%|███████▏  | 155/215 [00:00<00:00, 2200.94it/s, Materializing param=wav2vec2.encoder.layers.9.attention.q_proj.bias]    
+Loading weights:  72%|███████▏  | 155/215 [00:00<00:00, 2200.05it/s, Materializing param=wav2vec2.encoder.layers.9.attention.q_proj.bias]
+Loading weights:  73%|███████▎  | 156/215 [00:00<00:00, 2211.77it/s, Materializing param=wav2vec2.encoder.layers.9.attention.q_proj.weight]
+Loading weights:  73%|███████▎  | 156/215 [00:00<00:00, 2210.62it/s, Materializing param=wav2vec2.encoder.layers.9.attention.q_proj.weight]
+Loading weights:  73%|███████▎  | 157/215 [00:00<00:00, 2222.61it/s, Materializing param=wav2vec2.encoder.layers.9.attention.v_proj.bias]  
+Loading weights:  73%|███████▎  | 157/215 [00:00<00:00, 2221.64it/s, Materializing param=wav2vec2.encoder.layers.9.attention.v_proj.bias]
+Loading weights:  73%|███████▎  | 158/215 [00:00<00:00, 2233.46it/s, Materializing param=wav2vec2.encoder.layers.9.attention.v_proj.weight]
+Loading weights:  73%|███████▎  | 158/215 [00:00<00:00, 2232.48it/s, Materializing param=wav2vec2.encoder.layers.9.attention.v_proj.weight]
+Loading weights:  74%|███████▍  | 159/215 [00:00<00:00, 2244.61it/s, Materializing param=wav2vec2.encoder.layers.9.feed_forward.intermediate_dense.bias]
+Loading weights:  74%|███████▍  | 159/215 [00:00<00:00, 2243.59it/s, Materializing param=wav2vec2.encoder.layers.9.feed_forward.intermediate_dense.bias]
+Loading weights:  74%|███████▍  | 160/215 [00:00<00:00, 2255.57it/s, Materializing param=wav2vec2.encoder.layers.9.feed_forward.intermediate_dense.weight]
+Loading weights:  74%|███████▍  | 160/215 [00:00<00:00, 2254.57it/s, Materializing param=wav2vec2.encoder.layers.9.feed_forward.intermediate_dense.weight]
+Loading weights:  75%|███████▍  | 161/215 [00:00<00:00, 2266.59it/s, Materializing param=wav2vec2.encoder.layers.9.feed_forward.output_dense.bias]        
+Loading weights:  75%|███████▍  | 161/215 [00:00<00:00, 2265.59it/s, Materializing param=wav2vec2.encoder.layers.9.feed_forward.output_dense.bias]
+Loading weights:  75%|███████▌  | 162/215 [00:00<00:00, 2277.55it/s, Materializing param=wav2vec2.encoder.layers.9.feed_forward.output_dense.weight]
+Loading weights:  75%|███████▌  | 162/215 [00:00<00:00, 2276.56it/s, Materializing param=wav2vec2.encoder.layers.9.feed_forward.output_dense.weight]
+Loading weights:  76%|███████▌  | 163/215 [00:00<00:00, 2288.61it/s, Materializing param=wav2vec2.encoder.layers.9.final_layer_norm.bias]           
+Loading weights:  76%|███████▌  | 163/215 [00:00<00:00, 2287.64it/s, Materializing param=wav2vec2.encoder.layers.9.final_layer_norm.bias]
+Loading weights:  76%|███████▋  | 164/215 [00:00<00:00, 2299.69it/s, Materializing param=wav2vec2.encoder.layers.9.final_layer_norm.weight]
+Loading weights:  76%|███████▋  | 164/215 [00:00<00:00, 2298.74it/s, Materializing param=wav2vec2.encoder.layers.9.final_layer_norm.weight]
+Loading weights:  77%|███████▋  | 165/215 [00:00<00:00, 2310.72it/s, Materializing param=wav2vec2.encoder.layers.9.layer_norm.bias]        
+Loading weights:  77%|███████▋  | 165/215 [00:00<00:00, 2309.60it/s, Materializing param=wav2vec2.encoder.layers.9.layer_norm.bias]
+Loading weights:  77%|███████▋  | 166/215 [00:00<00:00, 2321.63it/s, Materializing param=wav2vec2.encoder.layers.9.layer_norm.weight]
+Loading weights:  77%|███████▋  | 166/215 [00:00<00:00, 2319.87it/s, Materializing param=wav2vec2.encoder.layers.9.layer_norm.weight]
+Loading weights:  78%|███████▊  | 167/215 [00:00<00:00, 2331.58it/s, Materializing param=wav2vec2.encoder.layers.10.attention.k_proj.bias]
+Loading weights:  78%|███████▊  | 167/215 [00:00<00:00, 2330.56it/s, Materializing param=wav2vec2.encoder.layers.10.attention.k_proj.bias]
+Loading weights:  78%|███████▊  | 168/215 [00:00<00:00, 2341.89it/s, Materializing param=wav2vec2.encoder.layers.10.attention.k_proj.weight]
+Loading weights:  78%|███████▊  | 168/215 [00:00<00:00, 2340.84it/s, Materializing param=wav2vec2.encoder.layers.10.attention.k_proj.weight]
+Loading weights:  79%|███████▊  | 169/215 [00:00<00:00, 2352.72it/s, Materializing param=wav2vec2.encoder.layers.10.attention.out_proj.bias]
+Loading weights:  79%|███████▊  | 169/215 [00:00<00:00, 2351.79it/s, Materializing param=wav2vec2.encoder.layers.10.attention.out_proj.bias]
+Loading weights:  79%|███████▉  | 170/215 [00:00<00:00, 2363.53it/s, Materializing param=wav2vec2.encoder.layers.10.attention.out_proj.weight]
+Loading weights:  79%|███████▉  | 170/215 [00:00<00:00, 2362.59it/s, Materializing param=wav2vec2.encoder.layers.10.attention.out_proj.weight]
+Loading weights:  80%|███████▉  | 171/215 [00:00<00:00, 2374.42it/s, Materializing param=wav2vec2.encoder.layers.10.attention.q_proj.bias]    
+Loading weights:  80%|███████▉  | 171/215 [00:00<00:00, 2373.44it/s, Materializing param=wav2vec2.encoder.layers.10.attention.q_proj.bias]
+Loading weights:  80%|████████  | 172/215 [00:00<00:00, 2385.28it/s, Materializing param=wav2vec2.encoder.layers.10.attention.q_proj.weight]
+Loading weights:  80%|████████  | 172/215 [00:00<00:00, 2384.25it/s, Materializing param=wav2vec2.encoder.layers.10.attention.q_proj.weight]
+Loading weights:  80%|████████  | 173/215 [00:00<00:00, 2396.01it/s, Materializing param=wav2vec2.encoder.layers.10.attention.v_proj.bias]  
+Loading weights:  80%|████████  | 173/215 [00:00<00:00, 2395.04it/s, Materializing param=wav2vec2.encoder.layers.10.attention.v_proj.bias]
+Loading weights:  81%|████████  | 174/215 [00:00<00:00, 2406.79it/s, Materializing param=wav2vec2.encoder.layers.10.attention.v_proj.weight]
+Loading weights:  81%|████████  | 174/215 [00:00<00:00, 2405.79it/s, Materializing param=wav2vec2.encoder.layers.10.attention.v_proj.weight]
+Loading weights:  81%|████████▏ | 175/215 [00:00<00:00, 2414.52it/s, Materializing param=wav2vec2.encoder.layers.10.feed_forward.intermediate_dense.bias]
+Loading weights:  81%|████████▏ | 175/215 [00:00<00:00, 2412.56it/s, Materializing param=wav2vec2.encoder.layers.10.feed_forward.intermediate_dense.bias]
+Loading weights:  82%|████████▏ | 176/215 [00:00<00:00, 2423.54it/s, Materializing param=wav2vec2.encoder.layers.10.feed_forward.intermediate_dense.weight]
+Loading weights:  82%|████████▏ | 176/215 [00:00<00:00, 2422.43it/s, Materializing param=wav2vec2.encoder.layers.10.feed_forward.intermediate_dense.weight]
+Loading weights:  82%|████████▏ | 177/215 [00:00<00:00, 2433.54it/s, Materializing param=wav2vec2.encoder.layers.10.feed_forward.output_dense.bias]        
+Loading weights:  82%|████████▏ | 177/215 [00:00<00:00, 2432.39it/s, Materializing param=wav2vec2.encoder.layers.10.feed_forward.output_dense.bias]
+Loading weights:  83%|████████▎ | 178/215 [00:00<00:00, 2443.87it/s, Materializing param=wav2vec2.encoder.layers.10.feed_forward.output_dense.weight]
+Loading weights:  83%|████████▎ | 178/215 [00:00<00:00, 2442.71it/s, Materializing param=wav2vec2.encoder.layers.10.feed_forward.output_dense.weight]
+Loading weights:  83%|████████▎ | 179/215 [00:00<00:00, 2454.28it/s, Materializing param=wav2vec2.encoder.layers.10.final_layer_norm.bias]           
+Loading weights:  83%|████████▎ | 179/215 [00:00<00:00, 2453.28it/s, Materializing param=wav2vec2.encoder.layers.10.final_layer_norm.bias]
+Loading weights:  84%|████████▎ | 180/215 [00:00<00:00, 2464.93it/s, Materializing param=wav2vec2.encoder.layers.10.final_layer_norm.weight]
+Loading weights:  84%|████████▎ | 180/215 [00:00<00:00, 2463.92it/s, Materializing param=wav2vec2.encoder.layers.10.final_layer_norm.weight]
+Loading weights:  84%|████████▍ | 181/215 [00:00<00:00, 2475.52it/s, Materializing param=wav2vec2.encoder.layers.10.layer_norm.bias]        
+Loading weights:  84%|████████▍ | 181/215 [00:00<00:00, 2474.54it/s, Materializing param=wav2vec2.encoder.layers.10.layer_norm.bias]
+Loading weights:  85%|████████▍ | 182/215 [00:00<00:00, 2486.10it/s, Materializing param=wav2vec2.encoder.layers.10.layer_norm.weight]
+Loading weights:  85%|████████▍ | 182/215 [00:00<00:00, 2485.15it/s, Materializing param=wav2vec2.encoder.layers.10.layer_norm.weight]
+Loading weights:  85%|████████▌ | 183/215 [00:00<00:00, 2496.72it/s, Materializing param=wav2vec2.encoder.layers.11.attention.k_proj.bias]
+Loading weights:  85%|████████▌ | 183/215 [00:00<00:00, 2495.73it/s, Materializing param=wav2vec2.encoder.layers.11.attention.k_proj.bias]
+Loading weights:  86%|████████▌ | 184/215 [00:00<00:00, 2507.19it/s, Materializing param=wav2vec2.encoder.layers.11.attention.k_proj.weight]
+Loading weights:  86%|████████▌ | 184/215 [00:00<00:00, 2506.17it/s, Materializing param=wav2vec2.encoder.layers.11.attention.k_proj.weight]
+Loading weights:  86%|████████▌ | 185/215 [00:00<00:00, 2517.68it/s, Materializing param=wav2vec2.encoder.layers.11.attention.out_proj.bias]
+Loading weights:  86%|████████▌ | 185/215 [00:00<00:00, 2516.01it/s, Materializing param=wav2vec2.encoder.layers.11.attention.out_proj.bias]
+Loading weights:  87%|████████▋ | 186/215 [00:00<00:00, 2526.84it/s, Materializing param=wav2vec2.encoder.layers.11.attention.out_proj.weight]
+Loading weights:  87%|████████▋ | 186/215 [00:00<00:00, 2525.65it/s, Materializing param=wav2vec2.encoder.layers.11.attention.out_proj.weight]
+Loading weights:  87%|████████▋ | 187/215 [00:00<00:00, 2536.67it/s, Materializing param=wav2vec2.encoder.layers.11.attention.q_proj.bias]    
+Loading weights:  87%|████████▋ | 187/215 [00:00<00:00, 2535.54it/s, Materializing param=wav2vec2.encoder.layers.11.attention.q_proj.bias]
+Loading weights:  87%|████████▋ | 188/215 [00:00<00:00, 2546.76it/s, Materializing param=wav2vec2.encoder.layers.11.attention.q_proj.weight]
+Loading weights:  87%|████████▋ | 188/215 [00:00<00:00, 2545.73it/s, Materializing param=wav2vec2.encoder.layers.11.attention.q_proj.weight]
+Loading weights:  88%|████████▊ | 189/215 [00:00<00:00, 2557.04it/s, Materializing param=wav2vec2.encoder.layers.11.attention.v_proj.bias]  
+Loading weights:  88%|████████▊ | 189/215 [00:00<00:00, 2556.01it/s, Materializing param=wav2vec2.encoder.layers.11.attention.v_proj.bias]
+Loading weights:  88%|████████▊ | 190/215 [00:00<00:00, 2567.37it/s, Materializing param=wav2vec2.encoder.layers.11.attention.v_proj.weight]
+Loading weights:  88%|████████▊ | 190/215 [00:00<00:00, 2566.31it/s, Materializing param=wav2vec2.encoder.layers.11.attention.v_proj.weight]
+Loading weights:  89%|████████▉ | 191/215 [00:00<00:00, 2577.64it/s, Materializing param=wav2vec2.encoder.layers.11.feed_forward.intermediate_dense.bias]
+Loading weights:  89%|████████▉ | 191/215 [00:00<00:00, 2576.41it/s, Materializing param=wav2vec2.encoder.layers.11.feed_forward.intermediate_dense.bias]
+Loading weights:  89%|████████▉ | 192/215 [00:00<00:00, 2587.67it/s, Materializing param=wav2vec2.encoder.layers.11.feed_forward.intermediate_dense.weight]
+Loading weights:  89%|████████▉ | 192/215 [00:00<00:00, 2586.61it/s, Materializing param=wav2vec2.encoder.layers.11.feed_forward.intermediate_dense.weight]
+Loading weights:  90%|████████▉ | 193/215 [00:00<00:00, 2597.87it/s, Materializing param=wav2vec2.encoder.layers.11.feed_forward.output_dense.bias]        
+Loading weights:  90%|████████▉ | 193/215 [00:00<00:00, 2596.85it/s, Materializing param=wav2vec2.encoder.layers.11.feed_forward.output_dense.bias]
+Loading weights:  90%|█████████ | 194/215 [00:00<00:00, 2608.06it/s, Materializing param=wav2vec2.encoder.layers.11.feed_forward.output_dense.weight]
+Loading weights:  90%|█████████ | 194/215 [00:00<00:00, 2607.04it/s, Materializing param=wav2vec2.encoder.layers.11.feed_forward.output_dense.weight]
+Loading weights:  91%|█████████ | 195/215 [00:00<00:00, 2618.37it/s, Materializing param=wav2vec2.encoder.layers.11.final_layer_norm.bias]           
+Loading weights:  91%|█████████ | 195/215 [00:00<00:00, 2617.36it/s, Materializing param=wav2vec2.encoder.layers.11.final_layer_norm.bias]
+Loading weights:  91%|█████████ | 196/215 [00:00<00:00, 2627.53it/s, Materializing param=wav2vec2.encoder.layers.11.final_layer_norm.weight]
+Loading weights:  91%|█████████ | 196/215 [00:00<00:00, 2626.41it/s, Materializing param=wav2vec2.encoder.layers.11.final_layer_norm.weight]
+Loading weights:  92%|█████████▏| 197/215 [00:00<00:00, 2637.69it/s, Materializing param=wav2vec2.encoder.layers.11.layer_norm.bias]        
+Loading weights:  92%|█████████▏| 197/215 [00:00<00:00, 2636.36it/s, Materializing param=wav2vec2.encoder.layers.11.layer_norm.bias]
+Loading weights:  92%|█████████▏| 198/215 [00:00<00:00, 2647.44it/s, Materializing param=wav2vec2.encoder.layers.11.layer_norm.weight]
+Loading weights:  92%|█████████▏| 198/215 [00:00<00:00, 2646.39it/s, Materializing param=wav2vec2.encoder.layers.11.layer_norm.weight]
+Loading weights:  93%|█████████▎| 199/215 [00:00<00:00, 2657.56it/s, Materializing param=wav2vec2.encoder.pos_conv_embed.conv.bias]   
+Loading weights:  93%|█████████▎| 199/215 [00:00<00:00, 2656.52it/s, Materializing param=wav2vec2.encoder.pos_conv_embed.conv.bias]
+Loading weights:  93%|█████████▎| 200/215 [00:00<00:00, 2667.40it/s, Materializing param=wav2vec2.encoder.pos_conv_embed.conv.parametrizations.weight.original0]
+Loading weights:  93%|█████████▎| 200/215 [00:00<00:00, 2666.29it/s, Materializing param=wav2vec2.encoder.pos_conv_embed.conv.parametrizations.weight.original0]
+Loading weights:  93%|█████████▎| 201/215 [00:00<00:00, 2676.93it/s, Materializing param=wav2vec2.encoder.pos_conv_embed.conv.parametrizations.weight.original1]
+Loading weights:  93%|█████████▎| 201/215 [00:00<00:00, 2675.76it/s, Materializing param=wav2vec2.encoder.pos_conv_embed.conv.parametrizations.weight.original1]
+Loading weights:  94%|█████████▍| 202/215 [00:00<00:00, 2685.89it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.0.conv.weight]                  
+Loading weights:  94%|█████████▍| 202/215 [00:00<00:00, 2684.60it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.0.conv.weight]
+Loading weights:  94%|█████████▍| 203/215 [00:00<00:00, 2695.16it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.0.layer_norm.bias]
+Loading weights:  94%|█████████▍| 203/215 [00:00<00:00, 2693.65it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.0.layer_norm.bias]
+Loading weights:  95%|█████████▍| 204/215 [00:00<00:00, 2704.48it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.0.layer_norm.weight]
+Loading weights:  95%|█████████▍| 204/215 [00:00<00:00, 2703.37it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.0.layer_norm.weight]
+Loading weights:  95%|█████████▌| 205/215 [00:00<00:00, 2713.56it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.1.conv.weight]      
+Loading weights:  95%|█████████▌| 205/215 [00:00<00:00, 2712.31it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.1.conv.weight]
+Loading weights:  96%|█████████▌| 206/215 [00:00<00:00, 2723.03it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.2.conv.weight]
+Loading weights:  96%|█████████▌| 206/215 [00:00<00:00, 2721.92it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.2.conv.weight]
+Loading weights:  96%|█████████▋| 207/215 [00:00<00:00, 2732.33it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.3.conv.weight]
+Loading weights:  96%|█████████▋| 207/215 [00:00<00:00, 2731.25it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.3.conv.weight]
+Loading weights:  97%|█████████▋| 208/215 [00:00<00:00, 2742.13it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.4.conv.weight]
+Loading weights:  97%|█████████▋| 208/215 [00:00<00:00, 2739.62it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.4.conv.weight]
+Loading weights:  97%|█████████▋| 209/215 [00:00<00:00, 2749.89it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.5.conv.weight]
+Loading weights:  97%|█████████▋| 209/215 [00:00<00:00, 2748.75it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.5.conv.weight]
+Loading weights:  98%|█████████▊| 210/215 [00:00<00:00, 2759.47it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.6.conv.weight]
+Loading weights:  98%|█████████▊| 210/215 [00:00<00:00, 2758.36it/s, Materializing param=wav2vec2.feature_extractor.conv_layers.6.conv.weight]
+Loading weights:  98%|█████████▊| 211/215 [00:00<00:00, 2769.13it/s, Materializing param=wav2vec2.feature_projection.layer_norm.bias]         
+Loading weights:  98%|█████████▊| 211/215 [00:00<00:00, 2768.04it/s, Materializing param=wav2vec2.feature_projection.layer_norm.bias]
+Loading weights:  99%|█████████▊| 212/215 [00:00<00:00, 2778.87it/s, Materializing param=wav2vec2.feature_projection.layer_norm.weight]
+Loading weights:  99%|█████████▊| 212/215 [00:00<00:00, 2777.78it/s, Materializing param=wav2vec2.feature_projection.layer_norm.weight]
+Loading weights:  99%|█████████▉| 213/215 [00:00<00:00, 2788.78it/s, Materializing param=wav2vec2.feature_projection.projection.bias]  
+Loading weights:  99%|█████████▉| 213/215 [00:00<00:00, 2787.68it/s, Materializing param=wav2vec2.feature_projection.projection.bias]
+Loading weights: 100%|█████████▉| 214/215 [00:00<00:00, 2796.21it/s, Materializing param=wav2vec2.feature_projection.projection.weight]
+Loading weights: 100%|█████████▉| 214/215 [00:00<00:00, 2794.81it/s, Materializing param=wav2vec2.feature_projection.projection.weight]
+Loading weights: 100%|██████████| 215/215 [00:00<00:00, 2805.45it/s, Materializing param=wav2vec2.masked_spec_embed]                   
+Loading weights: 100%|██████████| 215/215 [00:00<00:00, 2804.32it/s, Materializing param=wav2vec2.masked_spec_embed]
+Loading weights: 100%|██████████| 215/215 [00:00<00:00, 2800.20it/s, Materializing param=wav2vec2.masked_spec_embed]
+    video/ep106/voice/narration-V3.wav  11 lines — accent check (dima806/english_accents_classification)
+       ln 1  top=us 0.85  not-american=0.02   {'australia': 0.015, 'england': 0.006, 'indian': 0.004}   Claude found problems in my app idea.
+       ln 2  top=us 0.85  not-american=0.05   {'australia': 0.029, 'england': 0.012, 'indian': 0.006}   I tell Claude the app I want. That's it.
+       ln 3  top=us 0.71  not-american=0.17   {'england': 0.087, 'australia': 0.045, 'indian': 0.039}   Then eleven free add-ons run, in order.
+       ln 4  top=us 0.73  not-american=0.15   {'england': 0.071, 'australia': 0.069, 'indian': 0.014}   One finds the weak spots in my idea.
+       ln 5  top=us 0.84  not-american=0.04   {'australia': 0.03, 'england': 0.01, 'indian': 0.003}   One draws how the app should look. And why.
+       ln 6  top=us 0.86  not-american=0.03   {'australia': 0.024, 'england': 0.004, 'indian': 0.003}   Then I say, build it.
+       ln 7  top=us 0.74  not-american=0.15   {'australia': 0.072, 'england': 0.065, 'indian': 0.013}   It builds the screens and the logic.
+       ln 8  top=us 0.82  not-american=0.02   {'australia': 0.011, 'england': 0.003, 'indian': 0.002}   I did all of it in about half an hour.
+       ln 9  top=us 0.78  not-american=0.02   {'australia': 0.01, 'england': 0.004, 'indian': 0.002}   It's not magic. It rebuilds how an app works
+       ln 10  top=us 0.61  not-american=0.02   {'england': 0.008, 'australia': 0.006, 'indian': 0.002}   The setup's in the link in bio.
+       ln 11  top=us 0.81  not-american=0.02   {'australia': 0.011, 'england': 0.003, 'indian': 0.002}   Want the next one? Follow.
+    
+      nothing stands out from this file's own baseline.
+
+================ SUMMARY
+  PASS  frame layout (safe_check_hf.js)
+  PASS  rendered file (qa.py --hf)
+  PASS  no silent line in the final mp4 (check_last_line_audio.py --all)
+  PASS  voice + music quality (voice_quality.py)
+  PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+  PASS  accent drift (check_accent.py)
+
+ALL CHECKS THAT RAN PASSED (0 skipped)  -  audio was measured, not heard; watch the file twice before sending
