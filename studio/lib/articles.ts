@@ -2846,6 +2846,34 @@ export const ARTICLES: Article[] = [
       "The people, emails, tickets and screens in the video are drawn examples, labelled as such. Anthropic makes Claude; this channel is not affiliated with Anthropic or the project's author.",
     ],
   },
+  {
+    n: 105,
+    title: "Claude Ultra free for 6 months: the Claude for Open Source program, who qualifies and how to apply",
+    standfirst:
+      "The video says Claude Ultra is free for 6 months for open-source maintainers and contributors, through Anthropic's Claude for Open Source program, with up to 10,000 spots. " +
+      "Everything here comes from the program page and its terms, which we read on 18 November 2026. We did not apply ourselves, and nobody is guaranteed a spot. " +
+      "This page has the exact criteria, the general requirements and the steps.",
+    steps: [
+      "Open claude.com/contact-sales/claude-for-oss in your browser. You should see the page for Claude for Open Source, with the offer of 6 months of Claude Ultra. Keep anthropic.com/claude-for-oss-terms open in a second tab: it holds the full terms.",
+      "Check that you meet ANY ONE of these five criteria. (1) You maintain a project with 500+ dependent repos, 100+ dependent packages or 200,000+ monthly downloads. (2) You are a core contributor to a recognized foundation or language project. (3) You have 100+ merged pull requests into repos you do not own, in the last 12 months. (4) You have a repo with 20+ external contributors who got pull requests merged in the last 12 months. (5) You have a repo with an OpenSSF criticality score of 0.4 or higher. If one fits, go to step 3.",
+      "Check the general requirements, which apply to everyone: a GitHub account at least 2 years old, public open-source activity in the last 90 days, a project under an OSI-approved license, and you are 18 or older. If one of these is missing, the terms say you are not eligible.",
+      "Click the apply button on the page and choose Sign in with GitHub. Allow the sign-in, then fill in the form: tell them about your project and what you do on it. Use real numbers only: the terms say fake or inflated metrics are disqualified.",
+      "If you do not fit any of the five numbers: the page says to apply anyway if you maintain something the ecosystem quietly depends on. In the form, write why the ecosystem depends on your project (the Ecosystem Impact track). This track is discretionary: it is not a promise, and the terms say meeting a bar is not a promise either.",
+      "Wait for the email. Review is rolling, and the terms say only approved people are contacted, so no email may mean no. If you are approved, activate within 90 days: the 6 months start when you activate, then your paid plan pauses and resumes.",
+    ],
+    changes: [
+      "What the program is, from the page: 6 months of Claude Ultra on us for open-source maintainers and contributors. The terms cap it at 10,000 recipients and say Anthropic can close the program at any time.",
+      "The terms also say: one subscription per person, it cannot be transferred, overage charges are possible, and selection is discretionary.",
+      "The video says Claude Ultra normally costs $200 a month and that six months is worth $1,200. The program page and the terms show no price, so check the price on your own plan page.",
+      "The OpenSSF criticality score is a real measure, but it is a command-line tool (github.com/ossf/criticality_score), not a quick web check. The video does not ask you to check it.",
+    ],
+    limits: [
+      "We did not apply and cannot say how many people are accepted or how long review takes.",
+      "Not guaranteed. Meeting a criterion does not guarantee approval, and the Ecosystem Impact track is up to Anthropic.",
+      "The terms and the page can change, and the program can close. Read both again before you apply.",
+      "This channel is not affiliated with Anthropic.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

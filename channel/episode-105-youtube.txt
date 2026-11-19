@@ -1,0 +1,9 @@
+Claude Ultra is free for 6 months for open-source builders
+
+Anthropic's Claude for Open Source program gives open-source maintainers and contributors 6 months of Claude Ultra. Up to 10,000 spots. Not guaranteed: you apply with GitHub, tell them about your project and wait for an email. Requirements include a GitHub account 2+ years old, public open-source activity in the last 90 days, an OSI-approved license and being 18+.
+
+Program page: claude.com/contact-sales/claude-for-oss
+Terms: anthropic.com/claude-for-oss-terms
+We did not apply ourselves; everything comes from those two pages, read on 18 November 2026.
+
+#claude #opensource #github

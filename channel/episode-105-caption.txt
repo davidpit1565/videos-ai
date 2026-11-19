@@ -1,0 +1,24 @@
+Claude Ultra is free for 6 months, if you work on open-source software.
+
+Anthropic, the company behind Claude, runs a program called Claude for Open Source. It gives open-source maintainers and contributors 6 months of Claude Ultra on the house. In the video we say the plan normally costs $200 a month; the program page itself shows no price, so check your own plan page. There are up to 10,000 spots.
+
+You qualify if you meet ANY ONE of these:
+1. You maintain a project with 500+ dependent repos, 100+ dependent packages or 200,000+ monthly downloads.
+2. You are a core contributor to a recognized foundation or language project.
+3. You have 100+ merged pull requests into repos you do not own, in the last 12 months.
+4. You have a repo with 20+ external contributors who got pull requests merged in the last 12 months.
+5. You have a repo with an OpenSSF criticality score of 0.4 or higher.
+
+The general requirements, for everyone: a GitHub account at least 2 years old, public open-source activity in the last 90 days, a project under an OSI-approved license, and you must be 18 or older.
+
+Do not fit a number? The page says to apply anyway and tell them why your project matters to the ecosystem. That is a discretionary track: nobody promises it.
+
+How it works: sign in with GitHub, tell them about your project, wait for the email. Only approved people are contacted. Activate within 90 days. The 6 months start at activation, then your paid plan pauses and resumes. Overage charges are possible. Anthropic can close the program at any time.
+
+This is NOT guaranteed. Apply with real numbers only; inflated metrics get you disqualified. We did not apply ourselves.
+
+Sources: https://claude.com/contact-sales/claude-for-oss and https://www.anthropic.com/claude-for-oss-terms (read 18 November 2026). Full steps are in the link in bio.
+
+Send this to a friend who builds things.
+
+#claude #opensource #github #aitools #claudeai

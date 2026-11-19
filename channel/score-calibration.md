@@ -114,3 +114,11 @@ HOOK 78, VIRALITY 66, OVERALL 70, PREDICTED VIEWS about 600 (ASSUMPTION, range 2
 ## Ep104 (Agency Agents, internal ep105) v1, 17.11.2026, judgement labels, not measurements
 - HOOK 82, VIRALITY 76, OVERALL 78, PREDICTED VIEWS about 900 (ASSUMPTION; same scale as 103). Real 48 h / 72 h views go here next to it.
 - Reasons: subject and number on frame 0 ("Claude just got 280 free AI specialists"), a picture that shows "a lot of specialists" (crowd, zoom out); weaker: the middle is a row of example cards, the saveable card is the 4-step list only.
+
+## Ep105 (Claude Ultra free for open-source, Claude for Open Source) v4, 19.11.2026, judgement labels, not measurements
+- HOOK 89, VIRALITY 80, OVERALL 84, PREDICTED VIEWS 1,500-4,000 (ASSUMPTION; about 78-86 on the 200=50 / 10,000=100 log scale). Reasons: product and offer on frame 0, one flowing hook sentence, middle cut to plain steps; weaker: only open-source people can use it, the exact criteria are off screen (caption and /e/105).
+
+| reading | real views | real score | gap (real minus predicted) |
+|---|---|---|---|
+| 48 h | | | |
+| 72 h | | | |

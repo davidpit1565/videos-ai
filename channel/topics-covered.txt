@@ -85,3 +85,4 @@
 86: Can it keep a secret? #1: ChatGPT and Gemini promised, then told
 87: Ctrl+Z for AI mistakes: Git brings the working file back
 90: ChatGPT picks a number then gets ghosted that many days, begs for a second chance (ghost test)
+105: Claude Ultra free for 6 months for open-source maintainers (Claude for Open Source program, 10,000 spots)
