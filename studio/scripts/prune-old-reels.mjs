@@ -45,7 +45,12 @@ async function liveEpisodes() {
     const r = await client.query("select data->'episodes' as eps from studio_state limit 1");
     const eps = r.rows[0]?.eps;
     if (!Array.isArray(eps)) return null;
-    return new Set(eps.filter((e) => e && e.status === "live").map((e) => Number(e.number)));
+    // "live" for pruning means published on INSTAGRAM (it has an igMediaId): the Instagram API fetches
+    // the video from this site, so a reel that is only on YouTube (the studio also marks those "live"
+    // after /api/track links them) must stay in the deployment until it is posted on Instagram.
+    // 19.11.2026: reels 102 and 104 went live on YouTube, were dropped from the deployment, and the
+    // next Instagram publish could not fetch the file.
+    return new Set(eps.filter((e) => e && e.status === "live" && e.igMediaId).map((e) => Number(e.number)));
   } catch (e) {
     console.log("prune-old-reels: could not read published episodes:", e.message);
     return null;
