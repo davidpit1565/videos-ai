@@ -2864,7 +2864,7 @@ export const ARTICLES: Article[] = [
     changes: [
       "What the program is, from the page: 6 months of Claude Ultra on us for open-source maintainers and contributors. The terms cap it at 10,000 recipients and say Anthropic can close the program at any time.",
       "The terms also say: one subscription per person, it cannot be transferred, overage charges are possible, and selection is discretionary.",
-      "The video says Claude Ultra normally costs $200 a month and that six months is worth $1,200. The program page and the terms show no price, so check the price on your own plan page.",
+      "The video says Claude Ultra normally costs $200 a month and that six months is worth $1,200. The $200 a month is the Ultra price on claude.com/pricing (read on 19 November 2026); the program page itself shows no price, and prices can change.",
       "The OpenSSF criticality score is a real measure, but it is a command-line tool (github.com/ossf/criticality_score), not a quick web check. The video does not ask you to check it.",
     ],
     limits: [
