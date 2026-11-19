@@ -1,9 +1,0 @@
-[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
-[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
-[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
-[INFO] [Compiler] Injected deterministic @font-face rules for 3 requested font families
-[hyperframes] browserGpuMode probe → software (WebGL unavailable)
-[Browser:WARN] Warning: <path> length cannot be measured when vector-effect is non-scaling-stroke and the element isn't proportionally scaled.
-[Browser:WARN] GSAP target #sc9 .ln not found. https://gsap.com
-[Browser:WARN] Warning: <path> length cannot be measured when vector-effect is non-scaling-stroke and the element isn't proportionally scaled.
-[Browser:WARN] GSAP target #sc9 .ln not found. https://gsap.com

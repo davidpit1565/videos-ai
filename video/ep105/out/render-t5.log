@@ -1,9 +1,0 @@
-[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
-[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
-[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
-[INFO] [Compiler] Fetched 10 font face(s) for "JetBrains Mono" from Google Fonts (cached to /root/.cache/hyperframes/fonts/jetbrains-mono)
-[INFO] [Compiler] Injected deterministic @font-face rules for 4 requested font families
-[hyperframes] browserGpuMode probe → software (WebGL unavailable)
-[Browser:WARN] Warning: <path> length cannot be measured when vector-effect is non-scaling-stroke and the element isn't proportionally scaled.
-[WARN] [Render] Measured slow frame capture during auto-worker calibration. {"renderJobId":"47b193ff-9faa-4378-851d-dc0bf0c8b4c5","multiplier":1.37,"p95Ms":822,"sampledFrames":[0,214,428,642,856]}
-[Browser:WARN] Warning: <path> length cannot be measured when vector-effect is non-scaling-stroke and the element isn't proportionally scaled.
