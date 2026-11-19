@@ -36,3 +36,8 @@ Site page `/e/106`: exact install and run path (6 steps, English labels only) wr
 
 ## Open decisions for David
 1. Which app type to rebuild (recommended: link-in-bio). 2. OK to spend Claude usage on the real test run (11 stages on a small app: sizeable). 3. Post the five trials by hand a few hours apart, auto-share OFF.
+
+## UPDATE 19.11.2026 (David): he already ran the Replica skill himself
+- David built an app with it, says it works "really really well" and gave very good results; he does NOT want us to run another test (not enough Claude credits now). The link-in-bio idea stays as the format, but the material is HIS real result, not a new run by us.
+- So the video's evidence = his real screens. Needed from him: (1) which app he rebuilt and which paid app it replaces, (2) screen recording or screenshots of the original and of his result, (3) how long it took and any score the diff step printed (if none, we show none and do not invent a number), (4) permission to show his result in a published video. Without material of his own, the claims stay explained-not-tested ("here is what the skill does"), per the never-fabricate rule; the hook V1/V5 (score, hours) only with a real number from him.
+- No Claude usage is spent by us on a test run. Hook variants stay drafts until his material arrives.
