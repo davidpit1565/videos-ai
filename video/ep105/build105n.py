@@ -54,11 +54,11 @@ SC = {}; T = {}; CUR = 0
 # ---------------------------------------------------------------- S1 frame 0 (line 1): complete on frame 0
 tfree = W(1, "free", 0, .6)
 SC["S1"] = (f'<div class="wm" id="wm"><img src="{A}claude-logo-wordmark.png"></div>'
-            f'<div class="ln hv" id="s1u" style="left:562px;top:280px;font-size:102px;line-height:110px">ULTRA</div>'
-            f'<img class="lg" id="gh" src="{A}github-mark.png" style="left:906px;top:292px;width:66px;height:66px">'
-            f'<div class="ln hv" id="s1p" style="left:100px;top:424px;font-size:206px;line-height:220px"><span class="old">$200{STK}</span><span class="nw">$0</span></div>'
-            f'<div class="ln hv" id="s1m" style="left:102px;top:676px;font-size:172px;line-height:188px">6 MONTHS</div>'
-            f'<div class="ln hv acc1" id="s1f" style="left:98px;top:890px;font-size:330px;line-height:330px">FREE</div>')
+            f'<div class="ln hv" id="s1u" style="left:102px;top:424px;font-size:150px;line-height:150px">ULTRA</div>'
+            f'<img class="lg" id="gh" src="{A}github-mark.png" style="left:862px;top:294px;width:108px;height:108px">'
+            f'<div class="ln hv" id="s1p" style="left:100px;top:588px;font-size:190px;line-height:204px"><span class="old">$200{STK}</span><span class="nw">$0</span></div>'
+            f'<div class="ln hv" id="s1m" style="left:102px;top:796px;font-size:160px;line-height:170px">6 MONTHS</div>'
+            f'<div class="ln hv acc1" id="s1f" style="left:98px;top:940px;font-size:304px;line-height:300px">FREE</div>')
 T["S1"] = dict(t0=0, free=tfree, end=s(2))
 CUR = s(2)
 
@@ -190,9 +190,9 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#ecebe5;font-fa
 .w.acc{{color:{INK}}}
 .ring{{overflow:visible}}
 .hv{{font-weight:900;letter-spacing:-.045em}}
-.old{{position:relative;display:inline-block;color:{GREY};margin-right:.34em}} .nw{{display:inline-block;color:{INK}}}
-.wm{{position:absolute;left:104px;top:290px;width:440px;height:96px;overflow:hidden}} .wm img{{position:absolute;left:0;top:-171.9px;width:440px;height:440px;max-width:none}}
-.stk{{position:absolute;left:-.03em;right:-.03em;top:53%;height:.075em;border-radius:.04em;background:{ORG};transform-origin:0 50%;transform:scaleX(0)}} .old .wm{{position:absolute;left:104px;top:290px;width:440px;height:96px;overflow:hidden}} .wm img{{position:absolute;left:0;top:-171.9px;width:440px;height:440px;max-width:none}}
+.old{{position:relative;display:inline-block;color:#4f4e49;margin-right:.34em}} .nw{{display:inline-block;color:{INK}}}
+.wm{{position:absolute;left:104px;top:292px;width:600px;height:131px;overflow:hidden}} .wm img{{position:absolute;left:0;top:-234.4px;width:600px;height:600px;max-width:none}}
+.stk{{position:absolute;left:-.03em;right:-.03em;top:53%;height:.09em;border-radius:.04em;background:{ORG};transform-origin:0 50%;transform:scaleX(0)}} .old .wm{{position:absolute;left:104px;top:292px;width:600px;height:131px;overflow:hidden}} .wm img{{position:absolute;left:0;top:-234.4px;width:600px;height:600px;max-width:none}}
 .stk{{transform:scaleX(1)}}
 #s1f{{color:{ORG}}}
 .col{{position:absolute;top:800px;width:150px;height:440px;border:6px solid #cfcdc4;border-radius:36px;background:rgba(255,255,255,.55);opacity:0;visibility:hidden}} .col b{{position:absolute;left:0;right:0;top:26px;text-align:center;font-weight:900;font-size:70px;line-height:76px;color:#b4b2a8}}
