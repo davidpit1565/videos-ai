@@ -1,0 +1,2 @@
+video/ep106/out/rawbed-V3.wav  mean -16.5 dB  peak -0.3 dB  longest quiet stretch 0.00s
+ok — music bed has a real, continuous presence
