@@ -1,0 +1,10 @@
+ivy-chatterbox-default-L1.wav  dur 2.32  F0med 135 Hz  range 11.8 st  end -1.5  | You talk, Ivy draft the email, done.
+ivy-chatterbox-default-L2.wav  dur 3.48  F0med 155 Hz  range 8.4 st  end +0.1  | TAT GPT knows your whole life, your next AI shouldn't start from zero.
+ivy-kokoro-af_bella-L1.wav  dur 3.23  F0med 206 Hz  range 5.2 st  end -1.1  | You talk Ivy drafts the email done
+ivy-kokoro-af_bella-L2.wav  dur 5.20  F0med 195 Hz  range 5.8 st  end +0.7  | Chat GPT knows your whole life. Your next AI shouldn't start from zero.
+ivy-kokoro-af_heart-L1.wav  dur 3.02  F0med 210 Hz  range 8.7 st  end -1.7  | You talk, Ivy drafts the email, done.
+ivy-kokoro-af_heart-L2.wav  dur 5.03  F0med 197 Hz  range 7.6 st  end +0.4  | Chat GPT knows your whole life. Your next AI shouldn't start from zero.
+ivy-kokoro-af_nicole-L1.wav  dur 4.03  F0med 156 Hz  range 5.0 st  end -0.5  | You talk, Ivy drafts the email, done.
+ivy-kokoro-af_nicole-L2.wav  dur 7.20  F0med 152 Hz  range 12.0 st  end +0.1  | ChatGPT knows your whole life. Your next AI shouldn't start from zero.
+ivy-kokoro-af_sarah-L1.wav  dur 3.12  F0med 187 Hz  range 9.5 st  end -1.5  | YouTalk, Ivy drafts the email, done.
+ivy-kokoro-af_sarah-L2.wav  dur 5.35  F0med 188 Hz  range 8.9 st  end +0.7  | ChatGPT knows your whole life. Your next AI shouldn't start from zero.
