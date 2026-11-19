@@ -34,3 +34,7 @@ L9 seed 55 accent 0.99 (reroll E=0.68)
 L9 seed 66 accent 0.01 (reroll E=0.68)
 L9 seed 77 accent 0.01 (reroll E=0.68)
 RRDONE
+L13 seed 101 accent 0.18 (reroll E=0.70)
+L13 seed 102 accent 0.04 (reroll E=0.70)
+L13 seed 103 accent 0.02 (reroll E=0.70)
+L13 seed 104 accent 0.98 (reroll E=0.70)
