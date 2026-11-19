@@ -257,8 +257,13 @@ export async function fetchInstagram(): Promise<IgResult> {
 
     // Insight names differ by media type; asking for reel metrics on an image 400s,
     // so each request is scoped and a failure degrades to the basic counts.
-    const media = await Promise.all(
-      raw.map(async (m): Promise<IgMedia> => {
+    // Two reel-only calls per post (the follower/non-follower reach split and the watch-time
+    // metrics) were answered with "not available" for every one of ~100 posts on every
+    // pull — ~200 doomed calls and seconds of server CPU each time. The newest post is now
+    // asked first on its own; if Instagram rejects a call for it, the rest skip that call.
+    const skip = { followType: false, watch: false };
+    const fetchOne = async (m: (typeof raw)[number]): Promise<IgMedia> => {
+      {
         const base: IgMedia = {
           id: m.id,
           // Every caption we write puts the episode's own "/e/N" link several lines down,
@@ -334,7 +339,9 @@ export async function fetchInstagram(): Promise<IgResult> {
           let reachByFollowerType: IgMedia["reachByFollowerType"];
           let reachByFollowerTypeStatus: MetricStatus = "NOT_REQUESTED";
           let reachByFollowerTypeDebug: string | undefined;
-          if (m.media_type === "REELS" || m.media_type === "VIDEO") {
+          if ((m.media_type === "REELS" || m.media_type === "VIDEO") && skip.followType) {
+            reachByFollowerTypeStatus = "NOT_AVAILABLE";
+          } else if (m.media_type === "REELS" || m.media_type === "VIDEO") {
             reachByFollowerTypeStatus = "UNKNOWN";
             try {
               const br = await timedFetch(
@@ -370,6 +377,7 @@ export async function fetchInstagram(): Promise<IgResult> {
                 const bodyText = await br.text();
                 reachByFollowerTypeStatus = statusFromErrorBody(bodyText);
                 reachByFollowerTypeDebug = bodyText.slice(0, 300);
+                if (reachByFollowerTypeStatus === "NOT_AVAILABLE") skip.followType = true;
               }
             } catch (e) {
               reachByFollowerTypeStatus = "API_ERROR";
@@ -394,7 +402,9 @@ export async function fetchInstagram(): Promise<IgResult> {
           // this on "REELS" alone silently skipped every episode (NOT_REQUESTED, not a
           // real answer about Instagram's support) — exactly the kind of blind
           // assumption this task said not to make.
-          if (m.media_type === "REELS" || m.media_type === "VIDEO") {
+          if ((m.media_type === "REELS" || m.media_type === "VIDEO") && skip.watch) {
+            watchStatus = "NOT_AVAILABLE";
+          } else if (m.media_type === "REELS" || m.media_type === "VIDEO") {
             watchStatus = "UNKNOWN";
             try {
               const wr = await timedFetch(
@@ -412,6 +422,7 @@ export async function fetchInstagram(): Promise<IgResult> {
                 watchStatus = Object.keys(wv).length > 0 ? "AVAILABLE" : "NOT_AVAILABLE";
               } else {
                 watchStatus = statusFromErrorBody((await wr.text()).slice(0, 300));
+                if (watchStatus === "NOT_AVAILABLE") skip.watch = true;
               }
             } catch {
               watchStatus = "API_ERROR";
@@ -437,6 +448,15 @@ export async function fetchInstagram(): Promise<IgResult> {
         } catch (err) {
           return { ...base, insightsError: err instanceof Error ? err.message : String(err) };
         }
+      }
+    };
+    const isReel = (m: (typeof raw)[number]) => m.media_type === "REELS" || m.media_type === "VIDEO";
+    const probeIdx = raw.findIndex(isReel);
+    const media: IgMedia[] = new Array(raw.length);
+    if (probeIdx >= 0) media[probeIdx] = await fetchOne(raw[probeIdx]);
+    await Promise.all(
+      raw.map(async (m, i) => {
+        if (i !== probeIdx) media[i] = await fetchOne(m);
       }),
     );
 

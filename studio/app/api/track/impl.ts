@@ -588,7 +588,12 @@ export async function GET(req: Request) {
   // yet (fbVideoId null) — an episode already mirrored, by this or by the old manual
   // backfill, is never touched again, so a real API failure here just retries on the next
   // pull instead of double-posting on a rerun.
-  const fbMirrorCandidates = state.episodes.filter((e) => e.igMediaId && !e.fbVideoId);
+  //
+  // Skipped outright while Facebook is not connected, and stopped at the first failure in a
+  // run. It used to try every old episode (~80) on every pull even though the token had
+  // been invalidated, so each pull made ~80 doomed calls and burned seconds of CPU for
+  // nothing — a main reason the Hobby plan's CPU allowance ran out.
+  const fbMirrorCandidates = fb.connected ? state.episodes.filter((e) => e.igMediaId && !e.fbVideoId) : [];
   for (const e of fbMirrorCandidates) {
     const r = reels().find((x) => x.episode === e.number && x.kind === "video" && x.gate?.passed);
     if (!r) continue;
@@ -604,6 +609,7 @@ export async function GET(req: Request) {
       });
     } else {
       console.log(`[track] auto-mirror to facebook failed for episode ${e.number}: ${result.reason}`);
+      break; // same cause will fail the rest too; retry on the next pull
     }
   }
 
