@@ -22,7 +22,7 @@ assert len(LN) == 13
 s = lambda n: float(LN[n]["start"]); e = lambda n: float(LN[n]["end"])
 D = float(CUES["D"])
 WORDS = [[w["word"], w["start"], w["end"]] for w in json.load(open(H_ + "/voice/words-v105.json"))]
-tF = round(D - .45, 3)
+tF = round(D - .22, 3)
 SRC = {}
 def W(n, toks, k=0, fallback=.5):
     """time of the k-th whisper word in line n matching one of toks (normalised), else a fraction of the line"""
@@ -34,11 +34,11 @@ def W(n, toks, k=0, fallback=.5):
             c += 1
     return round(s(n) + fallback * (e(n) - s(n)), 3)
 
-def line(cls, words, top, size, acc=(), ready=False, left=108, lh=1.12, extra=""):
+def line(cls, words, top, size, acc=(), ready=False, left=108, lh=1.12, extra="", fast=True):
     """words: list of (text, time) tuples; one mask per word"""
     out = []
     for i_, (txt, t) in enumerate(words):
-        if not ready: t = min(t, CUR + .14 + .1 * i_)
+        if not ready and fast: t = min(t, CUR + .14 + .1 * i_)
         ac = norm(txt) in acc
         out.append(f'<span class="m"><span class="w{" acc" if ac else ""}{" rdy" if ready else ""}" data-t="{t:.3f}">{txt}</span></span>')
     return f'<div class="ln {cls}" style="left:{left}px;top:{top}px;font-size:{size}px;line-height:{round(size * lh)}px">{"".join(out)}{extra}</div>'
@@ -57,8 +57,8 @@ SC["S1"] = (f'<div class="wm" id="wm"><img src="{A}claude-logo-wordmark.png"></d
             f'<div class="ln hv" id="s1u" style="left:102px;top:424px;font-size:150px;line-height:150px">ULTRA</div>'
             f'<img class="lg" id="gh" src="{A}github-mark.png" style="left:862px;top:294px;width:108px;height:108px">'
             f'<div class="ln hv" id="s1p" style="left:100px;top:588px;font-size:190px;line-height:204px"><span class="old">$200{STK}</span><span class="nw">$0</span></div>'
-            f'<div class="ln hv" id="s1m" style="left:102px;top:796px;font-size:160px;line-height:170px">6 MONTHS</div>'
-            f'<div class="ln hv acc1" id="s1f" style="left:98px;top:940px;font-size:304px;line-height:300px">FREE</div>')
+            f'<div class="ln hv" id="s1m" style="left:102px;top:790px;font-size:156px;line-height:160px">6 MONTHS</div>'
+            f'<div class="ln hv acc1" id="s1f" style="left:98px;top:952px;font-size:300px;line-height:288px">FREE</div>')
 T["S1"] = dict(t0=0, free=tfree, end=s(2))
 CUR = s(2)
 
@@ -153,9 +153,10 @@ SC["S12"] = (line("lead", seq("The setup's in the", [W(12, "the", 0, .02), W(12,
              line("hv", seq("LINK", [W(12, "link", 0, .6)]), 560, 200, lh=1.0) + line("hv", seq("IN BIO.", [W(12, "in", 1, .75), W(12, "bio", 0, .9)]), 760, 200, acc=("bio",), lh=1.0))
 T["S12"] = dict(t0=s(12), end=s(13))
 CUR = s(13)
-SC["S13"] = (line("lead", seq("Want the next one?", [W(13, "want", 0, .02), W(13, "the", 0, .2), W(13, "next", 0, .4), W(13, "one", 0, .6)]), 500, 90) +
-             line("hv", [("FOLLOW.", W(13, "follow", 0, .85))], 620, 200, acc=("follow",)) + ring("rgF", 78, 604, 900, 250))
-T["S13"] = dict(t0=s(13), acc=W(13, "follow", 0, .85), end=tF)
+SC["S13"] = (line("lead", seq("Want the next one?", [W(13, "want", 0, .02), W(13, "the", 0, .2), W(13, "next", 0, .4), W(13, "one", 0, .6)]), 470, 90) +
+             line("hv", [("FOLLOW.", W(13, "follow", 0, .6))], 590, 200, acc=("follow",), fast=False) + ring("rgF", 78, 574, 900, 250) +
+             line("lead", seq("and you'll see it.", [W(13, "and", 0, .75), W(13, "youll", 0, .85), W(13, "see", 0, .92), W(13, "it", 0, .97)]), 840, 80, fast=False))
+T["S13"] = dict(t0=s(13), acc=W(13, "follow", 0, .6), end=tF)
 for k in T:
     for kk, v in list(T[k].items()):
         if isinstance(v, float): T[k][kk] = round(v, 3)
@@ -288,7 +289,7 @@ function tick(i,at){ tl.to('#b'+i,{backgroundColor:ORG,borderColor:ORG,duration:
 tick(0,T.S4a.tick1-.1); tick(1,T.S4b.tick2-.1); tick(2,T.S5a.tick3-.1); tick(3,T.S5b.tick4-.1); tick(4,T.S7.open+.1);
 tl.fromTo('#b4 b',{y:0},{y:-6,duration:.5,yoyo:true,repeat:Math.floor((T.S7.t0-T.S6.t0)/.5)-1,ease:'sine.inOut'},T.S6.t0);
 /* the frame-0 look returns for the loop */
-tl.add(hide('#sc13'),T.tF-.24).set('#sc1',{autoAlpha:0},T.tF-.3).fromTo('#sc1',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.36,ease:'power2.out',immediateRender:false},T.tF-.02).to({},{duration:.001},T.D-.001);
+tl.add(hide('#sc13'),T.tF-.1).set('#sc1',{autoAlpha:0},T.tF-.3).fromTo('#sc1',{autoAlpha:0,filter:'blur(6px)'},{autoAlpha:1,filter:'blur(0px)',duration:.22,ease:'power2.out',immediateRender:false},T.tF-.02).to({},{duration:.001},T.D-.001);
 window.__timelines=window.__timelines||{}; window.__timelines["main"]=tl; tl.seek(0);
 window.__reel={duration:T.D,seek:t=>{tl.seek(t)}};
 '''.replace("__T__", json.dumps(T, separators=(",", ":"))).replace("__ORG__", ORG).replace("__INK__", INK)

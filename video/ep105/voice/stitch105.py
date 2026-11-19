@@ -1,7 +1,7 @@
 # stitch.py (/opt/v311/bin/python): joins the chosen per-line takes into narration-v105.wav + narration-v105-cues.json, and ../cues105.json
 import json, os, numpy as np, soundfile as sf
 D = os.path.dirname(os.path.abspath(__file__)) + '/'
-PICK = {1: 11, 2: 11, 3: 11, 4: 22, 5: 77, 6: 33, 7: 11, 8: 33, 9: 66, 10: 11, 11: 77, 12: 11, 13: 11}
+PICK = {1: 11, 2: 11, 3: 11, 4: 22, 5: 77, 6: 33, 7: 11, 8: 33, 9: 66, 10: 11, 11: 77, 12: 11, 13: "ep104"}
 lines = [l.strip() for l in open(D + 'lines105.txt') if l.strip()]
 out = []; cues = []; t = 0.0; GAP = .06
 for n, l in enumerate(lines, 1):

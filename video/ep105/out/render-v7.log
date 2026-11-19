@@ -2,3 +2,14 @@
 [INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
 [INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
 [INFO] [Compiler] Injected deterministic @font-face rules for 3 requested font families
+[hyperframes] browserGpuMode probe → software (probe failed (Protocol error (Target.setAutoAttach): Target closed))
+[Browser:WARN] Warning: <path> length cannot be measured when vector-effect is non-scaling-stroke and the element isn't proportionally scaled.
+[Browser:WARN] GSAP target #sc9 .ln not found. https://gsap.com
+[WARN] [Render] Auto-worker calibration failed; using conservative worker budget. {"renderJobId":"1fbd1c1d-8d7d-4e14-a9d2-0a2487ff20e0","protocolTimeout":30000,"error":"render_cancelled"}
+
+✗  Render failed
+
+   render_cancelled
+   Try --docker for containerized rendering
+
+Render cancelled: render_cancelled_by_sigterm

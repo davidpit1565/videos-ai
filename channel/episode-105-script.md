@@ -25,7 +25,7 @@ Hook chosen by David (18.11.2026): "Claude Ultra now for free! Here's how." (bli
 10. VALUE: "Six months free. That's twelve hundred dollars."
 11. SEND: "Send this to the friend who codes."
 12. "The setup's in the link in bio."
-13. "Want the next one? Follow."
+13. "Want the next one? Follow, and you'll see it." (David 19.11.2026: the follow sentence from ep102-104; audio cut from the ep104 narration, not new TTS)
 
 ## Beat list (about 28 s) — what is NEW in each beat (build-up check)
 | # | time | picture (Miki + GSAP, light base, real logos, no code) | NEW here |
