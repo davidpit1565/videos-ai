@@ -174,9 +174,20 @@ def save_history(history: list, path: str = HISTORY) -> None:
         json.dump(history[-HISTORY_KEEP:], f, indent=1)
 
 
+def _banned() -> set:
+    """Tracks David rejected for good (audio/music-library/BANNED.txt, one file name per line)."""
+    try:
+        return {l.split('#')[0].strip() for l in open(os.path.join(LIB, "BANNED.txt")) if l.split('#')[0].strip()}
+    except OSError:
+        return set()
+
+
 def choose(candidates: list, history: list) -> str:
     """Random pick that skips the last NO_REPEAT used tracks (when there is a choice)."""
     uniq = list(dict.fromkeys(candidates))
+    banned = _banned()
+    ok = [c for c in uniq if c not in banned]
+    uniq = ok or uniq  # a ban never leaves a mood with nothing
     if len(uniq) > 1:
         recent = set(history[-NO_REPEAT:])
         fresh = [c for c in uniq if c not in recent]

@@ -12,6 +12,33 @@ Hook chosen by David (18.11.2026): "Claude Ultra now for free! Here's how." (bli
 - "Apply anyway" line is on the page (Ecosystem Impact Track, discretionary). Anthropic contacts only approved applicants.
 - NOT claimed anywhere: that everyone gets it, a review time, a person reading each form.
 
+## DAVID'S FEEDBACK 19.11.2026 (v1 review) -> SCRIPT v2 (this section replaces the v1 lines/beats below)
+- Music: replace the bed (punchy--fresh-urban-stomp--osynthw) and NEVER use that track again (listed in channel/music-notes.md as banned).
+- Hook must be ONE flowing sentence, not "Claude Ultra. [pause] now for free" (sounded like shouting).
+- "See if you get it" ended badly in tone; "projects depend on your code": "code" ends badly; "One / Two" must sound like a start, not bored. => these lines are gone or reworded.
+- The middle (about 20-35 s, the five criteria) is too complicated, even he did not follow. Remove it. Say only: there is a way to get Claude Ultra free, roughly what and how, so anyone understands; ALL exact details go on the site page /e/105.
+- Last line: use the earlier take of "Want the next one? Follow, and you'll see it." (ep104 clip video/ep105/voice/pl/L13-ep104.wav): its tone flows better than the re-roll. His ear wins over the accent check (log the disagreement): the gate must skip accent for that line.
+
+## Spoken lines v2 (English, present tense, plain; endings end clean; no "code", no "get it"; "the company" spoken instead of Anthropic)
+1. HOOK (one flowing sentence): "Claude Ultra is now free, here's how."
+2. "Normally, it costs two hundred dollars a month."
+3. "The company behind Claude gives it to open-source builders, for six months."
+4. "If you maintain open-source software that lots of people use, you can apply."
+5. "Not sure you fit? The company says, apply anyway."
+6. "You sign in with GitHub, tell them about your project, and wait for an email."
+7. "Six months free. That's twelve hundred dollars."
+8. "Only ten thousand spots."
+9. "Send this to a friend who builds things."
+10. "The setup's in the link in bio."
+11. "Want the next one? Follow, and you'll see it." (ep104 take)
+
+## Beats v2 (about 24-26 s; Miki, one idea per screen, nothing to decode)
+1 hook = frame 0 as built (Claude wordmark + ULTRA, GitHub mark, $200 struck to $0, 6 MONTHS FREE) | 2 "$200 A MONTH" struck | 3 Claude + GitHub, "OPEN SOURCE · 6 MONTHS" | 4 Linux/Python/Node marks, "LOTS OF PEOPLE USE YOUR WORK" | 5 real page screenshot with ring on "apply anyway" | 6 three simple steps card (Sign in with GitHub / Tell them about your project / Wait for the email), the saveable card | 7 "$1,200" | 8 "10,000 SPOTS" + small "GitHub account 2+ years old" | 9 send line | 10 link in bio | 11 follow (FOLLOW. big). Loop back to frame 0.
+What is NEW per beat: offer -> price -> who it is for -> what "qualify" means in one picture -> the twist (apply anyway) -> how (3 steps) -> what it is worth -> scarcity -> send -> setup -> follow.
+All exact thresholds (500 dependent repos, 100 merged PRs, 20 outside contributors, OpenSSF 0.4, 2-year-old GitHub account, 90 days activity, OSI license) go ONLY on the site page /e/105 and the caption (not on screen).
+Scores (labels, v2): HOOK 89, VIRALITY 80 (the self-check and the OpenSSF surprise are gone; comprehension is what he asked for), OVERALL 84. Predicted views 1,500-4,000 (ASSUMPTION).
+
+# v1 material (kept for reference; superseded above)
 ## Spoken lines (English, present tense, plain; "Anthropic" kept off the audio, say "the company")
 1. HOOK: "Claude Ultra, now for free! Here's how."
 2. PROMISE: "Thirty seconds. See if you get it."
