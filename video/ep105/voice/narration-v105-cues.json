@@ -1,93 +1,79 @@
 [
  {
   "n": 1,
-  "line": "Claude Ultra, now for free! Here's how.",
-  "text": "Claude Ultra, now for free! Here's how.",
+  "line": "Claude Ultra is now free, here's how.",
+  "text": "Claude Ultra is now free, here's how.",
   "start": 0.05,
-  "end": 2.064
+  "end": 2.039
  },
  {
   "n": 2,
-  "line": "Thirty seconds. See if you get it.",
-  "text": "Thirty seconds. See if you get it.",
-  "start": 2.254,
-  "end": 3.815
+  "line": "Normally, it costs two hundred dollars a month.",
+  "text": "Normally, it costs two hundred dollars a month.",
+  "start": 2.229,
+  "end": 4.39
  },
  {
   "n": 3,
-  "line": "Normally, two hundred dollars a month.",
-  "text": "Normally, two hundred dollars a month.",
-  "start": 4.005,
-  "end": 5.913
+  "line": "The company behind Claude gives it to open-source builders, for six months.",
+  "text": "The company behind Claude gives it to open-source builders, for six months.",
+  "start": 4.58,
+  "end": 8.095
  },
  {
   "n": 4,
-  "line": "One: lots of projects depend on your code. Two: you help run a big open-source project.",
-  "text": "One: lots of projects depend on your code. Two: you help run a big open-source project.",
-  "start": 6.103,
-  "end": 10.424
+  "line": "If you maintain open-source software that lots of people use, you can apply.",
+  "text": "If you maintain open-source software that lots of people use, you can apply.",
+  "start": 8.285,
+  "end": 12.05
  },
  {
   "n": 5,
-  "line": "Three: a hundred of your changes got accepted into other people's projects. Four: twenty outsiders helped build yours.",
-  "text": "Three: a hundred of your changes got accepted into other people's projects. Four: twenty outsiders helped build yours.",
-  "start": 10.614,
-  "end": 15.504
+  "line": "Not sure you fit? The company says, apply anyway.",
+  "text": "Not sure you fit? The company says, apply anyway.",
+  "start": 12.24,
+  "end": 15.204
  },
  {
   "n": 6,
-  "line": "The last one, almost nobody knows.",
-  "text": "The last one, almost nobody knows.",
-  "start": 15.694,
-  "end": 17.818
+  "line": "You sign in with GitHub, tell them about your project, and wait for an email.",
+  "text": "You sign in with GitHub, tell them about your project, and wait for an email.",
+  "start": 15.394,
+  "end": 18.674
  },
  {
   "n": 7,
-  "line": "Five: a score called OpenSSF. Point four or higher. It shows how much other software relies on your project.",
-  "text": "Five: a score called OpenSSF. Point four or higher. It shows how much other software relies on your project.",
-  "start": 18.008,
-  "end": 23.023
+  "line": "Six months free. That's twelve hundred dollars.",
+  "text": "Six months free. That's twelve hundred dollars.",
+  "start": 18.864,
+  "end": 21.106
  },
  {
   "n": 8,
-  "line": "Not on the list? The company says apply anyway, and explain why your project matters.",
-  "text": "Not on the list? The company says apply anyway, and explain why your project matters.",
-  "start": 23.213,
-  "end": 27.268
+  "line": "Only ten thousand spots.",
+  "text": "Only ten thousand spots.",
+  "start": 21.296,
+  "end": 23.493
  },
  {
   "n": 9,
-  "line": "Also: a GitHub account two years old, active this season, and an open license. Only ten thousand spots.",
-  "text": "Also: a GitHub account two years old, active this season, and an open license. Only ten thousand spots.",
-  "start": 27.458,
-  "end": 32.66
+  "line": "Send this to a friend who builds things.",
+  "text": "Send this to a friend who builds things.",
+  "start": 23.683,
+  "end": 25.682
  },
  {
   "n": 10,
-  "line": "Six months free. That's twelve hundred dollars.",
-  "text": "Six months free. That's twelve hundred dollars.",
-  "start": 32.85,
-  "end": 34.84
+  "line": "The setup's in the link in bio.",
+  "text": "The setup's in the link in bio.",
+  "start": 25.872,
+  "end": 27.784
  },
  {
   "n": 11,
-  "line": "Send this to the friend who codes.",
-  "text": "Send this to the friend who codes.",
-  "start": 35.03,
-  "end": 36.974
- },
- {
-  "n": 12,
-  "line": "The setup's in the link in bio.",
-  "text": "The setup's in the link in bio.",
-  "start": 37.164,
-  "end": 39.076
- },
- {
-  "n": 13,
   "line": "Want the next one? Follow, and you'll see it.",
   "text": "Want the next one? Follow, and you'll see it.",
-  "start": 39.266,
-  "end": 41.435
+  "start": 27.974,
+  "end": 30.084
  }
 ]

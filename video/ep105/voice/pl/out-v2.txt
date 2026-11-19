@@ -1,0 +1,41 @@
+V2 L1 seed 11 E=0.76 accent 0.04
+V2 L1 seed 22 E=0.76 accent 0.04
+V2 L1 seed 33 E=0.76 accent 0.04
+V2 L2 seed 11 E=0.70 accent 0.00
+V2 L2 seed 22 E=0.70 accent 0.00
+V2 L2 seed 33 E=0.70 accent 0.01
+V2 L3 seed 11 E=0.68 accent 0.01
+V2 L3 seed 22 E=0.68 accent 0.01
+V2 L3 seed 33 E=0.68 accent 0.01
+V2 L4 seed 11 E=0.68 accent 0.02
+V2 L4 seed 22 E=0.68 accent 0.02
+V2 L4 seed 33 E=0.68 accent 0.00
+V2 L5 seed 11 E=0.68 accent 0.09
+V2 L5 seed 22 E=0.68 accent 0.03
+V2 L5 seed 33 E=0.68 accent 0.06
+V2 L6 seed 11 E=0.68 accent 0.01
+V2 L6 seed 22 E=0.68 accent 0.02
+V2 L6 seed 33 E=0.68 accent 0.12
+V2 L7 seed 11 E=0.70 accent 0.03
+V2 L7 seed 22 E=0.70 accent 0.02
+V2 L7 seed 33 E=0.70 accent 0.03
+V2 L8 seed 11 E=0.70 accent 0.03
+V2 L8 seed 22 E=0.70 accent 0.34
+V2 L8 seed 33 E=0.70 accent 0.03
+V2 L9 seed 11 E=0.68 accent 0.38
+V2 L9 seed 22 E=0.68 accent 0.67
+V2 L9 seed 33 E=0.68 accent 0.73
+V2 L10 seed 11 E=0.70 accent 0.04
+V2 L10 seed 22 E=0.70 accent 0.04
+V2 L10 seed 33 E=0.70 accent 0.04
+V2DONE
+V2 L1 seed 41 accent 0.06 (reroll E=0.74 text='Claude Ultra is now free here's how.')
+V2 L1 seed 42 accent 0.14 (reroll E=0.74 text='Claude Ultra is now free here's how.')
+V2 L1 seed 43 accent 0.17 (reroll E=0.74 text='Claude Ultra is now free here's how.')
+V2 L1 seed 44 accent 0.04 (reroll E=0.74 text='Claude Ultra is now free here's how.')
+RRDONE1
+V2 L9 seed 44 accent 0.07 (reroll E=0.66 text='Send this to a friend who builds things.')
+V2 L9 seed 55 accent 0.14 (reroll E=0.66 text='Send this to a friend who builds things.')
+V2 L9 seed 66 accent 0.40 (reroll E=0.66 text='Send this to a friend who builds things.')
+V2 L9 seed 77 accent 0.39 (reroll E=0.66 text='Send this to a friend who builds things.')
+RRDONE9
