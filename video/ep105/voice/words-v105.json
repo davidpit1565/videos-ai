@@ -2,486 +2,486 @@
  {
   "word": "Claude",
   "start": 0.0,
-  "end": 0.38
+  "end": 0.36
  },
  {
   "word": "Ultra",
-  "start": 0.38,
-  "end": 0.62
+  "start": 0.36,
+  "end": 0.7
  },
  {
   "word": "is",
-  "start": 0.62,
-  "end": 0.86
+  "start": 0.7,
+  "end": 0.9
  },
  {
   "word": "now",
-  "start": 0.86,
-  "end": 1.08
+  "start": 0.9,
+  "end": 1.14
  },
  {
   "word": "free.",
-  "start": 1.08,
-  "end": 1.3
+  "start": 1.14,
+  "end": 1.4
  },
  {
   "word": "Here's",
-  "start": 1.5,
-  "end": 1.64
+  "start": 1.72,
+  "end": 1.94
  },
  {
   "word": "how.",
-  "start": 1.64,
-  "end": 2.0
+  "start": 1.94,
+  "end": 2.28
  },
  {
   "word": "Normally,",
-  "start": 2.7,
-  "end": 2.7
+  "start": 2.98,
+  "end": 2.98
  },
  {
   "word": "it",
-  "start": 2.96,
-  "end": 3.06
+  "start": 3.32,
+  "end": 3.36
  },
  {
   "word": "costs",
-  "start": 3.06,
-  "end": 3.22
+  "start": 3.36,
+  "end": 3.52
  },
  {
   "word": "$200",
-  "start": 3.22,
-  "end": 3.68
+  "start": 3.52,
+  "end": 3.98
  },
  {
   "word": "a",
-  "start": 3.68,
-  "end": 4.04
+  "start": 3.98,
+  "end": 4.34
  },
  {
   "word": "month.",
-  "start": 4.04,
-  "end": 4.22
+  "start": 4.34,
+  "end": 4.54
  },
  {
   "word": "The",
-  "start": 4.64,
-  "end": 4.78
+  "start": 4.98,
+  "end": 5.06
  },
  {
   "word": "company",
-  "start": 4.78,
-  "end": 5.0
+  "start": 5.06,
+  "end": 5.3
  },
  {
   "word": "behind",
-  "start": 5.0,
-  "end": 5.26
+  "start": 5.3,
+  "end": 5.56
  },
  {
   "word": "Claude",
-  "start": 5.26,
-  "end": 5.54
+  "start": 5.56,
+  "end": 5.84
  },
  {
   "word": "gives",
-  "start": 5.54,
-  "end": 6.0
+  "start": 5.84,
+  "end": 6.3
  },
  {
   "word": "it",
-  "start": 6.0,
-  "end": 6.14
+  "start": 6.3,
+  "end": 6.44
  },
  {
   "word": "to",
-  "start": 6.14,
-  "end": 6.26
+  "start": 6.44,
+  "end": 6.56
  },
  {
   "word": "open",
-  "start": 6.26,
-  "end": 6.46
+  "start": 6.56,
+  "end": 6.76
  },
  {
   "word": "source",
-  "start": 6.46,
-  "end": 6.62
+  "start": 6.76,
+  "end": 6.92
  },
  {
   "word": "builders",
-  "start": 6.62,
-  "end": 6.94
+  "start": 6.92,
+  "end": 7.26
  },
  {
   "word": "for",
-  "start": 6.94,
-  "end": 7.3
+  "start": 7.26,
+  "end": 7.6
  },
  {
   "word": "6",
-  "start": 7.3,
-  "end": 7.58
+  "start": 7.6,
+  "end": 7.86
  },
  {
   "word": "months.",
-  "start": 7.58,
-  "end": 7.78
+  "start": 7.86,
+  "end": 8.08
  },
  {
   "word": "If",
-  "start": 8.34,
-  "end": 8.44
+  "start": 8.66,
+  "end": 8.74
  },
  {
   "word": "you",
-  "start": 8.44,
-  "end": 8.66
+  "start": 8.74,
+  "end": 8.94
  },
  {
   "word": "maintain",
-  "start": 8.66,
-  "end": 9.08
+  "start": 8.94,
+  "end": 9.38
  },
  {
   "word": "open",
-  "start": 9.08,
-  "end": 9.46
+  "start": 9.38,
+  "end": 9.76
  },
  {
   "word": "source",
-  "start": 9.46,
-  "end": 9.66
+  "start": 9.76,
+  "end": 9.96
  },
  {
   "word": "software",
-  "start": 9.66,
-  "end": 10.04
+  "start": 9.96,
+  "end": 10.34
  },
  {
   "word": "that",
-  "start": 10.04,
-  "end": 10.38
+  "start": 10.34,
+  "end": 10.68
  },
  {
   "word": "lots",
-  "start": 10.38,
-  "end": 10.58
+  "start": 10.68,
+  "end": 10.88
  },
  {
   "word": "of",
-  "start": 10.58,
-  "end": 10.72
+  "start": 10.88,
+  "end": 11.0
  },
  {
   "word": "people",
-  "start": 10.72,
-  "end": 10.84
+  "start": 11.0,
+  "end": 11.12
  },
  {
   "word": "use,",
-  "start": 10.84,
-  "end": 11.16
+  "start": 11.12,
+  "end": 11.44
  },
  {
   "word": "you",
-  "start": 11.28,
-  "end": 11.46
+  "start": 11.64,
+  "end": 11.76
  },
  {
   "word": "can",
-  "start": 11.46,
-  "end": 11.58
+  "start": 11.76,
+  "end": 11.88
  },
  {
   "word": "apply.",
-  "start": 11.58,
-  "end": 11.82
+  "start": 11.88,
+  "end": 12.12
  },
  {
   "word": "Not",
-  "start": 12.24,
-  "end": 12.52
+  "start": 12.58,
+  "end": 12.82
  },
  {
   "word": "sure",
-  "start": 12.52,
-  "end": 12.74
+  "start": 12.82,
+  "end": 13.02
  },
  {
   "word": "you",
-  "start": 12.74,
-  "end": 12.9
+  "start": 13.02,
+  "end": 13.2
  },
  {
   "word": "fit?",
-  "start": 12.9,
-  "end": 13.12
+  "start": 13.2,
+  "end": 13.42
  },
  {
   "word": "The",
-  "start": 13.42,
-  "end": 13.46
+  "start": 13.72,
+  "end": 13.74
  },
  {
   "word": "company",
-  "start": 13.46,
-  "end": 13.64
+  "start": 13.74,
+  "end": 13.94
  },
  {
   "word": "says,",
-  "start": 13.64,
-  "end": 13.92
+  "start": 13.94,
+  "end": 14.22
  },
  {
   "word": "apply",
-  "start": 14.16,
-  "end": 14.52
+  "start": 14.5,
+  "end": 14.82
  },
  {
   "word": "anyway.",
-  "start": 14.52,
-  "end": 14.94
+  "start": 14.82,
+  "end": 15.22
  },
  {
   "word": "You",
-  "start": 15.42,
-  "end": 15.62
+  "start": 15.7,
+  "end": 15.92
  },
  {
   "word": "sign",
-  "start": 15.62,
-  "end": 15.8
+  "start": 15.92,
+  "end": 16.1
  },
  {
   "word": "in",
-  "start": 15.8,
-  "end": 15.94
+  "start": 16.1,
+  "end": 16.24
  },
  {
   "word": "with",
-  "start": 15.94,
-  "end": 16.04
+  "start": 16.24,
+  "end": 16.34
  },
  {
   "word": "GitHub,",
-  "start": 16.04,
-  "end": 16.32
+  "start": 16.34,
+  "end": 16.62
  },
  {
   "word": "tell",
-  "start": 16.6,
-  "end": 16.78
- },
- {
-  "word": "them",
-  "start": 16.78,
-  "end": 16.9
- },
- {
-  "word": "about",
-  "start": 16.9,
+  "start": 16.94,
   "end": 17.08
  },
  {
-  "word": "your",
+  "word": "them",
   "start": 17.08,
-  "end": 17.22
+  "end": 17.2
+ },
+ {
+  "word": "about",
+  "start": 17.2,
+  "end": 17.38
+ },
+ {
+  "word": "your",
+  "start": 17.38,
+  "end": 17.5
  },
  {
   "word": "project",
-  "start": 17.22,
-  "end": 17.54
+  "start": 17.5,
+  "end": 17.86
  },
  {
   "word": "and",
-  "start": 17.54,
-  "end": 17.78
+  "start": 17.86,
+  "end": 18.08
  },
  {
   "word": "wait",
-  "start": 17.78,
-  "end": 17.94
- },
- {
-  "word": "for",
-  "start": 17.94,
-  "end": 18.12
- },
- {
-  "word": "an",
-  "start": 18.12,
+  "start": 18.08,
   "end": 18.24
  },
  {
-  "word": "email.",
+  "word": "for",
   "start": 18.24,
-  "end": 18.46
+  "end": 18.42
+ },
+ {
+  "word": "an",
+  "start": 18.42,
+  "end": 18.52
+ },
+ {
+  "word": "email.",
+  "start": 18.52,
+  "end": 18.78
  },
  {
   "word": "6",
-  "start": 19.04,
-  "end": 19.3
+  "start": 19.36,
+  "end": 19.58
  },
  {
   "word": "months",
-  "start": 19.3,
-  "end": 19.48
- },
- {
-  "word": "free.",
-  "start": 19.48,
+  "start": 19.58,
   "end": 19.78
  },
  {
+  "word": "free.",
+  "start": 19.78,
+  "end": 20.08
+ },
+ {
   "word": "That's",
-  "start": 20.12,
-  "end": 20.32
+  "start": 20.4,
+  "end": 20.62
  },
  {
   "word": "$1200.",
-  "start": 20.32,
-  "end": 20.52
+  "start": 20.62,
+  "end": 20.84
  },
  {
   "word": "Only",
-  "start": 21.18,
-  "end": 21.62
+  "start": 21.42,
+  "end": 21.9
  },
  {
   "word": "10",
-  "start": 21.62,
-  "end": 22.12
+  "start": 21.9,
+  "end": 22.42
  },
  {
   "word": ",000",
-  "start": 22.12,
-  "end": 22.74
+  "start": 22.42,
+  "end": 23.04
  },
  {
   "word": "spots.",
-  "start": 22.74,
-  "end": 23.2
+  "start": 23.04,
+  "end": 23.52
  },
  {
   "word": "Send",
-  "start": 23.78,
-  "end": 23.96
- },
- {
-  "word": "this",
-  "start": 23.96,
-  "end": 24.12
- },
- {
-  "word": "to",
-  "start": 24.12,
+  "start": 24.06,
   "end": 24.26
  },
  {
-  "word": "a",
+  "word": "this",
   "start": 24.26,
-  "end": 24.38
+  "end": 24.4
  },
  {
-  "word": "friend",
-  "start": 24.38,
+  "word": "to",
+  "start": 24.4,
   "end": 24.56
  },
  {
-  "word": "who",
+  "word": "a",
   "start": 24.56,
-  "end": 24.88
+  "end": 24.68
+ },
+ {
+  "word": "friend",
+  "start": 24.68,
+  "end": 24.84
+ },
+ {
+  "word": "who",
+  "start": 24.84,
+  "end": 25.18
  },
  {
   "word": "builds",
-  "start": 24.88,
-  "end": 25.14
- },
- {
-  "word": "things.",
-  "start": 25.14,
+  "start": 25.18,
   "end": 25.44
  },
  {
+  "word": "things.",
+  "start": 25.44,
+  "end": 25.72
+ },
+ {
   "word": "The",
-  "start": 25.92,
-  "end": 26.1
+  "start": 26.24,
+  "end": 26.38
  },
  {
   "word": "setup's",
-  "start": 26.1,
-  "end": 26.48
- },
- {
-  "word": "in",
-  "start": 26.48,
-  "end": 26.64
- },
- {
-  "word": "the",
-  "start": 26.64,
+  "start": 26.38,
   "end": 26.78
  },
  {
-  "word": "link",
-  "start": 26.78,
-  "end": 26.98
- },
- {
   "word": "in",
-  "start": 26.98,
-  "end": 27.28
- },
- {
-  "word": "bio.",
-  "start": 27.28,
-  "end": 27.48
- },
- {
-  "word": "Want",
-  "start": 28.06,
-  "end": 28.16
+  "start": 26.78,
+  "end": 26.94
  },
  {
   "word": "the",
-  "start": 28.16,
-  "end": 28.28
+  "start": 26.94,
+  "end": 27.08
  },
  {
-  "word": "next",
-  "start": 28.28,
-  "end": 28.42
+  "word": "link",
+  "start": 27.08,
+  "end": 27.26
  },
  {
-  "word": "one?",
-  "start": 28.42,
+  "word": "in",
+  "start": 27.26,
+  "end": 27.56
+ },
+ {
+  "word": "bio.",
+  "start": 27.56,
+  "end": 27.8
+ },
+ {
+  "word": "Want",
+  "start": 28.32,
+  "end": 28.46
+ },
+ {
+  "word": "the",
+  "start": 28.46,
   "end": 28.58
  },
  {
+  "word": "next",
+  "start": 28.58,
+  "end": 28.7
+ },
+ {
+  "word": "one?",
+  "start": 28.7,
+  "end": 28.88
+ },
+ {
   "word": "Follow",
-  "start": 28.92,
-  "end": 29.1
+  "start": 28.88,
+  "end": 29.38
  },
  {
   "word": "and",
-  "start": 29.1,
-  "end": 29.5
+  "start": 29.38,
+  "end": 29.8
  },
  {
   "word": "you'll",
-  "start": 29.5,
-  "end": 29.7
+  "start": 29.8,
+  "end": 30.02
  },
  {
   "word": "see",
-  "start": 29.7,
-  "end": 29.88
+  "start": 30.02,
+  "end": 30.2
  },
  {
   "word": "it.",
-  "start": 29.88,
-  "end": 30.04
+  "start": 30.2,
+  "end": 30.34
  }
 ]

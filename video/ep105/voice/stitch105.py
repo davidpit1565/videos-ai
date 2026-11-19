@@ -1,10 +1,10 @@
 # stitch105.py v2 (/opt/v311/bin/python): joins chosen v2 takes into narration-v105.wav, narration-v105-cues.json, ../cues105.json
-# Line 10 = locked canonical clip (already inside its take), line 11 = ep104 clip byte for byte (pl/L13-ep104.wav), no TTS.
+# Line 10 = locked canonical clip; line 11 = real ep104 take cut from ../../ep104/voice/narration.wav 43.74-46.00 s (pl/L11-ep104cut.wav; the earlier pl/L13-ep104.wav was digital silence).
 # CAP: pauses inside a line are shortened by cutting only silence (below -22 dB (line 1: its pause sits at -28..-32 dB, room tone is not silent) of the line peak), 6 ms fades; no speech touched.
 import json, os, numpy as np, soundfile as sf
 D = os.path.dirname(os.path.abspath(__file__)) + '/'
 PICK = {1: 33, 2: 22, 3: 33, 4: 22, 5: 33, 6: 22, 7: 11, 8: 22, 9: 44, 10: 11}
-CAP = {1: 0.05}          # seconds of silence kept inside the line (hook must flow)
+CAP = {1: 0.26}          # seconds of silence kept inside the line (hook must flow)
 lines = [l.strip() for l in open(D + 'lines105.txt') if l.strip()]
 def cap_silence(w, sr, cap):
     fr = int(.005 * sr); n = len(w) // fr; thr = 10 ** (-22 / 20) * np.abs(w).max()
@@ -33,7 +33,7 @@ def cap_silence(w, sr, cap):
     return np.concatenate(parts + [w[n * fr:]])
 out = []; cues = []; t = 0.0; GAP = .06
 for n, l in enumerate(lines, 1):
-    p = D + ('pl/L13-ep104.wav' if n == 11 else f'pl/V2-L{n}-{PICK[n]}.wav')
+    p = D + ('pl/L11-ep104cut.wav' if n == 11 else f'pl/V2-L{n}-{PICK[n]}.wav')
     w, sr = sf.read(p)
     if w.ndim > 1: w = w.mean(1)
     if n in CAP: w = cap_silence(w, sr, CAP[n])
