@@ -1,0 +1,23 @@
+hook: Claude found problems in my app idea. | frame0: PROBLEMS|IN MY|APP IDEA
+
+0 risky word(s) across 1 line(s).
+seed 11 accent 0.07 text OK claude found problems in my app idea
+seed 22 accent 0.05 text DIFF clive found problems in my app idea
+seed 33 accent 0.18 text OK claude found problems in my app idea
+picked: /home/user/videos-ai/video/ep106/voice/pl/H-V3-11.wav
+48000 26.2
+round 0 flagged lines [4]
+line 4 take pl/B3-44.wav -> (0.15, 'pl/B3-33.wav')
+round 1 flagged lines []
+CHANGED
+48000 26.86
+HOOK AS SPOKEN: Claude found problems in my app idea.
+D=26.86
+integrated -14.9 fix 0.9 bed gain -8.64 ; bed-voice speaking -8.5 dB; gaps bed vs voice-speaking -6.0 ; lin(for voice_quality --vol, raw track hp) 0.4104
+=== PASS  frame layout (safe_check_hf.js)
+=== PASS  rendered file (qa.py --hf)
+=== PASS  no silent line in the final mp4 (check_last_line_audio.py --all)
+=== PASS  voice + music quality (voice_quality.py)
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+=== PASS  accent drift (check_accent.py)
+ALL CHECKS THAT RAN PASSED (0 skipped)  -  audio was measured, not heard; watch the file twice before sending

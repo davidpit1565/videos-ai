@@ -1,0 +1,84 @@
+{
+ "version": "V1",
+ "estimated_timeline": false,
+ "lines": [
+  {
+   "n": 1,
+   "line": "I built an app in half an hour.",
+   "text": "I built an app in half an hour.",
+   "start": 0.05,
+   "end": 1.773
+  },
+  {
+   "n": 2,
+   "line": "I tell Claude the app I want. That's it.",
+   "text": "I tell Claude the app I want. That's it.",
+   "start": 1.963,
+   "end": 4.047
+  },
+  {
+   "n": 3,
+   "line": "Then eleven free add-ons run, in order.",
+   "text": "Then eleven free add-ons run, in order.",
+   "start": 4.237,
+   "end": 6.588
+  },
+  {
+   "n": 4,
+   "line": "One finds the weak spots in my idea.",
+   "text": "One finds the weak spots in my idea.",
+   "start": 6.778,
+   "end": 8.58
+  },
+  {
+   "n": 5,
+   "line": "One draws how the app should look. And why.",
+   "text": "One draws how the app should look. And why.",
+   "start": 8.77,
+   "end": 11.209
+  },
+  {
+   "n": 6,
+   "line": "Then I say, build it.",
+   "text": "Then I say, build it.",
+   "start": 11.399,
+   "end": 12.685
+  },
+  {
+   "n": 7,
+   "line": "It builds the screens and the logic.",
+   "text": "It builds the screens and the logic.",
+   "start": 12.875,
+   "end": 14.649
+  },
+  {
+   "n": 8,
+   "line": "I did all of it in about half an hour.",
+   "text": "I did all of it in about half an hour.",
+   "start": 14.839,
+   "end": 16.799
+  },
+  {
+   "n": 9,
+   "line": "It's not magic. It rebuilds how an app works, never its logo or code. And you rename it ahead of launch.",
+   "text": "It's not magic. It rebuilds how an app works, never its logo or code. And you rename it ahead of launch.",
+   "start": 16.989,
+   "end": 22.268
+  },
+  {
+   "n": 10,
+   "line": "The setup's in the link in bio.",
+   "text": "The setup's in the link in bio.",
+   "start": 22.458,
+   "end": 24.37
+  },
+  {
+   "n": 11,
+   "line": "Want the next one? Follow.",
+   "text": "Want the next one? Follow.",
+   "start": 24.56,
+   "end": 26.067
+  }
+ ],
+ "D": 26.21
+}

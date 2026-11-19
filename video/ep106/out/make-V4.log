@@ -1,0 +1,18 @@
+hook: App idea? Give it to Claude. | frame0: APP IDEA?|GIVE IT|TO CLAUDE
+
+0 risky word(s) across 1 line(s).
+seed 11 accent 0.04 text OK app idea give it to claude
+seed 22 accent 0.58 text OK app idea give it to claude
+seed 33 accent 0.98 text DIFF up idea give it to claude
+picked: /home/user/videos-ai/video/ep106/voice/pl/H-V4-11.wav
+48000 26.07
+HOOK AS SPOKEN: App idea? Give it to Claude.
+D=26.07
+integrated -15.0 fix 1.0 bed gain -8.56 ; bed-voice speaking -8.5 dB; gaps bed vs voice-speaking -6.8 ; lin(for voice_quality --vol, raw track hp) 0.4187
+=== PASS  frame layout (safe_check_hf.js)
+=== PASS  rendered file (qa.py --hf)
+=== PASS  no silent line in the final mp4 (check_last_line_audio.py --all)
+=== PASS  voice + music quality (voice_quality.py)
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+=== PASS  accent drift (check_accent.py)
+ALL CHECKS THAT RAN PASSED (0 skipped)  -  audio was measured, not heard; watch the file twice before sending

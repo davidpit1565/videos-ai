@@ -1,0 +1,482 @@
+[
+ {
+  "word": "Claude",
+  "start": 0.0,
+  "end": 0.34
+ },
+ {
+  "word": "found",
+  "start": 0.34,
+  "end": 0.56
+ },
+ {
+  "word": "problems",
+  "start": 0.56,
+  "end": 0.84
+ },
+ {
+  "word": "in",
+  "start": 0.84,
+  "end": 1.04
+ },
+ {
+  "word": "my",
+  "start": 1.04,
+  "end": 1.16
+ },
+ {
+  "word": "app",
+  "start": 1.16,
+  "end": 1.28
+ },
+ {
+  "word": "idea.",
+  "start": 1.28,
+  "end": 1.54
+ },
+ {
+  "word": "I",
+  "start": 2.04,
+  "end": 2.1
+ },
+ {
+  "word": "tell",
+  "start": 2.1,
+  "end": 2.28
+ },
+ {
+  "word": "Claude",
+  "start": 2.28,
+  "end": 2.48
+ },
+ {
+  "word": "the",
+  "start": 2.48,
+  "end": 2.64
+ },
+ {
+  "word": "app",
+  "start": 2.64,
+  "end": 2.8
+ },
+ {
+  "word": "I",
+  "start": 2.8,
+  "end": 2.94
+ },
+ {
+  "word": "want.",
+  "start": 2.94,
+  "end": 3.14
+ },
+ {
+  "word": "That's",
+  "start": 3.42,
+  "end": 3.72
+ },
+ {
+  "word": "it!",
+  "start": 3.72,
+  "end": 3.86
+ },
+ {
+  "word": "Then",
+  "start": 4.32,
+  "end": 4.56
+ },
+ {
+  "word": "11",
+  "start": 4.56,
+  "end": 5.06
+ },
+ {
+  "word": "free",
+  "start": 5.06,
+  "end": 5.36
+ },
+ {
+  "word": "add",
+  "start": 5.36,
+  "end": 5.58
+ },
+ {
+  "word": "-ons",
+  "start": 5.58,
+  "end": 5.68
+ },
+ {
+  "word": "run",
+  "start": 5.68,
+  "end": 5.88
+ },
+ {
+  "word": "in",
+  "start": 5.88,
+  "end": 6.2
+ },
+ {
+  "word": "order.",
+  "start": 6.2,
+  "end": 6.42
+ },
+ {
+  "word": "One",
+  "start": 6.82,
+  "end": 7.04
+ },
+ {
+  "word": "finds",
+  "start": 7.04,
+  "end": 7.32
+ },
+ {
+  "word": "the",
+  "start": 7.32,
+  "end": 7.46
+ },
+ {
+  "word": "weak",
+  "start": 7.46,
+  "end": 7.64
+ },
+ {
+  "word": "spots",
+  "start": 7.64,
+  "end": 7.88
+ },
+ {
+  "word": "in",
+  "start": 7.88,
+  "end": 8.3
+ },
+ {
+  "word": "my",
+  "start": 8.3,
+  "end": 8.52
+ },
+ {
+  "word": "idea.",
+  "start": 8.52,
+  "end": 8.98
+ },
+ {
+  "word": "One",
+  "start": 9.4,
+  "end": 9.66
+ },
+ {
+  "word": "draws",
+  "start": 9.66,
+  "end": 9.98
+ },
+ {
+  "word": "how",
+  "start": 9.98,
+  "end": 10.2
+ },
+ {
+  "word": "the",
+  "start": 10.2,
+  "end": 10.32
+ },
+ {
+  "word": "app",
+  "start": 10.32,
+  "end": 10.46
+ },
+ {
+  "word": "should",
+  "start": 10.46,
+  "end": 10.62
+ },
+ {
+  "word": "look",
+  "start": 10.62,
+  "end": 10.86
+ },
+ {
+  "word": "and",
+  "start": 10.86,
+  "end": 11.26
+ },
+ {
+  "word": "why.",
+  "start": 11.26,
+  "end": 11.62
+ },
+ {
+  "word": "Then",
+  "start": 12.1,
+  "end": 12.26
+ },
+ {
+  "word": "I",
+  "start": 12.26,
+  "end": 12.38
+ },
+ {
+  "word": "say",
+  "start": 12.38,
+  "end": 12.64
+ },
+ {
+  "word": "build",
+  "start": 12.64,
+  "end": 13.04
+ },
+ {
+  "word": "it.",
+  "start": 13.04,
+  "end": 13.28
+ },
+ {
+  "word": "It",
+  "start": 13.6,
+  "end": 13.7
+ },
+ {
+  "word": "builds",
+  "start": 13.7,
+  "end": 13.88
+ },
+ {
+  "word": "the",
+  "start": 13.88,
+  "end": 14.04
+ },
+ {
+  "word": "screens",
+  "start": 14.04,
+  "end": 14.32
+ },
+ {
+  "word": "and",
+  "start": 14.32,
+  "end": 14.76
+ },
+ {
+  "word": "the",
+  "start": 14.76,
+  "end": 14.86
+ },
+ {
+  "word": "logic.",
+  "start": 14.86,
+  "end": 15.06
+ },
+ {
+  "word": "I",
+  "start": 15.58,
+  "end": 15.66
+ },
+ {
+  "word": "did",
+  "start": 15.66,
+  "end": 15.78
+ },
+ {
+  "word": "all",
+  "start": 15.78,
+  "end": 16.04
+ },
+ {
+  "word": "of",
+  "start": 16.04,
+  "end": 16.16
+ },
+ {
+  "word": "it",
+  "start": 16.16,
+  "end": 16.3
+ },
+ {
+  "word": "in",
+  "start": 16.3,
+  "end": 16.54
+ },
+ {
+  "word": "about",
+  "start": 16.54,
+  "end": 16.7
+ },
+ {
+  "word": "half",
+  "start": 16.7,
+  "end": 16.9
+ },
+ {
+  "word": "an",
+  "start": 16.9,
+  "end": 17.04
+ },
+ {
+  "word": "hour.",
+  "start": 17.04,
+  "end": 17.28
+ },
+ {
+  "word": "It's",
+  "start": 17.66,
+  "end": 17.86
+ },
+ {
+  "word": "not",
+  "start": 17.86,
+  "end": 18.0
+ },
+ {
+  "word": "magic.",
+  "start": 18.0,
+  "end": 18.26
+ },
+ {
+  "word": "It",
+  "start": 18.5,
+  "end": 18.6
+ },
+ {
+  "word": "rebuilds",
+  "start": 18.6,
+  "end": 19.22
+ },
+ {
+  "word": "how",
+  "start": 19.22,
+  "end": 19.34
+ },
+ {
+  "word": "an",
+  "start": 19.34,
+  "end": 19.42
+ },
+ {
+  "word": "app",
+  "start": 19.42,
+  "end": 19.6
+ },
+ {
+  "word": "works,",
+  "start": 19.6,
+  "end": 19.88
+ },
+ {
+  "word": "never",
+  "start": 20.16,
+  "end": 20.28
+ },
+ {
+  "word": "its",
+  "start": 20.28,
+  "end": 20.44
+ },
+ {
+  "word": "logo",
+  "start": 20.44,
+  "end": 20.62
+ },
+ {
+  "word": "or",
+  "start": 20.62,
+  "end": 20.84
+ },
+ {
+  "word": "code.",
+  "start": 20.84,
+  "end": 21.08
+ },
+ {
+  "word": "And",
+  "start": 21.4,
+  "end": 21.5
+ },
+ {
+  "word": "you",
+  "start": 21.5,
+  "end": 21.66
+ },
+ {
+  "word": "rename",
+  "start": 21.66,
+  "end": 21.92
+ },
+ {
+  "word": "it",
+  "start": 21.92,
+  "end": 22.12
+ },
+ {
+  "word": "ahead",
+  "start": 22.12,
+  "end": 22.32
+ },
+ {
+  "word": "of",
+  "start": 22.32,
+  "end": 22.42
+ },
+ {
+  "word": "launch.",
+  "start": 22.42,
+  "end": 22.64
+ },
+ {
+  "word": "The",
+  "start": 23.18,
+  "end": 23.32
+ },
+ {
+  "word": "setups",
+  "start": 23.32,
+  "end": 23.56
+ },
+ {
+  "word": "in",
+  "start": 23.56,
+  "end": 23.88
+ },
+ {
+  "word": "the",
+  "start": 23.88,
+  "end": 24.02
+ },
+ {
+  "word": "link",
+  "start": 24.02,
+  "end": 24.22
+ },
+ {
+  "word": "in",
+  "start": 24.22,
+  "end": 24.5
+ },
+ {
+  "word": "bio.",
+  "start": 24.5,
+  "end": 24.76
+ },
+ {
+  "word": "Want",
+  "start": 25.26,
+  "end": 25.4
+ },
+ {
+  "word": "the",
+  "start": 25.4,
+  "end": 25.5
+ },
+ {
+  "word": "next",
+  "start": 25.5,
+  "end": 25.62
+ },
+ {
+  "word": "one?",
+  "start": 25.62,
+  "end": 25.82
+ },
+ {
+  "word": "Follow.",
+  "start": 26.22,
+  "end": 26.4
+ }
+]

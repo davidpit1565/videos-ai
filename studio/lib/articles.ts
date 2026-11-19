@@ -2874,6 +2874,34 @@ export const ARTICLES: Article[] = [
       "This channel is not affiliated with Anthropic.",
     ],
   },
+  {
+    n: 106,
+    title: "The Replica skills: eleven free Claude skills that plan and rebuild an app, and the exact way to install them",
+    standfirst:
+      "The video shows the owner's own account of using the Replica skills, an open-source set of eleven Claude skills (MIT license, by a third party, github.com/Jakeschincariol/replica-skill). " +
+      "In the video, \"about half an hour\" is the channel owner's own account of one run: it is not a measurement and not a promise for your project. " +
+      "The install lines and the list of skills below come from the project's README, which we read on 19 November 2026. We did not audit the code.",
+    steps: [
+      "Open github.com/Jakeschincariol/replica-skill in your browser. You should see the repository with a README titled The Replica skill and a list of folders that start with replica-. Read the README first: it says what each skill does and what it will not do.",
+      "Before you install anything, open one of the folders (for example replica-recon) and read its SKILL.md file in full. A skill is text that Claude will follow, so you are checking that you are happy with what it tells Claude to do. A later update to the repository could change that text, so read again after an update.",
+      "Boring path, no terminal: open Claude, start a new chat, paste the repository link (https://github.com/Jakeschincariol/replica-skill) on its own line, then on a new line type: install skill. Send it. Claude should answer with what it installed.",
+      "Other route, if you use Claude Code: type /plugin marketplace add Jakeschincariol/replica-skill and press Enter, then type /plugin install replica-skill@replica-skill and press Enter. The README says plugin skills then show up as /replica-skill:replica-recon and so on. Or copy the replica-* folders into ~/.claude/skills/ to get plain /replica-recon.",
+      "Work in a test folder, not in a real project. Run the skills in the order the README gives: recon, architect, design, build, backend, test, diff, entrepreneur, brand, launch, deploy. Each one reads what the previous one wrote into a replica/ folder. You can stop after build or test. Leave deploy out until you have read it and know what it will do.",
+      "Never paste passwords, API keys or tokens into the chat. When a skill asks for keys for payments or a database, stop and set them up yourself outside the chat. After the build, rename your app: the last stage (brand) is for exactly that, and the README says to rebrand before launch.",
+    ],
+    changes: [
+      "What the skills do, from the README: they reverse-engineer what an app does from public pages and your own account, plan the stack, rebuild the design system, build the screens, test the flows, compare against the original with a parity score, and help with naming, a landing page and going live.",
+      "The README states the rule in its own words: it rebuilds what an app does, never what it owns. Features and flows, clean-room. Not its code, its logo, its copy or its content.",
+      "The repository is MIT licensed, needs no signup and no API key, and its helper tools are standard-library Python (3.8 or newer).",
+    ],
+    limits: [
+      "We did not run a test of our own for this video. The half-hour run is the owner's account of his own project; the app is not shown or named.",
+      "Third-party skills are text your Claude will follow. We did not audit them. Read each SKILL.md first, use a test folder, and never put secrets in the chat.",
+      "The skills rebuild features and flows. They do not give you the original's logo, code or content, and you must rename the app before launch. The README itself says to talk to a lawyer before you sell anything.",
+      "The README says some apps are not realistic to rebuild this way. A big, complex product is a long project, not an evening.",
+      "No star count or popularity figure is used as proof here. This channel is not affiliated with Anthropic or the project's author.",
+    ],
+  },
 ];
 
 export const articleFor = (n: number) => ARTICLES.find((a) => a.n === n) ?? null;

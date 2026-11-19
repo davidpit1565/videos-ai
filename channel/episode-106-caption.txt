@@ -1,0 +1,24 @@
+Eleven free skills that plan and build an app, from one Claude chat.
+
+In the video I say it took me about half an hour for my own app. That is my own run, told in my own words: it is not a test and not a promise for your project. I do not show or name the app.
+
+The skills are called the Replica skill: eleven Claude skills in one open-source repo (MIT license, made by a third party, not by me and not by Anthropic). The README lists them in order: recon, architect, design, build, backend, test, diff, entrepreneur, brand, launch, deploy. You say what app you want, Claude works through them, and each step writes what the next one reads.
+
+What it will not do: the README says it rebuilds what an app does (features and flows), never its code, its logo, its copy or its content, and that you rebrand before launch. It also says some apps are not realistic to rebuild this way.
+
+Safety, because skills are text Claude follows: read each SKILL.md first, use a test folder, never paste passwords or keys into the chat. I did not audit the code.
+
+Install (from the README): paste the repo link into Claude and write "install skill". Or in Claude Code: /plugin marketplace add Jakeschincariol/replica-skill, then /plugin install replica-skill@replica-skill. Full steps are in the link in bio.
+
+Repo: github.com/Jakeschincariol/replica-skill (read 19 November 2026).
+
+Hook versions (trial test):
+V1: I built an app in half an hour.
+V2: Eleven free add-ons. One app, built by Claude.
+V3: Claude found problems in my app idea.
+V4: App idea? Give it to Claude.
+V5: This free Claude tool plans and builds apps.
+
+Send this to a friend with an app idea.
+
+#claude #claudeai #aitools #buildinpublic #appdevelopment

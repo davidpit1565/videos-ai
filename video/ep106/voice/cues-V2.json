@@ -1,0 +1,84 @@
+{
+ "version": "V2",
+ "estimated_timeline": false,
+ "lines": [
+  {
+   "n": 1,
+   "line": "Eleven free add-ons. One app, built by Claude.",
+   "text": "Eleven free add-ons. One app, built by Claude.",
+   "start": 0.05,
+   "end": 2.939
+  },
+  {
+   "n": 2,
+   "line": "I tell Claude the app I want. That's it.",
+   "text": "I tell Claude the app I want. That's it.",
+   "start": 3.129,
+   "end": 5.213
+  },
+  {
+   "n": 3,
+   "line": "Then eleven free add-ons run, in order.",
+   "text": "Then eleven free add-ons run, in order.",
+   "start": 5.403,
+   "end": 7.754
+  },
+  {
+   "n": 4,
+   "line": "One finds the weak spots in my idea.",
+   "text": "One finds the weak spots in my idea.",
+   "start": 7.944,
+   "end": 9.746
+  },
+  {
+   "n": 5,
+   "line": "One draws how the app should look. And why.",
+   "text": "One draws how the app should look. And why.",
+   "start": 9.936,
+   "end": 12.376
+  },
+  {
+   "n": 6,
+   "line": "Then I say, build it.",
+   "text": "Then I say, build it.",
+   "start": 12.566,
+   "end": 13.852
+  },
+  {
+   "n": 7,
+   "line": "It builds the screens and the logic.",
+   "text": "It builds the screens and the logic.",
+   "start": 14.042,
+   "end": 15.815
+  },
+  {
+   "n": 8,
+   "line": "I did all of it in about half an hour.",
+   "text": "I did all of it in about half an hour.",
+   "start": 16.005,
+   "end": 17.965
+  },
+  {
+   "n": 9,
+   "line": "It's not magic. It rebuilds how an app works, never its logo or code. And you rename it ahead of launch.",
+   "text": "It's not magic. It rebuilds how an app works, never its logo or code. And you rename it ahead of launch.",
+   "start": 18.155,
+   "end": 23.434
+  },
+  {
+   "n": 10,
+   "line": "The setup's in the link in bio.",
+   "text": "The setup's in the link in bio.",
+   "start": 23.624,
+   "end": 25.537
+  },
+  {
+   "n": 11,
+   "line": "Want the next one? Follow.",
+   "text": "Want the next one? Follow.",
+   "start": 25.727,
+   "end": 27.233
+  }
+ ],
+ "D": 27.37
+}

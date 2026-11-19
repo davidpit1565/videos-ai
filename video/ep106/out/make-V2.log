@@ -1,0 +1,18 @@
+hook: Eleven free add-ons. One app, built by Claude. | frame0: 11 FREE|ADD-ONS|ONE APP
+
+0 risky word(s) across 1 line(s).
+seed 11 accent 0.31 text OK eleven free add ons one app built by claude
+seed 22 accent 0.09 text OK eleven free add ons one app built by claude
+seed 33 accent 0.01 text DIFF eleven free addons one app built by claude
+picked: /home/user/videos-ai/video/ep106/voice/pl/H-V2-22.wav
+48000 27.37
+HOOK AS SPOKEN: 11 free add -ons. One app built by Claude.
+D=27.37
+integrated -14.9 fix 0.9 bed gain -8.57 ; bed-voice speaking -8.5 dB; gaps bed vs voice-speaking -5.5 ; lin(for voice_quality --vol, raw track hp) 0.4133
+=== PASS  frame layout (safe_check_hf.js)
+=== PASS  rendered file (qa.py --hf)
+=== PASS  no silent line in the final mp4 (check_last_line_audio.py --all)
+=== PASS  voice + music quality (voice_quality.py)
+=== PASS  narration pacing/level/sibilance (voice_doctor.py, per line, no whisper pass)
+=== PASS  accent drift (check_accent.py)
+ALL CHECKS THAT RAN PASSED (0 skipped)  -  audio was measured, not heard; watch the file twice before sending

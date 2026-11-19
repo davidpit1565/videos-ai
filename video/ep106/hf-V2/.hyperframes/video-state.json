@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "historyId": "05fb57b3-d6b4-44c2-97fd-2d814ca76dea",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "index.html": {
+      "hash": "c6983076ec7ce5afa8645627c126a91f41a36ce18d1c69fc9f21fc96a01efc30",
+      "content": "/root/.cache/hyperframes/history/05fb57b3-d6b4-44c2-97fd-2d814ca76dea/blobs/c6/c6983076ec7ce5afa8645627c126a91f41a36ce18d1c69fc9f21fc96a01efc30"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "6c292bcc-5255-49a5-b9a0-3c8a44021fba",
+      "completedAt": 1795105949850,
+      "output": "/home/user/videos-ai/video/ep106/out/pic-V2.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}

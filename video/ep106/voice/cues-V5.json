@@ -1,0 +1,84 @@
+{
+ "version": "V5",
+ "estimated_timeline": false,
+ "lines": [
+  {
+   "n": 1,
+   "line": "This free tool plans and builds apps, in Claude.",
+   "text": "This free tool plans and builds apps, in Claude.",
+   "start": 0.05,
+   "end": 2.555
+  },
+  {
+   "n": 2,
+   "line": "I tell Claude the app I want. That's it.",
+   "text": "I tell Claude the app I want. That's it.",
+   "start": 2.745,
+   "end": 4.829
+  },
+  {
+   "n": 3,
+   "line": "Then eleven free add-ons run, in order.",
+   "text": "Then eleven free add-ons run, in order.",
+   "start": 5.019,
+   "end": 7.37
+  },
+  {
+   "n": 4,
+   "line": "One finds the weak spots in my idea.",
+   "text": "One finds the weak spots in my idea.",
+   "start": 7.56,
+   "end": 9.668
+  },
+  {
+   "n": 5,
+   "line": "One draws how the app should look. And why.",
+   "text": "One draws how the app should look. And why.",
+   "start": 9.858,
+   "end": 12.297
+  },
+  {
+   "n": 6,
+   "line": "Then I say, build it.",
+   "text": "Then I say, build it.",
+   "start": 12.487,
+   "end": 13.773
+  },
+  {
+   "n": 7,
+   "line": "It builds the screens and the logic.",
+   "text": "It builds the screens and the logic.",
+   "start": 13.963,
+   "end": 15.737
+  },
+  {
+   "n": 8,
+   "line": "I did all of it in about half an hour.",
+   "text": "I did all of it in about half an hour.",
+   "start": 15.927,
+   "end": 17.887
+  },
+  {
+   "n": 9,
+   "line": "It's not magic. It rebuilds how an app works, never its logo or code. And you rename it ahead of launch.",
+   "text": "It's not magic. It rebuilds how an app works, never its logo or code. And you rename it ahead of launch.",
+   "start": 18.077,
+   "end": 23.356
+  },
+  {
+   "n": 10,
+   "line": "The setup's in the link in bio.",
+   "text": "The setup's in the link in bio.",
+   "start": 23.546,
+   "end": 25.458
+  },
+  {
+   "n": 11,
+   "line": "Want the next one? Follow.",
+   "text": "Want the next one? Follow.",
+   "start": 25.648,
+   "end": 27.155
+  }
+ ],
+ "D": 27.29
+}
