@@ -740,3 +740,6 @@ Check every reel before publishing, in this order (J = my judgement before, M = 
 
 ## Closing line: "Follow, and you'll see it." as a standing option (David, 19.11.2026)
 - David likes the ending used in episode 103 ("Want the next one? Follow, and you'll see it.") because it closes well and the tone came out good; it comes after "The setup's in the link in bio." and promises no episode and no day (consistent with the 15.11 rule). He wants it as the usual ending, but for the NEXT new video I must ASK him first whether to use it; if he says yes, use it (and then it is the default for the videos after, unless he says otherwise). Episode 106's five versions end with "Want the next one? Follow." (already built and approved); do not change them unless he asks.
+
+## Shabbat: no asks from Friday evening to Saturday night (David, 19.11.2026)
+- David is off from Friday evening until Saturday night. Do not schedule asks, readings or approvals for him in that window (a reading planned for Friday 20:45 Belgium was moved to Tuesday). A scheduled publish he already approved may still run Friday morning. The ep106 trial readings and the next build are on Tuesday 24.11.2026 (reminders: 09:30 readings, 10:00 build).
