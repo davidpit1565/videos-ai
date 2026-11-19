@@ -429,3 +429,16 @@ Pure picture (Claude chat screenshot, dark), slow zoom 100% to 115% over 7 s, an
 
 ## Correction 16.11.2026 (David): the "Me with Claude / Me with ChatGPT" picture, where the views really were
 - Earlier (15.11) this file and CLAUDE.md carried "over 8,000 views as a trial". David's reading after moving the picture to his profile (16.11): about **200 views on Instagram, about 7,800 on Facebook**. So the picture went off on FACEBOOK, not on Instagram (his numbers, not read from the studio: trials and Facebook are not tracked there). HYPOTHESIS: this meme travels on Facebook's audience; it did not travel on ours. LESSON: read Instagram and Facebook numbers separately before calling a topic "passed"; the topic-test rule (a couple of thousand views = pass) would have wrongly passed this one for Instagram. Open: did the picture add Instagram followers; does the same joke on a Facebook Page make sense (the Facebook token in the studio is invalid, posting there is by hand).
+
+## 19.11.2026: hook-version test, episode 106 (five openings, one body) + the free-limit picture, all as TRIALS
+- What we test: the same video with five different first lines (hook types), all posted as trial reels (non-followers only, `MANUAL`, no auto-share, no Facebook, no story) through the studio API, plus one silent picture reel. Posted within 3 minutes of each other (not the planned few hours apart: David asked for all now), so time of day does not separate them but the audience overlap is untested. 24 h and 72 h readings are done in the Instagram app by David (trials are not tracked in the studio); reminders: 20.11 20:45 and 22.11 20:45 Belgium.
+- Predictions (judgement, ASSUMPTION): hook 72-80 by version, overall 72, 400-1,200 views; blind reader (text only, haiku) ranked V5, V2, V4, V3, V1. Picture: hook 78, 200-1,500 views.
+
+| version | studio no. | hook text | type | posted (Belgium, 19.11) | permalink | 24 h views / likes / comments / shares | 72 h |
+|---|---|---|---|---|---|---|---|
+| V1 | 1061 | I built an app in half an hour. | personal time | 20:45 | https://www.instagram.com/reel/Df73PSDtxve/ | | |
+| V2 | 1062 | Eleven free add-ons. One app, built by Claude. | number + free | 20:43 | https://www.instagram.com/reel/Df723YXzB-M/ | | |
+| V3 | 1063 | Claude found problems in my app idea. | friction | 20:44 | https://www.instagram.com/reel/Df73ITCtUlR/ | | |
+| V4 | 1064 | App idea? Give it to Claude. | direct address | 20:43 | https://www.instagram.com/reel/Df73BLjOvM7/ | | |
+| V5 | 1065 | This free tool plans and builds apps, in Claude. | tool reveal | 20:43 | https://www.instagram.com/reel/Df728K9zmXy/ | | |
+| picture | 902 | (three-line "free limit" text over a surprised-face image) | meme picture, silent | 20:46 | https://www.instagram.com/reel/Df73TTCNkbt/ | | |
