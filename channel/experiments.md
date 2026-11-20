@@ -445,3 +445,5 @@ Pure picture (Claude chat screenshot, dark), slow zoom 100% to 115% over 7 s, an
 
 ### 19.11.2026 (late): LinkedIn reel opening variant, TRIAL (studio 1021)
 - Same video as episode 102 (regular version to be posted 20.11 08:00 Belgium), only the opening changes: regular opens "Claude Code just killed LinkedIn." (cartoon-cut gag), trial opens "Your LinkedIn posts. Written by Claude. Free." with the real LinkedIn and Claude logos. Posted as a trial (MANUAL, no auto-share, no Facebook, no story) 19.11 about 00:35 Belgium time of 20.11 (23:35 UTC): https://www.instagram.com/reel/Df8ReZAKPHk/ . The first publish attempt timed out while Instagram was still processing the file; the second attempt succeeded (no duplicate: the first container was never published). Readings: Tuesday 24.11 together with the ep106 trials. Prediction (ASSUMPTION): hook 78, 300-1,200 views.
+
+- 102 (regular, the LinkedIn reel) published on Instagram 20.11.2026 08:04 Belgium: https://www.instagram.com/reel/Df9EzzDAMVE/ (David confirmed in chat he had not posted it by hand). The trial variant 1021 is posted separately; readings together on Tuesday 24.11.
