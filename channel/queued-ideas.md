@@ -53,3 +53,6 @@ Rule (David, 15.11.2026): when he says "the videos I said we will do", this file
 - Duplicate check 16.11: no hit for Instagram skills, hook scorers or "killed"; topic 59 is LinkedIn AI-training data (different angle).
 - Funnel stage: TOP (series), MID for the Instagram-skills test. Risks: hyperbole as a factual claim; overlap with Q1/Q2 (same creator's style, keep one "free skills" episode per week at most); comment-for-DM CTA not ours (link in bio); the Miki checklist forbids the creator's outlines, chips and progress strips.
 - Status: QUEUED. Not built. Needs: David's yes on the comedy cut (he approved the same kind for ep99) and on which victim first.
+
+## Q6. "A free app that works when the internet dies" / Project NOMAD (reference reel Df7thBEJXH0, @frames.explains, 19.11.2026)
+- Queued for later by David (20.11). Notes, live verification and the AI-angle problem: `channel/ref-2026-11-20-Df7thBEJXH0.md`. TOP. Needs a live check of the local-AI part and hardware before any script; five hook versions per the standing rule.
